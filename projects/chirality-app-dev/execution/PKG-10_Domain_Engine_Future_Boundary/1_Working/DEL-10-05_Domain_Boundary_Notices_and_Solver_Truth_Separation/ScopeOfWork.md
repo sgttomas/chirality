@@ -21,7 +21,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > #### Datasheet: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 >
 
 ### CLM-002 — Identification
@@ -64,10 +64,10 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 >
 > | Condition | Value | Source |
 > |---|---|---|
-> | Current implementation partition | D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live; endpoints, apply, protected-path hooks/writes, and general runtime remain future/gated | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 |
+> | Current implementation partition | D-APP-49 through D-APP-52 authorize the staged profile/type, registry, read and PEC-scoped propose/refresh/validate interfaces. Their retained implementation is compatibility evidence, not proof of live Codex exposure. D-GOV-43 / D-APP-127 select Codex; live-path composition and named verification remain delivery work. Endpoints, operation apply, direct protected writes/hooks, integration-level advancement and general domain runtime retain F-APP-3 and their separate gates. | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 |
 > | Adoption gate | Future domain-engine work requires governed amendment and stable core harness/runtime boundaries | Decomposition OI-005 and DEC-006; `docs/PRD.md` Section 8.17 |
 > | Fixture posture | OpenPipeStress may be a first fixture profile if adopted, but it is not Chirality core behavior | `docs/PRD.md` FR-114; `docs/TYPES.md` Section 11.3 |
-> | PRD reference integrity | WARNING: `_REFERENCES.md` records PRD ExpectedSHA256 `86cb6f...eb34` and ActualSHA256 `fb1c73...6fc8`; per dispatch, this is treated as a source status | `_REFERENCES.md`; user dispatch |
+> | PRD reference integrity | REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical. | `_REFERENCES.md`; user dispatch |
 >
 
 ### CLM-005 — Construction
@@ -94,7 +94,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > | REF-004 | `docs/TYPES.md` | Domain terms: protected path, proposal path, deterministic adapter, boundary notice |
 > | REF-005 | `docs/PLAN.md` | Future domain-engine direction and OpenPipeStress fixture posture |
 > | REF-006 | `docs/PRD.md` | Product requirements FR-106 through FR-115 and current-release non-goals |
-> | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-10-05 scope, SOW-071, OBJ-009, OBJ-010, OI-005, DEC-006 |
+> | Scope basis (frontmatter) | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-10-05 scope, SOW-071, OBJ-009, OBJ-010, OI-005, DEC-006 |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -102,7 +102,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > #### Specification: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 >
 
 ### CLM-008 — Scope
@@ -116,7 +116,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > - Chirality proposals, summaries, manifests, and audit records,
 > - explicit human acceptance and professional reliance decisions.
 >
-> This deliverable excludes `/api/domain/*` endpoints, operation apply, direct protected-path mutation/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize the staged-live source-type/guard, closed-registry, read-tool, and pec-scoped loopback propose/refresh/validate surface; this copy/review deliverable does not own that implementation.
+> This deliverable excludes `/api/domain/*` endpoints, operation apply, direct protected-path mutation/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize the authorized source-type/guard, registry, read-tool and PEC proposal interface, evidenced by retained compatibility implementations rather than a Codex live-path witness; this copy/review deliverable does not own that implementation.
 >
 
 ### CLM-009 — Requirements
@@ -131,7 +131,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > | REQ-004 | Domain operation copy MUST require explicit human acceptance before any applied operation is treated as accepted domain state. | `docs/PRD.md` FR-113; `docs/CONTRACT.md` K-DOMAIN-3 and K-GATE-1 | Operation-related copy includes human-gate language. |
 > | REQ-005 | Protected domain artifact copy MUST distinguish protected paths from agent-writable proposal or summary paths. | `docs/PRD.md` FR-110, FR-111; `docs/CONTRACT.md` K-DOMAIN-2; `docs/TYPES.md` Section 11.3 | Review confirms no direct agent-write language for protected model truth. |
 > | REQ-006 | OpenPipeStress examples, if used, MUST describe it as a possible fixture profile and not as Chirality core behavior. | `docs/PRD.md` FR-114; `docs/TYPES.md` Section 11.3 | Example review confirms fixture-only language. |
-> | REQ-007 | Domain-surface wording MUST distinguish the D-APP-49 through D-APP-52 staged-live types/guards, registry, read tools, and pec-scoped propose/refresh/validate tools from still-gated endpoints, apply, protected-path hooks/writes, and general runtime. | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 | Scope review confirms the staged partition without implying broader activation. |
+> | REQ-007 | Domain-surface wording MUST distinguish the D-APP-49 through D-APP-52 authorized interfaces, their retained compatibility implementation and unverified Codex live-path composition from still-gated endpoints, apply, protected-path hooks/writes, and general runtime. | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 | Scope review confirms the staged partition without implying broader activation. |
 > | REQ-008 | Unsupported domain-profile or solver-specific details MUST remain `TBD`, `ASSUMPTION`, `PROPOSAL`, or a human-ruling item. | Skill contract; `_REFERENCES.md` notes | Document review confirms no invented solver facts. |
 >
 
@@ -145,7 +145,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > |---|---|
 > | Chirality professional-boundary invariants | Applicable from `docs/DIRECTIVE.md` and `docs/CONTRACT.md` |
 > | Chirality domain-engine future requirements | Applicable from `docs/PRD.md` FR-106 through FR-115 |
-> | DomainEngineProfile accepted schema | TBD: no accepted generic profile specification exists yet per `docs/PRD.md` KG-017 |
+> | DomainEngineProfile accepted schema | Generic fields are specified in TYPES §11.1 and the D-APP-49 canonical type carrier; ADOPTED tier-0 instances exist. Live exposure and new integrations retain their gates |
 > | Engine-specific solver validation standards | TBD: out of scope until a future amendment and domain profile identify the engine and governing standards |
 >
 
@@ -175,11 +175,11 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > - Domain review checklist.
 > - UI/documentation examples.
 > - Human-ruling list for unresolved future-amendment details.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 > - Surface inventory or out-of-scope rationale for selected future surfaces.
 > - OperationProposal schema citation status before operation-proposal examples are used for closure evidence.
 
-- **AC-001** — PASS when the source-preserving contract contains the exact legacy boundary notices, review checklist, and UI/documentation examples; makes no claim that Chirality approves, validates, certifies, owns, or professionally relies on solver results; keeps proposals and review aids non-binding; authorizes no protected-path mutation or operation approval; and maps the output to SOW-071 and OBJ-009/OBJ-010 with every legacy source line dispositioned.
+- **AC-001** — PASS when the source-preserving contract contains requirement-conformant boundary notices, review checklist, and UI/documentation examples; makes no claim that Chirality approves, validates, certifies, owns, or professionally relies on solver results; keeps proposals and review aids non-binding; authorizes no protected-path mutation or operation approval; and maps the output to SOW-071 and OBJ-009/OBJ-010 with historical source mapping retained and current authorized repairs independently checked.
 
 ## Production and Verification Method — Praxeology
 
@@ -187,7 +187,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > #### Procedure: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 >
 
 ### CLM-014 — Purpose
@@ -201,12 +201,12 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > ##### Prerequisites
 >
-> - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and the current four-document kit.
+> - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and the current `ScopeOfWork.md`.
 > - Confirm `ResponsibleParty` remains `TBD` unless a human assigns ownership.
 > - Confirm PKG-10 remains future-boundary/gated scope unless a governed amendment says otherwise.
-> - Confirm no accepted upstream dependency edges are available yet; `_DEPENDENCIES.md` records upstream/downstream as TBD.
+> - Read the ten SATISFIED extracted rows in `Dependencies.csv`; they are source/decomposition prerequisites, not acceptance of future domain-surface copy.
 > - Use `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/PRD.md`, `docs/SPEC.md`, `docs/TYPES.md`, and the v3.2 SOFTWARE_DECOMP as source authority.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 >
 
 ### CLM-016 — Steps
@@ -240,7 +240,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 >    - Add or update a conflict table when source materials disagree or require human judgment.
 >
 > 8. Record review outcome.
->    - Note pass/fail against the checklist in `Guidance.md`.
+>    - Note pass/fail against the checklist in `ScopeOfWork.md` CLM-032.
 >    - Record any human-ruling items.
 >    - Record the reviewed surface, reviewer, review date, source-warning status, closure verdict, unresolved human rulings, and carryforward items using the review output record fields below.
 >    - Do not create or update `Dependencies.csv` as part of this procedure.
@@ -259,7 +259,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > | Future scope preserved | Confirm current-release implementation is not implied. |
 > | Unsupported facts labeled | Confirm unknowns are `TBD`, `ASSUMPTION`, `PROPOSAL`, or conflict-table items. |
 > | Closure evidence complete | Confirm the review output record includes reviewed surface, reviewer, date, checklist result, source-warning status, unresolved human rulings, and closure verdict. |
-> | PRD warning maintained | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | PRD warning maintained | REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical. |
 >
 
 ### CLM-018 — Review Output Record
@@ -274,7 +274,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > | Reviewed source | File/path, screen, mockup, record, or proposed copy location reviewed. |
 > | Reviewer | Accountable reviewer name or `TBD` if not yet assigned. |
 > | Review date | Calendar date or `TBD`. |
-> | Checklist result | Pass/fail for each `Guidance.md#Domain Review Checklist` row, or a reference to the completed checklist. |
+> | Checklist result | Pass/fail for each `ScopeOfWork.md` CLM-032 row, or a reference to the completed checklist. |
 > | Notice pattern used | Standard, compact UI, operation proposal, protected artifact, fixture, or `TBD`. |
 > | Source-warning status | PRD hash warning open/closed/waived; closure evidence must cite the reconciliation or waiver record. |
 > | Human-ruling carryforward | Unresolved wording, profile-location, engine-specific, source-warning, or acceptance-authority questions. |
@@ -290,7 +290,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > - Required notice pattern or out-of-scope rationale for each selected future surface category.
 > - Completed checklist capture location, or `TBD` when no accepted storage location exists.
 > - OperationProposal schema citation status before operation-proposal notice examples are used as closure evidence.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 > - Unresolved human-ruling items carried forward explicitly.
 >
 
@@ -299,13 +299,13 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > ##### Records
 >
 > - Reviewed boundary notice copy.
-> - Completed domain review checklist from `Guidance.md`.
+> - Completed domain review checklist from `ScopeOfWork.md` CLM-032.
 > - Human-ruling list for unresolved wording, profile, or engine-specific questions.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 > - Review output record containing reviewed surface, reviewer, date, checklist result, source-warning status, closure verdict, and human-ruling carryforward.
 > - This deliverable's `_STATUS.md` lifecycle state.
 
-- **VER-001** — Validate the SOW_V1 schema under exact MIGRATION_DUAL authority; map and report parity for every legacy source line; derive the exact AC checklist; render deterministically; and review the preserved notice copy for proposal-only language, solver-truth separation, and absence of added solver reliance or certification, protected-path mutation, operation approval, lifecycle meaning, or semantic obligation.
+- **VER-001** — Review the current ScopeOfWork claims and output matrix against their cited requirements and retained gates. Historical conversion/parity evidence is recovered in `R5/CONVERSION_EVIDENCE_REVIEW.csv` of RUN_D128_CONCORDANCE_2026-09-21_1614Z; it proves the dated conversion only. Current reconciliation uses W10_CHANGES.csv and independent changed-block review; product and human-acceptance checks remain separately required.
 
 ## Governing Values and Decisions — Axiology
 
@@ -313,7 +313,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > #### Guidance: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
 >
 
 ### CLM-022 — Purpose
@@ -339,8 +339,8 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 > ##### Considerations
 >
 > - Domain-engine boundary language overlaps with general professional-boundary language in `docs/DIRECTIVE.md` and `docs/CONTRACT.md`; keep the wording mutually consistent.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
-> - DomainEngineProfile details remain future work. Do not invent profile fields beyond the source-backed set: engine identity, optional version, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.
+> - REF-006 records an accepted reference basis, not perpetual current-byte equality. Read current observed hashes/status in `_REFERENCES.md`; retain expected hashes and use the parent D-APP-38 reconciliation for current drift. The 2026-07-12 MATCH observation is historical.
+> - Use the D-APP-49/TYPES §11.1 source-backed DomainEngineProfile fields and ADOPTED tier-0 instances; do not invent solver-specific details. Concrete notice placement and copy acceptance remain future-surface work.
 > - OpenPipeStress may be useful as a first fixture profile, but examples must not hardcode OpenPipeStress assumptions into Chirality core behavior.
 > - Runtime events, adapter results, and deterministic checks can support review; they do not make a deliverable professionally reliable by themselves.
 > - The notice wording below is proposal-quality copy until an accountable human accepts it for a specific future UI, documentation, event-record, profile, or operation-proposal surface.
@@ -367,7 +367,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > ###### Standard Notice
 >
-> Chirality records and governs domain-engine interactions, proposals, and review evidence. It does not approve, certify, issue, sign, seal, prove code compliance, externally validate, or own solver truth. Domain results require review and explicit acceptance by an accountable human before reliance.
+> Chirality records and governs domain-engine interactions, proposals, and review evidence. It does not approve, validate, certify, issue, sign, seal, prove code compliance, externally validate, or own solver truth. Domain results require review and explicit acceptance by an accountable human before reliance.
 >
 
 ### CLM-028 — Compact UI Notice
@@ -419,7 +419,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 > ##### Completed Checklist Capture
 >
-> Completed checklist evidence should be captured as part of the review output record described in `Procedure.md#Review Output Record`. Until a future amendment defines a product-native storage location, the capture location is `TBD` and the completed checklist is closure support only, not a human approval record.
+> Completed checklist evidence should be captured as part of the review output record described in `ScopeOfWork.md` CLM-018. Until a future amendment defines a product-native storage location, the capture location is `TBD` and the completed checklist is closure support only, not a human approval record.
 >
 
 ### CLM-034 — Examples
@@ -437,12 +437,7 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 ### CLM-035 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | CT-001 | PRD source hash status: MATCH recorded in `_REFERENCES.md`; dispatch instructs treating MATCH as source status. | `_REFERENCES.md` REF-006 expected/actual SHA values | User dispatch instruction | Datasheet Conditions; Specification Documentation; this Guidance section | Use current accessible `docs/PRD.md` for P1/P2 drafting while preserving the warning until reconciled. | TBD — reconciled under D-APP-38 |
->
+> CT-001 records historical PRD source-status handling. Current source drift is observed in `_REFERENCES.md` and reconciled through D-APP-38 with expected hashes preserved. No stale warning/MATCH phrase creates another owner decision. Specific future surface wording and acceptance questions remain in CLM-036.
 
 ### CLM-036 — Human Rulings Needed
 
@@ -457,4 +452,4 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-071 OBJ-009 OBJ-010 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-071 OBJ-009 OBJ-010 | CLM-007 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |

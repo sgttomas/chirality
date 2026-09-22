@@ -26,7 +26,7 @@ Project-level reconciliation is an agentic workflow:
 
 Step-4 rulings draw on the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): resolve each SCC by one of four recorded moves — decompose / invert / merge / cut. The accepted `SCC-SAFE-MOVES-001` snapshot applied source-grounded `decompose` moves to the residual six-node longer cycle and now reports strict SCC count `0`. Future SCCs, if introduced by later dependency changes, must be resolved by a newly recorded move and accepted immutable snapshot.
 
-## Control Deliverable Readiness
+## Historical Control Deliverable Readiness (2026-05-24)
 
 The two `DEL-00-*` control deliverables were regenerated through bounded `TASK` workers after the earlier direct ORCHESTRATOR-authored `SEMANTIC_READY` entries were invalidated as provisional.
 
@@ -34,6 +34,8 @@ The two `DEL-00-*` control deliverables were regenerated through bounded `TASK` 
 |---|---|---|
 | `DEL-00-01` | `SEMANTIC_READY` | `_run_records/TASK_RUN_2026-05-24_1503.md`, `_1504.md`, `_1508.md`, `_1510.md`, `_1513.md` |
 | `DEL-00-02` | `SEMANTIC_READY` | `_run_records/TASK_RUN_2026-05-24_1503.md`, `_1504.md`, `_1508.md`, `_1511.md`, `_1513.md` |
+
+Current lifecycle is read from each deliverable’s `_STATUS.md` (D-APP-54); the table above preserves the 2026-05-24 readiness record.
 
 This readiness is document-kit and control-workflow readiness only. It did not itself close either SCC, change dependency edge state, or authorize project-wide `BLOCKED/UNBLOCKED` reporting.
 

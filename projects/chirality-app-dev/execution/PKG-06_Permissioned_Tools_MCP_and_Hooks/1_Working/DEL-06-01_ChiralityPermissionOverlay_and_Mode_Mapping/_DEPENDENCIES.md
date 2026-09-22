@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-01-001, DEP-06-01-002, DEP-06-01-003, DEP-06-01-004, DEP-06-01-005, DEP-06-01-006, DEP-06-01-007, DEP-06-01-008, DEP-06-01-009, DEP-06-01-010, DEP-06-01-011, DEP-06-01-012, DEP-06-01-013, DEP-06-01-014
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. Consult the structured register; no new edge is inferred.
 
 ## Current ADQ-11 Reconciliation Note
 
@@ -26,40 +26,26 @@ history and no longer describe the active source-state posture.
 
 ## Extracted Dependency Register
 
-Register: `Dependencies.csv` v3.1
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Metric | Count |
-|---|---:|
-| Total rows | 14 |
-| ACTIVE rows | 11 |
-| RETIRED rows | 3 |
-| ANCHOR rows | 5 |
-| EXECUTION rows | 9 |
-
-| DependencyClass | DependencyType | Status | Count |
-|---|---|---|---:|
-| ANCHOR | OTHER | ACTIVE | 5 |
-| EXECUTION | PREREQUISITE | ACTIVE | 4 |
-| EXECUTION | CONSTRAINT | ACTIVE | 1 |
-| EXECUTION | INTERFACE | ACTIVE | 1 |
-| EXECUTION | INTERFACE | RETIRED | 3 |
-
-| DependencyID | Class | Type | Direction | TargetType | Target | Status |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-06-01-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE |
-| DEP-06-01-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-06-01-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-055 Permission modes and capability policy with explicit hard-deny precedence | ACTIVE |
-| DEP-06-01-004 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-056 Tool permission events | ACTIVE |
-| DEP-06-01-005 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-058 Interactive approval through `canUseTool` | ACTIVE |
-| DEP-06-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 `docs/TYPES.md` Section 8 | ACTIVE |
-| DEP-06-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 `docs/CONTRACT.md` Section 1.6 | ACTIVE |
-| DEP-06-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 `docs/SPEC.md` Sections 14 and 15 | ACTIVE |
-| DEP-06-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-005 `docs/PLAN.md` roadmap sequencing | ACTIVE |
-| DEP-06-01-010 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 `docs/PRD.md` source-state reconciliation | ACTIVE |
-| DEP-06-01-011 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
-| DEP-06-01-012 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-02 SDK Read Tool Surface and Tool Validation | ACTIVE |
-| DEP-06-01-013 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-03 Initial Chirality MCP Read Tools | ACTIVE |
-| DEP-06-01-014 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | PKG-05/PKG-03 event writer and session JSONL append API | ACTIVE |
+| DEP-06-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-06 | ACTIVE | SATISFIED |
+| DEP-06-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-054 | ACTIVE | SATISFIED |
+| DEP-06-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-055 | ACTIVE | SATISFIED |
+| DEP-06-01-004 | ANCHOR | OTHER | UPSTREAM | SOW-056 | ACTIVE | SATISFIED |
+| DEP-06-01-005 | ANCHOR | OTHER | UPSTREAM | SOW-058 | ACTIVE | SATISFIED |
+| DEP-06-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | PENDING |
+| DEP-06-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | PENDING |
+| DEP-06-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | PENDING |
+| DEP-06-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | PENDING |
+| DEP-06-01-010 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-06-01-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 | RETIRED | NOT_APPLICABLE |
+| DEP-06-01-012 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-02 | RETIRED | NOT_APPLICABLE |
+| DEP-06-01-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 | RETIRED | NOT_APPLICABLE |
+| DEP-06-01-014 | EXECUTION | INTERFACE | UPSTREAM | TBD | ACTIVE | PENDING |
+
+Counts: ACTIVE=11, RETIRED=3; satisfaction NOT_APPLICABLE=3, PENDING=5, SATISFIED=6.
 
 ## Run Notes
 
@@ -99,3 +85,27 @@ Register: `Dependencies.csv` v3.1
 - **Current counts:** ACTIVE 11; RETIRED 3; NOT_APPLICABLE=3; PENDING=5; SATISFIED=6.
 - **Correction:** DEP-06-01-014 now names the appendHarnessEvent call path; upstream deliverable identity remains unassigned.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `tests/codex-supervisor.test.ts`; App `frontend/src/__tests__/components/live-session-requests.test.tsx`; legacy `frontend/src/lib/harness/permission-overlay.ts` and fixtures. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current evidence-locator refresh — 2026-09-22
+
+5 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=11; RETIRED=3; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SOURCE_04_06_APPROVED.csv`; current rows: ACTIVE=11, RETIRED=3. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_04_06_SUPPORTED_APPROVED.csv`; current rows: ACTIVE=11, RETIRED=3. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

@@ -8,9 +8,16 @@
 
 ## Remaining
 
-- **DEL-06-06-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 8 authority application, 2 changed claim followthrough, 16 implementation or evidence, 26 record repair, 2 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-06-06.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-06-06-TERMINAL-UNIQUENESS** — For each accepted turn, persist exactly one durable terminal outcome. Completion, Stop/finalization and interruption races must not append duplicate or contradictory terminal records. Verify a named completion-versus-Stop race fixture against the live Runtime event store, asserting exactly one terminal event and a truthful final result. Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts` and their live terminal fixtures. Gate: bounded implementation/evidence and independent review; owner: WORKING_ITEMS with Runtime owner.
+
+- **DEL-06-06-R5-DELIVERY** — Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
+  Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
+  Check: Verify actual emitted hook coverage, named compaction observation/replay implications, preserved terminal outcomes, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
+
 
 ## History
+- 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-07-12 - D-APP-56 R4-P04 adopted hook.progress normatively with mapper and persistence coverage; state remains IN_PROGRESS.

@@ -14,3 +14,11 @@
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
 
 - 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. D116/117 optional enhancement preparation closed/not adopted here; future adoption gates remain. Obsolete D119 candidate withdrawn without reducing existing organisation obligations. No lifecycle, dependency acceptance or product completion.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. App consumption, previews and conformance for Runtime-owned tool results/artifacts; storage and generic custody stay Runtime-owned. D-APP-132 leaves D-APP-116 full inventory/cleanup enhancement unadopted for this undertaking.
+
+Current unfinished delivery: Implement live Runtime budgeting/artifact production/redaction and App summary/artifact-link conformance at current thresholds; verify D-APP-42 metadata, thresholds, hashes, ordering and session-lifetime behavior. Optional D-APP-116 full inventory/cleanup remains deferred with future adoption gate. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+2026-09-22 review repair: The distinct medium-band preview representation remains deferred under D-APP-42 and D-APP-56 R4-P08. Current small-inline and artifact-backed overflow behavior under unchanged descriptor thresholds is required; it must not be claimed as implementing the deferred distinct medium band. Adopting that band or changing thresholds/preview limits needs its own governed policy decision and boundary tests. D-APP-132's D-APP-116 inventory/cleanup disposition does not adopt it.

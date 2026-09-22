@@ -1,0 +1,50 @@
+[
+  {
+    "Path": "AGENTS.md",
+    "SHA256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+  },
+  {
+    "Path": "agents/AGENT_TASK.md",
+    "SHA256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+  },
+  {
+    "Path": "projects/chirality-app-dev/AGENTS.md",
+    "SHA256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f"
+  },
+  {
+    "Path": "workflows/reconciliation/WORKFLOW.md",
+    "SHA256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380"
+  },
+  {
+    "Path": "workflows/reconciliation/resources/contract.md",
+    "SHA256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb"
+  },
+  {
+    "Path": "workflows/reconciliation/resources/method.md",
+    "SHA256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16"
+  },
+  {
+    "Path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+    "SHA256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899"
+  },
+  {
+    "Path": "docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/D-GOV-43.proposed.md",
+    "SHA256": "5afadb4ac0d33c26d188abbd86508de31dd08a027bd7858005273a11eab784cc"
+  },
+  {
+    "Path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-131_APPLICATION_R5_R6_AGENT0_2026-09-22.md",
+    "SHA256": "37a3dd3798af7c8d8ce5ea21b2b5d9dac22b452c8473c260fbafbb5a219de097"
+  },
+  {
+    "Path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+    "SHA256": "d52dd0f59913961312572ff41dadc37cb203efc8838b408277b2b4a61048c8a3"
+  },
+  {
+    "Path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md",
+    "SHA256": "211ce2d25fde94c2c88c7b688a530e697b1b923efffaaaf18f39db414f494c19"
+  },
+  {
+    "Path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-118_RULING_FACADE_RETIREMENT_2026-09-22.md",
+    "SHA256": "9cd9da4d7de3e2d4bd04fa7c3a3c5a92edd9041e56f0c66cac2b374239dcb747"
+  }
+]

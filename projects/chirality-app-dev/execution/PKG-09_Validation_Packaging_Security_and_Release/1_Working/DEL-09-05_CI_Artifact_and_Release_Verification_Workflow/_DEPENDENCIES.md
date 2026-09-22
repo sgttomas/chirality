@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no human-declared upstream dependency edges have been accepted yet. Extracted upstream rows are recorded in `Dependencies.csv`.
+Current extracted upstream rows: `DEP-09-05-001`, `DEP-09-05-002`, `DEP-09-05-003`, `DEP-09-05-004`, `DEP-09-05-005`, `DEP-09-05-006`, `DEP-09-05-007`, `DEP-09-05-008`, `DEP-09-05-009`, `DEP-09-05-010`, `DEP-09-05-011`, `DEP-09-05-012`, `DEP-09-05-013`, `DEP-09-05-014`, `DEP-09-05-015`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no human-declared downstream dependency edges have been accepted yet. No extracted downstream execution edge is emitted by this conservative refresh; the accepted E-032 feedback edge remains non-gating and is discussed in Run Notes.
+Current extracted downstream rows: NONE. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Extracted Dependency Register
 
@@ -35,21 +35,21 @@ Source register: `Dependencies.csv`
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-09-05-001 | ANCHOR | OTHER | UPSTREAM | DEL-09-05 decomposition node | ACTIVE |
-| DEP-09-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-035 Required local checks | ACTIVE |
-| DEP-09-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-036 Section 8/9 validation | ACTIVE |
-| DEP-09-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-072 macOS arm64 unsigned DMG release target | ACTIVE |
-| DEP-09-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE |
-| DEP-09-05-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-01 Section 8 Harness Validation Preservation | ACTIVE |
-| DEP-09-05-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
-| DEP-09-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
-| DEP-09-05-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-06 Network Key Attachment and Renderer Security Checks | ACTIVE |
-| DEP-09-05-010 | EXECUTION | PREREQUISITE | UPSTREAM | Stable instruction-root integrity summary artifact | ACTIVE |
-| DEP-09-05-011 | EXECUTION | PREREQUISITE | UPSTREAM | CI provider and workflow path | ACTIVE |
-| DEP-09-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | `docs/CONTRACT.md` K-KEY-1 | ACTIVE |
-| DEP-09-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | `docs/CONTRACT.md` K-NET-1 | ACTIVE |
-| DEP-09-05-014 | EXECUTION | CONSTRAINT | UPSTREAM | `docs/CONTRACT.md` K-RELEASE-1 | ACTIVE |
-| DEP-09-05-015 | EXECUTION | CONSTRAINT | UPSTREAM | G6a exact-candidate owner ruling for WP-11 | ACTIVE |
+| DEP-09-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-09 | ACTIVE | TBD |
+| DEP-09-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-035 | ACTIVE | TBD |
+| DEP-09-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-036 | ACTIVE | TBD |
+| DEP-09-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-072 | ACTIVE | TBD |
+| DEP-09-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | TBD |
+| DEP-09-05-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-01 | ACTIVE | TBD |
+| DEP-09-05-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-02 | ACTIVE | TBD |
+| DEP-09-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-09-04 | ACTIVE | TBD |
+| DEP-09-05-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-06 | ACTIVE | TBD |
+| DEP-09-05-010 | EXECUTION | PREREQUISITE | UPSTREAM | frontend/artifacts/harness/instruction-root-integrity/latest/summary.json | ACTIVE | TBD |
+| DEP-09-05-011 | EXECUTION | PREREQUISITE | UPSTREAM | .github/workflows/harness-premerge.yml | ACTIVE | PENDING |
+| DEP-09-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-09-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-09-05-014 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-09-05-015 | EXECUTION | CONSTRAINT | UPSTREAM | FUTURE_EXACT_CANDIDATE_OWNER_AUTHORIZATION | ACTIVE | TBD |
 
 ## Run Notes
 
@@ -103,16 +103,14 @@ Source register: `Dependencies.csv`
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 15 |
-| RETIRED | 0 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| TBD | 15 |
-
-Closure state: Gate-5 dependency refresh completed locally; validation results are recorded in the 2026-08-24 TASK run record, and unresolved implementation details remain `TBD`.
+| RequiredMaturity=SEMANTIC_READY | 15 |
+| ProposedMaturity=TBD | 15 |
+| SatisfactionStatus=TBD | 15 |
 
 ## Downstream Handoff Notes
 
@@ -124,3 +122,33 @@ Closure state: Gate-5 dependency refresh completed locally; validation results a
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current residual-specific interpretation — 2026-09-22
+
+Historical release-job handoff and SDK network dependency notes retain their extraction basis; current updater/CI/release responsibilities and current sources are in ScopeOfWork.md. DEP-015 retirement or formal target/evidence amendments require the owning dependency pass.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=15; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_SMALL_SEMANTIC_APPROVED.csv`; current rows: ACTIVE=15, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_LUNA_17_APPROVED.csv`; current rows: ACTIVE=15, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=15, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

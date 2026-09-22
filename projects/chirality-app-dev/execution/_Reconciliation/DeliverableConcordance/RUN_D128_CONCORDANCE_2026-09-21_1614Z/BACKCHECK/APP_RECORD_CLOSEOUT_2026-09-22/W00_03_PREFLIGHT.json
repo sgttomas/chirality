@@ -1,0 +1,151 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+  "operation": "reliance",
+  "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+  "repo_head": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-00-01",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-00-02",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-01-01",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-01-02",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-01-03",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-01-04",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-01",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-02",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-03",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-04",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-05",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-01",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-02",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-03",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-04",
+      "entry_path": "TASK:/root/app_record_repair_manager/author_00_03",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "68b88e611cd7b0ebfa61dc15aa1e3910a01da286ea7e0d9212ef46ea2b1ac675",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-00-01",
+    "DEL-00-02",
+    "DEL-01-01",
+    "DEL-01-02",
+    "DEL-01-03",
+    "DEL-01-04",
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-03",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-01",
+    "DEL-03-02",
+    "DEL-03-03",
+    "DEL-03-04"
+  ],
+  "verdict": "ALLOW"
+}

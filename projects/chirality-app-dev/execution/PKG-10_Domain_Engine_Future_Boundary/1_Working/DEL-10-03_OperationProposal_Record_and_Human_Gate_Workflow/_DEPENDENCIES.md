@@ -11,11 +11,20 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Descriptive mirror of `Dependencies.csv` (2026-09-22; no formal edge or basis change):
+
+- `DEP-10-03-001` — OTHER; Domain Engine Future Boundary; SATISFIED.
+- `DEP-10-03-002` — OTHER; OperationProposal records; SATISFIED.
+- `DEP-10-03-003` — OTHER; Future domain-engine compatibility; SATISFIED.
+- `DEP-10-03-004` — PREREQUISITE; Accepted future amendment authorizing domain-engine operation workflow implementation; PENDING.
+- `DEP-10-03-005` — PREREQUISITE; Accepted DomainEngineProfile for the target engine; SATISFIED.
+- `DEP-10-03-006` — PREREQUISITE; Protected Path and Proposal Path Policy; SATISFIED.
+- `DEP-10-03-007` — PREREQUISITE; Deterministic adapter or validation tool for the operation; SATISFIED.
+- `DEP-10-03-008` — CONSTRAINT; Explicit human gate definition and acceptance evidence; SATISFIED.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream-directed row is recorded in this local structured register; this does not assert absence of consumers elsewhere.
 
 ## Run Notes
 
@@ -34,35 +43,20 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEP-10-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE | `_CONTEXT.md` |
-| DEP-10-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-069 OperationProposal records | ACTIVE | decomposition scope ledger |
-| DEP-10-03-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility | ACTIVE | `Datasheet.md` |
-| DEP-10-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted future amendment authorizing domain-engine operation workflow implementation | ACTIVE | `Procedure.md` |
-| DEP-10-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted DomainEngineProfile for the target engine | ACTIVE | `Procedure.md` |
-| DEP-10-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-02 Protected Path and Proposal Path Policy | ACTIVE | `Procedure.md` |
-| DEP-10-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | Deterministic adapter or validation tool for the operation | ACTIVE | `Procedure.md` |
-| DEP-10-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | Explicit human gate definition and acceptance evidence | ACTIVE | `Specification.md`; `Procedure.md` |
+| DEP-10-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 | ACTIVE | SATISFIED |
+| DEP-10-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-069 | ACTIVE | SATISFIED |
+| DEP-10-03-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 | ACTIVE | SATISFIED |
+| DEP-10-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | PENDING |
+| DEP-10-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | open_pipe_stress; pec | ACTIVE | SATISFIED |
+| DEP-10-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-02 | ACTIVE | SATISFIED |
+| DEP-10-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | SATISFIED |
+| DEP-10-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | TBD | ACTIVE | SATISFIED |
 
 Counts: 8 ACTIVE rows; 3 ANCHOR rows; 5 EXECUTION rows; 0 RETIRED rows.
 
 ## Lifecycle Summary
 
-| Status | Count |
-|---|---:|
-| ACTIVE | 8 |
-| RETIRED | 0 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 7 |
-| PENDING | 1 |
-
-(Synced to CSV state 2026-07-10, D-APP-53 reconciliation; previously PENDING 8. The remaining PENDING row is DEP-10-03-004: the D-APP-65 ruling of 2026-07-18 resolved the open "whether" question — D-APP-50/51/52 are precursors, not the accepted amendment — and the row remains PENDING by design as the defined future gate for that future owner act.)
-
-| DependencyClass | Count |
-|---|---:|
-| ANCHOR | 3 |
-| EXECUTION | 5 |
+Current structured-register mirror: 1 PENDING, 7 SATISFIED. Lifecycle labels and SatisfactionStatus are distinct; the complete formal register remains unchanged. Earlier run summaries below describe their dated basis.
 
 ## Run History
 
@@ -71,3 +65,21 @@ Counts: 8 ACTIVE rows; 3 ANCHOR rows; 5 EXECUTION rows; 0 RETIRED rows.
 | 2026-05-20T21:07:16-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located | HASH_MISMATCH_SOURCE; UNKNOWN_TARGETS | ANCHOR=3; EXECUTION=5; TOTAL=8 |
 | 2026-07-10 | RECONCILIATION (D-APP-53) | n/a | located; anchors re-verified | 7 rows SATISFIED; DEP-10-03-004 annotate-only (owner-gated); REF-006 now MATCH; linter PASS 0/0 | ANCHOR=3; EXECUTION=5; TOTAL=8 |
 | 2026-07-18 | RULING ANNOTATION (D-APP-65) | n/a | n/a (single-row note append) | DEP-10-03-004 note appended (precursors-not-amendment; stays PENDING as defined future gate; F-APP-3 reaffirmed); linter PASS 0/0 | ANCHOR=3; EXECUTION=5; TOTAL=8 |
+
+## Current evidence navigation — 2026-09-22
+
+Current contract carrier: `ScopeOfWork.md`; former Datasheet/Specification/Procedure/Guidance labels and old line anchors in formal rows are retained historical evidence locators. Current generic type source is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts`, consumed as `@chirality/runtime-contracts`; D-APP-118 retires the App facade. Retained registry/proposal tests are not proof of live Codex exposure. Formal row evidence/pin/LastSeen changes require the owning dependency reconciliation and are outside this record repair.
+
+## Current evidence-locator refresh — 2026-09-22
+
+3 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+3 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=8; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

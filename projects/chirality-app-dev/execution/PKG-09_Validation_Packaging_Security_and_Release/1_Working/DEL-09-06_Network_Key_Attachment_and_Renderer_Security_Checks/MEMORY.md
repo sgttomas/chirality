@@ -23,3 +23,7 @@
 - 2026-09-04 - DEL-09-06-V3-04 completed on Node N's owner-merge candidate `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_N_2026-09-04/`: packaged `script-src` now uses a cryptographically strong per-request nonce without `'unsafe-inline'` or `'unsafe-eval'`, all four operator routes passed the live packaged proof, and independent review passed with two non-blocking evidence-calibration notes. A1 prospectively invalidates staged R20 for future reliance; historical R20 remains historical only, and owner merge will owe a separate DEL-09-01-V3-01 revision 3 with a newly staged procedure and fresh owner-executed proof. No lifecycle, release, signing, notarization, Apple call, publication, or distribution change.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

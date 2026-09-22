@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-05-02-001, DEP-05-02-002, DEP-05-02-003, DEP-05-02-004, DEP-05-02-005, DEP-05-02-006, DEP-05-02-007, DEP-05-02-009, DEP-05-02-010, DEP-05-02-011, DEP-05-02-012, DEP-05-02-013, DEP-05-02-014, DEP-05-02-015
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-05-02-008, DEP-05-02-016
 
 ## Run Notes
 
@@ -32,40 +32,28 @@ TBD - no accepted dependency edges have been extracted yet.
 
 ## Extracted Dependency Register
 
-Source register: `Dependencies.csv` v3.1
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Metric | Count |
-|---|---:|
-| ACTIVE rows | 15 |
-| RETIRED rows | 1 |
-| ANCHOR rows | 6 |
-| EXECUTION rows | 10 |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+|---|---|---|---|---|---|---|
+| DEP-05-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-05 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-014 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-015 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-004 | ANCHOR | OTHER | UPSTREAM | SOW-039 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-005 | ANCHOR | OTHER | UPSTREAM | OBJ-003 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-01 | ACTIVE | TBD |
+| DEP-05-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 | RETIRED | NOT_APPLICABLE |
+| DEP-05-02-008 | EXECUTION | ENABLES | DOWNSTREAM | DEL-05-04 | ACTIVE | TBD |
+| DEP-05-02-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-05-03 | ACTIVE | TBD |
+| DEP-05-02-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-05 | ACTIVE | TBD |
+| DEP-05-02-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03-UIEVENT_HARNESSEVENT_SEPARATION | ACTIVE | TBD |
+| DEP-05-02-012 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-03 | ACTIVE | TBD |
+| DEP-05-02-013 | EXECUTION | INTERFACE | UPSTREAM | Runtime-owned extensible event stream and append-only audit mirror | ACTIVE | PENDING |
+| DEP-05-02-014 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | NOT_APPLICABLE |
+| DEP-05-02-015 | EXECUTION | PREREQUISITE | UPSTREAM | ROOT-DEL-02-10-PROPOSAL-EVENTS | RETIRED | PENDING |
+| DEP-05-02-016 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 | RETIRED | NOT_APPLICABLE |
 
-### Active Rows
-
-| DependencyID | Class | Type | Target | Status |
-|---|---|---|---|---|
-| DEP-05-02-001 | ANCHOR | OTHER | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
-| DEP-05-02-002 | ANCHOR | OTHER | SOW-014 App accepted-input submission and daemon pre-execution record conformance | ACTIVE |
-| DEP-05-02-003 | ANCHOR | OTHER | SOW-015 App terminal-outcome presentation and durable daemon-record conformance | ACTIVE |
-| DEP-05-02-004 | ANCHOR | OTHER | SOW-039 App consumption and conformance for append-only daemon HarnessEvent JSONL | ACTIVE |
-| DEP-05-02-005 | ANCHOR | OTHER | OBJ-003 Make App-consumed accepted turns provider/SDK messages terminal outcomes tool activity and replay auditable while distinguishing daemon operational records from checkout-contained project evidence | ACTIVE |
-| DEP-05-02-006 | EXECUTION | INTERFACE | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
-| DEP-05-02-008 | EXECUTION | ENABLES | DEL-05-04 Runtime Replay Dialogue and Agent Transcript Projection | ACTIVE |
-| DEP-05-02-009 | EXECUTION | CONSTRAINT | DEL-05-03 Redacted RunLogger and Secret Hygiene | ACTIVE |
-| DEP-05-02-010 | EXECUTION | INTERFACE | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
-| DEP-05-02-011 | EXECUTION | INTERFACE | DOCUMENT DEL-03-03-UIEVENT_HARNESSEVENT_SEPARATION UIEvent/HarnessEvent separation contract | ACTIVE |
-| DEP-05-02-012 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
-| DEP-05-02-013 | EXECUTION | INTERFACE | Root-owned daemon HarnessEvent records (closed schema v2) | ACTIVE |
-| DEP-05-02-014 | ANCHOR | OTHER | SOW-082 Prompted specification ladder: propose tool additive proposal.* event consumption proposal card and instruction-package proposal clauses | ACTIVE |
-| DEP-05-02-015 | EXECUTION | PREREQUISITE | Root DEL-02-10 acceptance of the additive proposal.* event types against HarnessEvent schema v2 (routed return notice) | ACTIVE |
-| DEP-05-02-016 | EXECUTION | INTERFACE | DEL-02-02 Right-Panel Coordination Workflows and Proposal UX | ACTIVE |
-
-### Retired Rows
-
-| DependencyID | Class | Type | Target | Status |
-|---|---|---|---|---|
-| DEP-05-02-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | RETIRED |
+Counts: ACTIVE=15, RETIRED=1; satisfaction NOT_APPLICABLE=7, PENDING=2, TBD=7.
 
 ## Run Notes - 2026-09-03 v3 pathway seating (additive UPDATE)
 
@@ -158,3 +146,31 @@ Source register: `Dependencies.csv` v3.1
 - **Current counts:** ACTIVE 11; RETIRED 1; NOT_APPLICABLE=6; TBD=6.
 - **Correction:** DEP-05-02-007 is RETIRED.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=15; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Proposal-event boundary refresh — 2026-09-22
+
+Reviewed source postimages in `DDEPEND_PREVIEW_EVENTS.csv`; current rows: ACTIVE=14, RETIRED=2. Closed-schema acceptance gates are retired while live event, audit and proposal obligations remain open. Historic notes are preserved.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_FORMAL.csv`; current rows: ACTIVE=14, RETIRED=2. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_04_06_SUPPORTED_APPROVED.csv`; current rows: ACTIVE=14, RETIRED=2. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=13, RETIRED=3. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

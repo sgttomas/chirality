@@ -1,0 +1,73 @@
+{
+  "anchor_rows": 275,
+  "bidirectional_pair_count": 0,
+  "checks": {
+    "anchor_coverage": "WARNING",
+    "bidirectional_pairs": "PASS",
+    "circular_dependencies": "PASS",
+    "hubs": "PASS",
+    "id_format_consistency": "PASS",
+    "isolated_units": "WARNING",
+    "misplaced_fields": "PASS",
+    "orphan_dependencies": "PASS",
+    "schema_compliance": "BLOCKER"
+  },
+  "cycles_truncated": false,
+  "denominator_complete": true,
+  "evidence_populated": 656,
+  "evidence_total": 656,
+  "execution_rows": 381,
+  "filters": {
+    "active_only": true,
+    "dependency_class": "EXECUTION",
+    "hub_threshold": 20,
+    "max_cycles": 10000,
+    "normalize_ids": true,
+    "target_type": "DELIVERABLE"
+  },
+  "graph_edges": 111,
+  "graph_nodes": 54,
+  "hub_count": 0,
+  "implements_node_missing": 2,
+  "implements_node_present": 52,
+  "invalid_ids": [],
+  "isolated_count": 6,
+  "issues": [
+    {
+      "check": "schema",
+      "issues": [
+        "missing register"
+      ],
+      "path": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/Dependencies.csv",
+      "row_findings": [],
+      "unit": "DEL-00-01"
+    },
+    {
+      "check": "schema",
+      "issues": [
+        "missing register"
+      ],
+      "path": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/Dependencies.csv",
+      "row_findings": [],
+      "unit": "DEL-00-02"
+    }
+  ],
+  "misplaced_field_count": 0,
+  "normalization_count": 0,
+  "orphan_count": 0,
+  "outside_scope_count": 0,
+  "production_units": 54,
+  "representative_cycles": 0,
+  "run_status": "COMPLETE",
+  "scc_count": 0,
+  "scc_sizes": [],
+  "schema_invalid": 2,
+  "schema_valid": 52,
+  "schema_version": 2,
+  "scope": [
+    "ALL"
+  ],
+  "subject_status": "FAIL",
+  "total_files": 52,
+  "total_rows": 656
+}

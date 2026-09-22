@@ -1,5 +1,26 @@
 # Runtime-Audit Boundary Checklist — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| A-01 | REPAIRED: K-EVENT-4 Runtime-owned userData is canonical; project-local .chirality/sessions is preserved compatibility history. Runtime service owns continuation and evidence. |
+| A-02 | REPAIRED: stock Codex protocol/events are preserved in full; SDK transcripts are historical compatibility material. Native evidence remains non-authoritative for project acceptance. |
+| A-03 | Runtime events remain non-approving/non-issuing regardless of their completeness or provider. |
+| A-04 | Recoverable accepted-input evidence remains required at the accepted Runtime interface. No legacy adapter-only test proves current Codex turn persistence; DEL-01-02 carries current conformance. |
+| A-05 | Durable terminal/recovery evidence remains required. Renderer disconnect is not permission to cancel a Runtime-owned session; current Runtime continuation tests must establish the behavior. |
+| A-06 | Valid prior replay evidence must survive a malformed trailing record; current live/replay verification is still required at the Runtime service boundary. |
+| A-07 | OPEN DELIVERY: exclude secrets through structural redaction while preserving full native event envelopes and large-payload references; actual RB-REDACTION negative tests remain required. |
+| A-08 | Persisted audit evidence and rendered presentation remain distinct. The distinction must not filter or silently drop unfamiliar Codex notifications; unknown events remain inspectable. |
+| A-09 | REPAIRED: old event/category inventories and Section9 test IDs are compatibility/index evidence. Current verification covers full native notifications, replay, continuation, selected policy and actor/control gaps. |
+| A-10 | Current register names interfaces and verification; non-prompt evidence is required for actual claims. D-APP-118 retires daemon facade/fallback obligations; Runtime contracts and live candidate tests govern current qualification. |
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

@@ -39,3 +39,9 @@
 - 2026-09-04 - SCA-APP-010 seating, outside the thirteen carriers (D-APP-108): Remaining items DEL-05-04-V3-02; read `_STATUS.md` with this file before any write; the applied decomposition row L339 (unchanged by SCA-APP-010) states the responsibility; this carrier was seated only and not aligned in this pass, so `ScopeOfWork.md` keeps its earlier pin and carries no SCA-APP-010 section; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+Current unfinished delivery: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.

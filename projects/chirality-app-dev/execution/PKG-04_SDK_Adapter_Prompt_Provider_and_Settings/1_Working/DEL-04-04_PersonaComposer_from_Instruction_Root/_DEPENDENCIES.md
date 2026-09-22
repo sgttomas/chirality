@@ -11,41 +11,34 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-04-001, DEP-04-04-002, DEP-04-04-003, DEP-04-04-004, DEP-04-04-005, DEP-04-04-006, DEP-04-04-007, DEP-04-04-009, DEP-04-04-010, DEP-04-04-011, DEP-04-04-012, DEP-04-04-013, DEP-04-04-014
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-04-008
 
 ## Extracted Dependency Register
 
-Generated register: `Dependencies.csv` v3.1
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Class | Type | Status | Count |
-|---|---|---:|---:|
-| ANCHOR | OTHER | ACTIVE | 7 |
-| EXECUTION | CONSTRAINT | ACTIVE | 1 |
-| EXECUTION | HANDOVER | ACTIVE | 1 |
-| EXECUTION | INTERFACE | ACTIVE | 3 |
-| EXECUTION | INTERFACE | RETIRED | 1 |
-| EXECUTION | PREREQUISITE | ACTIVE | 1 |
-
-| DependencyID | Class | Direction | Type | Target | Status | Confidence |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-04-04-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 SDK Adapter, Prompt, Provider, and Settings | ACTIVE | HIGH |
-| DEP-04-04-002 | ANCHOR | UPSTREAM | OTHER | SOW-017 Persona resolution and prompt composition | ACTIVE | HIGH |
-| DEP-04-04-003 | ANCHOR | UPSTREAM | OTHER | SOW-030 Instruction-root resources | ACTIVE | HIGH |
-| DEP-04-04-004 | EXECUTION | UPSTREAM | INTERFACE | DEL-04-02 SdkOptionsBuilder and Settings Isolation | RETIRED | HIGH |
-| DEP-04-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-08-01 Instruction Root Packaging and Agent Conformance | ACTIVE | HIGH |
-| DEP-04-04-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-02 Persona Alias and Agent Matrix Routing Contract | ACTIVE | MEDIUM |
-| DEP-04-04-007 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md PRD source snapshot | ACTIVE | HIGH |
-| DEP-04-04-008 | EXECUTION | DOWNSTREAM | HANDOVER | UNKNOWN Runtime boundary boot/session fingerprint integration | ACTIVE | MEDIUM |
-| DEP-04-04-009 | ANCHOR | UPSTREAM | OTHER | SOW-081 Governed workflow files and Workflows view (delimited roadmap-injection seam) | ACTIVE | HIGH |
-| DEP-04-04-010 | ANCHOR | UPSTREAM | OTHER | SOW-084 Layered instruction root (bundled base plus organisation layer) | ACTIVE | HIGH |
-| DEP-04-04-011 | ANCHOR | UPSTREAM | OTHER | OBJ-004 App integration, packaging, and conformance for the provider-adapter runtime | ACTIVE | HIGH |
-| DEP-04-04-012 | ANCHOR | UPSTREAM | OTHER | OBJ-007 Agent-suite integrity and project delegation authority | ACTIVE | HIGH |
-| DEP-04-04-013 | EXECUTION | UPSTREAM | INTERFACE | DEL-07-03 Deliverable Metadata and Document Kit Contracts | ACTIVE | HIGH |
-| DEP-04-04-014 | EXECUTION | UPSTREAM | INTERFACE | DEL-07-01 Working Root Validation and Instruction Root Protection | ACTIVE | HIGH |
+| DEP-04-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-017 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-030 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | RETIRED | NOT_APPLICABLE |
+| DEP-04-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-08-01 | ACTIVE | TBD |
+| DEP-04-04-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-02 | ACTIVE | TBD |
+| DEP-04-04-007 | EXECUTION | CONSTRAINT | UPSTREAM | docs/PRD.md | ACTIVE | SATISFIED |
+| DEP-04-04-008 | EXECUTION | HANDOVER | DOWNSTREAM | Runtime boundary boot/session fingerprint integration | ACTIVE | TBD |
+| DEP-04-04-009 | ANCHOR | OTHER | UPSTREAM | SOW-081 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-010 | ANCHOR | OTHER | UPSTREAM | SOW-084 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-011 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-03 | ACTIVE | PENDING |
+| DEP-04-04-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 | ACTIVE | PENDING |
+
+Counts: ACTIVE=13, RETIRED=1; satisfaction NOT_APPLICABLE=8, PENDING=2, SATISFIED=1, TBD=3.
 
 ## Run Notes
 
@@ -117,3 +110,19 @@ Generated register: `Dependencies.csv` v3.1
 - **Correction:** DEP-04-04-004 is RETIRED; range citations exclude that row.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
 - 2026-09-05 note: the counts above are the dated D-APP-56 mirror; the Lifecycle Summary above supersedes them after the SCA-APP-010 dependency-closure pass.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=13; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=13, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

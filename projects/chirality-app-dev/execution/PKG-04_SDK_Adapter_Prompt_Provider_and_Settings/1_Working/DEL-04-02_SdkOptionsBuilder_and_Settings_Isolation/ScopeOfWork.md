@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-004, OBJ-005]
 
 This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW-045, SOW-047, SOW-052, SOW-076] and package objectives [OBJ-004, OBJ-005].
 
-- **OUT-001** — DEL-04-02 SdkOptionsBuilder and Settings Isolation production output: sdk-options-builder.ts, settings isolation tests, and visible tool metadata, bounded by SOW-016, SOW-045, SOW-047, SOW-052, SOW-076, OBJ-004, and OBJ-005.
+- **OUT-001** — App configuration-composition and conformance evidence for supported Codex thread/turn options, shared-configuration/private-authentication separation, deterministic tool metadata, unknown-key behavior and max-turn guard/terminal handoff, with retained Claude-builder evidence labelled by its actual reach.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-076 is recorded as an OUT
 boundary-only trace. It does not activate non-App provider scope or expand
@@ -24,10 +24,7 @@ isolation.
 
 ### CLM-001 — Datasheet: DEL-04-02 SdkOptionsBuilder and Settings Isolation
 
-> #### Datasheet: DEL-04-02 SdkOptionsBuilder and Settings Isolation
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-002 — Identification
 
@@ -51,45 +48,29 @@ isolation.
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary subject | Deterministic SDK option construction and shipped settings isolation for the SDK-backed runtime path. | `_CONTEXT.md` Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-04-02 |
-> | Runtime option inputs | Session state, persona, mode, model/tool/max-turn options, tool policy, hooks, MCP servers, subagents, resume/session linkage, and settings policy. Exact TypeScript input type is TBD until DEL-04-01 probe evidence and adjacent contracts for persona, session linkage, hooks, MCP, subagents, and settings policy are accepted. | `docs/PRD.md` Section 4 and Section 8.4, MATCH; `docs/SPEC.md` Sections 12-15; `execution/_Decomposition/...` DEL-04-01 through DEL-04-05 — reconciled under D-APP-38 |
-> | Fallback chains | Model: `opts.model` -> `CHIRALITY_GLOBAL_MODEL` or instruction-root frontmatter -> runtime default. Tools: `opts.tools` -> persona frontmatter/defaults -> runtime default. Max turns: `opts.maxTurns` -> persona frontmatter/defaults -> runtime default. Mode and persona use request/session values before runtime defaults. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, MATCH — reconciled under D-APP-38 |
-> | Settings posture | Shipped SDK options use `settingSources: []`. Development-only project settings may use `['project']` only behind explicit environment configuration. `user` and `local` setting sources are not permitted in shipped builds. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` Sections 8.12 and 10.3.1, MATCH — reconciled under D-APP-38 |
-> | Tool mapping posture | `opts.tools` maps only to registered SDK built-ins or Chirality MCP tools. Unknown names produce structured validation errors. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | Permission boundary posture | `allowedTools` is not a restriction boundary by itself; restrictions depend on deny rules, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | `docs/CONTRACT.md` K-PERM-3; `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | Max-turn guard | Resolved `maxTurns` is passed into SDK options so runaway loops stop and terminal max-turn errors can be persisted. Exact error mapping is owned by adjacent runtime/event deliverables. | `docs/PRD.md` Section 8.13, MATCH; `execution/_Decomposition/...` SOW-052 — reconciled under D-APP-38 |
-> | Visible metadata | Safe adapter metadata should include SDK package version, permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available. SDK package version is adapter/runtime evidence, not a public Chirality product-version authority. | `docs/SPEC.md` Section 12.4; `docs/CONTRACT.md` K-ENGINE-4; `docs/TYPES.md` Section 9; `docs/PRD.md` Section 10.3.1, MATCH — reconciled under D-APP-38 |
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | SDK role | The Claude Agent SDK is the preferred runtime spine only when verified and kept behind Chirality-owned contracts. | `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` K-ENGINE-1 through K-ENGINE-5 |
-> | Product identity | SDK-specific defaults, transcript shape, tool names, and Claude Code assumptions must not define public Chirality semantics. | `docs/CONTRACT.md` K-ENGINE-3, K-ENGINE-4, K-SDK-4; `docs/PLAN.md` Section 2 |
-> | Tool expansion sequence | Read tools are enabled before write/edit/bash capability. Write, bash, and subagent execution deepen in PKG-06 and later packages. | `docs/PLAN.md` R2; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | Dependency state | Declared upstream and downstream dependencies are TBD; dependency extraction is deferred until after four-document authoring and semantic passes. | `_DEPENDENCIES.md` |
-> | Source-state warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` — reconciled under D-APP-38 |
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Construct | Expected Content |
-> |---|---|
-> | `sdk-options-builder.ts` | Deterministic builder for SDK request options, settings-source posture, resolved model/tools/maxTurns/mode/persona, hooks, MCP server registration metadata, subagent descriptors where enabled, resume/session linkage, and safe visible metadata. Candidate R1 path is `frontend/src/lib/harness/sdk-options-builder.ts` per PRD source-state warning; accepted module path and exact exported API remain TBD pending implementation convention. |
-> | Settings isolation tests | Tests asserting shipped `settingSources: []`, development project-settings opt-in only through explicit environment configuration, and no `user`/`local` setting sources in shipped builds. |
-> | Tool mapping tests | Tests asserting deterministic tool ordering, registered-name mapping, unknown-tool structured validation errors, and no reliance on `allowedTools` alone as a restriction boundary. |
-> | Max-turn tests | Tests asserting resolved max-turn value reaches SDK options and terminal max-turn outcome is available to the runtime/event layer. Exact terminal event fixture: TBD in coordination with runtime event deliverables. |
-> | Visible tool metadata | Safe runtime metadata containing visible tool names, MCP server names, permission posture, settings-source posture, and SDK version fields where known. |
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Unfinished delivery: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ### CLM-006 — References
 
@@ -102,9 +83,12 @@ isolation.
 > | REF-003 | `docs/SPEC.md` | Sections 12-15 | Runtime configuration, fallback chains, tool surface, modes/hooks |
 > | REF-004 | `docs/TYPES.md` | Sections 7.2, 8.2, 8.3, 9 | Vocabulary for SdkOptionsBuilder, settings, permission, tools, session linkage |
 > | REF-005 | `docs/PLAN.md` | Sections 2-4, 6-8 | Roadmap sequencing, tests, known SDK risks |
-> | REF-006 | `docs/PRD.md` | Sections 8.4, 8.12, 8.13, 10.3.1, KG-021 through KG-032 | Product requirements; source hash status: MATCH noted — reconciled under D-APP-38 |
+> | REF-006 | `docs/PRD.md` | Sections 8.4, 8.12, 8.13, 10.3.1, KG-021 through KG-032 | Product requirements; source hash status: HISTORICAL_MATCH noted — reconciled under D-APP-38 |
 > | REF-DEC | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-04-02; SOW-016, SOW-045, SOW-047, SOW-052, SOW-076 | Deliverable scope and traceability |
 >
+
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin. Current applicability: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable.
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -116,51 +100,42 @@ isolation.
 
 ### CLM-008 — Specification: DEL-04-02 SdkOptionsBuilder and Settings Isolation
 
-> #### Specification: DEL-04-02 SdkOptionsBuilder and Settings Isolation
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-009 — Scope
 
-The retained Claude options builder is compatibility evidence for earlier
-options, settings, tool mapping, metadata and max-turn work. Current App
-integration must honor the user's Codex configuration and selected approval /
-sandbox policy, preserve safe metadata, and exclude credentials from project
-records (D-GOV-43 items 3, 4, 8 and 9; D-APP-127; K-ENGINE-3; K-KEY-1).
-The former empty Claude settings-source mechanism does not restrict Codex's
-native discovery or shared user configuration.
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
 
-Verification hooks: Runtime `tests/codex-effective-home.test.ts` and
-`tests/codex-supervisor.test.ts`, plus applicable re-platform native checks.
-Legacy evidence remains in the R5 PKG04 manifest.
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
 
-Instruction composition, App event mapping and credential-boundary work
-remain in DEL-04-04, DEL-04-03 and DEL-04-05. Generic implementation stays
-Runtime-owned; PKG-06/PKG-08 control guarantees and event-store ownership are
-unchanged. Unmet live controls remain open.
+Verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | DEL-04-02-REQ-001 | The builder MUST resolve runtime option fallback chains deterministically for model, tools, max turns, mode, and persona. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-002 | Unknown option keys MUST be ignored with warnings rather than silently mutating behavior. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-003 | Shipped SDK options MUST use `settingSources: []`. | SOW-045; `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
-> | DEL-04-02-REQ-004 | Development-only project settings MAY use `['project']` only behind explicit environment configuration; `user` and `local` sources MUST NOT be used in shipped builds. | `docs/SPEC.md` Section 12.2; `docs/PRD.md` Section 8.12, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-005 | `opts.tools` MUST map only to registered SDK built-ins or Chirality MCP tools; unknown names MUST produce structured validation errors. | SOW-047; `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-006 | Tool ordering, naming, MCP server IDs, and allow/deny option lists MUST be stable for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` K-TOOL-1; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-007 | The builder MUST NOT treat `allowedTools` alone as a restriction boundary. Restriction posture MUST include deny rules, mode policy, hooks, `canUseTool`, and/or `dontAsk` where applicable. | `docs/CONTRACT.md` K-PERM-3; `docs/SPEC.md` Section 14.3 |
-> | DEL-04-02-REQ-008 | Resolved `maxTurns` MUST be included in SDK options so max-turn guards can stop runaway loops and terminal max-turn errors can be persisted by runtime/event layers. | SOW-052; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-009 | The builder MUST preserve Chirality-owned semantics by keeping SDK-specific names and option details at adapter boundaries and safe metadata surfaces, not public API contracts. | `docs/CONTRACT.md` K-ENGINE-1 through K-ENGINE-4; `docs/TYPES.md` Section 9 |
-> | DEL-04-02-REQ-010 | Safe visible metadata SHOULD include SDK package version, SDK permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available. | `docs/SPEC.md` Section 12.4 |
-> | DEL-04-02-REQ-011 | API keys and secrets MUST NOT be written to project files or included in visible metadata produced by this builder. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` Section 10.3.1, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-012 | Exact SDK option property names beyond cited source text are TBD until the first-adapter probe/version decision confirms current TypeScript APIs. | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, MATCH — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-013 | The builder input contract MUST either define or explicitly import the owning adjacent contract for session state, persona output, hook policy, MCP server descriptors, subagent descriptors, resume linkage, and settings policy before the exact TypeScript shape is treated as closed. | `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Section 4, MATCH; `execution/_Decomposition/...` DEL-04-01 through DEL-04-05 — reconciled under D-APP-38 |
-> | DEL-04-02-REQ-014 | Before constructing SDK options, the builder MUST fail closed or return a structured integration error when required governed policy inputs for settings, tools, permission posture, hooks, MCP, or subagents are absent or explicitly unresolved. | `docs/CONTRACT.md` K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; `docs/PLAN.md` R2 |
->
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| DEL-04-02-REQ-001 | Resolve supported model/tool/turn-limit/policy/role options deterministically at the current Runtime boundary; historical Claude fallback tiers do not define native Codex configuration. |
+| DEL-04-02-REQ-002 | Unknown optional option keys must be ignored with warnings and must not silently mutate effective behavior. If the live interface rejects them instead, retain that conformance difference as a delivery/scope-resolution gap rather than claim equivalence. |
+| DEL-04-02-REQ-003 | Current Codex uses the shared-configuration effective home with separate private credentials. The shipped settingSources:[] rule is retained Claude compatibility history. |
+| DEL-04-02-REQ-004 | User configuration/resources remain available through Codex native discovery; the historical project-only development settings exception does not veto native configuration. |
+| DEL-04-02-REQ-005 | Validate registered Chirality application tools through the Runtime catalog and structured errors, separately from native Codex tools. |
+| DEL-04-02-REQ-006 | Keep application-tool exposure and safe effective configuration deterministic for identical supported inputs; prove any canonical ordering claim with permutations. |
+| DEL-04-02-REQ-007 | An allow-name list is not restriction; pass actual native policy and verify separate application-operation authorization. |
+| DEL-04-02-REQ-008 | Preserve the max-turn runaway-loop and terminal-outcome requirement. The legacy SDK option is not a live guard; implement/verify the native equivalent or route an actual scope change. |
+| DEL-04-02-REQ-009 | Preserve Chirality-owned configuration interface semantics while carrying actual upstream native parameters and safe metadata under the supported contract. |
+| DEL-04-02-REQ-010 | Record safe effective version/model/policy/tool/session/resume/linkage metadata where available, with unsupported or absent fields explicit. |
+| DEL-04-02-REQ-011 | Do not place credentials or secrets in project files, visible configuration metadata or runtime records. |
+| DEL-04-02-REQ-012 | Record exact evaluated options and version from the actual supplier/probe. The historical SDK pin is @anthropic-ai/claude-agent-sdk@0.3.150; it does not qualify current native parameters. |
+| DEL-04-02-REQ-013 | Use the owning Runtime session, instruction, tool, delegation and policy interfaces rather than inventing parallel App contracts. |
+| DEL-04-02-REQ-014 | Reject missing or inconsistent required current interface inputs with a structured outcome; do not invent permissive defaults or an App policy veto. |
+
+Verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Evidence locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
@@ -177,47 +152,31 @@ unchanged. Unmet live controls remain open.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Verification ID | Requirement Links | Verification Approach | Expected Evidence |
-> |---|---|---|---|
-> | DEL-04-02-VER-001 | REQ-001, REQ-002 | Unit tests for model/tool/maxTurns/mode/persona fallback order and unknown-key warnings. | Options-builder test fixtures assert warning emission and identical resolved SDK behavior when unknown option keys are added to otherwise identical inputs. |
-> | DEL-04-02-VER-002 | REQ-003, REQ-004 | Settings isolation tests for shipped default, explicit development project opt-in, and forbidden setting-source cases. | Fixtures cover shipped `settingSources: []`, development-only `['project']` behind explicit environment configuration, and rejection/exclusion of `user` and `local` sources in shipped posture. |
-> | DEL-04-02-VER-003 | REQ-005, REQ-006, REQ-007, REQ-014 | Composite tool/policy mapping tests for registered built-ins, registered Chirality MCP names, deterministic ordering, unknown-name errors, MCP server IDs, allow/deny lists, and permission policy inputs. | One deterministic-order fixture includes requested tools, visible tools, MCP server IDs, `allowedTools`, `disallowedTools`, permission mode, hook/callback posture, and structured validation errors. |
-> | DEL-04-02-VER-004 | REQ-007, REQ-014 | Tests or static checks proving `allowedTools` is not the sole restriction mechanism for restricted modes. | Fixture showing deny/disallowed/hook/callback posture included or required before option construction proceeds. |
-> | DEL-04-02-VER-005 | REQ-008 | Max-turn option propagation test and terminal max-turn handoff fixture. | SDK options fixture plus runtime event handoff fixture location TBD; likely adjacent owner is DEL-04-03 or DEL-03-02 pending accepted integration contract. |
-> | DEL-04-02-VER-006 | REQ-009, REQ-010, REQ-011 | Metadata-shape and redaction review confirming SDK details are adapter metadata and safe runtime metadata only. | Single metadata fixture proves safe fields are present and API keys, raw secrets, hidden user settings content, and public product-version claims are absent. |
-> | DEL-04-02-VER-007 | REQ-011 | Redaction/secret exclusion test for builder output and visible metadata. | Fixture with API-key-like input verifies no secret output in project files, visible metadata, or runtime records owned by this slice. |
-> | DEL-04-02-VER-008 | REQ-012, REQ-013 | first-adapter probe/typecheck after package pin and adjacent-contract import review. | Probe notes, TypeScript compile evidence from DEL-04-01 or R1 implementation, and source-backed references for any imported persona/session/hook/MCP/settings policy types. |
->
+Required current checks: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Named evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required artifacts:
->
-> - `sdk-options-builder.ts` or equivalent module path selected by implementation owner.
-> - Unit tests for fallback chains, unknown keys, settings isolation, tool mapping, deterministic ordering, max-turn propagation, and visible metadata.
-> - Safe visible tool/settings metadata fixture.
-> - Notes in implementation comments or local docs for any SDK option whose exact TypeScript shape depends on the accepted first-adapter probe.
->
-> Open documentation items:
->
-> - TBD: exact module path and exported TypeScript API.
-> - TBD: target test command or validation suite for this module after implementation path is selected.
-> - TBD: exact structured error type for unknown tools.
-> - TBD: exact integration point with `PersonaComposer`, `TurnEngine`, and PKG-06 permission overlay.
-> - TBD: exact SDK package version and option names confirmed by DEL-04-01 probe.
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Unfinished delivery: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ### CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-119/120/121 record the realized split: `TurnEngine.assertKnownAgentSdkTools` owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.
 
-- **AC-001** — The DEL-04-02 output satisfies the legacy production-contract requirements and checks for deterministic runtime option fallback, provider/SDK settings isolation, registered tool option mapping, and max-turn guards for SOW-016, SOW-045, SOW-047, and SOW-052.
+- **AC-001** — Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
 
 ## Production and Verification Method — Praxeology
 
@@ -235,18 +194,15 @@ unchanged. Unmet live controls remain open.
 
 ### CLM-017 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status | Source |
-> |---|---|---|
-> | Accepted deliverable scope for DEL-04-02 | Available in decomposition and `_CONTEXT.md` | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-04-02 |
-> | first-adapter probe/version decision | TBD; required before final exact SDK TypeScript option fields are frozen | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
-> | Runtime engine contract integration point | TBD; adjacent deliverables define `AgentEnginePort`, `TurnEngine`, and conformance suite | `docs/CONTRACT.md` K-ENGINE-1; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
-> | Persona composer output contract | TBD; DEL-04-04 owns prompt composition | `_CONTEXT.md`; `execution/_Decomposition/...` DEL-04-04 |
-> | Permission overlay policy inputs | TBD; PKG-06 owns full overlay and hooks, but this builder must accept policy posture | `_CONTEXT.md` ContextEnvelopeNotes; `docs/PLAN.md` R2 |
-> | Implementation module path | TBD; candidate R1 path is `frontend/src/lib/harness/sdk-options-builder.ts` but accepted path/export shape must follow implementation convention | `docs/PLAN.md` R1; `docs/PRD.md` Section 13.3, HASH_MISMATCH |
-> | Dependency edges | TBD; no declared upstream/downstream dependencies have been extracted yet | `_DEPENDENCIES.md` |
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Current implementation/adoption evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-018 — Steps
 
@@ -314,105 +270,61 @@ unchanged. Unmet live controls remain open.
 
 ### CLM-019 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Fallback determinism | Same inputs produce same resolved options, warnings, tool ordering, and metadata. |
-> | Unknown option handling | Unknown option keys warn and do not affect behavior. |
-> | Shipped settings isolation | Shipped posture produces `settingSources: []` and no `user`/`local` setting sources. |
-> | Development settings gate | `['project']` requires explicit development configuration. |
-> | Tool mapping | Registered SDK built-ins and Chirality MCP tools resolve; unknown names produce structured validation errors. |
-> | Composite deterministic ordering | Tools, MCP server IDs, allow/deny lists, hook/callback posture, permission mode, and policy inputs remain stable for identical inputs. |
-> | Permission posture | Restricted modes do not rely on `allowedTools` alone. |
-> | Max-turn guard | Resolved max-turn value reaches SDK options. |
-> | Metadata safety | Visible metadata contains only safe runtime details and no secrets. |
-> | Adapter boundary | SDK-specific details do not become public Chirality API or canonical event semantics except as adapter metadata. |
->
+Required current checks: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Named evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ### CLM-020 — Records
 
-> ##### Records
->
-> Expected implementation records:
->
-> - `sdk-options-builder.ts` or equivalent module selected by implementation owner.
-> - Exact module path/export shape record, currently TBD pending implementation convention.
-> - Settings isolation tests.
-> - Tool mapping and visible metadata tests.
-> - Max-turn propagation tests.
-> - Unknown option warning tests.
-> - Targeted test command or validation suite, currently TBD until implementation path exists.
-> - first-adapter probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.
-> - Terminal max-turn runtime/event handoff fixture owner, currently TBD and likely adjacent to DEL-04-03 or DEL-03-02 pending accepted contract.
-> - Any unresolved `TBD`, `ASSUMPTION`, or conflict entries carried forward for human or upstream-agent ruling.
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
+
+Unfinished delivery: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-119/120/121 record the realized split: `TurnEngine.assertKnownAgentSdkTools` owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.
 
-- **VER-001** — Verify with the legacy-defined options-builder tests and records covering fallback and unknown-option behavior, shipped and development settings isolation, registered tool mapping and ordering, max-turn propagation, and safe visible metadata.
+- **VER-001** — Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
 
 ## Governing Values and Decisions — Axiology
 
 ### CLM-022 — Guidance: DEL-04-02 SdkOptionsBuilder and Settings Isolation
 
-> #### Guidance: DEL-04-02 SdkOptionsBuilder and Settings Isolation
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-023 — Purpose
 
-Runtime option composition must make the effective configuration and chosen
-policy inspectable without promoting convenience state into project authority.
-D-GOV-43 items 3 and 4 and D-APP-127 govern the Codex path. Claude fallback
-chains and settings isolation are compatibility history.
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
 
-Verify current configuration and policy through the hooks in CLM-009.
-`frontend/src/__tests__/lib/sdk-options-builder.test.ts` remains historical
-builder evidence and does not qualify the live path.
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
 
 ### CLM-024 — Principles
 
-> ##### Principles
->
-> 1. Determinism before convenience.
->    For the same session, persona, mode, option set, SDK version, MCP server set, and policy input, the builder should produce stable option values, stable tool ordering, and stable visible metadata. Sources: `docs/CONTRACT.md` K-TOOL-1; `docs/PRD.md` Section 8.13, MATCH. (reconciled under D-APP-38).
->
-> 2. Settings isolation is a release boundary.
->    Shipped builds use `settingSources: []`. Development-only project settings require explicit environment enablement and must not include `user` or `local` sources. Sources: `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1.
->
-> 3. Policy adequacy is checked before option construction.
->    The builder should not normalize missing governed policy into permissive SDK defaults. If required settings, tool, permission, hook, MCP, or subagent policy inputs are absent, explicitly unresolved, or contradictory, the builder should fail closed or return a structured integration error before constructing SDK options. Sources: `docs/CONTRACT.md` K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; `docs/PLAN.md` R2.
->
-> 4. `allowedTools` is not a safety boundary.
->    Treat `allowedTools` as SDK auto-approval posture, not as the complete restriction mechanism. Restricted modes require deny rules, disallowed tools, hooks, `canUseTool`, `dontAsk`, or the PKG-06 overlay as applicable. Sources: `docs/CONTRACT.md` K-PERM-3; `docs/SPEC.md` Section 14.3.
->
-> 5. Adapter metadata is allowed; public semantic leakage is not.
->    SDK-specific names and SDK package version may appear in adapter-local metadata and safe runtime metadata, but they are evidence about the runtime adapter, not public Chirality product-version authority. Public Chirality APIs, canonical events, and governance records remain Chirality-owned. Sources: `docs/CONTRACT.md` K-ENGINE-4; `docs/TYPES.md` Section 9.
->
-> 6. Prefer explicit unknowns over plausible SDK detail.
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-025 — Considerations
 
-> ##### Considerations
->
-> | Topic | Guidance | Source |
-> |---|---|---|
-> | Fallback implementation | Keep fallback resolution pure and testable. Emit warnings for unknown option keys; do not let unknown fields affect behavior. | `docs/SPEC.md` Section 13.1 |
-> | Settings posture | Make shipped/development posture an explicit input or environment-derived policy, then record the selected posture in safe metadata. Shipped option construction should omit ambient settings by using `settingSources: []`; development project settings should be admitted only by the explicit development policy path. | `docs/SPEC.md` Sections 12.2, 12.4 |
-> | Tool registry | Resolve requested tool names against a deterministic registry of SDK built-ins and Chirality MCP tools. Unknown names should fail before SDK request construction. | `docs/SPEC.md` Section 14.3 |
-> | Hooks and permissions | Accept hook/callback/deny policy inputs, but do not overclaim that this slice fully implements PKG-06 permission semantics. | `_CONTEXT.md` ContextEnvelopeNotes; `docs/PLAN.md` R2 |
-> | Resume and session linkage | Include resume/session fields only through the engine/session contract and safe adapter metadata. SDK transcripts remain secondary to Chirality events. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 12.4 |
-> | Subagents | Treat subagent option construction as policy-gated and fail-closed until the governance bridge supplies restricted child definitions. | `docs/CONTRACT.md` K-SUBAGENT-1, K-SUBAGENT-2; `docs/PRD.md` KG-027, MATCH — reconciled under D-APP-38 |
-> | PRD hash state | Use `docs/PRD.md` requirements with caution because `_REFERENCES.md` reports `MATCH`; do not use PRD-only details to override matching higher-authority sources. | `_REFERENCES.md`; `docs/DIRECTIVE.md` Section 0 — reconciled under D-APP-38 |
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-026 — Trade-offs
 
@@ -433,42 +345,19 @@ builder evidence and does not qualify the live path.
 
 ### CLM-028 — Example Fallback Trace
 
-> ###### Example Fallback Trace
->
-> ```text
-> Input:
->   opts.model = TBD
->   environment CHIRALITY_GLOBAL_MODEL = set
->   instruction-root model default = available
->   runtime default = available
->
-> Expected resolution:
->   model = CHIRALITY_GLOBAL_MODEL
->   warning list = none unless unknown option keys are present
->
-> Source:
->   docs/SPEC.md Section 13.1
-> ```
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-029 — Example Settings Posture
 
-> ###### Example Settings Posture
->
-> ```text
-> Shipped build:
->   settingSources = []
->   visible metadata includes settings-source posture = "shipped-empty"
->
-> Development-only explicit project settings:
->   settingSources = ['project']
->   visible metadata includes settings-source posture = "development-project"
->   user/local setting sources remain forbidden
->
-> Source:
->   docs/SPEC.md Section 12.2
-> ```
->
+App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+Preserve deterministic resolution for identical supported inputs, explicit unknown-input handling, safe configuration/model/tool metadata and session/resume linkage. The effective Codex home shares user configuration/resources by reference while private authentication remains Codex-owned. Pass supported policy selections and model/effort changes through the current Runtime interface. Application-tool catalog validation and deterministic exposure retain DEL-06-02 ownership. The max-turn guard and terminal outcome requirement remain an explicit live delivery/evidence gap, not satisfied by a legacy options fixture.
+
+Named verification: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
 
 ### CLM-030 — Example Tool Resolution
 
@@ -492,14 +381,14 @@ builder evidence and does not qualify the live path.
 
 ### CLM-031 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | CONFLICT-DEL-04-02-001 | `docs/PRD.md` is locally accessible and highly relevant, but `_REFERENCES.md` reports `MATCH` against the expected SHA. | `_REFERENCES.md` Authoritative Source Corpus | `docs/PRD.md` Sections 8.4, 8.12, 8.13, 10.3.1 | All PRD-cited requirements and guidance | Treat PRD content as source-state warning: use when consistent with higher-authority matching sources, mark PRD-only exact details as TBD or assumption until source state is accepted. | TBD — reconciled under D-APP-38 |
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. App option composition and conformance must expose the effective Codex thread/turn configuration and policy safely. The Claude options builder, its fallback tiers, `settingSources` and SDK-only option metadata are retained compatibility evidence.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-016 SOW-045 SOW-047 SOW-052 OBJ-004 OBJ-005 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-016 SOW-045 SOW-047 SOW-052 SOW-076 OBJ-004 OBJ-005 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

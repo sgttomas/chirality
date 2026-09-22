@@ -25,7 +25,7 @@ usage, cost, forecast, or resource-governance functions.
 
 > #### Datasheet: DEL-07-06 Reference Hash and Snapshot Conventions
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -66,7 +66,7 @@ usage, cost, forecast, or resource-governance functions.
 >
 > | Condition | Handling | Source |
 > |---|---|---|
-> | `docs/PRD.md` source state | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
+> | `docs/PRD.md` source state | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 > | Unknown owner | `ResponsibleParty` remains `TBD` until assigned by a human. | `_CONTEXT.md` Source Authority |
 > | Retired scope boundary | Do not reactivate execution-root validator, dependency graph generator, deliverable lock, unified pipeline run records, or staleness propagation as current commitments. | `docs/PLAN.md` Section 9; `docs/PRD.md` Section 6.4 and KG-012 with REF-006 hash warning |
 > | Human authority | No agent, SDK, tool, runtime event, validator, or adapter can author binding approval records. | `docs/CONTRACT.md` K-AUTH-1; `docs/DIRECTIVE.md` Section 2.4 |
@@ -97,13 +97,13 @@ usage, cost, forecast, or resource-governance functions.
 >
 > | RefID | Source | Sections Used | Source State |
 > |---|---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | Sections 2.1, 2.2, 2.4, 2.5 | MATCH |
-> | REF-002 | `docs/CONTRACT.md` | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STATUS-1, K-STATUS-2, K-SNAP-1, K-REF-1 | MATCH |
-> | REF-003 | `docs/SPEC.md` | Sections 2, 3.1, 4.3, 5.3 | MATCH |
-> | REF-004 | `docs/TYPES.md` | Sections 1-2, 3.3 | MATCH |
-> | REF-005 | `docs/PLAN.md` | Section 9 | MATCH |
-> | REF-006 | `docs/PRD.md` | Sections 6.4, 8.10, 10.8, 15 | MATCH source state — reconciled under D-APP-38 |
-> | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH |
+> | REF-001 | `docs/DIRECTIVE.md` | Sections 2.1, 2.2, 2.4, 2.5 | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-002 | `docs/CONTRACT.md` | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STATUS-1, K-STATUS-2, K-SNAP-1, K-REF-1 | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-003 | `docs/SPEC.md` | Sections 2, 3.1, 4.3, 5.3 | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-004 | `docs/TYPES.md` | Sections 1-2, 3.3 | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-005 | `docs/PLAN.md` | Section 9 | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-006 | `docs/PRD.md` | Sections 6.4, 8.10, 10.8, 15 | historical D-APP-38 source state; verify current candidate bytes source state — reconciled under D-APP-38 |
+> | REF-007 | `../../workflows/software-decomp/WORKFLOW.md` | Decomposition method context | historical D-APP-38 source state; verify current candidate bytes |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -111,7 +111,7 @@ usage, cost, forecast, or resource-governance functions.
 
 > #### Specification: DEL-07-06 Reference Hash and Snapshot Conventions
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-009 — Scope
@@ -208,7 +208,7 @@ usage, cost, forecast, or resource-governance functions.
 > - Snapshot/runbook notes covering immutable timestamped folders and `_LATEST.md` pointer behavior.
 > - Hash bypass convention covering human approval, durable bypass records, and `HASH_VERIFICATION_BYPASS.jsonl`.
 > - CHANGE/SHA checklist covering candidate SHA/action list, approval evidence, and HEAD/content recheck before approved actions.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - Open-item note for exact deterministic tool/script registry membership if not verified by the owning implementation slice.
 
 - **AC-001** — The convention retains _REFERENCES.md hash handling, human-approved durable bypass evidence, immutable timestamped snapshots with governed _LATEST pointers, SHA-bound approvals and renewed review after changes, deterministic-tool continuity, retired-scope exclusions, and human-only authority.
@@ -219,7 +219,7 @@ usage, cost, forecast, or resource-governance functions.
 
 > #### Procedure: DEL-07-06 Reference Hash and Snapshot Conventions
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-016 — Purpose
@@ -237,8 +237,8 @@ usage, cost, forecast, or resource-governance functions.
 > |---|---|
 > | Deliverable-local context, references, dependencies, and status files are present. | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_STATUS.md` |
 > | Current lifecycle state permits drafting. | `_STATUS.md` was `OPEN` at P1/P2 start |
-> | Authoritative sources are locally accessible. | `_REFERENCES.md` REF-001 through REF-007; REF-006 has MATCH status — reconciled under D-APP-38 |
-> | Accepted dependency edges are available. | TBD: `_DEPENDENCIES.md` declares no accepted upstream/downstream edges yet |
+> | Authoritative sources are locally accessible. | `_REFERENCES.md` REF-001 through REF-007; historical D-APP-38 source state; verify current candidate bytes status — reconciled under D-APP-38 |
+> | Accepted dependency edges are available. | TBD: `_DEPENDENCIES.md` declares the extracted register supplies current rows; formal acceptance/satisfaction remains at its source |
 > | Human owner is assigned. | TBD: `_CONTEXT.md` preserves `ResponsibleParty: TBD` |
 >
 
@@ -314,9 +314,9 @@ usage, cost, forecast, or resource-governance functions.
 
 > ##### Records
 >
-> - `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` for DEL-07-06.
+> - `ScopeOfWork.md` for DEL-07-06.
 > - `_run_records/TASK_RUN_*.md` capturing the TASK run and source-state warnings.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - Future exact deterministic tool/script registry evidence: TBD unless produced by the owning implementation slice.
 > - Future accepted dependency edge record source: TBD until `_DEPENDENCIES.md` or `Dependencies.csv` records accepted upstream/downstream edge availability.
 >
@@ -339,7 +339,7 @@ usage, cost, forecast, or resource-governance functions.
 
 > #### Guidance: DEL-07-06 Reference Hash and Snapshot Conventions
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-023 — Purpose
@@ -377,7 +377,7 @@ usage, cost, forecast, or resource-governance functions.
 >
 > | Topic | Guidance | Source |
 > |---|---|---|
-> | PRD source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
+> | PRD source warning | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 > | Tool/script registry | State that deterministic tools/scripts remain indexed and locally executable when present, but keep exact registry membership `TBD` unless verified by the owning implementation slice. | `docs/PRD.md` FR-061 with REF-006 hash warning; decomposition SOW-032 |
 > | Retired scope | Do not turn reference hashes or snapshot notes into commitments for retired execution-root validator, graph generator, deliverable lock, unified pipeline run records, or staleness propagation. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 with REF-006 hash warning |
 > | Human gate language | Use approval, issue, sign, seal, certify, and validate only for human-controlled processes; do not attribute those actions to agents or tools. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-1 |
@@ -393,7 +393,7 @@ usage, cost, forecast, or resource-governance functions.
 > | Use warning-qualified PRD text where corroborated | Keeps the draft aligned with active vNext direction. | Requires later source-hash reconciliation before final acceptance. |
 > | Keep tool registry membership `TBD` | Avoids inventing exact current script inventory from narrative sources. | Leaves implementation owner to confirm registry paths and tests. |
 > | Allow mutable `_LATEST.md` pointers | Gives operators a convenient current pointer. | Review must distinguish the pointer from immutable snapshot evidence. |
-> | Require durable bypass records | Makes source exceptions auditable. | Adds review overhead when a hash status: MATCH is intentionally accepted. — reconciled under D-APP-38 |
+> | Require durable bypass records | Makes source exceptions auditable. | Adds review overhead when a hash mismatch is accepted through an authorized bypass. — reconciled under D-APP-38 |
 >
 
 ### CLM-027 — Examples
@@ -402,30 +402,19 @@ usage, cost, forecast, or resource-governance functions.
 >
 > | Situation | Recommended Handling |
 > |---|---|
-> | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | A workflow reruns snapshot generation. | Create a new timestamped snapshot folder and update `_LATEST.md` if the workflow owns that pointer; do not overwrite an accepted prior snapshot. |
 > | CHANGE is asked to publish after edits. | Confirm approval token/SHA evidence, compare the current candidate content to the approved evidence, and recheck HEAD before approved actions. |
-> | A tool needs to ignore a hash status: MATCH. | Require explicit human approval and append a durable bypass record, using deliverable-local `HASH_VERIFICATION_BYPASS.jsonl` when applicable. — reconciled under D-APP-38 |
+> | A tool needs to bypass a hash mismatch. | Require explicit human approval and append a durable bypass record, using deliverable-local `HASH_VERIFICATION_BYPASS.jsonl` when applicable. — reconciled under D-APP-38 |
 >
 
 ### CLM-028 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | SOURCE-WARN-001 | `docs/PRD.md` is accessible and needed for active vNext direction, but `_REFERENCES.md` reports a hash status: MATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` current accessible text | All PRD-cited requirements and examples | Continue using PRD as warning-qualified source per task brief; require hash reconciliation or explicit acceptance before closure. | TBD — reconciled under D-APP-38 |
->
+> The earlier REF-006 conflict is historical at the D-APP-38 snapshot. Current source reliance must record the actual bytes and verification result using `execution/_Scripts/references_hash_tool.py`. A changed source requires the applicable D-APP-38 reconciliation or an authorized, durable bypass; no perpetual MATCH or repeated decision on the already-settled mismatch is asserted. Substantive authority conflicts remain separate from hash currentness.
 
 ### CLM-029 — Pass 3 Disposition Notes
 
-> ##### Pass 3 Disposition Notes
->
-> | Item ID | Disposition | Evidence |
-> |---|---|---|
-> | A-001 | Surfaced as conflict; SOURCE-WARN-001 remains open until hash reconciliation or explicit acceptance. | Conflict Table |
-> | B-001 | Surfaced as conflict; PRD-derived closure-ready statements remain warning-qualified. | Conflict Table; Considerations |
-> | E-001 | Surfaced as conflict; SOURCE-WARN-001 remains the active human-ruling item. | Conflict Table |
+> The P3 A-001/B-001/E-001 source-warning dispositions are historical. Current verification is candidate-bound as specified in CLM-028; a new mismatch is recorded as such without pretending the historical MATCH still applies. Required convention review remains an actual check, not an inferred pass.
 
 ## Output and Evaluation Matrix
 

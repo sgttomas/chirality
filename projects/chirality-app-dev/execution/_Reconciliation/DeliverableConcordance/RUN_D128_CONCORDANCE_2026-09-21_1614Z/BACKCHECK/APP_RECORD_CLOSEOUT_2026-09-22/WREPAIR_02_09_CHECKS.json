@@ -1,0 +1,64 @@
+{
+  "basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "sow": {
+    "01-02": {
+      "exit": 0,
+      "valid": true
+    },
+    "02-01": {
+      "exit": 0,
+      "valid": true
+    },
+    "02-04": {
+      "exit": 0,
+      "valid": true
+    },
+    "02-05": {
+      "exit": 0,
+      "valid": true
+    },
+    "03-01": {
+      "exit": 0,
+      "valid": true
+    },
+    "03-02": {
+      "exit": 0,
+      "valid": true
+    },
+    "07-01": {
+      "exit": 0,
+      "valid": true
+    },
+    "07-04": {
+      "exit": 0,
+      "valid": true
+    },
+    "07-05": {
+      "exit": 0,
+      "valid": true
+    },
+    "08-04": {
+      "exit": 0,
+      "valid": true
+    },
+    "08-05": {
+      "exit": 0,
+      "valid": true
+    },
+    "09-01": {
+      "exit": 0,
+      "valid": true
+    },
+    "09-02": {
+      "exit": 0,
+      "valid": true
+    },
+    "09-04": {
+      "exit": 0,
+      "valid": true
+    }
+  },
+  "diff_check": "PASS",
+  "overlay_keys": 63,
+  "overlay_sha256": "4f8f4f83dbb08b5cc49f2e78230a9c2996c3d5cf2b41df99ee1c6be27408a7ba"
+}

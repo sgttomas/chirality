@@ -1,0 +1,23 @@
+# Current Remaining review
+
+Read-only comparison prepared by delegated Agent 0 support. No deliverable, dependency register, or decision record was edited. The detailed row-by-row results, exact item text, item hashes, current status and SoW hashes, and linked source records are in `REMAINING_REVIEW_LUNA.csv` (SHA-256 `4e44dff597b6078a381d68e6bb0244b4697a66ee0b28aeb3ae3da36ac0956dc5`).
+
+## Snapshot reviewed
+
+I parsed the live `## Remaining` section in all 54 current App deliverable `_STATUS.md` files, including retired DEL-09-07, and bound every report row to its current status file hash and Remaining-section hash. The current snapshot contains 99 task bullets, 14 unbulleted Dependencies.csv directives, and 3 explicit no-work/retired closure markers. Every row includes its exact text and SHA-256.
+
+The supplied `REMAINING_WORK_CENSUS.csv` is an older snapshot: 107 of its 122 rows have a `SourceSHA256` that no longer matches the live status file. The report therefore uses live status text for current recommendations and preserves the older census item/hash only as comparison evidence. Do not use its old row numbers as live item identifiers.
+
+## Recommendations
+
+- **Keep current work open:** 90 task bullets remain concrete implementation, integration, observation, or candidate-bound verification work. Examples include current Codex/Runtime conformance, instruction-root protection, permission and denial behavior, replay/redaction, packaging, and domain proposal controls. The current row accounting retains delivery obligations; the reconciliation did not produce the native/runtime/release results those items require.
+- **Remove completed record-only assignments:** the old standalone D-APP-38 propagation rows, the 41-item extension-routing assignment, and the 107-capability reverse-mapping assignment do not appear in current Remaining. Evidence supports their removal as work items: D-APP-38 audited v25 references across 51 active deliverables (four deliberately preserved retired DEL-09-07 references remain mismatched); the extension set has 41 current rows (36 repaired, 4 delivery tasks, 1 already resolved); and the reverse map retains all 107 capability keys. Their real product/evidence tasks remain separately assigned.
+- **Make formal dependency work specific:** 14 live statuses still have the same generic Dependencies.csv directive. Three deliverables have no source-specific pending-assessment keys in the frozen `DDEPEND_ROWS.csv` and should remove that directive once the live register/mirror check confirms it. The other 11 should replace it with only their keyed open duties. Separately, that frozen file still records 81 source-specific assessments pending across 43 deliverables; the parent dependency fan-in must settle those before claiming all formal record work complete. Some source tasks may resolve as “no additional change”; that outcome must be recorded without inferring dependency satisfaction.
+- **Close declined enhancements cleanly:** remove the Remaining entries for the medium-band preview deferral, D-APP-116 optional inventory/cleanup, and D-APP-117 additional per-attempt replay. D-APP-132 says D-APP-116/117 were not adopted for this undertaking; their future gates remain in the decision record, and baseline D-APP-42 and current replay obligations remain in active work items.
+- **Clarify two mixed or outdated items:** the DEL-05-05 delivery task should drop its D-APP-116 optional-cleanup tail while keeping required D-APP-42 checks. The DEL-09-05 release evidence task should keep hosted release-job/attestation work and separate the optional SBOM status. DEL-09-06’s D-APP-121 item should be rewritten: the owner already ruled A-design/A-proof and authorized a bounded unpublished proof candidate, with effect still held behind observability, carrier application, and an exact execution brief. Preserve the no-publication-before-PASS boundary.
+
+## Boundaries
+
+This is a review of status wording and linked records, not a finding that product code or checks have passed. The 81 pending dependency assessments remain open as of this snapshot. `D38_CHECKS.json` records a scoped active-reference PASS and the deliberate retired-folder exception; it does not establish an unfiltered canonical audit PASS. The 41 extension rows retain four delivery tasks, and reverse-mapped capabilities retain their current owners and verification needs.
+
+The report does not change the accepted decision basis, dependency satisfaction, lifecycle, approval identity, or release state. Because the parent is still updating App records, rerun the extraction and hashes after the dependency fan-in and before final closeout.

@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-05-001, DEP-06-05-002, DEP-06-05-003, DEP-06-05-004, DEP-06-05-005, DEP-06-05-006, DEP-06-05-007, DEP-06-05-008
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. Consult the structured register; no new edge is inferred.
 
 ## Current ADQ-11 Reconciliation Note
 
@@ -37,29 +37,20 @@ history and no longer describe the active source-state posture.
 
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| DependencyID | Class | Type | Direction | Target | Status | Evidence |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-06-05-001 | ANCHOR | OTHER | UPSTREAM | SOW-062 Bash denied by default and governed when enabled | ACTIVE | `_CONTEXT.md#Traceability` |
-| DEP-06-05-002 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE | `Specification.md#Scope` |
-| DEP-06-05-003 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md#Scope` |
-| DEP-06-05-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE | `Specification.md#Scope` |
-| DEP-06-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/CONTRACT.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-06-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/TYPES.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-06-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/SPEC.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-06-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/PLAN.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-06-05-001 | ANCHOR | OTHER | UPSTREAM | SOW-062 | ACTIVE | NOT_APPLICABLE |
+| DEP-06-05-002 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 | ACTIVE | TBD |
+| DEP-06-05-003 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-06-04 | ACTIVE | TBD |
+| DEP-06-05-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 | ACTIVE | TBD |
+| DEP-06-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-06-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | TBD |
+| DEP-06-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | TBD |
+| DEP-06-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | TBD |
 
-Counts:
-
-| Dimension | Count |
-|---|---:|
-| ACTIVE rows | 8 |
-| RETIRED rows | 0 |
-| ANCHOR rows | 1 |
-| EXECUTION rows | 7 |
-| UPSTREAM rows | 8 |
-| DOWNSTREAM rows | 0 |
+Counts: ACTIVE=8; satisfaction NOT_APPLICABLE=1, TBD=7.
 
 ## Lifecycle Summary
 
@@ -87,3 +78,19 @@ Closure state: dependency register initialized, but dependency satisfaction rema
 - **Current counts:** ACTIVE 8; RETIRED 0; NOT_APPLICABLE=1; TBD=7.
 - **Correction:** DEP-06-05-008 now records REF-006 MATCH; dated corpus-vintage history remains.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `tests/codex-supervisor.test.ts`; App retained `frontend/src/lib/harness/tool-shell-policy.ts`, `frontend/src/__tests__/lib/chirality-hooks.test.ts`; Runtime event/artifact owners. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current evidence-locator refresh — 2026-09-22
+
+4 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=8; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

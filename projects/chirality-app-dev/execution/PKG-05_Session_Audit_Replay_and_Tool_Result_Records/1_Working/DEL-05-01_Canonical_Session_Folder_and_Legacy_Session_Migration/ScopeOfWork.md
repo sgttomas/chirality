@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-003]
 
 This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW-043, SOW-046] and package objectives [OBJ-003].
 
-- **OUT-001** — A canonical folder-backed Chirality session store and first-touch legacy flat-record migration that preserve stable session identity and the product-owned audit boundary.
+- **OUT-001** — App session-client conformance to Runtime-owned central storage and lazy non-destructive declared-root migration, preserving stable identity, canonical precedence, retained-source integrity, truthful legacy availability and provider-thread linkage.
 
 ## Deliverable Definition — Ontology
 
@@ -45,38 +45,23 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Canonical session root | `.chirality/sessions/<sessionId>/` unless `CHIRALITY_SESSION_ROOT` overrides the root | `docs/SPEC.md` Section 8.2; `docs/PRD.md` session storage section |
-> | Canonical metadata file | `session.json` | `docs/SPEC.md` Section 8.2 |
-> | Canonical event log | `events.jsonl` | `docs/SPEC.md` Section 8.2; `docs/CONTRACT.md` K-EVENT-4 |
-> | Canonical per-turn folder | `turns/<turnId>.json` | `docs/SPEC.md` Section 8.2 |
-> | Canonical artifact folder | `artifacts/` | `docs/SPEC.md` Section 8.2; `docs/TYPES.md` Section 7.2 |
-> | Canonical SDK metadata/transcript folder | `sdk/` | `docs/SPEC.md` Section 8.2 |
-> | Legacy record shape | `{sessionRoot}/{sessionId}.json` | `docs/SPEC.md` Section 8.1 |
-> | Legacy conversion requirement | Legacy records must remain readable by converting to canonical folders on first touch | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077; D-APP-41 |
-> | Supported session operations in scope | create, list, resume, retrieve, save, delete | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 |
-> | Legacy migration behavior in scope | Existing `.chirality/sessions/*.json` records are canonicalized during list/resume/retrieve/save/delete and removed after conversion | `docs/PRD.md` FR-077; D-APP-41 |
-> | SDK transcript authority | SDK transcripts are secondary runtime state unless imported into `HarnessEvent` form | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 |
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | Chirality audit mirror canonicality | `.chirality/sessions/<sessionId>/events.jsonl` remains the product-owned runtime audit mirror | `docs/SPEC.md` Section 8.4; `docs/TYPES.md` Section 1.8 |
-> | Project truth boundary | Runtime transcripts, SDK transcripts, UI state, and caches are not project truth unless imported into governed files | `docs/TYPES.md` Section 1.7; `docs/CONTRACT.md` K-FS-1 |
-> | Stable identity | Session, turn, and runtime event identifiers are stable IDs assigned once | `docs/TYPES.md` Section 2 |
-> | SDK linkage | `sdkSessionId`, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode are future metadata candidates | `docs/SPEC.md` Section 8.3 |
-> | Transcript placement | TBD: R1 must empirically decide the least surprising SDK transcript/storage pattern | `docs/SPEC.md` Section 8.4; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-046/OI-002 |
-> | Authority corpus state | D-APP-38 corpus v2 is applied for this deliverable; `_REFERENCES.md` reports MATCH for PRD/SPEC/TYPES/CONTRACT/PLAN | `_REFERENCES.md`; D-APP-38 |
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-005 — Pass 3 Lensing Status
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Lensing Status
 >
@@ -86,81 +71,20 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > | E-001 | satisfied | PRD-derived behavior was rechecked against the D-APP-38 corpus v2 MATCH state before ADQ-08 closure. |
 >
 
+
+Current requirement and verification boundary: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
 ### CLM-006 — Construction
 
-> ##### Construction
->
-> Canonical vNext session folder:
->
-> ```text
-> .chirality/sessions/<sessionId>/
-> |-- session.json
-> |-- events.jsonl
-> |-- turns/
-> |   `-- <turnId>.json
-> |-- artifacts/
-> `-- sdk/
-> ```
->
-> Source: `docs/SPEC.md` Section 8.2.
->
-> Legacy session record:
->
-> ```text
-> {sessionRoot}/{sessionId}.json
-> ```
->
-> Legacy flat records are migration inputs only. On first read, list, resume, save,
-> or delete access, the runtime writes `{sessionRoot}/{sessionId}/session.json`
-> and removes the flat record. If both shapes exist, defined canonical values win,
-> legacy-only fields are preserved, and the merged canonical record replaces the
-> duplicate pair.
->
-> Known legacy fields:
->
-> - `sessionId`
-> - `projectRoot`
-> - `persona`
-> - `mode`
-> - `createdAt`
-> - `updatedAt`
-> - `claudeSessionId`
-> - `bootFingerprint`
-> - `bootedAt`
-> - `model`
-> - `engineSessionId`
-> - `sdkSessionId`
-> - `sdkTranscriptPath`
-> - `sdkSessionStoreKey`
-> - `sdkConfigDir`
-> - `sdkSettingSources`
-> - `sdkPackageVersion`
-> - `sdkClaudeCodeVersion`
-> - `runtimeFingerprint`
->
-> Source: `docs/SPEC.md` Section 8.1.
->
-> Future `session.json` fields should include:
->
-> - `sessionId`
-> - `projectRoot`
-> - `persona`
-> - `mode`
-> - `createdAt`
-> - `updatedAt`
-> - `model`
-> - `bootFingerprint`
-> - `sdkSessionId`
-> - `sdkProjectKey`
-> - `sdkTranscriptPath` or `sdkSessionStoreKey`
-> - `sdkConfigDir`
-> - `sdkSettingSources`
-> - `sdkPackageVersion`
-> - `sdkClaudeCodeVersion`
-> - `sdkResumeMode`
->
-> Source: `docs/SPEC.md` Section 8.3.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Unfinished delivery: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
 
 ### CLM-007 — References
 
@@ -186,111 +110,76 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> DEL-05-01 specifies the session data-model change that makes folder-backed harness sessions canonical and converts legacy flat `.json` session records into that shape on first touch.
->
-> In scope:
->
-> - Canonical `.chirality/sessions/<sessionId>/` folder layout.
-> - `session.json` metadata expectations.
-> - Legacy `.chirality/sessions/<sessionId>.json` conversion during read, list, resume, save, and delete surfaces.
-> - SDK session linkage metadata needed for resume without making SDK transcripts authoritative.
-> - Tests for session folder layout, migration helpers, duplicate folder/flat behavior, and legacy conversion behavior.
->
-> Out of scope:
->
-> - `HarnessEvent` schema and append-only JSONL writer details owned by DEL-05-02.
-> - Runtime redaction owned by DEL-05-03.
-> - Replay UI/diagnostics owned by DEL-05-04.
-> - Tool permission semantics, excluded by PKG-05 package scope.
-> - Final SDK transcript placement decision where source authority marks it as an R1/OI-002 decision.
->
-> Sources: `_CONTEXT.md` `Deliverable Scope`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` `PKG-05`; `docs/SPEC.md` Sections 8-10; D-APP-41 ruling on canonical session storage.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | DEL-05-01-R001 | New canonical sessions MUST be represented as folders under `.chirality/sessions/<sessionId>/` or the configured `CHIRALITY_SESSION_ROOT` equivalent. | `docs/SPEC.md` Section 8.2 |
-> | DEL-05-01-R002 | A canonical session folder MUST support `session.json`, `events.jsonl`, `turns/`, `artifacts/`, and `sdk/` as the physical layout. | `docs/SPEC.md` Section 8.2 |
-> | DEL-05-01-R003 | Legacy flat records at `{sessionRoot}/{sessionId}.json` MUST be converted to `{sessionRoot}/{sessionId}/session.json` on first read/list/resume/save/delete access. | `docs/SPEC.md` Section 8.1; D-APP-41 |
-> | DEL-05-01-R004 | Existing `.chirality/sessions/*.json` records MUST list and resume by way of eager canonical conversion; runtime code MUST NOT keep flat records as a standing parallel storage shape. | `docs/PRD.md` FR-077; `docs/SPEC.md` Section 8.1; D-APP-41 |
-> | DEL-05-01-R005 | Session CRUD behavior MUST remain bound to normalized project root. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 |
-> | DEL-05-01-R006 | `session.json` SHOULD include stable Chirality session metadata and SDK linkage metadata listed in SPEC Section 8.3. | `docs/SPEC.md` Section 8.3 |
-> | DEL-05-01-R007 | SDK session identifiers and transcript/store references MUST remain adapter metadata and MUST NOT redefine Chirality session identity. | `docs/SPEC.md` Section 10.3; `docs/TYPES.md` Section 7.2; `docs/CONTRACT.md` K-ENGINE-4 |
-> | DEL-05-01-R008 | `events.jsonl` MUST remain the canonical Chirality audit mirror; SDK transcripts are secondary unless imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4 |
-> | DEL-05-01-R009 | If SDK transcript storage remains outside the working root, Chirality MUST cross-reference the transcript path or store key from `session.json` and record residual reliance-boundary risk. | `docs/SPEC.md` Section 8.4 |
-> | DEL-05-01-R010 | If both canonical folder and legacy flat records exist for the same `sessionId`, resolution MUST prefer defined canonical values, preserve legacy-only fields, and write the merged canonical `session.json` carrying a `legacySource` consumption marker (sha256 of the flat record bytes, `materializedAt`); the flat record MUST be retained byte-identical and MUST NOT be removed; later reads MUST use the canonical record (the flat record is not a standing read input once marked consumed, and a flat record changed after consumption is reported, not merged); a canonical record that cannot be opened MUST fail closed and MUST NOT be overwritten from the flat record. (Amended 2026-09-03 under A13; the pre-amendment text required removal of the flat record.) | A13 (`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`); `docs/SPEC.md` Section 8.1 and Section 25.4; applied decomposition row L322; D-APP-41 historical on this point |
-> | DEL-05-01-R011 | Session identifiers MUST remain stable across renames, path changes, and UI labels. | `docs/TYPES.md` Section 2; `docs/CONTRACT.md` K-ID-1 |
-> | DEL-05-01-R012 | Runtime records and project files MUST preserve stable IDs when paths change. | `docs/CONTRACT.md` K-PATH-1 |
-> | DEL-05-01-R013 | Secrets and API keys MUST NOT be stored in session metadata, runtime events, logs, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1; K-EVENT-6 |
-> | DEL-05-01-R014 | `CHIRALITY_SESSION_ROOT` override behavior MUST remain supported for session storage root resolution. | `docs/SPEC.md` Section 8.2; `docs/PRD.md` session storage section |
-> | DEL-05-01-R015 | Implementation evidence MUST name the active session storage module, canonicalization helper behavior, and focused validation commands used for closure. | D-APP-41; implementation evidence |
-> | DEL-05-01-R016 | New sessions MUST NOT write legacy flat `{sessionId}.json` files. | D-APP-41; `docs/SPEC.md` Section 8.2 |
->
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| DEL-05-01-R001 | New sessions use the Runtime central per-project/session store; project-local or CHIRALITY_SESSION_ROOT shapes are legacy sources. |
+| DEL-05-01-R002 | Support canonical session metadata/event storage and applicable turn/artifact/linkage records through Runtime contracts; sdk/ is a historical adapter-specific directory, while missing live artifacts remain a delivery gap. |
+| DEL-05-01-R003 | Apply lazy non-destructive migration only to declared legacy roots, preserving identity and recording inaccessible/unmapped historical sources. |
+| DEL-05-01-R004 | Retain readable historical records and use the central canonical store on migration; no new flat writes and no required eager import or v2 continuation feature. |
+| DEL-05-01-R005 | Session CRUD behavior MUST remain bound to normalized project root. |
+| DEL-05-01-R006 | `session.json` SHOULD include stable Chirality session metadata and SDK linkage metadata listed in SPEC Section 8.3. |
+| DEL-05-01-R007 | SDK session identifiers and transcript/store references MUST remain adapter metadata and MUST NOT redefine Chirality session identity. |
+| DEL-05-01-R008 | `events.jsonl` MUST remain the canonical Chirality audit mirror; SDK transcripts are secondary unless imported into `HarnessEvent` form. |
+| DEL-05-01-R009 | Cross-reference native thread/transcript identity in session metadata and record actual transcript-access/reliance limitations without declaring provider transcripts canonical. |
+| DEL-05-01-R010 | If both canonical folder and legacy flat records exist for the same `sessionId`, resolution MUST prefer defined canonical values, preserve legacy-only fields, and write the merged canonical `session.json` carrying a `legacySource` consumption marker (sha256 of the flat record bytes, `materializedAt`); the flat record MUST be retained byte-identical and MUST NOT be removed; later reads MUST use the canonical record (the flat record is not a standing read input once marked consumed, and a flat record changed after consumption is reported, not merged); a canonical record that cannot be opened MUST fail closed and MUST NOT be overwritten from the flat record. (Amended 2026-09-03 under A13; the pre-amendment text required removal of the flat record.) |
+| DEL-05-01-R011 | Session identifiers MUST remain stable across renames, path changes, and UI labels. |
+| DEL-05-01-R012 | Runtime records and project files MUST preserve stable IDs when paths change. |
+| DEL-05-01-R013 | Secrets and API keys MUST NOT be stored in session metadata, runtime events, logs, SDK transcripts if avoidable, or tool artifacts. |
+| DEL-05-01-R014 | Current storage follows the Runtime user-data/project root contract; the old CHIRALITY_SESSION_ROOT knob is compatibility history. |
+| DEL-05-01-R015 | Name Runtime packages/core/src/session-store.ts, current migration/client paths and focused live validation evidence. |
+| DEL-05-01-R016 | New sessions MUST NOT write legacy flat `{sessionId}.json` files. |
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Evidence locations: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
-> ##### Standards
->
-> | Standard / Contract | Applicability | Source |
-> |---|---|---|
-> | SPEC Harness Session Store | Defines legacy record shape, canonical folder layout, future metadata, and canonicalization rules. | `docs/SPEC.md` Section 8 |
-> | SPEC Runtime Event Schema | Constrains `events.jsonl` canonicality and replay tolerance where the session folder contains event logs. | `docs/SPEC.md` Section 9 |
-> | SPEC Engine Adapter Rules | Requires SDK names, IDs, transcript paths, and external message names to remain adapter metadata. | `docs/SPEC.md` Section 10.3 |
-> | TYPES Runtime and Session Vocabulary | Defines `SessionRecord`, `sessionId`, `sdkSessionId`, `events.jsonl`, `session.json`, and `artifacts/`. | `docs/TYPES.md` Section 7 |
-> | CONTRACT Invariants | Governs stable identity, project truth, SDK transcript secondary status, event mirror canonicality, replay tolerance, and redaction. | `docs/CONTRACT.md` K-ID-1, K-FS-1, K-SDK-3, K-EVENT-4 through K-EVENT-6 |
-> | PRD Runtime Requirements | Product requirements for session CRUD, legacy readability, SDK linkage, and audit mirror canonicality. | `docs/PRD.md` FR-014, FR-077, FR-118, FR-121; D-APP-38 corpus v2 reports MATCH |
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement IDs | Verification Approach |
-> |---|---|
-> | R001, R002, R006, R014 | Unit tests for session root resolution and canonical folder creation, including `CHIRALITY_SESSION_ROOT`. |
-> | R003, R004, R005, R010, R016 | Legacy fixture tests proving flat `.json` records are converted through list, retrieve, resume, save, and delete surfaces; duplicate fixture tests proving merge precedence, legacy-only field preservation, and flat-file retention with byte identity and canonical precedence (including the `legacySource` consumption marker, no resurrection of a field removed from the canonical record, and fail-closed handling of a corrupt canonical record). (Amended 2026-09-03 under A13; the pre-amendment text required proof of flat-file removal.) |
-> | R007, R008, R009 | Metadata tests proving SDK identifiers/transcript references are stored as adapter metadata and `events.jsonl` remains canonical. |
-> | R011, R012 | Tests or scanner checks proving `sessionId` is the persisted identity and not inferred from path labels alone. |
-> | R013 | Redaction/security tests proving secret-like values are not written to session metadata or referenced artifacts; detailed redaction implementation belongs to DEL-05-03. |
-> | R015 | Review check that implementation-specific file paths, helper behavior, and command names are recorded in ADQ-08 evidence. |
-> | A-001 | Review check that save/update behavior remains an internal session-manager persistence operation unless a separate public API is accepted. |
-> | B-001 | Review check that legacy `claudeSessionId` remains readable without being silently redefined as `sdkSessionId`. |
-> | F-001 | Review check that duplicate folder-versus-flat behavior follows D-APP-41 and is fixture-tested. |
-> | E-002 | Review check that any external SDK transcript path/store-key use has an explicit residual reliance-boundary note; no final transcript placement claim is made in DEL-05-01. |
->
+Required current checks: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Named evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required artifacts:
->
-> - Session folder layout specification or implementation note.
-> - Migration helper description covering eager legacy flat `.json` conversion.
-> - Legacy-read/list/resume/save/delete conversion test fixtures.
-> - Duplicate folder/flat merge and cleanup test fixture.
-> - `session.json` metadata field documentation.
-> - SDK transcript/linkage residual-risk note where placement remains unresolved.
-> - Test evidence for session root override behavior.
-> - Implementation evidence for save/update behavior, duplicate folder-versus-flat behavior, and `claudeSessionId` preservation.
-> - Source-state recheck confirming the D-APP-38 authority corpus is current for this deliverable.
->
-> Source: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 8; `docs/PLAN.md` R1/R2 notes.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Unfinished delivery: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
 
 ### CLM-014 — D-APP-56 guard amendment (2026-07-12)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-56 guard amendment (2026-07-12)
 >
 > R4-P31 adopts both session-manager guards into DEL-05-01: `assertSafeSessionId` prevents unsafe/path-traversing session identifiers, and `assertProjectRootAccessible` enforces accessible contained project roots. A dedicated session-ID guard test remains an explicit verification obligation; this text does not assert it exists.
 
-- **AC-001** — Review and focused tests confirm that new sessions use the canonical folder layout and list, retrieve, resume, save, and delete operations convert legacy flat records while preserving stable session identity and defined duplicate-record precedence.
+- **AC-001** — The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
 
 ## Production and Verification Method — Praxeology
 
@@ -301,112 +190,47 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-016 — Purpose
 
-> ##### Purpose
->
-> Provide an operational procedure for producing and verifying the DEL-05-01 implementation slice: canonical session folder layout plus eager legacy flat `.json` conversion for list, resume, retrieve, save, and delete behavior.
->
-> Source: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-05-01.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
 
 ### CLM-017 — Prerequisites
 
-> ##### Prerequisites
->
-> - Accepted DEL-05-01 scope and four-document kit.
-> - Access to `docs/SPEC.md`, `docs/TYPES.md`, `docs/CONTRACT.md`, `docs/PLAN.md`, and `docs/PRD.md`.
-> - Awareness that the D-APP-38 authority corpus is current for this deliverable; `_REFERENCES.md` reports matching hashes for PRD/SPEC/TYPES/CONTRACT/PLAN.
-> - Current session storage implementation is `frontend/src/lib/harness/session-manager.ts`; focused storage tests are `frontend/src/__tests__/lib/session-manager.test.ts`.
-> - Upstream dependency edges are not yet accepted; `_DEPENDENCIES.md` declares upstream/downstream as TBD.
-> - R1/OI-002 transcript placement remains unresolved; do not hard-code final SDK transcript storage policy beyond metadata support.
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+Current implementation/adoption evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-018 — Steps
 
-> ##### Steps
->
-> 1. Locate current session storage code and fixtures.
->    - Identify where legacy `.chirality/sessions/<sessionId>.json` records are created, listed, read, resumed, and deleted.
->    - Keep the public session API contract stable while changing the on-disk storage shape.
->    - Source basis: `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-014 and FR-077.
->
-> 2. Define or update the session root resolver.
->    - Resolve default `.chirality/sessions`.
->    - Preserve `CHIRALITY_SESSION_ROOT` override behavior.
->    - Normalize project-root filtering where session list behavior depends on project root.
->    - Source basis: `docs/SPEC.md` Section 8.2; `docs/PRD.md` FR-014.
->
-> 3. Introduce canonical folder creation for new sessions.
->    - Create `.chirality/sessions/<sessionId>/`.
->    - Write `session.json` for new session metadata.
->    - Do not write a legacy flat `{sessionId}.json` file for new sessions.
->    - Ensure `events.jsonl`, `turns/`, `artifacts/`, and `sdk/` remain compatible with the canonical folder layout according to implementation needs.
->    - Do not make SDK transcript files canonical.
->    - Source basis: `docs/SPEC.md` Sections 8.2 and 8.4.
->
-> 4. Populate `session.json` with supported metadata.
->    - Include stable Chirality metadata such as `sessionId`, `projectRoot`, `persona`, `mode`, timestamps, model, and boot fingerprint when available.
->    - Include SDK linkage metadata such as `sdkSessionId`, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode when available.
->    - Leave unavailable fields absent or `TBD` per implementation convention; do not invent values.
->    - Source basis: `docs/SPEC.md` Section 8.3.
->
-> 5. Add canonicalizing read/list logic.
->    - Folder sessions read from `<sessionId>/session.json`.
->    - Legacy sessions are read from `<sessionId>.json`, immediately written to `<sessionId>/session.json`, and then removed as flat records.
->    - Listing should discover both shapes, canonicalize legacy records, and avoid duplicate records for the same stable `sessionId`.
->    - If both shapes exist, defined canonical values take precedence, legacy-only fields are preserved, the merged canonical file is written, and the flat record is removed.
->    - Source basis: `docs/SPEC.md` Section 8.1; `docs/TYPES.md` Section 2; D-APP-41.
->
-> 6. Preserve resume compatibility.
->    - Legacy `claudeSessionId` remains readable.
->    - New SDK linkage should use `sdkSessionId` and explicit resume metadata when available.
->    - Do not silently map `claudeSessionId` to `sdkSessionId`; preserve legacy linkage fields and record new SDK linkage separately when available.
->    - Source basis: `docs/SPEC.md` Sections 8.1 and 8.3; `docs/PRD.md` FR-118.
->
-> 7. Preserve retrieve and delete compatibility.
->    - Retrieve should work for folder and flat legacy inputs by canonicalizing first.
->    - Delete should resolve the session shape, then remove the canonical session folder and any stray flat duplicate for the same `sessionId`.
->    - Source basis: `docs/SPEC.md` endpoint table; `docs/PRD.md` FR-014 and FR-077; D-APP-41.
->
-> 8. Keep event/audit canonicality intact.
->    - Do not replace `.chirality/sessions/<sessionId>/events.jsonl` with SDK transcript data.
->    - Cross-reference SDK transcript path/store key in metadata if needed.
->    - Record residual reliance-boundary risk if SDK transcript storage remains outside a project-controlled folder.
->    - Source basis: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
->
-> 9. Add migration helper tests.
->    - Test canonical folder creation.
->    - Test legacy flat record listing and canonical conversion.
->    - Test legacy resume metadata remains available after conversion.
->    - Test legacy retrieve/save/delete behavior.
->    - Test root override behavior.
->    - Test duplicate-shape behavior under D-APP-41 canonical-precedence merge and flat-file cleanup.
->    - Source basis: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 19.3.
->
-> 10. Re-run relevant local validation.
->    - Run focused unit/API tests for session CRUD and migration helpers.
->    - Run broader harness validation because this implementation changes runtime storage behavior.
->    - Confirm TypeScript and authority-corpus status before closeout.
->     - Source basis: `docs/SPEC.md` Section 19.3; `docs/PRD.md` FR-064 through FR-069.
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+4. Verify verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
+
+Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-019 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Canonical layout creation | New sessions have the folder shape required by `docs/SPEC.md` Section 8.2. |
-> | Legacy list conversion | Existing `.chirality/sessions/*.json` records appear in session list output and are converted to canonical folders. |
-> | Legacy resume conversion | Legacy records retain metadata and are converted without crashing. |
-> | Legacy retrieve/save/delete conversion | Existing flat records can be retrieved, saved, and deleted through supported session surfaces after canonicalization. |
-> | Duplicate-shape cleanup | Duplicate folder/flat records merge with canonical precedence, preserve legacy-only fields, and remove the flat record. |
-> | SDK linkage metadata | SDK IDs/transcript references are adapter metadata and do not redefine Chirality `sessionId`. |
-> | Audit mirror canonicality | `events.jsonl` remains the product-owned audit mirror. |
-> | Redaction posture | Session metadata and artifacts do not store API keys or known secrets. |
-> | Source-state recheck | PRD-derived behavior is checked against the D-APP-38 corpus v2 MATCH state before implementation closure. |
->
+Required current checks: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Named evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
 
 ### CLM-020 — Pass 3 Evidence Checks
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Evidence Checks
 >
@@ -418,19 +242,22 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > | F-001 | Delete behavior is verified when both folder and flat records exist for the same `sessionId`. | SATISFIED by `session-manager.test.ts` delete fixture. |
 >
 
+
+Current requirement and verification boundary: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
 ### CLM-021 — Records
 
-> ##### Records
->
-> - Updated source files for session root resolution, canonical folder layout, and migration helpers: `frontend/src/lib/harness/session-manager.ts`.
-> - Legacy flat-session fixtures: `frontend/src/__tests__/lib/session-manager.test.ts`.
-> - Canonical folder-session fixtures: `frontend/src/__tests__/lib/session-manager.test.ts`.
-> - Test results for list/resume/retrieve/save/delete migration behavior: `Evidence_ADQ-08_Canonical_Session_Migration.md`.
-> - Residual-risk note for SDK transcript placement if not project-controlled: remains carried by R1/OI-002 and DEL-05-04; DEL-05-01 stores only metadata.
-> - Human ruling for duplicate folder/flat record delete semantics: D-APP-41.
-> - Source-state recheck record for REF-006 PRD-derived behavior: D-APP-38 corpus v2 MATCH state and ADQ-08 evidence.
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
 
-- **VER-001** — Run focused session-manager tests for canonical creation, legacy conversion across supported operations, duplicate merge and cleanup, root override, stable identity, SDK metadata separation, and unsafe session-ID traversal guards; review the resulting evidence against SOW-009, SOW-043, SOW-046, and OBJ-003.
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
+Unfinished delivery: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
+
+- **VER-001** — Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
 
 ## Governing Values and Decisions — Axiology
 
@@ -450,37 +277,23 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-024 — Principles
 
-> ##### Principles
->
-> 1. Preserve session identity.
->    `sessionId` is a stable identifier. Do not make folder names, UI labels, SDK session IDs, or transcript paths the authoritative identity. Source: `docs/TYPES.md` Section 2; `docs/CONTRACT.md` K-ID-1.
->
-> 2. Prefer one durable storage shape.
->    Canonical folder sessions are the target shape. Legacy flat records are inputs to eager conversion on list, read, resume, save, and delete, not a permanent parallel format. Source: `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077; D-APP-41.
->
-> 3. Keep Chirality audit canonical.
->    `events.jsonl` is the product-owned audit mirror. SDK transcripts can assist resume/debugging but are secondary unless imported into `HarnessEvent` form. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
->
-> 4. Separate metadata from provider state.
->    `sdkSessionId`, transcript paths, store keys, SDK config directories, settings sources, and SDK versions are adapter metadata. They should help resume and diagnosis without shaping public APIs or canonical event semantics. Source: `docs/SPEC.md` Sections 8.3 and 10.3; `docs/TYPES.md` Section 7.2.
->
-> 5. Preserve legacy metadata without redefining it.
->    Legacy `claudeSessionId` remains readable as legacy adapter linkage. New SDK linkage fields are recorded separately when available; migration must not silently rewrite one identity into another without accepted evidence.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-025 — Considerations
 
-> ##### Considerations
->
-> - The layout should serve later PKG-05 deliverables: `events.jsonl` for DEL-05-02, replay support for DEL-05-04, and artifacts for DEL-05-05. Do not overload DEL-05-01 with those implementations.
-> - Legacy records include `claudeSessionId`; vNext metadata uses `sdkSessionId` and related SDK linkage fields. Preserve both when present unless an accepted transform is later defined.
-> - `CHIRALITY_SESSION_ROOT` changes the storage root. Tests should cover both default and override roots.
-> - Session CRUD is source-supported. In the current implementation, `FileSessionManager.save` is an internal persistence operation used by boot/session update flows; no separate public save route is created by this deliverable.
-> - Transcript placement remains an R1/OI-002 decision. A migration implementation should be able to record transcript path/store-key metadata without assuming the final storage mechanism.
-> - Redaction requirements apply to metadata and artifacts, but detailed redaction behavior belongs to DEL-05-03.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-026 — Pass 3 Rulings Needed
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Rulings Needed
 >
@@ -492,20 +305,18 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > | X-001 | Final SDK transcript placement and review closure standard. | Keep SDK transcript path/store key as non-authoritative metadata while R1/OI-002 remains open. |
 >
 
+
+Current requirement and verification boundary: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
+
 ### CLM-027 — Trade-offs
 
-> ##### Trade-offs
->
-> | Option | Benefit | Cost / Risk | Guidance |
-> |---|---|---|---|
-> | Lazy legacy read support | Minimal migration risk; existing sessions remain usable | Code must handle two storage shapes indefinitely unless later cleanup occurs | Not selected after D-APP-41 |
-> | Eager conversion to folders | Simplifies later reader code and eliminates the flat-record parallel format | Requires explicit duplicate merge and field-preservation tests | Selected by D-APP-41 |
-> | Store SDK transcript under working-root-controlled folder | Better locality and governance review | SDK behavior must be empirically verified | Preferred direction when reliable; source marks it as R1 decision |
-> | Cross-reference SDK transcript in user home | Preserves resume if SDK cannot be redirected | Adds reliance-boundary risk and non-project state dependency | Accept only with explicit `session.json` metadata and residual-risk record |
-> | Keep `events.jsonl` as canonical audit mirror | Preserves Chirality-owned runtime evidence | Requires event writer/replay discipline | Required by SPEC and CONTRACT |
->
-> E-002 disposition: when SDK transcripts remain outside project-controlled storage, the trade-off is acceptable only with `session.json` cross-reference metadata and a residual reliance-boundary record. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
->
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ### CLM-028 — Examples
 
@@ -557,10 +368,11 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-030 — Source-State Notes
 
-> ##### Source-State Notes
->
-> - `_REFERENCES.md` reports MATCH for the active authority corpus after the D-APP-38 corpus v2 refresh.
-> - ADQ-08 code inspection identifies `frontend/src/lib/harness/session-manager.ts` as the storage implementation path and `frontend/src/__tests__/lib/session-manager.test.ts` as the focused migration fixture path.
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
 
 ### CLM-031 — D-APP-68 managed-delegation SessionRecord ownership (2026-07-19)
 
@@ -586,69 +398,14 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 
 ### CLM-032 — A13 legacy-record retention amendment (2026-09-03)
 
-> ##### A13 legacy-record retention amendment (2026-09-03)
->
-> Owner ruling A13 (`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`,
-> ruled 2026-09-03, K-AUTH-1) ratified retention of the legacy flat session
-> record after canonical materialization as the v3 posture for this
-> deliverable (AT-035 "opens without destructive rewrite"; applied
-> decomposition row L322; `docs/SPEC.md` Section 25.4 "no ... destructive
-> source move"). Under that ruling this amendment changes exactly two rows in
-> the same tranche (node D, `DEL-05-01-V3-01`):
->
-> - CLM-010 `DEL-05-01-R010` — pre-amendment text: "If both canonical folder
->   and legacy flat records exist for the same `sessionId`, resolution MUST
->   prefer defined canonical values, preserve legacy-only fields, write the
->   merged canonical `session.json`, and remove the flat record." — replaced
->   by the retention posture stated in the row (merged canonical write with a
->   `legacySource` marker; flat record retained byte-identical and not a
->   standing read input once consumed; canonical wins on later reads; corrupt
->   canonical fails closed).
-> - CLM-012 verification row for R003/R004/R005/R010/R016 — pre-amendment
->   text ended "... legacy-only field preservation, and flat-file removal." —
->   replaced by "flat-file retention with byte identity and canonical
->   precedence" as stated in the row.
->
-> The following pre-existing statements elsewhere in this Scope of Work still
-> read "removed"/"cleanup" for the flat record. They are **not rewritten**
-> (the literal amendments under A13 are exactly the two rows above); on the
-> single point of flat-record removal each is superseded by reference by
-> A13 and by amended R010, and is to be read as "retained byte-identical
-> with a `legacySource` consumption marker":
->
-> - CLM-003 Attributes row "Legacy migration behavior in scope" ("... and
->   removed after conversion");
-> - CLM-009 Scope, the sentence "... and removes the flat record. If both
->   shapes exist, defined canonical values win, ..." and its "replaces the
->   duplicate pair" clause;
-> - CLM-013 Documentation bullet "Duplicate folder/flat merge and cleanup
->   test fixture";
-> - CLM-018 Steps, step 5 bullets "... and then removed as flat records" and
->   "... the merged canonical file is written, and the flat record is
->   removed" (the delete-surface bullet that removes "any stray flat
->   duplicate for the same `sessionId`" is the delete contract and stands);
-> - CLM-018 Steps, test bullet "... canonical-precedence merge and flat-file
->   cleanup";
-> - CLM-019 Verification row "Duplicate-shape cleanup" ("... and remove the
->   flat record");
-> - VER-001's phrase "duplicate merge and cleanup";
-> - CLM-029 Pass 3 Rulings row F-001 ("... the flat record is removed after
->   merge").
->
-> D-APP-41 (Option D, eager legacy conversion; "migrating, archiving, or
-> removing the flat record according to the migration implementation") is
-> historical on this one point — flat-record removal — and otherwise
-> unchanged: canonical folder storage, first-touch conversion, canonical
-> precedence, and no field loss for supported legacy fields remain in force.
-> R004's "MUST NOT keep flat records as a standing parallel storage shape" is
-> read as a write-side rule satisfied by the marker (the flat record is never
-> written and is not a read input after consumption). The D-APP-41 packet and
-> ruling files are not edited. Implementation evidence:
-> `Evidence/V3-01_v2_lazy_access_2026-09-03/` and run record
-> `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`.
+App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve stable session/project identity and root binding; engineSelection, adapterSession/engineSessionId and managed-child fields retain actual attribution. New sessions never write legacy flat files. Canonical precedence, fail-closed corrupt canonical handling and byte-identical retained legacy sources remain. A13 duplicate-field preservation, exact source-byte consumption marker and changed-source diagnostics remain applicable migration requirements, with live gaps explicit. Deletion must honor central-store tombstone/retention semantics; do not reintroduce eager deletion or CHIRALITY_SESSION_ROOT.
+
+Named verification: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence. Evidence: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-009 SOW-043 SOW-046 OBJ-003 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-009 SOW-043 SOW-046 OBJ-003 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

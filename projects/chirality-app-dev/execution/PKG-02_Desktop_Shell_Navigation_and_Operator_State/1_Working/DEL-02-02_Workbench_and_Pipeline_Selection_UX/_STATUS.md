@@ -1,24 +1,13 @@
 # Status: DEL-02-02
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; this is the dated P06 observation; current residual selection is below.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-
-The Work/Agents projections (PR #323 merge `403f228f4`), the Workbench and
-Pipeline re-host, the Artifacts fold into a Workbench Documents block, and the
-coordination/activity presentation are implemented and evidenced, with the
-semantic-owner boundaries independently re-proven (2026-07-24 redesign tranche;
-see `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
-`execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). The
-owner accepted the current "All sessions (N)" presentation as final under
-D-APP-96; no presentation residual remains.
-
-D-APP-127 retires the D-APP-88 distinct-helper packaging subject. Repeat only surviving parity checks whose source, configuration or packaging evidence is invalidated; the former helper trigger is historical.
 
 - **DEL-02-02-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-08-05-V3-01 landed (recorded managed/native descendant records exist to present)`) — Work/Agents presentation of managed and native descendant records with source, authority-class, responsible-reference, currency, and evidence provenance labels from recorded evidence.
   Trace: OUT-001 (Work/Agents coordination presentation; provenance labels; stale/empty-state tests), AC-001, VER-001; applied decomposition row L294 (present explicitly recorded agent/session selections with source, authority class, responsible reference, currency, and evidence; DEL-08-05 retains child records, DEL-05-04 retains projection semantics).
@@ -28,14 +17,14 @@ D-APP-127 retires the D-APP-88 distinct-helper packaging subject. Repeat only su
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
   Return: Fixture bytes, component tests, and D-APP-36 render evidence proving descendant/status presentation from recorded evidence with provenance labels and no inferred parentage or role; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: the presentation lands with review PASS; live wiring is DEL-02-02-V3-02.
-- **DEL-02-02-V3-02** (`NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10) and DEL-08-04-V3-01 landed`) — live descendant/status presentation.
+- **DEL-02-02-V3-02** (`NOT_SELECTABLE_UNTIL: current extensible Runtime descendant/event contract evidence and DEL-08-04-V3-01 landed`) — live descendant/status presentation.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L294.
-  Plan: WP-07; G4 (owner accepts Preview boundary); AT-028 live presentation portion; live success claims wait for G3/G-WIRE. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: Root DEL-02-10 accepted API/event schema v2 (routed notice); DEL-08-04-V3-01; DEL-08-05-V3-01; DEL-02-02-V3-01; owner G4 acceptance for any Preview-boundary claim.
+  Plan: WP-07; AT-028 live presentation; applicable current recorded-contract/native evidence is required; retired hosted-admission G3/G4 subjects are not gates. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: current Runtime record/event interface evidence; DEL-08-04-V3-01; DEL-08-05-V3-01; DEL-02-02-V3-01; truthful current role/enforcement labels and recorded evidence; no inferred authority.
   Write locus: `frontend/src/**` presentation surfaces and tests plus deliverable-local state.
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
   Return: Live-path presentation evidence bound to the accepted schema identity and to recorded descendant evidence; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: live presentation lands under G4 evidence.
+  Removed when: live presentation lands with current contract evidence and independent review.
 
 - **DEL-02-02-V3-04** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed; DEL-07-03-V3-01 landed`) — Workflows view, roadmap, New workflow form, library and bind, the derived rung with its two forms, the proposal card, and the workflow file read/write route (T3 part).
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L308 (Workflows view, roadmap, New workflow form, library, and bind actions over governed workflow files; the transcript proposal card rendered from `proposal.*` events); SOW-081 L251; SOW-082 L252 (card actions are human acts applied by the app; one proposal per chat per trigger); OI-008 L602.
@@ -46,7 +35,15 @@ D-APP-127 retires the D-APP-88 distinct-helper packaging subject. Repeat only su
   Return: Workflows view lists, opens, follows, pauses, creates, and binds from the library with provenance (`roadmapSource` and hash) and the Q15 currency line; New workflow refuses role, folder, or delegation policy unset; position advances only at human-gate markers and records who advanced it (Q16); the proposal card renders Accept, Adjust, and Not now as human acts over the four fixture event types with once-per-chat-per-trigger enforcement visible; nothing is promoted silently; the file steers and never records status, approvals, or evidence; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: merged with review PASS; live `proposal.*` consumption remains DEL-05-02-V3-02.
 
-- **DEL-02-02-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through. Original R5 classification counts (historical, not current completion totals): 1 evidence result, 5 implementation or evidence, 21 record repair, 2 reserved authority. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-02-02.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface. Current overlay for this deliverable: `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` (D-APP-132); it supersedes only the listed keys' current decision/gate reading and retains all other original residuals.
+
+
+
+
+
+
+
+- **DEL-02-02-R5-RESIDUALS** — Resolve the exact descendant-card provenance versus recorded owner removal direction without inferring parentage or authority. Compare current method library/draft registration to the retained roadmap/follow/pause/bind/currency/attributed-gate/proposal promises before implementation. Current four-role entry is settled; an actual accepted-scope change follows its owning decision. D-APP-132 does not adopt the optional D-APP-117 per-attempt replay product. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval. D-APP-108 Q15 settles the read-only Workflows currency line and Q16 settles attributed gate-only position advance without concurrent editing; their missing UI checks are delivery work.
+
 
 ## History
 - 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; accepted obligations and unresolved engineering/evidence retained. Lifecycle and Checking Approval SHA unchanged.

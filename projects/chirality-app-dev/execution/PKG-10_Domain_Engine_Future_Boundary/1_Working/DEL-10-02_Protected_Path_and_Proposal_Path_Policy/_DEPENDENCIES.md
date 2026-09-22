@@ -11,11 +11,17 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Descriptive mirror of `Dependencies.csv` (2026-09-22; no formal edge or basis change):
+
+- `DEP-10-02-001` — OTHER; Protected/proposal paths for domain engines; SATISFIED.
+- `DEP-10-02-002` — OTHER; Preserve future domain-engine compatibility without turning domain solvers into Chirality core; SATISFIED.
+- `DEP-10-02-003` — PREREQUISITE; DomainEngineProfile Contract Draft; SATISFIED.
+- `DEP-10-02-004` — INTERFACE; OperationProposal Record and Human Gate Workflow; NOT_APPLICABLE.
+- `DEP-10-02-005` — CONSTRAINT; Concrete path glob syntax and hook API; TBD.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream-directed row is recorded in this local structured register; this does not assert absence of consumers elsewhere.
 
 ## Run Notes
 
@@ -59,18 +65,7 @@ Structured register: `Dependencies.csv` v3.1.
 
 ## Lifecycle Summary
 
-| Status | Count |
-|---|---:|
-| ACTIVE | 4 |
-| RETIRED | 1 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 3 |
-| TBD | 1 |
-| NOT_APPLICABLE (retired) | 1 |
-
-(Synced to CSV state 2026-07-10, D-APP-53 reconciliation; previously ACTIVE 5 / RETIRED 0 and SATISFIED 2 / TBD 3.)
+Current structured-register mirror: 1 NOT_APPLICABLE, 3 SATISFIED, 1 TBD. Lifecycle labels and SatisfactionStatus are distinct; the complete formal register remains unchanged. Earlier run summaries below describe their dated basis.
 
 ## Run History
 
@@ -78,3 +73,11 @@ Structured register: `Dependencies.csv` v3.1.
 |---|---|---|---|---:|---|
 | 2026-05-20T21:07:20-0600 | UPDATE | CONSERVATIVE | available | 5 | REF-006 hash mismatch; future-boundary/gated scope; concrete path and hook details TBD |
 | 2026-07-10 | RECONCILIATION (D-APP-53) | n/a | available; anchors re-verified | 4 | DEP-10-02-003 SATISFIED; DEP-10-02-005 left open (no live glob/hook evidence); summary synced to DEP-10-02-004 RETIRED; REF-006 now MATCH; linter PASS 0/0 |
+
+## Current evidence navigation — 2026-09-22
+
+Current contract carrier: `ScopeOfWork.md`; former Datasheet/Specification/Procedure/Guidance labels and old line anchors in formal rows are retained historical evidence locators. Current generic type source is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts`, consumed as `@chirality/runtime-contracts`; D-APP-118 retires the App facade. Retained registry/proposal tests are not proof of live Codex exposure. Formal row evidence/pin/LastSeen changes require the owning dependency reconciliation and are outside this record repair.
+
+## Current evidence-locator refresh — 2026-09-22
+
+5 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.

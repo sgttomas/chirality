@@ -1,5 +1,33 @@
 # Governance Consistency Notes — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| N-01 | Authority order remains applicable; accepted D-GOV-43 and D-APP-127 specialize the old SDK subjects. No lower-level historical PASS overrides them. |
+| N-02 | Project truth remains governed project files plus accepted Git history. Shared Codex resources and userData runtime evidence are allowed convenience/runtime state, not project truth. |
+| N-03 | Human-only acceptance and professional reliance remain live controls; the actor-identity enforcement gap remains open in RB-HUMAN-GATE. |
+| N-04 | Lifecycle vocabulary and approval evidence remain applicable. Current DEL-01-01 state is read from _STATUS.md; the historic CHECKING admission is not current lifecycle. |
+| N-05 | REPAIRED: canonical audit locus is Runtime-owned userData under K-EVENT-4; project-local .chirality/sessions is compatibility history. D-GOV-43 / D-APP-127 supersede the old locus. |
+| N-06 | REPAIRED: stock Codex App Server is the sole qualified MVP engine; shared settings/resources and user-selected approval/sandbox policy replace SDK/key-aware/Pi-default direction. D-GOV-43 / D-APP-127. |
+| N-07 | REPAIRED: preserve full Codex protocol and every notification, including unfamiliar events; named event indexes remain compatibility evidence rather than a filtering allowlist. Current live preservation/replay checks remain in DEL-01-02. |
+| N-08 | Register existence is verified at docs/harness/reliance_boundary_register.md; current rows distinguish conditional policy, native service interfaces and still-missing enforcement. Existence is not qualification. |
+| N-09 | Retired PKG-08 stays retired. Native configured Codex capabilities are permitted by D-GOV-43; independent App expansions and domain apply retain their own accepted scope gates. |
+| N-10 | REPAIRED: C002 applies the already ruled stable-ID/live-path decision; C003 distinguishes historical hash observations from current D-APP-38 source state. See current conflict table below; no repeated owner prompt. |
+| N-11 | REPAIRED: current ScopeOfWork.md/_CONTEXT.md name the accepted ResponsibleParty per D-APP-65/68. The dated TBD warning is historical and does not undo that assignment. |
+
+## Observed current source disagreements
+
+The current App `docs/DIRECTIVE.md` still contains pre-replatform wording: §2.3 names project-local `.chirality/sessions` and an SDK-schema import boundary; §2.8 names Claude/key-aware defaults, an opt-in Pi path and Chirality-owned fixed permission mechanics; §8 names one opt-in per-user daemon. Those statements are not consistent with the accepted D-GOV-43 / D-APP-127 current host direction. Their current application is resolved by the later accepted direction: Runtime-owned userData evidence, the complete stock Codex protocol, shared user configuration, user-selected policy and App-owned host process. D-APP-118 retires the facade support obligation. This local review records the disagreement instead of asserting that all current document bytes are mutually consistent.
+
+Correction path: the owning App/Root authority-document process propagates the already accepted direction into those governing carriers and regenerates their affected contract/source evidence; the manager owns current D-APP-38 source registration. This is existing authority-carrier work, not a new owner decision or a reason to restore the superseded mechanisms. The seven local artifacts now apply the settled direction; no governing document or instruction is amended by this local repair. A current hash registration identifies bytes and does not alone prove semantic consistency.
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

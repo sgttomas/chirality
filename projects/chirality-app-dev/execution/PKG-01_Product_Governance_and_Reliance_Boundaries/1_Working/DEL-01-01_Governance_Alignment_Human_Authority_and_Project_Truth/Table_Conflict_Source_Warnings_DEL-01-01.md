@@ -1,5 +1,23 @@
 # Conflict / Source-Warning Table — DEL-01-01
 
+## Current dispositions — 2026-09-22
+
+Apply D-APP-131 execution (b), settled D-GOV-43 / D-APP-127 and the already recorded D-APP-56/65/68 rulings. These are record repairs, not new human rulings. Original source quotations and dated verdicts below remain historical.
+
+| Original key | Current disposition | Basis and followthrough |
+|---|---|---|
+| DEL-01-01-C002 | RESOLVED by prior ruling | D-APP-56 R4-P48 already established stable IDs and live folder paths; ScopeOfWork.md applies that disposition. The old dispatch label is historical, not a new owner prompt. |
+| DEL-01-01-C003 | RESOLVED as dated source-state reconciliation | The July launch warning, historical INSP-03 mismatch and July observed MATCH refer to distinct records/times. Preserve them as evidence; none establishes current bytes. Current observed hashes are W00_03_GOVERNANCE_SOURCE_STATE.json; the manager registers/recomputes current D-APP-38 state before current corpus reliance. No invented hash-acceptance ruling. |
+| DEL-01-01-W-01 | REPAIRED | Current ScopeOfWork.md and _CONTEXT.md carry the D-APP-65/68 ResponsibleParty assignment; original TBD wording below is historical. Naming the accountable human grants no agent acceptance authority. |
+| DEL-01-01-W-02 | RESOLVED planning-note applicability | The five anticipated outputs were non-exhaustive; current CLM-012 requires the seven existing local artifacts. No extra scope approval is pending. |
+| DEL-01-01-C001 | CLOSED historical | Preserve the original prior hash-warning closure. Future changed bytes require their own current source observation, not reopening a disposed historical key. |
+
+Current REF-007 is the `workflows/software-decomp/WORKFLOW.md` locator, replacing the retired agent-file path under the accepted workflow interface. The manager owns reference expected hashes and final D-APP-38 application. Runtime store, full native events, shared configuration and user-selected policy now follow D-GOV-43; actual actor identity, redaction, ordinary-project instruction protection and current Codex verification gaps remain in the reliance register/DEL-01-02 Remaining. No artifact in this set claims those controls passed.
+
+## Preserved 2026-07-18 review (historical)
+
+All following original headings (including “human ruling needed”), rows, counts and quotations belong to the dated historical review. Current applicability is the exact-key table above.
+
 ## Header
 
 | Field | Value |

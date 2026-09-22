@@ -24,7 +24,7 @@ Resolve the strict FULL_GRAPH SCC between `DEL-10-02` and `DEL-10-03` through so
 
 ## Working Rule
 
-Treat `DEP-10-03-006` as the likely true sequencing edge unless source evidence proves it is already satisfied or not applicable. Treat `DEP-10-02-004` as opposite-direction interface evidence requiring reconciliation for strict DAG closure.
+The 2026-05-24 SCC-002 ruling and CHANGE handoff are closed history: DEP-10-02-004 was retired; DEP-10-03-006 was preserved and later recorded SATISFIED under D-APP-53. Future changes require new source-grounded owning-register authority; no old ruling is pending.
 
 ## Acceptance Criteria
 

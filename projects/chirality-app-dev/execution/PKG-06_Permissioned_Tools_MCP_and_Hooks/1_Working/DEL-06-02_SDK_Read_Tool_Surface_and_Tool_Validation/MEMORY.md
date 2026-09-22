@@ -12,3 +12,9 @@
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
 
 - 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. P-01 CLM-005/032 owner reservation released and scoped record lift applied; historical disagreement and unmet checks preserved. No lifecycle, dependency acceptance or product completion.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Validate Chirality-owned application-tool descriptors/catalog/calls separately from native Codex tool policy. D-APP-132 releases P-01 CLM-005 and CLM-032; no repeat owner reservation applies.
+
+Current unfinished delivery: Supply live catalog/exposure and permuted-order witnesses, preserve domain roster/stage checks, and resolve any absent App registration through the accepted application-tool interface. P-01 wording is already released; product verification remains open. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.

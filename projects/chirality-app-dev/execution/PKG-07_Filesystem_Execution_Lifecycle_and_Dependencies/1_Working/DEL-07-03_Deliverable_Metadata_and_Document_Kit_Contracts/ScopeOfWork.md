@@ -62,7 +62,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Datasheet: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -109,7 +109,7 @@ dependency-acceptance, product, or release act is implied.
 > | Evidence posture | Important claims and dependency evidence use source paths; assumptions, proposals, unknowns, and conflicts remain visible. | `docs/DIRECTIVE.md` / Section 2.5; `docs/CONTRACT.md` / K-CONFLICT-1 |
 > | Lifecycle transition rule | `_STATUS.md` is canonical; transitions are forward-only unless a human explicitly amends the record. | `docs/SPEC.md` / Section 4.3; `docs/PRD.md` / FR-052 and FR-053 |
 > | Human gate rule | `CHECKING` and `ISSUED` transitions require approval SHA evidence and cannot be authored by agents. | `docs/SPEC.md` / Section 4.3; `docs/CONTRACT.md` / K-AUTH-1, K-GATE-1 |
-> | Reference hash posture | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` / REF-006 — reconciled under D-APP-38 |
+> | Reference hash posture | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md` / REF-006 — reconciled under D-APP-38 |
 >
 
 ### CLM-005 — Construction
@@ -128,13 +128,13 @@ dependency-acceptance, product, or release act is implied.
 >
 > | RefID | Source | Use | Status |
 > |---|---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | Evidence, hidden-memory, root-separation posture | MATCH |
-> | REF-002 | `docs/CONTRACT.md` | Governance invariants for root, write scope, human gates, conflict surfacing | MATCH |
-> | REF-003 | `docs/SPEC.md` | Deliverable folder layout, lifecycle, context/dependency/reference/memory contracts | MATCH |
-> | REF-004 | `docs/TYPES.md` | Deliverable and lifecycle vocabulary | MATCH |
-> | REF-005 | `docs/PLAN.md` | Local source policy and PKG-07 roadmap context | MATCH |
-> | REF-006 | `docs/PRD.md` | Filesystem requirements and deliverable folder layout | MATCH status in `_REFERENCES.md` — reconciled under D-APP-38 |
-> | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH; no deliverable-specific requirements used |
+> | REF-001 | `docs/DIRECTIVE.md` | Evidence, hidden-memory, root-separation posture | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-002 | `docs/CONTRACT.md` | Governance invariants for root, write scope, human gates, conflict surfacing | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-003 | `docs/SPEC.md` | Deliverable folder layout, lifecycle, context/dependency/reference/memory contracts | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-004 | `docs/TYPES.md` | Deliverable and lifecycle vocabulary | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-005 | `docs/PLAN.md` | Local source policy and PKG-07 roadmap context | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-006 | `docs/PRD.md` | Filesystem requirements and deliverable folder layout | historical D-APP-38 source state; verify current candidate bytes status in `_REFERENCES.md` — reconciled under D-APP-38 |
+> | REF-007 | `../../workflows/software-decomp/WORKFLOW.md` | Decomposition method context | historical D-APP-38 source state; verify current candidate bytes; no deliverable-specific requirements used |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -142,19 +142,19 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Specification: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-008 — Scope
 
 > ##### Scope
 >
-> This deliverable covers backend support for scanning and validating deliverable-local filesystem contracts in PKG-07. The covered contracts are deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: `_CONTEXT.md` / Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / DEL-07-03 row.
+> This deliverable covers backend support for scanning and validating deliverable-local filesystem contracts in PKG-07. The covered contracts are deliverable metadata files, canonical memory, semantic placeholders, and accepted deliverable representation buckets. Sources: `_CONTEXT.md` / Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / DEL-07-03 row.
 >
 > In scope:
 >
 > - Detect and validate deliverable metadata files against SPEC/PRD file inventory expectations.
-> - Detect the four-document kit as first-class knowledge buckets.
+> - Detect the accepted deliverable representation as first-class knowledge buckets.
 > - Validate canonical memory behavior by accepting `MEMORY.md` and rejecting `_MEMORY.md` for this project profile.
 > - Recognize semantic baseline and optional semantic lens files.
 > - Provide test coverage for metadata scanners, document kit detection, and `_MEMORY.md` rejection.
@@ -175,13 +175,13 @@ dependency-acceptance, product, or release act is implied.
 > |---|---|---|---|
 > | DEL-07-03-REQ-001 | The scanner shall identify deliverable folders by the valid `DEL-XX-YY_Label` or `DEL-XXX-YY_Label` structure and the presence of `_STATUS.md`. | `docs/PRD.md` / FR-047; `docs/SPEC.md` / Section 3 | Unit tests with valid and invalid folder names and missing `_STATUS.md` fixtures |
 > | DEL-07-03-REQ-002 | The validator shall require `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, and `_REFERENCES.md` as canonical metadata files for deliverable folders. | `docs/PRD.md` / Section 10.8; `docs/SPEC.md` / Section 3.1 | Metadata scanner tests for complete and incomplete metadata sets |
-> | DEL-07-03-REQ-003 | The validator shall recognize `_SEMANTIC.md` as part of the minimum PREPARATION fileset. | `docs/PRD.md` / Section 10.8; `docs/SPEC.md` / Section 3.1 | Fixture with missing `_SEMANTIC.md` reports the expected baseline warning or failure state; exact severity TBD |
+> | DEL-07-03-REQ-003 | The validator shall recognize `_SEMANTIC.md` as part of the minimum PREPARATION fileset. | `docs/PRD.md` / Section 10.8; `docs/SPEC.md` / Section 3.1 | Fixture with missing `_SEMANTIC.md` reports the expected baseline warning or failure state; severity as defined by the selected scanner contract |
 > | DEL-07-03-REQ-004 | The validator shall detect the document kit files `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` as first-class knowledge buckets. | `docs/PRD.md` / FR-049 and Section 10.8; `docs/SPEC.md` / Section 3.1 | Document kit detection tests for all-present, partially-present, and absent kit states |
 > | DEL-07-03-REQ-005 | The validator shall treat `MEMORY.md` as the canonical deliverable-local working memory file when present. | `docs/SPEC.md` / Section 5.4; `docs/PRD.md` / Section 10.8 | Fixture asserting `MEMORY.md` is accepted as canonical memory |
 > | DEL-07-03-REQ-006 | The validator shall reject `_MEMORY.md` in this project profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 | `_MEMORY.md` rejection tests |
 > | DEL-07-03-REQ-007 | The validator shall recognize `_SEMANTIC_LENSING.md` and `HASH_VERIFICATION_BYPASS.jsonl` as optional deliverable-local files, not required PREPARATION files. | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Fixture showing optional files do not make a valid folder invalid when absent |
 > | DEL-07-03-REQ-008 | The implementation shall preserve working-root containment and must not mutate the instruction root during ordinary project execution. | `docs/DIRECTIVE.md` / Section 2.7; `docs/CONTRACT.md` / K-ROOT-1 through K-ROOT-3; `docs/PRD.md` / FR-050 and FR-051 | Path containment tests; instruction-root protection fixtures where this scanner accepts paths |
-> | DEL-07-03-REQ-009 | Validation output shall surface source/hash warnings and unsupported or unknown conditions instead of silently treating them as accepted truth. | `docs/DIRECTIVE.md` / Section 2.5; `docs/CONTRACT.md` / K-CONFLICT-1; `_REFERENCES.md` / REF-006 | Fixture or unit test for reference warning reporting; exact output schema TBD |
+> | DEL-07-03-REQ-009 | Validation output shall surface source/hash warnings and unsupported or unknown conditions instead of silently treating them as accepted truth. | `docs/DIRECTIVE.md` / Section 2.5; `docs/CONTRACT.md` / K-CONFLICT-1; `_REFERENCES.md` / REF-006 | Fixture or unit test for reference warning reporting; selected scanner schema applies |
 > | DEL-07-03-REQ-010 | ASSUMPTION: Scanner outputs should be consumable by `/api/working-root/scope` or adjacent working-root/project APIs without changing their public route shapes. | `docs/SPEC.md` / Section 17.2; `docs/PLAN.md` / current baseline; decomposition / DEL-07-03 anticipated artifacts | Integration test TBD after implementation location is selected |
 >
 
@@ -198,22 +198,19 @@ dependency-acceptance, product, or release act is implied.
 >
 > | Category | Applies to | Source basis | Severity posture |
 > |---|---|---|---|
-> | Required metadata | Missing `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, or `_REFERENCES.md` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Must be reported as invalid or blocking; exact enum name TBD |
-> | Preparation baseline | Missing `_SEMANTIC.md` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Must be reported as a baseline issue; exact severity TBD |
+> | Required metadata | Missing `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, or `_REFERENCES.md` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Must be reported as invalid or blocking; selected scanner enum applies |
+> | Preparation baseline | Missing `_SEMANTIC.md` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Must be reported as a baseline issue; severity as defined by the selected scanner contract |
 > | Lifecycle-conditioned document kit | Missing `Datasheet.md`, `Specification.md`, `Guidance.md`, or `Procedure.md` | `docs/SPEC.md` / Section 3.1 and Section 4.2; `docs/PRD.md` / FR-049 | Warning or failure depends on lifecycle state; exact state-to-severity map TBD |
 > | Canonical memory | Present or missing `MEMORY.md` | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 | Should be visible in output; exact requiredness TBD |
 > | Prohibited memory | Present `_MEMORY.md` | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 | Must be reported as prohibited for this profile |
 > | Optional files | Present or absent `Dependencies.csv`, `_SEMANTIC_LENSING.md`, or `HASH_VERIFICATION_BYPASS.jsonl` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Absence must not invalidate a folder solely by itself |
-> | Source/hash warning | Reference hash status: MATCH, bypass record, or unsupported source state | `_REFERENCES.md` / REF-006; `docs/CONTRACT.md` / K-CONFLICT-1 | Must remain visible as warning evidence — reconciled under D-APP-38 |
+> | Source/hash warning | Reference historical D-APP-38 source state; verify current candidate bytes, bypass record, or unsupported source state | `_REFERENCES.md` / REF-006; `docs/CONTRACT.md` / K-CONFLICT-1 | Must remain visible as warning evidence — reconciled under D-APP-38 |
 > | Unknown unsupported condition | File or state condition not covered by the accepted contract | `docs/CONTRACT.md` / K-INVENT-1 and K-CONFLICT-1 | Must surface as unknown/TBD, not silently accepted |
 >
 
 ### CLM-012 — Minimum Result Fields
 
-> ###### Minimum Result Fields
->
-> Until an implementation-specific schema is accepted, scanner findings should preserve at least: `deliverableId`, `path`, `category`, `condition`, `lifecycleState`, `severity`, `sourceRef`, `evidence`, and `message`. The exact TypeScript type, API response shape, and persisted test fixture names remain TBD. If the scanner output is exposed through `/api/working-root/scope` or `/api/project/deliverables`, route shape compatibility must be proven by implementation tests rather than assumed from this document.
->
+> The scanner must return structured findings that distinguish identity, lifecycle, required and optional metadata, representation readiness, prohibited files, and source uncertainty. The selected contract is represented by `frontend/src/lib/workspace/deliverable-contracts.ts` and `/api/project/deliverables`. Verification: `frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts` plus API containment tests. ADQ-07 resolved the implementation schema decision; schema names are evidence rather than additional scope. Missing instruction-root/workspace-containment coverage remains open. The selected ScopeOfWork representation must be recognized; absence of all accepted representations must not silently pass as an empty valid kit.
 
 ### CLM-013 — Standards
 
@@ -222,7 +219,7 @@ dependency-acceptance, product, or release act is implied.
 > | Standard or governing source | Applicability | Location |
 > |---|---|---|
 > | `docs/SPEC.md` | Primary physical file-layout, lifecycle, and deliverable-local contract source | Sections 3, 4, 5, 17.2 |
-> | `docs/PRD.md` | Product requirements for filesystem execution and deliverable folder layout | Sections 8.8, 8.9, 10.8; MATCH status per `_REFERENCES.md` — reconciled under D-APP-38 |
+> | `docs/PRD.md` | Product requirements for filesystem execution and deliverable folder layout | Sections 8.8, 8.9, 10.8; historical D-APP-38 source state; verify current candidate bytes status per `_REFERENCES.md` — reconciled under D-APP-38 |
 > | `docs/TYPES.md` | Vocabulary for deliverables, artifacts, lifecycle states, and dependency classes | Sections 1.2, 1.3, lifecycle state table |
 > | `docs/CONTRACT.md` | Governance invariants for roots, authority, hidden truth, and conflicts | K-AUTH, K-ROOT, K-CONFLICT |
 > | `docs/DIRECTIVE.md` | Evidence posture, no hidden memory, root separation, provider-neutral governance | Sections 2.5, 2.6, 2.7 |
@@ -237,7 +234,7 @@ dependency-acceptance, product, or release act is implied.
 > |---|---|---|
 > | Metadata scanner fixtures | Passing tests for required metadata files, missing metadata files, and valid/invalid deliverable folder identities | REQ-001, REQ-002 |
 > | Semantic placeholder fixtures | Test or documented validator behavior for `_SEMANTIC.md` baseline and optional `_SEMANTIC_LENSING.md` | REQ-003, REQ-007 |
-> | Document kit detection fixtures | Passing tests for complete, partial, and absent four-document kits | REQ-004 |
+> | Document kit detection fixtures | Passing tests for complete, partial, and absent accepted deliverable representations | REQ-004 |
 > | Memory contract fixtures | Passing test accepting `MEMORY.md` and rejecting `_MEMORY.md` | REQ-005, REQ-006 |
 > | Path/root governance fixtures | Tests showing project-root containment and instruction-root write protection are preserved where this code handles paths | REQ-008 |
 > | Warning propagation | Test or review evidence that reference hash warnings and unknowns remain visible | REQ-009 |
@@ -251,26 +248,16 @@ dependency-acceptance, product, or release act is implied.
 > | Verification target | Required evidence before closure | Disposition |
 > |---|---|---|
 > | B-001 normalized categories and severity names | Test fixture expectations must use one category/severity vocabulary for required, baseline, recommended, optional, prohibited, warning, and unknown findings. | Converted to explicit TBD contract above |
-> | F-001 / E-001 scanner output schema | Accepted implementation type or schema and fixtures covering all finding categories. | Converted to minimum result fields; final schema TBD |
+> | F-001 / E-001 scanner output schema | Accepted implementation type or schema and fixtures covering all finding categories. | Converted to minimum result fields; selected schema in CLM-012 |
 > | F-002 severity behavior | Fixtures for missing `_SEMANTIC.md`, initialized missing document-kit files, optional-file absence, `_MEMORY.md`, and source/hash warnings. | Converted to required verification evidence |
-> | X-001 concrete tests | Passing test names, fixture paths, and command outputs from the implementation slice. | Deferred as closure evidence; exact paths/commands TBD |
-> | X-002 warning propagation | Test or review evidence preserving REF-006 MATCH and unknown unsupported conditions. | Converted to required verification evidence — reconciled under D-APP-38 |
+> | X-001 concrete tests | Passing test names, fixture paths, and command outputs from the implementation slice. | Deferred as closure evidence; verification hooks in CLM-012; actual results remain required |
+> | X-002 warning propagation | Test or review evidence preserving actual mismatch, bypass and unknown/unsupported source conditions and unknown unsupported conditions. | Converted to required verification evidence — reconciled under D-APP-38 |
 > | E-002 API consumer contract | Integration evidence for `/api/working-root/scope` or an accepted adjacent API, if scanner output is exposed there. | Reframed as assumption pending implementation proof |
 >
 
 ### CLM-016 — Documentation
 
-> ##### Documentation
->
-> Required or expected artifacts for closure:
->
-> - Metadata scanner implementation.
-> - Document kit detection implementation.
-> - `_MEMORY.md` rejection tests.
-> - Test fixtures covering valid, incomplete, optional, and prohibited deliverable-local files.
-> - Documentation or inline contract comments for scanner output severity (`TBD` until implementation schema is selected).
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+> Use the accepted requirement and verification contract in CLM-012 and frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-017 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -278,7 +265,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > UPD-131 supersedes the integration-test TBD: additive `/api/project/deliverables` binding exists and is fixture-locked.
 
-- **AC-001** — The scanner identifies valid deliverable folders, requires canonical metadata, recognizes the semantic baseline and four-document kit, accepts MEMORY.md, rejects _MEMORY.md, treats optional files as non-required, preserves working-root containment, and surfaces warnings and unknown conditions.
+- **AC-001** — The scanner identifies valid deliverable folders, requires canonical metadata, recognizes the semantic baseline and accepted deliverable representation, accepts MEMORY.md, rejects _MEMORY.md, treats optional files as non-required, preserves working-root containment, and surfaces warnings and unknown conditions.
 
 ## Production and Verification Method — Praxeology
 
@@ -286,31 +273,19 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Procedure: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-019 — Purpose
 
 > ##### Purpose
 >
-> Define the working procedure for producing and verifying the DEL-07-03 backend feature slice: scanner/validator support for deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: `_CONTEXT.md` / Deliverable Scope; decomposition / DEL-07-03 row.
+> Define the working procedure for producing and verifying the DEL-07-03 backend feature slice: scanner/validator support for deliverable metadata files, canonical memory, semantic placeholders, and accepted deliverable representation buckets. Sources: `_CONTEXT.md` / Deliverable Scope; decomposition / DEL-07-03 row.
 >
 
 ### CLM-020 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status or source |
-> |---|---|
-> | Accepted decomposition entry for DEL-07-03 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / DEL-07-03 row |
-> | Governing file layout and lifecycle contract | `docs/SPEC.md` / Sections 3, 4, 5 |
-> | Product requirements for filesystem execution model | `docs/PRD.md` / Sections 8.8, 8.9, 10.8; MATCH status in `_REFERENCES.md` — reconciled under D-APP-38 |
-> | Vocabulary for deliverables, artifacts, and lifecycle states | `docs/TYPES.md` / Sections 1.2, 1.3, lifecycle state table |
-> | Governance posture for roots, memory, evidence, and conflicts | `docs/DIRECTIVE.md` / Sections 2.5, 2.6, 2.7; `docs/CONTRACT.md` / K-ROOT, K-CONFLICT |
-> | Declared upstream dependencies | TBD - no declared upstream dependency edges have been accepted by a human. Extracted ACTIVE rows exist in `_DEPENDENCIES.md` and `Dependencies.csv`, but they are not accepted declared dependencies for this prerequisite row. Source: `_DEPENDENCIES.md` / Declared Upstream and Extracted Dependency Register |
-> | Implementation location | `frontend/src/lib/workspace/filesystem.ts` (`scanDeliverableDocumentKitContract`), consumed by the project-deliverables API scan. |
-> | Scanner output schema | Minimum result fields are recorded in `Specification.md` / Scanner Finding Contract (P3); final implementation schema remains TBD. |
->
+> Use the accepted requirement and verification contract in CLM-012 and frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-021 — Steps
 
@@ -318,7 +293,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > 1. Confirm scope and source contracts.
 >    - Read DEL-07-03 context, references, and decomposition row.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 > 2. Define fixture cases.
 >    - Include valid `OPEN` baseline, initialized four-doc kit, missing metadata file, missing recommended document kit file, prohibited `_MEMORY.md`, optional `_SEMANTIC_LENSING.md` absence, and optional `HASH_VERIFICATION_BYPASS.jsonl` presence.
@@ -359,29 +334,13 @@ dependency-acceptance, product, or release act is implied.
 > 9. Add tests and run verification.
 >    - Add metadata scanner tests, document kit detection tests, and `_MEMORY.md` rejection tests.
 >    - Add path/root containment fixtures if this code accepts filesystem paths.
->    - Include fixture coverage for missing `_SEMANTIC.md`, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited `_MEMORY.md`, REF-006 MATCH propagation, and unknown unsupported conditions. (reconciled under D-APP-38).
+>    - Include fixture coverage for missing `_SEMANTIC.md`, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited `_MEMORY.md`, historical D-APP-38 source state; verify current candidate bytes propagation, and unknown unsupported conditions. (reconciled under D-APP-38).
 >    - Exact test command is TBD until implementation location is selected.
 >
 
 ### CLM-022 — Verification
 
-> ##### Verification
->
-> | Check | Expected result |
-> |---|---|
-> | Required metadata files complete | Validator reports required metadata present |
-> | Required metadata file missing | Validator reports missing canonical metadata file |
-> | `_SEMANTIC.md` missing from PREPARATION baseline | Validator reports baseline semantic placeholder issue; severity TBD |
-> | Four document kit complete | Validator detects all four knowledge buckets |
-> | Four document kit partial | Validator reports missing bucket names |
-> | `MEMORY.md` present | Validator accepts canonical memory file |
-> | `_MEMORY.md` present | Validator rejects or flags prohibited file |
-> | `_SEMANTIC_LENSING.md` absent | Validator does not fail solely for optional absence |
-> | PRD hash status: MATCH present in references | Output/report preserves source warning — reconciled under D-APP-38 |
-> | Instruction-root path supplied to write-capable path handling | Write operation is blocked or not available from this slice |
-> | Extracted dependency rows present but declared sections remain TBD | Procedure treats extracted rows as evidence records, not accepted declared prerequisites |
-> | Scanner result consumed by scope API or adjacent API | Compatibility is proven by implementation or route-level tests; no route-shape change is assumed here |
->
+> Use the accepted requirement and verification contract in CLM-012 and frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-023 — Records
 
@@ -404,7 +363,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Guidance: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-025 — Purpose
@@ -431,71 +390,39 @@ dependency-acceptance, product, or release act is implied.
 >    - `MEMORY.md` is canonical deliverable-local working memory; `_MEMORY.md` is disabled in this project profile. A permissive fallback to `_MEMORY.md` would contradict the source contract. Source: `docs/SPEC.md` / Section 5.4; `docs/PRD.md` / Section 10.8.
 >
 > 5. Surface uncertainty.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-027 — Considerations
 
 > ##### Considerations
 >
-> - Severity policy is partly source-defined and partly implementation-defined. Required metadata files are clearly required, document kit files are "SHOULD when initialized", and optional files are not required. Exact scanner severity levels are TBD until the implementation schema is selected. Sources: `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - Severity policy is partly source-defined and partly implementation-defined. Required metadata files are clearly required, document kit files are "SHOULD when initialized", and optional files are not required. Selected scanner types and severity values are evidence in the CLM-012 module and tests. Sources: `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - The deliverable should not absorb sibling package responsibilities. Status transition authorization belongs to DEL-07-04; dependency register parsing and writing belongs to DEL-07-05. Source: decomposition / PKG-07 rows.
 > - If scanner results feed `/api/working-root/scope` or `/api/project/deliverables`, keep route shapes stable unless the implementation task explicitly includes API contract changes. Source: `docs/SPEC.md` / Section 17.2; `docs/PLAN.md` / Current Baseline.
-> - ASSUMPTION: The scanner should return structured findings that distinguish missing required files, missing recommended files, optional-file absence, prohibited-file presence, and source/hash warnings. This follows the source contracts but the exact data model is TBD.
-> - Pass 3 normalization keeps the distinction between source-backed categories and implementation-selected enum names. B-001 is addressed by using required metadata, preparation baseline, lifecycle-conditioned document kit, canonical memory, prohibited memory, optional files, source/hash warning, and unknown unsupported condition as the working vocabulary; final enum names remain TBD until implementation.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - ASSUMPTION: The scanner should return structured findings that distinguish missing required files, missing recommended files, optional-file absence, prohibited-file presence, and source/hash warnings. This follows the source contracts but the selected data model is named in CLM-012.
+> - Pass 3 normalization keeps the distinction between source-backed categories and implementation-selected enum names. B-001 is addressed by using required metadata, preparation baseline, lifecycle-conditioned document kit, canonical memory, prohibited memory, optional files, source/hash warning, and unknown unsupported condition as the working vocabulary; selected enum names belong to the CLM-012 evidence.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-028 — Trade-offs
 
-> ##### Trade-offs
->
-> | Trade-off | Guidance | Source |
-> |---|---|---|
-> | Strict failure vs warning for missing document kit files | Treat missing document kit files as a condition tied to lifecycle state: expected when initialized, not necessarily invalid for `OPEN`. Exact severity TBD. | `docs/SPEC.md` / Section 3.1 and Section 4.2 |
-> | Required vs optional semantic files | `_SEMANTIC.md` is part of the minimum PREPARATION fileset; `_SEMANTIC_LENSING.md` is optional. | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 |
-> | Memory compatibility vs project profile | Do not add compatibility support for `_MEMORY.md`; reject it for this profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4 |
-> | Scanner ownership vs lifecycle ownership | Scanner may report state and file presence; lifecycle transition logic stays with the status API/tool slice. | `docs/SPEC.md` / Section 4.3; decomposition / DEL-07-04 |
-> | Local requirements vs hash warning | Use local PRD content as requested source material but carry the MATCH status in output evidence. | `_REFERENCES.md` / REF-006 — reconciled under D-APP-38 |
->
+> Use the accepted requirement and verification contract in CLM-012 and frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-029 — P3 Disposition Guidance
 
-> ##### P3 Disposition Guidance
->
-> | Item | Guidance disposition |
-> |---|---|
-> | A-001 | Rejected for this P3 text pass as an implementation binding: implementation location and owning backend surface remain TBD until the implementation slice selects files. |
-> | B-001 | Incorporated as normalized category vocabulary, with exact enum names and severity levels still TBD. |
-> | C-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
-> | D-001 | Converted to closure evidence requirements for implementation files, fixtures, and commands; exact paths remain TBD. |
-> | D-002 | Reconciled as current-state language: extracted ACTIVE rows exist, while declared upstream/downstream dependency sections remain unaccepted/TBD. |
-> | F-001 | Incorporated as minimum result-field guidance; final scanner schema remains TBD. |
-> | F-002 | Converted to fixture/severity evidence requirements. |
-> | X-001 | Converted to required implementation test evidence. |
-> | X-002 | Converted to warning-propagation test evidence. |
-> | E-001 | Incorporated with F-001 as the minimum scanner result model. |
-> | E-002 | Reframed as an API compatibility assumption requiring implementation proof before closure. |
->
+> ADQ-07 resolved the A-001/D-001/F-001 implementation-schema and path slots. The selected type and verification hook are named in CLM-012. Earlier P3 TBDs remain historical. Fixture coverage and live consumer wiring, including source-warning propagation and path governance, must be verified against the candidate; named files do not establish those results. D-APP-38 is a historical source snapshot, not current hash evidence.
 
 ### CLM-030 — Examples
 
-> ##### Examples
->
-> | Scenario | Expected scanner/validator disposition | Source |
-> |---|---|---|
-> | Deliverable folder has `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `_SEMANTIC.md`, but no document kit, and status is `OPEN` | Valid PREPARATION baseline; document kit not yet initialized. | `docs/SPEC.md` / Section 3.1 and Section 4.2 |
-> | Deliverable folder has status `INITIALIZED` but is missing `Specification.md` | Report missing document kit bucket. Exact severity TBD. | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / FR-049 |
-> | Deliverable folder contains `_MEMORY.md` | Reject or flag as prohibited for this project profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4 |
-> | Deliverable folder lacks `_SEMANTIC_LENSING.md` | Do not fail solely for that absence; it is optional. | `docs/SPEC.md` / Section 3.1 |
->
+> An OPEN folder with metadata is a PREPARATION baseline; scanner acceptance still follows the selected representation resolver and must fail explicitly where required production representation is absent or ambiguous. An initialized folder missing required ScopeOfWork content must report that condition. `_MEMORY.md` is prohibited under the App deliverable profile; `_SEMANTIC_LENSING.md` remains optional. Check these outcomes using `frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts`; do not infer an unrun API containment result.
 
 ### CLM-031 — Source Warning Notes
 
 > ##### Source Warning Notes
 >
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 
 ## Output and Evaluation Matrix
 

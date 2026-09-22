@@ -11,11 +11,20 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Descriptive mirror of `Dependencies.csv` (2026-09-22; no formal edge or basis change):
+
+- `DEP-10-04-001` — OTHER; Domain Engine Future Boundary; SATISFIED.
+- `DEP-10-04-002` — OTHER; OpenPipeStress fixture profile; SATISFIED.
+- `DEP-10-04-003` — OTHER; Future domain-engine boundary objective; SATISFIED.
+- `DEP-10-04-004` — CONSTRAINT; Accepted PKG-10 amendment or explicit human authorization; PENDING.
+- `DEP-10-04-005` — PREREQUISITE; Accessible source corpus for domain profile validation; SATISFIED.
+- `DEP-10-04-006` — PREREQUISITE; ResponsibleParty assignment; SATISFIED.
+- `DEP-10-04-007` — PREREQUISITE; Concrete future test path and adapter manifest location; SATISFIED.
+- `DEP-10-04-008` — PREREQUISITE; Dependency extraction and project graph validation; SATISFIED.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream-directed row is recorded in this local structured register; this does not assert absence of consumers elsewhere.
 
 ## Run Notes
 
@@ -42,33 +51,18 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-10-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
-| DEP-10-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-070 OpenPipeStress fixture profile | ACTIVE |
-| DEP-10-04-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine boundary objective | ACTIVE |
-| DEP-10-04-004 | EXECUTION | CONSTRAINT | UPSTREAM | Accepted PKG-10 amendment or explicit human authorization | ACTIVE |
-| DEP-10-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accessible source corpus for domain profile validation | ACTIVE |
-| DEP-10-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | ResponsibleParty assignment | ACTIVE |
-| DEP-10-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | Concrete future test path and adapter manifest location | ACTIVE |
-| DEP-10-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | Dependency extraction and project graph validation | ACTIVE |
+| DEP-10-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 | ACTIVE | SATISFIED |
+| DEP-10-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-070 | ACTIVE | SATISFIED |
+| DEP-10-04-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 | ACTIVE | SATISFIED |
+| DEP-10-04-004 | EXECUTION | CONSTRAINT | UPSTREAM | TBD | ACTIVE | PENDING |
+| DEP-10-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002; REF-003; REF-004; REF-005; REF-006 | ACTIVE | SATISFIED |
+| DEP-10-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | D-APP-59 | ACTIVE | SATISFIED |
+| DEP-10-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | D-APP-58 | ACTIVE | SATISFIED |
+| DEP-10-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | Dependencies.csv; CURRENT_FULL_GRAPH_AUDIT | ACTIVE | PENDING |
 
 ## Lifecycle Summary
 
-| Metric | Count |
-|---|---:|
-| Total rows | 8 |
-| ACTIVE rows | 8 |
-| RETIRED rows | 0 |
-| ANCHOR rows | 3 |
-| EXECUTION rows | 5 |
-| OTHER rows | 3 |
-| CONSTRAINT rows | 1 |
-| PREREQUISITE rows | 4 |
-| `SatisfactionStatus=SATISFIED` | 4 |
-| `SatisfactionStatus=PENDING` | 4 |
-
-Closure state: dependency register schema is present and all extracted rows are ACTIVE; satisfaction remains `PENDING` until future amendment, ownership assignment, concrete test/manifest paths, and downstream graph validation are accepted or waived.
-
-Closure state update (2026-07-10, D-APP-53 reconciliation; previously `PENDING` 8): anchors and the source-corpus prerequisite are SATISFIED on live evidence. The four remaining PENDING rows are the owner-gated amendment (DEP-10-04-004), the owner ResponsibleParty act (DEP-10-04-006), the unassigned adapter-manifest location (DEP-10-04-007), and the DRQ-11 fresh FULL_GRAPH snapshot (DEP-10-04-008).
+Current structured-register mirror: 1 PENDING, 7 SATISFIED. Lifecycle labels and SatisfactionStatus are distinct; the complete formal register remains unchanged. Earlier run summaries below describe their dated basis.
 
 ## Run History
 
@@ -77,7 +71,7 @@ Closure state update (2026-07-10, D-APP-53 reconciliation; previously `PENDING` 
 | 2026-05-20T21:07:24-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH; FUTURE_AMENDMENT_TBD; RESPONSIBLE_PARTY_TBD; TEST_PATH_TBD; PROJECT_GRAPH_VALIDATION_TBD | ANCHOR=3; EXECUTION=5; TOTAL=8 |
 | 2026-07-10 | RECONCILIATION (D-APP-53) | n/a | located; anchors re-verified | 4 rows SATISFIED; -004/-006 annotate-only (owner-gated); -007/-008 left open with reasons; SOURCE_HASH_MISMATCH resolved (REF-006 MATCH); linter PASS 0/0 | ANCHOR=3; EXECUTION=5; TOTAL=8 |
 
-## D-APP-56 R5 P45 current register summary (2026-07-12)
+## Historical D-APP-56 R5 P45 register summary (2026-07-12)
 
 - **Source:** UPD-157
 - **Current counts:** ACTIVE 8; RETIRED 0; PENDING=3; SATISFIED=5.
@@ -88,3 +82,21 @@ Closure state update (2026-07-10, D-APP-53 reconciliation; previously `PENDING` 
 - **2026-07-16 (delegated judgment, loop Receipt-56):** DEP-10-04-004 amendment judgment discharged — agent decision under owner-delegated latitude (in-session direction, Ryan Tufts): D-APP-50/D-APP-51/D-APP-52 and D-T0-06 do not constitute the accepted PKG-10 amendment (each expressly excludes fixture implementation and tier-0 authoring); no accepted amendment exists and no current activation need requires one. The row remains PENDING/ACTIVE as the truthful future-activation gate; affirmative closure requires a future owner act. Two prior PENDING rows are now one judged-and-held gate (DEP-10-04-004) plus one open owner act (DEP-10-04-006).
 
 - **2026-07-17 (D-APP-59):** DEP-10-04-006 is SATISFIED — the owner confirmed ResponsibleParty Ryan Tufts for DEL-10-04, including the validation-evidence-owner role (owner self-binding act, agent-proposed slate item S2; ruling record `execution/_Coordination/_DECISIONS/D-APP-59_RULING_2026-07-17.md`). Identification surfaces updated in `_CONTEXT.md` and `ScopeOfWork.md`. Remaining open register state: DEP-10-04-004 held PENDING as the truthful future-activation gate per the Receipt-56 delegated judgment; all other rows SATISFIED.
+
+## Current evidence navigation — 2026-09-22
+
+Current contract carrier: `ScopeOfWork.md`; former Datasheet/Specification/Procedure/Guidance labels and old line anchors in formal rows are retained historical evidence locators. Current generic type source is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts`, consumed as `@chirality/runtime-contracts`; D-APP-118 retires the App facade. Retained registry/proposal tests are not proof of live Codex exposure. Formal row evidence/pin/LastSeen changes require the owning dependency reconciliation and are outside this record repair.
+
+## Current evidence-locator refresh — 2026-09-22
+
+4 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=8; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_1004_GRAPH.csv`; current rows: ACTIVE=8, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

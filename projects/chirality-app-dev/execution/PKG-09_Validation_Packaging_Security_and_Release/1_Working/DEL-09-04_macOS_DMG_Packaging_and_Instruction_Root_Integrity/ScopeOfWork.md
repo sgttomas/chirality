@@ -25,7 +25,7 @@ Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 This Scope of Work defines `DEL-09-04` in service of project scope [SOW-030, SOW-072, SOW-073, SOW-078] and package objectives [OBJ-008].
 
-- **OUT-001** — A macOS 15+ Apple Silicon arm64 unsigned or adhoc local-builder DMG and app-bundle packaging evidence bundle that identifies the required artifacts, proves instruction-root resource integrity and admitted Codex supplier subprocess package-layout executability, preserves accepted Codex supplier network guardrails, and records residual blockers.
+- **OUT-001** — A macOS 15+ Apple Silicon arm64 package and instruction-root integrity evidence bundle for the consolidated candidate, including bundled pinned Codex execution through App-owned Runtime, accepted K-NET-1 transports and user-selected policy, required signing/notarization result and explicit blockers. Unsigned/adhoc local-builder outputs remain labelled development evidence.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-078 is recorded as an OUT
 boundary-only trace. Windows and Linux packaging remain outside the current
@@ -37,7 +37,7 @@ release target unless a later accepted scope amendment says otherwise.
 
 > #### Datasheet: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -63,14 +63,14 @@ release target unless a later accepted scope amendment says otherwise.
 >
 > | Attribute | Value | Source |
 > |---|---|---|
-> | Release target | macOS 15+ Apple Silicon (`arm64`) unsigned/unnotarized local-builder DMG | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` Section 1.9; `docs/SPEC.md` Section 19.4 |
+> | Release target | macOS 15+ arm64; ordinary local output may be unsigned/adhoc, while the D-GOV-43 consolidated candidate requires verified signature, notarization and lockfile-pinned Codex identity. Publication remains a separate exact-candidate owner act. | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` Section 1.9; `docs/SPEC.md` Section 19.4 |
 > | Packaging command | `npm run desktop:dist` from `frontend/` | `docs/SPEC.md` Section 19.1; `docs/PLAN.md` release validation commands |
 > | Required packaging outputs | `frontend/dist/Chirality-<candidate-version>-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 |
 > | Instruction-root integrity command | `npm run instruction-root:integrity` | `docs/SPEC.md` Section 19.1; `docs/TYPES.md` Section 12 |
 > | Instruction-root packaged resource requirement | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` Section 1.3; `docs/SPEC.md` Section 1.1 |
-> | SDK subprocess packaging posture | Packaged Electron builds must verify that the SDK subprocess/binary can be found and executed from the app bundle. | `docs/PRD.md` NFR-030 and Section 12.8; `docs/SPEC.md` Section 19.4 |
+> | SDK subprocess packaging posture | Verify the bundled pinned stock codex app-server can execute as a child of the App-owned Runtime service. Retired SDK supplier/layout proof is historical. | `docs/PRD.md` NFR-030 and Section 12.8; `docs/SPEC.md` Section 19.4 |
 > | Source-completeness state | Required instruction-root assets may be incomplete in the current source or packaging state; this remains a P0 readiness gate. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` OI-004; `docs/PRD.md` Section 10.1 |
-> | PRD source status | `MATCH` treated as source status for this run. | `_REFERENCES.md` REF-006; assignment override — reconciled under D-APP-38 |
+> | PRD source status | historical D-APP-38 source state; verify current candidate bytes treated as source status for this run. | `_REFERENCES.md` REF-006; assignment override — reconciled under D-APP-38 |
 >
 
 ### CLM-004 — Conditions
@@ -79,10 +79,10 @@ release target unless a later accepted scope amendment says otherwise.
 >
 > | Condition | Value | Source |
 > |---|---|---|
-> | Build platform prerequisites | Node.js `>=20`; dependencies installed in `frontend/` with `npm ci` before validation/package sequence. | `docs/PRD.md` Section 6.2 and CI sequence near Section 12.2 |
+> | Build platform prerequisites | Node.js >=22.19.0 and installed frontend dependencies; prepare instruction resources and Runtime/frontend builds before pack/dist. | `docs/PRD.md` Section 6.2 and CI sequence near Section 12.2 |
 > | Release scope exclusions | Windows/Linux packaging is out of current release scope unless amended. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-078; `docs/PRD.md` KG-014 |
-> | Signing posture | Unsigned/adhoc as scoped; no notarization requirement in current target. | `docs/PRD.md` Sections 6.2 and 7.12; `docs/SPEC.md` Section 19.4 |
-> | Network/security posture during packaged validation | accepted Codex supplier network guardrails remain in force. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
+> | Signing posture | macOS 15+ arm64; ordinary local output may be unsigned/adhoc, while the D-GOV-43 consolidated candidate requires verified signature, notarization and lockfile-pinned Codex identity. Publication remains a separate exact-candidate owner act. | `docs/PRD.md` Sections 6.2 and 7.12; `docs/SPEC.md` Section 19.4 |
+> | Network/security posture during packaged validation | Record current K-NET-1 transports and the user-selected Codex policy, renderer restrictions, secret protection and actual packaged outcomes; retired supplier containment is not a gate. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
 >
 
 ### CLM-005 — Construction
@@ -95,7 +95,7 @@ release target unless a later accepted scope amendment says otherwise.
 > - build the macOS arm64 DMG with `desktop:dist`;
 > - prove the app bundle includes required instruction-root assets;
 > - preserve or emit the latest instruction-root integrity summary;
-> - verify SDK subprocess/binary executability from the package layout; and
+> - verify bundled pinned Codex executable executability from the package layout; and
 > - record any residual blockers, especially source-completeness or SDK packaging issues.
 >
 
@@ -121,7 +121,7 @@ release target unless a later accepted scope amendment says otherwise.
 
 > ##### Scope
 >
-> This deliverable covers the macOS arm64 unsigned DMG packaging path and the packaging evidence needed to prove instruction-root asset integrity and SDK subprocess package executability for Chirality App vNext.
+> This deliverable covers macOS arm64 packaging and instruction-root integrity for the current consolidated App candidate. Local unsigned/adhoc DMG and app-directory builds remain development evidence; release qualification requires source-bound signing/notarization and a bundled pinned Codex executable through App-owned Runtime, with actual native outcomes recorded.
 >
 > In scope:
 >
@@ -130,14 +130,14 @@ release target unless a later accepted scope amendment says otherwise.
 >   the layout exercised by the packaged probes and D-APP-18 live proof.
 > - DMG output verification for macOS 15+ Apple Silicon.
 > - App bundle instruction-root asset inclusion and integrity verification.
-> - SDK subprocess/binary package-layout probe.
+> - bundled pinned Codex executable package-layout probe.
 > - Integrity summary evidence.
 >
 > Out of scope:
 >
 > - Windows/Linux packaging, unless a governed amendment reopens it.
 > - Feature implementation unrelated to packaging glue, integrity checks, or package-layout probes.
-> - Signing/notarization beyond the current unsigned/adhoc local-builder posture.
+> - No signing/notarization result is inferred from an unsigned/adhoc local build. The governed release candidate still requires the accepted signing/notarization checks.
 >
 
 ### CLM-009 — Requirements
@@ -146,15 +146,15 @@ release target unless a later accepted scope amendment says otherwise.
 >
 > | ID | Requirement | Source | Verification |
 > |---|---|---|---|
-> | DEL-09-04-REQ-001 | The release target must remain macOS 15+ Apple Silicon (`arm64`) unsigned/unnotarized local-builder DMG unless amended. | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 | Inspect app bundle architecture, `LSMinimumSystemVersion`, and signing posture. |
+> | DEL-09-04-REQ-001 | macOS 15+ arm64; ordinary local output may be unsigned/adhoc, while the D-GOV-43 consolidated candidate requires verified signature, notarization and lockfile-pinned Codex identity. Publication remains a separate exact-candidate owner act. | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 | Inspect app bundle architecture, `LSMinimumSystemVersion`, and signing posture. |
 > | DEL-09-04-REQ-002 | The desktop distribution build must be produced through `npm run desktop:dist` from `frontend/`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` FR-067 | Run or review build evidence for `npm run desktop:dist`. |
 > | DEL-09-04-REQ-003 | The expected DMG output must include `frontend/dist/Chirality-<candidate-version>-arm64.dmg`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 7.12 | Confirm file exists after packaging. |
 > | DEL-09-04-REQ-004 | The expected app bundle output must include `frontend/dist/mac-arm64/Chirality.app`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm app bundle exists after packaging. |
 > | DEL-09-04-REQ-005 | The build/integrity flow must produce or preserve `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`, and packaging evidence must state either a passing integrity verdict or enumerated blockers. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm summary JSON exists and records a passing integrity result, or record blocker. |
 > | DEL-09-04-REQ-006 | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` K-PACKAGE-1; `docs/SPEC.md` Section 1.1 | Run/review `npm run instruction-root:integrity` and bundle resource inspection. |
 > | DEL-09-04-REQ-007 | Missing required instruction-root assets are a P0 packaging and runtime-readiness blocker. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` Section 10.1; decomposition OI-004 | Fail packaging readiness if required assets are absent, or document accepted amendment. |
-> | DEL-09-04-REQ-008 | The package-layout evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout without secret leakage or broader network policy. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute SDK subprocess packaging probe in packaged layout; record command, package path, expected result, observed result, and blocker state. |
-> | DEL-09-04-REQ-009 | The packaged validation must preserve accepted Codex supplier network guardrails. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
+> | DEL-09-04-REQ-008 | Package evidence must verify bundled pinned Codex execution through the App-owned Runtime child, recording candidate, executable path, command, expected/observed result and secret/network assertions or the exact blocker. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute packaged Codex execution probe in packaged layout; record command, package path, expected result, observed result, and blocker state. |
+> | DEL-09-04-REQ-009 | Packaged validation must verify the current K-NET-1 transport scope and actual user-selected Codex policy, with renderer restrictions and secret protection. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
 > | DEL-09-04-REQ-010 | Windows/Linux packaging must not be introduced by this deliverable without explicit scope amendment. | Decomposition SOW-078; `docs/PRD.md` KG-014 | Review package scripts/config changes for target creep. |
 > | DEL-09-04-REQ-011 | App-directory packaging used by packaged probes must be produced through `npm run desktop:pack` from `frontend/`. | D-APP-18; D-APP-56 R4-P03; `docs/BUILD_AND_RELEASE.md` | Run or review the app-directory packaging proof. |
 >
@@ -182,12 +182,12 @@ release target unless a later accepted scope amendment says otherwise.
 > | App bundle check | file listing for `frontend/dist/mac-arm64/Chirality.app` | DEL-09-04-REQ-004 |
 > | Minimum macOS version check | inspected `LSMinimumSystemVersion` value `15.0.0` or later | DEL-09-04-REQ-001 |
 > | Architecture check | inspected arm64 binary architecture | DEL-09-04-REQ-001 |
-> | Signing posture check | evidence that signing is unsigned/adhoc as scoped | DEL-09-04-REQ-001 |
+> | Signing posture check | local unsigned/adhoc status labelled development evidence; release-candidate signature/notarization verified separately | DEL-09-04-REQ-001 |
 > | Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with explicit pass verdict or enumerated blockers | DEL-09-04-REQ-005, DEL-09-04-REQ-006, DEL-09-04-REQ-007 |
-> | SDK subprocess packaging probe | package-layout probe command, package path, expected result, observed result, and failure/blocker recording rule for SDK subprocess/binary | DEL-09-04-REQ-008 |
+> | packaged Codex execution probe | package-layout probe command, package path, expected result, observed result, and failure/blocker recording rule for bundled pinned Codex executable | DEL-09-04-REQ-008 |
 > | Network guardrail check | evidence accepted Codex supplier network policy remains active | DEL-09-04-REQ-009 |
 >
-> Packaging evidence is not acceptable when instruction-root assets are absent, the integrity summary reports failure, or the SDK subprocess package-layout probe fails. Those cases remain blockers unless a governed amendment accepts a different release target or integrity policy.
+> Current candidate evidence is incomplete when instruction-root assets are absent, integrity fails, the bundled pinned Codex cannot execute through App-owned Runtime, or required signing/notarization proof is missing. Local unsigned/adhoc build results remain development evidence and do not satisfy the release gate.
 >
 
 ### CLM-012 — Documentation
@@ -199,12 +199,12 @@ release target unless a later accepted scope amendment says otherwise.
 > - `desktop:dist` command transcript or equivalent run record.
 > - DMG and app bundle artifact listing plus checksum or deterministic artifact identifier for the DMG.
 > - Instruction-root integrity summary with pass/blocker verdict.
-> - SDK subprocess packaging probe command and result.
-> - Audit-ready evidence bundle pointers to command transcript, artifact listing/checksum, summary JSON, first-adapter probe output, network guardrail evidence, and residual blockers.
-> - `TBD` residual-blocker list for incomplete instruction-root assets, SDK package-layout failures, or unresolved packaged-app runtime guardrail scope.
+> - packaged Codex execution probe command and result.
+> - Audit-ready evidence bundle pointers to command transcript, artifact listing/checksum, summary JSON, packaged Codex execution probe output, network guardrail evidence, and residual blockers.
+> - `TBD` residual-blocker list for incomplete instruction-root assets, bundled pinned Codex/App-owned Runtime execution failures, signing/notarization gaps, or unresolved packaged-app guardrail scope.
 > - `ASSUMPTION` or `PROPOSAL` entries for any packaging config interpretation not directly supported by source evidence.
 
-- **AC-001** — The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, unsigned or adhoc posture, required instruction-root assets and passing integrity summary, an executable admitted Codex supplier subprocess in package layout, and preserved accepted Codex supplier network guardrails; missing assets, failed integrity, failed subprocess execution, or unresolved required evidence remain explicit blockers.
+- **AC-001** — The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, required instruction-root assets and passing integrity summary, bundled pinned Codex execution through App-owned Runtime, current K-NET-1 transports and user-selected Codex policy, and the required signature/notarization result for the consolidated release candidate. Unsigned/adhoc local builds are labelled development evidence; missing or failed candidate proof remains an explicit blocker.
 
 ## Production and Verification Method — Praxeology
 
@@ -212,14 +212,14 @@ release target unless a later accepted scope amendment says otherwise.
 
 > #### Procedure: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-014 — Purpose
 
 > ##### Purpose
 >
-> Define the operational steps to produce the macOS arm64 unsigned DMG and assemble evidence that instruction-root resources and SDK subprocess packaging posture are valid for the packaged app.
+> Define operational steps for local unsigned/adhoc development builds and for the consolidated signed/notarized macOS arm64 candidate. Bind instruction-root resources and bundled pinned Codex execution through App-owned Runtime to the actual package; record missing native results as blockers.
 >
 
 ### CLM-015 — Prerequisites
@@ -228,46 +228,21 @@ release target unless a later accepted scope amendment says otherwise.
 >
 > - ResponsibleParty: TBD.
 > - Work from `frontend/` for local validation and packaging commands.
-> - Node.js `>=20` is available.
+> - Node.js `>=22.19.0` is available.
 > - Dependencies have been installed with `npm ci`.
 > - Required instruction-root assets are present or missing assets are tracked as blockers.
 > - Dependency state: `Dependencies.csv` v3.1 currently contains 9 ACTIVE rows; six rows remain `SatisfactionStatus=TBD`, so dependency closure remains open until accepted evidence resolves them.
 > - Evidence bundle custody: ResponsibleParty remains TBD; until assigned, route release evidence bundle ownership through the package owner or human-appointed release reviewer.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-016 — Steps
 
-> ##### Steps
+> Use the current procedure in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md`. Stop the development server before packaging. Prepare instruction-root resources, build Runtime and frontend (the desktop:prepare chain), then produce the App/DMG through desktop:pack/desktop:dist as applicable. Packaging alone does not perform those prerequisite builds.
 >
-> 1. Confirm release target remains macOS 15+ Apple Silicon (`arm64`) unsigned/unnotarized local-builder DMG.
-> 2. From `frontend/`, run required pre-packaging checks or confirm accepted evidence already exists. Non-run evidence is acceptable only when it identifies the command, source run or artifact, timestamp/version, pass verdict, and any blockers:
->    - `npm run test`
->    - `npm run typecheck`
->    - `npm run harness:validate:premerge`
->    - `npm run instruction-root:integrity`
-> 3. If `instruction-root:integrity` reports missing required assets, stop packaging-evidence acceptance and record the missing assets as P0 blockers.
-> 4. From `frontend/`, run `npm run desktop:dist`.
-> 5. Confirm expected packaging outputs:
->    - `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
->    - `frontend/dist/mac-arm64/Chirality.app`
->    - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
-> 6. Inspect the packaged app for macOS release posture:
->    - binary is `arm64`;
->    - `LSMinimumSystemVersion` is `15.0.0` or later;
->    - signing posture is unsigned/adhoc as scoped.
-> 7. Inspect packaged resources for required instruction-root assets.
-> 8. Run or review the SDK subprocess packaging probe:
->    - record the probe command, package path, expected result, observed result, and evidence path;
->    - verify the SDK subprocess/bundled binary can be found from package layout;
->    - verify it is not trapped inside `app.asar` without execution access;
->    - verify execution does not require secret leakage or broader network policy.
-> 9. Confirm packaged app preserves packaging-relevant runtime guardrails:
->    - working-root selector is available;
->    - accepted Codex supplier network guardrails remain in force;
->    - `TBD`: human/source ruling must decide whether SDK-backed turn start after R1 blocks DEL-09-04 closure or is deferred to a broader packaged-app validation workflow.
-> 10. Record all command outputs, artifact paths, summary JSON, probe output, checksums or deterministic artifact identifiers, and residual blockers in the integrity/package evidence bundle.
+> Bind the App/DMG identities, instruction-root integrity summary, inspected architecture and minimum macOS, signature/notarization posture and bundled Codex lockfile pin to the actual candidate. Run instruction-root:integrity against the packaged bundle. Verify Codex execution through the application-owned Runtime service and applicable packaged S-6/S-8 checks; record real outcomes or HOST_RERUN_REQUIRED/blockers. Preserve secret and network evidence. Reuse earlier evidence only while its source/configuration/package basis remains valid under D-APP-127.
 >
+> Ordinary local builds may be unsigned/adhoc. The consolidated candidate signing/notarization requirement is already settled by D-GOV-43; release/publication is separately authorized for an exact candidate. This procedure creates neither a release act nor an unobserved native result.
 
 ### CLM-017 — Verification
 
@@ -280,8 +255,8 @@ release target unless a later accepted scope amendment says otherwise.
 > | App bundle artifact | `frontend/dist/mac-arm64/Chirality.app` exists after `desktop:dist`. | DEL-09-04-REQ-004 |
 > | Integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` exists and states a pass verdict, or all failed/missing assets are enumerated as blockers. | DEL-09-04-REQ-005, DEL-09-04-REQ-007 |
 > | macOS target | Binary architecture is arm64 and minimum macOS target is `15.0.0` or later. | DEL-09-04-REQ-001 |
-> | Signing posture | Codesign evidence matches unsigned/adhoc local-builder scope. | DEL-09-04-REQ-001 |
-> | SDK subprocess | Packaged SDK subprocess/binary probe records command, package path, expected result, observed result, and shows the binary is locatable and executable from app bundle/package layout. | DEL-09-04-REQ-008 |
+> | Signing posture | macOS 15+ arm64; ordinary local output may be unsigned/adhoc, while the D-GOV-43 consolidated candidate requires verified signature, notarization and lockfile-pinned Codex identity. Publication remains a separate exact-candidate owner act. | DEL-09-04-REQ-001 |
+> | SDK subprocess | Packaged bundled pinned Codex executable probe records command, package path, expected result, observed result, and shows the binary is locatable and executable from app bundle/package layout. | DEL-09-04-REQ-008 |
 > | Network guardrails | Packaged validation preserves accepted Codex supplier network policy. | DEL-09-04-REQ-009 |
 >
 
@@ -298,12 +273,12 @@ release target unless a later accepted scope amendment says otherwise.
 > | DMG artifact identity | `frontend/dist/Chirality-<candidate-version>-arm64.dmg` listing plus checksum or deterministic artifact identifier. |
 > | App bundle artifact identity | `frontend/dist/mac-arm64/Chirality.app` listing and inspected release posture. |
 > | Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with pass verdict or blocker list. |
-> | SDK subprocess packaging probe | Probe command, package path, expected result, observed result, output path, and blocker state if failed. |
+> | packaged Codex execution probe | Probe command, package path, expected result, observed result, output path, and blocker state if failed. |
 > | Manual package verification notes | Architecture, minimum OS, signing posture, resource inclusion, working-root selector, network policy, and SDK packaged execution scope. |
 > | Evidence bundle custody | ResponsibleParty or routing placeholder; currently `TBD` until human assignment. |
-> | Blocker list | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | Blocker list | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 
-- **VER-001** — Run or review the accepted pre-packaging checks, desktop:dist and desktop:pack evidence; inspect DMG and app-bundle identities, architecture, minimum OS, signing posture, packaged resources, integrity summary, SDK subprocess probe, network guardrails, and residual blocker records.
+- **VER-001** — Run or review pre-packaging checks and local/candidate package evidence; inspect DMG and app-bundle identities, architecture, minimum OS, required candidate signature/notarization, packaged resources, integrity summary, bundled pinned Codex execution through App-owned Runtime, network guardrails and residual blockers. Label unsigned/adhoc results as development evidence.
 
 ## Governing Values and Decisions — Axiology
 
@@ -311,14 +286,14 @@ release target unless a later accepted scope amendment says otherwise.
 
 > #### Guidance: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-020 — Purpose
 
 > ##### Purpose
 >
-> This deliverable makes release packaging explicit and repeatable for the current macOS-only target. Its job is not just to produce a DMG, but to prove that packaged Chirality preserves the instruction-root resource boundary and can execute the SDK subprocess/binary from the packaged layout.
+> This deliverable makes release packaging explicit and repeatable for the current macOS-only target. Its job is not just to produce a DMG, but to prove that packaged Chirality preserves the instruction-root resource boundary and can execute the bundled pinned Codex executable from the packaged layout.
 >
 
 ### CLM-021 — Principles
@@ -328,21 +303,15 @@ release target unless a later accepted scope amendment says otherwise.
 > - Treat `desktop:dist` as release-significant. `docs/CONTRACT.md` K-VALIDATE-1 includes `desktop:dist` among checks required before release-significant changes are accepted.
 > - Keep the release target narrow. `docs/PRD.md` KG-014 and decomposition SOW-078 make Windows/Linux packaging out of scope without amendment.
 > - Treat instruction-root resources as package blockers. `docs/SPEC.md` Section 1.1 says missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.
-> - Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, accepted Codex supplier network guardrails, and SDK package execution.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, current K-NET-1 transports and user-selected Codex policy, and SDK package execution.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-022 — Considerations
 
-> ##### Considerations
+> D-GOV-43 settles the two-tier packaging/signing posture recorded in CLM-003/009. Earlier 3.0.0/3.0.1 releases and OC-01 exact-candidate testimony remain historical acts; lagging unsigned-only wording does not make them newly unauthorized. No further release is inferred.
 >
-> - The instruction-root required asset set includes `AGENTS.md`, `README.md`, `agents/`, `docs/`, core docs, and root-level assets where packaging/integrity policy requires them. If the code-level integrity manifest differs from this list, record the difference as a conflict or source-completeness blocker rather than silently passing packaging readiness.
-> - SDK subprocess packaging is an empirical check. `docs/PRD.md` KG-025 flags potential needs such as `asarUnpack`, signing, environment, or path adjustments; the accepted result must come from a probe or build evidence, not from configuration review alone.
-> - The integrity summary path is part of expected packaging evidence: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`.
-> - The unsigned/adhoc local-builder DMG posture is acceptable only because `docs/CONTRACT.md` K-RELEASE-1 and `docs/PRD.md` Section 6.2 define that as the current release target. A notarized distribution target would require scope amendment rather than silent tightening of this deliverable.
-> - Release evidence should be reviewable without rerunning the build: command transcript, artifact listing or checksum, integrity summary, first-adapter probe output, and blocker list need stable paths or attachment identifiers.
-> - `ASSUMPTION: PACKAGE_HEURISTIC` associates OBJ-008 because the decomposition maps this deliverable through PKG-09 and SOW-072/SOW-073, but no human has assigned a hard objective-specific owner.
->
+> Instruction-root completeness remains a real gate. `frontend/scripts/prepare-packaged-instruction-root.mjs` is the concrete manifest evidence; differences from SPEC §1.1 concerning docs/PLAN.md, WHAT-IS-AN-AGENT.md and PROFESSIONAL_ENGINEERING.md require source-completeness reconciliation by the owner. A boot hash cannot substitute for ordinary instruction-root write protection. Native candidate outcomes, architecture/minimum-OS inspection and S-6/S-8 remain unknown unless their actual records are recovered or checks run. Owner testimony is retained as testimony, not fabricated output.
 
 ### CLM-023 — Trade-offs
 
@@ -351,28 +320,18 @@ release target unless a later accepted scope amendment says otherwise.
 > | Trade-off | Guidance |
 > |---|---|
 > | Strict asset completeness vs. build progress | Prefer failing readiness with a documented blocker when required instruction-root assets are absent. Do not weaken integrity requirements without a governed amendment. |
-> | `app.asar` packing convenience vs. SDK executable access | Prefer package layout that allows the SDK subprocess/binary to be found and executed. If `asar` trapping prevents execution, record the packaging probe failure and adjust packaging under this deliverable. |
-> | Local unsigned DMG vs. notarized distribution | Keep unsigned/adhoc posture for current scope. Notarization is outside this deliverable unless scope changes. |
+> | `app.asar` packing convenience vs. SDK executable access | Prefer package layout that allows the bundled pinned Codex executable to be found and executed. If `asar` trapping prevents execution, record the packaging probe failure and adjust packaging under this deliverable. |
+> | Local unsigned DMG vs. notarized distribution | Keep unsigned/adhoc builds as development evidence; the consolidated candidate requires verified signing/notarization under D-GOV-43. No result is inferred without native proof. |
 > | General release checklist vs. DEL-09-04 scope | Keep CI artifact upload and broader release workflow details in DEL-09-05 unless directly needed to prove the DMG/instruction-root/SDK packaging result. |
 >
 
 ### CLM-024 — Examples
 
-> ##### Examples
->
-> TBD: No source-backed example transcript or accepted packaging probe output is available in the local reference corpus for this deliverable.
->
+> A package example must cite an actual A2 record under `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/` and identify the source/package it checked. No accepted example is asserted for missing minimum-OS/architecture, packaged network, Codex execution or S-6/S-8 outputs. Owner testimony stays labelled as testimony. Do not turn a build script or version bump into a native result.
 
 ### CLM-025 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | DEL-09-04-CONF-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Assignment override | All PRD-backed requirements | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | TBD — reconciled under D-APP-38 |
-> | DEL-09-04-CONF-002 | Required instruction-root assets may be incomplete in current source or package state. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` Section 10.1 | Decomposition OI-004 | Specification requirements, Procedure verification | Treat missing assets as P0 readiness blocker until completed or amended. | TBD |
-> | DEL-09-04-CONF-003 | The accepted authority for the required instruction-root packaged asset set must be explicit when code-level integrity manifests differ from policy-level required assets. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` FR-058 | Code-level integrity manifest, location TBD | Specification requirements, Procedure verification | Treat policy-level required assets as readiness blockers unless a governed amendment narrows the manifest. | TBD |
-> | DEL-09-04-CONF-004 | Whether SDK-backed turn start after R1 is a DEL-09-04 closure blocker or deferred packaged-app validation needs human/source ruling. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | `_CONTEXT.md` deliverable scope | Procedure packaged runtime guardrail check | Keep SDK subprocess/package-layout proof in scope; mark full packaged SDK-backed turn start as `TBD` until owner ruling. | TBD |
+> CONF-001 is historical source currentness under D-APP-38; verify current bytes. CONF-002/003 retain the concrete required-asset mismatch against `frontend/scripts/prepare-packaged-instruction-root.mjs` (including PLAN.md and the two named explanatory/professional assets); resolve by satisfying the accepted set or its owning scope amendment. CONF-004’s SDK probe question is superseded by D-GOV-43/D-APP-127: packaged Codex execution and applicable S-6/S-8 are the current subjects. Missing actual result artifacts remain delivery work, not a new signing-posture vote.
 
 ## Output and Evaluation Matrix
 

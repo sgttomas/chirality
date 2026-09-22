@@ -1,0 +1,52 @@
+{
+  "basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "residual_rows": 151,
+  "dispositions": {
+    "REPAIRED": 124,
+    "DELIVERY_TASK": 23,
+    "DEFERRED_SCOPE": 4
+  },
+  "changed_units": 134,
+  "checks": [
+    {
+      "DeliverableID": "DEL-10-01",
+      "claim_ids_preserved": true,
+      "frontmatter_basis_preserved": true,
+      "formal_dependency_bytes_preserved": true,
+      "lifecycle_approval_history_preserved": true,
+      "expected_reference_hashes_preserved": true
+    },
+    {
+      "DeliverableID": "DEL-10-02",
+      "claim_ids_preserved": true,
+      "frontmatter_basis_preserved": true,
+      "formal_dependency_bytes_preserved": true,
+      "lifecycle_approval_history_preserved": true,
+      "expected_reference_hashes_preserved": true
+    },
+    {
+      "DeliverableID": "DEL-10-03",
+      "claim_ids_preserved": true,
+      "frontmatter_basis_preserved": true,
+      "formal_dependency_bytes_preserved": true,
+      "lifecycle_approval_history_preserved": true,
+      "expected_reference_hashes_preserved": true
+    },
+    {
+      "DeliverableID": "DEL-10-04",
+      "claim_ids_preserved": true,
+      "frontmatter_basis_preserved": true,
+      "formal_dependency_bytes_preserved": true,
+      "lifecycle_approval_history_preserved": true,
+      "expected_reference_hashes_preserved": true
+    },
+    {
+      "DeliverableID": "DEL-10-05",
+      "claim_ids_preserved": true,
+      "frontmatter_basis_preserved": true,
+      "formal_dependency_bytes_preserved": true,
+      "lifecycle_approval_history_preserved": true,
+      "expected_reference_hashes_preserved": true
+    }
+  ]
+}

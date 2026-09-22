@@ -16,3 +16,7 @@
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-10-03; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-22 — Current record reconciliation
+
+D-APP-131/132 record repairs are applied in ScopeOfWork and current Remaining; W10_ROWS.csv preserves each original residual key and its current disposition. Earlier inspection, source-warning, lifecycle and closure entries retain their dated meaning. D-APP-37 and D-APP-54 supersede their historical inspection-admission/lifecycle assumptions; no historical verdict is rewritten. Current four-document references resolve to ScopeOfWork sections. Supplied profiles/hooks, current Codex direction and the retired facade do not close outstanding domain enforcement, integration, fixture or surface-review evidence.

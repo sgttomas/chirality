@@ -39,14 +39,14 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-01-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-074 | ACTIVE | SATISFIED |
 | DEP-01-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-075 | ACTIVE | SATISFIED |
 | DEP-01-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | SATISFIED |
-| DEP-01-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
-| DEP-01-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
-| DEP-01-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
-| DEP-01-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
-| DEP-01-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
-| DEP-01-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-01-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
-| DEP-01-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-001 decomposition v3.2 | ACTIVE | PENDING |
+| DEP-01-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | PENDING |
+| DEP-01-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | PENDING |
+| DEP-01-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | PENDING |
+| DEP-01-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | PENDING |
+| DEP-01-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | PENDING |
+| DEP-01-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | PENDING |
+| DEP-01-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 | ACTIVE | PENDING |
+| DEP-01-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-001 | ACTIVE | PENDING |
 
 ## Run Notes
 
@@ -92,3 +92,13 @@ the 2026-05-20 extraction and remain historical. Current live evidence pointers
 are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
 anchors. This migration changed no dependency identity, status, satisfaction,
 or lifecycle meaning.
+
+## Current Reliance Annotation (2026-09-22)
+
+D-APP-53 results and earlier MATCH notes above are dated evidence, not a fresh verification of changed source bytes. Formal row identity, status, satisfaction and accepted basis remain unchanged. Current source support is rechecked under D-APP-38; D-GOV-43/D-APP-127 governs current Codex/runtime/settings/policy applicability. REF-007 now names `workflows/software-decomp/WORKFLOW.md`; the descriptive locator now agrees with REF-007; formal edge identity, status and satisfaction remain unchanged.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=12; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

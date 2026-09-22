@@ -33,7 +33,7 @@ project-control-plane authority.
 ## Deliverable Scope
 
 Present, in the right panel, the "Who is working" view over recorded
-agent/session selections and Agent 0/1/2 role entry for Codex sessions with
+agent/session selections and current HELP_HUMAN/HELPS_HUMANS/WORKING_ITEMS direct entry for Codex sessions with TASK delegated with
 source, authority class, responsible reference, currency, and evidence; the
 Workflows view, roadmap, New workflow form, library, and bind actions over
 governed workflow files; and the transcript proposal card rendered from

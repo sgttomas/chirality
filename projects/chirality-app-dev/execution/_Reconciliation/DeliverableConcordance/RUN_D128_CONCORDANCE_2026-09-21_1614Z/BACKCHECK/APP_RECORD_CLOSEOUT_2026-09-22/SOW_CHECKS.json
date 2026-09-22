@@ -1,0 +1,329 @@
+{
+  "tool": "tools/scope_of_work/validate_scope_of_work.py --json",
+  "results": [
+    {
+      "deliverable": "DEL-00-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "8f2b9cb3803712744e4dac815ad4ec17187f3a27fad4c1d282c36ff860d9581f"
+    },
+    {
+      "deliverable": "DEL-00-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "e51ffe69569bf9cc65faf67d828f1c76332f54c891a66cc564fa682ad7ad0f8c"
+    },
+    {
+      "deliverable": "DEL-01-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "e1717fd234ab2b9734c23a7996b03691b3fb557048fe5a929ff37ab9d7907b2b"
+    },
+    {
+      "deliverable": "DEL-01-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "4cf58410f991a768242696e96541bc9180879e4906554485f730846ad08d58cd"
+    },
+    {
+      "deliverable": "DEL-01-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "9045e4be3365ea4754cb80c1ec7fe0e48965102b5d5658479b098e752e1d3ebc"
+    },
+    {
+      "deliverable": "DEL-01-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "7cc65295a9adc4bf5788616319f13134432f75e356b7521b6001e4495f544fe6"
+    },
+    {
+      "deliverable": "DEL-02-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "e6101511521c6ea1af89aedceca9c14d69f94f1e5bedca7614ec3ae6bf88910e"
+    },
+    {
+      "deliverable": "DEL-02-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "8c4d52931f7c18bc5b3e46fe94c9e6cb55592188b198c7545855e99fdb3c7698"
+    },
+    {
+      "deliverable": "DEL-02-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "6f70120b0cdf0bcc3e0740745f7a2b7a5d23f5e97fca67acec52aca159603be3"
+    },
+    {
+      "deliverable": "DEL-02-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "7f15b0033ff147742efd6796e3bbba9e0544330a5438ad76d9f029b64c47d871"
+    },
+    {
+      "deliverable": "DEL-02-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "32f725b3c2892ce19fe43579cc5dad2a1f51f2cddc625db986f30cfdbf449c15"
+    },
+    {
+      "deliverable": "DEL-03-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "8b067cf2c76657c81fac04564a2acf49cfaa51e11ea27d0dd3d42624f5cfb35c"
+    },
+    {
+      "deliverable": "DEL-03-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "53c1d6497a14f060d1379b5952572a8c35f164a019d0f9a909e15098a6cbfaf3"
+    },
+    {
+      "deliverable": "DEL-03-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "cc59ec51f4c1d5ecdc2cef7e19c241f4f37b59feb10b96f8a8208f708709561f"
+    },
+    {
+      "deliverable": "DEL-03-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "21dae120e918352f24813ab8034b98fe542bfb5e0c8bdc16dba73041961ee983"
+    },
+    {
+      "deliverable": "DEL-04-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "8d3162ad9bef7f3407dbd20c366d59449448e7285a3791b01b34b9f0ebb8ddfe"
+    },
+    {
+      "deliverable": "DEL-04-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "3d9c98692e61a44eefe8853122ac555f570c2d5d5f34093538ffe0670578f494"
+    },
+    {
+      "deliverable": "DEL-04-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "f624a5e75d40434b27f7643743e079815d3958482fee8a8b054ccb2a3dadbece"
+    },
+    {
+      "deliverable": "DEL-04-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "4a0958bb1c742e78bf825d7772f52fecc02dc8b058cb19f87e893dfcc93e23a9"
+    },
+    {
+      "deliverable": "DEL-04-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "1ad799decc03ce536d31b02d5e75313c8255b5f95119e71ba18daf0c2f72d489"
+    },
+    {
+      "deliverable": "DEL-05-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "8b1b0b10dfc70bf811acf9f43f360c131743c11c5c31dab251507006e109e998"
+    },
+    {
+      "deliverable": "DEL-05-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "64580ca35b58e0949f6d6aaa32de8f766ae6571bb0952de25bd804e6cdbd53b3"
+    },
+    {
+      "deliverable": "DEL-05-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "0f56009cda1f40960002351b85081ab086f9b8ed4314cea24dfa6f5442337fe4"
+    },
+    {
+      "deliverable": "DEL-05-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "2875c44d041bc0fa9cc53b5aa64b888203c572bfb84eca657f07438d8c95155e"
+    },
+    {
+      "deliverable": "DEL-05-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "4e4c9a3c04ede61a34f23e2419c0d5e170919a01dcfdf4279538aba0d75999dc"
+    },
+    {
+      "deliverable": "DEL-06-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "fdc808909506ebab0df7827100ed6e52134fb4f8bcbc0b02a1e81affdfaaeb6a"
+    },
+    {
+      "deliverable": "DEL-06-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "66291ccd4643797c599e472645b08d9f97361c62c4474cb7d40870fe2fb9a17d"
+    },
+    {
+      "deliverable": "DEL-06-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "2a89880663adb2f59cebababa4f27e6d63695eea29b6be8d84a062b85fd57004"
+    },
+    {
+      "deliverable": "DEL-06-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "d47231f3301f55bb3b412f7da8ee640d81fdd64afe1c074377a6e52938cee57f"
+    },
+    {
+      "deliverable": "DEL-06-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "294c1359f2538675de1dad694306f54283196d51d4e1b029a5d51aaa6349f978"
+    },
+    {
+      "deliverable": "DEL-06-06",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "cd26f1942bb51d54fc188188fa407cceaa89bb14fb1170b4b867e3c7b2f8db02"
+    },
+    {
+      "deliverable": "DEL-07-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "c6f0c3ad30af464a1f246e25788adde0a11549eff926f6993f9908b5c5341fb5"
+    },
+    {
+      "deliverable": "DEL-07-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "1458bf0a614be0c4ac144f5cff63e7386344dffe9f4b80e0102f4afa0ee2fe63"
+    },
+    {
+      "deliverable": "DEL-07-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "a5a058ddb4c6b52cad2e6076597eb85d1db3a071c82831def776db96d5791624"
+    },
+    {
+      "deliverable": "DEL-07-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "e56f825d85a36b0237fe1e2f6e0974ac46ad5aa867104d4ccd657233103b59e4"
+    },
+    {
+      "deliverable": "DEL-07-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "7d44360816ae74cc2c2fc00e15d0a2c9e2341e319fceada5cb667570e0e01d09"
+    },
+    {
+      "deliverable": "DEL-07-06",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "ee6af7759df22b75f69e17101f8de001de08df2d3a2726c7dfbc013f71c20b51"
+    },
+    {
+      "deliverable": "DEL-08-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "efef8f172ab1bf77e5fe4a092db00d1a62b9b8e660140335bebeaca2c93b241d"
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "2a9dc258d8e79627b8fb36ed7dc72dc8ea0b22b396b80260942289fe6389c607"
+    },
+    {
+      "deliverable": "DEL-08-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "3dd2c815195b7c3e74ff0a881a357181f78a82e26ef68654db7639df4d708863"
+    },
+    {
+      "deliverable": "DEL-08-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "a5523d2dc3de83361067b92f2ecdcc17320bfbb5562eb034d9474facfa2232e7"
+    },
+    {
+      "deliverable": "DEL-08-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "e6fc2662e5b8f3e08a8b602828283f31025574e979d521dbe4aac21f333c4cb3"
+    },
+    {
+      "deliverable": "DEL-09-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "bed1632e4517bbb2ad5ad064b0d3ac05e45411101ed1c2f7c7ebb9088a56988a"
+    },
+    {
+      "deliverable": "DEL-09-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "4e554d38f5a0920280734c9cbd0f6103f0acd17efe89ceaf9f617c38bfc9d1c5"
+    },
+    {
+      "deliverable": "DEL-09-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "6ee8ee9f179ff369a4fa192602a4d44291150320856c0ea7206295f99548d72c"
+    },
+    {
+      "deliverable": "DEL-09-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "97d8cb419bd520f12844f37de901a09404061fb7061d998d1acb6d766ab67135"
+    },
+    {
+      "deliverable": "DEL-09-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "45aeb786d946bb8e761143ba08bad191fa75b707950efc765e1c3f57fd283509"
+    },
+    {
+      "deliverable": "DEL-09-06",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "6d0137565f0c90dabb2e311307b4b069b4f61d83cc9503fb48ab18924dca878a"
+    },
+    {
+      "deliverable": "DEL-09-07",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+    },
+    {
+      "deliverable": "DEL-10-01",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "b0bad5b9255bf6b6e8c5db389ad791f2f5615e0ae83b9ac756eda00152c427d8"
+    },
+    {
+      "deliverable": "DEL-10-02",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "aad0173fc51acb2cef7f755678653e53c855f50b3b7fc51148b66323c93baef3"
+    },
+    {
+      "deliverable": "DEL-10-03",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "2423f6e874b415aa3f503b0cec52d7deb75de3286bee3fd6551a6206245d9ae6"
+    },
+    {
+      "deliverable": "DEL-10-04",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "d9f6141c667a41ccd57ace916cee18534a85784857d93492b8e4079e5b2ee650"
+    },
+    {
+      "deliverable": "DEL-10-05",
+      "exit_code": 0,
+      "valid": true,
+      "source_sha256": "0969cadbba3cfdd0fe56267c570cbd6de2c2877935b950ad6ed9a4d7ea6a1732"
+    }
+  ]
+}

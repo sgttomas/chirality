@@ -19,10 +19,10 @@ Run every release-significant change through all applicable gate families.
 | Change type | Gate family | Examples |
 |---|---|---|
 | Coordination policy, completion plans, decision-register pointers, docs-only governance | Governance gate | `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, active plan/log, quality docs |
-| Runtime contract, adapter boundary, turn lifecycle, session events, event schemas | Runtime contract gate | `AgentEnginePort`, `TurnEngine`, `SessionEvents`, `HarnessEvent`, SDK mapper |
-| SDK options, permissions, tools, hooks, MCP, path policy | Permission/tool gate | `sdk-options-builder`, tool descriptors, permission overlay, read MCP, write hooks |
+| Runtime contract, adapter boundary, turn lifecycle, session events, event schemas | Runtime contract gate | Runtime session store, Codex supervisor/event path, current socket contract |
+| Codex approval/sandbox policy, server requests, application tools and path policy | Permission/tool gate | PolicySelection, Codex supervisor/server-request answers, Runtime application catalog validation; retained SDK hooks are compatibility evidence |
 | API routes, harness workflow, running-app validation, attachments, interrupt behavior | Harness workflow gate | session boot, turn SSE, validation scripts, working-root APIs |
-| Network, API key handling, redaction, provider policy | Security and network gate | Electron network guardrails, key storage, Anthropic policy, redaction helpers |
+| Network, API key handling, redaction, provider policy | Security and network gate | Electron renderer boundary, Codex authentication separation, redaction at every sink |
 | UI workflow, product identity, professional-boundary copy | UI and claims gate | navigation, dense professional UI, copy that distinguishes drafts from approvals |
 | Instruction-root resources, Electron build, package metadata, DMG output | Packaging gate | `desktop:pack`, `desktop:dist`, extra resources, integrity verification |
 | Future domain-engine profiles, adapters, operation proposals | Domain-adapter gate | protected paths, proposal records, human gates, solver/domain truth boundaries |
@@ -67,7 +67,7 @@ Required evidence:
 - `npm run typecheck`;
 - broader `npm run test` when shared event or route behavior changes;
 - harness premerge validation when browser-facing session, SSE, or turn behavior changes;
-- review that public/core Chirality contracts do not become SDK-shaped except as adapter metadata.
+- preserve upstream Codex method names, identifiers and payloads with normalized known-item views; unfamiliar notifications remain inspectable and all server requests receive an answer (§7). Secret protection remains independently required.
 
 ## 6. Permission And Tool Gate
 
@@ -76,10 +76,10 @@ Use this gate for SDK options, permission overlay, tool descriptors, tool exposu
 Required evidence:
 
 - tests for allow, deny, ask, and unknown-tool behavior where applicable;
-- tests proving write/edit/bash/network/subagent capabilities remain denied until the active plan and human rulings authorize them;
-- `npm run harness:validate:agentsdk-mcp-probe` when in-process SDK MCP permission/hook behavior is a design input;
+- tests that the actual user-selected Codex approval/sandbox policy reaches the host and server requests are answered, with no inferred permission from a mode label; Chirality-owned application tools retain their registration and applicable domain/human gates;
+- retained SDK deny-by-default and `harness:validate:agentsdk-mcp-probe` checks only for changed compatibility surfaces; they do not qualify native Codex enforcement;
 - `npm run typecheck`;
-- no new model-visible tool exposure without descriptor, permission, event, and validation coverage;
+- no new Chirality-owned application-tool exposure without catalog validation, applicable permission/domain controls and event evidence; native Codex tools follow the user-selected Codex policy;
 - no path write policy relaxation without human ruling and tests.
 
 ## 7. Harness Workflow Gate
@@ -105,7 +105,7 @@ Required evidence:
 - `npm run proof:secret-scan` when secret hygiene, generated evidence, or release-quality records are in scope;
 - `npm run proof:network-policy` when network or provider behavior changes;
 - confirmation that API keys are not written to project files, runtime events, logs, tool artifacts, or SDK transcript imports;
-- confirmation that outbound network remains loopback plus the current shipped Anthropic path unless a bounded future implementation tranche and recorded decision evidence broaden it.
+- distinguish Electron/renderer network protection from Codex child egress under the selected Codex configuration and policy; no credential material reaches the renderer or evidence sinks. Retired Anthropic/oMLX policy is not the live MVP boundary.
 
 ## 9. UI And Claims Gate
 
@@ -129,7 +129,7 @@ Required evidence:
 - `npm run build`;
 - `npm run desktop:pack` for package-layout changes;
 - `npm run desktop:dist` for DMG/distribution changes or release-candidate review;
-- `npm run harness:validate:agentsdk-packaged-proof` when packaged SDK subprocess resolver or transcript/HOME posture is in scope;
+- packaged Runtime lifecycle, dependency-boundary and Codex-pin checks; the historical Agent SDK package proof is not a Codex MVP gate;
 - generated artifact path, checksum when applicable, signing/notarization state, and known limitations.
 
 Ordinary local output remains the macOS 15+ Apple Silicon unsigned local-builder DMG. The D-GOV-43 trial candidate follows the short packaging procedure in `docs/BUILD_AND_RELEASE.md` §8 (build, sign, notarize, verify the signature and the Codex pin, then the distinct packaged checks). Supplier admission, payload hashing and the Stage 9 to 13 packaging spine are retired (family 1); the README self-hash convention and duplicate test execution are retired as gates (family 5).
@@ -151,14 +151,15 @@ A waiver must be explicit and must name the waived gate item, reason, affected s
 
 Environment skips inside `npm run validate:release-quality`, such as a missing local harness API for premerge, are evidence skips, not waivers. They require a concrete reason and produce `pass_with_skips`; they do not satisfy a gate item that explicitly requires a current premerge run.
 
-Open release-quality decisions:
+Current direction: GitHub Actions supplies hosted CI; D-APP-131 P-03 records
+prior 3.0.0/3.0.1 candidate-specific release authority and its evidence limits.
+D-GOV-43 makes Codex the sole MVP engine; legacy Anthropic/Pi/oMLX exceptions
+are not current release prerequisites.
 
-- hosted CI provider and workflow location;
-- final release matrix, signing, notarization, publication, and attestation;
-- release-label vocabulary and release-candidate evidence bundle format;
-- coverage, performance, and permitted-variance thresholds;
-- concrete provider/network implementation beyond the current shipped Anthropic path and the exact D-APP-72 / SCA-APP-002 authenticated `127.0.0.1` oMLX exception;
-- any Pi scope beyond the exact D-APP-72 / SCA-APP-002 pinned in-process, authenticated-loopback, read-only Agent 2 child exception; D-APP-01/D-APP-02 continue to govern all other Pi scope.
+Open release-quality decisions include additional release matrices and
+attestation, release-label/evidence format choices, and coverage, performance
+and permitted-variance thresholds. Each future release keeps its actual owner
+authority and affected checks; no prior result supplies an unrun native witness.
 
 ## 13. Shared Runtime Gate
 

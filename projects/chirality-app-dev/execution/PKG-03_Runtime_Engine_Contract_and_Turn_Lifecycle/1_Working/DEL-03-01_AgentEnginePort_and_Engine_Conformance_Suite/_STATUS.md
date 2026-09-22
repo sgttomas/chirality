@@ -1,7 +1,7 @@
 # Status: DEL-03-01
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; this is the dated P06 observation; current residual selection is below.
 **Last Updated:** 2026-09-22
 **blocked-on:** D-APP-47, D-APP-48, D-T0-09, D-30
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
@@ -13,14 +13,22 @@
 
 - **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: the re-platformed Runtime service socket API lands on the production path (D-GOV-43)`) — App client conformance against the retained and repaired Runtime socket API (topology A2, D-APP-127); Codex is the only engine and the multi-engine port abstractions are retired, not generalized.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
-  Plan: WP-05/WP-10; G-WIRE, G2 for exact-pin claims; AT-013/AT-015/AT-017 App-client portions; RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Plan: current Codex/App-client conformance coverage; AT-013/AT-015/AT-017 App-client portions; RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
   Depends: the repaired socket API and client of the same tranche; DEP-03-01-005/008 read with D-GOV-43. The exact supply pin with drift refusal (Root DEL-02-08) is retired; the lockfile pin of stock `@openai/codex` is ordinary dependency integrity (family 4).
-  Write locus: `frontend/packages/**` re-export/conformance surfaces, `frontend/src/__tests__/**`, `Evidence_CODEV-*` records, and deliverable-local state.
+  Write locus: direct `@chirality/runtime-contracts` consumption and App-client conformance surfaces, `frontend/src/__tests__/**`, `Evidence_CODEV-*` records, and deliverable-local state.
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
   Return: Conformance evidence for the single Codex engine path, explicit terminal outcomes and no automatic fallback, bound to the pinned Codex version; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: App conformance against the repaired socket API lands with the spike evidence.
 
-- **DEL-03-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 7 authority application, 2 changed claim followthrough, 23 implementation or evidence, 41 record repair, 1 reserved authority. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-03-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface. Its D-APP-118 reservation (`DEL-03-01#REM-1`) is superseded by the current ruling; `DEC:D-APP-101` routing and the facade locator in `DEL-03-01#CLM-005.7` are addressed by this retirement tranche, without closing the latter key's other conformance follow-through.
+
+
+
+
+
+
+
+- **DEL-03-01-R5-RESIDUALS** — Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects. Structural redaction and current App-client verification remain required. Facade retirement and D-APP-101 routing are already settled by D-APP-118; no rollback-support task remains. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
+
 
 ## History
 

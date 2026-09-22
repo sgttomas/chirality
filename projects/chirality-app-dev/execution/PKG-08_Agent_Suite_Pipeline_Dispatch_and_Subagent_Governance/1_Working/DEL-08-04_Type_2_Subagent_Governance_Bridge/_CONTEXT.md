@@ -62,3 +62,7 @@ and cleanup conformance tests
 ## Source Authority
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+
+## Current execution basis — 2026-09-22
+
+Codex is the sole current MVP engine, hosted as stock app-server under the application-owned Runtime service (D-GOV-43/D-APP-127). ScopeOfWork.md carries the current production claims. Legacy provider/daemon/four-document statements above retain their historical basis and do not qualify the live path. Existing scope, decomposition identity, responsible-party assignment and domain/professional boundaries are unchanged; current obligations and gaps are in `_STATUS.md`.

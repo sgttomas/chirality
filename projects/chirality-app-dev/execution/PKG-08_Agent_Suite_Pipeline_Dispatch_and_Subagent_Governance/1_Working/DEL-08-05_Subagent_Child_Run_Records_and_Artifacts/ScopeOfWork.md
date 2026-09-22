@@ -14,7 +14,7 @@ package_objective_refs: [OBJ-003, OBJ-007]
 This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and package objectives [OBJ-003, OBJ-007].
 
 - **OUT-001** — The DEL-08-05 managed-child runtime record and artifact contract, including `ChildRunRecord` lifecycle, parent/declaration linkage, coordination-aware persistence, `artifacts/subagents/` child outputs, and replay fixtures, for SOW-063 and OBJ-003, OBJ-007.
-- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 358 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): Checkout AgentRun and native-descendant evidence records; parentage/origin and daemon linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures. Traceable to SOW-063 and OBJ-003, OBJ-007.
+- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 358 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): Checkout AgentRun and native-descendant evidence records; parentage/origin and App-owned Runtime linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures. Traceable to SOW-063 and OBJ-003, OBJ-007.
 
 ## Deliverable Definition — Ontology
 
@@ -51,9 +51,9 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > | Scope | Persist managed-child lifecycle, direct-parent linkage, declared context/write-target linkage, provider-neutral status, optional adapter metadata, and child-output artifact paths. | D-APP-68 disposition 3; root `AGENTS.md` |
 > | Primary record target | `ChildRunRecord` | `docs/TYPES.md` Section 10; D-APP-40 |
 > | Parent audit event target | `HarnessEvent` | `docs/TYPES.md` Section 7.3; `docs/SPEC.md` Section 9 |
-> | Canonical event store | `.chirality/sessions/<id>/events.jsonl` | `docs/CONTRACT.md` K-EVENT-4; `docs/TYPES.md` Section 7.2 |
-> | Child-output artifact folder | `.chirality/sessions/<sessionId>/artifacts/subagents/` | D-APP-56 R4-P32; D-APP-68 dispositions 3 and 5 |
-> | Relevant event categories | `subagent.started`, `subagent.progress`, `subagent.completed`, `subagent.failed` | D-APP-40; D-APP-68 disposition 3 |
+> | Canonical event store | Runtime-owned session event store under `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/events.jsonl`; `.chirality/sessions` is legacy compatibility. | `docs/CONTRACT.md` K-EVENT-4; `docs/TYPES.md` Section 7.2 |
+> | Child-output artifact folder | Artifacts must be attributable and retrievable through the owning Runtime record interface; the former `.chirality/sessions/.../artifacts/subagents/` path is retained compatibility evidence, not the live store. | D-APP-56 R4-P32; D-APP-68 dispositions 3 and 5 |
+> | Relevant event categories | Preserve class-aware child lifecycle and parentage through actual managed/native events; legacy subagent.* categories and native Codex notifications are distinguished. | D-APP-40; D-APP-68 disposition 3 |
 > | Output artifact policy | Child output is inline through 16 KiB; over-inline output is artifact-backed under `artifacts/subagents/` through 512 KiB, with bounded truncation metadata beyond that ceiling. | D-APP-56 R4-P32; D-APP-68 disposition 5 |
 > | Coordination-aware persistence | Managed child records preserve direct-parent identity, declared context/write-target linkage, lifecycle status, and replay linkage to persisted coordination notices, updates, and acknowledgments. | D-APP-68 disposition 3; root `AGENTS.md` |
 > | Execution gate relationship | Child records are created for governed subagent execution; governance admission itself belongs to DEL-08-04. | `_CONTEXT.md`; `docs/PRD.md` FR-101 and FR-102 |
@@ -70,7 +70,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > | Subagent runs must produce parent-child runtime records and output artifact references when execution is enabled. | Required. | `docs/CONTRACT.md` K-SUBAGENT-3 |
 > | Runtime events must redact secrets. | Required. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-075 |
 > | JSONL replay must tolerate malformed trailing records. | Required for the event store. | `docs/CONTRACT.md` K-EVENT-5; `docs/SPEC.md` Section 9.2 |
-> | SDK transcripts are secondary unless imported into `HarnessEvent` form. | Required. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 8 |
+> | Codex thread/rollout records and retained SDK transcripts are secondary; Runtime-owned events remain canonical. Import requires an explicit governed mapping, not an automatic live-path prerequisite. | Required. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 8 |
 > | Unified pipeline run records remain retired scope. | Required boundary. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
 > | PRD source status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived subagent and artifact details are accepted for this tranche. | `_REFERENCES.md`; D-APP-38 |
 >
@@ -82,24 +82,9 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 
 ### CLM-006 — Target `ChildRunRecord` Fields
 
-> ###### Target `ChildRunRecord` Fields
+> Child records must preserve actual direct-parent identity, child identity and delegation class, supplied basis and scope, observed lifecycle and decisions, and return/artifact linkage. Bind schema/version to the actual record path: retained ChildRunRecord fixtures are checked by `frontend/src/__tests__/lib/agent-runtime-contract.test.ts`; native Codex lineage by `projects/chirality-runtime/tests/native-event-adapter.test.ts` (repository-relative). The serialized fields of one compatibility type do not become a universal native schema.
 >
-> | Field | Type / Allowed Value | Requirement Status | Source |
-> |---|---|---|---|
-> | `childRunId` | string | Required by type target. | `docs/TYPES.md` Section 10; D-APP-40 |
-> | `parentSessionId` | string | Required by type target. | `docs/TYPES.md` Section 10 |
-> | `parentTurnId` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
-> | `parentPersona` | string | Required by type target. | `docs/TYPES.md` Section 10 |
-> | `agentName` | string | Required by type target. | `docs/TYPES.md` Section 10 |
-> | `adapter.adapterAgentId` | string | Optional adapter metadata when available. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
-> | `projectRoot` | string | Required by type target. | `docs/TYPES.md` Section 10 |
-> | `status` | `queued`, `running`, `completed`, `failed`, `cancelled`, `denied` | Required by type target. | `docs/TYPES.md` Section 10 |
-> | `mode` | string | Required by the implemented child-run contract. | D-APP-56 R5 P45 UPD-138 |
-> | `capabilityPolicy` | object | Required by the implemented child-run contract. | D-APP-56 R5 P45 UPD-138 |
-> | `governance` | object | Required by the implemented child-run contract. | D-APP-56 R5 P45 UPD-138 |
-> | `contractVersion` | string | Required by the implemented child-run contract. | D-APP-56 R5 P45 UPD-138 |
-> | `outputArtifactPath` | string | Optional by type target; required when child output is stored externally. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
->
+> Preserve D-APP-40/D-APP-56/D-APP-68 applicable managed record and artifact guarantees, including actual denied-before/after-allocation evidence, and the controlling class-aware CLM-037 duty. Missing native per-descendant basis/return/artifact evidence remains open. Structural redaction before persistence and display remains required. D-APP-132 defers only optional additional per-attempt replay, not existing lineage duties.
 
 ### CLM-007 — Related `HarnessEvent` Fields
 
@@ -126,8 +111,8 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > - `docs/SPEC.md` - event schema, artifact policy, and runtime engine contract.
 > - `docs/TYPES.md` - `HarnessEvent`, session artifact, and `ChildRunRecord` type targets.
 > - `docs/PLAN.md` - R5 governed subagent runtime sequencing and retired-scope boundary.
-> - `docs/PRD.md` - runtime event, artifact, and subagent requirements. Current under the D-APP-38 authority corpus.
-> - `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` - decomposition method reference.
+> - `docs/PRD.md` - runtime event, artifact, and subagent requirements. Historically reconciled under D-APP-38; verify current bytes.
+> - `../../workflows/software-decomp/WORKFLOW.md` - decomposition method reference.
 >
 
 ### CLM-009 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -140,12 +125,12 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 
 > ##### Applied decomposition row for DEL-08-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
 >
-> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim as dated 2026-09-03 provenance. Later Root/App four-role instructions and App-owned Runtime topology control current role and execution meaning; the row is not a current daemon or Agent 0/1/2 requirement.
 >
 > | Column | Applied row text |
 > |---|---|
 > | Description | Preserve reconstructible checkout-contained records for Chirality-managed and delegated-harness-native descendants without conflating the classes: parentage, native origin/lineage, selected role-entry state, actual adapter/provider/model, instruction/brief and policy/configuration digests, approvals, status, return/output and accepted artifact paths, cancellation/cleanup, and truthful `instruction-asserted` calibration where G-ROLE cannot mechanically prove Agent 2/TASK non-delegation. |
-> | Principal outputs | Checkout AgentRun and native-descendant evidence records; parentage/origin and daemon linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures |
+> | Principal outputs | Checkout AgentRun and native-descendant evidence records; parentage/origin and App-owned Runtime linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures |
 > | Notes | Project evidence slice; daemon operational state is non-authoritative, native descent assigns no Agent 0/1/2 role, and managed sealed-brief evidence remains distinct and required. Evidence schema follows accepted class semantics. |
 
 ## Completion and Reliance Basis — Epistemology
@@ -170,16 +155,16 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > | ID | Requirement | Source |
 > |---|---|---|
-> | DEL-08-05-REQ-001 | The implementation shall represent governed child execution with a `ChildRunRecord` containing `childRunId`, `parentSessionId`, `parentPersona`, `agentName`, `projectRoot`, `mode`, `status`, `capabilityPolicy`, and `governance`. | `docs/TYPES.md` Section 10; D-APP-40 |
-> | DEL-08-05-REQ-002 | The child run status shall use only `queued`, `running`, `completed`, `failed`, `cancelled`, or `denied`. | `docs/TYPES.md` Section 10 |
-> | DEL-08-05-REQ-003 | The child run record shall support optional `parentTurnId`, `outputArtifactPath`, and adapter metadata fields such as adapter session, agent, task, tool-use, or transcript identifiers. | `docs/TYPES.md` Section 10; D-APP-40 |
-> | DEL-08-05-REQ-004 | Parent session runtime events shall record subagent lifecycle using `subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed` event categories when subagent lifecycle support is active. Terminal child state is carried through `ChildRunRecord.status` and event data. | `docs/PRD.md` Section 8.12; `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Sections 7.3 and 10; D-APP-40 |
-> | DEL-08-05-REQ-005 | Persisted runtime events shall conform to the `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. For subagent lifecycle events, `data` shall preserve child-run linkage through `childRunId` and the current or terminal `status`; exact additional payload keys remain bounded by the `ChildRunRecord` contract unless a later governed source specifies them. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 10; D-APP-40 |
+> | DEL-08-05-REQ-001 | Governed child execution shall retain class-appropriate records of actual child and direct-parent identity, supplied basis, scope, observed state and decisions, and return/artifact linkage under CLM-006/037. | `docs/TYPES.md` Section 10; D-APP-40 |
+> | DEL-08-05-REQ-002 | Child lifecycle records shall distinguish queued, running, completed, failed, cancelled and denied outcomes where applicable to the actual delegation class; no unobserved completion or denial is inferred. | `docs/TYPES.md` Section 10 |
+> | DEL-08-05-REQ-003 | Preserve parent-turn and native thread identifiers and available adapter/output references without treating a native identifier as a managed approval or role. | `docs/TYPES.md` Section 10; D-APP-40 |
+> | DEL-08-05-REQ-004 | Parent runtime records shall preserve actual child lifecycle and native Codex notifications, including unfamiliar events; legacy subagent.* names are compatibility evidence rather than a closed native vocabulary. | `docs/PRD.md` Section 8.12; `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Sections 7.3 and 10; D-APP-40 |
+> | DEL-08-05-REQ-005 | Persisted events shall preserve the current Runtime envelope, source payload and actual parent/child linkage. Known-event presentation normalization must not discard unfamiliar notifications or invent child status. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 10; D-APP-40 |
 > | DEL-08-05-REQ-006 | Runtime events shall append to newline-delimited JSONL in write sequence, with unique event IDs. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` FR-073 |
-> | DEL-08-05-REQ-007 | Child output shall remain inline through 16 KiB; over-inline output shall be stored under `.chirality/sessions/<sessionId>/artifacts/subagents/` and referenced by metadata/path through the 512 KiB artifact ceiling, with bounded preview/truncation metadata for larger original output. | D-APP-56 R4-P32; D-APP-68 disposition 5 |
+> | DEL-08-05-REQ-007 | Applicable managed output policy retains 16 KiB inline and 512 KiB artifact ceilings plus truncation metadata. Artifacts must be retrievable and linked through the owning Runtime record interface; the old App session folder is compatibility evidence. | D-APP-56 R4-P32; D-APP-68 disposition 5 |
 > | DEL-08-05-REQ-008 | Artifact metadata shall include tool name, turn ID, byte count, truncation flag, and relative artifact path where the artifact policy applies. | `docs/PRD.md` Section 10.5 |
 > | DEL-08-05-REQ-009 | Event and artifact records shall avoid storing secrets and shall pass through redaction where policy requires. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-075 |
-> | DEL-08-05-REQ-010 | SDK transcript paths or SDK session identifiers shall remain secondary runtime metadata unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` K-SDK-3; `docs/TYPES.md` Section 7.2 |
+> | DEL-08-05-REQ-010 | Codex thread/rollout and retained SDK transcript references shall remain secondary metadata; current Runtime events are canonical. Any import must preserve actual provenance and redaction. | `docs/CONTRACT.md` K-SDK-3; `docs/TYPES.md` Section 7.2 |
 > | DEL-08-05-REQ-011 | The data model shall not reactivate retired unified pipeline run records or broader PKG-08 hardening scope. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
 > | DEL-08-05-REQ-012 | A denied subagent attempt shall produce a `ChildRunRecord` with `status: denied` only when the attempt reaches the child-run record layer. Denials before allocation may remain permission or hook evidence only. | `docs/TYPES.md` Section 10; `docs/CONTRACT.md` K-SUBAGENT-1; D-APP-40 |
 > | DEL-08-05-REQ-013 | Each managed child record shall preserve its direct-parent identity, lifecycle status, and linkage to the sealed declared context and write targets; persisted coordination notices, updates, and acknowledgments shall remain replayable with that parent/child lineage. | D-APP-68 disposition 3; root `AGENTS.md` |
@@ -193,7 +178,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > |---|---|
 > | `HarnessEvent` persisted event schema | Governs parent session event records and subagent lifecycle mirror events. |
 > | `ChildRunRecord` type target | Governs child run record fields and status vocabulary. |
-> | Runtime Audit Mirror | `.chirality/sessions/<id>/events.jsonl` remains the product-owned event store. |
+> | Runtime Audit Mirror | Runtime owns the current session event store; the old .chirality/sessions location is legacy compatibility under K-EVENT-4. |
 > | DEL-08-05 child-output artifact policy | Governs `artifacts/subagents/` persistence and its 16 KiB inline / 512 KiB artifact ceilings; it is distinct from DEL-05-05 ordinary tool-result `descriptor.resultBudget`. |
 > | Subagent governance invariants | Child records must align with fail-closed governance, restricted capability inheritance, and output references. |
 >
@@ -222,12 +207,12 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > | ItemID | Disposition | Evidence |
 > |---|---|---|
-> | C-001 | Resolved by D-APP-38. | Conflict Table now treats PRD-derived requirements and guidance as current under the D-APP-38 authority corpus. Source reread: `_REFERENCES.md` REF-006 and current Conflict Table. |
+> | C-001 | Resolved by D-APP-38. | Conflict Table now treats PRD-derived requirements and guidance as historically reconciled under D-APP-38; verify current bytes. Source reread: `_REFERENCES.md` REF-006 and current Conflict Table. |
 > | F-001 | Resolved by D-APP-40. | DENIED child-run allocation is required only after the runtime reaches the child-run record layer; earlier denials may remain permission or hook evidence. Source reread: D-APP-40, `docs/TYPES.md` Section 10, and `docs/CONTRACT.md` K-SUBAGENT-1. |
 > | F-002 | Resolved by D-APP-40. | Verification separates denied-before-allocation and denied-after-allocation fixtures according to the D-APP-40 allocation boundary. Source reread: DEL-08-05-REQ-012 and `docs/CONTRACT.md` K-SUBAGENT-1. |
 > | X-001 | Incorporated with bounded payload language. | DEL-08-05-REQ-005 now requires only sourced `HarnessEvent` envelope plus `childRunId` and `status` linkage; additional `data` keys remain bounded by the child-run contract. Source reread: `docs/SPEC.md` Section 9.1 and `docs/TYPES.md` Sections 7.3 and 10. |
-> | E-001 | Cross-disposed to Procedure verification. | Artifact metadata assertions are enumerated in `Procedure.md` Verification. Source reread: `docs/PRD.md` Section 10.5. |
-> | E-002 | Converted to explicit category boundary. | DEL-08-05-REQ-004 states that no sourced separate failed/cancelled/denied subagent event category names exist; terminal state is carried by status until governed source text changes. Source reread: `docs/PRD.md` Section 8.12, `docs/SPEC.md` Section 9.4, and `docs/TYPES.md` Sections 7.3 and 10. |
+> | E-001 | Cross-disposed to Procedure verification. | Artifact metadata assertions are enumerated in ScopeOfWork.md CLM-023 verification. Source reread: `docs/PRD.md` Section 10.5. |
+> | E-002 | Converted to explicit category boundary. | D-APP-40 supplies the legacy subagent.failed category; current REQ-004 preserves actual class-aware managed/native events without a closed Codex vocabulary. Source reread: `docs/PRD.md` Section 8.12, `docs/SPEC.md` Section 9.4, and `docs/TYPES.md` Sections 7.3 and 10. |
 >
 
 ### CLM-016 — Documentation
@@ -262,10 +247,10 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 
 - **REQ-001** — The deliverable shall preserve reconstructible checkout-contained records for Chirality-managed and delegated-harness-native descendants without conflating the classes.
 - **REQ-002** — Each record shall carry parentage, native origin/lineage, selected role-entry state, actual adapter/provider/model, instruction/brief and policy/configuration digests, approvals, status, return/output and accepted artifact paths, and cancellation/cleanup.
-- **REQ-003** — Records shall carry truthful `instruction-asserted` calibration where G-ROLE cannot mechanically prove Agent 2/TASK non-delegation; native descent assigns no Agent 0/1/2 role.
-- **REQ-004** — Daemon operational state is non-authoritative; managed sealed-brief evidence remains distinct and required; the evidence schema follows accepted class semantics.
-- **AC-001** — DEL-08-05 is accepted when the complete preserved legacy source's schema/type, lifecycle-event, append/replay, artifact-reference, redaction, SDK-metadata-boundary, denied-allocation, and retired-scope checks demonstrate auditable governed child-run records for SOW-063 and OBJ-003, OBJ-007.
-- **AC-002** — The v3 outputs assigned by the applied decomposition row (checkout AgentRun and native-descendant evidence records, parentage/origin and daemon linkage metadata, role/config/model attribution, child output evidence paths, and managed/native replay and reconstruction fixtures) exist and satisfy REQ-001 through REQ-004 with the two descendant classes kept distinct.
+- **REQ-003** — Records shall carry truthful role, scope, parentage, supplied basis and host-enforcement limits under the current four-role instructions; native descent does not infer a managed role and TASK cannot delegate.
+- **REQ-004** — App-owned Runtime operational state is non-authoritative project truth; managed sealed-brief evidence remains distinct and required, and each descendant class retains its actual lineage.
+- **AC-001** — DEL-08-05 requires current App-owned Runtime/Codex managed/native lineage, event/replay, artifact-reference, redaction, denied-allocation and return checks bound to the candidate. Retained SDK metadata fixtures preserve compatibility only and do not qualify missing live evidence for SOW-063 and OBJ-003, OBJ-007.
+- **AC-002** — The v3 outputs assigned by the applied decomposition row (checkout AgentRun and native-descendant evidence records, parentage/origin and App-owned Runtime linkage metadata, role/config/model attribution, child output evidence paths, and managed/native replay and reconstruction fixtures) exist and satisfy REQ-001 through REQ-004 with the two descendant classes kept distinct.
 
 ## Production and Verification Method — Praxeology
 
@@ -288,7 +273,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > | Prerequisite | Status / Note |
 > |---|---|
 > | Accepted source corpus listed in `_REFERENCES.md` | Available under the current D-APP-38 authority corpus. |
-> | DEL-08-04 Type 2 Subagent Governance Bridge | Upstream relationship is implied by scope, but `_DEPENDENCIES.md` has no accepted dependency edge yet. Keep as ASSUMPTION until dependency extraction runs. |
+> | DEL-08-04 Type 2 Subagent Governance Bridge | The extracted relationship is recorded in DEP-08-05-004/011; current satisfaction remains at Dependencies.csv and is not changed by this record. |
 > | Runtime event schema / `HarnessEvent` | Required source target exists in `docs/SPEC.md` and `docs/TYPES.md`. |
 > | Artifact storage policy | Required source target exists in `docs/SPEC.md` and `docs/PRD.md`. |
 > | Human ruling for denied child-run allocation | D-APP-40 ruled: denied records are required only after the runtime reaches the child-run record layer. |
@@ -379,7 +364,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > | Principle | Guidance | Source |
 > |---|---|---|
-> | Keep Chirality events canonical. | Treat `.chirality/sessions/<id>/events.jsonl` and `HarnessEvent` replay as the product-owned audit mirror. SDK transcript paths may be linked but should not become canonical unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` K-EVENT-4 and K-SDK-3 |
+> | Keep Chirality events canonical. | Treat the current Runtime-owned session event store and replay as the audit source; `.chirality/sessions/<id>/events.jsonl` is retained legacy compatibility. SDK transcript paths may be linked but should not become canonical unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` K-EVENT-4 and K-SDK-3 |
 > | Separate governance gate from child record persistence. | DEL-08-04 owns the subagent governance bridge. DEL-08-05 should persist the resulting child lifecycle and artifact references without weakening or duplicating admission rules. | `_CONTEXT.md`; `docs/PRD.md` FR-101 and FR-102 |
 > | Fail closed is still visible. | Denied or failed subagent actions should leave reviewable runtime evidence. D-APP-40 fixes the boundary: create a denied `ChildRunRecord` only when the runtime reaches the child-run record layer; earlier denials may remain permission/hook evidence. | `docs/CONTRACT.md` K-SUBAGENT-1; `docs/TYPES.md` Section 10; D-APP-40 |
 > | Store references, not bulky payloads. | Child output through 16 KiB remains inline; larger output is represented under `artifacts/subagents/` with relative artifact metadata through 512 KiB and bounded truncation beyond it. | D-APP-56 R4-P32; D-APP-68 disposition 5 |
@@ -427,7 +412,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > A child-run example must identify its actual delegation class and the schema/version it illustrates. Use the class-specific fixtures in `frontend/src/__tests__/lib/agent-runtime-contract.test.ts` for retained managed records and `projects/chirality-runtime/tests/native-event-adapter.test.ts` (repository-relative) for native child activity. Record the tested source revision with the example's verification result.
 >
-> The former inline JSON was an implementation-shape snapshot, not an additional schema authority. Its bytes are preserved in this run's R5/PKG08 before-block evidence and Git history. Removing that snapshot does not resolve the CLM-006 / REQ-001–002 schema conflict or retire the separately ruled artifact policy.
+> The former inline JSON was an implementation-shape snapshot, not an additional schema authority. Its bytes are preserved in this run's R5/PKG08 before-block evidence and Git history. CLM-006 / REQ-001–002 now express the class-aware obligation; the separately ruled artifact policy remains and missing live records remain delivery work.
 >
 > Examples and run records must not invent parentage, persona, model, approval, timestamps, completion, output paths or enforcement. A completed parent tool call does not establish a completed child. Required project records retain actual source-qualified instruction/brief identity, scope, class, direct parent and return/artifact evidence under CLM-037; absent evidence remains explicitly unknown.
 

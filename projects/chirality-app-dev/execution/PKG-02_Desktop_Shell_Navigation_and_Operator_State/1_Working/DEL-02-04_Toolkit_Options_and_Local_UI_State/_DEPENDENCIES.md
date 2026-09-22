@@ -11,48 +11,41 @@
 
 ## Declared Upstream
 
-TBD - no declared upstream dependency edges have been accepted outside the extracted register.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no declared downstream dependency edges have been accepted outside the extracted register.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
 
-## Extracted Dependency Register
+## Current Extracted Dependency Summary — 2026-09-22
 
-Structured register: `Dependencies.csv` v3.1
+Total rows: 21. ACTIVE: 21. RETIRED: 0. RETIRED: 0.
 
-| Metric | Count |
-|---|---:|
-| Total ACTIVE rows | 21 |
-| ANCHOR rows | 6 |
-| EXECUTION rows | 15 |
-| RETIRED rows | 0 |
-| Cycle-participating rows (non-gating) | 0 (the five D-APP-109 rows DEP-02-04-015..019 were resolved by decompose under D-APP-110 on 2026-09-05; DEP-02-04-017..019 now target the DOCUMENT contract node) |
-| DOCUMENT-target rows | 10 (REF-001..006, DECOMP-v3.2, and the three D-APP-110 contract rows DEP-02-04-017..019) |
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-02-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-004 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-008 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-016 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-005 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-006 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | SATISFIED |
+| DEP-02-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | SATISFIED |
+| DEP-02-04-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | SATISFIED |
+| DEP-02-04-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | SATISFIED |
+| DEP-02-04-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | SATISFIED |
+| DEP-02-04-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-02-04-013 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 | ACTIVE | SATISFIED |
+| DEP-02-04-014 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | TBD |
+| DEP-02-04-015 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-02 | ACTIVE | SATISFIED |
+| DEP-02-04-016 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-03 | ACTIVE | SATISFIED |
+| DEP-02-04-017 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
+| DEP-02-04-018 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
+| DEP-02-04-019 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
+| DEP-02-04-020 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-07-03 | ACTIVE | PENDING |
+| DEP-02-04-021 | EXECUTION | CONSTRAINT | UPSTREAM | Runtime-owned session record | ACTIVE | PENDING |
 
-| DependencyID | Class | Type | Target | Status | Evidence |
-|---|---|---|---|---|---|
-| DEP-02-04-001 | ANCHOR | OTHER | PKG-02 | ACTIVE | `_CONTEXT.md#Identity` |
-| DEP-02-04-002 | ANCHOR | OTHER | SOW-004 | ACTIVE | `ScopeOfWork.md#Purpose and Objective Traceability` |
-| DEP-02-04-003 | ANCHOR | OTHER | SOW-008 | ACTIVE | `ScopeOfWork.md#Purpose and Objective Traceability` |
-| DEP-02-04-004 | ANCHOR | OTHER | SOW-016 | ACTIVE | `ScopeOfWork.md#Purpose and Objective Traceability` |
-| DEP-02-04-005 | ANCHOR | OTHER | OBJ-001 | ACTIVE | `ScopeOfWork.md#Purpose and Objective Traceability` |
-| DEP-02-04-006 | ANCHOR | OTHER | OBJ-004 | ACTIVE | `ScopeOfWork.md#Purpose and Objective Traceability` |
-| DEP-02-04-007 | EXECUTION | PREREQUISITE | REF-001 `docs/DIRECTIVE.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-008 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-009 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-010 | EXECUTION | PREREQUISITE | REF-004 `docs/TYPES.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-011 | EXECUTION | PREREQUISITE | REF-005 `docs/PLAN.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-012 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-013 | EXECUTION | PREREQUISITE | DECOMP-v3.2 | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-014 | EXECUTION | PREREQUISITE | TBD adjacent deliverables | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-015 | EXECUTION | PREREQUISITE | DEL-02-02 (seated item DEL-02-02-V3-03 landed; SCC resolved under D-APP-110, gates per SatisfactionStatus) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-016 | EXECUTION | PREREQUISITE | DEL-02-03 (right-panel view switcher from DEL-02-03-V3-01; SCC resolved under D-APP-110, gates per SatisfactionStatus) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-017 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-01-V3-02, DEL-02-01-V3-03; decomposed under D-APP-110 SD-003, deliverable relation to DEL-02-01 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-018 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-02-V3-04; decomposed under D-APP-110 SD-006, deliverable relation to DEL-02-02 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-019 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-03-V3-01; decomposed under D-APP-110 SD-004, deliverable relation to DEL-02-03 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-020 | EXECUTION | CONSTRAINT | DEL-07-03 (governed workflow file owns rung-related truth) | ACTIVE | `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` |
-| DEP-02-04-021 | EXECUTION | CONSTRAINT | EXTERNAL Root-owned daemon session record (TargetLocation TBD) | ACTIVE | `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` |
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -166,3 +159,13 @@ Closure notes:
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=21; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_00_03_PREVIEW.csv`; current rows: ACTIVE=21, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

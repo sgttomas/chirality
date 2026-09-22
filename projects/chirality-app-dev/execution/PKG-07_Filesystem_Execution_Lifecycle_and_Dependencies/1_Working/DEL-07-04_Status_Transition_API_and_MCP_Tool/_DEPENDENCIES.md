@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-07-04-001`, `DEP-07-04-002`, `DEP-07-04-003`, `DEP-07-04-004`, `DEP-07-04-006`, `DEP-07-04-007`, `DEP-07-04-008`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: NONE. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -66,16 +66,19 @@ Counts:
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 7 |
 | RETIRED | 1 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| NOT_APPLICABLE | 3 |
-| PENDING | 4 |
-| TBD | 1 |
+| RequiredMaturity=SEMANTIC_READY | 8 |
+| ProposedMaturity=SATISFIED | 1 |
+| ProposedMaturity=SEMANTIC_READY | 2 |
+| ProposedMaturity=TBD | 5 |
+| SatisfactionStatus=NOT_APPLICABLE | 3 |
+| SatisfactionStatus=PENDING | 4 |
+| SatisfactionStatus=SATISFIED | 1 |
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
@@ -87,3 +90,15 @@ REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated R
 - **Current counts:** ACTIVE 7; RETIRED 1; NOT_APPLICABLE=3; PENDING=4; SATISFIED=1.
 - **Correction:** DEP-07-04-008 resolves to landed implementation modules and is SATISFIED; ResponsibleParty remains separate.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current evidence-locator refresh — 2026-09-22
+
+4 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

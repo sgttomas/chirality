@@ -46,13 +46,13 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Attribute | Value | Source |
 > |---|---|---|
-> | Deliverable purpose | Keep remote MCP, plugins, shipped bypass, non-macOS packaging, domain operations, and retired PKG-08 items outside active scope unless amended. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04 |
+> | Deliverable purpose | Record current scope boundaries as amended by D-GOV-43 while preserving non-macOS packaging, retired PKG-08 and domain-apply exclusions. | D-GOV-43; D-APP-127/131 and accepted decomposition |
 > | Anticipated artifacts | Out-of-scope register; retired-scope notes; amendment triggers. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04 |
 > | Covered scope items | SOW-065, SOW-076, SOW-077, SOW-078. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §Scope Item Ledger |
-> | Remote MCP/plugins status | Out of current scope; remote MCP, plugins, remote execution, marketplace extension, and shell-network expansion require governed future scope. | `docs/PRD.md` §3.2, §6.4; `docs/CONTRACT.md` §1.9 K-NET-1 |
-> | Shipped bypass/settings status | Shipped builds must not load ambient Claude settings or use ordinary `bypassPermissions`; developer-only bypass remains guarded. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.4 K-SDK-1 and §1.6 K-PERM-6 |
+> | Remote MCP/plugins status | Codex uses shared user configuration/resources and user-selected sandbox/approval policy under D-GOV-43. This does not authorize an independent App plugin/marketplace implementation or new domain apply scope. | D-GOV-43; D-APP-127; D-APP-131 P-04/P-13 |
+> | Shipped bypass/settings status | Honor user-selected Codex policy, including Full access; no retired fixed-policy or Claude settingSources prerequisite applies to the current path. Actual protection and human authority remain separate. | D-GOV-43; D-APP-127/132 |
 > | Retired PKG-08 status | Retired execution-scope items remain out of scope unless reactivated by governed amendment; runtime event logging does not reactivate retired hardening scope. | `docs/PRD.md` §3.2 and §12.1; `docs/PLAN.md` §9 / PKG-08 status; `docs/CONTRACT.md` §1.9 K-RETIRED-1 |
-> | Non-macOS packaging status | Windows/Linux packaging is out of scope until amended; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG. | `docs/PRD.md` §6.4; `docs/CONTRACT.md` §1.9 K-RELEASE-1 |
+> | Non-macOS packaging status | Windows/Linux packaging is out of scope until amended; current release target is macOS 15+ Apple Silicon DMG with D-GOV-43 signing/notarization integrity; release authorization remains separate. | `docs/PRD.md` §6.4; `docs/CONTRACT.md` §1.9 K-RELEASE-1 |
 > | Domain operation status | Domain-engine integration and operation execution are future-amendment scope; agents must not write protected domain-engine model truth and applying domain operations requires explicit human acceptance. | `docs/PRD.md` §6.4 and R7; `docs/CONTRACT.md` §1.10 |
 > | Amendment authority | Changes that alter scope, release target, data contracts, professional-boundary posture, runtime engine semantics, permission behavior, transcript canonicality, or retired/active execution scope require governed product change. | `docs/DIRECTIVE.md` §7 |
 >
@@ -63,7 +63,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Condition | Value | Source |
 > |---|---|---|
-> | Reference integrity | `docs/PRD.md` is REF-006 and matches the current D-APP-38 corpus snapshot in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
+> | Reference integrity | `docs/PRD.md` is REF-006 and matches the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
 > | Dependency extraction | Existing derivative `Dependencies.csv` is owned by the separate dependency-extract workflow; this checklist normalization does not create, edit, satisfy, or retire rows. | `_DEPENDENCIES.md`; `Dependencies.csv` |
 > | Human authority | Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance. | `docs/TYPES.md` §3.3; `docs/DIRECTIVE.md` §3 |
 > | Unknown values | Unknown values remain `TBD`; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | `docs/CONTRACT.md` §1.7 K-INVENT-1 |
@@ -75,7 +75,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 
 > ##### Construction
 >
-> The register should be constructed as a documentary control surface with at least these record families:
+> The register uses CLM-006 as its concrete artifact for the following record families. Source references and current dispositions provide review evidence/approval status; retired-scope row BR-003 explicitly separates prohibited reactivation from allowed adjacent logging:
 >
 > | Record Family | Minimum Fields | Status |
 > |---|---|---|
@@ -91,17 +91,16 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > In the SOW-v1 production set, the concrete register-row artifact is this `ScopeOfWork.md` CLM-006 section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.
 >
 > ADQ-03 also materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized review checklist for
-> scope-boundary and professional-boundary checks. The human ruling fields below remain `TBD` until an
-> accountable human records rulings or explicit deferrals.
+> scope-boundary and professional-boundary checks. The rows retain the actual D-APP-56 rulings/deferrals and their later D-GOV-43 amendments; no duplicate ruling is pending.
 >
 > | RowID | Boundary Item | Boundary Statement | Source Reference | Amendment Trigger | Current Status | Human Ruling |
 > |---|---|---|---|---|---|---|
-> | DEL-01-04-BR-001 | SOW-065 remote MCP/plugins/tool expansion | Remote MCP servers, plugins, remote execution, plugin marketplace, and broad tool search remain outside current scope until local SDK governance, permissions, hooks, event logging, and result storage are reliable. | `docs/PRD.md` §3.2 and §6.4; `docs/CONTRACT.md` §1.9 K-NET-1; `docs/PLAN.md` §11 | Governed amendment that admits remote or expanded tool scope and updates governance, tests, release checks, and implementation artifacts. | OUT | DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized. |
-> | DEL-01-04-BR-002 | SOW-076 ambient settings and shipped bypass | Shipped builds must not load ambient Claude settings and must not use `bypassPermissions` in shipped or ordinary operator workflows; developer-local bypass remains guarded. | `docs/PRD.md` §3.2 and FR-117; `docs/CONTRACT.md` §1.4 K-SDK-1 and §1.6 K-PERM-6 | Governed amendment plus SDK option, hook, environment guard, and release-check updates. | OUT | DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized. |
+> | DEL-01-04-BR-001 | SOW-065 extension boundary | Codex uses shared user configuration/resources and user-selected sandbox/approval policy under D-GOV-43. This does not authorize an independent App plugin/marketplace implementation or new domain apply scope. | D-GOV-43; D-APP-127/131 | New App-owned extension products require accepted scope and verification. | AMENDED for native Codex configuration; independent App expansion remains OUT | Apply settled D-GOV-43; D-APP-56 earlier deferral remains historical |
+> | DEL-01-04-BR-002 | SOW-076 configuration/policy boundary | Shared Codex configuration and user-selected sandbox/approval policy are accepted; Full access grants no normative authority. | D-GOV-43; D-APP-127/132 | Accepted scope changes retain their governing process; current protection gaps need implementation/evidence. | AMENDED current Codex path | D-GOV-43 supersedes old fixed-policy settings/bypass subject |
 > | DEL-01-04-BR-003 | SOW-077 retired PKG-08 scope | Retired PKG-08 execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling remain retired; harness runtime event logging does not reactivate them. | `docs/PRD.md` §3.2 and KG-012; `docs/PLAN.md` §9; `docs/CONTRACT.md` §1.9 K-RETIRED-1 | Governed amendment that explicitly reactivates retired execution scope and updates active decomposition/package commitments. | OUT | DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized. |
-> | DEL-01-04-BR-004 | SOW-078 Windows/Linux packaging | Windows/Linux release packaging remains outside current release scope; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG. | `docs/PRD.md` §6.4 and KG-014; `docs/CONTRACT.md` §1.9 K-RELEASE-1 | Governed release-scope amendment with packaging, validation, and instruction-root integrity updates. | OUT | DEFERRED 2026-07-12 — D-APP-56 R4-P22; no release-scope amendment authorized. |
+> | DEL-01-04-BR-004 | SOW-078 Windows/Linux packaging | Windows/Linux release packaging remains outside current release scope; current release target is macOS 15+ Apple Silicon DMG with D-GOV-43 signing/notarization integrity; release authorization remains separate. | `docs/PRD.md` §6.4 and KG-014; `docs/CONTRACT.md` §1.9 K-RELEASE-1 | Governed release-scope amendment with packaging, validation, and instruction-root integrity updates. | OUT | DEFERRED 2026-07-12 — D-APP-56 R4-P22; no release-scope amendment authorized. |
 > | DEL-01-04-BR-005 | Domain operation execution and protected domain paths | Domain-engine integration as a shipping feature, direct protected-domain-path writes, and domain operation execution remain future-amendment scope; ruled staged read tools and loopback propose/refresh/validate tools are in scope, while apply and direct protected-path writes remain out. | `docs/PRD.md` §6.4 and FR-106 through FR-115; `docs/CONTRACT.md` §1.10; `docs/PLAN.md` R7; D-APP-49 through D-APP-52 | Governed domain-profile amendment with protected-path, proposal, deterministic-adapter, and human-gate controls. | OUT, except ruled staged read/proposal surface | RULED 2026-07-12 — D-APP-56 R4-P22/P25 ratifies the staged carve-in; apply and protected-path writes remain OUT. |
-> | DEL-01-04-BR-006 | Provider/residency expansion and Pi runtime use | Concrete provider/residency expansion is default-closed and requires explicit owner configuration/ruling under D-APP-44 F1. Pi remains pattern-corpus-only: no adapter, import, fork, Node 22 sidecar, runtime-floor migration, or spike is authorized. | SCA-APP-001; D-APP-01; D-APP-02; D-APP-44 F1; `docs/PRD.md` §3.2 | Explicit owner provider/residency authorization plus bounded implementation and verification; a separate scope reversal is required for any Pi runtime use. | OUT except explicitly owner-permitted provider/residency configurations | RULED 2026-07-12 — D-APP-56 R4-P06(f); retain default-closed posture and Pi prohibition. |
+> | DEL-01-04-BR-006 | Provider/residency boundary | Codex is the sole MVP engine. Future local models are Codex model providers; no second engine qualification or residency requirement follows. | D-APP-72/SCA-APP-002 historical bounded Pi path; D-GOV-43 item 13 | Any new provider scope requires its actual authority and current verification. | Legacy Pi path is compatibility history; current Codex-only qualification | D-GOV-43/D-APP-127 applies; no repeated Pi-prohibition vote |
 >
 
 ### CLM-007 — References
@@ -115,8 +114,8 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | REF-003 | `docs/SPEC.md` | Runtime mechanics and boundary surfaces; used only where source slices were relevant. |
 > | REF-004 | `docs/TYPES.md` | Authority model and vocabulary. |
 > | REF-005 | `docs/PLAN.md` | Roadmap sequencing, PKG-08 retirement notes, and future-amendment exclusions. |
-> | REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; the current D-APP-38 corpus snapshot records a matching authority-doc hash. |
-> | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method reference; no deliverable-specific requirements extracted. |
+> | REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records a matching authority-doc hash. |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | Decomposition method reference; no deliverable-specific requirements extracted. |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -134,7 +133,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > In scope:
 >
 > - Record that remote MCP, plugins, remote execution, broad tool search before mature local governance, and marketplace extension are outside current scope unless amended.
-> - Record that shipped ambient Claude settings and ordinary shipped `bypassPermissions` operation are outside current scope and forbidden by product invariants.
+> - Record the accepted shared Codex configuration and user-selected policy, with actual conditional enforcement and preserved domain/human boundaries.
 > - Record that retired PKG-08 execution-scope items remain retired unless a governed amendment explicitly reactivates them.
 > - Record that Windows/Linux release packaging is outside current release scope unless amended.
 > - Record that domain operation execution and protected-domain-path writes are future-amendment concerns, not current shipping scope.
@@ -157,12 +156,12 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | ReqID | Requirement | Verification | Source |
 > |---|---|---|---|
 > | DEL-01-04-REQ-001 | The register must include SOW-065, SOW-076, SOW-077, and SOW-078 as boundary items. | Inspect register rows against decomposition scope item ledger. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §Scope Item Ledger |
-> | DEL-01-04-REQ-002 | Remote MCP, plugins, remote execution, marketplace extension, and shell-network expansion must remain outside current scope unless a governed future amendment explicitly permits them. | Confirm each item appears as out of scope with amendment trigger. | `docs/PRD.md` §3.2, §6.4; `docs/CONTRACT.md` §1.9 K-NET-1 |
-> | DEL-01-04-REQ-003 | Shipped builds must not load ambient `~/.claude/settings.json` or `.claude/settings.local.json`. | Confirm boundary row cites shipped settings prohibition and routes change attempts to governed amendment. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.4 K-SDK-1 |
-> | DEL-01-04-REQ-004 | Shipped builds and ordinary operator workflows must not use `bypassPermissions`; developer-only bypass remains guarded by explicit local configuration and Chirality deny hooks. | Confirm boundary row distinguishes shipped/ordinary operation from developer-local guarded use. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.6 K-PERM-6 |
+> | DEL-01-04-REQ-002 | Codex uses shared user configuration/resources and user-selected sandbox/approval policy under D-GOV-43. This does not authorize an independent App plugin/marketplace implementation or new domain apply scope. | Verify current scope and configuration against D-GOV-43; retain App extension exclusion. | D-GOV-43; D-APP-127/131 |
+> | DEL-01-04-REQ-003 | Codex shall use shared configuration/resources with authentication separated; legacy Claude settings isolation is compatibility history. | Effective-home and S-8 checks. | D-GOV-43; D-APP-127 |
+> | DEL-01-04-REQ-004 | The user selects Codex sandbox/approval policy, including Full access; this grants no authority to cross domain scope or human gates. | Current policy mapping and surviving protection checks. | D-GOV-43; D-APP-132 |
 > | DEL-01-04-REQ-005 | Retired execution-scope items, including retired PKG-08 deliverables, must remain out of scope unless reactivated by governed amendment. | Confirm retired-scope notes identify prohibited reactivation and allowed adjacent runtime event logging. | `docs/PRD.md` §3.2, §12.1; `docs/PLAN.md` §9; `docs/CONTRACT.md` §1.9 K-RETIRED-1 |
 > | DEL-01-04-REQ-006 | Harness runtime event logging must not be treated as reactivating retired unified pipeline run records or broader PKG-08 hardening scope. | Confirm retired PKG-08 note separates runtime event logging from retired pipeline hardening scope. | `docs/PLAN.md` §9; `docs/PRD.md` §3.2 |
-> | DEL-01-04-REQ-007 | Windows/Linux release packaging must remain out of current release scope until amended; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG. | Confirm packaging boundary row names current release target and amendment condition. | `docs/PRD.md` §6.4; `docs/CONTRACT.md` §1.9 K-RELEASE-1 |
+> | DEL-01-04-REQ-007 | Windows/Linux release packaging must remain out of current release scope until amended; current release target is macOS 15+ Apple Silicon DMG with D-GOV-43 signing/notarization integrity; release authorization remains separate. | Confirm packaging boundary row names current release target and amendment condition. | `docs/PRD.md` §6.4; `docs/CONTRACT.md` §1.9 K-RELEASE-1 |
 > | DEL-01-04-REQ-008 | Domain-engine operation execution must remain future-amendment scope; domain operations require proposal records and explicit human acceptance before application. | Confirm domain boundary row cites future-amendment status and human gate. | `docs/PRD.md` §6.4 and R7; `docs/CONTRACT.md` §1.10 K-DOMAIN-3 |
 > | DEL-01-04-REQ-009 | The register must not imply automated professional approval, code compliance, external validation, or solver truth owned by Chirality. | Review copy for professional-boundary language. | `docs/DIRECTIVE.md` §3; `docs/CONTRACT.md` §1.2 K-AUTH-1 and K-PROF-1 |
 > | DEL-01-04-REQ-010 | Unknown or unsupported scope facts must remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed entries rather than invented content. | Inspect rows and notes for unsupported facts. | `docs/CONTRACT.md` §1.7 K-INVENT-1 and K-CONFLICT-1 |
@@ -177,7 +176,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > |---|---|
 > | `docs/DIRECTIVE.md` | Governs founding intent, professional responsibility, out-of-scope posture, and change discipline. |
 > | `docs/CONTRACT.md` | Governs binding invariants for scope boundaries, settings, permissions, retired scope, and human authority. |
-> | `docs/PRD.md` | Governs current vNext product requirements and explicit non-goals; the current D-APP-38 corpus snapshot records REF-006 as matching. |
+> | `docs/PRD.md` | Governs current vNext product requirements and explicit non-goals; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records REF-006 as matching. |
 > | `docs/PLAN.md` | Governs roadmap sequencing and retired PKG-08 interpretation. |
 > | `docs/TYPES.md` | Governs agent authority vocabulary and domain proposal vocabulary. |
 > | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Governs DEL-01-04 identity, scope item mapping, and objective mapping. |
@@ -240,9 +239,9 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | Prerequisite | Status |
 > |---|---|
 > | Deliverable-local context exists at `_CONTEXT.md`. | Available. |
-> | Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under the current D-APP-38 corpus snapshot. |
+> | Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance). |
 > | Decomposition entry exists for DEL-01-04. | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
-> | Human-declared upstream dependencies. | TBD; `_DEPENDENCIES.md` declares none extracted yet. |
+> | Human-declared upstream dependencies. | The 13-row derivative register exists (UPD-104); actual formal states remain in Dependencies.csv. |
 > | ResponsibleParty assignment. | TBD; must remain TBD until human assignment. |
 >
 
@@ -264,8 +263,8 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > 4. Build the out-of-scope register content.
 >    - Maintain the concrete register-row artifact in this `ScopeOfWork.md` CLM-006 unless a governed publication step moves the rows to a dedicated register file.
->    - Include SOW-065 for remote MCP, plugins, remote execution, marketplace extension, and broad tool search before mature governance.
->    - Include SOW-076 for ambient Claude settings and shipped/ordinary `bypassPermissions`.
+>    - Include SOW-065 as amended: native Codex configuration is accepted; independent App extension products remain outside this scope.
+>    - Include SOW-076 as amended for shared Codex configuration and user-selected policy.
 >    - Include SOW-078 for Windows/Linux release packaging.
 >    - Mark amendment requirements from `docs/DIRECTIVE.md` §7 and `docs/PRD.md` §12.1.
 >
@@ -312,7 +311,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | Boundary review checklist | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` exists and preserves checklist completion as evidence only. |
 > | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
 > | Status | Current state is read from `_STATUS.md`; no lifecycle transition occurs in this checklist normalization. |
-> | Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by the current D-APP-38 corpus snapshot. |
+> | Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance). |
 >
 
 ### CLM-019 — Records
@@ -337,7 +336,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > UPD-104 supersedes the setup-era statement that no dependency rows had been extracted: the 13-row derivative register exists and remains owned by the separate dependency workflow.
 
-- **VER-001** — Run deterministic validation, claim mapping, parity, checklist derivation, and rendering checks, followed by human review.
+- **VER-001** — Verify current requirement traceability, source fidelity and named checks against this candidate. One-time conversion mapping/parity/render evidence remains historical (R5/CONVERSION_EVIDENCE_REVIEW.csv); it does not establish current behavioral qualification or personal human review.
 
 ## Governing Values and Decisions — Axiology
 
@@ -363,12 +362,12 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >    Source: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` marks SOW-065, SOW-076, SOW-077, and SOW-078 as `OUT`.
 >
 > 2. A future-facing statement is not current shipping scope.
->    Domain-engine profiles, plugin-like extension points, and remote MCP may be described as future-compatible concepts, but implementation requires amendment and mature local governance first. Sources: `docs/PRD.md` §6.4, §8.14 FR-105, R7; `docs/PLAN.md` R7.
+>    Independent App extension products and domain apply remain gated; native Codex configuration/capabilities follow D-GOV-43 without recreating retired admission restrictions. Sources: `docs/PRD.md` §6.4, §8.14 FR-105, R7; `docs/PLAN.md` R7.
 >
 > 3. Runtime event logging is allowed runtime infrastructure, but it does not revive retired pipeline hardening work.
 >    Source: `docs/PLAN.md` §9; `docs/PRD.md` §3.2.
 >
-> 4. Shipped safety posture cannot depend on SDK defaults, ambient user settings, ordinary bypass behavior, or prompt text alone.
+> 4. Do not infer protection from prompts, mode labels or opaque defaults. Honor accepted shared Codex settings and user-selected policy; verify each surviving control at its owning surface.
 >    Sources: `docs/CONTRACT.md` §1.4 K-SDK-1, §1.6 K-PERM-2/K-PERM-3/K-PERM-6; `docs/PRD.md` §3.2.
 >
 > 5. Human authority remains non-delegable.
@@ -382,10 +381,10 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | Topic | Guidance | Source |
 > |---|---|---|
 > | Boundary-row placement | Inspect the concrete boundary rows in `ScopeOfWork.md` CLM-006; that section is the current register-row artifact unless a governed publication step moves the rows elsewhere. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7 |
-> | Remote MCP and plugins | Keep as out of current scope until local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable and a governed amendment permits expansion. | `docs/PRD.md` §3.2, §6.4; `docs/PLAN.md` §11 |
-> | Broad tool search | Treat as deferred; if later introduced, it must reveal only currently allowed tools and never denied tools. | `docs/PRD.md` §8.14 FR-103 |
-> | Shipped settings | Do not allow shipped builds to load ambient Claude settings. A change attempt should trigger governance review before implementation. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.4 K-SDK-1 |
-> | Bypass permissions | Separate developer-local guarded bypass from shipped or ordinary operator workflows. Do not blur this distinction in copy, config, or tests. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.6 K-PERM-6 |
+> | Remote MCP and plugins | Native Codex configuration follows D-GOV-43 without App veto; independently building an App extension product still requires its accepted scope. | D-GOV-43; D-APP-127/131 |
+> | Broad tool search | Codex native capabilities follow shared configuration and chosen policy; this document creates no independent App tool-search feature. | D-GOV-43; D-APP-131 |
+> | Shipped settings | Use shared Codex configuration and native discovery under D-GOV-43; authentication separation remains required. | D-GOV-43; D-APP-127 |
+> | Bypass permissions | Full access is an accepted user policy choice, not a waiver of normative boundaries or evidence of universal prevention. | D-GOV-43; D-APP-132 |
 > | Retired PKG-08 items | Keep retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling out of current commitments. | `docs/PLAN.md` §9; `docs/PRD.md` KG-012 |
 > | Release targets | Treat macOS 15+ Apple Silicon DMG as the current release target; Windows/Linux packaging needs amendment. | `docs/CONTRACT.md` §1.9 K-RELEASE-1; `docs/PRD.md` §6.4 |
 > | Domain operations | Keep domain operation execution behind future profile, proposal, deterministic checks, and human acceptance. | `docs/CONTRACT.md` §1.10; `docs/PRD.md` R7 |
@@ -399,7 +398,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | Trade-off | Preferred Position | Rationale |
 > |---|---|---|
 > | Future compatibility vs current scope discipline | Preserve future vocabulary, but mark implementation as future-amendment scope. | Prevents premature implementation while keeping architectural runway. |
-> | Developer convenience vs shipped safety | Allow only guarded developer-local bypass; forbid shipped/ordinary bypass behavior. | Maintains product-owned permission boundaries and release posture. |
+> | Developer convenience vs shipped safety | Honor the user-selected Codex policy and verify surviving protection at actual surfaces. | D-GOV-43 replaces the old fixed-policy distinction without waiving human/domain controls. |
 > | Event logging vs retired pipeline scope | Permit runtime audit event logging; keep retired pipeline run records and hardening tools retired. | Preserves auditability without reactivating retired work. |
 > | Cross-platform ambition vs release certainty | Keep Windows/Linux packaging out of current scope. | Current release invariant names macOS 15+ Apple Silicon DMG unless amended. |
 >
@@ -411,8 +410,8 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | Scenario | Register Disposition |
 > |---|---|
 > | A developer proposes adding a plugin marketplace before local permission hooks are stable. | Mark as blocked by SOW-065; requires governed amendment after local governance maturity. |
-> | A packaged build reads `.claude/settings.local.json` from the working root. | Mark as forbidden by SOW-076 / K-SDK-1; requires correction, not amendment-by-default. |
-> | Runtime events are added under `.chirality/sessions/<id>/events.jsonl`. | Allowed as runtime audit infrastructure if aligned with runtime contract; do not relabel as unified pipeline run records. |
+> | A packaged build reads `.claude/settings.local.json` from the working root. | Legacy Claude compatibility example; current acceptance checks shared Codex configuration and separated authentication under D-GOV-43. |
+> | Runtime events are added under the Runtime-owned userData session/event store. | Allowed as runtime audit infrastructure if aligned with runtime contract; do not relabel as unified pipeline run records. |
 > | A release issue asks for Windows packaging in the current slice. | Mark as out of scope under SOW-078; requires release-scope amendment. |
 > | A domain adapter attempts to write directly to protected domain-engine model paths. | Mark as out of current scope and prohibited by domain boundary policy; future work must use proposal records and human acceptance. |
 >
@@ -425,7 +424,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > |---|---|---|---|---|---|---|
 > | CF-001 | Dispatch path names `PKG-01_Governance_and_Product_Boundaries`, but the only matching deliverable folder on disk is under `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch | Filesystem path and `_CONTEXT.md` PackageName | Run record, final report | Use the located deliverable folder for this run and surface the stale path as a warning. | TBD |
 >
-> Closed historical conflict: `CF-002` is superseded by the current D-APP-38 corpus snapshot; current `_REFERENCES.md`
+> Closed historical conflict: `CF-002` is superseded by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); current `_REFERENCES.md`
 > records REF-006 `docs/PRD.md` as `MATCH`.
 >
 
@@ -435,8 +434,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > ADQ-03 materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the shared review checklist package. For
 > DEL-01-04, it supplies the scope-boundary checklist, amendment-trigger prompts, and finding template.
-> The boundary-row human ruling fields remain `TBD` until an accountable human records rulings or
-> explicit deferrals.
+> Boundary rows retain their actual D-APP-56 rulings/deferrals and subsequent D-GOV-43 application, without inventing a fresh owner act.
 
 ## Output and Evaluation Matrix
 

@@ -6,20 +6,25 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
+
 ## Remaining
 
-- **DEL-08-05-V3-01** (`NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures (accepted DEL-02-07 and DEL-02-10 returns routed to App) and DEL-08-04-V3-01 landed; G4 for claims`) — reconstructible evidence records for managed and native descendants.
-  Trace: OUT-002, REQ-001 through REQ-004, AC-002, VER-002; CLM-037.
-  Plan: WP-06; G4; AT-028 evidence portion; AT-045 attribution portion. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: DEL-08-04-V3-01 (DEP-08-05-004/011); Root accepted class semantics (D-GOV-35 notice) and WP-03/05 fixtures.
-  Write locus: Checkout AgentRun and native-descendant evidence writers/readers under `frontend/src/lib/harness/**`, replay fixtures, and deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: Managed/native replay and reconstruction fixtures proving parentage, origin/lineage, role-entry state, actual adapter/provider/model, digests, approvals, status, artifact paths, cancellation/cleanup, and `instruction-asserted` calibration without class conflation; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the evidence records land with G4 evidence.
+The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-08-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 3 authority application, 1 changed claim followthrough, 23 implementation or evidence, 13 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-08-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-08-05-V3-01** — Complete reconstructible managed/native descendant records and return/artifact linkage under CLM-037; preserve actual supplied basis, class, parentage, model attribution, decisions, status and enforcement limits.
+  Locus/owner: Runtime AgentRun/native-event/session-store writers/readers; App replay interface; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Managed/native reconstruction, denial before/after allocation, cancellation/cleanup, artifact retrieval and structural secret-redaction checks.
+  Gate: DEL-08-04 live interface and current Runtime contract/accepted returns; optional D117 replay is not required.
+
+- **DEL-08-05-VERIFY** — Record VER-001/002 outcomes against current class-aware event/store/artifact behavior; legacy subagent.* tests are not native lineage proof.
+  Locus/owner: CLM-006/012/032/037 evidence hooks; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Candidate-bound event, record and artifact fixtures with full Codex payload preservation and redaction before sinks.
+  Gate: No new result inferred from source presence.
+
 
 ## History
+- 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; decomposition-conformant v3 outputs/requirements (OUT-002, REQ-*, AC-002, VER-002) added from the Gate-5 row text only; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

@@ -1,5 +1,27 @@
 # Document Diff Checklist — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| D-01 | Six current document byte hashes are observed in W00_03_GOVERNANCE_SOURCE_STATE.json. MATCH below is a July finding; manager D-APP-38 registration/recompute establishes current accepted source state, never an automatic re-pin. |
+| D-02 | DIRECTIVE and CONTRACT authority/project-truth/human controls remain applicable; runtime, policy and engine subjects apply D-GOV-43 / D-APP-127. Current record corrections are documented in Notes N-02/N-03/N-05/N-06/N-08. |
+| D-03 | Current interface requirements retain audit, lifecycle, root and attachment controls while Codex owns native approval/sandbox policy. Former fixed-policy implementation mechanics are not current mandates. |
+| D-04 | REPAIRED: full Codex notification/protocol preservation replaces closed event/tool/category lists as current coverage limits. Historical named IDs remain traceable, and current conformance is a delivery check. |
+| D-05 | REPAIRED: Codex-only stock App Server direction and user-selected settings/policy supersede SDK key-aware/Pi defaults and OPEN RESIDENCY as current MVP selection. Historical provider records remain evidence only. |
+| D-06 | Current stable IDs and accepted decomposition pins remain intact; CLM-012 names all seven required artifacts. The anticipated five-artifact list was non-exhaustive, not an unresolved scope conflict. |
+| D-07 | SOW-074 human/professional authority remains a requirement; documentary alignment does not prove actor authentication or the live UI sweep. See Human checklist H-10/H-11. |
+| D-08 | SOW-075 project truth remains filesystem/Git based; shared native Codex memory/settings/threads are accepted non-authoritative resources. An import UI is not a D-GOV-43 item-5 release prerequisite. |
+| D-09 | OBJ-009 product identity and non-binding professional boundaries remain current; current register/control verification and DEL-01-03 live copy review remain explicit delivery obligations. |
+| D-10 | REPAIRED: Chirality product identity coexists with the published full Codex protocol. Old adapter-name translation/isolation requirements cannot filter Codex notifications or remove native configuration. |
+| D-11 | REPAIRED: current ResponsibleParty follows D-APP-65/68. Original W-01 remains a dated historical observation only. |
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

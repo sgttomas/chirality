@@ -6,28 +6,20 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
+
 ## Remaining
 
-- **DEL-09-03-V3-01** (`NOT_SELECTABLE_UNTIL: the extensible event representation of D-GOV-43 item 2 lands on the production path`) — regression expansion within the named behavior groups against the extensible event representation and its explicit terminal outcomes (the closed schema v2 gate is retired, D-APP-127).
-  Trace: OUT-001, AC-001, VER-001; DEL-09-03-REQ-002/004/005/009/011; applied decomposition row L366 (focused tests bounded to TurnEngine, SSE, event replay, attachments, status, dependencies, interrupts, and denied actions).
-  Plan: WP-10; AT-013/AT-014/AT-015/AT-021 App-client test portions; G-WIRE. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: DEP-09-03-013; DEL-03-03-V3-01 and DEL-05-02-V3-01 as revised under D-APP-127. Test families outside the named groups (migration, account, consent, role, delegation, accessibility) are carried by their owning carriers' own test outputs, not here.
-  Write locus: `frontend/src/__tests__/**`, fixtures, and deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: Behavior-group coverage table and test/fixture bytes for the named groups against the accepted schema identity; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the named-group expansion lands with G-WIRE evidence.
-- **DEL-09-03-V3-02** (`NOT_SELECTABLE_UNTIL: the consolidated signed build of the re-platformed App exists under the short packaging procedure`) — post-build affected-check rerun against the consolidated signed build (re-pointed under D-APP-127; the G6a exact-candidate ruling and the Stage 9 to 13 spine are retired).
-  Trace: OUT-001, AC-001, VER-001; DEL-09-03-REQ-012.
-  Plan: `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md` (post-build minimum S-6, S-8, signature and Codex pin verification, not a ceiling; repeat an affected check when a source, configuration or packaging change invalidates its earlier evidence; `instruction-root:integrity` for packaged instruction roots). The 2026-08-22 release execution plan is historical reference only.
-  Depends: independent source review of the re-platformed App and the consolidated signed build; DEL-09-05-V3-05 as revised.
-  Write locus: Deliverable-local evidence only; no product byte.
-  Checks: only the checks whose earlier evidence a source, configuration or packaging change invalidated, rerun against the built bytes in disposable user state; the run record cites the built artifact identity.
-  Return: Rerun evidence bound to the exact built bytes; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the post-build affected checks are recorded against the consolidated build and the owner's native verification is recorded.
+The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-09-03-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 4 authority application, 7 implementation or evidence, 23 record repair, 1 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-09-03.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-09-03-V3-01** — Produce an eight-group candidate-bound coverage table for Runtime lifecycle, SSE, replay, attachments, status, dependencies, interrupts and denied actions; repair missing current-path checks.
+  Locus/owner: frontend tests and Runtime owning test surfaces; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Malformed-tail Runtime replay, unfamiliar notifications/request replies, disconnect semantics, whole-set attachment rejection and current approval outcomes; record compatibility reach.
+  Gate: Bounded product/test brief and actual Runtime interfaces; no new test pass claimed by records.
+
 
 ## History
+- 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-12 - D-GOV-43 application (`execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`): V3-02 kept and re-pointed from the G6a exact-candidate ruling to the short packaging procedure's post-build affected-check rule; V3-01's closed-schema-v2 gate re-expressed to the extensible event representation. No lifecycle, Checking Approval SHA or implementation change; executed history unchanged.

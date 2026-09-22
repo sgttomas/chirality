@@ -14,7 +14,7 @@ package_objective_refs: [OBJ-001, OBJ-008]
 This Scope of Work defines `DEL-02-05` in service of project scope [SOW-013, SOW-019, SOW-023] and package objectives [OBJ-001, OBJ-008].
 
 - **OUT-001** — API-key UI and runtime-feedback contract for DEL-02-05, traceable to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008.
-- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-02-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 297 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): API key and account settings panel; `HostedEngineConsentPort` UI adapter; per-root login and command-network consent controls; attachment picker and preview chips; typed storage/runtime error display; consent/revocation and retry-state tests. Traceable to SOW-013, SOW-019, SOW-023 and OBJ-001, OBJ-008.
+- **OUT-002** — Current account/Settings, attachment, typed-feedback and retry-state outputs for SOW-013, SOW-019, SOW-023 and OBJ-001/008, as adapted by D-GOV-43/D-APP-127. Codex credential custody and production S-8 replace the retired hosted-consent/supplier mechanisms.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-023 is supported here
 through the selected-working-root attachment UI, including multi-select
@@ -48,10 +48,10 @@ Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 ### Current acceptance obligations
 
 1. Present one app-wide account using Codex-held credentials and Codex's login/logout flow. The effective home shares user configuration/resources by reference while keeping authentication private to Chirality. Per-root hosted consent and unchanged root-private login semantics are superseded by D-APP-127; user-selected project/turn permission policy remains explicit.
-2. The inherited Q7 account-row requirement (local-model-server status only, no OpenAI/API status indicator) remains a separately identified presentation conflict against the later shell/account direction. Its resolution must cite the actual owner direction; it is not silently decided by this custody repair.
+2. D-APP-108 Q7 permits a local-model-server status indicator and excludes an OpenAI/API service-health indicator. The later Codex account row shows authentication/account state, which is distinct from API service health. Verify truthful local-model status where shown and Codex account state without reopening Q7; D-APP-127 retires local-model residency as a live-login prerequisite.
 3. The account row and right-panel Settings retain their accepted presentation loci. Account/runtime feedback and appearance controls must be truthful; fixture/unavailable state does not establish live readiness. Legacy key-storage panels, per-root account groups, supplier qualification and G3/G-CSP/G4 are not current live-login prerequisites under D-APP-127. Surviving attachment, renderer, credential separation and secret-protection guarantees remain required.
 4. Live-login evidence follows the production S-8 check and the affected-check rule after invalidating source, configuration or packaging changes. The retired Root DEL-02-09 shared-login admission is not an awaited dependency. This wording does not supply a missing native result.
-5. The inherited Agent 0/1/2 entry and exact `role not mechanically enforced` / `Opt-in Preview` labels remain separately tracked for source-faithful reconciliation with the current four-role instructions. Current instruction applicability does not certify acceptance of a new authority-corpus candidate or waive role/write-scope accountability.
+5. Current direct entry is HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is delegated under Root/App instructions and D-APP-131 P06. Older Agent 0/1/2 and posture labels are dated carrier wording; verify truthful role/write-scope accountability without reopening the four-role ruling or claiming authority-corpus acceptance.
 
 Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131. Verification hook: production S-8 in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/NATIVE_CHECKLIST.md`; unresolved Q7/role and native-result keys remain in the R5 accounting.
 
@@ -60,8 +60,7 @@ Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131. 
 Remaining items seated under D-APP-108 (2026-09-04): DEL-02-05-V3-05. Ruled
 questions applied here: Q7, Q8. Alignment writes WI-016, WI-017, WI-018, WI-019,
 WI-020 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
-DEP-007, DEP-008 await the registered dependency-extract pass after owner
-acceptance of this alignment. No lifecycle, Checking Approval SHA,
+DEP-007, DEP-008 were performed under D-APP-109/D-APP-110 on 2026-09-05; the extracted register now exists. No lifecycle, Checking Approval SHA,
 dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
@@ -70,7 +69,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Datasheet: DEL-02-05 API Key UI and Runtime Feedback
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-002 — Identification
@@ -82,7 +81,7 @@ dependency-acceptance, product, or release act is implied.
 > | DeliverableID | DEL-02-05 |
 > | DeliverableName | API Key UI and Runtime Feedback |
 > | PackageID | PKG-02 |
-> | PackageName | Desktop Shell, Navigation, and Operator State |
+> | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 > | ResponsibleParty | TBD |
 > | Type | UX_UI_SLICE |
 > | DecompositionVariant | SOFTWARE_DECOMP |
@@ -92,45 +91,19 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary UI surfaces | API key settings panel; typed error display; secure-storage error UI | `_CONTEXT.md` Deliverable Scope and Anticipated Artifacts; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-02-05 row |
-> | Scope items covered | SOW-013 typed runtime errors; SOW-019 API key storage and resolution | `_CONTEXT.md` Traceability; decomposition SOW ledger |
-> | Objective support | OBJ-001 and OBJ-008 | `_CONTEXT.md` Traceability; decomposition objectives table |
-> | Key status values | `ui`, `env`, `none` | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
-> | API key precedence | UI safeStorage key, then `ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY` | `docs/PRD.md` FR-030; `docs/SPEC.md` Section 12.3 |
-> | Browser-facing turn error event | `turn:error` | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
-> | Terminal stream event | `process:exit` | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
->
+Codex owns account credentials and login/logout. The App account row and right-panel Settings use the application-owned Runtime service and Codex account methods; the effective home shares user configuration/resources by reference and keeps Chirality auth private. The App must never read, copy or relay credentials, expose them in the renderer or persist them as project truth. Sign-out must leave another Codex client unchanged. S-8 on the production path, repeated after the consolidated signed build and affected changes, is the live-login evidence.
+
+Typed runtime feedback preserves actionable error information, draft text and attachments for retry. Full upstream events remain inspectable under SPEC §11; old turn:error/process:exit names are compatibility evidence, not a closed protocol. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | API key material must remain outside project truth | Required | `docs/CONTRACT.md` K-KEY-1; `docs/SPEC.md` Section 16.2; `docs/PRD.md` NFR-002 |
-> | Secure key storage location | `app.getPath('userData')/credentials/api-key.enc` | `docs/SPEC.md` Section 16.2 |
-> | Secure-storage mechanism | Electron `safeStorage` | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
-> | Runtime errors preserve retry context | Required for drafts and attachments | `docs/PRD.md` Section 7.3 and FR-020; decomposition SOW-013 |
-> | Runtime event/log redaction | API keys and configured secrets must be redacted | `docs/PRD.md` FR-075 and NFR-002; `docs/CONTRACT.md` K-EVENT-6 |
-> | PRD source integrity | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; dispatch override — reconciled under D-APP-38 |
->
+Codex owns account credentials and login/logout. The App account row and right-panel Settings use the application-owned Runtime service and Codex account methods; the effective home shares user configuration/resources by reference and keeps Chirality auth private. The App must never read, copy or relay credentials, expose them in the renderer or persist them as project truth. Sign-out must leave another Codex client unchanged. S-8 on the production path, repeated after the consolidated signed build and affected changes, is the live-login evidence.
+
+Runtime errors preserve retry context. Structural redaction applies to events, logs, artifacts and every renderer-facing error. Retained App safeStorage reports missing/storageUnavailable/decryptFailed/available only where that storage is still used; it is not Codex credential custody. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Component | Construction Notes | Source |
-> |---|---|---|
-> | API key settings panel | Must allow user key storage through Electron IPC and expose key source/status without exposing key material. Specific component path is TBD. | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
-> | Secure-storage feedback | Must report secure-storage unavailability as a user-visible error. Exact copy and visual treatment are TBD. | `docs/PRD.md` Section 7.7 |
-> | Typed runtime error display | Must map harness errors to title, message, and next-step text. Exact error taxonomy and component path are TBD for this UI slice. | `docs/PRD.md` FR-020; decomposition SOW-013 |
-> | Retry-preserving failure state | Must preserve drafts and attachments after runtime errors so the user can retry. Exact local state owner and final evidence path are TBD. | `docs/PRD.md` FR-020; decomposition SOW-013 and SOW-023 |
-> | SSE compatibility | UI behavior must preserve existing browser-facing SSE event names during runtime changes. | `docs/SPEC.md` Section 11; decomposition acceptance checklist |
->
+Provide truthful account state, typed actionable errors and retry-preserving draft/attachment state through the current account row/Settings and ChatPanel. `HarnessErrorType` is consumed from `@chirality/runtime-contracts`; UI must not redefine it. Verify with `frontend/src/__tests__/components/settings-view-codex.test.tsx`, `chat-panel-failed-send.test.ts`, and `chat-panel-native-attachments.test.tsx` in the same directory, plus production S-8. Live structural redaction remains a separate required result.
 
 ### CLM-006 — References
 
@@ -143,7 +116,7 @@ dependency-acceptance, product, or release act is implied.
 > - `docs/CONTRACT.md`
 > - `docs/DIRECTIVE.md`
 > - `docs/PLAN.md`
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - Earlier D-APP-38 observations are historical; consult current `_REFERENCES.md` observed hashes separately from accepted corpus pins.
 > - `docs/SPEC.md`
 > - `docs/TYPES.md`
 >
@@ -156,15 +129,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-028 — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
 
-> ##### Applied decomposition row for DEL-02-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
->
-> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
->
-> | Column | Applied row text |
-> |---|---|
-> | Description | Provide API key entry/status UI, secure-storage feedback, selected-working-root attachment controls, typed runtime errors, and retry-preserving failure states; serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and root-private app-owned `CODEX_HOME`, presenting login/logout/account and consent/revocation state, distinguishing `missing`, `storageUnavailable`, `decryptFailed`, and `available`, and offering the three per-root command-network postures: no command network by default, ask per destination with host/protocol context and the queued-request caveat plus explicit-user-only `acceptForSession`, or labelled command network on through `network_access = true`. Agent 0/1/2 role entry remains available for Codex sessions; Agent 2/TASK is labelled `role not mechanically enforced` when G-ROLE fails, and the product posture is labelled `Opt-in Preview`. |
-> | Principal outputs | API key and account settings panel; `HostedEngineConsentPort` UI adapter; per-root login and command-network consent controls; attachment picker and preview chips; typed storage/runtime error display; consent/revocation and retry-state tests |
-> | Notes | Explicit App account/consent UX carrier; Root retains account/consent semantics. No ambient `~/.codex` read or project-truth secret persistence. DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation. Live claims remain gated by the accepted Root/App account/consent contract, G3, G-CSP, and G4. |
+The earlier D-APP-56 key/SSE observations are dated compatibility history. Current account custody and presentation are governed by D-GOV-43/D-APP-127 and the controlling section; current verification is CLM-012 and production S-8.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -175,31 +140,9 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable covers the user-facing UI slice for API key entry/status, secure-storage feedback, typed runtime errors, and retry-preserving failure states in PKG-02.
->
-> In scope:
->
-> - API key settings/status UI for UI safeStorage and environment fallback state.
-> - User-visible secure-storage error feedback.
-> - Typed runtime error presentation with actionable title/message/next-step content.
-> - UI state preservation needed to retry after runtime failure.
-> - Browser-facing event compatibility where this UI consumes turn stream outcomes.
->
-> Out of scope:
->
-> - Runtime engine internals.
-> - Provider wrapper implementation.
-> - Redaction helper implementation.
-> - Network allowlist enforcement.
-> - Dependency extraction and `Dependencies.csv` creation.
-> - Remove-stored-key and reveal/hide controls are deliberate, unrequired
->   convenience UI. They do not add a product requirement or test obligation
->   under D-APP-56 R4-P01.
->
-> Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-02-05 row; `docs/PRD.md` Sections 7.3 and 7.7; `docs/SPEC.md` Sections 11, 12.3, and 16.2.
->
+Codex owns account credentials and login/logout. The App account row and right-panel Settings use the application-owned Runtime service and Codex account methods; the effective home shares user configuration/resources by reference and keeps Chirality auth private. The App must never read, copy or relay credentials, expose them in the renderer or persist them as project truth. Sign-out must leave another Codex client unchanged. S-8 on the production path, repeated after the consolidated signed build and affected changes, is the live-login evidence.
+
+Scope also includes attachment selection/preview and typed actionable runtime errors with drafts/attachments retained for retry. Runtime engine internals, credential handling internals and security implementation remain with their owners; this UI consumes truthful results. Historical Anthropic-key convenience controls do not establish a live Codex prerequisite. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-010 — Requirements
 
@@ -207,73 +150,39 @@ dependency-acceptance, product, or release act is implied.
 >
 > | ID | Requirement | Priority | Source |
 > |---|---|---:|---|
-> | DEL-02-05-R01 | The UI must provide an API key settings surface that allows key storage through Electron IPC without writing key material to the working root. | P0 | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
-> | DEL-02-05-R02 | The UI must display API key source/status as one of `ui`, `env`, or `none` without displaying key material. | P0 | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
-> | DEL-02-05-R03 | The UI must reflect API key precedence: UI safeStorage first, `ANTHROPIC_API_KEY` second, and `CHIRALITY_ANTHROPIC_API_KEY` third. | P0 | `docs/PRD.md` FR-030; `docs/SPEC.md` Section 12.3 |
-> | DEL-02-05-R04 | If secure storage is unavailable, the UI must report an error. | P0 | `docs/PRD.md` Section 7.7 |
+> | DEL-02-05-R01 | Codex owns account credentials and login/logout. The App account row and right-panel Settings use the application-owned Runtime service and Codex account methods; the effective home shares user configuration/resources by reference and keeps Chirality auth private. The App must never read, copy or relay credentials, expose them in the renderer or persist them as project truth. Sign-out must leave another Codex client unchanged. S-8 on the production path, repeated after the consolidated signed build and affected changes, is the live-login evidence. | P0 | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
+> | DEL-02-05-R02 | Display truthful Codex account state without credential material. Retained ui/env/none values describe legacy key compatibility only, not the live sign-in contract. | P0 | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
+> | DEL-02-05-R03 | Codex credential custody and effective-home separation govern current sign-in; the legacy Anthropic key-precedence chain is not a live Codex gate. | P0 | `docs/PRD.md` FR-030; `docs/SPEC.md` Section 12.3 |
+> | DEL-02-05-R04 | Report unavailable/error sign-in truthfully. Where App safeStorage remains used, expose its typed failure without leaking secrets. | P0 | `docs/PRD.md` Section 7.7 |
 > | DEL-02-05-R05 | Runtime errors shown in the UI must be typed and actionable, mapped to title, message, and next-step text. | P1 | `docs/PRD.md` FR-020; decomposition SOW-013 |
 > | DEL-02-05-R06 | Runtime error states must preserve draft prompt content and attachments for retry. | P1 | `docs/PRD.md` Section 7.3 and FR-020 |
-> | DEL-02-05-R07 | UI error handling must preserve browser-facing SSE compatibility for `turn:error` and `process:exit` outcomes. | P0 | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
+> | DEL-02-05-R07 | Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. | P0 | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
 > | DEL-02-05-R08 | UI surfaces must not treat API keys, runtime logs, UI state, SDK transcripts, or chat drafts as authoritative project truth. | P0 | `docs/DIRECTIVE.md` Project Truth sections; `docs/TYPES.md` Section 1.7; `docs/CONTRACT.md` K-FS-1 and K-KEY-1 |
 > | DEL-02-05-R09 | Any user-facing provider/SDK error detail exposed by this UI must be redacted for secrets. | P0 | `docs/PRD.md` FR-075 and NFR-002; `docs/CONTRACT.md` K-EVENT-6 |
-> | DEL-02-05-R10 | This UI slice MUST consume the product-owned `HarnessErrorType` from `@chirality/harness-contract` and MUST NOT redefine the canonical runtime taxonomy; provider-native errors remain adapter metadata. | P1 | `frontend/packages/harness-contract/src/types.ts`; `frontend/packages/harness-contract/src/errors.ts`; `Evidence_ORN-08_Runtime_Error_Taxonomy_Ownership.md` |
+> | DEL-02-05-R10 | Consume the canonical HarnessErrorType from @chirality/runtime-contracts; do not redefine Runtime taxonomy. Preserve typed actionable errors and upstream evidence subject to redaction. | P1 | `projects/chirality-runtime/packages/contracts/src/types.ts`; `projects/chirality-runtime/packages/contracts/src/errors.ts`; `Evidence_ORN-08_Runtime_Error_Taxonomy_Ownership.md` |
 >
 
 ### CLM-011 — Standards
 
-> ##### Standards
->
-> | Standard or Contract | Applicability | Source |
-> |---|---|---|
-> | Project truth boundary | API keys and runtime convenience state are not authoritative project state. | `docs/DIRECTIVE.md`; `docs/TYPES.md`; `docs/CONTRACT.md` K-FS-1 and K-KEY-1 |
-> | API key storage policy | UI safeStorage and environment fallback must keep key material out of working-root files, logs, and runtime events. | `docs/SPEC.md` Sections 12.3 and 16.2; `docs/PRD.md` FR-030, FR-031, NFR-002 |
-> | Browser SSE event contract | Existing browser-facing event names remain compatible. | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
-> | Runtime redaction policy | Secrets are redacted from provider errors, logs, event records, and relevant tool outputs. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-075 |
->
+D-GOV-43/D-APP-127 govern current credential custody, private authentication and user-selected policy. K-EVENT-6 requires structural redaction at every sink; UI convenience state and credentials are never project truth. SPEC §11 requires complete upstream event preservation. S-8 and current typed-error/retry tests verify distinct obligations.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement | Verification Approach |
-> |---|---|
-> | DEL-02-05-R01 | UI/integration test confirms key save path uses Electron IPC and does not create working-root key material. |
-> | DEL-02-05-R02 | UI test covers status rendering for `ui`, `env`, and `none`; no key value appears in rendered text or captured events. Final fixture/module path is TBD until the API key settings surface is implemented. |
-> | DEL-02-05-R03 | Integration or mocked status test covers precedence order. Final fixture/command is TBD until the API key settings surface is implemented. |
-> | DEL-02-05-R04 | Mock unavailable safeStorage and verify visible error state. |
-> | DEL-02-05-R05 | Unit test maps representative typed errors to title/message/next-step fields. |
-> | DEL-02-05-R06 | UI state test confirms draft and attachment metadata remain available after a runtime error. |
-> | DEL-02-05-R07 | SSE/turn UI test confirms `turn:error` and terminal `process:exit` are handled without renaming browser events. |
-> | DEL-02-05-R08 | Static or integration check confirms API key UI state is local convenience state and not written to deliverable/project truth files. |
-> | DEL-02-05-R09 | Redaction fixture verifies visible/logged error strings do not expose API keys. |
-> | DEL-02-05-R10 | Contract/import review confirms runtime, adapter, API, and UI layers use the canonical harness-contract error type; representative error-display, route, adapter, and mapper tests remain green. |
->
+Verify S-8 sign-in/sign-out on the production path and after the consolidated signed build, with another Codex client unchanged and credentials absent from every sink. Check truthful unavailable/error states, canonical Runtime error imports, actionable error text and preserved draft/attachment retry state. Check current full-event presentation and sink-specific redaction. Retained safeStorage/key-precedence tests establish compatibility only. Hooks: settings-view-codex, chat-panel-failed-send and chat-panel-native-attachments component tests; Runtime app-owned-composition and codex-effective-home tests; production NATIVE_CHECKLIST.md S-8.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required artifacts for this deliverable:
->
-> - API key settings panel.
-> - Typed error display.
-> - Secure-storage error UI.
->
-> Documentation or implementation details still TBD:
->
-> - Exact component/module paths.
-> - Exact typed error enum consumed by the UI.
-> - Exact secure-storage unavailable copy.
-> - Exact retry state owner for drafts and attachments.
-> - Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.
+Required artifacts are the account row/Settings feedback, canonical typed-error display and retry-preserving ChatPanel draft/attachment state. Verification loci are named in CLM-012; error enum is HarnessErrorType in @chirality/runtime-contracts. Retained safeStorage needs truthful typed errors where used. Missing live redaction/native outcomes stay open.
 
-- **REQ-001** — The deliverable shall serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and the root-private app-owned `CODEX_HOME`, and presenting login/logout/account and consent/revocation state; Root retains account/consent semantics, and no ambient `~/.codex` read or project-truth secret persistence occurs. Electron main alone shall own `HOST-P1` and `ACCOUNT-WIRE-V1` transport and expose typed contract methods; the renderer shall receive no socket, bearer, credential, private-supervisor access, or arbitrary request forwarding. One app-wide account may be observed and controlled before folder selection, while folder consent and every project operation remain separate. Through Electron main, the App shall consume the typed Runtime contract projection/result carrying one atomic current pair of stable opaque nonsecret account/user and provider-selected-workspace identifiers, where provider-selected workspace means the supplier's tenancy/workspace/account selection and never a folder, `canonicalRoot`, `projectId`, repository, window, caller hint, or other local locator, together with the exact version/capability result. Runtime remains the supplier acquisition, production, and qualification owner.
-- **REQ-002** — The UI shall distinguish the typed storage states `missing`, `storageUnavailable`, `decryptFailed`, and `available`.
-- **REQ-003** — The UI shall offer the three per-root command-network postures exactly as assigned: no command network by default; ask per destination with host/protocol context and the queued-request caveat plus explicit-user-only `acceptForSession`; or labelled command network on through `network_access = true`.
-- **REQ-004** — Agent 0/1/2 role entry shall remain available for Codex sessions; Agent 2/TASK shall be labelled `role not mechanically enforced` when G-ROLE fails; and the product posture shall be labelled `Opt-in Preview`.
-- **REQ-005** — The `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis is accepted, while implementation, supplier qualification, and live readiness evidence remain unmet. Unavailable, stale, partial, error, capability or version mismatch, or otherwise unqualified supplier or identity shall remain `binding:{state:"unavailable",reason:"canonical-identity-producer-unavailable"}` and `hostedReady:false`; no fallback or mixed-version readiness claim is permitted. UI fixtures shall not prove supplier capability, live identity binding, hosted readiness, or account-enabled trial readiness. G3, G-CSP, and G4 remain applicable where required; DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation.
+- **REQ-001** — Present Codex-owned account/login/logout through the App-owned Runtime service; share user configuration/resources by reference with Chirality-private authentication. The App never reads/copies/relays credentials, exposes them in the renderer, or treats account state as project truth. No retired hosted-consent/identity supplier gate is recreated.
+- **REQ-002** — Where App safeStorage is still used, distinguish missing, storageUnavailable, decryptFailed and available. These are not a substitute for truthful Codex account state.
+- **REQ-003** — Present the user-selected Codex approval/sandbox policy for the project/turn. A mode label does not establish actual enforcement or grant normative authority; retired per-root command-network consent is history.
+- **REQ-004** — Current direct entry is HELP_HUMAN, HELPS_HUMANS or WORKING_ITEMS; TASK is delegated. Preserve scope/accountability and truthful enforcement limits. Exact older posture-label/carrier differences remain keyed for source alignment; no authority-corpus acceptance is inferred.
+- **REQ-005** — Live-login claims require current production S-8 evidence, including credential separation and another Codex client's unchanged state, repeated after the consolidated signed build and invalidating changes. Fixture/unavailable state is labelled truthfully. DEL-09-06 retains attachment, credential-IPC, renderer and secret-protection checks; retired HOST-P1/POLICY-R1/ACCOUNT-WIRE-V1 and G3/G-CSP/G4 admission subjects are not current gates.
+
 - **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
-- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries accepted implementation, supplier-qualification, exact version/capability, live identity-pair, and G3/G-CSP/G4 evidence where applicable rather than being inferred from the accepted contract basis or UI fixtures.
+
+- **AC-002** — Account/Settings, attachment, typed-feedback and retry outputs satisfy REQ-001 through REQ-005 on the current Codex path, with source-bound S-8 and surviving security evidence; UI fixtures alone establish no live readiness.
 
 ## Production and Verification Method — Praxeology
 
@@ -281,7 +190,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Procedure: DEL-02-05 API Key UI and Runtime Feedback
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-015 — Purpose
@@ -293,99 +202,33 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-016 — Prerequisites
 
-> ##### Prerequisites
->
-> - Accepted deliverable context in `_CONTEXT.md`.
-> - Source corpus listed in `_REFERENCES.md`.
-> - Current `_STATUS.md` state permits work.
-> - Runtime/API contracts for key status, typed errors, and SSE events are available or mocked for UI work.
-> - Declared upstream dependencies: TBD - no accepted dependency edges have been extracted yet (`_DEPENDENCIES.md`).
->
+Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. The current account service, canonical Runtime errors, ChatPanel retry state and S-8 evidence are the prerequisites. Retired consent/supplier gates are not awaited. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ### CLM-017 — Steps
 
-> ##### Steps
->
-> 1. Confirm the UI scope.
->    - Verify that work remains limited to API key settings/status UI, secure-storage feedback, typed runtime error presentation, and retry-preserving failure states.
->    - Source: `_CONTEXT.md`; decomposition DEL-02-05 row.
->
-> 2. Define the key status UI contract.
->    - Display key status/source as `ui`, `env`, or `none`.
->    - Do not display key material.
->    - Reflect precedence: UI safeStorage, then `ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY`.
->    - Sources: `docs/PRD.md` Section 7.7 and FR-030; `docs/SPEC.md` Sections 12.3 and 16.2.
->
-> 3. Implement secure-storage feedback.
->    - Route key storage through Electron IPC and safeStorage-capable runtime surfaces.
->    - Show a user-visible error when secure storage is unavailable.
->    - Keep exact copy as TBD until product copy is approved.
->    - Sources: `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2.
->
-> 4. Implement typed runtime error display.
->    - Map typed runtime/provider errors to title, message, and next-step text.
->    - Redact or avoid raw provider detail that may contain secrets.
->    - ASSUMPTION: consume taxonomy from runtime/provider layers rather than defining it here.
->    - Sources: `docs/PRD.md` FR-020 and FR-075; `docs/CONTRACT.md` K-EVENT-6.
->
-> 5. Preserve retry state after failure.
->    - Keep draft prompt text and attachment metadata available after runtime errors.
->    - Do not make draft or attachment UI state authoritative project truth.
->    - Sources: `docs/PRD.md` Section 7.3 and FR-020; `docs/DIRECTIVE.md` Project Truth sections.
->
-> 6. Preserve event compatibility.
->    - Handle existing browser-facing SSE events, including `turn:error` and `process:exit`.
->    - Do not expose SDK-specific message names as the browser UI contract.
->    - Sources: `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4.
->
-> 7. Check project-truth and secret boundaries.
->    - Verify no key material is written to working-root files, runtime event payloads, logs, or tool artifacts.
->    - Verify UI state remains non-authoritative convenience state.
->    - Sources: `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` NFR-002; `docs/TYPES.md` Section 1.7.
->
+1. Bind current account row/Settings and Runtime account method source identities.
+2. Verify truthful account/unavailable states without credential material in renderer or project truth.
+3. Execute production S-8 for sign-in/out isolation and another Codex client unchanged, repeating after the consolidated signed build and invalidating changes.
+4. Verify canonical HarnessErrorType display with actionable title/message/next step.
+5. Verify draft/attachment retry state and supported attachment controls.
+6. Verify structural redaction before every sink and full upstream event preservation.
+7. Retained App safeStorage states remain compatibility checks only where used. Record actual results and missing native/redaction evidence. Hooks: current settings-view-codex, chat-panel-failed-send and chat-panel-native-attachments tests plus Runtime codex-effective-home/app-owned-composition and S-8.
 
 ### CLM-018 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Four-document traceability | Datasheet, Specification, Guidance, and Procedure cite the same source-backed status values, precedence order, and retry requirements. |
-> | Key status UI | Tests or review cover `ui`, `env`, and `none`; key value never appears. |
-> | SafeStorage unavailable | Mocked unavailable secure storage produces visible error feedback. |
-> | Runtime error UI | Representative typed errors map to title/message/next-step text and preserve retry context. |
-> | Retry state | Draft and attachment state remain available after a runtime error. |
-> | SSE compatibility | `turn:error` and `process:exit` remain accepted browser-facing event names. |
-> | Secret hygiene | Redaction checks confirm no API keys in project files, logs, runtime events, or UI error details. |
->
+Execute the current account, typed-error, attachment/retry and redaction verification in CLM-012. Legacy key-precedence/SSE-name fixtures remain source-bound compatibility evidence only. Live S-8 and sink-specific secret checks remain required.
 
 ### CLM-019 — Records
 
-> ##### Records
->
-> - API key settings panel implementation and tests.
-> - Typed error display implementation and tests.
-> - Secure-storage error UI implementation and tests.
-> - Evidence that key material is not written to working root, logs, runtime events, or tool artifacts.
-> - Human rulings for `Guidance.md` Conflict Table entries CT001 and CT002.
->
+Preserve current account/Settings, canonical error, attachment and retry implementation/test references; actual S-8 and sink-redaction outcomes; source/candidate identity; and unchanged accepted reference pins. Legacy key-precedence/hosted-consent proof records stay historical. Missing evidence is not an assumed pass.
 
 ### CLM-020 — Evidence Binding Table
 
-> ###### Evidence Binding Table
->
-> | Evidence Need | Required Record | Current Binding |
-> |---|---|---|
-> | API key settings surface | Component/module path and test path for the settings panel that routes key storage through Electron IPC. | TBD - implementation path not yet accepted. |
-> | Key source/status and precedence | Test or review evidence covering `ui`, `env`, `none`, and precedence order. | TBD - final fixture or command not yet accepted. |
-> | Secure-storage unavailable feedback | Test or review evidence proving unavailable safeStorage produces visible error feedback. | TBD - final fixture or command not yet accepted. |
-> | Typed runtime error mapping | Test or review evidence mapping representative typed errors to title, message, and next-step fields. | TBD - runtime/provider taxonomy owner not yet accepted. |
-> | Retry preservation | Test or review evidence proving draft prompt text and attachment metadata remain available after runtime error. | TBD - exact retry state owner not yet accepted. |
-> | SSE compatibility | Test or review evidence proving `turn:error` and `process:exit` remain browser-facing event names. | TBD - final compatibility fixture not yet accepted. |
-> | Secret hygiene and project-truth boundary | Static, unit, integration, or review evidence proving key material, logs, drafts, transcripts, and UI state do not become project truth. | TBD - final evidence paths or commands not yet accepted. |
+Preserve actual source/candidate identities, canonical error-import review, component/integration outputs and production S-8 witness with credential isolation. VER-001 source-conversion evidence remains separately required before its reliance; VER-002 is current account/transport/security verification, not retired hosted-admission proof.
 
 - **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis.
-- **VER-002** — Run the consent/revocation, retry-state, typed storage-state, command-network-posture, and role/posture-label tests behind fakes; inspect that Electron main exclusively owns transport, the renderer receives no socket, bearer, credential, private-supervisor access, or arbitrary forwarding, and no ambient `~/.codex` read or project-truth secret persistence occurs; and treat those fixtures as UI-only evidence. Live-account evidence remains unavailable until implementation and supplier qualification establish the current atomic identity pair, exact version/capability result, fail-closed status, and G3/G-CSP/G4 evidence where applicable.
+
+- **VER-002** — Verify current account/Settings behavior, canonical errors, attachment/retry state and production S-8 credential isolation, with surviving security/redaction checks and affected-check reruns after invalidating changes.
 
 ## Governing Values and Decisions — Axiology
 
@@ -393,7 +236,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Guidance: DEL-02-05 API Key UI and Runtime Feedback
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-022 — Purpose
@@ -407,14 +250,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-023 — Principles
 
-> ##### Principles
->
-> - Keep key material invisible. The UI may show whether a key comes from `ui`, `env`, or `none`, but must not display, log, or persist the key value. Sources: `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2.
-> - Separate user-facing feedback from runtime authority. UI messages can help the operator recover, but runtime policy remains in the engine/provider/session layers. Sources: `_CONTEXT.md` Exclusions; `docs/SPEC.md` Section 10 and Section 11.
-> - Preserve retry context. Runtime errors should not destroy draft prompt text or attachment state needed for retry. Sources: `docs/PRD.md` Section 7.3 and FR-020.
-> - Use stable browser-facing events. UI handling should consume the established SSE names, including `turn:error` and `process:exit`, instead of exposing SDK-specific message semantics. Sources: `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4.
-> - REF-006 records the PRD hash as `MATCH` under D-APP-38. Use PRD content with the normal SPEC/CONTRACT/TYPES authority relationships. Source: `_REFERENCES.md` REF-006.
->
+Codex owns account credentials and login/logout. The App account row and right-panel Settings use the application-owned Runtime service and Codex account methods; the effective home shares user configuration/resources by reference and keeps Chirality auth private. The App must never read, copy or relay credentials, expose them in the renderer or persist them as project truth. Sign-out must leave another Codex client unchanged. S-8 on the production path, repeated after the consolidated signed build and affected changes, is the live-login evidence. Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. Typed actionable failures preserve retry state and never convert runtime/UI data into project truth. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ### CLM-024 — Considerations
 
@@ -429,35 +265,19 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-025 — Trade-offs
 
-> ##### Trade-offs
->
-> | Trade-off | Guidance | Source |
-> |---|---|---|
-> | Detail vs. secrecy in key/error feedback | Prefer source/status and next-step text over raw provider details or key fragments. | `docs/CONTRACT.md` K-KEY-1 and K-EVENT-6 |
-> | UI convenience vs. project truth | Store only non-authoritative UI convenience state; never write API key material into project files. | `docs/DIRECTIVE.md`; `docs/TYPES.md` Section 1.7 |
-> | Error specificity vs. taxonomy ownership | Show typed actionable UI states, but do not invent canonical runtime error enums in this deliverable. | `_CONTEXT.md` Exclusions; decomposition package boundaries |
-> | Backward compatibility vs. runtime refactor | Preserve browser-facing SSE names while runtime internals move behind `TurnEngine`. | `docs/SPEC.md` Section 11; `docs/PRD.md` FR-071 |
->
+The App receives Runtime service/App Server outcomes, displays typed actionable failure without secrets and retains draft/attachments for retry. It consumes canonical Runtime errors and full upstream events, rather than relying on the retired App TurnEngine path. Verify with CLM-012 current tests and S-8.
 
 ### CLM-026 — Examples
 
-> ##### Examples
->
-> TBD: The accessible source corpus defines required status values and behavior, but does not provide approved UI copy examples, component names, screenshots, or visual states.
->
+Current example: the user signs into Chirality through Codex; account state is shown without credentials, and sign-out leaves another Codex client unchanged. A failed send displays a typed actionable error and retains the draft/attachments for retry. Verify with CLM-012 checks and S-8; UI fixtures do not prove live qualification.
 
 ### CLM-027 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | CT001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Dispatch instruction for this TASK run | All PRD-cited requirements | Use PRD only with warning; prefer corroborated SPEC/CONTRACT/TYPES for implementation detail. | TBD — reconciled under D-APP-38 |
-> | CT002 | Deliverable covers API key UI/status, but SOW-019 primary package is PKG-09 with related implementation deliverables DEL-04-05 and DEL-09-06. | Decomposition DEL-02-05 row | Decomposition SOW ledger for SOW-019 | Specification scope and verification ownership | Treat DEL-02-05 as UI feedback surface only; leave provider-wrapper behavior to DEL-04-05 and DEL-09-06. | **RULED 2026-07-12 (D-APP-56 R4-P35): proposed split ratified.** |
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. D-GOV-43/D-APP-127 settle current Codex custody, user-selected policy and extensible events. The exact account-indicator/old posture-label carrier differences remain explicit alignment work; they do not restore retired per-root consent or local-model residency gates.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-013 SOW-019 OBJ-001 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
-| OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | UI-only fixture and test evidence behind fakes; typed storage-state and network-posture fixtures; live-claim evidence only after implementation, supplier qualification, atomic identity-pair, exact version/capability, and applicable gate evidence |
+| OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | Current account/typed-feedback fixtures, canonical contract checks, production S-8 and surviving attachment/renderer/credential/redaction evidence |

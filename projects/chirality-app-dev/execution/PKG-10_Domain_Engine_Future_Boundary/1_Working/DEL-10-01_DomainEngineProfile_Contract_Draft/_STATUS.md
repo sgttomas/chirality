@@ -1,18 +1,20 @@
 # Status: DEL-10-01
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** D-APP-56 transcription is historical; current residuals are stated below and lifecycle remains IN_PROGRESS.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
+
 ## Remaining
 
-- Register PEC as a shared-runtime project client while preserving profile-owned deterministic acts, RBAC, data boundaries, human gates, and scratch/demo-only pilot authority (gated: D-T0-23/D-PEC-56 migration).
-- Advance the domain engine beyond the currently authorized staged, read-only boundary only through a new owner ruling that names the next tier-0 capability and its verification evidence. Preserve the F-APP-3 stepwise lane, keep apply-class exposure excluded unless separately ruled, and coordinate the bounded contracts in DEL-10-02..DEL-10-05 (governed by D-APP-50 and D-APP-53; gated: new owner ruling).
+- Register PEC as a current Runtime project client under D-T0-23/D-PEC-56 while preserving profile-owned deterministic acts, RBAC, data boundaries, human gates and scratch/demo-only pilot authority. Verify project registration and denied unauthorized acts on the actual Codex service path; retained registry tests alone do not close this task (owner: App/Runtime with PEC bridge).
 
-- **DEL-10-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 1 authority application, 1 evidence result, 3 implementation or evidence, 15 record repair, 1 reserved authority. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-10-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Compose and verify the already-authorized profile/registration interface on the Codex path against `domain-profile.test.ts` and `domain-profile-registry.test.ts`, including invalid-profile rejection before exposure. D-GOV-43/D-APP-127 settle the host direction; no repeat provider/facade vote is needed. Any broader capability or integration-level advance requires its named tier-0/F-APP-3 ruling; apply-class exposure remains excluded.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

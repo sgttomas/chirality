@@ -1,0 +1,61 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+  "operation": "reliance",
+  "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+  "repo_head": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-10-01",
+      "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-10-02",
+      "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-10-03",
+      "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-10-04",
+      "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-10-05",
+      "entry_path": "TASK:APP_RECORD_CLOSEOUT:W10",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "68b88e611cd7b0ebfa61dc15aa1e3910a01da286ea7e0d9212ef46ea2b1ac675",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-10-01",
+    "DEL-10-02",
+    "DEL-10-03",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "verdict": "ALLOW"
+}

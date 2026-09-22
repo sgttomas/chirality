@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-004, OBJ-007]
 
 This Scope of Work defines `DEL-04-04` in service of project scope [SOW-017, SOW-030, SOW-081, SOW-084] and package objectives [OBJ-004, OBJ-007].
 
-- **OUT-001** — PersonaComposer from instruction-root governance, active persona, working-root policy, mode, and tool-surface composition for DEL-04-04, producing `persona-composer.ts`, persona content hash tests, and boot fingerprint updates for SOW-017, SOW-030 and supporting OBJ-004, OBJ-007.
+- **OUT-001** — Additive instruction composition and evidence for the four current roles, distinct instruction/working roots, validated hash-pinned organisation layer, delimited contained roadmap steering, exact supplied-content identity and applicable professional boundaries.
 
 ## SCA-APP-010 Gate-5 Current Contract (Controlling)
 
@@ -28,44 +28,25 @@ evidence remain dated compatibility history and are not deleted.
 
 ### Current responsibility
 
-`DEL-04-04 PersonaComposer from Instruction Root` (BACKEND_FEATURE_SLICE, applied decomposition row L329):
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
 
-Replace stub prompt behavior with instruction-root governance composed from the
-bundled base and the client-owned organisation layer, active persona,
-working-root policy, mode, tool-surface composition, and a clearly delimited
-roadmap-injection block for a followed governed workflow.
-
-Applied row notes: Prompt composition slice with bounded artifacts; injected
-roadmap content is steering context from a K-PATH-2-contained file, never
-authority.
-
-Applied row outputs: `persona-composer.ts`; persona content hash tests;
-layered-root composition tests; roadmap-block delimiting tests; boot fingerprint
-updates.
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
 
 ### Current acceptance obligations
 
-1. The prompt is composed from the bundled base plus the client-owned, hash-pinned organisation layer; the layer's pin is verified before use (Q14).
-2. A followed governed workflow's roadmap is injected only inside a clearly delimited block that names its source path and hash, read from a K-PATH-2-contained file; the block is steering context and never records.
-3. Persona content hash and boot fingerprint tests cover the layer pin and the roadmap hash.
+Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### Seating and rulings
 
-Remaining items seated under D-APP-108 (2026-09-04): DEL-04-04-V3-01. Ruled
-questions applied here: Q14. Alignment writes WI-026, WI-027, WI-028, WI-029,
-WI-030 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
-DEP-011, DEP-012 await the registered dependency-extract pass after owner
-acceptance of this alignment. No lifecycle, Checking Approval SHA,
-dependency-acceptance, product, or release act is implied.
+The D-APP-109 extraction and D-APP-110 retargeting are recorded in the existing dependency register; the former pending-extraction note is historical. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction. DEL-07-03-V3-01 landed and DEL-07-01-V3-01 selected; refresh current App/Runtime interface and evidence before dispatch; actual accepted-scope changes only require their owner.
 
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-04-04 PersonaComposer from Instruction Root
 
-> #### Datasheet: DEL-04-04 PersonaComposer from Instruction Root
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-002 — Identification
 
@@ -82,55 +63,40 @@ dependency-acceptance, product, or release act is implied.
 > | Type | BACKEND_FEATURE_SLICE |
 > | ResponsibleParty | TBD |
 > | ContextEnvelope | M |
-> | CoversScopeItems | SOW-017, SOW-030 |
+> | CoversScopeItems | SOW-017, SOW-030, SOW-081, SOW-084 |
 > | SupportsObjectives | OBJ-004, OBJ-007 |
 >
 > Source: `_CONTEXT.md` Identity, Package Scope, Deliverable Scope, Traceability; decomposition `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 8 / PKG-04 row.
 >
 
+
+Current deliverable responsibility: Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary subject | Persona prompt composition from the instruction root, active persona, working-root policy, mode, and tool surface. | `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Section 13.2; decomposition DEL-04-04 row |
-> | Runtime position | Backend feature slice in the SDK adapter/prompt/provider/settings package. | `_CONTEXT.md` Type and Package Scope |
-> | Product-owned boundary | Prompt/persona composition is owned by Chirality, not by SDK defaults or vendor-specific product semantics. | `docs/DIRECTIVE.md` Sections 2.8-2.10; `docs/CONTRACT.md` Section 1.4 |
-> | Instruction-root relationship | Reads release-managed instruction-root governance and selected `agents/AGENT_<persona>.md` content; ordinary execution must not mutate the instruction root. | `docs/SPEC.md` Sections 1.1 and 13.2; `docs/CONTRACT.md` Section 1.3 |
-> | Working-root relationship | Includes working-root summary/policy in prompt composition while preserving instruction-root/working-root separation. | `docs/SPEC.md` Sections 1.2 and 13.2; `docs/DIRECTIVE.md` Section 2.7 |
-> | Persona aliases | UI aliases map to canonical agents, including `HELP -> HELP_HUMAN`, `ORCHESTRATE -> ORCHESTRATOR`, `AGGREGATE -> AGGREGATION`, `RECONCILING -> RECONCILIATION`, and `AGENTS -> HELPS_HUMANS`. | `docs/TYPES.md` Section 3.4 |
-> | Boot fingerprint | Should include hashes for persona content, governance preface, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` Section 8.4 (MATCH status) — reconciled under D-APP-38 |
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Named verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application. Evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | Source-state warning | `docs/PRD.md` is accessible but has `MATCH` in `_REFERENCES.md`; PRD-derived details require confirmation against an accepted snapshot before being treated as final project truth. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
-> | Runtime option fallbacks | Persona fallback is request/session persona, then `HELP_HUMAN` or configured default. Other option fallback chains are owned by adjacent SDK-options work. | `docs/SPEC.md` Section 13.1; decomposition DEL-04-02 and DEL-04-04 rows |
-> | Safety boundary | Prompt text is not sufficient as a reliance boundary; permission, path, hook, and tool enforcement remain runtime code responsibilities. | `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Sections 14.3 and 15 |
-> | Settings isolation | The composer must not depend on ambient SDK settings; shipped SDK options use `settingSources: []` outside this deliverable's implementation responsibility. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
-> | Dependencies | Declared upstream/downstream sections remain TBD, but the extracted dependency register records ACTIVE upstream interfaces/prerequisites for DEL-04-02, DEL-08-01, and DEL-08-02, a PRD snapshot constraint, and a downstream boot/session fingerprint handoff whose consuming interface is `UNKNOWN` / `TBD`. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-04-04-004 through DEP-04-04-008 |
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Named verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application. Evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
 
 ### CLM-005 — Construction
 
-The App consumes a source-grounded instruction basis through Runtime, retaining
-the selected role/method content, origins and hashes for replay. Chirality
-context is additive and preserves Codex's base instructions and tool behavior
-(D-GOV-43 item 8).
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
 
-Verification hooks: Runtime `tests/instruction-basis-and-method-transition.test.ts`
-(exact supplied bytes and false-hash rejection) and `tests/runtime-v3-api.test.ts`
-(exact v3 context supplied at adapter boot). Historical composer/fingerprint
-mechanics are retained in the R5 PKG04 evidence manifest.
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
 
-Instruction-root protection, professional-boundary reminders and SCA-APP-010's
-organisation-layer, roadmap and fingerprint obligations remain current.
-D-APP-119's residual and the unknown downstream interface remain open.
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Unfinished delivery: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-006 — References
 
@@ -138,14 +104,17 @@ D-APP-119's residual and the unknown downstream interface remain open.
 >
 > | RefID | Source | Relevant Slice | Status |
 > |---|---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | Sections 2.6-2.11, 4.1 | MATCH |
-> | REF-002 | `docs/CONTRACT.md` | Sections 1.3-1.6 | MATCH |
-> | REF-003 | `docs/SPEC.md` | Sections 1.1-1.3, 10, 12-15 | MATCH |
-> | REF-004 | `docs/TYPES.md` | Sections 3.4, 7-9, validation vocabulary | MATCH |
-> | REF-005 | `docs/PLAN.md` | R1 prompt composer target and validation categories | MATCH |
-> | REF-006 | `docs/PRD.md` | Section 8.4 and related SDK/runtime requirements | MATCH — reconciled under D-APP-38 |
-> | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method reference | MATCH; not used for implementation requirements |
+> | REF-001 | `docs/DIRECTIVE.md` | Sections 2.6-2.11, 4.1 | HISTORICAL_MATCH |
+> | REF-002 | `docs/CONTRACT.md` | Sections 1.3-1.6 | HISTORICAL_MATCH |
+> | REF-003 | `docs/SPEC.md` | Sections 1.1-1.3, 10, 12-15 | HISTORICAL_MATCH |
+> | REF-004 | `docs/TYPES.md` | Sections 3.4, 7-9, validation vocabulary | HISTORICAL_MATCH |
+> | REF-005 | `docs/PLAN.md` | R1 prompt composer target and validation categories | HISTORICAL_MATCH |
+> | REF-006 | `docs/PRD.md` | Section 8.4 and related SDK/runtime requirements | HISTORICAL_MATCH — reconciled under D-APP-38 |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | Decomposition method reference | HISTORICAL_MATCH; not used for implementation requirements |
 >
+
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin. Current applicability: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable.
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -157,54 +126,40 @@ D-APP-119's residual and the unknown downstream interface remain open.
 
 ### CLM-008 — Specification: DEL-04-04 PersonaComposer from Instruction Root
 
-> #### Specification: DEL-04-04 PersonaComposer from Instruction Root
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable specifies the backend PersonaComposer slice for replacing stub prompt behavior with source-grounded prompt composition. It covers composition from instruction-root governance, the active persona, working-root policy, current mode, and the permitted tool surface.
->
-> Included:
->
-> - Resolve selected personas and alias-normalized persona names to instruction-root `agents/AGENT_<persona>.md` content.
-> - Compose prompt material from the governance preface, selected agent instruction, working-root summary, mode policy, permitted tool surface, and professional-boundary reminders.
-> - Preserve instruction-root/working-root separation and product-owned runtime semantics.
-> - Provide boot fingerprint inputs that reflect actual prompt and SDK-policy material.
-> - Add tests for persona content hashing and fingerprint sensitivity.
->
-> Excluded:
->
-> - SDK option construction, `settingSources: []`, and tool list construction beyond accepting/reflecting the configured permitted tool surface; these belong primarily to DEL-04-02.
-> - SDK stream/message translation; this belongs to DEL-04-03.
-> - API key, base URL, network policy, and provider error classification; these belong to DEL-04-05.
-> - Instruction-root packaging conformance beyond consuming readable instruction-root files; this belongs primarily to DEL-08-01 and DEL-09-04.
->
-> Sources: `_CONTEXT.md` Deliverable Scope and Anticipated Artifacts; decomposition DEL-04-04 row; `docs/SPEC.md` Sections 10, 12-15.
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | PC-REQ-001 | The composer MUST consume a validated instruction root containing the required governance and agent resources before reading persona content. | `docs/SPEC.md` Section 1.1; `docs/CONTRACT.md` K-ROOT-2 / K-PACKAGE-1 |
-> | PC-REQ-002 | The composer MUST NOT write to the instruction root during ordinary runtime execution. | `docs/SPEC.md` Section 1.1; `docs/CONTRACT.md` K-ROOT-2 |
-> | PC-REQ-003 | The composer MUST preserve instruction-root and working-root separation; working-root summary/policy content must not be treated as instruction-root governance. | `docs/DIRECTIVE.md` Section 2.7; `docs/SPEC.md` Sections 1.1-1.2 |
-> | PC-REQ-004 | Persona names MUST resolve to canonical `agents/AGENT_<persona>.md` instruction files. Missing persona handling is `PERSONA_NOT_FOUND` per PRD, but this exact error token is PRD-derived and subject to the REF-006 hash warning. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` Section 8.4 (MATCH status) — reconciled under D-APP-38 |
-> | PC-REQ-005 | Persona aliases SHOULD use the canonical mappings in `docs/TYPES.md` Section 3.4 before instruction-file lookup, or delegate to an accepted alias resolver that implements those mappings. | `docs/TYPES.md` Section 3.4; decomposition SOW-017 |
-> | PC-REQ-006 | The composed prompt MUST include selected agent instruction content, global/governance context, working-root boundaries, mode policy, and the configured permitted tool surface. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` FR-028 (MATCH status) — reconciled under D-APP-38 |
-> | PC-REQ-007 | The composed prompt MUST include professional-boundary reminders and MUST NOT imply autonomous professional approval, certification, signing, sealing, issuing, or external validation. | `docs/DIRECTIVE.md` Sections 2.8 and 4.2; `docs/CONTRACT.md` K-AUTH-1 |
-> | PC-REQ-008 | Prompt text MUST NOT be treated as the enforcement boundary for filesystem writes, tool exposure, bash, subagents, or domain operations. | `docs/CONTRACT.md` K-PERM-2; `docs/SPEC.md` Sections 14.3 and 15 |
-> | PC-REQ-009 | The composer MUST keep Chirality contracts provider-neutral; SDK names, transcript paths, and permission modes may appear only as adapter metadata or prompt support, not as public contract definitions. | `docs/DIRECTIVE.md` Section 2.10; `docs/CONTRACT.md` K-ENGINE-4; `docs/SPEC.md` Section 10.3 |
-> | PC-REQ-010 | Boot fingerprints SHOULD include persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version when those inputs are available. The composer-owned test surface is persona content, governance preface, mode, and accepted visible tool-surface/fingerprint inputs; adjacent unresolved inputs remain `TBD` until their owning slices expose stable values. | `docs/SPEC.md` Sections 12.4 and 13.2; `docs/PRD.md` FR-029 (MATCH status); `Dependencies.csv` DEP-04-04-004 and DEP-04-04-008 — reconciled under D-APP-38 |
-> | PC-REQ-011 | Unknown runtime option keys relevant to composition MUST be ignored with warnings rather than silently mutating prompt behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 (MATCH status) — reconciled under D-APP-38 |
-> | PC-REQ-012 | The composer MUST treat SDK transcripts, chat drafts, local presets, model context, API keys, and runtime caches as non-authoritative unless imported through a governed project-file process. | `docs/DIRECTIVE.md` Section 2.6; `docs/SPEC.md` Section 1.3 |
->
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| PC-REQ-001 | Validate required instruction-root governance and role resources before supplying the role basis. |
+| PC-REQ-002 | Do not write the instruction root during ordinary project execution. |
+| PC-REQ-003 | Keep instruction and working roots distinct; working-root summaries and roadmap steering are not instruction authority. |
+| PC-REQ-004 | Resolve the four current canonical role files and provide a typed failure for a missing/invalid role; no exact historical PERSONA_NOT_FOUND token is required. |
+| PC-REQ-005 | Use the current four-role registry; historical aliases do not add active roles or silently select another source. |
+| PC-REQ-006 | Supply role/shared guidance additively, preserve Codex base instructions/native discovery and record working-root and actual policy/tool context. Native collaboration/approval settings need not be duplicated as a forced prompt section. |
+| PC-REQ-007 | Include applicable professional-boundary reminders and never imply autonomous approval, certification, signing, sealing, issuance or external validation. |
+| PC-REQ-008 | Prompt text is not enforcement for filesystem/tool/shell/delegation/domain actions. |
+| PC-REQ-009 | Keep Chirality instruction/interface ownership distinct while retaining actual native configuration and source metadata under D-GOV-43. |
+| PC-REQ-010 | Record hashes of actual supplied persona/governance/organisation/roadmap content and available policy/tool basis. A boot fingerprint alone does not prove coverage; absent adjacent inputs remain explicit. |
+| PC-REQ-011 | Unknown optional composition keys must be ignored with warnings and must not silently mutate behavior. Current typed rejection is not asserted equivalent; preserve that conformance difference and resolve it through implementation or the owning requirement-change process. |
+| PC-REQ-012 | Treat transcripts, drafts, presets, model context, credentials and caches as non-authoritative unless incorporated through an authorized project-file process. |
+
+Verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Evidence locations: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
@@ -221,179 +176,119 @@ D-APP-119's residual and the unknown downstream interface remain open.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement(s) | Verification Approach |
-> |---|---|
-> | PC-REQ-001 through PC-REQ-005 | Unit tests for instruction-root validation, canonical persona path resolution, alias mapping or alias-resolver delegation, and missing persona behavior. |
-> | PC-REQ-006 through PC-REQ-009 | Snapshot or structured-content tests proving the composed prompt includes governance preface, selected agent instruction content, working-root boundaries, mode policy, permitted tool surface, and professional-boundary reminders while avoiding SDK-shaped public contracts. |
-> | PC-REQ-010 | Split fingerprint verification into (a) composer-available inputs: persona content, governance preface, mode, and accepted visible tool-surface/fingerprint fields; and (b) adjacent optional inputs: permission-policy version, settings-source posture, MCP server versions, subagent policy version, and downstream handoff interface, each verified only when supplied by the owning slice. Unavailable inputs remain `TBD` rather than being treated as immediately testable. |
-> | PC-REQ-011 | Runtime option tests proving unknown composition-related option keys warn and do not mutate prompt behavior. |
-> | PC-REQ-012 | Tests or review checks proving API keys, SDK transcripts, local presets, and draft chat state are not imported into prompt authority or project truth. |
->
+Required current checks: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Named evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required implementation artifacts:
->
-> - `persona-composer.ts` or accepted equivalent module.
-> - Persona content hash tests.
-> - Boot fingerprint update tests.
-> - Source or module comments only where needed to explain non-obvious boundary decisions.
-> - A short integration note, if needed, naming where the composed prompt enters the SDK-backed engine boundary.
->
-> Required traceability:
->
-> - Link tests to SOW-017 and SOW-030 where the test framework supports names or comments.
-> - Record any unresolved dependency on DEL-04-02, DEL-08-01, or DEL-08-02 as `TBD` or `ASSUMPTION` rather than hiding it in implementation behavior.
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Unfinished delivery: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.
 
-- **AC-001** — The DEL-04-04 evidence package contains `persona-composer.ts` or an accepted equivalent, persona content hash tests, and boot fingerprint updates that demonstrate instruction-root governance, active persona, working-root policy, mode, and permitted tool-surface composition for SOW-017, SOW-030 and OBJ-004, OBJ-007.
+- **AC-001** — Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
 
 ## Production and Verification Method — Praxeology
 
 ### CLM-015 — Procedure: DEL-04-04 PersonaComposer from Instruction Root
 
-> #### Procedure: DEL-04-04 PersonaComposer from Instruction Root
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-016 — Purpose
 
-> ##### Purpose
->
-> Provide an operational path for implementing and verifying the PersonaComposer slice so it replaces stub prompt behavior with deterministic, source-grounded prompt composition from instruction-root governance, active persona, working-root policy, mode, and permitted tool-surface inputs.
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
 
 ### CLM-017 — Prerequisites
 
-> ##### Prerequisites
->
-> | Item | Requirement / Status | Source |
-> |---|---|---|
-> | Instruction root | Must be readable and contain required governance and agent resources. | `docs/SPEC.md` Section 1.1 |
-> | Working root | Must remain separate from the instruction root and provide contextual project-root information only. | `docs/SPEC.md` Section 1.2; `docs/DIRECTIVE.md` Section 2.7 |
-> | Persona alias vocabulary | Use or delegate the accepted alias mappings. | `docs/TYPES.md` Section 3.4 |
-> | Runtime mode/tool policy | Use resolved mode and permitted tool-surface inputs supplied by the runtime/options layer. | `docs/SPEC.md` Sections 13-15 |
-> | Upstream dependencies | Extracted ACTIVE upstream edges identify DEL-04-02 for resolved mode/tool-surface inputs, DEL-08-01 for instruction-root packaging/conformance, DEL-08-02 for alias routing/resolver interface, and a PRD source-snapshot constraint. Declared dependency sections remain TBD until accepted by the governing dependency workflow. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-04-04-004 through DEP-04-04-007 |
-> | Source-state warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Current implementation/adoption evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: DEL-07-03-V3-01 landed and DEL-07-01-V3-01 selected; refresh current App/Runtime interface and evidence before dispatch; actual accepted-scope changes only require their owner.
 
 ### CLM-018 — Steps
 
-> ##### Steps
->
-> 1. Confirm target boundaries.
->    Verify the implementation remains in the prompt/persona composition slice and does not absorb SDK option building, Provider/SDK message mapping, provider key/network handling, or instruction-root packaging conformance.
->
-> 2. Define PersonaComposer inputs.
->    Include at minimum selected persona, normalized project root or working-root summary, mode, permitted tool surface, governance preface source, persona instruction content source, and available fingerprint-policy inputs. The accepted runtime input interface is `TBD`; preserve unresolved fields as explicit optional/TBD inputs rather than inventing an implementation contract.
->
-> 3. Resolve persona identity.
->    Normalize aliases according to accepted vocabulary or delegate to the accepted alias resolver. Resolve the canonical persona to `agents/AGENT_<persona>.md`. Missing persona behavior should produce a typed failure; exact token `PERSONA_NOT_FOUND` is PRD-derived and requires confirmation against an accepted PRD snapshot.
->
-> 4. Read instruction-root content.
->    Read required governance preface material and selected agent instruction content from the instruction root. Do not write to the instruction root. Preserve instruction-root path protection as runtime policy, not prompt convention.
->
-> 5. Compose prompt material deterministically.
->    Build a stable ordered prompt from governance preface, selected persona instruction, working-root boundary/summary, mode policy, permitted tool surface, and professional-boundary reminders. Omit unavailable optional sections in a documented stable way or mark them `TBD` in tests/fixtures.
->
-> 6. Preserve policy boundaries.
->    Ensure prompt text describes mode/tool posture but does not claim to enforce permissions. Runtime enforcement must remain with SDK options, denied tools, `canUseTool`, hooks, path containment, and Chirality overlays.
->
-> 7. Produce boot fingerprint inputs.
->    Normalize and hash supported inputs such as persona content, governance preface, mode, visible SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. Where an input is not yet available from adjacent slices, record it as `TBD` or an explicit optional field.
->
-> 8. Integrate with the runtime boundary.
->    Pass composed prompt material and fingerprint metadata to the product-owned runtime boundary without making public APIs, `UIEvent`, `HarnessEvent`, or session storage SDK-shaped.
->
-> 9. Add tests.
->    Add persona content hash tests, fingerprint sensitivity tests, missing persona tests, alias tests or resolver-delegation tests, prompt section inclusion tests, and checks that API keys/transcripts/local presets do not become prompt authority.
->
-> 10. Record unresolved dependencies.
->    If implementation depends on DEL-04-02 tool-surface shape, DEL-08-01 instruction-root integrity, or DEL-08-02 alias routing, record the dependency explicitly for extraction rather than encoding a silent local assumption.
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+4. Verify verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
+
+Gate: DEL-07-03-V3-01 landed and DEL-07-01-V3-01 selected; refresh current App/Runtime interface and evidence before dispatch; actual accepted-scope changes only require their owner.
 
 ### CLM-019 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Four-document consistency | Datasheet, Specification, Guidance, and Procedure use the same deliverable identity and source-state warning. |
-> | Persona resolution | Canonical personas resolve to instruction-root `AGENT_*.md`; missing personas fail in a typed way. |
-> | Prompt contents | Prompt includes governance preface, selected persona instruction, working-root boundaries, mode policy, permitted tool surface, and professional-boundary reminders. |
-> | Policy separation | Tests or review confirm prompt text is not used as the sole permission/path/tool enforcement boundary. |
-> | Fingerprint sensitivity | Fingerprint changes when supported prompt/policy inputs change. |
-> | Source-state handling | PRD-only claims remain warned, `TBD`, or `ASSUMPTION` until an accepted PRD snapshot is available. |
->
+Required current checks: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Named evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-020 — Records
 
-> ##### Records
->
-> - Implementation artifact: `persona-composer.ts` or accepted equivalent.
-> - Tests: persona content hash tests, boot fingerprint tests, alias/missing-persona tests, prompt-content tests.
-> - Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-04-04-008.
-> - Open items: exact runtime input interface, downstream fingerprint handoff consumer, and accepted PRD snapshot confirmation.
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
+
+Unfinished delivery: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.
 
-- **VER-001** — Inspect the DEL-04-04 implementation and run the referenced persona-content and boot-fingerprint tests against SOW-017, SOW-030, OBJ-004, OBJ-007, and the preserved legacy requirements to confirm the named prompt-composition inputs and artifacts are present.
+- **VER-001** — Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
 
 ## Governing Values and Decisions — Axiology
 
 ### CLM-022 — Guidance: DEL-04-04 PersonaComposer from Instruction Root
 
-> #### Guidance: DEL-04-04 PersonaComposer from Instruction Root
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-023 — Purpose
 
-Traceable instruction composition must let a reader reconstruct the active
-role and method context against its actual source basis. Runtime supplies
-supported additive Chirality context while preserving Codex's own instructions
-(D-GOV-43 item 8); the SDK composer remains compatibility evidence.
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
 
-Verify source-grounded composition through CLM-005's named checks. Prompt text
-does not enforce safety or confer acceptance. SCA-APP-010's organisation-layer
-and roadmap obligations, including D-APP-119's unresolved ruling, remain open.
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
 
 ### CLM-024 — Principles
 
-> ##### Principles
->
-> 1. Chirality owns the prompt contract.
->    The SDK may host generic model/tool-loop mechanics, but prompt/persona composition is a Chirality-owned product contract. Do not let SDK defaults, SDK transcript shape, vendor product assumptions, or ambient settings decide PersonaComposer behavior. Source: `docs/DIRECTIVE.md` Section 2.8; `docs/PLAN.md` approved vNext direction.
->
-> 2. The instruction root is read authority, not a runtime write target.
->    PersonaComposer may read release-managed governance and `agents/AGENT_<persona>.md` files, but ordinary project execution must not mutate those resources. Source: `docs/SPEC.md` Section 1.1; `docs/CONTRACT.md` K-ROOT-2.
->
-> 3. Prompt text supports policy; it does not enforce policy.
->    Include mode and tool-surface descriptions in prompt context, but rely on SDK options, denied tools, hooks, `canUseTool`, path policy, and Chirality overlays for enforcement. Source: `docs/CONTRACT.md` K-PERM-2 and K-PERM-3; `docs/SPEC.md` Sections 14.3 and 15.
->
-> 4. Fingerprints should reflect real inputs.
->    A boot fingerprint that only hashes persona name and mode is insufficient for the target behavior. It should reflect actual persona content, governance preface, mode, tool/policy inputs, settings-source posture, MCP server versions, and subagent policy version when those inputs exist. Source: `docs/SPEC.md` Section 13.2.
->
-> 5. Keep provider-specific terms behind the adapter boundary.
->    The composed prompt can mention the configured permitted tool surface, but public Chirality contracts and runtime events must remain provider-neutral. Source: `docs/DIRECTIVE.md` Section 2.10; `docs/SPEC.md` Section 10.3.
->
+Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+Validate required resources and role selection; record exact supplied source identity/content hashes, safe working-root and selected policy context, and applicable professional boundaries. Compose bundled base plus the client-owned hash-pinned organisation layer, verify the pin before use and include followed-workflow roadmap content only as clearly delimited steering with contained source path/hash. Content identity must cover organisation and roadmap inputs; a boot fingerprint alone does not prove integrity or write protection. D-APP-132 withdraws the obsolete D-APP-119 daemon candidate, not these obligations.
+
+Named verification: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application. Evidence: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
 
 ### CLM-025 — Considerations
 
@@ -431,19 +326,19 @@ and roadmap obligations, including D-APP-119's unresolved ruling, remain open.
 
 ### CLM-028 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | CT-001 | `docs/PRD.md` is listed as `MATCH`, but decomposition SOW rows cite PRD sections for persona and instruction-root scope. | `_REFERENCES.md` REF-006 | Decomposition SOW-017 / SOW-030 and `docs/PRD.md` Section 8.4 | Datasheet References; Specification PC-REQ-004, PC-REQ-006, PC-REQ-010, PC-REQ-011 | Treat PRD-derived details as source-state warnings; prefer matching `docs/SPEC.md`, `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/TYPES.md`, and accepted decomposition where they overlap. | TBD — reconciled under D-APP-38 |
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-029 — Source-State Warning
 
-> ##### Source-State Warning
->
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
 
 ### CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -455,4 +350,4 @@ and roadmap obligations, including D-APP-119's unresolved ruling, remain open.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-017 SOW-030 OBJ-004 OBJ-007 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-017 SOW-030 SOW-081 SOW-084 OBJ-004 OBJ-007 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

@@ -1,0 +1,13 @@
+{
+  "DependencyID": "DEP-10-04-008",
+  "Notes": "SATISFIED 2026-07-12 under D-APP-56 R5 P45 UPD-157: D53A is the accepted fresh FULL_GRAPH snapshot over reconciled registers; older SAFE_MOVES citation remains dated history. 2026-09-22 current-candidate reopening: D53A July FULL_GRAPH satisfaction remains historical and version-bound (51 registers/554 rows/46 nodes); this reconciliation changes registers, so a new immutable current candidate graph check is needed. The independent dependency audit will attest the frozen source basis externally without editing its own audited register. Historical statement/source/target/satisfaction: Future DEL-10-04 verification requires dependency extraction and project graph validation before dependency state can be treated as closed.; Procedure.md; Dependency extraction and project graph validation: TBD; Dependencies.csv; FULL_GRAPH register TBD; Dependencies.csv; project-level FULL_GRAPH register TBD; SATISFIED 2026-09-22 locator refinement: TargetLocation is only the stable _Evaluation/DepClosure/_LATEST.md pointer; immutable candidate audit is pending register freeze.",
+  "ObservationPointer": "projects/chirality-app-dev/execution/_Evaluation/DepClosure/_LATEST.md",
+  "PhysicalLine": 9,
+  "Register": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Dependencies.csv",
+  "RegisterSHA256": "79543394a1f0c9f153de6dcfb041b741fac7bb70fe198816b4d5e294f1f1732a",
+  "SatisfactionStatus": "PENDING",
+  "Statement": "Current dependency extraction and project-level graph validation must cover the current register candidate before dependency state is treated as closed; historical D53A satisfaction is bound to its July register snapshot.",
+  "Status": "ACTIVE",
+  "TargetLocation": "projects/chirality-app-dev/execution/_Evaluation/DepClosure/_LATEST.md",
+  "TargetType": "DOCUMENT"
+}

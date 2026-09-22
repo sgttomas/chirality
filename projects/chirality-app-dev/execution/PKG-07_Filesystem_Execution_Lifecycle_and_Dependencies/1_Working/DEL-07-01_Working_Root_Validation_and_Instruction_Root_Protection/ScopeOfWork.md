@@ -56,8 +56,7 @@ fixtures.
 Remaining items seated under D-APP-108 (2026-09-04): DEL-07-01-V3-01. Ruled
 questions applied here: Q14. Alignment writes WI-041, WI-042, WI-043, WI-044,
 WI-045 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
-DEP-017, DEP-018 await the registered dependency-extract pass after owner
-acceptance of this alignment. No lifecycle, Checking Approval SHA,
+DEP-017, DEP-018 were applied by the D-APP-109 extraction on 2026-09-05; the accepted dependency register remains controlling. No lifecycle, Checking Approval SHA,
 dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
@@ -66,7 +65,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Datasheet: DEL-07-01 Working Root Validation and Instruction Root Protection
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -84,7 +83,7 @@ dependency-acceptance, product, or release act is implied.
 > | ResponsibleParty | TBD |
 > | Type | SECURITY_CONTROL |
 > | ContextEnvelope | M |
-> | CoversScopeItems | SOW-002, SOW-027, SOW-075 |
+> | CoversScopeItems | SOW-002, SOW-027, SOW-075, SOW-084 |
 > | SupportsObjectives | OBJ-006, OBJ-008 |
 >
 
@@ -100,7 +99,7 @@ dependency-acceptance, product, or release act is implied.
 > | Ordinary project truth write location | Working root is the ordinary location where agents and tools write project truth. | `docs/SPEC.md` Section 1.2; `docs/CONTRACT.md` K-ROOT-3 |
 > | Validation endpoint | `/api/working-root/validate` validates and normalizes a working root. | `docs/SPEC.md` API endpoints table; `docs/PRD.md` Section 7.1 |
 > | Runtime enforcement basis | User-selected Codex sandbox/approval policy governs actual host access under D-GOV-43/D-APP-127. Retained Chirality helpers and hooks are compatibility evidence; their presence does not prove live protection. The role/brief and protected-record obligations remain distinct. | D-GOV-43 item 4; D-APP-127; CLM-013 named verification hooks |
-> | Anticipated artifacts | Root validation tests; path policy helpers; instruction-root protection fixtures. | `_CONTEXT.md` `Anticipated Artifacts`; decomposition `DEL-07-01` row |
+> | Anticipated artifacts | Root validation tests; path policy helpers; instruction-root protection fixtures; organisation-layer pin and protection fixtures. | `_CONTEXT.md` `Anticipated Artifacts`; decomposition `DEL-07-01` row |
 >
 
 ### CLM-004 — Conditions
@@ -116,7 +115,7 @@ dependency-acceptance, product, or release act is implied.
 > | Path containment | Runtime tools must enforce working-root containment and reject writes outside the active project root. | `docs/CONTRACT.md` K-PATH-2; `docs/PRD.md` FR-050 |
 > | Symlink writes | Symlink writes are rejected in the initial policy. | `docs/CONTRACT.md` K-PATH-3; `docs/SPEC.md` Section 15.2 |
 > | Permission override | Deny decisions from policy, hooks, path containment, governance, SDK deny rules, or human gates override allows. | `docs/PRD.md` Section 3; `docs/CONTRACT.md` K-PERM-1 |
-> | Source-state warning | `docs/PRD.md` is usable for this draft but has a MATCH in `_REFERENCES.md`; content depending on it should remain review-aware. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
+> | Source-state warning | `docs/PRD.md` is usable for this draft but has a historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`; content depending on it should remain review-aware. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 >
 
 ### CLM-005 — Construction
@@ -135,13 +134,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-006 — Pass 3 Semantic Lensing Notes
 
-> ##### Pass 3 Semantic Lensing Notes
->
-> | ItemID | Datasheet Disposition | Evidence |
-> |---|---|---|
-> | A-001 | converted to TBD | `Construction` keeps code locations as TBD because accessible sources identify required enforcement surfaces but not final runtime module, hook module, path helper, or test file names. |
-> | E-002 | incorporated | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
->
+> Pass 3 items A-001 and E-002 are dated drafting dispositions. Implementation evidence is now named in CLM-005/013. D-APP-38 records the historical source reconciliation; verification of current bytes remains required. Neither the old TBD nor the old MATCH is current implementation or source evidence.
 
 ### CLM-007 — References
 
@@ -154,7 +147,7 @@ dependency-acceptance, product, or release act is implied.
 > | REF-003 | `docs/SPEC.md` | Sections 1.1, 1.2, 15.2; API endpoints table | Instruction-root and working-root contracts, hooks, API surfaces. |
 > | REF-004 | `docs/TYPES.md` | Sections 1.5, 1.6, 8.2 | Vocabulary and permission-mode terms. |
 > | REF-005 | `docs/PLAN.md` | Implementation sequencing references to hooks and path containment | Context only; not used as primary authority for requirements. |
-> | REF-006 | `docs/PRD.md` | Sections 7.1, 8.9, 8.15, 10.1, 10.2; FR-003, FR-050, FR-051, FR-095, FR-097 | Product requirements. MATCH status recorded in `_REFERENCES.md`. — reconciled under D-APP-38 |
+> | REF-006 | `docs/PRD.md` | Sections 7.1, 8.9, 8.15, 10.1, 10.2; FR-003, FR-050, FR-051, FR-095, FR-097 | Product requirements. historical D-APP-38 source state; verify current candidate bytes status recorded in `_REFERENCES.md`. — reconciled under D-APP-38 |
 > | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-07 and DEL-07-01 rows; SOW mapping rows | Scope routing and deliverable identity. |
 
 ## Completion and Reliance Basis — Epistemology
@@ -163,14 +156,14 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Specification: DEL-07-01 Working Root Validation and Instruction Root Protection
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-009 — Scope
 
 > ##### Scope
 >
-> This deliverable specifies the security-control behavior for validating the active working root and protecting the release-managed instruction root during ordinary project execution.
+> This deliverable specifies the security-control behavior for validating the active working root and protecting the bundled base and the client-owned, hash-pinned organisation instruction layer during ordinary project execution.
 >
 > In scope:
 >
@@ -230,7 +223,7 @@ dependency-acceptance, product, or release act is implied.
 > | Chirality filesystem/path contract | Governs working-root containment and symlink write policy. | `docs/CONTRACT.md` K-PATH-2, K-PATH-3 |
 > | Chirality hook contract | Governs fail-closed hook behavior and required containment/protection hooks. | `docs/CONTRACT.md` K-HOOK-1; `docs/SPEC.md` Section 15.2 |
 > | Chirality API contract | Provides working-root validation and deliverable filesystem API surfaces. | `docs/SPEC.md` API endpoints table |
-> | Product requirements | Establish P0/P1 acceptance for validation, containment, instruction-root protection, and safe writes. | `docs/PRD.md` Sections 7.1, 8.9, 8.15; REF-006 MATCH status applies — reconciled under D-APP-38 |
+> | Product requirements | Establish P0/P1 acceptance for validation, containment, instruction-root protection, and safe writes. | `docs/PRD.md` Sections 7.1, 8.9, 8.15; historical D-APP-38 source state; verify current candidate bytes status applies — reconciled under D-APP-38 |
 >
 
 ### CLM-013 — Verification
@@ -265,7 +258,7 @@ dependency-acceptance, product, or release act is implied.
 > | ItemID | Specification Disposition | Evidence |
 > |---|---|---|
 > | A-001 | converted to TBD | Documentation gaps explicitly retain unknown code module names, helper/API locations, and test file names rather than inventing implementation paths. |
-> | C-001 | already covered | `Standards`, `Verification`, and `Documentation` preserve the PRD MATCH status as review-aware source state. — reconciled under D-APP-38 |
+> | C-001 | already covered | `Standards`, `Verification`, and `Documentation` preserve the PRD historical D-APP-38 source state; verify current candidate bytes status as review-aware source state. — reconciled under D-APP-38 |
 > | F-001 | incorporated | `Terminology` normalizes working root, `projectRoot` / active project root, instruction root, and path containment vocabulary for implementation use. |
 > | D-001 | converted to TBD | REQ-07-01-011 remains labeled ASSUMPTION and verification requires implementation confirmation of endpoint reuse. |
 
@@ -277,7 +270,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Procedure: DEL-07-01 Working Root Validation and Instruction Root Protection
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-017 — Purpose
@@ -297,7 +290,7 @@ dependency-acceptance, product, or release act is implied.
 > |---|---|---|
 > | Accepted deliverable scope for DEL-07-01. | Available in `_CONTEXT.md` and decomposition. | `_CONTEXT.md`; decomposition `DEL-07-01` row |
 > | Current lifecycle state permits P3 enrichment. | `INITIALIZED`; Phase 2.5 is `P3_ONLY` and preserves `_STATUS.md` under `NO_STATUS_TOUCH`. | `_STATUS.md`; `_SEMANTIC_LENSING.md` |
-> | Authoritative source corpus is accessible. | Accessible; `docs/PRD.md` has MATCH status. | `_REFERENCES.md` — reconciled under D-APP-38 |
+> | Authoritative source corpus is accessible. | Accessible; historical D-APP-38 source state; verify current candidate bytes status. | `_REFERENCES.md` — reconciled under D-APP-38 |
 > | Declared upstream dependencies. | TBD - no accepted dependency edges extracted yet. | `_DEPENDENCIES.md` |
 > | Code module locations for implementation. | TBD. | Source-grounding gap |
 >
@@ -308,7 +301,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > 1. Confirm source state.
 >    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and `_STATUS.md`.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 > 2. Identify the active instruction root.
 >    - Resolve the instruction root from packaged resources or `CHIRALITY_INSTRUCTION_ROOT` during development.
@@ -362,7 +355,7 @@ dependency-acceptance, product, or release act is implied.
 > 10. Record verification evidence.
 >     - Store test output or summaries where the project test convention requires.
 >     - Record final test command names and evidence locations when implementation identifies them; until then they remain TBD.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >     - Preserve source citations and any unresolved `TBD` items for later semantic/dependency passes.
 >
 
@@ -378,7 +371,7 @@ dependency-acceptance, product, or release act is implied.
 > | Instruction-root protection | Writes beneath instruction root are denied across ordinary execution modes. | Hook or policy fixture output. |
 > | Symlink write policy | Symlink writes are denied under the initial policy. | Symlink fixture output. |
 > | Fail-closed hooks | Hook failure denies governed action and records triage. | Hook failure test output. |
-> | PRD hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Review note or run record. — reconciled under D-APP-38 |
+> | PRD hash warning | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | Review note or run record. — reconciled under D-APP-38 |
 > | Fixture evidence completeness | Relative, missing, non-directory, unreadable, unwritable, instruction-root-contained, outside-root, traversal, instruction-root write, and symlink cases have output or summary records. | Test output, fixture list, or coverage checklist. |
 >
 
@@ -413,7 +406,7 @@ dependency-acceptance, product, or release act is implied.
 > | D-001 | converted to TBD | Verification requires API test output for `/api/working-root/validate` and downstream normalized-root reuse; implementation confirmation is still pending. |
 > | X-001 | converted to TBD | `Records still TBD` now names final test command names and evidence locations for all fixture families. |
 > | E-001 | already covered | Step 8 and Verification preserve initial symlink rejection and require future amendment/test evidence before relaxation. |
-> | E-002 | incorporated | Step 10, Verification, and Records require preservation of the PRD hash status: MATCH status in review evidence. — reconciled under D-APP-38 |
+> | E-002 | incorporated | Step 10, Verification, and Records require preservation of the PRD historical D-APP-38 source state; verify current candidate bytes status in review evidence. — reconciled under D-APP-38 |
 
 - **VER-001** — Run the source-defined root-validation, instruction-root containment, path-policy, symlink, hook-denial, API, and fixture-completeness tests and review their evidence against the source requirements.
 
@@ -423,7 +416,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Guidance: DEL-07-01 Working Root Validation and Instruction Root Protection
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-024 — Purpose
@@ -456,7 +449,7 @@ dependency-acceptance, product, or release act is implied.
 
 > ##### Considerations
 >
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - The decomposition assigns SOW-002 and SOW-027 to DEL-07-01. SOW-002 covers working-root selection and validation; SOW-027 covers path containment and instruction-root protection.
 > - `DEL-06-04` also references path hooks for write/edit execution. ASSUMPTION: DEL-07-01 should define reusable root/path policy expectations and tests, while DEL-06-04 applies them in the broader write/edit surface. This is an inferred coordination note from the decomposition, not an accepted dependency edge.
 > - `_DEPENDENCIES.md` currently has no accepted upstream or downstream edges. Do not treat neighboring deliverables as formal dependencies until dependency extraction accepts them.
@@ -472,10 +465,10 @@ dependency-acceptance, product, or release act is implied.
 > | Choice | Benefit | Risk or Cost | Preferred Posture |
 > |---|---|---|---|
 > | Central path policy helper | Consistent containment behavior across APIs, hooks, and tools. | Requires careful normalization and test coverage. | Prefer central helper with fixture coverage. |
-> | Enforcement in hooks and wrappers | Catches SDK built-ins and MCP/tool actions at runtime. | Hook failure paths must be tested and observable. | Required for reliance-boundary confidence. |
+> | Current protection at host and application-tool boundaries | Covers user-selected Codex policy and applicable App-owned Runtime tool validation without patching stock Codex. | Each surface and failure path needs candidate-bound tests and observable denial. | Required protection outcome; former SDK hook/wrapper mechanism is historical under D-APP-132. |
 > | Strict instruction-root write block | Protects release-managed governance assets from ordinary project execution. | Release/governance updates need a separate controlled pathway. | Required by CONTRACT and SPEC. |
 > | Reject symlink writes initially | Reduces path escape risk. | Blocks some advanced local workflows. | Required until governed relaxation exists. |
-> | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Allows Phase 2.2 drafting to proceed per brief. | Requirement rows may need revalidation when source state is resolved. | Record warning and cite source locations. — reconciled under D-APP-38 |
+> | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | Allows Phase 2.2 drafting to proceed per brief. | Requirement rows may need revalidation when source state is resolved. | Record warning and cite source locations. — reconciled under D-APP-38 |
 >
 
 ### CLM-028 — Examples
@@ -498,21 +491,14 @@ dependency-acceptance, product, or release act is implied.
 >
 > | Warning ID | Source | Warning | Impacted Sections | Human Ruling |
 > |---|---|---|---|---|
-> | WARN-07-01-001 | `_REFERENCES.md` REF-006 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Datasheet, Specification, Guidance, Procedure citations to `docs/PRD.md` | TBD — reconciled under D-APP-38 |
+> | WARN-07-01-001 | `_REFERENCES.md` REF-006 | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | Datasheet, Specification, Guidance, Procedure citations to `docs/PRD.md` | TBD — reconciled under D-APP-38 |
 >
 > No direct source conflict was found among the accessible slices read for this draft.
 >
 
 ### CLM-030 — Human Rulings Needed
 
-> ##### Human Rulings Needed
->
-> | ItemID | Ruling Needed | Current Posture |
-> |---|---|---|
-> | C-001 | Accept, correct, replace, or explicitly bypass the `docs/PRD.md` REF-006 hash status: MATCH before PRD-dependent rows are treated as stable closure evidence. | Source-state warning preserved; no human ruling invented. — reconciled under D-APP-38 |
-> | X-002 | Decide whether `DEL-06-04` remains only a coordination note or becomes an accepted dependency edge for write/edit hook enforcement. | No dependency edge accepted in `_DEPENDENCIES.md`; guidance keeps the relationship non-authoritative. |
-> | E-001 | If future symlink-write relaxation is proposed, identify the amendment reference and fixture evidence required for acceptance. | Initial symlink rejection remains required. |
->
+> The earlier REF-006 conflict is historical at the D-APP-38 snapshot. Current source reliance must record the actual bytes and verification result using `execution/_Scripts/references_hash_tool.py`. A changed source requires the applicable D-APP-38 reconciliation or an authorized, durable bypass; no perpetual MATCH or repeated decision on the already-settled mismatch is asserted. Substantive authority conflicts remain separate from hash currentness.
 
 ### CLM-031 — Pass 3 Semantic Lensing Notes
 
@@ -520,7 +506,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > | ItemID | Guidance Disposition | Evidence |
 > |---|---|---|
-> | C-001 | surfaced as human ruling | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | C-001 | surfaced as human ruling | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | X-002 | surfaced as human ruling | `Considerations` and `Human Rulings Needed` state that `DEL-06-04` is not an accepted dependency edge unless later accepted. |
 > | E-001 | already covered | `Considerations`, `Trade-offs`, `Examples`, and `Human Rulings Needed` keep symlink writes rejected until governed amendment and tests exist. |
 

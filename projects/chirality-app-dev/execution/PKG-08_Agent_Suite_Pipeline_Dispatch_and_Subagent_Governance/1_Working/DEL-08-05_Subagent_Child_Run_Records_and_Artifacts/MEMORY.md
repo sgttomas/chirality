@@ -11,3 +11,7 @@
 - 2026-07-19 - D-APP-68 dispositions 3 and 5 confirmed DEL-08-05 as the sole owner of managed-child lifecycle, direct-parent and declared-scope linkage, coordination-aware child persistence, and `artifacts/subagents/` output storage. The already-normative D-APP-56 R4-P32 limits remain unchanged at 16 KiB inline and 512 KiB artifact-backed; DEL-05-05 retains only distinct ordinary tool-result semantics. No lifecycle state or Checking Approval SHA changed.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

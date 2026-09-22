@@ -1,0 +1,12 @@
+{
+  "rows": 672,
+  "changed_units": 384,
+  "files": 102,
+  "dispositions": {
+    "DELIVERY_TASK": 307,
+    "REPAIRED": 337,
+    "ALREADY_RESOLVED": 13,
+    "DEFERRED_SCOPE": 14,
+    "DEFERRED_OPTIONAL": 1
+  }
+}

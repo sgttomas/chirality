@@ -8,7 +8,7 @@
 
 ## 1. Purpose
 
-This guide records the current app-dev build, packaging, and release-evidence skeleton for Chirality App. It gives agents and maintainers a stable local command map for collecting software-quality evidence before any future hosted CI, signing, notarization, publication, or release-label process is selected.
+This guide records the App build, packaging and release-evidence procedure. D-GOV-43 / D-APP-127 establish the Codex-hosted path; GitHub Actions supplies hosted CI. D-APP-131 P-03 records the prior exact-candidate owner authorization for 3.0.0/3.0.1. Those historical acts do not authorize another release or certify missing native results.
 
 This guide is not a live CI workflow, release publication authorization, lifecycle issuance, professional approval, certification, sealing, authentication, code-compliance acceptance, or external distribution approval. It does not change `frontend/package.json`, application code, package dependencies, runtime language, provider policy, tool exposure, or desktop wrapper architecture.
 
@@ -30,7 +30,7 @@ If this guide disagrees with an executable script, source code, package manifest
 
 The current app-dev implementation is a Next.js plus Electron desktop workspace under `frontend/`. The current package manifest declares:
 
-- Node engine: `>=20`;
+- Node engine: `>=22.19.0`;
 - Next build command with telemetry disabled;
 - Electron main-process TypeScript build;
 - Vitest test suite;
@@ -44,7 +44,11 @@ Ordinary local output remains the `docs/CONTRACT.md` K-RELEASE-1 target: macOS 1
 
 ## 4. Local Command Map
 
-Run commands from `frontend/` unless stated otherwise.
+Run commands from `frontend/` unless stated otherwise. Before `desktop:pack` or
+`desktop:dist`, build the renderer/Electron output and prepare the Runtime and
+instruction resources required by `scripts/pack-electron.mjs`
+`assertPackagingInputs`; packaging commands consume those inputs and do not
+build them. The current packaging procedure supplies their preparation commands.
 
 | Command | Role |
 |---|---|
@@ -53,25 +57,26 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run harness:validate:section8` | Runs harness validation against a reachable local harness API and emits machine-readable status lines. |
 | `npm run harness:validate:section9` | Runs deterministic Section 9 runtime-ID validation over targeted Vitest files and writes the stable Section 9 summary artifact. |
 | `npm run harness:validate:premerge` | Runs the premerge harness validator and writes the stable summary artifact. |
-| `npm run harness:validate:agentsdk-dev-turn` | Runs route-level opt-in `agentSdk` scripted dev-turn validation through the real SDK `query()` path with an offline scripted subprocess. |
-| `npm run harness:validate:agentsdk-packaged-proof` | Runs a no-live packaged SDK proof from `app.asar.unpacked`, records the resolved native subprocess command, and verifies controlled `CLAUDE_CONFIG_DIR`/`HOME` propagation. |
+| `npm run harness:validate:agentsdk-dev-turn` | Retained legacy Agent SDK evidence; does not validate the live Codex route. |
+| `npm run harness:validate:agentsdk-packaged-proof` | Historical SDK packaging proof only; the A2 package excludes the Agent SDK. It is not a current Codex package gate. |
 | `npm run validate:release-quality` | Runs the runtime-premerge evidence wrapper and writes `frontend/artifacts/harness/release-quality/latest/summary.json`; see `docs/RELEASE_QUALITY_RUNBOOK.md`. |
 | `npm run instruction-root:integrity` | Verifies required instruction-root resources and writes the integrity summary artifact. |
 | `npm run proof:secret-scan` | Scans tracked app-dev files and generated harness evidence for high-confidence secret material without writing raw secret values to the summary. |
-| `npm run proof:network-policy` | Runs the current network-policy proof. Add `-- --provider agentSdk --scripted-agent-sdk` for the non-packaged STAB-02(c) opt-in SDK network proof. |
+| `npm run proof:network-policy` | Collects Electron/renderer network evidence. It does not establish containment of the Codex child, whose tools and egress follow Codex configuration and the user's selected policy. SDK options are retained legacy proof inputs. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
-| `npm run desktop:pack` | Builds and produces an unsigned local macOS arm64 app directory with publishing disabled, verifies the packaged dependency boundary, then verifies instruction-root integrity. Monorepo-only `@chirality/*` dependency symlinks are excluded because their runtime code is bundled into the Next, Electron, and CLI outputs. |
-| `npm run desktop:dist` | Builds and produces an unsigned/unnotarized local-builder macOS arm64 DMG with publishing disabled, verifies the packaged dependency boundary, then verifies instruction-root integrity. |
+| `npm run desktop:pack` | Packages prebuilt renderer, Electron, Runtime and instruction resources into a macOS arm64 app directory with publishing disabled; unsigned by default and signed when an identity is supplied. Verifies packaged dependency and instruction integrity. Monorepo-only `@chirality/*` dependency symlinks are excluded because their runtime code is bundled into the Next, Electron, and CLI outputs. |
+| `npm run desktop:dist` | Packages prebuilt renderer, Electron, Runtime and instruction resources into a macOS arm64 DMG with publishing disabled; unsigned by default, Developer ID signed when a signing identity is supplied. Verifies dependency and Codex-pin boundaries and instruction integrity. Notarization is a separate act. |
 
 `npm run harness:validate:premerge` requires a running harness API. By default it targets `http://127.0.0.1:3000`; see `frontend/docs/harness/README.md` for `HARNESS_BASE_URL` and `HARNESS_PROJECT_ROOT` overrides.
 
 Stop any local Next dev server before running `npm run build`, `npm run desktop:pack`, `npm run desktop:dist`, or `npm run harness:validate:premerge` unless the command owns the server lifecycle. A dev server racing a `.next` rewrite can surface a transient module-resolution failure (e.g. `.next/server/vendor-chunks/next.js`); record such a failure as an environment sequencing failure, not a product regression — isolate the dev server, then rerun.
 
-After changing Pi dependency versions, run `npm run pi:lock-integrity` before
+For retained legacy Pi dependency work only, run `npm run pi:lock-integrity` before
 `npm run pi:supply-chain`. Current npm lock generation may omit SHA-512 fields
 from nested entries that resolve to the same exact root-pinned Pi artifacts;
 the normalization command copies only matching registry artifact hashes and
-fails closed on version, URL, or integrity conflicts.
+fails closed on version, URL, or integrity conflicts. This is not a Codex MVP gate;
+the retained supply-chain evaluator's assumptions must be checked before reuse.
 
 ## 5. Evidence Bundles
 
@@ -97,17 +102,18 @@ Current known artifact locations include:
 
 - Next build output: `frontend/.next/`;
 - Electron main-process output: `frontend/dist-electron/`;
+- bundled Runtime service and CLI build output: `frontend/dist-runtime/`;
+- afterPack resource inventory: `packaged-resources-inventory.json` in the packaged resources directory;
 - Electron-builder output: `frontend/dist/`;
 - harness validation summary: `frontend/artifacts/harness/section8/latest/summary.json`;
 - harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
 - release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
-- packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
+- historical SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json` (legacy, not current Codex qualification);
 - mounted-DMG instruction-root and packaged SDK proof summaries may be written under dated
   subdirectories of those artifact roots for package-content evidence;
 - secret-scan summary: `frontend/artifacts/harness/security/latest/secret-scan-summary.json`;
-- network-policy proof summaries may be written under dated subdirectories of
-  `frontend/artifacts/harness/network-policy/`;
+- network-policy proof summaries default to DEL-09-06's `Evidence/NETWORK_POLICY_PROOF_<timestamp>/` (`run-network-policy-proof.mjs --output-dir` can override);
 - live harness validation output under `${TMPDIR:-/tmp}/chirality-harness-validation/latest/`.
 
 Generated build and packaging outputs are evidence artifacts, not project truth. They do not create release publication authorization, lifecycle issuance, professional approval, certification, sealing, authentication, or code-compliance acceptance.
@@ -121,7 +127,7 @@ These profiles are documentation labels, not new scripts.
 | Governance-only | Static checks over docs, plans, and coordination files; no frontend commands unless the tranche changes executable behavior. | Control-plane documentation tranches. |
 | Runtime premerge | `npm run validate:release-quality`; include premerge unless explicitly skipped with reason. | Shared runtime, API, SDK, event, permission, or harness workflow changes. |
 | Network/security | Runtime premerge plus `npm run proof:secret-scan` and `npm run proof:network-policy`. | Network, provider, API-key, redaction, or outbound-policy changes. |
-| Packaging review | `npm run build`; `npm run instruction-root:integrity`; `npm run desktop:pack` or `npm run desktop:dist` as applicable; `npm run harness:validate:agentsdk-packaged-proof` when SDK subprocess resolver or transcript/HOME posture is in scope. | Instruction-root, packaging, app metadata, SDK resolver posture, or distribution artifact changes. |
+| Packaging review | `npm run build`; `npm run instruction-root:integrity`; `npm run desktop:pack` or `npm run desktop:dist` as applicable; packaged Runtime lifecycle, dependency-boundary and Codex-pin checks. Retained SDK package proof applies only to explicit compatibility work. | Instruction-root, packaging, app metadata, Runtime child posture, or distribution artifact changes. |
 | Release-candidate dry run | Runtime premerge plus packaging review, with known limitations and human-gate state recorded. | Future release-candidate evidence only after human authorization. |
 
 ## 8. Packaging Procedure
@@ -179,19 +185,18 @@ No packaging review may imply that the package is published, professionally appr
 
 ## 9. Future CI And Release Mapping
 
-Hosted CI, public/private data handling, release matrix, signing, notarization, publication, and attestation remain future human-gated decisions. When selected, hosted workflows should call the same local command surface or a documented equivalent so local and hosted evidence remain comparable.
+Hosted CI uses GitHub Actions. Signing, notarization and GitHub publication have prior candidate-specific owner authority recorded by D-APP-131 P-03; further releases remain separately authorized. Hosted workflows use the local command surface or a documented equivalent so evidence stays comparable. Public/private data handling, wider release matrices and attestation remain bounded by their actual adopted policy and evidence.
 
 Hosted workflows must not receive private project data, API keys, protected professional work, SDK transcripts containing secrets, signing credentials, publishing credentials, or broader network permissions unless a recorded human decision authorizes the handling model.
 
 ## 10. Open Decisions
 
-- Hosted CI provider, workflow location, and private-data handling.
+- Private-data handling beyond the existing hosted workflow scope.
 - Supported OS/architecture release matrix beyond the current macOS 15+ Apple Silicon local-builder target.
-- Signing, notarization, checksum publication, publication destination, and attestation.
+- Attestation and any additional publication destination or release authority.
 - Release-label vocabulary and release-candidate evidence-bundle format.
 - Coverage, performance, and platform-threshold policy.
-- Provider/network implementation beyond the current Anthropic path and the exact D-APP-72 authenticated `127.0.0.1` oMLX exception.
-- Any Pi scope beyond the D-APP-72 / SCA-APP-002 pinned in-process read-only Agent 2 child tranche; D-APP-01/D-APP-02 remain historical for all other Pi scope.
+- Codex is the sole MVP engine under D-GOV-43. Future local-model/API direction does not qualify those paths; legacy Anthropic, Pi and oMLX evidence does not qualify the current product.
 
 ## 11. Shared Runtime Packaging Addendum
 
@@ -216,7 +221,9 @@ release through the public GitHub API without authentication. A newer matching
 installer, or the exact release page when no matching asset is identified,
 opens in the system browser on request. The App does not install, restart,
 notarize, or publish itself. Public release discovery and publishing authority
-remain distinct. The currently published v2.0.0 is older than v3.0.0-rc.1.
+remain distinct. Prior 3.0.0/3.0.1 publication authority and owner testimony are
+recorded in D-APP-131 P-03 and its linked evidence; the former 2.0.0/3.0.0-rc.1
+comparison is obsolete. This record does not assert the latest remote release.
 
 The package stages `instructions/AGENTS.md` from this project as its shared
 product default. It retains the open-source role and method library. An

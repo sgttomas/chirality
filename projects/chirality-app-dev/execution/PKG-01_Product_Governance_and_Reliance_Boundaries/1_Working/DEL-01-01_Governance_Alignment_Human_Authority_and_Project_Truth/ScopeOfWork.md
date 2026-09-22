@@ -54,7 +54,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Covered scope items | SOW-074; SOW-075. |
 > | Supported objective | OBJ-009. |
 > | Anticipated artifacts | Governance consistency notes; human-authority checklist; project-truth checklist; doc diff checklist; acceptance checklist. |
-> | Reference integrity | Authority-doc references were reconciled under the current D-APP-38 corpus snapshot; REF-006 `docs/PRD.md` is currently `MATCH` in `_REFERENCES.md`. |
+> | Reference integrity | Authority-doc references were reconciled under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); REF-006 `docs/PRD.md` was `MATCH` at that snapshot in `_REFERENCES.md`. |
 >
 
 ### CLM-004 — Conditions
@@ -80,7 +80,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Governance consistency notes | Compare the governing document set using the authority order in `docs/DIRECTIVE.md` and the invariant catalog in `docs/CONTRACT.md`; record conflicts rather than silently resolving them. |
 > | Human-authority checklist | Verify no document, UI copy, runtime event, validator, SDK behavior, agent, tool, or domain adapter claims to approve, certify, sign, seal, issue, transmit, externally validate, or make professional work reliable by itself. |
 > | Project-truth checklist | Verify reliance-relevant facts land in proper project files and accepted git history, not only in runtime state, chat, SDK transcripts, UI state, caches, or hidden memory. |
-> | Runtime-audit checklist | Verify Chirality-owned `.chirality/sessions/<sessionId>/events.jsonl` remains the canonical runtime audit mirror and that SDK transcripts remain secondary unless imported into `HarnessEvent` form. |
+> | Runtime-audit checklist | Verify Chirality-owned the Runtime-owned userData session/event store (K-EVENT-4; project-local `.chirality/sessions` is compatibility history) remains the canonical runtime audit mirror and that SDK transcripts remain secondary unless imported into `HarnessEvent` form. |
 > | Diff/acceptance checklist | Verify PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition changes remain mutually consistent with SOW-074, SOW-075, OBJ-009, and CONTRACT invariant families owned by PKG-01. |
 >
 
@@ -95,8 +95,8 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | REF-003 | `docs/SPEC.md` | Execution-root layout, deliverable file contract, lifecycle states, runtime audit and engine contracts. |
 > | REF-004 | `docs/TYPES.md` | Canonical vocabulary for project truth, runtime audit mirror, deliverables, stable IDs, and agent authority. |
 > | REF-005 | `docs/PLAN.md` | Roadmap acceptance principles, current R0/R1 focus, SDK-governance boundaries, out-of-scope items. |
-> | REF-006 | `docs/PRD.md` | Current product requirements and acceptance criteria; the current D-APP-38 corpus snapshot records a matching authority-doc hash. |
-> | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP no-invention, human gate, stable-ID, bounded-deliverable method context. |
+> | REF-006 | `docs/PRD.md` | Current product requirements and acceptance criteria; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records a matching authority-doc hash. |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | SOFTWARE_DECOMP no-invention, human gate, stable-ID, bounded-deliverable method context. |
 > | DEC-001 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-01-01 scope, SOW-074, SOW-075, OBJ-009, package scope, and anticipated artifacts. |
 
 ## Completion and Reliance Basis — Epistemology
@@ -127,10 +127,10 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | DEL-01-01-REQ-002 | Human approval, professional acceptance, issue/release actions, residual-risk acceptance, and judgment conflict rulings must remain human-only. | `docs/DIRECTIVE.md` Sections 2.4 and 3; `docs/CONTRACT.md` K-AUTH/K-GATE/K-PROF. | Human-authority checklist confirms no automated approval claim is introduced. |
 > | DEL-01-01-REQ-003 | Agent, SDK, runtime, validator, deterministic tool, domain adapter, and runtime-event outputs must be described as drafts, evidence, diagnostics, or decision support unless accepted by a governed human process. | `docs/DIRECTIVE.md` Sections 2.3 and 3.1; `docs/CONTRACT.md` K-BIND-1. | Checklist reviews copy and document changes for binding/non-binding separation. |
 > | DEL-01-01-REQ-004 | Project truth must remain in versioned project files under the working root and accepted git history; hidden app state, chat, SDK transcripts, runtime logs, caches, model context, API keys, and provider transcripts must not be treated as project truth unless imported through governance. | `docs/DIRECTIVE.md` Sections 2.1, 2.2, 2.6; `docs/TYPES.md` Project Truth. | Project-truth checklist verifies claims and storage locations. |
-> | DEL-01-01-REQ-005 | Runtime events must support audit and replay without approving or issuing deliverables. | `docs/DIRECTIVE.md` Section 2.3; `docs/SPEC.md` Sections 8-10; `docs/PRD.md` session/audit requirements. | Runtime-audit checklist confirms `.chirality/sessions/<sessionId>/events.jsonl` is canonical and SDK transcripts are secondary unless imported. |
+> | DEL-01-01-REQ-005 | Runtime events must support audit and replay without approving or issuing deliverables. | `docs/DIRECTIVE.md` Section 2.3; `docs/SPEC.md` Sections 8-10; `docs/PRD.md` session/audit requirements. | Runtime-audit checklist confirms the Runtime-owned userData session/event store (K-EVENT-4; project-local `.chirality/sessions` is compatibility history) is canonical and SDK transcripts are secondary unless imported. |
 > | DEL-01-01-REQ-006 | Product-critical reliance boundaries must be Chirality-owned or verified at explicit enforcement surfaces; prompt text and opaque SDK defaults are not sufficient for P0 boundaries. | `docs/DIRECTIVE.md` Section 2.9; `docs/CONTRACT.md` K-RELIANCE-1/K-RELIANCE-2; `docs/PLAN.md` R0/R1. | Acceptance checklist verifies each P0 reliance boundary has a documented non-prompt-only enforcement plan or an open gap. |
-> | DEL-01-01-REQ-007 | SDK adoption must remain privileged but replaceable; SDK APIs, transcript shape, tool names, and vendor defaults must not define Chirality public semantics or product identity. | `docs/DIRECTIVE.md` Sections 2.8-2.11; `docs/CONTRACT.md` K-ENGINE/K-SDK; `docs/PLAN.md` Controlling Runtime Direction. | Diff checklist verifies product-owned contracts and Chirality terminology remain intact. |
-> | DEL-01-01-REQ-008 | Unknown, unsupported, or conflicting facts must be represented as `TBD`, `ASSUMPTION`, `PROPOSAL`, source warning, or human-ruling-needed. | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1/K-CONFLICT-1; `AGENT_SOFTWARE_DECOMP.md`. | Review checks this SOW-v1 contract and later governance notes for unsupported claims. |
+> | DEL-01-01-REQ-007 | Codex is the sole MVP engine and qualification target; the App must preserve Chirality identity and human authority while carrying the complete Codex protocol and notifications, including unfamiliar events. | D-GOV-43; D-APP-127; D-APP-131 P-05/P-20 | Current Codex event-preservation, replay and identity checks; compatibility engine tests do not qualify the MVP path |
+> | DEL-01-01-REQ-008 | Unknown, unsupported, or conflicting facts must be represented as `TBD`, `ASSUMPTION`, `PROPOSAL`, source warning, or human-ruling-needed. | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1/K-CONFLICT-1; `workflows/software-decomp/WORKFLOW.md`. | Review checks this SOW-v1 contract and later governance notes for unsupported claims. |
 > | DEL-01-01-REQ-009 | Lifecycle state must only transition according to SPEC; current state is read from `_STATUS.md`, while historical `CHECKING` admission is not issuance approval. | `docs/SPEC.md` Section 4; `_STATUS.md`; D-APP-54. | `_STATUS.md` remains the sole lifecycle authority during docs reconciliation; any human-gate transition requires its governed evidence. |
 > | DEL-01-01-REQ-010 | Dependency-extract output is derivative evidence and must not be treated as authoritative decomposition truth or silently marked satisfied. | `_DEPENDENCIES.md`; `Dependencies.csv`; D-APP-38 reference-integrity model. | `Dependencies.csv` may exist, but this deliverable records row status without satisfying, retiring, or mutating rows outside a governed dependency/evidence tranche. |
 >
@@ -141,14 +141,14 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 >
 > | Standard / governing source | Status |
 > |---|---|
-> | `docs/DIRECTIVE.md` | Accessible; hash match. |
-> | `docs/CONTRACT.md` | Accessible; hash match. |
-> | `docs/SPEC.md` | Accessible; hash match. |
-> | `docs/TYPES.md` | Accessible; hash match. |
-> | `docs/PLAN.md` | Accessible; hash match. |
-> | `docs/PRD.md` | Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes. |
+> | `docs/DIRECTIVE.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
+> | `docs/CONTRACT.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
+> | `docs/SPEC.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
+> | `docs/TYPES.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
+> | `docs/PLAN.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
+> | `docs/PRD.md` | Accessible; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records matching REF-006 authority-doc hashes. |
 > | Active decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accessible. |
-> | `AGENT_SOFTWARE_DECOMP.md` | Accessible; hash match. |
+> | `workflows/software-decomp/WORKFLOW.md` | Accessible; recorded hash result is snapshot-bound and requires current recomputation. |
 >
 
 ### CLM-011 — Verification
@@ -163,7 +163,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Runtime-audit boundary | Checklist review | Runtime audit is evidence/replay support only; it does not replace approval records. |
 > | Cross-document consistency | Diff checklist | PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced. |
 > | Reference integrity handling | Reference-row check | Authority-doc references, including REF-006, match the current D-APP-38 corpus before issue-readiness reliance is claimed. |
-> | Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by the current D-APP-38 corpus snapshot; other path/source conflicts remain visible pending human ruling. |
+> | Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); other path/source conflicts remain visible pending human ruling. |
 > | Dependency-register handling | Scope check | This reconciliation does not satisfy, retire, or otherwise mutate local dependency rows. |
 >
 
@@ -207,7 +207,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > |---|---|
 > | Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md` | Present at P3 enrichment. |
 > | Current lifecycle state permits documentation reconciliation | Read from `_STATUS.md` (currently `IN_PROGRESS`); this procedure performs no lifecycle transition. |
-> | Authoritative references are locally accessible | Accessible; the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
+> | Authoritative references are locally accessible | Accessible; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records REF-006 `docs/PRD.md` as `MATCH`. |
 > | Upstream dependencies | See derivative `Dependencies.csv`; rows remain pending unless separately disposed. |
 > | Downstream dependencies | No downstream deliverable edges are accepted in this reconciliation. |
 > | Human owner | `ResponsibleParty`: Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope). |
@@ -225,7 +225,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 >    - Read `_REFERENCES.md`.
 >    - Confirm hash status for each source.
 >    - Confirm REF-006 `docs/PRD.md` is reconciled to the current D-APP-38 corpus version before issue-readiness reliance is claimed.
->    - Treat older PRD hash-mismatch prose as historical if `_REFERENCES.md` records `MATCH`.
+>    - Recompute source hashes against the named accepted corpus; a recorded MATCH does not prove current bytes match.
 >    - Mark any inaccessible or unsupported source-dependent content as `TBD`.
 >
 > 3. Build governance consistency notes.
@@ -243,7 +243,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 >    - Check that accepted decisions bind to git SHA or equivalent immutable evidence where approval is claimed.
 >
 > 6. Build the runtime-audit boundary checklist.
->    - Check that `.chirality/sessions/<sessionId>/events.jsonl` remains the Chirality-owned runtime audit mirror.
+>    - Check that the Runtime-owned userData session/event store (K-EVENT-4; project-local `.chirality/sessions` is compatibility history) remains the Chirality-owned runtime audit mirror.
 >    - Check that SDK transcripts remain secondary runtime state unless imported into `HarnessEvent` form or a governed artifact.
 >    - Check that runtime events explain execution and do not approve deliverables.
 >
@@ -271,7 +271,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > |---|---|
 > | SOW-v1 production set | `ScopeOfWork.md`, the seven governed deliverable-local artifacts named in CLM-012, and applicable run records exist at their current paths. |
 > | Lifecycle | `_STATUS.md` remains the sole lifecycle authority; no transition is performed. |
-> | Reference integrity | REF-006 `docs/PRD.md` is `MATCH` in `_REFERENCES.md`; historical PRD hash-warning prose is not carried forward as an active blocker. |
+> | Reference integrity | Recomputed source bytes match the named accepted corpus; otherwise record the actual drift and withhold current reliance. |
 > | Responsible party | `ResponsibleParty` is Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope). |
 > | Dependency-register handling | Existing `Dependencies.csv` rows are not satisfied, retired, or otherwise mutated. |
 > | No invention | Unsupported facts are `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, source warning, or human-ruling-needed. |
@@ -292,7 +292,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | P3 run record | Records semantic-lensing dispositions, source rereads, validation results, and status policy outcome. |
 > | Dependency records | Not created or updated by this P3 run. |
 
-- **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis.
+- **VER-001** — Verify current requirement traceability, source fidelity and named checks against this candidate. One-time conversion mapping/parity/render evidence remains historical (R5/CONVERSION_EVIDENCE_REVIEW.csv); it does not establish current behavioral qualification or personal human review.
 
 ## Governing Values and Decisions — Axiology
 
@@ -305,7 +305,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 
 > ##### Purpose
 >
-> Use this deliverable to keep the governing document set coherent while the Chirality App runtime moves toward the vNext SDK-privileged, contract-owned, Chirality-governed architecture. The work is not to add runtime implementation detail for its own sake. The work is to preserve the governance boundaries that make implementation acceptable: human authority, local filesystem project truth, accepted git history, runtime auditability, reliance-boundary ownership, product identity, and professional-boundary posture.
+> Use this deliverable to keep the governing document set coherent while the Chirality App runtime uses the accepted stock Codex host and application-owned Runtime architecture under D-GOV-43/D-APP-127. The work is not to add runtime implementation detail for its own sake. The work is to preserve the governance boundaries that make implementation acceptable: human authority, local filesystem project truth, accepted git history, runtime auditability, reliance-boundary ownership, product identity, and professional-boundary posture.
 >
 
 ### CLM-021 — Principles
@@ -316,7 +316,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > 2. Filesystem project truth controls. If a decision matters for reliance, it belongs in a proper versioned project file or accepted artifact, not only in chat, runtime logs, UI state, SDK transcripts, model context, caches, or hidden memory.
 > 3. Runtime audit records explain execution. They support replay, diagnosis, and review, but they are not approval records and do not make work code-compliant, safe for reliance, issued, or professionally adequate.
 > 4. Reliance boundaries are product semantics. They must be documented, implemented, and tested in Chirality terms. Do not treat prompt instructions, SDK defaults, or visible tool settings alone as sufficient boundary enforcement.
-> 5. Chirality product identity must remain explicit. SDK usage may be an implementation detail, but it must not redefine public APIs, UI events, persisted events, copy, or governance language as SDK-shaped behavior.
+> 5. Chirality product identity must remain explicit. Codex protocol and full event preservation are accepted interfaces under D-GOV-43; they do not turn runtime evidence into human authority or replace Chirality product identity.
 > 6. Source uncertainty must remain visible. Use `TBD`, `ASSUMPTION`, `PROPOSAL`, source warnings, and human-ruling-needed records instead of smoothing over unsupported claims.
 >
 
@@ -327,11 +327,11 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Area | Guidance |
 > |---|---|
 > | Authority order | Start with `docs/DIRECTIVE.md`, then `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, and `docs/PRD.md`; use decomposition and agent instructions for scoped execution context. |
-> | PRD reference integrity | the current D-APP-38 corpus snapshot reconciled REF-006; current `_REFERENCES.md` records `docs/PRD.md` as `MATCH`. Treat older hash-mismatch warnings as historical unless a fresh corpus audit reports drift. |
+> | PRD reference integrity | the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) reconciled REF-006; the recorded `_REFERENCES.md` snapshot reports `docs/PRD.md` as `MATCH`. Treat older hash-mismatch warnings as historical unless a fresh corpus audit reports drift. |
 > | Accepted git history | When governance notes become acceptance evidence, bind them to a git SHA or equivalent immutable evidence. Content changes after approval require review again. |
 > | Evidence roles | Runtime audit records support replay, diagnosis, and review; checklist outputs organize review evidence; accepted git history or equivalent immutable evidence binds any human approval to specific content. None of these records is approval by itself unless the accountable human approval record exists. |
 > | Runtime implementation detail | Include runtime specifics only when they prove or preserve a boundary, such as accepted-turn persistence, event canonicality, settings isolation, permission denial, path containment, or SDK transcript non-authority. |
-> | Scope discipline | Keep remote MCP, plugins, broad tool search, shipped bypass, Windows/Linux packaging, retired PKG-08 scope, and domain-operation execution out of this deliverable except as boundary examples. |
+> | Scope discipline | Shared Codex configuration and user-selected sandbox/approval policy follow D-GOV-43. This grants no independent App plugin implementation, Windows/Linux release or domain apply scope; retired PKG-08 work stays retired. |
 > | Responsible party | `ResponsibleParty` is Ryan Tufts (K-AUTH-1), demonstrator scope, assigned by D-APP-65 on 2026-07-18; the assignment renders no acceptance or sign-off. |
 >
 
@@ -342,7 +342,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Trade-off | Recommended posture |
 > |---|---|
 > | Faster runtime delivery vs. governance completeness | Prefer a smaller runtime slice that preserves human gates, audit, path policy, settings isolation, and product-owned contracts. |
-> | SDK convenience vs. product-owned semantics | Use SDK mechanics only behind Chirality-owned contracts, mappers, events, permission overlay, hooks, and fallback criteria. |
+> | SDK convenience vs. product-owned semantics | Preserve the full stock Codex protocol, shared configuration and user-selected policy under D-GOV-43; document actual enforcement and gaps in the reliance register. |
 > | Audit richness vs. approval clarity | Preserve rich runtime records while making clear that approval is a separate human-authored project record. |
 > | Local-first truth vs. convenience state | Permit convenience state only when explicitly non-authoritative and unable to override governance. |
 > | Broad guidance vs. executable deliverable | Keep this deliverable at governance-alignment level; send implementation-specific requirements to the owning runtime packages unless required for a boundary check. |
@@ -367,10 +367,10 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 >
 > | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 > |---|---|---|---|---|---|---|
-> | DEL-01-01-C002 | Dispatch path used package label `PKG-01_Governance_and_Product_Boundaries`, but the existing deliverable folder and `_CONTEXT.md` use `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch assignment path | Existing deliverable folder, `_CONTEXT.md`, and SOFTWARE_DECOMP v3.2 package name | Run record; all document Identification sections | Use stable IDs `PKG-01` and `DEL-01-01` plus existing `_CONTEXT.md`/decomposition package name; ask human to correct the stale dispatch label if needed. | TBD |
+> | DEL-01-01-C002 | Dispatch path used package label `PKG-01_Governance_and_Product_Boundaries`, but the existing deliverable folder and `_CONTEXT.md` use `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch assignment path | Existing deliverable folder, `_CONTEXT.md`, and SOFTWARE_DECOMP v3.2 package name | Run record; all document Identification sections | Use stable IDs `PKG-01` and `DEL-01-01` plus existing `_CONTEXT.md`/decomposition package name; D-APP-56 R4-P48 resolved the stale label. | RULED 2026-07-12 |
 >
-> Closed historical conflict: `DEL-01-01-C001` is superseded by the current D-APP-38 corpus snapshot; REF-006
-> `docs/PRD.md` now matches in `_REFERENCES.md`.
+> Closed historical conflict: `DEL-01-01-C001` is superseded by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); REF-006
+> `docs/PRD.md` matched at that snapshot.
 >
 
 ### CLM-026 — Rulings And Open Questions
@@ -379,7 +379,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 >
 > | Ruling ID | Status / needed decision |
 > |---|---|
-> | DEL-01-01-R001 | Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes. |
+> | DEL-01-01-R001 | Historical closure at v23; the later drift triggers a current recomputation before reliance. No automatic re-pin. |
 > | DEL-01-01-R002 | Resolved by D-APP-56 R4-P48 on 2026-07-12: preserve stable IDs and the live package path; no obsolete dispatch label is needed to discover or execute remaining work. |
 > | DEL-01-01-R003 | `ResponsibleParty` assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain `TBD` until an accountable human assigns it. Assigned 2026-07-18 by D-APP-65 to Ryan Tufts (K-AUTH-1), demonstrator scope. |
 > | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. Resolved 2026-07-18 under D-APP-65 disposition 4: final filenames/destinations selected by reasoned agent judgment (D-APP-64) — see TASK_RUN_2026-07-18_DAPP65_docs_production.md; artifacts live in the deliverable folder. |

@@ -41,14 +41,18 @@ Governance consistency notes; human-authority checklist; project-truth checklist
 
 ## Source Authority
 
-This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. D-APP-65 assigned Ryan Tufts (K-AUTH-1), demonstrator scope, on 2026-07-18; this assignment renders no acceptance or sign-off.
 
-## SCA-APP-001 Context Alignment
+## Historical SCA-APP-001 Context Alignment
 
-`SCA-APP-001` is accepted. This deliverable is aligned to the provider-adapter-general runtime strategy: Claude Agent SDK / Anthropic remains the first concrete/current path; Pi is pattern corpus/reference only; permission governance is capability-forward with explicit hard-deny precedence.
+`SCA-APP-001` is accepted. This dated alignment recorded Claude Agent SDK as the then-current path, Pi as pattern corpus and a legacy permission overlay. D-APP-72/SCA-APP-002 later admitted bounded Pi work; D-GOV-43 now supersedes those live-engine/settings/policy subjects with Codex-only MVP qualification, shared Codex configuration and user-selected policy.
 
 Primary impact: Governance alignment must reflect provider-adapter strategy, Pi pattern-corpus posture, and capability-forward policy mediation.
 
 Package-local review status: `SCA-APP-001-CLOSURE-002` refreshed the base context fields and reviewed or updated targeted local kit wording in `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` against the accepted SCA. Remaining `TBD` values and non-SCA dependency lifecycle states retain their prior status.
 
 This package-local refresh does not change runtime source, package manifests, lockfiles, desktop wrapper files, provider implementation, Pi implementation, or release-readiness posture.
+
+## Current Runtime Application
+
+D-GOV-43 / D-APP-127 owns the application-owned Runtime service and stock Codex child. The full protocol/event stream and shared user configuration are accepted; actual enforcement follows selected policy and current application controls. Runtime data remains non-authoritative; human gates, domain controls, instruction integrity and missing evidence are not waived. Current obligations are in ScopeOfWork.md and `_STATUS.md ## Remaining`.

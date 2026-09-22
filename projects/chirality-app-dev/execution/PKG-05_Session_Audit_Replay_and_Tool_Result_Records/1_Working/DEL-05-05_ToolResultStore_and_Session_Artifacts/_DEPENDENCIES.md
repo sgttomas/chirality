@@ -11,14 +11,11 @@
 
 ## Declared Upstream
 
-- `docs/SPEC.md` Sections 8-9 for session layout, `HarnessEvent`, and JSONL append/replay behavior.
-- `docs/CONTRACT.md` K-EVENT and K-KEY invariants for audit, replay, redaction, and artifact constraints.
-- `docs/PRD.md` Sections 10.4-10.5 and NFR-017 from the D-APP-38 authority corpus v2 (`REF-006` = `MATCH`).
-- D-APP-42 for SHA-256 artifact checksums and session-lifetime retention policy.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-05-05-001, DEP-05-05-002, DEP-05-05-003, DEP-05-05-004, DEP-05-05-005, DEP-05-05-006, DEP-05-05-007, DEP-05-05-008, DEP-05-05-009, DEP-05-05-010
 
 ## Declared Downstream
 
-No downstream dependency row is active in this DEL-05-05-local register. DEL-05-04 consumes artifact-link projections separately.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. Consult the structured register; no new edge is inferred.
 
 ## Run Notes
 
@@ -37,28 +34,22 @@ No downstream dependency row is active in this DEL-05-05-local register. DEL-05-
 
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1.
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Metric | Count |
-|---|---:|
-| Total rows | 10 |
-| ACTIVE rows | 10 |
-| RETIRED rows | 0 |
-| ANCHOR rows | 5 |
-| EXECUTION rows | 5 |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+|---|---|---|---|---|---|---|
+| DEP-05-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-05 | ACTIVE | SATISFIED |
+| DEP-05-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-053 | ACTIVE | SATISFIED |
+| DEP-05-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-059 | ACTIVE | SATISFIED |
+| DEP-05-05-004 | ANCHOR | OTHER | UPSTREAM | OBJ-003 | ACTIVE | SATISFIED |
+| DEP-05-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-005 | ACTIVE | SATISFIED |
+| DEP-05-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | SATISFIED |
+| DEP-05-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | SATISFIED |
+| DEP-05-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-05-05-009 | EXECUTION | PREREQUISITE | UPSTREAM | projects/chirality-runtime/packages/core/src/session-store.ts; projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts | ACTIVE | SATISFIED |
+| DEP-05-05-010 | EXECUTION | CONSTRAINT | UPSTREAM | D-APP-42 | ACTIVE | SATISFIED |
 
-| DependencyID | Class | Type | Target | Status | Satisfaction |
-|---|---|---|---|---|---|
-| DEP-05-05-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | PKG-05 Session Audit, Replay, and Tool Result Records | ACTIVE | SATISFIED |
-| DEP-05-05-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-053 Deterministic event ordering under tool concurrency | ACTIVE | SATISFIED |
-| DEP-05-05-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-059 Tool result budgets and artifacts | ACTIVE | SATISFIED |
-| DEP-05-05-004 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-003 Audit and session objective | ACTIVE | SATISFIED |
-| DEP-05-05-005 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-005 Tool governance objective | ACTIVE | SATISFIED |
-| DEP-05-05-006 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
-| DEP-05-05-007 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
-| DEP-05-05-008 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | SATISFIED |
-| DEP-05-05-009 | EXECUTION | PREREQUISITE | ToolResultStore implementation location | ACTIVE | SATISFIED |
-| DEP-05-05-010 | EXECUTION | CONSTRAINT | Output budget policy parameters | ACTIVE | SATISFIED |
+Counts: ACTIVE=10; satisfaction SATISFIED=10.
 
 ## Lifecycle Summary
 
@@ -78,3 +69,27 @@ Structured register: `Dependencies.csv` v3.1.
 |---|---|---|---|---|---:|
 | 2026-05-20 19:41 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` validated | SOURCE_STATE, UNKNOWN_TARGETS, TBD_POLICY_INPUTS | 10 |
 | 2026-06-21 ADQ-10 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` unchanged | SOURCE_STATE retired; TBD_POLICY_INPUTS retired for ADQ-10; UNKNOWN_TARGETS retained by schema | 10 |
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App preview consumers; legacy `frontend/src/lib/harness/tool-result-artifacts.ts` and fixtures. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current evidence-locator refresh — 2026-09-22
+
+3 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=10; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_04_06_SUPPORTED_APPROVED.csv`; current rows: ACTIVE=10, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

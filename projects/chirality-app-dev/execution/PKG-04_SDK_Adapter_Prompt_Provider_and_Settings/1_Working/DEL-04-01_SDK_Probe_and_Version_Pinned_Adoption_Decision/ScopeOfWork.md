@@ -3,26 +3,23 @@ schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-04-01
 package_id: PKG-04
 decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
-project_scope_refs: [SOW-018, SOW-044, SOW-046]
-package_objective_refs: [OBJ-004]
+project_scope_refs: [SOW-018, SOW-044, SOW-046, SOW-079]
+package_objective_refs: [OBJ-002, OBJ-004]
 ---
 
 # Scope of Work — DEL-04-01
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW-044, SOW-046] and package objectives [OBJ-004].
+This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW-044, SOW-046, SOW-079] and package objectives [OBJ-002, OBJ-004].
 
-- **OUT-001** — First-adapter probe notes, a version-pinned adoption decision, fallback criteria, future-provider criteria, and residual-risk notes for DEL-04-01 covering SOW-018, SOW-044, SOW-046 and supporting OBJ-004.
+- **OUT-001** — Preserved first-adapter probe/adoption history and current App-boundary observation/adoption evidence for the App-bundled, pinned stock Codex App Server, including protocol/configuration/role behavior, applicable conformance, session linkage, fallback criteria and truthful residual risks; Runtime supplier-interface/session ownership remains unchanged.
 
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
-> #### Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-002 — Identification
 
@@ -37,42 +34,29 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Type | REQ_SLICE |
 > | Context Envelope | M |
 > | Responsible Party | TBD |
-> | Scope Items | SOW-018, SOW-044, SOW-046 |
-> | Objective | OBJ-004 |
+> | Scope Items | SOW-018, SOW-044, SOW-046, SOW-079 |
+> | Objective | OBJ-002, OBJ-004 |
 > | Anticipated Artifacts | first-adapter probe notes; version decision; fallback criteria; residual-risk notes |
 >
 
+
+Current deliverable responsibility: Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
 ### CLM-003 — Attributes
 
-The current engine is the stock, version-pinned Codex App Server owned by the
-App's Runtime service (D-GOV-43 A2; D-APP-127; `docs/CONTRACT.md` K-ENGINE-3).
-D-APP-68's first-adapter `ADOPT_WITH_RESIDUAL_RISK` remains historical evidence
-within its demonstrator boundary; it does not qualify Codex.
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
 
-The probe package must preserve the evaluated version, source state, results,
-approver, limitations and fallback criteria. Verify these against
-`Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` and
-`Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`. Mechanism snapshots are retained
-in this run's R5 PKG04 before-block evidence.
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
 
-Applicable runtime-interface, event, session, permission, root, instruction,
-redaction and provenance guarantees remain current obligations. Their live
-qualification uses the D-GOV-43 S-1 to S-8 checks, not historical SDK results.
+Named verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results. Evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Current Value | Source |
-> |---|---|---|
-> | Shipped settings isolation | `settingSources: []` is required for shipped SDK builds. | `docs/SPEC.md` Section 12.2; `docs/PLAN.md` R1; `docs/PRD.md` R1 |
-> | Development settings posture | Development-only project settings may use `['project']` behind explicit environment configuration; `user` and `local` setting sources must not be used in shipped builds. | `docs/SPEC.md` Section 12.2 |
-> | Transcript canonicality | SDK transcripts are secondary runtime state unless imported into `HarnessEvent` form; Chirality JSONL remains canonical. | `docs/SPEC.md` Sections 8.4 and 10.3; `docs/CONTRACT.md` K-SDK-3 |
-> | Tool restriction boundary | `allowedTools` is not a restriction boundary by itself; restrictions require deny policy, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | `docs/SPEC.md` Section 14.3; `docs/CONTRACT.md` K-PERM-3 |
-> | Permission overlay | Deny overrides allow, including policy, hooks, SDK deny rule, or human gate denials. | `docs/CONTRACT.md` K-PERM-1 |
-> | Probe exposure | R0 acceptance requires no local tools exposed to the model during the probe outside controlled validation. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
-> | Source-state warning | `docs/PRD.md` is accessible but `_REFERENCES.md` records `MATCH`; claims citing PRD require snapshot confirmation before closure. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
->
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+Named verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results. Evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
 
 ### CLM-005 — Construction
 
@@ -94,14 +78,17 @@ qualification uses the D-GOV-43 S-1 to S-8 checks, not historical SDK results.
 >
 > | RefID | Source | Status | Used For |
 > |---|---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | MATCH | Product boundary, reliance boundaries, provider-neutrality, product identity |
-> | REF-002 | `docs/CONTRACT.md` | MATCH | Binding invariants for SDK governance, permissions, events, settings, transcripts |
-> | REF-003 | `docs/SPEC.md` | MATCH | Runtime contract, session/event schema, SDK configuration, tool surface, hooks |
-> | REF-004 | `docs/TYPES.md` | MATCH | Vocabulary for engine, SDK metadata, tools, hooks, MCP, events |
-> | REF-005 | `docs/PLAN.md` | MATCH | R0/R1 sequencing, probe deliverables, acceptance criteria |
-> | REF-006 | `docs/PRD.md` | MATCH | Product requirements and runtime direction; use requires source-state confirmation — reconciled under D-APP-38 |
-> | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH | Decomposition method context only |
+> | REF-001 | `docs/DIRECTIVE.md` | HISTORICAL_MATCH | Product boundary, reliance boundaries, provider-neutrality, product identity |
+> | REF-002 | `docs/CONTRACT.md` | HISTORICAL_MATCH | Binding invariants for SDK governance, permissions, events, settings, transcripts |
+> | REF-003 | `docs/SPEC.md` | HISTORICAL_MATCH | Runtime contract, session/event schema, SDK configuration, tool surface, hooks |
+> | REF-004 | `docs/TYPES.md` | HISTORICAL_MATCH | Vocabulary for engine, SDK metadata, tools, hooks, MCP, events |
+> | REF-005 | `docs/PLAN.md` | HISTORICAL_MATCH | R0/R1 sequencing, probe deliverables, acceptance criteria |
+> | REF-006 | `docs/PRD.md` | HISTORICAL_MATCH | Product requirements and runtime direction; use requires source-state confirmation — reconciled under D-APP-38 |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | HISTORICAL_MATCH | Decomposition method context only |
 >
+
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin. Current applicability: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable.
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -113,48 +100,43 @@ qualification uses the D-GOV-43 S-1 to S-8 checks, not historical SDK results.
 
 ### CLM-008 — Specification: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
-> #### Specification: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-009 — Scope
 
-Preserve the first-adapter probe and adoption evidence for SOW-018, SOW-044
-and SOW-046 as compatibility history under D-GOV-43 and D-APP-127. Readers
-must be able to establish the evaluated behavior, demonstrator decision
-boundary and residual risks through
-`Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` and
-`Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`.
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
 
-This evidence slice excludes downstream runtime implementation and activation
-of additional tools or providers. SDK transcripts are not authoritative
-project records. Session/storage evidence gaps remain partial. Newer
-App-client/SOW-079 scope and traceability reconciliation remains assigned to
-the owning loop; the R5 PKG04 return records that residual.
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+Verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | Req ID | Requirement | Verification | Source |
-> |---|---|---|---|
-> | DEL-04-01-REQ-001 | The probe notes MUST record the exact `@anthropic-ai/claude-agent-sdk` package version selected for evaluation and the Claude Code subprocess version when knowable. | Inspect probe record and package/version evidence. | `docs/SPEC.md` Section 12.4; `docs/PLAN.md` R0 |
-> | DEL-04-01-REQ-002 | The adoption decision MUST remain version-pinned and regression-tested on upgrade. | Confirm version decision identifies pin and upgrade test expectation. | `docs/CONTRACT.md` K-SDK-2; `docs/PRD.md` KG-021 |
-> | DEL-04-01-REQ-003 | The probe MUST capture SDK `query()` message sequence and determine whether known SDK messages can map to stable `UIEvent`s and provider-neutral `HarnessEvent`s. | Compare probe notes to event mapping acceptance criteria. | `docs/PLAN.md` R0/R1; `docs/SPEC.md` Sections 9 and 10.3 |
-> | DEL-04-01-REQ-004 | The decision MUST not accept SDK-specific message names, permission modes, transcript paths, tool names, or session IDs as public API or canonical event fields except as adapter metadata. | Review adoption decision and residual risks for provider-neutral boundary. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-ENGINE-4 |
-> | DEL-04-01-REQ-005 | The probe MUST verify shipped settings isolation using `settingSources: []`; any development `['project']` use must be explicit and non-shipped. | Inspect probe result and planned settings tests. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
-> | DEL-04-01-REQ-006 | The probe MUST test permission behavior, including `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and capability policy, explicit hard-deny precedence, and overlay implications. | Inspect probe notes for each permission surface and a restriction-boundary conclusion. | `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` K-PERM-1 through K-PERM-3 |
-> | DEL-04-01-REQ-007 | The probe MUST test in-process Chirality MCP feasibility without treating MCP as a bypass around permission, hooks, path policy, redaction, or event logging. | Confirm probe notes cover MCP transport and wrapper policy expectations. | `docs/SPEC.md` Section 14.2; `docs/CONTRACT.md` K-MCP-1 |
-> | DEL-04-01-REQ-008 | The probe MUST capture SDK session ID, resume behavior, transcript/store linkage, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior. | Inspect session/storage section of probe notes and residual-risk register. | `docs/SPEC.md` Sections 8.4 and 12.4; `docs/PRD.md` KG-024 and KG-028 |
-> | DEL-04-01-REQ-009 | The decision MUST keep `.chirality/sessions/<id>/events.jsonl` or a configured Chirality-controlled session path as the canonical audit mirror. | Review adoption decision for transcript canonicality statement. | `docs/DIRECTIVE.md` Section 2.4; `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-EVENT-4 |
-> | DEL-04-01-REQ-010 | The probe MUST test interrupt/cancel terminal behavior and require success, failure, interruption, and cancellation events to persist before production default use. | Inspect probe notes and R1 acceptance mapping. | `docs/PLAN.md` R1; `docs/SPEC.md` Section 10.1 |
-> | DEL-04-01-REQ-011 | The probe MUST test Electron packaging of the SDK subprocess and record any `asarUnpack`, signing, environment, or path residual risks. | Inspect packaging probe result and residual-risk notes. | `docs/PLAN.md` R0; `docs/PRD.md` KG-025 |
-> | DEL-04-01-REQ-012 | The probe MUST verify API key environment handling: key material is supplied only as needed for active turns and redacted from logs/events. | Inspect probe notes for env handoff and redaction evidence. | `docs/SPEC.md` Section 12.3; `docs/PLAN.md` R1 |
-> | DEL-04-01-REQ-013 | The adoption decision MUST define fallback triggers if SDK behavior cannot satisfy or verify product-critical boundaries. | Confirm fallback criteria exist and reference custom-runtime path. | `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` K-ENGINE-5; `docs/PLAN.md` R0 |
-> | DEL-04-01-REQ-014 | The probe MUST not expose local tools to the model outside controlled validation. | Review probe setup and notes. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
-> | DEL-04-01-REQ-015 | The decision MUST record residual risks for SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in. | Inspect residual-risk notes. | `docs/PRD.md` KG-021 through KG-032 |
->
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| DEL-04-01-REQ-001 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe notes MUST record the exact `@anthropic-ai/claude-agent-sdk` package version selected for evaluation and the Claude Code subprocess version when knowable. |
+| DEL-04-01-REQ-002 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The adoption decision MUST remain version-pinned and regression-tested on upgrade. |
+| DEL-04-01-REQ-003 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST capture SDK `query()` message sequence and determine whether known SDK messages can map to stable `UIEvent`s and provider-neutral `HarnessEvent`s. |
+| DEL-04-01-REQ-004 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The decision MUST not accept SDK-specific message names, permission modes, transcript paths, tool names, or session IDs as public API or canonical event fields except as adapter metadata. |
+| DEL-04-01-REQ-005 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST verify shipped settings isolation using `settingSources: []`; any development `['project']` use must be explicit and non-shipped. |
+| DEL-04-01-REQ-006 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST test permission behavior, including `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and capability policy, explicit hard-deny precedence, and overlay implications. |
+| DEL-04-01-REQ-007 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST test in-process Chirality MCP feasibility without treating MCP as a bypass around permission, hooks, path policy, redaction, or event logging. |
+| DEL-04-01-REQ-008 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST capture SDK session ID, resume behavior, transcript/store linkage, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior. |
+| DEL-04-01-REQ-009 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The decision MUST keep `.chirality/sessions/<id>/events.jsonl` or a configured Chirality-controlled session path as the canonical audit mirror. |
+| DEL-04-01-REQ-010 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST test interrupt/cancel terminal behavior and require success, failure, interruption, and cancellation events to persist before production default use. |
+| DEL-04-01-REQ-011 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST test Electron packaging of the SDK subprocess and record any `asarUnpack`, signing, environment, or path residual risks. |
+| DEL-04-01-REQ-012 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST verify API key environment handling: key material is supplied only as needed for active turns and redacted from logs/events. |
+| DEL-04-01-REQ-013 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The adoption decision MUST define fallback triggers if SDK behavior cannot satisfy or verify product-critical boundaries. |
+| DEL-04-01-REQ-014 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The probe MUST not expose local tools to the model outside controlled validation. |
+| DEL-04-01-REQ-015 | Historical first-adapter probe obligation (retain its actual demonstrator result and missing evidence, without qualifying Codex): The decision MUST record residual risks for SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in. |
+
+Verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
+
+Evidence locations: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Probe Evidence Thresholds
 
@@ -190,55 +172,29 @@ the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-013 — Verification
 
-> ##### Verification
->
-> | Verification ID | Check | Required Result |
-> |---|---|---|
-> | DEL-04-01-VER-001 | Version evidence check | Exact SDK package version is recorded, with lockfile/package evidence when implementation begins. |
-> | DEL-04-01-VER-002 | Message sequence probe | SDK message categories used by Chirality are observed and mapped or flagged as fallback blockers. |
-> | DEL-04-01-VER-003 | Settings isolation probe | Shipped posture proves `settingSources: []`; no user/local settings load. |
-> | DEL-04-01-VER-004 | Permission probe | `allowedTools` is not mistaken for restriction; capability policy with explicit hard-deny precedence, hooks, and callbacks are evaluated. |
-> | DEL-04-01-VER-005 | MCP probe | In-process MCP tooling can be exposed only through Chirality policy and event logging. |
-> | DEL-04-01-VER-006 | Session/storage probe | SDK session ID, resume, transcript path/store key, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior are documented. |
-> | DEL-04-01-VER-007 | Interrupt probe | Cancel/interrupt behavior preserves terminal outcomes and releases route/session control. |
-> | DEL-04-01-VER-008 | Packaging probe | Packaged Electron runtime can start SDK-backed harness turn or records a fallback-blocking issue. |
-> | DEL-04-01-VER-009 | Fallback decision review | Any failed P0 reliance boundary produces fallback or residual-risk action before R1 production default. |
-> | DEL-04-01-VER-010 | Source-state check | REF-006 `docs/PRD.md` hash status: MATCH is resolved or explicitly accepted before closure. — reconciled under D-APP-38 |
-> | DEL-04-01-VER-011 | Probe evidence completeness | Evidence rows listed in Probe Evidence Thresholds are present, or each missing row is marked `TBD` with fallback/residual-risk impact. |
->
+Required current checks: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
+
+Named evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Produce the SOW-079 App observation/adoption record and requirement-to-S-1–S-8 conformance mapping; recover or run missing distinct live witnesses. Record the historical SDK session/resume/SessionStore and future-provider-criteria omissions without reopening its demonstrator ruling.
 
 ### CLM-014 — Documentation
 
-> ##### Documentation
->
-> Required records:
->
-> - first-adapter probe notes.
-> - Version-pinned adoption decision.
-> - Fallback criteria.
-> - Residual-risk notes.
-> - Source-state note for REF-006 `docs/PRD.md` hash status: MATCH. (reconciled under D-APP-38).
-> - Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.
->
-> Current records (D-APP-68 recommendation 8):
->
-> - Decision: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` records `ADOPT_WITH_RESIDUAL_RISK`.
-> - Versions: `@anthropic-ai/claude-agent-sdk@0.3.150`; observed Claude Code `2.1.150`.
-> - Package evidence: `frontend/package.json` and `frontend/package-lock.json`.
-> - Transcript treatment: SDK data under controlled `CLAUDE_CONFIG_DIR/projects/` is secondary adapter metadata; Chirality JSONL remains canonical.
-> - Packaging treatment: unsigned local `darwin:arm64` proof under `app.asar.unpacked`; signing, notarization, distribution, release, and other platforms remain outside the evidence.
-> - Approver/verdict: Ryan Tufts (K-AUTH-1), `ADOPT_WITH_RESIDUAL_RISK`, demonstrator scope, rendered through D-APP-68 on 2026-07-19. The D-APP-65 pre-ruling state—role assigned while the verdict remained a future owner act—is retained as dated history in `_CONTEXT.md` and `_STATUS.md`.
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
 
-- **AC-001** — The DEL-04-01 evidence package records the first-adapter probe results and a version-pinned adoption decision, including provider/SDK message mapping, SDK session link and transcript placement, fallback triggers, future-provider criteria, and residual-risk notes, for SOW-018, SOW-044, SOW-046 and OBJ-004.
+Record the current implementation/consumer and named verification locations: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
+
+Unfinished delivery: Produce the SOW-079 App observation/adoption record and requirement-to-S-1–S-8 conformance mapping; recover or run missing distinct live witnesses. Record the historical SDK session/resume/SessionStore and future-provider-criteria omissions without reopening its demonstrator ruling.
+
+- **AC-001** — Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
 
 ## Production and Verification Method — Praxeology
 
 ### CLM-015 — Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
-> #### Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-016 — Purpose
 
@@ -251,116 +207,35 @@ the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-017 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status / Note | Source |
-> |---|---|---|
-> | Accepted decomposition row for DEL-04-01 | Present in SOFTWARE_DECOMP v3.2. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
-> | Source corpus | Accessible; `docs/PRD.md` has REF-006 `MATCH`. | `_REFERENCES.md` — reconciled under D-APP-38 |
-> | Upstream dependencies | TBD: no accepted dependency edges have been extracted yet. | `_DEPENDENCIES.md` |
-> | first-adapter probe environment | SDK `0.3.150`, Claude Code `2.1.150`, live development probe, and unsigned local `darwin:arm64` packaged Read proof are recorded; signing, notarization, distribution, release, and other platforms remain outside the evidence. | `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; D-APP-68 recommendation 8 |
-> | Runtime contract expectations | Required before SDK adapter production default. | `docs/SPEC.md` Section 10; `docs/PLAN.md` R1 |
-> | Reliance-boundary expectations | Required for P0 boundaries and fallback decisions. | `docs/DIRECTIVE.md` Section 2.9; `docs/CONTRACT.md` K-RELIANCE-1 |
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
+Current implementation/adoption evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-018 — Steps
 
-> ##### Steps
->
-> 1. Confirm source-state before final closure.
->    - Re-check `_REFERENCES.md` and resolve or explicitly accept the REF-006 `docs/PRD.md` hash status: MATCH. (reconciled under D-APP-38).
->    - If unresolved, keep PRD-derived conclusions marked as draft/source-warning material.
->
-> 2. Prepare the probe matrix.
->    - Include package version, `query()` message sequence, `settingSources`, permission mapping, `canUseTool`, hooks, in-process MCP, agents, resume, `SessionStore`, `CLAUDE_CONFIG_DIR`, interrupt behavior, Electron packaging, API key environment handling, branding/product identity, fallback triggers, and residual risks.
->    - Source: `docs/PLAN.md` R0 and `docs/PRD.md` R0.
->
-> 3. Record version evidence.
->    - Capture exact `@anthropic-ai/claude-agent-sdk` version under evaluation.
->    - Capture package manifest and lockfile evidence location once implementation begins.
->    - Capture Claude Code subprocess version where knowable.
->    - Mark unknowns as `TBD`; do not infer a version from roadmap text.
->    - Source: `docs/SPEC.md` Section 12.4; `docs/CONTRACT.md` K-SDK-2.
->
-> 4. Probe SDK message behavior.
->    - Run a controlled `query()` sequence in the intended adapter environment.
->    - Record observed message categories, ordering, terminal states, and error/interrupt behavior.
->    - Determine whether each required message can map to stable `UIEvent` and `HarnessEvent` contracts.
->    - Source: `docs/SPEC.md` Sections 9 and 10.3.
->
-> 5. Probe settings isolation.
->    - Verify shipped-like options use `settingSources: []`.
->    - Verify `user` and `local` setting sources are not used in shipped builds.
->    - If development-only project settings are used, require explicit environment configuration.
->    - Record the evidence row location for shipped settings posture, negative user/local settings evidence, and any development-only project-setting posture.
->    - Source: `docs/SPEC.md` Section 12.2.
->
-> 6. Probe permissions and tool exposure.
->    - Test `permissionMode`, `allowedTools`, `disallowedTools`, `canUseTool`, and hooks.
->    - Confirm that `allowedTools` is not treated as a restriction boundary.
->    - Confirm denied tools are blocked by policy, hooks, SDK deny rule, or human gate and are recorded before allowing/denying when applicable.
->    - Record one minimal evidence row per permission surface and one capability-policy and hard-deny precedence outcome row.
->    - Source: `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` K-PERM-1 through K-PERM-3.
->
-> 7. Probe MCP and hook behavior.
->    - Test in-process Chirality MCP exposure only under controlled validation.
->    - Confirm MCP tools are not bypasses and remain subject to permission, hook, path, redaction, and event logging policy.
->    - Confirm required hooks for path containment, instruction-root protection, symlink write rejection, and write budget are feasible where applicable.
->    - Source: `docs/SPEC.md` Sections 14.2 and 15.2; `docs/CONTRACT.md` K-MCP-1.
->
-> 8. Probe sessions, storage, transcripts, and resume.
->    - Record SDK session ID, resume mode, transcript path or store key, SDK config dir, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior.
->    - Prefer project-controlled transcript placement or mirroring when reliable.
->    - If SDK writes outside project-controlled storage, cross-reference the path or store key and record residual risk while keeping Chirality JSONL canonical.
->    - Source: `docs/SPEC.md` Sections 8.4 and 12.4.
->
-> 9. Probe API key environment handling and redaction.
->    - Confirm key precedence and active-turn handoff behavior.
->    - Confirm key material is redacted from logs, events, SDK transcripts if avoidable, and tool artifacts.
->    - Source: `docs/SPEC.md` Section 12.3; `docs/CONTRACT.md` K-KEY-1.
->
-> 10. Probe Electron packaging.
->     - Validate that a packaged build can start an SDK-backed harness turn.
->     - Record subprocess/binary execution path, `asarUnpack`, signing, environment, and transcript/storage effects.
->     - Record the residual-risk verdict if packaging works only with special path, signing, environment, or storage assumptions.
->     - Source: `docs/PRD.md` KG-025; `docs/PLAN.md` R0.
->
-> 11. Draft the version-pinned adoption decision.
->     - State `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.
->     - Current result: Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` for the demonstrator through D-APP-68 on 2026-07-19; see `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`.
->     - Cite probe evidence for each P0 reliance boundary.
->     - Keep the SDK privileged as implementation substrate, not product identity or governance authority.
->     - Source: `docs/DIRECTIVE.md` Sections 2.8 through 2.11.
->
-> 12. Draft fallback criteria and residual-risk notes.
->     - Include SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in.
->     - Source: `docs/PRD.md` KG-021 through KG-032.
->
-> 13. Route downstream work.
->     - Send implementation requirements to DEL-04-02 through DEL-04-05 as appropriate.
->     - Keep this deliverable as the documentation/probe decision slice.
->     - Source: decomposition rows for PKG-04.
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+4. Verify bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
+
+Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-019 — Verification
 
-> ##### Verification
->
-> | Check | Pass Criteria |
-> |---|---|
-> | Source-state check | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
-> | Probe coverage | Every required probe topic from R0 has an evidence row or `TBD` blocker. |
-> | Version pin | Exact SDK package version is recorded before adoption. |
-> | Version evidence location | Package manifest and lockfile evidence location is recorded once implementation begins. |
-> | Contract boundary | Decision states that SDK-specific identifiers remain adapter metadata and Chirality contracts stay product-owned. |
-> | Settings isolation | Shipped posture uses `settingSources: []`. |
-> | Permissions | Rows exist for `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and explicit hard-deny precedence; `allowedTools` is not treated as restriction. |
-> | Sessions/transcripts | SDK transcript/store linkage is recorded without replacing Chirality audit JSONL. |
-> | Interrupts | Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged. |
-> | Packaging | Packaged app SDK turn is proven or recorded as fallback/residual risk. |
-> | Fallback criteria | Any unverifiable P0 reliance boundary has an explicit fallback trigger. |
-> | Adoption authority | PASS for the documentary decision: Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` through D-APP-68 on 2026-07-19, demonstrator scope. This is not release, issuance, certification, professional acceptance, signing, notarization, publication, or external distribution. |
->
+Required current checks: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
+
+Named evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Produce the SOW-079 App observation/adoption record and requirement-to-S-1–S-8 conformance mapping; recover or run missing distinct live witnesses. Record the historical SDK session/resume/SessionStore and future-provider-criteria omissions without reopening its demonstrator ruling.
 
 ### CLM-020 — Records
 
@@ -388,20 +263,19 @@ the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
+
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.
 
-- **VER-001** — Inspect the DEL-04-01 evidence package against SOW-018, SOW-044, SOW-046, OBJ-004, and the preserved legacy requirements to confirm the probe notes, pinned-version decision, mappings, transcript treatment, fallback and future-provider criteria, and residual-risk notes are present.
+- **VER-001** — Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
 
 ## Governing Values and Decisions — Axiology
 
 ### CLM-022 — Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
-> #### Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-023 — Purpose
 
@@ -437,15 +311,11 @@ the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-025 — Considerations
 
-> ##### Considerations
->
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
-> - The decomposition marks this as a documentation/probe slice with no new user tool exposure. Keep implementation changes out of this deliverable and route code work to downstream DEL-04-02 through DEL-04-05.
-> - OI-001's empirical questions now have bounded D-APP-52 live and deterministic evidence; remaining limitations are carried explicitly in the twelve-area D-APP-68 residual-risk appraisal rather than treated as unknown results.
-> - OI-002 is resolved for the demonstrator as cross-referenced SDK transcript placement under controlled `CLAUDE_CONFIG_DIR/projects/`, carried as secondary adapter metadata while Chirality JSONL remains canonical.
-> - Packaging risk is not limited to the SDK package dependency. The probe must consider SDK subprocess/binary execution in Electron and any built-app path constraints.
-> - D-APP-68 selected `ADOPT_WITH_RESIDUAL_RISK` for the demonstrator. If a product-critical reliance boundary cannot be observed, enforced, and recorded in Chirality terms, the fallback triggers in `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` apply.
->
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+Named verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results. Evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
 
 ### CLM-026 — Trade-offs
 
@@ -494,12 +364,11 @@ the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-029 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | SRC-001 | `docs/PRD.md` is authoritative in role but `_REFERENCES.md` reports `MATCH`; content based on PRD should not be closed without source-state confirmation. | `_REFERENCES.md` REF-006 | `docs/PRD.md` R0/R1 and KG-021 through KG-032 | Datasheet References; Specification Requirements and Verification; Guidance Considerations | Use corroborated PRD claims as draft context where they match MATCH sources; require human/source refresh before closure. | TBD — reconciled under D-APP-38 |
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Produce the SOW-079 App observation/adoption record and requirement-to-S-1–S-8 conformance mapping; recover or run missing distinct live witnesses. Record the historical SDK session/resume/SessionStore and future-provider-criteria omissions without reopening its demonstrator ruling.
 
 ### CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -520,8 +389,18 @@ the owning loop; the R5 PKG04 return records that residual.
 > no release approval, issuance, certification, professional acceptance,
 > signing, notarization, publication, or external distribution.
 
+### CLM-032 — SOW-079 App Server observation and adoption evidence
+
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
+
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+Verification: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results. Evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
+
+Authority: applied decomposition SOW-079 scope/trace and DEL-04-01 rows (historical row 482/331; current 2026-09-22 D-GOV-43 item 11 application). Runtime supplier-interface/session ownership is preserved. No supplier download, adoption acceptance, pin change or product activation is performed by this record.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-018 SOW-044 SOW-046 OBJ-004 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-018 SOW-044 SOW-046 SOW-079 OBJ-002 OBJ-004 | CLM-010 CLM-032  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

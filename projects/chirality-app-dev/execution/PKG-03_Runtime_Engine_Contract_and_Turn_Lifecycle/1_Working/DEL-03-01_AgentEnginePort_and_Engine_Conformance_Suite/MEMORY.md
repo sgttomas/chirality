@@ -1,5 +1,9 @@
 # MEMORY - DEL-03-01
 
+## Current applicability — 2026-09-22 record reconciliation
+
+D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remaining. Earlier daemon/helper, closed-event, SDK-only conformance, global-folder and loop-first observations below remain dated history. They do not establish live Codex qualification or current UI behavior. D-APP-118 retires facade and rollback support; direct Runtime contracts and live conformance remain. Current exact-key dispositions and evidence are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W02_03_ROWS.csv`; lifecycle and Checking Approval SHA are unchanged.
+
 - 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-03-01: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
 
 ## Decisions And Evidence

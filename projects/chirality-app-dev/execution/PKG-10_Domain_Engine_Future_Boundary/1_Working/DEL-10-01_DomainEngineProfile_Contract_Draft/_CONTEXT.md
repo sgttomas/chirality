@@ -45,10 +45,10 @@ This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOM
 
 ## SCA-APP-001 Context Alignment
 
-`SCA-APP-001` is accepted. This deliverable is aligned to the provider-adapter-general runtime strategy: Claude Agent SDK / Anthropic remains the first concrete/current path; Pi is pattern corpus/reference only; permission governance is capability-forward with explicit hard-deny precedence.
+`SCA-APP-001` remains historical accepted context. Current App execution follows D-GOV-43 / D-APP-127: Codex is the sole MVP engine, hosted by the App-owned Runtime service child. Retained Claude/Pi implementations are compatibility evidence; user-selected Codex policy replaces fixed supplier-policy assumptions. PKG-10 stages, domain controls and future-activation gates remain.
 
 Primary impact: Future domain profile contracts must not become provider/network expansion bypasses.
 
-Package-local review status: `SCA-APP-001-CLOSURE-002` refreshed the base context fields and reviewed or updated targeted local kit wording in `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` against the accepted SCA. Remaining `TBD` values and non-SCA dependency lifecycle states retain their prior status.
+Package-local review status: `SCA-APP-001-CLOSURE-002` refreshed the base context fields and reviewed or updated targeted legacy kit wording (now consolidated in `ScopeOfWork.md`) and `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` against the accepted SCA. Remaining `TBD` values and non-SCA dependency lifecycle states retain their prior status.
 
 This package-local refresh does not change runtime source, package manifests, lockfiles, desktop wrapper files, provider implementation, Pi implementation, or release-readiness posture.

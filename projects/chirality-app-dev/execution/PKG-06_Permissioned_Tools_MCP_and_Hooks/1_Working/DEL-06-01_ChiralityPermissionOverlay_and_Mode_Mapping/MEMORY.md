@@ -11,3 +11,9 @@
 - 2026-07-19 - D-APP-68 chronology item 3 assigned DEL-06-01 the managed-orchestration `coordination` descriptor permission class and `harness-permission.v7.coordination-mode` hard-deny mapping. Coordination tools require `workspaceWrite` and remain subject to handler-level managed-delegation validation. No runtime or lifecycle change occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. App approval UI and permission evidence conform to Runtime server requests and the user-selected Codex policy. The Claude permission overlay and fixed modes are compatibility evidence.
+
+Current unfinished delivery: Complete live permission/request identity and deny-non-execution witnesses; repair any actor/SHA gate enforcement gaps on served application APIs and verify native descendant policy/scope evidence without weakening domain controls. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.

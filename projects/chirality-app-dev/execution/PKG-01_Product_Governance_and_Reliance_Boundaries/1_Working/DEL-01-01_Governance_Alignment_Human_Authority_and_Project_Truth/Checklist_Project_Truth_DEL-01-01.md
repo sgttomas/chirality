@@ -1,5 +1,26 @@
 # Project-Truth Checklist — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| T-01 | Project truth remains governed plain project files plus accepted Git history; Runtime-owned userData and shared Codex state do not silently become project truth. |
+| T-02 | Accepted decisions remain recorded and bound to reviewable project evidence; chat-only statements cannot substitute for the governed record. |
+| T-03 | Shared Codex settings, memory and threads are permitted as native resources under D-GOV-43 item 5. Their availability does not confer project authority, and Chirality must not veto them. |
+| T-04 | Runtime transcripts, caches, model context and UI convenience state remain distinct from accepted project truth, regardless of native provider or storage locus. |
+| T-05 | Chirality authentication is separated and custodied by Codex; secret exclusion remains required. Actual raw-stream structural redaction is an open RB-REDACTION delivery gap, not proved by this checklist. |
+| T-06 | Existing approval SHA and lifecycle history are preserved byte-for-value. Current content repair is not a new human approval. |
+| T-07 | Current results reside in these seven project files and W00_03 evidence. They are uncommitted author outputs until parent integration; no accepted Git status is fabricated. |
+| T-08 | Native transcripts/runtime logs are retained as complete audit evidence, not project truth. The old SDK-only import mechanism does not constrain full Codex event preservation. |
+| T-09 | _STATUS.md and canonical dependency registers retain their authority; current changes do not satisfy or retire a formal edge or change lifecycle. |
+| T-10 | When runtime/external material is relied upon as project truth it must enter governed project records. D-GOV-43 item 5 does not make a generalized import feature a prerequisite for native memory/thread support. |
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

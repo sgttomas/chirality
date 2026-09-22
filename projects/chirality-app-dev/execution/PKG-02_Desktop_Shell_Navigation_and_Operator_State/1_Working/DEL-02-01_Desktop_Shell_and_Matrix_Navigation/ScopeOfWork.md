@@ -114,8 +114,7 @@ Remaining items seated under D-APP-108 (2026-09-04): DEL-02-01-V3-01,
 DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-01-V3-04. Ruled questions applied here:
 Q1, Q3, Q5, Q6, Q9. Alignment writes WI-001, WI-002, WI-003, WI-004, WI-005
 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
-DEP-001, DEP-002 await the registered dependency-extract pass after owner
-acceptance of this alignment. No lifecycle, Checking Approval SHA,
+DEP-001, DEP-002 were performed under D-APP-109/D-APP-110 on 2026-09-05; the extracted register now exists. No lifecycle, Checking Approval SHA,
 dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
@@ -124,7 +123,7 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Datasheet: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-002 — Identification
@@ -147,48 +146,19 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary surface | Loop-first desktop shell navigation: PORTAL as the primary header entry, with WORKBENCH and PIPELINE reachable as right-sidebar tertiary forms and preserved deep links | REF-006 `docs/PRD.md` Section 8.1 FR-001; decomposition DEL-02-01; D-APP-28/D-APP-31/D-APP-32 |
-> | Matrix shape | 3 rows by 4 columns | REF-006 Section 8.2 FR-007; REF-004 `docs/TYPES.md` Section 4.3 |
-> | Matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 |
-> | Matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 |
-> | NORMATIVE destination | Mounted live-loop persona context | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-30 |
-> | OPERATIVE destination | PIPELINE sidebar/deep-link intent | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-31 |
-> | EVALUATIVE destination | Mounted live-loop persona context | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-30 |
-> | Shell routes | `/` is the primary header entry; `/pipeline` and `/workbench` are preserved deep-link route entries that open right-sidebar tertiary forms | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 |
-> | Active route indication | Required for rendered primary header links; Workbench/Pipeline active context is sidebar-tab state | REF-006 Section 8.1 FR-001; D-APP-28 |
-> | Anticipated artifacts | Navigation components; matrix UI tests; route query handling; AMD-01 render tests | `_CONTEXT.md`; decomposition DEL-02-01; D-APP-36 |
->
+The current shell has a headerless Navigator, primary centre dialogue, right-panel views and an activity strip. Folder selection is per chat before its first message and fixed thereafter; current no-folder behavior is constrained by D-APP-120. New direct-entry roles are HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is delegated. Presentation must preserve recorded identity, selected permissions and visible unavailable states.
+
+The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | Scope items covered | SOW-001, SOW-005 | `_CONTEXT.md`; decomposition SSOW and traceability |
-> | Objective supported | OBJ-001 | `_CONTEXT.md`; decomposition objective mapping |
-> | Inclusions | UI and operator workflow behavior | `_CONTEXT.md`; decomposition PKG-02 package row |
-> | Exclusions | Runtime engine internals | `_CONTEXT.md`; decomposition PKG-02 package row |
-> | PRD source status | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; dispatch instruction — reconciled under D-APP-38 |
-> | Dependency extraction | Deferred; `Dependencies.csv` not produced in this run | Dispatch instruction; `_DEPENDENCIES.md` initial population rule |
->
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
+
+Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. ResponsibleParty remains TBD. Runtime internals remain outside this shell deliverable.
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Item | Required Construction Detail | Source |
-> |---|---|---|
-> | Header/navigation | Must expose PORTAL in primary header navigation and preserve `/pipeline` and `/workbench` as loop-first deep-link route entries | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 |
-> | PORTAL matrix | Must render canonical rows and columns | REF-006 Section 8.2 FR-007; REF-004 Section 4 |
-> | Matrix cell routing | Must route NORMATIVE and EVALUATIVE cells to mounted live-loop persona context and OPERATIVE cells to PIPELINE intent | REF-006 Section 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30/D-APP-31 |
-> | Route state | Current implementation evidence uses `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` keys; older source text does not independently name all keys | `_CONTEXT.md`; ADQ-13 implementation evidence |
-> | Tests | Matrix, route wrapper, sidebar, and disabled-state render tests are recorded under ADQ-13 | `_CONTEXT.md`; D-APP-36; ADQ-13 evidence |
->
+Provide navigation, per-chat folder controls, role/permission context and local chat organisation without making UI state project truth. Delegation/rung context fields, full multi-root listing, native Finder/Dock behaviors and exact icon directions retain their separate recorded residuals. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-006 — References
 
@@ -204,9 +174,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 is implemented by the governed PORTAL active-link render test.
+The 2026-07-12 UPD-105/106 dependency/header observations describe their then-current source. The dependency register now exists; the old PORTAL header active-state test does not establish the headerless SCA-APP-010 shell. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -214,31 +182,16 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Specification: DEL-02-01 Desktop Shell and Matrix Navigation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable covers the user-facing desktop shell navigation and canonical matrix routing for `DEL-02-01 Desktop Shell and Matrix Navigation`.
->
-> In scope:
->
-> - Loop-first access to PORTAL, WORKBENCH, and PIPELINE shell surfaces.
-> - Primary header navigation to PORTAL (`/`), plus preserved deep-link route entries for `/workbench` and `/pipeline`.
-> - Right-sidebar tertiary tabs for PORTAL, WORKBENCH, and PIPELINE while the live loop remains mounted as the primary pane.
-> - PORTAL rendering of the canonical 3x4 agent matrix.
-> - Matrix row-semantics routing into live-loop persona context or PIPELINE.
-> - Navigation components, matrix UI tests, and route query handling to the extent supported by source evidence.
->
-> Out of scope:
->
-> - Runtime engine internals.
-> - Workbench agent-context detail owned by adjacent deliverables except where routing handoff requires it.
-> - Pipeline selector behavior beyond receiving OPERATIVE matrix routes.
-> - Dependency extraction and `Dependencies.csv` creation for this run.
->
+The current shell has a headerless Navigator, primary centre dialogue, right-panel views and an activity strip. Folder selection is per chat before its first message and fixed thereafter; current no-folder behavior is constrained by D-APP-120. New direct-entry roles are HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is delegated. Presentation must preserve recorded identity, selected permissions and visible unavailable states.
+
+Own navigation and presentation handoff, preserving the primary dialogue and session identity. Adjacent DEL-02-02/03 and DEL-08-02/03 retain selector, workspace and routing semantics. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract.
+
+The account-row update presentation consumes the stable update-check/handoff requirement in DEL-09-05 CLM-005. Manual, startup and six-hour unauthenticated fixed-metadata checks refuse credentials/redirects; only an explicit verified browser handoff is supported, with no automatic install, restart or publication (CONTRACT K-NET-1).
 
 ### CLM-010 — Requirements
 
@@ -246,17 +199,17 @@ dependency-acceptance, product, or release act is implied.
 >
 > | ID | Requirement | Priority | Source | Verification |
 > |---|---|---:|---|---|
-> | DEL-02-01-REQ-001 | The app shall provide a loop-first desktop shell where PORTAL, PIPELINE, and WORKBENCH are reachable while the live loop stays primary. | P0 | REF-006 Section 8.1 FR-001; SOW-001; D-APP-28/D-APP-31/D-APP-32 | Component render tests confirm all three tertiary surfaces are present in the right sidebar. |
-> | DEL-02-01-REQ-002 | Primary header navigation shall expose PORTAL at `/`; `/workbench` and `/pipeline` shall remain deep-link route entries that open their matching right-sidebar tertiary tab. | P0 | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 | Route-wrapper render tests confirm `/workbench` defaults to the Workbench tab and `/pipeline` defaults to the Pipeline tab. |
-> | DEL-02-01-REQ-003 | Header navigation shall visually indicate the active primary section for rendered header links. | P0 | REF-006 Section 8.1 FR-001; D-APP-28 | UI assertion confirms active state for the rendered primary header item; Workbench/Pipeline active context is represented by sidebar tab state. |
-> | DEL-02-01-REQ-004 | PORTAL shall render the canonical 3x4 agent matrix. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.3 | Matrix UI test confirms 3 rows and 4 columns. |
-> | DEL-02-01-REQ-005 | Matrix rows shall be `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE`. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 | Matrix UI test checks row labels and row order if order is encoded in implementation. |
-> | DEL-02-01-REQ-006 | Matrix columns shall be `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING`. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 | Matrix UI test checks column labels and column order if order is encoded in implementation. |
-> | DEL-02-01-REQ-007 | NORMATIVE matrix cells shall focus the mounted live loop with the selected Type-0/Type-1 persona context. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30 | Matrix routing/render tests confirm loop-persona launch kind and mid-turn disabled state. |
-> | DEL-02-01-REQ-008 | EVALUATIVE matrix cells shall focus the mounted live loop with the selected Type-0/Type-1 persona context. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30 | Matrix routing/render tests confirm loop-persona launch kind and mid-turn disabled state. |
-> | DEL-02-01-REQ-009 | OPERATIVE matrix cells shall open PIPELINE intent in the right sidebar or preserved `/pipeline` deep-link entry. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-31 | Matrix routing/render tests confirm Pipeline launch kind and sidebar destination. |
+> | DEL-02-01-REQ-001 | The woven shell SHALL preserve the centre dialogue as primary, with headerless Navigator and right-panel navigation under SCA-APP-010. The old PORTAL arrangement is dated history. | P0 | REF-006 Section 8.1 FR-001; SOW-001; D-APP-28/D-APP-31/D-APP-32 | Current woven-shell render/browser checks confirm primary dialogue and present navigation regions. |
+> | DEL-02-01-REQ-002 | Navigation SHALL preserve current shell entry and recorded-session context. `/workbench` and `/pipeline` remain reachable, unlisted compatibility routes; their exact TYPES §4 query-intent semantics remain keyed with DEL-08-02. | P0 | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 | Current route/query checks confirm reachable unlisted aliases, recorded-session context and unknown-parameter preservation; exact TYPES §4 semantics remain open. |
+> | DEL-02-01-REQ-003 | Navigation SHALL truthfully show selected chat and panel context in the headerless Navigator and woven shell. Old PORTAL header-link styling is dated evidence. | P0 | REF-006 Section 8.1 FR-001; D-APP-28 | Current Navigator/woven-shell render and browser checks confirm selection and focus state. |
+> | DEL-02-01-REQ-004 | The former 3x4 visual matrix is dated presentation history under SCA-APP-010. Preserve its source identity for compatibility analysis, without imposing its geometry on the current shell. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.3 | Historical matrix UI test only; current shell geometry is checked under REQ-001. |
+> | DEL-02-01-REQ-005 | Former matrix row labels and order are dated presentation history. The exact TYPES §4 row/query meaning is retained for source alignment with DEL-08-02. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 | Historical row-label tests only; current route/query behavior requires separate source-bound checks. |
+> | DEL-02-01-REQ-006 | Former matrix column labels and order are dated presentation history. The exact TYPES §4 column/query meaning is retained for source alignment with DEL-08-02. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 | Historical column-label tests only; current route/query behavior requires separate source-bound checks. |
+> | DEL-02-01-REQ-007 | The former NORMATIVE matrix-cell launch description is historical. Resolve the exact surviving TYPES §4 row/column query contract with DEL-08-02 before assigning a current compatibility handler. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30 | Historical matrix launch tests only; verify any surviving query contract against current route handling after alignment. |
+> | DEL-02-01-REQ-008 | The former EVALUATIVE matrix-cell launch description is historical. Resolve the exact surviving TYPES §4 row/column query contract with DEL-08-02 before assigning a current compatibility handler. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30 | Historical matrix launch tests only; verify any surviving query contract against current route handling after alignment. |
+> | DEL-02-01-REQ-009 | The former OPERATIVE matrix-cell Pipeline launch description is historical. Keep `/pipeline` reachable and unlisted under D-APP-108 Q3; resolve any separate TYPES §4 row/column query meaning with DEL-08-02. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-31 | Current route checks cover reachable unlisted `/pipeline`; historical matrix-cell tests do not prove a current launch handler. |
 > | DEL-02-01-REQ-010 | Disabled or unsupported variants shall remain visible as coming soon rather than disappearing when encountered in matrix-adjacent navigation flows. | P0 | REF-006 Section 7.2 acceptance | UI test confirms unsupported variants are visible and non-selectable where this deliverable exposes them. |
-> | DEL-02-01-REQ-011 | Stable identifiers shall remain distinct from path or label changes. Current implementation evidence uses `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` keys. | P1 | REF-002 `docs/CONTRACT.md` K-ID-1 and K-PATH-1; REF-006 Section 8.2 FR-009; ADQ-13 implementation evidence | Matrix identity and deliverable-key render tests confirm selected implementation keys while preserving source warnings for future authority reconciliation. |
+> | DEL-02-01-REQ-011 | Stable identifiers SHALL remain distinct from paths and labels in current navigation. `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` are retained implementation evidence, pending exact TYPES §4 compatibility alignment. | P1 | REF-002 `docs/CONTRACT.md` K-ID-1 and K-PATH-1; REF-006 Section 8.2 FR-009; ADQ-13 implementation evidence | Current route/query and stable-identity checks; old matrix-key render tests are historical evidence only. |
 >
 
 ### CLM-011 — Standards
@@ -265,7 +218,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > | Standard or Source | Applicability | Status |
 > |---|---|---|
-> | `docs/PRD.md` | Product requirements for shell navigation and matrix routing | Accessible; hash is MATCH under D-APP-38 — reconciled under D-APP-38 |
+> | `docs/PRD.md` | D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. | Accessible; hash is MATCH under D-APP-38 — reconciled under D-APP-38 |
 > | `docs/TYPES.md` Section 4 | Canonical UI navigation vocabulary and matrix semantics | Accessible |
 > | `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-INVENT-1, K-CONFLICT-1 | Stable identity and epistemic controls relevant to routing and document production | Accessible |
 > | `docs/DIRECTIVE.md` Section 4.1 | In-scope statement for local desktop operation and matrix navigation | Accessible |
@@ -274,16 +227,9 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement IDs | Verification Approach | Evidence Record |
-> |---|---|---|
-> | REQ-001 through REQ-003 | Route/navigation component render tests | `frontend/src/__tests__/components/workspace-sidebar.test.ts`; `frontend/src/__tests__/components/loop-tertiary-routes.test.ts` |
-> | REQ-004 through REQ-006 | Matrix rendering tests | Matrix UI test output |
-> | REQ-007 through REQ-009 | Matrix launch-kind and route-query tests | `frontend/src/__tests__/lib/agent-matrix-cells.test.ts`; `frontend/src/__tests__/lib/agent-matrix-launch.test.ts`; `frontend/src/__tests__/components/agent-matrix-panel.test.ts` |
-> | REQ-010 | Disabled-state visibility render tests where unsupported variants are surfaced | `frontend/src/__tests__/components/agent-matrix-panel.test.ts`; `frontend/src/__tests__/components/pipeline-surface.test.ts` |
-> | REQ-011 | Identity/route-state review | `frontend/src/__tests__/lib/agent-matrix-cells.test.ts`; `frontend/src/__tests__/components/agent-matrix-panel.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts` |
->
+Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
+
+Verify primary-dialogue isolation, current navigation, role/permission/folder context, invalid selection refusal, local organisation and unsupported-state labels. Former matrix/loop-first tests retain historical subject attribution. The exact route/query compatibility keys remain a DEL-08-02 alignment task; missing current behavior is not proved by unrendered components. Verify update presentation against DEL-09-05 CLM-005 and its current update tests.
 
 ### CLM-013 — Documentation
 
@@ -292,7 +238,7 @@ dependency-acceptance, product, or release act is implied.
 > Required or anticipated artifacts:
 >
 > - Navigation components.
-> - Matrix UI tests.
+> - Dated matrix UI tests, labelled historical presentation evidence; current woven-shell and route/query checks are separate.
 > - Route query handling.
 > - Evidence notes identifying any route-state parameters chosen by implementation.
 > - ADQ-13 evidence: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md`.
@@ -302,16 +248,11 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 is implemented by the `ShellFrame` render test asserting the rendered PORTAL link carries `shell-nav-link--active`.
->
+UPD-105/106 are dated 2026-07-12 records: extraction existed and the old ShellFrame active-header test landed. The contradictory procedural claim that UPD-106 remained withheld is superseded by that dated evidence. Current headerless-shell verification is CLM-012.
 
 ### CLM-015 — D-APP-56 shell ownership amendment (2026-07-12)
 
-> ##### D-APP-56 shell ownership amendment (2026-07-12)
->
-> R4-P29 assigns the `/chat` direct-chat shell surface and portal persona-picker bar to DEL-02-01 shell scope. The deliverable-rows launcher remains covered by DEL-02-03 REQ-009. DEL-08-02 retains persona-alias ownership and owns the `isMatrixLaunchBlockedByStreaming` persona/matrix launch guard as consumer-side behavior.
+D-APP-56 assigned direct-chat shell presentation to DEL-02-01; current role selection is the composer context line under the four-role instructions. DEL-08-02 owns routing/guarded selection; old persona-picker and isMatrixLaunchBlockedByStreaming identifiers are earlier evidence, not a current required component name. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 - **AC-001** — The DEL-02-01 Scope of Work preserves every legacy source range, has no silent claim loss, and validates under SOW_V1 for SOW-001, SOW-005, and OBJ-001.
 
@@ -324,87 +265,43 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-017 — Purpose
 
-> ##### Purpose
->
-> Produce and verify the loop-first desktop shell and matrix navigation slice for DEL-02-01, preserving PORTAL, WORKBENCH, and PIPELINE access while the live loop remains the primary pane.
->
+Produce and verify the current woven shell while preserving primary dialogue, recorded session identity and navigation intent. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-018 — Prerequisites
 
-> ##### Prerequisites
->
-> - Accessible source references listed in `_REFERENCES.md`.
-> - Current deliverable context in `_CONTEXT.md`.
-> - Existing implementation workspace for navigation components and tests.
-> - Implementation evidence slots are required for later closure: navigation component path, matrix UI test path, and route query handling test path. ADQ-13 records selected paths in the implementation evidence table below.
-> - Human acceptance that `ResponsibleParty` remains `TBD` until assigned.
-> - Dependency extraction remains deferred; do not create `Dependencies.csv` as part of this procedure.
->
-> Declared upstream dependencies:
->
-> - TBD - no accepted dependency edges have been extracted yet.
->
-> Declared downstream dependencies:
->
-> - TBD - no accepted dependency edges have been extracted yet.
->
+Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
+
+Read current context and reference observations, confirm the actual source candidate and retain ResponsibleParty TBD. Current conformance requires render/browser and applicable native folder/navigation evidence; old ADQ-13 slot completion does not establish current behavior.
 
 ### CLM-019 — Steps
 
-> ##### Steps
->
-> 1. Confirm the deliverable identity from `_CONTEXT.md`: `DEL-02-01 Desktop Shell and Matrix Navigation`, `ResponsibleParty: TBD`, `Type: UX_UI_SLICE`, `ContextEnvelope: M`.
-> 2. Confirm authoritative source availability from `_REFERENCES.md`; treat the PRD hash mismatch as a source warning unless a human ruling changes that instruction.
-> 3. Preserve the shell's three surfaces: PORTAL at `/`, PIPELINE through the right-sidebar tertiary tab and `/pipeline` deep link, and WORKBENCH through the right-sidebar tertiary tab and `/workbench` deep link.
-> 4. Ensure primary header navigation exposes PORTAL and visually indicates the active rendered section; route wrappers for `/workbench` and `/pipeline` must default to their matching sidebar tabs.
-> 5. Render the PORTAL matrix with rows `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE`.
-> 6. Render the PORTAL matrix with columns `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING`.
-> 7. Route `NORMATIVE` cells to the mounted live loop by updating persona/query context without replacing the primary pane.
-> 8. Route `EVALUATIVE` cells to the mounted live loop by updating persona/query context without replacing the primary pane.
-> 9. Route `OPERATIVE` cells to PIPELINE intent in the right sidebar or preserved `/pipeline` deep link.
-> 10. Preserve unsupported or disabled variants as visible coming-soon options where this deliverable exposes them.
-> 11. Add or update matrix UI tests for row/column rendering and row-semantics routing.
-> 12. Add or update route query handling tests for selected implementation keys. Current evidence covers `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` keys while preserving older source warnings.
-> 13. Keep runtime engine internals out of this slice; hand off engine or selector-specific behavior to adjacent deliverables.
-> 14. Record selected implementation paths for navigation components, matrix UI tests, and route query handling tests in this kit and in the ADQ-13 evidence note.
->
+1. Read current SCA-APP-010 scope, four-role applicability and source observations.
+2. Verify headerless Navigator/dialogue/right-panel composition and recorded context.
+3. Verify folder selection before the first message, fixed session identity afterward and D-APP-120 no-folder restrictions.
+4. Verify local search, titles, pins/groups/archive and read-only runtime record boundaries.
+5. Check native folder picker, recent documents, Finder reveal/drop and multi-root listing against actual evidence.
+6. Carry the exact route/query, delegation/rung and icon/source-handoff residuals with their owners; do not infer retirement from absent UI.
+7. Verify update presentation through DEL-09-05 CLM-005 without adding install/restart behavior.
+8. Record source-bound render/browser/native results and remaining gaps.
+
+Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-020 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Surface reachability | `/`, `/pipeline`, and `/workbench` remain reachable; `/workbench` and `/pipeline` open matching right-sidebar tertiary forms. |
-> | Active surface state | Primary header state covers rendered header links; Workbench/Pipeline active context is represented by sidebar tab state. |
-> | Matrix shape | PORTAL shows 3 rows and 4 columns. |
-> | Row labels | `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE` are present. |
-> | Column labels | `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING` are present. |
-> | Loop-persona routing | NORMATIVE and EVALUATIVE cells focus the mounted loop with selected persona context. |
-> | PIPELINE routing | OPERATIVE cells route to PIPELINE intent. |
-> | Unsupported variants | Unsupported variants visible in this slice are disabled or coming soon, not silently removed. |
-> | Scope discipline | No runtime engine internals are changed under this deliverable's authority. |
->
+Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
+
+Current checks cover primary dialogue, navigation/selection, context, folder lifetime, organisation, native folder behavior and update handoff. Old 3x4 rows/columns and loop-first pane snapshots are historical checks. Surviving TYPES §4 route/query intent remains a separate current alignment/verification question, not a claimed live pass.
 
 ### CLM-021 — Implementation Evidence Slots
 
-> ##### Implementation Evidence Slots
->
-> | Evidence Slot | Current Value | Source |
-> |---|---|---|
-> | Navigation component path | `frontend/src/components/shell/shell-frame.tsx`; `frontend/src/components/shell/sidebar-right-loop-layout.tsx`; `frontend/src/components/shell/loop-tertiary-shell.tsx`; `frontend/src/app/workbench/workbench-client.tsx`; `frontend/src/app/pipeline/pipeline-client.tsx` | ADQ-13 inspection and render tests |
-> | Matrix UI test path | `frontend/src/__tests__/components/agent-matrix-panel.test.ts`; `frontend/src/__tests__/lib/agent-matrix-cells.test.ts` | ADQ-13 AMD-01 render evidence |
-> | Route query handling test path | `frontend/src/__tests__/components/loop-tertiary-routes.test.ts`; `frontend/src/__tests__/lib/agent-matrix-launch.test.ts`; `frontend/src/__tests__/lib/loop-first.test.ts` | ADQ-13 AMD-01 render evidence |
->
-> P3 disposition: D-001 is now implementation-evidence-backed for the selected paths above. Package path, PRD hash, and source-pointer conflicts remain warning-limited and are not resolved by this procedure update.
->
+The ADQ-13 paths in earlier revisions are dated evidence for the former shell. Current source loci are `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx`, `navigator.tsx` beside it, and `frontend/src/components/shell/chat-panel.tsx`. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results. Verification for unimplemented context/native/compatibility details remains open.
 
 ### CLM-022 — Records
 
 > ##### Records
 >
 > - Navigation component change notes or diff references.
-> - Matrix UI test results.
+> - Dated matrix UI test results, labelled historical presentation evidence; current woven-shell render/browser results are recorded separately.
 > - Route query handling test results, with selected query key names documented.
 > - Any human rulings resolving the package path mismatch, PRD hash mismatch, or PRD/SPEC/TYPES source-pointer issue.
 > - This four-document kit and the TASK run record.
@@ -412,9 +309,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.
+UPD-106 was implemented in the earlier ShellFrame active-link test; the 2026-07-12 withheld statement was stale. This does not prove the current SCA-APP-010 shell. Current checks and residual compatibility are in CLM-012/020.
 
 - **VER-001** — Validate the DEL-02-01 candidate, generate its complete claim map and parity report, and derive its deterministic review checklist.
 
@@ -424,38 +319,20 @@ dependency-acceptance, product, or release act is implied.
 
 > #### Guidance: DEL-02-01 Desktop Shell and Matrix Navigation
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-025 — Purpose
 
-> ##### Purpose
->
-> This deliverable preserves the operator's primary movement through Chirality's loop-first desktop shell: PORTAL for the matrix entry point, WORKBENCH as a contract/context review form, and PIPELINE for operative task categories. It supports OBJ-001 by keeping the local desktop harness clear, governed, and navigable while the live loop remains mounted.
->
+The current shell has a headerless Navigator, primary centre dialogue, right-panel views and an activity strip. Folder selection is per chat before its first message and fixed thereafter; current no-folder behavior is constrained by D-APP-120. New direct-entry roles are HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is delegated. Presentation must preserve recorded identity, selected permissions and visible unavailable states. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. The purpose remains clear governed navigation without changing Runtime ownership or project truth.
 
 ### CLM-026 — Principles
 
-> ##### Principles
->
-> - Keep shell navigation explicit: PORTAL, PIPELINE, and WORKBENCH are first-class surfaces, with PORTAL as the primary header entry and Workbench/Pipeline preserved as right-sidebar tertiary forms and deep-link entries.
-> - Treat the agent matrix as canonical product vocabulary. Use `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE` for rows, and `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING` for columns.
-> - Route by row semantics: `NORMATIVE` and `EVALUATIVE` focus the mounted live loop with Type-0/Type-1 persona context; `OPERATIVE` opens PIPELINE intent.
-> - Preserve stable IDs and route meaning across label or path changes. Current implementation evidence uses `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` keys; future authority work may still reconcile source wording.
-> - Keep unsupported variants visible as coming soon when this slice exposes them, instead of hiding roadmap-aware choices.
-> - Do not make runtime engine behavior part of this deliverable; this slice owns navigation and routing presentation.
->
+Keep the primary dialogue invariant, distinguish recorded session state from local convenience state, and preserve stable identity across label/path changes. Use the current four-role entry model and visible unavailable states. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-027 — Considerations
 
-> ##### Considerations
->
-> - `docs/PRD.md` is the main product requirement source for this slice; its observed hash matches the expected REF-006 hash under D-APP-38 and is not a blocker.
-> - The PRD says matrix routing follows the `docs/SPEC` contract, while the accessible route semantics for rows and cells are in `docs/TYPES.md` Section 4 and PRD Section 7.2/8.2. Until a human reconciles that wording, use TYPES plus PRD as the concrete source for matrix routing behavior.
-> - DEL-08-02 also covers matrix routing contract concerns. DEL-02-01 should focus on the visible shell and matrix navigation behavior, while leaving persona alias and deeper routing-contract ownership to DEL-08-02 unless a human ruling expands this slice.
-> - DEL-02-02 and DEL-08-03 own adjacent workbench/pipeline selector details. This deliverable should test that row routing lands on the correct surface without over-specifying downstream controls.
-> - Query-state naming for selected agent, row, column, category, task scope, and deliverable key is source-supported as anticipated "route query handling"; ADQ-13 records the selected implementation keys while leaving older source-pointer wording MATCH-verified. (reconciled under D-APP-38).
->
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper tests do not prove current route behavior, and this record does not silently retire that contract. DEL-08-02 owns routing/guarded selection; DEL-02-02/03 own adjacent right-panel/workspace presentation. Implementation parameter names are evidence, not fresh authority.
 
 ### CLM-028 — Trade-offs
 
@@ -471,24 +348,11 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-029 — Examples
 
-> ##### Examples
->
-> | Example | Expected Result | Source |
-> |---|---|---|
-> | Operator selects a NORMATIVE matrix cell from PORTAL | The mounted live loop receives the selected persona context without replacing the primary pane | REF-006 Section 7.2; REF-004 Section 4.1; D-APP-28/D-APP-30 |
-> | Operator selects an OPERATIVE matrix cell from PORTAL | PIPELINE opens with category context in the right sidebar or preserved deep-link entry | REF-006 Section 7.2; REF-004 Section 4.1; D-APP-28/D-APP-31 |
-> | Operator opens `/pipeline` directly | The route opens the loop-first shell with the Pipeline sidebar tab selected | REF-006 Section 8.1 FR-001; D-APP-31 |
->
+A new chat chooses its folder and permitted direct-entry role in the composer; after its first message that folder identity is fixed. Selecting a recorded chat preserves primary-dialogue and replay isolation. Legacy matrix row/column deep links remain the exact keyed compatibility question with DEL-08-02. Check current navigation/folder cases in CLM-012; no automatic legacy-route restoration is ordered.
 
 ### CLM-030 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Source A | Source B | Issue | Current Handling | Human Ruling Needed |
-> |---|---|---|---|---|---|
-> | CONFLICT-001 | Dispatch deliverable path uses `PKG-02_Desktop_UI_and_Local_Experience` | Existing in-repo deliverable folder uses `PKG-02_Desktop_Shell_Navigation_and_Operator_State` and `_CONTEXT.md` package name matches decomposition | Package path segment differs from dispatch, while deliverable ID and name match | Wrote only inside the existing DEL-02-01 folder and recorded this as a scope/path warning. P3 disposition: E-001 already covered as conflict. | Confirm whether the package path rename is accepted and whether future dispatches should use the existing path |
-> | CONFLICT-002 | REF-006 expected SHA in `_REFERENCES.md` | REF-006 actual SHA in `_REFERENCES.md` | PRD hash status: MATCH | Treated as source warning, not blocker, per dispatch. P3 disposition: B-001 already covered as conflict. | Confirm whether observed PRD hash should replace expected hash in a later governed reference update — reconciled under D-APP-38 |
-> | CONFLICT-003 | PRD FR-008 says matrix routing shall follow the `docs/SPEC` contract | Accessible concrete matrix vocabulary and row destination semantics are in `docs/TYPES.md` Section 4, not in located `docs/SPEC.md` slices | Source pointer appears imprecise or stale | Used PRD Section 7.2/8.2 plus TYPES Section 4 for concrete routing requirements. P3 disposition: F-001 already covered as conflict. | Confirm whether SPEC should be amended or whether TYPES is the intended route-semantics authority |
+The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptance. The surviving exact TYPES §4 route/query compatibility, icon direction/reproducibility and missing context-field questions remain in current Remaining with their actual owning decisions. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 

@@ -1,18 +1,10 @@
 # Runtime Engine Contract
 
-> **D-APP-56 R4-P24 architecture note (2026-07-12):** `TurnEngine` consumes
-> the product-owned `IAgentSdkManager` port. Adapter-side terminal persistence
-> is the accepted placement; `AgentEnginePort` is historical design naming,
-> not a required live interface name.
+Current application: D-GOV-43 topology A2, D-APP-127, D-APP-131 and D-APP-118 (2026-09-22 record reconciliation). The App owns its Runtime service child, which owns the stock, lockfile-pinned Codex App Server. The App is a client of the retained Runtime socket API through its loopback HTTP/SSE renderer channel.
 
-> **D-GOV-43 (A2) note, 2026-09-12:** Codex is the only engine. The adapter
-> boundary is the Runtime service's Unix-socket API: the App starts, owns and
-> stops the service as a child process, and the service owns the stock,
-> lockfile-pinned `codex app-server`. The App-local `TurnEngine`, first-adapter
-> (Claude Agent SDK), stub and Anthropic paths described below are
-> compatibility history under the Codex-only rule. Public event names are the
-> extensible upstream-preserving representation of `docs/SPEC.md` §11, not
-> the eight-name `UIEvent` set.
+The dated D-APP-56 R4-P24 description of App-local IAgentSdkManager and adapter-side terminal persistence is compatibility history. The live Codex adapter still implements the Runtime-owned AgentEnginePort; the coordinator owns lifecycle/persistence. The browser carrier still uses UIEvent/SSE, including the harness:event bridge; its content preserves the full upstream protocol rather than being limited to the old named-event set. Original method names, identifiers and payloads remain inspectable, subject to structural secret redaction.
+
+The Scope, TurnEngine, Tool Catalog and First Adapter sections below retain first-adapter compatibility detail. Their former “current” assertions apply to that historical subject only, not live Codex qualification or a mandate to restore retired provider/default/policy machinery. The six current sections repaired here retain substantive controls and explicitly separate missing live evidence. No support for the retired @chirality/harness-contract facade remains.
 
 ## Scope
 
@@ -32,26 +24,13 @@ unless explicitly mapped into Chirality-owned records.
 
 ## AgentEnginePort
 
-The product boundary is represented by `projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts`.
+The canonical boundary is `projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts`. Its descriptor/preflight, turn execution and interrupt methods remain live interface obligations; the public method yields `UIEvent`. Runtime `codex.notification` and `codex.request` evidence carries upstream parameters through that representation; such source data is not falsely described as provider-neutral.
 
-Required behavior (revised under D-GOV-43 A2):
+Known items may have normalized views. Unfamiliar notifications remain inspectable and every server request receives a response, with an explicit unsupported-request outcome where no handler exists. Structural redaction before every persistence/log/artifact/renderer sink remains required and is not established merely by complete forwarding.
 
-- `startTurn(input)` yields the extensible event representation: upstream App
-  Server method names, identifiers and payloads preserved, with normalized
-  views for known items (tool activity, file changes, reasoning summaries,
-  plan, sub-agents, usage, approvals, questions). The former fixed
-  `UIEvent` names (`session:init`, `chat:delta`, `chat:complete`,
-  `tool:result`, `session:complete`, `turn:error`, `process:exit`,
-  `harness:event`) are compatibility history. Unfamiliar notifications remain
-  inspectable and are never dropped; every server request is answered, an
-  unfamiliar one with a JSON-RPC error and a visible "unsupported request"
-  outcome.
-- `interrupt(sessionId)` is explicit Stop: it interrupts the turn the Runtime
-  service owns and yields an interrupted terminal outcome. A closed browser
-  subscription never interrupts; the turn route's cancel unsubscribes.
-- Codex thread identifiers are stored in the App's thread index keyed by
-  thread id; they do not rename public events.
-- Redacted `HarnessEvent` records remain provider-neutral persisted evidence.
+Explicit Stop interrupts the Runtime-owned turn. Closing a renderer subscription only unsubscribes; replay/reattachment recovers state and missed activity without sending the original prompt again. Codex thread linkage is retained in the Runtime session record, not an invented App thread index. Native resume is the continuation path; historical v2 records remain readable without a release prerequisite to import or resume them.
+
+Verification hooks: Runtime `tests/codex-supervisor.test.ts`, `tests/app-owned-composition.test.ts`, `tests/turn-registry.test.ts` and App `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. Missing live conformance/redaction checks stay with DEL-03-01/03/04.
 
 ## TurnEngine
 
@@ -76,175 +55,42 @@ remain browser-visible SSE terminal evidence.
 
 ## HarnessEvent Evidence
 
-`projects/chirality-runtime/packages/contracts/src/harness/event-schema.ts` defines versioned persisted runtime evidence.
-`frontend/src/lib/harness/session-events.ts` appends JSONL records under the configured
-Chirality session root.
+The Runtime contract source is `projects/chirality-runtime/packages/contracts/src/harness/event-schema.ts`; the canonical session store and turn coordinator are under `projects/chirality-runtime/packages/core/src/`. Runtime owns accepted-input ordering, durable terminal outcomes, append-only records and replay. Browser UIEvent and stored HarnessEvent remain separate carriers without suppressing upstream identity.
 
-Current persisted event categories include:
+Live Codex tool evidence is produced from upstream item notifications and output deltas, with normalized tool views where known. Upstream payloads remain inspectable. Earlier SDK canUseTool/hook wrappers, safe-path-only inputs and the blanket “no raw tool output in HarnessEvent.data” description are compatibility-path observations, not proof of the live path. Actual event redaction is a known implementation/verification residual under D-APP-131 P-12: structural secret protection must happen before every durable, log, artifact and renderer sink. Do not mark that guarantee fulfilled from legacy wrapper tests.
 
-- `turn.accepted`
-- `turn.started`
-- `adapter.initialized`
-- `message.accepted`
-- `message.queued`
-- `message.started`
-- `message.delta`
-- `message.completed`
-- `model.request.started`
-- `model.delta`
-- `model.completed`
-- `turn.completed`
-- `turn.failed`
-- `turn.cancelled`
-- `turn.interrupted`
-- `tool.queued`
-- `tool.permission`
-- `tool.started`
-- `tool.progress`
-- `tool.completed`
-- `tool.failed`
-- `hook.started`
-- `hook.progress`
-- `hook.completed`
-- `hook.failed`
-- `queue.enqueued`
-- `queue.consumed`
-- `queue.cleared`
-- `branch.created`
-- `branch.selected`
-- `branch.summarized`
-- `interruption.requested`
-- `interruption.completed`
-- `context.compaction.started`
-- `context.compacted`
-- `context.compaction.failed`
-- `subagent.started`
-- `subagent.progress`
-- `subagent.completed`
-- `subagent.failed`
-- `runtime.mirror.error`
+Surviving guarantees include accepted input before execution, truthful durable terminal outcome, unique event identity, malformed-tail recovery, original source/parentage and actual decisions, and no conversion of runtime records into project acceptance. Live native Codex tools follow user-selected Codex policy; application-tool catalog/call validation and domain-stage controls remain separate. A policy label, Full access selection, caller HUMAN string or recorded approval SHA alone proves neither normative authority nor every enforcement boundary.
 
-Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.
-
-Read-tool lifecycle evidence is persisted for the currently approved read surfaces:
-SDK read built-ins and Chirality MCP read tools. Permission callbacks append
-`tool.permission` records with allow/deny/ask behavior, decision id, reason,
-descriptor identity, adapter tool name, mode, surface, and safe metadata. If permission
-audit persistence fails, the SDK callback fails closed by denying execution.
-
-Read MCP handlers append `tool.started` before local execution and then append either
-`tool.completed` with result-budget metadata or `tool.failed` with redacted error
-metadata. SDK built-in read results append inferred `tool.started` when needed and then
-`tool.completed` or `tool.failed` from the SDK `tool_use_result` message. Chirality MCP
-completion/failure evidence is owned by the local MCP wrapper to avoid duplicate SDK
-completion records.
-
-Tool input evidence stores input key names and recognized safe path fields only. Tool
-result evidence stores byte counts, MCP content item counts, descriptor inline/artifact
-limits, overflow policy, and budget class. Raw tool outputs are not stored in
-`HarnessEvent.data`. Bash overflow output may be spilled to redacted session-local
-artifacts after descriptor budgets require it; other raw tool artifact storage remains
-future scope.
-
-Write/edit lifecycle evidence is persisted for the currently approved SDK built-in write
-surfaces: `Write` and `Edit` in `workspaceWrite` mode. Permission callbacks append
-`tool.permission` records before execution, and Chirality `PreToolUse` hooks enforce
-project-root containment, instruction-root write blocking, symlink write rejection, and
-fail-closed audit behavior. The write hooks append provider-neutral `hook.started`,
-`hook.completed`, and `hook.failed` events with safe path metadata, pre/post file state
-metadata, result-budget metadata, and diff-provenance flags. Raw file contents, raw tool
-outputs, and full diffs are not stored in `HarnessEvent.data`; artifact spill files and
-full diff storage remain future scope.
-
-Mutating Chirality MCP lifecycle evidence is persisted for the D-APP-13 Option A tools
-`mcp__chirality__status_transition` and `mcp__chirality__deps_write`. These tools are
-available only when explicitly requested in `workspaceWrite` mode. Because the SDK MCP
-behavior probe showed raw in-process `mcp_message` calls do not automatically invoke SDK
-`canUseTool` or hook callbacks, each mutating MCP handler runs its own fail-closed
-permission/evidence wrapper. The wrapper emits `tool.started`, `tool.permission`, and
-then `tool.completed` or `tool.failed`; enforces project-root containment,
-instruction-root write blocking, and symlink target rejection; snapshots target-file
-SHA-256 and byte length before and after execution; and records only result summaries,
-bounded diff metadata, and redacted error metadata. Raw `_STATUS.md`, raw
-`Dependencies.csv`, raw full diffs, raw SDK transcripts, and secrets are not stored in
-`HarnessEvent.data`.
-
-Bash lifecycle evidence is persisted for the approved SDK `Bash` built-in only in
-`workspaceWrite` mode. Bash remains denied in `readOnly`, `dontAsk`, and ordinary `ask`
-exposure. Permission callbacks and Chirality `PreToolUse` hooks enforce default timeout
-injection, maximum timeout policy, no background execution, no sandbox override,
-project-root containment for obvious path and redirection targets, instruction-root
-blocking, symlink redirection rejection, and static no-network command checks. Bash
-`PostToolUse` hooks record stdout/stderr byte-count metadata separately and spill
-redacted overflow results to session-local tool artifacts when descriptor budgets require
-it. Raw stdout, stderr, commands, and API keys are not stored in `HarnessEvent.data`.
+Verification hooks: Runtime `tests/turn-hardening.test.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-application-tools.test.ts` and current sink-specific secret/replay checks. These hooks do not supply missing results. Retain distinct unknown outcomes and actual adapter/source attribution.
 
 ## Agent/Subagent Runtime Contract
 
-`frontend/src/lib/harness/agent-runtime-contract.ts` defines the current Chirality-owned
-agent/subagent contract. Bounded executable child turns are now permitted only through the
-D-APP-10 Option C path described below.
+The live path uses Codex-native delegation and records the actual native mechanism, parentage, supplied basis, scope, observed decisions and return. Current direct-entry roles are HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is a bounded delegated role and does not delegate. Role instructions and actual host enforcement are different facts; do not describe an unimplemented native depth limit as an enforced guarantee.
 
-Current posture:
+D-GOV-43 preserves user Codex configuration and supported native capabilities. Legacy App agent-runtime-contract.ts, SDK tools:[]/maxTurns:1 wrappers and D-APP-09/10 bridge records retain their actual subject; they do not qualify native delegation. Retained Pi compatibility code and earlier experiments do not establish another qualified MVP engine, and the earlier “no Pi dependency or adapter exists” statement is not a current source fact. Codex remains the sole MVP qualification target.
 
-- unbounded executable delegation is blocked;
-- SDK `agents` definitions may be generated only for already-eligible delegated Type 2
-  candidates;
-- generated child definitions do not inherit parent tools or capabilities;
-- Pi remains a pattern corpus / reference only, with no runtime dependency, adapter, fork,
-  sidecar, package import, or spike;
-- concrete non-Anthropic provider routing remains blocked;
-- child runs do not inherit parent capabilities.
+Bounded delegation authorization, scope and capability accountability survive. DEL-03-02/DEL-08-04 still require current per-chat delegation-policy binding/default and interface ownership; parent/child presentation must use recorded relationships, not inference. D-APP-132 leaves the optional D-APP-117 per-attempt replay product unadopted while retaining existing record/replay duties; it creates no universal duplicate store or complete-history promise.
 
-Provider-neutral child-run records use Chirality fields such as `childRunId`,
-`parentSessionId`, `parentTurnId`, `parentPersona`, `agentName`, `status`,
-`capabilityPolicy`, `governance`, and `outputArtifactPath`. Adapter-specific values such as
-external session IDs, task IDs, tool-use IDs, transcript keys, or concrete adapter names may
-be retained only under the `adapter` metadata object.
-
-The contract preserves these semantics for governed subagents:
-
-- governance preflight can create `queued` or `denied` child-run records;
-- denied delegation records keep the fail-closed gate, reason, allowlist, delegated list,
-  and approval metadata where present;
-- child capability policy starts with `inheritParentCapabilities: false`,
-  `allowedToolNames: []`, and explicit denied capabilities for read, write, shell, MCP,
-  network, and subagent surfaces until a later bounded implementation grants a narrower
-  child tool set;
-- `subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
-  remain the provider-neutral runtime event categories for child-run lifecycle evidence;
-- completed executable child runs must carry an output artifact reference when the adapter
-  provides one.
-
-`R5-BRIDGE-001` implements the D-APP-09 Option B non-executable bridge through
-`R5-SLICE-003`; `R5-SLICE-006` then implements the D-APP-10 Option C executable path. The
-SDK `Agent` tool is model-visible only when the parent explicitly requests it and
-`evaluateSubagentGovernance` has produced delegated Type 2 child names. Agent definitions
-carry `tools: []`, descriptor-derived `disallowedTools` including `Agent`, `maxTurns: 1`,
-and `permissionMode: dontAsk`. The Agent permission callback and
-`chirality.subagent.pre_tool_use` hook both re-check the requested child name against the
-delegated list before execution. Adapter task messages are mapped into provider-neutral
-`subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
-events.
-
-This executable path does not approve child capability inheritance, unrestricted child tool
-access, nested subagent execution, provider routing, network expansion, Pi runtime paths,
-dependency-register edits, project-wide dependency-closure claims, or release and
-professional-boundary claims.
+Verification hooks: Runtime `tests/codex-supervisor.test.ts`, current native-parentage/role integration checks and App recorded-descendant presentation checks owned by DEL-08-04/05 and DEL-02-02. Missing live evidence remains explicit.
 
 ## Harness Tool Descriptor Contract
 
-`frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned
+Runtime owns the canonical descriptor registry. Current Codex-native tools follow the user's Codex policy and must not be described by a legacy SDK whitelist. Runtime `packages/daemon/src/application-tools.ts` validates Chirality application catalog registration/calls separately; `codex-supervisor.ts` passes policy and registered dynamic tools. The D-APP-132 P-01 release authorizes this distinction, not additional application-tool exposure or waiver of deterministic ordering, domain-stage, secret, human-gate or instruction-root controls.
+
+The following exact descriptor/domain constraints describe retained application-tool/first-adapter surfaces. They do not add a native Codex exposure restriction or qualify an unavailable application operation. Unknown application calls must fail validation; ordering and current live verification remain explicit residuals.
+
+
+`projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts` defines the Chirality-owned
 `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces.
 Descriptors record provider-neutral names, aliases, permissions, path scope, idempotence,
 concurrency, interrupt behavior, result-budget policy, provenance events, human-gate
 metadata, and adapter tool names.
 
-The current runtime exposes requested read-class first-adapter SDK built-ins (`Read`,
+The retained first-adapter compatibility path exposes requested read-class first-adapter SDK built-ins (`Read`,
 `Glob`, `Grep`, and `LS`), requested Chirality MCP read tools, requested
 SDK `Write` / `Edit` built-ins, requested SDK `Bash` only in `workspaceWrite` mode,
 and requested mutating Chirality MCP tools only in `workspaceWrite` mode after descriptor,
-permission-overlay, and handler-wrapper resolution. The current Chirality MCP read tools
+permission-overlay, and handler-wrapper resolution. The retained Chirality application read tools
 are `mcp__chirality__status_read`,
 `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
 `mcp__chirality__scaffold_preview`. D-APP-50 tranche-1 also exposes the
@@ -252,7 +98,7 @@ read-side domain transport wrappers `mcp__chirality__domain_completeness_check`
 and `mcp__chirality__domain_rule_check_run`; those handlers return DEC-041
 in-process read-transport evidence envelopes only and do not produce domain
 verdicts, live-binding claims, professional conclusions, shell execution, network
-access, or piping writes. The current mutating Chirality MCP tools are
+access, or piping writes. The retained mutating Chirality application tools are
 `mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
 D-APP-50 exposes `mcp__chirality__domain_headless_preview_run` only for the
 registered `open_pipe_stress` profile through the final DEC-065 configured-local
@@ -278,6 +124,9 @@ allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unk
 `mcp__chirality__scaffold_exec` remain
 unavailable to the model. Their descriptors remain metadata only until their bounded
 implementation, hook, result-storage, and validation tranches land.
+
+
+Verification hooks: Runtime `tests/codex-application-tools.test.ts`, current descriptor/collision tests and the DEL-06-02 P-01 current obligation. No live check is claimed executed by this record repair.
 
 ## Tool Catalog, Naming, Collision Prevention, and Adding Tools
 
@@ -337,29 +186,13 @@ package import, Node 22 sidecar, runtime-floor migration, or spike.
 
 ## Conformance Gates
 
-The current key-aware default remains bounded to the first Anthropic / Claude Agent SDK
-adapter and ongoing conformance evidence. Future adapter or default semantics changes
-cannot proceed until they pass:
+The qualification subject is the App client and live Codex adapter against Runtime-owned contracts. D-APP-131 P-08 requires mapping surviving correctness obligations to current contract checks and S-1–S-8: accepted-input ordering, terminal durability, session/request/capability correctness, selected policy, applicable tools, interruption, native continuation, route/stream continuity, full upstream event preservation and structural secret protection.
 
-- event representation checks (upstream names, identifiers and payloads
-  preserved; normalized views; unfamiliar items inspectable),
-- provider-neutral public type checks,
-- SDK options isolation checks,
-- SDK message mapping checks,
-- session metadata linkage checks,
-- interrupt/cancel terminal evidence checks,
-- API key redaction checks,
-- route/SSE regression checks.
+Use source-valid existing results and execute each missing distinct check. No blanket legacy-suite admission gate or unproved suite equivalence follows; deterministic stub and first-adapter fixtures prove only their named subject. A missing redaction or current adapter result remains a delivery/evidence gap, not a new vote to adopt the already-ruled Codex path.
 
-`frontend/src/lib/harness/engine-conformance.ts` provides the executable adapter
-conformance evaluator. Companion fixtures use deterministic scripted provider streams so
-success, failure, and interruption behavior can be checked without live provider calls or
-new backend adapter dependencies.
+The evaluator is `projects/chirality-runtime/packages/contracts/src/harness/engine-conformance.ts`. Current verification also includes Runtime `tests/codex-supervisor.test.ts`, `tests/app-owned-composition.test.ts`, `tests/turn-hardening.test.ts`, App turn-registry route tests and the production S-1–S-8 checklist under `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/`. Exact source, actual subject and recorded results are required; file existence is not a pass.
 
-The app-directory packaged live read-tool proof recorded under D-APP-17 supports the
-D-APP-18 key-aware default. Mounted-DMG live parity, broad packaged workflow evidence,
-signing, notarization, publication, distribution, release-readiness claims, and
-professional-boundary claims remain outside this contract unless separately ruled.
+Repeat affected checks when source, configuration or packaging invalidates prior evidence. Signing/notarization integrity and exact-candidate release authorization retain their own controls; record coherence does not release a product or advance lifecycle. DEL-03-01 owns the remaining coverage matrix and current App-client evidence.
 
 ## Fallback criteria and reliance-register handoff
 

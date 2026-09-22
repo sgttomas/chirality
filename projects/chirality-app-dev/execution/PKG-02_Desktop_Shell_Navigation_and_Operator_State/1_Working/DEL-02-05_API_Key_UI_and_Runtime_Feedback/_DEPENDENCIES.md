@@ -11,41 +11,35 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been declared by a human.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been declared by a human.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
 
-## Extracted Dependency Register
+## Current Extracted Dependency Summary — 2026-09-22
 
-| DependencyID | Class | Type | Direction | TargetType | Target | Status | Evidence |
-|---|---|---|---|---|---|---|---|
-| DEP-02-05-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-02 Woven Dialogue Shell, Navigation, and Operator State | ACTIVE | `_CONTEXT.md` Identity; applied decomposition PKG-02 (L280) |
-| DEP-02-05-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-013 Typed runtime errors | ACTIVE | `ScopeOfWork.md` traceability; applied decomposition Scope Ledger (L416) |
-| DEP-02-05-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-019 App credential UI and packaged-daemon single-owner safeStorage conformance | ACTIVE | `ScopeOfWork.md` traceability; applied decomposition Scope Ledger (L422) |
-| DEP-02-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | DELIVERABLE | DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge | ACTIVE | `ScopeOfWork.md` CLM-016; applied decomposition DEL-04-05 (L330) (SCC-001 internal; graph fields frozen) |
-| DEP-02-05-005 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT | `@chirality/harness-contract` typed error taxonomy | ACTIVE | `ScopeOfWork.md` CLM-010 DEL-02-05-R10 |
-| DEP-02-05-006 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE | `ScopeOfWork.md` CLM-010 DEL-02-05-R07; applied decomposition DEL-03-03 (L319) (SCC-001 internal; graph fields frozen) |
-| DEP-02-05-007 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-023 Attachment UI and recovery | ACTIVE | `ScopeOfWork.md` traceability; applied decomposition Scope Ledger (L426) |
-| DEP-02-05-008 | EXECUTION | INTERFACE | UPSTREAM | EXTERNAL | Root-owned `HostedEngineConsentPort` | ACTIVE | applied decomposition DEL-02-05 (L311) |
-| DEP-02-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | EXTERNAL | accepted Root/App account/consent contract; G3; G-CSP; G4 | ACTIVE | applied decomposition DEL-02-05 (L311) |
-| DEP-02-05-010 | EXECUTION | ENABLES | DOWNSTREAM | DELIVERABLE | DEL-09-06 Network, Key, Attachment, and Renderer Security Checks | ACTIVE | `ScopeOfWork.md` D-APP-80 note; applied decomposition DEL-09-06 (L383) |
-| DEP-02-05-011 | ANCHOR | OTHER | UPSTREAM | UNKNOWN | OBJ-001 governed local desktop harness centred on human-agent dialogue | ACTIVE | `ScopeOfWork.md` traceability; applied decomposition objectives (L262) |
-| DEP-02-05-012 | ANCHOR | OTHER | UPSTREAM | UNKNOWN | OBJ-008 explicit and repeatable validation, packaging, release, network, key, and instruction-root checks | ACTIVE | `ScopeOfWork.md` traceability; applied decomposition objectives (L269) |
-| DEP-02-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | EXTERNAL | Root DEL-02-09 root-private login home and shared-login amendment (OI-008) | ACTIVE | applied decomposition DEL-02-05 (L311); OI-008 (L602) |
-| DEP-02-05-014 | EXECUTION | PREREQUISITE | UPSTREAM | DELIVERABLE | DEL-02-01 Woven Dialogue Shell and Compatibility Navigation | ACTIVE | `_STATUS.md` Remaining (seated DEL-02-05-V3-05 Depends); applied decomposition DEL-02-01 (L307) (emitted under D-APP-109, H-013; SCC decomposed under D-APP-110; strict edge, gates per SatisfactionStatus) |
-| DEP-02-05-015 | EXECUTION | PREREQUISITE | UPSTREAM | DELIVERABLE | DEL-02-03 Working Root File Tree and Scope Scan UI | ACTIVE | `_STATUS.md` Remaining (seated DEL-02-05-V3-05 Depends); applied decomposition DEL-02-03 (L309) (emitted under D-APP-109, H-014; target CONFLICT carried on the row; SCC decomposed under D-APP-110; strict edge, gates per SatisfactionStatus) |
+Total rows: 15. ACTIVE: 12. RETIRED: 3. RETIRED: 3.
 
-Counts:
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-02-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | TBD |
+| DEP-02-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-013 | ACTIVE | TBD |
+| DEP-02-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | TBD |
+| DEP-02-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-05 | RETIRED | PENDING |
+| DEP-02-05-005 | EXECUTION | INTERFACE | UPSTREAM | HARNESS-CONTRACT-ERROR-TAXONOMY | ACTIVE | SATISFIED |
+| DEP-02-05-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 | ACTIVE | PENDING |
+| DEP-02-05-007 | ANCHOR | OTHER | UPSTREAM | SOW-023 | ACTIVE | TBD |
+| DEP-02-05-008 | EXECUTION | INTERFACE | UPSTREAM | HostedEngineConsentPort | RETIRED | PENDING |
+| DEP-02-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | Codex account login/logout and S-8 current-path verification | ACTIVE | PENDING |
+| DEP-02-05-010 | EXECUTION | ENABLES | DOWNSTREAM | DEL-09-06 | ACTIVE | PENDING |
+| DEP-02-05-011 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | TBD |
+| DEP-02-05-012 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | TBD |
+| DEP-02-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT-DEL-02-09 | RETIRED | PENDING |
+| DEP-02-05-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-01 | ACTIVE | SATISFIED |
+| DEP-02-05-015 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-03 | ACTIVE | SATISFIED |
 
-- ACTIVE rows: 15
-- RETIRED rows: 0
-- ANCHOR rows: 6
-- EXECUTION rows: 9
-- UNKNOWN targets: 2 (objective anchors DEP-02-05-011 and DEP-02-05-012, by the objective convention)
-- Cycle-participating, non-gating: none (DEP-02-05-014 and DEP-02-05-015, emitted under D-APP-109 from held proposals H-013 and H-014, were resolved by the decompose move under D-APP-110; see Run Notes)
-- DOCUMENT targets: 1 (DEP-02-05-005; no row on this carrier was re-targeted under D-APP-110)
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -162,3 +156,13 @@ Closure state:
 - SCA-APP-010 DEP-007/DEP-008 (2026-09-05): objective anchors DEP-02-05-011/-012 and execution row DEP-02-05-013 added from the applied row L311 and OI-008; DEP-02-05-005 re-evidenced to `ScopeOfWork.md` after the legacy kit and evidence-file sources were excluded; SCC-internal rows DEP-02-05-004/-006 had their decomposition line pointers refreshed under brief amendment v1.1 section B; DEP-02-05-014/-015 reserved for held proposals H-013/H-014 (amendment v1.1 section A).
 - D-APP-109 (2026-09-05): DEP-02-05-014 (DEL-02-01, H-013) and DEP-02-05-015 (DEL-02-03, H-014) emitted from the held proposals with the cycle-participating non-gating clause; no pre-existing row changed.
 - D-APP-110 (2026-09-05): the SCC containing DEP-02-05-014/-015 was decomposed on other carriers (workbook SD-001 to SD-007; no row of this carrier re-targeted); both rows' Notes appended with the RESOLVED clause; no other field and no other row changed.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=12; RETIRED=3; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_00_03_PREVIEW.csv`; current rows: ACTIVE=12, RETIRED=3. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

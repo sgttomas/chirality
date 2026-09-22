@@ -21,7 +21,7 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 
 > #### Datasheet: DEL-02-03 Working Root File Tree and Scope Scan UI
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-002 — Identification
@@ -51,8 +51,8 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > | Covered scope items | SOW-002, SOW-003 | `_CONTEXT.md`; decomposition SOW ledger |
 > | Supported objectives | OBJ-001, OBJ-006 | `_CONTEXT.md`; decomposition row for DEL-02-03 |
 > | Anticipated artifacts | File tree panel; deliverable summary widgets; scope scan integration | `_CONTEXT.md`; decomposition row for DEL-02-03 |
-> | Workspace APIs surfaced by this UI | `/api/working-root/validate`, `/api/working-root/tree`, `/api/working-root/scope`, `/api/project/deliverables` | `docs/SPEC.md` §17.2; `docs/PRD.md` §13 |
-> | Scope mode vocabulary consumed by scan UI | `DELIVERABLES`, `KNOWLEDGE_TYPES` | `docs/TYPES.md` §8.2 |
+> | Workspace APIs surfaced by this UI | `/api/working-root/validate`, `/api/working-root/tree`, `/api/working-root/scope`, `/api/project/deliverables` | `docs/SPEC.md` §17.2; `docs/PRD.md` §9.2 |
+> | Scope mode vocabulary consumed by scan UI | `DELIVERABLES`, `KNOWLEDGE_TYPES` | `docs/TYPES.md` §4.4 |
 >
 
 ### CLM-004 — Conditions
@@ -66,7 +66,7 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > | Dynamic selection behavior | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state | `docs/PRD.md` FR-013 |
 > | Scan runaway protection | File scans enforce depth/count limits | `docs/PRD.md` NFR-012 |
 > | Authority boundary | UI consumes workspace APIs but remains presentation-focused | `_CONTEXT.md`; decomposition row for DEL-02-03 |
-> | Source warning | PRD expected and observed PRD hashes match under D-APP-38; content using PRD is accepted for this run only as a warned source | `_REFERENCES.md`; dispatch instruction |
+> | Source warning | D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. | `_REFERENCES.md`; dispatch instruction |
 >
 
 ### CLM-005 — Construction
@@ -75,10 +75,10 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 >
 > | Component | Expected construction detail | Source |
 > |---|---|---|
-> | Working-root selector integration | Allow path entry, Electron folder selection, apply, and clear actions; clearing the root disables runtime actions that require `projectRoot` | `docs/PRD.md` §7.1 and FR-002 |
+> | Working-root selector integration | Per-chat typed path, native picker and known-folder selection before the first message; fixed folder identity thereafter. Folder-dependent actions remain unavailable without a valid folder under D-APP-120. | `docs/PRD.md` §7.1 and FR-002 |
 > | File tree panel | Render selected working root through bounded tree API results, including skipped and inaccessible/truncated directory feedback | `docs/PRD.md` FR-004; `docs/SPEC.md` §17.2 |
-> | Scope scan integration | Consume scope scan results for deliverables and knowledge-type directories without inventing missing project truth | `docs/SPEC.md` §17.2; `docs/TYPES.md` §8.2 |
-> | Deliverable summary widgets | Present deliverable identity, status/dependency snapshots where available, and routeable deliverable rows for TASK workflows | `docs/PRD.md` §7.2; `docs/PRD.md` FR-010, FR-012 |
+> | Scope scan integration | Consume scope scan results for deliverables and knowledge-type directories without inventing missing project truth | `docs/SPEC.md` §17.2; `docs/TYPES.md` §4.4 |
+> | Deliverable summary widgets | Present deliverable identity, status/dependency snapshots where available, and routeable deliverable rows for TASK workflows | `docs/PRD.md` §7.5; `docs/PRD.md` FR-010, FR-012 |
 > | Error feedback | Surface typed validation and scan errors in the UI; exact error copy is TBD | `docs/PRD.md` FR-003, NFR-009 |
 >
 
@@ -91,8 +91,8 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > | REF-001 | `docs/DIRECTIVE.md` | §§2, 5, 6 | Working-root truth and instruction-root separation context |
 > | REF-002 | `docs/CONTRACT.md` | K-HIER-1, K-ID-1, K-PATH-1, K-FS-1, K-INVENT-1 | Governance invariants for identity, path, and unknowns |
 > | REF-003 | `docs/SPEC.md` | §§1.2, 3.1, 17.2 | Working-root rules, deliverable files, workspace APIs |
-> | REF-004 | `docs/TYPES.md` | §§1.1-1.2, 8.2 | Package/deliverable and task-scope vocabulary |
-> | REF-006 | `docs/PRD.md` | §§7.1-7.2, 8.1, 13, 11.2 | User journeys, functional requirements, endpoint targets, scan limits |
+> | REF-004 | `docs/TYPES.md` | §§1.1-1.2, 4.4 | Package/deliverable and task-scope vocabulary |
+> | REF-006 | `docs/PRD.md` | §§7.1, 7.5, 8.1, 9.2, 11.2 | User journeys, functional requirements, endpoint targets, scan limits |
 > | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-02 row; DEL-02-03 row; SOW ledger | Deliverable identity and decomposition scope |
 
 ## Completion and Reliance Basis — Epistemology
@@ -132,20 +132,20 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 >
 > | ReqID | Requirement | Source |
 > |---|---|---|
-> | DEL-02-03-REQ-001 | The UI shall expose working-root selection globally through path entry, Electron folder selection, apply, and clear controls. | `docs/PRD.md` FR-002 |
+> | DEL-02-03-REQ-001 | The UI SHALL select a folder per chat through typed path, known folders or native picker before the first message and hold it fixed thereafter (SCA-APP-010 SOW-002). A new chat establishes a different folder; the old global clear control is not the current mechanism. | `docs/PRD.md` FR-002 |
 > | DEL-02-03-REQ-002 | The UI shall present validation failures for non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths. | `docs/PRD.md` FR-003; `docs/SPEC.md` §1.2 |
-> | DEL-02-03-REQ-003 | Clearing the working root shall disable runtime actions that require `projectRoot`. | `docs/PRD.md` §7.1 |
+> | DEL-02-03-REQ-003 | A chat without a valid folder SHALL truthfully disable folder-dependent actions under D-APP-120; folder changes MUST NOT silently rebind an existing conversation. | `docs/PRD.md` §7.1 |
 > | DEL-02-03-REQ-004 | The UI shall render a bounded file tree for the selected working root using the workspace tree API. | `docs/PRD.md` FR-004; `docs/SPEC.md` §17.2 |
 > | DEL-02-03-REQ-005 | File tree presentation shall account for skipped directories `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`. | `docs/PRD.md` FR-004 |
 > | DEL-02-03-REQ-006 | File tree presentation shall indicate inaccessible directories or truncation when reported by the API. | `docs/PRD.md` FR-004 |
-> | DEL-02-03-REQ-007 | Scope scan UI shall present deliverables and knowledge-type directories without treating UI-local state as project truth. | `docs/SPEC.md` §17.2; `docs/CONTRACT.md` K-FS-1; `docs/TYPES.md` §8.2 |
+> | DEL-02-03-REQ-007 | Scope scan UI shall present deliverables and knowledge-type directories without treating UI-local state as project truth. | `docs/SPEC.md` §17.2; `docs/CONTRACT.md` K-FS-1; `docs/TYPES.md` §4.4 |
 > | DEL-02-03-REQ-008 | Dynamic scope scan state shall clear invalid selections when the root changes, deliverables are removed, knowledge markers are disabled, or knowledge targets become stale. | `docs/PRD.md` FR-013 |
-> | DEL-02-03-REQ-009 | Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected when deliverables are present. | `docs/PRD.md` §7.2 |
+> | DEL-02-03-REQ-009 | Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected when deliverables are present. | `docs/PRD.md` §7.5 |
 > | DEL-02-03-REQ-010 | The UI shall consume status and dependency contract snapshots read-only where applicable; transition controls belong only where supported by the active workflow. | `docs/PRD.md` FR-010 |
 > | DEL-02-03-REQ-011 | Scan and workspace errors surfaced by the UI shall preserve typed-error information where available. | `docs/PRD.md` NFR-009 |
 > | DEL-02-03-REQ-012 | File and scope scans shall avoid runaway traversal by respecting bounded depth/count behavior exposed by the runtime. | `docs/PRD.md` NFR-012 |
 > | DEL-02-03-REQ-013 | Stable deliverable IDs, not folder labels alone, shall drive deliverable identity in summary widgets and route targets. | `docs/CONTRACT.md` K-ID-1, K-PATH-1; `docs/TYPES.md` §1.2 |
-> | DEL-02-03-REQ-014 | ASSUMPTION: The UI should not expose dependency extraction as part of this deliverable; dependency extraction remains a later `TASK + dependency-extract` step. | `_DEPENDENCIES.md`; dispatch instruction |
+> | DEL-02-03-REQ-014 | This presentation deliverable consumes formal dependencies read-only; the extracted Dependencies.csv already exists and is not created or altered by these UI controls. | `_DEPENDENCIES.md`; dispatch instruction |
 >
 
 ### CLM-010 — Standards
@@ -156,7 +156,7 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > |---|---|---|
 > | Working-root contract | Governs selected root validity, containment, and project-truth placement | `docs/SPEC.md` §1.2; `docs/CONTRACT.md` K-ROOT/K-FS surfaces |
 > | Workspace API contract | Defines the read endpoints this UI consumes | `docs/SPEC.md` §17.2 |
-> | PRD current product scope | Establishes working-root selection, file-tree browsing, deliverable scanning, and lifecycle/dependency contract API support as current scope | `docs/PRD.md` §6.2 |
+> | PRD current product scope | Establishes working-root selection, file-tree browsing, deliverable scanning, and lifecycle/dependency contract API support as current scope | `docs/PRD.md` §6.1 |
 > | Unknown-value discipline | Unsupported facts remain `TBD` rather than guesses | `docs/CONTRACT.md` K-INVENT-1 |
 >
 
@@ -166,9 +166,9 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 >
 > | ReqID | Verification Approach |
 > |---|---|
-> | DEL-02-03-REQ-001 | UI test or manual acceptance showing type path, choose folder, apply, and clear states. |
+> | DEL-02-03-REQ-001 | The UI SHALL select a folder per chat through typed path, known folders or native picker before the first message and hold it fixed thereafter (SCA-APP-010 SOW-002). A new chat establishes a different folder; the old global clear control is not the current mechanism. |
 > | DEL-02-03-REQ-002 | API/UI integration tests with invalid root cases and typed error display checks. |
-> | DEL-02-03-REQ-003 | State test confirming root-dependent actions become disabled after clear. |
+> | DEL-02-03-REQ-003 | A chat without a valid folder SHALL truthfully disable folder-dependent actions under D-APP-120; folder changes MUST NOT silently rebind an existing conversation. |
 > | DEL-02-03-REQ-004 | API/UI integration test with representative tree data from `/api/working-root/tree`. |
 > | DEL-02-03-REQ-005 | Fixture tree test proving skipped directories are absent or marked according to API shape. |
 > | DEL-02-03-REQ-006 | Fixture or mocked response test for inaccessible/truncated directory indicators. |
@@ -179,26 +179,12 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > | DEL-02-03-REQ-011 | Error rendering test preserving type/status/message/details where available. |
 > | DEL-02-03-REQ-012 | Runtime/API tests own depth/count enforcement; UI test verifies bounded-result feedback. |
 > | DEL-02-03-REQ-013 | Rename/path-label fixture test confirming route identity uses stable deliverable ID. |
-> | DEL-02-03-REQ-014 | Review check confirming no `Dependencies.csv` is created by this deliverable. |
+> | DEL-02-03-REQ-014 | This presentation deliverable consumes formal dependencies read-only; the extracted Dependencies.csv already exists and is not created or altered by these UI controls. |
 >
 
 ### CLM-012 — Documentation
 
-> ##### Documentation
->
-> Required deliverable artifacts:
->
-> - File tree panel.
-> - Deliverable summary widgets.
-> - Scope scan integration.
-> - UI tests or acceptance notes for selector, scan, truncation, stale-selection reset, and deliverable routing.
->
-> TBD:
->
-> - Exact component/module paths.
-> - Exact API response shape details for skipped-directory, truncation, and inaccessible-directory markers.
-> - Exact status/dependency summary widget fields; unsupported fields remain deferred rather than inferred.
->
+Current loci include the composer folder binding and right-panel file tree/document presentation under `frontend/src/components/woven-dialogue/` and `frontend/src/components/shell/chat-panel.tsx`. Retain typed validation errors, bounded/skipped/truncated tree feedback and source identity. Scope-scan/deliverable summary/status/dependency widgets are not demonstrated on the live shell; their exact carrier/compatibility obligations remain open, as do typed-error detail and rename/truncation fixtures. D-APP-121 PDF presentation/security/native qualification remains required. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-013 — Pass 3 Disposition Notes
 
@@ -233,7 +219,7 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 
 > #### Procedure: DEL-02-03 Working Root File Tree and Scope Scan UI
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-017 — Purpose
@@ -245,89 +231,24 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 
 ### CLM-018 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status / Note | Source |
-> |---|---|---|
-> | Accepted SOFTWARE_DECOMP v3.2 entry for DEL-02-03 | Available | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
-> | Working-root validation API contract | Available at contract level; implementation details TBD | `docs/SPEC.md` §17.2; `docs/PRD.md` FR-003 |
-> | File-tree API contract | Available at contract level; response shape details TBD | `docs/SPEC.md` §17.2; `docs/PRD.md` FR-004 |
-> | Scope-scan API contract | Available at contract level; response shape details TBD | `docs/SPEC.md` §17.2; `docs/PRD.md` FR-013 |
-> | Declared upstream dependencies | TBD; no accepted dependency edges extracted yet | `_DEPENDENCIES.md` |
-> | PRD source hash acceptance | Human ruling needed; mismatch is warning for this run | `_REFERENCES.md`; dispatch instruction |
->
+Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. Read current per-chat SOW-002 and D-APP-120 no-folder restrictions. Response shapes are observable in the workspace API and must be source-bound, not invented. Current reference observations remain distinct from accepted pins. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ### CLM-019 — Steps
 
-> ##### Steps
->
-> 1. Confirm the active deliverable identity.
->    - Use `PackageID=PKG-02` and `DeliverableID=DEL-02-03` as stable identity.
->    - Preserve `ResponsibleParty: TBD`.
->    - If folder labels disagree with stable IDs, surface the mismatch rather than renaming during this deliverable.
->
-> 2. Wire or verify working-root selector integration.
->    - Provide path entry, folder selection, apply, and clear controls.
->    - On apply, call the working-root validation surface.
->    - On clear, remove selected-root dependent UI state and disable root-dependent runtime actions.
->
-> 3. Render working-root validation feedback.
->    - Show failures for non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths.
->    - Preserve typed-error details when available.
->    - Use exact error copy from implementation or UX source when available; otherwise mark copy as `TBD`.
->
-> 4. Render the bounded file tree.
->    - Consume `/api/working-root/tree` or the local equivalent.
->    - Display tree nodes within the bounded result set.
->    - Reflect skipped, inaccessible, or truncated directories when represented in the API result.
->    - Do not perform unbounded renderer-side traversal.
->
-> 5. Integrate scope scan results.
->    - Consume `/api/working-root/scope` or the local equivalent.
->    - Present deliverables and knowledge-type directories using canonical scope vocabulary.
->    - Clear invalid selections after root changes, removed deliverables, disabled knowledge markers, or stale knowledge targets.
->
-> 6. Add deliverable summary widgets.
->    - Show stable deliverable ID, name, package context, lifecycle state where available, and dependency snapshot status where available.
->    - Route deliverable rows to PIPELINE `TASK*` with the deliverable preselected when supported.
->    - Keep dependency extraction deferred; do not create `Dependencies.csv` as part of this procedure.
->
-> 7. Verify ownership boundaries.
->    - Confirm UI code consumes workspace APIs rather than duplicating filesystem policy enforcement.
->    - Confirm runtime/filesystem deliverables retain ownership of path containment, traversal bounds, status parsing, dependency parsing, and lifecycle transition enforcement.
->
-> 8. Record unresolved facts.
->    - Mark missing implementation details as `TBD`.
->    - Raise source/path/hash conflicts for human ruling.
->
+1. Verify per-chat folder selection before the first message and fixed identity afterward.
+2. Refuse invalid/instruction-root-contained folders and present typed validation errors.
+3. Render bounded tree results with skipped/inaccessible/truncated feedback.
+4. Test stable deliverable IDs and read-only contract data where those widgets are exposed; keep absent scope-scan/summary/route consumers visible as unresolved carrier work.
+5. Verify D-APP-121 document/PDF presentation and its security/native qualification with DEL-09-06.
+6. Record current render/browser, typed-error, truncation and rename evidence without claiming unrendered helpers prove the live shell. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-020 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Working-root selection | Path entry, folder selection, apply, and clear states are available. |
-> | Invalid root feedback | Invalid roots produce visible feedback with typed-error information where available. |
-> | Clear root behavior | Root-dependent actions and stale scope selections are disabled or cleared. |
-> | File tree bounds | Skipped directories and truncation/inaccessible indicators match API behavior. |
-> | Scope scan reset | Removed or stale deliverable/knowledge selections are cleared. |
-> | Deliverable routing | Deliverable summary row routes to PIPELINE `TASK*` with stable deliverable identity. |
-> | Project truth boundary | UI state is not treated as authoritative project truth. |
-> | Dependency deferral | No `Dependencies.csv` is created by this deliverable procedure. |
-> | Unknown discipline | Unsupported facts remain `TBD`, `ASSUMPTION`, conflict, or human-ruling-needed. |
-> | Acceptance evidence | Test or acceptance evidence for selector, invalid-root feedback, bounded tree behavior, scope reset, and deliverable routing is required; evidence artifact location is TBD until implementation/test output exists. |
->
+Current folder checks cover select-before-first-message, fixed binding and truthful no-folder restrictions; a global Clear control is historical. Verify bounded tree/skipped/truncated presentation and typed errors. The missing scope-scan/summary/status/route consumers and their tests remain explicit delivery/alignment work. Preserve stable IDs and read-only project truth. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-021 — Records
 
-> ##### Records
->
-> - UI implementation artifacts: file tree panel, deliverable summary widgets, scope scan integration.
-> - Test or acceptance evidence for root selection, invalid root display, bounded tree behavior, scope reset behavior, and deliverable routing; artifact location TBD.
-> - Conflict/human-ruling record for package-folder label MATCH and PRD hash status: MATCH. (reconciled under D-APP-38).
-> - This four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
->
+Preserve ScopeOfWork.md, source-bound folder/tree/error/UI results, D-APP-121 PDF/security/native witnesses and current reference observations. The old four-document-kit record is historical. Do not infer missing fixture or native outcomes.
 
 ### CLM-022 — Pass 3 Disposition Notes
 
@@ -352,7 +273,7 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 
 > #### Guidance: DEL-02-03 Working Root File Tree and Scope Scan UI
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-025 — Purpose
@@ -373,19 +294,12 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > - Keep enforcement in the runtime: the UI should surface validation, containment, and scan-limit outcomes, while PKG-07/runtime slices own the underlying filesystem policy. Source: `_CONTEXT.md`; `docs/SPEC.md` §1.2; decomposition SOW-002 note.
 > - Prefer visible boundedness over silent omission: skipped directories, inaccessible nodes, and truncated scans should be visible enough for operator judgment when the API reports them. Source: `docs/PRD.md` FR-004, NFR-012.
 > - Reset stale operator choices: root and scan changes must clear invalid selections rather than carrying stale scope into TASK dispatch. Source: `docs/PRD.md` FR-013.
-> - Keep unsupported facts as `TBD`: exact component paths, response field names, and UI copy require source or implementation confirmation. Source: `docs/CONTRACT.md` K-INVENT-1.
+> - Keep unsupported facts as `TBD`: response fields and UI copy require source confirmation; current component loci are named in CLM-012. Source: `docs/CONTRACT.md` K-INVENT-1.
 >
 
 ### CLM-027 — Considerations
 
-> ##### Considerations
->
-> - Working-root validation is a shared boundary. DEL-02-03 should integrate with validation feedback, but the security-control implementation is attributed to DEL-07-01 by the decomposition SOW ledger.
-> - Scope scan results bridge PKG-02 and PKG-07. The UI is responsible for presentation and selection behavior; deterministic filesystem scanning and contract data belong to runtime/filesystem deliverables.
-> - Deliverable summaries may need to show `_STATUS.md` and dependency snapshot information, but dependency extraction is explicitly deferred for this run.
-> - The PRD source has a recorded hash status: MATCH. Use PRD requirements as warned local source material for this run; do not treat the MATCH as resolved. (reconciled under D-APP-38).
-> - The dispatch path named `PKG-02_Desktop_UI_and_Local_Experience`, but the accessible scaffolded folder is `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. Stable IDs match; package folder-name mismatch needs human confirmation.
->
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. Current folder identity is per-chat. Missing live scan/summary consumers and exact compatibility carriers remain separate; absent UI does not retire stable identity or read-only project-truth requirements.
 
 ### CLM-028 — Trade-offs
 
@@ -401,43 +315,19 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 
 ### CLM-029 — Examples
 
-> ##### Examples
->
-> | Scenario | Expected UI behavior | Source |
-> |---|---|---|
-> | User clears the working root | Root-dependent runtime actions become disabled and stale scope selections clear. | `docs/PRD.md` §7.1, FR-013 |
-> | Tree API reports skipped folders | The file tree omits or marks skipped folders according to API output; skipped set includes `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`. | `docs/PRD.md` FR-004 |
-> | Scope scan no longer contains selected deliverable | The prior selection is cleared rather than dispatched. | `docs/PRD.md` FR-013 |
-> | Deliverables are present | A deliverable row can route to PIPELINE `TASK*` with that deliverable preselected. | `docs/PRD.md` §7.2 |
->
+A chat chooses a valid folder before its first message and keeps that identity. A tree result marks truncation and skipped/inaccessible content truthfully. A chat without a valid folder has dependent actions unavailable. Scope-scan/deliverable-routing examples from the old Pipeline surface remain unverified current compatibility obligations, not live observations. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-030 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | DEL-02-03-CONFLICT-001 | Dispatch path uses stale package folder label `PKG-02_Desktop_UI_and_Local_Experience`; scaffolded folder uses `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | Dispatch brief `DeliverablePath / ScopePath` | `_CONTEXT.md`; `docs/CONTRACT.md` K-ID-1/K-PATH-1; decomposition PKG-02 | Datasheet Identification; run record; final report | Treat stable IDs `PKG-02` and `DEL-02-03` plus accessible scaffold as controlling for this run. | TBD |
-> | DEL-02-03-CONFLICT-002 | PRD hash status: MATCH exists for REF-006. | `_REFERENCES.md` expected/actual hash row for REF-006 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | All PRD-derived requirements | Proceed with warned PRD source for P1/P2 drafting; leave hash acceptance unresolved. | TBD — reconciled under D-APP-38 |
->
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. The former global working-root/clear mechanism is superseded by SCA-APP-010 per-chat binding. Exact scope-scan/summary/route carriers and D-APP-121 native PDF qualification remain unresolved; accepted decomposition pin changes require their owning scope process.
 
 ### CLM-031 — Human-Ruling Needed
 
-> ##### Human-Ruling Needed
->
-> - Confirm whether the package-folder label mismatch should be normalized, renamed, or left as a path-history artifact.
-> - Resolve or explicitly accept the PRD hash status: MATCH for future closure. (reconciled under D-APP-38).
-> - Confirm exact UI component/module paths and API response field names before implementation-level acceptance.
->
+Component loci are the composer and woven-dialogue right-panel sources named in CLM-012. Missing current typed-error, truncation, rename and PDF/native evidence remain open; the selected reference state is recorded separately. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ### CLM-032 — Pass 3 Disposition Notes
 
-> ##### Pass 3 Disposition Notes
->
-> | ItemID | Disposition | Evidence |
-> |---|---|---|
-> | A-001 | Already covered as conflict: the package-folder label mismatch remains in the Conflict Table for human ruling. | `Guidance.md` Conflict Table; `_CONTEXT.md` Identity; `docs/CONTRACT.md` K-ID-1/K-PATH-1. |
-> | X-003 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table; `Datasheet.md` Conditions; `Procedure.md` Prerequisites. — reconciled under D-APP-38 |
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 

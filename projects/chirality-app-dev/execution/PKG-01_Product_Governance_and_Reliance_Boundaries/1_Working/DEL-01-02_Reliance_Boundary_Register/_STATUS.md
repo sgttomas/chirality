@@ -8,16 +8,19 @@
 
 ## Remaining
 
-- Reconcile the future PEC v2 shared-runtime client seam only after PEC provides
-  a governed `DEL-07-05` ScopeOfWork and accepted evidence. Until then
-  `RB-PEC-ADAPTER` remains retired as current enforcement evidence; `D-GOV-20`
-  and PEC PRD v2 §15 remain the owners of the one-daemon/no-dual-loop and
-  human-only-act restrictions (gated: PEC-owned evidence and separate App
-  owner acceptance).
+- Complete the current reliance-register matrix and source/test coverage against the manager-applied docs/harness/reliance_boundary_register.md. Check mandatory fields, current Runtime/App loci, all live obligations and candidate-bound results; legacy Section 9 inventory is not live qualification.
 
-- **DEL-01-02-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 14 authority application, 1 evidence result, 56 implementation or evidence, 47 record repair, 2 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-01-02.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Deliver current Codex conformance and application-tool ordering/policy checks with Runtime; verify managed/native delegation basis, parentage and return/replay evidence. D-APP-132 released P-01; no repeated owner vote remains.
+
+- Repair and verify Runtime structural redaction before every sink, trustworthy human-gate actor enforcement, and ordinary-project instruction/root/proposal protection. App WORKING_ITEMS coordinates the named Runtime owners; current integration-boundary review and affected negative tests gate completion.
+
+
+- Reconcile the PEC seam only after its loop supplies governed DEL-07-05 scope and accepted evidence, then separate App acceptance. D-GOV-43 A2 owns the App service topology; PEC PRD v2 §15 retains no-dual-loop/human-only restrictions. RB-PEC-ADAPTER remains retired current evidence.
+
+Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
 
 ## History
+- 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-07-27 - D-APP-77 G4-A maintenance retires the SCA-APP-003 `RB-PEC-ADAPTER` row as current PEC v2 evidence while preserving its historical identity and routing the unknown current seam to PEC `DEL-07-05`; state remains IN_PROGRESS and no lifecycle, PEC scope, implementation, or release claim changes.

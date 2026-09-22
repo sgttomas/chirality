@@ -1,0 +1,29 @@
+{
+  "amendmentId": "SCA-APP-010",
+  "auditDate": "2026-09-22",
+  "closureStatus": "CLOSED_WITH_OBSERVATIONS",
+  "totalActions": 30,
+  "actionsVerified": 30,
+  "actionsDiscrepant": 0,
+  "actionsNotExecuted": 0,
+  "downstreamRerunsRecommended": 10,
+  "downstreamRerunsCompleted": 10,
+  "orphanedReferencesFound": 0,
+  "contentRemediationState": "NOT_REQUIRED",
+  "ktyRemediationRows": 0,
+  "ktyRemediationRowsBlocked": 0,
+  "archiveScannerLeaks": 0,
+  "findingsBySeverity": {
+    "CRITICAL": 0,
+    "MAJOR": 0,
+    "MINOR": 0,
+    "OBSERVATION": 2
+  },
+  "downstreamHandoffRowsChecked": 10,
+  "notActivatedOptionalRows": 0,
+  "affectedDeliverablesChecked": 13,
+  "dependenciesCsvScanned": 52,
+  "supersessionMapRowsVerified": 45,
+  "supersessionAccumulatorFindings": 0,
+  "closureBasis": "Action/handoff/context/supersession checks pass; zero active dependencies target retired DEL-09-07; the warning-bearing SOFTWARE audit has zero blockers. Separate product and owner-acceptance work remains open."
+}

@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no declared upstream dependency edges have been accepted outside the extracted register.
+Current extracted upstream rows: `DEP-08-04-001`, `DEP-08-04-002`, `DEP-08-04-003`, `DEP-08-04-004`, `DEP-08-04-007`, `DEP-08-04-008`, `DEP-08-04-009`, `DEP-08-04-010`, `DEP-08-04-011`, `DEP-08-04-012`, `DEP-08-04-013`, `DEP-08-04-014`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no declared downstream dependency edges have been accepted outside the extracted register.
+Current extracted downstream rows: `DEP-08-04-006`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Extracted Dependency Register
 
@@ -29,20 +29,20 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | DependencyID | Class | Direction | Type | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
-| DEP-08-04-001 | ANCHOR | UPSTREAM | OTHER | WBS_NODE | SOW-063 Project delegation authority, daemon-client dispatch, and checkout AgentRuns | ACTIVE |
-| DEP-08-04-002 | EXECUTION | UPSTREAM | PREREQUISITE | DOCUMENT | Accepted source corpus for DEL-08-04 | ACTIVE |
-| DEP-08-04-003 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Existing `evaluateSubagentGovernance` behavior or target contract | ACTIVE |
-| DEP-08-04-004 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Permission overlay and hook infrastructure | ACTIVE |
-| DEP-08-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DELIVERABLE | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | RETIRED |
-| DEP-08-04-006 | EXECUTION | DOWNSTREAM | HANDOVER | DELIVERABLE | DEL-08-05 Subagent Child Run Records and Artifacts | ACTIVE |
-| DEP-08-04-007 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | OBJ-005 Project capability policy and conformance | ACTIVE |
-| DEP-08-04-008 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | OBJ-007 Agent-suite integrity and project delegation authority | ACTIVE |
-| DEP-08-04-009 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Chirality-managed delegation class | ACTIVE |
-| DEP-08-04-010 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | delegated-harness-native descent class | ACTIVE |
-| DEP-08-04-011 | EXECUTION | UPSTREAM | CONSTRAINT | EXTERNAL | Root WP-03/WP-05 fixtures: accepted DEL-02-07 process-supervisor and DEL-02-10 API v2 returns | ACTIVE |
-| DEP-08-04-012 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | SOW-083 Per-chat delegation policy carried with the session and honoured by the managed delegation bridge | ACTIVE |
-| DEP-08-04-013 | EXECUTION | UPSTREAM | INTERFACE | DELIVERABLE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
-| DEP-08-04-014 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Root DEL-02-11 daemon session-record delegation-policy field | ACTIVE |
+| DEP-08-04-001 | ANCHOR | OTHER | UPSTREAM | SOW-063 | ACTIVE | SATISFIED |
+| DEP-08-04-002 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001..REF-007 | ACTIVE | PENDING |
+| DEP-08-04-003 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | SATISFIED |
+| DEP-08-04-004 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | RETIRED | NOT_APPLICABLE |
+| DEP-08-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | RETIRED | TBD |
+| DEP-08-04-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-05 | ACTIVE | TBD |
+| DEP-08-04-007 | ANCHOR | OTHER | UPSTREAM | OBJ-005 | ACTIVE | SATISFIED |
+| DEP-08-04-008 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | SATISFIED |
+| DEP-08-04-009 | EXECUTION | INTERFACE | UPSTREAM | Application-owned Runtime managed delegation interface and native Codex descendant class | ACTIVE | PENDING |
+| DEP-08-04-010 | EXECUTION | INTERFACE | UPSTREAM | delegated-harness-native descent class | ACTIVE | PENDING |
+| DEP-08-04-011 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT-WP03-WP05-FIXTURES | ACTIVE | PENDING |
+| DEP-08-04-012 | ANCHOR | OTHER | UPSTREAM | SOW-083 | ACTIVE | SATISFIED |
+| DEP-08-04-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-02 | ACTIVE | PENDING |
+| DEP-08-04-014 | EXECUTION | INTERFACE | UPSTREAM | Current per-chat delegation policy carrier for managed delegation | ACTIVE | PENDING |
 
 ## Run Notes
 
@@ -132,16 +132,19 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 13 |
 | RETIRED | 1 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 6 |
-| PENDING | 5 |
-| TBD | 3 |
+| RequiredMaturity=SEMANTIC_READY | 14 |
+| ProposedMaturity=SATISFIED | 1 |
+| ProposedMaturity=SEMANTIC_READY | 5 |
+| ProposedMaturity=TBD | 8 |
+| SatisfactionStatus=PENDING | 5 |
+| SatisfactionStatus=SATISFIED | 6 |
+| SatisfactionStatus=TBD | 3 |
 
 ## Downstream Handoff Notes
 
@@ -168,3 +171,25 @@ dependency rows. Its recorded consumption as the primary input to
 `_SEMANTIC_LENSING.md` is a different act, outside that scope and consistent
 with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=13; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_SCOPE_SEMANTIC_APPROVED.csv`; current rows: ACTIVE=13, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_LUNA_17_APPROVED.csv`; current rows: ACTIVE=13, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=12, RETIRED=2. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

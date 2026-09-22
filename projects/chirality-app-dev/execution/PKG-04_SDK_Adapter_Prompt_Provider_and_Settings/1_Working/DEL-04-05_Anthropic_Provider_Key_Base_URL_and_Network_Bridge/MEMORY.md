@@ -19,3 +19,9 @@
 - 2026-09-03 - DEL-04-05-V3-01 (typed safeStorage states `missing | storageUnavailable | decryptFailed | available` beside the preserved `ui | env | none` source; non-destructive reads; daemon-owned status carries the state without a `runtime/**` change) landed via node A `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/`. No lifecycle change.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Protect credential custody, safe account presentation and the current App network boundary. Codex is the sole MVP engine and credential custodian. Anthropic key precedence, safeStorage, URL validation and SDK_FAILURE classifiers are compatibility evidence, not the current login contract.
+
+Current unfinished delivery: Complete candidate-bound S-8 and current network/account bridge conformance, including synthetic-secret checks at every App/Runtime sink. Determine any retained Anthropic-store cleanup only in a separately bounded implementation; no credential copying or new provider scope. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.

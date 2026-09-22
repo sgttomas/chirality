@@ -1,0 +1,27 @@
+# W10 — PKG-10 source-record repair
+
+Basis: `1b5adbf50142a4c01c454c62a31dfcdc60da1894`. Assignment: all five PKG-10 deliverables, 151 original R5 residual keys. Canonical derivative is this existing `BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22` directory. Original R0–R6 evidence remains untouched.
+
+## Execution and supplied context
+
+Actual mechanism: native delegated-harness TASK `/root/app_record_repair_manager/author_10`, directly assigned by WORKING_ITEMS `/root/app_record_repair_manager`. No child delegation, commit, source-code/test edit, Root/Runtime/Piping edit, instruction change, lifecycle act, approval refresh, formal dependency change or expected-reference re-pin. Exact model/effort is not independently exposed to this worker; native host attribution remains the source rather than an invented label. Host sandbox and tool permissions, not this brief, enforce access.
+
+Root AGENTS was supplied in the task context. TASK role, App AGENTS, selected `bundled:chirality-root/reconciliation` entrypoint/contract and R5/R6 method, D-APP-131/132/127, D-APP-118 retirement and D-APP-58 ownership boundary were consulted. `W10_ORIGINS.csv` records file origins/hashes; current workflow references are deliberately distinguished from historical persona `77a327727`. No workflow body was activated merely by preserving that historical source reference.
+
+APP-HOLD reliance preflight ran before deliverable source reliance: five ALLOW at the shared basis (register `d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c`; scan `68b88e611cd7b0ebfa61dc15aa1e3910a01da286ea7e0d9212ef46ea2b1ac675`). `W10_RELIANCE.json` repeats the final check. A final repeat initially used Root cwd and failed to find the App-relative script; rerun from the required App cwd passed. No source reliance was based on the failed invocation.
+
+## Applied repairs and surviving work
+
+Applied execution (b): profile/registration/proposal obligations replace claims of live retained-provider mechanisms. Runtime contracts are the canonical carrier; D-APP-118 removes the facade reservation. Existing ADOPTED profiles and bound applicable hooks replace obsolete blanket TBD statements, while individual inapplicable/TBD hooks and integration levels remain. D-APP-58 separates App fixture content/evidence accountability from tier-0 file-authoring authority. DEL-10-03 now includes ready-for-construction in its preserved professional-boundary checks. DEL-10-05 standard notice now includes the existing no-validation requirement. Current contract section links replace absent legacy-file links; one-time conversion verification is retained as historical evidence rather than demanded again for changed bytes.
+
+Current TYPES §11.2 already contains constant proposal-only status at HEAD (verified with Git source). No manager or worker is credited with adding that field. The current ScopeOfWork restates that existing carrier; preserved historical workflow/persona semantics are not silently rebound. Current source origin is recorded, and no assertion of new authority-corpus acceptance is made.
+
+All 151 source keys and their original fields are preserved in W10_ROWS.csv: 124 REPAIRED, 23 DELIVERY_TASK, four DEFERRED_SCOPE. Each REPAIRED CLM key has an actual changed complete block. Delivery work remains executable in each `_STATUS.md` Remaining: current Codex registration/proposal composition, protected-path denial/allowance evidence, profile rejection before exposure, generic-core separation, missing deterministic fixture/wording evidence, and specific future notice surface review/acceptance. The four scope deferrals concern formal dependency evidence-anchor/Notes/LastSeen refresh; descriptive navigation is repaired, but the formal rows and pins are untouched. No repeat decision is sought for settled Codex direction or facade retirement.
+
+The current Remaining surfaces point to this derivative. They retain PEC migration, F-APP-3, DEP-10-02-005, DEP-10-03-004, DEP-10-04-004, D-APP-53 Option-C and future human acceptance gates at their actual subjects. Profile existence and compatibility tests are not qualification of current Codex exposure. Core separation remains required despite shipped OpenPipeStress-specific Runtime descriptors.
+
+## Verification and integration boundary
+
+W10_CHANGES.csv hashes complete HEAD/current claim blocks through the next level-2/3 heading, plus explicit nonclaim section and whole-file carrier units. Source preimages are recoverable from Git HEAD; no duplicate source tree is retained. W10_CHECKS.json records exact key census, stable claim IDs, identical frontmatter basis, formal dependency bytes, lifecycle, Checking Approval SHA, History and expected reference hashes. Original residual-field preservation passes 151/151; every repaired CLM key has a changed block; scoped `git diff --check` passes.
+
+Product tests were not executed: this is a records-only repair. Named tests are verification hooks or retained evidence, never newly claimed passes. The parent performs fresh independent semantic review, full changed-unit re-extraction and registered checks. PKG-10 `_REFERENCES.md` was handed frozen to the parent for final D-APP-38 observed-metadata integration; parent changes after this manifest require affected hash refresh/re-extraction. This return is author completion, not independent acceptance, lifecycle closure, release or professional reliance.

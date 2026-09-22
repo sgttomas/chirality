@@ -11,39 +11,37 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-01-001, DEP-04-01-002, DEP-04-01-003, DEP-04-01-004, DEP-04-01-005, DEP-04-01-006, DEP-04-01-007, DEP-04-01-008, DEP-04-01-009
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-01-010, DEP-04-01-011, DEP-04-01-012, DEP-04-01-013
 
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1
-
-| Metric | Count |
-|---|---:|
-| Total rows | 13 |
-| ACTIVE rows | 11 |
-| RETIRED rows | 2 |
-| ANCHOR rows | 5 |
-| EXECUTION rows | 8 |
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
 | DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-04-01-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 | ACTIVE | SATISFIED |
-| DEP-04-01-002 | ANCHOR | UPSTREAM | OTHER | SOW-018 | ACTIVE | SATISFIED |
-| DEP-04-01-003 | ANCHOR | UPSTREAM | OTHER | SOW-044 | ACTIVE | SATISFIED |
-| DEP-04-01-004 | ANCHOR | UPSTREAM | OTHER | SOW-046 | ACTIVE | SATISFIED |
-| DEP-04-01-005 | ANCHOR | UPSTREAM | OTHER | OBJ-004 | ACTIVE | SATISFIED |
-| DEP-04-01-006 | EXECUTION | UPSTREAM | CONSTRAINT | REF-006 `docs/PRD.md` | ACTIVE | SATISFIED |
-| DEP-04-01-007 | EXECUTION | UPSTREAM | PREREQUISITE | first-adapter probe environment | ACTIVE | SATISFIED |
-| DEP-04-01-008 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-03-01 | RETIRED | NOT_APPLICABLE |
-| DEP-04-01-009 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-01-02 | ACTIVE | SATISFIED |
-| DEP-04-01-010 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-02 | ACTIVE | SATISFIED |
-| DEP-04-01-011 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-03 | ACTIVE | SATISFIED |
-| DEP-04-01-012 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-04 | RETIRED | NOT_APPLICABLE |
-| DEP-04-01-013 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-05 | ACTIVE | SATISFIED |
+| DEP-04-01-001 | ANCHOR | OTHER | UPSTREAM | SDK Adapter, Prompt, Provider, and Settings | ACTIVE | SATISFIED |
+| DEP-04-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-018 | ACTIVE | SATISFIED |
+| DEP-04-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-044 | ACTIVE | SATISFIED |
+| DEP-04-01-004 | ANCHOR | OTHER | UPSTREAM | SOW-046 | ACTIVE | SATISFIED |
+| DEP-04-01-005 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | SATISFIED |
+| DEP-04-01-006 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-04-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | first-adapter probe environment | ACTIVE | SATISFIED |
+| DEP-04-01-008 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-03-01 | RETIRED | NOT_APPLICABLE |
+| DEP-04-01-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-01-02 | ACTIVE | SATISFIED |
+| DEP-04-01-010 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-04-02 | RETIRED | SATISFIED |
+| DEP-04-01-011 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-04-03 | RETIRED | SATISFIED |
+| DEP-04-01-012 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-04-04 | RETIRED | NOT_APPLICABLE |
+| DEP-04-01-013 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-04-05 | RETIRED | SATISFIED |
+
+Counts: ACTIVE=11, RETIRED=2; satisfaction NOT_APPLICABLE=2, SATISFIED=11.
+
+| DEP-04-01-014 | ANCHOR | OTHER | UPSTREAM | SOW-079 | ACTIVE | TBD |
+
+| DEP-04-01-015 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE | TBD |
 
 ## Run Notes
 
@@ -93,3 +91,35 @@ Structured register: `Dependencies.csv` v3.1
 | CONSTRAINT | 3 |
 | PREREQUISITE | 1 |
 | HANDOVER | 4 |
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=13; RETIRED=2; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_REF_SEMANTIC.csv`; current rows: ACTIVE=13, RETIRED=2. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SOURCE_04_06_APPROVED.csv`; current rows: ACTIVE=10, RETIRED=5. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_04_06_SUPPORTED_APPROVED.csv`; current rows: ACTIVE=10, RETIRED=5. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

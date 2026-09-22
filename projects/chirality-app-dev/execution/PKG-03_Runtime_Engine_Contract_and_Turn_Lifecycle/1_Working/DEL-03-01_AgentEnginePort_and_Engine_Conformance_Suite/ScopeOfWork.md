@@ -39,7 +39,7 @@ This Scope of Work defines `DEL-03-01` in service of project scope [SOW-037] and
 > | ContextEnvelope | M |
 > | CoversScopeItems | SOW-037 |
 > | SupportsObjectives | OBJ-002 |
-> | AnticipatedArtifacts | `agent-engine-port.ts`; runtime contract docs; conformance tests |
+> | AnticipatedArtifacts | Canonical @chirality/runtime-contracts consumption; App-client conformance tests; current API/event compatibility evidence (D-APP-118 facade retirement). |
 >
 > Source: `_CONTEXT.md` and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` section "PKG-03 Runtime Engine Contract and Turn Lifecycle".
 >
@@ -54,11 +54,11 @@ This Scope of Work defines `DEL-03-01` in service of project scope [SOW-037] and
 > | Contract ownership | Chirality owns the runtime contract; SDK APIs do not define public harness semantics. | `docs/DIRECTIVE.md` section 2.8; `docs/CONTRACT.md` K-ENGINE-1 |
 > | Adapter role | `EngineAdapter` is provider/SDK-specific implementation behind `AgentEnginePort`. | `docs/TYPES.md` section 7.1; `docs/SPEC.md` section 10.3 |
 > | Primary operation | `startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>` | `docs/SPEC.md` section 10.2; D-APP-40 |
-> | Optional operation | `interrupt?(sessionId: string): Promise<void>` | `docs/SPEC.md` section 10.2 |
-> | Browser stream contract | `UIEvent` stream using stable SSE names. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4 |
+> | Optional operation | Interruption is required by current SPEC §10.2; the engine boundary exposes descriptor, preflight, turn execution and interrupt capability. | `docs/SPEC.md` section 10.2 |
+> | Browser stream contract | Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4 |
 > | Canonical runtime record | `HarnessEvent` records in product-owned event JSONL. | `docs/SPEC.md` section 9; `docs/TYPES.md` section 7.3 |
-> | Required conformance subject | Stub adapter and SDK-backed adapter. | `docs/SPEC.md` section 10.3; `docs/PRD.md` section 12.5 |
-> | Production-default gate | SDK-backed adapter must pass engine conformance before default production use. | `docs/CONTRACT.md` K-ENGINE-2; `docs/PRD.md` FR-123 |
+> | Required conformance subject | The live Codex delegated adapter and App client are the qualification subjects; deterministic stubs and retained SDK cases remain bounded evidence. | `docs/SPEC.md` section 10.3; `docs/PRD.md` section 12.5 |
+> | Production-default gate | Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects. | `docs/CONTRACT.md` K-ENGINE-2; `docs/PRD.md` FR-123 |
 >
 
 ### CLM-004 — Conditions
@@ -67,18 +67,18 @@ This Scope of Work defines `DEL-03-01` in service of project scope [SOW-037] and
 >
 > | Condition | Requirement / Constraint | Source |
 > |---|---|---|
-> | Provider-neutral core | Public APIs, canonical event schemas, session storage contracts, permission decision records, and governance rules must not become SDK-shaped. | `docs/DIRECTIVE.md` section 2.10; `docs/CONTRACT.md` K-ENGINE-4 |
+> | Provider-neutral core | Chirality owns its application contracts and authority boundaries while the full stock Codex protocol remains available; upstream event identity is preserved under D-GOV-43. | `docs/DIRECTIVE.md` section 2.10; `docs/CONTRACT.md` K-ENGINE-4 |
 > | Route compatibility | Existing `/api/harness/*` route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/PRD.md` section 9.1; `docs/SPEC.md` section 10.4 |
-> | SSE compatibility | Browser-facing SSE event names remain compatible during SDK adoption. | `docs/SPEC.md` section 11; `docs/PRD.md` section 9.3 |
+> | SSE compatibility | Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. | `docs/SPEC.md` section 11; `docs/PRD.md` section 9.3 |
 > | Terminal outcomes | Accepted turns must persist terminal success, failure, cancellation, or interruption outcomes. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-123 |
 > | Accepted-turn persistence | Accepted user input must be persisted before SDK/model execution begins. | `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` section 12.6 |
-> | SDK metadata boundary | SDK identifiers, message names, permission modes, tool names, transcript paths, and session IDs are adapter metadata. | `docs/DIRECTIVE.md` section 2.10; `docs/SPEC.md` section 10.3 |
-> | Source-state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived runtime details are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
+> | SDK metadata boundary | Preserve upstream Codex IDs, methods, tools and payloads as inspectable source data. Chirality normalized views do not replace or suppress that evidence. | `docs/DIRECTIVE.md` section 2.10; `docs/SPEC.md` section 10.3 |
+> | Source-state status | `docs/PRD.md` was reconciled in an earlier D-APP-38 snapshot; consult current `_REFERENCES.md` observations and the accepted corpus separately. | `_REFERENCES.md` REF-006; D-APP-38 |
 >
 
 ### CLM-005 — Engine boundary and conformance
 
-The App must consume the Runtime-owned engine boundary for the sole qualified MVP engine, Codex. Turn inputs preserve the active session, registered project root, selected role, permission policy, resolved runtime options, content and attachment references, and cancellation semantics required by the accepted contract. Contract-module filenames, interface signatures and former shim paths are implementation evidence, rather than an additional App implementation mandate.
+The App must consume the Runtime-owned engine boundary for the sole MVP engine and qualification target, Codex. Turn inputs preserve the active session, registered project root, selected role, permission policy, resolved runtime options, content and attachment references, and cancellation semantics required by the accepted contract. Contract-module filenames, interface signatures and former shim paths are implementation evidence, rather than an additional App implementation mandate.
 
 The surviving request/session correctness obligations must be mapped to current verification, including D-GOV-43 S-1–S-8 where applicable. D-GOV-43 retires vanished-purpose gates and avoids duplicate checks for the same condition; the legacy suite as a whole is not a new blanket admission gate. Deterministic stub and retained SDK tests establish only their own subjects. P-08 remains a bounded coverage-mapping residual: identify genuinely uncovered live-Codex obligations for accepted turns, terminal outcomes, capabilities, applicable tool handling and secret protection; do not declare equivalence without that mapping.
 
@@ -94,13 +94,13 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 >
 > | RefID | Source | Status / Note |
 > |---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | MATCH; sections 2.8-2.11 used. |
-> | REF-002 | `docs/CONTRACT.md` | MATCH; sections 1.4-1.5 and enforcement map used. |
-> | REF-003 | `docs/SPEC.md` | MATCH; sections 9-13 used. |
-> | REF-004 | `docs/TYPES.md` | MATCH; sections 7 and 12 used. |
-> | REF-005 | `docs/PLAN.md` | MATCH; sections 2-4, 6.2, and 8 used. |
-> | REF-006 | `docs/PRD.md` | MATCH under the current D-APP-38 authority corpus; sections 8.16, 9, 12, and 13 used. |
-> | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | MATCH; not used for content requirements beyond decomposition provenance. |
+> | REF-001 | `docs/DIRECTIVE.md` | Observation: see _REFERENCES.md; sections 2.8-2.11 used. |
+> | REF-002 | `docs/CONTRACT.md` | Observation: see _REFERENCES.md; sections 1.4-1.5 and enforcement map used. |
+> | REF-003 | `docs/SPEC.md` | Observation: see _REFERENCES.md; sections 9-13 used. |
+> | REF-004 | `docs/TYPES.md` | Observation: see _REFERENCES.md; sections 7 and 12 used. |
+> | REF-005 | `docs/PLAN.md` | Observation: see _REFERENCES.md; sections 2-4, 6.2, and 8 used. |
+> | REF-006 | `docs/PRD.md` | Current observation: see _REFERENCES.md; sections 8.16, 9, 12, and 13 used. |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | Observation: see _REFERENCES.md; not used for content requirements beyond decomposition provenance. |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -111,27 +111,9 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 
 ### CLM-008 — Scope
 
-> ##### Scope
->
-> This deliverable defines the product-owned runtime boundary for harness turn execution and the conformance suite any engine adapter must satisfy before use as the default production path.
->
-> In scope:
->
-> - `AgentEnginePort` / `RuntimeEngineContract` API contract.
-> - Adapter boundary rules for stub and SDK-backed implementations.
-> - Conformance expectations for accepted-turn persistence, terminal outcomes, SSE compatibility, SDK message mapping, permission/tool boundary behavior, interrupt/cancel behavior, session resume/linkage, and redaction.
-> - Runtime contract documentation and tests associated with the contract.
->
-> Out of scope:
->
-> - SDK-specific message translation implementation details, except as conformance inputs and adapter-boundary expectations.
-> - Full `TurnEngine` extraction and session locking implementation, owned by DEL-03-02.
-> - Browser API/SSE route adapter fixtures, owned by DEL-03-03 except where conformance verifies compatibility.
-> - Interrupt/cancel cleanup implementation, owned by DEL-03-04 except where conformance verifies required adapter behavior.
-> - SDK probe/version decision details, owned by DEL-04-01.
->
-> Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-01; `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, and 12.
->
+This deliverable verifies the App client against the Runtime-owned contracts for the sole MVP engine, Codex. It owns contract-consumption and conformance evidence, not a second engine implementation. Preserve session/input binding, accepted-turn ordering, terminal outcomes, current permission and tool boundaries, native resume, interrupt behavior and redaction. Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects.
+
+Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
 
 ### CLM-009 — Requirements
 
@@ -140,18 +122,18 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 > | ID | Requirement | Source |
 > |---|---|---|
 > | DEL-03-01-REQ-001 | Chirality SHALL define `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs. | `docs/SPEC.md` section 10.1; `docs/PRD.md` FR-122 |
-> | DEL-03-01-REQ-002 | Public harness semantics SHALL remain Chirality-owned; SDK APIs, message names, transcript shape, and tool names SHALL NOT define public semantics. | `docs/DIRECTIVE.md` sections 2.8 and 2.10; `docs/CONTRACT.md` K-ENGINE-1 and K-ENGINE-4 |
+> | DEL-03-01-REQ-002 | Chirality SHALL own application contracts and governance while hosting the full stock Codex protocol; upstream names and payloads SHALL remain inspectable under D-GOV-43. | `docs/DIRECTIVE.md` sections 2.8 and 2.10; `docs/CONTRACT.md` K-ENGINE-1 and K-ENGINE-4 |
 > | DEL-03-01-REQ-003 | `AgentEnginePort` SHALL expose `startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>`. | `docs/SPEC.md` section 10.2; D-APP-40 |
-> | DEL-03-01-REQ-004 | `AgentEnginePort` MAY expose `interrupt?(sessionId: string): Promise<void>` when the adapter can support interruption. | `docs/SPEC.md` section 10.2 |
+> | DEL-03-01-REQ-004 | The engine boundary SHALL support descriptor, preflight and interruption as specified by current SPEC §10.2; explicit Stop reaches the active turn. | `docs/SPEC.md` section 10.2 |
 > | DEL-03-01-REQ-005 | `AgentEngineRunInput` SHALL carry active session identity, resolved runtime options, and content blocks; normalized project root, persona, mode, and attachment summaries are carried through `SessionRecord`/resolved options, while interrupt and stream cancellation are out of band. | `docs/SPEC.md` section 10.2 |
-> | DEL-03-01-REQ-006 | The contract SHALL cover accepted turn input, browser `UIEvent` yield, canonical `HarnessEvent` persistence, permission enforcement or invocation, permitted tool exposure, SDK session metadata linkage, interrupt/cancel behavior, and terminal outcomes. | `docs/SPEC.md` section 10.1; `docs/TYPES.md` section 7.1 |
-> | DEL-03-01-REQ-007 | SDK-specific names, IDs, permission modes, transcript paths, tool names, and hook names SHALL appear only as explicit adapter metadata. | `docs/SPEC.md` section 10.3; `docs/DIRECTIVE.md` section 2.10 |
-> | DEL-03-01-REQ-008 | The SDK-backed adapter SHALL pass the engine conformance suite before becoming the default production path. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3; `docs/PRD.md` FR-123 |
+> | DEL-03-01-REQ-006 | The contract SHALL cover accepted turn input, browser `UIEvent` yield, canonical `HarnessEvent` persistence, permission enforcement or invocation, permitted tool exposure, Codex thread/session linkage, interrupt/cancel behavior, and terminal outcomes. | `docs/SPEC.md` section 10.1; `docs/TYPES.md` section 7.1 |
+> | DEL-03-01-REQ-007 | Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. | `docs/SPEC.md` section 10.3; `docs/DIRECTIVE.md` section 2.10 |
+> | DEL-03-01-REQ-008 | Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3; `docs/PRD.md` FR-123 |
 > | DEL-03-01-REQ-009 | A deterministic stub adapter SHALL remain available for tests. | `docs/SPEC.md` section 10.3 |
-> | DEL-03-01-REQ-010 | Engine conformance tests SHALL cover accepted-turn persistence before SDK/model execution, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction. | `docs/PRD.md` FR-123; `docs/PRD.md` section 12.5 |
-> | DEL-03-01-REQ-011 | The contract and tests SHALL preserve the stable browser SSE names: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and the additive redacted `harness:event` bridge. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4; D-APP-40 |
-> | DEL-03-01-REQ-012 | `/api/harness/turn` SHALL remain a transport adapter; runtime policy belongs behind the contract and `TurnEngine`, not in the route. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
-> | DEL-03-01-REQ-013 | The conformance suite SHALL reject provider-shaped leakage in public APIs and canonical `HarnessEvent` fields except as explicit adapter metadata. | `docs/PRD.md` section 12.5; `docs/CONTRACT.md` K-ENGINE-4 |
+> | DEL-03-01-REQ-010 | Engine conformance tests SHALL cover accepted-turn persistence before Codex execution, terminal outcome persistence, browser event compatibility, complete upstream event preservation and normalization, permission outcomes, tool exposure, interrupt/cancel behavior, native session resume and sink-specific redaction. Retained SDK message-mapper fixtures prove compatibility only. | `docs/PRD.md` FR-123; `docs/PRD.md` section 12.5 |
+> | DEL-03-01-REQ-011 | Preserve upstream Codex method names, identifiers and payloads in the extensible event representation, normalize known items for presentation, and keep unfamiliar notifications inspectable. Structural secret redaction is required before persistence, logging, artifacts and renderer delivery; upstream preservation does not waive it. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4; D-APP-40 |
+> | DEL-03-01-REQ-012 | The application-owned Runtime service owns admission, one active turn per session, accepted-input persistence and durable terminal outcomes. The App route validates and forwards requests over the retained socket API and loopback HTTP/SSE channel. A renderer disconnect only unsubscribes; the turn and lock remain with Runtime until its terminal outcome. Explicit Stop interrupts the turn. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
+> | DEL-03-01-REQ-013 | Conformance SHALL verify complete upstream event preservation, correct normalized views, and structural secret redaction on the live path; retired provider-name rejection is not an oracle. | `docs/PRD.md` section 12.5; `docs/CONTRACT.md` K-ENGINE-4 |
 > | DEL-03-01-REQ-014 | The contract documentation SHALL record fallback criteria when SDK behavior cannot satisfy or verify a product-critical boundary. | `docs/CONTRACT.md` K-ENGINE-5; `docs/PLAN.md` R0 acceptance; `docs/PRD.md` FR-126 |
 > | DEL-03-01-REQ-015 | Requirements derived from `docs/PRD.md` SHALL use the current D-APP-38 authority-corpus reference state. | `_REFERENCES.md` REF-006; D-APP-38 |
 >
@@ -167,57 +149,26 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 > | `docs/SPEC.md` sections 9-13 | Event schema, runtime engine contract, SSE names, SDK settings posture, runtime options/persona composition. |
 > | `docs/TYPES.md` section 7 | Canonical runtime vocabulary and type targets. |
 > | `docs/PLAN.md` R0/R1 | Roadmap and sequencing constraints for engine contract and conformance. |
-> | `docs/PRD.md` sections 8.16, 9, 12, and 13 | Product requirements and validation expectations; REF-006 is reconciled under D-APP-38. |
+> | `docs/PRD.md` sections 8.16, 9, 12, and 13 | Product requirements and validation expectations; current observed reference status is read from _REFERENCES.md separately from accepted pins. |
 >
 
 ### CLM-011 — Verification
 
-> ##### Verification
->
-> | Requirement IDs | Verification Approach |
-> |---|---|
-> | REQ-001, REQ-002, REQ-007, REQ-013 | Type/API review and tests proving public contract types do not expose SDK-shaped names except adapter metadata. |
-> | REQ-003, REQ-004, REQ-005, REQ-006 | Unit tests around `AgentEnginePort`/`RuntimeEngineContract` type fixtures and adapter test harness inputs. |
-> | REQ-008, REQ-009, REQ-010 | Engine conformance suite runs against stub and SDK-backed adapters before production-default enablement. |
-> | REQ-011, REQ-012 | Integration or compatibility tests proving `/api/harness/turn` shape and browser SSE event names are unchanged. |
-> | REQ-014 | Runtime contract documentation includes fallback criteria and cross-reference to reliance-boundary register. |
-> | REQ-015 | D-APP-38 confirms the current `docs/PRD.md` authority-corpus state before closing the deliverable. |
->
+Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects.
+
+Verify the current SPEC §10.2 boundary, thin route transport, extensible events, accepted-input/terminal persistence, user-selected policy enforcement, tools, interrupt and resume. Source-map each case and result to the actual adapter and candidate. Use `projects/chirality-runtime/packages/contracts/src/harness/engine-conformance.ts`, `projects/chirality-runtime/tests/codex-supervisor.test.ts`, and the S-1–S-8 native checklist; `frontend/src/__tests__/lib/engine-conformance.test.ts` remains compatibility evidence only. Missing redaction or live cases remain open.
 
 ### CLM-012 — Documentation
 
-> ##### Documentation
->
-> Required deliverable artifacts:
->
-> - `agent-engine-port.ts` or equivalent product-owned runtime contract.
-> - Runtime contract documentation describing ownership, adapter boundary, input/output shape, and fallback criteria.
-> - Engine conformance suite covering stub and SDK-backed adapters.
-> - Test index or validation reference for `section9.runtime_engine_contract` once Section 9 runtime validation is implemented.
->
-> Conformance evidence schema:
->
-> - Adapter subject: `stub`, `SDK-backed`, or `blocked SDK-backed case`.
-> - Case coverage: accepted-turn persistence, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume/linkage, redaction, and SDK-shaped leakage checks.
-> - Result status: `PASS`, `FAIL`, or `BLOCKED_TBD`; blocked cases must name the missing DEL-04-01 probe detail or other upstream blocker.
-> - Closure evidence: test output path or `TBD`, runtime contract documentation link, fallback/risk note when a product-critical boundary cannot be verified, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status once available.
->
-> TBD:
->
-> - Final implementation path if not `frontend/src/lib/harness/agent-engine-port.ts`.
-> - Exact SDK-backed adapter fixture shape until DEL-04-01 confirms SDK probe details.
-> - Exact session-link metadata fields accepted by the conformance suite until DEL-04-01/DEL-05 work confirms transcript/store placement.
-> - Accepting party for staged SDK-dependent conformance cases beyond the current scripted adapter coverage.
-> - Section 9 runtime validation linkage remains through the current `section9.adapter_*` validation IDs until a later governed rename.
->
+Required artifacts are the App-client contract-consumption record, runtime boundary documentation and a live-Codex conformance matrix. The canonical source is `@chirality/runtime-contracts`; the former facade and rollback test are retired by D-APP-118. For each case record the actual adapter, source/candidate identity, requirement, named check, PASS/FAIL/BLOCKED result, output location, and any uncovered obligation. Include accepted input, terminal outcomes, stream preservation, policy/tool handling, interrupt, native resume and redaction. Missing results remain unknown; the historical SDK probe is not an admission prerequisite. Keep the applicable Section 9 validation linkage explicit.
 
 ### CLM-013 — Source-State Warning
 
 > ##### Source-State Warning
 >
-> D-APP-38 established the authority-corpus reference model. Current `_REFERENCES.md` records REF-006 as `MATCH`; future authority-document edits require a corpus bump/apply before acceptance.
+> D-APP-38 established the authority-corpus reference model. That historical result does not establish the current observed hash. Consult `_REFERENCES.md`; genuine normative amendments retain D-APP-38 controls without an automatic re-pin merely for carrier lag.
 
-- **AC-001** — The product-owned runtime boundary keeps SDK-shaped semantics behind explicit adapter metadata, and the stub and SDK-backed adapters satisfy the source-defined conformance suite before production-default use.
+- **AC-001** — The App consumes the Runtime-owned Codex boundary correctly; each surviving conformance obligation has source-bound current evidence or an explicit open result. Complete upstream events and structural secret protection are both required.
 
 ## Production and Verification Method — Praxeology
 
@@ -228,100 +179,32 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 
 ### CLM-015 — Purpose
 
-> ##### Purpose
->
-> Define and verify the product-owned engine boundary and conformance suite for stub and SDK-backed runtime adapters while preserving Chirality-owned semantics, stable route/SSE behavior, and adapter replaceability.
->
-> Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 13; `docs/CONTRACT.md` sections 1.4-1.5.
->
+Verify App-client conformance against the Runtime-owned Codex contract, preserving request/session correctness, inspectable events and independent evidence. Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects.
 
 ### CLM-016 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status / Note |
-> |---|---|
-> | Deliverable state allows drafting | Current `_STATUS.md` state was `OPEN` before this P1/P2 run. |
-> | Authoritative sources available | REF-001 through REF-007 are locally accessible. |
-> | PRD source state acknowledged | REF-006 is MATCH under the current D-APP-38 authority corpus. |
-> | Declared upstream dependencies | `_DEPENDENCIES.md` lists declared upstream as TBD; no accepted dependency edges have been extracted yet. |
-> | SDK probe details | TBD; exact SDK message categories, session store behavior, and interrupt behavior depend on DEL-04-01. |
-> | Acceptance authority for staged SDK cases | TBD; human acceptance is required for any `BLOCKED_TBD` SDK-backed conformance case until DEL-04-01 supplies the missing probe detail. |
->
+Read the current adopted SPEC §§10–11 and D-GOV-43/D-APP-127, record the source identity, and consult `_REFERENCES.md` plus the extracted `Dependencies.csv` without changing pins or satisfaction states. The canonical contract is in Runtime; use the current production Codex adapter and S-1–S-8 evidence. A missing distinct check blocks that claim, not every unrelated check. Lifecycle approval and current-source conformance evidence remain separate.
 
 ### CLM-017 — Steps
 
-> ##### Steps
->
-> 1. Confirm the scope boundary.
->    - Use DEL-03-01 only for the engine contract and conformance suite.
->    - Keep `TurnEngine` implementation, route adapter fixtures, SDK probe decision, and event store implementation in their owning deliverables unless needed as conformance references.
->
-> 2. Draft the runtime contract.
->    - Define `AgentEnginePort` / `RuntimeEngineContract` as product-owned.
->    - Include `startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>`.
->    - Include optional `interrupt?(sessionId: string): Promise<void>` when adapter support exists.
->    - Define `TurnInput` with active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.
->
-> 3. Define adapter boundary rules.
->    - Keep SDK/provider message names, tool names, permission modes, transcript paths, hook names, and session IDs outside public APIs and canonical event fields except under explicit adapter metadata.
->    - Preserve the stub adapter as deterministic conformance baseline.
->    - Mark exact SDK-backed fixture details as `TBD` until DEL-04-01 confirms SDK behavior.
->
-> 4. Specify the conformance suite.
->    - Test accepted-turn persistence before SDK/model execution.
->    - Test terminal success, failure, cancellation, and interruption persistence.
->    - Test browser SSE compatibility and stable UI event names.
->    - Test SDK message mapping into product-owned UI/runtime events.
->    - Test permission denial and permitted tool exposure behavior at the contract boundary.
->    - Test session resume/linkage metadata without making SDK transcripts canonical.
->    - Test redaction and absence of SDK-shaped leakage in public contracts and canonical events.
->
-> 5. Align with route and event contracts.
->    - Confirm `/api/harness/turn` remains a transport adapter.
->    - Confirm browser-facing event names remain `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and the additive redacted `harness:event` bridge.
->    - Confirm canonical runtime records use `HarnessEvent` shape and product-owned event categories.
->
-> 6. Record fallback and source-state caveats.
->    - Document fallback criteria if SDK behavior cannot satisfy a product-critical boundary.
->    - If future authority documents change, run the D-APP-38 corpus bump/apply before acceptance.
->
-> 7. Prepare deliverable records.
->    - Produce or update runtime contract docs.
->    - Produce or update `agent-engine-port.ts` or equivalent.
->    - Produce or update engine conformance tests.
->    - Link the conformance suite to `section9.runtime_engine_contract` once Section 9 validation exists.
->
+1. Bind the App client and Runtime contract to the actual candidate and Codex version.
+2. Inventory each surviving request/session, capability, policy/tool, persistence, terminal, interrupt, resume and redaction obligation.
+3. Map it to current contract checks and S-1–S-8; retain valid evidence and identify gaps without assuming suite equivalence.
+4. Verify thin route transport and full upstream event preservation, including unfamiliar notifications and requests.
+5. Execute missing checks on their actual live or deterministic subjects and record failures or blocked cases honestly.
+6. Record the per-case result matrix, source identities, unresolved risk/fallback judgment and applicable validation linkage. No automatic second-engine fallback or facade rollback is introduced.
+
+Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
 
 ### CLM-018 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Contract shape check | `AgentEnginePort` exposes `startTurn` and optional `interrupt` with inputs/outputs matching `docs/SPEC.md` section 10.2. |
-> | Provider-neutrality check | Public APIs and canonical `HarnessEvent` fields do not contain SDK-shaped names except explicit adapter metadata. |
-> | Stub conformance | Stub adapter passes the same conformance suite used for SDK-backed adapter where applicable. |
-> | SDK-backed conformance | SDK-backed adapter passes before default production enablement; cases blocked by SDK probe details remain `TBD` until DEL-04-01 closes. |
-> | SSE compatibility | Browser event names and `/api/harness/turn` route shape remain stable. |
-> | Event persistence | Accepted turn and terminal outcomes are persisted in Chirality-owned event form. |
-> | Redaction | Provider/SDK errors and runtime records do not store API keys or secrets. |
-> | Authority-corpus check | REF-006 is reconciled under D-APP-38; future authority-doc edits trigger corpus bump/apply. |
->
+Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects.
+
+Required evidence includes descriptor/preflight/interrupt checks, accepted-input ordering, terminal durability, policy/tool behavior, native resume, complete event forwarding and sink-by-sink structural redaction. Compare each result to the exact current source. Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
 
 ### CLM-019 — Records
 
-> ##### Records
->
-> Required records for closure:
->
-> - Runtime contract source file: `agent-engine-port.ts` or equivalent.
-> - Runtime contract documentation.
-> - Engine conformance test file or suite.
-> - Test output showing stub adapter pass.
-> - Test output showing SDK-backed adapter pass, or a `BLOCKED_TBD` record naming the DEL-04-01 blocker, affected conformance case, fallback/risk note, and accepting party status.
-> - Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or `TBD`, fallback/risk note, D-APP-38 authority-corpus status, and Section 9 linkage status.
-> - Section 9 validation linkage when `section9.runtime_engine_contract` exists, or a `TBD` linkage record naming DEL-09-02 as the unavailable validation surface.
+Preserve the canonical Runtime contract locator, App client source identity, requirement-to-check matrix, commands/results, and S-1–S-8 witness links. Record stub and legacy SDK evidence with their own subject, never as live-Codex qualification. Name every blocked or uncovered case, its owner and follow-up gate. Keep reference-currentness, Section 9 linkage and lifecycle authority separate.
 
 - **VER-001** — Run the source-defined type/API, adapter-conformance, route/SSE compatibility, persistence, permission, tool-exposure, interrupt/cancel, resume/linkage, redaction, and provider-neutrality checks.
 
@@ -334,81 +217,27 @@ D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade a
 
 ### CLM-021 — Purpose
 
-> ##### Purpose
->
-> DEL-03-01 exists to make the runtime engine replaceable by construction while allowing the Claude Agent SDK to serve as the preferred implementation substrate when it satisfies Chirality-owned governance, audit, permission, session, and route-compatibility requirements.
->
-> The decomposition assigns this deliverable to SOW-037 and OBJ-002: define the product-owned `AgentEnginePort` / `RuntimeEngineContract` and conformance tests before SDK behavior becomes production default.
->
-> Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-01; `docs/DIRECTIVE.md` sections 2.8-2.10; `docs/PLAN.md` sections 2-4.
->
+DEL-03-01 establishes evidence that the App consumes Runtime contracts correctly on the sole MVP engine and qualification target, Codex. Request/session correctness, observable permission and tool behavior, durable records and reliable continuation remain the purpose. A replaceable multi-engine implementation and the retired facade are not current completion subjects. Source: D-GOV-43, D-APP-127, D-APP-131 P-08 and D-APP-118.
 
 ### CLM-022 — Principles
 
-> ##### Principles
->
-> | Principle | Guidance | Source |
-> |---|---|---|
-> | Chirality terms at the core | Contract names, public APIs, browser events, persisted events, permission decisions, and session records should use Chirality vocabulary. SDK details belong behind `EngineAdapter`. | `docs/CONTRACT.md` K-CORE-1 and K-ENGINE-4; `docs/TYPES.md` section 7 |
-> | Conformance before default | Treat SDK adoption as conditional. The SDK-backed adapter is not default until it passes conformance tests. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3 |
-> | Route stability | Keep `/api/harness/turn` as transport and compatibility surface. Runtime policy should be owned by `TurnEngine` and the engine boundary. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
-> | Event separation | Keep compact browser `UIEvent`s distinct from richer persisted `HarnessEvent`s. | `docs/CONTRACT.md` K-EVENT-1; `docs/SPEC.md` sections 9 and 11 |
-> | Adapter metadata quarantine | SDK session IDs, transcript paths, tool names, permission modes, message categories, and hook names may be retained only as explicit adapter metadata. | `docs/DIRECTIVE.md` section 2.10; `docs/SPEC.md` section 10.3 |
-> | Reliance boundaries are test subjects | Product-critical boundaries must be testable in Chirality terms, not only described in prompts or assumed from SDK defaults. | `docs/DIRECTIVE.md` section 2.9; `docs/CONTRACT.md` K-RELIANCE-2 |
->
+Keep Chirality application authority explicit, preserve all Codex protocol events, and verify substantive boundaries on the actual execution path. Normalized presentation and durable runtime records serve different purposes but must preserve upstream identity. Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects. The application-owned Runtime service owns admission, one active turn per session, accepted-input persistence and durable terminal outcomes. The App route validates and forwards requests over the retained socket API and loopback HTTP/SSE channel. A renderer disconnect only unsubscribes; the turn and lock remain with Runtime until its terminal outcome. Explicit Stop interrupts the turn.
 
 ### CLM-023 — Considerations
 
-> ##### Considerations
->
-> - Keep the initial `AgentEnginePort` narrow. A small boundary makes stub and SDK-backed adapters easier to compare and keeps SDK-specific behavior from leaking into the product contract.
-> - Make the conformance suite adapter-agnostic. Tests should assert Chirality outcomes: accepted-turn persistence, stable UI events, canonical event records, terminal outcomes, permission denial, redaction, and absence of SDK-shaped leakage.
-> - Expect some tests to be staged. SDK message categories, resume behavior, `SessionStore`, `CLAUDE_CONFIG_DIR`, and interrupt behavior depend on DEL-04-01 probe findings, so mark unsupported cases as `TBD` rather than hard-coding assumptions.
-> - Preserve the stub adapter. It is the deterministic baseline for contract tests and fallback analysis.
-> - Keep PRD-derived details visible and source-bound. D-APP-38 confirms the current authority corpus for `docs/PRD.md`; implementation proof still needs deliverable-local evidence.
->
+Use current Codex source and execution evidence; do not infer native resume or secret protection from a legacy SDK fixture. Preserve the deterministic stub for bounded contract checks, source-valid native witnesses for their conditions and explicit unknowns for missing results. Re-run only checks invalidated by changed source, configuration or packaging. Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
 
 ### CLM-024 — Trade-offs
 
-> ##### Trade-offs
->
-> | Trade-off | Preferred Direction | Rationale |
-> |---|---|---|
-> | Thin contract vs broad SDK wrapper | Prefer thin product-owned contract. | Reduces SDK lock-in and supports provider-neutral conformance. |
-> | Full SDK parity vs governed subset | Prefer governed subset. | PLAN states Chirality does not chase Claude Code feature parity; it adopts SDK mechanics where they accelerate the product-owned contract. |
-> | Unit-only tests vs mixed conformance | Use both type/unit tests and route/SSE compatibility checks. | Contract correctness must cover adapter behavior and user-visible stream compatibility. |
-> | Early implementation specificity vs `TBD` | Use `TBD` until SDK probe results exist. | Prevents inaccessible or unstable SDK behavior from becoming accepted project truth. |
-> | Fallback criteria in docs vs tests only | Keep fallback criteria in runtime contract documentation and verify them through conformance where possible. | `docs/CONTRACT.md` K-ENGINE-5 and `docs/PRD.md` FR-126 make fallback a governed acceptance judgment, not just a test failure outcome; documentation must state when an unverifiable SDK boundary triggers fallback or residual-risk review. |
->
+Use the full stock Codex protocol while keeping application responsibilities and authority boundaries explicit. Type/unit checks and production/native evidence cover distinct conditions. Missing evidence stays open rather than becoming an SDK-probe prerequisite. If a product-critical boundary cannot be satisfied, record its risk and route the actual acceptance/scope decision; do not automatically switch engines.
 
 ### CLM-025 — Examples
 
-> ##### Examples
->
-> Illustrative interface shape from `docs/SPEC.md` section 10.2:
->
-> ```ts
-> interface AgentEnginePort {
->   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
->   interrupt?(sessionId: string): Promise<void>;
-> }
-> ```
->
-> Example conformance assertions:
->
-> - A stub adapter yields only stable browser `UIEvent` names and does not expose provider-specific fields in public stream payloads.
-> - An SDK-backed adapter persists `turn.accepted` before invoking SDK/model execution.
-> - An SDK-backed adapter maps SDK result/failure/interruption outcomes into product-owned terminal `HarnessEvent` records; explicit user interruption terminates as `turn.interrupted` per D-APP-40.
-> - A leakage test fails if public APIs or canonical `HarnessEvent` fields expose SDK message names, permission modes, transcript paths, tool names, or session IDs outside explicit adapter metadata.
->
+A current engine descriptor and preflight establish supported capability before turn execution. Accepted input is durable before execution; an explicit Stop yields a truthful terminal interruption. Unknown upstream notifications remain inspectable, while a secret-bearing payload is structurally redacted before each sink. A relaunch resumes the existing Codex thread without resending the original prompt. Verify these examples with the current conformance matrix and S-1–S-8; they are requirements, not reported results.
 
 ### CLM-026 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | CT-001 | Resolved by D-APP-38: REF-006 now matches the authority corpus. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.16, 9, 12, 13 | Datasheet Conditions/References; Specification Requirements/Verification; Procedure Prerequisites | Apply D-APP-38 corpus workflow for future authority edits. | Ruled 2026-06-20 |
+D-GOV-43/D-APP-131 settle the former provider-name versus event-preservation question: preserve upstream Codex events and keep secret protection. D-APP-118 settles facade retirement. P-08 remains the current coverage-mapping task, with missing distinct live checks open. D-APP-38 reference observations and accepted corpus identity remain separate; no automatic corpus bump, re-pin or lifecycle promotion follows from this repair.
 
 ## Output and Evaluation Matrix
 
