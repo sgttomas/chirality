@@ -360,3 +360,11 @@ HELP_HUMAN (A0) repairs after the fresh-context review of PR #840. None is an ow
   merge inputs, not ledgers of record. They fail coverage when validated alone, by design; each
   merged ledger passes.
 - **WORK_GRAPH.json** is restored to its original formatting, with "5 double-blinds".
+
+## Addendum 12: authority-map flags corrected by R3 (appended 2026-09-21)
+
+The EXT audit (item 3) found, and R3 (`R3/RUNWIDE_CALLS.md`, call g) recorded, that RULED rows
+D-APP-104, D-APP-107, D-APP-122 and D-APP-123 did land at the frozen basis. §5 above flagged them
+as pending, held or unapplied. §5 is not rewritten (append-only). For R4 and later stages, read those
+four rows as GOVERNING and landed. D-APP-121, D-APP-125 and D-APP-126 stay as flagged unless R3
+evidence says otherwise.

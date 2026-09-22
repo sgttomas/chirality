@@ -1,0 +1,115 @@
+"""T8A: write T8A_VERDICTS.csv from hand-judged verdicts (blind spot check, S1 sample A)."""
+import os, sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+R3 = os.path.dirname(os.path.dirname(HERE))
+sys.path.insert(0, os.path.join(R3, "_scripts"))
+from r3lib import read_csv, write_csv
+
+A = "projects/chirality-app-dev/"
+AE = A + "execution/"
+P0 = AE + "PKG-00_DAG_Closure_and_Project_Control/1_Working/"
+P2 = AE + "PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/"
+FE = A + "frontend/src/"
+RT = "projects/chirality-runtime/packages/"
+DAD = "R2/_shared/EVIDENCE_PACK/"
+
+V = {}  # SampleID -> (verdict, proposed, evidence)
+def c(sid, ev): V[sid] = ("CONFIRMED", "", ev)
+def r(sid, prop, ev): V[sid] = ("REFUTED", prop, ev)
+def u(sid, prop, ev): V[sid] = ("UNDECIDED", prop, ev)
+
+c("S1-001", P0 + "DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/scc-cases/CASE-SCC-002_PKG-10_Policy_Proposal/Ruling_Register.csv:2-7 every ruling on DEP-10-02-004/DEP-10-03-006 carries EvidenceRefs; no uncited waiver or retirement found.")
+c("S1-002", "Principles honoured: " + P0 + "DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/scc-cases/CASE-SCC-002_PKG-10_Policy_Proposal/Ruling_Register.csv:2-7 (DEP-10-03-006 preserved; DEP-10-02-004 treated with citations); new snapshot " + AE + "_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/ exists.")
+c("S1-003", "Heading with empty body: " + P0 + "DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/ScopeOfWork.md:221-224.")
+c("S1-004", "Heading with empty body: " + P0 + "DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/ScopeOfWork.md:119-122.")
+c("S1-005", "SoW calls D53A the current accepted DepClosure evidence (" + P0 + "DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/ScopeOfWork.md:307); " + AE + "_Reconciliation/DepClosure/_LATEST.md:1 names CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034. Present fact now false.")
+c("S1-006", "MEMORY.md:12 says D-APP-68 reconciled all live current-snapshot assertions to D53A, but " + P0 + "DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/CONTROL.md:3-5 still names CLOSURE_SCC_SAFE_MOVES_001 as Current Snapshot. Assertion false.")
+c("S1-007", "No reactivated retired PKG-08 tooling found in the live frontend or runtime packages; exclusion holds. Search not exhaustive (spot check).")
+c("S1-008", FE + "lib/lifecycle/transition.ts:23-30 CHECKING/ISSUED actors ['HUMAN'] (REACH=LIVE per " + DAD + "REACHABILITY.csv); status-parser.ts LIVE.")
+c("S1-009", A + "docs/harness/reliance_boundary_register.md:54 RB-FALLBACK row and :73 matrix row preserve fallback criteria.")
+c("S1-010", "Live mapping " + RT + "contracts/src/delegated.ts:322-329: ask/undefined -> on-request + workspace-write; workspaceWrite -> approvalPolicy never with no Chirality hook step (" + RT + "daemon/src/codex-supervisor.ts:104-110). 'Auto-allow only after hooks' is not the live mechanism. STALE_SPECIFICATION would also fit a STATE_ASSERTION; ID is defensible.")
+c("S1-011", "Method/boundary note about the normalization run itself (SoW CLM-004 'Dependency extraction'); nothing to check against code.")
+c("S1-012", "Heading only (ScopeOfWork.md:344-347).")
+c("S1-013", "Procedure step list (ScopeOfWork.md:478-492); method note, nothing to check.")
+c("S1-014", "Register PASS rows at " + A + "docs/harness/reliance_boundary_register.md:122-124 exist, but the cited enforcement surfaces (e.g. " + FE + "lib/harness/chirality-hooks.ts) are LEGACY_ONLY per " + DAD + "REACHABILITY.csv. Partial.")
+c("S1-015", "Register row RB-FALLBACK exists (" + A + "docs/harness/reliance_boundary_register.md:54); conformance runners in " + RT + "contracts/src/harness/engine-conformance.ts are called only from tests. Partial.")
+c("S1-016", "Conflicts row says the PRD hash mismatch is closed by the current D-APP-38 snapshot; R2/PKG-01/EVIDENCE_PACK/REFERENCE_HASHES.csv DEL-01-04 PRD Match NO (recomputed 17ca3f3c...).")
+c("S1-017", "TBD-RBR-001 'RESOLVED for the currently named surfaces' (ScopeOfWork.md:758); named harness surfaces are LEGACY_ONLY per " + DAD + "REACHABILITY.csv. Accepted as stale; LOW confidence on whether 'resolved' is now false or only outdated.")
+c("S1-018", "R2/PKG-01/EVIDENCE_PACK/REFERENCE_HASHES.csv: DEL-01-02 CONTRACT, SPEC, PRD recorded MATCH, Match NO. Register asserts a now-false fact (CONVENTIONS 2.7).")
+c("S1-019", FE + "lib/harness/chat-draft.ts:70-76 key = root:persona:mode; chat-draft.ts is LIVE (" + DAD + "REACHABILITY.csv, entry app/chat/page.tsx).")
+c("S1-020", "No live path found that marks agent output as accepted without a human; " + FE + "lib/woven-dialogue/woven-workspace-state.ts:52-60 keeps local annotations non-authoritative. Spot check only.")
+c("S1-021", "Exclusion of runtime engine internals holds for the live DEL-02-02 presentation components (_CONTEXT.md exclusions).")
+r("S1-022", "PARTIALLY_IMPLEMENTED", "Live " + RT + "core/turn-coordinator.ts:179-188 rebuilds opts from known keys with fallbacks (maxTurns ?? 50, persona ?? session.persona, mode chain), so unknown keys do not mutate behaviour and fallback is deterministic; only the warning is missing (daemon passes body unvalidated, " + RT + "daemon/src/runtime-daemon.ts:814-817). Two of three parts met on the live path -> PARTIALLY_IMPLEMENTED (CONVENTIONS 2.3). R4-Q1 still applies to the warning part (" + FE + "lib/harness/options.ts LEGACY_ONLY).")
+c("S1-023", "Column labels absent from any rendered surface: " + FE + "components/portal/agent-matrix.tsx renders RoleDirectoryPanel only; SCA-APP-010 section of " + P2 + "DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:73-110 does not retire the matrix by name. Turns on R4-Q4.")
+r("S1-024", "ALIGNED", "Clearing the root sets projectRoot null (" + FE + "components/workspace/workspace-provider.tsx:115-119, Clear button " + FE + "components/shell/shell-frame.tsx:288); with no projectRoot the composer, attach and Workflows controls are disabled (" + FE + "components/shell/chat-panel.tsx:2060,2095-2096) and file/workflow views show 'Choose a folder' (" + FE + "components/woven-dialogue/right-panel.tsx:170-190). The requirement's outcome holds on the live path; the per-chat folder lock limits when Clear is offered but is not a different mechanism for REQ-003.")
+c("S1-025", "Persona context now set via ?agent= and composer PersonaPicker (" + FE + "components/woven-dialogue/woven-dialogue-shell.tsx:424-429; chat-panel.tsx:2121-2125); matrix cells not rendered. Different mechanism.")
+c("S1-026", "Heading only (ScopeOfWork.md:320-323).")
+c("S1-027", "Purpose narrative (ScopeOfWork.md:358-365); nothing checkable.")
+c("S1-028", "Key-status UI and error display live (" + FE + "components/settings/api-key-settings.tsx; " + FE + "lib/harness/error-display.ts); the Anthropic key path is not the live Codex engine path, so the check set is only partly exercised. Spot check; MEDIUM.")
+c("S1-029", "API returns typed errors, but UI keeps only error.message: " + FE + "components/shell/file-tree-panel.tsx:174-180 and " + FE + "components/workspace/workspace-provider.tsx:45-55 drop error.type. Partial.")
+c("S1-030", P2 + "DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_REFERENCES.md:14-15 vs :22 and :34 reuse REF-009 and REF-010 for different sources. Bookkeeping defect; says nothing false about a referenced file (tie-break rule 2b).")
+u("S1-031", "REMAINING_STATE_MISMATCH|STALE_SPECIFICATION", P2 + "DEL-02-02_Workbench_and_Pipeline_Selection_UX/_DEPENDENCIES.md:14-18 'TBD - no accepted dependency edges have been extracted yet', while the same file's register section and Dependencies.csv hold 22 rows (21 ACTIVE), including owner-accepted D-APP-109 edges. Reading A: a lagging TBD placeholder (tie-break rule 2b) -> RSM. Reading B: the clause 'no accepted edges have been extracted' is a present fact now false, like 'dependency marked SATISFIED' (rule 1); rule 4 then prefers STALE_SPECIFICATION.")
+c("S1-032", "SCA-APP-010 (GOVERNING accepted SCA) retires Workbench and Pipeline from the active shell and keeps earlier clauses as dated history: " + P2 + "DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md:69-93. Note: the CONTRACT 1.7 invariant row also recurs in REQ-010, which still binds.")
+c("S1-033", "Same retirement: " + P2 + "DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md:88-91 'Workbench and Pipeline are retired from the active shell (code, routes, and tests retained)'.")
+c("S1-034", "UPD-109/110 text names File Tree/Chat panes and AppShell resize test; live shell is woven-dialogue-shell with right-panel separators (" + FE + "components/woven-dialogue/woven-dialogue-shell.tsx:944-985); AppShell rendered only by app/not-found.tsx. Present state now false.")
+u("S1-035", "STALE_SPECIFICATION|NOT_AUDITABLE", "CONTEXT_CLAIM trade-off (ScopeOfWork.md:460) 'Preserve browser-facing SSE names while runtime internals move behind TurnEngine'. Reading A: implies internals sit behind TurnEngine, now false (turn-engine.ts LEGACY_ONLY; live " + RT + "core/turn-coordinator.ts) -> STALE. Reading B: it is guidance, not a factual assertion; CONVENTIONS 2.3 ClaimType rule then gives NOT_AUDITABLE. HDN R4-Q1; R4-Q5 on a guidance row is questionable under either reading.")
+c("S1-036", "'REF-006 is MATCH under D-APP-38' restated as current (ScopeOfWork.md:176); R2/PKG-02/EVIDENCE_PACK/REFERENCE_HASHES.csv DEL-02-02 PRD Match NO. Tie-break rule 3.")
+c("S1-037", "Record-only note relies on src/app/icon.svg, which is absent at the basis (deleted by b2b32669c 'remove in-app logo'; " + FE + "app/ has no icon file). File-said-to-exist -> STALE (ALSO:REMAINING_STATE_MISMATCH per rule 4).")
+c("S1-038", RT + "core/turn-coordinator.ts:168-220 builds engine input with session, opts (model/tools/persona/mode), content blocks; active-turn map :113-116.")
+c("S1-039", "Live coordinator covers accepted input, persistence, runtime tool restriction and terminals (" + RT + "core/turn-coordinator.ts:189-198,221-234,390-448). MEDIUM: event persistence shape turns on R4-Q5 but coverage itself holds.")
+c("S1-040", RT + "contracts/src/harness/agent-engine-port.ts:77-94 thin product-owned port, LIVE.")
+c("S1-041", "Codex adapter is the default (" + RT + "daemon/src/app-owned-composition.ts); conformance runners only called from tests. Gate not met; R4-Q2.")
+c("S1-042", "Verification set met by runtime tests on the coordinator rather than a TurnEngine unit (" + RT + "core/turn-coordinator.ts:113-116,221-234). Different mechanism under D-APP-73/127.")
+c("S1-043", "IAgentSdkManager/TurnEngine replaced by runtime AgentEnginePort (" + RT + "core/turn-coordinator.ts:221-234). Note: the codex.notification passthrough (" + RT + "core/delegated-engine-adapter.ts:282,289) also makes this row touch R4-Q5.")
+c("S1-044", "Heading only (ScopeOfWork.md:20-23).")
+c("S1-045", "Purpose narrative (ScopeOfWork.md:202-209).")
+c("S1-046", RT + "contracts/src/harness/engine-conformance.ts:11-44 checks UNKNOWN_UI_EVENT and adapter/provider IDs; no check on provider-shaped HarnessEvent fields; suite not run on Codex. Partial.")
+c("S1-047", A + "frontend/docs/harness/runtime_engine_contract.md:98-99 lists turn.interrupted with no D-APP-40 citation. Partial.")
+c("S1-048", "_CONTEXT.md:20-24 scopes PKG-03 to client/proxy; governing " + A + "docs/PRD.md:1739 now adds App-side Runtime service child ownership (" + A + "frontend/electron/main.ts:455-471). LOW: text is incomplete more than false.")
+c("S1-049", "Amended CONTRACT K-EVENT-1 (" + A + "docs/CONTRACT.md:78) states 'the fixed eight-name UIEvent set is superseded' under D-GOV-43. The ruling names the clause, so the SoW wording is stale (MR-11).")
+c("S1-050", "'REF-003 docs/SPEC.md MATCH' (ScopeOfWork.md:102); recomputed SPEC differs (REFERENCE_HASHES.csv Match NO).")
+c("S1-051", "'REF-006 is reconciled under the current D-APP-38 authority corpus' (ScopeOfWork.md:97); PRD recompute Match NO.")
+u("S1-052", "ALIGNED|IMPLEMENTED_DIFFERENTLY", "Principles of the SDK probe (ScopeOfWork.md:419-440). Reading A (principle level): AgentEnginePort LIVE, probe evidence exists -> ALIGNED. Reading B (product behaviour, rule 2): on the live Codex path upstream method/params are stored in HarnessEvent (" + RT + "core/delegated-engine-adapter.ts:282-289) and the effective Codex home shares the user's ~/.codex (" + RT + "daemon/src/codex-effective-home.ts:5-12), so principles 1 and 4 hold only through legacy code (sdk-options-builder.ts, permission-overlay.ts LEGACY_ONLY) -> not ALIGNED; HDN would need R4-Q1 and R4-Q5 (and R4-Q6 for settings).")
+c("S1-053", "Probe record exists (DEL-04-01 Evidence_DAPP52_PACKAGED_LIVE_PROOF_2026-07-18_summary.json); probe-process claim met; R4-Q1 because exercised code is LEGACY_ONLY.")
+c("S1-054", "Module-level claim (names the builder input contract): " + FE + "lib/harness/sdk-options-builder.ts:4-5,125-131 imports adjacent contracts; LEGACY_ONLY -> R4-Q1.")
+r("S1-055", "AUTHORITY_CONFLICT", "RQ-014 restates unamended CONTRACT K-ENGINE-4 (" + A + "docs/CONTRACT.md:64: HarnessEvent/UIEvent must not become provider-shaped). Amended K-EVENT-1/K-EVENT-6 (:78,:83) under D-GOV-43 require upstream method names and payloads to cross preserved, and the live adapter does so (" + RT + "core/delegated-engine-adapter.ts:282,289). The ruling undercuts K-ENGINE-4 without naming it; CONVENTIONS 1 makes that AUTHORITY_CONFLICT with R4-Q5, not a verdict against one text. Alternative reading: codex.notification data counts as adapter metadata, so no conflict. MEDIUM.")
+c("S1-056", "Live Codex sandbox networkAccess false for read-only/workspace-write (" + RT + "daemon/src/codex-supervisor.ts:104-108); provider calls go to Codex, not the SPEC 16.3 Anthropic scope. Different mechanism.")
+c("S1-057", "TBD/assumption about examples (ScopeOfWork.md:416-423); nothing checkable.")
+c("S1-058", "Heading only (ScopeOfWork.md:104-107).")
+c("S1-059", "Module-level mapper claim: " + FE + "lib/harness/sdk-message-mapper.ts adds adapter metadata but keeps claudeSessionId and SDK tool names as plain fields (per cited lines); LEGACY_ONLY -> R4-Q1.")
+c("S1-060", "Partial on either reading: legacy mapper leaks SDK fields; live adapter also carries Codex tool names as plain toolName (" + RT + "core/delegated-engine-adapter.ts:271-280). Note: on the live reading HDN would be R4-Q5 rather than R4-Q1.")
+c("S1-061", "Item V3-02 still NOT_SELECTABLE, but posture code is live: " + FE + "lib/consent/hosted-engine-consent-port.ts:47-61 three postures, default off, 'network_access = true' label (LIVE), used by components/settings/account-consent-settings.tsx and components/shell/request-card.tsx. Status contradicted in part; MEDIUM.")
+c("S1-062", "REF-003 MATCH hash no longer reproduces (REFERENCE_HASHES.csv DEL-04-03 SPEC Match NO); register asserts a now-false fact (CONVENTIONS 2.7).")
+c("S1-063", "'until then payload-field mappings stay TBD' — the DEL-04-01 probe landed 2026-07-18 (DEP-04-03-007 SATISFIED). LOW: conditional wording.")
+c("S1-064", "Fixed seven-name UIEvent set superseded by amended K-EVENT-1 (" + A + "docs/CONTRACT.md:78); probe-pending TBD satisfied. Stale.")
+c("S1-065", "Purpose says Chirality 'adopts the Claude Agent SDK'; live engine is Codex (" + RT + "daemon/src/codex-supervisor.ts:219; sdk-options-builder.ts LEGACY_ONLY). Stale.")
+c("S1-066", RT + "core/session-store.ts:65-100 create writes one session record via atomicWriteJson(sessionFile(...)); no flat file.")
+c("S1-067", "HarnessEvent shape, malformed-tail skip with count (" + RT + "core/session-store.ts:869-891) and diagnostic (" + FE + "lib/woven-dialogue/selected-session-replay.ts:173-181) live. MEDIUM.")
+c("S1-068", "Live tool events carry codex: base including raw params (" + RT + "core/delegated-engine-adapter.ts:262,271-274); no live artifact store. Unmet.")
+c("S1-069", "No live artifact store for large payloads; " + FE + "lib/harness/tool-result-artifacts.ts LEGACY_ONLY. R4-Q1.")
+u("S1-070", "IMPLEMENTED_DIFFERENTLY|DOCUMENTED_UNIMPLEMENTED", "PEC credential isolation is met only by LEGACY_ONLY modules (" + FE + "lib/harness/mcp/pec-bridge-client.ts). The live Codex path has no PEC transport at all, so no other mechanism exists. Reading A: CONVENTIONS 2.3 'live path lacks it' -> DOCUMENTED_UNIMPLEMENTED. Reading B: the outcome (no credential leak) holds because the feature is absent, which is not an unimplemented guard. IMPLEMENTED_DIFFERENTLY fits neither reading well. R4-Q1 correct either way.")
+c("S1-071", "Heading only (ScopeOfWork.md:437-440).")
+c("S1-072", "Purpose narrative (ScopeOfWork.md:442-449).")
+c("S1-073", "Live " + RT + "core/session-store.ts prefers directory record, keeps source untouched, but no field merge or legacySource marker; full posture only in " + FE + "lib/harness/session-manager.ts (LEGACY_ONLY). Partial; R4-Q1.")
+c("S1-074", "Continuation shipped partly: resumable on projectRoot match only (" + FE + "lib/woven-dialogue/selected-session-replay.ts:47-51), no account/policy check. LOW: a REMAINING_WORK row whose open status is not contradicted could also be read as consistent.")
+c("S1-075", "Gate premise met: extensible representation is live (" + RT + "core/delegated-engine-adapter.ts:282,289; " + FE + "lib/shell/harness-event-views.ts:455-470 LIVE), yet the item stays NOT_SELECTABLE. Status contradicted.")
+u("S1-076", "STALE_SPECIFICATION|NOT_AUDITABLE", "Conflict table 'None ... during P1/P2' (ScopeOfWork.md:429). Reading A: the table presents open conflicts for ruling, and SPEC 8.2 project-local layout vs amended K-EVENT-4 (" + A + "docs/CONTRACT.md:81) is now a real conflict -> STALE. Reading B: the statement is scoped to P1/P2 and was true then; a dated CONTEXT_CLAIM with no now-false assertion is NOT_AUDITABLE (CONVENTIONS 2.3).")
+c("S1-077", "Amended K-EVENT-4 (" + A + "docs/CONTRACT.md:81) fixes the store at {userData}/runtime/...; live " + A + "frontend/electron/runtime-service-host.ts:75 has no CHIRALITY_SESSION_ROOT. SPEC 8.2 (" + A + "docs/SPEC.md:517-522) still lists the override; if the DIRECTIVE 0 order ranks CONTRACT over SPEC this is STALE, else AUTHORITY_CONFLICT. Accepted as STALE, MEDIUM.")
+c("S1-078", "D-APP-73 ruled lazy cross-store migration (" + AE + "_Coordination/_DECISIONS/_REGISTER.md:88) and K-EVENT-4 says 'lazily migrated'; the table still says eager is selected. Stale.")
+c("S1-079", "Amended K-EVENT-4 (" + A + "docs/CONTRACT.md:81) names project-local .chirality/sessions as a legacy compatibility source; the ruling addresses the clause, so REQ-001 wording is stale (MR-11).")
+c("S1-080", "REQ-005 metadata tests exist only over " + FE + "lib/harness/tool-result-artifacts.ts (LEGACY_ONLY); no live verification of the live path. Stale verification.")
+c("S1-081", "Replay tests run the fake port over the LEGACY_ONLY parser (" + FE + "lib/harness/session-events.ts); live replay route is " + FE + "app/api/harness/session/[id]/events/route.ts:28. Stale verification.")
+
+h, rows = read_csv(os.path.join(R3, "_work", "SPOT_S1_A.csv"))
+out = []
+for row in rows:
+    sid = row["SampleID"]
+    verdict, prop, ev = V[sid]
+    out.append({"SampleID": sid, "ClaimKey": row["ClaimKey"], "CheckField": row["CheckField"],
+                "CheckedValue": row[row["CheckField"]], "Verdict": verdict,
+                "ProposedValue": prop, "Evidence": ev})
+assert len(out) == len(rows) == len(V), (len(out), len(rows), len(V))
+header = ["SampleID", "ClaimKey", "CheckField", "CheckedValue", "Verdict", "ProposedValue", "Evidence"]
+write_csv(os.path.join(R3, "_work", "T8A_VERDICTS.csv"), header, out)
+from collections import Counter
+print(Counter(o["Verdict"] for o in out))

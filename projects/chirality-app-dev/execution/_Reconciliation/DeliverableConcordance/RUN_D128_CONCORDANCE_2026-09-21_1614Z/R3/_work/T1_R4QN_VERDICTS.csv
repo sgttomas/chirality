@@ -1,0 +1,151 @@
+ClaimKey,OldHumanDecisionNeeded,NewHumanDecisionNeeded,Question,Basis
+DEL-01-01#STATE-1,R4-Q1; R4,R4-Q1; R4-Q6,R4-Q6,"Turns on unamended App DIRECTIVE §2.8 (Claude/Anthropic key-aware default, SCA-APP-001) against the Codex-only basis under D-GOV-43, the DIRECTIVE-versus-D-GOV-43 cluster of R4-Q6."
+DEL-01-02#CLM-006.7,R4-Q1; R4,R4-Q1; R4-Q6,R4-Q6,Turns on unamended DIRECTIVE §4.2/§5 and K-SDK-1 settings isolation against D-GOV-43's host running on the user's shared Codex configuration without veto (R4-Q6 shared-config cluster).
+DEL-01-02#CLM-007.3,R4-Q1; R4,R4-Q1; R4-Q6,R4-Q6,Turns on unamended DIRECTIVE §4.2/§5 and K-SDK-1 settings isolation against D-GOV-43's host running on the user's shared Codex configuration without veto (R4-Q6 shared-config cluster).
+DEL-01-02#CLM-018.8,R4-Q1; R4,R4-Q1; R4-Q6,R4-Q6,Turns on unamended DIRECTIVE §4.2/§5 and K-SDK-1 settings isolation against D-GOV-43's host running on the user's shared Codex configuration without veto (R4-Q6 shared-config cluster).
+DEL-01-02#STATE-1,R4-Q1; R4,R4-Q1; R4-Q6,R4-Q6,"Turns on unamended App DIRECTIVE §2.8 (Claude/Anthropic key-aware default, SCA-APP-001) against the Codex-only basis under D-GOV-43, the DIRECTIVE-versus-D-GOV-43 cluster of R4-Q6."
+DEL-01-02#CLM-040,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended App DIRECTIVE §2.8 (Claude/Anthropic key-aware default, SCA-APP-001) against the Codex-only basis under D-GOV-43, the DIRECTIVE-versus-D-GOV-43 cluster of R4-Q6."
+DEL-01-04#CLM-003.1,R4,R4-Q6,R4-Q6,"Turns on D-GOV-43 item 3 sharing the user's ~/.codex plugins and MCP definitions unfiltered against unamended DIRECTIVE §4.2, PRD §3.2/§6.4 and K-NET-1 (R4-Q6 unfiltered ~/.codex link)."
+DEL-01-04#CLM-003.4,R4,R4-Q6,R4-Q6,"Turns on D-GOV-43 item 3 sharing the user's ~/.codex plugins and MCP definitions unfiltered against unamended DIRECTIVE §4.2, PRD §3.2/§6.4 and K-NET-1 (R4-Q6 unfiltered ~/.codex link)."
+DEL-01-04#CLM-003.5,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Turns on the live 'Full access' option (D-GOV-43 item 4) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#CLM-004.5,R4,R4-Q6,R4-Q6,"The unsurfaced conflicts are D-GOV-43 items 3-4 against DIRECTIVE §4.2/K-PERM-6 and DIRECTIVE §2.8 against the Codex sole engine, all within R4-Q6."
+DEL-01-04#CLM-006.1,R4,R4-Q6,R4-Q6,"Turns on D-GOV-43 item 3 sharing the user's ~/.codex plugins and MCP definitions unfiltered against unamended DIRECTIVE §4.2, PRD §3.2/§6.4 and K-NET-1 (R4-Q6 unfiltered ~/.codex link)."
+DEL-01-04#CLM-006.2,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Turns on the live 'Full access' option (D-GOV-43 item 4) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#CLM-010.2,R4,R4-Q6,R4-Q6,"Turns on D-GOV-43 item 3 sharing the user's ~/.codex plugins and MCP definitions unfiltered against unamended DIRECTIVE §4.2, PRD §3.2/§6.4 and K-NET-1 (R4-Q6 unfiltered ~/.codex link)."
+DEL-01-04#CLM-010.4,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Turns on the live 'Full access' option (D-GOV-43 item 4) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#CLM-023,R4,R4-Q6,R4-Q6,Turns on D-GOV-43 items 3 and 4 (shared Codex config without veto; full access by user choice) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#CLM-024,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Turns on D-GOV-43 items 3 and 4 (shared Codex config without veto; full access by user choice) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#CLM-025,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Turns on the live 'Full access' option (D-GOV-43 item 4) against unamended K-PERM-6 and DIRECTIVE §4.2 (R4-Q6).
+DEL-01-04#REGISTER-3,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,Whether DEP-01-04-010 still binds turns on the CLM-003.5 conflict: live 'Full access' against unamended K-PERM-6 (R4-Q6).
+DEL-01-04#STATE-2,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended App DIRECTIVE §2.8 (Claude/Anthropic key-aware default, SCA-APP-001) against the Codex-only basis under D-GOV-43, the DIRECTIVE-versus-D-GOV-43 cluster of R4-Q6."
+DEL-01-04#STATE-4,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended App DIRECTIVE §2.8 (Claude/Anthropic key-aware default, SCA-APP-001) against the Codex-only basis under D-GOV-43, the DIRECTIVE-versus-D-GOV-43 cluster of R4-Q6."
+DEL-02-01#REM-7,R4,R4,STAYS_R4,Unframed: does the trial direction 'no logo in the UI' (CONTEXT) amend D-APP-108 Q5 'ship the icon'?
+DEL-02-02#SEC-3,R4; R4-Q4,R4; R4-Q4,STAYS_R4,Unframed: does the 2026-09-07 owner direction removing provenance metadata from Agents cards supersede the SCA-APP-010 provenance-label text?
+DEL-02-02#SEC-4,R4; R4-Q4,R4; R4-Q4,STAYS_R4,Unframed: do the 2026-09-07 owner direction (provenance labels removed) and the v3 workflow method library supersede the SCA-APP-010 obligations ob2/ob3?
+DEL-02-02#REM-1,D-APP-117; R4,D-APP-117; R4,STAYS_R4,Unframed: does the 2026-09-07 owner direction removing provenance metadata from Agents cards supersede the SCA-APP-010 provenance-label text?
+DEL-02-02#REM-3,R4,R4,STAYS_R4,"Unframed: does the v3 workflow method library with draft registration supersede the SCA-APP-010 Workflows contract (roadmap, bind, currency, proposal card)?"
+DEL-02-05#SEC-2.2,R4,R4,STAYS_R4,"Unframed: does D-APP-127's account-row clause (Codex sign-in, Runtime readiness) supersede D-APP-108 Q7 'Local model only', which it does not name?"
+DEL-02-05#SEC-2.3,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-003.1,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-004.2,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-005.1,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-005.2,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-009,R4; R4-Q5,R4-Q6; R4-Q5,R4-Q6,The key-UI part turns on CLM-003.1 (App DIRECTIVE §2.8/§4.1 against D-GOV-43; R4-Q6); the SSE part already cites R4-Q5.
+DEL-02-05#CLM-010.1,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-010.2,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-010.3,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-010.4,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-011.2,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-012,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-02-05#CLM-018,R4,R4-Q6,R4-Q6,Turns on the Anthropic API-key UI: unamended App DIRECTIVE §2.8/§4.1 against the D-GOV-43 Codex-only basis (CLM-003.1 conflict; R4-Q6).
+DEL-03-01#CLM-004.1,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-01#CLM-004.6,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-01#CLM-009.2,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-01#CLM-009.7,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-01#CLM-009.13,R4-Q2; R4,R4-Q2; R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-01#CLM-011.1,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-01#CLM-013.2,R4-Q2; R4,R4-Q2; R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-01#CLM-018.2,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-01#CLM-022.1,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-01#CLM-022.5,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-02#CLM-009.10,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-02#CLM-021.2,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-03#CLM-003.6,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-03#CLM-005.3,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-03#CLM-009.6,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-03-03#CLM-023.3,R4,R4-Q5; R4-Q6,MULTI,"Turns on K-ENGINE-4/SPEC §10.3 against amended K-EVENT-6/SPEC §11 (R4-Q5) and also cites unamended DIRECTIVE §2.10 provider-neutral event schemas, which R4-Q6 covers (event pass-through)."
+DEL-03-04#CLM-009.7,R4,R4,STAYS_R4,Unframed: does writing system cancellation as turn.interrupted{reason} (turn.cancelled never written) amend the D-APP-40 reservation of turn.cancelled?
+DEL-03-04#CLM-022.4,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-04-01#CLM-009,R4,R4,STAYS_R4,Unframed: what is DEL-04-01's target scope once D-GOV-43 retired the packaged daemon and Root-owned App Server supply named in its decomposition row and SOW-079?
+DEL-04-01#STATE-1,R4,R4,STAYS_R4,Unframed: what is DEL-04-01's target scope once D-GOV-43 retired the packaged daemon and Root-owned App Server supply named in its decomposition row and SOW-079?
+DEL-04-04#CLM-004,R4,R4-Q4,R4-Q4,Turns on the v3 default role HELP_HUMAN against unamended SPEC §13.1 (WORKING_ITEMS); R4-Q4.
+DEL-04-04#CLM-010.5,R4,R4-Q4,R4-Q4,Turns on the resolver bounded to the v3 four-role registry (2026-09-09) against unamended TYPES 3.4 alias mappings; R4-Q4.
+DEL-04-05#CLM-009.10,R4,R4-Q6,R4-Q6,Turns on K-NET-1 'remote MCP fails closed' against the D-GOV-43 rule that the App does not veto the user's Codex configuration (R4-Q6 shared-config cluster).
+DEL-04-05#CLM-009.14,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-04-05#CLM-026,R4,R4-Q5; R4-Q6,MULTI,Turns on App DIRECTIVE §2.8 against the D-GOV-43 Codex custody and network basis (R4-Q6) and on event semantics not SDK-shaped against amended K-EVENT-6 (R4-Q5).
+DEL-05-01#CLM-010.2,R4,R4,STAYS_R4,"Unframed: does unamended SPEC 8.2 (turns/, artifacts/, sdk/ subfolders) still bind the Runtime session store?"
+DEL-05-01#CLM-010.3,R4; R4-Q1,R4; R4-Q1,STAYS_R4,"Unframed: must the live Runtime read v2 project-local session records for App-bootstrapped projects, whose manifests declare no legacySessionRoots (unrecorded 2f825f180)?"
+DEL-05-01#CLM-010.10,R4; R4-Q1,R4-Q1,R4-Q1,The A13 duplicate posture exists only in the LEGACY_ONLY session-manager.ts; whether it binds the live Runtime store is the legacy-versus-live question R4-Q1.
+DEL-05-01#CLM-014.2,R4,R4,STAYS_R4,"Unframed: which legacy-conversion and layout contract (SPEC 8.1/8.2, A13) binds the live Runtime session store (list without conversion, no duplicate merge)?"
+DEL-05-01#REM-1,R4,R4,STAYS_R4,"Unframed: does DEL-05-01-V3-02 stand after D-GOV-43 retired its Root DEL-02-11 gate, which D-APP-127 does not name?"
+DEL-05-01#STATE-1,R4,R4,STAYS_R4,"Unframed: do unamended decomposition rows that still name the retired daemon or Root-owned App Server supply stand after D-GOV-43 A2, which does not name them?"
+DEL-05-02#CLM-010.12,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-05-04#CLM-004.2,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#CLM-010.7,R4,R4-Q5,R4-Q5,Turns on unamended K-ENGINE-4/SPEC §10.3 (translate provider names) against amended K-EVENT-1/K-EVENT-6 and SPEC §11 (upstream codex.* method/params preserved); R4-Q5.
+DEL-05-04#CLM-010.14,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#CLM-010.15,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#CLM-010.19,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#CLM-013.2,R4-Q1; R4,R4-Q1; R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#CLM-017,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-05-04#REM-2,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-06-01#CLM-004,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-009.5,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-009.6,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-009.9,R4,R4-Q6,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-027,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-031,R4; R4-Q1,R4-Q6; R4-Q1,R4-Q6,"Turns on unamended CONTRACT K-PERM-4..K-PERM-6 and TYPES 8.1 against D-GOV-43 item 4 (user-chosen approval and sandbox policy, live 'Full access'); R4-Q6 approval-policy cluster."
+DEL-06-01#CLM-032,R4,R4-Q6,R4-Q6,The stale 'no direct source conflict' turns on K-PERM-4..K-PERM-6/TYPES 8.1 against D-GOV-43 item 4 (R4-Q6).
+DEL-06-06#CLM-027,R4,R4,STAYS_R4,Unframed: does the code-added hook.failed (and hook.progress) amend the SPEC 9.4 event registry?
+DEL-06-06#CLM-030,R4,R4,STAYS_R4,Unframed: does the code-added hook.failed (and hook.progress) amend the SPEC 9.4 event registry?
+DEL-06-06#STATE-1,R4; R4-Q1,R4-Q6; R4; R4-Q1,MULTI,SCA-APP-001 'Claude Agent SDK first/current path' turns on DIRECTIVE §2.8 (R4-Q6); the retired-daemon decomposition rows SOW-057/061 stay unframed (topology question).
+DEL-08-01#CLM-003,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-005.1,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.7,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.8,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.9,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.10,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.11,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-009.14,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-01#CLM-018.2,R4,R4-Q4,R4-Q4,The only review (INSP-03) predates the v3 role adoption; whether it is overtaken turns on SPEC §7 versus the v3 role format (R4-Q4).
+DEL-08-01#CLM-022,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on unamended App SPEC §7 and K-WRITE-1 agent-file format against the v3 role files (no header, AGENT_TYPE, table or markers; registry.json) adopted in 9b005c23a; R4-Q4."
+DEL-08-02#CLM-003.2,R4,R4-Q4,R4-Q4,"Turns on the v3 alias map (HELP, AGENTS only) against unamended TYPES §3.4/PRD FR-026; R4-Q4."
+DEL-08-02#CLM-003.3,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-003.4,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-003.5,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-08-02#CLM-003.6,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on the v3 registry-mediated persona resolution (agents/registry.json, INVALID_REQUEST) against unamended SPEC §13.2/PRD FR-025; R4-Q4."
+DEL-08-02#CLM-003.7,R4,R4-Q4,R4-Q4,Turns on the v3 default role HELP_HUMAN against unamended SPEC §13.1 (WORKING_ITEMS); R4-Q4.
+DEL-08-02#CLM-004.3,R4,R4-Q4,R4-Q4,Turns on the retired Pipeline surface (/pipeline renders the dialogue since 9b005c23a); R4-Q4.
+DEL-08-02#CLM-005.2,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on the v3 registry-mediated persona resolution (agents/registry.json, INVALID_REQUEST) against unamended SPEC §13.2/PRD FR-025; R4-Q4."
+DEL-08-02#CLM-005.3,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-005.4,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-08-02#CLM-005.5,R4,R4-Q4,R4-Q4,Turns on the retired Pipeline surface (/pipeline renders the dialogue since 9b005c23a); R4-Q4.
+DEL-08-02#CLM-008,R4,R4-Q4,R4-Q4,"The unmet parts are matrix vocabulary, OPERATIVE->PIPELINE routing and the v3 alias/persona contract, all within the v3 four-role adoption (R4-Q4)."
+DEL-08-02#CLM-009.2,R4,R4-Q4,R4-Q4,"Turns on the v3 alias map (HELP, AGENTS only) against unamended TYPES §3.4/PRD FR-026; R4-Q4."
+DEL-08-02#CLM-009.6,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-009.7,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-009.8,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-009.9,R4,R4-Q4,R4-Q4,Turns on the retired legacy agent matrix (TYPES §4) under the v3 adoption 9b005c23a; R4-Q4.
+DEL-08-02#CLM-009.10,R4,R4-Q4,R4-Q4,Turns on the retired Pipeline surface (/pipeline renders the dialogue since 9b005c23a); R4-Q4.
+DEL-08-02#CLM-009.11,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-08-02#CLM-009.12,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on the v3 registry-mediated persona resolution (agents/registry.json, INVALID_REQUEST) against unamended SPEC §13.2/PRD FR-025; R4-Q4."
+DEL-08-02#CLM-009.13,R4-Q1; R4,R4-Q1; R4-Q4,R4-Q4,"Turns on the v3 registry-mediated persona resolution (agents/registry.json, INVALID_REQUEST) against unamended SPEC §13.2/PRD FR-025; R4-Q4."
+DEL-08-02#CLM-009.14,R4,R4-Q4,R4-Q4,Turns on the v3 default role HELP_HUMAN against unamended SPEC §13.1 (WORKING_ITEMS); R4-Q4.
+DEL-08-02#CLM-009.16,R4,R4-Q4,R4-Q4,Turns on the retired Pipeline surface (/pipeline renders the dialogue since 9b005c23a); R4-Q4.
+DEL-08-02#CLM-009.18,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-08-02#CLM-009.19,R4,R4,STAYS_R4,Unframed: does the shipped 'Continue this chat' continuation (0ed1a1a7f) amend the SCA-APP-004 / SPEC §17.6 / PRD FR-008 read-only replay lens that never resumes the primary?
+DEL-08-02#CLM-011.1,R4,R4-Q4,R4-Q4,"The unmet parts are matrix vocabulary, OPERATIVE->PIPELINE routing and the v3 alias/persona contract, all within the v3 four-role adoption (R4-Q4)."
+DEL-08-02#CLM-012.2,R4,R4-Q4; R4,MULTI,Alias/persona and matrix parts turn on the v3 adoption (R4-Q4); the read-only replay/primary isolation part stays unframed (continuation question).
+DEL-08-02#CLM-017,R4,R4-Q4,R4-Q4,"The unmet parts are matrix vocabulary, OPERATIVE->PIPELINE routing and the v3 alias/persona contract, all within the v3 four-role adoption (R4-Q4)."
+DEL-08-02#CLM-018.2,R4,R4-Q4,R4-Q4,"The unmet parts are matrix vocabulary, OPERATIVE->PIPELINE routing and the v3 alias/persona contract, all within the v3 four-role adoption (R4-Q4)."
+DEL-08-02#CLM-021,R4,R4-Q4,R4-Q4,"The unmet parts are matrix vocabulary, OPERATIVE->PIPELINE routing and the v3 alias/persona contract, all within the v3 four-role adoption (R4-Q4)."
+DEL-08-02#CLM-022,R4,R4-Q4,R4-Q4,"Turns on the v3 alias map (HELP, AGENTS only) against unamended TYPES §3.4/PRD FR-026; R4-Q4."
+DEL-08-02#REMTXT-1,R4,R4-Q4; R4,MULTI,Alias/persona and matrix parts turn on the v3 adoption (R4-Q4); the read-only replay/primary isolation part stays unframed (continuation question).
+DEL-08-05#CLM-006,R4; R4-Q1,R4; R4-Q1,STAYS_R4,"Unframed: which ChildRunRecord shape governs, amended TYPES §10 (v2 schema) or D-APP-40/D-APP-56 UPD-138, which address the deliverable without naming TYPES §10?"
+DEL-08-05#CLM-012.1,R4; R4-Q1,R4; R4-Q1,STAYS_R4,"Unframed: which ChildRunRecord shape governs, amended TYPES §10 (v2 schema) or D-APP-40/D-APP-56 UPD-138, which address the deliverable without naming TYPES §10?"
+DEL-08-05#CLM-012.2,R4; R4-Q1,R4; R4-Q1,STAYS_R4,"Unframed: which ChildRunRecord shape governs, amended TYPES §10 (v2 schema) or D-APP-40/D-APP-56 UPD-138, which address the deliverable without naming TYPES §10?"
+DEL-09-04#CLM-016,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-04#CLM-017,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-016.3,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-016.6,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-020,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-023.2,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-026,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-09-05#CLM-027,R4,R4,STAYS_R4,Unframed: do the signed and notarized candidates and the carrier-only G6a retirement amend K-RELEASE-1's unsigned target and D-APP-97 F-APP-2 (done-declaration Q-02)?
+DEL-10-01#REM-1,R4,R4-Q6; R4,MULTI,Unamended DIRECTIVE §8 (shared per-user daemon) against D-GOV-43 falls in the DIRECTIVE-versus-D-GOV-43 cluster (R4-Q6); DEC-019 in the decomposition stays unframed (topology question).
+DEL-10-04#CLM-016.1,R4,R4,STAYS_R4,Unframed: does D-APP-56 R4-P27 ownership of _DomainEngines/profiles/pec.yaml stand against D-APP-58 and SPEC §18 placing _DomainEngines writes with the tier-0 bridge loop?
+DEC:D-APP-112.2,R4,R4,STAYS_R4,Unframed: does the 2026-09-19 owner-directed session-work-graph amendment (AgentRuns only) supersede D-APP-112 item B?
+SOW:SOW-075.2,R4,R4-Q6,R4-Q6,Turns on the unfiltered ~/.codex link (memories and sessions shared) against the unamended DIRECTIVE no-hidden-memory clause (R4-Q6).
+SOW:SOW-076,R4,R4-Q6,R4-Q6,Turns on the live 'Full access' mode and loaded user Codex configuration against unamended K-PERM-6/K-SDK-1 (R4-Q6).
+DOC:RELIANCE#3.4,R4,R4-Q6,R4-Q6,Turns on unamended K-PERM-1/K-PERM-3 hard-deny precedence against D-GOV-43 user-chosen approval and sandbox policy (R4-Q6).
+DOC:RELIANCE#4.4,R4,R4-Q6,R4-Q6,Turns on unamended K-PERM-1/K-PERM-3 hard-deny precedence against D-GOV-43 user-chosen approval and sandbox policy (R4-Q6).
+#END

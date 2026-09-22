@@ -1,0 +1,101 @@
+ClaimKey,Verdict,NewDisposition,Basis
+DEL-06-01#CLM-034.2,REDISPOSITION,IMPLEMENTED_DIFFERENTLY,"Rule 1: 'hard-denied' is a permission control, so product behaviour. After call a no LIVE code meets it: the overlay and descriptor are LEGACY_ONLY. Live path maps operator modes to Codex sandbox policy (projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:104-109; projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:123-136) and has no Chirality coordination class; delegation is Codex-native. Other reading: DOCUMENTED_UNIMPLEMENTED if the Codex sandbox is not counted as the mechanism."
+DEL-06-02#CLM-035.1,KEEP_MODULE,IMPLEMENTED_DIFFERENTLY,Rule 1: names the descriptor registry and catalog validation and states only their resolution contract. Sealed IMPLEMENTED_DIFFERENTLY is a module-level reading (registry moved to runtime-contracts); the reach call does not touch it.
+DEL-06-02#CLM-035.2,KEEP_MODULE,ALIGNED,Verification by inspection of the module's name roster; module subject.
+DEL-06-03#SEC-2.3,KEEP_OTHER,ALIGNED,Ownership exclusion between deliverables; the boundary holds whatever the reach of the registry.
+DEL-06-03#CLM-010.4,UNDECIDED,UNDECIDED,"Reading A (rule 1): 'Tool definitions declare ...' names a code unit and its fields only, so module subject; at module level the fields exist (tool-descriptor.ts:84-106), which reads ALIGNED, not the sealed PARTIALLY_IMPLEMENTED. Reading B (sealed live-path reading, CODEX_SOLE_ENGINE, R4-Q1): after call a no LIVE code declares Chirality tool metadata and the live Runtime records mcpServers: [] (SEE DEL-06-03#CLM-003), so DOCUMENTED_UNIMPLEMENTED with ALSO_MODULE:ALIGNED. Neither reading keeps the sealed value as stated."
+DEL-06-03#CLM-014,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Artifact-existence claim (definitions, metadata, tests, REF-006 MATCH); the partial rests on the REF-006 register defect and artifact presence, not on reach."
+DEL-06-03#CLM-035.1,KEEP_OTHER,IMPLEMENTED_DIFFERENTLY,"Sealed verdict already reads the live path (IMPLEMENTED_DIFFERENTLY, NATIVE_DELEGATION); after call a the live path still uses Codex-native delegation."
+DEL-06-03#CLM-035.2,KEEP_MODULE,ALIGNED,Verification by inspection of server assembly and factory; module subject.
+DEL-09-01#CLM-008,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-009.1,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-009.3,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-009.4,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-009.5,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-009.6,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-012,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-013,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-018.1,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-018.2,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-018.3,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-018.4,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-01#CLM-018.5,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-007,KEEP_OTHER,ALIGNED,State assertion that the manifest landed and the domain-profile check runs 'within the in-process read-evidence fence'; the text itself scopes it to tooling and legacy code. R4-Q1 already cited.
+DEL-09-02#CLM-009,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-010.1,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-010.12,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-010.13,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-010.14,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-012.1,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-014,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-02#CLM-019,KEEP_OTHER,PARTIALLY_IMPLEMENTED,Verification checks of the Section 9 tooling; partial already records that behavioural checks exercise only legacy code; R4-Q1 holds (T4A_RUNWIDE.md call b).
+DEL-09-02#CLM-028,KEEP_OTHER,ALIGNED,Repeat of DEL-09-02#CLM-007; same basis.
+DEL-09-03#CLM-003,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-03#CLM-009.12,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-007,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-010.5,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-010.8,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-010.9,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-010.11,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-010.15,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-016.1,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-022,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-09-05#CLM-023.3,KEEP_OTHER,ALIGNED,"Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+DEL-10-01#CLM-003.1,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-004.1,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Live-path partial already: sealed notes say the types/guards are inert and every staged tool is LEGACY_ONLY. The gated half (no endpoints, apply or protected-path hooks) still holds on the live path, so the live path still covers part."
+DEL-10-01#CLM-004.2,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Sealed partial already live-path; the amendment-only sequencing half holds from the register, not from code."
+DEL-10-01#CLM-004.3,KEEP_MODULE,ALIGNED,Rule 1: ordering of contract types before engine-specific data; the contract carries no engine identifiers whatever its reach.
+DEL-10-01#CLM-004.4,KEEP_OTHER,ACCEPTED_DIVERGENCE,ACCEPTED_DIVERGENCE rests on D-APP-49/50 and on enforcement absent on every path; not on the re-tagged type.
+DEL-10-01#CLM-004.6,KEEP_OTHER,ALIGNED,"Disposition rests on absence of the surface on every path (no domain output, apply, endpoint or protected-write surface), not on the re-tagged code."
+DEL-10-01#CLM-006,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-007,KEEP_MODULE,ALIGNED,"Rule 1: validator contract (Root validator and guards); sealed ALIGNED rests on the Root validator and reports, and the guards were already noted as test-called only."
+DEL-10-01#CLM-011,KEEP_OTHER,ALIGNED,Scope statement; out-of-scope items are absent on every path.
+DEL-10-01#CLM-012.2,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Live-path partial already: sealed notes say the types/guards are inert and every staged tool is LEGACY_ONLY. The gated half (no endpoints, apply or protected-path hooks) still holds on the live path, so the live path still covers part. The row is about the draft's distinction, which the text makes."
+DEL-10-01#CLM-012.3,KEEP_MODULE,ALIGNED,Same as DEL-10-01#CLM-004.3.
+DEL-10-01#CLM-012.4,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-012.5,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches. The ADOPTED rule is not breached on the live path because no integrated domain workflow exists there."
+DEL-10-01#CLM-012.6,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-012.7,KEEP_OTHER,ACCEPTED_DIVERGENCE,Same as DEL-10-01#CLM-004.4.
+DEL-10-01#CLM-012.8,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-012.9,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-01#CLM-012.11,KEEP_OTHER,ALIGNED,"Boundary-notice text lives in profile records; Disposition rests on absence of the surface on every path (no domain output, apply, endpoint or protected-write surface), not on the re-tagged code."
+DEL-10-01#CLM-016.1,KEEP_MODULE,IMPLEMENTED_DIFFERENTLY,Ownership of two modules; sealed IMPLEMENTED_DIFFERENTLY is a module-level reading (mirror moved to Runtime contracts).
+DEL-10-01#CLM-025.1,KEEP_OTHER,ALIGNED,"Guidance principles for maintaining the draft; Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-02#REM-1,KEEP_OTHER,ALIGNED,Remaining-work status; the open item matches absence of glob syntax and hook API on every path. R4-Q1 already cited.
+DEL-10-03#CLM-003.1,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-03#CLM-003.2,KEEP_OTHER,PARTIALLY_IMPLEMENTED,Partial rests on documentary artifacts and a NONE_FOUND enforcement search; the re-tagged type fields were not relied on.
+DEL-10-03#CLM-010.1,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-03#CLM-010.2,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-03#CLM-010.5,KEEP_OTHER,ALIGNED,Requirement expects apply to stay TBD; no apply path exists on any path.
+DEL-10-03#CLM-010.6,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-03#CLM-010.7,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches. Hook binding sits in profile data (open_pipe_stress.yaml)."
+DEL-10-03#CLM-012.1,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-03#CLM-019.1,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-03#CLM-025.1,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-04#CLM-004.1,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Live-path partial already: sealed notes say the types/guards are inert and every staged tool is LEGACY_ONLY. The gated half (no endpoints, apply or protected-path hooks) still holds on the live path, so the live path still covers part."
+DEL-10-04#CLM-004.5,KEEP_OTHER,ALIGNED,"Judged as the fixture/test posture (tests assert code guards, not prompt text); test posture is TEST_ONLY by nature."
+DEL-10-04#CLM-004.6,KEEP_MODULE,PARTIALLY_IMPLEMENTED,"Claim is about where OpenPipeStress assumptions sit in the code layers. The descriptor is still in the public runtime-contracts package; reach does not move it, so the partial holds."
+DEL-10-04#CLM-010.1,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Live-path partial already: sealed notes say the types/guards are inert and every staged tool is LEGACY_ONLY. The gated half (no endpoints, apply or protected-path hooks) still holds on the live path, so the live path still covers part."
+DEL-10-04#CLM-010.3,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Partial rests on the registry gating by registration, not validity, and on the Root validator; the guard was already recorded as having no product caller. No domain surface is exposed on the live path. Other reading: DOCUMENTED_UNIMPLEMENTED on the live path (no validation step)."
+DEL-10-04#CLM-010.4,KEEP_MODULE,PARTIALLY_IMPLEMENTED,Same as DEL-10-04#CLM-004.6.
+DEL-10-04#CLM-010.6,KEEP_MODULE,ALIGNED,Fixture data against the OperationProposal type; module and data subject.
+DEL-10-04#CLM-010.7,KEEP_OTHER,PARTIALLY_IMPLEMENTED,Boundary wording in profile data; partial rests on missing solver-truth wording.
+DEL-10-04#CLM-010.8,KEEP_OTHER,ALIGNED,Same as DEL-10-04#CLM-004.5.
+DEL-10-04#CLM-010.11,KEEP_MODULE,ALIGNED,"Rule 1: claim names a contract type or record and states only its fields, enums or guards; no product-observable outcome. Judged at module level the field set still matches."
+DEL-10-04#CLM-012,KEEP_OTHER,PARTIALLY_IMPLEMENTED,Verification checks realised as tests; tests are TEST_ONLY by nature.
+DEL-10-04#CLM-016.2,KEEP_OTHER,ALIGNED,"Non-activation holds on every path; Disposition rests on absence of the surface on every path (no domain output, apply, endpoint or protected-write surface), not on the re-tagged code."
+DEL-10-04#CLM-026,KEEP_OTHER,ALIGNED,"Design principles; Disposition rests on absence of the surface on every path (no domain output, apply, endpoint or protected-write surface), not on the re-tagged code."
+DEL-10-04#CLM-028,KEEP_MODULE,IMPLEMENTED_DIFFERENTLY,Same as DEL-10-04#CLM-004.6 (concepts in public core contracts).
+DEL-10-05#CLM-009.3,KEEP_OTHER,PARTIALLY_IMPLEMENTED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-05#CLM-009.4,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-05#CLM-009.5,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-05#CLM-029,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+DEL-10-05#CLM-030,KEEP_OTHER,ALIGNED,"Claim is about deliverable text (copy, principles, procedure or check definitions); the documentary evidence meets it and the re-tagged type is only corroboration."
+SOW:SOW-066,KEEP_MODULE,ALIGNED,Scope-ledger item for a future-gated contract (OI-005); subject is the contract type.
+SOW:SOW-067,KEEP_MODULE,ALIGNED,Same as SOW:SOW-066.
+SOW:SOW-069,KEEP_MODULE,ALIGNED,Same as SOW:SOW-066 (OperationProposal records).
+DOC:RUNTIME_ENGINE_CONTRACT#7,KEEP_MODULE,ALIGNED,Module-level and document-existence claims about the registry and catalog gates; sealed notes already judge at module level.
+DOC:TOOL_CATALOG#0,KEEP_MODULE,ALIGNED,Generated-artifact claims about the catalog and its source module.
+DOC:ADDING_A_TOOL#2,KEEP_MODULE,ALIGNED,"Sealed notes apply rule 1: descriptor registry structure and import-time check, no product outcome."
+DOC:ADDING_A_TOOL#7,KEEP_OTHER,ALIGNED,"Developer process over named scripts and tests; Claim is about the validation/CI tooling or its records; TEST_ONLY is that tooling's own reach (call b), and the Disposition judges the tooling, not a product path."
+#END
