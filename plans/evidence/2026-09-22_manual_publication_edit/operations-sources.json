@@ -1,0 +1,578 @@
+{
+  "schema": "chirality-documentation-source-manifest/v1",
+  "date": "2026-09-22",
+  "repository_basis": "0a258f145eac41a62de02b06f032ccbc183838ec",
+  "agent": {
+    "task": "/root/operations_transfer",
+    "parent": "/root",
+    "role": "WORKING_ITEMS",
+    "type": 1,
+    "delegation": "delegated-harness-native",
+    "delegated_children": 0,
+    "execution_boundary": "Instruction-asserted exact write scope; broad host tools; no claim of mechanical role enforcement."
+  },
+  "scope": "Focused verification of operations transferred from v3 into explanatory User Manual v2; no new project census or runtime adoption claim.",
+  "method_context_policy": "Packages below were consulted as source material, not activated workflows. Root and active WORKING_ITEMS role were supplied as instructions. Other full role bodies were not loaded.",
+  "catalog_identities_inspected": [
+    {
+      "kind": "skill",
+      "name": "preparation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "audit-dep-closure",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "bounded-reconciliation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "construct-local-work-graph",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "dbm-publisher",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "dependency-extract",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "preparation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "project-decomp",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "project-setup",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "reconciliation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "scc-resolution-case",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "scope-of-work",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "software-bounded-implementation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "software-decomp",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    },
+    {
+      "kind": "workflow",
+      "name": "task-management",
+      "source": "bundled",
+      "sourceRootId": "chirality-root"
+    }
+  ],
+  "catalog_absent_workflow_names": [
+    "software-prd"
+  ],
+  "skill_origin_limit": "The Root generated catalog includes bundled preparation skill and workflow entries; the current App session separately exposes the skill at the recorded .agents/skills path. No same-name substitution or global effective-catalog census is asserted.",
+  "project_navigation_observations": [
+    {
+      "project": "chirality-app-dev",
+      "pointer_source": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "pointer_value_at_inspection": "execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "target_exists": true,
+      "inspection_limit": "target existence only; phase/events/corpus not re-audited; no work selected"
+    },
+    {
+      "project": "chirality-piping",
+      "pointer_source": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "pointer_value_at_inspection": "execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "target_exists": true,
+      "inspection_limit": "target existence only; phase/events/corpus not re-audited; no work selected"
+    }
+  ],
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "kind": "instruction",
+      "inspection": "full; active repository instruction",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "kind": "instruction",
+      "inspection": "full; active role",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804
+    },
+    {
+      "path": "agents/registry.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/registry.json",
+      "kind": "role registry",
+      "inspection": "full; role ceilings and eligibility",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "bytes": 2486
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "kind": "prior manual",
+      "inspection": "full source for preserved manual structure and inherited project background",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525
+    },
+    {
+      "path": "workflows/index.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "kind": "catalog",
+      "inspection": "parsed method metadata; selected names, kinds, origins, and resources",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "bytes": 99459
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "kind": "shared contract",
+      "inspection": "header, role/library catalog and related identity/permission passages",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "bytes": 19808
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DECOMPOSITION_STANDARD.md",
+      "kind": "shared standard",
+      "inspection": "status, snapshot protocol, package roles and reference search",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "bytes": 26222
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "checkpoint snapshot and decomposition contract excerpts",
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "bytes": 11556
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/method.md",
+      "kind": "workflow resource",
+      "inspection": "accepted-pointer references",
+      "sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "bytes": 4570
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "checkpoint snapshot and decomposition contract excerpts",
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "bytes": 12302
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/method.md",
+      "kind": "workflow resource",
+      "inspection": "accepted-pointer references",
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "bytes": 4737
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; not activation",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "bytes": 1793
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "preparation, source selection, coordination modes, lifecycle and setup references",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "bytes": 15090
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "kind": "skill",
+      "inspection": "full source verification; supplied App effective skill path; not scaffold execution",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "bytes": 2867
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "kind": "shared standard",
+      "inspection": "activation, canonical form, grammar and matrix; full heading/navigation search",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "bytes": 11118
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; not production execution",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "bytes": 7949
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/brief.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "bytes": 3258
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/tools.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "bytes": 3715
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/checks.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "bytes": 3378
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "kind": "decision",
+      "inspection": "activation ruling and schema/transition/checklist items",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "bytes": 12463
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "kind": "decision",
+      "inspection": "owner direction and shared publication versus in-flight adoption",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/dependency-extract/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "dependency classes, directions, register fields, preservation and write-boundary passages",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "bytes": 25794
+    },
+    {
+      "path": "workflows/audit-dep-closure/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/audit-dep-closure/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification",
+      "sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+      "bytes": 1035
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/audit-dep-closure/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+      "bytes": 4826
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scc-resolution-case/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; no SCC case selected",
+      "sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+      "bytes": 4536
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "kind": "shared doctrine",
+      "inspection": "full source verification; no graph audit performed",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "bytes": 6954
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; no graph created or amended",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "bytes": 7374
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; no project production records reconciled",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "bytes": 9631
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; no formal program activated",
+      "sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "bytes": 1210
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "invariants, inputs, validity, migration-specific exception and final backcheck",
+      "sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+      "bytes": 10155
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/method.md",
+      "kind": "workflow resource",
+      "inspection": "R0–R6 navigation and R2 migration exception details",
+      "sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16",
+      "bytes": 9354
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "kind": "shared method",
+      "inspection": "claim granularity, lifecycle, Remaining, activation/adoption and history passages",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "bytes": 15423
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; no Task Management invocation",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "bytes": 1007
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "bytes": 15306
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/method.md",
+      "kind": "workflow resource",
+      "inspection": "full source verification",
+      "sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+      "bytes": 1176
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/dbm-publisher/WORKFLOW.md",
+      "kind": "workflow entrypoint",
+      "inspection": "full source verification; accepted DOMAIN scope and publication gates",
+      "sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+      "bytes": 3952
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "kind": "project instruction",
+      "inspection": "read-only source consultation of relevant discovery, boundary and continuity passages; not active project work",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "kind": "project loop",
+      "inspection": "live graph pointer, entry, continuity, selected methods and receipt references",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "kind": "project instruction",
+      "inspection": "read-only source consultation of relevant domain, boundary and continuity passages; not active project work",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "kind": "project loop",
+      "inspection": "live graph pointer, entry, continuity, selected methods and receipt references",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/AGENTS.md",
+      "kind": "project instruction",
+      "inspection": "read-only search of relevant boundaries and continuation; not active project work",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "kind": "project loop",
+      "inspection": "full source verification",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/AGENTS.md",
+      "kind": "project instruction",
+      "inspection": "read-only search of relevant boundaries and continuation; not active project work",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "kind": "project loop",
+      "inspection": "bootstrap/live work map, task register/archive pointers, selection, receipt and closeout references",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809
+    },
+    {
+      "path": "tools/scope_of_work/id_catalog.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/id_catalog.json",
+      "kind": "tool schema",
+      "inspection": "full source verification",
+      "sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+      "bytes": 519
+    },
+    {
+      "path": "tools/scope_of_work/validate_scope_of_work.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/validate_scope_of_work.py",
+      "kind": "tool",
+      "inspection": "--help interface only",
+      "sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "bytes": 1495
+    },
+    {
+      "path": "tools/scope_of_work/derive_review_checklist.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/derive_review_checklist.py",
+      "kind": "tool",
+      "inspection": "--help interface only",
+      "sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+      "bytes": 8754
+    },
+    {
+      "path": "tools/taskmgmt/taskmgmt.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/taskmgmt/taskmgmt.py",
+      "kind": "tool",
+      "inspection": "CLI header, federation/archives, parser and reference searches; federation --help only",
+      "sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+      "bytes": 59080
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "kind": "user-supplied manuscript",
+      "inspection": "headings, all fourteen chapter-end application notes, Appendix A, and operational passages in sections 1.10, 3.6, 4.11, 5.6; original read-only",
+      "sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+      "bytes": 555189
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+      "kind": "parent evaluation lead",
+      "inspection": "consulted as non-authoritative editorial leads; live sources independently checked for transferred operating claims",
+      "sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+      "bytes": 12958
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/method-review.md",
+      "kind": "parent evaluation lead",
+      "inspection": "consulted as non-authoritative editorial leads; live sources independently checked for transferred operating claims",
+      "sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+      "bytes": 15243
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/completion-review.md",
+      "kind": "parent evaluation lead",
+      "inspection": "consulted as non-authoritative editorial leads; live sources independently checked for transferred operating claims",
+      "sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+      "bytes": 12805
+    }
+  ],
+  "output": {
+    "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+    "sha256_at_author_return": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d"
+  },
+  "limitations": [
+    "Original software-prd archive/entrypoint/supporting guides were not supplied or reconstructed; its proposed PRD_RECORD.md method remains historical in transfer evidence.",
+    "Located current dbm-publisher verifies current applicability only, not historical archive identity or execution.",
+    "Prior v1 project-specific observations were not recast as a fresh four-project status audit; live pointer routes replace dated App/Piping phase instructions.",
+    "All CLI witnesses are help-interface reads, not production checks or Task Management preflight.",
+    "Parent owns independent candidate review, rendering and integration.",
+    "Independent-review repairs are limited to Task Management projection storage and mode wording; no live policy, tools or registers changed."
+  ],
+  "author_revisions": [
+    {
+      "sha256": "fac5bfec4fa227864e850123d5ad568b4b00eff94223ae63b1b566b57af7de71",
+      "stage": "initial author return; independent review pending"
+    },
+    {
+      "sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+      "stage": "independent-review repair",
+      "changes": [
+        "Use the supported default federation projection and require checking its exact destination is authorized and gitignored; directory spelling is insufficient and arbitrary --out ignoring is not enforced.",
+        "Clarify invocation-local preflight and requested-mode execution, including the no-mode default."
+      ],
+      "authorization": "Parent /root follow-up assignment; review from /root/operational_review."
+    },
+    {
+      "sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+      "stage": "public book title-label cleanup",
+      "preimage_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+      "changes": [
+        "Only line 5 opening companion link label changes from Project Management for Human–Agent Teams, Consolidated v4 to Project Management for Human–Agent Teams. Link target, Version 2/source basis and operational content are unchanged."
+      ],
+      "authorization": "Explicit parent /root final publication-label cleanup assignment."
+    }
+  ]
+}

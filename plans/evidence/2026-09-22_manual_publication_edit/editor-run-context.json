@@ -1,0 +1,113 @@
+{
+  "role": "HELPS_HUMANS Type 1 editorial manager",
+  "agent": "/root/publication_editor",
+  "parent": "/root",
+  "actual_mechanism": "native collaboration.spawn_agent",
+  "selected_workflow": null,
+  "source_as": "read-only manuscript data, not runtime instructions",
+  "scope": "Focused publication edit of v3 into a new v4 Markdown; older files and external source preserved",
+  "write_targets": [
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+    "plans/evidence/2026-09-22_manual_publication_edit/editor-*",
+    "/tmp working drafts"
+  ],
+  "enforcement": "Role, no-Git and narrow write boundaries are instruction-asserted; actual host filesystem is unrestricted. No claim of mechanical sandbox enforcement.",
+  "source_records": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/method-review.md",
+      "sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+      "sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/completion-review.md",
+      "sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a"
+    }
+  ],
+  "delegation": [
+    {
+      "child": "/root/publication_editor/opening_editor",
+      "role": "TASK Type 2",
+      "source_lines": "1–1237",
+      "return": "/tmp/publication-opening.md",
+      "mechanism": "native collaboration.spawn_agent",
+      "fork_turns": "none",
+      "no_descendants": true
+    },
+    {
+      "child": "/root/publication_editor/method_editor",
+      "role": "TASK Type 2",
+      "source_lines": "1238–2790",
+      "return": "/tmp/publication-method.md",
+      "mechanism": "native collaboration.spawn_agent",
+      "fork_turns": "none",
+      "no_descendants": true
+    },
+    {
+      "child": "/root/publication_editor/completion_editor",
+      "role": "TASK Type 2",
+      "source_lines": "2791–4014",
+      "return": "/tmp/publication-completion.md",
+      "mechanism": "native collaboration.spawn_agent",
+      "fork_turns": "none",
+      "no_descendants": true
+    }
+  ],
+  "status": "Editorial assembly and self-checks complete; returned to HELP_HUMAN for independent review and formatting.",
+  "final_candidate": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+    "sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6"
+  },
+  "child_returns": [
+    {
+      "agent": "/root/publication_editor/opening_editor",
+      "status": "returned complete",
+      "output_sha256": "b9a540cc06d38463bc40d29b96cf6522318389df48dbff4da38b553a9b7e6fc5",
+      "evidence": "editor-opening-return.md"
+    },
+    {
+      "agent": "/root/publication_editor/method_editor",
+      "status": "returned complete",
+      "output_sha256": "75159c2143103dd7da5576320c17e3963963af5b48bbd47fd2bed82f327c4a4f",
+      "evidence": "editor-method-return.md"
+    },
+    {
+      "agent": "/root/publication_editor/completion_editor",
+      "status": "returned complete",
+      "output_sha256": "0f34f9a0d3e604befce9e2eceb5923faa02fbe3718e5bce381c18b9a414561b4",
+      "evidence": "editor-completion-return.md"
+    }
+  ],
+  "independent_opening_review": {
+    "status": "PASS",
+    "candidate_sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+    "report": "book-review-opening.md",
+    "report_sha256": "18aa96e9b5fc286d5ca1bd1567f193f8ae28a1e62b65293d9c73fad286469cfa",
+    "reviewer": "/root/book_review_opening"
+  },
+  "completion_review_applicability": {
+    "reviewer": "/root/book_review_completion",
+    "reported_status": "clean; findings backchecked",
+    "reviewed_candidate_sha256": "c0ba734da528d10b97550de341ded6670a9b4878e1783bb5014ed996a981b8bd",
+    "final_scope_sha256": "9ea131463569eda378013b8543816cba2ee435cb7f69c6ff5900771f0ac8b37a",
+    "applicability": "Final companion link is outside scope; chapter-5-anchor-to-EOF bytes and Figure4.6 are unchanged."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "docs/alignment-manual/render_manual.py": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+  "docs/alignment-manual/requirements.txt": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+  "docs/alignment-manual/README.md": "e2957e1d54de2fd4a967200a63c1e3b19e7e82a4bf080797e2f83a9d56f10e83",
+  "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+  "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-check.py": "e4125091048b740f151855375e011b21149f51e42208dcb3c875a579121b6e07",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-inputs.json": "f72018de8750f699522e85f8946f61e4d820c53389d2113d994836e62b3abe28",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-publisher-production-checks.json": "b4658ef9101877e7f799c84f22cbeb6b9395235b8323b9f865e15ae3d2ff06de",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-readme-links.json": "938d19377373c61ee3e317b5feb7bffaae90a118c1802bcebbb114be43ccd0b9",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-return.md": "ceb0d62c2a965ee67a9e904dc8e269c4769b4e3124a3533b4df31f3790c2c581",
+  "plans/evidence/2026-09-22_manual_publication_edit/html-security-checks.json": "c9c21dfa5623f1248eba35b04d3df955141062e92a473ae5a380d7a8102205d9"
+}

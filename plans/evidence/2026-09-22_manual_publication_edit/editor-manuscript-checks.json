@@ -1,0 +1,116 @@
+{
+  "candidate": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+  "candidate_sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+  "source_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+  "source_unchanged": true,
+  "words": 68027,
+  "lines": 3491,
+  "anchors": 88,
+  "duplicate_anchors": [],
+  "missing_internal_targets": [],
+  "fences_even": true,
+  "citation_numbers_used": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "selected_reference_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "unmapped_citations": [],
+  "uncited_numbered_references": [],
+  "figure_captions": [
+    "1.1",
+    "1.2",
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "3.1",
+    "3.2",
+    "3.3",
+    "3.4",
+    "3.5",
+    "3.6",
+    "4.1",
+    "4.2",
+    "4.3",
+    "4.4",
+    "4.5",
+    "4.6",
+    "4.7",
+    "4.8",
+    "4.9",
+    "4.10",
+    "5.1",
+    "5.2",
+    "5.3",
+    "5.4",
+    "5.5",
+    "5.6",
+    "5.7",
+    "A.1"
+  ],
+  "duplicate_caption_numbers": [],
+  "missing_figure_captions": [],
+  "images": [
+    {
+      "reference": "assets/Figure_1_1.png",
+      "exists": true
+    }
+  ],
+  "local_file_links": [
+    {
+      "reference": "CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "exists": true
+    },
+    {
+      "reference": "assets/Figure_1_1.png",
+      "exists": true
+    }
+  ],
+  "table_blocks": 14,
+  "table_column_issues": [],
+  "specimen_lines_over_70_columns": [
+    {
+      "line": 811,
+      "columns": 72
+    }
+  ],
+  "blank_lines_splitting_table_candidates": [],
+  "consecutive_duplicate_headings": [],
+  "review_flags": {
+    "book_drafting_history": [],
+    "operational_interfaces": [],
+    "editorial_markers": [
+      {
+        "line": 735,
+        "text": "For the editor, preserving intervening manual work can be a fixed outcome while the exact stale-proposal response remains open. The open question affects application, revision comparison, history, and the connected scenarios used for examination. It should have one recoverable description, with links from the places it affects. Repeating an unexplained “TBD” in several sections would give the appearance of recording uncertainty while leaving its common cause obscure."
+      },
+      {
+        "line": 839,
+        "text": "Read-back, link checks, content identity, requirement references, source comparisons, and searches for unresolved markers can prepare useful evidence. Use tools actually available in the host and examine what their results mean. A count of requirements does not show that the right behaviours were specified. A document with no TBD marker can still hide a choice that nobody made."
+      }
+    ]
+  },
+  "prose_preservation": {
+    "normalization": "Whitespace and chapter-local numeric citations removed for comparison; source application notes, source lists, and historical appendix excluded; this mechanical count is not a judgment of semantic preservation.",
+    "source_body_prose_paragraphs": 958,
+    "unchanged_normalized_paragraphs": 684,
+    "unchanged_fraction": 0.714,
+    "source_body_words_in_unchanged_paragraphs": 42565,
+    "source_body_prose_words": 59010
+  },
+  "review_flag_dispositions": {
+    "TBD": "Both occurrences teach uncertainty handling; neither is an unresolved manuscript placeholder. Retained intentionally."
+  },
+  "completion_scope_sha256": "9ea131463569eda378013b8543816cba2ee435cb7f69c6ff5900771f0ac8b37a"
+}

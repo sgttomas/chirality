@@ -1,0 +1,70 @@
+{
+  "recorded_utc": "2026-09-22T18:38:48.431933+00:00",
+  "role": "TASK Type 2 independent format-integrity reviewer",
+  "mechanism": "native collaboration spawn_agent child",
+  "parent": "/root",
+  "child": "/root/format_integrity_review",
+  "actual_execution": "This descendant executed the tool calls and authored this evidence; the launch brief is not treated as proof by itself.",
+  "supplied_basis": "Parent NEW_TASK brief, supplied Root AGENTS user context, environment cwd and capability context. Files below were read as instructions. No other role or workflow body was selected.",
+  "authorization": "Read-only final publications; writes only format-integrity review/supporting evidence and task scratch. No descendants, no Git, no browser or network calls. Native rendering permitted through bundled canonical renderer; audit uses formatter render outputs.",
+  "enforcement_limits": "Host reports danger-full-access filesystem and network enabled with approval policy never. Read-only publication scope and no-browser/no-Git boundaries are instruction-based, not an OS sandbox. No independent model-family/diversity claim.",
+  "instruction_files": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "sha256": "3345256289dfe6e4c77a59e26ba0ef9f781296a9633e5769a88090c1ac24ee83"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/navigation_internal_links.md",
+      "sha256": "73bd1a3a9eff83f2c92b209e6e4643df7afe033f27559babf233547f073f6705"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/privacy_scrub_metadata.md",
+      "sha256": "addca3e2431464692bd38b9172c315e88f17db830aae2280942daaddfa8a5ead"
+    }
+  ],
+  "runtime": {
+    "bundle": "26.904.11930",
+    "python": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "soffice": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+    "renderer": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/render_docx.py"
+  },
+  "read_as_data_not_authority": [
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/INPUTS.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-reference-provenance.json",
+    "/tmp/manual-v4-20260922/build_v4.py (first 65 lines only; implementation context, not validation basis)",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-root-visual-review.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-visual-coverage.json"
+  ],
+  "output_paths": [
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-check.py",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-final-summary.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-final.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-first-pass.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-pixel-binding.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-review.md",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-run-context.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-source-preservation.json",
+    "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-evidence-index.json"
+  ],
+  "scratch": "/tmp/manual-v4-independent-20260922",
+  "limits": "Independent semantic, structure, package cleanliness and link/folio audit; full prose and every-page layout checks separately owned.",
+  "status": "PASS",
+  "completed_utc": "2026-09-22T18:49:57.105427+00:00",
+  "return": "Sealed independent PASS on final DOCX 084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36 and PDF ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411; no unresolved scoped finding. No subsequent writes planned."
+}

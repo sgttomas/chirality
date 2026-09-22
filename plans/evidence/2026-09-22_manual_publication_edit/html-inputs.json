@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-22",
+  "executor": "/root/html_publisher",
+  "role": "TASK Type 2",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native Codex collaboration continuation; no child delegation",
+  "repository_basis": "0a258f145eac41a62de02b06f032ccbc183838ec",
+  "brief": "Generate new User Manual v2 HTML with existing renderer and explicit source basis; preserve v1 and renderer. Catalog current PM v4 and User Manual v2, retain old links in an archive group, and record checks. No Markdown/body, DOCX/PDF or Git edits.",
+  "scope_enforcement": "Shared unrestricted host; write boundary and role ceiling are instruction-based.",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/BRIEF.md",
+      "sha256": "9b762c70c138de199153772461f04e971002083e5992d738ab51a8f5258c5b3b",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+      "origin": "current repository or run evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/html-check.py",
+      "sha256": "d4c6964b8febb3d30b6f8a4723b5f163ca1ae076da46585b73c01a40dce181e3",
+      "origin": "current repository or run evidence"
+    }
+  ],
+  "source_candidate": {
+    "initial_supplied_sha256": "fac5bfec4fa227864e850123d5ad568b4b00eff94223ae63b1b566b57af7de71",
+    "correction_origin": "Operations editor applied parent-authorized, independently backchecked changes; publisher did not edit source. Initial --check detected the intervening source change; final HTML was regenerated from the approved corrected source.",
+    "operational_review_corrected_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+    "approved_final_sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+    "final_title_label_cleanup": "Parent-authorized cleanup changed only the opening companion link label to the plain public PM-book title; target and operational content unchanged. Source editor applied the edit; publisher regenerated without source changes."
+  },
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "executable": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-html-book-style-3sufm493/venv/bin/python",
+    "origin": "Temporary environment created from bundled Python 3.12.14 during preceding format run; no new package installation.",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2"
+  },
+  "selected_skills": "No new skill body loaded for mechanical HTML generation; existing renderer and prior reviewed stylesheet used unchanged.",
+  "tools_used": [
+    "exec_command",
+    "apply_patch",
+    "collaboration.send_message",
+    "collaboration.wait_agent",
+    "Python standard-library hashing and HTML parsing",
+    "markdown-it-py"
+  ],
+  "generation_command": "python docs/alignment-manual/render_manual.py --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html --basis-date 2026-09-22 --basis-revision 0a258f145eac41a62de02b06f032ccbc183838ec",
+  "checks": [
+    "Generation command with --check",
+    "python plans/evidence/2026-09-22_manual_publication_edit/html-check.py",
+    "Four raw-resource guard fixtures",
+    "Current README local-link existence check"
+  ],
+  "check_script_derivation": "Copied preceding run html-check.py; only source filename changed from CHIRALITY_AGENT_USER_MANUAL_v1.md to CHIRALITY_AGENT_USER_MANUAL_v2.md. Prior run evidence untouched.",
+  "visual_boundary": "No browser, WebKit, HTTP preview, alternate local URL route, Word interaction, or rendered HTML visual check performed. Existing classic book stylesheet is unchanged. Persistent browser URL-policy boundary remains in force.",
+  "current_html_sha256": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+  "status": "Complete: final User Manual v2 HTML verified, all 17 catalog links valid, final PM v4 Word/PDF links added, older editions archived in the working catalog. No publisher work remains.",
+  "catalog_targets": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx",
+      "sha256": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+      "origin": "Parent-supplied final artifact, bytes independently verified for catalog linking."
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf",
+      "sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+      "origin": "Parent-supplied final artifact, bytes independently verified for catalog linking."
+    }
+  ],
+  "final_check": "Existing explicit v2 generation command plus --check passed after final README linking; source, HTML, renderer and stylesheet unchanged."
+}

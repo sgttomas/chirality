@@ -1,0 +1,899 @@
+{
+  "schema": "chirality-manual-operational-review/v1",
+  "date_utc": "2026-09-22T18:08:48.873098+00:00",
+  "reviewer": "/root/operational_review",
+  "role": "TASK (Type 2)",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native fresh independent task",
+  "delegation_performed": false,
+  "scope": "Read-only independent review of companion operational manual; writes only operational-review.md and operational-review-sources.json",
+  "host_enforcement": "Host exposes broad shell/filesystem capabilities. Role and assigned write boundary are instruction-asserted; no mechanical per-agent fence claimed.",
+  "repository_basis": "0a258f145eac41a62de02b06f032ccbc183838ec",
+  "initial_candidate_sha256": "fac5bfec4fa227864e850123d5ad568b4b00eff94223ae63b1b566b57af7de71",
+  "reviewed_markdown_sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+  "preserved_v1_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "operational_text_verdict": "PASS",
+  "publication_parity_verdict": "PASS",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "kind": "active role/entry instruction",
+      "inspection": "Full read for actual review conduct",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "activated_as_instruction": true,
+      "basis_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "kind": "active role/entry instruction",
+      "inspection": "Full read for actual review conduct",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "activated_as_instruction": true,
+      "basis_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/BRIEF.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/BRIEF.md",
+      "kind": "run context and author evidence",
+      "inspection": "Assignment/transfer and author evidence; all 14 note dispositions and material v1-to-v2 differences independently compared",
+      "sha256": "9b762c70c138de199153772461f04e971002083e5992d738ab51a8f5258c5b3b",
+      "bytes": 5530,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-brief.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-brief.md",
+      "kind": "run context and author evidence",
+      "inspection": "Assignment/transfer and author evidence; all 14 note dispositions and material v1-to-v2 differences independently compared",
+      "sha256": "b2d9b61ee7cfcb670ba12c35fcf00e8b3509bfa9579647b65b56f84be88dbba0",
+      "bytes": 4377,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-transfer.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-transfer.md",
+      "kind": "run context and author evidence",
+      "inspection": "Assignment/transfer and author evidence; all 14 note dispositions and material v1-to-v2 differences independently compared",
+      "sha256": "1319f228f97f83ba50e42cb65ce41577bd8c9cd027cb38963d02627691c36c5d",
+      "bytes": 12349,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "kind": "run context and author evidence",
+      "inspection": "Final author source-manifest identity refreshed after one-label cleanup; no full operating-source review repeated",
+      "sha256": "cc3ab93b973c3c676020c942fb24914a14676677643f1f8e0da3204fccb2aabf",
+      "bytes": 27191,
+      "activated_as_instruction": false,
+      "prior_inspected_sha256": [
+        "a5f4e9ffeb4ca7651d3795a8b1a65ba585c11e0df0aedc4ea8886929d0d84549"
+      ]
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-validation.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-validation.json",
+      "kind": "run context and author evidence",
+      "inspection": "Final author validation identity refreshed after one-label cleanup",
+      "sha256": "3a5f15f58b1509a3ad862fac1cb1d476d2ad79fab7340bb8b382428cc4b914b7",
+      "bytes": 4947,
+      "activated_as_instruction": false,
+      "prior_inspected_sha256": [
+        "4ed78314a773db7f382eec0ac8fd31e7bda27a648276d57875b0ac4d1656177e"
+      ]
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-manual-v1-v2.diff",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-manual-v1-v2.diff",
+      "kind": "run context and author evidence",
+      "inspection": "Assignment/transfer and author evidence; all 14 note dispositions and material v1-to-v2 differences independently compared",
+      "sha256": "423e975a6c605198390fd4f9f00d34ae290e9f03f8f96875510918912b5be723",
+      "bytes": 52424,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-review-repair.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-review-repair.md",
+      "kind": "run context and author evidence",
+      "inspection": "Assignment/transfer and author evidence; all 14 note dispositions and material v1-to-v2 differences independently compared",
+      "sha256": "08db3371a399cf2e32455010bf22bf460c8f5f58df631ff7a8944073b56f8f05",
+      "bytes": 2147,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "kind": "publication candidate/predecessor",
+      "inspection": "Full candidate reading through focused sections and full substantive delta against preserved v1; hashes independently verified",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525,
+      "activated_as_instruction": false,
+      "basis_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "kind": "publication candidate/predecessor",
+      "inspection": "Prior full operating review; final single-label inverse backcheck restores prior reviewed source exactly",
+      "sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+      "bytes": 121524,
+      "activated_as_instruction": false,
+      "prior_inspected_sha256": [
+        "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da"
+      ]
+    },
+    {
+      "path": "agents/registry.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/registry.json",
+      "kind": "primary operating reference",
+      "inspection": "Full read as comparison material only",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "bytes": 2486,
+      "activated_as_instruction": false,
+      "basis_sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "kind": "primary operating reference",
+      "inspection": "Full read as comparison material only",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "bytes": 11118,
+      "activated_as_instruction": false,
+      "basis_sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "kind": "primary operating reference",
+      "inspection": "Full read as comparison material only",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "bytes": 6954,
+      "activated_as_instruction": false,
+      "basis_sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "kind": "primary operating reference",
+      "inspection": "Full read as comparison material only",
+      "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa",
+      "bytes": 7476,
+      "activated_as_instruction": false,
+      "basis_sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "kind": "primary governance/reference",
+      "inspection": "Roles, native descent, method identity/discovery, context, actual permission and structured-brief sections; comparison only",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "bytes": 19808,
+      "activated_as_instruction": false,
+      "basis_sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CONTRACT.md",
+      "kind": "primary governance/reference",
+      "inspection": "Targeted invariant source-of-truth, permissions, provenance, sealing, dependency, authority, staleness and Task Management clauses; comparison only",
+      "sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd",
+      "bytes": 22362,
+      "activated_as_instruction": false,
+      "basis_sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SPEC.md",
+      "kind": "primary governance/reference",
+      "inspection": "Targeted path, lifecycle, dependency, and runtime claims; header status; comparison only",
+      "sha256": "2ed0680b458754e4493ad6dc69aa2d883e5fef1434b13bb947bb6aeb0f1485af",
+      "bytes": 52087,
+      "activated_as_instruction": false,
+      "basis_sha256": "2ed0680b458754e4493ad6dc69aa2d883e5fef1434b13bb947bb6aeb0f1485af",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DECOMPOSITION_STANDARD.md",
+      "kind": "primary governance/reference",
+      "inspection": "Header/status, retained ratified basis, and checkpoint searches; comparison only",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "bytes": 26222,
+      "activated_as_instruction": false,
+      "basis_sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "kind": "primary governance/reference",
+      "inspection": "Header/status, claim-granularity and lifecycle/Remaining clauses, activation/adoption searches; comparison only",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "bytes": 15423,
+      "activated_as_instruction": false,
+      "basis_sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "kind": "primary governance/reference",
+      "inspection": "Recorded approved status, item and activation/transition references; comparison only",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "bytes": 12463,
+      "activated_as_instruction": false,
+      "basis_sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "kind": "primary governance/reference",
+      "inspection": "Decision items and effective/adoption conditions; comparison only",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239,
+      "activated_as_instruction": false,
+      "basis_sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "matches_repository_basis": true
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "bytes": 2867,
+      "activated_as_instruction": false,
+      "basis_sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/dbm-publisher/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+      "bytes": 3952,
+      "activated_as_instruction": false,
+      "basis_sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "bytes": 7949,
+      "activated_as_instruction": false,
+      "basis_sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/brief.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "bytes": 3258,
+      "activated_as_instruction": false,
+      "basis_sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/tools.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "bytes": 3715,
+      "activated_as_instruction": false,
+      "basis_sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/checks.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "bytes": 3378,
+      "activated_as_instruction": false,
+      "basis_sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/audit-dep-closure/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/audit-dep-closure/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+      "bytes": 1035,
+      "activated_as_instruction": false,
+      "basis_sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/audit-dep-closure/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+      "bytes": 4826,
+      "activated_as_instruction": false,
+      "basis_sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/audit-dep-closure/resources/method.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d",
+      "bytes": 5712,
+      "activated_as_instruction": false,
+      "basis_sha256": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scc-resolution-case/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+      "bytes": 4536,
+      "activated_as_instruction": false,
+      "basis_sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "bytes": 7374,
+      "activated_as_instruction": false,
+      "basis_sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "bytes": 2576,
+      "activated_as_instruction": false,
+      "basis_sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "bytes": 9631,
+      "activated_as_instruction": false,
+      "basis_sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "bytes": 1210,
+      "activated_as_instruction": false,
+      "basis_sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+      "bytes": 10155,
+      "activated_as_instruction": false,
+      "basis_sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/method.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16",
+      "bytes": 9354,
+      "activated_as_instruction": false,
+      "basis_sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "bytes": 1007,
+      "activated_as_instruction": false,
+      "basis_sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "bytes": 15306,
+      "activated_as_instruction": false,
+      "basis_sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/method.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+      "bytes": 1176,
+      "activated_as_instruction": false,
+      "basis_sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/resources/brief.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028",
+      "bytes": 415,
+      "activated_as_instruction": false,
+      "basis_sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/resources/tools.md",
+      "kind": "primary method reference",
+      "inspection": "Full read as comparison material; underlying workflow/skill not selected or executed",
+      "sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c",
+      "bytes": 435,
+      "activated_as_instruction": false,
+      "basis_sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Checkpoint/snapshot/pointer clauses and surrounding method context; comparison only",
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "bytes": 11556,
+      "activated_as_instruction": false,
+      "basis_sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/method.md",
+      "kind": "primary method reference",
+      "inspection": "Checkpoint/snapshot/pointer clauses and surrounding method context; comparison only",
+      "sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "bytes": 4570,
+      "activated_as_instruction": false,
+      "basis_sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Checkpoint/snapshot/pointer clauses and surrounding method context; comparison only",
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "bytes": 12302,
+      "activated_as_instruction": false,
+      "basis_sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/method.md",
+      "kind": "primary method reference",
+      "inspection": "Checkpoint/snapshot/pointer clauses and surrounding method context; comparison only",
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "bytes": 4737,
+      "activated_as_instruction": false,
+      "basis_sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "kind": "primary method reference",
+      "inspection": "Preparation actor, INIT/legacy, lifecycle and coordination-mode clauses; comparison only",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "bytes": 15090,
+      "activated_as_instruction": false,
+      "basis_sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/dependency-extract/WORKFLOW.md",
+      "kind": "primary method reference",
+      "inspection": "Targeted dependency classes, directions, status, preservation, schema and write boundaries; comparison only",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "bytes": 25794,
+      "activated_as_instruction": false,
+      "basis_sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "workflows/index.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "kind": "catalog",
+      "inspection": "Exact method metadata; software-prd absence; dbm-publisher presence; preparation kind collision; local-method source identities",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "bytes": 99459,
+      "activated_as_instruction": false,
+      "basis_sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293,
+      "activated_as_instruction": false,
+      "basis_sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "activated_as_instruction": false,
+      "basis_sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/AGENTS.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124,
+      "activated_as_instruction": false,
+      "basis_sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "activated_as_instruction": false,
+      "basis_sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "activated_as_instruction": false,
+      "basis_sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "activated_as_instruction": false,
+      "basis_sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "kind": "project reference",
+      "inspection": "Full read for source navigation, selected method/pointer and receipt/adoption distinctions only; project instructions not activated",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "activated_as_instruction": false,
+      "basis_sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "kind": "project reference",
+      "inspection": "Targeted entry, graph/Remaining, dependency, permission and receipt clauses; not a project census or production activation",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "activated_as_instruction": false,
+      "basis_sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "kind": "project reference",
+      "inspection": "Targeted entry, graph/Remaining, dependency, permission and receipt clauses; not a project census or production activation",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "activated_as_instruction": false,
+      "basis_sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "kind": "project reference",
+      "inspection": "Targeted entry, graph/Remaining, dependency, permission and receipt clauses; not a project census or production activation",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "activated_as_instruction": false,
+      "basis_sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "tools/scope_of_work/id_catalog.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/id_catalog.json",
+      "kind": "tool schema",
+      "inspection": "Full prefix/width catalog read",
+      "sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+      "bytes": 519,
+      "activated_as_instruction": false,
+      "basis_sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "tools/scope_of_work/validate_scope_of_work.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/validate_scope_of_work.py",
+      "kind": "tool implementation",
+      "inspection": "Full source read of command interface and format-resolution behavior; no production operation",
+      "sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "bytes": 1495,
+      "activated_as_instruction": false,
+      "basis_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "tools/scope_of_work/derive_review_checklist.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/scope_of_work/derive_review_checklist.py",
+      "kind": "tool implementation",
+      "inspection": "Targeted arguments, exact criterion/verification identities and output handling; no production operation",
+      "sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+      "bytes": 8754,
+      "activated_as_instruction": false,
+      "basis_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "tools/taskmgmt/taskmgmt.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/tools/taskmgmt/taskmgmt.py",
+      "kind": "tool implementation",
+      "inspection": "Federation canonical archives, argument parser, output default, register collision guard and writer; no sweep executed",
+      "sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+      "bytes": 59080,
+      "activated_as_instruction": false,
+      "basis_sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+      "matches_repository_basis": true
+    },
+    {
+      "path": ".gitignore",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.gitignore",
+      "kind": "repository configuration",
+      "inspection": "Task Management projection ignore rules",
+      "sha256": "d73df5933af0f7629e1f0fc5e4322070bbcc65740c08ce4f2a9222b6a11d472e",
+      "bytes": 1741,
+      "activated_as_instruction": false,
+      "basis_sha256": "d73df5933af0f7629e1f0fc5e4322070bbcc65740c08ce4f2a9222b6a11d472e",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "resolved_path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "kind": "user-supplied transfer input",
+      "inspection": "All 14 application notes and Appendix A read independently; headings of affected main passages; historical/proposed input, not live authority",
+      "sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+      "bytes": 555189,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/html-check.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/html-check.py",
+      "kind": "publisher evidence",
+      "inspection": "Final publisher evidence inspected; source/hash binding and independent read-only parity/navigation checks complete",
+      "sha256": "e4125091048b740f151855375e011b21149f51e42208dcb3c875a579121b6e07",
+      "bytes": 6616,
+      "activated_as_instruction": false,
+      "sha256_initial_inspection": "e4125091048b740f151855375e011b21149f51e42208dcb3c875a579121b6e07"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/html-publisher-production-checks.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/html-publisher-production-checks.json",
+      "kind": "publisher evidence",
+      "inspection": "Final regenerated HTML/source hashes and all parity/link checks inspected",
+      "sha256": "b4658ef9101877e7f799c84f22cbeb6b9395235b8323b9f865e15ae3d2ff06de",
+      "bytes": 9941,
+      "activated_as_instruction": false,
+      "sha256_initial_inspection": "d3b9e9bda6db6cd4249ab319b5ec66c3cc0e4a9ed372d9ddb25c2c478c719ae9",
+      "prior_inspected_sha256": [
+        "d3b9e9bda6db6cd4249ab319b5ec66c3cc0e4a9ed372d9ddb25c2c478c719ae9"
+      ]
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/html-readme-links.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/html-readme-links.json",
+      "kind": "publisher evidence",
+      "inspection": "Final publisher evidence inspected; source/hash binding and independent read-only parity/navigation checks complete",
+      "sha256": "8ed231bb69f89060375f2aba75fd54202669ebc505a635558b8b5ef187a27e39",
+      "bytes": 1502,
+      "activated_as_instruction": false,
+      "sha256_initial_inspection": "8ed231bb69f89060375f2aba75fd54202669ebc505a635558b8b5ef187a27e39"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/html-security-checks.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/html-security-checks.json",
+      "kind": "publisher evidence",
+      "inspection": "Final publisher evidence inspected; source/hash binding and independent read-only parity/navigation checks complete",
+      "sha256": "c9c21dfa5623f1248eba35b04d3df955141062e92a473ae5a380d7a8102205d9",
+      "bytes": 817,
+      "activated_as_instruction": false,
+      "sha256_initial_inspection": "c9c21dfa5623f1248eba35b04d3df955141062e92a473ae5a380d7a8102205d9"
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+      "kind": "renderer",
+      "inspection": "Targeted render/source-hash and check-mode interface; unchanged baseline identity",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "bytes": 21355,
+      "activated_as_instruction": false,
+      "basis_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "matches_repository_basis": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html",
+      "kind": "final HTML candidate",
+      "inspection": "Prior complete parity checks; final inverse changes only one corresponding label and two source-hash fields; renderer --check rerun read-only",
+      "sha256": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+      "bytes": 154232,
+      "activated_as_instruction": false,
+      "prior_inspected_sha256": [
+        "861abe7b24ff9a5d80b00ead7cd0a56fdd3e3c1aa80497d17368b474a6943698"
+      ]
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+      "kind": "companion navigation target",
+      "inspection": "Existence and all cited section numbers; targeted reckoning/judgment and remaining-obligation paragraphs only; broader book review belongs to parent",
+      "sha256": "3655da7e62577c9da8d866c581039076433d7e10deb6e2e94ac9265e0fac7f44",
+      "bytes": 471071,
+      "activated_as_instruction": false
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-title-label-cleanup.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-title-label-cleanup.md",
+      "kind": "bounded cleanup evidence",
+      "inspection": "Full read; inverse replacement and final HTML delta independently verified",
+      "sha256": "42ec4e9f3e1da76d8bdd722b1a8b1fcaf216a290d8c180ad03d6ec1dc5bbd8d9",
+      "bytes": 1318,
+      "activated_as_instruction": false
+    }
+  ],
+  "limits": [
+    "No current project-wide status census, dependency graph reconstruction, production suite, Task Management invocation, SOW operation, lifecycle act, workflow adoption, source-policy change, Git mutation or release.",
+    "Unchanged v1 project product details retain their cited earlier source audit; this review independently checked current live entry/continuation and affected operating additions rather than rerunning four product audits.",
+    "No HTML browser or alternate transport route used; prior fileURL policy block respected.",
+    "Markdown and HTML are independently checked for content/navigation parity. No browser visual inspection or Word/PDF review is claimed by this operational reviewer; those remain distinct publication checks."
+  ],
+  "reviewed_html_sha256": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+  "companion_book_sha256_at_navigation_check": "3655da7e62577c9da8d866c581039076433d7e10deb6e2e94ac9265e0fac7f44",
+  "independent_checks": {
+    "time_utc": "2026-09-22T18:10:33.790382+00:00",
+    "results": {
+      "visible_text_parity_independent": true,
+      "exact_code_blocks_independent": true,
+      "link_sequence_independent": true,
+      "semantic_tag_counts_independent": true,
+      "no_duplicate_html_ids": true,
+      "all_html_inpage_links_resolve": true,
+      "no_external_assets": true,
+      "all_local_file_targets_exist": true,
+      "all_cited_book_section_numbers_exist": true,
+      "source_hash_embedded": true,
+      "renderer_check_exit_zero": true
+    },
+    "code_blocks": 12,
+    "tables": 8,
+    "html_ids": 53,
+    "source_links": 371,
+    "book_sections": {
+      "1.5": true,
+      "1.7": true,
+      "4.3": true,
+      "4.6": true,
+      "4.12": true,
+      "5.4": true,
+      "5.6": true,
+      "5.11": true
+    },
+    "missing_local_targets": [],
+    "renderer_command": "PYTHONDONTWRITEBYTECODE=1 python3 docs/alignment-manual/render_manual.py --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html --basis-date 2026-09-22 --basis-revision 0a258f145eac41a62de02b06f032ccbc183838ec --check",
+    "subject_markdown_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+    "subject_html_sha256": "861abe7b24ff9a5d80b00ead7cd0a56fdd3e3c1aa80497d17368b474a6943698"
+  },
+  "findings": [
+    {
+      "id": "OPR-01",
+      "severity": "P2",
+      "summary": "Federation projection command omitted required gitignored storage",
+      "status": "RESOLVED",
+      "initial_candidate_sha256": "fac5bfec4fa227864e850123d5ad568b4b00eff94223ae63b1b566b57af7de71",
+      "backchecked_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da"
+    },
+    {
+      "id": "OPR-02",
+      "severity": "P2",
+      "summary": "Numbered sweep account did not explicitly preserve requested-mode and no-mode default scope",
+      "status": "RESOLVED",
+      "initial_candidate_sha256": "fac5bfec4fa227864e850123d5ad568b4b00eff94223ae63b1b566b57af7de71",
+      "backchecked_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da"
+    }
+  ],
+  "final_verdict": "PASS",
+  "label_cleanup_backcheck": {
+    "time_utc": "2026-09-22T18:29:38.356189+00:00",
+    "scope": "Only the opening companion-book link label removes , Consolidated v4. No full operating-source rereview.",
+    "markdown_before": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+    "markdown_after": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+    "html_before": "861abe7b24ff9a5d80b00ead7cd0a56fdd3e3c1aa80497d17368b474a6943698",
+    "html_after": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+    "markdown_inverse_restores_prior_reviewed_bytes": true,
+    "markdown_label_replacements": 1,
+    "html_inverse_restores_prior_reviewed_bytes": true,
+    "html_label_replacements": 1,
+    "html_generated_source_hash_replacements": 2,
+    "renderer_unchanged": true,
+    "renderer_read_only_check_exit_code": 0,
+    "publisher_final_parity_all_true": true,
+    "final_verdict": "PASS",
+    "carried_evidence": "The exact inverse proves that earlier operational and parity checks remain applicable to all unchanged content, links and style."
+  }
+}

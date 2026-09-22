@@ -1,0 +1,245 @@
+{
+  "status": "reference preparation complete; no v4 artifact authored",
+  "sources": [
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.docx",
+      "sha256": "72071478c4ce5e9813971c797c0943648dfb9107e1adc3849389854908e2e369"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.pdf",
+      "sha256": "9c986ef3b3d041b453545ec76db888ca6302ed3ee68bf70a5b142bdfc4a86267"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/PM_Manual_v3_Editorial_Review.pdf",
+      "sha256": "1b27c6f71111383d95e0f66a0c71771f0d3469bc170cc2b9dfc51fb25beabfd4"
+    }
+  ],
+  "instruction_origins": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/template-distill.md",
+      "sha256": "f9b829cd868732d56c3218473a1afa234ceca4aa808fbe0f96a1ab5470d768a1"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/template-create.md",
+      "sha256": "ed6bd38d3fcedb33ca481f9337bf14a9b7b236ef7151c8f6034fab33e05440f0"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+    }
+  ],
+  "reference_pages": 189,
+  "sections": 2,
+  "top_level_tables": 49,
+  "total_table_elements": 84,
+  "specimens": 35,
+  "bookmarks": 150,
+  "reference_review": [
+    {
+      "reader": "/root/manual_format_manager/v3_reference_1",
+      "role": "TASK Type2",
+      "pages": [
+        1,
+        48
+      ],
+      "complete": true,
+      "method": "Every assigned PNG individually viewed at original detail, one image per tool invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/v3_reference_2",
+      "role": "TASK Type2",
+      "pages": [
+        49,
+        96
+      ],
+      "complete": true,
+      "method": "Every assigned PNG individually viewed at original detail, one image per tool invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/v3_reference_3",
+      "role": "TASK Type2",
+      "pages": [
+        97,
+        144
+      ],
+      "complete": true,
+      "method": "Every assigned PNG individually viewed at original detail, one image per tool invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/v3_reference_4",
+      "role": "TASK Type2",
+      "pages": [
+        145,
+        189
+      ],
+      "complete": true,
+      "method": "Every assigned PNG individually viewed at original detail, one image per tool invocation"
+    }
+  ],
+  "package_parts": [
+    {
+      "path": "[Content_Types].xml",
+      "size": 3068,
+      "sha256": "9453bf7d0b20e42e75d420cb66e78e636276f25778675e8b98328f3a2d1c55c0"
+    },
+    {
+      "path": "_rels/.rels",
+      "size": 734,
+      "sha256": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4"
+    },
+    {
+      "path": "docProps/core.xml",
+      "size": 1136,
+      "sha256": "2970241b362f79eec23023956c6685155788016940077832406318bb076a68a3"
+    },
+    {
+      "path": "docProps/app.xml",
+      "size": 1132,
+      "sha256": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081"
+    },
+    {
+      "path": "word/document.xml",
+      "size": 1007319,
+      "sha256": "f0191a11e93cbfb0eaca32c8841553a988c12a4095995d99f227894a76e38923"
+    },
+    {
+      "path": "word/_rels/document.xml.rels",
+      "size": 8112,
+      "sha256": "07c8a5bf2a9181a79b08ca725793a95d99020f19944aa19ff51aff5d8fe182df"
+    },
+    {
+      "path": "word/styles.xml",
+      "size": 356565,
+      "sha256": "d518df2376dedb1475bbd79a134c6841a2c6d4ab1666af17eb5d4389695acb43"
+    },
+    {
+      "path": "word/stylesWithEffects.xml",
+      "size": 438131,
+      "sha256": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15"
+    },
+    {
+      "path": "word/settings.xml",
+      "size": 2599,
+      "sha256": "0542635772867320ea7d1ed7f1d1956af104ebb671556aa4d671741172a37362"
+    },
+    {
+      "path": "word/webSettings.xml",
+      "size": 438,
+      "sha256": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95"
+    },
+    {
+      "path": "word/fontTable.xml",
+      "size": 2811,
+      "sha256": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb"
+    },
+    {
+      "path": "word/theme/theme1.xml",
+      "size": 10939,
+      "sha256": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941"
+    },
+    {
+      "path": "customXml/item1.xml",
+      "size": 262,
+      "sha256": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144"
+    },
+    {
+      "path": "customXml/_rels/item1.xml.rels",
+      "size": 295,
+      "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c"
+    },
+    {
+      "path": "customXml/itemProps1.xml",
+      "size": 354,
+      "sha256": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e"
+    },
+    {
+      "path": "word/numbering.xml",
+      "size": 5513,
+      "sha256": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce"
+    },
+    {
+      "path": "word/footer1.xml",
+      "size": 1315,
+      "sha256": "8d9cc3aa06628f909bf14c434e585dc6858cfdc7b3df604d8c96e240db3e917b"
+    },
+    {
+      "path": "word/footer2.xml",
+      "size": 1299,
+      "sha256": "897504958982838bbe12df8c14474a0350e1388bbc9e4e2ffb70c0c75fc0ce9a"
+    },
+    {
+      "path": "word/header1.xml",
+      "size": 1299,
+      "sha256": "c1ec416437359623c7d9b27189f525b23452f8d44154547427d66baa094c2031"
+    },
+    {
+      "path": "word/header2.xml",
+      "size": 1460,
+      "sha256": "6c0fce33e275dd2ef1394890950777c639bbe471facb0acecb22973225b8c85e"
+    },
+    {
+      "path": "word/header3.xml",
+      "size": 1396,
+      "sha256": "65357b3e4075313dceb7d507a04e2e4f6c8356b1bc7160f8bb2a9f49ba3d0af7"
+    },
+    {
+      "path": "word/footer3.xml",
+      "size": 1345,
+      "sha256": "458254bd3ddef8b2a39d2557124f11369d7d252c38bb61530a5e1c19d62e04e0"
+    },
+    {
+      "path": "word/header4.xml",
+      "size": 1293,
+      "sha256": "e1d2d4060c859ac7d6648284ba49706cf80e2e14374d3cf9bb2983edf9ee677f"
+    },
+    {
+      "path": "word/footer4.xml",
+      "size": 1293,
+      "sha256": "cc831c46cac03c968fc5b2d8e0ce3179d17a559dd54fa4e4fba3f7c2680cc344"
+    },
+    {
+      "path": "word/header5.xml",
+      "size": 1460,
+      "sha256": "6c0fce33e275dd2ef1394890950777c639bbe471facb0acecb22973225b8c85e"
+    },
+    {
+      "path": "word/footer5.xml",
+      "size": 1468,
+      "sha256": "9601aeef9cbefe26366413a7c2c0f6cbd75e5d5be807a8f24aba8a4ed1a77dc3"
+    },
+    {
+      "path": "word/media/image1.png",
+      "size": 89792,
+      "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1"
+    },
+    {
+      "path": "docProps/thumbnail.jpeg",
+      "size": 8324,
+      "sha256": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead"
+    }
+  ],
+  "delegation_mechanism": "native collaboration harness",
+  "parent": "/root HELP_HUMAN",
+  "manager": "/root/manual_format_manager WORKING_ITEMS Type1",
+  "boundaries": "TASK instruction-based read-only scope; no claim of mechanical enforcement/model diversity; no TASK descendants"
+}

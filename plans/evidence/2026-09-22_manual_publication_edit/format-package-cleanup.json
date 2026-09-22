@@ -1,0 +1,152 @@
+{
+  "unused_hyperlink_relationships_removed": [
+    {
+      "Id": "rId22",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "https://www.apega.ca/about-apega/publications/standards-guidelines/practice-notices",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId24",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "MANUAL_REVIEW_v1.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId25",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId26",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId27",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId28",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-app-dev/AGENTS.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId29",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-piping/loop/LOOP_INIT.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId30",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-piping/AGENTS.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId31",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-runtime/loop/LOOP_INIT.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId32",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/pec/loop/LOOP_INIT.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId33",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "MANUAL_REVIEW_v1.md#sources-and-provenance",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId34",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId35",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../workflows/construct-local-work-graph/WORKFLOW.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId36",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId37",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../workflows/bounded-reconciliation/WORKFLOW.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId38",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../.agents/skills/preparation/SKILL.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId39",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../workflows/project-setup/resources/method.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId40",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId41",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId42",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId43",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId44",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-app-dev/AGENTS.md#development-checks-and-evidence",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId45",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "../../projects/chirality-piping/AGENTS.md#software-checks",
+      "TargetMode": "External"
+    },
+    {
+      "Id": "rId46",
+      "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+      "Target": "README.md",
+      "TargetMode": "External"
+    }
+  ],
+  "settings_identifiers_removed": [
+    "rsids",
+    "docId"
+  ]
+}

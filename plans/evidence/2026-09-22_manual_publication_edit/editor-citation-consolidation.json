@@ -1,0 +1,659 @@
+{
+  "mapping": [
+    {
+      "original_chapter": 1,
+      "original_number": 1,
+      "original_label": "Author\u2019s directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 2,
+      "original_label": "Project-management theory.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 3,
+      "original_label": "Philosophical and epistemic account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 4,
+      "original_label": "Reliance on an other's work.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 5,
+      "original_label": "Agent organisation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 6,
+      "original_label": "Entry and development.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 7,
+      "original_label": "Scope change.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 8,
+      "original_label": "Example method.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 9,
+      "original_label": "Local graph and reconciliation methods.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 10,
+      "original_label": "APEGA professional practice standard.",
+      "selected_reference": 1,
+      "disposition": "Retained external source, mapped to global selected-reference number"
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 11,
+      "original_label": "APEGA AI guidance.",
+      "selected_reference": 2,
+      "disposition": "Retained external source, mapped to global selected-reference number"
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 12,
+      "original_label": "Systems-engineering account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 13,
+      "original_label": "DBM terminology reference.",
+      "selected_reference": 3,
+      "disposition": "Retained external source, mapped to global selected-reference number"
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 14,
+      "original_label": "Claim granularity.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 1,
+      "original_number": 15,
+      "original_label": "Task Management.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 1,
+      "original_label": "Author's directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 2,
+      "original_label": "Chapter 1 of this manual.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 3,
+      "original_label": "Theory and philosophical account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 4,
+      "original_label": "Agent organisation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 5,
+      "original_label": "Development continuity.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 6,
+      "original_label": "DBM publication management.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 7,
+      "original_label": "Bounded section production.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 8,
+      "original_label": "Package assembly and review.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 9,
+      "original_label": "FEED decomposition.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 10,
+      "original_label": "Setup and preparation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 11,
+      "original_label": "Local scope of work.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 12,
+      "original_label": "Tool reference.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 13,
+      "original_label": "Management of change.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 14,
+      "original_label": "Software PRD method.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 15,
+      "original_label": "Workflow authoring method.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 2,
+      "original_number": 16,
+      "original_label": "Claim granularity.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 1,
+      "original_label": "Author's directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 2,
+      "original_label": "Software decomposition.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 3,
+      "original_label": "Engineering project decomposition.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 4,
+      "original_label": "Project setup.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 5,
+      "original_label": "Structural preparation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 6,
+      "original_label": "Scope-of-work authoring.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 7,
+      "original_label": "Scope-of-work standard.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 8,
+      "original_label": "Local consistency review.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 9,
+      "original_label": "Cycle doctrine.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 10,
+      "original_label": "Roles and runtime boundaries.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 11,
+      "original_label": "Scope change.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 12,
+      "original_label": "Session continuity.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 13,
+      "original_label": "Theory and philosophical account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 14,
+      "original_label": "Dependency extraction.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 15,
+      "original_label": "Dependency closure examination.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 16,
+      "original_label": "SCC case management.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 3,
+      "original_number": 17,
+      "original_label": "Stable production claims.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 1,
+      "original_label": "Author's directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 2,
+      "original_label": "Development loops and adoption.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 3,
+      "original_label": "Agent responsibilities.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 4,
+      "original_label": "Bounded software execution.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 5,
+      "original_label": "Local graph construction.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 6,
+      "original_label": "Runtime relationships.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 7,
+      "original_label": "Deliverable production contract.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 8,
+      "original_label": "Scope amendment.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 9,
+      "original_label": "Dependency meaning and revision.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 10,
+      "original_label": "Theory and philosophical account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 11,
+      "original_label": "Bounded reconciliation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 12,
+      "original_label": "Detailed development checks.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 13,
+      "original_label": "Package-based production.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 14,
+      "original_label": "Claim granularity and information ownership.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 4,
+      "original_number": 15,
+      "original_label": "Deferred concerns.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 1,
+      "original_label": "Author's directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 2,
+      "original_label": "Recurrent development.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 3,
+      "original_label": "Construction of local undertakings.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 4,
+      "original_label": "Agent organisation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 5,
+      "original_label": "Bounded implementation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 6,
+      "original_label": "Production and evaluation basis.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 7,
+      "original_label": "Bounded reconciliation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 8,
+      "original_label": "Local consistency examination.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 9,
+      "original_label": "Dependency examination.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 10,
+      "original_label": "Amendment and propagation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 11,
+      "original_label": "Theory and philosophical account.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 12,
+      "original_label": "Examination and integration practice.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 13,
+      "original_label": "Illustrative software workflows.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 14,
+      "original_label": "Illustrative tool implementations.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 15,
+      "original_label": "Deliverable concordance.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 16,
+      "original_label": "Corpus-reconciliation workflow.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 17,
+      "original_label": "Author-supplied run feedback.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 18,
+      "original_label": "Task Management.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 19,
+      "original_label": "Register specimen.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 5,
+      "original_number": 20,
+      "original_label": "Computer Use capability reference.",
+      "selected_reference": 4,
+      "disposition": "Retained external source, mapped to global selected-reference number"
+    },
+    {
+      "original_chapter": 6,
+      "original_number": 1,
+      "original_label": "Author\u2019s directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 6,
+      "original_number": 2,
+      "original_label": "Project-management theory and developed practice.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 6,
+      "original_number": 3,
+      "original_label": "Agent and method boundaries.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 6,
+      "original_number": 4,
+      "original_label": "Reconciliation and unresolved obligations.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 7,
+      "original_number": 1,
+      "original_label": "Author\u2019s directions.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 7,
+      "original_number": 2,
+      "original_label": "Project-management theory.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 7,
+      "original_number": 3,
+      "original_label": "Philosophical framework and its practical limits.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 7,
+      "original_number": 4,
+      "original_label": "Agent responsibilities.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    },
+    {
+      "original_chapter": 7,
+      "original_number": 5,
+      "original_label": "Stable claims and continuing reconciliation.",
+      "selected_reference": null,
+      "disposition": "Internal provenance preserved; numeric marker omitted from reader-facing book. The underlying recommendation remains the manual's method or the exact operational content transfers to the separate user manual."
+    }
+  ],
+  "new_reference": {
+    "number": 5,
+    "source": "Brian Cantwell Smith, The Promise of Artificial Intelligence: Reckoning and Judgment, MIT Press, 2019",
+    "use": "One bounded attribution in \u00a71.5 to philosophical treatment of reckoning and judgment; no predictions about future AI capabilities or warrants for bespoke operational rules."
+  },
+  "further_reading": [
+    "Michael Polanyi, Personal Knowledge: Towards a Post-Critical Philosophy,1958",
+    "Michael Polanyi, The Tacit Dimension, University of Chicago Press edition,2009"
+  ],
+  "verification": "External facts and scopes supplied by parent /root after opening primary publisher/regulator sources on 2026-09-22; parent owns independent source-verification evidence.",
+  "limit": "Omission of private numeric source markers does not create external corroboration or empirical validation of the manual's recommendations."
+}

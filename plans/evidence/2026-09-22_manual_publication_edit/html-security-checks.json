@@ -1,0 +1,24 @@
+{
+  "renderer_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+  "renderer_unchanged_from_basis": true,
+  "guard_cases": {
+    "style_import": {
+      "rejected": true,
+      "reason": "Unsupported source HTML: unsupported <style> tag"
+    },
+    "style_background": {
+      "rejected": true,
+      "reason": "Unsupported source HTML: unsupported p[style] attribute"
+    },
+    "object": {
+      "rejected": true,
+      "reason": "Unsupported source HTML: unsupported <object> tag; unsupported object[data] attribute"
+    },
+    "iframe_srcdoc": {
+      "rejected": true,
+      "reason": "Unsupported source HTML: unsupported <iframe> tag; unsupported iframe[srcdoc] attribute"
+    }
+  },
+  "stylesheet_contains_no_external_resource_calls": true,
+  "no_browser_or_http_route_used": true
+}

@@ -1,0 +1,31 @@
+{
+  "md_sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+  "docx_sha256": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+  "all_md_content_lines_and_cells_checked": 1931,
+  "missing_content": [],
+  "md_explicit_anchors": 88,
+  "word_bookmarks": 299,
+  "internal_hyperlinks": 97,
+  "active_external_hyperlink_targets": [
+    "CHIRALITY_AGENT_USER_MANUAL_v2.md",
+    "https://mitpress.mit.edu/9780262043045/the-promise-of-artificial-intelligence/",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+    "https://press.uchicago.edu/ucp/books/book/chicago/P/bo19722848",
+    "https://press.uchicago.edu/ucp/books/book/chicago/T/bo6035368",
+    "https://www.alberta.ca/system/files/em-ets-cs-hub-development-plan-template-instructions.pdf",
+    "https://www.apega.ca/docs/default-source/pdfs/standards-guidelines/relying-on-the-work-of-others-and-outsourcing.pdf",
+    "https://www.apega.ca/news/2026/03/23/guidance-for-registrants-regarding-the-use-of-artificial-intelligence-tools"
+  ],
+  "changed_package_parts": [
+    "docProps/core.xml",
+    "docProps/app.xml",
+    "word/document.xml",
+    "word/_rels/document.xml.rels",
+    "word/settings.xml",
+    "word/footer5.xml"
+  ],
+  "preserved_package_parts": 22,
+  "sections": 2,
+  "data_and_nested_figure_tables": 76,
+  "specimens": 31
+}

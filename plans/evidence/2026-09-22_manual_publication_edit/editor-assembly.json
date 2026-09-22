@@ -1,0 +1,1794 @@
+{
+  "candidate": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+  "candidate_sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+  "inputs": [
+    {
+      "slice": "opening",
+      "source": "/tmp/publication-opening.md",
+      "sha256": "b9a540cc06d38463bc40d29b96cf6522318389df48dbff4da38b553a9b7e6fc5"
+    },
+    {
+      "slice": "method",
+      "source": "/tmp/publication-method.md",
+      "sha256": "75159c2143103dd7da5576320c17e3963963af5b48bbd47fd2bed82f327c4a4f"
+    },
+    {
+      "slice": "completion",
+      "source": "/tmp/publication-completion.md",
+      "sha256": "0f34f9a0d3e604befce9e2eceb5923faa02fbe3718e5bce381c18b9a414561b4"
+    }
+  ],
+  "reference_actions": [
+    {
+      "chapter": 1,
+      "original": [
+        10,
+        11
+      ],
+      "selected": [
+        1,
+        2
+      ]
+    },
+    {
+      "chapter": 1,
+      "original": [
+        11
+      ],
+      "selected": [
+        2
+      ]
+    },
+    {
+      "chapter": 1,
+      "original": [
+        13
+      ],
+      "selected": [
+        3
+      ]
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        14,
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        2,
+        3,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        4,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        4,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        17
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        8
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        12,
+        13
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 3,
+      "original": [
+        9,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        13
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        3,
+        4,
+        6,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        6,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        4,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        6,
+        13
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5,
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        8,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        3,
+        6,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        8
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        4,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        3,
+        10,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        4,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        6,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        4,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        10,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        10,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        4,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        7,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        5,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        14,
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 4,
+      "original": [
+        2,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        7,
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        3,
+        9,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        3,
+        6,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        3,
+        4,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        13,
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        13
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        13,
+        14
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        6
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        6,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        6,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        18
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        18
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        18
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        18
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        10,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        7,
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3,
+        7
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15,
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        16
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        8,
+        9
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        6,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        9,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        15
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        5,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        9,
+        10
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        18
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12,
+        20
+      ],
+      "selected": [
+        4
+      ]
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        5,
+        12,
+        13
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11,
+        12
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 5,
+      "original": [
+        4,
+        11
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 6,
+      "original": [
+        2,
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        4
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2,
+        3,
+        5
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        3
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2
+      ],
+      "selected": []
+    },
+    {
+      "chapter": 7,
+      "original": [
+        2,
+        3
+      ],
+      "selected": []
+    }
+  ],
+  "integration_changes": [
+    "Map the four retained original external sources to global1–4; remove other chapter-local numeric markers under editor-citation-consolidation.json",
+    "Map the parent-verified Smith attribution to global5 and append Selected References/Further reading",
+    "Make Contents wording match Appendix A heading",
+    "Remove five instances of unnecessary adverb genuinely while preserving surrounding propositions",
+    "Omit publisher cities not needed by the bibliography",
+    "Remove one glossary closing reference to the former chapter source apparatus; definitions now point to Chapters1–6 directly.",
+    "Root independent opening read: replace two third-person author-account sentences with restrained impersonal adaptation of selected Alberta practices; retain the 1970s–2010s scope and avoid first-hand or uniform-industry claims.",
+    "Independent completion review: replace §5.8 required fresh-worker rerun residue with correction and independent re-examination, preserving earlier findings and the warning against silent managerial record repair.",
+    "Independent cross-slice checks: replace two undefined owning-run references with current undertaking; map Figure1.1 A/B/D to Appendix D-1/D-2/D-3 and preserve completed C as inherited history/recovery work; change Figure4.6 rejection requirement to requirement to refuse stale application.",
+    "Root final reading-route request: add one restrained link from Reading the manual to the companion Chirality Agent User Manual, without a visible version label or operating detail."
+  ],
+  "unnecessary_adverb_removals": 4,
+  "opening_status": "Final child return confirms the assembled opening hash; no subsequent opening text changes."
+}

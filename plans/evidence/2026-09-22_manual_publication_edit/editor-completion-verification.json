@@ -1,0 +1,27 @@
+{
+  "source_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+  "output_sha256": "0f34f9a0d3e604befce9e2eceb5923faa02fbe3718e5bce381c18b9a414561b4",
+  "reference_map_sha256": "574549449dedaf9249001e5c2935ebd3ff543fcef062b89cd6d6654f93d491b1",
+  "source_lines": [
+    2791,
+    4014
+  ],
+  "output_lines": 1117,
+  "output_words": 22525,
+  "main_text_words": 20702,
+  "appendix_words": 1823,
+  "original_main_text_words": 21580,
+  "unchanged_main_paragraphs_ignoring_citations": 377,
+  "original_main_paragraphs": 454,
+  "words_in_unchanged_main_paragraphs": 15858,
+  "anchors": 30,
+  "internal_links_checked": [
+    "h_worked_undertaking",
+    "ch_6"
+  ],
+  "code_blocks": 8,
+  "maximum_codeblock_line_length": 70,
+  "forbidden_publication_remnants": {},
+  "citation_numbers_valid": true,
+  "dropped_private_source_citations_absent": true
+}
