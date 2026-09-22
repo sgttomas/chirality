@@ -1,0 +1,74 @@
+{
+  "basis_commit": "379df923927d157be3ebb51d8a1dcf783d970112",
+  "purpose": "Origins actually consulted by parent; other role bodies deliberately read for coordination, not ordinary selective context. Root DIRECTIVE/CONTRACT read in relevant excerpts. Additional packet and decision citations remain in project records.",
+  "sources": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "d151dad92a074abebf8e6225c92c4c6e88fd586f2283377b50b5051eff39be7b"
+    },
+    {
+      "origin": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "origin": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "origin": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "origin": "workflows/index.json",
+      "sha256": "4c7c580baad92599efae0ef7b4f8c27c61e0665b68cf2b27d3b9717ada2d4b7b"
+    },
+    {
+      "origin": "workflows/reconciliation/WORKFLOW.md",
+      "sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380"
+    },
+    {
+      "origin": "workflows/reconciliation/resources/contract.md",
+      "sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb"
+    },
+    {
+      "origin": "workflows/reconciliation/resources/method.md",
+      "sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16"
+    },
+    {
+      "origin": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139"
+    },
+    {
+      "origin": "docs/DIRECTIVE.md",
+      "sha256": "5346d950c4981096f92f2a34d942889e06982c582542e47f72449c1d2bbe5c61"
+    },
+    {
+      "origin": "docs/CONTRACT.md",
+      "sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd"
+    },
+    {
+      "origin": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716"
+    },
+    {
+      "origin": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "5d65cce235a8d6f656a858e7f3836e1cbd4229a9567f215c3448353d23ae405c"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "eec1b9accc5dc4485fd0aab423678bed4c4c98396dc88b9089703965eb3d2005"
+    },
+    {
+      "origin": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "9e37a5edfe1f5926431ec86818903f797fbf10236a1f4ab1cfea8da7a974d5ab"
+    },
+    {
+      "origin": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "f327d5c6fe4d964a15786813f6de72170bc5e94471753846f461f622281e5f94"
+    }
+  ]
+}

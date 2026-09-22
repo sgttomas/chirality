@@ -35,46 +35,25 @@ evidence remain dated compatibility history and are not deleted.
 
 ### Current responsibility
 
-`DEL-02-05 API Key UI and Runtime Feedback` (UX_UI_SLICE, applied decomposition row L311):
+Provide the App account and runtime-feedback experience, selected-project attachment controls, typed errors, and retry-preserving failure state. Codex owns credentials and the account login/logout methods. Chirality presents its own sign-in state without reading, copying, or relaying credentials; its sign-out must leave other Codex clients unchanged.
 
-Provide API key entry/status UI, secure-storage feedback, selected-working-root
-attachment controls, typed runtime errors, and retry-preserving failure states;
-serve as the explicit App account/consent UX carrier by consuming
-`HostedEngineConsentPort`, presenting one app-wide account and explaining
-per-folder consent over the root-private app-owned `CODEX_HOME`, presenting
-login/logout/account and consent/revocation state, distinguishing `missing`,
-`storageUnavailable`, `decryptFailed`, and `available`, and offering the three
-per-root command-network postures: no command network by default, ask per
-destination with host/protocol context and the queued-request caveat plus
-explicit-user-only `acceptForSession`, or labelled command network on through
-`network_access = true`. Agent 0/1/2 role entry remains available for Codex
-sessions; Agent 2/TASK is labelled `role not mechanically enforced` when G-ROLE
-fails, and the product posture is labelled `Opt-in Preview`.
+The effective Codex home shares the user configuration and resources by reference while keeping authentication and model-cache state private to Chirality. The user selects approval and sandbox policy for each project/turn. Retired hosted admission, root-private account consent, brokerage generations, model residency, and external local-model-server status are not current live-login prerequisites.
 
-Applied row notes: Explicit App account/consent UX carrier; Root retains
-account/consent semantics. No ambient `~/.codex` read or project-truth secret
-persistence. DEL-09-06 retains server-side attachment, network, key,
-credential-IPC, and renderer security validation. Live claims remain gated by
-accepted implementation, supplier qualification, and live evidence under the
-accepted `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis, plus G3,
-G-CSP, and G4 where applicable. Presenting
-the account as app-wide (SCA-APP-010 SR-19) does not change the port's per-root
-login semantics; the root-private login home is Root-owned and the shared-login
-amendment routes through Root DEL-02-09 (OI-008).
+The account row and right-panel Settings retain their accepted presentation ownership. Labels and current state must be truthful, with unavailable or fixture state distinguished from verified live login. DEL-09-06 retains attachment, credential-IPC, renderer, and other surviving security verification. Broader role and exact account-indicator conflicts are accounted separately; this repair does not silently decide those rows.
 
-Applied row outputs: API key and account settings panel; account row and
-popover; Settings view account and folder groups; `HostedEngineConsentPort` UI
-adapter; per-root login and command-network consent controls; attachment picker
-and preview chips; typed storage/runtime error display; consent/revocation and
-retry-state tests.
+Verification hooks: the production S-8 account check in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/NATIVE_CHECKLIST.md` and `projects/chirality-runtime/tests/app-owned-composition.test.ts`. Native outcomes require their actual recorded evidence.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### Current acceptance obligations
 
-1. One app-wide account is presented; consent, network posture, and role are explained and controlled per folder over the root-private app-owned `CODEX_HOME`; `K-CONSENT-1` and the port's per-root login semantics are unchanged.
-2. The account row shows only the local model server status; no OpenAI status indicator and no API status indicator is rendered, now or after DEL-02-05-V3-03 (Q7).
-3. The Settings view hosts the split app-wide and per-folder account groups plus the runtime, key, and appearance panels with port behaviour unchanged; the fake port carries UI-only fixtures while implementation, supplier qualification, and live readiness evidence remain unmet (DEL-02-05-V3-03).
-4. The root-private login home and any shared-login contract remain Root DEL-02-09's; the amendment is routed by the SCA-APP-010 Root notice (Q8), the `HOST-P1`/`POLICY-R1`/`ACCOUNT-WIRE-V1` contract basis is accepted, and live claims stay gated on implementation, supplier qualification, live evidence, and G3/G-CSP/G4 where applicable.
-5. Agent 0/1/2 role entry remains available for Codex sessions with the exact `role not mechanically enforced` and `Opt-in Preview` posture labels.
+1. Present one app-wide account using Codex-held credentials and Codex's login/logout flow. The effective home shares user configuration/resources by reference while keeping authentication private to Chirality. Per-root hosted consent and unchanged root-private login semantics are superseded by D-APP-127; user-selected project/turn permission policy remains explicit.
+2. The inherited Q7 account-row requirement (local-model-server status only, no OpenAI/API status indicator) remains a separately identified presentation conflict against the later shell/account direction. Its resolution must cite the actual owner direction; it is not silently decided by this custody repair.
+3. The account row and right-panel Settings retain their accepted presentation loci. Account/runtime feedback and appearance controls must be truthful; fixture/unavailable state does not establish live readiness. Legacy key-storage panels, per-root account groups, supplier qualification and G3/G-CSP/G4 are not current live-login prerequisites under D-APP-127. Surviving attachment, renderer, credential separation and secret-protection guarantees remain required.
+4. Live-login evidence follows the production S-8 check and the affected-check rule after invalidating source, configuration or packaging changes. The retired Root DEL-02-09 shared-login admission is not an awaited dependency. This wording does not supply a missing native result.
+5. The inherited Agent 0/1/2 entry and exact `role not mechanically enforced` / `Opt-in Preview` labels remain separately tracked for source-faithful reconciliation with the current four-role instructions. Current instruction applicability does not certify acceptance of a new authority-corpus candidate or waive role/write-scope accountability.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131. Verification hook: production S-8 in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/NATIVE_CHECKLIST.md`; unresolved Q7/role and native-result keys remain in the R5 accounting.
 
 ### Seating and rulings
 

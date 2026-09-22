@@ -15,3 +15,5 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-100, UPD-101, UPD-102: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1 production/record locations and repointed operative dependency citations to consolidated CLM anchors; historical extraction prose remains unchanged. No lifecycle transition occurred.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

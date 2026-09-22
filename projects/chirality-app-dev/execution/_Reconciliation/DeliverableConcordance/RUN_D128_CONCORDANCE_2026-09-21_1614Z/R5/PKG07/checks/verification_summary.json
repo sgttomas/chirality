@@ -1,0 +1,46 @@
+{
+  "SourceBasis": "379df923927d157be3ebb51d8a1dcf783d970112",
+  "SourceR3SHA256": "a6f6cdda685173cac3aa8ab75d8dd823143feadbde2c44a755571337936dd852",
+  "ChangedFiles": 6,
+  "ChangedBlocks": 13,
+  "AffectedR3Keys": 13,
+  "UnchangedComplement": 322,
+  "TotalPackageR3Keys": 335,
+  "ExactKeyPartition": true,
+  "SourceBasisPreimageEquality": true,
+  "InverseReconstruction": true,
+  "ExplicitFileReferenceChecks": 33,
+  "ProductTestsRun": false,
+  "Validators": [
+    {
+      "DeliverableID": "DEL-07-01",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-07-02",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-07-03",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-07-04",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-07-05",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-07-06",
+      "ExitCode": 0,
+      "Stderr": ""
+    }
+  ]
+}

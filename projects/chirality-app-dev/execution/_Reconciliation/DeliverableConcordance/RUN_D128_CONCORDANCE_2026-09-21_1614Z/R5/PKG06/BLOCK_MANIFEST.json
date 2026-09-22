@@ -1,0 +1,175 @@
+[
+  {
+    "DeliverableID": "DEL-06-01",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "5c93cc0e3388233ab73077eb2dd0d86dd98d768a85b5aa5911bf5d755c6a6f8c",
+    "AfterSHA256": "9f74dc9a1243357c02e708a857d3b39ba9e01cf2e8b03d9b210b1d93a3eba7fa",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-01#CLM-003"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-01",
+    "ClaimID": "CLM-005",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md",
+    "StartAnchor": "### CLM-005 \u2014 Construction",
+    "EndAnchor": "### CLM-006 \u2014 References",
+    "BeforeSHA256": "36de7791e72d4103343b6f712b3edda023d37f48369a74bca22d3a6978347546",
+    "AfterSHA256": "4088638c535fca66192ff9d756defc97a4c8bd67639bfeb4af640afe63fd63f1",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-005.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-005.after.md",
+    "SourceKeys": [
+      "DEL-06-01#CLM-005"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-02",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "fcfbb2d1d05b09d9da8ab14181439ddc3e16058d1c89d94b4d7b9622a9a2c4fd",
+    "AfterSHA256": "1bc18baa1a488b89c3fefd086e8839288caaa10973793443a3701fff05f4e2b5",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-02#CLM-003"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-02",
+    "ClaimID": "CLM-004",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+    "StartAnchor": "### CLM-004 \u2014 Conditions",
+    "EndAnchor": "### CLM-005 \u2014 Construction",
+    "BeforeSHA256": "3d6e58f8a9327cd32ae0f4ad3bd22b64176e8fedc8f85c26ef77c33e7d3ad237",
+    "AfterSHA256": "ab0108d00fcecd1304b2bb3ada89900640ae98edfda721a675bd357ea59d7792",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.after.md",
+    "SourceKeys": [
+      "DEL-06-02#CLM-004.1",
+      "DEL-06-02#CLM-004.2"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-03",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "7a949f1569b1343019b7211b0525be6521ac9f6992c9d796385087a253fb6411",
+    "AfterSHA256": "1ff1c219547840667ec236a5e645b3b47396354d4e4bd7a61be223c55e5054b5",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-03#CLM-003"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-03",
+    "ClaimID": "CLM-005",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md",
+    "StartAnchor": "### CLM-005 \u2014 Construction",
+    "EndAnchor": "### CLM-006 \u2014 Pass 3 Notes",
+    "BeforeSHA256": "3409f47832e15b5ac0e0f4dc065d1b23cc6be2102b509711b6eb449dd86337f3",
+    "AfterSHA256": "de2f6e14dd82f4624508edaaa701cc4684b51e2c0637e237adb22a4e6a005f94",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-005.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-005.after.md",
+    "SourceKeys": [
+      "DEL-06-03#CLM-005"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-04",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "9b5cae8020836829d99cd3964452768a8241ac45f7b19b78796bb2204de3ad4e",
+    "AfterSHA256": "fdb58b4b7a95dc21a08d5071dfbb7e43fdb6c99e05b52f1dbe5f6758793586bd",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-04#CLM-003"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-04",
+    "ClaimID": "CLM-005",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md",
+    "StartAnchor": "### CLM-005 \u2014 Construction",
+    "EndAnchor": "### CLM-006 \u2014 References",
+    "BeforeSHA256": "a2d8b5ccc3aae0ba43244ac705b87417904974a31e1832225693ebc4b28a9192",
+    "AfterSHA256": "f14a75f9f7ce51a4bab10f29241c08d6cf39b521b756a9a219cfe1a3e1a3e9e1",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-005.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-005.after.md",
+    "SourceKeys": [
+      "DEL-06-04#CLM-005"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-05",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "3da99376661c41d033a27e9d18144657a729b6d883490222f4df306320ee8d17",
+    "AfterSHA256": "cdaf4142b7234b0a221cb88aeeaccac422ecd512e08a5396b8d319c5d67dcba0",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-05#CLM-003"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-05",
+    "ClaimID": "CLM-005",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md",
+    "StartAnchor": "### CLM-005 \u2014 Construction",
+    "EndAnchor": "### CLM-006 \u2014 References",
+    "BeforeSHA256": "f5489fb3bbbf6e8cdeb02fb2c2d2e7120e44460cfc3d181266e464cf2e1f92c1",
+    "AfterSHA256": "84f4d5d7d0eab2be52645f42a4824a883c3e74f16e69129e10d0c7178d4c7293",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-005.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-005.after.md",
+    "SourceKeys": [
+      "DEL-06-05#CLM-005"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-06",
+    "ClaimID": "CLM-003",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md",
+    "StartAnchor": "### CLM-003 \u2014 Attributes",
+    "EndAnchor": "### CLM-004 \u2014 Conditions",
+    "BeforeSHA256": "a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc",
+    "AfterSHA256": "d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md",
+    "SourceKeys": [
+      "DEL-06-06#CLM-003.1",
+      "DEL-06-06#CLM-003.2",
+      "DEL-06-06#CLM-003.3",
+      "DEL-06-06#CLM-003.4",
+      "DEL-06-06#CLM-003.5"
+    ]
+  },
+  {
+    "DeliverableID": "DEL-06-06",
+    "ClaimID": "CLM-005",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md",
+    "StartAnchor": "### CLM-005 \u2014 Construction",
+    "EndAnchor": "### CLM-006 \u2014 Pass 3 Disposition",
+    "BeforeSHA256": "d02f7e0e05517d04fad22b21aedc75c1a5c4ae737988c8c2872ac8f59af2684f",
+    "AfterSHA256": "151a92a45b2092b14abdf7cf2a54e7b46d6e5969832af9b0945b5004e3dacecf",
+    "BeforeSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-005.before.md",
+    "AfterSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-005.after.md",
+    "SourceKeys": [
+      "DEL-06-06#CLM-005"
+    ]
+  }
+]

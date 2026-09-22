@@ -1,20 +1,23 @@
 # Status: DEL-05-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-05
+**Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
 - Full tool-result audit-policy packet prepared under D-APP-102 as
   `execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md`.
   Implementation awaits the later owner ruling on D-APP-116 (gated: D-APP-116);
   the proposed Root-owned storage/cleanup contract and App scope alignment
   remain separately governed prerequisites, not authority created by this packet.
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
+
+- **DEL-05-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 18 implementation or evidence, 15 record repair, 4 reserved authority, 11 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-05-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
 
 ## History
+- 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-05 - D-APP-102 packet preparation completed as proposal D-APP-116; implementation remains owner-gated. No lifecycle or Checking Approval SHA change.
 - 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; no scope change).

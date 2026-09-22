@@ -1,0 +1,9 @@
+- **DEL-09-06-V3-03** (`NOT_SELECTABLE_UNTIL: DEL-05-03-V3-01 names the new field families`) — evidence scanning for the new field families (Codex account, approval, thread, policy and tool-activity fields) with synthetic secrets absent from every sink. The credential-transition drill is retired with DEL-09-05-V3-04 (D-APP-127).
+  Trace: OUT-001, AC-001, VER-001; DEL-09-06-REQ-002/003/015.
+  Plan: WP-09/WP-10; AT-051/AT-057 preparation portions; AT-025 App evidence-scan portion; G-KEY release lane excluded. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: DEL-04-05-V3-01 (landed); DEL-05-03-V3-01 for field families.
+  Write locus: Security evidence under `frontend/**` and deliverable-local state.
+  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
+  Return: Scan evidence with synthetic secrets absent from every sink; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Removed when: the scan evidence lands.
+

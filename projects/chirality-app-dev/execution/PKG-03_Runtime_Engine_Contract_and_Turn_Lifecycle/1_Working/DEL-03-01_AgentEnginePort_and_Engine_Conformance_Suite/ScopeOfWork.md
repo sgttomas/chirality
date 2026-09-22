@@ -76,20 +76,15 @@ This Scope of Work defines `DEL-03-01` in service of project scope [SOW-037] and
 > | Source-state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived runtime details are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
 >
 
-### CLM-005 — Construction
+### CLM-005 — Engine boundary and conformance
 
-> ##### Construction
->
-> | Construct | Target / Shape | Source / Status |
-> |---|---|---|
-> | Runtime contract module | `agent-engine-port.ts` or equivalent product-owned runtime contract. | `execution/_Decomposition/...v3_2.md` DEL-03-01; `docs/PLAN.md` R1; `docs/PRD.md` R1 |
-> | TypeScript interface | `AgentEnginePort` with `startTurn(input: AgentEngineRunInput)` and optional `interrupt`. | `docs/SPEC.md` section 10.2; D-APP-40 |
-> | Turn input type | Must include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` section 10.2 |
-> | Conformance suite | `engine-conformance.ts` or equivalent tests for stub and SDK-backed adapters. | `docs/PLAN.md` R1; `docs/PRD.md` section 12.5 |
-> | Stub adapter | Deterministic adapter retained for tests. | `docs/SPEC.md` section 10.3 |
-> | SDK-backed adapter | Provider implementation behind the product-owned contract. | `docs/SPEC.md` section 10.3 |
-> | Exact final source path | ACCEPTED PLACEMENT (2026-07-03): D-APP-46 extraction accepted `frontend/packages/harness-contract/src/agent-engine-port.ts` as the package-owned source. The original app-dev path `frontend/src/lib/harness/agent-engine-port.ts` remains as a back-compat shim that re-exports `@chirality/harness-contract/agent-engine-port`. | D-APP-46 ruling; `frontend/packages/harness-contract/src/agent-engine-port.ts`; `frontend/src/lib/harness/agent-engine-port.ts` |
->
+The App must consume the Runtime-owned engine boundary for the sole qualified MVP engine, Codex. Turn inputs preserve the active session, registered project root, selected role, permission policy, resolved runtime options, content and attachment references, and cancellation semantics required by the accepted contract. Contract-module filenames, interface signatures and former shim paths are implementation evidence, rather than an additional App implementation mandate.
+
+The surviving request/session correctness obligations must be mapped to current verification, including D-GOV-43 S-1–S-8 where applicable. D-GOV-43 retires vanished-purpose gates and avoids duplicate checks for the same condition; the legacy suite as a whole is not a new blanket admission gate. Deterministic stub and retained SDK tests establish only their own subjects. P-08 remains a bounded coverage-mapping residual: identify genuinely uncovered live-Codex obligations for accepted turns, terminal outcomes, capabilities, applicable tool handling and secret protection; do not declare equivalence without that mapping.
+
+Verification hooks: `projects/chirality-runtime/packages/contracts/src/harness/engine-conformance.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/lib/engine-conformance.test.ts`. The last is retained compatibility/test evidence and is not a live-Codex qualification witness.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### CLM-006 — References
 

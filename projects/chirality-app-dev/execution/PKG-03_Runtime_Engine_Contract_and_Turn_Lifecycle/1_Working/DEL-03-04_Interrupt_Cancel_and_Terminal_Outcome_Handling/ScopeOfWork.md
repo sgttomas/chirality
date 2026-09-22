@@ -74,18 +74,15 @@ This Scope of Work defines `DEL-03-04` in service of project scope [SOW-012, SOW
 > | Secret-bearing error or payload | Runtime events, logs, tool artifacts, and provider errors must redact secrets and avoid storing API keys. | `docs/CONTRACT.md` Section 1.5, K-EVENT-6; `docs/SPEC.md` Section 9.2 |
 >
 
-### CLM-005 — Construction
+### CLM-005 — Interrupt and durable terminal evidence
 
-> ##### Construction
->
-> | Component / Artifact | Construction Target | Status |
-> |---|---|---|
-> | Interrupt tests | Cover active-turn interrupt route, provider abort propagation, SSE `process:exit`, lock release, and durable terminal outcome. | ASSUMPTION: exact test file path TBD |
-> | Cancel cleanup tests | Cover client disconnect and cancellation-signal cleanup, lock release, and durable cancellation record once event log exists. | ASSUMPTION: exact test file path TBD |
-> | Terminal event mapper | Map completion, failure, cancellation, and interruption handling into browser `UIEvent`s and persisted `HarnessEvent`s without SDK-shaped public semantics; explicit interruption uses `turn.interrupted`. | `frontend/src/lib/harness/claude-agent-sdk-manager.ts`; `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`; D-APP-40 |
-> | Lock cleanup verification | Confirm interrupt, disconnect, failure, and cancellation all release session active-turn state. | Supported by DEL-03-04 scope and PRD FR-018/FR-019/FR-022 |
-> | Event log verification | Confirm terminal records append as newline-delimited JSONL with unique event IDs and no secrets. | `docs/SPEC.md` Section 9.2 |
->
+Explicit user interruption must reach the active Runtime turn, release turn ownership on termination, and preserve a truthful terminal outcome. Accepted input and attachment references must remain recoverable after failure. A disconnected renderer stops receiving frames; disconnection by itself must not cancel the turn or release active-turn ownership. Reattachment must expose the continuing or completed turn consistently.
+
+Malformed-tail tolerance, unique event identity, append-only records, and the surviving secret-protection requirement remain verification obligations. No compatibility mapper or legacy SDK test substitutes for evidence on the live Codex path; the redaction gap is retained under P-12.
+
+Verification hooks: `projects/chirality-runtime/tests/app-owned-composition.test.ts`, `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/daemon.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### CLM-006 — References
 

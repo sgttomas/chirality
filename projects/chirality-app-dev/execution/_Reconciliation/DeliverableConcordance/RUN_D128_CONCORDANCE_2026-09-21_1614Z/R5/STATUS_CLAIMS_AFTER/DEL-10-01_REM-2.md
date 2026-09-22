@@ -1,0 +1,2 @@
+- Advance the domain engine beyond the currently authorized staged, read-only boundary only through a new owner ruling that names the next tier-0 capability and its verification evidence. Preserve the F-APP-3 stepwise lane, keep apply-class exposure excluded unless separately ruled, and coordinate the bounded contracts in DEL-10-02..DEL-10-05 (governed by D-APP-50 and D-APP-53; gated: new owner ruling).
+

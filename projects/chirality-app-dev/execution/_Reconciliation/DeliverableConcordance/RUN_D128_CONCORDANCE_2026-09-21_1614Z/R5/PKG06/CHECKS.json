@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-r5-pkg06-check/v1",
+  "sourceBasis": "379df923927d157be3ebb51d8a1dcf783d970112",
+  "changedBlocks": 12,
+  "changedKeys": 17,
+  "unchangedKeys": 341,
+  "allOriginalPackageKeys": 358,
+  "sourceKeyPartition": "PASS",
+  "originalClaimIndexIdentitySequence": "PASS",
+  "wholeFileInverse": "PASS",
+  "reservedP01BlocksByteIdentical": "PASS",
+  "explicit116to119HeldKeysChanged": 0,
+  "productTests": "NOT_RUN_DOCUMENT_ONLY",
+  "appHold": "ALLOW"
+}

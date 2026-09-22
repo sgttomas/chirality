@@ -11,9 +11,15 @@ package_objective_refs: [OBJ-008]
 
 ## Current Codex MVP conformity
 
-This carrier adopts the owner-directed current-release basis in App CONTRACT/SPEC/PRD: Codex is the sole MVP engine. Historical Anthropic/Claude/Pi-specific descriptions below are compatibility history and do not require enabling or qualifying an unused engine. Accepted Codex supplier/account identity-currentness, credential custody, per-root consent, containment and exact K-NET-1 endpoint/command-network safeguards remain required. Provider service traffic and renderer egress are separate surfaces; admitting a supplier endpoint does not authorize renderer or tool traffic. Existing secret protection and attachment controls remain mandatory. No supplier/native/publication acceptance is created here.
+Codex is the sole MVP engine. Under D-GOV-43 topology A2 and D-APP-127, the App owns its Runtime service child and Runtime owns the stock Codex App Server child. Hosted supplier admission, per-root account consent, the LaunchAgent, packaged-basis hashing and supplier-containment evidence are retired subjects; they are not present-day qualification gates.
 
-Artifact version is the explicitly recorded candidate package.json/package-lock.json version, checked against actual App Info.plist and `Chirality-<candidate-version>-arm64.dmg`. Staged and mounted package inspection must establish the actual admitted Codex supplier/native resource layout and executable behavior; old Claude scripted proofs do not establish this. Existing CI qualification stop remains until accepted current inputs exist.
+The App must preserve Codex-held credential custody and separation from other Codex clients, user-selected approval and sandbox policy, truthful event/approval presentation, and applicable renderer, attachment, secret-protection and package-executability controls. Historical Anthropic/Claude/Pi descriptions remain compatibility evidence and do not qualify the live Codex path.
+
+Artifact identity must bind the selected candidate package version, App Info.plist and actual `Chirality-<candidate-version>-arm64.dmg`. Packaged executable behavior and instruction-root integrity require actual package evidence. Signing, notarization, minimum-OS and architecture inspection results must be recorded against that candidate; no result is inferred from a missing record.
+
+Verification hooks: `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md` and `NATIVE_CHECKLIST.md` in the same folder, plus `frontend/package.json` registered packaging/security commands. These procedures supersede the retired Stage 9–13 spine; repeat affected checks when source, configuration or packaging changes invalidate earlier evidence. No publication or product acceptance follows from this text repair.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ## Purpose and Objective Traceability
 

@@ -1,0 +1,71 @@
+{
+  "verdict": "PASS",
+  "changed_files": 5,
+  "changed_blocks": 12,
+  "unchanged_R3_claims": 268,
+  "coverage": "280/280 exactly once",
+  "negative_controls": "missing-key and duplicate-key rejected",
+  "outside_block_preservation": "5/5 inverse reconstruction exact",
+  "changed_claim_reextraction": [
+    {
+      "ClaimKey": "DEL-04-01#CLM-003",
+      "AfterBlockSHA256": "2d471d51c4664aeeabc955d12376e1bd261d611d9b8c6158cc5cb14da2180924",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-01#CLM-009",
+      "AfterBlockSHA256": "c517197f09d132d53aed04fc63c616e953dc071cf411ce005056568d2a247058",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-02#CLM-009",
+      "AfterBlockSHA256": "de5a1a0c966788d10c16e912260b36846d07f858f63016b483c76b023da34180",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-02#CLM-023",
+      "AfterBlockSHA256": "914b4076aea44b05a1295cfaaf5ae73577e8971a12a81e1d1d8a27bbdc87febe",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-03#CLM-003",
+      "AfterBlockSHA256": "2d8205259be49a771aacb317ed6b626ce845d77b4bdc927911354c78928b7917",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-03#CLM-008",
+      "AfterBlockSHA256": "8202e7e9215c034351811acafa092cf6a1ef79fe0b088241a0c0c937f2404db5",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-04#CLM-005",
+      "AfterBlockSHA256": "ad03cd10a4778f3a4fe725f4f53186378eabfae60f6b4baf15ab686d4250806f",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-04#CLM-023",
+      "AfterBlockSHA256": "f23a04689e840f349af0a1dbfd05a442184a3c3a36ce972133d1ae4cd9c0e8a4",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-05#CLM-003",
+      "AfterBlockSHA256": "6cb8ddc4e1efb1838b09b6e36653479fe0ef80034e42cfa0dd18563c277c81f9",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-05#CLM-005",
+      "AfterBlockSHA256": "17e219e4602c570c570f2ab36060893393135cecdacd02328c4ac5b4d257136e",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-05#CLM-008",
+      "AfterBlockSHA256": "e5fe5eaf8a34908c763ae5643100a393fcfe83e9f28ec96446d615af07b45760",
+      "Result": "PASS"
+    },
+    {
+      "ClaimKey": "DEL-04-05#CLM-024",
+      "AfterBlockSHA256": "9f56659b5d46da4f99e711d7dbb3b007a58dc94a871df171d97c457ff9ed5629",
+      "Result": "PASS"
+    }
+  ]
+}

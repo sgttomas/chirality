@@ -12,3 +12,5 @@
 - 2026-09-05 - DEL-07-01-V3-01 selection evaluated but implementation held: named daemon resolver covers packaged boot only, while the common boot caller in `frontend/electron/main.ts` lies outside listed loci. Exact candidate patch/config at `execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/boundary-proposal/`; owner clarification remains unanswered. See `_run_records/TASK_RUN_2026-09-05_APP_LOOP_SHELL_ORGANISATION_BOUNDARY.md`. This is blocker evidence, not new authority; no product or full-protection claim.
 
 - 2026-09-05 - Current boot-scope blocker routed to D-APP-119 proposal `execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md`. Proposed register row returned to parent; no actual ruling or implementation. Accepted item unchanged.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

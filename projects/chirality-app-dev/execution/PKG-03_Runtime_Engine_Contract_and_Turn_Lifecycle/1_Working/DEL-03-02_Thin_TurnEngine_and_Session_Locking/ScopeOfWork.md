@@ -28,24 +28,21 @@ evidence remain dated compatibility history and are not deleted.
 
 ### Current responsibility
 
-`DEL-03-02 Thin TurnEngine and Session Locking` (BACKEND_FEATURE_SLICE, applied decomposition row L318):
+App HTTP and Desktop surfaces are clients of the application-owned Runtime service. They bind registered project identity/root, role, permission and delegation policy, and runtime options; Runtime owns the session lifecycle and the one-active-turn invariant. The App must not construct a second runtime.
 
-Keep App `/api/harness/*` and Desktop surfaces as daemon clients, bind
-project/persona/mode/delegation-policy/options requests, and verify daemon-owned
-session lifecycle and one-active-turn behavior.
+The delegation-policy purpose survives, while the retired Root DEL-02-11 storage owner does not. D-APP-127 retires the former Root owner; it does not settle the replacement storage or interface allocation for the surviving policy. Binding/default behavior and that ownership follow-through remain open rather than being inferred from the existence of an App thread index or upstream agent configuration.
 
-Applied row notes: App backend-integration slice; generic TurnEngine and lock
-ownership remain Root-owned; the stored delegation-policy field is Root-owned
-(SOW-083, OI-008).
+Verification hooks: `frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts` and `projects/chirality-runtime/tests/turn-hardening.test.ts`.
 
-Applied row outputs: Daemon-client turn proxy; App session integration tests;
-daemon locking/lifecycle conformance evidence.
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### Current acceptance obligations
 
-1. App `/api/harness/*` and Desktop surfaces remain daemon clients; the daemon owns runtime session state.
-2. Boot and session-creation requests bind registered project identity/root, persona, mode, delegation policy, and options; the boot fingerprint reflects the real inputs.
-3. The delegation policy defaults to `none`, narrows managed delegation only, and adds no delegation class; the stored session-record field is Root DEL-02-11's (OI-008).
+1. App HTTP and Desktop surfaces remain clients of the application-owned Runtime service; Runtime owns session execution state and the active-turn invariant.
+2. Boot and session-creation requests bind registered project identity/root, role, mode, delegation policy and options; the boot fingerprint reflects the real inputs.
+3. The accepted delegation policy defaults to `none`, narrows managed delegation only, and adds no delegation class. The retired Root DEL-02-11 is no longer an acceptance dependency. Replacement storage/interface ownership and verification of the surviving policy obligation remain explicit residuals; this clause assigns no new storage field.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### Seating and rulings
 
@@ -114,30 +111,15 @@ dependency-acceptance, product, or release act is implied.
 > | Implementation sequencing | R1 includes thin `TurnEngine`, engine contract, session event log, SDK message mapper, prompt composer, settings isolation, and run logger before tool expansion. | `docs/PLAN.md` R1; `docs/PRD.md` R1 |
 >
 
-### CLM-005 — Construction
+### CLM-005 — Runtime lifecycle and App transport boundary
 
-> ##### Construction
->
-> | Artifact / Surface | Expected Construction Detail | Status |
-> |---|---|---|
-> | `turn-engine.ts` | New or equivalent runtime service exposing `TurnEngine.runTurn()` outside HTTP and invoking `AgentEnginePort` / SDK-backed adapter through the product-owned boundary. | Path proposed by PRD/PLAN as `frontend/src/lib/harness/turn-engine.ts`; exact local code path TBD until implementation starts. |
-> | Session lock | Active-turn lock obtained before forwarding to `TurnEngine`, released on completion, failure, cancellation, or route cleanup. | Source-supported behavior; current route uses an in-module `Set<string>` named `activeSessionTurns` in `frontend/src/app/api/harness/turn/route.ts`; this is current implementation context, not a final storage decision. |
-> | Boot/session binding | Turn input carries active session and previously bound `projectRoot`, persona, mode, and resolved runtime options. | Source-supported behavior; exact session manager API TBD. |
-> | SSE adapter | Route writes existing browser-facing event names and does not expose SDK messages as browser contract. | Source-supported behavior; exact adapter function names TBD. |
-> | Accepted-turn event | `turn.accepted` is persisted before SDK/model execution begins. | Source-supported behavior; exact event-writer API TBD. |
-> | Terminal event handling | Terminal success, failure, cancellation, and explicit user-interruption outcomes are persisted; explicit user interruption uses `turn.interrupted` per D-APP-40. | Source-supported behavior; implementation-specific cleanup coverage remains coordinated with DEL-03-04. |
-> | Lock cleanup tests | Tests cover concurrent turn rejection and lock release on normal completion, error, and cancellation cleanup. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
-> | Session lifecycle tests | Tests cover session binding, boot metadata forwarding, and stable route/SSE behavior through `TurnEngine`. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
->
-> Current implementation pointers observed during Pass 3:
->
-> - Route adapter and active-turn guard: `frontend/src/app/api/harness/turn/route.ts`.
-> - Interrupt route: `frontend/src/app/api/harness/interrupt/route.ts`.
-> - Stub active-turn manager: `frontend/src/lib/harness/agent-sdk-manager.ts`.
-> - Anthropic active-turn manager: `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`.
-> - Runtime interface types: `frontend/src/lib/harness/types.ts`.
-> - Current route/interrupt tests: `frontend/src/__tests__/api/harness/routes.test.ts`.
->
+The App delegates execution to its application-owned Runtime service. Runtime owns turn admission and the one-active-turn-per-session invariant, releases active-turn ownership after a terminal outcome, and preserves accepted input and terminal evidence. HTTP and Desktop surfaces validate and transport requests and stream results; they do not create an independent runtime or acquire an App-local substitute lock.
+
+Requests bind registered project identity/root, role, permission and delegation policy, runtime options, content and attachment references. Interrupt and cancellation handling remains coordinated with DEL-03-04. A renderer disconnect unsubscribes from the stream and must not interrupt the running turn. Public event handling preserves Codex notifications under the accepted protocol rather than promising the former closed SDK event vocabulary.
+
+Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. Remaining binding and delegation-policy findings retain their own gates in `_STATUS.md`; the wording does not certify them complete.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### CLM-006 — References
 

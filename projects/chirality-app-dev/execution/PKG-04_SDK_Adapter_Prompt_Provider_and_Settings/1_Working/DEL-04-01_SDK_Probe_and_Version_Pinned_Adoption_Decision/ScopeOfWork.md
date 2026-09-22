@@ -44,17 +44,20 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Runtime direction | Claude Agent SDK is the preferred runtime spine only if empirical verification and conformance tests preserve Chirality-owned governance. | `docs/SPEC.md` Section 12.1; `docs/DIRECTIVE.md` Section 2.8 |
-> | Product boundary | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`, browser `UIEvent`s, persisted `HarnessEvent`s, session canonicality, permission semantics, working-root/instruction-root policy, prompt/persona composition, redaction, provenance, and fallback criteria. | `docs/DIRECTIVE.md` Section 2.8; `docs/SPEC.md` Section 10 |
-> | Probe purpose | Validate SDK assumptions before R1 implementation details harden and make adoption a replaceable engine choice, not product identity. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
-> | Required probe topics | Package version, `query()` message sequence, `settingSources`, permission mapping, `canUseTool`, hooks, in-process MCP, agents, resume, `SessionStore`, `CLAUDE_CONFIG_DIR`, interrupt behavior, Electron packaging, API key environment handling, branding constraints, and fallback triggers. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
-> | Required metadata to capture | SDK package version; Claude Code subprocess version when knowable; SDK permission mode; visible tool list; MCP server names; settings-source posture; SDK session ID and resume mode; transcript/store linkage. | `docs/SPEC.md` Section 12.4 |
-> | Adoption decision state | `ADOPT_WITH_RESIDUAL_RISK` for the repository demonstrator, pinned to `@anthropic-ai/claude-agent-sdk@0.3.150` and observed Claude Code `2.1.150`; see `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`. | D-APP-68 recommendation 8; D-APP-52 live evidence |
->
+The current engine is the stock, version-pinned Codex App Server owned by the
+App's Runtime service (D-GOV-43 A2; D-APP-127; `docs/CONTRACT.md` K-ENGINE-3).
+D-APP-68's first-adapter `ADOPT_WITH_RESIDUAL_RISK` remains historical evidence
+within its demonstrator boundary; it does not qualify Codex.
+
+The probe package must preserve the evaluated version, source state, results,
+approver, limitations and fallback criteria. Verify these against
+`Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` and
+`Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`. Mechanism snapshots are retained
+in this run's R5 PKG04 before-block evidence.
+
+Applicable runtime-interface, event, session, permission, root, instruction,
+redaction and provenance guarantees remain current obligations. Their live
+qualification uses the D-GOV-43 S-1 to S-8 checks, not historical SDK results.
 
 ### CLM-004 — Conditions
 
@@ -117,25 +120,18 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable specifies the evidence required to decide whether Chirality should adopt a version-pinned Claude Agent SDK runtime path for R1.
->
-> Included:
->
-> - Confirm the SDK package version and Claude Code subprocess version when knowable.
-> - Probe `query()` message sequence, permissions, hooks, in-process MCP, sessions, storage, interrupts, packaging, settings isolation, API key handoff, and fallback triggers.
-> - Preserve Chirality-owned runtime semantics for `AgentEnginePort` / `RuntimeEngineContract`, `UIEvent`, `HarnessEvent`, session metadata, permission decisions, redaction, prompt composition, and product identity.
-> - Produce first-adapter probe notes, version decision, fallback criteria, and residual-risk notes.
->
-> Excluded:
->
-> - Implementing `SdkOptionsBuilder`, `SdkMessageMapper`, `TurnEngine`, provider key bridge, or prompt composer code.
-> - Exposing new user-visible write, bash, remote MCP, plugin, domain-operation, or subagent execution capability.
-> - Treating SDK transcripts or SDK message names as canonical Chirality contracts.
->
-> Sources: `_CONTEXT.md`; decomposition row for `DEL-04-01`; `docs/PLAN.md` R0/R1; `docs/PRD.md` R0/R1 with REF-006 hash warning.
->
+Preserve the first-adapter probe and adoption evidence for SOW-018, SOW-044
+and SOW-046 as compatibility history under D-GOV-43 and D-APP-127. Readers
+must be able to establish the evaluated behavior, demonstrator decision
+boundary and residual risks through
+`Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` and
+`Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`.
+
+This evidence slice excludes downstream runtime implementation and activation
+of additional tools or providers. SDK transcripts are not authoritative
+project records. Session/storage evidence gaps remain partial. Newer
+App-client/SOW-079 scope and traceability reconciliation remains assigned to
+the owning loop; the R5 PKG04 return records that residual.
 
 ### CLM-010 — Requirements
 

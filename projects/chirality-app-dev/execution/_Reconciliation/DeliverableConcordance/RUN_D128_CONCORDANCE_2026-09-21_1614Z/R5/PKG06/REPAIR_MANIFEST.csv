@@ -1,0 +1,406 @@
+ClaimKey,DeliverableID,Path,StartAnchor,EndAnchor,BeforeSHA256,AfterSHA256,Before,After,Execution,Authority,Reason,ImplementationEvidence,VerificationEvidence,BeforeSnapshot,AfterSnapshot
+DEL-06-01#CLM-003,DEL-06-01,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,5c93cc0e3388233ab73077eb2dd0d86dd98d768a85b5aa5911bf5d755c6a6f8c,9f74dc9a1243357c02e708a857d3b39ba9e01cf2e8b03d9b210b1d93a3eba7fa,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary control | `ChiralityPermissionOverlay` | `docs/PRD.md` Section 9.4, MATCH status; decomposition glossary — reconciled under D-APP-38 |
+> | Decision record | `HarnessPermissionDecision` with `allow`, `deny`, or application-level `ask` | `docs/TYPES.md` Section 8.2 |
+> | Decision sources | `sdk-option`, `sdk-callback`, `chirality-policy`, `hook`, `human`, `prompt-support` | `docs/TYPES.md` Section 8.2 |
+> | Permission modes in scope | `readOnly`, `workspaceWrite`, `dontAsk`, `ask`, `bypass` | `docs/TYPES.md` Section 8.1; `docs/SPEC.md` Section 15.1 |
+> | Core precedence rule | Deny overrides allow | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/PRD.md` NFR-007, MATCH status — reconciled under D-APP-38 |
+> | Restriction boundary | `allowedTools` alone is not a restriction boundary | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3; `docs/PRD.md` KG-023, MATCH status — reconciled under D-APP-38 |
+> | Interactive approval path | `canUseTool` mediates application approval; decision must be persisted before returning SDK allow/deny | `docs/SPEC.md` Section 15.1; decomposition row SOW-058 |
+> | Event obligation | Persist `tool.permission` events for governed tool attempts | `docs/PRD.md` R2 acceptance, MATCH status; decomposition row SOW-056 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Permission policy must identify the session, turn where applicable, requested action, active host policy, decision, reason and source. Applicable denials and human gates must not be bypassed by a tool being available or named in an allow list. Prompt text is not technical enforcement.
+
+On the live Codex path, the user selects Codex approval and sandbox policy, including an explicit Full access choice; the App must display and record that policy (D-GOV-43 items 4 and 9; D-APP-131). Full access changes host capability, not governed write authority or human accountability. The former SDK mode names, callback vocabulary and overlay record fields remain compatibility evidence, not proof that the live path runs that overlay.
+
+Verification hooks: `projects/chirality-runtime/tests/app-owned-composition.test.ts` (declined approval and permission evidence), `projects/chirality-runtime/tests/codex-supervisor.test.ts` (selected policy and server-request responses), and the legacy `frontend/src/__tests__/lib/permission-overlay.test.ts` for its retained module contract. These subjects are distinct; missing live enforcement or evidence remains open.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:31-41 HarnessPermissionDecision type with decisionId, sessionId, turnId, toolName, decision, reason, source, decidedAt, safeMetadata REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:379-426 createHarnessCanUseTool turns a path-policy or shell-policy failure into explicitDeny before resolving the decision REACH=LEGACY_ONLY; projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:694-717 handleServerRequest pushes a request record and holds each Codex approval request pending until answered REACH=LIVE; projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:292-313 projects each Codex approval request as a tool.permission event with behavior ask, then its resolution as tool.permission allow or deny with requestId, method, outcome, decidedBy and the raw Codex payload under codex REACH=LIVE","GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts 'lets explicit hard denies override abstract allow and ask decisions'; GATE-TRANSCRIPT(RUNTIME@00115c719) projects/chirality-runtime/tests/app-owned-composition.test.ts 'prepares the effective home, issues the app-host token, reports sign-in status with the catalog, and runs a turn with a declined approval' (thread/start on-request + workspace-write; two tool.permission events)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-003.after.md
+DEL-06-01#CLM-005,DEL-06-01,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md,### CLM-005 — Construction,### CLM-006 — References,36de7791e72d4103343b6f712b3edda023d37f48369a74bca22d3a6978347546,4088638c535fca66192ff9d756defc97a4c8bd67639bfeb4af640afe63fd63f1,"### CLM-005 — Construction
+
+> ##### Construction
+>
+> | Component | Construction note | Source |
+> |---|---|---|
+> | Overlay input | Session, optional turn, selected Chirality mode, requested tool name, resolved tool-surface posture, and explicit policy/hook/human-gate signals needed to decide tool permission. Exact TypeScript interface shape remains TBD until implementation ownership is assigned. | `docs/TYPES.md` Section 8.2; `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+> | Mode mapper | Maps Chirality modes to SDK posture plus overlay behavior. | `docs/SPEC.md` Section 15.1 |
+> | Deny evaluation | Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+> | Decision persistence | A structured permission decision is recorded before downstream execution or before returning an SDK approval result. | `docs/TYPES.md` Section 8.2; decomposition rows SOW-054 and SOW-058 |
+> | Event integration | Tool attempts emit permission/start/completion/failure events in the R2 scope. | `docs/PRD.md` R2 implementation targets, MATCH status; `docs/TYPES.md` Section 7.3 later event categories — reconciled under D-APP-38 |
+> | Tests | Include readOnly, dontAsk, and ask behavior tests. Exact test paths and fixtures: TBD. | `_CONTEXT.md`; decomposition DEL-06-01 anticipated artifacts |
+>
+
+","### CLM-005 — Construction
+
+Permission mediation must preserve attributable approval and denial evidence, respect the selected host policy, and prevent an approval reply from silently bypassing an applicable denial or human gate. Available permission, start and terminal evidence must remain reconstructible for the governed attempt. A request awaiting human approval must receive that decision before execution is allowed to continue.
+
+D-GOV-43 items 2, 4 and 9 place live policy enforcement and request handling on the stock Codex path. The legacy overlay's TypeScript shape, SDK callback and module arrangement are evidence details; their presence does not establish live enforcement. Verify policy transport and denied-request handling through `projects/chirality-runtime/tests/codex-supervisor.test.ts` and the declined-approval case in `projects/chirality-runtime/tests/app-owned-composition.test.ts`. Retain the unmet control/evidence findings under D-APP-131 rather than infer a pass from compatibility tests.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:43-55 ResolveHarnessPermissionDecisionInput carries sessionId, turnId, toolName, mode, descriptor, source, explicitDeny, delegatedSubagents, toolInput and safeMetadata REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:118-125 an explicitDeny input returns deny before any mode or descriptor branch REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:327-354 appendHarnessPermissionDecisionEvent persists tool.permission with behavior, decisionId, reason, source, toolName, mode and safeMetadata REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/delegated.ts:320-331 policySelectionFromPermissionMode maps readOnly to on-request/read-only, ask (and undefined) to on-request/workspace-write, workspaceWrite to never/workspace-write, bypass to never/danger-full-access REACH=LIVE; projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:292-313 projects each Codex approval request as a tool.permission event with behavior ask, then its resolution as tool.permission allow or deny with requestId, method, outcome, decidedBy and the raw Codex payload under codex REACH=LIVE","GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts 'lets explicit hard denies override abstract allow and ask decisions'; GATE-TRANSCRIPT(RUNTIME@00115c719) projects/chirality-runtime/tests/app-owned-composition.test.ts 'prepares the effective home, issues the app-host token, reports sign-in status with the catalog, and runs a turn with a declined approval' (thread/start on-request + workspace-write; two tool.permission events)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-005.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-01_CLM-005.after.md
+DEL-06-02#CLM-003,DEL-06-02,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,fcfbb2d1d05b09d9da8ab14181439ddc3e16058d1c89d94b4d7b9622a9a2c4fd,1bc18baa1a488b89c3fefd086e8839288caaa10973793443a3701fff05f4e2b5,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary feature | Resolve `opts.tools` to registered SDK built-ins or Chirality MCP names. | `_CONTEXT.md`; decomposition DEL-06-02 |
+> | Unknown-tool behavior | Unknown tool names produce structured validation errors and are not silently passed through. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, MATCH status — reconciled under D-APP-38 |
+> | SDK built-in candidates | `Read`, `LS`, `Glob`, `Grep`, `Write`, `Edit`, `Bash` where available. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.3 |
+> | Initial read surface | SDK read tools plus Chirality read MCP tools are enabled before write/edit/bash capability. | `docs/PRD.md` Section 8.13, MATCH status; `docs/PLAN.md` R2 — reconciled under D-APP-38 |
+> | Chirality MCP namespace | Chirality-specific deterministic tools use `mcp__chirality__*` names. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.4 |
+> | Initial Chirality MCP read candidates | `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and scaffold preview/dry-run where appropriate. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
+> | Determinism condition | Tool-surface ordering, naming, MCP server IDs, and allow/deny lists are stable for a given session, persona, mode, and option set. | `docs/PRD.md` Section 8.13, MATCH status; decomposition SOW-049 — reconciled under D-APP-38 |
+> | Exposure boundary | Tool implementation availability does not imply model exposure. | decomposition SOW-049; `docs/CONTRACT.md` Section 1.6 K-TOOL-2 |
+> | Restriction boundary | `allowedTools` alone is not a restriction boundary. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+>
+
+","### CLM-003 — Attributes
+
+Tool availability must be distinguished from tool exposure and permission to execute. A tool name or allow list alone is not a restriction boundary. The retained SDK resolver contract includes registered-name validation, structured rejection of unknown names, stable ordering/naming for the same inputs, and read-first exposure; its SDK roster and MCP identifiers are compatibility evidence.
+
+The live Codex path instead follows the user's shared configuration and chosen host policy under D-GOV-43 items 3 and 4. Compatibility resolver tests do not prove that a Codex turn uses that resolver or exposes Chirality MCP tools. Verification hooks are `frontend/src/__tests__/lib/tool-descriptor.test.ts` for the resolver and `projects/chirality-runtime/tests/codex-supervisor.test.ts` for actual policy transport. Live tool exposure requires its own current evidence. This repair does not resolve the separately owner-held CLM-005 and CLM-032 questions (D-APP-131 P-01).
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts:36-111 (resolveHarnessToolPool) REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:1333-1401 (descriptor lookup; registry reached on the live path only by the contracts barrel) REACH=LEGACY_ONLY; projects/chirality-runtime/packages/core/src/runtime-service.ts:349-350 (opts.tools passed through Runtime restriction) REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-method-service.ts:68,507-518 (restrictRequestedTools: readOnly READ_TOOL regex, role and method filters; 422 unavailableTools; no registry lookup) REACH=LIVE; projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:95-121,203 (Codex adapter reads opts.model/opts.mode only; opts.tools unused) REACH=LIVE",GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts 'resolves aliases deterministically and reports structured unknown tool issues'; REACHABILITY(static)@00115c719,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-003.after.md
+DEL-06-02#CLM-004.1,DEL-06-02,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md,### CLM-004 — Conditions,### CLM-005 — Construction,3d6e58f8a9327cd32ae0f4ad3bd22b64176e8fedc8f85c26ef77c33e7d3ad237,ab0108d00fcecd1304b2bb3ada89900640ae98edfda721a675bd357ea59d7792,"### CLM-004 — Conditions
+
+> ##### Conditions
+>
+> | Condition | Constraint | Source |
+> |---|---|---|
+> | PRD source state | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
+> | Package boundary | DEL-06-02 is bounded to tool exposure and validation; domain-engine operation semantics are excluded except protected-path hooks in adjacent scopes. | `_CONTEXT.md`; decomposition PKG-06 |
+> | Permission overlay dependency | Capability-forward policy with explicit hard-deny precedence mode semantics and `canUseTool` mediation are adjacent policy inputs, primarily owned by DEL-06-01. | decomposition DEL-06-01 and DEL-06-02 |
+> | MCP implementation boundary | Chirality MCP tool definitions are adjacent to this resolver, primarily owned by DEL-06-03. | decomposition DEL-06-03 |
+> | Write/bash sequencing | Write/edit and bash capability remain later-phase surfaces and must not be exposed by the read-first resolver until the required hooks and governance land. | `docs/PRD.md` Section 8.13, MATCH status; `docs/PLAN.md` R2/R3 — reconciled under D-APP-38 |
+> | Shipped runtime posture | `readOnly` mode exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/PRD.md` Section 8.14, MATCH status; `docs/TYPES.md` Section 8.1 — reconciled under D-APP-38 |
+>
+
+","### CLM-004 — Conditions
+
+DEL-06-02 owns tool exposure and validation, with permission semantics supplied by DEL-06-01 and Chirality MCP definitions owned by DEL-06-03. Domain-operation semantics remain outside this scope. A read-only interface must not claim write authority, and the legacy read-first resolver must not enable its write/edit/bash surface before its required controls are in place.
+
+For live Codex turns, enforcement is the actual selected Codex policy, not an assumed invocation of the legacy resolver. D-GOV-43 item 4 permits user-selected policy; it does not grant normative authority to mutate governed or protected content. Verify the retained resolver with `frontend/src/__tests__/lib/tool-descriptor.test.ts`, and policy transmission with `projects/chirality-runtime/tests/codex-supervisor.test.ts`. Historical REF-006 MATCH statements are dated evidence; current source identity is read from the reference record and checked against the cited bytes. The reserved CLM-005/032 readings remain unchanged.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,documentary claim: _REFERENCES.md REF-006,"HASH-RECOMPUTE@00115c719 (REFERENCE_HASHES.csv DEL-06-02 PRD row: recorded 8649ccba.. MATCH, recomputed 17ca3f3c.., Match NO)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.after.md
+DEL-06-02#CLM-004.2,DEL-06-02,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md,### CLM-004 — Conditions,### CLM-005 — Construction,3d6e58f8a9327cd32ae0f4ad3bd22b64176e8fedc8f85c26ef77c33e7d3ad237,ab0108d00fcecd1304b2bb3ada89900640ae98edfda721a675bd357ea59d7792,"### CLM-004 — Conditions
+
+> ##### Conditions
+>
+> | Condition | Constraint | Source |
+> |---|---|---|
+> | PRD source state | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
+> | Package boundary | DEL-06-02 is bounded to tool exposure and validation; domain-engine operation semantics are excluded except protected-path hooks in adjacent scopes. | `_CONTEXT.md`; decomposition PKG-06 |
+> | Permission overlay dependency | Capability-forward policy with explicit hard-deny precedence mode semantics and `canUseTool` mediation are adjacent policy inputs, primarily owned by DEL-06-01. | decomposition DEL-06-01 and DEL-06-02 |
+> | MCP implementation boundary | Chirality MCP tool definitions are adjacent to this resolver, primarily owned by DEL-06-03. | decomposition DEL-06-03 |
+> | Write/bash sequencing | Write/edit and bash capability remain later-phase surfaces and must not be exposed by the read-first resolver until the required hooks and governance land. | `docs/PRD.md` Section 8.13, MATCH status; `docs/PLAN.md` R2/R3 — reconciled under D-APP-38 |
+> | Shipped runtime posture | `readOnly` mode exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/PRD.md` Section 8.14, MATCH status; `docs/TYPES.md` Section 8.1 — reconciled under D-APP-38 |
+>
+
+","### CLM-004 — Conditions
+
+DEL-06-02 owns tool exposure and validation, with permission semantics supplied by DEL-06-01 and Chirality MCP definitions owned by DEL-06-03. Domain-operation semantics remain outside this scope. A read-only interface must not claim write authority, and the legacy read-first resolver must not enable its write/edit/bash surface before its required controls are in place.
+
+For live Codex turns, enforcement is the actual selected Codex policy, not an assumed invocation of the legacy resolver. D-GOV-43 item 4 permits user-selected policy; it does not grant normative authority to mutate governed or protected content. Verify the retained resolver with `frontend/src/__tests__/lib/tool-descriptor.test.ts`, and policy transmission with `projects/chirality-runtime/tests/codex-supervisor.test.ts`. Historical REF-006 MATCH statements are dated evidence; current source identity is read from the reference record and checked against the cited bytes. The reserved CLM-005/032 readings remain unchanged.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:165-175 (SDK_WRITE_RUNTIME/SDK_SHELL_RUNTIME: Write/Edit/Bash exposed in workspaceWrite only) REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts:36-111 (resolveHarnessToolPool) REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/delegated.ts:322-331 (readOnly -> Codex sandbox read-only, approval on-request) REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-method-service.ts:68,510 REACH=LIVE",GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts 'resolves Write/Edit/Bash only in workspaceWrite mode'; REACHABILITY(static)@00115c719,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-02_CLM-004.after.md
+DEL-06-03#CLM-003,DEL-06-03,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,7a949f1569b1343019b7211b0525be6521ac9f6992c9d796385087a253fb6411,1ff1c219547840667ec236a5e645b3b47396354d4e4bd7a61be223c55e5054b5,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | MCP naming namespace | `mcp__chirality__*` | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.4 |
+> | Initial tool names in scope | `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, `mcp__chirality__scaffold` preview/dry-run behavior where applicable | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
+> | Adjacent tool names not implemented as read-tool scope | `mcp__chirality__status_transition` and `mcp__chirality__deps_write` are write/gated tools and belong to later or adjacent write/lifecycle surfaces. | `docs/SPEC.md` Section 14.2; `docs/PRD.md` Sections 8.13 and 8.14 |
+> | Required wrapper metadata | Schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, and summarization behavior. | `docs/PRD.md` Section 8.13 FR-079 |
+> | Tool-surface ordering | Deterministic ordering, naming, MCP server IDs, and allow/deny lists for a given session/persona/mode/option set. | `docs/PRD.md` Section 8.13 FR-080; `docs/SPEC.md` Section 14.3 |
+> | Permission posture | MCP is a transport, not a bypass; tools pass through permission, hook, path, redaction, and event logging policy. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/DIRECTIVE.md` Section 14 |
+> | Read-before-write sequencing | Read-only capability lands before write/edit/shell capability; write/edit and bash stay denied until later phases activate them. | `docs/PRD.md` Section 8.13 FR-082; `docs/PLAN.md` R2 |
+> | Validation marker | `section9.chirality_mcp_status_dependencies` is a runtime validation ID for status/dependency MCP behavior. | `docs/SPEC.md` Section 19.3 |
+>
+
+","### CLM-003 — Attributes
+
+The claimed read interfaces must return bounded, non-mutating status, dependency and scope information; scaffold preview must not perform the proposed writes. Their descriptors must state schema, permissions, concurrency, interruption, execution and summarization behavior. Transport availability does not authorize a tool call or bypass path, redaction, event-evidence or human-gate obligations. Tool exposure and ordering remain the adjacent DEL-06-02 contract.
+
+The `mcp__chirality__*` roster and in-process SDK wrapper are retained compatibility mechanisms under D-GOV-43 and D-APP-131. Their registration is not evidence that they are exposed on the live Codex path. Verify their read behavior and descriptor parity through `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` and `frontend/src/__tests__/lib/tool-descriptor.test.ts`; any live-path claim needs current integration evidence. Write and lifecycle tools remain outside this read-only slice.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-runtime/packages/contracts/src/harness/mcp/tool-names.ts:1, :4-9, :52-54 REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:84-106 descriptor fields, :267 chiralityReadMcpDescriptor, :555-620 read descriptors REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts:1048-1123 per-name exposure REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/scripts/harness-section9-manifest.json:73 section9.chirality_mcp_status_dependencies REACH=TEST_ONLY; projects/chirality-runtime/packages/core/src/runtime-service.ts:580 records mcpServers: [] in the Runtime session fingerprint REACH=LIVE; NONE_FOUND for any App or Runtime registration of status_read/deps_read/scope_scan/scaffold_preview as Codex dynamic or MCP tools (grep registerApplicationTools|DynamicToolSpec|status_read in frontend/src, frontend/electron, runtime packages/*/src)",GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts 'keeps live Chirality MCP tool registrations in parity with descriptor metadata'; 'resolves read-only Chirality MCP descriptors without opening write or shell tools',projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-003.after.md
+DEL-06-03#CLM-005,DEL-06-03,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md,### CLM-005 — Construction,### CLM-006 — Pass 3 Notes,3409f47832e15b5ac0e0f4dc065d1b23cc6be2102b509711b6eb449dd86337f3,de2f6e14dd82f4624508edaaa701cc4684b51e2c0637e237adb22a4e6a005f94,"### CLM-005 — Construction
+
+> ##### Construction
+>
+> | Construct | Expected Shape | Source |
+> |---|---|---|
+> | MCP definitions | In-process SDK MCP tool definitions using `createSdkMcpServer()` / `tool()` or equivalent SDK APIs. | `docs/PRD.md` Section 8.13 FR-119 |
+> | Wrapper contract | Shared wrapper metadata for tool descriptors, permission classification, execution, result summarization, and event/redaction behavior. | `docs/PRD.md` Section 8.13 FR-079; `docs/CONTRACT.md` Section 1.6 K-MCP-1 |
+> | Status read | Read `_STATUS.md` snapshot. Exact parser/API adapter TBD and should align with the status lifecycle API owner. | `docs/SPEC.md` Sections 14.2 and 17.2 |
+> | Dependency read | Read and validate `Dependencies.csv` when present. If only `_DEPENDENCIES.md` exists, return an explicit secondary-summary / not-structured-tracked result rather than inventing rows; final API shape remains TBD pending DEL-07-05. | `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.7 K-DEP-1; `_DEPENDENCIES.md` Extracted Dependency Register |
+> | Scope scan | Run bounded workspace scope scan. Exact scanner interface TBD and should align with workspace scope API. | `docs/SPEC.md` Sections 14.2 and 17.2 |
+> | Scaffold preview/dry-run | Wrap scaffold service or dry-run preview without opening uncontrolled write behavior. Exact preview schema TBD. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
+> | Tests | MCP tool definitions and wrapper metadata are unit-tested and deterministic. | `docs/PRD.md` Section 8.13 FR-079 |
+>
+
+","### CLM-005 — Construction
+
+Status reads must preserve the recorded lifecycle state. Dependency reads must validate structured `Dependencies.csv` data when present and disclose a secondary-summary/not-structured-tracked result when only `_DEPENDENCIES.md` exists; they must not invent rows. Scope scans must stay within their declared scope, and scaffold dry-runs must describe prospective changes without mutation.
+
+The legacy SDK factory, parser arrangement and wrapper implementation are evidence for these interfaces, not required construction of the live Codex host. `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` names status/dependency reading and scaffold-preview verification; `frontend/src/__tests__/lib/tool-descriptor.test.ts` names descriptor parity. These are compatibility-subject checks. D-APP-131 preserves missing live integration and the separate scaffold obligation; no live MCP exposure or successful scaffold execution is asserted here.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts:1-7, :1005, :1259 createSdkMcpServer/tool; :153 runReadMcpToolWithEvidence; :709, :722, :735, :754 handlers REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts:431-470 _DEPENDENCIES.md-only result REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-service.ts:580 records mcpServers: [] in the Runtime session fingerprint REACH=LIVE; NONE_FOUND for any App or Runtime registration of status_read/deps_read/scope_scan/scaffold_preview as Codex dynamic or MCP tools (grep registerApplicationTools|DynamicToolSpec|status_read in frontend/src, frontend/electron, runtime packages/*/src)",GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-read-mcp.test.ts 'reads parsed lifecycle status and dependency register output'; 'previews scaffold paths without creating execution-root files',projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-005.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-03_CLM-005.after.md
+DEL-06-04#CLM-003,DEL-06-04,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,9b5cae8020836829d99cd3964452768a8241ac45f7b19b78796bb2204de3ad4e,fdb58b4b7a95dc21a08d5071dfbb7e43fdb6c99e05b52f1dbe5f6758793586bd,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary control surface | Write/edit execution gate using hooks and runtime path policy | `_CONTEXT.md`; decomposition row DEL-06-04 |
+> | Hook phase in scope | `PreToolUse` for pre-execution denial and `PostToolUse`/post-failure evidence where applicable | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 15.2 |
+> | Path containment rule | Filesystem operations outside the active project or working root are denied | `docs/CONTRACT.md` Section 1.6 K-PATH-2; `docs/SPEC.md` Section 15.2 |
+> | Instruction-root rule | Ordinary project execution must not mutate the instruction root | `docs/CONTRACT.md` Section 1.3 K-ROOT-2; `docs/SPEC.md` Section 1 |
+> | Symlink rule | Symlink writes are rejected in the initial policy | `docs/CONTRACT.md` Section 1.6 K-PATH-3; `docs/SPEC.md` Section 15.2 |
+> | Exact edit precondition | Controlled edits require exact edit preconditions before execution | `docs/PRD.md` Section 7.9, MATCH status — reconciled under D-APP-38 |
+> | Provenance obligation | Successful writes/edits emit diff, summary, provenance, or runtime event evidence | `docs/PLAN.md` R3; `docs/PRD.md` Section 7.9, MATCH status — reconciled under D-APP-38 |
+> | Deny precedence | Hook, path, policy, SDK deny, governance, and human-gate denials override allows | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+>
+
+","### CLM-003 — Attributes
+
+Write/edit operations must respect their authorized targets, applicable denials, governed instruction-root boundary and protected domain content. Exact edit preconditions and safe provenance remain required. The retained path-control contract includes outside-root and symlink-write rejection; its implementation in legacy hooks is not evidence that the Codex path enforces those checks.
+
+D-GOV-43 item 4 makes the actual host sandbox a user choice. Full access does not authorize otherwise forbidden writes. No sandbox label alone proves protection of an in-project instruction file, domain path or symlink target. Under D-APP-131 P-13, record the selected policy and preserve unverified live enforcement as a gap.
+
+Verification hooks: `frontend/src/__tests__/lib/chirality-hooks.test.ts` for retained containment, symlink and exact-edit checks; `projects/chirality-runtime/tests/codex-supervisor.test.ts` for policy transport. The latter is not a path-denial proof.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:432-605 PreToolUse callback gating workspace-write descriptors REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-path-policy.ts:249-259, 298-312, 96-162 containment/instruction-root/symlink denials REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/delegated.ts:321-331 policySelectionFromPermissionMode maps App mode to a fixed Codex pair (readOnly->on-request/read-only; ask->on-request/workspace-write; workspaceWrite->never/workspace-write; bypass->never/danger-full-access) REACH=LIVE; projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:104-110 sandboxPolicy sends workspace-write as writableRoots=[cwd] and danger-full-access with no root bound REACH=LIVE; projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:129-136 OPERATOR_MODES user-facing choices, default workspaceWrite (approval never) REACH=LIVE","GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks outside-root, instruction-root, and symlink write attempts'; GATE-TRANSCRIPT(RUNTIME@00115c719) projects/chirality-runtime/tests/codex-supervisor.test.ts 'starts a thread, applies the collaboration mode once, starts the turn and assembles text from deltas plus the completed message' (asserts a policy change is sent as approvalPolicy+sandboxPolicy readOnly on turn/start); GATE-TRANSCRIPT(RUNTIME@00115c719) projects/chirality-runtime/tests/delegated-runtime.test.ts 'runs a turn through the private envelope and records the committed terminal' (readOnly mode -> on-request/read-only envelope policy)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-003.after.md
+DEL-06-04#CLM-005,DEL-06-04,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md,### CLM-005 — Construction,### CLM-006 — References,a2d8b5ccc3aae0ba43244ac705b87417904974a31e1832225693ebc4b28a9192,f14a75f9f7ce51a4bab10f29241c08d6cf39b521b756a9a219cfe1a3e1a3e9e1,"### CLM-005 — Construction
+
+> ##### Construction
+>
+> | Component | Construction note | Source |
+> |---|---|---|
+> | Path policy helper | Resolve and validate candidate write/edit targets against the active project or working root and instruction root. Exact implementation path: TBD. | `docs/CONTRACT.md` Section 1.6 K-PATH-2; `docs/PRD.md` Section 7.9 |
+> | PreToolUse gate | Deny write/edit attempts before execution when containment, instruction-root, symlink, mode, or permission policy fails. | `docs/SPEC.md` Section 15.2; `docs/TYPES.md` Section 8.5 |
+> | Exact edit validator | Require exact edit preconditions for edit-style operations before mutation. Exact diff/match algorithm: TBD. | `docs/PRD.md` Section 7.9, MATCH status — reconciled under D-APP-38 |
+> | Safe write/edit execution | Perform atomic write/edit where practical only after permission and hook gates pass. Atomicity details: TBD. | `docs/PRD.md` Section 7.9, MATCH status — reconciled under D-APP-38 |
+> | Provenance recorder | Capture safe provenance, diff/summary, permission/runtime events, and source metadata for each write attempt. Exact event fields beyond source docs: TBD. | `docs/PLAN.md` R3; `docs/SPEC.md` Section 15.2 |
+> | Path policy fixtures | Include fixtures for outside-root targets, instruction-root targets, symlink targets, missing files, stale edit preconditions, allowed in-root writes, and the current MCP write/gated surface. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance |
+> | Tests | Include write/edit tests for denied outside-root writes, denied instruction-root writes, denied symlink writes, exact edit preconditions, provenance evidence, MCP parity, and PRD warning carry-forward. Exact test paths: TBD. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance; `_REFERENCES.md` REF-006 |
+>
+
+","### CLM-005 — Construction
+
+A governed write/edit must satisfy its applicable permission and target constraints before mutation, reject stale exact-edit preconditions, preserve safe provenance and avoid partial replacement where atomic writing is practical. Verification must distinguish outside-root, instruction-root, protected-domain and symlink targets, missing files, stale edits and allowed writes; MCP transport cannot supply an exception to the same obligations.
+
+Legacy helper paths, SDK hook phases, diff algorithms and event field shapes are implementation evidence. The named checks are `frontend/src/__tests__/lib/chirality-hooks.test.ts` (denials and exact edits) and `frontend/src/__tests__/lib/atomic-write.test.ts` (replacement and failure cleanup). Live policy transmission is checked separately in `projects/chirality-runtime/tests/codex-supervisor.test.ts`. D-GOV-43 retires the fixed-policy mechanism; D-APP-131 retains unmet stable controls and requires truthful disclosure of host-conditioned enforcement. These references do not establish a live path-control pass.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-app-dev/frontend/src/lib/harness/tool-path-policy.ts:164-318 evaluateToolPathPolicy (path helper) REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:426-745 hooks REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:232-285 exact-edit validator REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:319-374 bounded-LCS diff summary REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/atomic-write.ts:10-35 same-directory temp-file rename REACH=LIVE,"GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks outside-root, instruction-root, and symlink write attempts'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks Edit when old_string is missing from the target file before execution'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'allows Edit when old_string is present and records exact-edit metadata'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/atomic-write.test.ts 'replaces file content through a same-directory temp file and cleans up the temp path'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/atomic-write.test.ts 'removes the temp file when the final rename cannot replace the target path'",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-005.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-04_CLM-005.after.md
+DEL-06-05#CLM-003,DEL-06-05,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,3da99376661c41d033a27e9d18144657a729b6d883490222f4df306320ee8d17,cdaf4142b7234b0a221cb88aeeaccac422ecd512e08a5396b8d319c5d67dcba0,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Governed tool | SDK built-in `Bash` where available | `docs/SPEC.md` Section 14.1 |
+> | Default posture | Bash denied by default even though the SDK ships the tool | `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+> | Enablement prerequisites | Timeout, output capture, result storage, interrupt behavior, and audit events | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 |
+> | Denied modes | `readOnly` and `dontAsk` deny Bash/shell unless a future governed rule says otherwise | `docs/CONTRACT.md` Section 1.6 K-PERM-4 and K-PERM-5; `docs/PLAN.md` R4 acceptance |
+> | Restriction mechanism | `allowedTools` is not sufficient; restriction requires disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+> | Permission decision record | `HarnessPermissionDecision` with decision, reason, source, timestamp, and optional safe metadata | `docs/TYPES.md` Section 8.2 |
+> | Tool result policy | Small outputs inline; medium/large outputs previewed or stored as session artifacts with metadata | `docs/PRD.md` FR-096, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+> | Audit mirror | `.chirality/sessions/<sessionId>/events.jsonl` remains the product-owned audit record | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/PRD.md` FR-121, MATCH status — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Shell execution must follow the user's selected host approval and sandbox policy and retain auditable permission, output and terminal-outcome evidence. Tool availability alone is not execution permission. Timeout, output-capture, result-metadata and interruption obligations remain; unavailable or unsuccessful interruption must not be represented as success.
+
+D-GOV-43 items 2, 4 and 9 govern the live Codex path. SDK Bash names, the legacy default-deny mode table, overlay record shape and project-local audit-store path describe compatibility mechanisms. The canonical Runtime record and safe evidence linkage govern current records. Full access does not grant authority to bypass human gates or mutate protected project truth.
+
+Verification hooks: `projects/chirality-runtime/tests/app-owned-composition.test.ts` (declined approval and interrupted terminal), `projects/chirality-runtime/tests/codex-supervisor.test.ts` (policy and interruption), and legacy `frontend/src/__tests__/lib/permission-overlay.test.ts`. Legacy Bash tests alone do not prove live timeout, capture or artifact coverage.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-runtime/packages/contracts/src/delegated.ts:322-330 policySelectionFromPermissionMode REACH=LIVE; projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:104-110 sandboxPolicy REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:141-167 shell mode gate REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-shell-policy.ts:157-164 REACH=LEGACY_ONLY,GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts 'allows governed Bash only in workspaceWrite mode after shell hook policy' (legacy path only),projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-003.after.md
+DEL-06-05#CLM-005,DEL-06-05,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md,### CLM-005 — Construction,### CLM-006 — References,f5489fb3bbbf6e8cdeb02fb2c2d2e7120e44460cfc3d181266e464cf2e1f92c1,84f4d5d7d0eab2be52645f42a4824a883c3e74f16e69129e10d0c7178d4c7293,"### CLM-005 — Construction
+
+> ##### Construction
+>
+> | Component | Construction note | Source |
+> |---|---|---|
+> | Tool-surface resolver | Expose `Bash` only when session/persona/mode/options/policy permit it; otherwise omit or hard-deny. | `docs/SPEC.md` Sections 13.2, 14.3, and 15.1 |
+> | Deny policy | Explicit denies from policy, path containment, hooks, governance, SDK deny rules, or human gates block Bash execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+> | Bash preflight | Enforce mode, command name/length, timeout, redirection/path-token counts, output capture, network-command and URL-scheme posture, and audit metadata before spawning. | `frontend/src/lib/harness/tool-shell-policy.ts`; `frontend/src/__tests__/lib/chirality-hooks.test.ts`; `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+> | Execution capture | Capture stdout and stderr separately and classify terminal outcome as success, failure, timeout, interruption, or cancellation where available. | `docs/PLAN.md` R4; `docs/SPEC.md` Section 10.1 |
+> | Result storage | Apply `ToolResultStore` policy so large output is stored under session artifacts and represented by preview plus schema-versioned metadata: tool/use/turn IDs, byte lengths, truncation, SHA-256, relative path, and stdout/stderr stream labels. | D-APP-42; `frontend/src/lib/harness/tool-result-artifacts.ts`; `frontend/src/lib/harness/tool-evidence.ts` |
+> | Audit events | Persist permission, started, completed/failed, interruption/timeout, and artifact metadata in Chirality-owned events; an SDK Bash result with `interrupted: true` maps to `tool.failed` with safe stream/artifact evidence. | ADQ-11; D-APP-43; `frontend/src/lib/harness/sdk-message-mapper.ts` |
+> | Tests | Include deny/default tests, timeout/capture tests, output metadata tests, and denied-never-spawns tests. Exact test paths: TBD. | `_CONTEXT.md`; `docs/PLAN.md` R4 acceptance |
+>
+
+","### CLM-005 — Construction
+
+A denied shell request must not execute. Authorized execution must provide bounded timeout behavior, distinguish stdout and stderr where available, retain safe output references and metadata, and record the terminal outcome actually observed. Existing numeric timeout and artifact-policy commitments elsewhere in this deliverable are unchanged; their live-path verification remains required.
+
+The legacy command-name/length, path-token, network-command and URL checks, `ToolResultStore` layout and SDK event-name mapping are mechanism evidence. D-GOV-43 carries the selected Codex network/sandbox policy and upstream events without recreating a closed provider-neutral vocabulary. Redaction, governed target constraints and accountable human gates remain obligations.
+
+Verification hooks: `frontend/src/__tests__/lib/chirality-hooks.test.ts` and `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` for legacy shell behavior; `projects/chirality-runtime/tests/app-owned-composition.test.ts` for current declined-approval and interruption handling. D-APP-131 requires explicit residuals for live conditions those checks do not prove.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/tool-shell-policy.ts:104-126,157-293 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts:54-105 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-evidence.ts:238-243 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/sdk-message-mapper.ts:418,484 REACH=LEGACY_ONLY; live: projects/chirality-runtime/packages/contracts/src/delegated.ts:322-330 REACH=LIVE; projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:265-298 REACH=LIVE","GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks Bash network, instruction-root, and symlink redirection attempts'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-message-mapper.test.ts 'maps interrupted SDK Bash results to failed evidence with stream metadata' (legacy)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-005.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-05_CLM-005.after.md
+DEL-06-06#CLM-003.1,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc,d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+> | Canonical runtime audit mirror | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+> | Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+> | Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+> | Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+> | Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+> | Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+> | Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+
+D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+
+Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-runtime/packages/core/src/session-store.ts:1113 sessions root runtimeDirectory/projects/<projectId>/sessions and :1124-1126 eventsFile REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/session-events.ts:14-22 project-local appendHarnessEvent writer REACH=LEGACY_ONLY,DOC-BASIS(D-GOV-43); RUN-INSPECTION@00115c719,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md
+DEL-06-06#CLM-003.2,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc,d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+> | Canonical runtime audit mirror | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+> | Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+> | Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+> | Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+> | Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+> | Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+> | Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+
+D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+
+Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:589-603 PreToolUse catch blocks the tool ('hook failed closed') and projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:725-745 registers only PreToolUse/PostToolUse/PostToolUseFailure REACH=LEGACY_ONLY; projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:729-735 cancelOutcome answers abandoned approvals with abort/decline REACH=LIVE; no Chirality hook layer on the live Codex path (projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:257-289 REACH=LIVE),"GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks outside-root, instruction-root, and symlink write attempts' and 'blocks Bash network, instruction-root, and symlink redirection attempts' (legacy path only)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md
+DEL-06-06#CLM-003.3,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc,d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+> | Canonical runtime audit mirror | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+> | Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+> | Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+> | Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+> | Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+> | Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+> | Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+
+D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+
+Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:725-745 PreToolUse/PostToolUse/PostToolUseFailure only REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/sdk-message-mapper.ts:893-903 and :1027-1060 compaction/status lifecycle REACH=LEGACY_ONLY; live path has no hook-term handling (projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:257-289 REACH=LIVE),RUN-INSPECTION@00115c719; REACHABILITY(static)@00115c719,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md
+DEL-06-06#CLM-003.4,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc,d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+> | Canonical runtime audit mirror | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+> | Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+> | Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+> | Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+> | Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+> | Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+> | Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+
+D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+
+Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,projects/chirality-runtime/packages/contracts/src/harness/event-schema.ts:1-65 registry and HarnessEvent type REACH=LIVE; projects/chirality-runtime/packages/core/src/fs.ts:24-34 REACH=LIVE,RUN-INSPECTION@00115c719,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md
+DEL-06-06#CLM-003.5,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-003 — Attributes,### CLM-004 — Conditions,a30e65abf650990878811db75771ee7555d6805efffb10a2d6773c4ca9ff35cc,d6b216cb639cece7e76c0de41e2f7a90ba589652acd313267ca9647163028e2d,"### CLM-003 — Attributes
+
+> ##### Attributes
+>
+> | Attribute | Value | Source |
+> |---|---|---|
+> | Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+> | Canonical runtime audit mirror | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+> | Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+> | Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+> | Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+> | Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+> | Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+> | Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, MATCH status; `docs/PLAN.md` R4 — reconciled under D-APP-38 |
+>
+
+","### CLM-003 — Attributes
+
+Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+
+D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+
+Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,documentary claim: projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/_REFERENCES.md:12,"HASH-RECOMPUTE@00115c719 (EVIDENCE_PACK/REFERENCE_HASHES.csv rows DEL-06-06 CONTRACT, SPEC, PRD: Match=NO)",projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-003.after.md
+DEL-06-06#CLM-005,DEL-06-06,projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md,### CLM-005 — Construction,### CLM-006 — Pass 3 Disposition,d02f7e0e05517d04fad22b21aedc75c1a5c4ae737988c8c2872ac8f59af2684f,151a92a45b2092b14abdf7cf2a54e7b46d6e5969832af9b0945b5004e3dacecf,"### CLM-005 — Construction
+
+> ##### Construction
+>
+> | Component | Construction note | Source |
+> |---|---|---|
+> | Hook lifecycle mapper | `frontend/src/lib/harness/chirality-hooks.ts` and `sdk-message-mapper.ts` map SDK/adapter hook callbacks into product-owned `HarnessEvent` records. | `docs/SPEC.md` Sections 9 and 10.3; cited implementation paths |
+> | Hook started event | Records safe start evidence for hook execution. Exact payload fields: TBD, but must conform to `HarnessEvent` and avoid secrets. | `docs/SPEC.md` Section 9.1 and 9.2; `docs/TYPES.md` Section 7.3 |
+> | Hook completed/failure event | Records hook completion or failure outcome; failure handling must preserve fail-closed behavior for write, shell, domain, and subagent actions. Exact failure taxonomy: TBD. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | PreCompact mirror | Emits `context.compacted` when the SDK/model compaction boundary is available. Boundary metadata, preserved recent turns, and replay implications are PRD-specified but source-state qualified. | `docs/SPEC.md` Sections 9.4 and 15.2; `docs/PRD.md` Section 8.15, MATCH status — reconciled under D-APP-38 |
+> | Stop/finalization mapper | Connects Stop/finalization callbacks to terminal outcome persistence without replacing TurnEngine terminal records. Exact parent/child event relation: TBD. | `docs/SPEC.md` Section 15.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-3 |
+> | Event append integration | Uses `frontend/src/lib/harness/session-events.ts` `appendHarnessEvent` for append-only replay-compatible JSONL and `tool-result-artifacts.ts` for session artifact records. | `docs/SPEC.md` Sections 8.4 and 9.2; cited implementation paths |
+> | Validation | Mapper/terminal/compaction fixtures live in `chirality-hooks.test.ts` and `sdk-message-mapper.test.ts`; replay and artifact checks live in `session-events.test.ts` and `tool-result-artifacts.test.ts`; Section 9 runs through `scripts/validate-harness-section9.mjs`. | `_CONTEXT.md`; `docs/SPEC.md` Section 19; cited test/runner paths |
+>
+
+","### CLM-005 — Construction
+
+Lifecycle evidence must preserve observed start, progress, completion and failure information, safe output, available compaction boundaries and their known replay implications. Stop/finalization must not duplicate a terminal outcome or turn a failure/interruption into success. Redaction and append-only replay remain requirements; fail-closed obligations are not discharged by recording a hook event.
+
+The live Codex event path retains upstream notifications and native compaction semantics under D-GOV-43 items 2 and 5. Legacy callback names, mapper modules and artifact layout belong in evidence. Verify notification and terminal handling through `projects/chirality-runtime/tests/codex-supervisor.test.ts` and `projects/chirality-runtime/tests/app-owned-composition.test.ts`; retain `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` as compatibility evidence. Current compaction/replay and redaction gaps remain separately verifiable work under D-APP-131, not presumed satisfied by those legacy fixtures.
+
+",b,"D-APP-131; D-GOV-43 items 2, 3, 4, 5, 9, 11 and A2 supplement; D-APP-127; kernel Rev2 §3.1",Lift SDK mechanism/construction to retained stable obligations; apply the ruled Codex path without asserting legacy checks qualify it.,"projects/chirality-app-dev/frontend/src/lib/harness/sdk-message-mapper.ts:893-903, :974-1025, :1027-1060 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:589-603, :725-745 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/session-events.ts:14-22 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts:58-136 REACH=LEGACY_ONLY; live construction is projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:257-330 with projects/chirality-runtime/packages/core/src/turn-coordinator.ts:256-290 and projects/chirality-runtime/packages/core/src/session-store.ts:813-823 REACH=LIVE",REACHABILITY(static)@00115c719; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-message-mapper.test.ts 'maps compaction and terminal result messages as lifecycle boundary evidence',projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-005.before.md,projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/blocks/DEL-06-06_CLM-005.after.md
