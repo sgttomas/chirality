@@ -1,0 +1,311 @@
+{
+  "instruction_origins": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/template-distill.md",
+      "sha256": "f9b829cd868732d56c3218473a1afa234ceca4aa808fbe0f96a1ab5470d768a1"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/template-create.md",
+      "sha256": "ed6bd38d3fcedb33ca481f9337bf14a9b7b236ef7151c8f6034fab33e05440f0"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/fields_update.md",
+      "sha256": "7ebf8e25e9f32e7264489cb5e3a3f07e678cc6731552eeadd5bc270e9f00a7fb"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+    }
+  ],
+  "delegation": {
+    "mechanism": "native collaboration harness",
+    "parent": "/root (HELP_HUMAN)",
+    "manager": "/root/manual_format_manager (WORKING_ITEMS Type1)",
+    "children": [
+      {
+        "task": "/root/manual_format_manager/qa_1",
+        "role": "TASK Type2",
+        "reference_pages": [
+          1,
+          30
+        ],
+        "candidate_pages": [
+          1,
+          30
+        ]
+      },
+      {
+        "task": "/root/manual_format_manager/qa_2",
+        "role": "TASK Type2",
+        "reference_pages": [
+          31,
+          60
+        ],
+        "candidate_pages": [
+          31,
+          60
+        ]
+      },
+      {
+        "task": "/root/manual_format_manager/qa_3",
+        "role": "TASK Type2",
+        "reference_pages": [
+          61,
+          90
+        ],
+        "candidate_pages": [
+          61,
+          90
+        ]
+      },
+      {
+        "task": "/root/manual_format_manager/qa_4",
+        "role": "TASK Type2",
+        "reference_pages": [
+          91,
+          120
+        ],
+        "candidate_pages": [
+          91,
+          120
+        ]
+      },
+      {
+        "task": "/root/manual_format_manager/qa_5",
+        "role": "TASK Type2",
+        "reference_pages": [
+          121,
+          150
+        ],
+        "candidate_pages": [
+          121,
+          150
+        ]
+      },
+      {
+        "task": "/root/manual_format_manager/qa_6",
+        "role": "TASK Type2",
+        "reference_pages": [
+          151,
+          177
+        ],
+        "candidate_pages": [
+          151,
+          180
+        ]
+      }
+    ],
+    "boundaries": "read-only document QA instruction scopes; no claim of host-mechanical enforcement, model diversity, children of TASK, or governance acceptance"
+  },
+  "retained_sources": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea"
+    }
+  ],
+  "package_inventory": {
+    "reference_sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+    "parts": [
+      {
+        "path": "[Content_Types].xml",
+        "size": 3068,
+        "sha256": "9453bf7d0b20e42e75d420cb66e78e636276f25778675e8b98328f3a2d1c55c0",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "_rels/.rels",
+        "size": 734,
+        "sha256": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "docProps/core.xml",
+        "size": 1106,
+        "sha256": "b2952988b64bbe07522853ddae2efd290cbb34a7dd3fda48af3eb72016e6af36",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "docProps/app.xml",
+        "size": 1132,
+        "sha256": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/document.xml",
+        "size": 936381,
+        "sha256": "7b91f64ee222c8d1442084243ddccf3d88462f099b1963e5cc3319cafa2f3ce6",
+        "classification": "editable"
+      },
+      {
+        "path": "word/_rels/document.xml.rels",
+        "size": 3624,
+        "sha256": "2aeccf6f7a435cf511e32989dcaa5960ecf2f338635960e3b0f85f93ca32af29",
+        "classification": "editable"
+      },
+      {
+        "path": "word/styles.xml",
+        "size": 355447,
+        "sha256": "bfe4f2592b5454e1d713f6f31d4e1d176ebbd1c27828ab727f4edb73ae5b1067",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/stylesWithEffects.xml",
+        "size": 438131,
+        "sha256": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/settings.xml",
+        "size": 2569,
+        "sha256": "a765af3dc9d77c84a871d0e7cc9502ec6170acce57d377be8c1334d6cfc267e8",
+        "classification": "editable"
+      },
+      {
+        "path": "word/webSettings.xml",
+        "size": 438,
+        "sha256": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/fontTable.xml",
+        "size": 2811,
+        "sha256": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/theme/theme1.xml",
+        "size": 10939,
+        "sha256": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "customXml/item1.xml",
+        "size": 262,
+        "sha256": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "customXml/_rels/item1.xml.rels",
+        "size": 295,
+        "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "customXml/itemProps1.xml",
+        "size": 354,
+        "sha256": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/numbering.xml",
+        "size": 5513,
+        "sha256": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/footer1.xml",
+        "size": 1315,
+        "sha256": "8d9cc3aa06628f909bf14c434e585dc6858cfdc7b3df604d8c96e240db3e917b",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/footer2.xml",
+        "size": 1299,
+        "sha256": "897504958982838bbe12df8c14474a0350e1388bbc9e4e2ffb70c0c75fc0ce9a",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/header1.xml",
+        "size": 1299,
+        "sha256": "c1ec416437359623c7d9b27189f525b23452f8d44154547427d66baa094c2031",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/header2.xml",
+        "size": 1460,
+        "sha256": "6c0fce33e275dd2ef1394890950777c639bbe471facb0acecb22973225b8c85e",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/header3.xml",
+        "size": 1396,
+        "sha256": "65357b3e4075313dceb7d507a04e2e4f6c8356b1bc7160f8bb2a9f49ba3d0af7",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/footer3.xml",
+        "size": 1345,
+        "sha256": "458254bd3ddef8b2a39d2557124f11369d7d252c38bb61530a5e1c19d62e04e0",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/header4.xml",
+        "size": 1293,
+        "sha256": "e1d2d4060c859ac7d6648284ba49706cf80e2e14374d3cf9bb2983edf9ee677f",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/footer4.xml",
+        "size": 1293,
+        "sha256": "cc831c46cac03c968fc5b2d8e0ce3179d17a559dd54fa4e4fba3f7c2680cc344",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/header5.xml",
+        "size": 1460,
+        "sha256": "6c0fce33e275dd2ef1394890950777c639bbe471facb0acecb22973225b8c85e",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "word/footer5.xml",
+        "size": 1468,
+        "sha256": "7b42f046af53c1671bcd0e3da0ec1290b43299ed9cff2c9e0521ef61ce8316d2",
+        "classification": "editable"
+      },
+      {
+        "path": "word/media/image1.png",
+        "size": 89792,
+        "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+        "classification": "preserve-only"
+      },
+      {
+        "path": "docProps/thumbnail.jpeg",
+        "size": 8324,
+        "sha256": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+        "classification": "preserve-only"
+      }
+    ]
+  }
+}

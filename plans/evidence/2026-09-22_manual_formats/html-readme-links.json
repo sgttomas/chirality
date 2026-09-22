@@ -1,0 +1,50 @@
+{
+  "readme_sha256": "9babc3d10fa429e97e70cde35b334d55a10b27c9d6719bab6453faf332322259",
+  "checks": [
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+      "exists": true
+    },
+    {
+      "href": "MANUAL_REVIEW_v1.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_manual_formats/",
+      "exists": true
+    },
+    {
+      "href": "requirements.txt",
+      "exists": true
+    }
+  ],
+  "all_links_exist": true
+}

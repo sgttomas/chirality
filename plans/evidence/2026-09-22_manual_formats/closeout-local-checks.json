@@ -1,0 +1,98 @@
+{
+  "phase": "formats candidate preflight; final DOCX/PDF correction and visual review pending",
+  "base": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "started_at_utc": "2026-09-22T14:36:48.275765+00:00",
+  "finished_at_utc": "2026-09-22T14:37:25.727711+00:00",
+  "command": [
+    "python3",
+    "tools/run_affected_tests.py",
+    "--base",
+    "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169"
+  ],
+  "exit_code": 0,
+  "summary": [
+    "[run-affected] running 2 suite(s); skipping 17: analysis, coordination, decomp, drawing_extract, equation_audit, evaluation, pdf2md, publication, reporting, retrieval, scaffolding, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime",
+    "[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation",
+    "897 passed, 48 subtests passed in 36.43s"
+  ],
+  "scope": "Affected checks selected from committed plus current staged, unstaged and untracked files. Later document or evidence changes require affected reassessment, not an automatic full-suite repetition.",
+  "live_guards": {
+    "checked_at_utc": "2026-09-22T14:39:14.094508+00:00",
+    "phase": "final document layout correction and visual QA pending",
+    "results": [
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_agent_instructions.py",
+          "--json"
+        ],
+        "exit_code": 0,
+        "summary": {
+          "errors": 0,
+          "findings": []
+        }
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_workflow_metadata.py",
+          "--json"
+        ],
+        "exit_code": 0,
+        "summary": {
+          "checked_workflow_count": 74,
+          "invalid_workflow_count": 0
+        }
+      },
+      {
+        "command": [
+          "python3",
+          "tools/practitioner_harness/harness.py",
+          "self-check"
+        ],
+        "exit_code": 0,
+        "summary": "> **Generated view \u2014 not authority.** Produced by tools/practitioner_harness (command: self-check)."
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_root_materialization_fence.py"
+        ],
+        "exit_code": 0,
+        "summary": "G0 PASS: exact governance/historical census validated; stage=effective; no production authorization"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_root_harness_adapter.py"
+        ],
+        "exit_code": 0,
+        "summary": "G1 PASS: governance adapter exact pointers, controls and historical census; stage=effective"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_root_surface_ownership.py"
+        ],
+        "exit_code": 0,
+        "summary": "G2 PASS: accepted successor scopes; historical read custody only"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_root_work_graph_dispatch.py"
+        ],
+        "exit_code": 0,
+        "summary": "G3 PASS (CI mode): work graph work_graph.yaml is schema-valid (root-work-graph/v1); 46 node(s), active: none; declared write targets, disjointness/serialization, and M2 markers check out."
+      },
+      {
+        "command": [
+          "python3",
+          "tools/validation/validate_instruction_tranche_manifest.py"
+        ],
+        "exit_code": 0,
+        "summary": "G4 PASS (CI mode): 94 tranche manifest(s) under docs/governance_harness/tranche_manifests are schema-valid (instruction-tranche-manifest/v1)"
+      }
+    ]
+  }
+}

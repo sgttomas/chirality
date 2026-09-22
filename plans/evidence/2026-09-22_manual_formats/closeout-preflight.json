@@ -1,0 +1,43 @@
+{
+  "schema": "manual-formats-closeout-preflight/v1",
+  "observed_at_utc": "2026-09-22T14:38:05.926655+00:00",
+  "phase": "HTML frozen; DOCX/PDF wrapping repair and independent visual QA active",
+  "base": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "checks": {
+    "preserved_inputs_match": true,
+    "scope_is_authorized": true,
+    "all_protected_paths_declared": true,
+    "renderer_python_AST_outside_CSS_unchanged": true,
+    "HTML_outside_stylesheet_byte_identical": true,
+    "publisher_parity_checks_pass": true,
+    "publisher_parity_evidence_matches_current_HTML": true,
+    "isolated_HTML_reproduction_passes": true
+  },
+  "changed_path_count": 26,
+  "protected_path_count": 6,
+  "preserved_input_count": 10,
+  "preservation_mismatches": [],
+  "scope_failures": [],
+  "uncovered_protected_paths": [],
+  "isolated_HTML_reproduction": {
+    "files": [
+      "render_manual.py",
+      "requirements.txt",
+      "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "CHIRALITY_AGENT_USER_MANUAL_v1.html"
+    ],
+    "exit_code": 0,
+    "summary": [
+      "22 sections; 28 headings; 7 tables; 10 code blocks",
+      "Source SHA-256: 2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "HTML SHA-256:   f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead"
+    ]
+  },
+  "checked_HTML_sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+  "checked_renderer_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+  "limits": [
+    "No final DOCX/PDF identity or visual verdict is claimed before the format manager and reviewers finish.",
+    "The HTML itself was not visually rendered; exact source parity and stylesheet-only changes do not establish browser layout.",
+    "Complete committed-range checks and required CI remain pending root content/visual readiness."
+  ]
+}

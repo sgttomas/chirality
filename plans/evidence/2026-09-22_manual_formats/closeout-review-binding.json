@@ -1,0 +1,72 @@
+{
+  "schema": "manual-formats-final-review-binding/v1",
+  "bound_at_utc": "2026-09-22T14:56:53.285460+00:00",
+  "basis": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "checks": {
+    "final_review_subjects_match": true,
+    "review_has_no_unresolved_findings": true,
+    "frozen_input_hashes_preserved": true,
+    "visual_ranges_exactly_cover_180_pages": true,
+    "all_visual_ranges_pass": true,
+    "only_changed_pages_5_and_17_rechecked": true,
+    "coverage_has_no_unresolved_findings": true,
+    "visual_and_structural_bindings_match_artifacts": true,
+    "TOC_destinations_match_final_folios": true,
+    "scope_is_authorized": true,
+    "all_protected_paths_declared": true
+  },
+  "reviewed_subjects": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+      "sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+      "match": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+      "sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae",
+      "match": true
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "match": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+      "match": true
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "sha256": "9babc3d10fa429e97e70cde35b334d55a10b27c9d6719bab6453faf332322259",
+      "match": true
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "match": true
+    }
+  ],
+  "review_records": {
+    "publication-review.md": "11f5683285295515538bc0d9d58eb2df6df0a3cdffe6ebaa7e4de73af16faf71",
+    "publication-review-sources.json": "e294dc04632b7e0cacc81d8b8af0043dcf86ede2768e0568cae5782f37211c55",
+    "format-review.md": "5f87e1b22cb2a23633f30e35e1eb8cd94d129f55ac824506dfbe8327943cf4ad",
+    "format-visual-coverage.json": "1f85d74e78074aa50bb5ff153d77be9bceb2c6d28992dc20f0871c824e74d7c8",
+    "format-structural.json": "9ff1b0c89f4d37d05d815411d13e58bf9ce266172d26f4cc5c1f07ad232d3479",
+    "format-page-image-hashes.json": "127df1c2775b60cd812eaab941f146dcd9f2008c2fb3305d0e30d1c9493ce3c0",
+    "html-final-hashes.json": "9406e2318910a6f5ee6db28733fbae8c172c7e6884466d26992b519447f0c3df"
+  },
+  "preserved_input_count": 10,
+  "preservation_failures": [],
+  "changed_path_count_at_binding": 36,
+  "protected_path_count": 6,
+  "scope_failures": [],
+  "uncovered_protected_paths": [],
+  "visual_coverage": "Six TASK readers covered pages 1\u2013180; 178 page hashes remain identical and corrected pages 5/17 were explicitly rechecked. The manager and independent reviewer bind this coverage to the final artifacts. The closeout manager verified those records, not a second full visual read.",
+  "limits": [
+    "Restyled HTML browser/responsive/print visual inspection remains unverified under the prior URL-policy restriction.",
+    "No live Microsoft Word interaction or native Word field-refresh behavior is claimed.",
+    "The DOCX/PDF production recipe is one-off run evidence; it is not a maintained product builder."
+  ],
+  "git_state": "Fresh origin/main equals this branch base; no main integration change was necessary. Commit identity and CI/merge outcome are retained in ordinary PR/Git history to avoid self-referential hashes."
+}

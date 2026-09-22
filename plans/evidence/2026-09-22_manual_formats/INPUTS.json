@@ -1,0 +1,107 @@
+{
+  "schema": "manual-formats-input-basis/v1",
+  "basis": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "recorded_at_utc": "2026-09-22T14:20:24.660517+00:00",
+  "recorded_by": "/root/closeout_manager",
+  "note": "Hashes identify committed input bytes; they do not claim complete content or visual inspection by this recorder. Root/WORKING_ITEMS/chirality-change instructions were already read in this session and verified unchanged since that reading.",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "bytes": 305199,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "bytes": 1589761,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "bytes": 532489,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+      "bytes": 20142,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+      "bytes": 137344,
+      "treatment": "presentation/generation input; changes only within BRIEF scope"
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+      "bytes": 20915,
+      "treatment": "presentation/generation input; changes only within BRIEF scope"
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+      "bytes": 4492,
+      "treatment": "presentation/generation input; changes only within BRIEF scope"
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "bytes": 101,
+      "treatment": "presentation/generation input; changes only within BRIEF scope"
+    },
+    {
+      "path": "docs/alignment-manual/assets/Figure_1_1.png",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+      "bytes": 89792,
+      "treatment": "preserve unchanged; image content is an input to new formats"
+    }
+  ]
+}
