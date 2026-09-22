@@ -1,0 +1,42 @@
+.......F...                                                              [100%]
+=================================== FAILURES ===================================
+______________ test_live_pointer_currency_first_detection_target _______________
+
+live_self_check = (Report(command='self-check', findings=[Finding(severity=<Severity.REVIEW: 'REVIEW'>, code='STALE_RULING_ANNOTATION', ...-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]']), None)
+
+    @live
+    def test_live_pointer_currency_first_detection_target(live_self_check):
+        # The 2026-07-01 consistency audit's live reproduction case: the piping
+        # reconciliation pointer designated the 2026-05-09 DEV001 run summary,
+        # retired to .archive/ on 2026-06-03 (349a2ab33). The owner ruled the
+        # disposition REPOINT (piping D-28, applied on main at d74b991db), so this
+        # test is disposition-aware: on a tree predating the repoint the check
+        # MUST fire (the check's first detection target); on the repointed tree
+        # the pointer resolves to the newest surviving sibling and MUST be quiet.
+        pointer = (LIVE_REPO / "projects" / "chirality-piping" / "execution"
+                   / "_Reconciliation" / "_LATEST.md")
+        first_line = pointer.read_text(encoding="utf-8").splitlines()[0]
+        report, _ = live_self_check
+        hits = [f for f in report.findings if f.code == "POINTER_TARGET_UNRESOLVED"]
+        if "2026-05-09_DEV001" in first_line:  # pre-disposition tree
+            assert [(f.source_path, f.source_line) for f in hits] == [
+                ("projects/chirality-piping/execution/_Reconciliation/_LATEST.md", 1)]
+            msg = hits[0].message
+            assert ("Reconciliation_Run_Summary_2026-05-09_DEV001_REV05_CANDIDATE_"
+                    "EDGE_RECONCILIATION.md") in msg
+            # Newest surviving same-class sibling cited as triage context.
+            assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
+                    "COMPATIBILITY_PLANNING.md") in msg
+        else:  # repointed per the D-28 ruling
+            assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
+                    "COMPATIBILITY_PLANNING.md") in first_line
+>           assert hits == []
+E           assert [Finding(seve...', caveat='')] == []
+E             
+E             Left contains one more item: Finding(severity=<Severity.REVIEW: 'REVIEW'>, code='POINTER_TARGET_UNRESOLVED', dimension='provenance', message="`_LAT...y-piping/execution/_DAG/_LATEST.md', source_line=3, invariant='K-PROV-1', invariant_ratification='RATIFIED', caveat='')
+E             Use -v to get more diff
+
+tools/practitioner_harness/test_live_baseline.py:220: AssertionError
+=========================== short test summary info ============================
+FAILED tools/practitioner_harness/test_live_baseline.py::test_live_pointer_currency_first_detection_target
+1 failed, 10 passed in 33.87s
