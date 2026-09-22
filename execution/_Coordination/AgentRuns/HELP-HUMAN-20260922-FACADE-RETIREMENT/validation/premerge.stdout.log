@@ -1,0 +1,11 @@
+HARNESS_VALIDATION_SUMMARY_PATH=/private/tmp/chirality-harness-validation/latest/summary.json
+HARNESS_VALIDATION_STATUS=pass
+HARNESS_PREMERGE_ARTIFACT_PATH=/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
+HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=/private/tmp/chirality-harness-validation/latest/summary.json
+HARNESS_PREMERGE_STATUS=pass
+HARNESS_PREMERGE_TEST_COUNT=8
+HARNESS_PREMERGE_SECTION9_ARTIFACT_PATH=/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
+HARNESS_PREMERGE_SECTION9_SOURCE_SUMMARY_PATH=/private/tmp/chirality-harness-section9-validation/latest/summary.json
+HARNESS_PREMERGE_SECTION9_STATUS=pass
+HARNESS_PREMERGE_SECTION9_TEST_COUNT=16
+HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true

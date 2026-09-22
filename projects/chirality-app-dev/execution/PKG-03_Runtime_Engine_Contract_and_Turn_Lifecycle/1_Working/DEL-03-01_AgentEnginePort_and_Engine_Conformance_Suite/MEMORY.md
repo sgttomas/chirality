@@ -34,3 +34,5 @@ No DEL-03-01 `Dependencies.csv` rows were marked satisfied, waived, retired, or 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-113, UPD-114: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+- 2026-09-22 — D-APP-118 current owner ruling retires the facade and its dedicated support/tests. Applied and independently reviewed; Runtime 407 tests, App 2,272 tests + 4 existing skips, typecheck/build/premerge and unsigned packaging pass. The former retirement HOLD/Root-routing gate is fulfilled; other DEL-03-01 conformance and successor-identity gaps remain. Root integration record: `execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-FACADE-RETIREMENT/RECORD.md` (repository-relative). No lifecycle, Checking Approval SHA or release act.

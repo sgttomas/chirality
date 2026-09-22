@@ -59,7 +59,7 @@ DESKTOP_FILES = [
     "tsconfig.electron.json",
     "tsconfig.json",
 ]
-DESKTOP_DIRS = ["build", "docs", "electron", "packages", "scripts", "src"]
+DESKTOP_DIRS = ["build", "docs", "electron", "scripts", "src"]
 
 EXCLUDED_PUBLIC_PATHS = {
     ".github/workflows/harness-premerge.yml",

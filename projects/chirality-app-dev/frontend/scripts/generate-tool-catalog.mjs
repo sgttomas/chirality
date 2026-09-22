@@ -2,11 +2,8 @@
 
 import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
-// Same resolved module as src/__tests__/lib/tool-catalog.test.ts: the test
-// imports the deprecated `@chirality/harness-contract/tool-catalog` facade,
-// which re-exports `@chirality/runtime-contracts/tool-catalog` (built dist).
-// Importing the runtime contracts package directly lands on that identical
-// dist module, so generator and drift check share one renderer.
+// Generator and src/__tests__/lib/tool-catalog.test.ts import the same
+// canonical Runtime contracts renderer (built dist).
 import { renderHarnessToolCatalog } from '@chirality/runtime-contracts/tool-catalog';
 
 const repoRelativeCatalogPath = path.join('docs', 'harness', 'tool_catalog.md');

@@ -1,0 +1,101 @@
+
+> @chirality/runtime-workspace@0.1.0 test
+> vitest run --maxWorkers=1
+
+
+ RUN  v3.2.7 /Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-runtime
+
+ ✓ tests/runtime-v3-api.test.ts (33 tests) 5759ms
+   ✓ v3 Runtime API integration > authenticates catalog/context routes and supplies frozen context plus callable loader across restart/replay  506ms
+   ✓ v3 Runtime API integration > refuses project skills across discovery, inspection, context resolution, and dynamic loading  348ms
+   ✓ v3 Runtime API integration > activates a dynamically loaded method for later turns while preserving ordered selection  336ms
+   ✓ v3 Runtime API integration > blocks instruction drift until an explicit same-reference successor is prepared  337ms
+   ✓ v3 Runtime API integration > prepares a role successor and records its actual provider span identity  304ms
+ ✓ tests/daemon.test.ts (20 tests) 13639ms
+   ✓ Unix-domain runtime daemon > forces an incomplete ordinary request at the exact production grace and cleans metadata  2015ms
+   ✓ Unix-domain runtime daemon > forces stubborn SSE transport without waiting on interrupt acknowledgement and degrades  2042ms
+   ✓ Unix-domain runtime daemon > expires pre-identity Agent 1 cancellation at force and forbids a late interrupt  2076ms
+   ✓ Unix-domain runtime daemon > interrupts once when Agent 1 identity appears in a later pre-force event  2028ms
+   ✓ Unix-domain runtime daemon > isolates late prior-generation iterator events after a successful forced stop and restart  2101ms
+   ✓ Unix-domain runtime daemon > caps post-force transport settlement at 500 ms before reporting cleanup failure  2513ms
+ ✓ tests/app-owned-composition.test.ts (16 tests) 5802ms
+   ✓ App-owned Codex composition > prepares the effective home, issues the app-host token, reports sign-in status with the catalog, and runs a turn with a declined approval  548ms
+   ✓ App-owned Codex composition > copies native selections into project inputs then session custody before stock Codex input  496ms
+   ✓ App-owned Codex composition > rejects invalid explicit attachment sources before stock Codex dispatch  327ms
+   ✓ App-owned Codex composition > recovers a persisted running session when the next service starts  394ms
+   ✓ App-owned Codex composition > boots a session without a Codex turn: readiness is recorded and the thread starts with the first message  316ms
+   ✓ App-owned Codex composition > adopts changed methods through verified unload and cold resume on the same thread  476ms
+   ✓ App-owned Codex composition > requires the accepted post-turn basis for workflow changes and preserves earlier supplied instructions  707ms
+   ✓ captures editable product guidance, isolates native roles, and preserves prior adopted bytes across edits  456ms
+   ✓ records resolved edits without provider acceptance while a native child keeps working  535ms
+   ✓ does not report adoption or dispatch a user turn after an uncertain injection, then retries the full current basis  636ms
+ ✓ tests/codex-supervisor.test.ts (25 tests) 110ms
+ ✓ tests/instruction-basis-and-method-transition.test.ts (14 tests) 532ms
+ ✓ tests/pi-turn-runtime.test.ts (25 tests) 1453ms
+   ✓ uses the actual isolated Pi SDK with strict local transport and canonical terminal events  1216ms
+ ✓ tests/method-catalog.test.ts (14 tests) 104ms
+ ✓ tests/delegated-runtime.test.ts (9 tests) 814ms
+ ✓ tests/codex-application-tools.test.ts (26 tests) 479ms
+ ✓ tests/turn-hardening.test.ts (11 tests) 655ms
+ ✓ packages/client/test/client.test.ts (11 tests) 777ms
+   ✓ keeps heartbeat-only observations healthy, then expires missing bytes without interrupting  540ms
+ ✓ tests/agent1-run.test.ts (9 tests) 864ms
+ ✓ tests/turn-registry.test.ts (9 tests) 162ms
+ ✓ tests/application-tools.test.ts (12 tests) 12ms
+ ✓ packages/cli/test/cli.test.ts (13 tests) 12ms
+ ✓ tests/worker-retirement.test.ts (19 tests) 1550ms
+   ✓ keeps terminal records readable across concurrent thread association in 30 interleavings  900ms
+ ✓ tests/bootstrap-api.test.ts (3 tests) 2303ms
+   ✓ hosted bootstrap API > rejects extra fields and unsafe host projections, and cancels an in-flight ceremony on shutdown  2095ms
+ ✓ tests/application-tools-composition.test.ts (4 tests) 1428ms
+   ✓ application tools through the owning host and production Runtime composition > keeps ordinary conversations tool-free across consecutive turns  465ms
+   ✓ application tools through the owning host and production Runtime composition > restores the immutable catalog but requires a fresh binding after service restart  469ms
+ ✓ tests/codex-attachment-adapter.test.ts (5 tests) 95ms
+ ✓ tests/contracts-and-project.test.ts (10 tests) 41ms
+ ✓ tests/session-and-residency.test.ts (8 tests) 240ms
+ ✓ tests/native-steering.test.ts (10 tests) 65ms
+ ✓ tests/pi-packaging.test.ts (16 tests) 11181ms
+   ✓ cjs consumer: real SDK offline success  771ms
+   ✓ cjs consumer: real SDK offline interrupt  593ms
+   ✓ cjs consumer: real SDK offline close  627ms
+   ✓ cjs consumer: real SDK offline release  624ms
+   ✓ cjs consumer: real SDK offline deadline  603ms
+   ✓ cjs consumer: real SDK offline capacity  935ms
+   ✓ cjs consumer: real SDK offline snapshot  943ms
+   ✓ cjs consumer: real SDK offline load-error  577ms
+   ✓ esm consumer: real SDK offline success  577ms
+   ✓ esm consumer: real SDK offline interrupt  586ms
+   ✓ esm consumer: real SDK offline close  574ms
+   ✓ esm consumer: real SDK offline release  571ms
+   ✓ esm consumer: real SDK offline deadline  580ms
+   ✓ esm consumer: real SDK offline capacity  1002ms
+   ✓ esm consumer: real SDK offline snapshot  941ms
+   ✓ esm consumer: real SDK offline load-error  570ms
+ ✓ tests/stagec-native-child-history.test.ts (1 test) 167ms
+ ✓ tests/v2-contracts.test.ts (18 tests) 4ms
+ ✓ tests/native-event-adapter.test.ts (2 tests) 4ms
+ ✓ tests/codex-app-server-client.test.ts (7 tests) 176ms
+ ✓ tests/runtime-daemon-signal.test.ts (2 tests) 2141ms
+   ✓ runtime daemon process signal shutdown > tears down within a bound when SIGTERM arrives with an incomplete request held open  2139ms
+ ✓ tests/native-plan-trial-admission.test.ts (3 tests) 64ms
+ ✓ tests/standalone.test.ts (5 tests) 1059ms
+   ✓ standalone daemon job > prints exactly one ready line from the binary and exits 0 on SIGTERM  389ms
+ ✓ tests/codex-effective-home.test.ts (4 tests) 14ms
+ ✓ tests/hosted-model-selection-contracts.test.ts (4 tests) 4ms
+ ✓ tests/native-role-config.test.ts (3 tests) 11ms
+ ✓ tests/descendant-tracker.test.ts (8 tests) 2471ms
+   ✓ observes an actual detached descendant after its controlled leader exits  2468ms
+ ✓ tests/attachment-copy.test.ts (4 tests) 42ms
+ ✓ tests/retirement-failure.test.ts (6 tests) 3ms
+ ✓ tests/physical-filesystem.test.ts (3 tests) 8ms
+ ✓ tests/role-policy.test.ts (8 tests) 3ms
+ ✓ tests/product-native-role-config.test.ts (2 tests) 9ms
+ ✓ tests/native-message-replay.test.ts (2 tests) 3ms
+ ✓ tests/process-supervisor.test.ts (2 tests) 106ms
+ ✓ tests/omlx-client.test.ts (1 test) 3ms
+
+ Test Files  42 passed (42)
+      Tests  407 passed (407)
+   Start at  09:56:18
+   Duration  62.15s (transform 802ms, setup 0ms, collect 2.91s, tests 54.37s, environment 4ms, prepare 1.27s)
+

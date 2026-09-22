@@ -1,0 +1,145 @@
+
+> chirality-frontend@3.0.1 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/ryan/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/package-lock.json
+
+   ▲ Next.js 15.5.25
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 4.0s
+
+./src/components/shell/about-panel.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/about-panel.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/app-shell.tsx
+
+./src/components/shell/account-popover.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/account-popover.tsx
+./src/components/shell/account-row.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/app-shell.tsx
+
+ ⚠ Compiled with warnings in 2.3s
+
+./src/components/shell/about-panel.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/about-panel.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/app-shell.tsx
+
+./src/components/shell/account-popover.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/account-popover.tsx
+./src/components/shell/account-row.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/app-shell.tsx
+
+ ✓ Compiled successfully in 6.3s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/36) ...
+   Generating static pages (9/36) 
+   Generating static pages (18/36) 
+   Generating static pages (27/36) 
+ ✓ Generating static pages (36/36)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                        Size  First Load JS
+┌ ƒ /                                                             713 B         269 kB
+├ ƒ /_not-found                                                   242 B         103 kB
+├ ƒ /api/harness/agents                                           242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/login/cancel                    242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/login/start                     242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/logout                          242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/project/bind                    242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/project/initialize              242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/provider-network-consent        242 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/status                          242 B         103 kB
+├ ƒ /api/harness/interrupt                                        242 B         103 kB
+├ ƒ /api/harness/methods                                          242 B         103 kB
+├ ƒ /api/harness/methods/inspect                                  242 B         103 kB
+├ ƒ /api/harness/permission                                       242 B         103 kB
+├ ƒ /api/harness/roles                                            242 B         103 kB
+├ ƒ /api/harness/scaffold                                         242 B         103 kB
+├ ƒ /api/harness/session/[id]                                     242 B         103 kB
+├ ƒ /api/harness/session/[id]/context/resolve                     242 B         103 kB
+├ ƒ /api/harness/session/[id]/events                              242 B         103 kB
+├ ƒ /api/harness/session/[id]/methods                             242 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/capability              242 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/clarifications          242 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/clarifications/reply    242 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/export                  242 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/revisions               242 B         103 kB
+├ ƒ /api/harness/session/[id]/requests                            242 B         103 kB
+├ ƒ /api/harness/session/[id]/requests/[requestId]/answer         242 B         103 kB
+├ ƒ /api/harness/session/[id]/turn/state                          242 B         103 kB
+├ ƒ /api/harness/session/[id]/turn/steer                          242 B         103 kB
+├ ƒ /api/harness/session/[id]/turn/steer/receipt                  242 B         103 kB
+├ ƒ /api/harness/session/[id]/turn/stream                         242 B         103 kB
+├ ƒ /api/harness/session/boot                                     242 B         103 kB
+├ ƒ /api/harness/session/create                                   242 B         103 kB
+├ ƒ /api/harness/session/list                                     242 B         103 kB
+├ ƒ /api/harness/turn                                             242 B         103 kB
+├ ƒ /api/project/deliverables                                     242 B         103 kB
+├ ƒ /api/working-root/deliverable/content                         242 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies                    242 B         103 kB
+├ ƒ /api/working-root/deliverable/status                          242 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition               242 B         103 kB
+├ ƒ /api/working-root/file                                        242 B         103 kB
+├ ƒ /api/working-root/scope                                       242 B         103 kB
+├ ƒ /api/working-root/tree                                        242 B         103 kB
+├ ƒ /api/working-root/validate                                    242 B         103 kB
+├ ƒ /api/working-root/workflow                                    242 B         103 kB
+├ ƒ /api/working-root/workflow-drafts                             242 B         103 kB
+├ ƒ /chat                                                         690 B         269 kB
+├ ƒ /pipeline                                                     682 B         269 kB
+└ ƒ /workbench                                                    671 B         269 kB
++ First Load JS shared by all                                    103 kB
+  ├ chunks/1255-7316b50163a428e6.js                             46.4 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js                         54.2 kB
+  └ other shared chunks (total)                                 1.94 kB
+
+
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> chirality-frontend@3.0.1 build:electron
+> node ./scripts/build-electron.mjs
+
+
+  dist-electron/main.js       464.9kb
+  dist-electron/main.js.map  1013.7kb
+
+⚡ Done in 38ms
+
+  dist-electron/preload.js       7.2kb
+  dist-electron/preload.js.map  23.5kb
+
+⚡ Done in 2ms
+
+  dist-runtime/runtime-service/standalone-bin.mjs      817.1kb
+  dist-runtime/runtime-service/standalone-bin.mjs.map    1.5mb
+
+⚡ Done in 29ms
+
+  dist-runtime/runtime-cli/chirality-cli.mjs       80.7kb
+  dist-runtime/runtime-cli/chirality-cli.mjs.map  231.0kb
+
+⚡ Done in 9ms
