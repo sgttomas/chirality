@@ -1,0 +1,505 @@
+{
+  "schema": "chirality-app-decision-refresh-evidence/v1",
+  "date": "2026-09-22",
+  "basis": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "role": "TASK",
+  "agent": "/root/app_decision_refresh",
+  "parent": "/root",
+  "mechanism": "Codex collaboration native delegated subagent; executing child, not only a written brief",
+  "model_attribution": {
+    "engine": "Codex",
+    "provider": "OpenAI",
+    "model": "inherited parent model; exact serving model ID and reasoning effort unavailable in supplied child context",
+    "substitution": "none requested or observed"
+  },
+  "effective_limits": {
+    "write_targets": [
+      "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+      "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/SOURCES.json"
+    ],
+    "enforcement": "workspace-write host; role/write restriction instruction-asserted, not mechanically enforced by per-file host permissions",
+    "delegation": "TASK does not delegate; none performed",
+    "git": "read-only Git identity/status; no mutation",
+    "adoption": "none; product owner choices remain held"
+  },
+  "supplied_context": {
+    "parent_launch_brief": "Act as TASK (read agents/AGENT_TASK.md; no delegation). User approved preparing refreshed App decision bundle + consolidated Piping ownership proposal. Base now e74feb34b on codex/reconciliation-decision-bundles-20260922. Your bounded assignment: prepare current App decision bundle for D-APP-116/117/118/119 and owner-reserved DEL-06-02 CLM-005/032, with precise recommendations/consequences and proposed ruling text; primary-source-check against D-GOV-43/A2, D-APP-127/131 and current source/contracts. Historical option letters and old daemon mechanisms must not be blindly promoted. Distinguish decisions already settled, surviving owner choices, evidence work, and what can proceed without another vote. Perform APP-HOLD reliance preflight for actual deliverables used. Read applicable project AGENTS and proposal-format skill (use its required proposal blocks within document). Write ONLY projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md and SOURCES.json (source hashes, actual supplied origins/role/brief/native delegation facts, checks). Do not modify source, accepted scope, registers, old evidence, graphs, instructions; no Git mutation. This is preparation authorized now, not adoption of new choices. Explicitly propose technically coherent current alternatives, don\u2019t leave old proposals merely relabeled. Keep readable concise and concrete. Author source evidence including actual paths/sections and current implementation limits. Return recommendation summary, unresolved concerns, file paths, preflight and checks.",
+    "parent_launch_brief_sha256": "3ffb9c56d6123543305518cedc708413194085473c5eabf0d4734e68d049a0e3",
+    "history": "full-history parent context supplied by native delegation; this receipt does not hash or claim a complete transport transcript",
+    "latest_user_operative_text": "I agree with your recommendation and what follows from it. proceed accordingly.",
+    "interpretation": "authorizes recommendation preparation and its ordinary evidence work; not adoption of unseen choices",
+    "instruction_origins": [
+      "user-supplied Root AGENTS.md replacement in conversation",
+      "filesystem agents/AGENT_TASK.md",
+      "filesystem projects/chirality-app-dev/AGENTS.md",
+      "filesystem projects/chirality-runtime/AGENTS.md for read-only source scope",
+      "filesystem .agents/skills/proposal-format/SKILL.md"
+    ],
+    "workflow_selection": "none; bounded TASK brief and proposal-format skill. Runtime LOOP_INIT consulted for ownership/read boundary, not activated as a development workflow."
+  },
+  "sources": [
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sha256": "63e6d2545c31df939511a5a137c214d5444ca562f6abf9b048de3aa2f8dac59d",
+      "bytes": 1688,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+      "sha256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899",
+      "bytes": 3658,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md",
+      "sha256": "fa3756ad3bdf02104da47fc5ba697b4f96d8a02029f008b32bd96a094ec46cb2",
+      "bytes": 5590,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/D-GOV-43.proposed.md",
+      "sha256": "5afadb4ac0d33c26d188abbd86508de31dd08a027bd7858005273a11eab784cc",
+      "bytes": 23719,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+      "sha256": "57411f8df49e6316d8d3bc9674d698b1c8478e639aad331115d4f67bcca97363",
+      "bytes": 38729,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md",
+      "sha256": "a30ad4096e11bae24122c2255bf6e461a9cac21ec95d9398524c179bb54eaa07",
+      "bytes": 36998,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md",
+      "sha256": "b42b840b64cfb258e386e1c2f1b745efd18ef7d5e8752d7459ac5284a35da8d9",
+      "bytes": 28824,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md",
+      "sha256": "ddc377750334179ceb5a0978569895421f8f643f233559349528bc4c5b76a0ec",
+      "bytes": 37985,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/ScopeOfWork.md",
+      "sha256": "4b91d23341372bf422c186314e0cc3546d08b08a5ec5691d4037eaf09f94b3fb",
+      "bytes": 33234,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+      "sha256": "1df070d3b9fb1a56e9d34ab797aee63776893acf45a448013c4e09a1aa7bdda4",
+      "bytes": 35522,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md",
+      "sha256": "e381c7b9c466279bab8130bde89d9c4e31c833e0052685d6c2740a46b4f2f2e4",
+      "bytes": 37261,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+      "sha256": "9ff74c7b74f20dc013368dacafdc8f0ad4d7b30996867682ecc8f730c175cc1a",
+      "bytes": 8087,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/ScopeOfWork.md",
+      "sha256": "fbcd18ec6ce7578d692d912ce28abd4a128b3ad4827e6a3079f3c4b6284f69cd",
+      "bytes": 39956,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/ScopeOfWork.md",
+      "sha256": "964dd129e3cc189485751440e17f8237c7b3cdf048814176d48da64945dda669",
+      "bytes": 40209,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv",
+      "sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+      "bytes": 301,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-101_RULING_FACADE_RETIREMENT_PACKET_2026-08-17.md",
+      "sha256": "0b3fe13b7ed1729d0addc6929fcbeb7446b0af522b20488c81e3d28364892080",
+      "bytes": 1194,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-102_RULING_TOOL_RESULT_AUDIT_PACKET_2026-08-17.md",
+      "sha256": "088c18b073bbbcff967ecb46fba664fdc4fae5110ece69e9fb64a6567fec0f2c",
+      "bytes": 1101,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-103_RULING_PER_ATTEMPT_DECISION_REPLAY_PACKET_2026-08-17.md",
+      "sha256": "23c2b5b84f8dcfe5733db8b0ad44136c6fce1ed6f30df821fb50c92882affe8b",
+      "bytes": 1551,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md",
+      "sha256": "59aece85bcf99ae2ae666fd59f6e66d206d1a6e985f2c208f231474cd4af73f9",
+      "bytes": 16791,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md",
+      "sha256": "8e4ef9bbaebdcbb9b23c938bebc46f670abebd7aae5201d6cf459f6db3c6866c",
+      "bytes": 18521,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md",
+      "sha256": "8eb3f39185a879d67fceb5c031bc292f8e24eac7cc2d85c70124d10663fe0411",
+      "bytes": 12172,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md",
+      "sha256": "ac8188df139f9df18024a1dd8f3424256ad40582d9076ae47525b42e56610dd7",
+      "bytes": 7104,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md",
+      "sha256": "211ce2d25fde94c2c88c7b688a530e697b1b923efffaaaf18f39db414f494c19",
+      "bytes": 11203,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-131_APPLICATION_R5_R6_AGENT0_2026-09-22.md",
+      "sha256": "37a3dd3798af7c8d8ce5ea21b2b5d9dac22b452c8473c260fbafbb5a219de097",
+      "bytes": 11344,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-42_PACKET_TOOL_RESULT_ARTIFACT_POLICY_2026-06-21.md",
+      "sha256": "f871a0a04e7a95580797a83051e0644f1de7b183089319d96c9d59c91cc76241",
+      "bytes": 6707,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-42_RULING_2026-06-21.md",
+      "sha256": "4a7ca9116b3a5c253a0b9dee80005189873196641ba94748063e6965b9b9e07e",
+      "bytes": 2653,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md",
+      "sha256": "512ee819442366df20c78c1b58b50db25a563387a29a9b60b0dd04d6b52188a3",
+      "bytes": 11780,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-76_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md",
+      "sha256": "5b00ed5abae424bfdddc972e93a0ad0ea2fa17d91b58673e5a86c3461fff9d0b",
+      "bytes": 2725,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-76_RULING_2026-07-27.md",
+      "sha256": "26bd39e3d383d0f19bed695a2a1515642875894e52a3c13a73c02ee9dc2e5638",
+      "bytes": 5399,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_PACKET_COMPATIBILITY_FACADE_RETIREMENT_2026-08-02.md",
+      "sha256": "7dc274ac9d8d081947420c2155954adef9e5f0d2987e8e0913c0b84f8eabb8dc",
+      "bytes": 7066,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md",
+      "sha256": "5b651cb41c3e69e59d26d12c32331d4c6918cc77e590e228dd90fbd8d5da0f22",
+      "bytes": 3160,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-98_RULING_ELECTRON_AUTHORITY_2026-08-17.md",
+      "sha256": "71dfc1ae6369acea1e49f71d68e45aaf9da8f14c5f6a77733845c43f3ee7c020",
+      "bytes": 1020,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "3c107f96f7d9f27dd8484910cf66dc61d0554a8374f2b38d03f506a85fa191b9",
+      "bytes": 113532,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R4/PACKETS/P-01_deferred-del-06-02-keys.md",
+      "sha256": "e4eb9b88f53b122a723daaa8678ec20f020eca7def577d28497b6c28aaaa04c2",
+      "bytes": 7675,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc",
+      "bytes": 37940,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "747bd71dd6a827445bbcf9bd400811c066926115b19ffbb55ec006965a99793c",
+      "bytes": 42202,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+      "sha256": "d84c01388287e599e1a59a84c67f7b2208d300206ec441bd9fb67a627feb9300",
+      "bytes": 4459,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+      "sha256": "ffb3478a520c1796165f46c88d9df505927f44ae4208b77c47147b399750b12c",
+      "bytes": 2650,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/instruction-root.ts",
+      "sha256": "3ab8b1e585e7c4797f8c5606715ab0d6778c9267799cc91b222a07779f5cbaef",
+      "bytes": 3180,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts",
+      "sha256": "f9d7e0bc5752394a2a118c6690efc5338b0bc9cd3a9fa5f07df5f0b5b04793bf",
+      "bytes": 3678,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts",
+      "sha256": "f52010ec5014a8f0a211008838acf6d0b69de38f49026f9a0650c1826aa65bce",
+      "bytes": 6769,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md",
+      "sha256": "70684ba0b6e6d04037f252f10eef35a2ca78d6cf41477678807ec59826a9004a",
+      "bytes": 3754,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts",
+      "sha256": "6c188da4308672207bda088a1b0858194cc6b4029f10fa993c28ecf09616d513",
+      "bytes": 24691,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/project-registry.ts",
+      "sha256": "e8076b56bf1c83918d43f443a4584c24eae99edefeadbee772ca2454bae21fa7",
+      "bytes": 12539,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-method-service.ts",
+      "sha256": "b201733978915e12ebb27c670918259df0de296f9bb636932e1054cad23c97db",
+      "bytes": 63548,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "sha256": "224475e901253eba59224530c84753aa4cf99d549e9ac18a045ea9121e36292d",
+      "bytes": 53873,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/app-owned-composition.ts",
+      "sha256": "4cd5b16a93b30ccddc05be3d2221cbb46fcd2a5c9c507886333c30974c67f565",
+      "bytes": 18952,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/application-tools.ts",
+      "sha256": "a2920ad44d7f3f9d7a9a76c29fcfa7e0383155d9d50e81c0399ef1be16f4c3e3",
+      "bytes": 13448,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "2dd56ebba6153978cfd6da9118b0eb6be73388aa16dbf799e57be508ae01eb2b",
+      "bytes": 52066,
+      "access": "filesystem source inspection; selected relevant sections/searches; full-file hash is identity, not a claim every line was reviewed"
+    }
+  ],
+  "checks": {
+    "five_proposal_blocks": true,
+    "all_required_final_fields": true,
+    "all_proposal_fields": true,
+    "source_files_exist": true,
+    "known_facade_import_probes": 13,
+    "obsolete_daemon_instruction_root_absent": true,
+    "product_tests": "NOT_RUN: proposal-only source inspection; no product change or feature qualification claimed",
+    "independent_review": "PARENT_PENDING"
+  },
+  "preflight": {
+    "argv": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+      "--target",
+      "DEL-03-01",
+      "--target",
+      "DEL-05-05",
+      "--target",
+      "DEL-08-04",
+      "--target",
+      "DEL-08-05",
+      "--target",
+      "DEL-05-04",
+      "--target",
+      "DEL-02-02",
+      "--target",
+      "DEL-07-01",
+      "--target",
+      "DEL-06-02"
+    ],
+    "cwd": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": {
+      "active_hold_deliverables": [],
+      "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+      "operation": "reliance",
+      "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+      "repo_head": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "results": [
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-02-02",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-03-01",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-05-04",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-05-05",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-02",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-01",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-08-04",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-08-05",
+          "entry_path": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        }
+      ],
+      "scan_fingerprint_sha256": "ec7f838bf3d13e0cdbaff1c4cd45e762f3ceb0e6c9353c12a5b9cb8b07ce5ea3",
+      "scan_held_deliverables": [],
+      "schema": "chirality-app-hold-check/v1",
+      "structural_bootstrap_deliverables": [],
+      "targets": [
+        "DEL-02-02",
+        "DEL-03-01",
+        "DEL-05-04",
+        "DEL-05-05",
+        "DEL-06-02",
+        "DEL-07-01",
+        "DEL-08-04",
+        "DEL-08-05"
+      ],
+      "verdict": "ALLOW"
+    },
+    "stderr": ""
+  },
+  "limitations": [
+    "No native/product feature test executed",
+    "No full current facade consumer census; 13 known import consumers suffice to disprove zero-consumer readiness",
+    "No repository or external usage census can establish absence of all installed/dynamic consumers",
+    "Historical runtime/ paths and daemon-instruction-root.ts were attempted, found absent, and replaced with actual current source locations; no pass is inferred from failed searches"
+  ],
+  "artifact": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+    "sha256": "a52676113b435866bbfae2a8f3a163aca772fa2c98693355ac895b7ca20a26b4",
+    "bytes": 21320
+  }
+}
