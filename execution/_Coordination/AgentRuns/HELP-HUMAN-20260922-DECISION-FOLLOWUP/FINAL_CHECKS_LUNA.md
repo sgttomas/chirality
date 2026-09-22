@@ -64,3 +64,35 @@ remain distinct from these diagnostics. These checks establish record coverage,
 schema/quotation integrity, current pointer consistency, and protected-history
 preservation. They do not establish product behavior, remaining-task completion,
 scope acceptance, issued status, or release readiness.
+
+## Post-push exact-head check — PR #855
+
+Read-only GitHub inspection on 2026-09-22 found PR #855 OPEN, base `main` at
+`67e4738b2f276e3623cb16be6f8c2d7803f51521`, and head
+`a89b5ddecfb6d1ea8cca1b68d4895ab511e5c370`. Local `HEAD` equals that PR head;
+the worktree was clean when checked. The six administrative SHA-256 values
+bound by `FINAL_CANDIDATE_REVIEW_LUNA.md` all match their committed `HEAD`
+bytes exactly. GitHub reports `mergeable=CONFLICTING`,
+`mergeStateStatus=DIRTY`; `gh pr checks 855` reports no checks on the branch.
+Required CI is therefore not reported, and this head is not mergeable against
+its current base.
+
+The PR base advanced from the reviewed base `0fb42b36df5c93c34c02e209670f3cede937ce84`
+to `67e4738b2f276e3623cb16be6f8c2d7803f51521`; the former is an ancestor of
+the latter and is the merge base with the PR head. Between that old base and
+the moved base, 20 paths changed. The PR changes 963 paths from its merge base;
+nine paths were changed on both sides. A read-only `git merge-tree --trivial-merge`
+comparison finds conflict markers in these seven paths:
+
+- `projects/chirality-piping/CONTRIBUTING.md`
+- `projects/chirality-piping/docs/IP_AND_DATA_BOUNDARY.md`
+- `projects/chirality-piping/docs/PROFESSIONAL_BOUNDARY.md`
+- `projects/chirality-piping/docs/contributor_guide/index.md`
+- `projects/chirality-piping/docs/report_notice_template.md`
+- `projects/chirality-piping/governance/CONTRIBUTION_REVIEW_CHECKLIST.md`
+- `projects/chirality-piping/governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md`
+
+The other two same-path overlaps, `projects/chirality-piping/docs/README.md`
+and `projects/chirality-piping/docs/user_guide/index.md`, merge trivially in
+that comparison. This identifies candidates only; this checker performed no
+merge, conflict resolution, source edit, fetch, commit or push.
