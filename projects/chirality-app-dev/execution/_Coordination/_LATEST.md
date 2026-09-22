@@ -2,17 +2,21 @@
 
 This pointer is for discovery only. It is not substitute authority. Per
 `_COORDINATION.md` (record-keeping rule 5), it must not accumulate state
-history: current status is always re-derived from the decision register, the owning run's work graph, and `../../loop/LOOP_RECEIPTS.md`.
+history: current work is reached through the graph pointer in
+`../../loop/LOOP_INIT.md`, then checked against implementation, deliverable and
+decision evidence. Historical run and receipt pointers below remain context.
 
 Session entry:
 
-- `init/dev-loop-init-prompt.md` -> `loop/LOOP_INIT.md` -> owner-named run,
-  or applicable receipt and coordination pointers. No dated workplan selector.
-- Current owner direction and amendment record:
+- `init/dev-loop-init-prompt.md` -> `loop/LOOP_INIT.md` -> selected local work
+  graph. If none is selected, the loop constructs one for the owner's current
+  objective; this does not lift an existing pause or select a new phase.
+- Historical loop amendment and recorded development pause (check later owner steering):
   `execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md`
-  and `WORK_GRAPH.json` beside it. The owner reports v3.0.0 published and pauses
-  further development until owner-steered reconciliation. This loop amendment
-  is not that reconciliation and creates no product implementation queue.
+  and `WORK_GRAPH.json` beside it. That September 19 amendment recorded the
+  post-publication development pause. The current graph pointer now locates
+  the separately activated September 21 concordance undertaking; its own
+  phase cursor and decision gates govern continuation.
 - `execution/_Coordination/_COORDINATION.md` and
   `execution/_Coordination/_DECISIONS/_REGISTER.md`: inspect applicable rulings
   and open rows, not a copied status summary here.

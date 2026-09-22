@@ -55,6 +55,9 @@
         "label": "Plan & organize",
         "workflows": [
           {
+            "name": "construct-local-work-graph"
+          },
+          {
             "name": "preparation"
           },
           {
@@ -237,6 +240,9 @@
         "key": "review-check",
         "label": "Review & check",
         "workflows": [
+          {
+            "name": "bounded-reconciliation"
+          },
           {
             "name": "audit-agents"
           },
