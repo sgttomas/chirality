@@ -1,0 +1,80 @@
+{
+  "base": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "origin": "repository files read from the active checkout; graph entries bind pre-update historical bytes at base",
+  "owner_message": {
+    "text": "I agree with your recommendation and what follows from it. proceed accordingly.",
+    "custody": "visible user message transcription, not transport bytes",
+    "sha256": "ca3abc6d42aa0719419622379f50bb6024a79f16ca8c9ab5c17ffce68fe4c07e"
+  },
+  "consultation": "HELP_HUMAN active; TASK role deliberately read to prepare bounded delegation. Selected skills: chirality-change and proposal-format. No reusable workflow selected.",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sha256": "63e6d2545c31df939511a5a137c214d5444ca562f6abf9b048de3aa2f8dac59d"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0"
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+      "sha256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-131_APPLICATION_R5_R6_AGENT0_2026-09-22.md",
+      "sha256": "37a3dd3798af7c8d8ce5ea21b2b5d9dac22b452c8473c260fbafbb5a219de097"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "sha256": "d31ec124e7e1ebdddfbf24dedaaa1ceae3bc945023184648f538f321645899d6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "sha256": "e513b1aa6bac00b8b9372c46c174a0d838166baf86921087c23bdf98fa8e3495"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-101_RULING_FACADE_RETIREMENT_PACKET_2026-08-17.md",
+      "sha256": "0b3fe13b7ed1729d0addc6929fcbeb7446b0af522b20488c81e3d28364892080"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md",
+      "sha256": "5b651cb41c3e69e59d26d12c32331d4c6918cc77e590e228dd90fbd8d5da0f22"
+    }
+  ]
+}

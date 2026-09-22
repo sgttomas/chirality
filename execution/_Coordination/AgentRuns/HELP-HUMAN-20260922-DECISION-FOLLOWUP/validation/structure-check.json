@@ -1,0 +1,17 @@
+{
+  "sources": {
+    "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/SOURCES.json": 54,
+    "projects/chirality-piping/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/SOURCES.json": 40
+  },
+  "graphs": {
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json": "all historical fields and prefix bytes preserved",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json": "all historical fields and prefix bytes preserved"
+  },
+  "links": [
+    "BRIEF.md",
+    "../../../../projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+    "../../../../projects/chirality-piping/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/PIPING_OWNERSHIP_PROPOSAL.md",
+    "PIPING_REVIEW.md"
+  ],
+  "verdict": "PASS"
+}

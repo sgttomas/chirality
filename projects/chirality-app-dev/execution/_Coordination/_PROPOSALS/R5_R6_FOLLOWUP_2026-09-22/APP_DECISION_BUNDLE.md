@@ -1,0 +1,106 @@
+# App decision bundle — current choices after R5/R6
+
+Prepared 2026-09-22 by delegated TASK `app_decision_refresh` for HELP_HUMAN. Basis: `e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169`. **PROPOSAL: no option adopted, no hold released.** The owner's agreement authorizes this preparation and ordinary evidence work; it is not consent to the previously unseen choices below. Source identities, actual delegation limits and reliance preflight are in [SOURCES.json](SOURCES.json).
+
+The useful choice is how much new audit and organisation functionality to undertake. Keeping existing commitments, preparing missing evidence and routing an already-requested packet do not need another vote. I recommend deferring independent artifact cleanup, developing bounded event-backed delegation evidence, retaining the facade while completing its retirement evidence, choosing an honest organisation-integrity scope, and releasing the two reserved claim keys for a scoped rewrite.
+
+| Subject | Recommended disposition | Actual owner choice |
+|---|---|---|
+| D-APP-116 | Defer the full cleanup enhancement; retain D-APP-42 for the artifacts it governs | Spend on new explicit cleanup now, or defer until a concrete owned-store need |
+| D-APP-117 | Adopt a bounded observable-attempt evidence objective on the live Runtime/Codex path | Add that feature, or explicitly defer it |
+| D-APP-118 | Keep the existing facade; finish evidence and consumer-disposition preparation | Later retirement of an exact reviewed candidate; no repeat vote merely to retain or route |
+| D-APP-119 | Replace the unconditional tool-write-protection expectation with explicitly scoped integrity and App-operation protection | Accept that limited scope, or retain the stronger requirement with implementation held |
+| P-01 | Release CLM-005 and CLM-032 for the specific lift below | Release these expressly reserved keys; do not re-rule Codex topology or policy |
+
+## What is already settled
+
+D-GOV-43 items 2–5, 8–9 and its A2 supplement establish stock Codex, the user's chosen approval/sandbox policy, complete event transport, native continuity and additive instructions. Runtime is an application-owned service; its product owner is now the **Runtime project**, while Root retains shared governance. Historical packet references to Root-owned `runtime/` files must route to the current `projects/chirality-runtime/` owner; migration did not grant App writes there. D-APP-127 applies the named retirements; D-APP-131 retains these four proposals and the two reserved claim keys as unresolved.
+
+Complete event transport does not waive structural redaction, establish every desired evidence field, or prove human identity. User-selected Full access does not confer normative authority. Compatibility tests are evidence for their own path. Current Root/App guidance calls for recoverable graph-linked facts, without compulsory duplicate AgentRuns records for every ordinary session.
+
+## D-APP-116 — artifact audit and independent cleanup
+
+- PROPOSAL: Defer independent cleanup until an owned-store use case exists
+  - Evidence: D-APP-42 ruling, “Ruling” and opening ratification; D-APP-102 B3; D-APP-116 “Retention, deletion and independent cleanup”; D-GOV-43 items 3/5/9; Runtime `packages/core/src/session-store.ts`, `delete` and `migrateLegacy`; App `frontend/src/lib/harness/tool-result-artifacts.ts`, `persistToolResultArtifact`.
+  - Change: Record the full manifest/independent-cleanup enhancement as deferred, with a reopen trigger: an identified Chirality-owned payload population, a concrete audit/storage problem and an owner willing to fund its lifecycle API. Preserve existing checksum, redaction, truncation and session-lifetime duties on the artifact store they actually govern. Do not extend the legacy App writer or interpret App session deletion as custody of the shared Codex thread store.
+  - Why: D-APP-42 expressly classified the full policy as an enhancement. The current live path changes custody; an indiscriminate “all tool results” manifest would imply completeness and cleanup powers the App does not possess.
+  - Risk: Independent cleanup and a comprehensive availability inventory remain unavailable. Existing integrity or redaction defects still require repair; deferral does not waive them.
+  - Status: NEEDS_HUMAN_RULING
+
+**Alternative: bounded owned-artifact cleanup.** Adopt the six-topic enhancement only for payloads newly written to an explicitly registered Runtime-owned artifact store. Inventory entries would carry an artifact ID, actual source event/thread/session linkage, stored-byte hash/size, redaction/truncation facts, retention class, availability and deletion state. Inventory unknowns stay unknown. Explicit cleanup would name artifact IDs and expected inventory revision; enforce containment and active-write exclusion; preserve recoverable pending/failed/deleted records; and be idempotent. No TTL, quota purge, shared Codex-store modification, deletion of accepted checkout evidence, automatic legacy migration, or claim to erase every copy. Existing legacy roots may be inventoried read-only; adoption needs separately verified copy provenance. Runtime owns storage/API and recovery; DEL-05-05 consumes accepted metadata and proves App disclosure. This is a materially new implementation, requiring the current Runtime/App scopes and API contract before dispatch. The old daemon paths and old A1 gate are not the implementation brief.
+
+**Proposed ruling text:** “D-APP-116's full audit/independent-cleanup enhancement is deferred until a concrete Chirality-owned artifact-store requirement is brought forward. D-APP-42's existing artifact obligations remain. No new cleanup or migration capability is authorized, and no claim is made over Codex's shared session store.”
+
+**Can proceed now:** map actual payload owners and available event references, recover existing retention/redaction evidence, and repair already-authorized integrity defects under their own scopes. Missing evidence is not a reason to invent a new retention policy.
+
+## D-APP-117 — observable delegation-attempt evidence
+
+- PROPOSAL: Implement an event-backed evidence projection for the current path
+  - Evidence: D-APP-103 B4; D-APP-117 §§3–6; D-GOV-43 items 8–9; Runtime `packages/daemon/src/codex-supervisor.ts`, descendant parent mapping and `request-resolved` progress; `packages/core/src/delegated-engine-adapter.ts`, native notification identity preservation; DEL-08-04 record-handoff claim, DEL-08-05, DEL-05-04 and DEL-02-02 scope boundaries.
+  - Change: Adopt a bounded feature that presents **observed** delegation attempts and links their recorded basis, parent/child identities, source events, decisions and outcomes. Seat current Runtime capture/transport plus App read-only projection together before implementation. Preserve the existing ownership split: Runtime owns operational native evidence; DEL-08-04 the delegation interpretation/handoff, DEL-08-05 governed evidence publication, DEL-05-04 replay, DEL-02-02 presentation. Do not instrument only the retained App `managed-delegation.ts` and call the native product complete.
+  - Why: The existing source already carries native identities and request decisions, but those facts alone do not prove a complete per-attempt audit product. A read-only projection can make evidence usable without creating another execution controller or reconstructing unobserved choices.
+  - Risk: Native refusals before observable events, exact brief bytes, role enforcement and complete attempt boundaries may be unavailable. The feature must disclose those limits; full capture cannot be a fabricated acceptance criterion.
+  - Status: NEEDS_HUMAN_RULING
+
+**Bounded contract proposed for implementation:** retain actual provider thread/turn/item/request IDs and Runtime session linkage. Define an attempt ID only from an observed invocation or an explicitly instrumented Chirality dispatch boundary, never from timestamp proximity. Distinguish admission/approval, execution result and deliverable acceptance. Retry creates a new attempt only when a distinct invocation is observed; redelivery does not. Record source-qualified instruction/brief hashes only with their actual provenance, and label missing bytes or requested-versus-observed model values. Preserve native and Chirality-managed classes separately. A read-only view shows source references, outcomes, freshness/conflicts and gaps; it cannot approve, retry or dispatch. Publish governed evidence only where the selected method requires it, linking existing canonical records instead of making universal duplicate snapshot trees. No hidden reasoning capture, transcript inference of decisions, fabricated HUMAN attribution, or new CLI parity prerequisite. CLI expansion is deferred.
+
+**Alternative:** defer this new feature and retain current hierarchy/session replay, with explicit missing-attempt coverage. Current evidence recording duties continue under either choice.
+
+**Proposed ruling text:** “Adopt D-APP-117 as a bounded observable-attempt evidence feature for the live Runtime/Codex path, with the coverage and ownership limits in this refreshed bundle. Authorize current Runtime/App contract and slice preparation, then implementation only within the applied scopes and accepted interface; do not activate the old App-only managed-writer slice or require complete unobservable history. Defer CLI extension. No new execution, approval or product-truth authority is created.”
+
+**Implementation proof:** source-identical event fixtures and independent output comparison for native/managed identities, refusal where observable, duplicate events, retries, interruption, missing child/basis, redaction, stale/conflicting linkage and restart. Native witnesses must establish any native coverage claim; fake fixtures prove only projection behavior. These future checks have not been executed here.
+
+## D-APP-118 — facade retirement
+
+- PROPOSAL: Continue already-directed preparation; retain until exact retirement is justified
+  - Evidence: D-APP-76 “Facade-retirement deferral”; D-APP-89 ruling “Later retirement gate”; D-APP-101 B2; D-APP-118 “Fresh census” and “Exact narrow candidate”; current App `frontend/scripts/assert-harness-contract-deps.mjs` and `frontend/src/__tests__/lib/harness-contract-rollback.test.ts`.
+  - Change: Keep the existing facade and its checks. Refresh the complete consumer census and prepare an atomic retirement candidate that explicitly replaces or retires the rollback test's purpose and the validator's facade-presence rule, updates workspace/package wiring, and carries exact inverse bytes. Route the preparation to Root coordination and the current Runtime product owner for their respective interests. Actual deletion remains held for the applicable App and Root retirement rulings and any consequential Runtime contract act.
+  - Why: The present test still has 13 facade import probes, and the validator still requires exactly 13 and reads the facade directory. D-APP-101 already directs routing; D-APP-118's later claim that routing itself needs another owner grant is not a reason to repeat that decision. A routed notice is not the required retirement ruling.
+  - Risk: Removing checks solely to make deletion pass would erase the protected rollback assurance. External/dynamic consumers remain unobserved until investigated; a literal source census cannot certify their absence.
+  - Status: PROPOSED
+
+**No new vote is needed to hold the existing component or prepare/routinely route the missing evidence.** The real later choice is retaining tested rollback support versus retiring it with a named successor assurance. Recommend preserving canonical Runtime export/subpath and dependency-isolation checks in the retirement candidate, and explicitly proposing the loss of facade rollback as part of the owner act. If that assurance is still needed, retain the facade and its probes. This preparation does not promise that a zero-consumer census is already true.
+
+**Later ruling template, not ready for adoption:** “Accept retirement candidate `<candidate commit/manifest SHA: TBD>`, including its explicit replacement of the facade rollback assurance, after the named App/Root decisions and required affected-client checks pass. Delete only those exact bytes; retain pinned historical evidence and the tested inverse. Release disposition: none.”
+
+## D-APP-119 — organisation instructions: integrity versus enforcement
+
+- PROPOSAL: Choose an integrity scope that remains truthful under Full access
+  - Evidence: DEL-07-01 ScopeOfWork, SCA-APP-010 current contract and `_STATUS.md` DEL-07-01-V3-01; D-APP-119 “Exact additional product write locus”; D-GOV-43 items 3/4/8; current App `frontend/electron/main.ts`, `initializeGui`/`buildRuntimeServiceConfig`; Runtime `packages/daemon/src/app-owned-composition.ts`, `AppOwnedRuntimeConfig`; `packages/core/src/project-registry.ts`, `roots`.
+  - Change: Replace the old exact daemon boot patch with a coordinated optional organisation-layer integrity design. **Explicitly amend the existing unconditional write-protection return** to: prohibit selection of either instruction layer as working/proposal root and writes through Chirality-owned operations; verify an explicitly accepted manifest and per-asset hashes before supplying organisation content; record actual supplied bytes; detect changed pins at the next safe instruction boundary and refuse the affected new/resumed turn requiring that layer pending an authorized update; preserve the running turn's already-supplied basis. Do not claim this prevents arbitrary Codex/shell writes when the user chooses Full access.
+  - Why: The named `daemon-instruction-root.ts` no longer exists. Current App boot supplies `instructionRoot` and an editable `productInstructionsPath`; current Runtime configuration has no organisation-root/pin field. A common App boot assertion alone cannot enforce a separate layer across Runtime and native tools. Hashes prove identity relative to an accepted digest, not write prevention or human authenticity.
+  - Risk: This is a **reduction of the existing technical protection guarantee**, requiring an explicit owner scope amendment. Files can be altered by processes with write permission; detection at reload is not prevention. The separate organisation layer is not the editable common product-guidance copy and must not silently restrict that existing editing behavior.
+  - Status: NEEDS_HUMAN_RULING
+
+**Proposed concrete boundary:** owner-configured optional organisation root plus expected manifest digest, separate from the working root and bundled base; a versioned manifest lists contained regular files and SHA-256 values. Reject partial configuration, traversal, symlinks, extra/unlisted content, overlap and digest mismatch; no self-authenticating manifest or automatic repinning. The App passes accepted configuration through an amended Runtime-owned interface; Runtime resolves and records content at instruction selection/resume boundaries. Missing configuration means no organisation layer, not a claim its protection passed. Current Codex configuration, native discovery and policy choice remain intact. Both packaged/development paths and runtime safe-boundary reload need proof; exact field names and code loci are bound by the coordinated implementation brief, not the retired patch.
+
+**Alternative:** retain the existing hard protection obligation and keep implementation/acceptance held while a separately funded design proves it across the permitted modes. It must not achieve compliance by silently removing Full access or vetoing user configuration; that would reopen D-GOV-43. Mere read-only file mode bits are insufficient against a same-user Full-access process. Deferral preserves the requirement and the gap.
+
+**Proposed ruling text:** “For DEL-07-01's organisation layer, accept the limited integrity and Chirality-operation protection contract described here, explicitly replacing its unconditional native-tool write-prevention expectation. Preserve source separation and the prohibition on unauthorized changes. Authorize preparation/application of the App/Runtime scope and interface amendments before implementation; do not apply D-APP-119's obsolete boot patch or claim universal sandbox enforcement.”
+
+## P-01 — release the two reserved claim keys for a scoped lift
+
+- PROPOSAL: Resolve both mixed rows without choosing a misleading blanket verdict
+  - Evidence: R4 `PACKETS/P-01_deferred-del-06-02-keys.md`; D-APP-131 P-01/P-09/P-20; DEL-06-02 CLM-003–005/032/034/035; D-APP-56 §4 P27; App `frontend/src/lib/harness/tool-pool.ts`, `resolveHarnessToolPool`; Runtime `packages/daemon/src/application-tools.ts`, `register`/`call`; `packages/daemon/src/codex-supervisor.ts`, `thread/start`.
+  - Change: Release only CLM-005 and CLM-032 from the owner's reservation. In the new derivative classify both as **IMPLEMENTED_DIFFERENTLY, with secondary stale text and preserved unmet checks**; retain both historical worker readings. Lift the claim text by subject as below, preserving traceability and recording the exact ensuing edits/backcheck. Do not rewrite the original R2/R3 verdicts.
+  - Why: The older packet's blanket assertion that live tools have no registry is too broad now: application-injected dynamic tools have a Runtime catalog and unknown-call rejection. Native Codex built-ins/shared configuration are a different subject. Neither implementation evidence nor the parent packet's title proves all legacy obligations are met.
+  - Risk: A careless rewrite could waive deterministic exposure or domain controls. K-TOOL-1 and still-applicable Chirality registry semantics remain; any unresolved relation to native tool exposure must stay explicit rather than being inferred satisfied.
+  - Status: NEEDS_HUMAN_RULING
+
+**CLM-005 proposed resulting claim:** “Chirality-owned tool surfaces use their current accepted registration and validation contracts; unsupported application-tool invocations fail closed and exposed capabilities do not create authority. Native Codex tools and user configuration follow D-GOV-43's chosen policy, without a second legacy SDK whitelist. Retained SDK resolver behavior is compatibility evidence only. Deterministic exposure remains a named obligation for its applicable subject; request-order preservation is not proof of permutation-invariant ordering.” Name the actual compatibility registry/resolver tests and live Runtime catalog/policy evidence separately; preserve the missing live verification or contract-alignment task.
+
+**CLM-032 proposed examples:** registered application-tool calls follow their accepted binding; an unregistered application-tool call returns failure; native write behavior follows the actual selected Codex policy and its evidence; a tool name/availability/`allowedTools` value never grants normative permission; domain tools follow the PKG-10 roster and ruled stages under D-APP-56, with unregistered names still rejected. Do not claim all built-in Codex tools pass through the application catalog, or that this bundle exposes any new tool.
+
+**Proposed ruling text:** “Release DEL-06-02 CLM-005 and CLM-032 for the scoped lift above under D-APP-131's posture. Preserve the original disagreement, compatibility ordering gap and applicable live verification/contract residuals. This decides the reserved reconciliation treatment only; it grants no tool expansion, control waiver or lifecycle acceptance.”
+
+Alternative: retain the reservation and both source blocks unchanged. No further P-09 vote is needed merely to apply the already-recorded Codex/legacy distinction.
+
+## Application and evidence boundary
+
+On actual owner choices, record the exact words and affected decisions; apply accepted scope/contract amendments before dependent implementation; seat carriers and Remaining items with named evidence and gates. The current proposal-preparation authorization is sufficient to refresh source analysis, route existing coordination requests and prepare concrete evidence. It does not adopt these choices. Product checks, independent source review and native witnesses belong to later changed candidates; no product execution or qualification is claimed here.
+
+MISSING: complete current facade retirement candidate and affected-client census; accepted Runtime/App interfaces for any new cleanup, attempt-evidence or organisation feature; native evidence for any new coverage/protection claim. These are preparation/engineering facts, not invented owner verdicts.
+
+NEEDS_HUMAN_RULING: D-APP-116 enhancement disposition; D-APP-117 feature adoption/deferral; D-APP-119 explicit scope choice; release of the two P-01 keys. D-APP-118 actual retirement requires its later exact candidate and owning rulings, not a redundant current retention/routing vote.
+
+DEPENDENCY_NOTES: APP-HOLD reliance preflight passed for all eight relied-on deliverables at this basis; it does not lift the four decision holds or P-01 reservation. No lifecycle, dependency status, accepted decomposition, instruction corpus, register, code or historical evidence changed. New cross-project product work requires the owning Runtime/App activation; Root coordination is not product ownership.
