@@ -171,6 +171,18 @@ Context for `r3_owner_check_answers`: the owner's answers to the 20 questions of
 - OC-01..OC-07 yes; OC-08 don't know (the owner does not recognise attestation or SBOM); OC-09 no; OC-10..OC-12 yes;
 - OC-13..OC-20 don't know. For these the owner adds that "if it's in the instructive there's a good chance it was", which HELP_HUMAN reads as "if the instructions called for it". This is recorded as the owner's belief, not as a yes.
 
+## r4_gate_acceptance
+
+> I accept this as the basis for R5 once rulings are made, but I want that to be the starting task in R5.  So I want to consider that R4 is complete with my acceptance of this decision book, and to merge via PR what you've done.
+
+SHA-256: `e53bd5b32d3d02817ff3096e446bb058900478b7382338692c4c542af635fe25`
+
+Context for `r4_gate_acceptance`: given after PR #841 merged (main `1b63e075c`), which carries the R4 decision book and its 25 packets. HELP_HUMAN's reading, recorded as D-APP-130:
+- the owner accepts the decision book as the basis for R5;
+- R4 is complete on that acceptance;
+- ruling the packets is the first task of R5;
+- what has been done is to be merged by PR.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

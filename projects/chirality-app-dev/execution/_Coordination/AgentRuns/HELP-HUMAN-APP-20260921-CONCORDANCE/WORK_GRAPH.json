@@ -111,7 +111,7 @@
     },
     {
       "id": "R4_owner_decision_gate",
-      "state": "packets ready: 25 packets + decision book (R4/R4_DECISION_BOOK.md); awaiting owner rulings; ruling to be recorded as D-APP-130",
+      "state": "done: decision book and 25 packets accepted as the R5 basis (D-APP-130, 2026-09-22); packet rulings moved to R5 step 1",
       "depends_on": [
         "R3_synthesis"
       ],
@@ -121,7 +121,7 @@
     },
     {
       "id": "R5_authorized_repairs",
-      "state": "not started",
+      "state": "next: step 1 owner packet rulings -> ruling record merged; then repair manifest and tranches",
       "depends_on": [
         "R4_owner_decision_gate"
       ],
