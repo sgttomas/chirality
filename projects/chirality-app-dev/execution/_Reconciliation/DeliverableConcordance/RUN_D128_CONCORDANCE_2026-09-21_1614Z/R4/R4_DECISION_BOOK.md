@@ -86,7 +86,7 @@ Ordered by cause group, then by the authority the question turns on (GOVERNING b
 | [P-05](PACKETS/P-05_codex-events-as-received.md) — Codex event payloads stored as received or translated | Now that D-GOV-43 and the amended event clauses say Codex events are kept as received, do the unamended translate-everything clauses (K-ENGINE-4, SPEC §10.3) still bind the live Codex path? | 53 (+12) | GOVERNING | A — as received; amend K-ENGINE-4, SPEC §10.3 | P-04 |
 | [P-06](PACKETS/P-06_four-role-adoption.md) — Does the App adopt the 2026-09-09 four-role model? | Should the App loop adopt the 2026-09-09 four-role model that the code already ships, by amending its own governing texts, or do the unamended App texts still bind? | 102 (+0) | GOVERNING | A — adopt for the App; amend texts | P-09, P-22, P-23 |
 | [P-07](PACKETS/P-07_status-tool-actor-check.md) — Who is the actor on status transitions | Is a caller-supplied actor string enough to authorize human-gated lifecycle transitions, or must the human gate be carried by something the agent cannot assert? | 13 (+0) | GOVERNING | B: text states the limit; P-14 decides mechanism | P-09, P-14 |
-| [P-08](PACKETS/P-08_codex-engine-conformance-obligation.md) — Codex engine never run through conformance suite | The shipped Codex engine was never run through the K-ENGINE-2 engine conformance suite; must it be, or does the D-GOV-43 acceptance set replace that obligation for the Codex path? | 24 (+8) | GOVERNING | A — run suite against Codex adapter | P-05 |
+| [P-08](PACKETS/P-08_codex-engine-conformance-obligation.md) — No Codex run of the conformance suite in the tree | The repository has no test or record that runs the K-ENGINE-2 engine conformance suite against the shipped Codex engine; must it be, or does the D-GOV-43 acceptance set replace that obligation for the Codex path? | 24 (+8) | GOVERNING | A — run suite against Codex adapter | P-05 |
 | [P-09](PACKETS/P-09_legacy-harness-history-or-obligation.md) — Retained legacy harness: history, compatibility or obligation | For claims that only the retained legacy harness meets, are they history, a documented compatibility surface, or obligations the live Codex path must meet? | 630 (+97) | GOVERNING | D — a: compatibility (B); b: re-express guarantees; c: per part | P-04, P-13, P-14, P-10 |
 
 ### Rows held on existing or unframed decisions
@@ -164,7 +164,7 @@ P-04  Old App DIRECTIVE permission and provider clause :
 P-05  Codex event payloads stored as received or trans : 
 P-06  Does the App adopt the 2026-09-09 four-role mode : 
 P-07  Who is the actor on status transitions           : 
-P-08  Codex engine never run through conformance suite : 
+P-08  No Codex run of the conformance suite in tree  : 
 P-09  Retained legacy harness: history, compatibility  : 
 P-10  Rows waiting on existing or pending decisions    : 
 P-11  Five smaller owner questions no named question c : 

@@ -96,4 +96,4 @@ The consolidated R4 ruling record (the next free D-APP ID in the register, commi
 - `DEL-09-05#CLM-010.8` was undecided at R3 (both readings are in the R3 task files); its current value stands.
 - Five P-02 rows are also members of P-03, and five are CONTEXT members of P-24. `DEL-09-05#CLM-016.3` and `#CLM-016.6` turn on G6a, so their repair follows P-03.
 - B3 depends on P-03 (release posture) and on your handling of Q-04 in P-24.
-- Notes under OC-08 and OC-14 that still say `RELEASE_PROCESS_NOT_RUN:` were left as written. R5 should reword them.
+- 14 rows still carry a `RELEASE_PROCESS_NOT_RUN:` note tag from R2, including OC-08, OC-13 (`DOC:RELIANCE#8`, `DOC:VALSTRAT#4.11`) and OC-14 rows. The tag is a sealed R2 label and does not assert that the event did not happen (Addendum 10). R5 should reword each to "no record".

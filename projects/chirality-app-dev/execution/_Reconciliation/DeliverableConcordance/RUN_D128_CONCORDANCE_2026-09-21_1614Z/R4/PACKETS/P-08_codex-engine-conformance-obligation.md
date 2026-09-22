@@ -1,14 +1,14 @@
 <!-- PACKET
 id: P-08
 cluster: CL-08
-title: Codex engine never run through conformance suite
-question: The shipped Codex engine was never run through the K-ENGINE-2 engine conformance suite; must it be, or does the D-GOV-43 acceptance set replace that obligation for the Codex path?
+title: No Codex run of the conformance suite in the tree
+question: The repository has no test or record that runs the K-ENGINE-2 engine conformance suite against the shipped Codex engine; must it be, or does the D-GOV-43 acceptance set replace that obligation for the Codex path?
 recommended: A — run suite against Codex adapter
 depends_on: P-05
 decision_type: owner; engineering
 tier: GOVERNING
 -->
-# P-08 — Codex engine never run through conformance suite
+# P-08 — No Codex run of the conformance suite in the tree
 
 Cluster CL-08 · named question R4-Q2 · draft by TASK D2 for HELP_HUMAN review; not a ruling.
 
@@ -22,7 +22,7 @@ Cluster CL-08 · named question R4-Q2 · draft by TASK D2 for HELP_HUMAN review;
 - The CONTRACT preamble says historical engine qualification "does not establish Codex qualification" (`docs/CONTRACT.md:15`). [GOVERNING]
 - D-GOV-43 sets its own measure of done. Item 12 names eight spike checks, S-1..S-8, as "an acceptance set". Item 11 retains "request and session correctness tests" and says "a test runs once per distinct condition". Neither item names K-ENGINE-2 or the suite (`D-GOV-43.proposed.md:253-299`). [GOVERNING]
 - The suite exists in the Runtime contracts package (`projects/chirality-runtime/packages/contracts/src/harness/engine-conformance.ts`). [code]
-- The only tests that call the suite use a scripted `stub` subject and the legacy Claude Agent SDK manager (`frontend/src/__tests__/lib/engine-conformance.test.ts:208,270`). No Runtime test runs it against the live Codex adapter. [code]
+- The tests that call the suite use a scripted `stub` subject and the legacy Claude Agent SDK manager (`frontend/src/__tests__/lib/engine-conformance.test.ts:208,270`), plus the Pi adapter (`pi-omlx-wire.integration.test.ts:290`, `pi-agent-engine-adapter.test.ts:544`). No test in the tree runs it against the live Codex adapter. Whether it was ever run outside the tree is not established here (OC-06 concerned the Section 8 premerge, not this suite). [code]
 - The owner confirmed that the Section 8 pre-merge run against the Codex-hosted Runtime happened (OC-06). This is a different check from the conformance suite, and it does not answer this question. [owner testimony]
 - Validation evidence in general exercises the legacy harness, not the shipped Codex path (`R3/CROSS_PACKAGE_FINDINGS.csv` XPF-036). [run finding]
 
