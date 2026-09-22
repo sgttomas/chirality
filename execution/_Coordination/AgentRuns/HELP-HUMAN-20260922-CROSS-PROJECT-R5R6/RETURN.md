@@ -30,3 +30,7 @@ Exact review bindings and findings are in `reviews/`. Shared local check results
 The project R6 `HANDOFF.md`, `REMAINING_WORK_CENSUS.csv` and claim accounting are the recovery points. App work follows its current Remaining items. Piping work follows the accepted C9 owner-steered graphs; its census does not create a competing queue. Reopen only evidence affected by new code, located results, authority decisions or changed criteria.
 
 Both R6 `LESSONS.md` files preserve the supplied calibration and planner feedback. Root compared them directly with both complete feedback blocks in the visible user message. The independent integration reviewer assessed the durable records and authority implications, not a full original chat transcript. The synthesis retains claim keys **and** evaluated bytes/revision for review, keeps each project's adopted Remaining role, and leaves reusable workflow or PR-template changes for their own authorized undertaking.
+
+## Subsequent upstream integration
+
+PR #846 landed while PR #847 opened. Its prospective work-graph guidance is integrated through `UPSTREAM_INTEGRATION.md` and additive continuation cursors in both existing graphs. Read that rider for current navigation: the App Remaining-only statement above records the earlier run basis; the designated graph now directs continuation while Remaining retains its scope and residual evidence. Original review and validation records remain bound to their evaluated bytes.

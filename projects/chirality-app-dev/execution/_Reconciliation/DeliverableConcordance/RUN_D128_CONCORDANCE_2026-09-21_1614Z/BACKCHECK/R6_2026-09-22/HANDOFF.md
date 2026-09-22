@@ -11,3 +11,7 @@ Current work is selected only from deliverable `_STATUS.md ## Remaining`. Each r
 Lifecycle: 53 IN_PROGRESS plus retired DEL-09-07 OPEN, unchanged. No dependency acceptance, checking-entry declaration, issuing, professional reliance, signing, publication, new release or unknown inspection result is conferred. A new implementation/authority/candidate change reopens only affected evidence and requires a fresh claim/source-bound backcheck. Historical conversion PASS and source-equal test reports do not automatically transfer to changed candidates.
 
 Next holder: WORKING_ITEMS for bounded record/evidence/implementation follow-through under the existing Remaining items; HELP_HUMAN for real authority and cross-loop decisions; the owner for specifically reserved human acts. Root owns the current review/check/merge closeout. `LESSONS.md` records both supplied feedback perspectives and the corrections learned during this R5.
+
+## Prospective continuation after PR #846
+
+The integrated work-graph guidance preserves this run and its selected whole-corpus method. For continuation, first follow the designated graph and its `current_continuation` cursor; Remaining retains the reconciled scope, residual and hold evidence. The earlier “selected only” wording describes this run's pre-integration planning basis, not a prohibition on the newly adopted graph-led development loop. Root `execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/UPSTREAM_INTEGRATION.md` records the transition. No development phase, method switch or hold discharge follows.

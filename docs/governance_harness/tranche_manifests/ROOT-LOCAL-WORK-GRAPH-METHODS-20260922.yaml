@@ -1,0 +1,44 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-LOCAL-WORK-GRAPH-METHODS-20260922
+title: Persistent local work graph loops and bounded deliverable reconciliation
+date: 2026-09-22
+basis: 379df923927d157be3ebb51d8a1dcf783d970112
+instruction_surface_paths:
+  - AGENTS.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - tools/validation/test_workflow_catalog.py
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/construct-local-work-graph/resources/work-graph-template.md
+  - workflows/bounded-reconciliation/WORKFLOW.md
+  - projects/chirality-app-dev/AGENTS.md
+  - projects/chirality-app-dev/loop/LOOP_INIT.md
+  - projects/chirality-piping/AGENTS.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed review drafts and their revision, selected "Infer and
+    clarify material gaps", then authorized application and Git integration:
+    "You may open the PR and merge when the CI goes green. Select the
+    appropriate level of CI for this." The exact active-chat direction and
+    implementation scope are recorded in
+    execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md
+  rationale: >-
+    App and Piping receive the development-loop changes. App and Runtime
+    consume/package the bundled methods; PEC consumes Root agent guidance.
+    Notices preserve each receiving loop's ownership of adoption and pins.
+    No current bridge corpus/catalog pin was found in bounded inspection;
+    historical bridge instructions and all in-flight method bases are retained.

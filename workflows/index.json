@@ -294,7 +294,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 5,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -337,7 +337,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 0,
+        "order": 1,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -380,7 +380,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 2,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -423,7 +423,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 3,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -466,7 +466,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 4,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -509,7 +509,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 5,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -552,7 +552,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 5,
+        "order": 6,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -620,6 +620,34 @@
     },
     {
       "kind": "workflow",
+      "name": "bounded-reconciliation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Reconcile a completed portion of software work with the contents of its affected deliverable folders, updating their scope descriptions, remaining work, dependencies and evidence within the assignment.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "change",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -650,6 +678,35 @@
         "compatibleRoles": [
           "WORKING_ITEMS"
         ]
+      }
+    },
+    {
+      "kind": "workflow",
+      "name": "construct-local-work-graph",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Work with the user to establish the intended outcome and route through a project's DAG, then turn the relevant deliverables and current work into an executable local graph.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "resources/work-graph-template.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
       }
     },
     {
@@ -1030,7 +1087,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 7,
+        "order": 8,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1069,7 +1126,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 6,
+        "order": 7,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1806,7 +1863,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 8,
+        "order": 9,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1851,7 +1908,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "supporting",
-        "order": 9,
+        "order": 10,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1897,7 +1954,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 3,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -1975,7 +2032,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 4,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2359,7 +2416,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 0,
+        "order": 1,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2473,7 +2530,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 5,
+        "order": 6,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2801,7 +2858,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 2,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
