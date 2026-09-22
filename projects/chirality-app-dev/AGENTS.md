@@ -116,20 +116,19 @@ for required Codex capability.
   formerly in this section is rescinded going forward and survives as
   historical record (verbatim in D-APP-61 Appendix Q2 and Git history),
   alongside the earlier named-model steers it had itself rescinded.
-- Two model-agnostic evidence rules survive under the same ruling: record
-  which model actually ran each dispatched role in the governed AgentRuns
-  record and point to it from the receipt (when no AgentRuns record exists,
-  the receipt may carry the minimum model attribution directly); and record
-  any mid-wave substitution where the wave's execution is recorded — never
-  substitute silently.
+- Preserve actual model attribution and substitutions in the available
+  execution record. Where host records do not retain the required facts,
+  keep a compact execution note linked from the graph. No new receipt or
+  AgentRuns bundle is required solely to duplicate those facts. This changes
+  record placement, not the duty of truthful attribution.
 
 ## Project-Wide Execution Discipline
 
 The recurrent discovery, planning, delegation, checking and integration procedure
 lives in `loop/LOOP_INIT.md`. The thin `init/dev-loop-init-prompt.md` launcher
-selects it. Current state belongs in the owning run and its work graph; priorities
-and phase transitions come from owner steering. Do not copy run-specific lane
-names, model assignments or next actions into these standing instructions.
+selects it. Its current-graph pointer locates the undertaking; work state and
+recovery facts belong in that graph. Priorities and phase transitions come from
+owner steering. Do not copy node state or next actions into these instructions.
 
 Choose agent types by responsibility and delegation needs, not task complexity
 or reasoning effort. Root role instructions govern delegation. No package-per-
@@ -147,8 +146,10 @@ its applicable checks. A profile does not expand authority or waive a gate.
 
 Every slice requires fresh-context independent review of its complete frozen
 diff before merge, with actionable findings repaired and backchecked. This
-includes instruction and owner-direction changes; proportionate review and
-affected-correction backchecks are described in `loop/LOOP_INIT.md`. For
+includes instruction and owner-direction changes. Scale review to what the
+change can break and backcheck affected corrections and their consequences;
+later candidate changes need review coverage. A read-only assignment is not
+itself a mergeable slice. For
 product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`,
 `frontend/packages/**`, `frontend/scripts/**`, build/packaging configuration),
 retain the fresh read-only `TASK + software-code-review` path before final
@@ -176,6 +177,135 @@ failure, not a sandbox denial. CI does not replace a required native witness
 unless the owning criterion permits it. D-APP-127's affected-check rule replaces
 the retired A1 re-stage requirement and daemon/LaunchAgent proof subjects;
 applicable production packaging and native checks remain required.
+
+## Work graph continuity and bounded reconciliation
+
+`loop/LOOP_INIT.md` names the current local work graph. This pointer is
+navigation state; scope, node state and recovery facts belong in the graph.
+Use the graph across sessions, including its pauses and owner decisions.
+Changing the pointer does not authorize a new undertaking or lift a hold.
+
+Plan bounded reconciliation within authorized development work: compare a
+stable code result and its evidence with the affected deliverable contents,
+including ScopeOfWork.md, Remaining items and dependency records. Apply warranted
+document updates within the assignment and preserve unresolved differences.
+Do not infer that implemented behavior replaces intended requirements. Lifecycle,
+accepted scope and formal dependency-basis changes retain their owning decision paths.
+Reconciliation completion is distinct from implementation completion.
+
+Keep concise results and recoverable evidence with the undertaking or their
+owning deliverables. A graph or linked result can supply the work record;
+separate per-session narratives, handoffs and loop receipts are not required
+for this development loop. This supersedes its routine receipt-append rule;
+other explicitly selected workflows retain their own output contracts.
+Existing receipt bytes remain frozen and their validators retain the historical
+integrity check; no ledger rewrite or validator change is part of this adoption.
+Existing records remain historical evidence. Operational attribution required
+by Root remains truthful and available without being repeated in work tables.
+
+Retain bounded launch instructions and returns with their actual context and
+source identity as required by Root. A small read-only launch message can be
+the brief; no elaborate duplicate brief is required. Preserve the actual role,
+model/effort, substitutions, enforcement limits, return and its disposition in
+the linked execution evidence. Work tables focus on the resulting work.
+
+## Development boundaries
+
+- **F-APP-1 (provider/network):** Codex remains the sole current MVP engine.
+  Apply the current Runtime-owned network, tool and credential contracts as
+  amended by D-GOV-43/A2 and D-APP-127. Retired hosted admission, per-root
+  consent and supplier containment are not current proof prerequisites. Codex
+  owns login/logout and its credentials in the App's effective Codex home;
+  the App must not read, copy or relay those credentials or affect other
+  clients' credentials. This development loop grants no provider expansion, remote MCP,
+  plugin or broad tool-search enablement beyond separately accepted scope.
+- **F-APP-2 (release/distribution):** no signing, notarization, publication,
+  external distribution, or release-readiness / professional / certification
+  claims.
+- **F-APP-3 (domain-engine boundary):** domain-engine work happens only
+  inside what the tier-0 bridge loop's ruled decisions grant (the `D-APP-4x`
+  F-series rows); this development loop never writes `_DomainEngines/**` or piping
+  surfaces, and never advances integration level, live binding, or
+  apply-class tool exposure on its own authority.
+- **F-APP-4 (issuance):** no `CHECKING -> ISSUED` lifecycle issuance.
+- **F-APP-5 (truth and planning surfaces):** authoritative deliverable scope,
+  lifecycle and dependencies remain in their governed sources; owner decisions
+  remain in the decision register and applicable owner-direction records.
+  The session work graph is the executable plan, not a replacement for those
+  sources. It neither issues deliverables nor silently changes the phase DAG.
+  Historical plans remain readable; do not select new work from them.
+- **Fresh-ruling stops** (carried from the pre-consolidation coordination
+  record): provider execution outside the current Codex MVP direction and
+  its current accepted Runtime/network/credential scope; write/edit/bash/
+  tool-execution exposure beyond the current approved item; changes to the
+  project-truth model for sessions, transcripts, chats, runtime logs, or
+  completion logs; professional-boundary or release-readiness posture.
+
+Changing a fence requires owner authority. This development loop grants no new release
+act; later specific owner rulings retain their effects and historical releases
+are not undone by F-APP-2. Do not infer another release from a prior one.
+
+
+## Development checks and evidence
+
+Use `software-workflow.json` and `docs/VALIDATION_STRATEGY.md`,
+`docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` for the work.
+Before push, every tranche needs a passing repo-wide practitioner-harness
+self-check and practitioner-harness pytest at closeout. Product source also
+needs typecheck, vitest, build/premerge gates and the independent review path
+above; run product checks on a clean candidate. Stop the dev server before
+build/package/premerge commands. UI work additionally follows the D-APP-36
+render bar in `docs/ISSUE_READINESS_PROFILES.md` §4 and the evidence rules in
+`docs/ui/UI_POLISH_EXECUTION_PLAN.md`. Authority-corpus edits require D-APP-38
+reconciliation via `execution/_Reconciliation/References/reconcile_authority_corpus.py`.
+Record why frontend gates are inapplicable to a records-only change. Cosmetic
+whitespace is not a merge gate. CI and review must cover the merging candidate;
+rerun checks invalidated by later edits under D-APP-127.
+
+Exercise affected user journeys as they become operable, alongside code tests.
+Use native application evidence for native-host behavior; browser evidence alone
+does not establish it. Include relevant interruption, recovery, keyboard and
+window-size behavior. Record expected and observed outcomes, candidate and
+limitations; repair defects and repeat affected checks. These checks do not
+establish owner or usability acceptance. An unavailable required witness remains
+outstanding, as described in the host-capability rule above.
+
+For empirical, fixture, conformance and gate-evidence claims (A12; Root R17 N3),
+retain enough non-secret bytes to independently recompute the claim: identified
+inputs and candidate; fixture, evaluator and validator bytes; commands, arguments,
+working directory, effective environment, versions and exit status; canonical
+stdout/stderr and machine-readable results; sorted manifests with independent
+hash recomputation; and a bounded rerun method. Preserve secrets neither in
+commands nor outputs. If required evidence is unavailable, withhold the claim.
+Retain one canonical copy and reference it from the graph or deliverable.
+
+Historical citations to the LOOP_INIT evidence contract (including former
+sections 7 and 9) now resolve to the evidence contract above; dated verdicts
+retain their original basis. Historical section 8 check citations resolve to
+this section and its owning check documents.
+
+## Selection and decisions
+
+For deliverable dependency selection, verify the item's Depends line, local
+Dependencies.csv / _DEPENDENCIES.md and accepted DepClosure snapshot. A row
+blocks when ACTIVE, type PREREQUISITE, SatisfactionStatus TBD/PENDING/IN_PROGRESS,
+and the item's Depends names its target. INTERFACE, HANDOVER, CONSTRAINT and
+ENABLES order work; SATISFIED, WAIVED and NOT_APPLICABLE do not block. Preserve
+named gated, stage-gated and NOT_SELECTABLE_UNTIL conditions at their actual
+sources. Provisional graph mapping never bypasses APP-HOLD-1 or a dependency.
+A status file without Remaining supplies no recorded open scope; it does not
+create permission to infer a new undertaking. Apply K-ENGINE-6: standalone-
+harness or feature-parity work remains off-strategy.
+
+D-APP-64 §5, refining D-APP-60, governs judgment-shaped forks. Prepare a proposal
+for material or hard-to-reverse choices and acts reserved to the owner; decide
+ordinary choices within authority. Disclose implementation departures, their
+rationale and reversal method. An explicit ruling, adopted requirement or
+protected criterion needs its owning decision before reversal. Owner suggestions
+and agent recommendations are not rulings. Preserve material owner directions
+faithfully in the graph or a linked decision record; distinguish transcription
+from a governed ruling. In-session directions do not pretend a required merge
+has occurred.
 
 ## APP-HOLD-1 Reliance Preflight
 
@@ -226,8 +356,8 @@ Preserve other contributors' changes when integrating upstream. Re-review the
 resulting candidate and repeat checks invalidated by the change. Escalate
 substantive conflicts beyond existing authority; do not discard unrelated work
 or force-push another contributor's branch. Record branch and basis identities
-in the owning run. A dirty checkout is not permission to carry unrelated changes
-into a new branch.
+in the work graph or its linked evidence. A dirty checkout is not permission to
+carry unrelated changes into a new branch.
 
 Git closeout is source-control hygiene. It is not lifecycle issuance, release
 readiness, professional approval, certification, sealing, authentication, or
