@@ -9,22 +9,44 @@ A cold session starts here. Read in order: this file, `OWNER_DIRECTIONS.md`,
 
 - Piping development is paused by the owner until this run is done.
 - Frozen source: `00115c71931bcae79909602d653740d3bb72dfa1`.
-- D-73 is **RULED** and merged to `main` (PR #837). R5/R6 need a separate
-  owner authorization.
-- R0 is ruled (`R0_CALIBRATION/R0_RULING.md`, with addendum). R1 is complete:
-  598 capabilities, mechanical indexes, authority map, routing.
-- Branch `claude/piping-recon-r0-20260921` carries R0 and R1 and is in
-  independent review (backchecks 1–4 repaired). No R2 worker has been
-  dispatched. No deliverable, code, test, DAG or lifecycle surface has been
-  written.
+- D-73 is **RULED** and merged (PR #837). R5/R6 need a separate owner
+  authorization.
+- R0 (ruled conventions) and R1 (598-capability inventory, indexes, routing)
+  are merged to `main` (PR #839, merge `d50d8883e`), after independent review
+  with seven backchecks.
+- R2 is **closed** (2026-09-22) on branch
+  `claude/piping-recon-r2-w1-20260921`: all 102 deliverables are encoded,
+  validated and verified, the W1/W2/W3/CROSS_WAVE resolutions are adopted,
+  and the corpus-wide batch passes with 0 findings. The close-out is
+  `RUN/WAVES/W3/W3_ASSESSMENT.md`; the independent review is
+  `_run_records/returns/R2-W3-CLOSE-REVIEW_return.md` (PASS at backcheck 1).
+  Launch messages are in `_run_records/launches/`; manager records in
+  `_run_records/<WAVE>-<PKG>-MANAGER/`.
+- Verbatim review returns moved from `returns/` to `_run_records/returns/`
+  (RELOCATE event); older records, including the D-73 ruling record, cite the
+  old path.
 
 ## Next actions
 
-1. Close the R0/R1 PR review, then push, open the PR, pass CI and merge.
-2. Stale check, then R2 wave 1 per the evidence folder's `WAVE_PLAN.md`
-   (PKG-07 and PKG-16; two managers, four workers; then two verifiers at
-   double sampling). Gate before scale-out; show the owner the canonical
-   table with wave 1 results.
+Status (2026-09-22): R2 closed; R2 PR to `main` next, then R3.
+
+1. Open the R2 PR from this branch; merge under the standing Git
+   authorization once required CI passes (the independent reviews cover the
+   candidate: R2-AMEND, R2-W2-GATE, R2-W3-CLOSE).
+2. R3 synthesis (writes only in the run folder), from the sealed ledgers read
+   with the four adopted resolutions files
+   (`WAVES/CROSS_WAVE/ALL_WAVES_RESOLUTIONS_COMBINED.csv`):
+   final unmapped capability set, duplicate ownership, stale evidence,
+   Remaining and lifecycle defects, clustering of non-aligned claims by cause
+   and tier; resolve the contested corpus clusters listed in
+   `W3_ASSESSMENT.md` (SR-1, DEC-009, unit vocabulary, F1 on CONTEXT, export
+   plan, in-scope REQ tier, acceptance-workflow cause) or route them to R4;
+   method notes (the `.sNN` batch blind spot); separate scope-change,
+   code-fix-candidate and engineering-authority outputs.
+3. R3/R4 PR with independent review, then the R4 owner gate (owner items in
+   `W2_GATE_ASSESSMENT.md` and `W3_ASSESSMENT.md`, plus SEMANTIC_READY status
+   advance, rerun-rule reading, PKG-12 post-gate question). R5/R6 need a
+   separate owner authorization.
 
 ## Departures from the approved plan
 

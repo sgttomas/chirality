@@ -15,6 +15,21 @@ Batch consistency mode (checks rows across several validated forward ledgers):
   Flags any two rows with the same BodySHA256, or the same CanonicalSituation,
   whose Disposition, CauseTag, AuthorityTier or DivergenceLayers differ, unless
   the departing row's Notes carry `CANONICAL_DEPARTURE:` with a reason.
+  `--resolutions <RESOLUTIONS.csv>` (CONVENTIONS F6) substitutes Agent 0's
+  recorded resolution values for the listed keys before comparing, and exempts
+  rows recorded as RESOLVED_PAIR with a verifier report as Source, in body and
+  pattern groups only. CP-04 rows are compared within the three variants
+  CANONICAL_SITUATIONS.md defines; any other tier/baseline pair is compared in
+  the default group.
+Evidence tokens may contain spaces only when they resolve to a path at the
+freeze (deliverable folders have spaces in their names).
+
+Part F checks (CONVENTIONS F1, F2, F4), required from gate wave 2 onward:
+  add `--notes-gap` to single mode. It fails an ALIGNED row whose RemainingWork or Notes
+  (path tokens removed) carry gap wording, unless Notes give
+  `GAP_WORDING_CHECKED: <reason>` or (Remaining rows) `OPEN_ACTION: <key>`;
+  requires ClaimType DECLARED_STATE on STATUS#remaining units; and requires an
+  OPEN_ACTION key to name a non-aligned row of the same ledger.
 """
 
 from __future__ import annotations
@@ -199,8 +214,11 @@ def validate_one(a, f):
         for col in EVIDENCE_COLS + ("ContextRefs",):
             if col in EVIDENCE_COLS and not r[col].strip():
                 f.append(f"{tag}: {col} is empty; use NONE_FOUND or NOT_APPLICABLE")
-            if col in EVIDENCE_COLS and " " in r[col]:
-                f.append(f"{tag}: {col} holds spaces; free text belongs in Notes")
+            # Spaces are allowed only inside a token that resolves to a path at the freeze
+            # (deliverable folders such as "PKG-00_Software Architecture Runway" contain spaces);
+            # free text still fails because it does not resolve.
+            if col in EVIDENCE_COLS and any(t != t.strip() for t in r[col].split(";")):
+                f.append(f"{tag}: {col} has spaces around a ';' separator (Part D: no spaces)")
             for tok in (t.strip() for t in r[col].split(";")):
                 if tok in ("", "NONE_FOUND", "NOT_APPLICABLE"):
                     continue
@@ -286,6 +304,70 @@ def validate_one(a, f):
     return rows, required, canon
 
 
+GAP_WORDING = re.compile(
+    r"not located|not found|carried on|carried by|dispositioned on|partial|unmet|missing|gaps?\b|"
+    r"\bno\b[^.;]{0,40}\btests?\b|untested|not asserted|not exercised|not evidenced|absent|lacks|without",
+    re.I)
+# Evidence columns hold path tokens only (Part D), so they are not scanned; path-like tokens are
+# stripped from Notes and RemainingWork before matching.
+GAP_COLUMNS = ("RemainingWork", "Notes")
+# Only path-shaped tokens are stripped: tokens under a known root, tokens ending in a file
+# extension, `path::symbol` tokens, and backticked spans with no spaces (identifiers or paths).
+PATH_TOKEN = re.compile(
+    r"`[^`\s]+`|"
+    r"(?<![\w/])(?:\{?[A-Z_]+\}?/|\.{0,2}/)?(?:projects|core|apps|docs|tools|schemas|fixtures|tests|validation|"
+    r"examples|governance|provenance|api|execution|workflows|scripts|src|src-tauri|features|_run_records|RUN|FREEZE)"
+    r"/[^\s`;,)]+|"
+    r"(?<![\w/])[\w.\-/]+\.(?:py|rs|tsx?|mjs|js|json|ya?ml|md|csv|toml|txt)\b(?:#L\d+(?:-L?\d+)?)?|"
+    r"(?<![\w/])[\w.\-/]+::[\w.<>\-]+")
+# The GAP_WORDING_CHECKED clause must be the last clause of Notes (CONVENTIONS F4); only it,
+# from the marker to the end of Notes, is excluded from the scan.
+ESCAPES = re.compile(r"GAP_WORDING_CHECKED:.*\Z", re.S)
+
+
+def part_f(a, rows, f):
+    byk = {r["ClaimKey"]: r for r in rows}
+    listed = 0
+    for r in rows:
+        k, tag = r["ClaimKey"], f"{a.forward}: {r['ClaimKey']}"
+        if "STATUS#remaining/" in k and r["ClaimType"] != "DECLARED_STATE":
+            f.append(f"{tag}: F2: Remaining units are ClaimType DECLARED_STATE, not {r['ClaimType']!r}")
+        oa = re.search(r"OPEN_ACTION:\s*(\S+)", r["Notes"])
+        if oa:
+            tgt = oa.group(1).rstrip(".,;)")
+            if "STATUS#remaining/" not in k:
+                f.append(f"{tag}: F2: OPEN_ACTION is for Remaining units only")
+            elif tgt not in byk:
+                f.append(f"{tag}: F2: OPEN_ACTION names {tgt!r}, not a row of this ledger")
+            elif byk[tgt]["Disposition"] == "ALIGNED":
+                f.append(f"{tag}: F2: OPEN_ACTION row {tgt} is ALIGNED, so it does not carry the open work")
+        if r["Disposition"] != "ALIGNED":
+            continue
+        hit = next((m.group(0) for c in GAP_COLUMNS
+                    for m in [GAP_WORDING.search(PATH_TOKEN.sub(" ", ESCAPES.sub(" ", r[c])))] if m), None)
+        if hit and not re.search(r"GAP_WORDING_CHECKED:\s*\S.{24,}", r["Notes"]) and not oa:
+            listed += 1
+            f.append(f"{tag}: F4: ALIGNED row carries gap wording {hit!r}; re-dispose it (F1) or add "
+                     "GAP_WORDING_CHECKED: <why this is not an unmet element of the claim>")
+    return listed
+
+
+CP04_VARIANTS = {("LOCAL_DESIGN", "NONE"): "default",
+                 ("PROJECT_BASELINE", "FROZEN_CONTRACT"): "frozen-contract",
+                 ("PROJECT_BASELINE", "NONE"): "identity-rename"}
+
+
+def load_resolutions(path):
+    if not path:
+        return {}
+    out = {}
+    for r in csv.DictReader(open(path, newline="", encoding="utf-8")):
+        if r["ClaimKey"] == "#END" or not r["Disposition"]:
+            continue
+        out[r["ClaimKey"]] = r
+    return out
+
+
 def batch(a, f):
     """Cross-ledger consistency. CS rows are checked field-by-field in single mode, so here
     CS groups are keyed by their mechanical Variant; CP groups compare only rows that took
@@ -293,8 +375,12 @@ def batch(a, f):
     keys = {r["ClaimKey"]: r for r in csv.DictReader(open(f"{a.run_dir}/CLAIM_KEYS_V2.csv", newline="", encoding="utf-8"))}
     variant = {r["ClaimKey"]: r["Variant"] for r in csv.DictReader(open(f"{a.run_dir}/CANONICAL_ASSIGNMENTS.csv", newline="", encoding="utf-8"))}
     groups = collections.defaultdict(list)
+    res = load_resolutions(a.resolutions)
     for path in a.batch:
         for r in load(path, FORWARD_FIELDS, "Notes", f):
+            if r["ClaimKey"] in res:
+                r = dict(r, **{c: res[r["ClaimKey"]][c] for c in CONSISTENCY_FIELDS},
+                          Notes=r["Notes"] + " [resolved in " + os.path.basename(a.resolutions) + "]")
             ki = keys.get(r["ClaimKey"])
             if ki and int(ki["SharedTextCount"]) > 1 and ki["UnitKind"] != "SURFACE" and r["ClaimKey"] not in variant:
                 groups[("body", ki["BodySHA256"])].append((path, r))
@@ -302,7 +388,15 @@ def batch(a, f):
             if cs.startswith("CS-"):
                 groups[("variant", variant.get(r["ClaimKey"], cs))].append((path, r))
             elif cs.startswith("CP-"):
-                groups[("pattern", f"{cs}/{r['Disposition']}")].append((path, r))
+                # CP-04 defines variants with their own tier and baseline class (CANONICAL_SITUATIONS.md):
+                # compare only rows of the same variant.
+                sub = ""
+                if cs == "CP-04":
+                    pair = (r["AuthorityTier"], r["BaselineClass"])
+                    # only the three variants CANONICAL_SITUATIONS.md defines; any other pair falls into
+                    # the default group, where it is compared (and flagged) as usual
+                    sub = "/" + CP04_VARIANTS.get(pair, "default")
+                groups[("pattern", f"{cs}/{r['Disposition']}{sub}")].append((path, r))
     for (kind, gid), members in groups.items():
         profiles = collections.Counter(tuple(r[c] for c in CONSISTENCY_FIELDS) for _, r in members)
         if len(profiles) < 2:
@@ -310,6 +404,10 @@ def batch(a, f):
         majority = profiles.most_common(1)[0][0]
         for path, r in members:
             prof = tuple(r[c] for c in CONSISTENCY_FIELDS)
+            rr = res.get(r["ClaimKey"])
+            if (rr and rr["Class"] == "RESOLVED_PAIR" and "_VERIFICATION.md" in rr["Source"]
+                    and kind in ("pattern", "body")):
+                continue  # a verifier judged this pair not a conflict; Agent 0 recorded it (F6)
             if prof != majority and not re.search(r"CANONICAL_DEPARTURE:\s*\S.{9,}", r["Notes"]):
                 f.append(f"{path}: {r['ClaimKey']}: same {kind} {gid[:16]} as {len(members) - 1} other row(s) "
                          f"but {dict(zip(CONSISTENCY_FIELDS, prof))} differs from the majority "
@@ -325,6 +423,8 @@ def main(argv):
     ap.add_argument("--reverse")
     ap.add_argument("--inventory")
     ap.add_argument("--batch", nargs="+")
+    ap.add_argument("--resolutions", help="WAVES/<W>/RESOLUTIONS.csv (batch mode, CONVENTIONS F6)")
+    ap.add_argument("--notes-gap", action="store_true", help="apply Part F checks (F1/F2/F4) in single mode")
     a = ap.parse_args(argv)
     f: list[str] = []
     if a.batch:
@@ -340,6 +440,8 @@ def main(argv):
     if res is None:
         return 2
     rows, required, canon = res
+    if a.notes_gap:
+        part_f(a, rows, f)
     for x in f:
         print("FINDING", x)
     print(f"{'PASS' if not f else 'FAIL'} {a.deliverable}: {len(rows)} forward rows, "

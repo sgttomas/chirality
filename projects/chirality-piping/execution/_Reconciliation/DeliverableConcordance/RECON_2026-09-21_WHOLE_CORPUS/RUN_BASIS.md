@@ -216,3 +216,32 @@ taxonomy per DEC-081).
   `RELOCATE` event records the move. Manager records now go under
   `_run_records/{WAVE}-{PKG}-MANAGER/`. This supersedes the earlier disclosure
   that the returns stay as REVIEW findings.
+- 2026-09-21 — R2 wave 1 (PKG-07, PKG-16) ran and was verified at double
+  sampling. The gate as written was not met: PKG-16 had 6.3% firm false
+  alignment (1 of 16), and one shared-text resolution was unrecorded. The
+  pooled rate was 4.4%, and all five firm errors had one cause. The owner
+  adopted remedy R-1 to R-6, ruled F7 (implementation with no product
+  caller) and F8 (the tier of the gap wins), and chose a second gate wave
+  (`WAVES/W1/W1_GATE_RULING.md`; CONVENTIONS Part F). The validator gains
+  `--notes-gap` and batch `--resolutions`; the worker, manager and verifier
+  briefs carry Part F; `WAVES/W1/RESOLUTIONS.csv` records all 32 wave 1
+  disagreements. Gate wave 2 is PKG-00 to PKG-04 at the full cap.
+- 2026-09-21 — Backcheck 8 findings repaired. F3 now uses the ruled cutoff
+  (the initial migration `7bee9ae41`, 2026-05-18), and keyed CS rows, pins,
+  review states and metadata keep `STALE_REVIEW_OR_EVIDENCE`. F2's
+  generalised sentence is labelled AGENT. The `--notes-gap` check scans only
+  Notes and RemainingWork with path tokens removed, and matches "gaps" and
+  "no … test"; on wave 1 it flags 59 of 715 ALIGNED rows and catches all 5
+  firm false alignments. `GAP_WORDING_CHECKED` needs at least 25 characters.
+  The DEL-07-02 CLM-026 resolution is set to INVARIANT · IP_DATA;RECORD
+  under F8. Six verifier observations are added as CONTESTED or OBSERVED
+  rows (38 in total). Briefs say 2–4 deliverables per group, and a rerun
+  manager waits for a free slot.
+- 2026-09-22 — Gate wave 2 (PKG-00 to PKG-04, 31 deliverables) met the gate
+  (`WAVES/W2/W2_GATE_ASSESSMENT.md`). The pooled firm false-alignment rate
+  was 1.9% (wave 1: 4.4%). DEL-03-07 was rerun once at a verifier's request
+  and re-verified. Resolutions are recorded in `WAVES/W2/RESOLUTIONS.csv`
+  (122 rows) and in 9 new `RESOLVED_BY_RULE` rows in the W1 file. Validator
+  changes (tooling only): CP-04 rows are compared within their variant,
+  recorded `RESOLVED_PAIR` rows are exempt from batch comparison, and
+  evidence tokens may contain spaces when they resolve at the freeze.
