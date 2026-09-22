@@ -1,0 +1,39 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PIPING-SCA011-BASELINE-20260922
+title: Align the live-tree test denominator with accepted SCA-011 scope
+date: 2026-09-22
+basis: 0a258f145eac41a62de02b06f032ccbc183838ec
+instruction_surface_paths:
+  - tools/practitioner_harness/test_live_baseline.py
+  - docs/governance_harness/tranche_manifests/ROOT-PIPING-SCA011-BASELINE-20260922.yaml
+m2_gate:
+  authorization: >-
+    The owner instructed Agent 0 to execute the App and Piping reconciliation,
+    then accepted the exact Piping amendment and directed its delegated
+    application and audit: "Meanwhile, I accept this exact amenment for Piping.
+    Apply it and prepare the audited result (delegate this work)." The owner
+    subsequently answered "Accept the audited result and adopt DAG-011".
+    SCA-011 expressly adds four delivery homes. Updating the Root live-tree
+    test denominator from 102 to 106 Piping status files and 156 to 160 combined
+    files is a necessary consequence within that authorized application.
+    Only the test name, counts and explanatory comment change; zero-mismatch
+    and zero-unparseable requirements remain unchanged. Independent test-delta
+    review and passing rerun are in the Root decision-followup run. This
+    manifest records the existing authority and grants none.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: Codex HELP_HUMAN /root in HELP-HUMAN-20260922-DECISION-FOLLOWUP
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    This changes only the Root test's enumeration of already accepted Piping
+    scope, not instructions, validation criteria, loop contracts or pinned
+    corpus bytes. The Piping accepted Group-3 package already discloses the
+    consequential count repair. No downstream instruction adoption is required.
+scope_limits:
+  - No validation predicate, mismatch tolerance, lifecycle or product behavior change.
+  - No scope beyond the four owner-accepted delivery homes.
+  - Merge requires actual candidate independent review and required CI under the standing Git grant.
