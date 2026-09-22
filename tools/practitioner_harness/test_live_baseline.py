@@ -56,7 +56,7 @@ def live_self_check():
 
 
 @live
-def test_live_drift_baseline_0_of_102_and_0_of_54():
+def test_live_drift_baseline_0_of_106_and_0_of_54():
     # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
     # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
     # shall be IN_PROGRESS"); one parser-verified reversal history line was
@@ -66,19 +66,22 @@ def test_live_drift_baseline_0_of_102_and_0_of_54():
     # added DEL-07-09 as the 102nd Piping status file on 2026-08-21; it has no
     # asserted lifecycle state, so matches remain 101 and mismatches remain 0.
     # SCA-APP-009 adds DEL-09-07 as the 54th App status file on 2026-09-04;
-    # all 54 App statuses parse and match, so the combined total is 156.
+    # all 54 App statuses parse and match. SCA-011 Group 2 was accepted
+    # 2026-09-22 and adds DEL-04-07/07-11/07-12/16-06: 106 Piping
+    # status files and 160 combined. These new OPEN controls do not promote
+    # lifecycle state; the zero-mismatch requirements remain unchanged.
     report = cmd_drift.run_drift(LIVE_REPO, [
         LIVE_REPO / "projects" / "chirality-app-dev",
         LIVE_REPO / "projects" / "chirality-piping",
     ])
     piping = _fact(report, "drift.chirality-piping").value
-    assert "files=102" in piping
+    assert "files=106" in piping
     assert "mismatches=0" in piping
     assert "unparseable_docs=0" in piping
     app_dev = _fact(report, "drift.chirality-app-dev").value
     assert "files=54" in app_dev
     assert "mismatches=0" in app_dev
-    assert report.summary["files_total"] == 156
+    assert report.summary["files_total"] == 160
     assert report.summary["mismatches_total"] == 0
 
 

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "reviewed_application_commit": "d6cc1482eee78ce860ff18658f11157f7efbd401",
+  "original_manifest": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/DISPOSITION_EVIDENCE.json",
+  "original_manifest_sha256": "d103442f912c43858ae84470c33915023f1c2cfee2b592a9a3e118baf534e516",
+  "authority": "Agent 0 navigation maintenance after actual independent review and shared checks; no scope/claim change",
+  "current_changes": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "reviewed_sha256": "437e9a726e9088848faa47aae7ac2292c4e8d7b8eafc4087baa974dbce130437",
+      "current_sha256": "d0791f0471b70738893f7bfc97a6727745ebb0e3a0435c256a72207254791733"
+    }
+  ],
+  "all_other_manifested_files": "UNCHANGED",
+  "historical_nodes": "UNCHANGED",
+  "replay_note": "verify_dispositions.py proves its frozen 21-file author state at d6cc1482. This later navigation successor intentionally changes one hash; claim/derivative verification and all other author bytes remain unchanged. Do not rewrite the historical manifest to hide the transition."
+}

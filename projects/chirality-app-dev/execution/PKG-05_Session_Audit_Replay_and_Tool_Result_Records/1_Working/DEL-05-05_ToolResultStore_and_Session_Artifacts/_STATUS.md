@@ -8,15 +8,12 @@
 
 ## Remaining
 
-- Full tool-result audit-policy packet prepared under D-APP-102 as
-  `execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md`.
-  Implementation awaits the later owner ruling on D-APP-116 (gated: D-APP-116);
-  the proposed Root-owned storage/cleanup contract and App scope alignment
-  remain separately governed prerequisites, not authority created by this packet.
+- **D-APP-116 optional enhancement — NOT ADOPTED FOR THIS UNDERTAKING.** Preparation under D-APP-102 is complete; the current reconciliation decision burden is closed by Agent 0 in D-APP-132. Keep existing accepted requirements and evidence duties. Future enhancement implementation remains gated by its actual owner ruling and current owning contract/scope; this is neither permanent cancellation nor implementation completion. See `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md`.
 
-- **DEL-05-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 18 implementation or evidence, 15 record repair, 4 reserved authority, 11 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-05-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-05-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through. Original R5 classification counts (historical, not current completion totals): 18 implementation or evidence, 15 record repair, 4 reserved authority, 11 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-05-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface. Current overlay for this deliverable: `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` (D-APP-132); it supersedes only the listed keys' current decision/gate reading and retains all other original residuals.
 
 ## History
+- 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; accepted obligations and unresolved engineering/evidence retained. Lifecycle and Checking Approval SHA unchanged.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-05 - D-APP-102 packet preparation completed as proposal D-APP-116; implementation remains owner-gated. No lifecycle or Checking Approval SHA change.

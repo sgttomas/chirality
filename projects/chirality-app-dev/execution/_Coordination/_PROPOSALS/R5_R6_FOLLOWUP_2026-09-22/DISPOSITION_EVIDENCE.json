@@ -1,0 +1,786 @@
+{
+  "schema": "chirality-app-D132-record-application/v1",
+  "basis": "3e18334eca72509475684cc86786b3eeade83572",
+  "date": "2026-09-22",
+  "record_project_relative": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+  "execution": {
+    "parent": "/root",
+    "child": "/root/app_decision_refresh",
+    "role": "TASK",
+    "mechanism": "Codex native collaboration followup_task; executing child",
+    "model": "inherited parent model, exact serving ID/effort unavailable in this child context",
+    "substitution": "none requested or observed",
+    "delegation": "none by child",
+    "enforcement": "read/write host tools; per-file assignment and non-delegation boundaries instruction-asserted, not mechanically guaranteed",
+    "scope": "App governing/current coordination and six deliverable record sets only; no Git writes or product implementation",
+    "expanded_authority": "Parent supplied actual P01 owner release after initial bounded record assignment; allowed exact two claim lifts and consequential state/cross-reference updates",
+    "history": "Earlier full-history fork and subsequent native parent messages; no claim to possess or hash a complete chat export",
+    "actual_author_brief": "Proceed as bounded TASK author for those justified Agent 0 record dispositions, in shared isolated worktree /private/tmp/chirality-piping-ownership-20260922 (HEAD 3e18334ec; Piping manager concurrent disjoint Piping-only writes). Allowed writes ONLY projects/chirality-app-dev/** governing decision/coordination/reconciliation/affected deliverable records, NO product code, instructions, accepted decomp/DAG/lifecycle promotion, old frozen R1-R6 evidence or original ruling alteration. Read applicable Root/App instructions and active TASK; run dispatch App-hold on targets. Record actual owner feedback and Agent0 inference separately, source hashes and correction of our earlier D119 overstatement in a new addendum, not history rewrite. D116/117: close preparation/current reconciliation decision burden as prepared/not adopted for this undertaking, maintain accepted baseline and actual future implementation gates; no invented human option letter or permanent cancellation. D119: withdraw obsolete daemon boot proposal from current decision queue, explicitly correct our broader-guarantee characterization; preserve actual two-layer integrity/separation/Chirality-operation requirement and real unresolved implementation/evidence with current ownership. Apply these statuses in register, relevant Remaining/Memory and current graph/decision follow-up pointers; produce exact keyed continuation derivative for affected R5/R6 residuals, preserving original source rows and unresolved engineering work. No blanket App audit completion. Update current-facing proposal via a clearly dated corrective addendum or supersession pointer without erasing reviewed historical content; one compact canonical evidence home is enough. P01 is STILL RESERVED pending actual owner response; do not change its claims/status yet (parent asked release). Parent owns Root guide, Git, review and closeout. Freeze exact authored files and return paths/source checks/results for fresh independent review. Be proportionate; no extra workflows or new owner gates just to leave optional features unimplemented.",
+    "brief_sha256": "d6f843da145c5ff42b535340b7980c2c4b0858c23fe05f06bad441d50451bdee",
+    "brief_expansion": "Owner answered the exact P01 question: \"Yes\u2014release and update those two claims\". Question was: \"May I also resolve the two tool-related claims you previously reserved for your own determination? I recommend replacing their old SDK-whitelist wording with the current distinction: Runtime validates Chirality-owned application tools; native Codex tools follow the user's selected Codex policy. Existing domain controls, ordering obligations and missing verification remain visible; no new tool access is granted.\" This is actual release of DEL-06-02 CLM-005/032. Expand your bounded App record work to apply the exact scoped claim lift from reviewed bundle, with current source verification, governing registration of actual words, preserved historical disagreement and obligations, fresh derivative key accounting/hash/backcheck. Do not broaden tool access or mark live/ordering controls verified. Update relevant SoW/Remaining/Memory and current queue with released/applied P01 status. All other scope limits stand. No additional owner gate is needed for this exact authorized rewrite. Parent is updating Root guide separately; tell me selected canonical new record paths when ready.",
+    "expansion_sha256": "ca75eef353b5d581a066ab47ca4c5085ed48112f3e8d5350604564c1645139a7"
+  },
+  "owner_excerpts": [
+    {
+      "kind": "owner_feedback",
+      "text": "The App facade retirement is not sufficient to close out all the items you reported on. Can you close those others by the feedback I've given you on what I think of it? Did I characterize it properly? Should we settle anything before you close out those matters too?",
+      "sha256": "8633e835ace7ee445be58392db07a822caddddcabfebfa1bba48127c9fa113f8",
+      "origin": "parent-relayed current conversation excerpt in native task message; UTF-8 exact text, no trailing newline"
+    },
+    {
+      "kind": "owner_ambiguous_pair",
+      "text": "I didn't find either proposition compelling and it seems like bloated governance, but maybe I didn't understand either properly.",
+      "sha256": "10df76bef7aa12c9ef4e91aac3651e5abd1f0cb4d63969673180363593ac59f8",
+      "origin": "parent-relayed current conversation excerpt in native task message; UTF-8 exact text, no trailing newline"
+    },
+    {
+      "kind": "assistant_scoped_P01_question",
+      "text": "May I also resolve the two tool-related claims you previously reserved for your own determination? I recommend replacing their old SDK-whitelist wording with the current distinction: Runtime validates Chirality-owned application tools; native Codex tools follow the user's selected Codex policy. Existing domain controls, ordering obligations and missing verification remain visible; no new tool access is granted.",
+      "sha256": "afaec1d28b6616c4610a37da9031dd00dc8b808f786403f846c05ccd855a3493",
+      "origin": "parent-relayed current conversation excerpt in native task message; UTF-8 exact text, no trailing newline"
+    },
+    {
+      "kind": "owner_P01_release",
+      "text": "Yes\u2014release and update those two claims",
+      "sha256": "93aec07c06f366bf06032db2e992c0122c87d4813a0d74679088d12771a28aba",
+      "origin": "parent-relayed current conversation excerpt in native task message; UTF-8 exact text, no trailing newline"
+    }
+  ],
+  "attribution_boundary": "P01 is actual owner release; D116/117/119 are Agent0 current-undertaking application judgments. Ambiguous either is not treated as rejection of an accepted guarantee.",
+  "sources": [
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "basis_sha256": "63e6d2545c31df939511a5a137c214d5444ca562f6abf9b048de3aa2f8dac59d",
+      "bytes": 1688,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "AGENTS.md",
+      "basis_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "basis_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+      "basis_sha256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899",
+      "bytes": 3658,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md",
+      "basis_sha256": "fa3756ad3bdf02104da47fc5ba697b4f96d8a02029f008b32bd96a094ec46cb2",
+      "bytes": 5590,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/D-GOV-43.proposed.md",
+      "basis_sha256": "5afadb4ac0d33c26d188abbd86508de31dd08a027bd7858005273a11eab784cc",
+      "bytes": 23719,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "basis_sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+      "basis_sha256": "57411f8df49e6316d8d3bc9674d698b1c8478e639aad331115d4f67bcca97363",
+      "bytes": 38729,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md",
+      "basis_sha256": "12bf2f37cb3121f1165f3c0dd08f6505c92a8643da349ab0782411d927982f74",
+      "bytes": 7303,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md",
+      "basis_sha256": "a30ad4096e11bae24122c2255bf6e461a9cac21ec95d9398524c179bb54eaa07",
+      "bytes": 36998,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "basis_sha256": "ff15cdac43fd21d04f3ee4df0a45a1113e26c6b56bc9a22cd2d79d3c882cf98b",
+      "bytes": 18849,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/MEMORY.md",
+      "basis_sha256": "259d22b85a76bda8075b5d934fc0e35ce568853f8cf511b6d34908ae6111eef1",
+      "bytes": 1929,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/ScopeOfWork.md",
+      "basis_sha256": "feb58de0fe82269b0b1aec85d15b410c9fb586e42445116164bf2057a7a4df1f",
+      "bytes": 33459,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_STATUS.md",
+      "basis_sha256": "cfbf36e4632d977dee179350c923b78c6afcbcaf9d9362f5394f2dc7528429e2",
+      "bytes": 6774,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/MEMORY.md",
+      "basis_sha256": "0025041a3efe48968e2c0265e98d680b4787b3260e3d91eec1013130fd803084",
+      "bytes": 2413,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/ScopeOfWork.md",
+      "basis_sha256": "4b91d23341372bf422c186314e0cc3546d08b08a5ec5691d4037eaf09f94b3fb",
+      "bytes": 33234,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md",
+      "basis_sha256": "b9bf21b087721aba251a5afe621521d09d9463241c5cd9ef2971376628e00772",
+      "bytes": 4132,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/MEMORY.md",
+      "basis_sha256": "5f9491ebcd84530ecc70246a66e1b91bdb6e122576f671e2887395edd5f5a1e5",
+      "bytes": 2489,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+      "basis_sha256": "1df070d3b9fb1a56e9d34ab797aee63776893acf45a448013c4e09a1aa7bdda4",
+      "bytes": 35522,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md",
+      "basis_sha256": "aa7f5148005743636900c4e32e1ac67411eded973781bb6e66daf6391a23e8be",
+      "bytes": 3368,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/MEMORY.md",
+      "basis_sha256": "8a4b7ea324977f0736d083785ebe119df9f3bd35214026836df9a7c9457b861c",
+      "bytes": 2741,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md",
+      "basis_sha256": "e381c7b9c466279bab8130bde89d9c4e31c833e0052685d6c2740a46b4f2f2e4",
+      "bytes": 37261,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+      "basis_sha256": "9ff74c7b74f20dc013368dacafdc8f0ad4d7b30996867682ecc8f730c175cc1a",
+      "bytes": 8087,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/MEMORY.md",
+      "basis_sha256": "f3cfd0cd604324978a227c4fab655ef356ef28893465a129a9df2be0450ad78e",
+      "bytes": 4692,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/ScopeOfWork.md",
+      "basis_sha256": "fbcd18ec6ce7578d692d912ce28abd4a128b3ad4827e6a3079f3c4b6284f69cd",
+      "bytes": 39956,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+      "basis_sha256": "90bbb1482c042a2a1c000c39c9750e6f5992ea13c5674e2cc3f484ed9373a7b4",
+      "bytes": 13827,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv",
+      "basis_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+      "bytes": 301,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/OWNER_DIRECTION.md",
+      "basis_sha256": "80fe4e5f4baf48c9284ec2bbf441e42f0ef514886069287fc28c58e167bc74b4",
+      "bytes": 17658,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "basis_sha256": "ac9d976a577da6496334dabd341609287c54b127a10a45fbdc4a337ef7d4d68c",
+      "bytes": 8239,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-102_RULING_TOOL_RESULT_AUDIT_PACKET_2026-08-17.md",
+      "basis_sha256": "088c18b073bbbcff967ecb46fba664fdc4fae5110ece69e9fb64a6567fec0f2c",
+      "bytes": 1101,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-103_RULING_PER_ATTEMPT_DECISION_REPLAY_PACKET_2026-08-17.md",
+      "basis_sha256": "23c2b5b84f8dcfe5733db8b0ad44136c6fce1ed6f30df821fb50c92882affe8b",
+      "bytes": 1551,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md",
+      "basis_sha256": "59aece85bcf99ae2ae666fd59f6e66d206d1a6e985f2c208f231474cd4af73f9",
+      "bytes": 16791,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md",
+      "basis_sha256": "8e4ef9bbaebdcbb9b23c938bebc46f670abebd7aae5201d6cf459f6db3c6866c",
+      "bytes": 18521,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-118_RULING_FACADE_RETIREMENT_2026-09-22.md",
+      "basis_sha256": "9cd9da4d7de3e2d4bd04fa7c3a3c5a92edd9041e56f0c66cac2b374239dcb747",
+      "bytes": 3804,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-119_PACKET_ORGANISATION_BOOT_SCOPE_2026-09-05.md",
+      "basis_sha256": "ac8188df139f9df18024a1dd8f3424256ad40582d9076ae47525b42e56610dd7",
+      "bytes": 7104,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md",
+      "basis_sha256": "211ce2d25fde94c2c88c7b688a530e697b1b923efffaaaf18f39db414f494c19",
+      "bytes": 11203,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-131_APPLICATION_R5_R6_AGENT0_2026-09-22.md",
+      "basis_sha256": "37a3dd3798af7c8d8ce5ea21b2b5d9dac22b452c8473c260fbafbb5a219de097",
+      "bytes": 11344,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-42_PACKET_TOOL_RESULT_ARTIFACT_POLICY_2026-06-21.md",
+      "basis_sha256": "f871a0a04e7a95580797a83051e0644f1de7b183089319d96c9d59c91cc76241",
+      "bytes": 6707,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-42_RULING_2026-06-21.md",
+      "basis_sha256": "4a7ca9116b3a5c253a0b9dee80005189873196641ba94748063e6965b9b9e07e",
+      "bytes": 2653,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md",
+      "basis_sha256": "d57b795dd3938e6f6532f9bb680cd0f2e4a3a03c0fb162f439409b3b8c75f5e6",
+      "bytes": 11004,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-53_RULING_2026-07-10.md",
+      "basis_sha256": "59423f26392026b7bcc0062b149e38c70bf8059547cd0b10be7f7aa0a4900853",
+      "bytes": 3227,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "basis_sha256": "fb8f584760e8845b2f136866ea3c163b8d3212bdb36988ed2f389c37e9d29865",
+      "bytes": 113575,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+      "basis_sha256": "a52676113b435866bbfae2a8f3a163aca772fa2c98693355ac895b7ca20a26b4",
+      "bytes": 21320,
+      "must_remain_unchanged": false,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/SOURCES.json",
+      "basis_sha256": "f36cf6debd85a836385e92a206511b5fd69eb74aa7a818b880af89c9db8108ff",
+      "bytes": 29661,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "basis_sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+      "bytes": 132164,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-02-02.csv",
+      "basis_sha256": "b864243ae648d9838c97d690b45170a07154f72bd21698d4941f3686483f8ecc",
+      "bytes": 26420,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-04-04.csv",
+      "basis_sha256": "f0c3be719d9d9f7df15159dd605bb0e4d3b293c39736cfd3f17ab983d3f9f731",
+      "bytes": 32497,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-05-05.csv",
+      "basis_sha256": "2199079a2bfb0c07b0786b2cce1d3718b41c1a9123550be3c978d9fe8c4c5a1d",
+      "bytes": 42560,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-06-02.csv",
+      "basis_sha256": "b3952ac5ce56e4467ccd3871246d8022a5805534c6348f05a54b822228f96315",
+      "bytes": 46262,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-07-01.csv",
+      "basis_sha256": "a239378d51787891d3614355fb7212374b94baea0d8a54930105f9bc1ec4a66a",
+      "bytes": 39543,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-08-04.csv",
+      "basis_sha256": "2821c86e4d7f159e3873c1ed963de444a6cefb82456994899a8baf7c1f6ec444",
+      "bytes": 37298,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "basis_sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc",
+      "bytes": 37940,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "basis_sha256": "747bd71dd6a827445bbcf9bd400811c066926115b19ffbb55ec006965a99793c",
+      "bytes": 42202,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts",
+      "basis_sha256": "5de9ec6cf7de6073e7aa8fedf484ce52ac67fdc6f55375aecfee13383163a342",
+      "bytes": 21559,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts",
+      "basis_sha256": "f9d7e0bc5752394a2a118c6690efc5338b0bc9cd3a9fa5f07df5f0b5b04793bf",
+      "bytes": 3678,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md",
+      "basis_sha256": "70684ba0b6e6d04037f252f10eef35a2ca78d6cf41477678807ec59826a9004a",
+      "bytes": 3754,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/mcp/tool-names.ts",
+      "basis_sha256": "92912cd43633aadb28f5e3155e815abba8a6a51f74a3e77132097e9b0d883f85",
+      "bytes": 2296,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts",
+      "basis_sha256": "c0ebc9b041a5e994ae40ae3335d39b6baac259252b834a2de68794e51a7c4f93",
+      "bytes": 40955,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/app-owned-composition.ts",
+      "basis_sha256": "4cd5b16a93b30ccddc05be3d2221cbb46fcd2a5c9c507886333c30974c67f565",
+      "bytes": 18952,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/application-tools.ts",
+      "basis_sha256": "a2920ad44d7f3f9d7a9a76c29fcfa7e0383155d9d50e81c0399ef1be16f4c3e3",
+      "bytes": 13448,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "basis_sha256": "2dd56ebba6153978cfd6da9118b0eb6be73388aa16dbf799e57be508ae01eb2b",
+      "bytes": 52066,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/application-tools.test.ts",
+      "basis_sha256": "a9290669276fcdcd636e1aedad569d4a04ec2f585b5daeb367fa6cd5ec723e8c",
+      "bytes": 13366,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-application-tools.test.ts",
+      "basis_sha256": "01a64d3d8e3e5a06f7d1bd214e205bcdecdb507d63d8115681d997ccc5361798",
+      "bytes": 21432,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "basis_sha256": "4915153f4bc4f1f51ed400d266d0b058f2c6707b696ecf6bc9e340ae9f4a6dff",
+      "bytes": 39505,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    },
+    {
+      "path": "tools/scope_of_work/validate_scope_of_work.py",
+      "basis_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "bytes": 1495,
+      "must_remain_unchanged": true,
+      "read_scope": "applicable instruction, authority, cited source, verification-hook inspection or before-state binding; hash identifies full source bytes without claiming every line was read"
+    }
+  ],
+  "authored_files": [
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/MEMORY.md",
+      "sha256": "1b33fbfb1f46e778806cfe54388d23f17c63eaa8dc5afcf3c78bf5337dd7dff2",
+      "bytes": 7927
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "sha256": "dbd3a1a4ca9556622ade3c4c56574a12af7e405ccf2fe03d0490e20020fd25da",
+      "bytes": 19397
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/MEMORY.md",
+      "sha256": "80214dec38a94b7bf79b222fbbf9df6dc60e95e69d336831bfbd9fda7cef88bd",
+      "bytes": 2553
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_STATUS.md",
+      "sha256": "9993c98ae008c1960e8d133b8573b9797d0f18b10edfd605183bc749c9a4d1c4",
+      "bytes": 7322
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/MEMORY.md",
+      "sha256": "4b9ee11743890b593f75a4e6db5345ae9f794a7d6d9885425d6709250dc25542",
+      "bytes": 3037
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md",
+      "sha256": "ba6ad6d6a4f60da734c231abd7d39fa6f8490ceed95e4b8ff019c1c7588abc24",
+      "bytes": 4812
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/MEMORY.md",
+      "sha256": "9c73517ff6a5fdc8c07d16305e3841acc1479d11ba6064a913a904b03440d4a9",
+      "bytes": 3058
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+      "sha256": "9a4927fd5d41fcf9658297a321dd5504351777b5e4e72af7409f08575cc2125d",
+      "bytes": 36487
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md",
+      "sha256": "a2bdb5e9be0f8c2bed0121a06bc6c2e7f2c2ed232bb5ca2a9fd746598a3533ea",
+      "bytes": 4090
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/MEMORY.md",
+      "sha256": "eecb05a7d21f6d3d966dbac94c25b7d014e498178330c70d348692036c9f0899",
+      "bytes": 3365
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+      "sha256": "274d726bff0ba5eefa5d1f40a8b14e27897a20761058e805c1fe959ce75e9a27",
+      "bytes": 8491
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/MEMORY.md",
+      "sha256": "3fb89f4c4325192ad9e01cac9507a376a380eccba84b82c56d7ea4112ae15e41",
+      "bytes": 5316
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+      "sha256": "6525228c8b47cb77507997d61d699dafa873b73c7f0cc317d20a8ebaa936fd35",
+      "bytes": 14505
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "sha256": "437e9a726e9088848faa47aae7ac2292c4e8d7b8eafc4087baa974dbce130437",
+      "bytes": 9134
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+      "sha256": "d52dd0f59913961312572ff41dadc37cb203efc8838b408277b2b4a61048c8a3",
+      "bytes": 9062
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "94b4adab197611325d206c67048af5acdc0b3b54cf29cd769fdd81174e4af288",
+      "bytes": 114026
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
+      "sha256": "408d21fa25c44b57a9b8d7f8c55f85eab23e5a7b8f1679294958cb5744fc4cce",
+      "bytes": 22797
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv",
+      "sha256": "a79aac235ee26a79ab0f0a1395fdaefd0ac85d5661d249bdbe19040c247a5131",
+      "bytes": 35214
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/P01_CLAIM_CHANGE_MANIFEST.json",
+      "sha256": "bcb78c7c1cd6bc9b431e95dcb8ddbc4878c206910a8eeb6fc0b822a3afa9b12c",
+      "bytes": 12103
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/verify_dispositions.py",
+      "sha256": "fce8f5cea196481d1aa154c7e0f6a648ac00b0b6cfe84221d3db0e2f35417d47",
+      "bytes": 4739
+    }
+  ],
+  "manifest_self_exclusion": "DISPOSITION_EVIDENCE.json excludes itself from authored hashes; parent must independently hash/review this record.",
+  "expected_overlay_keys": [
+    "DEL-02-02#REM-1",
+    "DEL-02-02#REM-2",
+    "DEL-04-04#SEC-1",
+    "DEL-04-04#SEC-2",
+    "DEL-04-04#CLM-005",
+    "DEL-04-04#CLM-023",
+    "DEL-04-04#REM-1",
+    "DEL-05-05#CLM-010.12",
+    "DEL-05-05#CLM-012.8",
+    "DEL-05-05#REM-1",
+    "SOW:SOW-059.2",
+    "DEL-06-02#CLM-005",
+    "DEL-06-02#CLM-032",
+    "DEL-07-01#SEC-1",
+    "DEL-07-01#SEC-2",
+    "DEL-07-01#REM-1",
+    "SOW:SOW-084.2",
+    "DEL-08-04#CLM-011",
+    "DEL-08-04#CLM-030",
+    "DEL-08-04#REM-1"
+  ],
+  "original_row_semantics": "All existing R5 row columns copied unchanged. New FollowupState/CurrentGate/CurrentOwner/CurrentWork apply prospectively to exact keys; old source classifications are historical.",
+  "status_paths": [
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_STATUS.md",
+    "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md"
+  ],
+  "graph_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+  "checks": {
+    "app_hold_dispatch": {
+      "argv": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "dispatch",
+        "--entry-path",
+        "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+        "--target",
+        "DEL-02-02",
+        "--target",
+        "DEL-04-04",
+        "--target",
+        "DEL-05-05",
+        "--target",
+        "DEL-06-02",
+        "--target",
+        "DEL-07-01",
+        "--target",
+        "DEL-08-04"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "exit_code": 0,
+      "stdout": {
+        "active_hold_deliverables": [],
+        "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+        "operation": "dispatch",
+        "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+        "repo_head": "3e18334eca72509475684cc86786b3eeade83572",
+        "results": [
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-02-02",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          },
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-04-04",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          },
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-05-05",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          },
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-06-02",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          },
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-07-01",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          },
+          {
+            "contract_status": "CLEAR",
+            "deliverable_id": "DEL-08-04",
+            "entry_path": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+            "hold_status": "NOT_HELD",
+            "operation": "dispatch",
+            "verdict": "ALLOW"
+          }
+        ],
+        "scan_fingerprint_sha256": "ad9da96760487249474cbda439cd94c7c76291b78f2ce661deff5c60ac608c4c",
+        "scan_held_deliverables": [],
+        "schema": "chirality-app-hold-check/v1",
+        "structural_bootstrap_deliverables": [],
+        "targets": [
+          "DEL-02-02",
+          "DEL-04-04",
+          "DEL-05-05",
+          "DEL-06-02",
+          "DEL-07-01",
+          "DEL-08-04"
+        ],
+        "verdict": "ALLOW"
+      },
+      "stderr": ""
+    },
+    "scope_of_work": {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+        "--json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    "derivative_backcheck": {
+      "argv": [
+        "python3",
+        "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/verify_dispositions.py"
+      ],
+      "status": "PASS",
+      "observed_result": {
+        "overlay_keys": 20,
+        "owner_released_claims": 2,
+        "consequential_reference_units": 2,
+        "negative_controls": [
+          "missing key rejected",
+          "duplicate key rejected",
+          "changed original rejected"
+        ],
+        "lifecycle_and_original_history": "UNCHANGED",
+        "frozen_R1_R6": "UNCHANGED",
+        "SoW_inverse_reconstruction": "EXACT"
+      }
+    },
+    "initial_count_guard": "Initial generation asserted hand-count 21, failed against actual 20 unique keys before derivative publication. Corrected denominator to 18 D116/117/119 rows + 2 P01 rows; no coverage PASS claimed from initial attempt.",
+    "product_checks": "NOT_APPLICABLE: no product source, instruction, build or test contract changed; named product tests are verification hooks only. Parent owns required harness/review/CI closeout.",
+    "independent_review": "PARENT_PENDING",
+    "record_diff_check": {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "projects/chirality-app-dev"
+      ],
+      "result": "PASS",
+      "exit_code": 0
+    }
+  }
+}

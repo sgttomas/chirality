@@ -1,0 +1,33 @@
+........................................................................ [ 18%]
+.....................................F.................................. [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 94%]
+...................                                                      [100%]
+=================================== FAILURES ===================================
+________________ test_live_drift_baseline_0_of_102_and_0_of_54 _________________
+
+    @live
+    def test_live_drift_baseline_0_of_102_and_0_of_54():
+        # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
+        # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
+        # shall be IN_PROGRESS"); one parser-verified reversal history line was
+        # appended per file. Ruling record: projects/chirality-piping/execution/
+        # _Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/
+        # Decision_Log.md. Pin updates here are conscious, never silent. SCA-009
+        # added DEL-07-09 as the 102nd Piping status file on 2026-08-21; it has no
+        # asserted lifecycle state, so matches remain 101 and mismatches remain 0.
+        # SCA-APP-009 adds DEL-09-07 as the 54th App status file on 2026-09-04;
+        # all 54 App statuses parse and match, so the combined total is 156.
+        report = cmd_drift.run_drift(LIVE_REPO, [
+            LIVE_REPO / "projects" / "chirality-app-dev",
+            LIVE_REPO / "projects" / "chirality-piping",
+        ])
+        piping = _fact(report, "drift.chirality-piping").value
+>       assert "files=102" in piping
+E       AssertionError: assert 'files=102' in 'files=106, matches=101, mismatches=0 (strict-parsed=0, assumption-parsed=0), unparseable_docs=0, no_state_assertion=5'
+
+tools/practitioner_harness/test_live_baseline.py:75: AssertionError
+=========================== short test summary info ============================
+FAILED tools/practitioner_harness/test_live_baseline.py::test_live_drift_baseline_0_of_102_and_0_of_54
+1 failed, 378 passed in 74.38s (0:01:14)
