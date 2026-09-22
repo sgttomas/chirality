@@ -1,0 +1,582 @@
+=== S1-082 DOC:RELIANCE#11.2 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=D-GOV-43
+ SRC: projects/chirality-app-dev/docs/harness/reliance_boundary_register.md ## SCA-APP-003 Shared Runtime Boundary Addendum row RB-CONTROL-SOCKET; D-GOV-43 (A2)
+ DS: RB-CONTROL-SOCKET: Runtime service Unix-socket API private to the App: 0700 parent, 0600 socket, per-launch client token under userData, stale recovery; renderer only through loopback HTTP/SSE; supervisor second socket retired
+ IE: projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts:287-293 (listen, chmod 0600) REACH=LIVE; projects/chirality-runtime/packages/client/src/index.ts token file checks (CAP-RTCONTRACT-005) REACH=LIVE; projects/chirality-app-dev/frontend/electron/runtime-service-host.ts private config and paths REACH=LIVE
+ VE: GATE-TRANSCRIPT(RUNTIME@00115c719) tests/daemon.test.ts 'uses private files, authenticates, and preserves UIEvent SSE wire format' (:327-329), 'fails closed for a non-socket or ambiguous live owner record'; packages/client/test/client.test.ts 'uses the token file and exact response envelopes without a TCP fallback'; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/electron/runtime-service-host.test.ts 'writes the chirality-app-owned/v1 config privately and atomically'
+ HDN: NO
+=== S1-083 DOC:RQGATES#4 [STATE_ASSERTION/ALIGNED] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md §4 Governance Gate
+ DS: Docs-only tranches run git diff --check, stale-reference searches, link checks, register confirmation and no-runtime-change confirmation; frontend tests normally skipped
+ IE: documentary claim: projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/RUN_LOG.md records a candidate whitespace validator pass; process rule with no code surface
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-084 DEC:D-APP-111 [REQUIREMENT/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-111
+ SRC: Register row D-APP-111 (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md:126); ruling record projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-111_RULING_SCA_APP_010_POINTER_ACCEPTANCE_2026-09-05.md
+ DS: RULED: move DepClosure, DecompCoverage and Reconciliation pointers to the SCA-APP-010 snapshots; update the SCA-APP-010 Handoff_State derivative fields; _ScopeChange/_LATEST.md unchanged
+ IE: documentary claim: projects/chirality-app-dev/execution/_Reconciliation/DepClosure/_LATEST.md:1; projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md:1; projects/chirality-app-dev/execution/_Reconciliation/_LATEST.md:1-3 (all name the ruled snapshots)
+ VE: RULING-RECORD(D-APP-111); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-085 SOW:SOW-052.1 [REQUIREMENT/ALIGNED] NONE tier=PRD dec=D-GOV-43 (context)
+ SRC: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md §9 Scope Ledger L455 (SourceRef REF-006 Section 8.13); part 1 live-deliverable mapping
+ DS: IN; App/project max-turn inputs and daemon guard conformance
+ IE: documentary claim: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md §9 Scope Ledger L455 DeliverableID(s) DEL-04-02; each named deliverable's ScopeOfWork.md project_scope_refs cites the row
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-086 DOC:VALSTRAT#4.9 [STATE_ASSERTION/ALIGNED] NONE tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: projects/chirality-app-dev/docs/VALIDATION_STRATEGY.md §3 row `npm run instruction-root:integrity`
+ DS: `npm run instruction-root:integrity`: Instruction-root packaging/resource integrity check with summary artifact
+ IE: projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs REACH=LIVE (build-time; CAP-BUILD-007)
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/scripts/verify-instruction-root-integrity.test.ts; projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/BUILD_EVIDENCE_20260912.md step 4 (366 files, manifest match)
+ HDN: NO
+=== S1-087 DOC:BUILDREL#4.8 [STATE_ASSERTION/ALIGNED] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md §4 Local Command Map, table row 8
+ DS: validate:release-quality runs the runtime-premerge evidence wrapper and writes artifacts/harness/release-quality/latest/summary.json
+ IE: projects/chirality-app-dev/frontend/package.json scripts.validate:release-quality REACH=TEST_ONLY; projects/chirality-app-dev/frontend/scripts/validate-release-quality-evidence.mjs:23-30 REACH=TEST_ONLY
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-088 DEC:D-APP-89 [REQUIREMENT/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-89
+ SRC: Register row D-APP-89 (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md:104); ruling record projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md
+ DS: RULED Option B: migrate every executable App importer/config consumer to @chirality/runtime-contracts; facade retained as tested rollback; deletion separately gated
+ IE: projects/chirality-app-dev/frontend/src/__tests__/lib/tool-catalog.test.ts:4 REACH=TEST_ONLY (imports runtime-contracts directly); projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts:4 REACH=TEST_ONLY (13-export rollback probe keeps the facade tested); grep of frontend/src and frontend/electron non-test modules finds no '@chirality/harness-contract' importer; documentary claim: projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md:34-35
+ VE: RULING-RECORD(D-APP-89); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-089 SOW:SOW-052.2 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] CODEX_SOLE_ENGINE tier=PRD dec=D-GOV-43 (context)
+ SRC: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md §9 Scope Ledger L455 (SourceRef REF-006 Section 8.13); part 2 code or explicit deferral
+ DS: IN; App/project max-turn inputs and daemon guard conformance
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/toolkit.ts:139-148 opts.maxTurns from operator toolkit REACH=LIVE (forwarded as opts; no runtime package reads opts); projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts:204 maxTurns guard REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) frontend/src/__tests__/lib/harness-toolkit.test.ts; frontend/src/__tests__/lib/sdk-options-builder.test.ts (legacy)
+ HDN: R4-Q1
+=== S1-090 DOC:TOOL_CATALOG#3 [STATE_ASSERTION/IMPLEMENTED_DIFFERENTLY] CODEX_SOLE_ENGINE tier=LOCAL_DESIGN dec=D-GOV-43
+ SRC: projects/chirality-app-dev/frontend/docs/harness/tool_catalog.md ## Catalog (lines 57-87)
+ DS: 27 descriptor rows with surface, permissions, modes, hooks and 'Exposed to model' status (reserved WebFetch/WebSearch described as outside the Anthropic-only runtime policy)
+ IE: projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:490 REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/harness/tool-catalog.ts REACH=TEST_ONLY; exposure and hook enforcement: projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts, projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts, projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts REACH=LEGACY_ONLY; live tool policy: projects/chirality-runtime/packages/contracts/src/delegated.ts:320-331 REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/tool-catalog.test.ts, src/__tests__/lib/tool-descriptor.test.ts (suite pass); REACHABILITY(static)@00115c719
+ HDN: R4-Q1
+=== S1-091 DOC:RELIANCE#4.7 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-GOV-43
+ SRC: projects/chirality-app-dev/docs/harness/reliance_boundary_register.md ## Enforcement Matrix row RB-TRANSCRIPT
+ DS: RB-TRANSCRIPT: Mixed; closure DEL-05-01, DEL-05-04; non-prompt and non-SDK-default enforcement restated
+ IE: projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts thread/start or cold thread/resume keyed by instruction digest (CAP-RTCORE-028) REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/session-events.ts, sdk-options-builder.ts REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(RUNTIME@00115c719) tests/codex-supervisor.test.ts; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/sdk-options-builder.test.ts, session-manager.test.ts (legacy linkage); REACHABILITY(static)@00115c719
+ HDN: NO
+=== S1-092 DOC:BUILDREL#8 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md §8 Packaging Procedure (heading only)
+ DS: Heading with no text of its own; content is in §8.1 and §8.2
+ IE: documentary claim: heading only
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-093 DOC:RELIANCE#13.6 [REQUIREMENT/PARTIALLY_IMPLEMENTED] SHELL_REDESIGN tier=LOCAL_DESIGN dec=D-APP-74 (context)
+ SRC: projects/chirality-app-dev/docs/harness/reliance_boundary_register.md ## SCA-APP-004 Work/Agents Projection Boundary Addendum row RB-CONTEXT-RECEIPT; D-APP-74
+ DS: RB-CONTEXT-RECEIPT: Visible artifacts and focused views are not automatically model context; composer-owned explicit next-turn references and provenance-bearing dialogue anchors
+ IE: projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts:127,589 (contextReferences persisted but unused) REACH=LIVE (STATE=DISABLED, CAP-WOVEN-040); method chips and attachments explicit (CAP-SHELL-028) REACH=LIVE
+ VE: RUN-INSPECTION@00115c719; REACHABILITY(static)@00115c719
+ HDN: NO
+=== S1-094 SOW:SOW-064.2 [REQUIREMENT/PARTIALLY_IMPLEMENTED] A2_TOPOLOGY tier=PRD dec=D-GOV-43 (context)
+ SRC: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md §9 Scope Ledger L467 (SourceRef REF-006 Section 8.15); part 2 code or explicit deferral
+ DS: IN; MCP extension boundaries (DEL-06-02 catalog/collision; DEL-06-03 wrappers/boundary docs)
+ IE: projects/chirality-runtime/packages/contracts/src/application-tools.ts:47 applicationToolKey collision key and :69-89 validators REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-service.ts:580 mcpServers: [] REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts in-process wrappers REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(RUNTIME@00115c719) tests/application-tools.test.ts; tests/codex-application-tools.test.ts
+ HDN: NO
+=== S1-095 DEC:D-APP-107 [REQUIREMENT/RETIRED_BY_RULING] A2_TOPOLOGY tier=LOCAL_DESIGN dec=D-APP-127
+ SRC: Register row D-APP-107 (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md:122); ruling record projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-107_RULING_DEL_09_07_SOW_INITIALIZATION_2026-09-04.md
+ DS: RULED (bounded repair authorized; integration pending): retire the expired D-APP-104 row; add a typed SOW_INITIALIZATION admission for DEL-09-07 with token PROJECT_SETUP:SCOPE_OF_WORK:INIT
+ IE: documentary claim: projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv (header only; APP-HOLD-1-INIT-DEL-09-07 row removed under D-APP-127); projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/ScopeOfWork.md (created through PROJECT_SETUP, git log be243fdf6); projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_STATUS.md:5-12; projects/chirality-app-dev/AGENTS.md:196-200 (the preflight paragraph D-APP-127 flagged has been revised)
+ VE: RULING-RECORD(D-APP-127); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-096 DOC:TRACEABILITY#1 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: projects/chirality-app-dev/frontend/docs/harness/TRACEABILITY.md ## Requirement Mapping (DEL-07-01), lines 3-25
+ DS: REQ-01..REQ-19 of DEL-07-01 map to named coverage artifacts; REQ-17 lists the 'current deterministic ID set' of 13 Section 9 IDs
+ IE: projects/chirality-app-dev/frontend/scripts/validate-harness-section8.mjs:22-31 (REQ-01 check set matches exactly) REACH=TEST_ONLY; projects/chirality-app-dev/frontend/scripts/validate-harness-section9.mjs:29-46 (16 Section 9 IDs; the doc omits section9.reliance_boundary_register, section9.sdk_session_link_resume, section9.domain_profile_validation) REACH=TEST_ONLY; projects/chirality-app-dev/frontend/src/__tests__/lib/harness-options.test.ts, harness-subagent-governance.test.ts, harness-attachment-resolver.test.ts, src/__tests__/api/harness/routes.test.ts (exist) REACH=TEST_ONLY; projects/chirality-app-dev/docs/harness/reliance_boundary_register.md and runtime_evidence_reconciliation.md exist (REQ-18, REQ-19); R1_INVENTORY/DELIVERABLE_INVENTORY.csv: DEL-07-01 is Working Root Validation and Instruction Root Protection, DEL-09-01 is Section 8 Harness Validation Preservation
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/harness-options.test.ts, src/__tests__/lib/harness-subagent-governance.test.ts, src/__tests__/lib/harness-attachment-resolver.test.ts, src/__tests__/api/harness/routes.test.ts (suite pass); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-097 DOC:BUILDREL#4.14 [STATE_ASSERTION/STALE_SPECIFICATION] A2_TOPOLOGY tier=NOT_APPLICABLE dec=D-GOV-43 (context)
+ SRC: projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md §4 Local Command Map, table row 14
+ DS: desktop:dist builds and produces an unsigned/unnotarized local-builder arm64 DMG, then verifies the dependency boundary and instruction-root integrity
+ IE: projects/chirality-app-dev/frontend/package.json scripts.desktop:dist = pack-electron.mjs --target dmg && desktop:verify-dependencies && desktop:verify-codex-pin -- --after-signing && instruction-root:integrity REACH=LIVE; projects/chirality-app-dev/frontend/scripts/pack-electron.mjs:86-95 signs when CHIRALITY_SIGNING_IDENTITY_SHA1 is set REACH=LIVE
+ VE: RUN-INSPECTION@00115c719; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/scripts/pack-electron.test.ts
+ HDN: NO
+=== S1-098 DEL-06-02#CLM-034 [STATE_ASSERTION/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-56
+ SRC: ScopeOfWork.md CLM-034 D-APP-56 roster clarification (R4-P27)
+ DS: PKG-10 owns domain-profile registry and proposal-tool roster; DEL-06-02 remains SDK read-tool and validation owner
+ IE: documentary claim: D-APP-56 ruling record (DEL-06-02 rows); ScopeOfWork.md CLM-034
+ VE: RULING-RECORD(D-APP-56)
+ HDN: NO
+=== S1-099 DEL-06-06#CLM-025.4 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: SoW Principle 4; PLAN R4; PRD 8.15
+ DS: Compaction must not erase replay
+ IE: projects/chirality-runtime/packages/core/src/session-store.ts:829-905 REACH=LIVE
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-100 DEL-06-05#CLM-009.8 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] CODEX_SOLE_ENGINE tier=PRD dec=D-APP-42 (context)
+ SRC: ScopeOfWork.md CLM-009 DEL-06-05-REQ-008; PRD FR-096; PLAN R4
+ DS: Medium/large Bash output previewed or stored as session artifacts, not unbounded
+ IE: projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:266 per-delta text cap 65536 chars REACH=LIVE; NONE_FOUND ToolResultStore/tool-result-artifacts in projects/chirality-runtime/packages/*/src; projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts:54-105 REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'allows governed Bash, injects timeout, and records redacted overflow artifact metadata' (legacy)
+ HDN: R4-Q1
+=== S1-101 DEL-06-01#CLM-009.15 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-GOV-43 (context)
+ SRC: SoW Requirements DEL-06-01-REQ-015: TYPES 8.2; SPEC 14.3, 15.1; CONTRACT 1.5 K-ENGINE-4
+ DS: DEL-06-01-REQ-015: overlay input contract carries session, optional turn, tool, mode, tool-surface posture and deny/approval signals without making SDK request objects public
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts:43-55 ResolveHarnessPermissionDecisionInput carries sessionId, turnId, toolName, mode, descriptor, source, explicitDeny, delegatedSubagents, toolInput and safeMetadata REACH=LEGACY_ONLY; projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:714 live Codex approval params are held as received REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts 'lets explicit hard denies override abstract allow and ask decisions'
+ HDN: R4-Q1
+=== S1-102 DEL-06-02#CLM-010.1 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] CODEX_SOLE_ENGINE tier=PRD dec=D-GOV-43 (context)
+ SRC: ScopeOfWork.md CLM-010 DEL-06-02-REQ-001; SOW-047; PRD FR-078
+ DS: opts.tools map only to registered SDK built-ins or registered mcp__chirality__* names
+ IE: projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:1333-1401 (descriptor lookup; registry reached on the live path only by the contracts barrel) REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts:36-111 (resolveHarnessToolPool) REACH=LEGACY_ONLY; projects/chirality-runtime/packages/core/src/runtime-service.ts:349-350 (opts.tools passed through Runtime restriction) REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-method-service.ts:68,507-518 (restrictRequestedTools: readOnly READ_TOOL regex, role and method filters; 422 unavailableTools; no registry lookup) REACH=LIVE; projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:95-121,203 (Codex adapter reads opts.model/opts.mode only; opts.tools unused) REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts 'resolves aliases deterministically and reports structured unknown tool issues'; REACHABILITY(static)@00115c719
+ HDN: R4-Q1
+=== S1-103 DEL-06-04#CLM-002 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: SoW CLM-002 Identification table; _CONTEXT.md Identity/Traceability
+ DS: Identity metadata: SECURITY_CONTROL, envelope L, SOW-027/057/060, OBJ-005/006, responsible party TBD
+ IE: documentary claim: ScopeOfWork.md:31-42 vs _CONTEXT.md:5-16 and 36-39; decomposition row DEL-06-04 (Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:349)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-104 DEL-06-05#CLM-021 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-021 Purpose
+ DS: Purpose: prevent SDK Bash from being an escape hatch; denied by default
+ IE: documentary claim: ScopeOfWork.md CLM-021
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-105 DEL-06-04#CLM-009.14 [REQUIREMENT/PARTIALLY_IMPLEMENTED] CODEX_SOLE_ENGINE tier=PRD dec=D-APP-70
+ SRC: SoW CLM-009 DEL-06-04-REQ-014; SPEC attachment/path validation; decomposition SOW-060
+ DS: Path validation SHOULD include regular-file and symlink checks for attachment/write-relevant paths
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts:161-230 captureFileState lstat classifies symlink/directory/other/regular file for evidence REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-path-policy.ts:96-162 symlink segment rejection REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/electron/plan-export-dialog.ts:19-31 plan-export target containment and symlink-segment refusal REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'blocks outside-root, instruction-root, and symlink write attempts'; RUN-INSPECTION@00115c719
+ HDN: R4-Q1
+=== S1-106 DEL-06-05#CLM-009.7 [REQUIREMENT/PARTIALLY_IMPLEMENTED] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-009 DEL-06-05-REQ-007; PLAN R4 targets; PRD FR-100
+ DS: stdout and stderr captured separately
+ IE: projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts:265-266 single outputDelta stream -> tool.progress REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/tool-evidence.ts:43-46,178 stdout/stderr fields REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts 'allows governed Bash, injects timeout, and records redacted overflow artifact metadata' (legacy)
+ HDN: R4-Q1
+=== S1-107 DEL-06-03#REGISTER-2 [REGISTER_DEFECT/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-109 (context)
+ SRC: _DEPENDENCIES.md Declared Upstream / Declared Downstream
+ DS: TBD - no accepted dependency edges have been extracted yet (both sections)
+ IE: documentary claim: Dependencies.csv holds 18 ACTIVE rows DEP-06-03-001..018; _DEPENDENCIES.md Lifecycle Summary ACTIVE 18
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-108 DEL-06-04#STATE-1 [STATE_ASSERTION/STALE_SPECIFICATION] CODEX_SOLE_ENGINE tier=LOCAL_DESIGN dec=D-GOV-43
+ SRC: _CONTEXT.md SCA-APP-001 Context Alignment (line 48)
+ DS: Claude Agent SDK / Anthropic remains the first concrete/current path; Pi is reference only
+ IE: documentary claim: _CONTEXT.md:48; live engine projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:191 thread/resume request to the stock codex app-server with the chosen approvalPolicy/sandbox REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts:1 Claude Agent SDK import REACH=LEGACY_ONLY
+ VE: RUN-INSPECTION@00115c719; REACHABILITY(static)@00115c719
+ HDN: NO
+=== S1-109 DEL-06-02#CLM-029 [STATE_ASSERTION/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: ScopeOfWork.md CLM-029 PRD Hash Status; _REFERENCES.md REF-006; D-APP-56 R5 P40
+ DS: REF-006 PRD is MATCH under D-APP-38; older warnings are dated history
+ IE: documentary claim: _REFERENCES.md REF-006 row; docs/PRD.md header 'Amended under D-GOV-43 (A2), 2026-09-12'
+ VE: HASH-RECOMPUTE@00115c719 (REFERENCE_HASHES.csv DEL-06-02 PRD row: recorded 8649ccba.. MATCH, recomputed 17ca3f3c.., Match NO)
+ HDN: NO
+=== S1-110 DEL-06-02#CLM-013 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-013 Pass 3 Verification Evidence Disposition (C-001, D-001, E-001)
+ DS: Concrete implementation paths remain TBD; metadata record path not assigned
+ IE: projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:490-1401 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts:36-111 REACH=LEGACY_ONLY
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-111 DEL-06-03#CLM-015 [CONTEXT_CLAIM/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-38
+ SRC: ScopeOfWork.md CLM-015 Conflict Table
+ DS: REF-006 is MATCH under D-APP-38
+ IE: documentary claim: _REFERENCES.md REF-006
+ VE: HASH-RECOMPUTE@00115c719 (REFERENCE_HASHES.csv DEL-06-03 PRD Match=NO)
+ HDN: NO
+=== S1-112 DEL-06-04#CLM-027 [REQUIREMENT/STALE_SPECIFICATION] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=D-GOV-43 (context)
+ SRC: SoW CLM-027 MCP Write/Gated Surface; SPEC 14.2; CONTRACT K-MCP-1
+ DS: status_transition and deps_write are current write/gated MCP tools; scaffold needs mutation classification before exposure; future write MCP tools opt into the SDK Write/Edit gate
+ IE: projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:606-611 scaffold_preview read-only descriptor REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:691-692 and 734-739 mutating descriptors REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts:1125 and 1143 in-process registration REACH=LEGACY_ONLY
+ VE: RUN-INSPECTION@00115c719; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts 'requires workspaceWrite for mutating status transitions'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts 'denies symlink target writes before the lifecycle engine runs'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts 'applies a status transition in workspaceWrite and records metadata-only evidence'
+ HDN: R4-Q1
+=== S1-113 DEL-07-06#CLM-004.4 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: SoW CLM-004 Conditions row 'Human authority'; CONTRACT K-AUTH-1; DIRECTIVE §2.4
+ DS: No agent, SDK, tool, runtime event, validator or adapter can author binding approval records
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/ScopeOfWork.md:72 matches docs/CONTRACT.md:41 and docs/DIRECTIVE.md:78-84
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-114 DEL-07-05#CLM-012.11 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-012 REQ-DEL-07-05-011; docs/CONTRACT.md §1.7 K-INVENT-1; docs/DIRECTIVE.md §2.5
+ DS: Unknown values remain TBD rather than guessed
+ IE: projects/chirality-app-dev/frontend/src/lib/dependencies/register-writer.ts:54-95 normalization fills absent core fields with empty strings and invents no values REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/dependencies/register-reader.ts:24-84 REACH=LIVE
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-115 DEL-07-06#CLM-012.5 [ACCEPTANCE/ALIGNED] NONE tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: SoW CLM-012 Verification row for REQ-012
+ DS: Scope review of tool continuity with registry TBD (REQ-012..013)
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/ScopeOfWork.md:184-191 (verification approach); subject evidence per DEL-07-06#CLM-010.12
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-116 DEL-07-05#CLM-012.17 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-012 REQ-DEL-07-05-017; docs/SPEC.md §13.1; docs/PRD.md FR-024
+ DS: Unknown option keys in runtime/tool options are ignored with warnings
+ IE: NONE_FOUND (searched projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/dependencies/route.ts, projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts, projects/chirality-app-dev/frontend/src/lib/dependencies for an unknown-option warning): projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/dependencies/route.ts:12-16,90-100 reads only projectRoot, deliverablePath and rows; other body keys are dropped silently
+ VE: NONE_FOUND
+ HDN: NO
+=== S1-117 DEL-07-02#CLM-009.6 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] A2_TOPOLOGY tier=GOVERNANCE_INVARIANT dec=D-APP-127 (context)
+ SRC: ScopeOfWork.md CLM-009 DEL-07-02-REQ-006; SPEC §2; PRD §7.3
+ DS: Create/validate _Coordination/_COORDINATION.md
+ IE: projects/chirality-app-dev/frontend/src/app/api/harness/scaffold/route.ts:13-30 POST delegates to getDaemonHarnessPort().scaffold REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts:602-618 RuntimeDaemonHarnessPort.scaffold containsPath check then client.scaffold REACH=LIVE; projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts:584-589 POST /v1/projects/:id/scaffold REACH=LIVE; projects/chirality-runtime/packages/daemon/src/app-owned-composition.ts:226 RuntimeService constructed with scaffoldPort=undefined REACH=LIVE; projects/chirality-runtime/packages/core/src/runtime-service.ts:619-625 scaffold() throws ENGINE_UNAVAILABLE 501 'Project scaffold adapter is unavailable' REACH=LIVE; module only: projects/chirality-app-dev/frontend/src/lib/harness/scaffold.ts:567-584,887-889 REACH=TEST_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/api/harness/scaffold-route.test.ts 'creates scaffolded execution-root content and returns summary payload' (fake port) (module, TEST_ONLY; no live-composition test)
+ HDN: NO
+=== S1-118 DEL-07-01#CLM-007 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-007 References
+ DS: REF-001..007 with section references
+ IE: documentary claim: cited docs and sections exist at frozen basis (SPEC.md §1.1 L25, §1.2 L50, §15.2 L847; PRD FR-003/050/051/095/097)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-119 DEL-07-06#CLM-021.2 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: SoW CLM-021 Pass 3 Disposition Notes (F-001, D-001, X-001)
+ DS: F-001 TBD; D-001 and X-001 incorporated
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/ScopeOfWork.md:328-332
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-120 DEL-07-02#CLM-009.11 [REQUIREMENT/PARTIALLY_IMPLEMENTED] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-009 DEL-07-02-REQ-011; CONTRACT K-ROOT-1..3; PRD NFR-005, NFR-006
+ DS: Scaffolding tools enforce working-root containment and do not mutate the instruction root
+ IE: projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts:602-618 RuntimeDaemonHarnessPort.scaffold containsPath check then client.scaffold REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/scaffold.ts:214-225 requireAbsolutePath (absolute check only) REACH=TEST_ONLY [CORRECTION(V-DEL-07-02_A): scaffold.ts:214-225 REACH=LEGACY_ONLY (called by previewScaffoldExecutionRoot:504-505 from legacy scaffold_preview, which also applies assertLexicallyWithinProjectRoot - the INSP-03 REQ-011 evidence itself cites read-tools.ts). Disposition PARTIALLY_IMPLEMENTED holds on the LIVE containsPath check; no R4-Q1 (LIVE code meets part).]
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts 'uses only the fixed app-dev project for contained scaffold requests' (accepting case only; no outside-root rejection case for scaffold found)
+ HDN: R4-Q1
+=== S1-121 DEL-07-05#CLM-017.2 [ACCEPTANCE/PARTIALLY_IMPLEMENTED] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-GOV-43 (context)
+ SRC: ScopeOfWork.md CLM-017 AC-001; docs/SPEC.md §6, §15.2; docs/CONTRACT.md §1.6, §1.7
+ DS: Registers validate identity/enums/host/provenance/target/lifecycle; writes keep retired rows and extension columns, normalize legacy versions with warnings, retain TBD, obey permission/containment/hook/instruction-root protections
+ IE: projects/chirality-app-dev/frontend/src/lib/dependencies/register-writer.ts:97-305,342-387 REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/dependencies/register-reader.ts:65-67,103-105 version warnings REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts:38-48,143-171 containment and symlink REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts:311-371 permission/hook policy REACH=LEGACY_ONLY; target existence and instruction-root checks NONE_FOUND on the live path
+ VE: GATE-TRANSCRIPT(APP@00115c719) plus projects/chirality-app-dev/frontend/src/__tests__/lib/dependencies-register-contract.test.ts 'enforces target resolution rules' and 'accepts retained rows when a removed dependency is represented as RETIRED'; projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts 'rejects symlink deliverable paths that resolve outside projectRoot'
+ HDN: R4-Q1
+=== S1-122 DEL-07-04#CLM-013.9 [ACCEPTANCE/PARTIALLY_IMPLEMENTED] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-013 Verification row for REQ-016
+ DS: Schema fixture tests after accepted schemas exist
+ IE: projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/status/transition/route.ts:11-19 REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts (shape assertions only)
+ HDN: NO
+=== S1-123 DEL-07-04#REGISTER-3 [REGISTER_DEFECT/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: _DEPENDENCIES.md Declared Upstream/Downstream, warnings, extracted table, lifecycle summary
+ DS: No accepted edges (TBD); IMPLEMENTATION_LOCATION_TBD warning; DEP-07-04-008 TargetRefID TBD; summary TBD=1
+ IE: documentary claim: _DEPENDENCIES.md:14,18,32,47,74-78 vs its own P45 block :84-89 (SATISFIED=1) and Dependencies.csv (7 ACTIVE rows)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-124 DEL-07-02#CLM-004.2 [STATE_ASSERTION/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: ScopeOfWork.md CLM-004 Conditions row 'Source warning'; _REFERENCES.md REF-006; D-APP-38; D-APP-56
+ DS: REF-006 is MATCH under D-APP-38; earlier warning is dated history
+ IE: documentary claim: _REFERENCES.md REF-006 records PRD sha256 8649ccba...; recomputed 17ca3f3c... (no MATCH); Assessment_INSP-03_DEL-07-02.md:77 names a third PRD hash ac35fba...
+ VE: HASH-RECOMPUTE@00115c719 (EVIDENCE_PACK/REFERENCE_HASHES.csv DEL-07-02,PRD)
+ HDN: NO
+=== S1-125 DEL-07-03#CLM-031 [STATE_ASSERTION/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: ScopeOfWork.md CLM-031 Source Warning Notes
+ DS: REF-006 is MATCH under D-APP-38
+ IE: documentary claim projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_REFERENCES.md:12
+ VE: HASH-RECOMPUTE@00115c719 (REFERENCE_HASHES.csv DEL-07-03,PRD Match=NO)
+ HDN: NO
+=== S1-126 DEL-07-05#CLM-010 [STATE_ASSERTION/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: ScopeOfWork.md CLM-010 (Specification D-APP-56 R5 P40 note)
+ DS: REF-006 docs/PRD.md is MATCH under D-APP-38
+ IE: documentary claim: _REFERENCES.md REF-006 row (docs/PRD.md) versus projects/chirality-app-dev/docs/PRD.md at 00115c719
+ VE: HASH-RECOMPUTE@00115c719 (R2/PKG-07/EVIDENCE_PACK/REFERENCE_HASHES.csv rows DEL-07-05 CONTRACT, SPEC, PRD: recorded MATCH, Match=NO; PRD recorded 8649ccba… recomputed 17ca3f3c…)
+ HDN: NO
+=== S1-127 DEL-07-05#REGISTER-1 [REGISTER_DEFECT/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: _REFERENCES.md Authoritative Source Corpus (REF-002 CONTRACT, REF-003 SPEC, REF-006 PRD)
+ DS: ExpectedSHA256 = ActualSHA256 and Status MATCH for CONTRACT (fa8fc9dc…), SPEC (01e1c75c…), PRD (8649ccba…)
+ IE: documentary claim: _REFERENCES.md lines 8, 9, 12 versus projects/chirality-app-dev/docs/{CONTRACT,SPEC,PRD}.md at 00115c719
+ VE: HASH-RECOMPUTE@00115c719 (R2/PKG-07/EVIDENCE_PACK/REFERENCE_HASHES.csv rows DEL-07-05 CONTRACT, SPEC, PRD: recorded MATCH, Match=NO; PRD recorded 8649ccba… recomputed 17ca3f3c…); REF-001, REF-004, REF-005 recomputed by shasum at the frozen basis and still match
+ HDN: NO
+=== S1-128 DEL-07-06#CLM-020 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: SoW CLM-020 Records
+ DS: Records: Datasheet.md, Specification.md, Guidance.md, Procedure.md; _run_records; REF-006 MATCH; TBD registry and dependency sources
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/ScopeOfWork.md:317-321; the four files are absent at 00115c719 (deleted by 14e94bd0b 2026-07-13 'replace APP DEL-07-06 production contract'); projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_run_records present
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-129 DEL-08-03#CLM-013.4 [REQUIREMENT/ACCEPTED_DIVERGENCE] SHELL_REDESIGN tier=PRD dec=D-APP-108
+ SRC: SoW CLM-013 Requirements DEL-08-03-REQ-004; PRD FR-012
+ DS: TASK uses split selectors for task agent and scope
+ IE: projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx:687-719 task-agent and scope-mode selects REACH=LIVE (unrendered); projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts:79-85 separate option/taskScopeMode fields REACH=TEST_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/components/pipeline-surface.test.ts::renders operative category controls, TASK split selectors, and disabled coming-soon options
+ HDN: NO
+=== S1-130 DEL-08-04#CLM-014 [REQUIREMENT/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-68 (context)
+ SRC: ScopeOfWork.md Documentation L271-282
+ DS: Required artifacts: bridge, resolution/admission logic, tool-surface and retirement tests, denial fixtures, DEL-08-05 handoff, implementation path record
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/subagent-governance.ts:196 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/managed-delegation.ts:259,552 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/mcp/coordination-tools.ts:269 REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/agent-runtime-contract.ts:71,138 REACH=LEGACY_ONLY; path records under _run_records/ (e.g. AGENT0_DIRECT_A2_HARNESS_REPAIR_2026-08-16.md)
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/managed-delegation.test.ts :: allows Agent 1→TASK and denies every delegation attempt from Agent 2; fails closed on missing governance metadata and capability inheritance; fails closed on escaped context, escaped writes, and unbounded Bash; src/__tests__/lib/sdk-options-builder.test.ts :: does not attach or expose the retired SDK Agent bridge
+ HDN: R4-Q1
+=== S1-131 DEL-08-03#SEC-1 [REQUIREMENT/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-108
+ SRC: SoW §SCA-APP-010 Gate-5 Current Contract / Current responsibility; decomposition row L370; SOW-007 (DEC-025)
+ DS: DEL-08-03 owns presentation-neutral DECOMP/PREP/TASK/AUDIT semantics; Pipeline presentation retired from active shell, code retained; no active consumer
+ IE: projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts:1-49 (PipelineCategory, PIPELINE_CATEGORY_OPTIONS) REACH=TEST_ONLY; projects/chirality-app-dev/frontend/src/lib/workspace/task-scope.ts:1-40 REACH=LIVE; projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx REACH=LIVE (static import only; never rendered: projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx:18 `void legacy` REACH=LIVE); projects/chirality-app-dev/frontend/src/app/pipeline/pipeline-client.tsx:9-19 REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx::only mounts Dialogue even with historical %s surface input; projects/chirality-app-dev/frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts::preserves the exact DECOMP/PREP/TASK/AUDIT taxonomy and option states; REACHABILITY(static)@00115c719
+ HDN: NO
+=== S1-132 DEL-08-03#CLM-013.16 [EXCLUSION/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-74
+ SRC: SoW CLM-013 Requirements DEL-08-03-REQ-016; SCA-APP-004 semantic ownership partition
+ DS: DEL-08-03 does not own Coordination Panel presentation, plan authority, replay, parentage, scheduling, child messaging, lifecycle transition
+ IE: projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts REACH=TEST_ONLY and projects/chirality-app-dev/frontend/src/lib/workspace/task-scope.ts REACH=LIVE contain no lifecycle, parentage or panel code; projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx:126-222 lifecycle form REACH=LIVE (unrendered, DEL-02-02-presented)
+ VE: RUN-INSPECTION@00115c719; REACHABILITY(static)@00115c719
+ HDN: NO
+=== S1-133 DEL-08-02#CLM-004.3 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] SHELL_REDESIGN tier=PRD dec=D-APP-108 (context)
+ SRC: ScopeOfWork.md Conditions 'Unsupported variants'; docs/PRD.md §7.2 and FR-011; SCA-APP-004
+ DS: Disabled/unsupported compatibility and pipeline variants remain visible as coming soon
+ IE: projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx:123,648-695 '(coming soon)' disabled options exist only in the legacy Pipeline surface REACH=LIVE; projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx:15-19 discards that legacy surface on every route REACH=LIVE; projects/chirality-app-dev/frontend/src/app/pipeline/pipeline-client.tsx:7-20 /pipeline enters the dialogue shell REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) NONE_FOUND for a live-path coming-soon test
+ HDN: R4-Q4
+=== S1-134 DEL-08-05#CLM-018.7 [REQUIREMENT/DOCUMENTED_UNIMPLEMENTED] CODEX_SOLE_ENGINE tier=LOCAL_DESIGN dec=D-APP-68
+ SRC: ScopeOfWork.md:255-259 D-APP-56 child-output amendment (R4-P32)
+ DS: artifacts/subagents assigned here; 16 KiB inline / 512 KiB artifact limits normative
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts:38-39,209 REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/tool-result-artifacts.test.ts :: skips persistence for inline-sized child output summaries
+ HDN: R4-Q1
+=== S1-135 DEL-08-01#CLM-009.11 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] OTHER:V3_ROLE_ADOPTION tier=GOVERNANCE_INVARIANT dec=D-GOV-41 (context)
+ SRC: ScopeOfWork.md CLM-009 Requirements table DEL0801-REQ011; TYPES Type 2 vocabulary
+ DS: Type 2 candidates identified by AGENT_TYPE: 2, AGENT_CLASS: TASK preferred; fixtures for valid, non-TASK warning and non-Type-2 rejection
+ IE: projects/chirality-app-dev/frontend/src/lib/harness/subagent-governance.ts REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/agent-instruction.ts:386-400 REACH=LEGACY_ONLY; projects/chirality-runtime/packages/core/src/method-catalog.ts:620-626 (TASK type 2, no delegates, no generalist) REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/harness-subagent-governance.test.ts 'allows and resolves only TYPE 2 delegated subagents', 'warns but allows TYPE 2 subagents that are not TASK class'
+ HDN: R4-Q1; R4-Q4
+=== S1-136 DEL-08-02#CLM-003.2 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] V3_RELEASE_SCOPE tier=GOVERNANCE_INVARIANT dec=D-GOV-42 (context)
+ SRC: ScopeOfWork.md Attributes 'UI alias map'; docs/TYPES.md §3.4; docs/PRD.md FR-026; D-APP-28
+ DS: Four UI aliases HELP->HELP_HUMAN, ORCHESTRATE->ORCHESTRATOR, AGENTS->HELPS_HUMANS, DEPENDENCIES->EVALUATION
+ IE: projects/chirality-app-dev/frontend/src/lib/shell/persona-resolution.ts:6-9 PERSONA_ALIASES = HELP->HELP_HUMAN, AGENTS->HELPS_HUMANS only REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/shell/persona-resolution.ts:22-30 every other label falls back to HELP_HUMAN REACH=LIVE; projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:403,468 resolvePersona(?agent=) REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) frontend/src/__tests__/lib/persona-resolution.test.ts 'keeps bounded legacy display aliases without reviving retired roles' (asserts the two-entry map and ORCHESTRATE->HELP_HUMAN)
+ HDN: R4-Q4
+=== S1-137 DEL-08-03#CLM-026.2 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: SoW CLM-026 Pass 3 Disposition Notes (F-002, F-003, D-002)
+ DS: F-002 incorporated as /api/working-root/scope evidence; F-003 reset fixtures; D-002 implementation-worker slot
+ IE: documentary claim: SoW CLM-016, CLM-023, CLM-024, CLM-025
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-138 DEL-08-01#CLM-013 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-013 L254-257
+ DS: Procedure heading
+ IE: documentary claim: heading only
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-139 DEL-08-04#CLM-023 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md L395-398
+ DS: Guidance heading
+ IE: documentary claim: ScopeOfWork.md L395-398
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-140 DEL-08-03#CLM-013.13 [REQUIREMENT/PARTIALLY_IMPLEMENTED] SHELL_REDESIGN tier=LOCAL_DESIGN dec=D-APP-108
+ SRC: SoW CLM-013 Requirements DEL-08-03-REQ-013; SCA-APP-004; SOW-007
+ DS: Re-hosted/contextual consumers use the same taxonomy, options, scope rules, validation and disabled states
+ IE: projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts:1-245 REACH=TEST_ONLY (not imported by PS or any live module); projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx:28,:53,:70-102 parallel local copy REACH=LIVE (unrendered); projects/chirality-app-dev/frontend/src/components/workbench/workbench-surface.tsx REACH=LIVE (no category/taskScope symbols)
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts::preserves persona, matrix, and unknown query parameters while patching Pipeline intent; projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx::only mounts Dialogue even with historical %s surface input
+ HDN: NO
+=== S1-141 DEL-08-01#CLM-017 [ACCEPTANCE/PARTIALLY_IMPLEMENTED] OTHER:V3_ROLE_ADOPTION tier=LOCAL_DESIGN dec=D-GOV-41 (context)
+ SRC: ScopeOfWork.md CLM-017 L326-339 completion checks
+ DS: Completion: four categories covered; SPEC §1.1 assets checked; SPEC §7.1-7.3 covered; Type 2 fixtures; PRD checks cite REF-006 MATCH; no instruction-root mutation; TBD remains on implementation path
+ IE: projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/agent-instruction.ts REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts; projects/chirality-app-dev/frontend/src/__tests__/lib/agent-instruction-conformance.test.ts (cases as cited in CLM-009.x); HASH-RECOMPUTE@00115c719
+ HDN: R4-Q1
+=== S1-142 DEL-08-03#CLM-013.11 [REQUIREMENT/PARTIALLY_IMPLEMENTED] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-APP-127 (context)
+ SRC: SoW CLM-013 Requirements DEL-08-03-REQ-011; CONTRACT K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1
+ DS: Selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference or fail-closed delegation gates; pass evidence shows this
+ IE: projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts:67-77 executionAuthorized:false REACH=TEST_ONLY; projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts:13-24 (no pipelineIntent channel; Runtime-owned turn) REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/options.ts:19 unknown-opts ignore REACH=LEGACY_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/subagent-governance.ts REACH=LEGACY_ONLY; projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts:635 delegate_agent REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts::does not turn Pipeline presentation state into delegation authority; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/api/harness/routes.test.ts (case at :812-843, exercises the legacy runtime module)
+ HDN: R4-Q1
+=== S1-143 DEL-08-03#REGISTER-5 [REGISTER_DEFECT/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-85
+ SRC: _STATUS.md Remaining/History
+ DS: History 2026-07-24 says the SCA-APP-004 Remaining item was retained; Remaining is empty; no History line records its removal
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_STATUS.md:9-11, :27-33; removal at bcd56e5db (2026-08-02, D-APP-85 ApplicationCommit)
+ VE: RUN-INSPECTION@00115c719; RULING-RECORD(D-APP-85)
+ HDN: NO
+=== S1-144 DEL-08-01#CLM-004 [REQUIREMENT/STALE_SPECIFICATION] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=D-APP-109
+ SRC: ScopeOfWork.md CLM-004 L110-119; DIRECTIVE §2.7; CONTRACT K-ROOT-3; _DEPENDENCIES.md
+ DS: No runtime capability expansion; root separation respected; PRD REF-006 MATCH under D-APP-38; up/downstream TBD with no downstream edges; validator path, framework and fixture directory TBD
+ IE: projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts:20-50 REACH=LIVE; Dependencies.csv DEP-08-01-020 (DOWNSTREAM CONSTRAINT) per _DEPENDENCIES.md L46; validator exists at projects/chirality-app-dev/frontend/src/lib/harness/agent-instruction.ts REACH=LEGACY_ONLY and projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts 'refuses traversal, symlink escape, instruction aliases and .git but allows .chirality'; HASH-RECOMPUTE@00115c719
+ HDN: NO
+=== S1-145 DEL-08-04#REGISTER-1 [REGISTER_DEFECT/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: _REFERENCES.md CONTRACT row (REF-002)
+ DS: CONTRACT.md recorded Actual fa8fc9dc… = Expected; Status MATCH
+ IE: documentary claim: REFERENCE_HASHES.csv DEL-08-04,CONTRACT: recorded fa8fc9dc… MATCH; recomputed 57411f8d…; Match=NO
+ VE: HASH-RECOMPUTE@00115c719
+ HDN: NO
+=== S1-146 DEL-08-02#CLM-004.1 [STATE_ASSERTION/STALE_SPECIFICATION] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: ScopeOfWork.md Conditions 'Source authority state'; _REFERENCES.md REF-006; D-APP-38
+ DS: REF-006 docs/PRD.md is MATCH under the D-APP-38 authority corpus v2
+ IE: documentary claim: _REFERENCES.md:12 recorded PRD sha 8649ccba... vs recomputed 17ca3f3c...
+ VE: HASH-RECOMPUTE@00115c719 (REFERENCE_HASHES.csv DEL-08-02 PRD Match=NO)
+ HDN: NO
+=== S1-147 DEL-09-01#CLM-018.1 [ACCEPTANCE/ALIGNED] NONE tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: SoW CLM-018 Verification table
+ DS: Wrapper script exists and is readable
+ IE: projects/chirality-app-dev/frontend/scripts/validate-harness-premerge.mjs REACH=TEST_ONLY
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-148 DEL-09-02#CLM-028 [STATE_ASSERTION/ALIGNED] NONE tier=NOT_APPLICABLE dec=D-APP-56
+ SRC: SoW D-APP-56 R5 P45 reconciliation (ScopeOfWork.md:390-394)
+ DS: Repeat of CLM-007
+ IE: projects/chirality-app-dev/frontend/scripts/harness-section9-manifest.json REACH=TEST_ONLY; projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-profile-registry.ts REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/scripts/validate-harness-section9.test.ts 'pins the exact source-defined inventory and review metadata'
+ HDN: R4-Q1
+=== S1-149 DEL-09-01#CLM-008 [EXCLUSION/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: SoW CLM-008 Scope; SPEC §19.2-19.3; PRD §12.3-12.4; CONTRACT K-PROF-1, K-DOMAIN-4
+ DS: Section 8 preservation in scope; features, Section 9 additions and professional claims out
+ IE: projects/chirality-app-dev/frontend/scripts/validate-harness-premerge.mjs:234-275 Section 9 run and reported only (HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true) REACH=TEST_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/scripts/validate-harness-premerge.test.ts 'reuses the current caller Section 9 outcome after still running Section 8'
+ HDN: NO
+=== S1-150 DEL-09-04#CLM-009.2 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: SoW DEL-09-04-REQ-002; docs/SPEC.md §19.1; docs/PRD.md FR-067
+ DS: Desktop distribution build produced through npm run desktop:dist from frontend/
+ IE: projects/chirality-app-dev/frontend/package.json:43 REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/contract-pins.test.ts '$file holds every pinned invariant' (projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts:171); RUN-INSPECTION@00115c719 (projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/BUILD_EVIDENCE_20260912.md:25; projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_USER_JOURNEYS_20260912/BUILD_EVIDENCE_RELEASE_20260913.md:34)
+ HDN: NO
+=== S1-151 DEL-09-02#CLM-010.11 [REQUIREMENT/IMPLEMENTED_DIFFERENTLY] NATIVE_DELEGATION tier=GOVERNANCE_INVARIANT dec=D-GOV-43 (context)
+ SRC: SoW DEL-09-02-RQ-011 (ScopeOfWork.md:142); CONTRACT K-SUBAGENT-1..3; PRD FR-101, FR-102
+ DS: Subagent validation confirms fail-closed delegation, no permission expansion, child run records
+ IE: projects/chirality-app-dev/frontend/scripts/harness-section9-manifest.json:108-113 check targets projects/chirality-app-dev/frontend/src/lib/harness/subagent-governance.ts REACH=LEGACY_ONLY; live descendants: native child threads tracked in projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:118,500-510 (childThreads) REACH=LIVE, not a Section 9 ID; core/src/descendant-tracker.ts is REACH=TEST_ONLY (imported only by the core barrel and process-supervisor.ts)
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/harness-subagent-governance.test.ts 'evaluateSubagentGovernance'; GATE-TRANSCRIPT(RUNTIME@00115c719) tests/codex-supervisor.test.ts
+ HDN: R4-Q1
+=== S1-152 DEL-09-03#CLM-014 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-014 Purpose
+ DS: Procedure purpose statement
+ IE: documentary claim: ScopeOfWork.md CLM-014
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-153 DEL-09-05#CLM-018 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md Praxeology CLM-018; PRD §12.2/§12.7/§12.8; SPEC §19.1-19.4; PLAN §7; CONTRACT
+ DS: Procedure purpose and its source grounding
+ IE: documentary claim: ScopeOfWork.md:290-297; cited sections exist at the frozen basis: docs/PRD.md:1271 (§12.2), :1374 (§12.7), :1389 (§12.8); docs/SPEC.md:1140-1197 (§19.1-19.4); docs/PLAN.md:399 (§7)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-154 DEL-09-03#CLM-011 [REQUIREMENT/PARTIALLY_IMPLEMENTED] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-011 Verification; PRD §12.2; CONTRACT K-VALIDATE-1
+ DS: Required evidence: unit tests incl. permission overlay and hook; API route tests; integration tests incl. denied write under dontAsk and denied Bash; fixtures; npm run test
+ IE: route tests drive live routes projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts REACH=LIVE via fixture projects/chirality-app-dev/frontend/src/__tests__/api/harness/fake-daemon-harness-port.ts REACH=TEST_ONLY; overlay/hook units projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts REACH=LEGACY_ONLY, projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/api/harness/routes.test.ts; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/api/working-root/deliverable-contracts.test.ts; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/permission-overlay.test.ts; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/chirality-hooks.test.ts
+ HDN: R4-Q1; R4-Q6
+=== S1-155 DEL-09-04#CLM-021 [REQUIREMENT/PARTIALLY_IMPLEMENTED] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=D-APP-127 (context)
+ SRC: ScopeOfWork.md:318-327 Principles; CONTRACT K-VALIDATE-1; PRD KG-014; decomposition SOW-078; SPEC 1.1
+ DS: desktop:dist is release-significant; target narrow (no Windows/Linux); missing instruction-root assets are package blockers; packaged validation exercises integrity, working root, Codex network guardrails and package execution; REF-006 MATCH
+ IE: projects/chirality-app-dev/frontend/package.json:43 desktop:dist chains dependency boundary, codex pin and instruction-root:integrity (REACH=LIVE); projects/chirality-app-dev/frontend/package.json:152-168 mac dmg arm64 only, no win/linux target (REACH=LIVE); projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs:714-721 status fails only on bundle-vs-manifest issues, :579-633 KG-001 source-completeness rows (tools/REGISTRY.md, examples) reported remediation_required without failing (REACH=LIVE); projects/chirality-app-dev/frontend/scripts/prepare-packaged-instruction-root.mjs:11-26 ROOT_FILES/DOC_FILES omit docs/PLAN.md, docs/WHAT-IS-AN-AGENT.md and PROFESSIONAL_ENGINEERING.md listed in SPEC 1.1 (REACH=LIVE via instruction-root:prepare); projects/chirality-app-dev/frontend/electron/main.ts:800 directory selection (REACH=LIVE); projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:104-108 (REACH=LIVE)
+ VE: GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts 'reports source-completeness remediation state for SOW-073 and OI-004 candidates'; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/scripts/prepare-packaged-instruction-root.test.ts 'stages the exact four-role, workflow, skill, compatibility, and tool closure'; RUN-INSPECTION@00115c719 (projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/BUILD_EVIDENCE_20260912.md step 4 records KG-001 rows remediation_required with integrity pass)
+ HDN: NO
+=== S1-156 DEL-09-05#CLM-028 [STATE_ASSERTION/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=GOVERNANCE_INVARIANT dec=D-APP-56 (context)
+ SRC: ScopeOfWork.md Axiology CLM-028 Term Normalization; PRD §12.2, §12.7; SPEC §19.1
+ DS: Stable summary artifact = instruction-root summary 'defined by PRD §12.2/§12.7 and SPEC §19.1'; CI upload name/retention TBD; runbook filename TBD; evidence location TBD
+ IE: documentary claim: PRD §12.7 (docs/PRD.md:1374-1387) says 'Verify stable summary artifact' without naming a path; PRD §12.2/SPEC §19.1 list the instruction-root summary as a packaging output; in-root projects/chirality-app-dev/.github/workflows/harness-premerge.yml:55-64 verifies and uploads the section8 summary as `harness-section8-summary` (non-executing); runbook candidate exists in projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-157 DEL-09-05#CLM-032 [STATE_ASSERTION/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: ScopeOfWork.md Axiology CLM-032 Open Items
+ DS: TBD: CI workflow path; upload name/retention; runbook filename/location; ResponsibleParty; immutable snapshots
+ IE: documentary claim: same TBD set as CLM-019; in-root projects/chirality-app-dev/.github/workflows/harness-premerge.yml:58-64 names the upload (no retention key)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-158 DEL-09-07#SEC-3.4 [ACCEPTANCE/RETIRED_BY_RULING] A2_TOPOLOGY tier=LOCAL_DESIGN dec=D-APP-127
+ SRC: ScopeOfWork.md Production and Verification Method — Praxeology, VER-004
+ DS: Review all four outputs against CLM-001 and the declared completion gates (future method; authorizes no execution now)
+ IE: NONE_FOUND for any two-job installer, transaction journal, effective-state inspector or rollback/upgrade/uninstall/cleanup fixture (grep launchd|launchctl|LaunchAgent over projects/chirality-app-dev/frontend and projects/chirality-runtime/{packages,tests}; hits are retirement comments and negative tests only). Retired topology confirmed on the live path: projects/chirality-app-dev/frontend/electron/runtime-service-host.ts:1-9 (App-owned service child; no LaunchAgent) REACH=LIVE; projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts:10-14 (LaunchAgent install/start/stop/uninstall verbs retired; only restart remains) REACH=LIVE; projects/chirality-app-dev/frontend/electron/main.ts:753-761 (nothing installs, starts or stops a LaunchAgent) REACH=LIVE
+ VE: RULING-RECORD(D-APP-127); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-159 DEL-09-07#SEC-4 [REQUIREMENT/RETIRED_BY_RULING] A2_TOPOLOGY tier=LOCAL_DESIGN dec=D-APP-127
+ SRC: ScopeOfWork.md Governing Values and Decisions — Axiology (AX-001..AX-004); [D] OI-007, DEC-024; F-APP-2; D-APP-97; [I] D-APP-107
+ DS: Daemon retained as sole runtime broker (AX-001); recovery claims need evidence (AX-002); F-APP-2/D-APP-97 remain active, no release authority (AX-003); D-APP-107 authorizes initialization only (AX-004)
+ IE: NONE_FOUND for any two-job installer, transaction journal, effective-state inspector or rollback/upgrade/uninstall/cleanup fixture (grep launchd|launchctl|LaunchAgent over projects/chirality-app-dev/frontend and projects/chirality-runtime/{packages,tests}; hits are retirement comments and negative tests only). Retired topology confirmed on the live path: projects/chirality-app-dev/frontend/electron/runtime-service-host.ts:1-9 (App-owned service child; no LaunchAgent) REACH=LIVE; projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts:10-14 (LaunchAgent install/start/stop/uninstall verbs retired; only restart remains) REACH=LIVE; projects/chirality-app-dev/frontend/electron/main.ts:753-761 (nothing installs, starts or stops a LaunchAgent) REACH=LIVE
+ VE: RULING-RECORD(D-APP-127); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-160 DEL-09-02#CLM-020.1 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=NOT_APPLICABLE dec=D-APP-56 (context)
+ SRC: SoW Records (ScopeOfWork.md:281-291)
+ DS: Status enum, runner entrypoint, validation command, registry path and output artifact path all TBD; human-ruling log for PRD hash warning
+ IE: projects/chirality-app-dev/frontend/scripts/harness-section9-manifest.json:7 statusVocabulary REACH=TEST_ONLY; projects/chirality-app-dev/frontend/package.json:20 REACH=LIVE; projects/chirality-app-dev/frontend/scripts/validate-harness-section9.mjs:21-27 REACH=TEST_ONLY
+ VE: RUN-INSPECTION@00115c719; RULING-RECORD(D-APP-56)
+ HDN: NO
+=== S1-161 DEL-09-03#CLM-015 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=NOT_APPLICABLE dec=D-APP-53 (context)
+ SRC: ScopeOfWork.md CLM-015 Prerequisites
+ DS: Dependencies.csv 13 ACTIVE rows, all satisfaction TBD; REF-006 MATCH; implementation paths TBD
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Dependencies.csv (13 rows, SatisfactionStatus SATISFIED since 2026-07-10); projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_DEPENDENCIES.md Lifecycle Summary (SATISFIED 13, TBD 0); tests exist under projects/chirality-app-dev/frontend/src/__tests__/** REACH=TEST_ONLY
+ VE: RUN-INSPECTION@00115c719; HASH-RECOMPUTE@00115c719 (EVIDENCE_PACK/REFERENCE_HASHES.csv DEL-09-03,PRD: recorded 8649ccba... MATCH, recomputed 17ca3f3c..., Match=NO)
+ HDN: NO
+=== S1-162 DEL-09-03#CLM-009.6 [REQUIREMENT/STALE_SPECIFICATION] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-GOV-43
+ SRC: ScopeOfWork.md CLM-009 Requirements DEL-09-03-REQ-006; SPEC §16.1; CONTRACT K-ATTACH-1
+ DS: Tests verify resolver enforcement incl. 10 MB / 18 MB, partial failure, all-failure ATTACHMENT_FAILURE
+ IE: projects/chirality-runtime/packages/core/src/runtime-attachment-resolver.ts:10-49 REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/attachment-resolver.ts:47 REACH=LEGACY_ONLY
+ VE: GATE-TRANSCRIPT(RUNTIME@00115c719) tests/codex-attachment-adapter.test.ts:64; GATE-TRANSCRIPT(APP@00115c719) src/__tests__/lib/harness-attachment-resolver.test.ts:135,152
+ HDN: NO
+=== S1-163 DEL-09-03#REGISTER-2 [REGISTER_DEFECT/STALE_SPECIFICATION] CARRIER_PROPAGATION tier=NOT_APPLICABLE dec=D-APP-53 (context)
+ SRC: Dependencies.csv DEP-09-03-001..013 TargetLocation/EvidenceFile/Notes; decomposition v3.2
+ DS: TargetLocation decomposition lines (:269 PKG-09, :393-411 SOW rows, :245-251 OBJ rows); DEP-013 EvidenceFile Guidance.md line 24; all SATISFIED
+ IE: documentary claim: execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md at the frozen basis (PKG-09 :287, DEL-09-03 :380, SOW-011 ledger :414 ... SOW-029 :432, OBJ-002 :263, OBJ-008 :269); Guidance.md absent from the deliverable folder
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-164 DEL-09-03#CLM-009.2 [REQUIREMENT/STALE_SPECIFICATION] CODEX_SOLE_ENGINE tier=GOVERNANCE_INVARIANT dec=D-APP-127
+ SRC: ScopeOfWork.md CLM-009 Requirements DEL-09-03-REQ-002; SPEC §11; PRD §9.3
+ DS: Tests preserve /api/harness/turn SSE compatibility incl. stable browser event names (session:init ... process:exit)
+ IE: projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts:13-23 REACH=LIVE; projects/chirality-app-dev/frontend/src/lib/harness/http.ts:57-87 REACH=LIVE
+ VE: GATE-TRANSCRIPT(APP@00115c719) src/__tests__/api/harness/routes.test.ts:631
+ HDN: NO
+=== S1-165 DEL-10-01#CLM-012.7 [REQUIREMENT/ACCEPTED_DIVERGENCE] LIFECYCLE_GATE_PENDING tier=GOVERNANCE_INVARIANT dec=D-APP-49
+ SRC: ScopeOfWork.md CLM-012 DEL-10-01-REQ-007; docs/CONTRACT.md §1.10 K-DOMAIN-2
+ DS: Protected paths write-quarantined; agent writes limited to agent_writable_paths
+ IE: projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts:120-121 REACH=TEST_ONLY; NONE_FOUND for enforcement (see CLM-004.4 search)
+ VE: NONE_FOUND
+ HDN: NO
+=== S1-166 DEL-10-01#CLM-009 [STATE_ASSERTION/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-56
+ SRC: ScopeOfWork.md CLM-009 D-APP-56 R5 P45 reconciliation (UPD-148)
+ DS: Profile instances and hook-field schema refs supplied; adapters, stores, endpoints, apply tooling and per-instance notice review remain TBD
+ IE: documentary claim: _DomainEngines/profiles/open_pipe_stress.yaml:25,83,90,117; _DomainEngines/profiles/pec.yaml:12,57,70; NONE_FOUND for adapter manifests (_DomainEngines/profiles/*.adapter.yaml), operation stores, /api/domain routes or apply tools
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-167 DEL-10-01#CLM-030 [STATE_ASSERTION/ALIGNED] NONE tier=LOCAL_DESIGN dec=D-APP-56
+ SRC: ScopeOfWork.md CLM-030 D-APP-56 R5 P45 reconciliation (UPD-148)
+ DS: Duplicate of CLM-009
+ IE: documentary claim: as CLM-009
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-168 DEL-10-05#CLM-009.8 [REQUIREMENT/ALIGNED] NONE tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: SoW CLM-009 REQ-008; skill contract; _REFERENCES.md notes; PRD KG-017
+ DS: Unsupported profile/solver details stay TBD/ASSUMPTION/PROPOSAL/human-ruling
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/ScopeOfWork.md:148-149 (profile schema and solver standards TBD), :447-454; projects/chirality-app-dev/docs/PRD.md:1693 KG-017
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-169 DEL-10-03#CLM-010.3 [REQUIREMENT/ALIGNED] NONE tier=GOVERNANCE_INVARIANT dec=D-APP-65
+ SRC: SoW CLM-010 Requirements table REQ-10-03-003; PRD §8.17 FR-112; CONTRACT §1.10 K-DOMAIN-3
+ DS: Domain operations MUST be represented as OperationProposal records before application
+ IE: documentary claim projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md CLM-019 step 2 (draft record) precedes step 8 'applied'; no domain-operation apply path on any path (projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-proposal-tools.ts:36-46 REACH=LEGACY_ONLY; no /api/domain routes)
+ VE: RUN-INSPECTION@00115c719
+ HDN: R4-Q1
+=== S1-170 DEL-10-01#CLM-023 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-023 (Guidance heading)
+ DS: Heading only
+ IE: documentary claim: ScopeOfWork.md CLM-023 (Guidance heading)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-171 DEL-10-01#CLM-001 [CONTEXT_CLAIM/NOT_AUDITABLE] NONE tier=NOT_APPLICABLE dec=NONE_FOUND
+ SRC: ScopeOfWork.md CLM-001 (Datasheet heading)
+ DS: Heading only
+ IE: documentary claim: ScopeOfWork.md CLM-001 (Datasheet heading)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-172 DEL-10-03#CLM-025.2 [REQUIREMENT/PARTIALLY_IMPLEMENTED] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=NONE_FOUND
+ SRC: SoW CLM-025 Principle 7 professional boundary; K-DOMAIN-4
+ DS: Chirality must not claim professional approval ... or solver truth ownership
+ IE: documentary claim projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md:369 omits ready-for-construction (projects/chirality-app-dev/docs/CONTRACT.md:152)
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-173 DEL-10-04#CLM-010.10 [REQUIREMENT/PARTIALLY_IMPLEMENTED] LIFECYCLE_GATE_PENDING tier=PRD dec=D-APP-49
+ SRC: SoW CLM-010 DEL-10-04-REQ-010; PRD §8.17 FR-109; TYPES §11.1-11.2
+ DS: Future negative tests define deterministic expected failures for missing fields, overlapping paths, incomplete proposals, absent boundary notices and core-runtime coupling
+ IE: projects/chirality-app-dev/frontend/src/__tests__/lib/domain-profile.test.ts:206-243 negative cases (missing required strings, empty path lists, invalid boundary block) REACH=TEST_ONLY; projects/chirality-app-dev/frontend/src/__tests__/lib/operation-proposal.test.ts:98-128 negative cases (missing required field, invalid values) REACH=TEST_ONLY; no overlapping-path or core-coupling negative case
+ VE: GATE-TRANSCRIPT(APP@00115c719) + projects/chirality-app-dev/frontend/src/__tests__/lib/domain-profile.test.ts 'rejects missing or empty required strings'; projects/chirality-app-dev/frontend/src/__tests__/lib/operation-proposal.test.ts 'rejects a missing required field'
+ HDN: NO
+=== S1-174 DEL-10-05#REGISTER-2 [REGISTER_DEFECT/REMAINING_STATE_MISMATCH] DOC_HYGIENE tier=NOT_APPLICABLE dec=D-APP-53 (context)
+ SRC: Dependencies.csv DEP-10-05-001..010 Notes; Evidence_D53A_Dependency_Reconciliation_2026-07-10.md
+ DS: 10 rows SATISFIED (LastSeen 2026-07-10) on anchors 'live at decomposition line 270/367/375/229/453/252/253' and REF SHAs 14c77480…/2f52a24c…/2a63277a…/aed33a0f…/ac35fba4…
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/Dependencies.csv:2-11; decomposition now has PKG-10 at projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:288, the DEL-10-05 row at :394, SOW-071 at :241, OBJ-009/010 at :270-271; the quoted SHAs match neither the current _REFERENCES.md values nor recomputes
+ VE: SNAPSHOT+LIVE-REVERIFY(D-APP-53 2026-07-10); HASH-RECOMPUTE@00115c719
+ HDN: NO
+=== S1-175 DEL-10-02#CLM-010.10 [REQUIREMENT/STALE_SPECIFICATION] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=D-APP-58 (context)
+ SRC: ScopeOfWork.md CLM-010 Requirements DEL-10-02-REQ-010 (docs/PRD.md §8.17 FR-108; docs/TYPES.md §11.1)
+ DS: Concrete glob syntax, adapter manifest schema and per-engine examples TBD until DEL-10-01/future amendment defines the profile contract
+ IE: documentary claim; projects/chirality-app-dev/docs/SPEC.md:1134 assigns manifest path _DomainEngines/profiles/<profileId>.adapter.yaml and schema id domain-engine-adapter-manifest/v1 (D-APP-58); profile contract exists (projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts:120-121 REACH=TEST_ONLY; DEP-10-02-003 SATISFIED); per-engine paths in _DomainEngines/profiles/open_pipe_stress.yaml:55-66; glob syntax still undefined (projects/chirality-app-dev/docs/TYPES.md:622)
+ VE: RULING-RECORD(D-APP-58); RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-176 DEL-10-04#CLM-021 [REQUIREMENT/STALE_SPECIFICATION] PRE_V3_DRIFT tier=LOCAL_DESIGN dec=NONE_FOUND
+ SRC: SoW CLM-021 Verification (four-document kit)
+ DS: Verification expects Datasheet.md, Specification.md, Guidance.md and Procedure.md to be non-empty, plus posture checks
+ IE: documentary claim: git show fe19e0607 deleted the four documents when migrating to ScopeOfWork.md; the frozen folder holds none of them
+ VE: RUN-INSPECTION@00115c719
+ HDN: NO
+=== S1-177 DEL-10-05#CLM-004.4 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=NOT_APPLICABLE dec=D-APP-38 (context)
+ SRC: SoW CLM-004 Conditions row 'PRD reference integrity'; _REFERENCES.md REF-006
+ DS: WARNING: _REFERENCES.md records PRD Expected 86cb6f…eb34 / Actual fb1c73…6fc8
+ IE: documentary claim: projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/ScopeOfWork.md:70; projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/_REFERENCES.md:12 records 8649ccba… MATCH; recomputed PRD 17ca3f3c…
+ VE: HASH-RECOMPUTE@00115c719 (EVIDENCE_PACK/REFERENCE_HASHES.csv DEL-10-05 PRD row: recorded 8649ccba… MATCH, recomputed 17ca3f3c…, Match=NO)
+ HDN: NO
+=== S1-178 DEL-10-03#CLM-028 [STATE_ASSERTION/STALE_SPECIFICATION] PRE_V3_DRIFT tier=GOVERNANCE_INVARIANT dec=D-APP-56
+ SRC: SoW CLM-028 Example Minimal Proposal Shape
+ DS: Example 20-field shape with TBD values 'because no accepted engine profile, adapter, operation store, or operation instance exists'
+ IE: _DomainEngines/profiles/open_pipe_stress.yaml:25 ADOPTED profile; projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-proposal-tools.ts:438,589 adapters REACH=LEGACY_ONLY; example keys match projects/chirality-runtime/packages/contracts/src/harness/operation-proposal.ts:60-81 REACH=TEST_ONLY
+ VE: RUN-INSPECTION@00115c719; GATE-TRANSCRIPT(APP@00115c719) projects/chirality-app-dev/frontend/src/__tests__/lib/operation-proposal.test.ts 'accepts the canonical 20-field proposal form'
+ HDN: NO

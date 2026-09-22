@@ -1,0 +1,824 @@
+{
+ "DEL-00-01#CLM-018.2": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "DOCUMENTED_UNIMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "DOCUMENTED_UNIMPLEMENTED"
+ },
+ "DEL-00-02#CLM-014.2": {
+  "CauseTag": "NONE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-00-02#CLM-021.2": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-01-01#CLM-009.7": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q5; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-01#CLM-018": {
+  "CauseTag": "NONE",
+  "Disposition": "ALIGNED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "ALIGNED"
+ },
+ "DEL-01-01#CLM-021.5": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q5; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-01#CLM-023": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q5; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-01#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1; R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-02#CLM-006.3": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-01-02#CLM-006.7": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1; R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-02#CLM-007.4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-01-02#CLM-018.10": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-01-02#CLM-018.8": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1; R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-02#CLM-038.4": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-01-02#CLM-040": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-02#CLM-044": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-02#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1; R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-03#CLM-022": {
+  "CauseTag": "LIFECYCLE_GATE_PENDING",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-01-03#CLM-024": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-03#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-03#STATE-3": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-003.1": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-003.4": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-003.5": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-004.5": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-01-04#CLM-006.1": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-006.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-010.2": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-010.4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-020.2": {
+  "CauseTag": "LIFECYCLE_GATE_PENDING",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-01-04#CLM-023": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-024": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#CLM-025": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#REGISTER-3": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-01-04#STATE-2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-01-04#STATE-4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-02-01#CLM-023.2": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "DOCUMENTED_UNIMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "DOCUMENTED_UNIMPLEMENTED"
+ },
+ "DEL-02-02#CLM-021.2": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-02-03#CLM-023.2": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-02-04#CLM-021.2": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-02-05#CLM-003.1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-02-05#CLM-004.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-02-05#CLM-005.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-02-05#CLM-020.1": {
+  "CauseTag": "LIFECYCLE_GATE_PENDING",
+  "Disposition": "DOCUMENTED_UNIMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "DOCUMENTED_UNIMPLEMENTED"
+ },
+ "DEL-03-01#CLM-004.1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-03-01#CLM-004.6": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-03-01#CLM-009.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-03-01#CLM-009.7": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-03-01#CLM-021": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-03-02#CLM-018": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-01#CLM-003": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-04-01#STATE-2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-02#CLM-004": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-02#CLM-023": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-02#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-04#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-04-05#CLM-026": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-04-05#STATE-2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-05-03#CLM-014.1": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-05-03#CLM-020.1": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-05-04#CLM-019.2": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-05-05#CLM-020.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_VERIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_VERIFICATION"
+ },
+ "DEL-06-01#CLM-003": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-06-01#CLM-004": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-01#CLM-009.3": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-06-01#CLM-009.9": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-01#CLM-024": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-06-01#CLM-025": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-06-01#CLM-027": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-01#CLM-031": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4; R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-01#CLM-032": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-06-01#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-06-02#REGISTER-4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-06-03#CLM-004": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-03#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-06-04#CLM-003": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-04#CLM-009.7": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-04#CLM-018": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-04#CLM-022": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-04#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-06-05#CLM-004.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-05#CLM-022": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-06-05#REGISTER-5": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-01#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-02#CLM-010.6": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-09-02#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-03#CLM-005.8": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1; R4-Q6",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-09-03#CLM-009.9": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1; R4-Q6",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-09-03#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-003.1": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-004.3": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-008": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-009.1": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-011.6": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-012.2": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-04#CLM-016": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DEL-09-04#CLM-017": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-09-04#CLM-022": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-09-04#CLM-023.3": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-09-04#REGISTER-52": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-003": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-009": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-010.6": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-010.7": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-012": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-013": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-016.3": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-09-05#CLM-016.6": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-09-05#CLM-020": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-023.2": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#CLM-026": {
+  "CauseTag": "V3_RELEASE_SCOPE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "DEL-09-05#REGISTER-52": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#REGISTER-55": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#REM-2": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "REMAINING_STATE_MISMATCH",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "REMAINING_STATE_MISMATCH"
+ },
+ "DEL-09-05#STATE-1": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-05#STATE-52": {
+  "CauseTag": "CARRIER_PROPAGATION",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-09-06#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-10-01#CLM-022.2": {
+  "CauseTag": "NONE",
+  "Disposition": "ALIGNED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "ALIGNED"
+ },
+ "DEL-10-01#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-10-02#CLM-019.2": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "STALE_VERIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_VERIFICATION"
+ },
+ "DEL-10-02#REGISTER-3": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-10-03#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-10-04#CLM-023.2": {
+  "CauseTag": "DOC_HYGIENE",
+  "Disposition": "UNKNOWN",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "UNKNOWN"
+ },
+ "DEL-10-04#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DEL-10-05#CLM-020.1": {
+  "CauseTag": "PRE_V3_DRIFT",
+  "Disposition": "PARTIALLY_IMPLEMENTED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "PARTIALLY_IMPLEMENTED"
+ },
+ "DEL-10-05#STATE-1": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DOC:BUILDREL#11": {
+  "CauseTag": "V3_RELEASE_SCOPE",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DOC:BUILDREL#4.14": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "STALE_SPECIFICATION",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "STALE_SPECIFICATION"
+ },
+ "DOC:RELIANCE#3.4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DOC:RELIANCE#3.8": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DOC:RELIANCE#4.4": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "DOC:RELIANCE#4.8": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "SOW:SOW-045.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "IMPLEMENTED_DIFFERENTLY",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "IMPLEMENTED_DIFFERENTLY"
+ },
+ "SOW:SOW-050.2": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4-Q1",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "SOW:SOW-072": {
+  "CauseTag": "NONE",
+  "Disposition": "ALIGNED",
+  "HumanDecisionNeeded": "NO",
+  "SealedDisposition": "ALIGNED"
+ },
+ "SOW:SOW-075.2": {
+  "CauseTag": "A2_TOPOLOGY",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ },
+ "SOW:SOW-076": {
+  "CauseTag": "CODEX_SOLE_ENGINE",
+  "Disposition": "AUTHORITY_CONFLICT",
+  "HumanDecisionNeeded": "R4",
+  "SealedDisposition": "AUTHORITY_CONFLICT"
+ }
+}

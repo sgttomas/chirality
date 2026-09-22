@@ -94,7 +94,7 @@
     },
     {
       "id": "R2_package_concordance",
-      "state": "done 2026-09-21T22:49:10Z: 54/54 deliverables (11 packages) + EXT 221/221; 5 double-blinds; RUN_BASIS Addenda 3-10 adopted in R2; awaiting R2 PR review and merge",
+      "state": "done: 54/54 deliverables (11 packages) + EXT 221/221; 5 double-blinds; merged PR #840",
       "depends_on": [
         "R0_owner_gate",
         "R1b_reverse_pass"
@@ -103,7 +103,7 @@
     },
     {
       "id": "R3_synthesis",
-      "state": "next",
+      "state": "done: concordance, remap log, 24 clusters, owner check (answered, Addendum 13), spot check; QA 6/6",
       "depends_on": [
         "R2_package_concordance"
       ],
@@ -111,7 +111,7 @@
     },
     {
       "id": "R4_owner_decision_gate",
-      "state": "not started",
+      "state": "packets ready: 25 packets + decision book (R4/R4_DECISION_BOOK.md); awaiting owner rulings; ruling to be recorded as D-APP-130",
       "depends_on": [
         "R3_synthesis"
       ],

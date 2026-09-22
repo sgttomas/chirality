@@ -360,3 +360,42 @@ HELP_HUMAN (A0) repairs after the fresh-context review of PR #840. None is an ow
   merge inputs, not ledgers of record. They fail coverage when validated alone, by design; each
   merged ledger passes.
 - **WORK_GRAPH.json** is restored to its original formatting, with "5 double-blinds".
+
+## Addendum 12: authority-map flags corrected by R3 (appended 2026-09-21)
+
+The EXT audit (item 3) found, and R3 (`R3/RUNWIDE_CALLS.md`, call g) recorded, that RULED rows
+D-APP-104, D-APP-107, D-APP-122 and D-APP-123 did land at the frozen basis. §5 above flagged them
+as pending, held or unapplied. §5 is not rewritten (append-only). For R4 and later stages, read those
+four rows as GOVERNING and landed. D-APP-121, D-APP-125 and D-APP-126 stay as flagged unless R3
+evidence says otherwise.
+
+## Addendum 13: owner-check answers (appended 2026-09-22)
+
+Owner direction `r3_owner_check_answers` (OWNER_DIRECTION.md, SHA-256 `d1578523…50f2a`) answers
+`R3/OWNER_CHECK.md`. The answers are owner testimony about events the owner saw. Under Addendum 10
+they are evidence for the rows they decide. They are not rulings on direction of change.
+
+| Question | Answer | Reading |
+|---|---|---|
+| OC-01 authorization of 3.0.0 and 3.0.1 candidates | yes | |
+| OC-02 v3.0.1 DMG built with `desktop:dist` and Developer ID signed | yes | The owner did not say where a build record is kept; its location stays open |
+| OC-03 v3.0.1 notarized and stapled | yes | Confirms the Addendum 10 statement |
+| OC-04 v3.0.1 published | yes | Location of a record stays open |
+| OC-05 K-VALIDATE-1 local set incl. `desktop:dist` passed before release | yes | |
+| OC-06 Section 8 premerge run against the Codex-hosted Runtime | yes | |
+| OC-07 premerge with full 16-ID Section 9 manifest, summary kept | yes | |
+| OC-08 attestation / SBOM | don't know | The owner does not recognise the terms. Rows stay UNKNOWN; R4 may explain the terms |
+| OC-09 build for any target other than macOS arm64 | no | Owner testimony that no other target was built |
+| OC-10 arm64 architecture inspected | yes | |
+| OC-11 `LSMinimumSystemVersion` inspected | yes | |
+| OC-12 packaged App run with bundled `codex app-server`, secret and network checks taken | yes | |
+| OC-13..OC-20 | don't know | Rows stay UNKNOWN. The owner's belief that steps the instructions called for were likely done (the process was lengthy) is noted on each row as `OWNER_BELIEF`. It does not change a Disposition |
+
+Application: a TASK applies these answers to `R3/CLAIM_CONCORDANCE.csv` and
+`R3/EXTENSION_CONCORDANCE.csv` through `R3/REMAP_LOG.csv` (Source `OWNER_CHECK`), row by row.
+- **"Rows decided":** the Disposition is set from the answer and the claim text.
+- **"Rows noted":** notes that asserted absence are corrected.
+- **Output:** every change is listed in `R3/OWNER_CHECK_APPLIED.md`.
+
+A "yes" confirms that an event happened. It does not by itself establish that the deliverable text
+is accurate. That judgement is still made against the claim.

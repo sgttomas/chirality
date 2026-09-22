@@ -1,0 +1,52 @@
+FindingID,Category,SearchTerms,KeyCount
+XPF-001,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-BUILD-007,2
+XPF-002,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-ELECTRON-018,2
+XPF-003,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-HARNESS-027,2
+XPF-004,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-HARNESS-045,2
+XPF-005,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-ROUTES-021,2
+XPF-006,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-WORKSPACE-029,2
+XPF-007,INCOMPATIBLE_OWNERSHIP,reverse CLAIMED_BY CAP-ELECTRON-032/034 + /credentials? stub|stub credential|app-owned-composition\.ts:225|SafeStorageCredentialStore/ (non-ALIGNED),32
+XPF-008,INCOMPATIBLE_OWNERSHIP,reverse CLAIMED_BY CAP-SHELL-036/CAP-SETTINGS-017 + /role picker|role-entry posture|posture label/ (non-ALIGNED),13
+XPF-009,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY CAP-WOVEN-018/022 + /Continue this chat|0ed1a1a7f|continu(e|ing|ation) (a |the )?recorded/ (non-ALIGNED),7
+XPF-010,DUPLICATE_OWNERSHIP,reverse CLAIMED_BY by 2+ deliverables of one package,10
+XPF-011,SHARED_SURFACE,"reverse CLAIMED_BY or PARTIAL, >=6 distinct packages",93
+XPF-012,SHARED_SURFACE,"reverse CLAIMED_BY or PARTIAL on CAP-SETTINGS-002..006, CAP-RTCORE-006/007",5
+XPF-013,INCONSISTENT_DECISION,HDN token R4-Q5 + /K-ENGINE-4|SPEC §?10\.3|§10\.3/ (non-ALIGNED),89
+XPF-014,INCONSISTENT_DECISION,HDN token R4-Q6 + AUTHORITY_CONFLICT rows matching /DIRECTIVE..§(2.8|2.10|4.1|4.2)|K-PERM-1|K-PERM-6/,99
+XPF-015,INCONSISTENT_DECISION,HDN token R4-Q4 + CauseTag containing OTHER:V3_,106
+XPF-016,INCONSISTENT_TERMINOLOGY,CauseTag containing OTHER:V3_,49
+XPF-017,INCONSISTENT_DECISION,NormativeSource /\b(AC|VER)-001\b/ and DeclaredState|NormativeSource /parity|preserv|conver|migrat/ (all dispositions),57
+XPF-018,INCONSISTENT_DECISION,/K-RELEASE-1|G6a|notariz/ (non-ALIGNED),43
+XPF-019,INCONSISTENT_DECISION,/K-SUBAGENT-1|childInstanceId|TYPES §10/ (non-ALIGNED),30
+XPF-020,INCONSISTENT_TERMINOLOGY,ImplementationEvidence segment naming a disputed module with REACH=LIVE; PKG-09/EXT segment naming proof:/validate-harness/scripts/* with REACH=LIVE,213
+XPF-021,INCONSISTENT_TERMINOLOGY,REGISTER_DEFECT rows matching /_REFERENCES|MATCH|ContentHash|sha-?256|hash/ with CauseTag != DOC_HYGIENE or LatestDecision not D-APP-38,60
+XPF-022,RULED_NOT_APPLIED,DEC:D-APP-127 + CauseTag or CAUSE2 CARRIER_PROPAGATION and /D-APP-127|D-GOV-43/ (non-ALIGNED),264
+XPF-023,RULED_NOT_APPLIED,DEC:D-APP-121 + /D-APP-121/ (all dispositions),7
+XPF-024,RULED_NOT_APPLIED,DEC:D-APP-125.1 + /D-APP-125\.1|D-APP-125\b/ (all dispositions),4
+XPF-025,RULED_NOT_APPLIED,DEC:D-APP-101 + /D-APP-101/ (all dispositions),2
+XPF-026,RULED_NOT_APPLIED,DEC:D-APP-99 + /D-APP-99\b/ (all dispositions),1
+XPF-027,RULED_NOT_APPLIED,/SCA-APP-005|SOW-079|FROZEN_STALE_REPAIR_REQUIRED/ (non-ALIGNED) + DEL-02-03#REGISTER-4,35
+XPF-028,RULED_NOT_APPLIED,/K-EVENT-4|\.chirality/sessions/ (non-ALIGNED),53
+XPF-029,REGISTER_DEFECT,REGISTER_DEFECT rows matching /_REFERENCES|MATCH|ContentHash|sha-?256|hash/ + DOC:RELIANCE#1,126
+XPF-030,REGISTER_DEFECT,/decomposition_basis/ (all dispositions),10
+XPF-031,REGISTER_DEFECT,"keys DEC:D-APP-112.2, DEC:REGISTER-5",2
+XPF-032,REGISTER_DEFECT,/DepClosure|CLOSURE_SCC|D-APP-111|CONTROL_REGISTER/ (non-ALIGNED),32
+XPF-033,REGISTER_DEFECT,keys DEC:REGISTER-1..4,4
+XPF-034,REGISTER_DEFECT,/Datasheet\.md|Specification\.md|Procedure\.md|AGENT_SOFTWARE_DECOMP/ (non-ALIGNED),97
+XPF-035,REGISTER_DEFECT,ClaimType REGISTER_DEFECT and Disposition REMAINING_STATE_MISMATCH,76
+XPF-036,STALE_VERIFICATION,HDN token R4-Q2 + Disposition STALE_VERIFICATION + /legacy stub|stub engine|controlled-ci|scripted stub|fake port|never (been )?(run|exercised) against|never exercises/ (non-ALIGNED),84
+XPF-037,STALE_VERIFICATION,/routes\.test\.ts:12[67]|disconnect.. cancel/ + /sdk_native_stream|conformance validator|would fail|fixtures only/ (all dispositions) + proof..api.anthropic.com (non-ALIGNED),29
+XPF-038,LIFECYCLE_REMAINING_DEFECT,"Disposition REMAINING_STATE_MISMATCH, ClaimType != REGISTER_DEFECT, gate text not matching /MOOT|retired|D-APP-127|superseded|consent contract/",40
+XPF-039,LIFECYCLE_REMAINING_DEFECT,RSM non-register rows with retired-gate text + /MOOT|retired (Root )?dependency|gate names a retired|consent contract/ on REMAINING_WORK/STATE_ASSERTION/REGISTER_DEFECT (non-ALIGNED),21
+XPF-040,LIFECYCLE_REMAINING_DEFECT,/SEMANTIC_READY|_STATUS.md..rewrit|direct edit|free-form history|## Remaining/ in PKG-00/PKG-07 (non-ALIGNED),8
+XPF-041,LIVE_PATH_RECURRING,/unredact|no (structural )?redaction|without (any )?redaction|not redacted|redaction (is )?missing|raw .. params/ + (K-EVENT-6 and /redact/) (non-ALIGNED),57
+XPF-042,LIVE_PATH_RECURRING,/K-DOMAIN-2|protected_write_paths/ (all packages) + /K-PATH-|K-HOOK-|K-ROOT-/ in PKG-06/PKG-07 (non-ALIGNED),76
+XPF-043,LIVE_PATH_RECURRING,HDN token R4-Q3 + /caller.?(asserted|supplied)|free string|approvalSha|K-GATE-1|K-AUTH-1|status.transition/ (non-ALIGNED),58
+XPF-044,LIVE_PATH_RECURRING,/scaffoldPort|ENGINE_UNAVAILABLE|returns? (HTTP )?501|501 ENGINE|SOW-024\.2/ (non-ALIGNED),36
+XPF-045,LIVE_PATH_RECURRING,/legacySessionRoots|legacy session root|bootstrap-project|v2 session records|legacy.session migration|lazy migration|lazily migrat/ (non-ALIGNED),14
+XPF-046,LIVE_PATH_RECURRING,/mcpServers/ (non-ALIGNED),27
+XPF-047,LIVE_PATH_RECURRING,/Agent1RunPort|agent1-run-coordinator|REQUIRED_DELEGATION|GovernedAgent1|runAgent1|ChildRunRecord|subagent\.\*/ (non-ALIGNED),42
+XPF-048,LIVE_PATH_RECURRING,/Full access|danger-full-access|approval .?never|.codex..(unfiltered|whole|link)|dontAsk/ (non-ALIGNED),112
+XPF-049,LIVE_PATH_RECURRING,/optsPayload|maxTurns|subagentGovernance|contextSealed|pipelineRunApproved/ (non-ALIGNED),30
+XPF-050,LIVE_PATH_RECURRING,/not-found|ShellFrame|404 page|no .. callers?|no rendered (consumer|caller)|served route|unmounted|LoopShell|only (UI )?callers?|never called/ (non-ALIGNED),81
+#END
