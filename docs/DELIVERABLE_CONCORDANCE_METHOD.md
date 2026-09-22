@@ -1,6 +1,7 @@
 # Deliverable Concordance Method
 
-Chirality AI Ltd. Date: 2026-07-11. Revision 1.
+Chirality AI Ltd. Date: 2026-07-11. Revision 2 (2026-09-22; §3.1 added by
+owner act, D-GOV-44).
 
 **Status: RATIFIED — owner ratification 2026-07-11 (K-AUTH-1).** Owner
 direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take
@@ -87,6 +88,62 @@ relying on them; conflicts between live normative sources are recorded
 disposition is ever represented as a human ruling; completion is an
 evidence-coherence state, never issuance, release readiness, or professional
 approval.
+
+### 3.1 Claim granularity (Revision 2)
+
+A deliverable states what the implementation must satisfy; it does not
+describe the implementation. Neither a one-to-one description of the code nor
+a deliverable that says nothing checkable is the target. The audit unit above
+("a requirement or stable scope statement") is read with this test:
+
+> A statement belongs in a deliverable as a claim when changing the
+> implementation so that the statement no longer holds would require a
+> **decision** — an owner ruling, a scope change, or another act recorded in
+> the project's decision register.
+
+Two companion tests catch claims the decision test alone may miss:
+
+- **Interface.** Another deliverable, a user, another project, or a governing
+  document depends on the statement.
+- **Verification.** The statement is checkable through named verification
+  evidence (a test, proof record, script, or run record) rather than only by
+  reading the implementation.
+
+A statement that fails all three is implementation detail. It lives in the
+code, its tests, and developer documentation. A deliverable may cite it as
+evidence for a claim; it does not assert it.
+
+Consequences for concordance:
+
+- Reconciliation continues through the lifecycle, to `CHECKING` entry and the
+  `ISSUED` baseline. The claim level is what keeps the recurring cost
+  proportionate: at requirement level most implementation change touches no
+  claim, while at mechanism level every refactor is a concordance run. The
+  point at which a deliverable's scope is settled is where its candidate is
+  frozen (§4), not where reconciliation stops.
+- A "text out of date" finding therefore has two possible repairs, and
+  decision packets and repair tranches distinguish them: **(a)** rewrite the
+  mechanism detail to match the current implementation, or **(b)** lift the
+  claim to the level the test identifies and move the mechanism into the
+  evidence columns. (b) is the default. (a) requires a stated reason in the
+  ruling, for example that the mechanism is itself decision-bound.
+- A claim written at mechanism level is a granularity defect in the
+  deliverable, not a defect in the code that fails to match it.
+- Unmapped implementation (code that no claim owns) is disposed by the same
+  test: either it warrants a claim at requirement level, or it is detail of
+  an existing claim and is recorded as that claim's evidence.
+- The test does not itself decide which borderline statements are
+  decision-bound. Those remain visible rows for human ruling and are never
+  absorbed by a run-level posture.
+
+Owner direction of record (2026-09-22, in-session, Ryan Tufts), opening R5 of
+the App run activated by D-APP-128: "I agree with what your saying and would
+also take your recommendation for (b) as the default repair posture. But
+instead of proceeding here yet, let's capture this and merge via PR so other
+agents doing this task can benefit from it too." Recorded as D-GOV-44; the
+full exchange is in the App run's `OWNER_DIRECTION.md`
+(`r5_granularity_question`, `r5_granularity_posture`,
+`r5_granularity_capture`).
 
 ## 4. Lifecycle model
 
@@ -194,3 +251,4 @@ this document as the shared method (an owner-directed act, not required).
 | 0 (DRAFT) | 2026-07-11 | Initial distillation from the two project concordance plans and the 2026-07-10/11 owner design session. Non-binding pending ratification after both R0 calibrations. |
 | 1 (DRAFT) | 2026-07-11 | Original-author review feedback incorporated on owner direction ("Consider this feedback. Incorporate what has merit."): lifecycle reformulated as governed regimes with maturity/readiness entry conditions; CHECKING entry restructured as layered (warranted-empty universal minimum, candidate-specific basis, human declaration); canonical-authority precedence note; normalization table splits shared method / project adoption record; pinned-revision activation formulation; snapshots-as-provenance-baselines guardrail. |
 | 1 (RATIFIED) | 2026-07-11 | Owner ratification (direction of record: "You can now take all the `docs/` out of the DRAFT state, making them authoritative."), superseding the Revision-0 self-declared R0-calibration gate by owner act. Post-ratification precedence recorded in the status/provenance block. |
+| 2 (RATIFIED) | 2026-09-22 | §3.1 Claim granularity added by owner act (D-GOV-44; direction of record: "Yes PR A now for \"The principle\" and \"The specific instructions\"."): the decision, interface and verification tests for what is a claim; reconciliation continues through the lifecycle at claim level; the (a) rewrite / (b) lift distinction for text repairs with (b) as the default; unmapped implementation disposed by the same test. Learned from the App run `RUN_D128_CONCORDANCE_2026-09-21_1614Z` (1,089 of 3,568 rows "text out of date", largely mechanism-level wording). In-flight runs keep their pinned revision (§6) and adopt by their own ruling. No other section changed. |

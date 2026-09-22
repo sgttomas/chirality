@@ -407,3 +407,24 @@ D-APP-130. The owner accepts the R4 decision book (SHA-256 `3daab45c…`) and pa
 `1b63e075c` as the R5 basis. R4 is complete. R5 step 1 is the owner's packet rulings, which are
 transcribed into their own ruling record and merged before any repair. Nothing is repaired under
 D-APP-130.
+
+## Addendum 15: claim granularity captured as D-GOV-44; the run keeps its pinned method (appended 2026-09-22)
+
+Owner directions `r5_granularity_question`, `r5_granularity_posture` and `r5_granularity_capture`
+(OWNER_DIRECTION.md, SHA-256 `c41a2126…ccd8`, `d894d01d…f70c`, `3df6e687…b6de`). At the opening of
+R5 the owner adopted HELP_HUMAN's claim-granularity reading (a statement is a claim when its
+invalidation by implementation change would need a decision; interface and verification as companion
+tests; reconciliation continues through the lifecycle at claim level) and "(b) as the default repair
+posture" (lift the claim and move the mechanism to evidence, rather than rewrite the mechanism to
+match the code), and directed that it be captured and merged for other agents before R5 proceeds.
+
+Captured as D-GOV-44: kernel `docs/DELIVERABLE_CONCORDANCE_METHOD.md` Revision 2 (§3.1) and the
+`reconciliation` workflow's R3, R4, R5 and contract text (PR A, owner-reviewed and owner-merged).
+
+**This run's method does not change.** The pinned method in the header block (the six files and SHA-256 values in
+the D-APP-128 ruling §4, at `00115c719`) stands; kernel §6 keeps later edits from changing the method
+of an in-flight run absent a new ruling. The run adopts the posture as an owner rider at the head of
+its R5 ruling record (D-APP-131), in PR B, which the owner will call for. Until then: no packet is
+ruled, no repair manifest is built, no deliverable is edited. This is the first instruction change in the run,
+authorized by `r5_granularity_capture` for the D-GOV-44 scope only; the earlier `concept` direction
+("Making such changes is not warranted") concerned agent-setting instructions and is unaffected.

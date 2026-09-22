@@ -183,6 +183,30 @@ Context for `r4_gate_acceptance`: given after PR #841 merged (main `1b63e075c`),
 - ruling the packets is the first task of R5;
 - what has been done is to be merged by PR.
 
+## r5_granularity_question
+
+> I want to start R5 with an assessment of the findings from R4 and the decisions put before me.  It hinges on a question, of to what degree do the deliverables need to describe what's in code?  A 1:1 mapping is too much, clearly.  And 0:1 not enough.  The goldilocks principle here is hard to come by.  But I think it has to do with once the deliverable has been defined sufficiently that it is considered stable, even if all the details haven't been worked out, or even all the dependencies fully resolved, but it's clear how to resolve them and no more are expected to arise, then around that point we would stop reconciling the deliverables to the code?  Or it is appropriate right through to publishing, just being conscious of how to account for the continuing developments (what level of detail).  What's your perspective?
+
+SHA-256: `c41a212612408385c8a45842404828fb3af63deddc959a9a8815d7732f72ccd8`
+
+Context for `r5_granularity_question`: given after PR #843 merged (main `a9da9f971`, D-APP-130), as the owner's opening of R5. HELP_HUMAN answered with a perspective (not a ruling): the kernel already makes the claim the unit; a statement belongs in a deliverable as a claim when changing the implementation so it no longer holds would need a decision (with interface and verification tests alongside); reconciliation continues through publication at that level; the "stable" point the owner describes is the CHECKING entry, where the candidate is frozen, not where reconciliation stops; every "change the text" option has two executions, (a) rewrite the mechanism detail to match the code or (b) lift the claim to requirement level and move the mechanism to evidence; (b) recommended as the default R5 posture.
+
+## r5_granularity_posture
+
+> I agree with what your saying and would also take your recommendation for (b) as the default repair posture.  But instead of proceeding here yet, let's capture this and merge via PR so other agents doing this task can benefit from it too.  I'm not sure where this understanding and insight belongs, but the specific instructions should have a clear home.  What's your perspective on the best way to preserve this and make it available for others?
+
+SHA-256: `d894d01d42d3ee1bd5100b20a205f8a828ad76e926316a22c605a328571df70c`
+
+Context for `r5_granularity_posture`: the owner adopts the claim-granularity reading and (b) as the default repair posture, and asks that it be captured and merged for other agents before R5 proceeds. HELP_HUMAN proposed: the principle in the kernel (`docs/DELIVERABLE_CONCORDANCE_METHOD.md`, Revision 2); the specific instructions in the reconciliation workflow (`workflows/reconciliation/resources/method.md` R4 and R5, through `create-workflow`); this run's adoption as a rider at the head of the R5 ruling record (PR B); notices to the piping and App loops.
+
+## r5_granularity_capture
+
+> Yes PR A now for "The principle" and "The specific instructions".  I'll review, then merge and pause work.  I will instruct when to proceed with PR B.
+
+SHA-256: `3df6e687837def37123e7081e9cd1457b1a51911698f989cc55873f7c762b6de`
+
+Context for `r5_granularity_capture`: authorizes PR A (kernel Revision 2, workflow R4/R5 revision, decision record D-GOV-44, loop notices, run-record capture). This is the owner act that amends the kernel (§7: "amended only by owner act"). It is the first instruction change in this run; the earlier `concept` direction ("Making such changes is not warranted") declined agent-setting instructions for reasoning-level selection and did not address the kernel or the workflow. The owner reviews and merges PR A personally, then pauses; PR B (D-APP-131: the rider and the packet rulings) waits for the owner's instruction. HELP_HUMAN does not merge PR A.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the
