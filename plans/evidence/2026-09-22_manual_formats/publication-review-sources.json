@@ -1,0 +1,382 @@
+{
+  "date": "2026-09-22",
+  "reviewer": "/root/publication_reviewer",
+  "role": "TASK Type 2",
+  "parent": "/root",
+  "mechanism": "native Codex collaboration",
+  "further_delegation": false,
+  "write_scope": "plans/evidence/2026-09-22_manual_formats/publication-review* only; instruction-based on unrestricted shared host",
+  "basis_revision": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "selected_workflows": [],
+  "selected_skills": [
+    "software-code-review",
+    "documents",
+    "pdf"
+  ],
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/BRIEF.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/BRIEF.md",
+      "sha256": "e8601820209172f119fc06acad20b6cedcd2c5a67c3cb7decd6aac5175c934d1"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/INPUTS.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/INPUTS.json",
+      "sha256": "ee1fe4c7a80ca4afe4eb87519bf856fa53c4250b9846df7c7a82ca8fc844b002"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-MANUAL-FORMATS-20260922.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-MANUAL-FORMATS-20260922.yaml",
+      "sha256": "66d908bf37a035a933527c32f6401cd44c569a54c55171a400d14bc441844001"
+    },
+    {
+      "path": "tools/software_workflow/validate_change_scope.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/format-provenance.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/format-provenance.json",
+      "sha256": "acd7af1a553bacf8eb7bdef283fd8d799f4c74f6fb1e2a7ac54dcae313646a98"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/html-reference-style.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/html-reference-style.json",
+      "sha256": "a968ea11063d05d49a604ff77e39ab389866078e96128ceea22fd77073a0862f"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "origin": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "origin": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "sha256": "3345256289dfe6e4c77a59e26ba0ef9f781296a9633e5769a88090c1ac24ee83"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "origin": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+    },
+    {
+      "path": "/tmp/manual-formats-20260922/artifact.md",
+      "origin": "/tmp/manual-formats-20260922/artifact.md",
+      "sha256": "4395acc7d3c278a7a5b83826a07b9218fe0a1c169f4e7277075f31ba07be2fa2"
+    },
+    {
+      "path": "/tmp/manual-formats-20260922/build.py",
+      "origin": "/tmp/manual-formats-20260922/build.py",
+      "sha256": "6bc1b969beaa5d9fee55bea1b3ca47b3cd999a427b4bc94e9aea6124d121bdb1"
+    },
+    {
+      "path": "/tmp/manual-formats-20260922/validate.py",
+      "origin": "/tmp/manual-formats-20260922/validate.py",
+      "sha256": "4425c7f2b08a4a08777d0cec5b2cb54dab7cfe881e304283346f3ac1ffca5562"
+    },
+    {
+      "path": "/tmp/manual-formats-20260922/update_toc.py",
+      "origin": "/tmp/manual-formats-20260922/update_toc.py",
+      "sha256": "0768266d32353a465b857db9a067e2ac946fb648c98225f24a1bb43463c0c62b"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/format-visual-coverage.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/format-visual-coverage.json",
+      "sha256": "1f85d74e78074aa50bb5ff153d77be9bceb2c6d28992dc20f0871c824e74d7c8",
+      "use": "Sealed manager visual-coverage record read at final review boundary; not substituted for independently executed publication checks"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_formats/format-review.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_formats/format-review.md",
+      "sha256": "5f87e1b22cb2a23633f30e35e1eb8cd94d129f55ac824506dfbe8327943cf4ad",
+      "use": "Sealed manager visual-coverage record read at final review boundary; not substituted for independently executed publication checks"
+    }
+  ],
+  "preserved_inputs": [
+    {
+      "path": "AGENTS.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "bytes": 305199,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "bytes": 1589761,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "bytes": 532489,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+      "bytes": 20142,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/assets/Figure_1_1.png",
+      "origin": "repository@e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+      "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+      "bytes": 89792,
+      "treatment": "preserve unchanged; image content is an input to new formats"
+    }
+  ],
+  "final_targets": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+      "sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+      "sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae"
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead"
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "sha256": "9babc3d10fa429e97e70cde35b334d55a10b27c9d6719bab6453faf332322259"
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10"
+    }
+  ],
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "executable": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "markdown_parser_library": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-html-book-style-3sufm493/venv/lib/python3.12/site-packages",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "pypdf": "6.10.0",
+    "lxml": "6.1.1",
+    "bundle": "26.904.11930"
+  },
+  "checks": {
+    "source_and_original_hashes_preserved": true,
+    "root_readme_unchanged": true,
+    "html_logic_other_than_css_unchanged": true,
+    "html_other_than_css_byte_unchanged": true,
+    "html_four_resource_cases_rejected": true,
+    "html_regeneration_check_passed": true,
+    "docx_parts_total": 28,
+    "docx_parts_unchanged": 24,
+    "docx_changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/settings.xml",
+      "word/footer5.xml"
+    ],
+    "section_trees_preserved": true,
+    "source_semantic_blocks": 1734,
+    "substantive_blocks_found": 1730,
+    "cover_regrouping_exceptions": [
+      {
+        "line": 1,
+        "text": "Project Management for Human\u2013Agent Teams"
+      },
+      {
+        "line": 3,
+        "text": "A Practical Manual"
+      },
+      {
+        "line": 5,
+        "text": "Consolidated manuscript \u00b7 Edition 2 \u00b7 September 2026"
+      },
+      {
+        "line": 7,
+        "text": "From the theory and practice of Ryan Tufts. Prepared with ChatGPT for author review."
+      }
+    ],
+    "docx_body_paragraphs_checked_reverse": 1769,
+    "unexpected_body_content": [],
+    "source_hyperlinks": 74,
+    "docx_hyperlinks": 145,
+    "extra_detailed_contents_links": 71,
+    "bookmarks": 127,
+    "tables": 85,
+    "page_field_retained": true,
+    "update_fields_enabled": true,
+    "pdf_pages": 180,
+    "pdf_page_size_points": [
+      486,
+      666
+    ],
+    "folios": "1\u2013179 after unnumbered cover",
+    "toc_page_destinations_checked": 81,
+    "pdf_uri_annotations": 71,
+    "unique_pdf_uris": 27,
+    "local_pdf_uri_targets_exist": true,
+    "pdf_identical_to_final2_render": true,
+    "readme_links_resolve": 11,
+    "docx_nonempty_body_paragraphs_checked_reverse": 1719,
+    "original_drawing_subtree_and_media_preserved": true,
+    "pdf_image_actual_paint": {
+      "physical_page": 24,
+      "xobject": "/Im499",
+      "width": 1613,
+      "height": 1214,
+      "method": "Inspected actual Do operators; shared resources are not evidence of painting on other pages"
+    }
+  },
+  "selected_visual_pages": [
+    {
+      "physical_page": 1,
+      "path": "/tmp/manual-formats-20260922/final2/page-1.png",
+      "sha256": "58b10df026acb04a7d9ce749ff1f2e6fb5fc1f4ffdbf92bef694cb6c218e153b",
+      "coverage": "independently opened individually at original resolution; unchanged-page identity checked where used"
+    },
+    {
+      "physical_page": 2,
+      "path": "/tmp/manual-formats-20260922/final2/page-2.png",
+      "sha256": "6cd9afc3bb49767a8beb103eaef7488158d5bb50267def1494453e4fed528dda",
+      "coverage": "independently opened individually at original resolution; unchanged-page identity checked where used"
+    },
+    {
+      "physical_page": 4,
+      "path": "/tmp/manual-formats-20260922/final2/page-4.png",
+      "sha256": "25caa67466dbb73fac6d08f2927edfffed48a88735c10a2f304b1a9b0beaac53",
+      "coverage": "independently opened individually at original resolution; unchanged-page identity checked where used"
+    },
+    {
+      "physical_page": 5,
+      "path": "/tmp/manual-formats-20260922/final2/page-5.png",
+      "sha256": "614c187a5c4776ece11e42e149465ef558ade51cf08588b0d9a41c012f7d9f34",
+      "coverage": "independently opened individually at original resolution; unchanged-page identity checked where used"
+    },
+    {
+      "physical_page": 17,
+      "path": "/tmp/manual-formats-20260922/final2/page-17.png",
+      "sha256": "7594a337e4fb4c7689e61843565b6e1a62a608ca028cb3e754d188bddba84d9f",
+      "coverage": "independently opened individually at original resolution; unchanged-page identity checked where used"
+    }
+  ],
+  "no_unresolved_findings": true,
+  "limits": [
+    "No live browser or HTML print visual check; prior browser URL boundary honored",
+    "No Word interaction or print-device qualification",
+    "Only specified page images independently inspected; manager owns complete 180-page visual coverage",
+    "Remote URLs preserved but not fetched",
+    "No editorial acceptance or repository CI performed by this reviewer"
+  ],
+  "network_used": false,
+  "installations": false,
+  "git_mutations": false,
+  "status": "PASS: independent final review complete; no unresolved actionable finding; exact final artifact hashes and sealed manager full-page coverage aligned",
+  "manager_full_visual_coverage": {
+    "status": "PASS",
+    "physical_pages": 180,
+    "ranges": [
+      [
+        1,
+        30
+      ],
+      [
+        31,
+        60
+      ],
+      [
+        61,
+        90
+      ],
+      [
+        91,
+        120
+      ],
+      [
+        121,
+        150
+      ],
+      [
+        151,
+        180
+      ]
+    ],
+    "changed_pages_rechecked": [
+      5,
+      17
+    ],
+    "unchanged_pages_carried_by_pixel_identity": 178,
+    "coverage_report_sha256": "1f85d74e78074aa50bb5ff153d77be9bceb2c6d28992dc20f0871c824e74d7c8",
+    "reviewer_scope": "Only the five selected page images were independently inspected by this reviewer; complete coverage is the manager/readers evidence"
+  },
+  "resolved_items": [
+    {
+      "origin": "Another visual reader",
+      "location": "Physical page 17, Engineering stage header cell",
+      "change": "Side insets 90 to 45 twips preserve 9pt text and grid while keeping words intact",
+      "independent_backcheck": "Final page 17 inspected at original resolution; carried to final2 by exact image identity",
+      "status": "resolved"
+    },
+    {
+      "origin": "Root requested final refinement",
+      "location": "Physical page 5, two new technical paragraphs",
+      "change": "Left alignment preserves content/type while removing stretched justification",
+      "independent_backcheck": "Final2 page 5 inspected at original resolution; source and package checks repeated on final hashes",
+      "status": "complete"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "manual-formats-git-setup/v1",
+  "basis": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "branch": "codex/management-manual-v2-formats-20260922",
+  "previous_branch": "codex/alignment-manual-and-agent-guide-20260922",
+  "origin_fetched_before_branch_creation": true,
+  "clean_before_and_after_branch_creation": true,
+  "mechanism": "native WORKING_ITEMS child /root/closeout_manager under /root; same existing isolated worktree",
+  "root_notified_before_authoring": true,
+  "git_hold": "No staging/commit/push until root content and visual-ready signal.",
+  "authority": "Exact owner directive in BRIEF.md; standing Git grant in Root AGENTS.md and PRD 5.3.1.",
+  "enforcement": "Host filesystem unrestricted, network enabled, approval policy never. Role and brief scopes are instruction-based; no per-agent mechanical fence is claimed.",
+  "preflight_G4_schema": {
+    "command": "python3 tools/validation/validate_instruction_tranche_manifest.py",
+    "exit_code": 0,
+    "schema_valid_manifest_count": 94,
+    "limit": "Schema validation only; complete candidate range validation awaits final publication."
+  }
+}

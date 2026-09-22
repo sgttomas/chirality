@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-22",
+  "agent": "/root/html_publisher",
+  "role": "TASK Type 2",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native Codex collaboration continuation; no further delegation",
+  "basis_commit": "e74feb34b7ca99ebeb903ffb52f7fdd2b3efd169",
+  "brief": "Restyle existing agent guide HTML to resemble the supplied management manual v1 book; preserve source bytes, content, navigation and safeguards. Update format links and generation instructions when new files exist. No manual/source/Git edits.",
+  "enforcement": "Unrestricted shared host; role and write scope are instruction-based. No browser or HTTP preview route used.",
+  "source_inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "origin": "repository source"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "origin": "repository source"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "origin": "repository source"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "origin": "repository source"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "origin": "repository source"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/html-publisher-check.py",
+      "sha256": "d4c6964b8febb3d30b6f8a4723b5f163ca1ae076da46585b73c01a40dce181e3",
+      "origin": "repository source"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa",
+      "origin": "bundled skill 26.904.11930"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "sha256": "3345256289dfe6e4c77a59e26ba0ef9f781296a9633e5769a88090c1ac24ee83",
+      "origin": "bundled skill 26.904.11930"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e",
+      "origin": "bundled skill 26.904.11930"
+    }
+  ],
+  "reference_inspection": {
+    "pdf_pages": [
+      1,
+      5,
+      6
+    ],
+    "page_size_points": [
+      486,
+      666
+    ],
+    "method": "Bundled pypdf for page metadata/text; bundled Poppler page images; view_image for original cover and body/chapter pages; bundled Python ElementTree for selected original DOCX style XML."
+  },
+  "manager_profile": "Liberation Serif body10.5pt justified, 12.6pt exact leading,4.6pt paragraph spacing; black H1 18pt,H2 12pt,H3 11pt; centered uppercase26pt cover title; gray table headers;6.75\u00d79.25in book, margins L.720 R.650 T.680 B.670in.",
+  "adaptations": "Local serif fonts at18px with1.55 screen leading, centered uppercase title, black hierarchy,white paper,gray tables/code;68ch reading measure; narrow screens use left-aligned prose. Print styles use reference trim,margins,10.5pt body,9pt tables,8pt code. No automatic hyphenation in code.",
+  "runtime": {
+    "bundled_python": "3.12.14",
+    "temporary_environment": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-html-book-style-3sufm493/venv",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "dependency_changes": "None to product pins; installed exact existing requirements into a temporary environment created by bundled Python."
+  },
+  "tools_used": [
+    "exec_command",
+    "apply_patch",
+    "view_image",
+    "collaboration.send_message",
+    "write_stdin",
+    "bundled pypdf",
+    "bundled Poppler",
+    "Python standard-library XML/ZIP/AST/HTML parsing"
+  ],
+  "artifact_marker": "No DOCX/PDF creation or edit was performed by this executor; reference inspection only, so no marker was required.",
+  "validation_boundary": "Reference document samples inspected. Restyled HTML was checked structurally and against source styles; no HTML browser render, responsive interaction test, or print-layout visual validation claimed.",
+  "generation_command": "python docs/alignment-manual/render_manual.py --basis-date 2026-09-22 --basis-revision 9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "checks": [
+    "python plans/evidence/2026-09-22_manual_formats/html-check.py",
+    "generation command plus --check",
+    "AST and complete HTML comparison excluding only CSS",
+    "four known resource bypass inputs rejected",
+    "git diff --check on assigned publication paths"
+  ],
+  "completion": "Restyled HTML and README format links complete; source/security/navigation parity checks pass; no rendered HTML visual claim.",
+  "additional_checks": [
+    "All 11 current local README links exist",
+    "No diff in prior run evidence, guide Markdown, or root README",
+    "Final assigned-publication diff whitespace check passed"
+  ]
+}

@@ -7,7 +7,7 @@ This directory brings together the supplied project-management manuscript, its r
 | Document | Use |
 | --- | --- |
 | [Chirality Agent User Manual v1 — HTML](CHIRALITY_AGENT_USER_MANUAL_v1.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v1.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
-| [Project Management for Human–Agent Teams — Consolidated v2](Project_Management_for_Human_Agent_Teams_Consolidated_v2.md) | The incremented manuscript with repository-informed improvements, preserving v1 as its source lineage. |
+| [Project Management for Human–Agent Teams — Consolidated v2](Project_Management_for_Human_Agent_Teams_Consolidated_v2.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf) | The incremented manuscript with repository-informed improvements, preserving v1 as its source lineage. Word and PDF retain the original book’s style. |
 | [Manual review v1](MANUAL_REVIEW_v1.md) | The repository applicability review, chapter findings, revision rationale, and source basis. |
 | [Project Management for Human–Agent Teams — Consolidated v1](Project_Management_for_Human_Agent_Teams_Consolidated_v1.md) | The supplied Markdown manuscript, preserved without changes. Original [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx) and [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf) copies are also preserved. |
 
@@ -15,7 +15,13 @@ This directory brings together the supplied project-management manuscript, its r
 
 The agent guide’s HTML edition is a complete rendering of its Markdown source. Open the HTML file directly in a browser. It has chapter navigation, a compact contents menu on small screens, browser-find support, accessible table scrolling, and print styles. Reading requires no network connection, downloaded fonts, or external assets. Links to repository source files work when this directory remains inside the repository checkout; external reference links need a connection when followed.
 
+The HTML follows the supplied manuscript’s book style: black serif type, white paper, restrained headings, and gray table headers. Its type size and spacing are adapted for screen reading, with local Liberation Serif, Times New Roman, or Georgia fonts. Print styles use the manuscript’s 6.75 × 9.25 inch page size.
+
 The visible source date and repository revision describe the edition’s basis. The SHA-256 fingerprint identifies the exact Markdown bytes used for the HTML. They do not establish current project status or human acceptance.
+
+## Maintain the management-manual formats
+
+The v2 Word edition follows the retained v1 Word template, and its PDF is exported from the v2 Word document. Their preparation is recorded in the [dated format-production evidence](../../plans/evidence/2026-09-22_manual_formats/); there is no separate maintained Word/PDF builder. For a later revision, carry the authorized Markdown changes into the retained template, preserve its styles and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide’s HTML edition only.
 
 ## Maintain the HTML edition
 

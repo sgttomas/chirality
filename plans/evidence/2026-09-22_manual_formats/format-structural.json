@@ -1,0 +1,24 @@
+{
+  "pages": 180,
+  "render_png_count": 180,
+  "toc_entries": 81,
+  "toc_destinations_match_final_printed_folio": true,
+  "printed_folio_sequence": "unprinted cover, 1\u2013179",
+  "bookmarks": 127,
+  "internal_links": 81,
+  "external_links": 27,
+  "original_relationships_preserved": 23,
+  "changed_package_parts": [
+    "word/document.xml",
+    "word/_rels/document.xml.rels",
+    "word/settings.xml",
+    "word/footer5.xml"
+  ],
+  "unchanged_package_parts": 24,
+  "table_count": 85,
+  "heading_coverage": "all Markdown headings mapped",
+  "source_relative_links_resolve": true,
+  "v1_docx_sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+  "v2_docx_sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+  "v2_pdf_sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae"
+}

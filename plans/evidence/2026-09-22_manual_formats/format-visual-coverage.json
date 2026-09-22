@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "reference_pages": 177,
+  "final_pages": 180,
+  "candidate_image_directory": "/tmp/manual-formats-20260922/fidelity1/b_render",
+  "final_image_directory": "/tmp/manual-formats-20260922/final2",
+  "reviews": [
+    {
+      "reader": "/root/manual_format_manager/qa_1",
+      "role": "TASK Type2",
+      "reference_pages": [
+        1,
+        30
+      ],
+      "final_candidate_pages": [
+        1,
+        30
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/qa_2",
+      "role": "TASK Type2",
+      "reference_pages": [
+        31,
+        60
+      ],
+      "final_candidate_pages": [
+        31,
+        60
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/qa_3",
+      "role": "TASK Type2",
+      "reference_pages": [
+        61,
+        90
+      ],
+      "final_candidate_pages": [
+        61,
+        90
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/qa_4",
+      "role": "TASK Type2",
+      "reference_pages": [
+        91,
+        120
+      ],
+      "final_candidate_pages": [
+        91,
+        120
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/qa_5",
+      "role": "TASK Type2",
+      "reference_pages": [
+        121,
+        150
+      ],
+      "final_candidate_pages": [
+        121,
+        150
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    },
+    {
+      "reader": "/root/manual_format_manager/qa_6",
+      "role": "TASK Type2",
+      "reference_pages": [
+        151,
+        177
+      ],
+      "final_candidate_pages": [
+        151,
+        180
+      ],
+      "status": "PASS",
+      "method": "Every assigned final page inspected individually at original resolution, one image per invocation"
+    }
+  ],
+  "post_review_changes": [
+    {
+      "physical_page": 17,
+      "change": "Engineering stage header cell side insets90 to45twips; clean word-boundary wrapping",
+      "reviewers": [
+        "/root/manual_format_manager/qa_1",
+        "/root",
+        "/root/publication_reviewer"
+      ],
+      "status": "PASS"
+    },
+    {
+      "physical_page": 5,
+      "change": "Local left alignment on two new technical paragraphs, preserving text/font/size/line count",
+      "reviewers": [
+        "/root/manual_format_manager",
+        "/root",
+        "/root/publication_reviewer"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "final_image_identity": "178 pages pixel-identical to completely inspected candidate; only pages5and17 changed and were re-inspected",
+  "unresolved_findings": [],
+  "docx_sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+  "pdf_sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae"
+}
