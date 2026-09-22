@@ -147,28 +147,33 @@
     "authority": "D-APP-131; current owner R5/R6 instruction",
     "repaired_revision": "0407cb978a960f600bd5f933835f45f49f05b1c8",
     "upstream_instruction_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
-    "status": "PR #847 R5/R6, PR #849 decision proposals and PR #851 D-APP-118 facade retirement merged. Other App reserved choices remain unruled.",
+    "status": "PR #847 R5/R6, PR #849 proposals and PR #851 facade retirement merged. D-APP-132 current record dispositions and owner-released P01 rewrite applied locally; independent review/integration pending. Broader App residual work remains.",
     "phase_cursor": "execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/HANDOFF.md",
     "integration_record_repo_relative": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/UPSTREAM_INTEGRATION.md",
     "integration_pr": "https://github.com/sgttomas/chirality/pull/847",
     "earlier_fields": "Original nodes, state, basis, model and mechanism remain historical execution records. This continuation controls current recovery; do not repeat their old activation or R4 permission stops.",
     "current_execution": "Codex native HELP_HUMAN / WORKING_ITEMS / TASK collaboration, with actual attribution in the linked Root run.",
     "method": "Existing whole-corpus reconciliation retained, including its recorded prospective Revision 2 rider; no switch to bounded-reconciliation.",
-    "next_safe_action": "D-APP-118 retirement is integrated; do not repeat its ruling or removal. Consult the decision bundle for remaining App reserved choices. Piping ownership direction is accepted and its exact SCA-011 amendment is prepared for its owning checkpoint.",
+    "next_safe_action": "Review and integrate D-APP-132 record tranche; then follow the exact current residual overlay and surviving deliverable work. Do not re-ask D116/117 current-undertaking adoption, obsolete D119 patch, facade retirement or released P01 wording. Future optional feature adoption and actual scope/acceptance changes retain their real gates.",
     "decision_followup": {
       "recorded": "2026-09-22",
-      "state": "proposals_merged_D118_retired_other_App_choices_reserved",
-      "authority": "Current owner message accepting Agent 0 recommendation; exact words and preparation boundary in the linked Root brief.",
+      "state": "D132_record_application_review_pending",
+      "authority": "Current owner feedback permits justified Agent0 record dispositions; exact P01 owner release separately recorded in D-APP-132.",
       "brief_repo_relative": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-DECISION-FOLLOWUP/BRIEF.md",
       "proposal_project_relative": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/APP_DECISION_BUNDLE.md",
       "guide_repo_relative": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-DECISION-FOLLOWUP/DECISION_GUIDE.md",
-      "scope": "Prepare, review and integrate the concrete decision proposal; do not adopt its recommendations or activate product implementation.",
+      "scope": "D116/117 preparation closed and enhancements not adopted here; D119 obsolete proposal withdrawn with accepted obligations preserved; owner-released P01 exact record rewrite applied. No product implementation activation.",
       "depends_on": [
         "PR #847 merged"
       ],
       "remaining_gates": [
-        "Actual owner ruling for remaining App reserved choices after reviewable proposals exist"
-      ]
+        "Independent record review and required integration checks for this candidate",
+        "Future optional feature implementation still needs its real adoption/scope gates; existing engineering/evidence remains",
+        "Actual scope changes, lifecycle acceptance and release retain owning authority"
+      ],
+      "current_disposition_project_relative": "execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md",
+      "current_residual_overlay_project_relative": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv",
+      "evidence_project_relative": "execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/DISPOSITION_EVIDENCE.json"
     },
     "facade_retirement": {
       "recorded": "2026-09-22",

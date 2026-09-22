@@ -53,28 +53,21 @@ plugin, or marketplace scope remain excluded.
 
 Tool availability must be distinguished from tool exposure and permission to execute. A tool name or allow list alone is not a restriction boundary. The retained SDK resolver contract includes registered-name validation, structured rejection of unknown names, stable ordering/naming for the same inputs, and read-first exposure; its SDK roster and MCP identifiers are compatibility evidence.
 
-The live Codex path instead follows the user's shared configuration and chosen host policy under D-GOV-43 items 3 and 4. Compatibility resolver tests do not prove that a Codex turn uses that resolver or exposes Chirality MCP tools. Verification hooks are `frontend/src/__tests__/lib/tool-descriptor.test.ts` for the resolver and `projects/chirality-runtime/tests/codex-supervisor.test.ts` for actual policy transport. Live tool exposure requires its own current evidence. This repair does not resolve the separately owner-held CLM-005 and CLM-032 questions (D-APP-131 P-01).
+The live Codex path instead follows the user's shared configuration and chosen host policy under D-GOV-43 items 3 and 4. Compatibility resolver tests do not prove that a Codex turn uses that resolver or exposes Chirality MCP tools. Verification hooks are `frontend/src/__tests__/lib/tool-descriptor.test.ts` for the resolver and `projects/chirality-runtime/tests/codex-supervisor.test.ts` for actual policy transport. Live tool exposure requires its own current evidence. The earlier D-APP-131 P-01 reservation was released by D-APP-132; CLM-005 and CLM-032 now state the scoped current distinction and retain unmet checks.
 
 ### CLM-004 — Conditions
 
 DEL-06-02 owns tool exposure and validation, with permission semantics supplied by DEL-06-01 and Chirality MCP definitions owned by DEL-06-03. Domain-operation semantics remain outside this scope. A read-only interface must not claim write authority, and the legacy read-first resolver must not enable its write/edit/bash surface before its required controls are in place.
 
-For live Codex turns, enforcement is the actual selected Codex policy, not an assumed invocation of the legacy resolver. D-GOV-43 item 4 permits user-selected policy; it does not grant normative authority to mutate governed or protected content. Verify the retained resolver with `frontend/src/__tests__/lib/tool-descriptor.test.ts`, and policy transmission with `projects/chirality-runtime/tests/codex-supervisor.test.ts`. Historical REF-006 MATCH statements are dated evidence; current source identity is read from the reference record and checked against the cited bytes. The reserved CLM-005/032 readings remain unchanged.
+For live Codex turns, enforcement is the actual selected Codex policy, not an assumed invocation of the legacy resolver. D-GOV-43 item 4 permits user-selected policy; it does not grant normative authority to mutate governed or protected content. Verify the retained resolver with `frontend/src/__tests__/lib/tool-descriptor.test.ts`, and policy transmission with `projects/chirality-runtime/tests/codex-supervisor.test.ts`. Historical REF-006 MATCH statements are dated evidence; current source identity is read from the reference record and checked against the cited bytes. D-APP-132 releases and updates CLM-005/032; their historical worker readings remain unchanged in the original ledgers.
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Component | Construction note | Source |
-> |---|---|---|
-> | Tool registry | Maintain an explicit registry of SDK built-ins and Chirality MCP tool names eligible for resolution. Exact registry file path: TBD. | `docs/SPEC.md` Sections 14.1 and 14.2 |
-> | Resolver input | Consume resolved runtime options, including `opts.tools`, plus session/persona/mode/policy context needed for deterministic exposure. Exact interface shape: TBD. | `docs/PRD.md` FR-023 and Section 8.13, MATCH status — reconciled under D-APP-38 |
-> | Name validation | Reject unknown `opts.tools` entries with structured validation errors before SDK request construction. | `docs/SPEC.md` Section 14.3; decomposition SOW-047 |
-> | Deterministic ordering | Normalize the visible tool list into stable order for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` Section 1.6 K-TOOL-1; `docs/PRD.md` FR-080, MATCH status — reconciled under D-APP-38 |
-> | Read-first filtering | Build the initial exposed surface from SDK read tools and Chirality read MCP tools; exclude or deny write/edit/bash until later phases. | `docs/PRD.md` Section 8.13, MATCH status; `docs/PLAN.md` R2 — reconciled under D-APP-38 |
-> | Permission handoff | Feed the resolved tool surface into the Chirality permission overlay; do not rely on `allowedTools` alone for restriction. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
-> | Tests | Include unknown-tool tests and deterministic ordering fixtures. Exact test paths: TBD. | `_CONTEXT.md`; decomposition DEL-06-02 |
->
+Chirality-owned application tools use their accepted Runtime catalog and binding contracts. Registration validates the catalog, and an unregistered application-tool invocation fails closed. A catalog entry or available implementation does not itself grant normative authority. Native Codex built-ins and the user's shared configuration follow D-GOV-43's selected approval/sandbox policy; they are not subject to a second retained SDK whitelist.
+
+The retained SDK resolver is compatibility evidence: `frontend/src/lib/harness/tool-pool.ts` consumes requested names and mode through `HarnessToolPoolResolution`, with descriptors from `@chirality/runtime-contracts/tool-descriptor` (source: `projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts`, repository-relative). Its unknown-name/permission behavior does not qualify the live Codex path. Deduplication preserves request order; permutation-invariant ordering is not proved. Verification of applicable deterministic-exposure obligations and permission-denial controls remains required against their actual subject; this rewrite does not waive K-TOOL-1 or equate a policy label with enforcement.
+
+Verification hooks: App `frontend/src/__tests__/lib/tool-descriptor.test.ts`; Runtime `projects/chirality-runtime/tests/application-tools.test.ts`, `tests/codex-application-tools.test.ts`, and `tests/codex-supervisor.test.ts` (the latter two relative to the Runtime project). Inspect the corresponding Runtime `packages/daemon/src/application-tools.ts` and `codex-supervisor.ts`. Missing live-path, ordering and negative-case evidence remains a DEL-06-02 residual. D-APP-132 releases this scoped record repair only; no new tool is exposed.
 
 ### CLM-006 — Pending Implementation Evidence
 
@@ -458,16 +451,15 @@ For live Codex turns, enforcement is the actual selected Codex policy, not an as
 
 ### CLM-032 — Examples
 
-> ##### Examples
->
-> | Scenario | Expected result |
-> |---|---|
-> | `opts.tools` contains `Read`, `Grep`, and `mcp__chirality__status_read` in read-first mode | Resolver accepts registered names and emits deterministic SDK/MCP surface order, subject to permission filtering. |
-> | `opts.tools` contains `Read` and `UnknownSearch` | Resolver returns a structured validation error for `UnknownSearch`; unknown name is not sent to the SDK. |
-> | SDK supports `Write`, but current mode is read-first/read-only | Resolver excludes or marks `Write` denied according to policy; implementation availability does not imply exposure. |
-> | `allowedTools` includes a tool that Chirality policy denies | Final exposed/executable surface respects deny policy; `allowedTools` does not bypass restriction. |
-> | A new `mcp__chirality__domain_*` name appears before governed domain amendment | Treat as unsupported/TBD unless accepted source updates authorize future domain tools. |
->
+| Scenario | Required result and evidence boundary |
+|---|---|
+| A registered Chirality-owned application tool is invoked with its current binding | Apply the accepted Runtime catalog and call validation. Preserve applicable deterministic exposure; registration is not a permission grant. |
+| An application-tool invocation names an unregistered tool | Runtime returns failure; this is the application-tool boundary, not a claim that native Codex built-ins pass through that catalog. |
+| A native Codex tool can write while the user selects a read-only or other policy | Actual behavior follows the selected Codex policy and its enforcement evidence. Tool availability never grants normative permission to change protected content; do not infer enforcement from the mode label alone. |
+| `allowedTools` or a tool name appears to permit an operation otherwise denied by applicable policy | The name or availability cannot bypass that policy. Retained SDK permission tests establish their compatibility subject only; live Codex proof is separate. |
+| A domain tool is registered or a new `domain_*` name is requested | Apply the PKG-10 roster and ruled integration stages under D-APP-56. Registration does not authorize domain execution beyond those stages; unregistered application names fail closed. The former blanket “all future domain tools unsupported/TBD” statement is superseded by the ruled roster. |
+
+Verification hooks and unresolved ordering/live-path evidence are in CLM-005 and the D-APP-132 current residual derivative. These examples assert required boundaries, not newly executed conformance results or expanded tool access. The original two workers' differing classifications remain in the historical reconciliation ledgers.
 
 ### CLM-033 — Conflict Table (for human ruling)
 

@@ -10,3 +10,5 @@
 - 2026-07-19 - D-APP-68 chronology item 3 assigned DEL-06-02 the four coordination MCP descriptors, canonical/allowed names, aliases, schemas, catalog entries, and registry validation, while preserving DEL-06-03's in-process composition ownership. No runtime or lifecycle change occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+- 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. P-01 CLM-005/032 owner reservation released and scoped record lift applied; historical disagreement and unmet checks preserved. No lifecycle, dependency acceptance or product completion.
