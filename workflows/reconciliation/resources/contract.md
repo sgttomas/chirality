@@ -10,7 +10,12 @@
   dependency pointer, evidence boundary, and overlapping work.
 - **Claim-level audit.** Requirements and stable scope claims are atomic audit
   units. Deliverable/package summaries are derived from claim rows and never
-  replace them.
+  replace them. A claim is a statement whose invalidation by implementation
+  change would need a recorded decision, or that another surface depends on,
+  or that named evidence can check (shared method §3.1). Mechanism-level
+  descriptions are evidence, not claims, and a claim written at that level is
+  a granularity defect in the deliverable, repaired by lifting it, not by
+  rewriting it to the code.
 - **Format-aware preservation.** During authorized conversion, legacy
   path/section claims remain the bound source and candidate stable IDs are
   derivative mappings. Every source claim receives exactly one disposition;

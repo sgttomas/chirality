@@ -1,0 +1,98 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922
+title: Concordance claim granularity — kernel Revision 2 and reconciliation workflow R3/R4/R5 posture (D-GOV-44)
+date: 2026-09-22
+basis: a9da9f9719e0deeea015d1fa934d9a8a604d3ca5
+
+instruction_surface_paths:
+  - docs/DELIVERABLE_CONCORDANCE_METHOD.md
+  - workflows/reconciliation/resources/method.md
+  - workflows/reconciliation/resources/contract.md
+  - docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml
+
+m2_gate:
+  authorization: >-
+    Ryan Tufts, in the App concordance session on 2026-09-22 (in chat), adopted
+    HELP_HUMAN's claim-granularity reading and "(b) as the default repair
+    posture", asked that it be captured and merged "so other agents doing this
+    task can benefit from it too", and directed "PR A now for 'The principle'
+    and 'The specific instructions'". The principle is kernel §3.1 (Revision
+    2, the owner act §7 requires); the specific instructions are the
+    reconciliation workflow's R3, R4 and R5 text and its contract invariant.
+    The owner's earlier standing constraint in that run against instruction
+    changes is superseded for this scope only. This manifest records the gate
+    and grants no authority (K-AUTH-1).
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: >-
+    HELP_HUMAN (Agent 0, Fable 5.1) in session
+    HELP-HUMAN-APP-20260921-CONCORDANCE; no delegation for this tranche
+  merge_gate: owner-merge
+  self_merge: false
+  owner_direction:
+    directed_by: Ryan Tufts
+    direction_date: 2026-09-22
+    approved_source_sha: TBD
+    note: >-
+      The owner reviews and merges the pull request personally ("I'll review,
+      then merge and pause work."). The standing Git authorization of
+      2026-09-12 is not exercised for this merge. The approved_source_sha is
+      the revision the owner merges; the independent fresh-context review
+      return names the candidate revision it read.
+
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md
+  rationale: >-
+    Both loops pin the kernel through their concordance adoption plans
+    (projects/*/plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md)
+    and piping through docs/RECONCILIATION_PROFILE.md. Piping is running its
+    own reconciliation in a separate session. The notices communicate the
+    change; each loop decides adoption and updates its own accepted basis.
+    In-flight runs keep their pinned revision (kernel §6).
+
+candidate_paths:
+  - docs/DELIVERABLE_CONCORDANCE_METHOD.md
+  - workflows/reconciliation/resources/method.md
+  - workflows/reconciliation/resources/contract.md
+  - docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/OWNER_DIRECTION.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/_run_records/PR_A_CHECKS.json
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/_run_records/REVIEW_RETURN_PR_A.md
+  - projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/RUN_BASIS.md
+  - projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/RUN_STATE.jsonl
+
+scope_limits:
+  - >-
+    No agent role file, AGENTS.md, skill body, or other workflow changes.
+    workflows/reconciliation/WORKFLOW.md, execution.json, the catalog entry and
+    the generated index are unchanged (the index does not hash resources;
+    build_workflow_index.py --check PASS).
+  - >-
+    No packet of RUN_D128 is ruled and no deliverable, code, or R2–R4 run
+    output is edited. The run keeps its pinned kernel Revision 1 and adopts
+    the posture by rider in its R5 ruling record (D-APP-131), in a later
+    pull request the owner will call for.
+  - >-
+    No kernel section other than §3.1, the header revision line and the
+    revision table is changed.
+  - >-
+    No release, publishing, lifecycle change, or acceptance of unknown future
+    bytes is authorized by this tranche.
+
+checks:
+  - python3 tools/validation/validate_workflow_metadata.py  # 72 packages PASS
+  - python3 tools/validation/build_workflow_index.py --check  # PASS, 80 methods
+  - >-
+    python3 tools/software_workflow/run_registered_checks.py
+    projects/chirality-app-dev/software-workflow.json --check
+    harness-self-check --check app-hold-integrity --check harness-pytest
+    (App execution/** paths touched; result in _run_records/PR_A_CHECKS.json)

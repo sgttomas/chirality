@@ -81,6 +81,12 @@ evidence with incompatible meanings, unmapped implementation, stale
 verification/validation, lifecycle mismatches, and Remaining-state defects.
 Do not change dependencies or deliverables during synthesis.
 
+Cluster rows whose disposition rests on mechanism-level wording (the claim
+describes how the implementation works rather than what it must satisfy) as
+a granularity cause, so that R4 can put the repair posture to the human once
+rather than packet by packet. The test is the shared method's claim
+granularity rule (`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1).
+
 ### R4 — Human and engineering decision gate
 
 Produce decision packets containing options, evidence, provenance/reliability,
@@ -88,6 +94,22 @@ affected claim IDs and packages, risks, recommended routing, and the exact
 on-ruling mechanism. Distinguish owner, engineering, WORKING_ITEMS (workflow: review), WORKING_ITEMS (workflow: scope-change),
 HELPS_HUMANS, and external-authority decisions. Stop affected repair paths
 until the responsible human acts.
+
+Wherever an option changes deliverable text, state both executions and
+which one the packet recommends:
+
+- **(a) rewrite** the mechanism detail so it matches the current
+  implementation;
+- **(b) lift** the claim to the level the claim granularity rule identifies
+  (decision-bound, depended on, or checkable by named evidence) and move the
+  mechanism into the evidence columns.
+
+(b) is the default; recommend (a) only with a stated reason, such as the
+mechanism itself being decision-bound. Put the run-level posture to the human
+as its own item, ruled before the packets, and sort the packets by whether
+the default posture dissolves the question, narrows it, or leaves it
+untouched. Rows where it is a judgment whether the statement is
+decision-bound stay visible as rows; the posture does not absorb them.
 
 ### R5 — Authorized repair tranches
 
@@ -100,6 +122,29 @@ repair tranche. Protect ISSUED or otherwise formally accepted baselines through
 their governing change path. Account for completed, held, and deferred repair
 rows and affected claims exactly; mechanical selectability is never execution
 authority.
+
+Write repairs at claim level. For each repaired claim the worker applies the
+claim granularity rule (`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1) in
+this order:
+
+1. **Decision.** Would changing the implementation so the statement no longer
+   holds need a ruling, a scope change, or another registered act? If so, it
+   is a claim.
+2. **Interface.** Does another deliverable, a user, another project, or a
+   governing document depend on it? If so, it is a claim.
+3. **Verification.** Can it be checked by named evidence (a test, proof
+   record, script, or run record) rather than only by reading the code? If
+   so, it is a claim, and the repaired text names that evidence.
+
+A statement that fails all three is removed from the claim surface under the
+lift execution (b), and, where it helps a reader, kept as an evidence
+reference. The rewrite execution (a) is used only where the ruling says so,
+with its reason quoted in the repair manifest. A repaired claim describes what
+the implementation must satisfy and cites its verification; it does not
+describe the implementation. Unmapped implementation named in the ruling
+either gains a claim at requirement level or is recorded as evidence of the
+existing claim the ruling names. Record every (a)/(b) choice per claim in the
+repair manifest so the R6 backcheck can reproduce it.
 
 ### R6 — Backcheck and close
 
