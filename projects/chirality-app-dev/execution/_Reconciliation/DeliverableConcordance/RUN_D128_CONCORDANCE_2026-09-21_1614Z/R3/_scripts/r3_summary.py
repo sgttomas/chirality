@@ -46,7 +46,7 @@ def main():
     w("Each REMAP_LOG line is one step; `SealedValue` is the value before that step. Net Disposition moves are "
       "counted per step (a row moved twice counts twice).\n")
     w("| Source | Lines | Rows touched | Disposition steps | HumanDecisionNeeded steps | Other fields |\n|---|---:|---:|---:|---:|---:|")
-    for s in ("ERRATA", "CORRECTION", "R3_RULE", "R3_RUNWIDE"):
+    for s in ("ERRATA", "CORRECTION", "R3_RULE", "R3_RUNWIDE", "OWNER_CHECK"):
         ls = [l for l in log if l["Source"] == s]
         d = sum(1 for l in ls if l["Field"] == "Disposition")
         h = sum(1 for l in ls if l["Field"] == "HumanDecisionNeeded")

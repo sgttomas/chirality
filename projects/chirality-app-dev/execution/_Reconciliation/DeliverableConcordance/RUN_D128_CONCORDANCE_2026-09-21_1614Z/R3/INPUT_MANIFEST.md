@@ -28,6 +28,7 @@ are evidence only and are not listed as inputs except where noted.
 | R3_DECISIONS | `R3/_work/DEC_ADD10.csv` | `0e2ca1a27504b2a45721cb15501bb64c4254211a7177c855959b9fa7197a5fbe` | 61 |
 | R3_DECISIONS | `R3/_work/DEC_RUNWIDE.csv` | `5db31adfc31b9564094cdb7dd6ae6f2356c16b682b4c0e6c3587303c3682fa68` | 272 |
 | R3_DECISIONS | `R3/_work/DEC_SPOTREVERT.csv` | `adb1dc79ea2a9890e106b97061cbf514ba5f5e22120cd9fabd4d63f315982188` | 0 |
+| R3_DECISIONS | `R3/_work/DEC_OWNERCHECK.csv` | `e8b45bb671beba9cf73a0f0252e606786fa20e65b04971ca1e7088e13c93f401` | 75 |
 | DOUBLE_BLIND_B_EVIDENCE | `R2/PKG-06/DEL-06-02_B/DEL-06-02_claims.csv` | `d1e1be6b220effd8bcbaa539872f3f4987b46100450a117a43a45d9cee55b186` |  |
 | LEDGER_DEL | `R2/PKG-00/DEL-00-01/DEL-00-01_claims.csv` | `d87cf0978d2f2d9b4a0db7b43ad5f0fac97db963b136f8b96778e762fb815209` | 41 |
 | LEDGER_DEL | `R2/PKG-00/DEL-00-02/DEL-00-02_claims.csv` | `6fde4398266f04c369e76fc0616808b7066830e6931250bc25eb4e15a5edc98b` | 49 |
@@ -182,4 +183,4 @@ are evidence only and are not listed as inputs except where noted.
 | CAPABILITIES | `R2/SURFACES/WORKSPACE_capabilities.csv` | `a569df368b06417810a47ed667ca41ad7a2ebeb532078cccdee533d652858f3e` | 39 |
 | CAPABILITIES | `R2/SURFACES/WOVEN_capabilities.csv` | `554a52c7f66cc4f8eb790f1a7926eeca8cbc595bfba547684dd4ca028b7cb29d` | 43 |
 
-Counts: deliverable ledgers 54, extension ledgers 13; deliverable rows 3217; extension rows 351; reverse responses 17774; REMAP_LOG lines 1113.
+Counts: deliverable ledgers 54, extension ledgers 13; deliverable rows 3217; extension rows 351; reverse responses 17774; REMAP_LOG lines 1188.

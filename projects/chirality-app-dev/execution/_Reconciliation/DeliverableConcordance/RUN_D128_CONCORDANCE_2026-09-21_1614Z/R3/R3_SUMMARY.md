@@ -9,7 +9,7 @@ Script-built sections by `R3/_scripts/r3_summary.py`; the last section is hand-w
 | Q3 capabilities claimed or listed as unmapped (with reach and state) | PASS | 468 capability rows: 361 claimed/partial by >=1 deliverable, 107 in UNMAPPED_IMPLEMENTATION.csv; unmapped without stated reach/state: 0 []; reverse IDs not in any capability file: 0 [] |
 | Q4 package summaries reproduce from the ledgers (sealed Disposition census) | PASS | 24 of 24 summaries reproduce |
 | Q5 no duplicate keys | PASS | ClaimKey duplicates 0 []; reverse (CapabilityID, DeliverableID) duplicates 0 [] |
-| Q6 REMAP_LOG reconciles the sealed census to the final census | PASS | 3568 rows replayed from sealed values through 1113 log lines; mismatches 0 [] |
+| Q6 REMAP_LOG reconciles the sealed census to the final census | PASS | 3568 rows replayed from sealed values through 1188 log lines; mismatches 0 [] |
 
 Detail: `COVERAGE_AND_QA.md`.
 
@@ -20,7 +20,7 @@ Detail: `COVERAGE_AND_QA.md`.
 | ALIGNED | 698 | 695 | -3 |
 | IMPLEMENTED_UNDOCUMENTED | 1 | 1 | +0 |
 | DOCUMENTED_UNIMPLEMENTED | 110 | 104 | -6 |
-| PARTIALLY_IMPLEMENTED | 415 | 409 | -6 |
+| PARTIALLY_IMPLEMENTED | 415 | 411 | -4 |
 | IMPLEMENTED_DIFFERENTLY | 183 | 179 | -4 |
 | STALE_SPECIFICATION | 1032 | 1044 | +12 |
 | STALE_ASSESSMENT | 8 | 8 | +0 |
@@ -30,7 +30,7 @@ Detail: `COVERAGE_AND_QA.md`.
 | LIFECYCLE_REASSESSMENT_REQUIRED | 2 | 2 | +0 |
 | REMAINING_STATE_MISMATCH | 124 | 112 | -12 |
 | AUTHORITY_CONFLICT | 150 | 159 | +9 |
-| UNKNOWN | 9 | 24 | +15 |
+| UNKNOWN | 9 | 22 | +13 |
 | NOT_AUDITABLE | 374 | 374 | +0 |
 | **Total** | 3217 | 3217 | +0 |
 
@@ -63,6 +63,7 @@ Each REMAP_LOG line is one step; `SealedValue` is the value before that step. Ne
 | CORRECTION | 116 | 107 | 0 | 6 | 110 |
 | R3_RULE | 386 | 335 | 41 | 218 | 127 |
 | R3_RUNWIDE | 495 | 351 | 28 | 37 | 430 |
+| OWNER_CHECK | 75 | 63 | 2 | 0 | 73 |
 
 Disposition moves (Source: from → to × n):
 
@@ -70,6 +71,7 @@ Disposition moves (Source: from → to × n):
 - ERRATA: ALIGNED → PARTIALLY_IMPLEMENTED × 2
 - ERRATA: IMPLEMENTED_DIFFERENTLY → PARTIALLY_IMPLEMENTED × 1
 - ERRATA: DOCUMENTED_UNIMPLEMENTED → PARTIALLY_IMPLEMENTED × 1
+- OWNER_CHECK: UNKNOWN → PARTIALLY_IMPLEMENTED × 2
 - R3_RULE: REMAINING_STATE_MISMATCH → STALE_SPECIFICATION × 21
 - R3_RULE: STALE_SPECIFICATION → REMAINING_STATE_MISMATCH × 9
 - R3_RULE: DOCUMENTED_UNIMPLEMENTED → UNKNOWN × 7
@@ -192,15 +194,17 @@ Some CORRECTIONS values are prose rather than a field value. For evidence cells,
 - **Regex-built key lists:** XPF-020, -022, -048 and -050 list keys found by regex. They are candidates, not reviewed row by row.
 - **Validator scope:** `_scripts/validate_ledger.py` validates per-deliverable ledger files. It does not apply to the merged concordance, which has 5 extra columns. Its checks are covered in `COVERAGE_AND_QA.md`.
 
+**Owner check applied (R4 step 1).** The owner's answers (RUN_BASIS Addendum 13) were applied through `_work/DEC_OWNERCHECK.csv` (Source `OWNER_CHECK`, appended after all R3 lines in `REMAP_LOG.csv`). Two decided rows moved from `UNKNOWN`; every listed row carries an `OWNER_TESTIMONY`, `OWNER_BELIEF` or OC-08 note; `don't know` rows stay `UNKNOWN`. Row-by-row changes, noted rows for R4 attention and checks: `OWNER_CHECK_APPLIED.md`.
+
 ## Output hashes (SHA-256)
 
-- `CLAIM_CONCORDANCE.csv` `fecf67d646f4a1bd1670492e2ab462b4c709cbf5b368e96a00a6a8439a0ead24`
-- `EXTENSION_CONCORDANCE.csv` `a89bc5a82ebb232c51dd2239d9e9111daaf43134809f097e038947849ac9dc3c`
+- `CLAIM_CONCORDANCE.csv` `a6f6cdda685173cac3aa8ab75d8dd823143feadbde2c44a755571337936dd852`
+- `EXTENSION_CONCORDANCE.csv` `eeaaf27fcba05f2b8a16c6429a95be220b071c2b8938c41a3d5ff959854dbb37`
 - `REVERSE_CONCORDANCE.csv` `2f07bfd122d88375c138d5a4ee86ef0023ebc06c9ada164ab41962e1f6648022`
-- `REMAP_LOG.csv` `c2bcd8052b85ee4d34bbdb6492f6b818b1c13d1d92b14f702f498630ec8dd5af`
-- `INPUT_MANIFEST.md` `8dda33bf2aff7831e28d59883bd3e474cef896cdd6f2e1123ba4795defd9c196`
+- `REMAP_LOG.csv` `e53c0122d6c70c4ec91dde72232f4660e8475799ba2bbf7b0bdffe66e9150cd9`
+- `INPUT_MANIFEST.md` `9f7f1b2755d89c3315a0959bb8c85ea197a907228a722bcc3407ed5dbc0037b9`
 - `RUNWIDE_CALLS.md` `8c6108448332d677a0ee9b915100f56d0449c317fb17f8da3c20278dfc1a9546`
-- `COVERAGE_AND_QA.md` `b99d490a6912a92c7fa1fb50f6789ff75d3018491c79a610f69ecca3dc1ddfc0`
+- `COVERAGE_AND_QA.md` `ccc03c6317babc0ad7a25723de72c8cd1fdb95e73ea41d91029e3da17d8c1cfa`
 - `UNMAPPED_IMPLEMENTATION.csv` `be3af4989fb9fb6f06593122a2c715d25f1bc2fcf8838c48aa76ce872c18a833`
 - `COVERAGE_GAPS.csv` `8250a77a0968006bd80a4c87aa8b32f7d437c3f9f515ae6cc576f183c43bc5c4`
 - `CROSS_PACKAGE_FINDINGS.csv` `2aec4e02ae8c8fad1459213940ffb2be11f04b2cf015a88b21c92fd9f82c4113`

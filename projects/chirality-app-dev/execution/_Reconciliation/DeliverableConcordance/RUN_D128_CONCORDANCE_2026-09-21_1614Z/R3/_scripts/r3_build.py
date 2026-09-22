@@ -25,6 +25,7 @@ DECISION_ORDER = [
     ("DEC_ADD10.csv", "R3_RULE"),       # Addendum 10
     ("DEC_RUNWIDE.csv", "R3_RUNWIDE"),  # RUNWIDE_CALLS.md
     ("DEC_SPOTREVERT.csv", None),       # spot-check reverts (Source given per row)
+    ("DEC_OWNERCHECK.csv", "OWNER_CHECK"),  # Addendum 13 owner-check answers (R4 step 1)
 ]
 EXTRA = ["SealedDisposition", "SealedHumanDecisionNeeded", "RemapSources", "AltReading", "SourceLedger"]
 VOCAB_FIELDS = {"AuthorityTier", "LatestDecision", "Disposition", "CauseTag", "Confidence",
@@ -251,6 +252,8 @@ def main():
 
     write_csv(os.path.join(R3, "CLAIM_CONCORDANCE.csv"), HEADER + EXTRA, out["DEL"])
     write_csv(os.path.join(R3, "EXTENSION_CONCORDANCE.csv"), HEADER + EXTRA, out["EXT"])
+    # Stable partition: OWNER_CHECK lines last, so the R3 REMAP_LOG stays a byte-identical prefix (R4 step 1).
+    log = [l for l in log if l["Source"] != "OWNER_CHECK"] + [l for l in log if l["Source"] == "OWNER_CHECK"]
     write_csv(os.path.join(R3, "REMAP_LOG.csv"),
               ["ClaimKey", "Field", "SealedValue", "NewValue", "Source", "RuleOrEvidence"], log)
     write_csv(os.path.join(WORK, "SEALED_ROWS.csv"),

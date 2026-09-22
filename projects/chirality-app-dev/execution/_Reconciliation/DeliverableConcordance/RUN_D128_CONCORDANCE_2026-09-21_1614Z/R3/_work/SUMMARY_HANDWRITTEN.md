@@ -40,3 +40,5 @@ Some CORRECTIONS values are prose rather than a field value. For evidence cells,
 - **Call (g):** the RUN_BASIS §5 flags for D-APP-104, 107, 122 and 123 are stale, because their effects landed. This is recorded as a finding; RUN_BASIS belongs to HELP_HUMAN. D-APP-125 item 3 and D-APP-126 are retired by D-APP-127, not pending.
 - **Regex-built key lists:** XPF-020, -022, -048 and -050 list keys found by regex. They are candidates, not reviewed row by row.
 - **Validator scope:** `_scripts/validate_ledger.py` validates per-deliverable ledger files. It does not apply to the merged concordance, which has 5 extra columns. Its checks are covered in `COVERAGE_AND_QA.md`.
+
+**Owner check applied (R4 step 1).** The owner's answers (RUN_BASIS Addendum 13) were applied through `_work/DEC_OWNERCHECK.csv` (Source `OWNER_CHECK`, appended after all R3 lines in `REMAP_LOG.csv`). Two decided rows moved from `UNKNOWN`; every listed row carries an `OWNER_TESTIMONY`, `OWNER_BELIEF` or OC-08 note; `don't know` rows stay `UNKNOWN`. Row-by-row changes, noted rows for R4 attention and checks: `OWNER_CHECK_APPLIED.md`.

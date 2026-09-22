@@ -9,7 +9,7 @@ Built by `R3/_scripts/r3_qa.py` (deterministic). Inputs: `CLAIM_CONCORDANCE.csv`
 | Q3 capabilities claimed or listed as unmapped (with reach and state) | PASS | 468 capability rows: 361 claimed/partial by >=1 deliverable, 107 in UNMAPPED_IMPLEMENTATION.csv; unmapped without stated reach/state: 0 []; reverse IDs not in any capability file: 0 [] |
 | Q4 package summaries reproduce from the ledgers (sealed Disposition census) | PASS | 24 of 24 summaries reproduce |
 | Q5 no duplicate keys | PASS | ClaimKey duplicates 0 []; reverse (CapabilityID, DeliverableID) duplicates 0 [] |
-| Q6 REMAP_LOG reconciles the sealed census to the final census | PASS | 3568 rows replayed from sealed values through 1113 log lines; mismatches 0 [] |
+| Q6 REMAP_LOG reconciles the sealed census to the final census | PASS | 3568 rows replayed from sealed values through 1188 log lines; mismatches 0 [] |
 
 ## Q4 detail (per summary)
 
@@ -47,7 +47,7 @@ Method: for each package, every sealed Disposition count computed from the ledge
 | ALIGNED | 893 | 890 | -3 |
 | IMPLEMENTED_UNDOCUMENTED | 1 | 1 | +0 |
 | DOCUMENTED_UNIMPLEMENTED | 120 | 114 | -6 |
-| PARTIALLY_IMPLEMENTED | 445 | 439 | -6 |
+| PARTIALLY_IMPLEMENTED | 445 | 441 | -4 |
 | IMPLEMENTED_DIFFERENTLY | 216 | 207 | -9 |
 | STALE_SPECIFICATION | 1077 | 1089 | +12 |
 | STALE_ASSESSMENT | 8 | 8 | +0 |
@@ -58,7 +58,7 @@ Method: for each package, every sealed Disposition count computed from the ledge
 | REMAINING_STATE_MISMATCH | 128 | 116 | -12 |
 | DEFERRED_AGENT_WORKFLOW | 1 | 1 | +0 |
 | AUTHORITY_CONFLICT | 155 | 169 | +14 |
-| UNKNOWN | 10 | 25 | +15 |
+| UNKNOWN | 10 | 23 | +13 |
 | NOT_AUDITABLE | 385 | 385 | +0 |
 | **Total** | 3568 | 3568 | +0 |
 
