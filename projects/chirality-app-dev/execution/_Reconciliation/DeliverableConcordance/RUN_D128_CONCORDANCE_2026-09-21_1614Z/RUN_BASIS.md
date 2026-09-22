@@ -399,3 +399,11 @@ Application: a TASK applies these answers to `R3/CLAIM_CONCORDANCE.csv` and
 
 A "yes" confirms that an event happened. It does not by itself establish that the deliverable text
 is accurate. That judgement is still made against the claim.
+
+## Addendum 14: R4 complete; R5 opens with packet rulings (appended 2026-09-22)
+
+Owner direction `r4_gate_acceptance` (OWNER_DIRECTION.md, SHA-256 `e53bd5b3…5fe25`), recorded as
+D-APP-130. The owner accepts the R4 decision book (SHA-256 `3daab45c…`) and packets at main
+`1b63e075c` as the R5 basis. R4 is complete. R5 step 1 is the owner's packet rulings, which are
+transcribed into their own ruling record and merged before any repair. Nothing is repaired under
+D-APP-130.
