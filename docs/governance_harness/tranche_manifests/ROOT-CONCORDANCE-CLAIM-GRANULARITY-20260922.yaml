@@ -29,18 +29,16 @@ m2_gate:
   integration_owner: >-
     HELP_HUMAN (Agent 0, Fable 5.1) in session
     HELP-HUMAN-APP-20260921-CONCORDANCE; no delegation for this tranche
-  merge_gate: owner-merge
+  merge_gate: human-gated-pr
   self_merge: false
-  owner_direction:
-    directed_by: Ryan Tufts
-    direction_date: 2026-09-22
-    approved_source_sha: TBD
-    note: >-
-      The owner reviews and merges the pull request personally ("I'll review,
-      then merge and pause work."). The standing Git authorization of
-      2026-09-12 is not exercised for this merge. The approved_source_sha is
-      the revision the owner merges; the independent fresh-context review
-      return names the candidate revision it read.
+  merge_note: >-
+    The owner reviews and merges the pull request personally ("I'll review,
+    then merge and pause work."). The standing Git authorization of
+    2026-09-12 is not exercised for this merge, so no owner_direction block
+    with a pre-merge pin is recorded: the owner's merge is the pin. The
+    independent fresh-context review return
+    (projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/_run_records/REVIEW_RETURN_PR_A.md)
+    names the candidate revision it read.
 
 m6_notice:
   disposition: routed
