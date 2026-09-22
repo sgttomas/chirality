@@ -1,0 +1,31 @@
+Unit,Class,ClaimKey,CapabilityID,ErrataField,Reason
+DEL-00-01,a,DEL-00-01#CLM-018.2,,,a:LOW;self-flag
+DEL-00-01,n,DEL-00-01#CLM-001,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,n,DEL-00-01#CLM-002,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,n,DEL-00-01#CLM-003,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,n,DEL-00-01#CLM-006,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,n,DEL-00-01#CLM-007,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,n,DEL-00-01#REGISTER-1,,,n:30% of 19 other non-ALIGNED (n=6)
+DEL-00-01,b,DEL-00-01#CLM-005,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-008,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-009.2,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-009.3,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-012.2,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-014,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-01,b,DEL-00-01#CLM-026,,,b:15% of 21 ALIGNED not in a (n=4)
+DEL-00-02,a,DEL-00-02#CLM-011,,,a:LOW;self-flag
+DEL-00-02,a,DEL-00-02#CLM-014.2,,,a:LOW;self-flag;UNKNOWN
+DEL-00-02,a,DEL-00-02#CLM-021.2,,,a:LOW;self-flag
+DEL-00-02,n,DEL-00-02#CLM-001,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-003,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-005,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-007,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-008,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-009,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#CLM-022,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#REGISTER-2,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,n,DEL-00-02#REGISTER-3,,,n:30% of 29 other non-ALIGNED (n=9)
+DEL-00-02,b,DEL-00-02#CLM-010.4,,,b:15% of 17 ALIGNED not in a (n=3)
+DEL-00-02,b,DEL-00-02#CLM-010.5,,,b:15% of 17 ALIGNED not in a (n=3)
+DEL-00-02,b,DEL-00-02#CLM-010.6,,,b:15% of 17 ALIGNED not in a (n=3)
+#END

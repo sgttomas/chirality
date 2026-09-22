@@ -1,0 +1,366 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-015,PARTIAL,DEL-01-01#STATE-1,Packaged boundary excludes legacy Claude SDK/Pi packages: packaged evidence that Claude is not a current path
+CAP-BUILD-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-024,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-025,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-031,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-BUILD-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-003,PARTIAL,DEL-01-01#CLM-005,"Runtime service child configured with runtimeDirectory under userData, which locates the canonical session store"
+CAP-ELECTRON-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-024,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-025,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-031,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ELECTRON-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-024,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-025,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-027,PARTIAL,DEL-01-01#CLM-004.4,"Configured-key redaction (live, but no key source populated): part of the redaction boundary"
+CAP-HARNESS-028,PARTIAL,DEL-01-01#STATE-1,"In-process provider selection with Claude/agentSdk key-aware default (DIRECTIVE §2.8 path); LEGACY_ONLY, DISABLED"
+CAP-HARNESS-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-031,PARTIAL,DEL-01-01#STATE-1,Claude Agent SDK engine adapter that _CONTEXT.md calls current; LEGACY_ONLY
+CAP-HARNESS-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-033,PARTIAL,DEL-01-01#STATE-1,Direct Anthropic engine; LEGACY_ONLY
+CAP-HARNESS-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-037,PARTIAL,DEL-01-01#CLM-005,Legacy file-backed session store (project-local); LEGACY_ONLY
+CAP-HARNESS-038,PARTIAL,DEL-01-01#CLM-005,Legacy per-session .chirality events.jsonl log the SoW still calls canonical; LEGACY_ONLY
+CAP-HARNESS-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-042,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-043,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-044,PARTIAL,DEL-01-01#CLM-004.4,Chirality human permission broker: legacy-only permission boundary (R4-Q1)
+CAP-HARNESS-045,PARTIAL,DEL-01-01#CLM-004.4,Chirality path containment policy: reliance boundary met only on the legacy path (R4-Q1)
+CAP-HARNESS-046,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-047,PARTIAL,DEL-01-01#CLM-004.4,Chirality hooks failing closed: reliance boundary met only on the legacy path (R4-Q1)
+CAP-HARNESS-048,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-049,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-050,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-051,PARTIAL,DEL-01-01#CLM-004.1,"Legacy MCP status_transition tool (self-supplied actor, R4-Q3); LEGACY_ONLY"
+CAP-HARNESS-052,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-053,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-054,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-055,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-056,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-057,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-058,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-059,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-HARNESS-060,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-024,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-025,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-031,PARTIAL,DEL-01-01#CLM-004.5,Lifecycle read from _STATUS.md
+CAP-ROUTES-032,PARTIAL,DEL-01-01#CLM-004.1,Transition route enforces actor HUMAN + approvalSha for CHECKING/ISSUED (governance human-gate invariant restated by DEL-01-01); route contract itself owned elsewhere
+CAP-ROUTES-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-042,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-043,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-ROUTES-044,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-019,PARTIAL,DEL-01-01#CLM-004.4,Live permission mode mapped to Codex approval policy/sandbox: the provider-side enforcement the reliance row weighs against K-RELIANCE-2
+CAP-RTCONTRACT-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-022,PARTIAL,DEL-01-01#CLM-009.7,HarnessEvent vocabulary/envelope: Chirality-owned public event contract that REQ-007 requires stay non-provider-shaped
+CAP-RTCONTRACT-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-024,PARTIAL,DEL-01-01#CLM-009.7,Canonical v2 event wire validation; part of the product-owned event contract under REQ-007
+CAP-RTCONTRACT-025,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-031,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-042,PARTIAL,DEL-01-01#CLM-004.4,Claude SDK tool descriptor/permission registry: legacy tool-surface boundary (R4-Q1)
+CAP-RTCONTRACT-043,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-044,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-045,PARTIAL,DEL-01-01#STATE-1,Legacy Claude SDK version pins; LEGACY_ONLY
+CAP-RTCONTRACT-046,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-047,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-048,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-049,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-050,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-051,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-052,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCONTRACT-053,PARTIAL,DEL-01-01#STATE-1,Claude engine adapter descriptor; LEGACY_ONLY
+CAP-RTCORE-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-004,PARTIAL,DEL-01-01#STATE-1,Stock Codex app-server host: the live sole engine that contradicts _CONTEXT.md
+CAP-RTCORE-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-015,PARTIAL,DEL-01-01#CLM-005,"Live session records under the userData Runtime store (canonical per K-EVENT-4), contradicting the SoW project-local canonical path"
+CAP-RTCORE-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-017,PARTIAL,DEL-01-01#CLM-004.3,"Live event journal/replay: runtime events recorded for audit and replay, no approval effect"
+CAP-RTCORE-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-024,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-025,PARTIAL,DEL-01-01#CLM-009.7,Delegated Codex engine adapter projecting upstream method/params into HarnessEvents (R4-Q5)
+CAP-RTCORE-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-029,PARTIAL,DEL-01-01#CLM-009.7,Codex notifications forwarded unchanged into turn progress: the provider-shaped event representation at the centre of the REQ-007 authority conflict (R4-Q5)
+CAP-RTCORE-030,PARTIAL,DEL-01-01#CLM-004.4,Live Codex approval requests answered through Chirality: partial Chirality-verified permission surface
+CAP-RTCORE-031,PARTIAL,DEL-01-01#CLM-004.4,Live permission decision route forwarding to Codex approvals: partial permission boundary
+CAP-RTCORE-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-042,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-043,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-044,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-045,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-046,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-047,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-048,PARTIAL,DEL-01-01#STATE-1,Compatibility session policy selecting claude-agent-sdk; LEGACY_ONLY
+CAP-RTCORE-049,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-RTCORE-050,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-017,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-020,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-022,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-024,PARTIAL,DEL-01-01#CLM-004.5,_STATUS.md parsing makes _STATUS.md the canonical lifecycle source (lifecycle condition)
+CAP-SETTINGS-025,PARTIAL,DEL-01-01#CLM-009.9,Transition rules implement SPEC §4 lifecycle (REQ-009); module contract owned by the lifecycle deliverable
+CAP-SETTINGS-026,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-031,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-032,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-034,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-040,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-041,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-SETTINGS-042,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-001,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-002,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-003,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-004,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-005,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-006,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-007,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-008,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-009,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-010,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-011,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-012,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-013,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-014,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-015,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-016,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-017,PARTIAL,DEL-01-01#CLM-009.8,Surfaces _REFERENCES.md hash warnings: source-warning support for REQ-008
+CAP-WORKSPACE-018,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-019,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-020,PARTIAL,DEL-01-01#CLM-004.5,Lifecycle read from _STATUS.md
+CAP-WORKSPACE-021,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-022,PARTIAL,DEL-01-01#CLM-004.1,"Same human-gate enforcement at the working-root transition write; DEL-01-01 owns the invariant, not the route"
+CAP-WORKSPACE-023,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-024,PARTIAL,DEL-01-01#CLM-009.10,Dependency register write checks satisfaction transitions: supports REQ-010 not silently satisfying rows; register contract owned elsewhere
+CAP-WORKSPACE-025,PARTIAL,DEL-01-01#CLM-004.1,Client mirror of human-gate transition API; DISABLED (retired-unmounted consumers)
+CAP-WORKSPACE-026,PARTIAL,DEL-01-01#CLM-004.1,Client presentation of approvalSha requirement for CHECKING/ISSUED; DISABLED
+CAP-WORKSPACE-027,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-028,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-029,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-030,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-031,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-032,PARTIAL,DEL-01-01#CLM-004.1,"Pipeline transition form; DISABLED, retired-unmounted"
+CAP-WORKSPACE-033,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-034,PARTIAL,DEL-01-01#CLM-004.1,"Workbench transition form; DISABLED, retired-unmounted (sealed CLM-004.1 wrongly tagged it LIVE; see errata)"
+CAP-WORKSPACE-035,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-036,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-037,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-038,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+CAP-WORKSPACE-039,NOT_MINE,,Outside DEL-01-01 governance-alignment scope (runtime/UI/build mechanics owned by other deliverables); no DEL-01-01 claim restates it
+#END

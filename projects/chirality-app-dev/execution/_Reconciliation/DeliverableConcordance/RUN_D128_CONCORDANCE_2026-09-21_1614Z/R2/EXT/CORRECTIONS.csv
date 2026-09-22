@@ -1,0 +1,7 @@
+ClaimKey,Field,SealedValue,CorrectedValue,VerifierShard,Evidence
+DOC:RELIANCE#12,AuthorityTier,NOT_APPLICABLE,GOVERNANCE_INVARIANT,DOC4,projects/chirality-app-dev/docs/harness/reliance_boundary_register.md:171
+DOC:RELIANCE#4.7,PostReleaseBasis,NO,YES,DOC4,projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts:219
+DOC:VALSTRAT#4.10,AuthorityTier,LOCAL_DESIGN,NOT_APPLICABLE,DOC4,projects/chirality-app-dev/docs/VALIDATION_STRATEGY.md:55; projects/chirality-app-dev/frontend/scripts/scan-secret-evidence.mjs:212
+DOC:VALSTRAT#4.11,AuthorityTier,LOCAL_DESIGN,NOT_APPLICABLE,DOC4,projects/chirality-app-dev/docs/VALIDATION_STRATEGY.md:56; projects/chirality-app-dev/frontend/scripts/run-network-policy-proof.mjs:20; projects/chirality-app-dev/frontend/electron/main.ts:133
+SOW:SOW-045.2,LatestDecision,D-APP-127,D-APP-127 (context),SOW,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md:181
+#END

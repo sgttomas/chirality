@@ -105,6 +105,62 @@ SHA-256: `9957d09c21ebc6cad181d56bc43cbd9bde18999c98bd708a416c29fcd3705b7f`
 
 Context for `ruling_r0_gate_governance_items`: the owner's selection in a structured question from HELP_HUMAN, "Which governance items join the scope extension alongside items 3-7?", with the options "1a and 1b+2 (Recommended)", "1a only" and "Neither".
 
+## r2_rerun_rule
+
+> Yes, apply that from wave 2 and give the instructions to the current workers too.
+
+SHA-256: `1d76a2731c7288920e91e984b1ad1e3b6dc08cfbc50d7baa33660bb77480225f`
+
+Context for `r2_rerun_rule`: the owner's answer to HELP_HUMAN's wave 1 status proposal (2026-09-21 ~19:50Z) to keep the >10% fresh-worker rerun threshold for verdict errors only, and to record verifier refutations of other fields as corrections, not reruns, with every refuted row still reported for R3. Applied as RUN_BASIS Addendum 3.
+
+## r2_tiebreak_q4
+
+> Yes, write the tie-break wording and add R4-Q4
+
+SHA-256: `264bea63de073570aa8b9c51b836016dbc6d28be0c0a086260e271aafe46a3bd`
+
+Context for `r2_tiebreak_q4`: the owner's answer to HELP_HUMAN's report on PKG-06 and PKG-08 (2026-09-21 ~20:05Z). It asks for (1) draft wording of a STALE_SPECIFICATION / REMAINING_STATE_MISMATCH tie-break rule, to be approved by the owner before adoption, and (2) adds the PKG-08 candidate question as named question R4-Q4 (applied as RUN_BASIS Addendum 4).
+
+## r2_tiebreak_adopt
+
+> Approved, adopt it and launch PKG-05.  Allow both claims to stand for those 2 instances outside the rule and I'll make a determination later when I can pay closer attention to the surrounding context.
+
+SHA-256: `97b37a0e13a635793a63bb551d330177796eff7261ce73fce9a18f435d56a370`
+
+Context for `r2_tiebreak_adopt`: approves the tie-break wording HELP_HUMAN drafted under `r2_tiebreak_q4` (applied as RUN_BASIS Addendum 5 and CONVENTIONS §2.6). "Those 2 instances" are the DEL-06-02 double-blind keys where the workers split between IMPLEMENTED_DIFFERENTLY and STALE_SPECIFICATION (CLM-005, CLM-032).
+
+## r2_r4q1_subject_test
+
+> Approved, adopt it and send it to the running managers
+
+SHA-256: `75a027b0140020bb7a6a8c8339b1e9c63c5bb33c625dcb6ec833ff6e959978a0`
+
+Context for `r2_r4q1_subject_test`: approves, as drafted, the legacy-versus-live subject test for R4-Q1 that HELP_HUMAN wrote at the owner's request ("Yes, draft the R4-Q1 subject test."), after PKG-04's DEL-04-03 attempts disagreed on R4-Q1 rows (20, 4, 1). Applied as RUN_BASIS Addendum 6 and CONVENTIONS §2.4.
+
+## r2_r4q5
+
+> Yes, add R4-Q5 and send it to the running managers
+
+SHA-256: `fb0fbf2fe681c9820cf76a594289121acde36ea501a42afac5d4ae215461a83b`
+
+Context for `r2_r4q5`: approves HELP_HUMAN's recommendation, after PKG-03 returned, to add named question R4-Q5 on the Codex event-payload conflict (15 AUTHORITY_CONFLICT rows in PKG-03; also seen in R0 and PKG-06). Applied as RUN_BASIS Addendum 7.
+
+## r2_r4q6_answer
+
+> D-GOV-43 superseded the governance files for the very purpose of publishing this Codex-hosted App first, and in the future local-model hosting, and API after that or no sooner at least.
+
+SHA-256: `9ebeaaa187e2a15851b454fb217838d09cf1e97d2f5a54a6bcc8923897127430`
+
+Context for `r2_r4q6_answer`: the owner's reply to HELP_HUMAN's proposed R4-Q6 (whether the unamended App DIRECTIVE §2.8, §2.10, §4.1, §4.2 and K-PERM-1/6 still bind the Codex-hosted App, or D-GOV-43 superseded them). HELP_HUMAN reads it as (1) adding R4-Q6 and (2) the owner's answer to it: superseded. The owner also gave a sequence: the Codex-hosted App first, local-model hosting later, and an API-hosted path no sooner than after that. This transcribes direction; it is not a register ruling. Applied as RUN_BASIS Addendum 9.
+
+## r2_absence_not_evidence
+
+> yeah notarization was done for `v3.0.1` as it was for `v3.0.0` , we can address that when it comes up.  But a lack of evidence is not evidence of lack.  Check with me first about what I did and didn't see happen.
+
+SHA-256: `344ed714809e8c59291634bac0196b5a770df60ea52ed265ef2d68d66c38fc50`
+
+Context for `r2_absence_not_evidence`: the owner's reply to HELP_HUMAN's report of the EXT audit. That report relayed EXT findings that release steps including "v3.0.1 notarization" never ran, based on the absence of records within the evidence roots. The owner states that v3.0.1 was notarized, as v3.0.0 was, and directs that absence of a record not be taken as absence of the event: HELP_HUMAN is to check with the owner about what the owner did and did not see happen. Applied as RUN_BASIS Addendum 10.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

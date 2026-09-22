@@ -1,0 +1,16 @@
+Shard,Ledger,Class,ClaimKey,ErrataField,Reason
+DEC,DEC,a,DEC:D-APP-92,,a:self-flag
+DEC,DEC,a,DEC:D-APP-94,,a:self-flag
+DEC,DEC,a,DEC:D-APP-96,,a:self-flag
+DEC,DEC,a,DEC:D-APP-112.2,,a:LOW;self-flag
+DEC,DEC,a,DEC:D-APP-125.1,,a:LOW;self-flag
+DEC,DEC,a,DEC:REGISTER-5,,a:LOW;self-flag
+DEC,DEC,b,DEC:D-APP-100,,b:30% of 15 other non-ALIGNED (n=5)
+DEC,DEC,b,DEC:D-APP-101,,b:30% of 15 other non-ALIGNED (n=5)
+DEC,DEC,b,DEC:D-APP-104,,b:30% of 15 other non-ALIGNED (n=5)
+DEC,DEC,b,DEC:D-APP-107,,b:30% of 15 other non-ALIGNED (n=5)
+DEC,DEC,b,DEC:D-APP-114.2,,b:30% of 15 other non-ALIGNED (n=5)
+DEC,DEC,c,DEC:D-APP-102,,c:15% of 25 ALIGNED (n=4)
+DEC,DEC,c,DEC:D-APP-120,,c:15% of 25 ALIGNED (n=4)
+DEC,DEC,c,DEC:D-APP-93,,c:15% of 25 ALIGNED (n=4)
+DEC,DEC,c,DEC:D-APP-95,,c:15% of 25 ALIGNED (n=4)

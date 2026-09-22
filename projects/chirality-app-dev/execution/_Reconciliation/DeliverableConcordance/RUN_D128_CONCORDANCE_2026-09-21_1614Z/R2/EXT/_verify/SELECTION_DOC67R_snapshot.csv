@@ -1,0 +1,9 @@
+Shard,Ledger,Class,ClaimKey,ErrataField,Reason
+DOC67R,DOC-ADDING_A_TOOL,b,DOC:ADDING_A_TOOL#0,,b:30% of 6 other non-ALIGNED (n=2)
+DOC67R,DOC-ADDING_A_TOOL,b,DOC:ADDING_A_TOOL#1,,b:30% of 6 other non-ALIGNED (n=2)
+DOC67R,DOC-ADDING_A_TOOL,c,DOC:ADDING_A_TOOL#2,,c:15% of 2 ALIGNED (n=1)
+DOC67R,DOC-ADDING_A_TOOL,r,DOC:ADDING_A_TOOL#3,,"r:rerun ledger, full check"
+DOC67R,DOC-ADDING_A_TOOL,r,DOC:ADDING_A_TOOL#4,,"r:rerun ledger, full check"
+DOC67R,DOC-ADDING_A_TOOL,r,DOC:ADDING_A_TOOL#5,,"r:rerun ledger, full check"
+DOC67R,DOC-ADDING_A_TOOL,r,DOC:ADDING_A_TOOL#6,,"r:rerun ledger, full check"
+DOC67R,DOC-ADDING_A_TOOL,r,DOC:ADDING_A_TOOL#7,,"r:rerun ledger, full check"

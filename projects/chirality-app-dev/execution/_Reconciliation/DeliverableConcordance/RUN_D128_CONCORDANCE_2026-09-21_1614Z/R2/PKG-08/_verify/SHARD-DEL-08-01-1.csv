@@ -1,0 +1,27 @@
+Unit,Class,ClaimKey,CapabilityID,ErrataField,Reason
+DEL-08-01,a,DEL-08-01#CLM-009.9,,,LOW;self-flag
+DEL-08-01,a,DEL-08-01#CLM-009.12,,,errata
+DEL-08-01,a,DEL-08-01#CLM-009.14,,,LOW;self-flag;errata
+DEL-08-01,a,DEL-08-01#REM-1,,,LOW;self-flag;REMAINING_WORK
+DEL-08-01,a30,DEL-08-01#CLM-001,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-002,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-003,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-004,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-005.1,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-005.4,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-006,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-007,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-009.11,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-009.3,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-009.7,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-011,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,a30,DEL-08-01#CLM-016,,,30% of 42 other non-ALIGNED (n=13)
+DEL-08-01,b,DEL-08-01#CLM-008,,,15% of 8 unselected ALIGNED (n=2)
+DEL-08-01,b,DEL-08-01#CLM-009.6,,,15% of 8 unselected ALIGNED (n=2)
+DEL-08-01,e,DEL-08-01#CLM-009.12,,ImplementationEvidence,errata row
+DEL-08-01,e,DEL-08-01#CLM-009.14,,ImplementationEvidence,errata row
+DEL-08-01,c,DEL-08-01#CLM-009.3,CAP-BUILD-006,,PARTIAL 20% of 16 (n=4)
+DEL-08-01,c,DEL-08-01#CLM-005.2,CAP-BUILD-007,,CLAIMED_BY 20% of 16 (n=4)
+DEL-08-01,c,DEL-08-01#CLM-005.2,CAP-BUILD-013,,PARTIAL 20% of 16 (n=4)
+DEL-08-01,c,DEL-08-01#CLM-009.12,CAP-HARNESS-058,,PARTIAL 20% of 16 (n=4)
+#END

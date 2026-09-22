@@ -1,0 +1,227 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-002,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-003,PARTIAL,DEL-09-04#REM-1,Runtime service/CLI bundles are packaged as runtime-service/runtime-cli resources under the V3-01 packaging item; bundle production itself belongs to the build chain
+CAP-BUILD-004,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-005,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-006,CLAIMED_BY,DEL-09-04#CLM-003.5,Staging of the packaged instruction root is the K-PACKAGE-1 resource requirement
+CAP-BUILD-007,CLAIMED_BY,DEL-09-04#CLM-009.5,Integrity verification writing summary.json with pass or enumerated blockers (REQ-005)
+CAP-BUILD-008,CLAIMED_BY,DEL-09-04#CLM-003.2,desktop:dist/desktop:pack orchestration is the packaging command
+CAP-BUILD-009,PARTIAL,DEL-09-04#CLM-003.1,mac dmg arm64 target and minimumSystemVersion are the release target; appId/files composition is shared build config
+CAP-BUILD-010,PARTIAL,DEL-09-04#CLM-023.2,asar with onlyLoadAppFromAsar bears on SDK/Codex executable access; fuse hardening as security is owned elsewhere
+CAP-BUILD-011,CLAIMED_BY,DEL-09-04#REM-1,Packaging the lockfile-pinned stock Codex tree into the DMG is DEL-09-04-V3-01
+CAP-BUILD-012,CLAIMED_BY,DEL-09-04#CLM-003.6,Packaged codex --version against the pin is the package-layout executability check
+CAP-BUILD-013,CLAIMED_BY,DEL-09-04#CLM-009.7,afterPack fails on missing required resources and non-executable Codex binaries
+CAP-BUILD-014,PARTIAL,DEL-09-04#REM-1,R18 frozen Electron supply posture is a named V3-01 dependency
+CAP-BUILD-015,PARTIAL,DEL-09-04#CLM-003.6,verifyPackagedCodexTree is part of the executability evidence; the wider dependency boundary is not a DEL-09-04 claim
+CAP-BUILD-016,CLAIMED_BY,DEL-09-04#CLM-003.1,Signing posture of the release target; signing DISABLED_BY_DEFAULT matches the ledger tag
+CAP-BUILD-017,PARTIAL,DEL-09-04#CLM-011.6,Post-sign codesign verification is the signing-posture evidence item; runs only inside the sign hook
+CAP-BUILD-018,CLAIMED_BY,DEL-09-04#SEC-1,"Version-identity paragraph: package.json, both lock root versions, DMG name and Info.plist"
+CAP-BUILD-019,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-020,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-021,PARTIAL,DEL-09-04#CLM-004.1,Node engine floor >=22.19.0 vs the SoW Node >=20 prerequisite; other pins not DEL-09-04 claims
+CAP-BUILD-022,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-023,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-024,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-025,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-026,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-027,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-028,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-029,PARTIAL,DEL-09-04#CLM-004.4,"Network-policy proof is the historical packaged-network guardrail check; Anthropic-oriented, not an A2 Codex proof"
+CAP-BUILD-030,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-031,PARTIAL,DEL-09-04#CLM-009.8,Legacy Claude SDK package-layout probe that REQ-008 historically named; does not meet the Codex reading
+CAP-BUILD-032,PARTIAL,DEL-09-04#CLM-009.11,D-APP-18 live packaged agentSdk proof on the desktop:pack layout (compatibility history)
+CAP-BUILD-033,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-034,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-035,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-036,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-037,CLAIMED_BY,DEL-09-04#REM-2,build/icon.icns regeneration is DEL-09-04-V3-02
+CAP-BUILD-038,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-039,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-040,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-BUILD-041,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-001,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-002,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-003,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-004,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-005,PARTIAL,DEL-09-04#CLM-003.6,Packaged Contents/Resources/codex path and pin handed to the Runtime service; resolution itself is Electron-owned
+CAP-ELECTRON-006,PARTIAL,DEL-09-04#STATE-54,D-APP-127 replacement of the packaged-daemon instruction root: service receives Resources/instruction-root
+CAP-ELECTRON-007,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-008,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-009,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-010,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-011,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-012,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-013,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-014,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-015,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-016,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-017,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-018,PARTIAL,DEL-09-04#CLM-004.4,Renderer egress allowlist is one of the packaged network guardrails the SoW cites; owned by the security deliverable
+CAP-ELECTRON-019,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-020,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-021,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-022,PARTIAL,DEL-09-04#CLM-016,Procedure step 9 requires the working-root selector to be available in the packaged app
+CAP-ELECTRON-023,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-024,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-025,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-026,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-027,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-028,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-029,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-030,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-031,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-032,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-033,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-034,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-ELECTRON-035,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-001,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-002,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-003,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-004,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-005,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-006,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-007,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-008,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-009,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-010,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-011,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-012,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-013,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-014,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-015,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-016,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-017,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-018,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-019,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-020,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-021,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-022,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-023,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-024,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-025,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-026,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-027,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-028,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-029,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-030,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-031,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-032,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-033,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-034,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-035,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-036,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-037,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-038,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-039,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-040,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-041,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-042,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-043,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-044,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-045,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-046,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-047,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-048,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-049,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-050,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-051,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-052,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-053,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-054,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-055,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-056,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-057,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-058,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-059,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-HARNESS-060,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-001,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-002,PARTIAL,DEL-09-04#CLM-009.8,Service-side pinned codex --version gate at startup is the live Runtime execution of the packaged Codex; no packaged run record
+CAP-RTCORE-003,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-004,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-005,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-006,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-007,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-008,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-009,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-010,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-011,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-012,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-013,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-014,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-015,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-016,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-017,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-018,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-019,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-020,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-021,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-022,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-023,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-024,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-025,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-026,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-027,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-028,PARTIAL,DEL-09-04#CLM-004.4,sandboxPolicy networkAccess mapping at turn/start is the live Codex network guardrail
+CAP-RTCORE-029,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-030,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-031,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-032,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-033,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-034,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-035,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-036,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-037,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-038,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-039,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-040,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-041,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-042,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-043,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-044,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-045,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-046,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-047,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-048,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-049,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-RTCORE-050,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-001,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-002,PARTIAL,DEL-09-04#CLM-016,Procedure step 9 packaged working-root selector check
+CAP-WORKSPACE-003,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-004,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-005,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-006,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-007,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-008,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-009,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-010,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-011,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-012,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-013,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-014,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-015,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-016,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-017,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-018,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-019,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-020,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-021,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-022,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-023,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-024,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-025,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-026,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-027,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-028,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-029,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-030,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-031,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-032,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-033,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-034,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-035,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-036,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-037,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-038,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+CAP-WORKSPACE-039,NOT_MINE,,No DEL-09-04 claim covers this behaviour
+#END

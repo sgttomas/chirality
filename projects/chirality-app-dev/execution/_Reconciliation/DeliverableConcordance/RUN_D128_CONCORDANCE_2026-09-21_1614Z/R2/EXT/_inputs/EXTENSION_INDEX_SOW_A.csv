@@ -1,0 +1,44 @@
+UnitKey,Item,SourcePath,SourceLine,Label
+SOW:SOW-001,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,404,"IN: Dialogue-centred shell: invariant centre dialogue, left chat navigator, one-view-at-a-time right panel, no header row."
+SOW:SOW-002,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,405,IN: Per-chat working-folder selection and validation with an app-scoped known-folder set.
+SOW:SOW-003,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,406,IN: File tree and scope scans.
+SOW:SOW-004,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,407,"IN: Resizable left/centre/right/strip layout with per-view right-panel widths, expand state, and non-authoritative local UI state."
+SOW:SOW-005,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,408,"IN: Semantic persona/agent/session routing, guarded dialogue selection, and legacy route/query/alias/matrix compatibility."
+SOW:SOW-006,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,409,"IN: Active dialogue/persona plus right-panel Who is working and read-only Session views over canonical hierarchy and selected-session replay, and Agent 0/1/2 ro"
+SOW:SOW-007,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,410,IN: Presentation-neutral DECOMP/PREP/TASK/AUDIT dispatch lane semantics without an active-shell mount.
+SOW:SOW-008,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,411,"IN: Toolkit, drafts, explicit next-turn context references, artifact anchors, chat annotations, known folders, chat rung and declined triggers, and dialogue wor"
+SOW:SOW-009,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,412,IN: App-client session CRUD through the sole daemon.
+SOW:SOW-010,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,413,"IN: App-client session boot-request binding, including per-chat delegation policy, and daemon-session conformance."
+SOW:SOW-011,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,414,IN: App-client SSE turn proxy and daemon lock conformance.
+SOW:SOW-012,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,415,IN: App-client interrupt/cancel/failure forwarding and daemon cleanup conformance.
+SOW:SOW-013,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,416,IN: Typed runtime errors.
+SOW:SOW-014,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,417,IN: App accepted-input submission and daemon pre-execution record conformance.
+SOW:SOW-015,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,418,IN: App terminal-outcome presentation and durable daemon-record conformance.
+SOW:SOW-016,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,419,IN: App option compatibility with deterministic Root-runtime fallback.
+SOW:SOW-017,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,420,IN: Persona resolution and prompt composition.
+SOW:SOW-018,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,421,IN: App packaged-daemon/client compatibility with the Root-runtime first adapter.
+SOW:SOW-019,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,422,IN: App credential UI and packaged-daemon single-owner safeStorage conformance.
+SOW:SOW-020,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,423,IN: App packaged-daemon/client conformance to ruled provider/network boundaries.
+SOW:SOW-021,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,424,IN: App typed provider-error presentation and Root-runtime redaction conformance.
+SOW:SOW-022,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,425,IN: Attachment resolver validation.
+SOW:SOW-023,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,426,IN: Attachment UI and recovery.
+SOW:SOW-024,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,427,IN: Execution-root scaffolding.
+SOW:SOW-025,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,428,IN: Package/deliverable layout.
+SOW:SOW-026,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,429,IN: Metadata files and document kit.
+SOW:SOW-027,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,430,IN: Path containment and instruction-root protection.
+SOW:SOW-028,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,431,IN: Status lifecycle and approval SHA.
+SOW:SOW-029,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,432,IN: Dependencies CSV v3.1.
+SOW:SOW-030,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,433,IN: Instruction-root resources.
+SOW:SOW-031,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,434,IN: Agent instruction metadata conformance.
+SOW:SOW-032,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,435,IN: Deterministic tools/scripts indexed.
+SOW:SOW-033,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,436,IN: Immutable snapshots.
+SOW:SOW-034,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,437,IN: CHANGE/publication SHA checks.
+SOW:SOW-035,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,438,IN: Required local checks.
+SOW:SOW-036,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,439,IN: Section 8/9 validation.
+SOW:SOW-037,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,440,IN: App-client conformance to Root-owned generic runtime contracts.
+SOW:SOW-038,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,441,IN: Thin daemon-client `/api/harness/turn` proxy.
+SOW:SOW-039,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,442,IN: App consumption and conformance for append-only daemon HarnessEvent JSONL.
+SOW:SOW-040,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,443,IN: UIEvent and HarnessEvent separation.
+SOW:SOW-041,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,444,IN: App source/presentation redaction and Root-runtime redaction conformance.
+SOW:SOW-042,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,445,IN: Runtime replay.
+#END

@@ -73,8 +73,14 @@
    - Write `<RUN>/R2/<PKG-ID>/VERIFICATION.md`, containing: the structural result, a
      recheck table per deliverable, every REFUTED and CONTESTED item with its evidence,
      and patterns.
-   - A ledger with any structural failure, or with more than 10% REFUTED among checked
-     rows, is rerun by a fresh worker. Keep the original and record why it was rerun.
+   - A ledger with any structural failure, or with more than 10% of checked distinct rows
+     REFUTED on a verdict field (`Disposition`, or a reverse `Response`), is rerun by a fresh
+     worker. Keep the original and record why it was rerun. (RUN_BASIS Addendum 3.)
+   - Refutations on any other field do not trigger a rerun. Record them by script from the
+     verifier shards in `<RUN>/R2/<PKG-ID>/CORRECTIONS.csv`
+     (`ClaimKey,Field,SealedValue,CorrectedValue,VerifierShard,Evidence`). Never edit the
+     sealed ledger. They still appear in VERIFICATION.md, and the package summary shows the
+     corrected figures next to the sealed ones.
 8. **Package summary.** Produce `<RUN>/R2/<PKG-ID>/PACKAGE_SUMMARY.md` **by script**
    from the accepted ledgers. It covers:
    - censuses by ClaimType, Disposition, CauseTag, AuthorityTier and REACH;

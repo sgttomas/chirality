@@ -1,0 +1,327 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-002,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-003,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-004,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-005,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-006,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-007,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-008,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-009,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-010,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-011,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-012,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-013,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-014,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-015,NOT_MINE,,"Packaged dependency boundary is PKG-09; it excludes the legacy Claude SDK from bundles, supporting the forward STALE rows."
+CAP-BUILD-016,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-017,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-018,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-019,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-020,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-021,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-022,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-023,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-024,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-025,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-026,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-027,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-028,PARTIAL,DEL-04-05#CLM-009.2,Secret-evidence scan for Anthropic-style keys and URL credentials supports RQ-002 negative proof; scanner ownership is DEL-05-03/DEL-09-06. REACH=TEST_ONLY.
+CAP-BUILD-029,PARTIAL,DEL-04-05#CLM-009.8,Network egress proof is the RQ-008/009 evidence script cited by INSP-03; stale Anthropic-only allowlist posture. REACH=TEST_ONLY.
+CAP-BUILD-030,NOT_MINE,,Packaged security proof is DEL-09-06.
+CAP-BUILD-031,NOT_MINE,,Packaged Claude SDK proof is DEL-04-01 first-adapter probe scope.
+CAP-BUILD-032,NOT_MINE,,Live packaged SDK proof is DEL-04-01 scope.
+CAP-BUILD-033,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-034,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-035,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-036,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-037,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-038,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-039,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-040,NOT_MINE,,"Build/packaging/proof tooling owned by PKG-09 or other PKG-04 deliverables; no DEL-04-05 key, base-URL or network-bridge behavior."
+CAP-BUILD-041,NOT_MINE,,Live Agent SDK error-shape probe is DEL-04-01 (DEP-04-05-007 consumes it).
+CAP-ELECTRON-001,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-002,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-003,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-004,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-005,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-006,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-007,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-008,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-009,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-010,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-011,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-012,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-013,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-014,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-015,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-016,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-017,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-018,CLAIMED_BY,DEL-04-05#CLM-009.8,"Renderer egress allowlist is RQ-008 (REACH=LIVE, STATE=ENABLED); allowlist still names api.anthropic.com, noted in CLM-009.8."
+CAP-ELECTRON-019,PARTIAL,DEL-04-05#CLM-009.8,Network-policy probe is the proof instrumentation for RQ-008; renderer security probe belongs to DEL-09-06. STATE=DISABLED by default.
+CAP-ELECTRON-020,NOT_MINE,,IPC sender authorization is DEL-09-06-V3-01.
+CAP-ELECTRON-021,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-022,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-023,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-024,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-025,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-026,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-027,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-028,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-029,NOT_MINE,,Update checker is PKG-09 release scope; cited by CLM-009.9/CLM-029 only as evidence of the live network scope.
+CAP-ELECTRON-030,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-031,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-ELECTRON-032,CLAIMED_BY,DEL-04-05#CLM-009.4,"Credential status projection (ui|env|none, no key echo) is RQ-004; sender authorization is DEL-09-06-V3-01. STATE=DISABLED behind the daemon stub, as STATE-3 records."
+CAP-ELECTRON-033,PARTIAL,DEL-04-05#CLM-009.4,"Legacy Anthropic-only channels share the RQ-004 status projection; duplicate surface, STATE=DISABLED."
+CAP-ELECTRON-034,CLAIMED_BY,DEL-04-05#CLM-009.3,"safeStorage store at userData/credentials (RQ-003) with V3-01 typed states; symbol-level REACH=TEST_ONLY, STATE=DISABLED (see errata)."
+CAP-ELECTRON-035,NOT_MINE,,"Electron shell capability owned by PKG-02/PKG-03/PKG-09 deliverables; not the provider key, base URL or network bridge."
+CAP-HARNESS-001,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-002,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-003,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-004,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-005,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-006,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-007,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-008,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-009,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-010,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-011,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-012,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-013,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-014,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-015,NOT_MINE,,Error-category presentation is DEL-02-05 typed runtime errors.
+CAP-HARNESS-016,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-017,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-018,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-019,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-020,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-021,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-022,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-023,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-024,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-025,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-026,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-027,PARTIAL,DEL-04-05#CLM-030,Configured-key redaction is the provider-boundary redaction principle; run-logger ownership is DEL-05-03. Live redaction finds no key source.
+CAP-HARNESS-028,NOT_MINE,,Provider mode selection is D-APP-18 / DEL-04-01 and PKG-03 composition.
+CAP-HARNESS-029,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-030,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-031,PARTIAL,DEL-04-05#CLM-009.5,Active-turn ANTHROPIC_API_KEY install/restore (RQ-005) lives here; options/mapping belong to DEL-04-02/DEL-04-03. REACH=LEGACY_ONLY.
+CAP-HARNESS-032,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-033,PARTIAL,DEL-04-05#CLM-009.6,"Base URL validation and provider error classification (RQ-006/007/011/012) are in this engine; the engine itself is DEL-04-01/PKG-03 scope. REACH=LEGACY_ONLY, STATE=DISABLED."
+CAP-HARNESS-034,NOT_MINE,,Pi engine is the D-APP-72 second-adapter deliverable; DEL-04-05's oMLX part is noted as a coverage gap.
+CAP-HARNESS-035,PARTIAL,DEL-04-05#CLM-009.6,"oMLX loopback base-URL validation and isolated key handoff were delivered under this deliverable (D-APP-72, _STATUS 2026-07-22) but no forward row covers oMLX; nearest is the base-URL row. Coverage gap in reverse_notes."
+CAP-HARNESS-036,CLAIMED_BY,DEL-04-05#CLM-009.1,"Provider credential precedence (UI globals, then ANTHROPIC_API_KEY, CHIRALITY_ANTHROPIC_API_KEY; oMLX env) is RQ-001. STATE=DISABLED, no source populated."
+CAP-HARNESS-037,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-038,NOT_MINE,,Run event log redaction is DEL-05-03/DEL-05-02.
+CAP-HARNESS-039,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-040,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-041,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-042,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-043,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-044,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-045,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-046,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-047,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-048,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-049,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-050,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-051,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-052,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-053,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-054,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-055,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-056,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-057,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-058,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-059,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-HARNESS-060,NOT_MINE,,Legacy in-process harness capability outside the provider key/base-URL/network/error-classification boundary (PKG-03/04/05/06/08 owners).
+CAP-ROUTES-001,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-002,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-003,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-004,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-005,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-006,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-007,PARTIAL,DEL-04-05#CLM-009.13,Turn route holds no provider semantics (RQ-013); the route itself is PKG-03 transport.
+CAP-ROUTES-008,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-009,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-010,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-011,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-012,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-013,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-014,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-015,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-016,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-017,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-018,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-019,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-020,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-021,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-022,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-023,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-024,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-025,NOT_MINE,,"Retained no-op provider-network consent route; consent carrier is DEL-02-05, retired under D-GOV-43."
+CAP-ROUTES-026,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-027,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-028,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-029,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-030,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-031,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-032,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-033,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-034,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-035,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-036,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-037,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-038,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-039,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-040,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-041,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-042,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-043,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-ROUTES-044,NOT_MINE,,App route capability owned by PKG-02/PKG-03/PKG-05 deliverables; no provider-boundary behavior.
+CAP-RTCONTRACT-001,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-002,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-003,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-004,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-005,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-006,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-007,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-008,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-009,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-010,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-011,NOT_MINE,,"Consent grant contract; retired-but-kept Runtime surface, consent owned by Root/DEL-02-05."
+CAP-RTCONTRACT-012,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-013,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-014,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-015,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-016,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-017,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-018,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-019,PARTIAL,DEL-04-05#CLM-009.9,"App permission mode to Codex sandbox mapping sets networkAccess false for sandboxed modes, the live Node-side network mechanism cited in CLM-009.9; contract owned by PKG-03."
+CAP-RTCONTRACT-020,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-021,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-022,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-023,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-024,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-025,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-026,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-027,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-028,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-029,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-030,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-031,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-032,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-033,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-034,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-035,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-036,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-037,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-038,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-039,NOT_MINE,,Engine conformance suite is PKG-03 (K-ENGINE-2; R4-Q2 cited in CLM-004).
+CAP-RTCONTRACT-040,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-041,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-042,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-043,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-044,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-045,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-046,PARTIAL,DEL-04-05#STATE-3,"Credential status/store/remove contract is the transport V3-01 relied on; STATE=DISABLED behind the composition stub, as STATE-3 records."
+CAP-RTCONTRACT-047,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-048,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-049,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-050,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-051,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-052,NOT_MINE,,"Runtime contract surface owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCONTRACT-053,NOT_MINE,,Claude engine adapter package (UNREACHED) is PKG-03/Runtime.
+CAP-RTCORE-001,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-002,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-003,NOT_MINE,,Codex sole-engine policy is PKG-03; cited as live context in forward rows.
+CAP-RTCORE-004,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-005,NOT_MINE,,Effective Codex home credential privacy is PKG-03/Runtime under D-GOV-43.
+CAP-RTCORE-006,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-007,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-008,NOT_MINE,,Consent route is a no-op under D-GOV-43; consent ownership Root/DEL-02-05.
+CAP-RTCORE-009,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-010,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-011,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-012,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-013,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-014,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-015,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-016,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-017,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-018,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-019,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-020,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-021,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-022,PARTIAL,DEL-04-05#STATE-3,Runtime credential routes over a stub store (app-owned-composition.ts:225); STATE-3 records the lost V3-01 wiring. Route owned by Runtime.
+CAP-RTCORE-023,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-024,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-025,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-026,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-027,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-028,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-029,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-030,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-031,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-032,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-033,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-034,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-035,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-036,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-037,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-038,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-039,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-040,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-041,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-042,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-043,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-044,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-045,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-046,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-047,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-048,NOT_MINE,,Compatibility session policy is PKG-03/Runtime.
+CAP-RTCORE-049,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-RTCORE-050,NOT_MINE,,"Runtime core/daemon capability owned by PKG-03/Runtime; not the provider key, base URL or network bridge."
+CAP-SETTINGS-001,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-002,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-003,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-004,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-005,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-006,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-007,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-008,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-009,NOT_MINE,,"API key settings UI is DEL-02-05 (stored-key UI, shared precedence contract only); STATE=DISABLED in the hosted shell."
+CAP-SETTINGS-010,NOT_MINE,,API key status rendering is DEL-02-05 presentation; DEL-04-05 supplies only the vocabulary (CAP-SETTINGS-011).
+CAP-SETTINGS-011,CLAIMED_BY,DEL-04-05#STATE-3,"Credential storage-state vocabulary landed as DEL-04-05-V3-01 (credential-storage-state.ts); REACH=LIVE via api-key-ipc, renderer consumer disabled."
+CAP-SETTINGS-012,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-013,NOT_MINE,,Account/consent panel is DEL-02-05 account/consent carrier.
+CAP-SETTINGS-014,NOT_MINE,,Per-root login/logout is DEL-02-05 / Root-owned account semantics.
+CAP-SETTINGS-015,NOT_MINE,,"Per-root consent grant is DEL-02-05 / Root consent contract, retired by D-APP-127."
+CAP-SETTINGS-016,PARTIAL,DEL-04-05#REM-1,Per-root command-network postures are the DEL-04-05-V3-02 subject; presentation and consent port are DEL-02-05. STATE=DISABLED (null port).
+CAP-SETTINGS-017,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-018,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-019,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-020,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-021,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-022,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-023,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-024,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-025,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-026,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-027,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-028,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-029,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-030,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-031,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-032,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-033,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-034,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-035,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-036,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-037,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-038,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-039,NOT_MINE,,Retained no-op consent grant; consent flow is DEL-02-05/Root and retired under D-GOV-43.
+CAP-SETTINGS-040,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-041,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+CAP-SETTINGS-042,NOT_MINE,,"Settings/runtime-client capability owned by PKG-02/PKG-03 deliverables; not the provider key, base URL or network bridge."
+#END

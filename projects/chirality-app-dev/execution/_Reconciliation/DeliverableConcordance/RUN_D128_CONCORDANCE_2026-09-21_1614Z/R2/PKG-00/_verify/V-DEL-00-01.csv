@@ -1,0 +1,16 @@
+Unit,Class,ClaimKey,CapabilityID,Verdict,Field,SealedValue,CorrectReading,Evidence,ConventionIssue
+DEL-00-01,a,DEL-00-01#CLM-018.2,,CONTESTED,Disposition,DOCUMENTED_UNIMPLEMENTED,"DOCUMENTED_UNIMPLEMENTED (no claim map/parity report/checklist for DEL-00-01 in App roots; migration commit 7f1b8f746 carries no parity record) || UNKNOWN (SoW conversion was authorized by Root D-GOV-16; any migration parity/validation output would sit in Root tooling or execution, outside the evidence roots; a recomputed diff of 7f1b8f746 shows all 250 legacy lines carried except 26 demoted headings, so parity is observable but unrecorded)",projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/ScopeOfWork.md:271; projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:62-64,Brief: evidence outside roots -> CONTESTED; CONVENTIONS 2.6 UNKNOWN vs DOCUMENTED_UNIMPLEMENTED
+DEL-00-01,n,DEL-00-01#CLM-001,,CONFIRMED,-,-,-,-,-
+DEL-00-01,n,DEL-00-01#CLM-002,,CONFIRMED,-,-,-,-,-
+DEL-00-01,n,DEL-00-01#CLM-003,,CONFIRMED,-,-,-,-,-
+DEL-00-01,n,DEL-00-01#CLM-006,,CONFIRMED,-,-,-,-,-
+DEL-00-01,n,DEL-00-01#CLM-007,,CONFIRMED,-,-,-,-,-
+DEL-00-01,n,DEL-00-01#REGISTER-1,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-005,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-008,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-009.2,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-009.3,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-012.2,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-014,,CONFIRMED,-,-,-,-,-
+DEL-00-01,b,DEL-00-01#CLM-026,,CONFIRMED,-,-,-,-,-
+#END

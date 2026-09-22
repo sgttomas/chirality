@@ -1,0 +1,404 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-002,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-003,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-004,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-005,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-006,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-007,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-008,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-009,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-010,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-011,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-012,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-013,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-014,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-015,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-016,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-017,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-018,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-019,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-020,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-021,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-022,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-023,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-024,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-025,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-026,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-027,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-028,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-029,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-030,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-031,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-032,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-033,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-034,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-035,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-036,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-037,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-038,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-039,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-040,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-BUILD-041,NOT_MINE,,Build/packaging; not a DEL-02-02 presentation surface
+CAP-ELECTRON-001,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-002,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-003,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-004,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-005,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-006,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-007,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-008,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-009,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-010,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-011,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-012,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-013,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-014,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-015,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-016,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-017,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-018,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-019,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-020,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-021,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-022,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-023,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-024,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-025,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-026,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-027,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-028,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-029,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-030,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-031,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-032,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-033,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-034,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-ELECTRON-035,NOT_MINE,,Electron main-process host; outside this presentation slice
+CAP-HARNESS-001,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-002,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-003,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-004,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-005,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-006,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-007,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-008,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-009,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-010,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-011,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-012,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-013,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-014,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-015,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-016,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-017,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-018,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-019,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-020,PARTIAL,DEL-02-02#REM-3,Client for the workflow draft review/registration behind the Workflows tab
+CAP-HARNESS-021,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-022,PARTIAL,DEL-02-02#CLM-014.1,Scaffold request issued by the Pipeline scaffold form
+CAP-HARNESS-023,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-024,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-025,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-026,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-027,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-028,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-029,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-030,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-031,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-032,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-033,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-034,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-035,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-036,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-037,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-038,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-039,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-040,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-041,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-042,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-043,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-044,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-045,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-046,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-047,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-048,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-049,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-050,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-051,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-052,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-053,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-054,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-055,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-056,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-057,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-058,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-059,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-HARNESS-060,NOT_MINE,,Harness/runtime client behaviour; owned outside DEL-02-02
+CAP-ROUTES-001,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-002,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-003,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-004,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-005,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-006,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-007,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-008,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-009,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-010,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-011,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-012,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-013,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-014,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-015,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-016,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-017,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-018,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-019,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-020,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-021,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-022,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-023,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-024,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-025,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-026,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-027,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-028,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-029,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-030,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-031,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-032,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-033,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-034,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-035,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-036,PARTIAL,DEL-02-02#REM-3,Read part of the V3-04 workflow file route (GET only; write route not built)
+CAP-ROUTES-037,PARTIAL,DEL-02-02#REM-3,Workflow creation/registration route behind the live Workflows tab; differs from the V3-04 contained write route
+CAP-ROUTES-038,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-039,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-040,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-041,NOT_MINE,,API or page route owned by another deliverable
+CAP-ROUTES-042,CLAIMED_BY,DEL-02-02#SEC-4,Obligation 1: retired /workbench and /pipeline routes stay reachable by URL (render the dialogue only)
+CAP-ROUTES-043,PARTIAL,DEL-02-02#CLM-003,Retained legacy loop shells carry the retired Workbench/Pipeline forms in the discarded legacy prop
+CAP-ROUTES-044,NOT_MINE,,API or page route owned by another deliverable
+CAP-RTCONTRACT-001,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-002,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-003,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-004,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-005,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-006,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-007,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-008,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-009,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-010,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-011,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-012,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-013,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-014,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-015,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-016,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-017,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-018,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-019,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-020,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-021,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-022,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-023,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-024,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-025,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-026,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-027,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-028,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-029,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-030,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-031,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-032,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-033,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-034,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-035,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-036,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-037,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-038,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-039,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-040,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-041,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-042,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-043,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-044,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-045,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-046,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-047,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-048,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-049,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-050,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-051,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-052,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-RTCONTRACT-053,NOT_MINE,,Runtime contract surface; DEL-02-02 only presents accepted state
+CAP-SETTINGS-001,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-002,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-003,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-004,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-005,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-006,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-007,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-008,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-009,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-010,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-011,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-012,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-013,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-014,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-015,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-016,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-017,PARTIAL,DEL-02-02#SEC-3,Applied row lists role entry and the exact role-not-mechanically-enforced label; _STATUS REM-1 seats them on DEL-02-05/DEL-08-04
+CAP-SETTINGS-018,PARTIAL,DEL-02-02#SEC-3,Applied row lists the exact Opt-in Preview posture label; live only in the DEL-02-05 settings surface
+CAP-SETTINGS-019,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-020,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-021,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-022,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-023,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-024,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-025,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-026,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-027,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-028,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-029,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-030,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-031,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-032,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-033,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-034,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-035,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-036,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-037,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-038,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-039,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-040,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-041,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SETTINGS-042,NOT_MINE,,"Settings, credentials or runtime client ports; DEL-02-05/PKG-03 scope"
+CAP-SHELL-001,PARTIAL,DEL-02-02#CLM-003,/pipeline and /workbench LoopTertiaryShell hosted the retired Workbench/Pipeline forms; loop shells themselves are DEL-02-01
+CAP-SHELL-002,PARTIAL,DEL-02-02#CLM-003,Tertiary sidebar tabs construct the retired Pipeline and Workbench surfaces
+CAP-SHELL-003,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-004,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-005,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-006,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-007,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-008,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-009,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-010,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-011,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-012,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-013,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-014,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-015,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-016,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-017,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-018,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-019,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-020,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-021,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-022,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-023,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-024,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-025,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-026,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-027,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-028,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-029,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-030,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-031,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-032,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-033,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-034,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-035,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-036,PARTIAL,DEL-02-02#SEC-3,Agent 0/1/2 role entry is claimed by the applied row but live in the composer picker; ownership conflict with DEL-02-05/DEL-08-02/DEL-08-04
+CAP-SHELL-037,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-038,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-039,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-040,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-041,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-042,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-043,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-044,NOT_MINE,,Shell/chat behaviour owned by DEL-02-01/DEL-02-04/DEL-02-05 or DEL-08-02
+CAP-SHELL-045,PARTIAL,DEL-02-02#REM-3,Workflow library grouping and search for the Workflows tab
+CAP-WORKSPACE-001,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-002,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-003,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-004,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-005,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-006,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-007,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-008,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-009,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-010,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-011,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-012,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-013,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-014,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-015,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-016,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-017,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-018,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-019,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-020,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-021,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-022,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-023,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-024,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-025,CLAIMED_BY,DEL-02-02#CLM-010.3,"REQ-003 Workbench consumption of deliverable contract APIs (retained, unrendered)"
+CAP-WORKSPACE-026,CLAIMED_BY,DEL-02-02#CLM-010.4,"REQ-004 canAgentTransitionLifecycle and approval-SHA rules (retained, unrendered)"
+CAP-WORKSPACE-027,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-028,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WORKSPACE-029,CLAIMED_BY,DEL-02-02#CLM-010.7,REQ-007/REQ-008 scope-mode normalization and stale sanitization
+CAP-WORKSPACE-030,CLAIMED_BY,DEL-02-02#CLM-010.5,"REQ-005/REQ-006 Pipeline categories, disabled options and TASK split selectors (retired surface)"
+CAP-WORKSPACE-031,CLAIMED_BY,DEL-02-02#CLM-014.1,D-APP-56 R4-P28 Pipeline Execution Root Scaffold form
+CAP-WORKSPACE-032,CLAIMED_BY,DEL-02-02#CLM-014.1,D-APP-56 R4-P28 Pipeline contract/lifecycle-transition panels
+CAP-WORKSPACE-033,CLAIMED_BY,DEL-02-02#CLM-010.1,REQ-001 Workbench agent/row/column context (Documents fold per REMTXT-1)
+CAP-WORKSPACE-034,CLAIMED_BY,DEL-02-02#CLM-010.3,REQ-003/REQ-004/REQ-011 Workbench deliverable contracts view
+CAP-WORKSPACE-035,PARTIAL,DEL-02-02#CLM-010.2,Replacement of the agent matrix (role directory) that REQ-002 matrix routing described
+CAP-WORKSPACE-036,PARTIAL,DEL-02-02#CLM-010.9,Disabled-option visibility (REQ-009); dispatch-intent semantics owned by DEL-08-03
+CAP-WORKSPACE-037,PARTIAL,DEL-02-02#CLM-010.2,Retired matrix-route helpers that carried REQ-002 routing
+CAP-WORKSPACE-038,PARTIAL,DEL-02-02#REM-3,"V3-04 consumes advance-at-gate, bind and currency; grammar owned by DEL-07-03"
+CAP-WORKSPACE-039,NOT_MINE,,Workspace/contract plumbing owned by DEL-02-03/PKG-07
+CAP-WOVEN-001,PARTIAL,DEL-02-02#SEC-4,Obligation 1: dialogue invariant and retired routes reachable by URL; route/shell composition itself is DEL-02-01
+CAP-WOVEN-002,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-003,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-004,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-005,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-006,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-007,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-008,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-009,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-010,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-011,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-012,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-013,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-014,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-015,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-016,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-017,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-018,PARTIAL,DEL-02-02#SEC-2,SCA-APP-004 obligation 5 (replay lens with persistent return); guarded-selection semantics owned by DEL-08-02
+CAP-WOVEN-019,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-020,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-021,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-022,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-023,CLAIMED_BY,DEL-02-02#SEC-4,"Obligation 2: canonical recorded sessions and exact parentage, unknown stays unknown"
+CAP-WOVEN-024,CLAIMED_BY,DEL-02-02#SEC-3,"Who is working view (live as the Agents tab, without provenance labels)"
+CAP-WOVEN-025,PARTIAL,DEL-02-02#REM-1,Native descendant presentation in Agents; provenance-labelled managed/native presentation is the open V3-01 item
+CAP-WOVEN-026,PARTIAL,DEL-02-02#SEC-3,Right panel hosts Who is working and Workflows views; the view switcher itself is DEL-02-03-V3-01
+CAP-WOVEN-027,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-028,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-029,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-030,PARTIAL,DEL-02-02#REM-3,Workflows view library part; the live v3 method library diverges from the V3-04 roadmap/bind contract
+CAP-WOVEN-031,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-032,PARTIAL,DEL-02-02#REM-3,Workflow creation path in the Workflows view (draft review and registration) differs from the V3-04 New workflow form
+CAP-WOVEN-033,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-034,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-035,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-036,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-037,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-038,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-039,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-040,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+CAP-WOVEN-041,CLAIMED_BY,DEL-02-02#SEC-4,Obligation 1: Work projection stays unmounted until a recorded plan/task source exists (TEST_ONLY)
+CAP-WOVEN-042,CLAIMED_BY,DEL-02-02#REM-3,The 2026-09-06 read-only V3-04 slice (list/open workflow files); now TEST_ONLY
+CAP-WOVEN-043,NOT_MINE,,"Woven shell part owned by DEL-02-01, DEL-02-03, DEL-02-04 or DEL-05-04"
+#END

@@ -1,0 +1,44 @@
+UnitKey,Item,SourcePath,SourceLine,Label
+SOW:SOW-043,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,446,"IN: App-side legacy session migration with backup-before-write, rollback, source-byte preservation, and A13 `legacySource` evidence."
+SOW:SOW-044,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,447,IN: App UI-event mapping and Root-runtime event/adapter conformance.
+SOW:SOW-045,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,448,IN: App project-input supply and Root-runtime settings-isolation conformance.
+SOW:SOW-046,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,449,IN: App client linkage to daemon session and noncanonical SDK transcript references.
+SOW:SOW-047,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,450,IN: App/project tool requests and daemon resolution conformance.
+SOW:SOW-048,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,451,IN: Chirality MCP descriptors.
+SOW:SOW-049,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,452,IN: Deterministic App/project policy inputs and daemon tool-surface conformance.
+SOW:SOW-050,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,453,IN: Read tools before writes/bash.
+SOW:SOW-051,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,454,IN: App consumption of the daemon model/tool loop and event mapping.
+SOW:SOW-052,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,455,IN: App/project max-turn inputs and daemon guard conformance.
+SOW:SOW-053,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,456,IN: App replay conformance for daemon tool-event ordering.
+SOW:SOW-054,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,457,IN: Structured permission decisions.
+SOW:SOW-055,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,458,IN: App/project permission-policy inputs and daemon enforcement conformance.
+SOW:SOW-056,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,459,IN: Daemon operational permission-event consumption and checkout approval evidence.
+SOW:SOW-057,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,460,IN: Project-specific hook inputs and daemon fail-closed hook conformance.
+SOW:SOW-058,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,461,IN: App/human `canUseTool` approval and daemon decision handoff.
+SOW:SOW-059,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,462,IN: App preview of daemon tool results and accepted project-artifact linkage.
+SOW:SOW-060,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,463,IN: Safe write/edit behavior.
+SOW:SOW-061,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,464,IN: App observation of daemon compaction and replay conformance.
+SOW:SOW-062,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,465,IN: App/project Bash policy and daemon execution/interruption/audit conformance.
+SOW:SOW-063,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,466,"IN: Project delegation authority, daemon-client dispatch, and checkout AgentRuns."
+SOW:SOW-064,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,467,IN: MCP extension boundaries.
+SOW:SOW-065,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,468,OUT: Remote MCP/plugins out of current scope.
+SOW:SOW-066,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,469,IN: Future Domain Engine Profile compatibility.
+SOW:SOW-067,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,470,IN: Generic domain profile contract.
+SOW:SOW-068,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,471,IN: Protected/proposal paths for domain engines.
+SOW:SOW-069,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,472,IN: OperationProposal records.
+SOW:SOW-070,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,473,IN: OpenPipeStress fixture profile.
+SOW:SOW-071,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,474,IN: Domain professional boundary.
+SOW:SOW-072,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,475,IN: macOS arm64 unsigned DMG release target.
+SOW:SOW-073,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,476,TBD: Source completeness for instruction-root assets.
+SOW:SOW-074,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,477,IN: Human authority/professional boundaries.
+SOW:SOW-075,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,478,"IN: Local project truth, no hidden project memory."
+SOW:SOW-076,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,479,OUT: Ambient settings and shipped bypass forbidden.
+SOW:SOW-077,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,480,OUT: Retired PKG-08 scope remains retired.
+SOW:SOW-078,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,481,OUT: Windows/Linux packaging out of scope.
+SOW:SOW-079,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,482,"IN: Observe exact Root-owned App Server supply, protocol, configuration, and role behavior at the App boundary and produce adoption evidence."
+SOW:SOW-080,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,483,"IN: App-side two-job installer transaction through Root-owned runtime-control IPC, including staged launchd-job migration, effective-state inspection, rollback,"
+SOW:SOW-081,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,484,"IN: Governed workflow files under `.chirality/workflows/` and the right-panel Workflows view with follow, pause, create, library, and bind."
+SOW:SOW-082,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,485,"IN: Prompted specification ladder: `propose` tool, additive `proposal.*` event consumption, proposal card, and instruction-package proposal clauses."
+SOW:SOW-083,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,486,IN: Per-chat delegation policy carried with the session and honoured by the managed delegation bridge.
+SOW:SOW-084,5,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,487,"IN: Layered instruction root: bundled base plus a client-owned, hash-pinned organisation layer under instruction-root protections."
+#END
