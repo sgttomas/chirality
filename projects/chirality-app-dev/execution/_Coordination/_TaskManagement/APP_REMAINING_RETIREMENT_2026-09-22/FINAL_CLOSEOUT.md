@@ -20,8 +20,9 @@ Current SOW and context text that still directed work or evidence into a live
 `Remaining` section was reconciled to governing scope, decisions and graph.
 Nineteen dependency narratives now mark their old status anchors as dated
 extraction evidence; the accepted `Dependencies.csv` rows and source quotes
-remain unchanged. The App status parser's retained historical-fixture handling
-does not make `Remaining` a current work-selection surface.
+remain unchanged. The App status parser and transition API still preserve any
+legacy `Remaining` content they encounter, including in other project roots;
+that compatibility does not make it a current App work-selection surface.
 
 ## Checks and limits
 
