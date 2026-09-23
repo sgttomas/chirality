@@ -1,9 +1,12 @@
 # MEMORY - {{DEL-ID}}
 
-> Revised per D-GOV-17 M4-A (ruled 2026-07-18) to codify actual corpus
-> practice. Organize by semantic topic, then chronologically within each
-> topic. `## Decisions And Evidence` is the required minimum section; add
-> optional sections as needed to capture what matters for this deliverable
-> (observed in practice: `## Open Items`, `## Dependency Note`).
+> Terse deliverable-local index of runs. Record what each run did here and point
+> to the central run evidence, PR, decisions, scope changes, Task Management
+> transfers and substantive completion as applicable. Decision authority and
+> detailed rationale stay at their central source. This is not a future-work
+> list or another decision register. Preserve existing historical entries.
 
-## Decisions And Evidence
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|

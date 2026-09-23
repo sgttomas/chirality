@@ -623,7 +623,7 @@
       "name": "bounded-reconciliation",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Reconcile a completed portion of software work with the contents of its affected deliverable folders, updating their scope descriptions, remaining work, dependencies and evidence within the assignment.",
+      "description": "Perform one bounded documentation and governance closeout after an undertaking's implementation and evidence work, before its final PR.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -3230,7 +3230,7 @@
       "name": "task-management",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Make unresolved project obligations visible and carry human dispositions to the owning instruments.",
+      "description": "Assess supplied unallocated concerns, owner-selected register reviews or explicitly scoped legacy-source retirements, preserving human dispositions and routing work to its owner.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [

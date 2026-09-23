@@ -36,7 +36,12 @@ STUBS=(
 
 # Optional fourth argument --memory includes a blank memory resource.
 if [[ "${4:-}" == "--memory" ]]; then
-  STUBS+=("_MEMORY.md")
+  # Do not create competing canonical content beside an unreviewed legacy file.
+  if [[ -e "$DEL_DIR/_MEMORY.md" && ! -e "$DEL_DIR/MEMORY.md" ]]; then
+    print -u2 "Legacy _MEMORY.md exists; consolidate it explicitly before creating MEMORY.md"
+    exit 2
+  fi
+  STUBS+=("MEMORY.md")
 elif [[ -n "${4:-}" ]]; then
   print -u2 "Unknown option: $4"
   exit 2

@@ -272,7 +272,7 @@ The `INITIALIZED → SEMANTIC_READY` transition is optional. If the semantic len
 
 ### 5.4 Change-Control Semantics
 
-Each lifecycle state defines which changes are lawful and under what control. `IN_PROGRESS` permits ordinary authorized edits and holds whenever warranted open scope exists. Entry to `CHECKING` is layered: universal minimums (a warranted-empty `## Remaining` open-scope record, where adopted, bound to a current source-state evidence basis), a candidate-specific declared checking basis, and a human declaration that freezes the candidate. A `CHECKING` candidate is frozen — review evidence appends to run/review records, and reversal to `IN_PROGRESS` is the only exit from an unsuccessful or withdrawn check. Rebaselining is asymmetric: demotion to `IN_PROGRESS` requires only the absence of a current accepted basis for the asserted state, while promotion requires a contemporary declared basis. `ISSUED` is an accepted baseline; subsequent changes flow only through the governed scope-change process. The normative statement is `SPEC.md` §3.4.
+Each lifecycle state defines which changes are lawful and under what control. `IN_PROGRESS` permits ordinary authorized edits and holds whenever warranted open scope exists. Entry to `CHECKING` is layered: universal minimums (a current candidate-bound account establishing no unfulfilled production obligation in the proposed checking scope), a candidate-specific declared checking basis, and a human declaration that freezes the candidate. A `CHECKING` candidate is frozen — review evidence appends to run/review records, and reversal to `IN_PROGRESS` is the only exit from an unsuccessful or withdrawn check. Rebaselining is asymmetric: demotion to `IN_PROGRESS` requires only the absence of a current accepted basis for the asserted state, while promotion requires a contemporary declared basis. `ISSUED` is an accepted baseline; subsequent changes flow only through the governed scope-change process. The normative statement is `SPEC.md` §3.4.
 
 ---
 
@@ -304,10 +304,12 @@ own independent production grammars.
 | `AMBIGUOUS` | Both complete formats without accepted migration authority | Invalid |
 | `INVALID` | Partial legacy kit, invalid `ScopeOfWork.md`, or neither format at or beyond `INITIALIZED` | Invalid |
 
-`ScopeOfWork.md` carries the stable deliverable target. `_STATUS.md ## Remaining`
-records the warranted current delta against that target where the working root
-adopts the remaining-work surface. Format migration does not change lifecycle
-state, acceptance, or professional-reliance status.
+`ScopeOfWork.md` carries the stable deliverable target. The local graph carries
+selected execution; MEMORY.md indexes the work of past runs; _STATUS.md
+retains lifecycle. A completion account compares the target with actual work
+and evidence rather than maintaining a second residual task list. Earlier
+Remaining conventions persist only in their still-adopted/pinned contexts.
+Format migration does not change lifecycle, acceptance or professional standing.
 
 An evidence-rich conversion candidate is a derivative migration artifact, not
 an additional production-contract type. Deterministic finalization externalizes
@@ -330,7 +332,7 @@ for example `DEL-07-03-AC-001`.
 | `AX` | Governing value, rationale, or authority constraint |
 | `TBD` | Unresolved information |
 | `CON` | Unresolved conflict |
-| `REM` | Remaining item in `_STATUS.md`; not defined in `ScopeOfWork.md` |
+| `REM` | Legacy Remaining identifier; retained for historical/pinned records, not required for new local-graph work |
 
 Migration dispositions are `PRESERVED`, `MERGED`, `SPLIT`, `SUPERSEDED`,
 `DEFERRED`, and `CONFLICT`. They describe migration handling only and are not
@@ -462,7 +464,7 @@ UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
 
 The deliverable lifecycle asks: *what state is this work product in?* The warrant lifecycle asks: *what state is our knowledge about this work product in?* A deliverable is ready for issuance when its warrants are sufficient — when the licensed professional has determined that the epistemic state of the claims supports authentication under professional responsibility.
 
-The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires layered entry conditions (`SPEC.md` §3.4): the universal entry minimums — that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition; see §10.6) and that the deliverable's `## Remaining` open-scope record, where adopted, is warranted-empty against a current source-state evidence basis — together with a candidate-specific declared checking basis and the human declaration that freezes the candidate. The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility; post-issuance changes flow only through the governed scope-change process.
+The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires layered entry conditions (`SPEC.md` §3.4): the universal entry minimums — that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition; see §10.6) and that current candidate-bound evidence accounts for fulfillment of the deliverable's applicable production obligations — together with a candidate-specific declared checking basis and the human declaration that freezes the candidate. The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility; post-issuance changes flow only through the governed scope-change process.
 
 ### 10.5 Enforcing Invariants
 

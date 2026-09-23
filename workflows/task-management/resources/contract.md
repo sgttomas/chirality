@@ -1,257 +1,147 @@
-# task-management — contract
+# Task Management — contract
 
-## Non-negotiable invariants
+## Ownership and authority
 
-- **K-TM-1 — registers and nothing else.** This agent owns per-loop Action
-  Item registers only. Every other domain's state (deliverables, decisions,
-  holds, dependencies, schedules) is displayed by citation and remains with
-  its owner. The nine domains are scanning lenses, never queues, sequences,
-  or authority.
-- **K-TM-2 — files are the truth.** Registers are git-tracked CSVs inside
-  the owning loop's coordination surface. Any index, projection, or scan
-  output this agent produces is rebuildable and gitignored (D-GOV-01), never
-  cited as authority.
-- **K-TM-3 — dispositions are human.** Register writes are judgment acts of
-  the owning loop: the agent proposes; the owner (or the loop's own ruled
-  instrument) disposes. Rows carry no directives. No agent ever appears as
-  accountable (A) for any row. Reading a register creates no duty outside a
-  loop's own adopted instruments.
-- **K-TM-4 — graceful absence.** Never make any act anywhere require a Task
-  Management read or write. Never propose entry bindings, sweep obligations,
-  or gates; the owner refused them explicitly (PRD §14, Receipt 89
-  precedent).
-- **K-TM-5 — no authority effects.** A register row, view, or report never
-  constitutes approval, acceptance, scope, priority authority, or lifecycle
-  effect. Closure evidence binds to bytes (`EvidenceSha`, K-AUTH-2); a row
-  whose evidence changed after closure is reported stale, never silently
-  re-closed.
-- **K-TM-6 — closure-capable schema.** Every register schema version carries
-  `Status` and `Disposition`. Never emit or accept a register variant that
-  cannot record its own closure.
-- **No cross-loop register writes.** This agent writes only the register of
-  the loop that invoked it. Other loops are reached exclusively by routed
-  coordination notices through the parent loop's ordinary mechanisms;
-  elevation is linked rows per PRD §6.2, never a move and never a foreign
-  write.
-- **No work discovery.** Slates, `## Remaining` sections, work graphs, and
-  planned work are fenced surfaces (PRD §5.5). The register records
-  attention and disposition residue, never execution status (no IN_PROGRESS
-  state exists).
-- **Invocation-local federation is not a standing sweep.** Once this role is
-  invoked for a registered loop, its read-only federation preflight is
-  mandatory before every requested mode. This requirement binds the invoked
-  instance only: it creates no loop-entry read, schedule, CI/daemon duty,
-  workflow gate, or requirement that any loop invoke `WORKING_ITEMS`.
-- **No invention.** Every row cites `SourceRef` + `SourceSha`; every closure
-  cites `EvidenceRef` + `EvidenceSha` or an explicit no-artifact rationale.
-  Unknowns are spelled `TBD` (K-INVENT-1).
+Task Management owns the invoking loop's Action Item register and the bounded
+intake, finite retirement accounts or decision-support records needed for that invocation. It cites other
+state at its owning source: scope, decisions, lifecycle, dependencies, work
+graphs, memory and evidence. Register rows record concerns and dispositions;
+they neither direct production nor grant scope, priority or acceptance.
 
----
+Promotion and disposition are human acts. WORKING_ITEMS applies the exact
+recorded decision; TASK never writes register rows. A manager may inspect and
+prepare an intake within the authority supplied by its caller, but cannot turn
+its recommendation into an owner decision. Accountable ownership remains human.
+Do not write another loop's register or assume a notice assigns work there.
 
-## Mandatory federation preflight
+Preserve canonical register schema and IDs, source/evidence identities and
+closure grounds. Existing OPEN, DEFERRED, ELEVATED and CLOSED states describe
+concern disposition, not implementation progress. There is no IN_PROGRESS task
+state. A changed closure source is reported stale rather than silently reclosed.
 
-After resolving the invoking loop and its canonical local register, and
-before entering any mode, survey every canonical Git-tracked Task Management
-register read-only. This is an invocation precondition internal to
-`WORKING_ITEMS`; it is not an external precondition on the invoking loop or
-on any other workflow act.
+## Eligibility for development-loop intake
 
-Use the deterministic `taskmgmt federation` helper when available. The
-preflight must:
+Apply the same eligibility conditions to a substantive PR and the final closeout.
+A PR boundary does not itself require an intake, and a qualified concern need not
+wait for final closeout when its actual allocation problem needs disposition now.
 
-1. discover only tracked registers in the sanctioned Root, project, domain,
-   and Domain Engine coordination shapes and disclose excluded lookalikes;
-2. validate each discovered register before relying on its rows;
-3. construct relationships only from schema-governed `ActionItemID`,
-   `SourceRef`, `NoticeRef`, `ElevatedTo`, `Status`, and `Disposition` fields,
-   never from `Notes` prose;
-4. report survey coverage before normal mode output and identify every
-   invalid, unreadable, or ambiguous input; and
-5. preserve zero register writes, zero automatic receiving-row creation, and
-   zero inferred promotion, priority, elevation, closure, or disposition.
+A bounded intake must identify all of the following:
 
-The helper's projection beside the invoking register is derived,
-rebuildable, gitignored, and never authority. It may be deleted without
-effect. Its findings are observations and proposals only; they do not alter
-the authority of any cited row, notice, source, or decision.
+- A concrete concern and evidence establishing its material significance.
+- Why it cannot reasonably be handled through the current authorized work,
+  investigation, decision, deliverable reconciliation or scope-change route.
+- Why there is no identified successor undertaking or receiving owner already
+  carrying it, including an explicitly preserved next-loop steer.
+- The missing allocation, decision or precursor that could make progress possible.
 
-### Coverage and presentation
+Use the undertaking as the boundary, not the chat session. Ordinary unfinished
+work stays in its graph when sessions change. Waiting for an input, review,
+execution slot or a later planned node is not by itself an intake trigger.
+The absence of a deliverable can call for a mapping investigation or scope
+change within the undertaking; it is not automatically a register concern.
+A closeout or census may identify an owning route without assigning the work.
+Check the receiving undertaking and authority before treating that route as
+allocation. Do not promote all residual claims or future requirements merely
+because the current graph does not include them.
 
-- `COMPLETE` means every canonical register was discovered, read, and
-  validated. It does not mean the resulting observations are semantically
-  complete or accepted.
-- `PARTIAL` means one or more canonical inputs could not be validated, read,
-  or identified unambiguously. A `PARTIAL` result must never be summarized as
-  "no cross-loop coordination found" or used to assert global absence or
-  closure. Local work that does not depend on the missing federation evidence
-  may continue, with the limitation stated; dependent global claims stop.
-- A discovery, read, or output operational failure is reported distinctly
-  under D-GOV-02 exit semantics. It likewise forbids a global-absence claim
-  and does not authorize a register write or a silent skip.
-- Root invocation presents the complete program-wide finding set. A non-Root
-  invocation emphasizes relationships involving the invoking loop plus
-  program-level integrity defects, while still disclosing the complete
-  register inventory, coverage verdict, exclusions, and unresolved errors.
+If these conditions do not hold, return the concern to its ordinary owning work
+or explain why no action is warranted. A genuine intake records a missing home;
+it never converts unfinished necessary production into completed work.
 
-If the deterministic helper is unavailable, do not waive or postpone the
-preflight. Perform the same read-only discovery, validation, typed-field
-relationship scan, Root/non-Root presentation, and coverage classification
-manually; state that manual fallback was used and record any limitation as
-`PARTIAL` or operational failure. Manual fallback grants no projection or
-write authority beyond this agent's existing scope.
+## Entry and federation
 
----
+Select the workflow directly; the brief supplies the loop and bounded intake, review modes or explicitly
+named legacy-source retirement. The local register normally lives at
+`execution/_Coordination/_TaskManagement/REGISTER.csv` under the project/root
+concerned. Use its actual adopted location, including retained domain shapes.
+Do not create a new register or schema unless authorized.
 
-## Modes
+Before each requested mode, perform the D-GOV-33 federation survey of canonical
+Git-tracked registers and their closed-row archives. Use `taskmgmt federation`
+when available. Discover sanctioned shapes, validate inputs, derive relationships
+from governed fields rather than Notes, and state COMPLETE/PARTIAL coverage and
+operational failures. Emphasize relevant relationships while disclosing exclusions
+and integrity errors. Federation writes only a derived projection; registers
+remain unchanged. A non-Root intake does not become authority over other loops.
 
-1. **Triage support.** Group open rows by the nine domains (Action Item,
-   Assignment, Prioritization, Deliverables, Work, Planning, Approval,
-   Checking, Decisions — lenses only); attach a proposed disposition per row
-   from the PRD §7.3 taxonomy (`RESOLVED_WITH_CHANGE`,
-   `RESOLVED_BY_DECISION`, `INFORMATIONAL_NO_ACTION`, `DUPLICATE`,
-   `REJECTED`, `SUPERSEDED_BY_SCOPE_CHANGE`, `OBE`) with cited evidence; the
-   owner rules; record exactly what the owner ruled, with
-   `EvidenceRef`/`EvidenceSha`/`EvidenceQuote`, `LastReviewed`, and `Closed`
-   dates. Proposals the owner does not reach remain untouched rows.
-2. **Candidate harvest.** Scan the PRD §5.1 structured surfaces (decision
-   registers' non-ruled rows; notice ledgers; `FINDINGS.csv`;
-   `Review_Findings.csv`; HOLD registers; handoff blockers; packet
-   open-question/conflict fields; TBD registers; new review reports' ranked
-   actions and held-open questions; run-record `NEEDS_HUMAN_RULING:` /
-   `MISSING:` / `TM-CANDIDATE:` markers). Present candidates with citations;
-   rows are written only on the owner's promotion ruling. Free-text token
-   scanning only in explicit per-document mode.
-3. **Staleness.** Flag rows whose `SourceSha`/`EvidenceSha` no longer match
-   the cited bytes, and CLOSED rows whose evidence path is gone — reported
-   for human triage, never auto-resolved (K-STALE-2 semantics only).
-4. **Closure echo.** Report rows whose cited source still shows open after
-   disposition, and candidates already dispositioned in a register. Display
-   only; never write to any source surface.
-5. **Deferral review.** Scope: every live row whose `Status=DEFERRED`
-   (optionally narrowed by the scope filter). Assess each row's recorded
-   `Trigger` against committed repository state and classify it as exactly
-   one of:
-   - `TRIGGER_FIRED` — the recorded condition now holds; propose a closure
-     disposition from the PRD §7.3 taxonomy with exact
-     `EvidenceRef`/`EvidenceSha`. Where the underlying concern remains open
-     in another register's linked row, propose `DUPLICATE` to that survivor
-     rather than a false claim that the concern itself is resolved.
-   - `ACTIVATABLE` — the condition has not fired, but bounded work by a
-     named instrument of this or another loop would fire it now; name the
-     instrument and prepare an undispatched draft handoff package inside
-     the register home. Classification is not dispatch authority and does
-     not presume the later human ruling; routing follows the owner's
-     ruling, through §Resolution paths or the loop's ordinary notice flow,
-     never a foreign write.
-   - `STILL_BLOCKED` — genuinely gated on an external human/authority
-     event; verify the recorded `Trigger` text is still accurate and,
-     where it is vague, propose sharper prospective text stating a
-     checkable condition (a named record exists, a named row closes, a
-     named gate rules).
-   Output is a classification report covering the entire reviewed
-   population, grouped by class, with per-row evidence. The report is
-   decision support only: no row changes, no dispatch, no routing before
-   the owner's rulings. Triggers citing another loop's state are evaluated
-   against committed bytes only — an unlanded sibling closeout is not
-   evidence, and a conservative `STILL_BLOCKED` is the correct result
-   until it lands. Lifecycle and source surfaces outrank register inertia:
-   an unchanged receiving register does not prove a trigger unfired when
-   the owning lifecycle surface shows otherwise.
-6. **Row maintenance.** Mechanical, owner-directed row edits (e.g., a ruled
-   elevation writing `ELEVATED`/`ElevatedTo`, a ruled deferral writing
-   `Trigger`), each traceable to a recorded human direction.
-7. **Resolution orchestration (owner-ruled items only).** For each item the
-   owner selects for resolution, work the nine domains in order as a
-   per-item completeness scan — Action Item (is the concern and its HOLD
-   exactly stated), Assignment (who is R/S/C/I; A is human-only),
-   Prioritization (stated priority and basis), Deliverables (which accepted
-   deliverable or package the resolution lands in), Work (what bounded work
-   discharges it), Planning (sequence, dependencies, and triggers),
-   Approval (which human instrument must rule), Checking (what validation
-   or audit evidences closure), Decisions (which decision record, if any,
-   carries the ruling) — then resolve through the proper instrument per
-   §Resolution paths. The nine domains are worked per item; they impose no
-   sequence, workflow, or queue on any loop (adopted PRD §4 posture
-   preserved). The register records the disposition and evidence; the
-   resolution itself always lands in the owning instrument's surfaces.
+An unavailable helper needs equivalent read-only inspection with truthful limits;
+missing evidence must not be hidden by a claimed complete manual fallback.
+PARTIAL supports only conclusions independent of the missing inputs. Neither
+preflight nor missing tooling creates a standing gate on ordinary development.
 
-## Resolution paths
+## Capture and review boundaries
 
-Selected in the nine-domain scan, in this order of preference:
+A supplied concern is inspected directly with its source; no harvest is required
+to rediscover it. An explicit finding from graph execution can support intake,
+but planned nodes and graph state are not scanned into register candidates.
+MEMORY may locate a previous run and its sources; do not mine it for future assignments
+or store a pending intake there.
 
-1. **Deliverable amendment.** Prepare the amendment package (exact target,
-   proposed text or change, basis citations) and route it to the owning
-   loop's production machinery — the activated package's WORKING_ITEMS
-   lane or the deliverable's owning workflow — through the loop's ordinary
-   intake. WORKING_ITEMS prepares and routes; the owning manager and its
-   gates perform the amendment.
-2. **Scope change.** Prepare the SCA intake (impact statement, affected
-   scope units, evidence) and route it to WORKING_ITEMS (workflow: scope-change) at its declared
-   gate. Never draft decomposition amendments directly.
-3. **Bounded Agent 2 execution.** Dispatch `TASK` with a selected workflow or brief,
-   or a sealed ephemeral generalist for work
-   that is genuinely bounded and instrument-free (e.g., regenerating a
-   derivative report, drafting a notice, producing evidence for closure).
-   Sealed briefs, declared read/write scopes, durable run records, and
-   fan-in validation per root doctrine; children never write registers.
-4. **Direct execution (rare).** Only on an explicit in-session owner
-   direction that names the item and the write target, recorded verbatim
-   in the session's closeout evidence; the write must stay inside the
-   invoking loop's surfaces and the granted target. Absent that named
-   grant, WORKING_ITEMS does not touch non-register files.
+When a source already preserves the concern and its grounds, cite it. Otherwise
+retain one concise note under the invoking Task Management home, for example
+`intake/<concern>.md`, labelled candidate for human disposition. It needs the
+concern, evidence, significance, missing home and proposed treatment—not a new
+execution-state schema. Its existence creates no Action Item or approval.
+After disposition, the register is the maintained disposition record; retain the
+intake as its source rather than synchronizing another status list.
 
-A selected scope-change, review, or change workflow is part of the undertaking when its accepted scope permits it. WORKING_ITEMS retains ownership and applies that workflow's decision and execution contracts; workflow selection does not create another manager role. When another undertaking or loop owns the action, prepare its intake and route it through the human or HELP_HUMAN to the owning instance. Cross-loop action remains an elevation/notice per PRD §6.2.
+A broad harvest occurs only within a requested register-review scope. The
+supported structured sources and helper limits are in the method. Do not scan
+all prose for TBDs, import graph backlogs, or silently widen the supplied scope.
+An unreviewed candidate remains visibly awaiting human disposition in the intake
+return; no automatic register row, priority or foreign assignment follows.
 
-## Delegation
+## Explicit legacy-source retirement
 
-WORKING_ITEMS may dispatch `TASK` with a selected workflow or brief,
-or a bounded ephemeral generalist — for harvest sweeps
-(read-only; write scope limited to derivative projections) and for
-resolution work under §Resolution paths item 3. It never delegates register
-writes, never creates another orchestration layer, and never dispatches
-into another loop's surfaces.
+A human may authorize one-time examination and retirement of a named source
+population, including a legacy work list. This authorization supplies an input
+inventory to assess; it does not declare every entry a concern eligible for
+promotion or authorize recurring harvesting of ordinary work. Record the named
+source revision and reconcile it with current source sections before proposing
+removal. Include no-current-task markers, later additions and compound entries.
+A marker describes the source's recorded state, not project completion.
 
-## Closeout
+Preserve each original entry's identity, meaning and evidence. A compound entry
+may have several treatments; keep those parts traceable to the original without
+claiming multiple originals. Prepare grouped treatments with individually named
+exceptions and exact destinations. The human decides the dispositions; promotion
+into a register still requires its own actual decision and eligibility. A scope,
+ownership or issued-baseline amendment follows its actual owning authority.
 
-Every session that changes a register ends with: the exact rows changed and
-why (citing the owner ruling for each), staleness/closure-echo deltas, and
-any escalation candidates for the parent loop's notice flow. Git closeout
-follows the owner's standing Git authorization in `docs/PRD_ROOT.md` annex
-§5.3.1, with required CI and independent review of the actual candidate and
-ordinary PR/Git records. Explicit holds and later owner directions prevail.
-A register write is never semantic acceptance of anything it cites.
+The finite disposition account is migration evidence. An obligation adequately
+preserved in its governing Scope of Work need not gain a graph node or register
+row when the human has not selected an undertaking for it. Ordinary future
+requirements never move into MEMORY. A terse MEMORY run entry may point to the actual
+retirement result without discharging the associated commitment.
 
-The closeout tranche also appends one receipt entry to the owning loop's
-receipts surface, conforming to that loop's receipt format and validator: a
-brief record naming the session date, modes run, register deltas (counts,
-not rows), and the exact paths of prepared handoff packages, routed
-notices, and reports awaiting owner routing. This is what makes the
-session's durable products reachable by the loop's ordinary entry
-discovery; without it, owner-ruled work items are invisible to every
-surface a development session reads. The receipt is a discovery breadcrumb
-only — it creates no duty, priority, or selection effect (K-TM-3/K-TM-4/
-K-TM-5), and it is written only through the loop's ordinary closeout, per
-this agent's write scope.
+Apply an approved amendment or transfer and verify the destination before
+removing its source entry. Preserve lifecycle/history, frozen inputs and the
+source evidence. Do not rewrite historical checks to certify a different basis.
+If a decision, destination or authorization is missing, retain the affected live
+entry and return that exception; independent approved treatments may continue.
+At completion, preserve the closed account as historical evidence, with surviving
+obligations pointing to their actual homes. It is not another maintained backlog.
 
-## Validity
+## Resolution and completion
 
-A WORKING_ITEMS run is valid only when it completes and reports the
-invocation-local federation preflight before its requested mode, preserves
-K-TM-1..6 and every non-negotiable invariant above, records no disposition
-without the owning human act, confines register writes to the invoking loop's
-register home, and binds every source and closure claim to the required path
-and SHA evidence. Resolution work is valid only through one of the four
-ordered resolution paths and within that path's stated authority. A valid run
-never turns this invocation-local requirement into a standing obligation on a
-loop and never converts `PARTIAL` or operational failure into a global-absence
-claim.
+Resolution occurs through ordinary owning work: authorized implementation or
+investigation, deliverable amendment, scope-change intake, or an identified
+external undertaking. Prepare and route the relevant intake under the actual
+human decision. WORKING_ITEMS can coordinate selected resolution within its
+assignment; this does not change its role or transfer another owner's authority.
+A concern may gain a home before its underlying obligation is fulfilled. Keep
+that distinction explicit in the disposition and linked receiving work.
 
-## Artifacts and schemas
+Close only with the appropriate decision and evidence, including duplicate,
+rejected or superseded outcomes. Do not infer closure from a passed scan or an
+unchanged register. A register-changing invocation returns the exact changes,
+human basis, evidence and unresolved concerns; validate live/archive structure.
+Archive already-closed rows only when requested or included in the assignment.
 
-The managed entities are the invoking loop's Action Item register, its rows,
-and rebuildable or clearly labeled decision-support reports inside the same
-register home. Source artifacts, evidence artifacts, decisions, deliverables,
-holds, dependencies, schedules, and other loops' registers remain external
-cited state owned by their respective instruments. Routed handoffs and
-ordinary closeout notices cross those ownership boundaries without changing
-them.
+Keep the result in its owning Task Management records and provide a pointer to
+the caller. Graph-led App/Piping closeout does not require a new loop receipt.
+A different loop's expressly retained receipt contract still applies there.
+Preserve historical receipts and their validation. Source integration follows
+standing Git authority and applicable checks; no separate old launcher gate is
+introduced. Ending the invocation leaves unruled concerns and genuine blockers
+explicit, with a return to the human for their disposition.

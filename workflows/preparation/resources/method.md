@@ -78,7 +78,7 @@ This creates the package folder with all 9 lifecycle subfolders (`0_References/`
    - `tools/validation/check_min_viable_fileset.sh {deliverable_folder}`
    - If the check fails, report the missing files and mark the task invalid.
 
-When the brief selects `CREATE_MEMORY=true` and grants its exact path, create missing `_MEMORY.md` from `docs/templates/MEMORY_TEMPLATE.md`; default false. Pass --memory to scaffold_deliverable.sh for this selection; it creates only missing memory and emits CREATED_PATH. Include it in created/skipped paths.
+When the brief selects `CREATE_MEMORY=true` and grants its exact path, create missing `MEMORY.md` from `docs/templates/MEMORY_TEMPLATE.md`; default false. Pass --memory to scaffold_deliverable.sh for this selection; it creates only missing memory and emits CREATED_PATH. Include it in created/skipped paths.
 
 **Output:** Deliverable folder contains a complete minimum viable fileset validated by the deterministic checker. Report created vs skipped.
 
