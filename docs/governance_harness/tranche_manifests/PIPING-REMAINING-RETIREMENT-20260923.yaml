@@ -1,0 +1,21 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: PIPING-REMAINING-RETIREMENT-20260923
+title: Retire Piping legacy Remaining as a work-selection surface
+date: 2026-09-23
+basis: 10b672caed0a0e013ac72508ac72f6b3ce274286
+instruction_surface_paths:
+  - projects/chirality-piping/AGENTS.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - docs/governance_harness/tranche_manifests/PIPING-REMAINING-RETIREMENT-20260923.yaml
+m2_gate:
+  authorization: 'Owner direction in the active 2026-09-23 task: triage every current Piping Remaining entry through Task Management, preserve surviving meaning at its governing destination, remove all live Remaining sections and entries, and do not use the legacy list for work selection. The owner clarified that PEC is later. This tranche changes only the Piping instruction reference after the finite transfer.'
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: Piping WORKING_ITEMS
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_PIPING_REMAINING_RETIREMENT.md
+  rationale: Piping's live instruction reference changed after the finite local source retirement; the owning loop receives the source and destination account. No sibling instruction or contract mirror is changed.
