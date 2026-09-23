@@ -8,7 +8,8 @@ Build the route from the human's intended result to examined, integrated work.
 HELP_HUMAN develops that understanding and coordinates construction; a manager
 can develop a selected portion, and TASK can inspect or draft a bounded part
 without delegating. One graph carries the undertaking across sessions.
-`LOOP_INIT.md` points to the actual current graph and governs its traversal.
+The human's steering selects the undertaking; `LOOP_INIT.md` supplies the
+evergreen procedure for recovering, constructing and following its graph.
 
 ## 1. Establish the intended result
 
@@ -90,9 +91,9 @@ Use the [graph template](resources/work-graph-template.md). For App/Piping local
 development, save the current graph exactly at
 `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
 project. It is Git-tracked project state: include it early in the undertaking's
-PR sequence for handoff, then update it in later PRs. Set LOOP_INIT's current
-pointer to that actual path. If the pointer lies outside the executor's write
-ceiling, return the precise update to its authorized owner before handoff.
+PR sequence for handoff, then update it in later PRs. Return its path so the
+continuing session can locate it through its steering or project records.
+Keep undertaking-specific paths and state out of reusable loop instructions.
 
 Keep one current account of the ready work, holds and next safe action, bound to
 the checked candidate. Link PRs, evidence, active operations and shared-resource
@@ -110,7 +111,7 @@ relates the graph, central receipt/evidence, PRs and affected MEMORY rows. Prese
 needed evidence before a temporary worktree retires. Do not require a later
 commit solely to write the final merge result back into its own candidate.
 
-Return the saved graph and current pointer, selected route, material assumptions,
+Return the saved graph's path, selected route, material assumptions,
 unresolved decisions and first ready work. Then resume the loop within the
 human's direction. Graph construction changes no scope, hold, lifecycle or
 release authority by itself.

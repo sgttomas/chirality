@@ -1,0 +1,49 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-EVERGREEN-DEVELOPMENT-LOOPS-20260923
+title: Keep App and Piping loop instructions evergreen
+date: 2026-09-23
+basis: b3372a49c1184632fc46d92feaaa1c8adee8afa0
+instruction_surface_paths:
+  - AGENTS.md
+  - docs/SPEC.md
+  - projects/chirality-app-dev/AGENTS.md
+  - projects/chirality-app-dev/loop/LOOP_INIT.md
+  - projects/chirality-piping/AGENTS.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/construct-local-work-graph/resources/work-graph-template.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+  - docs/governance_harness/tranche_manifests/ROOT-EVERGREEN-DEVELOPMENT-LOOPS-20260923.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts corrected the proposed current-graph pointer arrangement in active
+    chat: 'no the LOOP_INIT needs to be a generic set of instructions that are
+    evergreen.' This tranche removes the run-specific pointers and their
+    companion requirements. The finished workflow revision is presented through
+    a review PR under the bundled create-workflow method before replacement.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md
+  rationale: >-
+    App and Piping loop instructions and shared graph-construction guidance are
+    corrected together. Runtime and PEC receive notice of the Root source
+    amendment while retaining their adopted instruction and recording bases.
+scope_limits:
+  - Human steering selects the undertaking; its graph carries execution state.
+  - Canonical graph and central receipt locations are retained.
+  - Existing graphs, run evidence, decisions, and historical notices are preserved.
+  - No product work, graph migration, scope change, lifecycle action, or release.
+  - PEC's loop and work selection are outside this correction.
+  - The owner retains manual updates and their published derivatives.

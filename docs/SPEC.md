@@ -771,8 +771,11 @@ records to an authorized writer.
 For App/Piping loops adopting the local development-graph arrangement, the
 current graph is Git-tracked at
 `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
-project, and LOOP_INIT names its actual path. Include the graph early in the
-undertaking's PR sequence and update it as work proceeds. AgentRuns evidence
+project. Recover the selected undertaking's graph from the human's steering and
+relevant project records; LOOP_INIT remains evergreen and carries no
+undertaking-specific pointer or execution state. Include the graph early in the
+undertaking's PR sequence and return its path for continuation. Update it as work
+proceeds. AgentRuns evidence
 links that graph and its examined revision rather than maintaining a second
 current copy. Preserve
 historical graphs at their original locations. This rule does not relocate other
