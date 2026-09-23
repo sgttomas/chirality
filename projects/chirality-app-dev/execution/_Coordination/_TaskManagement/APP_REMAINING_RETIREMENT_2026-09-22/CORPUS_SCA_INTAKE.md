@@ -4,7 +4,7 @@ Status: **candidate receiving record; no Scope Change Amendment has been accepte
 
 ## Supplied concern and owner
 
-APP-R004 in the bound census requires application of D-GOV-43 topology A2 and D-APP-127 across the App authority corpus, clause-level rehash and D-APP-38 reference rebinding. DEL-01-01 ScopeOfWork CLM-010 REQ-001/006/007 and CLM-011/012/018 retain coherence and review obligations, but those general clauses do not themselves amend the stale corpus bytes. App WORKING_ITEMS and the App governance-document owner are the named producing owners; the accountable human retains substantive scope/authority acceptance. Root D-GOV-43 remains the controlling upstream ruling, not a permission to silently change App clauses.
+APP-R004 in the bound census requires application of D-GOV-43 topology A2 and D-APP-127 across the App authority corpus, clause-level rehash and D-APP-38 reference rebinding. DEL-01-01 ScopeOfWork CLM-009 REQ-001/006/007 and CLM-011/012/018 retain coherence and review obligations, but those general clauses do not themselves amend the stale corpus bytes. App WORKING_ITEMS and the App governance-document owner are the named producing owners; the accountable human retains substantive scope/authority acceptance. Root D-GOV-43 remains the controlling upstream ruling, not a permission to silently change App clauses.
 
 ## Bounded clause audit candidate
 
