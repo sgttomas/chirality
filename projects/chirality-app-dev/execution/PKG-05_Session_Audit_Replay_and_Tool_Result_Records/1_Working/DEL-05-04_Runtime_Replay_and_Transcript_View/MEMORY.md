@@ -8,7 +8,7 @@
   Evidence: [work graph](../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/WORK_GRAPH.md),
   [run evidence](../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/RUN_EVIDENCE.md),
   [substantive PR #866](https://github.com/sgttomas/chirality/pull/866),
-  final closeout branch `codex/app-loop-trial-closeout` (PR URL pending).
+  [final closeout PR #868](https://github.com/sgttomas/chirality/pull/868).
 
 ## Decisions And Evidence
 
