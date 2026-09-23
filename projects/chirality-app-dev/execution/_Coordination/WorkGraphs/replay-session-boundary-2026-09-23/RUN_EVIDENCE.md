@@ -52,3 +52,7 @@ SHA-256 values are of the bytes actually read at the start revision, except the 
 | `.agents/skills/software-code-review/SKILL.md` (reviewer) | `06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a` |
 
 The fractional `maxItems` floor-to-zero observation is outside this trial and remains ordinary possible DEL-05-04 work. It has a current deliverable home, so no Task Management intake is warranted here.
+
+## Bounded closeout basis
+
+The final comparison began from verified substantive merge `2ea7725230c5c370a5b008138d4486ed427b3bd2` ([PR #866](https://github.com/sgttomas/chirality/pull/866)). Selected method `chirality-root:bundled:workflow:bounded-reconciliation` came from `workflows/bounded-reconciliation/WORKFLOW.md`, SHA-256 `f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738`. `CLOSEOUT_COMPARE.txt`, SHA-256 `246b56a2deafb0b8c252bf7b5ed6c7dc8ee27f7e344a708d9f96e2d1b04b015a`, checks current formal DEL-05-04 dependency counts and the MEMORY evidence links. The work graph records the bounded SOW/dependency/governance comparison and no-change conclusions; formal dependency fields, lifecycle, and authority pins were not changed.

@@ -1,5 +1,15 @@
 # MEMORY - DEL-05-04
 
+## Runs
+
+- 2026-09-23 — `APP-REPLAY-BOUNDARY-2026-09-23`: selected-session replay now
+  suppresses foreign instruction records while preserving selected transcript
+  linkage; the bounded closeout corrected descriptive dependency counts.
+  Evidence: [work graph](../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/WORK_GRAPH.md),
+  [run evidence](../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/RUN_EVIDENCE.md),
+  [substantive PR #866](https://github.com/sgttomas/chirality/pull/866),
+  final closeout branch `codex/app-loop-trial-closeout` (PR URL pending).
+
 ## Decisions And Evidence
 
 - 2026-08-17 - Accepted the dedicated canonical replay/restart integration
