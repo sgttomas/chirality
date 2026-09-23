@@ -52,3 +52,11 @@ SHA-256 values are of the bytes actually read at the start revision, except the 
 | `.agents/skills/software-code-review/SKILL.md` (reviewer) | `06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a` |
 
 The fractional `maxItems` floor-to-zero observation is outside this trial and remains ordinary possible DEL-05-04 work. It has a current deliverable home, so no Task Management intake is warranted here.
+
+## Bounded closeout basis
+
+The final comparison began from verified substantive merge `2ea7725230c5c370a5b008138d4486ed427b3bd2` ([PR #866](https://github.com/sgttomas/chirality/pull/866)). Selected method `chirality-root:bundled:workflow:bounded-reconciliation` came from `workflows/bounded-reconciliation/WORKFLOW.md`, SHA-256 `f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738`. `CLOSEOUT_COMPARE.txt`, SHA-256 `246b56a2deafb0b8c252bf7b5ed6c7dc8ee27f7e344a708d9f96e2d1b04b015a`, checks current formal DEL-05-04 dependency counts and the MEMORY evidence links. The work graph records the bounded SOW/dependency/governance comparison and no-change conclusions; formal dependency fields, lifecycle, and authority pins were not changed.
+
+[Final closeout PR #868](https://github.com/sgttomas/chirality/pull/868) carries the bounded records correction and MEMORY row. Its merge, review and CI are tracked as F1 in the work graph and are not inferred from this link.
+
+After binding that URL, the final records-only candidate passed the registered practitioner-harness self-check, practitioner-harness pytest (379 cases), and APP-HOLD integrity in `FINAL_RECORD_CHECKS.json` (SHA-256 `243525d677ef726dd43c9cd911551365e5270a40b8234556c4bb8e7c22525ead`). Direct formal-row/count, graph-path and MEMORY/PR-link assertions passed in `FINAL_COMPARE.txt` (`95386277d8f05383596311db311a9cdc9492dc3695c2a062e854dc9042cfe172`); the root path-anchor validator passed in `FINAL_PATH_CHECK.txt` (`e27cf0dbfa001f4ba7f724d5fccbe48ba6940cdca76378b892df74ba0ae83638`). Frontend source/test/build gates do not apply to this final document-only diff; they ran on the unchanged P1 product source. Required PR-head CI and independent final-diff review remain separate.

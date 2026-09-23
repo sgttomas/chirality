@@ -47,7 +47,9 @@ Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 | DEP-05-04-008 | EXECUTION | CONSTRAINT | UPSTREAM | Redaction helper or policy | ACTIVE | PENDING |
 | DEP-05-04-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-05 | ACTIVE | SATISFIED |
 
-Counts: ACTIVE=9; satisfaction SATISFIED=9.
+Counts: ACTIVE=9; satisfaction SATISFIED=7, PENDING=2. This descriptive
+count matches the current `Dependencies.csv` rows above; no formal satisfaction
+field is changed.
 
 ## Run History
 
@@ -65,7 +67,8 @@ Counts: ACTIVE=9; satisfaction SATISFIED=9.
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 9 |
+| SATISFIED | 7 |
+| PENDING | 2 |
 
 ## Current descriptive index — 2026-09-22
 
