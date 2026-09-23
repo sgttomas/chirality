@@ -116,7 +116,7 @@ The App delegates execution to its application-owned Runtime service. Runtime ow
 
 Requests bind registered project identity/root, role, permission and delegation policy, runtime options, content and attachment references. Interrupt and cancellation handling remains coordinated with DEL-03-04. A renderer disconnect unsubscribes from the stream and must not interrupt the running turn. Public event handling preserves Codex notifications under the accepted protocol rather than promising the former closed SDK event vocabulary.
 
-Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. Remaining binding and delegation-policy findings retain their own gates in `_STATUS.md`; the wording does not certify them complete.
+Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. Binding and delegation-policy findings retain their gates in this Scope of Work and TM-APP-045; the wording does not certify them complete.
 
 Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
@@ -275,7 +275,7 @@ D-GOV-43 resolves the closed-event and SDK-settings mechanisms in favor of full 
 
 ## Retired status detail (2026-09-23)
 
-These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
 
 - **APP-R032:** Per-chat delegation policy request/default and fingerprint remain required. TM-APP-045 holds the missing App/Runtime durable storage and interface owner assignment after Root DEL-02-11 retirement; V3-01 remains gated.
 

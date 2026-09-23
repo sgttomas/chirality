@@ -1,5 +1,8 @@
 # Dependencies: DEL-07-01 Working Root Validation and Instruction Root Protection
 
+> **Current-source note (2026-09-23):** References below to the former App `Remaining` section and its Depends text record dated extraction evidence. The live status section was retired in the finite App Task Management account. For current work and dependency gating, read `Dependencies.csv`, governing Scope of Work, accepted decisions and the selected work graph. The historical Depends text adds no prerequisite; this note does not change the accepted register rows.
+
+
 ## Dependency Tracking
 
 | Field | Value |
@@ -124,7 +127,7 @@ Earlier extraction notes, counts, source states and file citations retain their 
 
 ## Current residual-specific interpretation — 2026-09-22
 
-The DEP-017/018 preview described in the dated extraction run is applied in the current register. `tool-path-policy.ts` is retired compatibility provenance, not a current live enforcement locus. Current ordinary instruction-root protection and its unresolved live checks are in ScopeOfWork.md CLM-028/029 and Remaining; historical line anchors and MATCH notes are not current source verification.
+The DEP-017/018 preview described in the dated extraction run is applied in the current register. `tool-path-policy.ts` is retired compatibility provenance, not a current live enforcement locus. Current ordinary instruction-root protection and unresolved live checks are in ScopeOfWork.md CLM-028/029 and the retired-status detail there; historical line anchors and MATCH notes are not current source verification.
 
 ## Current dependency refresh — 2026-09-22
 

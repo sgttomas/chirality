@@ -16,6 +16,13 @@ Seven new **DEFERRED** App rows, TM-APP-049–055, preserve actual owner decisio
 
 The 33 canonical live `## Remaining` sections were then removed whole. Status lifecycle headers and `## History` tails were preserved byte-for-byte. The other 21 canonical statuses had no section and were untouched. No historical R6 census, prior run evidence or noncanonical snapshot was edited. A postimage scan found zero `## Remaining` headings in the 54 canonical App statuses. The revised App `AGENTS.md` now directs selection to steering, governing scope, decisions, dependencies and the identified graph; the dated 2026-07-18 workplan is marked historical so its old section-based selection prose cannot be mistaken for current procedure.
 
+Current SOW and context text that still directed work or evidence into a live
+`Remaining` section was reconciled to governing scope, decisions and graph.
+Nineteen dependency narratives now mark their old status anchors as dated
+extraction evidence; the accepted `Dependencies.csv` rows and source quotes
+remain unchanged. The App status parser's retained historical-fixture handling
+does not make `Remaining` a current work-selection surface.
+
 ## Checks and limits
 
 - `taskmgmt validate` passes the 21-row App register after the seven-row append.

@@ -195,7 +195,7 @@ D-APP-38 established the reference-observation model. Earlier MATCH and hash-war
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling section and Remaining; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
+The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling Scope of Work and owning decisions; the retired status text is migration evidence; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -347,7 +347,7 @@ Preserve current source-bound presentation, stale/empty/unknown-state and query 
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling section and Remaining; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
+The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling Scope of Work and owning decisions; the retired status text is migration evidence; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 - **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis.
 
@@ -428,7 +428,7 @@ Current source-state observations are in `_REFERENCES.md`; prior MATCH results a
 
 ## Retired status detail (2026-09-23)
 
-These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
 
 - **APP-R018:** Managed/native descendant presentation must carry source-backed class, provenance and responsible-reference information through an owner-approved locus. The card-versus-other-view choice is deferred in TM-APP-047; DEL-08-05 retains lineage proof.
 

@@ -93,7 +93,7 @@ compatibility navigation without creating a second evidence store.
 
 Applied row notes: Shell integration owns presentation only; work, hierarchy,
 transcript, and artifact facts remain governed by their existing semantic
-owners; the direct shell items are seated as Remaining work by the owner, not by
+owners; the direct shell items were seated in the former `Remaining` source by the owner at that time, not by
 this row.
 
 Applied row outputs: Dialogue shell; composer context line; chat navigator;
@@ -354,7 +354,7 @@ A new chat chooses its folder and permitted direct-entry role in the composer; a
 
 ### CLM-030 — Conflict Table (for human ruling)
 
-The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptance. The surviving exact TYPES §4 route/query compatibility, icon direction/reproducibility and missing context-field questions remain in current Remaining with their actual owning decisions. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
+The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptance. The surviving exact TYPES §4 route/query compatibility, icon direction/reproducibility and missing context-field questions remain in governing scope and their owning decisions; see APP-R017 and TM-APP-050 in the final retirement account. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 
@@ -364,7 +364,7 @@ The live package folder and stable DEL-02-01 identity are established; the older
 
 ## Retired status detail (2026-09-23)
 
-These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
 
 - **APP-R013:** Use the Stone palette, measured text/control contrast, left-panel wordmark and current plain-language composer copy under D-APP-108 and the four-role/D-GOV-43 contract.
 

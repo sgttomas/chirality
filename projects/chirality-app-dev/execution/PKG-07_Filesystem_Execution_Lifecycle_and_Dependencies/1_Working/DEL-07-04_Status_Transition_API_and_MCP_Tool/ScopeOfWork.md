@@ -153,7 +153,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | ID | Requirement | Source |
 > |---|---|---|
 > | DEL-07-04-REQ-001 | The status parser SHALL read `_STATUS.md` as the canonical human-readable lifecycle file for a deliverable. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1; `docs/SPEC.md` Section 4.3 |
-> | DEL-07-04-REQ-002 | The parser SHALL extract `Current State`, `Last Updated`, and history entries; transition writes SHALL preserve all history and the deliverable-local Remaining work surface. | `docs/SPEC.md` Section 4.1; `docs/PRD.md` Section 8.9 FR-052 |
+> | DEL-07-04-REQ-002 | The parser SHALL extract `Current State`, `Last Updated`, and history entries; transition writes SHALL preserve all history and any retained legacy Remaining content in historical fixtures. | `docs/SPEC.md` Section 4.1; `docs/PRD.md` Section 8.9 FR-052 |
 > | DEL-07-04-REQ-003 | The validator SHALL recognize the lifecycle order `OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED`. | `docs/SPEC.md` Section 4.2; `docs/TYPES.md` Section 4.1 |
 > | DEL-07-04-REQ-004 | The validator SHALL enforce the authorized transition table, including human-authorized CHECKING -> IN_PROGRESS and ISSUED -> IN_PROGRESS through the scope-change path; other backward transitions are rejected. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
 > | DEL-07-04-REQ-005 | The validator SHALL enforce actor authorization for lifecycle transitions according to SPEC Section 4.3, including human initialization and the authorized reversal paths. A caller-supplied HUMAN/USER/OPERATOR string and format-valid SHA alone do not establish a human act. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
@@ -472,7 +472,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 ### CLM-032 — Conflict Table (for human ruling)
 
-> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in Remaining; this record neither re-pins an accepted source nor certifies a new product result.
+> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in governing scope and any selected graph; this record neither re-pins an accepted source nor certifies a new product result.
 
 ### CLM-033 — Source Status
 

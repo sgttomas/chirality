@@ -127,7 +127,7 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 
 ### CLM-034 — Historical assigned pathway — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
 
-> This applied assignment is preserved as dated pathway history. D-GOV-43/D-APP-127 supersede the G6a/Stage 9–13 mechanism; current follow-through is stated in REQ-003, CLM-019/023 and Remaining. Existing 3.0.0/3.0.1 releases do not authorize another release.
+> This applied assignment is preserved as dated pathway history. D-GOV-43/D-APP-127 supersede the G6a/Stage 9–13 mechanism; current follow-through is stated in REQ-003, CLM-019/023 and the retired-status detail below. Existing 3.0.0/3.0.1 releases do not authorize another release.
 
 > ##### Applied decomposition row for DEL-09-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
 >
@@ -532,7 +532,7 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 
 ### CLM-031 — Conflict Table (for human ruling)
 
-> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in Remaining; this record neither re-pins an accepted source nor certifies a new product result.
+> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in governing scope and any selected graph; this record neither re-pins an accepted source nor certifies a new product result.
 
 ### CLM-032 — Open Items
 
@@ -553,7 +553,7 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 
 ## Retired status detail (2026-09-23)
 
-These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
 
 - **APP-R080:** Record actual 3.0.0 and 3.0.1 release identity and candidate evidence, distinguishing owner testimony from retained build and verification outputs.
 

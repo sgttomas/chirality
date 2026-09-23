@@ -102,7 +102,7 @@ Earlier extraction notes, counts, source states and file citations retain their 
 
 ## Current residual-specific interpretation — 2026-09-22
 
-TBD_SURFACES is an obsolete extraction warning for selected paths; ScopeOfWork.md now names current harness manifest/runner hooks. Actual satisfaction of the Runtime/Codex coverage still requires the candidate-bound results in Remaining.
+TBD_SURFACES is an obsolete extraction warning for selected paths; ScopeOfWork.md now names current harness manifest/runner hooks. Actual satisfaction of the Runtime/Codex coverage still requires candidate-bound results against governing ScopeOfWork.md.
 
 ## Current evidence-locator refresh — 2026-09-22
 
