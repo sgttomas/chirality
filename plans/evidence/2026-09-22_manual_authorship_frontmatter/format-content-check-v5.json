@@ -1,0 +1,42 @@
+{
+  "source_sha256": "e7f8579110e95f57c618bec304462dc04419b6f48bada9a296404cf8b91f609d",
+  "word_sha256": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722",
+  "rendered_pdf_sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+  "article_paragraphs_and_headings": 25,
+  "exact_markdown_word_paragraph_order": true,
+  "pdf_contains_all_frontmatter_units": true,
+  "unchanged_original_book_body_bytes": true,
+  "toc_links": 89,
+  "word_sections": 3,
+  "folio_sections": [
+    "cover unnumbered",
+    "lowerRoman:start1",
+    "decimal:start1"
+  ],
+  "frontmatter_folios": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v"
+  ],
+  "main_body_folios": [
+    "1",
+    "159"
+  ],
+  "toc_destinations_match_headings": 89,
+  "source_v4_hashes_unchanged": true,
+  "docx_metadata_and_template_image": "PASS",
+  "comments_and_tracked_changes": "NONE",
+  "hyperlink_targets": [
+    "https://www.apega.ca/docs/default-source/pdfs/standards-guidelines/relying-on-the-work-of-others-and-outsourcing.pdf",
+    "https://www.apega.ca/news/2026/03/23/guidance-for-registrants-regarding-the-use-of-artificial-intelligence-tools",
+    "https://www.alberta.ca/system/files/em-ets-cs-hub-development-plan-template-instructions.pdf",
+    "CHIRALITY_AGENT_USER_MANUAL_v2.md",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+    "https://mitpress.mit.edu/9780262043045/the-promise-of-artificial-intelligence/",
+    "https://press.uchicago.edu/ucp/books/book/chicago/P/bo19722848",
+    "https://press.uchicago.edu/ucp/books/book/chicago/T/bo6035368"
+  ],
+  "pdf_pages": 165
+}

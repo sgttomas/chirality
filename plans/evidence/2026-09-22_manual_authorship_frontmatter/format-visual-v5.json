@@ -1,0 +1,95 @@
+{
+  "v5_pdf_sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+  "v5_pages": 165,
+  "v4_pdf_sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+  "v4_pages": 162,
+  "cover": {
+    "status": "pixel-identical to v4 cover",
+    "sha256": "faa344b089e30f225e27f0e3472d6e8bc2704c7813f99ebcd9e4a0e9b724becd"
+  },
+  "individually_inspected_new_pages": [
+    {
+      "page": 2,
+      "sha256": "2ffefdfab08a5a73aca11b57d858f0ca3c4966d18ba016da5c8b72e71a86f5c6",
+      "visual_status": "individually inspected at original detail"
+    },
+    {
+      "page": 3,
+      "sha256": "9d08ed1c5df2d0c5c05607ad332ce30b744deff991f8ffb5f0616d97c9c02b9c",
+      "visual_status": "individually inspected at original detail"
+    },
+    {
+      "page": 4,
+      "sha256": "79e0c43227453b2791ce86e0f5d5d3638544958bc010c80ef2978be97bc7b6f8",
+      "visual_status": "individually inspected at original detail"
+    },
+    {
+      "page": 5,
+      "sha256": "f3b0dd79600984faa341e950266db473498b911e71cc99186682adce4ce48582",
+      "visual_status": "individually inspected at original detail"
+    },
+    {
+      "page": 6,
+      "sha256": "62a35d44df3c1a866e574bf0c0899b9c4b6ba1865cce364b61ba20f447266371",
+      "visual_status": "individually inspected at original detail"
+    },
+    {
+      "page": 7,
+      "sha256": "865cad41c39f999332e0239c264823b8a11036ac003835796b3d2232dccc5cc7",
+      "visual_status": "individually inspected at original detail"
+    }
+  ],
+  "contents_pages": {
+    "physical_pages": [
+      5,
+      6
+    ],
+    "folio_numbers_materialized": true,
+    "pixel_changes_confined_to_page_number_column": [
+      {
+        "page": 5,
+        "difference_bbox": [
+          1287,
+          315,
+          1314,
+          1834
+        ],
+        "cause": "materialized Contents folios"
+      },
+      {
+        "page": 6,
+        "difference_bbox": [
+          1272,
+          154,
+          1314,
+          1844
+        ],
+        "cause": "materialized Contents folios"
+      }
+    ]
+  },
+  "main_body": {
+    "v5_physical_range": [
+      7,
+      165
+    ],
+    "v4_physical_range": [
+      4,
+      162
+    ],
+    "page_count": 159,
+    "individual_page_text_unchanged": true,
+    "pixel_difference_on_each_page_confined_to_footer_folio": true,
+    "preface_page_number_restarts_at": 1,
+    "last_printed_folio": 159
+  },
+  "render_carryover": {
+    "preliminary_page_count": 165,
+    "final_page_count": 165,
+    "changed_pages": [
+      5,
+      6
+    ],
+    "cause": "correct Contents folio caches"
+  }
+}

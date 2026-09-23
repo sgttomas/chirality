@@ -1,0 +1,387 @@
+{
+  "source": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+  "source_sha256": "b365eb9d9390a26f08221da11c32638f9f6966a3665c24cd5c4a1d4f0139a3a2",
+  "html": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html",
+  "html_sha256": "06af2dacca2f2990b80ed244410a41a0e52443ed865acd25391af0d1a51d8ec3",
+  "checks": {
+    "visible_text_parity": true,
+    "paragraph_parity": true,
+    "table_content_parity": true,
+    "code_block_exact_text_parity": true,
+    "heading_content_parity": true,
+    "source_link_sequence_parity": true,
+    "source_element_count_parity": true,
+    "source_div_count_plus_table_wrappers": true,
+    "no_duplicate_page_ids": true,
+    "all_in_page_targets_exist": true,
+    "no_non_embedded_assets": true,
+    "source_sha256_visible": true,
+    "all_local_link_files_and_fragments_exist": true
+  },
+  "source_counts": {
+    "h1": 1,
+    "p": 214,
+    "code": 282,
+    "a": 393,
+    "em": 1,
+    "strong": 33,
+    "h2": 22,
+    "ol": 3,
+    "li": 30,
+    "table": 8,
+    "thead": 8,
+    "tr": 54,
+    "th": 21,
+    "tbody": 8,
+    "td": 122,
+    "pre": 12,
+    "h3": 6,
+    "blockquote": 3
+  },
+  "page_ids": 53,
+  "local_links": [
+    {
+      "href": "../../.agents/skills/chirality-change/SKILL.md",
+      "exists": true
+    },
+    {
+      "href": "../../.agents/skills/preparation/SKILL.md",
+      "exists": true
+    },
+    {
+      "href": "../../.agents/skills/software-code-review/SKILL.md",
+      "exists": true
+    },
+    {
+      "href": "../../AGENTS.md",
+      "exists": true
+    },
+    {
+      "href": "../../agents/AGENT_HELPS_HUMANS.md",
+      "exists": true
+    },
+    {
+      "href": "../../agents/AGENT_HELP_HUMAN.md",
+      "exists": true
+    },
+    {
+      "href": "../../agents/AGENT_TASK.md",
+      "exists": true
+    },
+    {
+      "href": "../../agents/AGENT_WORKING_ITEMS.md",
+      "exists": true
+    },
+    {
+      "href": "../../agents/registry.json",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/AGENTS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/frontend/package.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-app-dev/software-workflow.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-piping/AGENTS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-piping/loop/LOOP_INIT.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-piping/package.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-piping/software-workflow.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/AGENTS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/loop/LOOP_INIT.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/package.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/chirality-runtime/software-workflow.json",
+      "exists": true
+    },
+    {
+      "href": "../../projects/pec/AGENTS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "exists": true
+    },
+    {
+      "href": "../../projects/pec/loop/LOOP_INIT.md",
+      "exists": true
+    },
+    {
+      "href": "../../projects/pec/software-workflow.json",
+      "exists": true
+    },
+    {
+      "href": "../../tools/practitioner_harness/README.md",
+      "exists": true
+    },
+    {
+      "href": "../../tools/software_workflow/run_registered_checks.py",
+      "exists": true
+    },
+    {
+      "href": "../../tools/taskmgmt/taskmgmt.py",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/audit-dep-closure/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/bounded-reconciliation/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/construct-local-work-graph/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/create-workflow/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/dbm-publisher/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/dependency-extract/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/domain-decomp/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/index.json",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/project-decomp/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/project-decomp/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/project-setup/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/project-setup/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/reconciliation/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/reconciliation/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/reconciliation/resources/method.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/research-orchestration/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scc-resolution-case/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scope-change/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scope-of-work/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scope-of-work/resources/brief.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scope-of-work/resources/checks.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/scope-of-work/resources/tools.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/software-bounded-implementation/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/software-bounded-implementation/resources/brief.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/software-bounded-implementation/resources/tools.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/software-decomp/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/software-decomp/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/task-management/WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/task-management/resources/contract.md",
+      "exists": true
+    },
+    {
+      "href": "../../workflows/task-management/resources/method.md",
+      "exists": true
+    },
+    {
+      "href": "../AGENT_WORKFLOW_RUNTIME.md",
+      "exists": true
+    },
+    {
+      "href": "../CONTRACT.md",
+      "exists": true
+    },
+    {
+      "href": "../CYCLE_DRIVEN_RESOLUTION.md",
+      "exists": true
+    },
+    {
+      "href": "../DECOMPOSITION_STANDARD.md",
+      "exists": true
+    },
+    {
+      "href": "../DELIVERABLE_CONCORDANCE_METHOD.md",
+      "exists": true
+    },
+    {
+      "href": "../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "exists": true
+    },
+    {
+      "href": "../DIRECTIVE.md",
+      "exists": true
+    },
+    {
+      "href": "../PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor",
+      "exists": true,
+      "fragment_exists": true
+    },
+    {
+      "href": "../SOFTWARE_WORKFLOW_PROFILE.md",
+      "exists": true
+    },
+    {
+      "href": "../SPEC.md",
+      "exists": true
+    },
+    {
+      "href": "../TYPES.md",
+      "exists": true
+    },
+    {
+      "href": "../governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "exists": true
+    },
+    {
+      "href": "../governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "exists": true
+    },
+    {
+      "href": "../governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v5.md",
+      "exists": true
+    }
+  ],
+  "failures": [],
+  "visual_inspection": "Assigned to the parent; not established by these structural checks."
+}

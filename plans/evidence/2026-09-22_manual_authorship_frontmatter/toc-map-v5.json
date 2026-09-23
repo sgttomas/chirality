@@ -1,0 +1,461 @@
+{
+  "render_pdf_sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+  "pages": 165,
+  "frontmatter_folio_pattern": "lowercase Roman, beginning at i",
+  "body_folio_pattern": "Arabic, restarting at Preface 1",
+  "entries": [
+    {
+      "anchor": "h_authorship",
+      "physical_page": 2,
+      "printed_folio": "i"
+    },
+    {
+      "anchor": "h_preface",
+      "physical_page": 7,
+      "printed_folio": "1"
+    },
+    {
+      "anchor": "ch_1",
+      "physical_page": 8,
+      "printed_folio": "2"
+    },
+    {
+      "anchor": "ch_1_1",
+      "physical_page": 9,
+      "printed_folio": "3"
+    },
+    {
+      "anchor": "ch_1_2",
+      "physical_page": 10,
+      "printed_folio": "4"
+    },
+    {
+      "anchor": "ch_1_3",
+      "physical_page": 11,
+      "printed_folio": "5"
+    },
+    {
+      "anchor": "ch_1_4",
+      "physical_page": 12,
+      "printed_folio": "6"
+    },
+    {
+      "anchor": "ch_1_5",
+      "physical_page": 13,
+      "printed_folio": "7"
+    },
+    {
+      "anchor": "ch_1_6",
+      "physical_page": 16,
+      "printed_folio": "10"
+    },
+    {
+      "anchor": "ch_1_7",
+      "physical_page": 18,
+      "printed_folio": "12"
+    },
+    {
+      "anchor": "ch_1_8",
+      "physical_page": 22,
+      "printed_folio": "16"
+    },
+    {
+      "anchor": "ch_1_9",
+      "physical_page": 24,
+      "printed_folio": "18"
+    },
+    {
+      "anchor": "ch_1_10",
+      "physical_page": 28,
+      "printed_folio": "22"
+    },
+    {
+      "anchor": "ch_2",
+      "physical_page": 32,
+      "printed_folio": "26"
+    },
+    {
+      "anchor": "ch_2_1",
+      "physical_page": 33,
+      "printed_folio": "27"
+    },
+    {
+      "anchor": "ch_2_2",
+      "physical_page": 35,
+      "printed_folio": "29"
+    },
+    {
+      "anchor": "ch_2_3",
+      "physical_page": 37,
+      "printed_folio": "31"
+    },
+    {
+      "anchor": "ch_2_4",
+      "physical_page": 39,
+      "printed_folio": "33"
+    },
+    {
+      "anchor": "ch_2_5",
+      "physical_page": 41,
+      "printed_folio": "35"
+    },
+    {
+      "anchor": "ch_2_6",
+      "physical_page": 43,
+      "printed_folio": "37"
+    },
+    {
+      "anchor": "ch_2_7",
+      "physical_page": 45,
+      "printed_folio": "39"
+    },
+    {
+      "anchor": "ch_2_8",
+      "physical_page": 47,
+      "printed_folio": "41"
+    },
+    {
+      "anchor": "ch_2_9",
+      "physical_page": 49,
+      "printed_folio": "43"
+    },
+    {
+      "anchor": "ch_2_10",
+      "physical_page": 51,
+      "printed_folio": "45"
+    },
+    {
+      "anchor": "ch_2_11",
+      "physical_page": 54,
+      "printed_folio": "48"
+    },
+    {
+      "anchor": "ch_2_12",
+      "physical_page": 55,
+      "printed_folio": "49"
+    },
+    {
+      "anchor": "ch_3",
+      "physical_page": 57,
+      "printed_folio": "51"
+    },
+    {
+      "anchor": "ch_3_1",
+      "physical_page": 57,
+      "printed_folio": "51"
+    },
+    {
+      "anchor": "ch_3_2",
+      "physical_page": 59,
+      "printed_folio": "53"
+    },
+    {
+      "anchor": "ch_3_3",
+      "physical_page": 61,
+      "printed_folio": "55"
+    },
+    {
+      "anchor": "ch_3_4",
+      "physical_page": 63,
+      "printed_folio": "57"
+    },
+    {
+      "anchor": "ch_3_5",
+      "physical_page": 65,
+      "printed_folio": "59"
+    },
+    {
+      "anchor": "ch_3_6",
+      "physical_page": 67,
+      "printed_folio": "61"
+    },
+    {
+      "anchor": "ch_3_7",
+      "physical_page": 69,
+      "printed_folio": "63"
+    },
+    {
+      "anchor": "ch_3_8",
+      "physical_page": 71,
+      "printed_folio": "65"
+    },
+    {
+      "anchor": "ch_3_9",
+      "physical_page": 72,
+      "printed_folio": "66"
+    },
+    {
+      "anchor": "ch_3_10",
+      "physical_page": 74,
+      "printed_folio": "68"
+    },
+    {
+      "anchor": "ch_3_11",
+      "physical_page": 76,
+      "printed_folio": "70"
+    },
+    {
+      "anchor": "ch_3_12",
+      "physical_page": 78,
+      "printed_folio": "72"
+    },
+    {
+      "anchor": "ch_4",
+      "physical_page": 81,
+      "printed_folio": "75"
+    },
+    {
+      "anchor": "ch_4_1",
+      "physical_page": 82,
+      "printed_folio": "76"
+    },
+    {
+      "anchor": "ch_4_2",
+      "physical_page": 84,
+      "printed_folio": "78"
+    },
+    {
+      "anchor": "ch_4_3",
+      "physical_page": 88,
+      "printed_folio": "82"
+    },
+    {
+      "anchor": "ch_4_4",
+      "physical_page": 91,
+      "printed_folio": "85"
+    },
+    {
+      "anchor": "ch_4_5",
+      "physical_page": 93,
+      "printed_folio": "87"
+    },
+    {
+      "anchor": "ch_4_6",
+      "physical_page": 95,
+      "printed_folio": "89"
+    },
+    {
+      "anchor": "ch_4_7",
+      "physical_page": 97,
+      "printed_folio": "91"
+    },
+    {
+      "anchor": "ch_4_8",
+      "physical_page": 100,
+      "printed_folio": "94"
+    },
+    {
+      "anchor": "ch_4_9",
+      "physical_page": 102,
+      "printed_folio": "96"
+    },
+    {
+      "anchor": "ch_4_10",
+      "physical_page": 103,
+      "printed_folio": "97"
+    },
+    {
+      "anchor": "ch_4_11",
+      "physical_page": 105,
+      "printed_folio": "99"
+    },
+    {
+      "anchor": "ch_4_12",
+      "physical_page": 109,
+      "printed_folio": "103"
+    },
+    {
+      "anchor": "ch_5",
+      "physical_page": 112,
+      "printed_folio": "106"
+    },
+    {
+      "anchor": "ch_5_1",
+      "physical_page": 112,
+      "printed_folio": "106"
+    },
+    {
+      "anchor": "ch_5_2",
+      "physical_page": 115,
+      "printed_folio": "109"
+    },
+    {
+      "anchor": "ch_5_3",
+      "physical_page": 116,
+      "printed_folio": "110"
+    },
+    {
+      "anchor": "ch_5_4",
+      "physical_page": 119,
+      "printed_folio": "113"
+    },
+    {
+      "anchor": "ch_5_5",
+      "physical_page": 122,
+      "printed_folio": "116"
+    },
+    {
+      "anchor": "ch_5_6",
+      "physical_page": 124,
+      "printed_folio": "118"
+    },
+    {
+      "anchor": "ch_5_7",
+      "physical_page": 128,
+      "printed_folio": "122"
+    },
+    {
+      "anchor": "ch_5_8",
+      "physical_page": 130,
+      "printed_folio": "124"
+    },
+    {
+      "anchor": "ch_5_9",
+      "physical_page": 133,
+      "printed_folio": "127"
+    },
+    {
+      "anchor": "ch_5_10",
+      "physical_page": 136,
+      "printed_folio": "130"
+    },
+    {
+      "anchor": "ch_5_11",
+      "physical_page": 138,
+      "printed_folio": "132"
+    },
+    {
+      "anchor": "ch_5_12",
+      "physical_page": 139,
+      "printed_folio": "133"
+    },
+    {
+      "anchor": "ch_5_13",
+      "physical_page": 143,
+      "printed_folio": "137"
+    },
+    {
+      "anchor": "ch_5_14",
+      "physical_page": 145,
+      "printed_folio": "139"
+    },
+    {
+      "anchor": "ch_6",
+      "physical_page": 147,
+      "printed_folio": "141"
+    },
+    {
+      "anchor": "ch_6_1",
+      "physical_page": 147,
+      "printed_folio": "141"
+    },
+    {
+      "anchor": "ch_6_2",
+      "physical_page": 147,
+      "printed_folio": "141"
+    },
+    {
+      "anchor": "ch_6_3",
+      "physical_page": 148,
+      "printed_folio": "142"
+    },
+    {
+      "anchor": "ch_6_4",
+      "physical_page": 149,
+      "printed_folio": "143"
+    },
+    {
+      "anchor": "ch_6_5",
+      "physical_page": 149,
+      "printed_folio": "143"
+    },
+    {
+      "anchor": "ch_7",
+      "physical_page": 151,
+      "printed_folio": "145"
+    },
+    {
+      "anchor": "ch_7_1",
+      "physical_page": 151,
+      "printed_folio": "145"
+    },
+    {
+      "anchor": "ch_7_2",
+      "physical_page": 152,
+      "printed_folio": "146"
+    },
+    {
+      "anchor": "ch_7_3",
+      "physical_page": 153,
+      "printed_folio": "147"
+    },
+    {
+      "anchor": "ch_7_4",
+      "physical_page": 153,
+      "printed_folio": "147"
+    },
+    {
+      "anchor": "ch_7_5",
+      "physical_page": 154,
+      "printed_folio": "148"
+    },
+    {
+      "anchor": "ch_7_6",
+      "physical_page": 155,
+      "printed_folio": "149"
+    },
+    {
+      "anchor": "h_working_vocabulary",
+      "physical_page": 157,
+      "printed_folio": "151"
+    },
+    {
+      "anchor": "h_worked_undertaking",
+      "physical_page": 160,
+      "printed_folio": "154"
+    },
+    {
+      "anchor": "h_a_1_give_the_obligation_a_home",
+      "physical_page": 160,
+      "printed_folio": "154"
+    },
+    {
+      "anchor": "h_a_2_establish_the_candidate__011767f5",
+      "physical_page": 161,
+      "printed_folio": "155"
+    },
+    {
+      "anchor": "h_a_3_follow_the_failure_through_repair",
+      "physical_page": 161,
+      "printed_folio": "155"
+    },
+    {
+      "anchor": "h_a_4_complete_production_veri_6c44be41",
+      "physical_page": 162,
+      "printed_folio": "156"
+    },
+    {
+      "anchor": "h_a_5_reconcile_the_finding_an_47384a61",
+      "physical_page": 163,
+      "printed_folio": "157"
+    },
+    {
+      "anchor": "h_a_6_change_the_scale_without_2b240d3b",
+      "physical_page": 163,
+      "printed_folio": "157"
+    },
+    {
+      "anchor": "h_selected_references",
+      "physical_page": 165,
+      "printed_folio": "159"
+    }
+  ],
+  "word_properties": {
+    "Pages": "165",
+    "Words": "69089",
+    "Characters": "407210",
+    "CharactersWithSpaces": "477364",
+    "Paragraphs": "1745",
+    "Application": "Codex"
+  }
+}

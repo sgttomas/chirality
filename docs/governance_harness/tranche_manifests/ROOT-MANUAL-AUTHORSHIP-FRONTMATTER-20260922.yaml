@@ -1,0 +1,43 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-MANUAL-AUTHORSHIP-FRONTMATTER-20260922
+title: Add authorship and preparation to the management manual front matter
+date: 2026-09-22
+basis: 9e7390301527e2e11bf9931e37982459b997ae31
+
+instruction_surface_paths:
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html
+  - docs/alignment-manual/README.md
+  - docs/governance_harness/tranche_manifests/ROOT-MANUAL-AUTHORSHIP-FRONTMATTER-20260922.yaml
+
+m2_gate:
+  authorization: >-
+    Ryan Tufts directs, "add these authorship pages as front matter (they can get roman numerals for page numbers)".
+    The source is PM_Manual_Authorship_and_Preparation_v1.md; its exact
+    local path, SHA-256, and the preserved v4 source hashes are recorded in
+    the internal BRIEF.md and INPUTS.json. Apply the current manuscript's previously
+    directed publication cleanup to the stale acceptance sentence and
+    unpublished predecessor-edition citations while preserving substantive
+    authorship claims. Create an internal v5 successor in MD/DOCX/PDF with
+    Roman front-matter folios and Arabic numbering restarted at Preface. The
+    companion guide's cross-reference follows v5. This authorizes revision of
+    the stated paths only; it is not public release or governed acceptance.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: WORKING_ITEMS /root/closeout_manager under HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    This changes front matter in the management reference, its index, and the
+    companion guide's reading link to the current management edition. It
+    changes no live Root or project instructions, workflow, registered method,
+    accepted project contract, or operating pointer. No pinned downstream
+    consumer requiring a notice has been identified. The operational companion
+    remains at its accepted source basis.

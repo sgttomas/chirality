@@ -1,0 +1,192 @@
+{
+  "schema": "chirality-format-review/v1",
+  "date_local": "2026-09-22",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": "/root/authorship_insert_review",
+  "role": "TASK (Type 2)",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native collaboration child",
+  "delegation_performed": false,
+  "candidate_artifacts": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md",
+      "sha256": "e7f8579110e95f57c618bec304462dc04419b6f48bada9a296404cf8b91f609d"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx",
+      "sha256": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf",
+      "sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da"
+    },
+    {
+      "path": "/tmp/manual-v5-authorship-20260922/final2/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf",
+      "sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+      "byte_identical_to_repository_pdf": true
+    }
+  ],
+  "reviewed_png_pages": [
+    {"physical_page": 1, "printed_folio": null, "path": "/tmp/manual-v5-authorship-20260922/final2/page-1.png", "sha256": "faa344b089e30f225e27f0e3472d6e8bc2704c7813f99ebcd9e4a0e9b724becd", "inspection": "cover/title; unversioned"},
+    {"physical_page": 2, "printed_folio": "i", "path": "/tmp/manual-v5-authorship-20260922/final2/page-2.png", "sha256": "2ffefdfab08a5a73aca11b57d858f0ca3c4966d18ba016da5c8b72e71a86f5c6", "inspection": "authorship begins"},
+    {"physical_page": 3, "printed_folio": "ii", "path": "/tmp/manual-v5-authorship-20260922/final2/page-3.png", "sha256": "9d08ed1c5df2d0c5c05607ad332ce30b744deff991f8ffb5f0616d97c9c02b9c", "inspection": "authorship continues"},
+    {"physical_page": 4, "printed_folio": "iii", "path": "/tmp/manual-v5-authorship-20260922/final2/page-4.png", "sha256": "79e0c43227453b2791ce86e0f5d5d3638544958bc010c80ef2978be97bc7b6f8", "inspection": "authorship ends with A1-A5 basis"},
+    {"physical_page": 5, "printed_folio": "iv", "path": "/tmp/manual-v5-authorship-20260922/final2/page-5.png", "sha256": "f3b0dd79600984faa341e950266db473498b911e71cc99186682adce4ce48582", "inspection": "Contents begins; new authorship entry displays i"},
+    {"physical_page": 6, "printed_folio": "v", "path": "/tmp/manual-v5-authorship-20260922/final2/page-6.png", "sha256": "62a35d44df3c1a866e574bf0c0899b9c4b6ba1865cce364b61ba20f447266371", "inspection": "Contents concludes"},
+    {"physical_page": 7, "printed_folio": "1", "path": "/tmp/manual-v5-authorship-20260922/final2/page-7.png", "sha256": "865cad41c39f999332e0239c264823b8a11036ac003835796b3d2232dccc5cc7", "inspection": "Preface begins; Arabic numbering restarts"}
+  ],
+  "scope": {
+    "visual": "Final2 PDF physical pages 1-7, each PNG inspected at original detail",
+    "structural": "DOCX static Contents and new authorship bookmark, section numbering, core/app metadata; PDF page 5 new-entry annotation; bounded frontmatter text and metadata",
+    "not_in_scope": "Remaining 158 pages, all other TOC destinations, full-book prose, all-page visual QA, or Git"
+  },
+  "toc_destination": {
+    "static_contents_link_count": 89,
+    "new_entry_position": 1,
+    "label": "Authorship and preparation of this manual",
+    "docx_anchor": "h_authorship",
+    "destination_bookmark_present_once": true,
+    "destination_heading_paragraph_index_zero_based": 7,
+    "cached_display_text": "Authorship and preparation of this manuali",
+    "cached_folio": "i",
+    "contents_physical_page": 5,
+    "pdf_link_annotation_vertical_order": "topmost entry on page 5",
+    "pdf_destination_physical_page": 2,
+    "destination_printed_folio": "i"
+  },
+  "pagination": {
+    "physical_1": "unnumbered cover",
+    "physical_2": "i",
+    "physical_3": "ii",
+    "physical_4": "iii",
+    "physical_5": "iv",
+    "physical_6": "v",
+    "physical_7": "1",
+    "docx_section_formats": ["lowerRoman start=1 for front matter", "decimal start=1 for Preface section"],
+    "docx_reported_pages": 165,
+    "pdf_physical_pages": 165
+  },
+  "citation_and_edition_checks": {
+    "A1_through_A5_present_in_frontmatter": true,
+    "bare_global_numeric_1_through_5_markers_in_authorship_pages": false,
+    "current_manual_cross_reference_in_A2": true,
+    "predecessor_edition_labels_in_authorship_pages": false,
+    "global_numeric_reference_system_separate": true
+  },
+  "metadata": {
+    "docx": {
+      "title": "Project Management for Human–Agent Teams",
+      "subject": "A Practical Manual",
+      "creator": "Ryan Tufts",
+      "keywords": "project management, human-agent teams, PRD, DBM, conceptual, FEED",
+      "lastModifiedBy": "Codex",
+      "application": "Codex",
+      "pages": "165",
+      "custom_properties_file_present": false
+    },
+    "pdf": {
+      "title": "Project Management for Human–Agent Teams",
+      "author": "Ryan Tufts",
+      "subject": "A Practical Manual",
+      "keywords": "project, management, human-agent, teams, PRD, DBM, conceptual, FEED",
+      "creator": "Writer",
+      "producer": "LibreOfficeDev 26.8.0.0.alpha0 (AARCH64)",
+      "creation_date": "D:20260922182558-06'00'",
+      "pages": 165,
+      "page_size_points": [486, 666]
+    },
+    "comparison_to_v4": "DOCX and PDF title, subject, author/creator, keywords and Codex production fields match v4; page count is 165 versus 162 after three added pages. No edition/version marker appears on cover or in title metadata."
+  },
+  "v4_original_hashes": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+      "expected_sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+      "actual_matches": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx",
+      "expected_sha256": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+      "actual_matches": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf",
+      "expected_sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+      "actual_matches": true
+    }
+  ],
+  "instructions": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "sha256": "3345256289dfe6e4c77a59e26ba0ef9f781296a9633e5769a88090c1ac24ee83",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/ooxml/hyperlinks_and_fields.md",
+      "sha256": "470b6c722d12f614fdd8bd9da66aa9983a3f5c4494c76b5def6ebec668327af6",
+      "activated": true
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/writing_quality.md",
+      "sha256": "30baf502bdea6b565d41344f87e46bf04840e1b99f84a11009992bf6e63596e8",
+      "activated": true
+    }
+  ],
+  "context_sources": [
+    {
+      "origin": "parent assignment message from /root",
+      "hash": null,
+      "note": "Message instructed read-only cross-format review of exact v5 hashes and specified the final2 rendering path."
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_authorship_frontmatter/BRIEF.md",
+      "sha256": "61e139062ea6dda12694e19d5102d98de62dac659770655a7877a2c55a92652a"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_authorship_frontmatter/INPUTS.json",
+      "sha256": "8b69f62bfc9b8a8b57e68a92dcbbb746cc9ea4cd51703b7cdafa796474a60e09"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_authorship_frontmatter/editorial-review.md",
+      "sha256": "45b87b3bb654590ec6adfd8cb332f832b988662e4a0eb6e60d2a071857d2113e",
+      "note": "Prior bounded Markdown authorship review; retained as applicable per parent assignment."
+    }
+  ],
+  "methods": [
+    "SHA-256 verification of all three supplied v5 artifacts, final2 PDF, seven rendered PNGs, and all three preserved v4 originals.",
+    "Original-detail visual inspection of final2 physical pages 1-7 individually.",
+    "Bundled Python ZIP/XML inspection of DOCX core/app metadata, Contents paragraphs, hyperlink anchors, destination bookmark, and section numbering settings.",
+    "Bundled pypdf extraction of frontmatter folios/citations/edition labels and resolution of the topmost physical-page-5 link annotation to physical page 2.",
+    "pdfinfo inspection of PDF page count, title/author/subject/keywords, producer, dimensions, and creation date."
+  ],
+  "limits": [
+    "No full-book prose or visual review; no inspection of physical pages 8-165.",
+    "No exhaustive resolution check of the other 88 Contents links in this pass.",
+    "No DOCX application rendering or Git operation; the exact PDF and its final2 PNGs were inspected."
+  ],
+  "host_boundary": "Filesystem access was unrestricted at the host layer; review remained read-only except for the two authorized evidence files.",
+  "writes": [
+    "plans/evidence/2026-09-22_manual_authorship_frontmatter/format-review-v5.md",
+    "plans/evidence/2026-09-22_manual_authorship_frontmatter/format-review-v5-evidence.json"
+  ]
+}
