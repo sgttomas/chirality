@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
+import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3 } from '@chirality/runtime-contracts/v3';
+import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import type { SessionEventsReplay } from '../../lib/harness/client';
 import {
   buildSelectedSessionReplayProjection,
@@ -31,6 +33,35 @@ function messageEvent(sessionId: string, index: number): HarnessEvent {
       role: index % 2 === 0 ? 'assistant' : 'user',
       text: `message-${index}`
     }
+  };
+}
+
+function instructionRecord(sessionId: string): InstructionHistoryRecordV3 {
+  return {
+    schemaVersion: 'chirality.instruction-history/v1',
+    historyId: `history-${sessionId}`,
+    sessionId,
+    sequence: 1,
+    timestamp: '2026-07-23T00:00:00.000Z',
+    type: 'instruction-basis.resolved',
+    basisId: `basis-${sessionId}`
+  };
+}
+
+function instructionBasis(sessionId: string): FrozenInstructionBasisV3 {
+  return {
+    schemaVersion: 'chirality.instruction-basis/v1',
+    basisId: `basis-${sessionId}`,
+    sessionId,
+    createdAt: '2026-07-23T00:00:00.000Z',
+    roleId: 'WORKING_ITEMS',
+    interactionMode: 'chat',
+    permissionMode: 'ask',
+    selectedMethods: [],
+    compatibilityInputs: [],
+    compatibilityMappings: [],
+    suppliedEntries: [],
+    methodDispositions: []
   };
 }
 
@@ -151,6 +182,55 @@ describe('selected-session replay projection', () => {
       ])
     );
     expect(projection.transcript.items).toEqual([]);
+  });
+
+  it('suppresses foreign instruction evidence alongside foreign events while retaining selected evidence', () => {
+    const projection = buildSelectedSessionReplayProjection(
+      'selected',
+      replay('selected', [messageEvent('selected', 1), messageEvent('other', 2)], {
+        instructionHistory: [instructionRecord('selected'), instructionRecord('other')],
+        instructionBases: [instructionBasis('selected'), instructionBasis('other')]
+      }),
+      { observedAt: '2026-07-23T01:00:00.000Z' }
+    );
+
+    expect(projection.disclosure).toBe('CONFLICTING');
+    expect(projection.events?.map(({ sessionId }) => sessionId)).toEqual(['selected']);
+    expect(projection.transcript.items.map(({ text }) => text)).toEqual(['message-1']);
+    expect(projection.instructionHistory.map(({ sessionId }) => sessionId)).toEqual(['selected']);
+    expect(projection.instructionBases.map(({ sessionId }) => sessionId)).toEqual(['selected']);
+    expect(projection.diagnostics.map(({ code }) => code)).toEqual(expect.arrayContaining([
+      'REPLAY_EVENT_SESSION_ID_CONFLICT',
+      'REPLAY_INSTRUCTION_HISTORY_SESSION_ID_CONFLICT',
+      'REPLAY_INSTRUCTION_BASIS_SESSION_ID_CONFLICT',
+      'REPLAY_FOREIGN_CONTENT_SUPPRESSED'
+    ]));
+  });
+
+  it('detects foreign instruction evidence even when metadata and events match the selection', () => {
+    const selectedSession = { ...session('selected'), sdkSessionId: 'native-selected' };
+    const selectedEvents = [messageEvent('selected', 1)];
+    const projection = buildSelectedSessionReplayProjection(
+      'selected',
+      replay('selected', selectedEvents, {
+        session: selectedSession,
+        transcript: deriveTranscriptView(selectedEvents, selectedSession),
+        instructionHistory: [instructionRecord('other')],
+        instructionBases: [instructionBasis('other')]
+      }),
+      { observedAt: '2026-07-23T01:00:00.000Z' }
+    );
+
+    expect(projection.disclosure).toBe('CONFLICTING');
+    expect(projection.transcript.items.map(({ text }) => text)).toEqual(['message-1']);
+    expect(projection.transcript.sdkLinkage?.sdkSessionId).toBe('native-selected');
+    expect(projection.instructionHistory).toEqual([]);
+    expect(projection.instructionBases).toEqual([]);
+    expect(projection.diagnostics.map(({ code }) => code)).toEqual(expect.arrayContaining([
+      'REPLAY_INSTRUCTION_HISTORY_SESSION_ID_CONFLICT',
+      'REPLAY_INSTRUCTION_BASIS_SESSION_ID_CONFLICT',
+      'REPLAY_FOREIGN_CONTENT_SUPPRESSED'
+    ]));
   });
 });
 

@@ -1,0 +1,1 @@
+PASS: current App graph pointer resolves and graph coordination text has no machine-absolute path
