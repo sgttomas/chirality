@@ -20,15 +20,15 @@
 | ID / outcome | Scope and owner | Needs / why | Completion check | State / result |
 |---|---|---|---|---|
 | W1 — replay projection boundary | WORKING_ITEMS owns App replay source and focused tests. | DEL-05-04 contract, instruction record identity fields and consumed dependencies. | Mixed and foreign-only responses disclose conflict; all exposed session-bearing fields identify selected session; same-session evidence remains. | COMPLETE at `d82568bc1`; focused replay 8/8 and typecheck pass. |
-| V1 — verify and review actual candidate | WORKING_ITEMS runs applicable checks; independent fresh read-only TASK applies `software-code-review` to frozen full diff. | W1 candidate. | Focused regression, required App product/whole-repo checks and independent review pass; repairs backchecked. | COMPLETE through `f0d5ab019`: independent PASS on all 13 changed files, full Vitest/typecheck/build, harness self-check/pytest, hold scan and controlled premerge PASS. See `RUN_EVIDENCE.md` and machine reports. |
-| P1 — substantive PR | WORKING_ITEMS integrates W1/V1, graph and slice evidence. | V1. | PR merged after required CI and review on actual revision. | ACTIVE: [PR #866](https://github.com/sgttomas/chirality/pull/866) opened at `f0d5ab019`; required CI on final PR head and merge remain. |
+| V1 — verify and review actual candidate | WORKING_ITEMS runs applicable checks; independent fresh read-only TASK applies `software-code-review` to frozen full diff. | W1 candidate. | Focused regression, required App product/whole-repo checks and independent review pass; repairs backchecked. | COMPLETE for product and evidence: independent full-diff PASS through the prior records candidate, full Vitest/typecheck/build, harness self-check/pytest, hold scan and controlled premerge PASS. See `RUN_EVIDENCE.md` and machine reports. Graph-only path repair needs final backcheck. |
+| P1 — substantive PR | WORKING_ITEMS integrates W1/V1, graph and slice evidence. | V1. | PR merged after required CI and review on actual revision. | ACTIVE: [PR #866](https://github.com/sgttomas/chirality/pull/866) is open; review and required CI must cover its final head before merge. |
 | C1 — bounded closeout | WORKING_ITEMS compares DEL-05-04 SOW, dependencies and governance against integrated implementation via `bounded-reconciliation`; route only eligible unhomed concerns. | P1 merged. | Warranted consequences applied or supported no-change recorded; unmet implementation returned to graph. | PLANNED |
 | M1 — terse MEMORY row | WORKING_ITEMS updates DEL-05-04 MEMORY.md. | C1. | Date/run, actual DEL work and central evidence/PR pointers. | PLANNED |
 | F1 — final PR | WORKING_ITEMS integrates closeout, MEMORY and completed graph. | C1/M1 and final review/checks. | Final PR merged; Git/PR service confirms merge. | PLANNED |
 
 ## Current state and recovery
 
-- Checked basis: clean isolated `/private/tmp/chirality-app-loop-trial`, branch `codex/app-loop-trial`, start `2a9b00fe9e67a4d98017833dace867a01867c591`; current work graph was none.
+- Checked basis: clean isolated branch `codex/app-loop-trial` from `2a9b00fe9e67a4d98017833dace867a01867c591`; current work graph was none at start. Host checkout paths are retained in run evidence artifacts.
 - Preflight: APP-HOLD-1 ALLOW for DEL-05-04 dispatch and DEL-05-01/02/03/05 and DEL-04-01 accepted-dependency consumption on 2026-09-23. Formal satisfaction and lifecycle fields remain unchanged.
 - Next: await required CI on the actual PR head, resolve any findings, then merge P1 and perform C1/M1/F1. One integration owner for all writes: this WORKING_ITEMS agent. Controlled test processes have stopped; read-only reviewer has completed its product/evidence reviews.
 - Graph maintainer: WORKING_ITEMS in this isolated branch. Preserve work and check state here if interrupted.
@@ -36,4 +36,4 @@
 | Completed work / node | What changed and was checked | Unresolved consequence |
 |---|---|---|
 | Discovery | Read current decomposition, DEL-05-04 and DEL-05-01/03 SOWs, replay code/types/UI; selected route from three candidates. | W1 implementation and verification. |
-| W1/V1 | `d82568bc1` filters foreign instruction records and preserves selected transcript on instruction-only conflict; reviewer PASS on 100% of product diff and `f0d5ab019` 13-file evidence candidate, checks linked in `RUN_EVIDENCE.md`. | PR #866 CI/merge. |
+| W1/V1 | `d82568bc1` filters foreign instruction records and preserves selected transcript on instruction-only conflict; reviewer PASS on product diff, `f0d5ab019` evidence candidate and `2ba07576` PR-record candidate; checks linked in `RUN_EVIDENCE.md`. | PR #866 final review/CI/merge. |
