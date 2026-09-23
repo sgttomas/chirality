@@ -6,7 +6,7 @@ Candidate source: `d82568bc1fb09ff2c26ed5cb210605a1b6b538b4` on `codex/app-loop-
 
 - Mechanism: delegated-harness-native descendant of HELP_HUMAN Agent 0; this WORKING_ITEMS Agent 1 integrated all writes in the isolated worktree. Engine/provider/model: Codex / OpenAI / GPT-6. Reviewer: fresh-context read-only Type 2 TASK descendant using `software-code-review`, with no write scope and no delegation; Codex model inherited from the parent task.
 - APP-HOLD-1: `dispatch` for DEL-05-04 and `accepted-dependency-consumption` for DEL-05-01/02/03/05 and DEL-04-01 returned `ALLOW` at starting `2a9b00fe`; no hold or lifecycle status was changed.
-- Independent reviewer checked 100% of `2a9b00fe..d82568bc1`, including graph, pointer, source and tests, and returned PASS with no blocking finding. Reviewer also ran the replay and Session lens suites (15 passing tests), scope validator and `git diff --check`.
+- Independent reviewer checked 100% of `2a9b00fe..d82568bc1`, including graph, pointer, source and tests, and returned PASS with no blocking finding. Reviewer also ran the replay and Session lens suites (15 passing tests), scope validator and `git diff --check`. The same fresh read-only reviewer backchecked 100% of the 13-file `2a9b00fe..f0d5ab019` evidence candidate, found and resolved a Section 9 nested-log retention gap, and returned PASS on the repaired revision. [Substantive PR #866](https://github.com/sgttomas/chirality/pull/866) opened at that head; PR-head CI and merge remain separate gates.
 - Source/test/dependency inputs are listed in sorted `INPUTS.sha256`; from the repository root rerun `shasum -a 256 -c projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/INPUTS.sha256`.
 
 ## Checks on source candidate `d82568bc1`
@@ -18,6 +18,8 @@ Candidate source: `d82568bc1fb09ff2c26ed5cb210605a1b6b538b4` on `codex/app-loop-
 The Section 9 summary retains its original temporary log and ignored artifact paths. Their actual bytes are preserved here as `SECTION9_MANIFEST.json` (SHA-256 `6a01eb393e93948a66a19fb5a172c38efd80cbd594f4aad827f67502e410b1b8`), `SECTION9_VITEST.stdout.log` (`ad2e8a3ca6fcf78a02ac87c6dc9a1adf139638888b94a0f9aaf8c96e3ebf77bd`) and empty `SECTION9_VITEST.stderr.log` (`e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). The manifest names the evaluator test files and evidence files in the committed candidate; `INPUTS.sha256` pins the slice's directly consumed source and contract files. The copy changes no result or source identity.
 
 `git diff --check` and the sorted input hash recomputation also passed.
+
+After adding PR #866's URL to the graph and this record, `RECORD_CHECKS.json` retained the required records-only rerun: practitioner-harness self-check, practitioner-harness pytest (379 passed), and APP-HOLD integrity all exited 0. Its SHA-256 is `13ec9533a1b86e1757b37a56f4bb14a03afab5dabf584405d95b0c9b72f44606`. The product source/test and their original registered gate results were unchanged.
 
 The check runner command was:
 
