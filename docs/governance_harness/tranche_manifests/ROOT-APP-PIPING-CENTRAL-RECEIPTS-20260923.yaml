@@ -1,0 +1,53 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-APP-PIPING-CENTRAL-RECEIPTS-20260923
+title: One central App/Piping loop receipt linked from deliverable memory
+date: 2026-09-23
+basis: 0b276a7fa5dcad7d8f3375ae4f0015a5368e791e
+instruction_surface_paths:
+  - docs/templates/MEMORY_TEMPLATE.md
+  - projects/chirality-app-dev/AGENTS.md
+  - projects/chirality-app-dev/loop/LOOP_INIT.md
+  - projects/chirality-piping/AGENTS.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/bounded-reconciliation/WORKFLOW.md
+  - workflows/task-management/WORKFLOW.md
+  - workflows/task-management/resources/contract.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_CENTRAL_LOOP_RECEIPTS.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_CENTRAL_LOOP_RECEIPTS.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_APP_PIPING_RECEIPTS.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-23_APP_PIPING_RECEIPTS.md
+  - docs/governance_harness/tranche_manifests/ROOT-APP-PIPING-CENTRAL-RECEIPTS-20260923.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts clarified in the active chat: '"recoverable central run
+    evidence" was, in my mind, the loop receipt (using its current format,
+    more or less)' and selected one per-undertaking AgentRuns receipt for the
+    current linter closeout: 'Yes, for this linter closeout do that.  This
+    should be how App and Piping handle this.' The linter final PR #876 applies
+    that pattern. This tranche prepares the exact prospective instruction
+    amendment; the bundled create-workflow method requires human review of
+    these finished bytes before replacement.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_CENTRAL_LOOP_RECEIPTS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_CENTRAL_LOOP_RECEIPTS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_APP_PIPING_RECEIPTS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-23_APP_PIPING_RECEIPTS.md
+  rationale: >-
+    App and Piping adopt the changed closeout procedure in their own LOOP_INIT
+    and AGENTS files. Runtime may package shared bundled workflows; PEC sees
+    their source but retains its accepted loop and receipt practice. Notices
+    preserve receiving-loop adoption authority and the owner's manual work.
+scope_limits:
+  - One final per-undertaking App/Piping receipt, not one per node or Task Management invocation.
+  - The current graph remains the execution state; the receipt is a derivative PR-sized result, check and limit account.
+  - Existing loop ledgers and completed-run evidence stay historical; no backfill is required by this tranche.
+  - PEC, Runtime, product code, accepted scope, lifecycle and release rules are unchanged.
+  - Manual Markdown and generated formats remain with the owner.

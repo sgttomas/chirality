@@ -139,9 +139,11 @@ human basis, evidence and unresolved concerns; validate live/archive structure.
 Archive already-closed rows only when requested or included in the assignment.
 
 Keep the result in its owning Task Management records and provide a pointer to
-the caller. Graph-led App/Piping closeout does not require a new loop receipt.
-A different loop's expressly retained receipt contract still applies there.
-Preserve historical receipts and their validation. Source integration follows
+the caller. A Task Management invocation creates no separate loop receipt;
+an App/Piping development undertaking's one central final receipt links its
+actual Task Management outcome when applicable. Other loops retain their own
+recording contracts. Preserve historical receipts and their validation. Source
+integration follows
 standing Git authority and applicable checks; no separate old launcher gate is
 introduced. Ending the invocation leaves unruled concerns and genuine blockers
 explicit, with a return to the human for their disposition.

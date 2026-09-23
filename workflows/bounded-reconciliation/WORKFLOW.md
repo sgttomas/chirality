@@ -94,8 +94,10 @@ foreign assignment.
 Central decision and scope-change records retain the ruling and its grounds.
 Do not introduce a deliverable-local decision record while reconciling the
 result. Preserve the evidence at its actual source; unresolved proposals remain
-proposals. MEMORY will receive a terse run entry during final PR preparation,
-linking this closeout and any relevant decision, transfer or completion result.
+proposals. Return the actual result and source pointers to the invoking loop's
+central receipt when that loop requires one. MEMORY receives a terse run entry
+during final PR preparation, linking that receipt and any relevant decision,
+transfer or completion result.
 
 ## 5. Check and return
 
@@ -108,7 +110,8 @@ Return the deliverables and sections changed, the result/evidence they reflect,
 the central decisions or transfers applied and any unresolved consequence for
 the graph. Supply the pointers needed for the subsequent MEMORY run entries. Use a
 small table only when it helps. Detailed evidence can remain at its appropriate
-source; no duplicate central run narrative or separate claim ledger is required.
+source. The invoking loop's concise receipt may supply its final PR-sized
+result/checks/limits account; do not add another narrative or claim ledger.
 
 The node completes when its bounded comparison and permitted edits are checked,
 or no change is warranted, and residuals have an explicit disposition. A proposed

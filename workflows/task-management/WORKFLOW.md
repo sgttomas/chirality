@@ -48,7 +48,9 @@ An intake is not permission to promote, dispose, assign or execute its concern.
    resolution to its owning work; preserve concerns still awaiting a decision.
 5. Return the disposition and outstanding consequences to the caller. Preserve
    the result once in the Task Management home, linked from the caller's graph
-   or closeout. Do not create a routine duplicate receipt or a MEMORY work list.
+   or closeout. Do not create a separate Task Management receipt or a MEMORY
+   work list. An App/Piping development loop's one final receipt links this
+   outcome when the invocation affected that undertaking.
 
 If required inputs or federation coverage are unavailable, return the precise
 limit with the retained concerns. Do not claim global absence or closure from
