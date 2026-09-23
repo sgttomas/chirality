@@ -227,9 +227,9 @@ reopen only the decisions whose warrants or consequences are affected, then
 regenerate dependent evidence as required.
 
 Instruction changes require their own authorized scope and tranche manifest.
-Updating a designated current-work-graph pointer within an authorized undertaking
-is navigation-state maintenance, not an instruction amendment. Changing loop
-behavior or constraints remains an instruction change; a pointer grants no scope.
+Updating an authorized undertaking's work graph is execution-state maintenance,
+not an instruction amendment. Changing loop behavior or constraints remains an
+instruction change.
 Notify each affected project loop whose authority corpus or contract mirrors pin
 changed instructions. Notices communicate changes; each receiving loop decides
 its adoption and updates its own accepted basis.

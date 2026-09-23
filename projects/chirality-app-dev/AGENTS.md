@@ -126,9 +126,10 @@ for required Codex capability.
 
 The recurrent discovery, planning, delegation, checking and integration procedure
 lives in `loop/LOOP_INIT.md`. The thin `init/dev-loop-init-prompt.md` launcher
-selects it. Its current-graph pointer locates the undertaking; work state and
-recovery facts belong in that graph. Priorities and phase transitions come from
-owner steering. Do not copy node state or next actions into these instructions.
+selects it. Owner steering selects the undertaking and supplies priorities and
+phase transitions. Recover its graph from the steering and relevant project
+records; work state and recovery facts belong in that graph. Keep LOOP_INIT
+evergreen, with no undertaking-specific graph pointer or execution state.
 
 Choose agent types by responsibility and delegation needs, not task complexity
 or reasoning effort. Root role instructions govern delegation. No package-per-
@@ -190,8 +191,8 @@ indexes what each run did in this deliverable, with pointers to its PR, evidence
 and central decisions or transfers. Decision authority stays at its owning
 source; memory carries no future assignments. The local graph
 carries execution at `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`.
-Keep it Git-tracked in the undertaking's PR sequence and set LOOP_INIT's current
-pointer to its actual path. Preserve historical graph files. `_STATUS.md` retains
+Keep it Git-tracked in the undertaking's PR sequence and return its path for
+continuation. Preserve historical graph files. `_STATUS.md` retains
 lifecycle and history. The App's former `Remaining` sections were retired through
 the finite Task Management account at
 `execution/_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/`.

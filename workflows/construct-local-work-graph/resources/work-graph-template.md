@@ -3,8 +3,8 @@
 Save App/Piping local development graphs at
 `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
 project. Commit this graph early in the undertaking's PR sequence, update it as
-work proceeds, and set LOOP_INIT's current pointer to its actual path. Preserve
-older historical graphs and link their relevant evidence.
+work proceeds, and return its path for continuation. LOOP_INIT remains evergreen.
+Preserve older historical graphs and link their relevant evidence.
 
 ## Intent and selected route
 
