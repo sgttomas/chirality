@@ -1,0 +1,31 @@
+{
+  "result": "PASS",
+  "basis": "23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f",
+  "files": {
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.md": "cf4bd6c237f614ab34234f02694f7ef10b6cc0c77c2cc482d4a9ccb992ea2a55",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html": "7d7c9d075dcefdb9e4269a25d21212e6dc73a06e41f74ff066df23a4734e66a3",
+    "docs/alignment-manual/render_manual.py": "a52f6622e59cacf69e80ba5cccf88806a803640ed36c7bdee307fede9e91fb34",
+    "docs/alignment-manual/README.md": "1025c66e25d2746a4d5e00126924df557a21198ed69efe5a8a3a469fcbf580a0",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032"
+  },
+  "checks": {
+    "source_html_parity_events": 850,
+    "distinct_local_links_and_fragments": 29,
+    "unique_html_ids": 22,
+    "deterministic_render": true,
+    "metadata_after_article": true,
+    "edition_label_escaped_and_blank_rejected": true,
+    "existing_editions_byte_identical": [
+      "CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "CHIRALITY_AGENT_USER_MANUAL_v2.html",
+      "CHIRALITY_AGENT_USER_MANUAL_v3.html"
+    ],
+    "monochrome_css_unchanged": true,
+    "readme_targets": 29
+  },
+  "source_word_count_whitespace": 2631,
+  "limits": [
+    "No browser visual inspection; prior local-HTML policy denial respected without workaround.",
+    "Source/HTML article parity and inherited CSS checked; no product acceptance, instruction adoption or public release inferred."
+  ]
+}

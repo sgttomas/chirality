@@ -1,11 +1,12 @@
 # Alignment manual and agent guide
 
-This directory contains a general project-management reference and the Chirality Agent User Manual. The book explains management practice; the companion provides operational guidance for work in this repository. Applicable instructions, accepted decisions, and current source records govern actual project work.
+This directory contains a field book, a general project-management reference, and the Chirality Agent User Manual. The field book gives humans working with agents the route, responsibilities, records, and conditions for proceeding. The full manual supplies explanation and examples; the agent guide provides operational guidance for this repository. Applicable instructions, accepted decisions, and current source records govern actual project work.
 
 ## Current editions
 
 | Document | Use |
 | --- | --- |
+| [Project Management for Human–Agent Teams — Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v1.md) | Abbreviated human reference: eight sections following the work from intent to delivery, with a recurring execution loop and links to the full treatment. |
 | [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf) | General management practice from conception through delivery, written as a technical reference. |
 | [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
 
@@ -13,7 +14,7 @@ The companion describes the management manual’s current methods and identifies
 
 ## Read offline
 
-The agent guide’s HTML edition is a complete rendering of its Markdown source. Open the HTML file directly in a browser. It has chapter navigation, a compact contents menu on small screens, browser-find support, accessible table scrolling, and print styles. Reading requires no network connection, downloaded fonts, or external assets. Links to repository source files work when this directory remains inside the repository checkout; external reference links need a connection when followed.
+Each HTML edition is a complete rendering of its Markdown source. Open the HTML file directly in a browser. It has chapter navigation, a compact contents menu on small screens, browser-find support, accessible table scrolling, and print styles. Reading requires no network connection, downloaded fonts, or external assets. Links to repository source files work when this directory remains inside the repository checkout; external reference links need a connection when followed.
 
 The HTML follows the supplied manuscript’s book style: black serif type, white paper, restrained headings, and gray table headers. Its type size and spacing are adapted for screen reading, with local Liberation Serif, Times New Roman, or Georgia fonts. Print styles use the manuscript’s 6.75 × 9.25 inch page size.
 
@@ -21,7 +22,7 @@ The visible source date and repository revision describe the edition’s basis. 
 
 ## Maintain the management-manual formats
 
-The Word and PDF editions follow the retained technical-reference book layout. Their current preparation is recorded in the [v7 preparation and review evidence](../../plans/evidence/2026-09-22_manual_v7/). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide’s HTML edition only.
+The Word and PDF editions follow the retained technical-reference book layout. Their current preparation is recorded in the [v7 preparation and review evidence](../../plans/evidence/2026-09-22_manual_v7/). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide and field book HTML editions.
 
 ## Maintain the HTML edition
 
@@ -42,6 +43,17 @@ Render this edition with its explicit source basis:
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
   --basis-date 2026-09-22 \
   --basis-revision b3e2ce4ec74e01d6f393fc0bc069699bb079df91
+```
+
+Render the field book with its reading label and source metadata at the end:
+
+```sh
+/tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
+  --source docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.md \
+  --output docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html \
+  --basis-date 2026-09-23 \
+  --basis-revision 23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f \
+  --edition-label 'Field book' --metadata-at-end
 ```
 
 Add `--check` to verify that the committed HTML matches the source and renderer without writing. Use explicit `--source` and `--output` paths as shown for the current edition; the renderer’s unqualified default remains v1. Keep the HTML beside its Markdown source so that repository-relative source links retain their meaning. Archived editions retain their own source date and revision.
