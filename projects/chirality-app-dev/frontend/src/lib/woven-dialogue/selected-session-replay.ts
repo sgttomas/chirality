@@ -113,6 +113,22 @@ function conflictDiagnostics(
     });
   }
 
+  if (replay.instructionHistory.some((record) => record.sessionId !== selectedSessionId)) {
+    diagnostics.push({
+      code: 'REPLAY_INSTRUCTION_HISTORY_SESSION_ID_CONFLICT',
+      message: 'Instruction history includes a record from another session.',
+      sourceReference
+    });
+  }
+
+  if (replay.instructionBases.some((basis) => basis.sessionId !== selectedSessionId)) {
+    diagnostics.push({
+      code: 'REPLAY_INSTRUCTION_BASIS_SESSION_ID_CONFLICT',
+      message: 'Instruction bases include a record from another session.',
+      sourceReference
+    });
+  }
+
   return diagnostics;
 }
 
@@ -150,19 +166,30 @@ export function buildSelectedSessionReplayProjection(
   const identityConflict = diagnostics.some((diagnostic) =>
     diagnostic.code.endsWith('_CONFLICT')
   );
+  // Instruction records have their own session identities. Their conflict
+  // does not invalidate a correctly identified transcript or its linkage.
+  const transcriptSourceConflict = diagnostics.some((diagnostic) =>
+    ['REPLAY_SESSION_ID_CONFLICT', 'REPLAY_EVENT_SESSION_ID_CONFLICT',
+      'REPLAY_TRANSCRIPT_SESSION_ID_CONFLICT'].includes(diagnostic.code)
+  );
   const admittedEvents = identityConflict
     ? replay.events.filter((event) => event.sessionId === selectedSessionId)
     : replay.events;
-  const sourceTranscript = identityConflict
-    ? deriveTranscriptView(admittedEvents)
-    : replay.transcript ?? deriveTranscriptView(replay.events, replay.session);
+  const instructionHistory = replay.instructionHistory.filter(
+    (record) => record.sessionId === selectedSessionId
+  );
+  const instructionBases = replay.instructionBases.filter(
+    (basis) => basis.sessionId === selectedSessionId
+  );
+  const canonicalSession =
+    replay.session?.sessionId === selectedSessionId ? replay.session : undefined;
+  const sourceTranscript = transcriptSourceConflict
+    ? deriveTranscriptView(admittedEvents, canonicalSession)
+    : replay.transcript ?? deriveTranscriptView(admittedEvents, canonicalSession);
   const transcript = boundedTranscript(sourceTranscript, limit);
   const sourceItemCount = sourceTranscript.items.length;
   const bounded = sourceItemCount > transcript.items.length;
   const malformedLineCount = Math.max(0, replay.malformedLineCount);
-  const canonicalSession =
-    replay.session?.sessionId === selectedSessionId ? replay.session : undefined;
-
   if (!canonicalSession) {
     diagnostics.push({
       code: 'REPLAY_SESSION_METADATA_UNAVAILABLE',
@@ -198,7 +225,7 @@ export function buildSelectedSessionReplayProjection(
     diagnostics.push({
       code: 'REPLAY_FOREIGN_CONTENT_SUPPRESSED',
       message:
-        'Transcript metadata or events identified another session; foreign content was suppressed.',
+        'Replay metadata, events, or instruction records identified another session; foreign content was suppressed.',
       sourceReference: `session:${selectedSessionId}/events`
     });
   }
@@ -240,8 +267,8 @@ export function buildSelectedSessionReplayProjection(
     ...(session ? { session } : {}),
     transcript,
     events: admittedEvents,
-    instructionHistory: [...replay.instructionHistory],
-    instructionBases: [...replay.instructionBases],
+    instructionHistory,
+    instructionBases,
     malformedLineCount,
     sourceEventCount: replay.events.length,
     renderedItemCount: transcript.items.length,

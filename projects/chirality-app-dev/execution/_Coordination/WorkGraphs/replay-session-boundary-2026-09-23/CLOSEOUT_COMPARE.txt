@@ -1,0 +1,1 @@
+PASS: DEL-05-04 formal rows 9 ACTIVE, 7 SATISFIED, 2 PENDING; descriptive counts and MEMORY evidence links agree

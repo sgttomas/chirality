@@ -1,5 +1,8 @@
 # Dependencies: DEL-05-01 Canonical Session Folder and Legacy Session Migration
 
+> **Current-source note (2026-09-23):** References below to the former App `Remaining` section and its Depends text record dated extraction evidence. The live status section was retired in the finite App Task Management account. For current work and dependency gating, read `Dependencies.csv`, governing Scope of Work, accepted decisions and the selected work graph. The historical Depends text adds no prerequisite; this note does not change the accepted register rows.
+
+
 ## Dependency Tracking
 
 | Field | Value |
@@ -114,7 +117,7 @@ Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for
 
 Current consumer/verification locus: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
 
-DEP-05-01-006 snapshot designation: its App session-manager path/test evidence and SATISFIED value describe the retained legacy implementation snapshot. They do not establish the current Runtime session-store conformance; the current locus above and live checks in ScopeOfWork/Remaining apply. No formal row or satisfaction was changed by this designation.
+DEP-05-01-006 snapshot designation: its App session-manager path/test evidence and SATISFIED value describe the retained legacy implementation snapshot. They do not establish the current Runtime session-store conformance; the current locus above and live checks in ScopeOfWork.md apply. No formal row or satisfaction was changed by this designation.
 
 ## Current dependency refresh — 2026-09-22
 

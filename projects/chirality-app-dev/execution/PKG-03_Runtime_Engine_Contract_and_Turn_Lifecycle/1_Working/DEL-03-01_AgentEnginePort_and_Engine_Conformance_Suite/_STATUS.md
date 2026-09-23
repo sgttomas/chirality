@@ -8,18 +8,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: the re-platformed Runtime service socket API lands on the production path (D-GOV-43)`) — App client conformance against the retained and repaired Runtime socket API (topology A2, D-APP-127); Codex is the only engine and the multi-engine port abstractions are retired, not generalized.
-  Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
-  Plan: current Codex/App-client conformance coverage; AT-013/AT-015/AT-017 App-client portions; RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: the repaired socket API and client of the same tranche; DEP-03-01-005/008 read with D-GOV-43. The exact supply pin with drift refusal (Root DEL-02-08) is retired; the lockfile pin of stock `@openai/codex` is ordinary dependency integrity (family 4).
-  Write locus: direct `@chirality/runtime-contracts` consumption and App-client conformance surfaces, `frontend/src/__tests__/**`, `Evidence_CODEV-*` records, and deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: Conformance evidence for the single Codex engine path, explicit terminal outcomes and no automatic fallback, bound to the pinned Codex version; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: App conformance against the repaired socket API lands with the spike evidence.
-
-
 ## History
 
 - 2026-09-22 — D-APP-118 RETIRE applied: facade, rollback-only test, presence validator and obsolete wiring removed; canonical Runtime contract path preserved. Independent source review, Runtime/App checks and unsigned package checks pass; Root `execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-FACADE-RETIREMENT/RECORD.md` records the exact candidate and remaining integration gate. Removes the fulfilled facade Remaining item and supersedes `DEL-03-01#REM-1` and `DEC:D-APP-101` residual routing. The `CLM-005.7` facade locator is repaired; other conformance follow-through remains. Prior HOLD entries below are historical; state and Checking Approval SHA unchanged.

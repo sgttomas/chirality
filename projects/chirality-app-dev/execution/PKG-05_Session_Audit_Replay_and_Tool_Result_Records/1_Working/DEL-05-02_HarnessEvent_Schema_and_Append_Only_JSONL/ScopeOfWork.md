@@ -198,7 +198,7 @@ Named verification: Verify malformed tails, append order, all four terminal outc
 
 ### CLM-012 — Verification
 
-Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay.
+Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay. With the actual SOW-082 producer, verify once-per-chat-per-trigger offer behavior and replay of a declined trigger through append-only storage and presentation; retain missing producer/results as open evidence.
 
 Named evidence: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
 
@@ -248,7 +248,7 @@ Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1
 2. Apply the current scope: Consume the Runtime-owned extensible HarnessEvent stream and its canonical append-only audit mirror; preserve proposal-interaction audit/replay meaning under SOW-082.
 3. Implement only within the owning App/Runtime boundary, preserving these requirements: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Preserve required envelope identity/version/time/parent/turn linkage, unique IDs and append sequence, accepted-before-execution and durable terminal outcomes. Ignore a malformed trailing line while retaining valid events and emitting diagnostics. Structural secret redaction and large-payload budgeting/artifact references occur before persistence, SSE and replay sinks. Evolution remains backward-compatible or explicitly versioned; no closed schema-v2 approval gate survives.
 4. Verify verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay.
-5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update governing scope and any selected work graph only for backchecked outcomes.
 
 Locus and checks: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers.
 
@@ -374,3 +374,9 @@ Verification: Verify malformed tails, append order, all four terminal outcomes, 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-014 SOW-015 SOW-039 SOW-082 OBJ-003 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R044:** With the actual SOW-082 producer, verify once-per-chat-per-trigger proposal offers and replay of accepted/declined triggers through append-only events and presentation. Closed-schema-v2 compatibility remains bounded to its recorded producer.

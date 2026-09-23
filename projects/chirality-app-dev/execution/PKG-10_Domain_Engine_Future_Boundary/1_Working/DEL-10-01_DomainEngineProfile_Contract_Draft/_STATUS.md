@@ -9,13 +9,6 @@
 
 **Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
 
-## Remaining
-
-- Register PEC as a current Runtime project client under D-T0-23/D-PEC-56 while preserving profile-owned deterministic acts, RBAC, data boundaries, human gates and scratch/demo-only pilot authority. Verify project registration and denied unauthorized acts on the actual Codex service path; retained registry tests alone do not close this task (owner: App/Runtime with PEC bridge).
-
-- Compose and verify the already-authorized profile/registration interface on the Codex path against `domain-profile.test.ts` and `domain-profile-registry.test.ts`, including invalid-profile rejection before exposure. D-GOV-43/D-APP-127 settle the host direction; no repeat provider/facade vote is needed. Any broader capability or integration-level advance requires its named tier-0/F-APP-3 ruling; apply-class exposure remains excluded.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents present and non-empty)

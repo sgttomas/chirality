@@ -8,16 +8,6 @@
 
 **Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
 
-## Remaining
-
-The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
-
-- **DEL-07-01-V3-01** — Complete ordinary-project protection, separation, pin and packaging checks for both base and organisation instruction roots. App owns its protection/boot/packaging carriers; Runtime owns the instruction/service interface. Refresh the current bounded integration brief under D-APP-132; do not reuse the withdrawn D119 daemon patch.
-  Locus/owner: frontend/electron/main.ts and instruction-root/path-policy surfaces; Runtime instruction interface by owning handoff; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Live negative root/write/symlink/fail-closed cases, both-layer pin verification and packaged evidence; boot hashing alone is not write prevention.
-  Gate: Existing SOW-084; current interface/brief before implementation; no new scope or instruction amendment.
-
-
 ## History
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; accepted obligations and unresolved engineering/evidence retained. Lifecycle and Checking Approval SHA unchanged.

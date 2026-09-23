@@ -9,15 +9,6 @@
 
 **Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
 
-## Remaining
-
-- Land the already-authorized open_pipe_stress proposal validation transport on the current Codex/Runtime composition path, including the operation_applier.validate boundary and schema-bound outcome. Verify against `domain-proposal-tools.test.ts` / `operation-proposal.test.ts` and an actual current-path witness. Owner: App/Runtime with Piping transport owner; stage-gate: piping-side transport soundness. Retained in-process MCP checks are compatibility evidence only.
-
-- Complete operation store/storage convention, review-checklist record, concrete proposal instances and missing operation-specific evidence under DEP-10-03-004/F-APP-3. Verify proposal_only status, lifecycle, K-AUTH-2 human evidence, protected paths and ready-for-construction/professional-boundary prohibitions. Apply tooling stays separately gated; D-APP-53 Option C is not activated.
-
-- Coordinate protected-path live enforcement with DEL-10-02 and its denial/allowance fixtures. Current TYPES §11.2 includes constant proposal-only status; preserve that repaired interface in operation records and live checks.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents non-empty)

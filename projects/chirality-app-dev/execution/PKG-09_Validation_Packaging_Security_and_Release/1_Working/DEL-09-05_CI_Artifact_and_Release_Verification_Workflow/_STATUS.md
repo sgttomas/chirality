@@ -8,21 +8,6 @@
 
 **Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
 
-## Remaining
-
-The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
-
-- **DEL-09-05-V3-05** — Complete the deliverable-local execution/evidence record for the already authorized 3.0.0/3.0.1 releases, distinguishing owner testimony from retained output and missing observations.
-  Locus/owner: A2 packaging/native run records and local evidence; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Signature/notarization, Codex pin, packaged S-6/S-8, identity/custody, hosted release-job and attestation evidence, requirement-to-evidence and ten-step CI/manual check matrices. Record absent results as unknown; optional SBOM is not a release prerequisite under D-APP-127.
-  Gate: No repeated G6a vote; no new release authorization or invented outcome.
-
-- **DEL-09-05-V3-06** — The 2.0.0-to-3.0.0-rc.1 application task is overtaken by existing 3.0.0/3.0.1 identity history. Recover/check consistency evidence for the actual shipped candidate; never apply the obsolete patch.
-  Locus/owner: package/bundle/DMG/runtime/update identity evidence; verify-version-identity.mjs; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Candidate identity report over every surface or explicit absent result.
-  Gate: Record repair and evidence recovery only; no version mutation or release.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: removed completed or non-adopted optional decision entries and aligned current delivery tasks with D-APP-121/127/132. Existing evidence and release gates remain; no product result, lifecycle or approval was promoted.
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.

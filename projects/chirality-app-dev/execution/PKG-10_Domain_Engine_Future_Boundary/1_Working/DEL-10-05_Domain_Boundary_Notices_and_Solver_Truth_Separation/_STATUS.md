@@ -9,13 +9,6 @@
 
 **Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
 
-## Remaining
-
-- For the future domain surfaces selected under their existing amendment, inventory UI, documentation, events, profile and proposal surfaces with required notice or explicit exclusion. Use ScopeOfWork CLM-011 scans and CLM-032 checklist; capture reviewer/date/source/check results in CLM-018 and the closure set in CLM-019. Owner: App copy/surface implementation with the accountable future-surface reviewer; gate: accepted surface scope and CLM-036 wording/acceptance decisions.
-
-- Use the corrected CLM-027 standard notice (including no professional validation) and preserve solver ownership, protected paths, proposal_only semantics and human acceptance. Cite DEL-10-03 record shape before proposal examples support closure; current TYPES §11.2 supplies the proposal-only status carrier; live Codex composition remains unverified. No product-native notice placement or human acceptance result is asserted by this record repair.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2; all four documents non-empty)

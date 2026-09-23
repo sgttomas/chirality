@@ -6,19 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-02-05-V3-03** (`NOT_SELECTABLE_UNTIL: the re-platformed login flow lands on the production path (D-GOV-43 items 3 and 6)`) — live account sign-in and sign-out through Codex's own `account/login/start`, `account/login/cancel` and `account/logout` within the Chirality effective home (private `auth.json`; configuration shared by reference). The `HostedEngineConsentPort`, per-root consent and the command-network postures are retired (family 1, D-APP-127); the account row and Settings act on the application-owned Runtime service child. API-key UI statements are read against Codex's own credential handling: the App never reads, copies or relays credential material, and the retained typed storage states describe only App-side `safeStorage` where it is still used. The per-chat model and effort freeze is lifted (model and reasoning effort travel per turn).
-  Trace: OUT-002, REQ-001, REQ-003, REQ-005, AC-002, VER-002; DEP-02-05-008/009.
-  Plan: current account/Settings production S-8 and surviving attachment, credential-IPC, renderer and redaction verification under D-GOV-43/D-APP-127.
-  Depends: the re-platformed login flow; DEL-04-05-V3-02; the owner performs OAuth in the browser (S-8 is the check). The V3-02 consent vocabulary, fixtures and fake adapter are preserved as history and are not the live target.
-  Write locus: `frontend/src/components/woven-dialogue/**`, current account routes/client and Settings tests plus deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: S-8 evidence (sign-in and sign-out scoped to Chirality with another Codex client's state unchanged; credential backend verified) with tokens absent from every sink; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: S-8 passes on the production path (repeated after the consolidated signed build).
-  Historical node-F hosted-consent questions are superseded as live subjects by D-APP-127; production S-8 and surviving secret-protection results remain required.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

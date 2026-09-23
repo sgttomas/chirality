@@ -67,6 +67,9 @@ def test_structural_roles_use_control_precedence_and_fail_closed():
         SurfaceRole.UNCLASSIFIED)
     assert classify_surface(f"{AGENTRUN}/LAUNCH_BRIEF.md.bak").role is (
         SurfaceRole.UNCLASSIFIED)
+    assert classify_surface(
+        "projects/example/execution/_Coordination/WorkGraphs/run-1/WORK_GRAPH.md"
+    ).role is SurfaceRole.CONTROL
 
 
 @pytest.mark.parametrize("name", [

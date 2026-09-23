@@ -1,0 +1,32 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: APP-REMAINING-RETIREMENT-20260923
+title: App legacy Remaining selection retirement
+date: 2026-09-23
+basis: 10b672cae
+instruction_surface_paths:
+  - projects/chirality-app-dev/AGENTS.md
+  - projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-18_app_dev_loop.md
+  - docs/governance_harness/tranche_manifests/APP-REMAINING-RETIREMENT-20260923.yaml
+m2_gate:
+  authorization: >-
+    Owner explicitly directed App and Piping legacy Remaining retirement through
+    finite Task Management accounting, with surviving meanings preserved in
+    governing scope, an identified graph, an owning decision or a DEFERRED
+    register row. The owner clarified that PEC cleanup is later and authorized
+    source-faithful non-issued receiving amendments before App source removal.
+    This tranche updates only the App selection instruction and marks the dated
+    workplan historical; it does not amend issued baselines, formal change
+    authority, PEC or Piping instructions.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: App WORKING_ITEMS under HELP_HUMAN coordination
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The only current instruction change is the App loop's own AGENTS.md; its
+    owning loop applies it in this tranche. The dated App workplan gains a
+    historical banner. No Root, Runtime, Piping, PEC or packaged instruction
+    mirror changes, so no foreign instruction-basis adoption is implied.

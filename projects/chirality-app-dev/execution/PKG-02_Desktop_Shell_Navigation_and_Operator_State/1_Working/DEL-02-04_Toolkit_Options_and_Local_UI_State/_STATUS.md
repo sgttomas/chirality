@@ -6,21 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-The versioned `chirality.woven-workspace/v1` state store, its non-destructive
-rollback-safe migration, the additive v1 fields added by the 2026-07-24
-redesign tranche (`theme`; bounded `sessionSurfaces` map;
-`navigatorExpandedSurfaces`), and the isolation, storage-failure,
-malformed-record, keyboard/focus, and reduced-motion evidence are implemented
-and evidenced (PR #323 merge `403f228f4`; redesign tranche 2026-07-24). See
-`_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
-`execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`. What
-remains:
-
-- **DEL-02-04-R5-RESIDUALS** — Bind landed activity/state work to review/merge evidence; keep artifact/context/rung/declined-trigger producers and rollback migration checks explicit. Verify live Codex policy/option handoff, unknown-key warn/ignore and current UI polish. Align tools/max-turns and governance metadata against current Codex/Runtime capability and deliver only supported controls; preset duration remains an actual undecided detail. Composer model/effort and user-selected policy loci are settled. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

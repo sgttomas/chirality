@@ -6,13 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-05-05-R5-DELIVERY** — Implement live Runtime budgeting/artifact production/redaction and App summary/artifact-link conformance at current thresholds; verify D-APP-42 metadata, thresholds, hashes, ordering and session-lifetime behavior.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App preview consumers; legacy `frontend/src/lib/harness/tool-result-artifacts.ts` and fixtures.
-  Check: Verify real live producers, threshold boundaries, current small-inline and artifact-backed overflow behavior (distinct medium-band representation remains deferred), stored-byte hashes/metadata, stream separation, redaction, concurrent completion order, malformed-tail replay and session-lifetime behavior. Existing legacy artifact tests do not establish these live outcomes.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; accepted obligations and unresolved engineering/evidence retained. Lifecycle and Checking Approval SHA unchanged.

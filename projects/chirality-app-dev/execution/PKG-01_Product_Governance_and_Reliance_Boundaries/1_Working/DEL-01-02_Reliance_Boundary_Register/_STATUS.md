@@ -6,13 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- Reconcile the PEC seam only after its loop supplies governed DEL-07-05 scope and accepted evidence, then separate App acceptance. D-GOV-43 A2 owns the App service topology; PEC PRD v2 §15 retains no-dual-loop/human-only restrictions. RB-PEC-ADAPTER remains retired current evidence.
-
-Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
-
-
 ## History
 - 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

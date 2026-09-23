@@ -298,7 +298,7 @@ This Scope of Work defines `DEL-10-02` in service of project scope [SOW-068] and
 
 ### CLM-019 — Records
 
-> Policy and requirements: ScopeOfWork CLM-003/010; enforcement implications: CLM-012/017/024; examples/conflicts: CLM-025/026. Dependency selection remains governed by `Dependencies.csv` and the accepted DepClosure; this descriptive index supplies no new acceptance. Current reference drift is in `_REFERENCES.md`; current enforcement evidence is outstanding in Remaining.
+> Policy and requirements: ScopeOfWork CLM-003/010; enforcement implications: CLM-012/017/024; examples/conflicts: CLM-025/026. Dependency selection remains governed by `Dependencies.csv` and the accepted DepClosure; this descriptive index supplies no new acceptance. Current reference drift is in `_REFERENCES.md`; current enforcement evidence is outstanding under the governing scope and APP-R090 detail below.
 
 - **VER-001** — Review the current ScopeOfWork claims and output matrix against their cited requirements and retained gates. Historical conversion/parity evidence is recovered in `R5/CONVERSION_EVIDENCE_REVIEW.csv` of RUN_D128_CONCORDANCE_2026-09-21_1614Z; it proves the dated conversion only. Current reconciliation uses W10_CHANGES.csv and independent changed-block review; product and human-acceptance checks remain separately required.
 
@@ -372,3 +372,11 @@ This Scope of Work defines `DEL-10-02` in service of project scope [SOW-068] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-068 OBJ-010 | CLM-008 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R090:** The glob/protected-path semantics and negative fixtures need an accepted DEL-10-02/Runtime stage contract before live exposure. The specific unresolved policy choice is deferred in App Task Management.
+
+- **APP-R091:** Manifest instances, loader and validation belong to the tier-0 bridge under D-APP-58. App integration must consume the accepted instance and does not create or accept tier-0 work.

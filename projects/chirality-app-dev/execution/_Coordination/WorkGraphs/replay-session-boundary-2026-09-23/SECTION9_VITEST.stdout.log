@@ -1,0 +1,62 @@
+
+> chirality-frontend@3.0.1 test
+> vitest run src/__tests__/lib/engine-conformance.test.ts src/__tests__/lib/turn-engine.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/transcript-replay.test.ts src/__tests__/docs/reliance-boundary-register.test.ts src/__tests__/contract-pins.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/session-manager.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/dependencies-register-contract.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/scripts/verify-instruction-root-integrity.test.ts src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts src/__tests__/lib/domain-profile-registry.test.ts --reporter=default --reporter=json --outputFile.json=/private/tmp/chirality-replay-runtime/tmp/chirality-harness-section9-validation/latest/vitest-report.json
+
+
+ RUN  v4.1.10 /private/tmp/chirality-app-loop-trial/projects/chirality-app-dev/frontend
+
+ ✓ src/__tests__/docs/reliance-boundary-register.test.ts (2 tests) 4ms
+ ✓ src/__tests__/lib/agent-runtime-contract.test.ts (5 tests) 4ms
+ ✓ src/__tests__/contract-pins.test.ts (22 tests) 14ms
+ ✓ src/__tests__/lib/domain-profile-registry.test.ts (3 tests) 6ms
+ ✓ src/__tests__/lib/harness-instruction-root.test.ts (3 tests) 27ms
+ ✓ src/__tests__/lib/session-events.test.ts (6 tests) 65ms
+ ✓ src/__tests__/lib/tool-evidence.test.ts (5 tests) 4ms
+ ✓ src/__tests__/lib/tool-result-artifacts.test.ts (6 tests) 90ms
+ ✓ src/__tests__/lib/sdk-message-mapper.test.ts (15 tests) 47ms
+ ✓ src/__tests__/lib/turn-engine.test.ts (4 tests) 33ms
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > denies when the persona is not allowlisted for subagents
+[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.904 reason=Active persona is not allowlisted for subagents.
+
+ ✓ src/__tests__/lib/transcript-replay.test.ts (7 tests) 6ms
+ ✓ src/__tests__/lib/dependencies-register-contract.test.ts (10 tests) 7ms
+ ✓ src/__tests__/lib/permission-overlay.test.ts (13 tests) 52ms
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > denies when governance metadata is missing or invalid
+[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=METADATA_PRESENCE evaluationMs=1.884 reason=opts.subagentGovernance is missing or invalid.
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > denies when strict governance booleans are not true
+[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=CONTEXT_SEALED evaluationMs=1.813 reason=contextSealed must be strictly true.
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > denies when strict governance booleans are not true
+[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PIPELINE_RUN_APPROVED evaluationMs=1.845 reason=pipelineRunApproved must be strictly true.
+
+ ✓ src/__tests__/lib/session-manager.test.ts (17 tests) 177ms
+ ✓ src/__tests__/lib/chirality-hooks.test.ts (7 tests) 80ms
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > denies when approvalRef is empty
+[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=APPROVAL_REF evaluationMs=1.461 reason=approvalRef must be a non-empty string.
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > allows and resolves only TYPE 2 delegated subagents
+[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=2.759 delegated=TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > allows configured Agent 0 managers and TASK while rejecting other Agent 2 roles
+[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=2.104 delegated=PROJECT_SETUP,TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > does not synthesize TASK eligibility for Agent 0 when TASK is absent from its allowlist
+[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=1.287 delegated=PROJECT_SETUP approvalRef=GATE-001 approvedBy=human-reviewer
+
+stdout | src/__tests__/lib/harness-subagent-governance.test.ts > evaluateSubagentGovernance > warns but allows TYPE 2 subagents that are not TASK class
+[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=1.620 delegated=ALPHA approvalRef=GATE-001 approvedBy=human-reviewer
+
+ ✓ src/__tests__/lib/harness-subagent-governance.test.ts (11 tests) 172ms
+ ✓ src/__tests__/lib/sdk-options-builder.test.ts (20 tests) 39ms
+ ✓ src/__tests__/lib/engine-conformance.test.ts (10 tests) 32ms
+ ✓ src/__tests__/lib/chirality-read-mcp.test.ts (10 tests) 75ms
+ ✓ src/__tests__/scripts/verify-instruction-root-integrity.test.ts (8 tests) 922ms
+     ✓ validates the complete v3 bundle and rejects omissions and unexpected files  813ms
+
+ Test Files  20 passed (20)
+      Tests  184 passed (184)
+   Start at  00:49:19
+   Duration  1.22s (transform 3.59s, setup 0ms, import 4.60s, tests 1.86s, environment 2ms)
+
+JSON report written to /private/tmp/chirality-replay-runtime/tmp/chirality-harness-section9-validation/latest/vitest-report.json

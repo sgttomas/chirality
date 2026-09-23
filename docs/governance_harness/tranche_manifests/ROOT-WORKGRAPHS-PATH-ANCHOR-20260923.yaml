@@ -1,0 +1,37 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKGRAPHS-PATH-ANCHOR-20260923
+title: Scan canonical WorkGraphs for machine paths
+date: 2026-09-23
+basis: 10b672caed0a0e013ac72508ac72f6b3ce274286
+instruction_surface_paths:
+  - tools/practitioner_harness/surface_roles.py
+  - tools/practitioner_harness/test_surface_roles.py
+  - tools/validation/test_validate_path_anchors.py
+  - tools/validation/validate_path_anchors.py
+  - docs/governance_harness/tranche_manifests/ROOT-WORKGRAPHS-PATH-ANCHOR-20260923.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed in the active chat: "And yes you should add WorkGraphs
+    to the path-anchor validator." This authorizes adding canonical
+    project/domain WorkGraphs/<undertaking>/WORK_GRAPH.md surfaces to the Root
+    path-anchor validator and shared CONTROL classification, with focused
+    regressions. PEC cleanup is deferred; this tranche does not change PEC
+    content. This manifest records the gate and grants no authority (K-AUTH-1).
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: HELP_HUMAN ROOT, with implementation by bounded Type 2 TASK
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The tranche changes shared Root validator and classifier code plus their
+    maintained tests. It does not change loop instructions, contracts, or
+    authority-corpus members pinned by App, Piping, or PEC; no downstream notice
+    is required for this bounded validator maintenance change.
+scope_limits:
+  - Only canonical project/domain WorkGraphs/<undertaking>/WORK_GRAPH.md files are added to path-anchor scanning and active CONTROL classification.
+  - Colocated run evidence remains outside the live-surface selection.
+  - PEC cleanup is deferred and no PEC files are changed.
+  - No workflow, manual, project instruction, governed acceptance, or release change is included.

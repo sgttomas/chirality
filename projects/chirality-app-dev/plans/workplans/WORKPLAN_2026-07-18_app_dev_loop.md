@@ -1,5 +1,12 @@
 # App-Dev Work Loop — standing plan (development loop instructions)
 
+> **Historical plan, superseded for current work selection.** The current
+> `loop/LOOP_INIT.md` and project `AGENTS.md` govern the development loop. The
+> App `Remaining` source population was retired through
+> `execution/_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/`;
+> the selection instructions below describe the former loop and are retained
+> only as historical context.
+
 > **Epistemic status: agent-authored plan — not authority.** Written at owner adoption
 > (Ryan Tufts, K-AUTH-1) on 2026-07-18 through the D-APP-61 ruling; supersedes
 > `WORKPLAN_2026-07-17_app_dev_loop.md` in this directory. This plan never authorizes

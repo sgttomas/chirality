@@ -1,5 +1,7 @@
 # App Remaining retirement — candidate receiving routes
 
+**Historical pre-final proposals:** The owner's 2026-09-23 final App retirement direction and applied destinations are in [FINAL_CLOSEOUT.md](FINAL_CLOSEOUT.md) and [ROWS.csv](ROWS.csv). The live-source instructions below describe the earlier partial stage and are not current selection guidance.
+
 These are proposed destinations for the exception rows in `ROWS.csv`, not applied edits or human rulings. Preserve a live `_STATUS.md` source entry wherever the named destination or authority remains unresolved. The owner conditionally approved the 42 ordinary SOW-preserved rows and three markers, and their verified live source entries were removed; their governing obligations remain open. This document addresses only the 54 held exceptions.
 
 ## Candidate formal corpus intake: APP-R004

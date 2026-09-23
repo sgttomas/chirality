@@ -55,4 +55,4 @@ This package-local refresh does not change runtime source, package manifests, lo
 
 ## Current Runtime Application
 
-D-GOV-43 / D-APP-127 owns the application-owned Runtime service and stock Codex child. The full protocol/event stream and shared user configuration are accepted; actual enforcement follows selected policy and current application controls. Runtime data remains non-authoritative; human gates, domain controls, instruction integrity and missing evidence are not waived. Current obligations are in ScopeOfWork.md and `_STATUS.md ## Remaining`.
+D-GOV-43 / D-APP-127 owns the application-owned Runtime service and stock Codex child. The full protocol/event stream and shared user configuration are accepted; actual enforcement follows selected policy and current application controls. Runtime data remains non-authoritative; human gates, domain controls, instruction integrity and missing evidence are not waived. Current obligations are in ScopeOfWork.md, accepted decisions and any selected work graph; `_STATUS.md` retains lifecycle and history.
