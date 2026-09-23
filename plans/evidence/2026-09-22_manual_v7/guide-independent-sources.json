@@ -1,0 +1,404 @@
+{
+  "schema": "chirality-independent-document-review-sources/v1",
+  "recorded_at": "2026-09-23T03:44:13.580171+00:00",
+  "repository_basis_as_declared_by_parent": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91",
+  "git_observation": "No Git commands executed in this review; candidate exact identity supplied by content hashes.",
+  "agent": {
+    "task": "/root/v3_guide_review",
+    "parent": "/root",
+    "role": "TASK",
+    "type": 2,
+    "mechanism": "delegated-harness-native via collaboration.spawn_agent",
+    "author_task": "/root/v7_user_guide",
+    "independence": "Separate fresh bounded reviewer; no guide/book implementation edits and no descendants.",
+    "model_identity": "Not exposed or independently queried; no diversity claim.",
+    "enforcement": "Host exposes broad native tools; role, no-Git/no-browser/no-descendant and exact evidence write bounds are instruction-asserted, not mechanically enforced by Chirality. Filesystem sandbox separately applies."
+  },
+  "scope": "Affected independent re-review of User Manual v3 against unchanged PM v7, v2 baseline and newly published development-loop sources; same evidence-only write boundary.",
+  "context_policy": "Only Root and TASK role bodies treated as active repository instructions. Operational methods, sibling project entries and manuscript are read as comparison data. No workflow or skill activated; no other role body deliberately loaded. Link checks mechanically read targets without claiming semantic consultation.",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "kind": "active Root instruction",
+      "inspection": "full; retained earlier inspection where source unchanged",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "kind": "active TASK Type 2 role instruction",
+      "inspection": "full; retained earlier inspection where source unchanged",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+      "kind": "review candidate",
+      "inspection": "Complete prior candidate read; final candidate delta from v2 and all affected source-amendment passages examined; retained passages checked by textual comparison. Final frozen hash independently verified.",
+      "sha256": "ad90fc91497248ad88d283d1d84d381f9c21e65934726cd579924b5512a09320",
+      "bytes": 135504
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "kind": "review derivative",
+      "inspection": "Complete final article parity, link/fragment/ID/fingerprint and in-memory maintained-renderer comparison; no browser/visual inspection.",
+      "sha256": "0e5a14c6fd5ae379dc9bdc03b6c9468e6c86ec14f2daddfeb49810bee965d0b0",
+      "bytes": 170528
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "kind": "prior explanatory baseline",
+      "inspection": "complete textual delta compared with v3; retained text read in v3; no fresh operational execution; retained earlier inspection where source unchanged",
+      "sha256": "b365eb9d9390a26f08221da11c32638f9f6966a3665c24cd5c4a1d4f0139a3a2",
+      "bytes": 121524
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+      "kind": "manuscript source data",
+      "inspection": "headings and affected-vocabulary search; sections 1.9 ending, 1.10 through final-merge passage, 4.1\u20134.2, 4.11, 5.6, 5.8, 7.5; retained earlier inspection where source unchanged",
+      "sha256": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032",
+      "bytes": 480183
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/guide-source-comparison.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/guide-source-comparison.md",
+      "kind": "author comparison evidence",
+      "inspection": "Full current replacement comparison read.",
+      "sha256": "ead7ccd91ea2d886219e9f5861413192e0e9678dfa0eef11344832d1b18c2981",
+      "bytes": 6751
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/guide-sources.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/guide-sources.json",
+      "kind": "author source evidence",
+      "inspection": "All current paths/inspection declarations and changed-source comparison inspected; all 40 source hashes independently recomputed.",
+      "sha256": "d38e707dadf941ecc0cb43c3204dec6e2da3446baf04319c06b72aa5f363f257",
+      "bytes": 41483
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/guide-checks.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/guide-checks.json",
+      "kind": "author check evidence",
+      "inspection": "Current frozen output/check declarations independently reproduced for parity, rendering, links and hashes.",
+      "sha256": "6e476d0f905b299fef5e142116df494865fba796f2d02664044847fe1832beea",
+      "bytes": 2333
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/BRIEF.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/BRIEF.md",
+      "kind": "parent evidence",
+      "inspection": "authorized-output paragraph inspected; retained earlier inspection where source unchanged",
+      "sha256": "d873a3e02a08ebd8bed28d35aee577eb0656ac63e5fb47e43f090b905608170d",
+      "bytes": 1675
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "kind": "inherited v2 evidence",
+      "inspection": "All 52 prior source hashes compared with current bytes and author comparison: 37 unchanged, 15 changed; no claim of full semantic rereading all 52.",
+      "sha256": "cc3ab93b973c3c676020c942fb24914a14676677643f1f8e0da3204fccb2aabf",
+      "bytes": 27191
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "kind": "live method source data; not activated",
+      "inspection": "Full revised current body read; not activated.",
+      "sha256": "060f7153fb8a1b75825b23a799c58de45b6538b5e95d758f777079925b121c47",
+      "bytes": 7504
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "kind": "live method source data; not activated",
+      "inspection": "Full revised current body read; not activated.",
+      "sha256": "f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738",
+      "bytes": 7238
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "kind": "live method source data; not activated",
+      "inspection": "Full revised current body read; not activated.",
+      "sha256": "aefe4190ffd1b18cbebd9d7d9c3cfd76b0494bfbb3a89cb1e5b07bf76b6e932f",
+      "bytes": 3402
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "kind": "live method source data; not activated",
+      "inspection": "Full revised current contract read; not activated.",
+      "sha256": "775148cc1ae65944e7a26b60b04bdeeb0266444c798b04ab06bed7e154e08290",
+      "bytes": 8968
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "kind": "ratified governance source data",
+      "inspection": "Current status/sections 1\u20132 and 4\u20137 read; earlier full claim-granularity reading retained unchanged.",
+      "sha256": "69c5a4bec30288dc1ec265bd64ec56f8e7c0e1ecf82c13e329b258539cefd7b4",
+      "bytes": 16500
+    },
+    {
+      "path": "docs/SPEC.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SPEC.md",
+      "kind": "governance source data",
+      "inspection": "Current sections 3, 8 and 9.8 read; Root status/adoption qualification and prior unaffected readings retained.",
+      "sha256": "f468e1601c3ccdd42b93a2deade6c08422eef2f99ac3de271d20aae104349a9a",
+      "bytes": 54386
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "kind": "accepted-act source data",
+      "inspection": "full; scope and in-flight adoption checked; retained earlier inspection where source unchanged",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "kind": "project instruction source data; not active scope",
+      "inspection": "Current deliverable-record/loop ownership, selection and decisions clauses read; prior unaffected inspection retained.",
+      "sha256": "ef79bf154c8c68215327b6fc023ab30c610323d38a2f4ca470b455082f35e5d9",
+      "bytes": 23426
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "Full revised body read; actual header is none selected for a successor undertaking; no program history re-audit.",
+      "sha256": "ae3398c4467e5a4f5b84bbe4e945b901d47e15351fd99f8e28beeb29d4b4c745",
+      "bytes": 8018
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "kind": "project instruction source data; not active scope",
+      "inspection": "Current deliverable-record/loop ownership clauses read; prior unaffected instruction-boundary inspection retained.",
+      "sha256": "60d9af6492e415f68ba91176530316545ddc25e4c0fddc6fb3192beb10d10100",
+      "bytes": 8832
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "Full revised body read; actual header is none selected for a successor undertaking; no program history re-audit.",
+      "sha256": "ccdf2daf326a169f4296511b31be4daa5e366d54aca9a5e725b79d9f72794492",
+      "bytes": 8008
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "full; retained earlier inspection where source unchanged",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "kind": "notice source data",
+      "inspection": "full; retained earlier inspection where source unchanged",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "headings/Remaining/receipt/selection search; lines 198\u2013275; retained earlier inspection where source unchanged",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "kind": "notice source data",
+      "inspection": "full; retained earlier inspection where source unchanged",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+      "kind": "retained renderer source and executed read-only operation",
+      "inspection": "lines 1\u2013190 and 285\u2013465 plus definition search; complete module imported with bytecode writing disabled, render() executed in memory only; retained earlier inspection where source unchanged",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "bytes": 21355
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/README.md",
+      "kind": "renderer navigation source data",
+      "inspection": "renderer/environment/validation search only; parent-owned edition links outside this review; retained earlier inspection where source unchanged",
+      "sha256": "76eccfb395fde722a9a846f2cf36e082eb39836b27f7e1cdae0073b89c230afd",
+      "bytes": 7155
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "accepted-amendment source data",
+      "inspection": "Full acceptance provenance, scope, limited supersession and publication/adoption boundary read.",
+      "sha256": "f934eeec032bc109e4c1180feb74e63c7179e90f087bcd34109d29543e5dc17e",
+      "bytes": 4338
+    },
+    {
+      "path": "docs/templates/MEMORY_TEMPLATE.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/templates/MEMORY_TEMPLATE.md",
+      "kind": "canonical-template source data",
+      "inspection": "Full current template read.",
+      "sha256": "6a010b0aedc7a26d241963a06894ba37f5c4522945870a045a1566760505b00c",
+      "bytes": 505
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "kind": "method source data",
+      "inspection": "Full current template read.",
+      "sha256": "67eb71ca1c85c63fda82f68d6ea610ad48e109b9a4b0f05a67961f0f79c004d7",
+      "bytes": 4073
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/method.md",
+      "kind": "method source data",
+      "inspection": "Full current method read, including bounded intake, retirement, register reviews and helper limitations; not activated.",
+      "sha256": "7f9e0d5ea7c2b74e7148faf3d2a35efc6ddd0552efd4b577a1c56895f75fe2f8",
+      "bytes": 7066
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/contract.md",
+      "kind": "method source data",
+      "inspection": "Current one-execution-record, no-false-closure, closing obligation account and output/pinned-census clauses; relevant vocabulary search.",
+      "sha256": "51367ee413492232439e1453826790eae2b6f6cd3eed2a1a0ab080face78016f",
+      "bytes": 11077
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/method.md",
+      "kind": "method source data",
+      "inspection": "Current R6 closing account and local-graph adoption/historical-accounting clauses; relevant vocabulary search.",
+      "sha256": "34bbdd8d9d38f7f7ad3bace7a39c1e1e0d0dc5f8f7f0ed4a03209fa3c6419e84",
+      "bytes": 10170
+    },
+    {
+      "path": "docs/TYPES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/TYPES.md",
+      "kind": "governance source data",
+      "inspection": "Affected lifecycle/REM/checking passages searched; target-versus-execution paragraph read.",
+      "sha256": "5eb0b809f93a444620bb9fa10263b531a8c140373f84e3022e0fe8e32ddb3b59",
+      "bytes": 36194
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "kind": "governance source data",
+      "inspection": "Legacy REM entry and section 5 target/evaluation/execution clauses read.",
+      "sha256": "26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c",
+      "bytes": 11652
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "kind": "skill source data, not activated",
+      "inspection": "Full current body read to check structural scope and optional MEMORY filename.",
+      "sha256": "8ae93a30c4fe4dd52b1139c03f72c93f2ea39bd25bb7e3b144f965af313da444",
+      "bytes": 2866
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/references/scaffold-contract.md",
+      "kind": "skill resource source data",
+      "inspection": "Full current body read; no scaffold execution.",
+      "sha256": "316b5f515864ec51fbc46424eed6c3fdf9cb6552f61f08d09b3731cb90aca5c4",
+      "bytes": 2928
+    },
+    {
+      "path": "workflows/scope-of-work/resources/representation-migration.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/representation-migration.md",
+      "kind": "method source data",
+      "inspection": "Current complete profile read; focus on target-versus-execution clause; no migration execution.",
+      "sha256": "434592526c10c16da05cbd356becad0957e86e2ace09c9218dec4e0ef8616729",
+      "bytes": 2648
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/SPEC.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/docs/SPEC.md",
+      "kind": "project source data",
+      "inspection": "Current Remaining adoption, checking criteria and memory clauses read.",
+      "sha256": "374fc8b99c250426dc6025366fcf7a591dff62df5d3c9549bf79da9f847710d9",
+      "bytes": 56629
+    },
+    {
+      "path": "projects/chirality-piping/docs/TYPES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/docs/TYPES.md",
+      "kind": "project source data",
+      "inspection": "Current checking criteria and pinned-input preservation clauses read.",
+      "sha256": "28bc8b6a827b91a28c5e62f2c3b9d1807db136f4da6fb1222c8852176c903c7f",
+      "bytes": 41107
+    },
+    {
+      "path": "projects/chirality-piping/docs/CHECKING_ENTRY_PROFILES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/docs/CHECKING_ENTRY_PROFILES.md",
+      "kind": "project source data",
+      "inspection": "Current profile preamble read; no profile or project activation.",
+      "sha256": "2a4a1b942643d41aec3ab3a0f581d0eae365b3e3769ac51abc7bdd70559f7493",
+      "bytes": 1084
+    },
+    {
+      "path": "workflows/index.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "kind": "catalog source data",
+      "inspection": "Parsed current descriptors for construct-local-work-graph, bounded-reconciliation, task-management and reconciliation; no activation.",
+      "sha256": "d00042f47d494a739cd7a45076278ddeea4282e298068ecb25227608823fae19",
+      "bytes": 99472
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "receiving-loop notice source data",
+      "inspection": "Full current notice read; adoption, corpus/mirror, in-flight and product-work limits checked.",
+      "sha256": "4a93b35287244a9e9780a86ef263e1a89dc440e6f0d615e5d6f3f9e8ffa36299",
+      "bytes": 2028
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "receiving-loop notice source data",
+      "inspection": "Full current notice read; adoption, corpus/mirror, in-flight and product-work limits checked.",
+      "sha256": "3671ff545a55de29cf0a507c91c50dff51c7865db9aef133e6ce55b184080904",
+      "bytes": 2025
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "receiving-loop notice source data",
+      "inspection": "Full current notice read; adoption, corpus/mirror, in-flight and product-work limits checked.",
+      "sha256": "8a4d80798be2ea65befe38a6b163c8a4423da39b2f97ce9ab9d7b29a673cf816",
+      "bytes": 1405
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "receiving-loop notice source data",
+      "inspection": "Full current notice read; adoption, corpus/mirror, in-flight and product-work limits checked.",
+      "sha256": "545092c1841a55766fd58932216b852db43c3a2663d61125e317140821a35d5e",
+      "bytes": 1371
+    }
+  ],
+  "mechanical_read_inventory": "guide-independent-checks.json identifies inherited hash-only files and resolved local link targets.",
+  "limits": [
+    "Not a full manuscript/publication review or external-v6-source parity audit.",
+    "Not a full repository or project status audit; inherited unchanged guide material was not requalified through product execution.",
+    "No browser, rendered visual QA, product tests, broad tests, network, Git, live workflow execution, acceptance/adoption or instruction edits."
+  ],
+  "supersession": "Replaces prior independent review at df192b2b\u2026 following merged instruction amendment PR #858. Prior MD a80fc0e\u2026 and HTML 93810e\u2026 were superseded; final evidence binds ad90fc91\u2026 and 0e5a14c6\u2026."
+}

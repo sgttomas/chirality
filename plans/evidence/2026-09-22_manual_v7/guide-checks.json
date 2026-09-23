@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-22",
+  "basis_revision": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91",
+  "result": "PASS",
+  "source": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+  "source_sha256": "ad90fc91497248ad88d283d1d84d381f9c21e65934726cd579924b5512a09320",
+  "html": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+  "html_sha256": "0e5a14c6fd5ae379dc9bdc03b6c9468e6c86ec14f2daddfeb49810bee965d0b0",
+  "checks": {
+    "source_html_article_parity": {
+      "result": "PASS",
+      "canonical_events": 4237,
+      "method": "Independent markdown-it rendering compared with HTML article tags, text and attributes; only generated heading IDs and table wrapper divs omitted."
+    },
+    "local_links_and_fragments": {
+      "result": "PASS",
+      "unique_local_targets_with_fragments": 137,
+      "fragment_links": 49,
+      "external_links_not_fetched": 0,
+      "broken": []
+    },
+    "unique_rendered_ids": {
+      "result": "PASS",
+      "count": 58
+    },
+    "deterministic_render": {
+      "result": "PASS",
+      "method": "Two maintained-renderer outputs equal each other and saved candidate bytes; explicit source/output/date/revision."
+    },
+    "fingerprint": {
+      "result": "PASS",
+      "source_sha256_present": true,
+      "basis_revision_present": true
+    },
+    "v2_operating_sources": {
+      "result": "PASS",
+      "unchanged_sources": 37,
+      "changed_sources_reexamined": 15
+    },
+    "captured_source_hashes": {
+      "result": "PASS",
+      "sources": 40
+    }
+  },
+  "render_summary": {
+    "source": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+    "output": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+    "source_sha256": "ad90fc91497248ad88d283d1d84d381f9c21e65934726cd579924b5512a09320",
+    "output_sha256": "0e5a14c6fd5ae379dc9bdc03b6c9468e6c86ec14f2daddfeb49810bee965d0b0",
+    "chapters": 22,
+    "headings": 32,
+    "tables": 11,
+    "code_blocks": 12,
+    "parser": "markdown-it-py 4.2.0"
+  },
+  "limits": [
+    "No new visual browser QA; prior local-HTML policy denial respected with no workaround.",
+    "No network link fetches, broad repository tests or product tests.",
+    "No execution or adoption inferred from illustrative examples."
+  ]
+}

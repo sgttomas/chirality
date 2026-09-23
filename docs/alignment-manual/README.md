@@ -6,8 +6,10 @@ This directory contains a general project-management reference and the Chirality
 
 | Document | Use |
 | --- | --- |
-| [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v5.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf) | General management practice from conception through delivery, written as a technical reference. |
-| [Chirality Agent User Manual v2 — HTML](CHIRALITY_AGENT_USER_MANUAL_v2.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v2.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
+| [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf) | General management practice from conception through delivery, written as a technical reference. |
+| [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
+
+The companion describes the management manual’s current methods and identifies where adopted project instructions still differ. Reading either manual does not amend those instructions or adopt a new execution basis.
 
 ## Read offline
 
@@ -19,7 +21,7 @@ The visible source date and repository revision describe the edition’s basis. 
 
 ## Maintain the management-manual formats
 
-The Word and PDF editions follow the retained technical-reference book layout. Their current preparation is recorded in the [authorship and front-matter revision evidence](../../plans/evidence/2026-09-22_manual_authorship_frontmatter/). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide’s HTML edition only.
+The Word and PDF editions follow the retained technical-reference book layout. Their current preparation is recorded in the [v7 preparation and review evidence](../../plans/evidence/2026-09-22_manual_v7/). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide’s HTML edition only.
 
 ## Maintain the HTML edition
 
@@ -36,10 +38,10 @@ Render this edition with its explicit source basis:
 
 ```sh
 /tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
-  --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md \
-  --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html \
+  --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md \
+  --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
   --basis-date 2026-09-22 \
-  --basis-revision 0a258f145eac41a62de02b06f032ccbc183838ec
+  --basis-revision b3e2ce4ec74e01d6f393fc0bc069699bb079df91
 ```
 
 Add `--check` to verify that the committed HTML matches the source and renderer without writing. Use explicit `--source` and `--output` paths as shown for the current edition; the renderer’s unqualified default remains v1. Keep the HTML beside its Markdown source so that repository-relative source links retain their meaning. Archived editions retain their own source date and revision.
@@ -54,6 +56,8 @@ Earlier files and review records remain available for repository continuity.
 
 | Document | Files |
 | --- | --- |
+| Project Management for Human–Agent Teams — Consolidated v5 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v5.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf) · [Preparation evidence](../../plans/evidence/2026-09-22_manual_authorship_frontmatter/) |
+| Chirality Agent User Manual v2 | [HTML](CHIRALITY_AGENT_USER_MANUAL_v2.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v2.md) |
 | Project Management for Human–Agent Teams — Consolidated v4 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v4.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf) · [Publication evidence](../../plans/evidence/2026-09-22_manual_publication_edit/) |
 | Chirality Agent User Manual v1 | [HTML](CHIRALITY_AGENT_USER_MANUAL_v1.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v1.md) |
 | Project Management for Human–Agent Teams — Consolidated v2 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v2.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf) · [Format-production evidence](../../plans/evidence/2026-09-22_manual_formats/) |

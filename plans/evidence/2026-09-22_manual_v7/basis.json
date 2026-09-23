@@ -1,0 +1,20 @@
+{
+  "source": "latest v6 2.md, superseding the earlier attachment",
+  "base_commit": "df192b2b113625831af57dd03cb4cfc58822318e",
+  "inputs": {
+    "/Users/ryan/Downloads/Project_Management_for_Human_Agent_Teams_Consolidated_v6 2.md": "1a89ea0fc5ace28f8593ad50a30229bc2229376adecc03599549cf41fcaddce3",
+    "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md": "e7f8579110e95f57c618bec304462dc04419b6f48bada9a296404cf8b91f609d",
+    "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722",
+    "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+    "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+    "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELP_HUMAN.md": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+    "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa",
+    "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+  },
+  "approved_authorship_sha256": "b7c5900558bd6cdcc44963c1b68358063ec893b9b0e7e81a8c2546b1ac115d57",
+  "v7_markdown_sha256": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032",
+  "permitted_body_navigation_change": "CHIRALITY_AGENT_USER_MANUAL_v2.md \u2192 CHIRALITY_AGENT_USER_MANUAL_v3.md",
+  "current_integration_base": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91",
+  "basis_update": "PR858 merged development-loop/memory/graph adoption during production. User Manual revised and independently rechecked against this new basis; book source unchanged."
+}

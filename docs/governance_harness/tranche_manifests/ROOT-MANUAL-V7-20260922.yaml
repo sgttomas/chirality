@@ -1,0 +1,36 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-MANUAL-V7-20260922
+title: Approved authorship and externally revised body in v7 book formats
+date: 2026-09-22
+basis: b3e2ce4ec74e01d6f393fc0bc069699bb079df91
+instruction_surface_paths:
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html
+  - docs/alignment-manual/README.md
+  - docs/governance_harness/tranche_manifests/ROOT-MANUAL-V7-20260922.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts approves the shorter authorship draft, directs its insertion
+    into the latest supplied v6 body, and requests v7 MD/DOCX/PDF filenames.
+    The later v6 2.md attachment supersedes the first. All text, headings and
+    links are black; grey is allowed in figures. Actual source origins and
+    hashes and the approved text are recorded in the internal v7 run evidence.
+    This includes a new companion guide aligned with v7 and the actual adopted
+    project instructions, index maintenance, and technical
+    artifact checks, not new publication or operating-authority decisions.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    These are explanatory book editions and their reading links. The supplied
+    manuscript does not adopt live operating instructions in any project.
+    No live role, workflow, project authority, contract or execution pointer
+    is amended by this publication-format update.

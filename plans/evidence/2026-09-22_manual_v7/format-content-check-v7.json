@@ -1,0 +1,62 @@
+{
+  "word_content": {
+    "source_units": 1596,
+    "word_units": 1596,
+    "mismatches": []
+  },
+  "headings": {
+    "source": 261,
+    "word": 261,
+    "mismatches": []
+  },
+  "tables": {
+    "source": 14,
+    "word": 14,
+    "mismatches": []
+  },
+  "specimens": {
+    "source": 31,
+    "word": 31,
+    "exact_mismatches": []
+  },
+  "pdf_content": {
+    "pages": 166,
+    "first_body_physical_page": 5,
+    "missing_units": [],
+    "interstitial_extras": [
+      {
+        "before_md_line": 3348,
+        "text": "TermMeaninginthismanual"
+      },
+      {
+        "before_md_line": 3365,
+        "text": "TermMeaninginthismanual"
+      }
+    ],
+    "extras_disposition": "Repeated vocabulary-table header on continuation pages; expected rendering, not additional body prose."
+  },
+  "toc_entries": 89,
+  "toc_destination_checks": "All89 title/anchor/outline-position checks pass. Printed folios and viewer labels separately verified in pdf-label-check.json.",
+  "word_navigation": {
+    "source_anchors": 89,
+    "bookmarks": 300,
+    "missing_source_anchors": [],
+    "duplicate_bookmarks": [],
+    "bookmark_names_over_40": [],
+    "bookmark_id_pairs_match": true,
+    "missing_link_targets": [],
+    "inactive_hyperlink_relationships": []
+  },
+  "files": {
+    "Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf": "b1f25ccc92487af5ced22e6e833cdde52392fb6fe426a03151f9ee6649b8515c",
+    "Project_Management_for_Human_Agent_Teams_Consolidated_v7.md": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032",
+    "Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx": "b87db9668b8a252a105a5f31befd9cc5bfab3e0b2798aac0239b90fea9a13186"
+  },
+  "modified_package_parts": [
+    "docProps/app.xml",
+    "word/document.xml",
+    "word/_rels/document.xml.rels"
+  ],
+  "all_other_package_parts": "Byte-identical to retained v5 reference, including all styles, page furniture, settings, core metadata, media, and numbering.",
+  "audit_method": "Prior independent read-only format-integrity-check.py, preserving unit/cell/specimen boundaries, applied to current MD/DOCX and pre-label PDF. Final PDF pixel and decoded page-stream equality proven separately. This summary omits duplicated full manuscript text."
+}

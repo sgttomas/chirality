@@ -1,0 +1,15 @@
+# Authorship and preparation
+
+I directed the preparation of this manual. Its main sources were my theses, my explanations of the method, and the practices developed in Chirality. I chose its purpose, readership, and philosophical approach. I also supplied examples of technical writing to establish the standard I wanted: sufficient explanation for readers to understand the method and put it to use.
+
+ChatGPT wrote much of the text. It organised the material, drafted chapters, developed examples, proposed distinctions, and revised its work in response to my comments. Its contribution included developing the argument as well as putting it into words. It also checked passages against the supplied sources, identified inconsistencies, prepared the document formats, and kept editorial records.
+
+We worked chiefly a chapter at a time. ChatGPT prepared a draft and identified questions or choices that needed my attention. I read it, corrected its meaning, supplied further material, and directed revisions. An early, shorter treatment was expanded where the reader needed more explanation. The drafts also helped me recognise and state ideas I had not yet explained clearly. Once the chapters were established, I asked the agent to consolidate the book and draft its concluding assessment. Later amendments still required review.
+
+The method continued to develop during this work. As I clarified the project phases, the use of dependency graphs, the direction of continuing work, and the treatment of unfinished tasks, the affected chapters were revised. Some gaps required a separate design assignment. A missing procedure for preparing software requirements, for example, led me to ask ChatGPT to draft one using the existing design-basis practice and Chirality’s method for developing workflows. The result remained a proposal awaiting adoption and examination in use.
+
+A separate Codex agent, familiar with the Chirality repository, reviewed the manuscript’s treatment of its operating practices. ChatGPT considered that review and revised the text. Further editing placed the general management explanations in this manual and the detailed repository procedures in the companion user manual.
+
+Review covered the meaning of the terms, the sources supporting the claims, whether the instructions could be followed, and the reasons for each recommendation. The agents checked references, figures, and layout. I judged whether the text expressed the practice I intended to teach, and asked for examples or further explanation wherever it left too much for the reader to infer.
+
+The division of responsibility was the one described throughout the book: the agents proposed and developed the text; I judged what to accept. Constructed examples illustrate the method, while reports from working projects support particular recommendations. The preparation of this book does not establish that every practice it describes has been proved effective. Readers must examine those recommendations against the conditions of their own work. Publication is my decision, and I am responsible for the text I approve.
