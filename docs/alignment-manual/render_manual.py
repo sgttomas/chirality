@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the agent manual as deterministic, self-contained, offline HTML.
+"""Render a manual as deterministic, self-contained, offline HTML.
 
 Run from any directory. See README.md for the pinned environment and invocation.
 The Markdown source is trusted repository documentation; inline HTML is retained.
@@ -301,7 +301,12 @@ def slugify(text: str) -> str:
     return re.sub(r"\s", "-", text.strip()) or "section"
 
 
-def render(source: Path, output: Path, basis_date: str, basis_revision: str) -> tuple[str, dict]:
+def render(
+    source: Path, output: Path, basis_date: str, basis_revision: str, *,
+    edition_label: str = "Agent user manual", metadata_at_end: bool = False,
+) -> tuple[str, dict]:
+    if not edition_label.strip():
+        raise ValueError("The edition label must not be empty.")
     for package, required in (("markdown-it-py", PARSER_VERSION), ("mdurl", MDURL_VERSION)):
         actual = version(package)
         if actual != required:
@@ -360,6 +365,14 @@ def render(source: Path, output: Path, basis_date: str, basis_revision: str) -> 
     months = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
     readable_date = f"{source_date.day} {months[source_date.month - 1]} {source_date.year}"
     title_escaped = escape(title)
+    metadata = f"""  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>{readable_date}</dd></div>
+    <div><dt>Repository basis</dt><dd><code>{basis_revision}</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="{source_href}">{escape(source.name)}</a><br><code>{source_sha}</code></dd></div>
+  </dl>
+"""
+    metadata_before = "" if metadata_at_end else metadata
+    metadata_after = metadata if metadata_at_end else ""
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -375,7 +388,7 @@ def render(source: Path, output: Path, basis_date: str, basis_revision: str) -> 
 <body id="manual-top">
 <a class="skip-link" href="#manual-content">Skip to manual</a>
 <header class="masthead">
-  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Agent user manual · offline reading edition</span></div>
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">{escape(edition_label)} · offline reading edition</span></div>
 </header>
 <details class="mobile-toc">
   <summary>Contents · {len(chapters)} sections</summary>
@@ -393,19 +406,14 @@ def render(source: Path, output: Path, basis_date: str, basis_revision: str) -> 
   </div>
 </aside>
 <main id="manual-content" tabindex="-1">
-  <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>{readable_date}</dd></div>
-    <div><dt>Repository basis</dt><dd><code>{basis_revision}</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="{source_href}">{escape(source.name)}</a><br><code>{source_sha}</code></dd></div>
-  </dl>
-  <div class="paper">
+{metadata_before}  <div class="paper">
     <article aria-labelledby="{escape(title_id, quote=True)}">
 <!-- BEGIN MARKDOWN CONTENT -->
 {body}<!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
-    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+{metadata_after}    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py {PARSER_VERSION}. The source basis above identifies this edition; consult current project records before acting.</p>
     <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
   </footer>
@@ -442,6 +450,8 @@ def main() -> int:
     parser.add_argument("--output", type=Path, help="Defaults to the source path with an .html extension")
     parser.add_argument("--basis-date", required=True, help="Source basis date, YYYY-MM-DD (never inferred from the clock)")
     parser.add_argument("--basis-revision", required=True, help="Full repository basis commit SHA (never inferred from HEAD)")
+    parser.add_argument("--edition-label", default="Agent user manual", help="Reading-edition label shown in the masthead")
+    parser.add_argument("--metadata-at-end", action="store_true", help="Place visible source metadata after the document")
     parser.add_argument("--check", action="store_true", help="Fail if the existing HTML differs; do not write")
     args = parser.parse_args()
     try:
@@ -452,7 +462,10 @@ def main() -> int:
         output = (args.output or source.with_suffix(".html")).resolve()
         if source == output:
             raise ValueError("The HTML output cannot overwrite the Markdown source.")
-        html, summary = render(source, output, args.basis_date, args.basis_revision)
+        html, summary = render(
+            source, output, args.basis_date, args.basis_revision,
+            edition_label=args.edition_label, metadata_at_end=args.metadata_at_end,
+        )
         if args.check:
             if not output.exists() or output.read_bytes() != html.encode("utf-8"):
                 raise ValueError(f"{output} is missing or stale; rerun without --check.")
