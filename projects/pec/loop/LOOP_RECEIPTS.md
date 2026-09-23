@@ -1975,3 +1975,13 @@
   - Checks: parent reproduced all 52 manager-bound files, exact 53-file inventory and nine product/configuration postimages. Final registered-check evidence SHA-256 `63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118` records the exact five checks PASS: store 13, API 6, loop registry 12, core posture and harness. Common receipt-prefix, containment, whitespace and seal checks are indexed by its terminal package; no redundant product test run.
   - Model-Attribution: WORKING_ITEMS, author and fresh verifier were requested as `gpt-5.6-sol` / `medium`; roles instruction-asserted, serving identity not invented. HELP_HUMAN accepted the validated fan-in; all product writers stopped.
   - Gate-Outcome: `EXECUTED` — exact D85 P-A source slice produced; DEL-01-03 is `IN_PROGRESS`, its three inquiry Remaining entries are unchanged, and MEMORY records finite residuals. No artifact fitness acceptance, CHECKING, ISSUED, full DEL-01-03/P1 completion, issuance, release, runtime integration or system kill/parity conclusion. Git publication remains authorized under the standing session grant.
+
+- **2026-09-22 — Receipt 178** (PEC Task Management register review and archive).
+  - Receipt-ID: `Receipt-178`
+  - Examined-Through: `212564bc472fa56e232ef116d73f4065e32c111a`
+  - Parent-Receipt: `Receipt-177`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — “You have my authority to take action and make the "decisions" that are based on the current state of the repo actually providing the justification for your actions.” The bounded applications and evidence are in the report below.
+  - Pointers: `projects/pec/execution/_Coordination/_TaskManagement/REGISTER_REVIEW_2026-09-22.md` is the report. D-GOV-33 federation, triage, staleness/closure echo, deferral review, row maintenance and archive ran. No handoff package or routed notice awaits owner routing.
+  - Stale-Map-Delta: exact evidence closed seven formerly open rows; those plus one previously closed row were mechanically archived. Live `18→10` (`OPEN=9`, `DEFERRED=1`, `CLOSED=0`); archive `7→15`. TM-PEC-022 stays deferred and TM-PEC-023 stays open/held.
+  - Checks: canonical federation `COMPLETE`; PEC hold candidate-validation `ALLOW`; Task Management live/archive validation and archive dry-run, receipt validator and scoped diff checks are recorded in the review closeout.
+  - Gate-Outcome: `EXECUTED` — the owner-authorized concern dispositions and mechanical archive are recorded; no product, SOW, SPEC, scope, decision register, lifecycle, source, release, reliance or foreign-loop act is inferred.
