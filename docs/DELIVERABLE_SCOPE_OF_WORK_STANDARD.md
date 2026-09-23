@@ -109,7 +109,7 @@ SOW definitions and references remain outside quotations.
 | `AX` | Governing value, rationale, or authority constraint | Axiology |
 | `TBD` | Unresolved information | Any substantive section |
 | `CON` | Unresolved conflict | Any substantive section |
-| `REM` | Remaining item in `_STATUS.md` | `_STATUS.md` only |
+| `REM` | Legacy Remaining identifier, retained for historical or still-pinned programs | `_STATUS.md` under that accepted convention |
 
 The registered deterministic checklist tool consumes the validated
 deliverable `AC-*` definitions and emits them in source order with exact text,
@@ -136,9 +136,14 @@ Output | Objective refs | Requirement/claim refs | Acceptance refs | Verificatio
 ```
 
 Tests implement verification methods and produce evidence; tests do not
-silently define scope or acceptance criteria. `_STATUS.md ## Remaining` is the
-current delta against this stable target and references qualified
-Scope-of-Work IDs.
+silently define scope or acceptance criteria. For loops adopting the local-graph
+arrangement, the graph carries selected execution against this stable target,
+referencing qualified Scope-of-Work IDs where applicable. Candidate-bound
+evidence accounts for the applicable production obligations; an empty graph or
+absent Remaining list does not establish fulfillment. `_STATUS.md ## Remaining`
+retains its current-delta role only for programs whose accepted method basis
+still requires that legacy convention. Preserve their source identities and
+historical records until an explicitly authorized transition accounts for them.
 
 ## 6. Migration traceability
 

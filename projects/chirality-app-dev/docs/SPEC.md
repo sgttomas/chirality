@@ -193,7 +193,11 @@ Document kit:
 - {YYYY-MM-DD} — State set to {STATE} ({AGENT_OR_ACTOR})
 ```
 
-`_STATUS.md` MAY host a `## Remaining` section: the deliverable-local record of warranted open scope. Where adopted, `## Remaining` is the sole deliverable-local executable work surface. This project has adopted it (owner-adopted 2026-07-10, loop Receipt 5).
+The local work graph is the maintained execution record under current steering.
+_STATUS.md retains lifecycle and history. Remaining is retired as a mandatory
+work-selection and duplicate task-list surface on adoption of this amendment.
+Historical entries and frozen reconciliation inputs retain their evidence
+meaning until their separately authorized migration.
 
 ### 4.2 Valid States
 
@@ -241,14 +245,14 @@ Lifecycle states are governed production and change-control regimes with maturit
 
 Entry to `CHECKING` is layered, not a single trigger:
 
-1. **Universal minimums (candidacy).** The deliverable's `_STATUS.md` `## Remaining` section is warranted-empty — empty, with a current evidence basis bound to the candidate source state certifying that the emptiness is warranted.
+1. **Universal minimums (candidacy).** Current candidate-bound evidence accounts for all applicable production obligations in the proposed checking scope and supports that none remains unfulfilled. Read the Scope of Work, outputs, dependency evidence and required production checks; an empty graph or removed list does not establish that coverage.
 2. **Candidate-specific checking basis.** Satisfaction of the declared review basis appropriate to the deliverable's claims and risk. These criteria are emergent: maturity feedback from real checks hardens into reusable ruled profiles. `docs/ISSUE_READINESS_PROFILES.md` is this project's profile surface.
 3. **Human declaration.** A human declares the checking basis and freezes the candidate; entry is a human act.
 
 Rules:
 
-- There are no disclosed-deferral carve-outs: any warranted Remaining item — owner-gated included — keeps the deliverable `IN_PROGRESS`. Boundary adjustments happen through the decision register while `IN_PROGRESS` (rescope before freeze, never carve out during review).
-- A failed check exits by reversal (`CHECKING → IN_PROGRESS`); its findings become Remaining items.
+- There are no disclosed-deferral carve-outs: any unfulfilled production obligation, including one needing a human decision, keeps the deliverable IN_PROGRESS. Amend its accepted scope before freeze; do not erase it through a task-list disposition.
+- A failed formal check exits by reversal (`CHECKING → IN_PROGRESS`); required corrections enter authorized work in the graph. Planned formal review is distinct from unfinished production verification.
 - Rebaseline asymmetry: demotion to `IN_PROGRESS` requires no criteria beyond the absence of a current, accepted basis for the asserted state; promotion requires a contemporary declared basis. Lifecycle corrections are human-authorized administrative acts recorded through the decision register; they do not invalidate prior work or evidence, which is preserved as history.
 - Entry conditions are gate preconditions, not state determinants: `_STATUS.md` remains the sole lifecycle authority, and reversals are recorded there.
 - No machine-enforced BLOCK applies to the `CHECKING → ISSUED` judgment; it remains a human gate.
@@ -338,25 +342,13 @@ Rules:
 
 ### 5.4 `MEMORY.md`
 
-Canonical deliverable-local working memory file:
-
-```markdown
-# Memory — {DEL-ID}
-
-> Organize by semantic topic, then chronologically within each topic.
-
-## Key Decisions & Human Rulings
-
-## Domain Context
-
-## Open Items
-
-## Proposal History
-
-## Interface & Dependency Notes
-```
-
-`_MEMORY.md` MUST NOT be created in this project profile.
+Canonical deliverable-local memory follows Root SPEC §8 and
+`docs/templates/MEMORY_TEMPLATE.md` from the instruction root. Add terse `## Runs`
+rows describing what the run did here, with links to central evidence, its PR,
+actual decisions and transfers. Authority and detailed rationale remain at those
+sources. Preserve earlier headings and entries; new runs do not create a local
+decision register or future-work list.
+`_MEMORY.md` remains a legacy name and is not created in this project.
 
 ---
 

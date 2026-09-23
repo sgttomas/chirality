@@ -206,10 +206,10 @@ Each deliverable occupies a folder at:
 | `Guidance.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy design guidance, rationale, and best practices |
 | `Procedure.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy step-by-step execution workflow |
 | `Dependencies.csv` | SHOULD | TASK+dependency-extract | Structured dependency register (v3.1 schema) |
-| `_MEMORY.md` | SHOULD | PREPARATION | Working memory (shared by WORKING_ITEMS and deliverable-local task agents) |
+| `MEMORY.md` | SHOULD when useful | PREPARATION / authorized work | Terse deliverable-local run index |
 | `_SEMANTIC.md` | MAY | TASK+semantic-matrix-build | Semantic lens with derivation work |
 | `_SEMANTIC_LENSING.md` | MAY | TASK+lens-register | Semantic analysis narrative |
-| `MEMORY.md` | MAY | PREPARATION | Compatibility pointer to `_MEMORY.md` |
+| `_MEMORY.md` | Legacy only | Historical compatibility | Preserve existing content until explicitly consolidated into MEMORY.md |
 
 **Minimum viable fileset (PREPARATION):** `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
 
@@ -260,7 +260,12 @@ through the governed scope-change process.
 - {YYYY-MM-DD} — State set to {STATE} ({AGENT_OR_ACTOR})
 ```
 
-A working root MAY host a `## Remaining` section in `_STATUS.md` as the deliverable-local record of warranted open scope. Where adopted, it is the sole deliverable-local executable work surface, and the CHECKING entry minimums in §3.4 reference it.
+For loops adopting the local-graph and memory arrangement, `_STATUS.md` holds
+lifecycle and history; it does not require a Remaining section. Executable work
+is discovered under human steering from scope, dependencies, memory and actual
+evidence, and maintained in the local graph. Other loops and frozen programs
+retain their explicitly adopted earlier Remaining convention until their own
+migration; an instruction update does not silently rewrite those inputs.
 
 ### 3.2 Valid Lifecycle States
 
@@ -307,11 +312,16 @@ Lifecycle states are governed production and change-control regimes with maturit
 
 **Entry to `CHECKING` is layered**, not a single trigger:
 
-1. **Universal minimums (candidacy).** The deliverable's `## Remaining` open-scope record (where the working root adopts one in `_STATUS.md`; §3.1) is **warranted-empty** — empty, with a current evidence basis bound to the candidate source state certifying that the emptiness is warranted.
+1. **Universal minimums (candidacy).** Current candidate-bound evidence accounts
+   for the deliverable's applicable production obligations and supports that
+   none remains unfulfilled within the proposed checking scope. Compare the
+   Scope of Work, actual outputs, dependencies and verification; closing a graph
+   or deleting a list is not proof of coverage. No separately maintained
+   Remaining list is required by the local-graph arrangement.
 2. **Candidate-specific checking basis.** A declared checking basis appropriate to the deliverable's claims and risk. These criteria are emergent; maturity feedback from real checks hardens into reusable ruled profiles.
 3. **Human declaration.** A human declares the checking basis and freezes the candidate; entry is a human act.
 
-There are no disclosed-deferral carve-outs: any warranted Remaining item keeps the deliverable `IN_PROGRESS`. Boundary adjustments are rescoped through the project's decision process before freeze, never carved out during review. A failed check exits by reversal, its findings becoming Remaining items.
+There are no disclosed-deferral carve-outs: an unfulfilled production obligation keeps the deliverable `IN_PROGRESS`. Rescope through the owning decision before freeze. A failed formal check returns through the prescribed reversal; its required correction is accounted for in authorized work. Planned formal review remains distinct from missing production verification. Earlier pinned Remaining-based entry criteria retain their applicability until the owning loop adopts this replacement.
 
 **Rebaseline asymmetry:** demotion to `IN_PROGRESS` requires no criteria beyond the absence of a current accepted basis for the asserted state; promotion requires a contemporary declared basis. Lifecycle corrections are human-authorized administrative acts.
 
@@ -648,32 +658,33 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 ---
 
-## 8. `_MEMORY.md` — Working Memory
+## 8. `MEMORY.md` — Deliverable memory
 
-### 8.1 Format
+`MEMORY.md` indexes what each run did in this deliverable. Use the canonical
+`docs/templates/MEMORY_TEMPLATE.md` with a `## Runs` table: stable run ID/date,
+a terse description of the work here, and source links. Point to the run's PR,
+central evidence, governing decisions, scope changes, Task Management transfers
+and substantive-completion results as applicable. Refer to actual decisions;
+a proposal or pending intake must retain that status.
 
-```markdown
-# Memory — {DEL-ID}
+Decision authority and detailed rationale remain at their owning central source.
+Memory is non-normative navigation, not another decision register, evidence copy,
+future-work queue or synchronized work graph. Add the run row near final PR
+preparation; the PR URL can be linked before merge, while a future merge SHA
+cannot be asserted in that same candidate. Detailed central run records remain
+where evidence or governed provenance needs them. A separate narrative is optional
+when the graph and existing evidence already provide the necessary account.
 
-> Organize by semantic topic, then chronologically within each topic.
+This prospective `## Runs` minimum replaces the M4-A `## Decisions And Evidence`
+minimum from D-GOV-17 only upon the explicit instruction-amendment acceptance.
+Existing entries and headings remain historical and need no mass conversion.
+Correct a misleading later interpretation without erasing the prior account.
 
-## Key Decisions & Human Rulings
-
-## Domain Context
-
-## Open Items
-
-## Proposal History
-
-## Interface & Dependency Notes
-```
-
-### 8.2 Rules
-
-- Created by PREPARATION as an empty structured template.
-- Used by WORKING_ITEMS and deliverable-local task agents to record working context.
-- Sections MAY be added as needed; the above are the minimum schema.
-- `MEMORY.md` (without underscore prefix) MAY exist as a compatibility pointer containing: `See _MEMORY.md (canonical deliverable memory).`
+Create memory when selected and authorized; it remains outside the five-file
+minimum. Use MEMORY.md for new writes. Preserve existing _MEMORY.md content,
+resolve any dual-file conflicts and inbound links in an explicitly scoped
+consolidation, and do not create new aliases that split maintained memory.
+Frozen historical inputs retain their original names and bytes.
 
 ---
 
@@ -749,12 +760,23 @@ Runtime service API details remain with the owning project.
 
 ### 9.8 Multi-agent run record
 
-Record versioned plans, work graphs, launch briefs, actual instance parentage,
+Record versioned plans, work graphs or the governed graph references below,
+launch briefs, actual instance parentage,
 source hashes, scopes, notices, amendments, returns, and handoff state under
 `{EXECUTION_ROOT}/_Coordination/AgentRuns/<RunID>/` when the owning workflow uses
 that record root. Distinguish runtime-persisted records from an authorized
 agent's factual transcription of native execution. Read-only callers return
 records to an authorized writer.
+
+For App/Piping loops adopting the local development-graph arrangement, the
+current graph is Git-tracked at
+`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
+project, and LOOP_INIT names its actual path. Include the graph early in the
+undertaking's PR sequence and update it as work proceeds. AgentRuns evidence
+links that graph and its examined revision rather than maintaining a second
+current copy. Preserve
+historical graphs at their original locations. This rule does not relocate other
+loops' graphs or amend their accepted recording arrangements.
 
 Graphs name dependencies, concurrent write ownership, expected returns, and
 human decisions. Coordinate through the parent. Overlapping writes require

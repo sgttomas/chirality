@@ -69,12 +69,15 @@
 - **No invented repair authority.** R4 human/engineering decisions authorize
   R5 tranches. Scope changes route to WORKING_ITEMS (workflow: scope-change); lifecycle acceptance to
   WORKING_ITEMS (workflow: review); Git closeout to WORKING_ITEMS (workflow: change); workflow-component findings to HELPS_HUMANS.
-- **Remaining is executable truth.** Deliverable-local `_STATUS.md ## Remaining`
-  is the executable residual surface where the adopting project uses it.
-  Plans and run artifacts do not select work.
-- **No false closure.** Closure requires backchecked changed claims, warranted
-  Remaining state, derivative disposition, source-state binding, unresolved
-  blockers, rerun requirements, and handoff state.
+- **One execution record.** In an adopting local-graph loop, the authorized
+  graph carries executable work; no new Remaining seeding or duplicate residual
+  list is required. Scope and decisions retain their authority; MEMORY is
+  a terse index of actual runs and central evidence. Earlier pinned programs retain their own Remaining-based
+  conventions and audited source populations until a specific migration.
+- **No false closure.** Closure requires backchecked changed claims, evidence
+  accounting for unfulfilled obligations and their owning work/decision,
+  derivative disposition, source-state binding, blockers and handoff state.
+  A legacy Remaining state is required only by a still-pinned convention.
 
 ## Inputs
 
@@ -115,9 +118,11 @@ A concordance run is valid only when:
     A conversion candidate proves 100% source-claim disposition and source-hash
     equality; deterministic finalization proves the clean production binding
     without treating isolated dual-format output as accepted truth.
-12. Every deliverable appears in the final Remaining census, including an
-    explicit `NONE` row where applicable; project-specific riders and stale
-    assessments are dispositioned without historical recoding.
+12. Every compared deliverable is accounted for in the closing result, including
+    unmet obligations and their actual owning work or decision, or evidence that
+    none remains in the stated scope. This snapshot does not create a second
+    maintained queue. A still-pinned legacy Remaining census retains its exact
+    population and convention until the owning program explicitly migrates it.
 13. The accepted discovery snapshot remains immutable and R6 is a new
     source-state-bound derivative snapshot.
 14. Closure records unresolved blockers, waivers, reruns, derivative status,
@@ -151,7 +156,7 @@ A concordance run is valid only when:
     RIDER_AND_ASSESSMENT_AUDIT.md
     HELD_AND_DEFERRED_AUDIT.md
     CONTAINMENT_AUDIT.md
-    REMAINING_WORK_CENSUS.csv
+    OBLIGATION_ACCOUNT.csv             # legacy pinned programs retain REMAINING_WORK_CENSUS.csv
     BACKCHECK.md
     HANDOFF.md
   HANDOFF_STATE.md
@@ -159,7 +164,8 @@ A concordance run is valid only when:
 
 Claim ledgers minimally identify claim, claim class, normative source,
 declared/current state, implementation evidence, verification evidence,
-validation/provenance where required, lifecycle and Remaining state,
+validation/provenance where required, lifecycle, unfulfilled obligations and
+their actual owning work or decision,
 disposition, authority needed, selectability, source-state binding, notes, and
 evidence references. Projects may extend the schema but may not remove the
 kernel evidence distinctions.
@@ -171,7 +177,7 @@ subtrees are not migrated into this contract.
 The app-dev proto-run `RUN_D55_CONCORDANCE_2026-07-11_1904Z` is closed and
 integrated. Its R6 derivative at
 `projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/R6_D55_BACKCHECK_2026-07-12_1903Z/`
-provides the changed-claim multiset, rider/assessment audit, Remaining census,
+provides the changed-claim multiset, rider/assessment audit, obligation account,
 source-basis binding, and handoff requirements incorporated above.
 
 The piping proto-run `DELIVERABLE_CONCORDANCE_2026-07-11_1305` is closed and
@@ -181,3 +187,8 @@ the exact repair/hold/deferral accounting, frozen/active containment evidence,
 ISSUED-baseline protection, capacity-bounded fan-out evidence, limitations,
 and routed-residual posture incorporated above. Historical files are not
 renamed or retrofitted merely to resemble this template.
+
+The obligation account is a closing evidence snapshot of the declared comparison,
+not a maintained task list. It references graph/decision sources for current
+execution. Legacy Remaining columns and filenames are retained only for an
+explicitly pinned input/output contract; preserve their identities in that run.

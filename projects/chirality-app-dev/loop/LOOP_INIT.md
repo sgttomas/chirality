@@ -1,111 +1,138 @@
 # App development loop
 
-Resolve `REPO_ROOT` from the active checkout. `WORKING_ROOT` is
-`{REPO_ROOT}/projects/chirality-app-dev`; paths below are relative to it.
-Work as HELP_HUMAN within the owner's assignment and applicable project
-instructions. This file locates the work and describes how to continue it.
+Resolve `REPO_ROOT` from the active checkout and set `WORKING_ROOT` to
+`{REPO_ROOT}/projects/chirality-app-dev`. Paths below are relative to `WORKING_ROOT`.
+Enter through `init/dev-loop-init-prompt.md` with the selected role and the
+human's steering. This file owns the recurring development-loop procedure;
+project `AGENTS.md` supplies standing responsibilities, boundaries and checks.
 
-**Current work graph:** `execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json`
+**Current work graph:** none selected for a successor undertaking.
 
 ## Project pointers
 
-- Purpose and scope: `docs/PRD.md`,
-  `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`,
-  and applicable amendments reached through `execution/_ScopeChange/_LATEST.md`.
-- Phase dependency basis: `execution/_Reconciliation/DepClosure/_LATEST.md`.
-- Deliverables: relevant `execution/PKG-*/1_Working/DEL-*/` folders, especially
-  `ScopeOfWork.md`, `_STATUS.md`, `MEMORY.md`, and dependency records.
-- Decisions and constraints: project `AGENTS.md`, applicable entries in
-  `execution/_Coordination/_DECISIONS/_REGISTER.md`, and routed notices.
-- Verification: `software-workflow.json`; use the affected validation, UI,
-  native-host and packaging requirements identified by project `AGENTS.md`.
+- Purpose and scope: `docs/PRD.md`, the accepted decomposition reached through
+  `execution/_Decomposition/`, and `execution/_ScopeChange/_LATEST.md`.
+- Dependencies: affected deliverables' `Dependencies.csv` and `_DEPENDENCIES.md`,
+  with the accepted project relationship basis they reference.
+- Deliverables: relevant `execution/PKG-*/1_Working/DEL-*/` folders and their
+  accepted production form, MEMORY.md, dependencies and lifecycle _STATUS.md.
+- Decisions and boundaries: project `AGENTS.md`, applicable entries in
+  `execution/_Coordination/_DECISIONS/_REGISTER.md`, and relevant notices.
+- Checks: `software-workflow.json` and the applicable project verification rules.
+- Task Management register: `execution/_Coordination/_TaskManagement/REGISTER.csv`.
 
-Historical citations to this file's evidence contract or checks now resolve to
-`AGENTS.md`, "Development checks and evidence"; dated evidence retains its basis.
+## 0. Read the steering and recover the situation
 
-Follow references when they matter to the assignment. Historical plans, receipts
-and run folders can supply evidence and help locate unfinished work.
+The init steering and subsequent human directions establish the purpose, phase,
+priorities and limits. Read the selected graph, relevant deliverable contracts,
+MEMORY run pointers, dependencies, implementation and evidence. Give a concise
+reading of the intended outcome and proceed where the direction is clear.
 
-## 0. Orient and recover
+Verify branch/worktree state, partial edits, active workers and prior integration
+before repeating work. Recover the actual graph and its accepted basis when
+continuing an undertaking. Preserve unrelated edits and transfer shared-file or
+test-resource ownership explicitly. Missing or stale pointers require recovery
+from their sources; they are not permission to restart completed work.
 
-Read the current graph and the owner's latest direction. Follow any phase cursor
-linked by the graph or its handoff; existing runs retain their selected method,
-pinned basis and owner gates until their own adoption. Check its objective,
-basis, ready work, holds and recovery information against the actual branch,
-working tree and referenced evidence, including unmerged work in named worktrees.
-An interrupted node may have produced work after its last graph update; inspect
-that work before repeating or claiming it. Preserve unrelated changes.
-Before reassigning active work, files or shared test resources, verify that the
-prior workers/checks have stopped or explicitly transfer their ownership.
+## 1. Construct or revise the work graph
 
-A missing or contradictory graph target needs recovery; it does not mean no
-graph exists. If the owner names another graph, establish which undertaking is
-being continued and update the pointer when the selection is settled. An owner
-pause remains a pause until resumed. Report the next useful work concisely.
+Use `chirality-root:bundled:workflow:construct-local-work-graph` when no graph
+exists or its route needs substantial revision. Relate the intended outcome to
+the project DAG, deliverables and present work. Before the first DAG exists,
+follow the phase steering and applicable dependency/cycle-resolution method.
 
-Before using a historical receipt as a recovery cursor, run the repository's
-`python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .`. A failed
-cursor cannot be relied on; independent work with a verified basis can continue.
+Create the Git-tracked graph at
+`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` and set this
+file's current-work-graph pointer to that actual path. Commit it in the
+undertaking's PR sequence early enough for handoff and keep it current across
+sessions. Preserve historical graphs at their existing locations.
 
-## 1. Construct or revise the local graph
+Plan substantive implementation and evidence through PRs, each carrying the
+documentation, reconciliation and conditional Task Management work its slice
+needs. Then plan one final bounded documentation/governance closeout stage:
+reconciliation, conditional Task Management, terse MEMORY entries and the final
+PR. Steps 2–6 supply the mechanics; no formal reconciliation pass is required
+after every node.
 
-When the pointer is `none`, use `construct-local-work-graph` from the bundled
-`chirality-root` library to interpret the init steering and subsequent chat,
-clarify material gaps, and select a route through the phase DAG. Develop the
-relevant deliverables and current code into sufficiently detailed work scope.
-Save its graph, replace the pointer above with the project-relative path, and
-begin following it within the agreed scope. If an objective cannot be inferred,
-establish it with the owner. A completed graph does not start another phase.
+## 2. Advance implementation and evidence
 
-For an existing graph, use the same method when the work needs restructuring.
-Keep the graph's identity and useful completed results; update dependencies,
-verification and reconciliation work as discoveries require. A graph translates
-the phase DAG into executable work; changes to the accepted project basis follow
-their owning decision path.
+Use Agent 0/1/2 responsibilities to maintain alignment, manage connected work and
+execute bounded contributions. Managers integrate their children's returns and
+advance independent ready work. Size concurrency to actual review and integration
+capacity, with one owner for shared writes.
 
-## 2. Organize and advance ready work
+Implement, verify, validate where applicable, review, repair and integrate via
+PRs under the graph and project requirements. Each PR carries the document,
+reconciliation and governance consequences needed for that slice, including a
+qualified Task Management transfer when needed under Step 4. Exercise meaningful connected behavior and
+record the actual candidate and evidence. Prepare consequential decisions for
+the human while unaffected work proceeds. Keep required production work in the
+graph until its conditions are satisfied; an intermediate merge does not finish
+the undertaking.
 
-Use Agent 0/1/2 responsibilities to coordinate, manage and execute bounded work.
-Each assignment has a clear outcome, applicable basis, write scope and checks.
-Run independent work concurrently; serialize shared writes and test resources.
-Follow work dependencies and existing holds. Bring consequential choices beyond
-the assignment to the owner while independent authorized work continues.
+## 3. Perform the bounded documentation and governance closeout
 
-## 3. Execute, verify and record the result
+After integrating the intended implementation and evidence work—normally the
+penultimate merge—perform one planned documentation/governance closeout stage.
+Use `chirality-root:bundled:workflow:bounded-reconciliation` for bounded
+per-deliverable comparisons as needed within that stage. The closeout precedes
+the final PR. Compare the delivered result and evidence with the actual
+Scope of Work, dependency and governance records; apply warranted edits and
+accepted decisions. Preserve future requirements and owning authority for scope,
+lifecycle, protected criteria and issued baselines.
 
-Build, investigate, test, review and repair until the node's completion conditions
-are supported. Apply project checks and independent review to the actual
-candidate. Record what changed, the evidence, limitations and remaining work in
-the graph or its linked result. Keep supporting evidence in the undertaking
-folder or an appropriate existing artifact; avoid copying it into several logs.
-Update graph state at meaningful changes so another session can continue.
+This closeout is bounded to the undertaking. A supported no-change result is
+sufficient. If it finds missing required implementation or evidence, return that
+work to the graph and repair it before completing closeout. Recheck affected
+comparisons after a change; do not declare required work complete through a
+report or transfer.
 
-## 4. Reconcile bounded results
+## 4. Route exceptional concerns
 
-Traverse planned `bounded-reconciliation` nodes from the bundled
-`chirality-root` library as coherent results become available. These assignments
-reconcile the actual contents of affected deliverable folders with the code
-and evidence: scope descriptions and requirements, Remaining items, dependencies
-and supporting references as warranted. Update the named sections within the
-assignment, preserving future requirements and unresolved departures.
-Implementation and reconciliation completion remain separately visible.
+For a substantive PR or the final closeout, first resolve a concern through
+authorized graph work,
+a warranted document amendment, or the owning decision/scope-change route.
+Work already allocated to an identified successor stays there. Ordinary future
+requirements remain in their governing scope.
 
-Reconciliation can proceed alongside independent implementation. A dependent
-node that needs an updated deliverable record waits for that reconciliation;
-unrelated work need not wait. A larger scope or dependency conflict becomes
-explicit follow-on work or an owner decision.
+Only a material, evidenced concern without a current or identified successor
+home qualifies for bounded Task Management intake. Give it to WORKING_ITEMS
+selecting `chirality-root:bundled:workflow:task-management`, with the source,
+significance, missing home and proposed treatment. Perform that workflow's
+federation preflight; no general harvest is required. Promotion, disposition
+and external assignment remain actual human acts. Retain the outcome or pending
+intake in Task Management and link it from the originating PR/graph node and
+final closeout as applicable. Routing does not
+satisfy an unmet requirement or permit graph completion that depends on it.
 
-## 5. Continue, pause or complete
+## 5. Record the run and prepare the final PR
 
-Continue from the graph while ready authorized work remains. At a meaningful
-checkpoint or transfer, refresh its recovery information: source revision and
-uncommitted work, outstanding checks, evidence locations, blockers or owner
-decisions, and the next safe action. Keep necessary evidence recoverable outside
-temporary worktrees. A separate session handoff or receipt is unnecessary when
-the graph already contains the continuation facts.
+Near final PR preparation, add a terse entry to each affected deliverable's
+`MEMORY.md`: run/date, what this run did in that deliverable, and links to the
+central run evidence and PR. Add the relevant central decision, scope-change,
+Task Management transfer or substantive-completion reference when applicable.
+Describe only what occurred; identify proposals and pending decisions accurately.
 
-Complete the undertaking only when its completion conditions, including planned
-reconciliation, are met or remaining scope has an explicit agreed disposition.
-Retain the completed graph and its evidence references. Leave it selected until
-another undertaking is chosen; completion is not authority for a new phase,
-deliverable issuance or release.
+MEMORY is a local run index. Central decisions keep their authority and detailed
+rationale; evidence/run records remain at their actual sources linked from the
+PR. Do not reproduce them as local decision records or future assignments.
+Preserve existing memory history. Include the memory changes in the final PR;
+use a stable run/branch link while its PR URL is unavailable, then bind that URL
+before the candidate's final checks. Required multi-agent run evidence under
+Root SPEC §9.8 remains applicable. No extra narrative is required when the graph and linked evidence already provide
+the necessary record.
+
+## 6. Complete the graph and merge the final PR
+
+Complete the graph's promised work, bounded closeout and memory entries, and
+prepare the final PR with the integrated result and evidence. Review and required
+checks must cover the actual final candidate; resolve blocking findings and
+obtain the decisions reserved to the human. Record readiness for final merge and
+the PR URL in the candidate graph. Verify the actual merged state afterward
+through Git or the PR service; do not assert a future merge SHA in the candidate or require a later completion-record commit.
+
+The loop ends when the completed work graph's final PR merges under standing
+Git authority. A review hold, unfinished required node or unmerged final PR
+means it remains open. On interruption, retain the candidate, open checks,
+active operations and next safe action in the graph. Final integration does not
+itself issue a deliverable, accept a product or authorize release.

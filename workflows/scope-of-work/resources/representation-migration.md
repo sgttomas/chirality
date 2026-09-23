@@ -19,10 +19,13 @@ WORKING_ITEMS selects this profile only for an explicitly authorized LEGACY_FOUR
   and must not repair author outputs; a defect returns to a fresh author run or
   an explicitly authorized bounded remediation node.
 
-- **Target versus residual.** `ScopeOfWork.md` is the stable `SOW_V1` target
-  contract while `_STATUS.md ## Remaining`
-  remains the executable residual surface. Tests are evidence against `AC-*`;
-  they do not create scope or acceptance criteria.
+- **Target versus execution.** `ScopeOfWork.md` is the stable `SOW_V1` target
+  contract. For loops that adopt the local-graph arrangement, the graph carries
+  selected execution and candidate-bound evidence accounts for the applicable
+  production obligations; no Remaining entry is required. Legacy programs retain
+  `_STATUS.md ## Remaining` as their executable residual surface only while their
+  accepted method basis requires it. Tests are evidence against `AC-*`; they do
+  not create scope or acceptance criteria.
 - **Single-file integration ownership.** Agent 2 children may prepare disjoint
   proposals and evidence concurrently, but only one declared integration owner
   writes a conversion-candidate `ScopeOfWork.md` for a deliverable. That

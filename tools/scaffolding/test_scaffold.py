@@ -11,6 +11,8 @@ def test_created_manifest_and_no_overwrite(tmp_path):
     assert len(created)==7
     created=[p for p in created if Path(p).is_file()]
     assert len(created)==6
+    assert (tmp_path/"DEL-01_Test"/"MEMORY.md").is_file()
+    assert not (tmp_path/"DEL-01_Test"/"_MEMORY.md").exists()
     assert all(Path(p).is_file() for p in created)
     for p in created:Path(p).write_text('human content')
     second=subprocess.run(args,text=True,capture_output=True,check=True)
@@ -24,3 +26,15 @@ def test_package_rerun_and_path_boundary(tmp_path):
     assert 'CREATED_PATH:' not in subprocess.run(args,text=True,capture_output=True).stdout
     bad=['zsh',str(HERE/'scaffold_deliverable.sh'),str(tmp_path),'../../outside','Test']
     assert subprocess.run(bad,capture_output=True).returncode==2
+
+
+def test_legacy_memory_requires_explicit_consolidation(tmp_path):
+    target=tmp_path/'DEL-01_Test'
+    target.mkdir()
+    legacy=target/'_MEMORY.md'
+    legacy.write_text('retained human context')
+    result=subprocess.run(['zsh',str(HERE/'scaffold_deliverable.sh'),str(tmp_path),'DEL-01','Test','--memory'],text=True,capture_output=True)
+    assert result.returncode==2
+    assert legacy.read_text()=='retained human context'
+    assert not (target/'MEMORY.md').exists()
+    assert set(target.iterdir())=={legacy}

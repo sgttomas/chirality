@@ -39,6 +39,6 @@ Do not infer dependency edges. For `NOT_TRACKED`, state that humans coordinate d
   naming the actual actor only when the file is newly created.
 - `_REFERENCES.md`: list supplied reference names or IDs, locations, and relevance; otherwise state that references are not yet identified.
 - `_SEMANTIC.md`: create a `PLACEHOLDER` lens with no engineering assertions. A later semantic workflow may replace it.
-- `_MEMORY.md`: optional and outside the minimum fileset. Create it only when explicitly selected and authorized, with headings for decisions, domain context, open items, proposal history, and interfaces.
+- `MEMORY.md`: optional and outside the minimum fileset. Create it only when explicitly selected and authorized, using the terse `## Runs` index template. Do not create a future-work list.
 
 Aggregation templates, when requested, are structural only. The target-schema CSV begins with `RecordID,SourceID,SourcePath,SectionRef,EntityType,Key,Value,Notes,Confidence,Tags` and no data rows.

@@ -1,0 +1,83 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DEVELOPMENT-LOOP-MEMORY-20260922
+title: App and Piping development loops, local graphs, memory and Task Management
+date: 2026-09-22
+basis: df192b2b113625831af57dd03cb4cfc58822318e
+instruction_surface_paths:
+  - .agents/skills/preparation/SKILL.md
+  - .agents/skills/preparation/references/scaffold-contract.md
+  - docs/DELIVERABLE_CONCORDANCE_METHOD.md
+  - docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md
+  - docs/PRD_ROOT.md
+  - docs/SPEC.md
+  - docs/TYPES.md
+  - docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  - docs/governance_harness/tranche_manifests/ROOT-DEVELOPMENT-LOOP-MEMORY-20260922.yaml
+  - docs/templates/MEMORY_TEMPLATE.md
+  - init/taskmgmt-init-prompt.md
+  - projects/chirality-app-dev/AGENTS.md
+  - projects/chirality-app-dev/docs/SPEC.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  - projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md
+  - projects/chirality-app-dev/init/taskmgmt-init-prompt.md
+  - projects/chirality-app-dev/loop/LOOP_INIT.md
+  - projects/chirality-piping/AGENTS.md
+  - projects/chirality-piping/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md
+  - projects/chirality-piping/docs/CHECKING_ENTRY_PROFILES.md
+  - projects/chirality-piping/docs/TYPES.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  - projects/chirality-piping/execution/_Coordination/_COORDINATION.md
+  - projects/chirality-piping/execution/_Decomposition/_LATEST.md
+  - projects/chirality-piping/init/taskmgmt-init-prompt.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - projects/chirality-piping/loop/WORKPLAN_2026-09-19_piping_loop.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  - projects/pec/init/taskmgmt-init-prompt.md
+  - tools/scaffolding/scaffold_deliverable.sh
+  - tools/scaffolding/test_scaffold.py
+  - workflows/bounded-reconciliation/WORKFLOW.md
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/construct-local-work-graph/resources/work-graph-template.md
+  - workflows/index.json
+  - workflows/preparation/resources/contract.md
+  - workflows/preparation/resources/method.md
+  - workflows/reconciliation/resources/contract.md
+  - workflows/reconciliation/resources/method.md
+  - workflows/scope-of-work/resources/representation-migration.md
+  - workflows/task-management/WORKFLOW.md
+  - workflows/task-management/resources/contract.md
+  - workflows/task-management/resources/method.md
+m2_gate:
+  authorization: >-
+    Ryan C Tufts approved the exact third-draft review package in the active
+    task after it was presented: "this is approved. You can continue with your
+    plan." The recorder binds that referent to the local third-draft ZIP with
+    SHA-256 dcdbe0e7a5aa53a4f35510ca9a6d016655cb1380e88bcce59753848a5ff31ad6;
+    the owner did not type that digest. The acceptance covers the revised
+    methods and companion D-GOV-17 memory and graph-location amendments.
+    The subsequent owner direction assigns management manual and guide updates
+    to the owner, so this tranche excludes them. The Root amendment record is
+    docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md.
+  authorized_by: Ryan C Tufts
+  authorization_date: 2026-09-22
+  integration_owner: WORKING_ITEMS /root/instruction_impl under HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md
+  rationale: >-
+    App and Piping receive changed development and authority instructions.
+    Runtime packages bundled workflow sources and PEC consumes shared guidance;
+    each receiving loop controls its own adoption and pins. Notices report the
+    manual-publication follow-up as owner-owned, not completed by this tranche.
+scope_limits:
+  - The original D-GOV-17 decision and historical memory/graph records remain intact.
+  - Existing pinned programs and other loops retain their accepted basis until adopted.
+  - Manual Markdown, HTML, DOCX, PDF and catalog files are outside this PR.
+  - One-time App and Piping Remaining retirement is a later, separately decided undertaking.

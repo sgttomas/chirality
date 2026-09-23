@@ -32,4 +32,4 @@ Read [references/scaffold-contract.md](references/scaffold-contract.md) before c
 
 ## Boundaries
 
-This skill is structural. Do not draft engineering, software, publication, or Knowledge Subject content. New PROJECT or SOFTWARE production content belongs to the applicable production workflow. Create `_MEMORY.md` only when the request explicitly selects it and authorizes that path. Never overwrite or repair an existing file unless a separate repair request authorizes that change.
+This skill is structural. Do not draft engineering, software, publication, or Knowledge Subject content. New PROJECT or SOFTWARE production content belongs to the applicable production workflow. Create `MEMORY.md` only when the request explicitly selects it and authorizes that path. Never overwrite or repair an existing file unless a separate repair request authorizes that change.

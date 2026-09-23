@@ -49,15 +49,20 @@ The normalized homes:
 |---|---|
 | Normative scope | Current authority documents and decomposition |
 | Accepted decisions | The project decision register and its ruling records |
-| Executable open work | Deliverable-local `_STATUS.md` `## Remaining` |
+| Executable work in the local-graph arrangement | Local work graph under human steering and accepted project commitments |
+| Deliverable run index | Terse run index in deliverable-local `MEMORY.md` |
 | Lifecycle state | Deliverable-local `_STATUS.md`, human-gated |
 | Implementation truth | Source, tests, and build/validation artifacts |
 | Evidence | Immutable, dated, source-state-bound run artifacts |
 | Shared method | This document (ratified 2026-07-11) |
 | Project adoption parameters and provenance | The project's own plan — historical record, never a work-selection surface |
 
-Executable work is never selected from the method or from plans — only from
-the owning deliverable's `## Remaining` (see §6).
+For loops adopting this arrangement, discover work from human steering,
+Scope of Work, dependencies, memory and actual implementation/evidence; maintain
+its execution in the local graph. A Remaining entry is not a required selector
+or a second maintained task list. Earlier loops/programs retain their own
+pinned Remaining-based arrangement until explicitly migrated. Historical method
+and decision records retain their original meaning.
 
 ## 3. Reconciliation is an epistemic operation
 
@@ -165,12 +170,13 @@ under what control:
 
 **Entry to `CHECKING` is layered**, not a single trigger:
 
-1. **Universal minimums (candidacy).** The deliverable's `## Remaining` is
-   **warranted-empty** — empty, and a current evidence basis (a concordance
-   pass or equivalent review bound to the candidate source state) certifies
-   that the emptiness is warranted. This is a necessary prerequisite — the
-   owner formulation of record names it the *primary* trigger — never the
-   complete entry criteria.
+1. **Universal minimums (candidacy).** A current candidate-bound comparison
+   accounts for applicable production obligations and supports that none remains
+   unfulfilled in the proposed checking scope. Compare the Scope of Work,
+   actual outputs, dependencies and required production verification. Neither
+   closing known graph nodes nor deleting an open-work list proves coverage.
+   This is a prerequisite, not the complete checking basis. It replaces the
+   required Remaining list for adopting local-graph loops only.
 2. **Candidate-specific checking basis.** Satisfaction of the declared review
    basis appropriate to the deliverable's claims and risk. These criteria are
    emergent: maturity feedback from real checks hardens into reusable ruled
@@ -179,13 +185,13 @@ under what control:
 3. **Human declaration.** The owner declares the checking basis and freezes
    the candidate; entry is a human act.
 
-There are no disclosed-deferral carve-outs: any warranted Remaining item —
-owner-gated included — keeps the deliverable `IN_PROGRESS`; boundary
-adjustments happen through the decision register while `IN_PROGRESS` (rescope
-before freeze, never carve out during review). A failed check exits by
-reversal, its findings becoming Remaining items. Concordance is thus the
-process that makes `## Remaining` sections warranted — the path back to
-`CHECKING`.
+There are no disclosed-deferral carve-outs: an unfulfilled production obligation,
+including one needing a human decision, keeps the deliverable IN_PROGRESS.
+Rescope through the owning decision before freeze. A failed formal check returns
+through the prescribed reversal and its correction is carried in authorized
+work. Planned formal review is distinct from unfinished production examination.
+Concordance supplies the evidence for this comparison, not an automatic lifecycle
+transition or a mandatory duplicate execution register.
 
 **Rebaseline asymmetry:** demotion to `IN_PROGRESS` requires no criteria —
 only the absence of a current, accepted basis for the asserted state.
@@ -226,12 +232,17 @@ ways, each with an existing home:
   commit SHA on the shared mainline) as the run's execution method. Bootstrap
   items and the ruling record cite that pinned revision; later plan edits do
   not change the method of an in-flight run absent a new ruling.
-- Executable per-deliverable work is seeded as gated `## Remaining` items in
-  the owning deliverables and unlocked by the ruling's suffix flips; run-level
-  phases execute directly under the ruling as ruled-program work.
-- Single-surface compliance: the plan, the run artifacts, and this document
-  never select work. Owner decisions live in the register; executable
-  residuals live only in the owning deliverable's `## Remaining`.
+- For a program adopting local-graph execution, record its authorized scope and
+  method in the activation and graph; do not seed or unlock duplicate Remaining
+  items merely to make work selectable. The graph carries program phases and
+  bounded contributions under that authority.
+- Audit existing Remaining entries as historical/declared-state claims where
+  relevant to the frozen corpus. Preserve their original source identities and
+  disposition them in the authorized migration. Do not rewrite prior inputs or
+  recalculate an old run's census as though the entries had never existed.
+- Closure accounts for the compared obligations, repaired claims and surviving
+  work with its actual owning graph/decision. It is a source-bound result, not
+  another continuously maintained future-work list. MEMORY indexes the run and points to the result; it does not become that list.
 
 ## 7. Adoption
 

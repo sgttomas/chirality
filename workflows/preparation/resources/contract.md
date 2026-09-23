@@ -184,30 +184,14 @@ This section defines the file schemas TASK writes.
 ```
 
 ---
-### `_MEMORY.md` Template Schema
+### `MEMORY.md` Template Schema
 
-`_MEMORY.md` is the deliverable’s working memory. When CREATE_MEMORY=true is selected and its path authorized, TASK creates a missing file as a structured empty template for later use by WORKING_ITEMS and deliverable-local task sub-agents. It is intentionally **non-normative** and may grow over time.
-
-Default CREATE_MEMORY=false; memory is optional and outside the five-file minimum. Preserve any existing memory. Create with this minimum schema (adapted from `docs/templates/MEMORY_TEMPLATE.md`):
-
-```markdown
-# Memory — {{DEL-ID}}
-
-> Organize by semantic topic, then chronologically within each topic. These headings are the minimum schema — add new sections as needed to capture what matters for this deliverable.
-
-## Key Decisions & Human Rulings
-
-## Domain Context
-
-## Open Items
-
-## Proposal History
-
-## Interface & Dependency Notes
-```
-
-Optional compatibility alias (create only if missing; never overwrite):
-- `MEMORY.md` containing a single line: “See `_MEMORY.md` (canonical deliverable memory).”
+When CREATE_MEMORY=true is selected and its path authorized, create a missing
+MEMORY.md using `docs/templates/MEMORY_TEMPLATE.md`. Default false; memory stays
+outside the five-file minimum. Preserve existing memory and do not silently
+rename, overwrite or split historical _MEMORY.md content. Consolidation is an
+explicitly scoped change. Memory is a terse `## Runs` table describing work in the deliverable and linking
+central evidence and decisions; it contains no local ruling or future-work queue.
 
 ### `_SEMANTIC.md` Placeholder Schema
 

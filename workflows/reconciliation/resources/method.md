@@ -116,7 +116,10 @@ decision-bound stay visible as rows; the posture does not absorb them.
 Execute only adopted repairs. Partition writes by owning package/deliverable or
 one declared integration owner. Update normative/declared surfaces only under
 their ruling; update implementation/tests only under accepted production
-briefs; update Remaining and lifecycle only through their owning contracts.
+briefs; update lifecycle only through its owning contract. For graph-led work,
+return unfinished execution to its graph; supply central result pointers for the
+subsequent terse MEMORY run entry.
+Do not generate a mandatory future-work list in deliverables.
 Do not edit agent instructions, workflows, or root governance from a product
 repair tranche. Protect ISSUED or otherwise formally accepted baselines through
 their governing change path. Account for completed, held, and deferred repair
@@ -153,7 +156,7 @@ discovery snapshot. Re-extract every changed claim reference against the final
 repaired source basis and prove multiset equality with the authorized repair
 manifest. Record authorized no-change or no-repair rows explicitly rather than
 dropping them from accounting. Rerun required checks, verify decision and
-Remaining updates, and audit project-specific riders, stale assessments, and
+graph/result accounting, and audit project-specific riders, stale assessments, and
 other preserved conditions.
 
 Perform this final post-repair backcheck even if discovery already produced an
@@ -161,10 +164,20 @@ R6 or equivalent coverage backcheck. Preserve the earlier discovery closeout
 as upstream evidence; a project-local phase label does not substitute for
 verification of the repaired state.
 
-Produce a corpus-wide Remaining census with every deliverable represented,
+Produce a source-bound closing account with every compared deliverable represented,
 including explicit `NONE` rows where no residual remains. Reproduce
 package/corpus summaries, record stale or deferred derivatives, and issue a
 handoff that names the accepted upstream snapshot, current derivative, exact
 repaired source basis, closure verdict, blockers, lifecycle posture, and
 material-change rerun triggers. Closure is evidence coherence, not issuance,
 release readiness, certification, or professional approval.
+
+## Local-graph adoption and historical accounting
+
+Newly adopted graph-led programs account for unfinished obligations through the
+actual graph or owning decision, not a new Remaining list. Existing Remaining
+units and legacy result fields are historical inputs when present in a frozen
+comparison; preserve their identities and exact authorized disposition. A program
+pinned to an earlier census or activation convention changes only through its
+specific adoption. A filename or legacy field does not authorize a duplicate
+current execution queue. Memory indexes the actual run and its central evidence and decisions.
