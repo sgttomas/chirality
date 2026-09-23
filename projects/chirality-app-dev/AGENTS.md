@@ -118,9 +118,9 @@ for required Codex capability.
   alongside the earlier named-model steers it had itself rescinded.
 - Preserve actual model attribution and substitutions in the available
   execution record. Where host records do not retain the required facts,
-  keep a compact execution note linked from the graph. No new receipt or
-  AgentRuns bundle is required solely to duplicate those facts. This changes
-  record placement, not the duty of truthful attribution.
+  keep a compact execution note linked from the graph. The undertaking receipt
+  points to those facts; do not create a second receipt solely for attribution.
+  This changes record placement, not the duty of truthful attribution.
 
 ## Project-Wide Execution Discipline
 
@@ -204,12 +204,12 @@ Each substantive PR includes the documentary, reconciliation and conditional
 Task Management consequences needed for that slice. Perform one final bounded
 documentation/governance closeout after the undertaking's
 intended implementation and evidence integration (normally the penultimate
-merge), before the final PR. Record terse MEMORY run rows near final PR
-preparation. Central
-run records and decision/evidence sources remain linked from the PR as needed;
-the local row does not repeat their account. Required execution provenance stays
-recoverable. The loop ends when its completed graph's final PR merges after
-required checks, review and human decisions. In-flight method bases retain their
+merge), before the final PR. Record one central loop receipt and terse MEMORY
+run rows near final PR preparation under LOOP_INIT. The final PR description
+uses the receipt's result/checks/limits account; MEMORY links the receipt.
+Detailed evidence and decisions stay at their sources. Required execution
+provenance stays recoverable. The loop ends when its completed graph's final PR
+merges after required checks, review and human decisions. In-flight method bases retain their
 own authority until explicitly transitioned.
 
 ## Development boundaries

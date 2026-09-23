@@ -67,7 +67,11 @@ requires neither a formal reconciliation pass nor a Task Management intake.
 After the intended implementation/evidence PRs, plan one final bounded
 closeout stage. It includes documentation/governance reconciliation through
 `chirality-root:bundled:workflow:bounded-reconciliation`, conditional Task
-Management, terse MEMORY run entries, and the final PR. Divide deliverable
+Management, the invoking loop's central receipt, terse MEMORY run entries, and
+the final PR. For App/Piping, use the graph's stable run ID for one receipt at
+`execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; affected MEMORY entries
+point to it. Other loops retain their adopted recording rules. Divide
+deliverable
 comparisons into bounded assignments as needed. Missing required production
 returns to the graph for repair and an affected backcheck, not transfer-based
 completion. Central decisions and intake outcomes retain their actual status.
@@ -102,7 +106,7 @@ Preserve historical graphs at their original paths. A still-pinned undertaking
 adopts this method through its actual owning authorization. On that explicit
 adoption, carry its current scope/state into the required location and cite the
 predecessor without maintaining another current copy. Keep the stable run identity that
-relates the graph, central evidence, PRs and affected MEMORY rows. Preserve
+relates the graph, central receipt/evidence, PRs and affected MEMORY rows. Preserve
 needed evidence before a temporary worktree retires. Do not require a later
 commit solely to write the final merge result back into its own candidate.
 
