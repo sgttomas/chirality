@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3 } from '@chirality/runtime-contracts/v3';
+import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import type { SessionEventsReplay } from '../../lib/harness/client';
 import {
   buildSelectedSessionReplayProjection,
@@ -207,9 +208,13 @@ describe('selected-session replay projection', () => {
   });
 
   it('detects foreign instruction evidence even when metadata and events match the selection', () => {
+    const selectedSession = { ...session('selected'), sdkSessionId: 'native-selected' };
+    const selectedEvents = [messageEvent('selected', 1)];
     const projection = buildSelectedSessionReplayProjection(
       'selected',
-      replay('selected', [messageEvent('selected', 1)], {
+      replay('selected', selectedEvents, {
+        session: selectedSession,
+        transcript: deriveTranscriptView(selectedEvents, selectedSession),
         instructionHistory: [instructionRecord('other')],
         instructionBases: [instructionBasis('other')]
       }),
@@ -218,6 +223,7 @@ describe('selected-session replay projection', () => {
 
     expect(projection.disclosure).toBe('CONFLICTING');
     expect(projection.transcript.items.map(({ text }) => text)).toEqual(['message-1']);
+    expect(projection.transcript.sdkLinkage?.sdkSessionId).toBe('native-selected');
     expect(projection.instructionHistory).toEqual([]);
     expect(projection.instructionBases).toEqual([]);
     expect(projection.diagnostics.map(({ code }) => code)).toEqual(expect.arrayContaining([

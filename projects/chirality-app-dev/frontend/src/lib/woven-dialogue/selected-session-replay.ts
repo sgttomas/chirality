@@ -166,6 +166,12 @@ export function buildSelectedSessionReplayProjection(
   const identityConflict = diagnostics.some((diagnostic) =>
     diagnostic.code.endsWith('_CONFLICT')
   );
+  // Instruction records have their own session identities. Their conflict
+  // does not invalidate a correctly identified transcript or its linkage.
+  const transcriptSourceConflict = diagnostics.some((diagnostic) =>
+    ['REPLAY_SESSION_ID_CONFLICT', 'REPLAY_EVENT_SESSION_ID_CONFLICT',
+      'REPLAY_TRANSCRIPT_SESSION_ID_CONFLICT'].includes(diagnostic.code)
+  );
   const admittedEvents = identityConflict
     ? replay.events.filter((event) => event.sessionId === selectedSessionId)
     : replay.events;
@@ -175,16 +181,15 @@ export function buildSelectedSessionReplayProjection(
   const instructionBases = replay.instructionBases.filter(
     (basis) => basis.sessionId === selectedSessionId
   );
-  const sourceTranscript = identityConflict
-    ? deriveTranscriptView(admittedEvents)
-    : replay.transcript ?? deriveTranscriptView(replay.events, replay.session);
+  const canonicalSession =
+    replay.session?.sessionId === selectedSessionId ? replay.session : undefined;
+  const sourceTranscript = transcriptSourceConflict
+    ? deriveTranscriptView(admittedEvents, canonicalSession)
+    : replay.transcript ?? deriveTranscriptView(admittedEvents, canonicalSession);
   const transcript = boundedTranscript(sourceTranscript, limit);
   const sourceItemCount = sourceTranscript.items.length;
   const bounded = sourceItemCount > transcript.items.length;
   const malformedLineCount = Math.max(0, replay.malformedLineCount);
-  const canonicalSession =
-    replay.session?.sessionId === selectedSessionId ? replay.session : undefined;
-
   if (!canonicalSession) {
     diagnostics.push({
       code: 'REPLAY_SESSION_METADATA_UNAVAILABLE',
