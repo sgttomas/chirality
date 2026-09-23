@@ -207,7 +207,7 @@ Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1
 2. Apply the current scope: Protect credential custody, safe account presentation and the current App network boundary. Codex is the sole MVP engine and credential custodian. Anthropic key precedence, safeStorage, URL validation and SDK_FAILURE classifiers are compatibility evidence, not the current login contract.
 3. Implement only within the owning App/Runtime boundary, preserving these requirements: The App must never read, copy or relay Codex credentials; login/cancel/logout use Codex account methods in the Chirality effective home and leave other clients unchanged. Renderer traffic and update/service transports conform to current K-NET-1; command network follows user-selected Codex configuration/sandbox. Log only redacted policy/error metadata. Per-root consent, hosted admission and Root DEL-02-09/10 readiness gates are retired by D-APP-127. Structural redaction before every sink remains required.
 4. Verify verify scoped login/logout, other-client credential independence, no credentials in renderer/IPC/events/logs/artifacts, current renderer/transport policy and command policy passthrough. Record actual error outcomes without requiring the retired SDK error taxonomy.
-5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update governing scope and any selected work graph only for backchecked outcomes.
 
 Locus and checks: Runtime `packages/daemon/src/codex-effective-home.ts`, `codex-supervisor.ts`, `tests/codex-effective-home.test.ts`, `tests/codex-supervisor.test.ts`; App `frontend/electron/main.ts`; re-platform `NATIVE_CHECKLIST.md` S-8.
 
@@ -365,3 +365,9 @@ Named verification: Verify scoped login/logout, other-client credential independ
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-019 SOW-020 SOW-021 OBJ-004 OBJ-008 | CLM-009  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R041:** Retain current S-8, account and network boundary checks. Legacy Anthropic-provider cleanup is a separately selected maintenance choice under D-GOV-43/D-APP-127, not evidence of current Codex-path qualification.

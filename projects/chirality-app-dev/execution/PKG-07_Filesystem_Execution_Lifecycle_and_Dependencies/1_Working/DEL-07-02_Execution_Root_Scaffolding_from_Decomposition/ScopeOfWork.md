@@ -460,3 +460,11 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-024 SOW-025 OBJ-006 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R058:** The scaffold must compose on the current ProjectScaffoldPort/501 App/Runtime path. Identify the live handoff and repair/prove the gap before claiming scaffold delivery.
+
+- **APP-R059:** Exact INIT/coordination templates and parser grammar remain source-backed choices in CLM-010. A selected scaffold tranche checks accepted sources and obtains a human template decision only if a mandatory choice remains unresolved.

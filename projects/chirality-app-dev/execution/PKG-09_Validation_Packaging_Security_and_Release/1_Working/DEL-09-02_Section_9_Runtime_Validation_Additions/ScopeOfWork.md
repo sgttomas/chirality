@@ -69,7 +69,7 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 
 ### CLM-005 — Construction
 
-> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
+> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit gaps against governing scope and any selected graph. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-006 — References
 
@@ -138,6 +138,8 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 > | DEL-09-02-RQ-016 | Section 9 fixture coverage SHOULD distinguish current Codex/Runtime engine, full events/replay/redaction, effective-home separation, user-selected policy, applicable application tools, tool-result budgets, compaction and child lineage from retained SDK mapper/settings/overlay/hook compatibility fixtures. Current fixture paths are listed in `frontend/scripts/harness-section9-manifest.json`. | `docs/CONTRACT.md` Sections 1.4-1.6; `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3; ADQ-14 implementation evidence |
 >
 
+Current RQ-016 coverage detail: map surviving Section 9 descendant-class, role-attribution and cancellation-cleanup families to current Runtime/Codex tests. Label first-adapter mapper, `settingsSources`, overlay and SDK-hook IDs compatibility-only; preserve full event information, sink-specific redaction, terminal truth and report-only pass/fail status.
+
 ### CLM-011 — Standards
 
 > ##### Standards
@@ -152,7 +154,7 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 
 ### CLM-012 — Verification
 
-> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
+> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit gaps against governing scope and any selected graph. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-013 — Documentation
 
@@ -207,7 +209,7 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 
 ### CLM-018 — Steps
 
-> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
+> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit gaps against governing scope and any selected graph. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-019 — Verification
 
@@ -230,7 +232,7 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 
 ### CLM-020 — Records
 
-> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
+> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit gaps against governing scope and any selected graph. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 - **VER-001** — Run the harness premerge validation and inspect its manifest and summary evidence for Section 8 preservation, complete Section 9 ID coverage, explicit per-ID status and evidence, and absence of false passing outcomes for unlanded phases.
 
@@ -270,7 +272,7 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 
 ### CLM-025 — Trade-offs
 
-> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
+> Use the accepted requirement and verification contract in CLM-024 and frontend/scripts/harness-section9-manifest.json. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit gaps against governing scope and any selected graph. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-026 — Examples
 
@@ -313,3 +315,9 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-036 SOW-037 SOW-039 SOW-045 SOW-054 SOW-057 SOW-063 OBJ-002 OBJ-003 OBJ-005 OBJ-007 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R075:** Map Section 9 descendant class, role attribution, cancellation cleanup, redaction and terminal-truth families to current tests. First-adapter IDs remain compatibility-only; Section 9 remains report-only.

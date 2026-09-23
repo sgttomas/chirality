@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-04-02-R5-DELIVERY** — Verify live configuration/unknown-input and safe-metadata behavior; supply a live max-turn guard and terminal-handoff witness or route an actual requirement change through its owner. Retain absent fallback/metadata fixtures as historical limitations.
-  Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `codex-effective-home.ts`, `tests/codex-supervisor.test.ts`, `tests/codex-effective-home.test.ts`; historical App `frontend/src/lib/harness/sdk-options-builder.ts` and `frontend/src/__tests__/lib/sdk-options-builder.test.ts`.
-  Check: Check thread start/resume and turn overrides, unknown-key behavior, deterministic effective configuration, safe metadata, credential exclusion and live max-turn terminal handoff. Legacy fallback/settings tests qualify only their recorded path.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

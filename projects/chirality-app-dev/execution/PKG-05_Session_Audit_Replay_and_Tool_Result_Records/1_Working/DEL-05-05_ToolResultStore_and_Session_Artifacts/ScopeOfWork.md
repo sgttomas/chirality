@@ -209,7 +209,7 @@ Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1
 2. Apply the current scope: App consumption, previews and conformance for Runtime-owned tool results/artifacts; storage and generic custody stay Runtime-owned. D-APP-132 leaves D-APP-116 full inventory/cleanup enhancement unadopted for this undertaking.
 3. Implement only within the owning App/Runtime boundary, preserving these requirements: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Current descriptor thresholds govern small-inline and artifact-backed overflow with bounded summaries and replayable relative links; no distinct medium-band representation is adopted. D-APP-42 metadata includes tool/turn identity when available, original/stored bytes, truncation, SHA-256 of exact stored bytes, session-lifetime retention and stream labels. Preserve current descriptor-defined thresholds, deterministic concurrent append order and malformed-tail recovery. Redaction must precede artifact and event persistence. No TTL, quota, independent cleanup or full inventory feature is adopted. Current fixed truncation and raw tool.progress deltas do not satisfy artifact/metadata obligations.
 4. Verify verify real live producers, threshold boundaries, current small-inline and artifact-backed overflow behavior (distinct medium-band representation remains deferred), stored-byte hashes/metadata, stream separation, redaction, concurrent completion order, malformed-tail replay and session-lifetime behavior. Existing legacy artifact tests do not establish these live outcomes.
-5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update governing scope and any selected work graph only for backchecked outcomes.
 
 Locus and checks: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App preview consumers; legacy `frontend/src/lib/harness/tool-result-artifacts.ts` and fixtures.
 
@@ -340,3 +340,9 @@ No repeated owner decision is needed for the settled topology, native policy, ev
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-053 SOW-059 OBJ-003 OBJ-005 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R048:** The D-APP-42 artifact budget/store baseline remains required. D-APP-116 optional cleanup was not adopted under D-APP-132 and creates no extra baseline.

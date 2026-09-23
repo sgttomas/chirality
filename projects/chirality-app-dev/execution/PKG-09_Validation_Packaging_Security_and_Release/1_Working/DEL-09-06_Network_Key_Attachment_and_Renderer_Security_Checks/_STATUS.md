@@ -8,21 +8,6 @@
 
 **Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
 
-## Remaining
-
-The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
-
-- **DEL-09-06-V3-03** — Complete synthetic-secret scanning for account, approval, thread, policy and tool-activity field families at every sink.
-  Locus/owner: DEL-05-03 field contract and App security evidence; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Structural-redaction tests plus actual scan records; existing legacy proofs are not post-A2 outcomes.
-  Gate: DEL-05-03 current field families; no real credential access.
-
-- **DEL-09-06-V3-07** — Prepare the owner-ruled D-APP-121 A-design carriers and bounded A-proof isolated unpublished inline-PDF candidate. S0/default-app behavior remains the current release path; attachment budgets, retry and renderer protections remain required.
-  Locus/owner: PKG-02 owns the exact production/policy/viewer loci; PKG-09 owns the serialized packaged proof script/test. App WORKING_ITEMS coordinates the named owning surfaces.
-  Check/return: Apply carriers only after the ruling's observability/preimage and exact-brief gates. Run the positive/negative/header/stream and actual packaged multi-page page-navigation matrix on exact candidate bytes; record failures and missing results. A-proof changes only the approved preload literal in its isolated candidate and grants no publication or capability promotion.
-  Gate: D-APP-121 A-design/A-proof ruling and D-APP-127 affected-check rule; policy effect and implementation remain held until the named gates, native PASS, fresh review and exact publication decision.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: removed completed or non-adopted optional decision entries and aligned current delivery tasks with D-APP-121/127/132. Existing evidence and release gates remain; no product result, lifecycle or approval was promoted.
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.

@@ -93,7 +93,7 @@ compatibility navigation without creating a second evidence store.
 
 Applied row notes: Shell integration owns presentation only; work, hierarchy,
 transcript, and artifact facts remain governed by their existing semantic
-owners; the direct shell items are seated as Remaining work by the owner, not by
+owners; the direct shell items were seated in the former `Remaining` source by the owner at that time, not by
 this row.
 
 Applied row outputs: Dialogue shell; composer context line; chat navigator;
@@ -107,6 +107,8 @@ account row host; route/query and compatibility tests.
 4. Chat organisation acts on local convenience state owned by DEL-02-04 only; deleting a chat hides it locally and never mutates the runtime session record (Q1); derived titles pass the redaction helper (Q6).
 5. Existing routes, queries, aliases, and the loop-first UI remain compatibility surfaces; the retired Workbench and Pipeline routes stay reachable by URL and unlisted (Q3).
 6. The pop-out panel window is not in scope (Q5); the account row is hosted here and its presentation is DEL-02-05's.
+7. The visual shell uses the Stone palette and left-panel wordmark with measured text/control contrast; verify current composer-context copy for folder, active role, permissions, delegation and rung against D-GOV-43/D-APP-127 and the four-role contract. The older target-spec §10 role/consent labels do not supersede that contract.
+8. The navigator lists sessions across registered known roots with each chat's folder and derives the active provider root from the session's registered project identity. `knownRoots` is local convenience state, not a new Runtime root field.
 
 ### Seating and rulings
 
@@ -352,10 +354,22 @@ A new chat chooses its folder and permitted direct-entry role in the composer; a
 
 ### CLM-030 — Conflict Table (for human ruling)
 
-The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptance. The surviving exact TYPES §4 route/query compatibility, icon direction/reproducibility and missing context-field questions remain in current Remaining with their actual owning decisions. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
+The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptance. The surviving exact TYPES §4 route/query compatibility, icon direction/reproducibility and missing context-field questions remain in governing scope and their owning decisions; see APP-R017 and TM-APP-050 in the final retirement account. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-001 SOW-005 OBJ-001 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Woven Dialogue shell evidence, compatibility parity, provenance and primary-dialogue isolation checks |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R013:** Use the Stone palette, measured text/control contrast, left-panel wordmark and current plain-language composer copy under D-APP-108 and the four-role/D-GOV-43 contract.
+
+- **APP-R015:** The session list spans registered known roots with a truthful folder per chat; the active provider root derives from the session registered project identity. Known roots are local convenience state, not a new Runtime root field.
+
+- **APP-R016:** D-APP-108 seats the application icon and defers the pop-out panel. Preserve the owner removal direction for the old renderer icon and the design-source to raster/package integrity handoff with DEL-09-04; exact artwork ownership is a deferred App decision.
+
+- **APP-R017:** The shell acceptance includes current wordmark/copy, Finder and Dock folder actions, route/query/update consumers and source-artwork to packaged-icon trace. DEL-08-02 carries routing and DEL-09-04 carries packaging evidence; unresolved icon-source ownership is deferred in App Task Management.

@@ -1,6 +1,6 @@
 # APP-R004 — candidate formal App authority-corpus change intake
 
-Status: **candidate receiving record; no Scope Change Amendment has been accepted or applied**. The live DEL-01-01 `## Remaining` entry stays until the owning App authority-corpus process accepts and verifies an exact transfer. This record prevents a nominal reference to “the scope-change route” from being mistaken for an actual amendment.
+Status: **candidate formal scope-change intake; no Scope Change Amendment has been accepted or applied**. The 2026-09-23 App retirement seated APP-R004's operative duty in DEL-01-01 `ScopeOfWork.md` and removed the legacy status section. The corpus amendment, D-APP-38 rehash and reference checks remain open at their owning process. This record prevents a nominal reference to “the scope-change route” from being mistaken for an actual amendment.
 
 ## Supplied concern and owner
 
@@ -20,4 +20,4 @@ This audit names affected current-facing clauses; the producing owner must inspe
 
 ## Proposed receiving package and acceptance check
 
-Prepare one App scope-change packet with a clause-by-clause preimage/postimage table, each affected source path and line/claim ID, controlling D-GOV-43/A2 or D-APP-127 quotation, retained historical applicability, reason for change and downstream consumer. Obtain the owning human decision for substantive requirement or instruction changes. Apply only the ruled postimage to its authorized carriers. Recompute the D-APP-38 corpus identity, verify all applicable live `_REFERENCES.md` hashes and affected source/dependency mappings, and record candidate-bound checks. Keep DEL-01-01 lifecycle/approval history and frozen R6 evidence unchanged. Transfer APP-R004 from `_STATUS.md` only after this package and its checks actually carry the same surviving obligation; otherwise retain it.
+Prepare one App scope-change packet with a clause-by-clause preimage/postimage table, each affected source path and line/claim ID, controlling D-GOV-43/A2 or D-APP-127 quotation, retained historical applicability, reason for change and downstream consumer. Obtain the owning human decision for substantive requirement or instruction changes. Apply only the ruled postimage to its authorized carriers. Recompute the D-APP-38 corpus identity, verify all applicable live `_REFERENCES.md` hashes and affected source/dependency mappings, and record candidate-bound checks. Keep DEL-01-01 lifecycle/approval history and frozen R6 evidence unchanged. The accepted destination of APP-R004's duty is the current DEL-01-01 SOW clause; status-source removal did not satisfy this formal-change obligation.

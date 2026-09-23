@@ -41,7 +41,7 @@ compatibility navigation without creating a second evidence store.
 Applied decomposition row L307 (SCA-APP-010 Gate 5, 2026-09-04) notes: Shell
 integration owns presentation only; work, hierarchy, transcript, and artifact
 facts remain governed by their existing semantic owners; the direct shell items
-are seated as Remaining work by the owner, not by this row.
+were seated in the former `Remaining` source by the owner at that time, not by this row. Current selection uses governing scope and an identified graph.
 
 ## Anticipated Artifacts
 

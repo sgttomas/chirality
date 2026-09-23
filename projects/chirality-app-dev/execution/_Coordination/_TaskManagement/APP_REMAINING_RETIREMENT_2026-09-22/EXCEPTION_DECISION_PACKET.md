@@ -1,5 +1,10 @@
 # Held App Remaining exceptions — finite decision packet
 
+**Historical pre-final packet:** The owner's 2026-09-23 final App retirement
+direction was applied in [FINAL_CLOSEOUT.md](FINAL_CLOSEOUT.md) and
+[ROWS.csv](ROWS.csv). The held-source and candidate wording below describes
+the earlier partial stage, not current selection or disposition.
+
 Status: finite routing packet with four owner-default App register deferrals applied; factual transfers and other owner decisions remain candidates. The 54 held live `_STATUS.md` entries remain text-identical to their original census rows. This packet classifies them for the owner's one-time retirement decision; it is not a maintained backlog or an App/Runtime/PEC assignment. `ROWS.csv` is the 99-row account, with `ExceptionRouteClasses`, `RiskFlag`, and `AffectedActUntilResolved` on held rows. A/B/C/D/IV overlap: A = bounded factual receiving-document text within accepted scope; B = formal scope/authority amendment or owning ruling; C = missing-owner allocation or qualified TM promotion; D = external/issued/acceptance or unperformed verification; IV = a historical, duplicate or partly superseded meaning within the same original.
 
 | Route | Count | Exact exception rows and requested treatment |

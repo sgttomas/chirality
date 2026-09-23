@@ -6,15 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-05-03-V3-01** — Deliver structural secret protection at every live sink and preserve metadata; verify the complete synthetic-secret matrix and record the still-unknown external transcript/withheld behavior. Closed event schema v2 and retired daemon acceptance are not prerequisites.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`; App event/SSE/replay and diagnostics consumers; retained App `frontend/src/lib/harness/run-logger.ts` and redaction fixtures.
-  Check: Run synthetic secrets and raw/URL/lowercase/double-encoded variants, overlap cases and nested structures across JSONL, both SSE hops, diagnostics, replay and inline/preview/artifact/redacted/withheld paths. Withheld and external transcript guarantees remain unverified where no fixture exists.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-  Depends: DEL-05-02-V3-01 and the live producer/sink interfaces represented by DEP-05-03-012/-013, reconciled under D-GOV-43; current native sink evidence is required. Retired closed-schema-v2/Root acceptance is not a gate.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

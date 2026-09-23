@@ -134,6 +134,8 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > | Solver separation | Profile contract must preserve that domain engines own authoritative domain truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-1 |
 >
 
+For the already authorized staged profile/registry interface, verify current Codex/Runtime composition and deterministic invalid-profile rejection before exposure with a named current-path witness. This does not authorize apply-class exposure, protected writes or integration-level advancement; tier-0/F-APP-3 gates remain.
+
 ### CLM-008 — References
 
 > ##### References
@@ -449,3 +451,11 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-066 SOW-067 OBJ-010 | CLM-010 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R088:** D-T0-25 treats the pre-D-PEC-58 v0.4 deterministic acts, RBAC and pilot allocation as historical. Current PEC v2 project-client registration, no-dual-loop and fail-closed seams retain their separate PEC/Runtime owners; App acceptance requires a current seam comparison. TM-APP-029 carries related consumption proof.
+
+- **APP-R089:** Validate staged profile/registry composition on the current Codex/Runtime path and reject invalid profiles before exposure. Tier-0/F-APP-3 still gate apply and protected writes.

@@ -1,5 +1,8 @@
 # Dependencies: DEL-08-03 Pipeline Category and Task Scope Dispatch
 
+> **Current-source note (2026-09-23):** References below to the former App `Remaining` section and its Depends text record dated extraction evidence. The live status section was retired in the finite App Task Management account. For current work and dependency gating, read `Dependencies.csv`, governing Scope of Work, accepted decisions and the selected work graph. The historical Depends text adds no prerequisite; this note does not change the accepted register rows.
+
+
 ## Dependency Tracking
 
 | Field | Value |
