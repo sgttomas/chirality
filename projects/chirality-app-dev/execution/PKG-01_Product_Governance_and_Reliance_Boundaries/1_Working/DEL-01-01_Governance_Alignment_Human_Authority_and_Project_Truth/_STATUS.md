@@ -6,16 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- Complete current P0 control/evidence mapping with the Runtime interface owner, including ordinary instruction protection and actual selected-policy limits. Verify current negative tests; no legacy SDK test implies live qualification.
-
-- App WORKING_ITEMS and the governance-doc owner must apply D-GOV-43/A2 and D-APP-127 to the App authority corpus through its clause-level scope-change and rehash process. Include the still-stale `docs/DIRECTIVE.md` clauses and every other affected governing carrier, then verify the resulting D-APP-38 corpus identity and live reference bindings. The superseding rulings govern now; this task neither accepts new scope nor treats the unamended corpus bytes as current Codex-path wording.
-
-
-
-Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
-
 ## History
 - 2026-09-22 — The current reconciliation final review found that a draft `docs/DIRECTIVE.md` rewrite lacked the required authority-corpus successor. The draft was restored; this exact governed application and D-APP-38 verification remain open. D-GOV-43/D-APP-127 authority, lifecycle and prior approval SHA are unchanged.
 - 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.

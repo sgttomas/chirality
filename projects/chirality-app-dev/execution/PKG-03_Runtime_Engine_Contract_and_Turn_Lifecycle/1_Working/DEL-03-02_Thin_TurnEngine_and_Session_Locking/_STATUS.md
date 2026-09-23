@@ -6,27 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-03-02-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-08-04-V3-02 selected`) — boot-request binding carries the per-chat delegation policy (SOW-083). Under topology A2 (D-APP-127) the boot request targets the application-owned Runtime service child, the policy travels with `thread/start` and `thread/resume` alongside the project's `PolicySelection` (D-GOV-43 item 4), and delegation uses the upstream `[agents]` configuration; replacement storage/interface ownership for the bound policy remains to be established; D-APP-127 does not assign that field.
-  Trace: OUT-001, AC-001, VER-001; applied decomposition row L318 (bind project/persona/mode/delegation-policy/options requests); SOW-010 L180; SOW-083 L253 (`none` default; ask before each brief; approve each brief's writes; bounded briefs; no new delegation class); OI-008 L602 (the stored session-record field is Root DEL-02-11's).
-  Plan: T3 and T6 harness part; SR-24. Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
-  Depends: DEL-08-04-V3-02 (the bridge that honours the bound policy; selected together). Root DEL-02-11 is retired (D-GOV-43, family 2), the surviving request-binding obligation remains, with replacement storage/interface ownership to be resolved; no acceptance from that retired Root deliverable is awaited.
-  Write locus: `frontend/src/app/api/harness/**` boot and session routes, the current Runtime client/session binding boundary (replacement storage/interface ownership established before dispatch), boot-fingerprint and conformance tests; deliverable-local state. No daemon or Root write.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: the boot request carries the delegation policy with `none` as the default and the boot fingerprint reflects it; conformance tests for each of the four values; no new delegation class; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: merged with review PASS.
-
-
-
-
-
-
-
-
-- **DEL-03-02-R5-RESIDUALS** — Current request/delegation binding, supported defaults/values and fingerprint evidence remain gated by DEL-08-04 and establishment of the current storage/interface owner. Obtain current Runtime locking/ordering/terminal/detach evidence; no retired Root DEL-02-11 acceptance is awaited. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

@@ -138,6 +138,8 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 > | DEL-09-02-RQ-016 | Section 9 fixture coverage SHOULD distinguish current Codex/Runtime engine, full events/replay/redaction, effective-home separation, user-selected policy, applicable application tools, tool-result budgets, compaction and child lineage from retained SDK mapper/settings/overlay/hook compatibility fixtures. Current fixture paths are listed in `frontend/scripts/harness-section9-manifest.json`. | `docs/CONTRACT.md` Sections 1.4-1.6; `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3; ADQ-14 implementation evidence |
 >
 
+Current RQ-016 coverage detail: map surviving Section 9 descendant-class, role-attribution and cancellation-cleanup families to current Runtime/Codex tests. Label first-adapter mapper, `settingsSources`, overlay and SDK-hook IDs compatibility-only; preserve full event information, sink-specific redaction, terminal truth and report-only pass/fail status.
+
 ### CLM-011 — Standards
 
 > ##### Standards
@@ -313,3 +315,9 @@ This Scope of Work defines `DEL-09-02` in service of project scope [SOW-036, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-036 SOW-037 SOW-039 SOW-045 SOW-054 SOW-057 SOW-063 OBJ-002 OBJ-003 OBJ-005 OBJ-007 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R075:** Map Section 9 descendant class, role attribution, cancellation cleanup, redaction and terminal-truth families to current tests. First-adapter IDs remain compatibility-only; Section 9 remains report-only.

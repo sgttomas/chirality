@@ -148,6 +148,10 @@ This Scope of Work defines `DEL-02-03` in service of project scope [SOW-002, SOW
 > | DEL-02-03-REQ-014 | This presentation deliverable consumes formal dependencies read-only; the extracted Dependencies.csv already exists and is not created or altered by these UI controls. | `_DEPENDENCIES.md`; dispatch instruction |
 >
 
+D-APP-108 Q4a/b seated viewer detail: the right panel shows one view at a time, with a bounded clickable/expandable file tree and document viewer. In-panel text, Markdown, code and CSV reads stop at 10 MB; PDF uses the in-panel renderer, while DOCX/XLSX/PPTX use macOS Quick Look with Open in default app. PDF and Quick Look previews are outside the text cap. The PDF path remains subject to D-APP-121 isolated proof and no publication/acceptance follows from this clause.
+
+D-APP-108 Q2 seated reference detail: replies and Activity show source path/range chips. Viewer Ask and Attach and composer Quote use existing attachment controls; Quote sends `clientType: 'quote'` with source path and range, adding no harness event type.
+
 ### CLM-010 — Standards
 
 > ##### Standards
@@ -334,3 +338,13 @@ D-APP-38 established the reference-observation model. Earlier MATCH and hash-war
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-002 SOW-003 OBJ-001 OBJ-006 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R022:** D-APP-108 Q4a/b requires the view switcher, bounded expand/drag file tree, in-panel PDF and text/Markdown/code/CSV viewer with a 10 MB text cap, and Office Quick Look with Open in default app. D-APP-121 still gates PDF qualification and publication.
+
+- **APP-R023:** D-APP-108 Q2 requires source path/range chips in replies and Activity, viewer Ask and Attach, and composer Quote using existing attachment controls with clientType quote plus source path/range; no new harness event is implied.
+
+- **APP-R024:** Preserve scope scan, summary, status and route consumers alongside native PDF/security and source-bound evidence. Compare the receiving DEL-02-03/SCA-APP-010 contracts before assigning any orphaned consumer; the unresolved owner mapping is deferred in App Task Management.

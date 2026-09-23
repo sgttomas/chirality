@@ -1,5 +1,11 @@
 # App exception factual-transfer candidates
 
+**Historical candidate record:** Its twelve factual hunks were applied and
+checked in the final App retirement candidate. See
+[FINAL_CLOSEOUT.md](FINAL_CLOSEOUT.md) and [ROWS.csv](ROWS.csv) for final
+destinations; the original patch and preimage hashes below remain prior-stage
+review evidence.
+
 Status: **candidate receiving-document diffs only; no live SOW, status, register or product edit in this follow-on**. The exact bounded hunks are in [CANDIDATE_FACTUAL_RECEIVING_DIFF.patch](CANDIDATE_FACTUAL_RECEIVING_DIFF.patch), built against merged PR #861 basis `46ac555032bac3d7ad345bc2bdfcc1cd5255e682`. `git apply --unidiff-zero --check` passes at that basis. Applying a hunk later requires the owning App/Runtime/domain contract review, source recheck and an actual human exception disposition before any live `Remaining` entry is removed. The text records accepted meaning; it is not delivery evidence.
 
 The earlier 29-row A screen was rechecked against current governing clauses. Twelve rows have a narrow missing factual detail worth a receiving-document candidate. Nine are already substantially preserved in their current SOW and remain product/evidence gaps (R011, R012, R030, R034, R056, R058, R065, R066, R074). Eight require an owner or consumer decision before any diff (R016, R017, R018, R020, R024, R060, R078, R096). The remaining held rows have no factual SOW transfer proposed. `ROWS.csv` records this treatment for each original.

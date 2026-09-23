@@ -6,18 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-03-03-V3-01** (`NOT_SELECTABLE_UNTIL: the D-GOV-43 spike lands the transport repair on the production path`) — harness API and SSE adapter retained and repaired (topology A2, D-APP-127): keep the `/api/harness/*` routes and the loopback HTTP/SSE channel through the in-process Next server as the renderer channel; add SSE comment keepalives, remove the idle timeout that ends a turn, and make a renderer disconnect unsubscribe without interrupting the turn (the Runtime owns the active turn; explicit Stop is the interrupt endpoint; reopening recovers current state, missed activity and outstanding decisions without re-sending the prompt); carry the extensible event representation (upstream method names, identifiers and payloads preserved; normalized views for known items; unfamiliar notifications inspectable, never dropped) in place of the closed schema v2 and the eight-name `UIEvent` set.
-  Trace: OUT-001, AC-001, VER-001; applied decomposition row L305 (keep `/api/harness/*` shapes and browser SSE event names stable while runtime policy moves behind services).
-  Plan: current route/stream continuity and AT-024 App-hop structural redaction with complete upstream event preservation. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: the Runtime service transport repair of the same tranche (SSE writer keepalives and close handler in `runtime-daemon.ts`; stream timeout in `packages/client`); DEP-03-03-006/007/010 read with D-GOV-43. Relaunch resumes threads through `thread/resume` (D-GOV-43 item 5; Root DEL-02-11's continuity gate is retired); DEL-05-04 owns truthful presentation.
-  Write locus: `frontend/src/app/api/harness/**`, route adapter tests, SSE fixtures, and deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: Route adapter tests and SSE fixtures proving stable route shapes, keepalives, no idle-timeout interruption, disconnect without interrupt, and generic inspectable rendering of unfamiliar notifications at the App boundary; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the repaired transport lands with the S-2 and renderer-disconnect continuity evidence.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

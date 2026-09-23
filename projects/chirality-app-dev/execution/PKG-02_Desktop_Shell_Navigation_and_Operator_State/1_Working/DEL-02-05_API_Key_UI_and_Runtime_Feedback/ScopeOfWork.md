@@ -177,6 +177,8 @@ Required artifacts are the account row/Settings feedback, canonical typed-error 
 - **REQ-001** — Present Codex-owned account/login/logout through the App-owned Runtime service; share user configuration/resources by reference with Chirality-private authentication. The App never reads/copies/relays credentials, exposes them in the renderer, or treats account state as project truth. No retired hosted-consent/identity supplier gate is recreated.
 - **REQ-002** — Where App safeStorage is still used, distinguish missing, storageUnavailable, decryptFailed and available. These are not a substitute for truthful Codex account state.
 - **REQ-003** — Present the user-selected Codex approval/sandbox policy for the project/turn. A mode label does not establish actual enforcement or grant normative authority; retired per-root command-network consent is history.
+
+Current method/selection detail for REQ-001/003: account actions use Codex `account/login/start`, `account/login/cancel` and `account/logout` through the App-owned Runtime service; model and reasoning effort are selected per turn. This adds no App credential custody or policy veto.
 - **REQ-004** — Current direct entry is HELP_HUMAN, HELPS_HUMANS or WORKING_ITEMS; TASK is delegated. Preserve scope/accountability and truthful enforcement limits. Exact older posture-label/carrier differences remain keyed for source alignment; no authority-corpus acceptance is inferred.
 - **REQ-005** — Live-login claims require current production S-8 evidence, including credential separation and another Codex client's unchanged state, repeated after the consolidated signed build and invalidating changes. Fixture/unavailable state is labelled truthfully. DEL-09-06 retains attachment, credential-IPC, renderer and secret-protection checks; retired HOST-P1/POLICY-R1/ACCOUNT-WIRE-V1 and G3/G-CSP/G4 admission subjects are not current gates.
 
@@ -281,3 +283,9 @@ D-APP-38 established the reference-observation model. Earlier MATCH and hash-war
 |---|---|---|---|---|---|
 | OUT-001 | SOW-013 SOW-019 OBJ-001 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
 | OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | Current account/typed-feedback fixtures, canonical contract checks, production S-8 and surviving attachment/renderer/credential/redaction evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R028:** Use current Codex account login/start, login/cancel and logout through the App-owned Runtime service, with per-turn model and effort selection. Preserve session policy, retry and S-8 feedback without App credential custody.

@@ -161,6 +161,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Human-authority preservation | Checklist review | No automated actor is represented as able to approve, issue, certify, sign, seal, externally validate, or make professional work reliable. |
 > | Project-truth preservation | Checklist review | Reliance-relevant facts are represented in project files and git evidence, not only runtime state or hidden memory. |
 > | Runtime-audit boundary | Checklist review | Runtime audit is evidence/replay support only; it does not replace approval records. |
+> | Current P0 enforcement mapping | Source-and-negative-check review | For each P0 reliance control, record the current App/Runtime enforcement point and a current negative test or explicit open gap. Include ordinary instruction-root protection with DEL-07-01 and selected-policy execution with Runtime; historical SDK tests qualify only their recorded path. |
 > | Cross-document consistency | Diff checklist | PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced. |
 > | Reference integrity handling | Reference-row check | Authority-doc references, including REF-006, match the current D-APP-38 corpus before issue-readiness reliance is claimed. |
 > | Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); other path/source conflicts remain visible pending human ruling. |
@@ -389,3 +390,11 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-074 SOW-075 OBJ-009 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R003:** Map every P0 reliance control to current App/Runtime enforcement and a negative check or stated gap. Include DEL-07-01 ordinary instruction-root protection and Runtime selected-policy behavior; historical SDK fixtures cover only their recorded path.
+
+- **APP-R004:** The current App authority corpus requires the bounded formal SCA recorded in CORPUS_SCA_INTAKE.md, including accepted clause postimages, D-APP-38 rehash and live reference checks before those clauses support current Codex-path reliance.

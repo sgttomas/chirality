@@ -550,3 +550,11 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 |---|---|---|---|---|---|
 | OUT-001 | SOW-035 SOW-036 SOW-072 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
 | OUT-002 | SOW-035 SOW-036 SOW-072 OBJ-008 | CLM-034 REQ-001 REQ-002 REQ-003 REQ-004 | AC-002 | VER-002 | Reviewed runbook candidate and custody checklist bytes with independent review record; stable artifact evidence; WP-11 execution record only after G6a |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R080:** Record actual 3.0.0 and 3.0.1 release identity and candidate evidence, distinguishing owner testimony from retained build and verification outputs.
+
+- **APP-R081:** The old 2.0.0 to 3.0.0-rc.1 patch step is superseded. Current shipped-candidate identity and consistency proof remain required under REQ-003/CLM-019/023.

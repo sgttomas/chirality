@@ -1,5 +1,12 @@
 # App `Remaining` retirement — finite disposition account
 
+**Final state:** See [FINAL_CLOSEOUT.md](FINAL_CLOSEOUT.md) and the final
+[99-row account](ROWS.csv). All canonical live App `Remaining` sections were
+retired under the owner's 2026-09-23 direction after exact SOW/decision/Task
+Management destination checks. The partial-stage narrative below records the
+earlier PR #861/#863 candidate and is preserved as migration history; its
+"remain live" statements do not describe the final candidate.
+
 Status: **partially applied candidate; 42 SOW-preserved entries and three no-current-task markers were conditionally approved and removed from live `_STATUS.md` sections after destination/source checks; 54 exceptions remain live and pending.** Four owner-default decision/allocation concerns were entered as DEFERRED App Task Management rows TM-APP-045–048; no substantive requirement amendment or product acceptance has occurred. WORKING_ITEMS prepared this finite account for the App development loop using the bundled `task-management` workflow. The owner's one-time plan authorizes examination of this named legacy source and preparation of treatments; it reserves actual dispositions, promotions and owning scope or issued-baseline changes to their human authority. This account is migration evidence, not a maintained task queue.
 
 ## Bound population and current comparison

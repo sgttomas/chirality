@@ -6,13 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-05-02-V3-02** — Verify proposal offered/accepted/declined events on current replay and presentation once the SOW-082 producer is available. No closed-schema-v2 or retired identity-binding gate applies.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers. Checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay. Gate: affected current App/Runtime interface and independent verification; preserve the existing view/producer dependencies. Owner: WORKING_ITEMS.
-  NOT_SELECTABLE_UNTIL: DEL-05-02-V3-01 lands. Depends: DEL-02-02-V3-04 proposal-card fixture first, and the actual SOW-082 producer. Retired Root acceptance and identity binding do not replace these live local prerequisites.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

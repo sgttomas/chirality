@@ -192,13 +192,13 @@ source; memory carries no future assignments. The local graph
 carries execution at `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`.
 Keep it Git-tracked in the undertaking's PR sequence and set LOOP_INIT's current
 pointer to its actual path. Preserve historical graph files. `_STATUS.md` retains
-lifecycle and history. `Remaining`
-sections are retired as a required work-selection or execution-list surface for
-newly adopted development; their absence neither proves completion nor prevents
-work within the human's authorized undertaking. Existing entries remain
-accessible legacy inputs until an explicitly authorized retirement accounts for
-each one, applies the human's disposition and verifies every surviving obligation
-at its destination before source removal. No new Remaining entry is required.
+lifecycle and history. The App's former `Remaining` sections were retired through
+the finite Task Management account at
+`execution/_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/`.
+Their absence does not prove completion or prevent work within the human's
+authorized undertaking. Select current work from the steering, governing Scope
+of Work, accepted decisions, dependencies and identified work graph; the
+historical census and account are migration evidence, not a work list.
 
 Each substantive PR includes the documentary, reconciliation and conditional
 Task Management consequences needed for that slice. Perform one final bounded
@@ -290,10 +290,9 @@ this section and its owning check documents.
 ## Selection and decisions
 
 For work selection, use the human's steering, accepted scope, dependencies,
-deliverable memory and actual source/evidence under LOOP_INIT. A historical
-Remaining item's Depends line is not an additional prerequisite for recognizing
-an actual dependency. Verify the selected work's required inputs at the point
-of consumption from the dependency records and their owning contracts. Preserve
+deliverable memory and actual source/evidence under LOOP_INIT. Verify the
+selected work's required inputs at the point of consumption from the dependency
+records and their owning contracts. Preserve
 named gates and APP-HOLD-1. INTERFACE/HANDOVER/CONSTRAINT/ENABLES do not become
 blanket whole-deliverable blockers; their actual obligations still apply.
 Apply K-ENGINE-6: standalone-harness or feature-parity work remains off-strategy.

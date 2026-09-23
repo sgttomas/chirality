@@ -173,6 +173,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > | REQ-01, REQ-02 | Review UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, release notes, and future domain notices for Chirality-owned identity and absence of Claude Code/Anthropic product-identity claims. |
 > | REQ-03 | Review SDK-related copy for implementation-detail framing and Chirality-owned contract language. |
 > | REQ-04 through REQ-06 | Review copy for draft/non-binding language and human-only approval language. |
+> | Current rendered journeys | On the current candidate, inspect shell, dialogue and replay for visible governed-work, draft/decision-support and non-approval-record copy; record each checked surface and result. |
 > | REQ-07 | Review reliance-boundary copy for non-prompt-only enforcement language and concrete ownership references. |
 > | REQ-08, REQ-09 | Review future domain notices for domain-truth separation and explicit human acceptance. |
 > | REQ-10 | Review deliverable and downstream copy for `TBD`, `ASSUMPTION`, `PROPOSAL`, and conflict labeling where source support is incomplete. |
@@ -490,3 +491,11 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-071 SOW-074 OBJ-009 OBJ-010 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R009:** Inspect the rendered shell, dialogue and replay copy on the current candidate for governed-work, draft decision-support and non-approval-record language; retain surface-specific results.
+
+- **APP-R011:** Future domain-facing copy remains staged through DEL-10-05 and needs its own integration and accountable human acceptance before an apply-class claim.

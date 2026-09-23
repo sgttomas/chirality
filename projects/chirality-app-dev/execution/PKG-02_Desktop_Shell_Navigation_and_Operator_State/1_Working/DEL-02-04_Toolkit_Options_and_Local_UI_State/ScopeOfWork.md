@@ -413,3 +413,9 @@ Preset retention duration remains an unresolved choice if presets are retained. 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Workspace-state migration, primary/replay isolation, explicit-context, focus/keyboard, rollback, and storage-guard evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R027:** Local preset persistence and producer behavior remain in scope. TM-APP-048 holds the retention-duration choice only if a selected implementation retains presets; no duration is inferred.

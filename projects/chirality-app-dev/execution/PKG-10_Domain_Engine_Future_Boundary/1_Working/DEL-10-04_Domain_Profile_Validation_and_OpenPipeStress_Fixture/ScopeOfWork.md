@@ -398,3 +398,13 @@ This Scope of Work defines `DEL-10-04` in service of project scope [SOW-070] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-070 OBJ-010 | CLM-008 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R095:** Negative fixtures and the assumptions note remain required. Activation of additional PKG-10 behavior follows the existing PKG-10 amendment gate.
+
+- **APP-R096:** Investigate OpenPipeStress-specific descriptor placement against generic-core separation and perform a bounded App/Runtime repair with current tests if the placement violates that boundary.
+
+- **APP-R097:** Reject invalid or incomplete profiles before Codex exposure; tier-0 authors the profile and App verifies current-path consumption under D-APP-58/F-APP-3.

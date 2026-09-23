@@ -8,13 +8,6 @@
 
 **Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
 
-## Remaining
-
-- Define accepted glob semantics and the live protection interface for profile `protected_write_paths` / `agent_writable_paths` (DEP-10-02-005). Supply named tests for forbidden direct writes, permitted proposal/review writes and human-gated approved mutation. Codex policy is user-selected; declarations, prompt text and a mode label do not prove this control. Owner: App/Runtime with tier-0 bridge; stage-gate: F-APP-3/PKG-10 and the existing bounded decision packet before code.
-
-- Keep adapter manifest instances/loader/validation routed to the tier-0 bridge under D-APP-58. The convention and schema identifier are assigned; this App record task does not create instances or claim enforcement.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

@@ -198,7 +198,7 @@ Named verification: Verify malformed tails, append order, all four terminal outc
 
 ### CLM-012 — Verification
 
-Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay.
+Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay. With the actual SOW-082 producer, verify once-per-chat-per-trigger offer behavior and replay of a declined trigger through append-only storage and presentation; retain missing producer/results as open evidence.
 
 Named evidence: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
 
@@ -374,3 +374,9 @@ Verification: Verify malformed tails, append order, all four terminal outcomes, 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-014 SOW-015 SOW-039 SOW-082 OBJ-003 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R044:** With the actual SOW-082 producer, verify once-per-chat-per-trigger proposal offers and replay of accepted/declined triggers through append-only events and presentation. Closed-schema-v2 compatibility remains bounded to its recorded producer.

@@ -6,15 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-04-05-V3-02** — Complete candidate-bound S-8 and current network/account bridge conformance, including synthetic-secret checks at every App/Runtime sink. Determine any retained Anthropic-store cleanup only in a separately bounded implementation; no credential copying or new provider scope.
-  Locus: Runtime `packages/daemon/src/codex-effective-home.ts`, `codex-supervisor.ts`, `tests/codex-effective-home.test.ts`, `tests/codex-supervisor.test.ts`; App `frontend/electron/main.ts`; re-platform `NATIVE_CHECKLIST.md` S-8.
-  Check: Verify scoped login/logout, other-client credential independence, no credentials in renderer/IPC/events/logs/artifacts, current renderer/transport policy and command policy passthrough. Record actual error outcomes without requiring the retired SDK error taxonomy.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-  Depends: DEL-02-05-V3-03 and DEL-09-06-V3-03; retain current Codex S-8/network verification. Retired per-root command-network and Root DEL-02-09/10 acceptance gates do not apply.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

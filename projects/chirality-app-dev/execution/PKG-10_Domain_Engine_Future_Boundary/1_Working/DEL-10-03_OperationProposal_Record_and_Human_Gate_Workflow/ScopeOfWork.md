@@ -148,6 +148,8 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | REQ-10-03-010 | Concrete evidence artifacts remain future implementation TBDs until accepted: new live-path adapters, operation store, apply tooling, review-checklist artifact path/schema and concrete proposal instances. ADOPTED profiles and applicable bound hooks are supplied; retained PEC adapters do not qualify Codex exposure. | `docs/PLAN.md` R7; `docs/SPEC.md` Section 18; REF-008 | Documentation preserves TBDs for concrete implementation artifacts without weakening canonical lifecycle semantics. |
 >
 
+Coordinate proposal-record protection checks with DEL-10-02: use the same accepted path/glob policy for direct protected-path denial and agent-writable proposal/review allowance fixtures, while retaining `status = proposal_only`. This is an interface/evidence duty, not a claim that the path policy or fixtures are already accepted or that operation apply is in scope.
+
 ### CLM-011 — Standards
 
 > ##### Standards
@@ -461,3 +463,13 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-069 OBJ-010 | CLM-008 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R092:** Proposal validation transport requires Piping-side soundness and a current App/Runtime Codex witness; verify each owning predecessor before App acceptance.
+
+- **APP-R093:** The operation store, storage convention, checklist and concrete proposal shapes remain proposal-only under F-APP-3. Their unresolved stage/contract choice is deferred in App Task Management.
+
+- **APP-R094:** Use the accepted DEL-10-02 path/glob policy for protected-path denial and agent-writable proposal/review allowance fixtures while keeping the operation record proposal_only.

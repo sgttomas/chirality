@@ -272,3 +272,11 @@ D-GOV-43 resolves the closed-event and SDK-settings mechanisms in favor of full 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-009 SOW-010 SOW-011 SOW-038 SOW-083 OBJ-002 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R032:** Per-chat delegation policy request/default and fingerprint remain required. TM-APP-045 holds the missing App/Runtime durable storage and interface owner assignment after Root DEL-02-11 retirement; V3-01 remains gated.
+
+- **APP-R033:** Bind per-chat managed/native delegation selection to durable policy fields and verify the current-path boundary. TM-APP-045 holds the shared storage/interface assignment; no dispatch or acceptance follows from deferral.

@@ -189,6 +189,7 @@ This Scope of Work defines `DEL-09-06` in service of project scope [SOW-019, SOW
 > | Requirement IDs | Verification Approach | Evidence Artifact |
 > |---|---|---|
 > | REQ-001, REQ-002, REQ-003 | Verify Codex custody, no App credential read/copy/relay, other-client isolation and secret-safe sinks; S-8 is the production-path hook. Legacy key precedence/safeStorage fixtures are compatibility evidence. | Key storage checks; redaction fixtures |
+> | Current secret-field families | Run synthetic-secret fixtures for account, approval, thread, policy and tool-activity fields at each App/Runtime event, log, artifact and renderer sink; record candidate, fixture bytes, result and unavailable sinks. | Candidate-bound sink matrix; missing results remain open |
 > | REQ-004, REQ-007 | Verify current K-NET-1 transports and user-selected Codex policy, separately from renderer restrictions; legacy base-URL fixtures do not qualify current endpoints. | Provider endpoint policy tests |
 > | REQ-005, REQ-006 | Electron network guard tests for allowed and denied URLs plus secret-free policy logs. | Network guard tests |
 > | REQ-008, REQ-009, REQ-010 | Attachment resolver tests covering positive and negative file cases. | Attachment resolver validation |
@@ -344,3 +345,11 @@ This Scope of Work defines `DEL-09-06` in service of project scope [SOW-019, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-019 SOW-020 SOW-022 SOW-023 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R085:** Synthetic-secret fixtures must cover account, approval, thread, policy and tool-activity fields at each current App/Runtime event, log, artifact and renderer sink, with explicit unavailable-sink results.
+
+- **APP-R086:** D-APP-121 A-design/A-proof leaves isolated unpublished PDF proof, observability and the S0 release boundary in force. No PDF publication or product acceptance follows from documentary alignment.

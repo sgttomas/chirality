@@ -425,3 +425,13 @@ Current source-state observations are in `_REFERENCES.md`; prior MATCH results a
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-006 SOW-081 SOW-082 OBJ-001 OBJ-007 | SCA-APP-010 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Projection provenance, semantic-owner boundaries, contextual controls, compatibility, and empty/stale/conflict evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R018:** Managed/native descendant presentation must carry source-backed class, provenance and responsible-reference information through an owner-approved locus. The card-versus-other-view choice is deferred in TM-APP-047; DEL-08-05 retains lineage proof.
+
+- **APP-R020:** The current workflow creation/revision path, derived rung and two-form presentation require exact reconciliation with active-chat drafting, reviewed Workflows registration and the K-PATH-2 contained file route. TM-APP-046 holds the owner decision; no unsupported editor is authorized.
+
+- **APP-R021:** Descendant class/provenance/responsibility must have an owner-approved source-backed presentation locus and DEL-08-05 lineage proof. TM-APP-047 holds the card-versus-other-view decision.

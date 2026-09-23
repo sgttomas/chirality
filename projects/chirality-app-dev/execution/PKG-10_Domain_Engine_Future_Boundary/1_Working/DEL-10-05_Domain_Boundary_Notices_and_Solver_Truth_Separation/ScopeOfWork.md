@@ -453,3 +453,11 @@ This Scope of Work defines `DEL-10-05` in service of project scope [SOW-071] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-071 OBJ-009 OBJ-010 | CLM-007 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |
+
+## Retired status detail (2026-09-23)
+
+These clauses retain the operative meaning of the named App `Remaining` entries after their one-time retirement. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
+
+- **APP-R098:** Future domain notice inventory needs accepted surface scope and an accountable reviewer before acceptance. The unresolved App surface choice is deferred in Task Management.
+
+- **APP-R099:** CLM-027 notice wording and TYPES §11.2 proposal-only semantics remain governing. Live placement and accountable human acceptance require current evidence.
