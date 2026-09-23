@@ -43,6 +43,30 @@ def test_accepts_repo_root_tokens_in_active_prompts(tmp_path: Path) -> None:
     assert findings_for(tmp_path) == []
 
 
+def test_scans_canonical_project_work_graph_and_skips_colocated_run_evidence(
+        tmp_path: Path) -> None:
+    graph = (
+        tmp_path / "projects/example/execution/_Coordination/WorkGraphs/run-1"
+        / "WORK_GRAPH.md"
+    )
+    write(graph, "Temporary checkout: /private/tmp/fixture\nHome checkout: /Users/example/repo\n")
+    write(
+        graph.parent / "_run_records/RAW_CAPTURE.json",
+        '{"cwd":"/Users/example/raw-run"}\n',
+    )
+
+    report = validator.scan(tmp_path)
+
+    assert [finding["path"] for finding in report["findings"]] == [
+        "projects/example/execution/_Coordination/WorkGraphs/run-1/WORK_GRAPH.md",
+        "projects/example/execution/_Coordination/WorkGraphs/run-1/WORK_GRAPH.md",
+    ]
+    assert {finding["match"] for finding in report["findings"]} == {
+        "/private/tmp/fixture", "/Users/example/repo",
+    }
+    assert report["checked_file_count"] == 1
+
+
 def test_ignores_archives_run_records_plans_and_decisions(tmp_path: Path) -> None:
     ignored_text = "Historical path: `/Users/example/repo/projects/example`.\n"
     write(tmp_path / "plans/path-plan.md", ignored_text)

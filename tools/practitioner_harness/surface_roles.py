@@ -149,6 +149,11 @@ def classify_surface(relpath: str, *, live_entry: bool = False) -> SurfaceClassi
 
     parts = path.parts
     project_live_entry = (
+        len(path.parts) == 7
+        and path.parts[0] in {"projects", "domains"}
+        and path.parts[2:5] == ("execution", "_Coordination", "WorkGraphs")
+        and path.name == "WORK_GRAPH.md"
+    ) or (
         len(parts) >= 5
         and parts[0] in {"projects", "domains"}
         and parts[2:4] == ("execution", "_Coordination")
