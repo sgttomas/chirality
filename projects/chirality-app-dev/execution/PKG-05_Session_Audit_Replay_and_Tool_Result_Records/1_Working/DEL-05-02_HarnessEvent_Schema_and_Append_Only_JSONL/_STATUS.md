@@ -8,12 +8,6 @@
 
 ## Remaining
 
-- **DEL-05-02-V3-01** — Implement and verify structural redaction and large-payload handling on live Runtime sinks; add malformed-tail/version/terminal fixtures and verify proposal-interaction replay with the actual SOW-082 producer. Preserve missing spike and native results.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers.
-  Check: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-  NOT_SELECTABLE_UNTIL: extensible event representation under D-GOV-43 item 2 lands on the production producer/consumer path. Depends: session-event producers and App event-provider composition; DEP-05-02-006/-009/-011 read under D-GOV-43.
-
 - **DEL-05-02-V3-02** — Verify proposal offered/accepted/declined events on current replay and presentation once the SOW-082 producer is available. No closed-schema-v2 or retired identity-binding gate applies.
   Locus: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App event/proposal/replay consumers. Checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay. Gate: affected current App/Runtime interface and independent verification; preserve the existing view/producer dependencies. Owner: WORKING_ITEMS.
   NOT_SELECTABLE_UNTIL: DEL-05-02-V3-01 lands. Depends: DEL-02-02-V3-04 proposal-card fixture first, and the actual SOW-082 producer. Retired Root acceptance and identity binding do not replace these live local prerequisites.

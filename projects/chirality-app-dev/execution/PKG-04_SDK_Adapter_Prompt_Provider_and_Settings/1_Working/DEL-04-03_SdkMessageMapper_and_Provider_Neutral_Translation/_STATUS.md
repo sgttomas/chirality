@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-04-03-R5-DELIVERY** — Add or recover the repeated-sequence golden, error/permission redaction, unfamiliar-event/request and current adapter-conformance witnesses; retain all missing live-path outcomes as unverified.
-  Locus: App `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`, `frontend/src/__tests__/components/live-session-requests.test.tsx`; Runtime `tests/codex-app-server-client.test.ts`, `tests/codex-supervisor.test.ts`; retained App `sdk-message-mapper.ts` and its tests.
-  Check: Repeat a source sequence with IDs/timestamps normalized; verify known and unfamiliar notifications, server-request resolution, terminal translation and synthetic secrets at mapping/SSE/persistence boundaries. Map current K-ENGINE-2 and S-1/S-7 coverage without asserting legacy equivalence.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

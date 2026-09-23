@@ -6,15 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-05-01-V3-02** — Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites.
-  Locus: Runtime `packages/core/src/session-store.ts` and its session-store/migration tests; App session routes and clients; historical `frontend/src/lib/harness/session-manager.ts` and canonicalization fixtures.
-  Check: Verify central storage, stable IDs, list/get/update/delete and declared-root behavior, flat and directory legacy cases, duplicates, corrupt canonical records, byte-identical source retention, consumed-source change diagnostics and transcript/thread linkage. Do not count a legacy fixture as live evidence.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-  Depends: DEL-05-01-V3-01 and DEL-03-03-V3-01; verify their current interface evidence before selection. The retired Root DEL-02-11/daemon-schema gate is replaced by the current Runtime storage contract, not by removal of these local prerequisites.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

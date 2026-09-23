@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-06-02-R5-DELIVERY** — Supply live catalog/exposure and permuted-order witnesses, preserve domain roster/stage checks, and resolve any absent App registration through the accepted application-tool interface. P-01 wording is already released; product verification remains open.
-  Locus: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-catalog.ts`, `tests/application-tools.test.ts`, `tests/codex-application-tools.test.ts`; App `frontend/src/lib/harness/tool-pool.ts`; D-APP-132.
-  Check: Verify catalog registration, collisions, schema validation and unknown calls; test permuted input ordering, policy/exposure separation, applicable read-first/domain-stage restrictions and safe metadata. Identify actual App registrations; an available Runtime catalog does not prove those tools are exposed.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 

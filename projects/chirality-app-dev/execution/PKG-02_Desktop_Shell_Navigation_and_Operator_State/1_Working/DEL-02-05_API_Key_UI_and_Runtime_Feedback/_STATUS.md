@@ -19,15 +19,6 @@
   Historical node-F hosted-consent questions are superseded as live subjects by D-APP-127; production S-8 and surviving secret-protection results remain required.
 
 
-
-
-
-
-
-
-- **DEL-02-05-R5-RESIDUALS** — Current production S-8 and sink-by-sink redaction remain required; current typed-error/attachment/retry behavior needs its recorded evidence. Apply the existing Codex custody/policy decisions without a new vote. D-APP-108 Q7 excludes OpenAI/API service-health indicators; D-APP-127 retires local-model-server readiness as a prerequisite. Verify truthful Codex account/authentication state separately. Apply the current four-role instructions and D-APP-131 P06; older posture labels remain historical, with actual role/scope accountability checked. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

@@ -12,11 +12,6 @@
 
 The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-08-03-LIVE** — Verify presentation-neutral taxonomy, root-change reset, consumer parity, stale/disabled target rejection and selector isolation; preserve scope/dispatch authority boundaries.
-  Locus/owner: pipeline-dispatch-contract.ts, task-scope selection and current contextual consumers; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Root-change fixture, parity against retained options and actual consumer, governance integration and /api/project/deliverables contract.
-  Gate: Consumer availability and existing DEL-08-04 delegation interface; no reinstated fixed Pipeline UI.
-
 - **DEL-08-03-VOCAB** — Resolve Scope of Work knowledge-bucket mapping to accepted vocabulary without inventing a new enum.
   Locus/owner: owning TYPES vocabulary/consumer contract; App WORKING_ITEMS coordinates the named owning surface.
   Check/return: Named mapping fixture once source-backed.

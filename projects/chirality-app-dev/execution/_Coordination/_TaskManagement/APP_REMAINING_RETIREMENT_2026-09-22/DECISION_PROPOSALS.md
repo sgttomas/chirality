@@ -1,6 +1,6 @@
 # App Remaining retirement — candidate receiving routes
 
-These are proposed destinations for the exception rows in `ROWS.csv`, not applied edits or human rulings. Preserve a live `_STATUS.md` source entry wherever the named destination or authority remains unresolved. The ordinary SOW-preserved rows still require the owner's disposition of the historical execution detail before removal; their governing obligation does not become complete.
+These are proposed destinations for the exception rows in `ROWS.csv`, not applied edits or human rulings. Preserve a live `_STATUS.md` source entry wherever the named destination or authority remains unresolved. The owner conditionally approved the 42 ordinary SOW-preserved rows and three markers, and their verified live source entries were removed; their governing obligations remain open. This document addresses only the 54 held exceptions.
 
 ## Candidate formal corpus intake: APP-R004
 

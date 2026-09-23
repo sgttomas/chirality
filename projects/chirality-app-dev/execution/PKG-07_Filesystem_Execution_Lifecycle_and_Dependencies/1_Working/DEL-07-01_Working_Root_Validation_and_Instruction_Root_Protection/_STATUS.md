@@ -17,11 +17,6 @@ The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-ke
   Check/return: Live negative root/write/symlink/fail-closed cases, both-layer pin verification and packaged evidence; boot hashing alone is not write prevention.
   Gate: Existing SOW-084; current interface/brief before implementation; no new scope or instruction amendment.
 
-- **DEL-07-01-LIVE** — Complete missing non-directory/unreadable/unwritable validation and consistent root reuse by tree, scan, session and scaffold consumers. Preserve actual conditional Codex enforcement and role/brief authority.
-  Locus/owner: working-root validator and downstream consumers; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: CLM-013 named tests plus live protected-path cases at the chosen policy.
-  Gate: Bounded product brief and independent source review; D-APP-127 affected checks.
-
 
 ## History
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.

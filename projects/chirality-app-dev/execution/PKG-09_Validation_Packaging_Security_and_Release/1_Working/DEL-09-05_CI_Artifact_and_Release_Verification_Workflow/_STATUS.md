@@ -22,16 +22,6 @@ The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-ke
   Check/return: Candidate identity report over every surface or explicit absent result.
   Gate: Record repair and evidence recovery only; no version mutation or release.
 
-- **DEL-09-05-UPDATES** — Maintain the accepted manual/startup/six-hour release-update contract and DEL-02-01 presentation handoff seated in CLM-005.
-  Locus/owner: App updater, scheduler, IPC/provider/controls; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Fixed unauthenticated source, refusal/timeout/version/asset, cadence/cleanup/overlap and explicit browser-handoff tests; CAP-ELECTRON-030 / CAP-SHELL-014 / CAP-SHELL-015.
-  Gate: Existing K-NET-1 and owner direction; no auto-install, restart or publication.
-
-- **DEL-09-05-SECURITY** — Complete current candidate secret/network inspection and release evidence mapping.
-  Locus/owner: CI logs, packaging records and security scanner; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Include Codex/OAuth ceremony fields and current transports, not only legacy key patterns.
-  Gate: Bounded evidence/implementation brief; no credential access.
-
 
 ## History
 - 2026-09-22 — Agent 0 App record closeout: removed completed or non-adopted optional decision entries and aligned current delivery tasks with D-APP-121/127/132. Existing evidence and release gates remain; no product result, lifecycle or approval was promoted.

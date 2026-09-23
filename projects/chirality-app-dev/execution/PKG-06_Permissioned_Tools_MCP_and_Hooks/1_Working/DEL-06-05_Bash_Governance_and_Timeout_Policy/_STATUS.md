@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-06-05-R5-DELIVERY** — Produce live command-denial/timeout/interrupt/output/scope witnesses; implement missing applicable timeout and artifact controls or route an actual scope change through the owning authority. D-APP-68 constants and managed-child protections are not silently waived.
-  Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `tests/codex-supervisor.test.ts`; App retained `frontend/src/lib/harness/tool-shell-policy.ts`, `frontend/src/__tests__/lib/chirality-hooks.test.ts`; Runtime event/artifact owners.
-  Check: Verify denied-never-spawns, actual timeout including maximum override, interruption versus failure, stream labels, output size/preview/artifact metadata, redaction and native-child scope. Preserve unavailable observations and do not transfer historical constant tests into native qualification.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

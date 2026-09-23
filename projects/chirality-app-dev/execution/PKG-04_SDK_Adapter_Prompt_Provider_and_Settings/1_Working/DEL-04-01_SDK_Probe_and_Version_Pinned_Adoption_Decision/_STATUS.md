@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-04-01-R5-DELIVERY** — Produce the SOW-079 App observation/adoption record and requirement-to-S-1–S-8 conformance mapping; recover or run missing distinct live witnesses. Record the historical SDK session/resume/SessionStore and future-provider-criteria omissions without reopening its demonstrator ruling.
-  Locus: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
-  Check: Bind version/protocol/configuration and role observations to the actual packaged candidate; map each surviving K-ENGINE-2 conformance obligation to distinct current checks. Preserve unknown or missing native outcomes and historical partial session/storage results.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

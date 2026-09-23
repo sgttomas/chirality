@@ -8,16 +8,10 @@
 
 ## Remaining
 
-- Complete the current reliance-register matrix and source/test coverage against the manager-applied docs/harness/reliance_boundary_register.md. Check mandatory fields, current Runtime/App loci, all live obligations and candidate-bound results; legacy Section 9 inventory is not live qualification.
-
-- Deliver current Codex conformance and application-tool ordering/policy checks with Runtime; verify managed/native delegation basis, parentage and return/replay evidence. D-APP-132 released P-01; no repeated owner vote remains.
-
-- Repair and verify Runtime structural redaction before every sink, trustworthy human-gate actor enforcement, and ordinary-project instruction/root/proposal protection. App WORKING_ITEMS coordinates the named Runtime owners; current integration-boundary review and affected negative tests gate completion.
-
-
 - Reconcile the PEC seam only after its loop supplies governed DEL-07-05 scope and accepted evidence, then separate App acceptance. D-GOV-43 A2 owns the App service topology; PEC PRD v2 §15 retains no-dual-loop/human-only restrictions. RB-PEC-ADAPTER remains retired current evidence.
 
 Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
+
 
 ## History
 - 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.

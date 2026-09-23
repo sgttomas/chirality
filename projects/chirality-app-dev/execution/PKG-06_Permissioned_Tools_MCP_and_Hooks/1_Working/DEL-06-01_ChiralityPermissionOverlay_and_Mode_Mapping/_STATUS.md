@@ -8,14 +8,6 @@
 
 The Authorization Basis and Directive headers above retain the dated D-APP-19 inspection record; current lifecycle remains as stated, and no new inspection approval follows from this reconciliation.
 
-## Remaining
-
-- **DEL-06-01-R5-DELIVERY** — Complete live permission/request identity and deny-non-execution witnesses; repair any actor/SHA gate enforcement gaps on served application APIs and verify native descendant policy/scope evidence without weakening domain controls.
-  Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `tests/codex-supervisor.test.ts`; App `frontend/src/__tests__/components/live-session-requests.test.tsx`; legacy `frontend/src/lib/harness/permission-overlay.ts` and fixtures.
-  Check: Exercise each supported approval/sandbox combination, deny/accept/cancel/unfamiliar requests, durable decisions, exact request identity, denied non-execution and actor-evidence enforcement. Map current S-1–S-8/conformance evidence rather than require all legacy fixed-mode tests.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

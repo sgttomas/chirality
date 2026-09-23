@@ -11,12 +11,11 @@
 
 - Deliver visible governed-work, draft/decision-support and non-approval-record copy on live shell/dialogue/replay surfaces and fix stale layout metadata. Verify rendered affected journeys against ScopeOfWork.md CLM-009/011/018.
 
-- Produce actual checked-surface boundary-review evidence, with candidate, source, reviewer attribution, date, result and unknowns; manager owns the shared checklist carrier. No personal human review or release acceptance is inferred.
-
 - Future domain notice/operation copy remains gated by its owning staged integration scope and explicit human apply acceptance; compatibility notices do not qualify a live surface.
 
 
 Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
+
 
 ## History
 - 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.

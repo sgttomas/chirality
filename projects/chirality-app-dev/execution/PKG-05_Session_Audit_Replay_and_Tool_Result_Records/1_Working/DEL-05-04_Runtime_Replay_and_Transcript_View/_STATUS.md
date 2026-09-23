@@ -6,19 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-05-04-V3-01** — Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
-  Check: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
-  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-  NOT_SELECTABLE_UNTIL: DEL-05-01-V3-02 lands. Depends: DEL-03-03-V3-01 and DEP-05-04-005/-006 with current Runtime storage/continuity evidence. Retired Root restart/resume acceptance is not a gate.
-
-- **DEL-05-04-V3-02** — Verify the right-panel Session view, read-only label/parent linkage, primary state isolation and the explicit native continuation transition against current UI/native evidence. Viewing history must not transfer draft, attachments or next-turn context.
-  Locus: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Checks: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Gate: affected current App/Runtime interface and independent verification; preserve the existing view/producer dependencies. Owner: WORKING_ITEMS.
-  NOT_SELECTABLE_UNTIL: DEL-02-03-V3-01 lands. Depends: DEL-02-03-V3-01 view switcher, DEL-02-02-V3-03 replay beside the visible primary dialogue, and selected-session-replay-lens.tsx. Verify present evidence before recording these prerequisites satisfied.
-
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
