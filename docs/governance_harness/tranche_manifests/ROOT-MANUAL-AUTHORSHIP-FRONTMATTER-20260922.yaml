@@ -16,9 +16,9 @@ instruction_surface_paths:
 m2_gate:
   authorization: >-
     Ryan Tufts directs, "add these authorship pages as front matter (they can get roman numerals for page numbers)".
-    The source is /Users/ryan/Downloads/PM_Manual_Authorship_and_Preparation_v1.md;
-    its exact SHA-256 and the preserved v4 source hashes are recorded in the
-    internal brief and INPUTS.json. Apply the current manuscript's previously
+    The source is PM_Manual_Authorship_and_Preparation_v1.md; its exact
+    local path, SHA-256, and the preserved v4 source hashes are recorded in
+    the internal BRIEF.md and INPUTS.json. Apply the current manuscript's previously
     directed publication cleanup to the stale acceptance sentence and
     unpublished predecessor-edition citations while preserving substantive
     authorship claims. Create an internal v5 successor in MD/DOCX/PDF with
