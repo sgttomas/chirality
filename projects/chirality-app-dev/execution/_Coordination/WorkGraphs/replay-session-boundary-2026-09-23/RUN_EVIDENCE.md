@@ -15,6 +15,8 @@ Candidate source: `d82568bc1fb09ff2c26ed5cb210605a1b6b538b4` on `codex/app-loop-
 
 `PREMERGE_CHECK_CANONICAL_TMP.json` is the canonical rerun of `frontend-premerge`: exit 0, Section 8 summary PASS (8/8) and report-only Section 9 PASS (16/16). `SECTION8_SUMMARY.json` and `SECTION9_SUMMARY.json` preserve those machine results. The premerge report's SHA-256 is `63d78202070887002202b4170004d38310a1b317469e78404aa4755e85dc2de1`.
 
+The Section 9 summary retains its original temporary log and ignored artifact paths. Their actual bytes are preserved here as `SECTION9_MANIFEST.json` (SHA-256 `6a01eb393e93948a66a19fb5a172c38efd80cbd594f4aad827f67502e410b1b8`), `SECTION9_VITEST.stdout.log` (`ad2e8a3ca6fcf78a02ac87c6dc9a1adf139638888b94a0f9aaf8c96e3ebf77bd`) and empty `SECTION9_VITEST.stderr.log` (`e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). The manifest names the evaluator test files and evidence files in the committed candidate; `INPUTS.sha256` pins the slice's directly consumed source and contract files. The copy changes no result or source identity.
+
 `git diff --check` and the sorted input hash recomputation also passed.
 
 The check runner command was:
