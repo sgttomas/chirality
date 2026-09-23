@@ -86,6 +86,13 @@ def is_live_surface(rel_path: Path) -> bool:
         return True
 
     if top in {"projects", "domains"}:
+        if (
+            len(rel_path.parts) == 7
+            and rel_path.parts[2:5] == (
+                "execution", "_Coordination", "WorkGraphs")
+            and rel_path.name == "WORK_GRAPH.md"
+        ):
+            return True
         if len(rel_path.parts) >= 4 and rel_path.parts[2] == "init" and rel_path.suffix == ".md":
             return True
         if (
