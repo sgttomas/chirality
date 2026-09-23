@@ -1,0 +1,49 @@
+--- a/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md
+@@ -163,0 +164 @@
++> | Current P0 enforcement mapping | Source-and-negative-check review | For each P0 reliance control, record the current App/Runtime enforcement point and a current negative test or explicit open gap. Include ordinary instruction-root protection with DEL-07-01 and selected-policy execution with Runtime; historical SDK tests qualify only their recorded path. |
+--- a/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/ScopeOfWork.md
+@@ -175,0 +176 @@
++> | Current rendered journeys | On the current candidate, inspect shell, dialogue and replay for visible governed-work, draft/decision-support and non-approval-record copy; record each checked surface and result. |
+--- a/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md
+@@ -109,0 +110,2 @@
++7. The visual shell uses the Stone palette and left-panel wordmark with measured text/control contrast; verify current composer-context copy for folder, active role, permissions, delegation and rung against D-GOV-43/D-APP-127 and the four-role contract. The older target-spec §10 role/consent labels do not supersede that contract.
++8. The navigator lists sessions across registered known roots with each chat's folder and derives the active provider root from the session's registered project identity. `knownRoots` is local convenience state, not a new Runtime root field.
+--- a/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md
+@@ -149,0 +150,4 @@
++
++D-APP-108 Q4a/b seated viewer detail: the right panel shows one view at a time, with a bounded clickable/expandable file tree and document viewer. In-panel text, Markdown, code and CSV reads stop at 10 MB; PDF uses the in-panel renderer, while DOCX/XLSX/PPTX use macOS Quick Look with Open in default app. PDF and Quick Look previews are outside the text cap. The PDF path remains subject to D-APP-121 isolated proof and no publication/acceptance follows from this clause.
++
++D-APP-108 Q2 seated reference detail: replies and Activity show source path/range chips. Viewer Ask and Attach and composer Quote use existing attachment controls; Quote sends `clientType: 'quote'` with source path and range, adding no harness event type.
+--- a/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md
+@@ -179,0 +180,2 @@
++
++Current method/selection detail for REQ-001/003: account actions use Codex `account/login/start`, `account/login/cancel` and `account/logout` through the App-owned Runtime service; model and reasoning effort are selected per turn. This adds no App credential custody or policy veto.
+--- a/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/ScopeOfWork.md
+@@ -201 +201 @@
+-Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay.
++Required current checks: Verify malformed tails, append order, all four terminal outcomes, old/additive event versions, full notifications and server requests, structural redaction, oversized payload references and proposal offered/accepted/declined replay. With the actual SOW-082 producer, verify once-per-chat-per-trigger offer behavior and replay of a declined trigger through append-only storage and presentation; retain missing producer/results as open evidence.
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/ScopeOfWork.md
+@@ -140,0 +141,2 @@
++Current RQ-016 coverage detail: map surviving Section 9 descendant-class, role-attribution and cancellation-cleanup families to current Runtime/Codex tests. Label first-adapter mapper, `settingsSources`, overlay and SDK-hook IDs compatibility-only; preserve full event information, sink-specific redaction, terminal truth and report-only pass/fail status.
++
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md
+@@ -191,0 +192 @@
++> | Current secret-field families | Run synthetic-secret fixtures for account, approval, thread, policy and tool-activity fields at each App/Runtime event, log, artifact and renderer sink; record candidate, fixture bytes, result and unavailable sinks. | Candidate-bound sink matrix; missing results remain open |
+--- a/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/ScopeOfWork.md
+@@ -136,0 +137,2 @@
++For the already authorized staged profile/registry interface, verify current Codex/Runtime composition and deterministic invalid-profile rejection before exposure with a named current-path witness. This does not authorize apply-class exposure, protected writes or integration-level advancement; tier-0/F-APP-3 gates remain.
++
+--- a/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md
+@@ -149,0 +150,2 @@
++
++Coordinate proposal-record protection checks with DEL-10-02: use the same accepted path/glob policy for direct protected-path denial and agent-writable proposal/review allowance fixtures, while retaining `status = proposal_only`. This is an interface/evidence duty, not a claim that the path policy or fixtures are already accepted or that operation apply is in scope.
