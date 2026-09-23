@@ -1,0 +1,93 @@
+{
+  "catalog_local_links": [
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v5.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v2.html",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_manual_authorship_frontmatter/",
+      "exists": true
+    },
+    {
+      "href": "requirements.txt",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_manual_publication_edit/",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "exists": true
+    },
+    {
+      "href": "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+      "exists": true
+    },
+    {
+      "href": "../../plans/evidence/2026-09-22_manual_formats/",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "exists": true
+    },
+    {
+      "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "exists": true
+    },
+    {
+      "href": "MANUAL_REVIEW_v1.md",
+      "exists": true
+    }
+  ],
+  "catalog_local_link_count": 21,
+  "missing": [],
+  "user_manual_crosslink_count": 2,
+  "inverse_user_manual_hash": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+  "result": "PASS"
+}

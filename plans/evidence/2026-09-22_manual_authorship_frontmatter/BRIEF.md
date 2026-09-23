@@ -1,0 +1,13 @@
+# Brief — authorship and preparation front matter
+
+Ryan Tufts directs: “add these authorship pages as front matter (they can get roman numerals for page numbers)”.
+
+Add the supplied Markdown account to a new, internally tracked successor of the current general management manual. Preserve the current text and classic black-serif book design. Put the account before Contents and Preface. Use Roman folios for the front matter (authorship and Contents) and restart Arabic page numbering at the Preface. Preserve the existing v4 outputs; make new v5 Markdown, DOCX, and PDF editions and update the alignment-manual index.
+
+The earlier direction for this unpublished book remains applicable: do not carry a superseded “acceptance outstanding” note or publish reader-facing citations to its own unpublished predecessor editions. Preserve the substantive account of who directed, drafted, examined, and reviewed the work. The new authorship source citations use a distinct A1–A5 label set to avoid confusion with the book’s global numbered references. Keep private authorship/operational evidence in the internal evidence packet and keep the book itself free of production notes.
+
+Accepted material basis: v4 Markdown, DOCX and PDF, the user-supplied authorship Markdown in Downloads, plus the existing reference package already preserved in this checkout and `/tmp/manual-v4-20260922` when available. See `INPUTS.json` for exact source hashes.
+
+Write targets are limited to the v5 book formats, the companion User Manual's cross-reference to the current book edition and matching generated HTML, `docs/alignment-manual/README.md`, this tranche manifest, and this dated evidence directory. Do not change the v4 artifacts, any operating procedure in the User Manual, live role/project/workflow instructions, or operating code. The rendered DOCX/PDF must preserve the cover design, figures, tables, citations, and internal navigation. All normal citations and source histories must remain intelligible after the front matter is added.
+
+Acceptance: semantic parity between the supplied authorship account (including the precisely reconciled passages) and v5 Markdown/DOCX/PDF; unique and working TOC/anchor links; Roman folios in front matter with arabic numbering restarting at Preface; updated final Contents caches; correct metadata; unchanged source-input and v4 hashes; complete visual QA of the new pages and shifted/changed layout, using page-image identity against reviewed v4 pages where appropriate; correct index paths; required Chirality checks for the final PR diff. Independent scope review and required GitHub CI precede merge under standing owner authorization. A merge is not public release or adoption of operating instructions.

@@ -1,0 +1,47 @@
+{
+  "checkout": "/Users/ryan/.codex/worktrees/da43/chirality",
+  "branch": "codex/management-manual-authorship-frontmatter-20260922",
+  "integration_base": "9e7390301527e2e11bf9931e37982459b997ae31",
+  "inputs": {
+    "source_v4_md": {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+      "sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+      "bytes": 471515
+    },
+    "source_v4_docx": {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx",
+      "sha256": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+      "bytes": 286825
+    },
+    "source_v4_pdf": {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf",
+      "sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+      "bytes": 1562096
+    },
+    "supplied_authorship_pages": {
+      "path": "/Users/ryan/Downloads/PM_Manual_Authorship_and_Preparation_v1.md",
+      "sha256": "902ef23039a2d67d3c780a691a7797e6e169fc1d2af70c05f74c542e0c82f16b",
+      "bytes": 9542
+    }
+  },
+  "reviewed_candidate_outputs": {
+    "markdown": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md",
+    "docx": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx",
+    "pdf": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf",
+    "catalog": "docs/alignment-manual/README.md",
+    "tranche_manifest": "docs/governance_harness/tranche_manifests/ROOT-MANUAL-AUTHORSHIP-FRONTMATTER-20260922.yaml"
+  },
+  "superseded_readme_sha256": "e2957e1d54de2fd4a967200a63c1e3b19e7e82a4bf080797e2f83a9d56f10e83",
+  "companion_link_update_source_md_before_sha256": "b365eb9d9390a26f08221da11c32638f9f6966a3665c24cd5c4a1d4f0139a3a2",
+  "companion_link_update_html_before_sha256": "00f3024074e8e66a2057961bde114e8a48c28bfb46583382baf6d02b9c2f9b2c",
+  "companion_renderer_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+  "reviewed_candidate_hashes": {
+    "authorship_candidate_md": "e7f8579110e95f57c618bec304462dc04419b6f48bada9a296404cf8b91f609d",
+    "authorship_candidate_docx": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722",
+    "authorship_candidate_pdf": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+    "companion_md_current": "b365eb9d9390a26f08221da11c32638f9f6966a3665c24cd5c4a1d4f0139a3a2",
+    "companion_html_current": "06af2dacca2f2990b80ed244410a41a0e52443ed865acd25391af0d1a51d8ec3",
+    "readme_current": "d20dba49b40a7e21186ff6330b2ce90cc4f964697c1d1c4efdd6c1d0b94ae779",
+    "tranche_manifest_current": "03d450fa97f6c68e5787b6e090d1ad7b8cba3cd78e289d01a1905c8d10fddeee"
+  }
+}

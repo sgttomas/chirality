@@ -1,0 +1,104 @@
+{
+  "schema": "chirality-editorial-review/v1",
+  "date_local": "2026-09-22",
+  "verdict": "PASS",
+  "reviewer": "/root/authorship_insert_review",
+  "role": "TASK (Type 2)",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native collaboration child",
+  "delegation_performed": false,
+  "host_boundary": "Filesystem access was unrestricted at the host layer; this reviewer stayed read-only except for the two authorized editorial evidence files.",
+  "candidate": {
+    "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md",
+    "sha256": "e7f8579110e95f57c618bec304462dc04419b6f48bada9a296404cf8b91f609d",
+    "coverage": {
+      "authorship_insertion_lines": "10-59",
+      "contents_lines": "60-76",
+      "preface_context": "opening and Reading the manual paragraphs",
+      "global_reference_context": "Selected References [1]-[5]"
+    }
+  },
+  "instructions": [
+    {
+      "path": "AGENTS.md",
+      "origin": "project root",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "activated": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "project role instruction",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "activated": true
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "origin": "local citation target inspected for heading resolution",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "activated": false
+    },
+    {
+      "path": "workflows/create-workflow/WORKFLOW.md",
+      "origin": "local citation target inspected for heading resolution",
+      "sha256": "7d4443b63c474a8727a1391dca2e4c20b3a81a04d344d575d862be8f8536cf10",
+      "activated": false
+    }
+  ],
+  "comparison_sources": [
+    {
+      "path": "/Users/ryan/Downloads/PM_Manual_Authorship_and_Preparation_v1.md",
+      "kind": "user-supplied authorship source",
+      "sha256": "902ef23039a2d67d3c780a691a7797e6e169fc1d2af70c05f74c542e0c82f16b"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/BRIEF.md",
+      "kind": "prior owner direction on removing unpublished-version references and notes-to-self",
+      "sha256": "9b762c70c138de199153772461f04e971002083e5992d738ab51a8f5258c5b3b"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_authorship_frontmatter/BRIEF.md",
+      "kind": "front-matter assignment and cleanup direction",
+      "sha256": "b99f75ec34ec25b66414cac44fa4af61a5b5a675888c19996b00ddd8d4a2a79e"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_authorship_frontmatter/INPUTS.json",
+      "kind": "source identity record",
+      "sha256": "6d0f7175e39f5c4ccda278dc12929ae48ea2bb3dde5532f41e93d01afcee3b56"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operational-review.md",
+      "kind": "internal operational review return",
+      "sha256": "1246896915a2263a1530815b82a03cd49aaaaf9bc3889cc63140371243f591a7"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/book-review-completion.md",
+      "kind": "internal editorial review record",
+      "sha256": "83c5459b37cb8403299da38ab87c0eb0fbc7871deb1bf027a30021b1031711dd"
+    }
+  ],
+  "methods": [
+    "SHA-256 identity checks for candidate, source, active instructions, and relevant evidence records.",
+    "Full supplied-source to extracted-insertion text comparison.",
+    "Manual examination of attribution, claim scope, source-note changes, surrounding Contents/Preface context, and technical-reference voice.",
+    "Targeted marker, edition-reference, anchor, Contents-link, and local source-heading checks."
+  ],
+  "checks": {
+    "substantive_authorship_content_preserved": true,
+    "first_person_credit_or_history_reassigned": false,
+    "stale_acceptance_outstanding_residue": false,
+    "unpublished_predecessor_edition_references_in_insertion": false,
+    "duplicate_conflict_with_global_numeric_references": false,
+    "local_anchors_and_cited_headings_resolve": true,
+    "notes_to_self_or_common_unresolved_markers": false,
+    "surrounding_technical_reference_voice_fits": true
+  },
+  "findings": [],
+  "limits": [
+    "This verifies how the supplied authorship account is represented in the artifact; it does not independently verify private authoring conversations, author decisions, or every historical event asserted.",
+    "No DOCX/PDF layout, full-book prose, or external publication review was performed."
+  ],
+  "writes": [
+    "plans/evidence/2026-09-22_manual_authorship_frontmatter/editorial-review.md",
+    "plans/evidence/2026-09-22_manual_authorship_frontmatter/editorial-review-evidence.json"
+  ]
+}

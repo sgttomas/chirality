@@ -2,7 +2,7 @@
 
 Version 2 · 22 September 2026 · repository source basis `0a258f145eac41a62de02b06f032ccbc183838ec`
 
-An operational companion to [*Project Management for Human–Agent Teams*](Project_Management_for_Human_Agent_Teams_Consolidated_v4.md), for agents developing projects in the Chirality repository.
+An operational companion to [*Project Management for Human–Agent Teams*](Project_Management_for_Human_Agent_Teams_Consolidated_v5.md), for agents developing projects in the Chirality repository.
 
 **Status:** explanatory documentation. This manual supplies navigation, working explanations, and illustrative examples. It does not amend instructions, adopt a workflow, activate project work, change a lifecycle state, accept a product, or authorize release. Follow the actual human direction, applicable adopted instructions, selected method, brief, and host permissions. Recheck the linked live sources when using a later checkout. The project entry sections lead to maintained instructions and pointers. Recover their current targets and later owner directions before selecting work; dated evidence does not supply a standing work queue. [Root entry][root-entry] · [Runtime contract][runtime-contract]
 
@@ -689,7 +689,7 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [spec]: ../SPEC.md
 [types]: ../TYPES.md
 [directive]: ../DIRECTIVE.md
-[human-manual]: Project_Management_for_Human_Agent_Teams_Consolidated_v4.md
+[human-manual]: Project_Management_for_Human_Agent_Teams_Consolidated_v5.md
 [chirality-change]: ../../.agents/skills/chirality-change/SKILL.md
 [root-merge]: ../PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor
 [dgov16]: ../governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md
