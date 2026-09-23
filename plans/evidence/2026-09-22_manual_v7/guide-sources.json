@@ -1,0 +1,770 @@
+{
+  "schema": "chirality-documentation-source-manifest/v1",
+  "date": "2026-09-22",
+  "repository_basis": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91",
+  "supersession": {
+    "prior_unpublished_basis": "df192b2b113625831af57dd03cb4cfc58822318e",
+    "reason": "PR858 merged the development-loop memory/graph amendment during formatting; previous gap assessment and earlier candidate review apply only to their former source hashes.",
+    "current_scope": "Guide revised against merged sources; PM v7 unchanged."
+  },
+  "agent": {
+    "task": "/root/v7_user_guide",
+    "parent": "/root",
+    "role": "WORKING_ITEMS",
+    "type": 1,
+    "delegation": "delegated-harness-native",
+    "delegated_children": 0,
+    "execution_boundary": "Exact instruction-asserted file scope, broad native tools; no mechanical role enforcement claimed."
+  },
+  "scope": "New User Manual v3 Markdown/HTML and guide-* evidence only; v2 preserved. Parent owns book, README, manifest and Git closeout.",
+  "method_context_policy": "Root entry, active WORKING_ITEMS role and chirality-change skill used as instructions. Operational method/project bodies below consulted as source data, not activated workflows or permission grants. Other full role bodies not loaded.",
+  "catalog_identities_inspected": [
+    {
+      "kind": "workflow",
+      "name": "bounded-reconciliation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Perform one bounded documentation and governance closeout after an undertaking's implementation and evidence work, before its final PR."
+    },
+    {
+      "kind": "workflow",
+      "name": "construct-local-work-graph",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Work with the user to establish the intended outcome and route through a project's DAG, then turn the relevant deliverables and current work into an executable local graph."
+    },
+    {
+      "kind": "workflow",
+      "name": "reconciliation",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth."
+    },
+    {
+      "kind": "workflow",
+      "name": "task-management",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Assess supplied unallocated concerns, owner-selected register reviews or explicitly scoped legacy-source retirements, preserving human dispositions and routing work to its owner."
+    }
+  ],
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "kind": "active instruction",
+      "inspection": "full",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "kind": "active role instruction",
+      "inspection": "full",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md",
+      "kind": "selected skill instruction",
+      "inspection": "full; read-only conventions and evidence, no Git mutation",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+      "kind": "prior explanatory documentation",
+      "inspection": "entire transformation input; targeted reading across operating sections",
+      "sha256": "b365eb9d9390a26f08221da11c32638f9f6966a3665c24cd5c4a1d4f0139a3a2",
+      "bytes": 121524
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+      "kind": "manuscript source data",
+      "inspection": "Affected management passages read during original guide work; unchanged hash on new basis; not activated instructions.",
+      "sha256": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032",
+      "bytes": 480183
+    },
+    {
+      "path": "workflows/index.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "kind": "catalog source data",
+      "inspection": "parsed selected descriptors for construct-local-work-graph, bounded-reconciliation, task-management and reconciliation",
+      "sha256": "d00042f47d494a739cd7a45076278ddeea4282e298068ecb25227608823fae19",
+      "bytes": 99472
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "kind": "workflow source data",
+      "inspection": "Full current body read; comparison/documentation only, not workflow execution.",
+      "sha256": "060f7153fb8a1b75825b23a799c58de45b6538b5e95d758f777079925b121c47",
+      "bytes": 7504
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "kind": "workflow resource source data",
+      "inspection": "Full current template.",
+      "sha256": "67eb71ca1c85c63fda82f68d6ea610ad48e109b9a4b0f05a67961f0f79c004d7",
+      "bytes": 4073
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "kind": "workflow source data",
+      "inspection": "Full current body read; comparison/documentation only.",
+      "sha256": "f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738",
+      "bytes": 7238
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "kind": "workflow source data",
+      "inspection": "Full current body; not invoked for intake/review/retirement.",
+      "sha256": "aefe4190ffd1b18cbebd9d7d9c3cfd76b0494bfbb3a89cb1e5b07bf76b6e932f",
+      "bytes": 3402
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "kind": "workflow resource source data",
+      "inspection": "Full current contract.",
+      "sha256": "775148cc1ae65944e7a26b60b04bdeeb0266444c798b04ab06bed7e154e08290",
+      "bytes": 8968
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "kind": "governance source data",
+      "inspection": "Current amendment diff and full affected sections 2, 4, 5, 6, 7; unaffected claim-granularity content retained.",
+      "sha256": "69c5a4bec30288dc1ec265bd64ec56f8e7c0e1ecf82c13e329b258539cefd7b4",
+      "bytes": 16500
+    },
+    {
+      "path": "docs/SPEC.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SPEC.md",
+      "kind": "governance source data",
+      "inspection": "Current amendment diff and focused sections 2, 3, 8 and 9.8 read; overall prospective/adoption qualification retained.",
+      "sha256": "f468e1601c3ccdd42b93a2deade6c08422eef2f99ac3de271d20aae104349a9a",
+      "bytes": 54386
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "kind": "decision source data",
+      "inspection": "full",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "kind": "project instruction source data",
+      "inspection": "Full current amendment diff of deliverable/loop ownership and work selection; other content retained from prior checked basis.",
+      "sha256": "ef79bf154c8c68215327b6fc023ab30c610323d38a2f4ca470b455082f35e5d9",
+      "bytes": 23426
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "Full current body; actual pointer text observed; no project execution.",
+      "sha256": "ae3398c4467e5a4f5b84bbe4e945b901d47e15351fd99f8e28beeb29d4b4c745",
+      "bytes": 8018
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "kind": "project instruction source data",
+      "inspection": "Full current amendment diff of deliverable/loop ownership; other content retained from prior checked basis.",
+      "sha256": "60d9af6492e415f68ba91176530316545ddc25e4c0fddc6fb3192beb10d10100",
+      "bytes": 8832
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "Full current body; actual pointer text observed; no project execution.",
+      "sha256": "ccdf2daf326a169f4296511b31be4daa5e366d54aca9a5e725b79d9f72794492",
+      "bytes": 8008
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "full; no project execution",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "kind": "project loop source data",
+      "inspection": "focused selection and receipt/closeout matches; full bytes match prior source basis",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+      "kind": "maintained renderer",
+      "inspection": "entry, rendering algorithm, validation and command interface; imported/executed unchanged",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "bytes": 21355
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/requirements.txt",
+      "kind": "renderer dependency pins",
+      "inspection": "read by validation setup",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "bytes": 101
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "kind": "inherited evidence",
+      "inspection": "parsed complete manifest and compared every source hash",
+      "sha256": "cc3ab93b973c3c676020c942fb24914a14676677643f1f8e0da3204fccb2aabf",
+      "bytes": 27191
+    },
+    {
+      "path": "docs/TYPES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/TYPES.md",
+      "kind": "governance source data",
+      "inspection": "Current amendment diff: lifecycle, SOW target/execution, REM identity and checking candidacy.",
+      "sha256": "5eb0b809f93a444620bb9fa10263b531a8c140373f84e3022e0fe8e32ddb3b59",
+      "bytes": 36194
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "kind": "governance source data",
+      "inspection": "Current amendment diff: legacy REM and target-versus-execution; unaffected content retained from prior basis.",
+      "sha256": "26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c",
+      "bytes": 11652
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "accepted amendment source data",
+      "inspection": "Full current acceptance, scope, supersession and preservation record.",
+      "sha256": "f934eeec032bc109e4c1180feb74e63c7179e90f087bcd34109d29543e5dc17e",
+      "bytes": 4338
+    },
+    {
+      "path": "docs/templates/MEMORY_TEMPLATE.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/templates/MEMORY_TEMPLATE.md",
+      "kind": "template source data",
+      "inspection": "Full current canonical template via amendment diff.",
+      "sha256": "6a010b0aedc7a26d241963a06894ba37f5c4522945870a045a1566760505b00c",
+      "bytes": 505
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "kind": "skill source data",
+      "inspection": "Current amended memory-filename boundary; not selected as execution skill.",
+      "sha256": "8ae93a30c4fe4dd52b1139c03f72c93f2ea39bd25bb7e3b144f965af313da444",
+      "bytes": 2866
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/references/scaffold-contract.md",
+      "kind": "skill resource source data",
+      "inspection": "Full current scaffold contract; no scaffold execution.",
+      "sha256": "316b5f515864ec51fbc46424eed6c3fdf9cb6552f61f08d09b3731cb90aca5c4",
+      "bytes": 2928
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/method.md",
+      "kind": "workflow resource source data",
+      "inspection": "Full current method including helper coverage/limits.",
+      "sha256": "7f9e0d5ea7c2b74e7148faf3d2a35efc6ddd0552efd4b577a1c56895f75fe2f8",
+      "bytes": 7066
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/contract.md",
+      "kind": "workflow resource source data",
+      "inspection": "Current amendment diff: graph execution, obligation account, legacy census/pinning.",
+      "sha256": "51367ee413492232439e1453826790eae2b6f6cd3eed2a1a0ab080face78016f",
+      "bytes": 11077
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/method.md",
+      "kind": "workflow resource source data",
+      "inspection": "Current amendment diff: repair/backcheck and local-graph historical accounting.",
+      "sha256": "34bbdd8d9d38f7f7ad3bace7a39c1e1e0d0dc5f8f7f0ed4a03209fa3c6419e84",
+      "bytes": 10170
+    },
+    {
+      "path": "workflows/scope-of-work/resources/representation-migration.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/representation-migration.md",
+      "kind": "workflow resource source data",
+      "inspection": "Current complete profile, including revised target-versus-execution clause.",
+      "sha256": "434592526c10c16da05cbd356becad0957e86e2ace09c9218dec4e0ef8616729",
+      "bytes": 2648
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/SPEC.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/docs/SPEC.md",
+      "kind": "project semantics source data",
+      "inspection": "Current amendment diff of Remaining, checking and memory.",
+      "sha256": "374fc8b99c250426dc6025366fcf7a591dff62df5d3c9549bf79da9f847710d9",
+      "bytes": 56629
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "project notice source data",
+      "inspection": "Full current notice; publication/adoption and retirement limits.",
+      "sha256": "4a93b35287244a9e9780a86ef263e1a89dc440e6f0d615e5d6f3f9e8ffa36299",
+      "bytes": 2028
+    },
+    {
+      "path": "projects/chirality-piping/docs/TYPES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/docs/TYPES.md",
+      "kind": "project semantics source data",
+      "inspection": "Current amendment diff of checking candidacy and pinned criteria.",
+      "sha256": "28bc8b6a827b91a28c5e62f2c3b9d1807db136f4da6fb1222c8852176c903c7f",
+      "bytes": 41107
+    },
+    {
+      "path": "projects/chirality-piping/docs/CHECKING_ENTRY_PROFILES.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/docs/CHECKING_ENTRY_PROFILES.md",
+      "kind": "project profile source data",
+      "inspection": "Current amendment diff of candidate-bound production obligation basis.",
+      "sha256": "2a4a1b942643d41aec3ab3a0f581d0eae365b3e3769ac51abc7bdd70559f7493",
+      "bytes": 1084
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "project notice source data",
+      "inspection": "Full current notice; publication/adoption and retirement limits.",
+      "sha256": "3671ff545a55de29cf0a507c91c50dff51c7865db9aef133e6ce55b184080904",
+      "bytes": 2025
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "project notice source data",
+      "inspection": "Full current notice; explicitly not Runtime adoption or product instruction change.",
+      "sha256": "8a4d80798be2ea65befe38a6b163c8a4423da39b2f97ce9ab9d7b29a673cf816",
+      "bytes": 1405
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "resolved_path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "kind": "project notice source data",
+      "inspection": "Full current notice; explicitly not PEC adoption or selection migration.",
+      "sha256": "545092c1841a55766fd58932216b852db43c3a2663d61125e317140821a35d5e",
+      "bytes": 1371
+    }
+  ],
+  "inherited_v2_source_comparison": {
+    "manifest": "plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+    "all_sources_unchanged": false,
+    "count": 52,
+    "unchanged_count": 37,
+    "changed_count": 15,
+    "all_changes_in_reviewed_amendment": true,
+    "sources": [
+      {
+        "path": "AGENTS.md",
+        "prior_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+        "current_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "agents/AGENT_WORKING_ITEMS.md",
+        "prior_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+        "current_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "agents/registry.json",
+        "prior_sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+        "current_sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+        "prior_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+        "current_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/index.json",
+        "prior_sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+        "current_sha256": "d00042f47d494a739cd7a45076278ddeea4282e298068ecb25227608823fae19",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+        "prior_sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+        "current_sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "docs/DECOMPOSITION_STANDARD.md",
+        "prior_sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+        "current_sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/project-decomp/resources/contract.md",
+        "prior_sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+        "current_sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/project-decomp/resources/method.md",
+        "prior_sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+        "current_sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/software-decomp/resources/contract.md",
+        "prior_sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+        "current_sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/software-decomp/resources/method.md",
+        "prior_sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+        "current_sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/project-setup/WORKFLOW.md",
+        "prior_sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+        "current_sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/project-setup/resources/contract.md",
+        "prior_sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+        "current_sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": ".agents/skills/preparation/SKILL.md",
+        "prior_sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+        "current_sha256": "8ae93a30c4fe4dd52b1139c03f72c93f2ea39bd25bb7e3b144f965af313da444",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+        "prior_sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+        "current_sha256": "26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/scope-of-work/WORKFLOW.md",
+        "prior_sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+        "current_sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/scope-of-work/resources/brief.md",
+        "prior_sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+        "current_sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/scope-of-work/resources/tools.md",
+        "prior_sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+        "current_sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/scope-of-work/resources/checks.md",
+        "prior_sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+        "current_sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+        "prior_sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+        "current_sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+        "prior_sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+        "current_sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/dependency-extract/WORKFLOW.md",
+        "prior_sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+        "current_sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/audit-dep-closure/WORKFLOW.md",
+        "prior_sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+        "current_sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/audit-dep-closure/resources/contract.md",
+        "prior_sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+        "current_sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/scc-resolution-case/WORKFLOW.md",
+        "prior_sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+        "current_sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+        "prior_sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+        "current_sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+        "prior_sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+        "current_sha256": "060f7153fb8a1b75825b23a799c58de45b6538b5e95d758f777079925b121c47",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+        "prior_sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+        "current_sha256": "f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/reconciliation/WORKFLOW.md",
+        "prior_sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+        "current_sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "workflows/reconciliation/resources/contract.md",
+        "prior_sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+        "current_sha256": "51367ee413492232439e1453826790eae2b6f6cd3eed2a1a0ab080face78016f",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/reconciliation/resources/method.md",
+        "prior_sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16",
+        "current_sha256": "34bbdd8d9d38f7f7ad3bace7a39c1e1e0d0dc5f8f7f0ed4a03209fa3c6419e84",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+        "prior_sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+        "current_sha256": "69c5a4bec30288dc1ec265bd64ec56f8e7c0e1ecf82c13e329b258539cefd7b4",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/task-management/WORKFLOW.md",
+        "prior_sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+        "current_sha256": "aefe4190ffd1b18cbebd9d7d9c3cfd76b0494bfbb3a89cb1e5b07bf76b6e932f",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/task-management/resources/contract.md",
+        "prior_sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+        "current_sha256": "775148cc1ae65944e7a26b60b04bdeeb0266444c798b04ab06bed7e154e08290",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/task-management/resources/method.md",
+        "prior_sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+        "current_sha256": "7f9e0d5ea7c2b74e7148faf3d2a35efc6ddd0552efd4b577a1c56895f75fe2f8",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "workflows/dbm-publisher/WORKFLOW.md",
+        "prior_sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+        "current_sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "projects/chirality-app-dev/AGENTS.md",
+        "prior_sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+        "current_sha256": "ef79bf154c8c68215327b6fc023ab30c610323d38a2f4ca470b455082f35e5d9",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+        "prior_sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+        "current_sha256": "ae3398c4467e5a4f5b84bbe4e945b901d47e15351fd99f8e28beeb29d4b4c745",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "projects/chirality-piping/AGENTS.md",
+        "prior_sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+        "current_sha256": "60d9af6492e415f68ba91176530316545ddc25e4c0fddc6fb3192beb10d10100",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+        "prior_sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+        "current_sha256": "ccdf2daf326a169f4296511b31be4daa5e366d54aca9a5e725b79d9f72794492",
+        "unchanged": false,
+        "treatment": "Changed in PR858; affected clauses re-examined for this guide."
+      },
+      {
+        "path": "projects/chirality-runtime/AGENTS.md",
+        "prior_sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+        "current_sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+        "prior_sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+        "current_sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "projects/pec/AGENTS.md",
+        "prior_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+        "current_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "projects/pec/loop/LOOP_INIT.md",
+        "prior_sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+        "current_sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "tools/scope_of_work/id_catalog.json",
+        "prior_sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+        "current_sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "tools/scope_of_work/validate_scope_of_work.py",
+        "prior_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+        "current_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "tools/scope_of_work/derive_review_checklist.py",
+        "prior_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+        "current_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "tools/taskmgmt/taskmgmt.py",
+        "prior_sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+        "current_sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+        "prior_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+        "current_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+        "prior_sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+        "current_sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "/tmp/chirality-v3-evaluation/method-review.md",
+        "prior_sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+        "current_sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      },
+      {
+        "path": "/tmp/chirality-v3-evaluation/completion-review.md",
+        "prior_sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+        "current_sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+        "unchanged": true,
+        "treatment": "Retained previous checked content; no new execution claim."
+      }
+    ],
+    "limit": "Unchanged sources preserve the previous checked operating content; affected changed clauses were re-read. No new example-command execution or project census is claimed."
+  },
+  "project_navigation_observations": [
+    {
+      "project": "chirality-app-dev",
+      "pointer_source": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "pointer_value": "none selected for a successor undertaking.",
+      "target_exists": null,
+      "limit": "No successor selected by this header; this is not prior-program completion or absence of in-flight work. No project-state census/selection performed."
+    },
+    {
+      "project": "chirality-piping",
+      "pointer_source": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "pointer_value": "none selected for a successor undertaking.",
+      "target_exists": null,
+      "limit": "No successor selected by this header; this is not prior-program completion or absence of in-flight work. No project-state census/selection performed."
+    }
+  ],
+  "limits": [
+    "Manuscript is source data, not live authority; accepted amendment is the source for changed instructions.",
+    "Receiving-loop adoption, authority-corpus/contract-mirror repinning and individual legacy Remaining dispositions are not inferred from publication.",
+    "No browser visual examination: prior local-HTML URL-policy denial respected.",
+    "No project execution, instruction amendment, lifecycle/acceptance/release act, Git mutation or external communication."
+  ]
+}

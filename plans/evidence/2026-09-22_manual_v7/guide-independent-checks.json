@@ -1,0 +1,933 @@
+{
+  "schema": "chirality-documentation-independent-checks/v1",
+  "recorded_at": "2026-09-23T03:42:05.172262+00:00",
+  "reviewer": "/root/v3_guide_review",
+  "source": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+  "source_sha256": "ad90fc91497248ad88d283d1d84d381f9c21e65934726cd579924b5512a09320",
+  "html": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+  "html_sha256": "0e5a14c6fd5ae379dc9bdc03b6c9468e6c86ec14f2daddfeb49810bee965d0b0",
+  "basis_revision": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91",
+  "result": "PASS",
+  "supersedes": "Prior independent checks on a80fc0e\u2026 / 93810e\u2026 at df192b2b\u2026; source amendment #858 required affected semantic review and regenerated HTML.",
+  "checks": {
+    "source_html_semantic_parity": {
+      "result": "PASS",
+      "canonical_events": 4237,
+      "method": "Independent pinned markdown-it-py rendering and ordered tag/attribute/text comparison to saved article; omit generated heading IDs and table wrapper divs only."
+    },
+    "saved_html_matches_maintained_renderer": {
+      "result": "PASS",
+      "basis_date": "2026-09-22",
+      "basis_revision": "b3e2ce4ec74e01d6f393fc0bc069699bb079df91"
+    },
+    "links": {
+      "result": "PASS",
+      "unique_local_targets_with_fragments": 137,
+      "fragment_targets": 49,
+      "external_links_not_fetched": 0,
+      "broken": [],
+      "unique_ids": 58
+    },
+    "source_fingerprint": {
+      "result": "PASS",
+      "matches": true
+    },
+    "guide_source_manifest": {
+      "result": "PASS",
+      "sources": 40
+    },
+    "inherited_v2_source_comparison": {
+      "result": "PASS",
+      "count": 52,
+      "unchanged_count": 37,
+      "changed_count": 15,
+      "author_comparison_matches": true,
+      "limit": "Hashes verify source identity; semantic inspection scope is separately recorded."
+    },
+    "live_graph_pointer_navigation": [
+      {
+        "project": "chirality-app-dev",
+        "actual_pointer_text": "none selected for a successor undertaking.",
+        "named_in_guide": true,
+        "interpretation": "No successor selected; no inference of prior-program completion or adoption.",
+        "graph_histories_reaudited": false
+      },
+      {
+        "project": "chirality-piping",
+        "actual_pointer_text": "none selected for a successor undertaking.",
+        "named_in_guide": true,
+        "interpretation": "No successor selected; no inference of prior-program completion or adoption.",
+        "graph_histories_reaudited": false
+      }
+    ]
+  },
+  "limits": [
+    "No browser/visual QA; retained renderer/CSS and source-level content/navigation checks only.",
+    "No Git, network, product execution, full repository audit, workflow activation, instruction edits or project adoption.",
+    "Link target reads and inherited-source hashing do not imply full semantic rereading."
+  ],
+  "inherited_v2_source_hashes": [
+    {
+      "path": "AGENTS.md",
+      "prior_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "current_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "unchanged": true
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "prior_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "current_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "unchanged": true
+    },
+    {
+      "path": "agents/registry.json",
+      "prior_sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "current_sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "unchanged": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "prior_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "current_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/index.json",
+      "prior_sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "current_sha256": "d00042f47d494a739cd7a45076278ddeea4282e298068ecb25227608823fae19",
+      "unchanged": false
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "prior_sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "current_sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "unchanged": true
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "prior_sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "current_sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "prior_sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "current_sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "prior_sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "current_sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "prior_sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "current_sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "prior_sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "current_sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "prior_sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "current_sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "prior_sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "current_sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "prior_sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "current_sha256": "8ae93a30c4fe4dd52b1139c03f72c93f2ea39bd25bb7e3b144f965af313da444",
+      "unchanged": false
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "prior_sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "current_sha256": "26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "prior_sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "current_sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "prior_sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "current_sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "prior_sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "current_sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "prior_sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "current_sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "prior_sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "current_sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "prior_sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "current_sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "prior_sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "current_sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/audit-dep-closure/WORKFLOW.md",
+      "prior_sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+      "current_sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "prior_sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+      "current_sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "prior_sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+      "current_sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9",
+      "unchanged": true
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "prior_sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "current_sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "prior_sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "current_sha256": "060f7153fb8a1b75825b23a799c58de45b6538b5e95d758f777079925b121c47",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "prior_sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "current_sha256": "f3c777ee373bfb81b1e69ae31ca0787053d3c73505f1ccc96fbd8c34a6fca738",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "prior_sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "current_sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "unchanged": true
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "prior_sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+      "current_sha256": "51367ee413492232439e1453826790eae2b6f6cd3eed2a1a0ab080face78016f",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "prior_sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16",
+      "current_sha256": "34bbdd8d9d38f7f7ad3bace7a39c1e1e0d0dc5f8f7f0ed4a03209fa3c6419e84",
+      "unchanged": false
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "prior_sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "current_sha256": "69c5a4bec30288dc1ec265bd64ec56f8e7c0e1ecf82c13e329b258539cefd7b4",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "prior_sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "current_sha256": "aefe4190ffd1b18cbebd9d7d9c3cfd76b0494bfbb3a89cb1e5b07bf76b6e932f",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "prior_sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "current_sha256": "775148cc1ae65944e7a26b60b04bdeeb0266444c798b04ab06bed7e154e08290",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "prior_sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+      "current_sha256": "7f9e0d5ea7c2b74e7148faf3d2a35efc6ddd0552efd4b577a1c56895f75fe2f8",
+      "unchanged": false
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "prior_sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+      "current_sha256": "d97080c26e02cb4ada76312b91f6bd224b72cd1b88f6c2e60214efeca260d683",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "prior_sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "current_sha256": "ef79bf154c8c68215327b6fc023ab30c610323d38a2f4ca470b455082f35e5d9",
+      "unchanged": false
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "prior_sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "current_sha256": "ae3398c4467e5a4f5b84bbe4e945b901d47e15351fd99f8e28beeb29d4b4c745",
+      "unchanged": false
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "prior_sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "current_sha256": "60d9af6492e415f68ba91176530316545ddc25e4c0fddc6fb3192beb10d10100",
+      "unchanged": false
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "prior_sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "current_sha256": "ccdf2daf326a169f4296511b31be4daa5e366d54aca9a5e725b79d9f72794492",
+      "unchanged": false
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "prior_sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "current_sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "prior_sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "current_sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "unchanged": true
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "prior_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "current_sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "unchanged": true
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "prior_sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "current_sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "unchanged": true
+    },
+    {
+      "path": "tools/scope_of_work/id_catalog.json",
+      "prior_sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+      "current_sha256": "7a1f8a1251147f7134c50058d633bb242979d2955285ce4a146cc886220be757",
+      "unchanged": true
+    },
+    {
+      "path": "tools/scope_of_work/validate_scope_of_work.py",
+      "prior_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "current_sha256": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+      "unchanged": true
+    },
+    {
+      "path": "tools/scope_of_work/derive_review_checklist.py",
+      "prior_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+      "current_sha256": "bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109",
+      "unchanged": true
+    },
+    {
+      "path": "tools/taskmgmt/taskmgmt.py",
+      "prior_sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+      "current_sha256": "9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "prior_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+      "current_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+      "unchanged": true
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+      "prior_sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+      "current_sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+      "unchanged": true
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/method-review.md",
+      "prior_sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+      "current_sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+      "unchanged": true
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/completion-review.md",
+      "prior_sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+      "current_sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+      "unchanged": true
+    }
+  ],
+  "local_targets": [
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "fragment": ""
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "fragment": ""
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "fragment": ""
+    },
+    {
+      "path": "AGENTS.md",
+      "fragment": ""
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "fragment": ""
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "fragment": ""
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "fragment": ""
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "fragment": ""
+    },
+    {
+      "path": "agents/registry.json",
+      "fragment": ""
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "fragment": "531-merge-gate-policy--the-d-8-successor"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/SPEC.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/TYPES.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "1-use-the-guide-at-the-right-scale"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "10-commission-and-coordinate-bounded-work"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "11-implement-verify-review-and-integrate"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "12-reconcile-the-records-with-the-result"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "13-handle-decisions-change-and-unresolved-concerns"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "14-enter-chirality-app-development"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "15-enter-piping-development"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "16-enter-runtime-development"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "17-enter-pec-development"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "18-recover-hand-off-and-close-an-undertaking"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "19-create-or-improve-reusable-methods"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "2-enter-or-resume-an-undertaking"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "20-worked-operational-examples"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "21-source-map-and-terminology"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "3-choose-responsibilities-and-execution-resources"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "4-read-paths-records-and-authority"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "5-understand-the-development-route"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "6-form-the-basis-decompose-and-set-up"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "7-work-from-deliverable-contracts"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "8-read-dependencies-and-resolve-cycles"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "9-construct-and-traverse-a-local-work-graph"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "app"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "authoring"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "change"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "contents"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "delegation"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "deliverables"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "dependencies"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "entry"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "examples"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "formation"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "implementation"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "local-graph"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "manual-content"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "manual-top"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "memory-runs"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "pec"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "phases"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "piping"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "reconciliation"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "records"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "recovery"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "roles"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "runtime"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "sources"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "task-management"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "use-the-guide"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html",
+      "fragment": "v7-adoption"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "fragment": ""
+    },
+    {
+      "path": "docs/templates/MEMORY_TEMPLATE.md",
+      "fragment": ""
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "fragment": ""
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "fragment": ""
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json",
+      "fragment": ""
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/guide-source-comparison.md",
+      "fragment": ""
+    },
+    {
+      "path": "plans/evidence/2026-09-22_manual_v7/guide-sources.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-piping/package.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/chirality-runtime/software-workflow.json",
+      "fragment": ""
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "fragment": ""
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "fragment": ""
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "fragment": ""
+    },
+    {
+      "path": "tools/practitioner_harness/README.md",
+      "fragment": ""
+    },
+    {
+      "path": "tools/software_workflow/run_registered_checks.py",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/create-workflow/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/index.json",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "fragment": ""
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "fragment": ""
+    }
+  ]
+}

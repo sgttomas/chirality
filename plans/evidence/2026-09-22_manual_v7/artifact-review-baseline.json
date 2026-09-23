@@ -1,0 +1,206 @@
+{
+  "stage": "baseline; final v7 formats pending",
+  "execution": {
+    "mechanism": "delegated-harness-native descendant via collaboration.spawn_agent",
+    "parent": "/root",
+    "task": "/root/v7_artifact_review",
+    "role": "TASK Type 2",
+    "descendants": 0,
+    "publication_writes": 0,
+    "git_operations": 0,
+    "network_operations": 0,
+    "writes_restricted_to": [
+      "artifact-review.md",
+      "artifact-review-*.json"
+    ]
+  },
+  "instructions": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/SKILL.md",
+      "sha256": "3154ace095b79bace582d7dc53c7744a40f835fe762726220708bde2360749aa"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/read_review.md",
+      "sha256": "3345256289dfe6e4c77a59e26ba0ef9f781296a9633e5769a88090c1ac24ee83"
+    },
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/documents/26.904.11930/skills/documents/tasks/accessibility_a11y.md",
+      "sha256": "de0497cb7a985230f1242bd5431c83bbc4e991936ef0ce55b2586689c52ee116"
+    }
+  ],
+  "brief": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/BRIEF.md",
+    "sha256": "76c2619ea5af3d3f4b6ffd3bd5e210a8caaa59299792dd3763856d0a4fc768e7"
+  },
+  "source": {
+    "path": "/Users/ryan/Downloads/Project_Management_for_Human_Agent_Teams_Consolidated_v6 2.md",
+    "sha256": "1a89ea0fc5ace28f8593ad50a30229bc2229376adecc03599549cf41fcaddce3"
+  },
+  "approved_authorship": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_v7/approved-authorship.md",
+    "sha256": "b7c5900558bd6cdcc44963c1b68358063ec893b9b0e7e81a8c2546b1ac115d57"
+  },
+  "v7_markdown": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md",
+    "sha256": "b9ad114c00a689b28894295b42b1d039edf33a6716d83b5bc785a43b6ea97476",
+    "checks": {
+      "approved_authorship_exact": true,
+      "source_prefix_exact": true,
+      "body_from_preface_exact": true,
+      "contents_and_body_equal_after_author_label_change": true
+    }
+  },
+  "v5_docx": {
+    "sha256": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722",
+    "bookmarks": 300,
+    "duplicate_bookmarks": [],
+    "unresolved_anchors": [],
+    "tables": 76,
+    "data_tables_with_header": 14,
+    "unheaded_tables": 62,
+    "all_unheaded_tables_are_single_cell_containers": true,
+    "figure_captions": 32,
+    "image_alt": [
+      "Figure 1.1. An illustrative dependency graph for the editor project."
+    ],
+    "language": [
+      "en-US"
+    ],
+    "mirror_margins": false,
+    "comments_parts": [],
+    "tracked_changes": 0
+  },
+  "v5_pdf": {
+    "sha256": "dac39dc716c0510cddf5a447506d20b730efb5c2d4410937ce544aa26e8031da",
+    "pages": 165,
+    "metadata": {
+      "/Title": "Project Management for Human–Agent Teams",
+      "/Author": "Ryan Tufts",
+      "/Subject": "A Practical Manual",
+      "/Keywords": "project, management, human-agent, teams, PRD, DBM, conceptual, FEED",
+      "/Creator": "Writer",
+      "/Producer": "LibreOfficeDev 26.8.0.0.alpha0 (AARCH64)",
+      "/CreationDate": "D:20260922182558-06'00'"
+    },
+    "tagged": true,
+    "marked": true,
+    "language": "en-US",
+    "outlines": 267,
+    "has_page_labels": false,
+    "fonts": {
+      "/BAAAAA+LiberationSerif": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/CAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/DAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/EAAAAA+LiberationSerif": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/FAAAAA+LiberationSerif": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/GAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/HAAAAA+LiberationSerif": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/IAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/JAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/KAAAAA+LiberationSerif-Italic": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/LAAAAA+LiberationMono": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/MAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/NAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/OAAAAA+LiberationSerif-Bold": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/PAAAAA+LiberationSerif-Italic": {
+        "embedded": true,
+        "unicode_mapping": true
+      },
+      "/QAAAAA+LiberationMono": {
+        "embedded": true,
+        "unicode_mapping": true
+      }
+    },
+    "media_box": [
+      0,
+      0,
+      486,
+      666
+    ],
+    "trim_box_explicit": false,
+    "bleed_box_explicit": false,
+    "output_intents": false
+  },
+  "source_figure": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/assets/Figure_1_1.png",
+    "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+    "equal_rgb_channels": true
+  },
+  "artifact_gaps": {
+    "repair_now": [
+      "Add viewer page labels matching printed folios",
+      "Bundle Markdown image asset with standalone Markdown distribution"
+    ],
+    "optional": [
+      "List of figures/specimens",
+      "Analytical index",
+      "Publication/imprint page with author-approved facts",
+      "Full screen-reader and semantic reading-order validation"
+    ],
+    "conditional_print": [
+      "Printer-specified trim and bleed/output requirements",
+      "Mirrored binding margin and recto/verso design",
+      "Separate cover/spine/back-cover artwork"
+    ]
+  },
+  "limits": [
+    "No substantive management-content review",
+    "No PDF/UA compliance claim",
+    "No fresh review of every v5 page",
+    "No public source/network availability validation"
+  ]
+}

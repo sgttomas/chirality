@@ -1,0 +1,467 @@
+{
+  "source_md_sha256": "0aafefb12e9aa728592fb9e5b268ec4c9fba51d61401bb11bef8613e7f095032",
+  "reference_docx_sha256": "73cf67dea870ebfbfccb903f1b0c4c275b5d3f4770f48f0ce2cc83f2990d2722",
+  "docx_sha256": "ca46b81872f4ad9e24ee7311fa0d0af1579f74ac0aa6b41f89f931a02ee4abe1",
+  "old_body_components": 1299,
+  "new_body_components": 1304,
+  "authorship_components": 8,
+  "toc_entries": 89,
+  "modified_package_parts": [
+    "word/document.xml",
+    "word/_rels/document.xml.rels"
+  ],
+  "body_edit_groups": [
+    {
+      "operation": "replace",
+      "old_lines": [
+        100,
+        100
+      ],
+      "new_lines": [
+        66,
+        66
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        331,
+        331
+      ],
+      "new_lines": [
+        297,
+        297
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        429,
+        429
+      ],
+      "new_lines": [
+        395,
+        395
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        457,
+        468
+      ],
+      "new_lines": [
+        423,
+        434
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        486,
+        492
+      ],
+      "new_lines": [
+        452,
+        458
+      ]
+    },
+    {
+      "operation": "insert",
+      "old_lines": [
+        1710,
+        null
+      ],
+      "new_lines": [
+        1676,
+        1676
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        1718,
+        1718
+      ],
+      "new_lines": [
+        1686,
+        1686
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        1777,
+        1777
+      ],
+      "new_lines": [
+        1745,
+        1745
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        1812,
+        1812
+      ],
+      "new_lines": [
+        1780,
+        1780
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        1816,
+        1816
+      ],
+      "new_lines": [
+        1784,
+        1784
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        1919,
+        1919
+      ],
+      "new_lines": [
+        1887,
+        1887
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2251,
+        2251
+      ],
+      "new_lines": [
+        2219,
+        2219
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2255,
+        2257
+      ],
+      "new_lines": [
+        2223,
+        2225
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2263,
+        2263
+      ],
+      "new_lines": [
+        2231,
+        2231
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2269,
+        2269
+      ],
+      "new_lines": [
+        2237,
+        2237
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2285,
+        2285
+      ],
+      "new_lines": [
+        2253,
+        2253
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2313,
+        2313
+      ],
+      "new_lines": [
+        2281,
+        2281
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2325,
+        2325
+      ],
+      "new_lines": [
+        2293,
+        2293
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2339,
+        2339
+      ],
+      "new_lines": [
+        2307,
+        2307
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2408,
+        2408
+      ],
+      "new_lines": [
+        2376,
+        2376
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2519,
+        2519
+      ],
+      "new_lines": [
+        2487,
+        2487
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2539,
+        2539
+      ],
+      "new_lines": [
+        2508,
+        2508
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2689,
+        2691
+      ],
+      "new_lines": [
+        2658,
+        2660
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2701,
+        2701
+      ],
+      "new_lines": [
+        2670,
+        2670
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2751,
+        2751
+      ],
+      "new_lines": [
+        2720,
+        2722
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2755,
+        2755
+      ],
+      "new_lines": [
+        2726,
+        2726
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2759,
+        2759
+      ],
+      "new_lines": [
+        2730,
+        2730
+      ]
+    },
+    {
+      "operation": "insert",
+      "old_lines": [
+        2767,
+        null
+      ],
+      "new_lines": [
+        2736,
+        2736
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2795,
+        2799
+      ],
+      "new_lines": [
+        2768,
+        2772
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2803,
+        2803
+      ],
+      "new_lines": [
+        2776,
+        2776
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2813,
+        2813
+      ],
+      "new_lines": [
+        2786,
+        2786
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2859,
+        2859
+      ],
+      "new_lines": [
+        2832,
+        2832
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        2909,
+        2909
+      ],
+      "new_lines": [
+        2882,
+        2882
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3129,
+        3129
+      ],
+      "new_lines": [
+        3102,
+        3102
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3145,
+        3145
+      ],
+      "new_lines": [
+        3118,
+        3118
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3254,
+        3254
+      ],
+      "new_lines": [
+        3227,
+        3227
+      ]
+    },
+    {
+      "operation": "insert",
+      "old_lines": [
+        3312,
+        null
+      ],
+      "new_lines": [
+        3285,
+        3285
+      ]
+    },
+    {
+      "operation": "insert",
+      "old_lines": [
+        3322,
+        null
+      ],
+      "new_lines": [
+        3297,
+        3297
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3354,
+        3354
+      ],
+      "new_lines": [
+        3331,
+        3331
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3434,
+        3434
+      ],
+      "new_lines": [
+        3411,
+        3411
+      ]
+    },
+    {
+      "operation": "replace",
+      "old_lines": [
+        3479,
+        3479
+      ],
+      "new_lines": [
+        3456,
+        3456
+      ]
+    }
+  ],
+  "template_preservation": "all other package parts byte-identical"
+}
