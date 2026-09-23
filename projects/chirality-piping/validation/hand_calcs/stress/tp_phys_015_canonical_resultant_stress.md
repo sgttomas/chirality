@@ -4,8 +4,8 @@
 
 Invented stress recovery benchmark linking the governed TP-PHYS-014 canonical
 `analytical_solver_model` payload to mechanics-only station stress recovery. It
-uses the canonical payload solver path resultants as the stress-recovery
-resultant source.
+enters the midspan resultants that the TP-PHYS-014 mechanics case solves and
+asserts as fixed inputs, and checks the stress recovery from them.
 
 ## Provenance
 
@@ -26,6 +26,12 @@ resultant source.
 | Solver input | Governed straight pipe with `y_reference = [0.0, 1.0, 0.0]`, one `force_per_length` distributed load, and one point force. |
 | Resultant evidence | `solve_tp_phys_014_canonical_analytical_payload()` returns midspan resultants. |
 | Stress recovery | `StationStressRecoveryInput::from_station_resultants` feeds mechanics-only recovery. |
+
+The two halves of this chain are checked by two cases. The mechanics case
+`MECH-TP-PHYS-014-CANONICAL-ANALYTICAL-PAYLOAD` solves the canonical payload and
+asserts the midspan `V_y = 4.0` N and `M_z = 4.0` N-m below. This stress
+benchmark does not solve the payload: it enters those midspan resultants as
+fixed inputs and checks the stress recovery from them.
 
 ## Canonical Midspan Resultants
 

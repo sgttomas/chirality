@@ -24,7 +24,11 @@ refs:
 ## Test Purpose And Problem Statement
 
 Invented stress benchmark for the per-load-case modulus basis (rulings
-`DEC-068` item 1 and `DEC-077`). It verifies that:
+`DEC-068` item 1 and `DEC-077`). The reference below covers the three
+behaviours listed. The stress benchmark itself checks the stress recovery and
+the basis recording of item 2, from item 1's force entered as a fixed input;
+items 1 and 3 are checked by the product-physics tests named in this reference
+note's "What The Stress Benchmark Asserts" section. The behaviours are:
 
 1. A hot mechanics state solved with a user-entered temperature-point
    elastic modulus and thermal expansion coefficient (`E_hot`,
@@ -55,8 +59,16 @@ slots. The reference derivation uses elementary open mechanics only.
 ## Software Result And Reproduction
 
 The measured-vs-reference comparison executes inside the named suite
-test(s) `recovers_modulusbasis_range_fixture_with_recorded_bases`, which run the current in-repo solver path on the fixture
-and assert agreement with the reference expectations.
+test(s) `recovers_modulusbasis_range_fixture_with_recorded_bases`, which recover the hot-state axial stress and the hot/cold stress range
+through the in-repo stress-recovery path
+(`recover_stress_range_with_modulus_basis`) and assert the stresses and
+both recorded basis labels. The hot axial force input and the 400 K
+interpolated `E` and `alpha` are reference arithmetic in the benchmark;
+no solver thermal or interpolation routine runs in this test, and the
+interpolation provenance is not asserted here. The product-physics unit
+tests named in the reference note exercise the hot-point selection, the
+400 K interpolation with its provenance, and blocking at or outside the
+stored points.
 
 Reproduction (from `projects/chirality-piping`):
 

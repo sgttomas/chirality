@@ -25,8 +25,8 @@ refs:
 
 Invented stress recovery benchmark linking the governed TP-PHYS-014 canonical
 `analytical_solver_model` payload to mechanics-only station stress recovery. It
-uses the canonical payload solver path resultants as the stress-recovery
-resultant source.
+enters the midspan resultants that the TP-PHYS-014 mechanics case solves and
+asserts as fixed inputs, and checks the stress recovery from them.
 
 All inputs are invented or user-entered fixture data; nothing is copied from
 protected standards, commercial software examples, or proprietary data.
@@ -46,8 +46,12 @@ slots. The reference derivation uses elementary open mechanics only.
 ## Software Result And Reproduction
 
 The measured-vs-reference comparison executes inside the named suite
-test(s) `canonical_analytical_payload_resultants_feed_station_stress_recovery`, which run the current in-repo solver path on the fixture
-and assert agreement with the reference expectations.
+test(s) `canonical_analytical_payload_resultants_feed_station_stress_recovery`, which recover station stresses through the in-repo stress-recovery path
+from midspan resultants entered in the benchmark as fixed inputs
+(`V_y = 4.0` N, `M_z = 4.0` N-m) and assert agreement with the reference
+expectations. The canonical payload is not solved in this test; the
+mechanics case `MECH-TP-PHYS-014-CANONICAL-ANALYTICAL-PAYLOAD` solves it
+and asserts those midspan values.
 
 Reproduction (from `projects/chirality-piping`):
 
