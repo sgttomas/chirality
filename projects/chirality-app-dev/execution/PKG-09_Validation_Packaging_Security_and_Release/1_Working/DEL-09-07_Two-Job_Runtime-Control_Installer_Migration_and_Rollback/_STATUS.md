@@ -8,10 +8,6 @@
 
 Retired 2026-09-12 with `APP-HOLD-1`. The two-job runtime-control installer, migration and rollback served the per-user LaunchAgent daemon, which D-GOV-43 retires from the App path: the App starts, owns and stops the Runtime service as a child process, so no installer, staging, effective-state inspection or rollback transaction exists to build. The live `APP-HOLD-1-INIT-DEL-09-07` row was removed from `execution/_Coordination/APP_HOLD_REGISTER.csv` (the loop's retirement mechanism, as D-APP-107 retired the D-APP-104 row); no ordinary hold replaces it. `ScopeOfWork.md`, the four-document kit, D-APP-104 and D-APP-107 are preserved unchanged as history. No implementation, lifecycle promotion, release or Root act.
 
-## Remaining
-
-None. Retired subject; D-APP-128 concordance bootstrap completed by D-APP-131.
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

@@ -18,15 +18,6 @@
   Removed when: the repaired transport lands with the S-2 and renderer-disconnect continuity evidence.
 
 
-
-
-
-
-
-
-- **DEL-03-03-R5-RESIDUALS** — Capture current route/SSE fixtures and UI-event contract docs with exact source and replay results; obtain S-2/renderer-disconnect continuity and unknown-event inspection evidence. Reissue earlier RouteAdapterTestIndex/UiEventContract under their owning artifact scope; actual scaffold composition and redaction gaps remain. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

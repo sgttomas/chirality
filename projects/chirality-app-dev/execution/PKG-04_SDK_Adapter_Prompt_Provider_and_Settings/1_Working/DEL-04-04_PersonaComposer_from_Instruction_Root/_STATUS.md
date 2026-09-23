@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-04-04-V3-01** — Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed.
-  Locus: Runtime `packages/core/src/instruction-basis-store.ts`, `tests/instruction-basis-and-method-transition.test.ts`, `packages/daemon/src/codex-supervisor.ts`; App `frontend/electron/main.ts` instruction/service configuration; retained `frontend/src/lib/harness/persona-manager.ts` is compatibility evidence.
-  Check: Verify missing/invalid role and resource failure, four-role resolution, professional-boundary content, exact supplied-basis hashes and sensitivity to content changes, layered pin verification, roadmap delimitation/containment and safe idle-boundary application.
-  Gate: DEL-07-03-V3-01 landed and DEL-07-01-V3-01 selected; refresh current App/Runtime interface and evidence before dispatch; actual accepted-scope changes only require their owner. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; accepted obligations and unresolved engineering/evidence retained. Lifecycle and Checking Approval SHA unchanged.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

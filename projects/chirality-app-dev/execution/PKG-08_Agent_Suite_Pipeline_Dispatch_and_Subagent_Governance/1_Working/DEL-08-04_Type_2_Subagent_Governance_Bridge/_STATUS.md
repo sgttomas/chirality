@@ -8,20 +8,6 @@
 
 **Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
 
-## Remaining
-
-The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
-
-- **DEL-08-04-V3-01** — Complete live class-aware managed admission and evidence handoff, including sealed basis, parent/child eligibility, sibling-overlap refusal, declared scope, cancellation and cleanup. Native descendants do not confer managed approval or a Chirality role.
-  Locus/owner: App-owned Runtime/Codex integration; App legacy harness is compatibility evidence; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Current interface fixtures and live role/admission/scope/approval/native-origin checks; state instruction-asserted/mechanically unenforced limits truthfully.
-  Gate: Accepted current Runtime interface/returns and D-GOV-35 class semantics; retired hosted admission/supplier/LaunchAgent proof is not a prerequisite.
-
-- **DEL-08-04-V3-02** — Apply the accepted per-session narrowing policy before managed admission, including none by default and applicable approval behavior.
-  Locus/owner: Runtime delegation interface with DEL-03-02 session binding and App consumer; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Default refusal, ask-per-brief, write approval and bounded-brief tests; preserve sibling-overlap denial.
-  Gate: DEL-02-02-V3-04 selection and DEL-03-02-V3-01 binding; no new delegation class.
-
 ## History
 - 2026-09-22 — Agent 0 App record closeout: removed completed or non-adopted optional decision entries and aligned current delivery tasks with D-APP-121/127/132. Existing evidence and release gates remain; no product result, lifecycle or approval was promoted.
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.

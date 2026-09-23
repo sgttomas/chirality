@@ -8,21 +8,6 @@
 
 **Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
 
-## Remaining
-
-The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
-
-- **DEL-08-05-V3-01** — Complete reconstructible managed/native descendant records and return/artifact linkage under CLM-037; preserve actual supplied basis, class, parentage, model attribution, decisions, status and enforcement limits.
-  Locus/owner: Runtime AgentRun/native-event/session-store writers/readers; App replay interface; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Managed/native reconstruction, denial before/after allocation, cancellation/cleanup, artifact retrieval and structural secret-redaction checks.
-  Gate: DEL-08-04 live interface and current Runtime contract/accepted returns; optional D117 replay is not required.
-
-- **DEL-08-05-VERIFY** — Record VER-001/002 outcomes against current class-aware event/store/artifact behavior; legacy subagent.* tests are not native lineage proof.
-  Locus/owner: CLM-006/012/032/037 evidence hooks; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Candidate-bound event, record and artifact fixtures with full Codex payload preservation and redaction before sinks.
-  Gate: No new result inferred from source presence.
-
-
 ## History
 - 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

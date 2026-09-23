@@ -106,20 +106,10 @@
 
 The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-09-04-V3-01** — Recover and bind actual A2 package identities and verification artifacts to 3.0.0/3.0.1 or the candidate actually checked. Verify bundled pinned Codex through App-owned Runtime and required signature/notarization for the consolidated candidate; unsigned/adhoc local builds are development evidence. Unknown results remain unknown.
-  Locus/owner: Deliverable evidence and existing A2 packaging/native records; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Minimum OS and architecture inspection, Runtime-launched pinned Codex execution, integrity, signature/notarization, network/security and packaged S-6/S-8 outcomes.
-  Gate: Existing release acts are history under D-APP-131/OC-01; new release requires exact-candidate authority. Run only authorized affected checks.
-
 - **DEL-09-04-V3-02** — Reconcile landed icon replacement with source/raster reproducibility and packaging-integrity evidence.
   Locus/owner: DEL-02-01 icon source and frontend/build/icon.icns evidence; App WORKING_ITEMS coordinates the named owning surface.
   Check/return: Source SVG hash, rasterization tool/version, per-size hashes and regenerated integrity summary.
   Gate: Existing icon scope; DEL-02-01 source record; no release act.
-
-- **DEL-09-04-ASSETS** — Resolve required-asset/manifest mismatch without weakening integrity or ordinary instruction-root protection.
-  Locus/owner: prepare-packaged-instruction-root.mjs and accepted SPEC asset set; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Actual bundle completeness against accepted assets including PLAN.md and explanatory/professional files.
-  Gate: Fulfil requirement or route only actual scope change through owner.
 
 
 ## History

@@ -6,14 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-
-- **DEL-06-03-V3-01** — Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
-  Locus: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
-  Check: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
-  Gate: For propose: DEL-02-02-V3-04 selected, applicable DEL-08-01 trigger contract and DEL-06-02 catalog validation; ordinary current implementation/evidence gates for read tools; no new remote MCP/provider permission. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
-
-
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

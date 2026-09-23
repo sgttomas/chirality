@@ -18,28 +18,6 @@ and evidenced (PR #323 merge `403f228f4`; redesign tranche 2026-07-24). See
 `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`. What
 remains:
 
-- Keep the schema-version discipline for any future workspace-state field: new
-  fields stay additive and optional-with-default under the unchanged
-  `chirality.woven-workspace/v1` schema string, or a versioned read branch must
-  land in the same tranche. Bumping the schema constant without that branch
-  silently discards all stored state.
-
-- **DEL-02-04-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed`) — activity strip and Activity view; retire the resizable shelf; additive v1 workspace-state fields (T5).
-  Trace: OUT-001, AC-001, VER-001; applied decomposition row L310 (per-view right-panel widths, expand state, chat annotations, known folders, chat rung and declined proposal triggers as additive v1 fields; the one-line activity strip in place of the resizable shelf); SOW-004 L174; SOW-008 L178.
-  Plan: T5; SR-07 (strip), SR-02 and SR-05 (per-view widths, expand), SR-03 and SR-24 (additive fields). Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
-  Depends: DEL-02-02-V3-03; the Activity view mounts in the right-panel view switcher from DEL-02-03-V3-01 and cannot land before it, while the strip and the additive fields can; DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-02-V3-04, and DEL-02-03-V3-01 consume the additive fields.
-  Write locus: `frontend/src/lib/woven-dialogue/woven-workspace-state.ts` (additive v1 fields under the existing schema string with rollback-safe migration), `frontend/src/components/woven-dialogue/activity-shelf.tsx` retirement and the strip and Activity view components, migration guards and tests; deliverable-local state. Add `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx` and `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx` solely to pass the existing `primarySessionId` as an explicit optional presentation prop to the existing `ActivityStrip`. Preserve the same ChatPanel instance, existing event provider, root/session binding, streaming/selection/reconnect/Details handlers and ShellFrame control ownership. This caller addition grants no new state schema, event semantics, provider write, runtime/session field, steering, permission, IPC capability or Activity-row navigation callback; strip-local projection/timer work remains within its separately seated component/test locus.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: a one-line activity strip in place of the resizable shelf; the Activity view in the right panel; additive fields (per-view widths, expand state, chat annotations, known folders, chat rung, declined proposal triggers) with migration tests proving prior state is preserved for rollback; convenience state never transfers session authority and never stands in for the workflow file; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: merged with review PASS.
-
-
-
-
-
-
-
-
 - **DEL-02-04-R5-RESIDUALS** — Bind landed activity/state work to review/merge evidence; keep artifact/context/rung/declined-trigger producers and rollback migration checks explicit. Verify live Codex policy/option handoff, unknown-key warn/ignore and current UI polish. Align tools/max-turns and governance metadata against current Codex/Runtime capability and deliver only supported controls; preset duration remains an actual undecided detail. Composer model/effort and user-selected policy loci are settled. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
 
 

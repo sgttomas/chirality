@@ -10,7 +10,6 @@
 
 ## Remaining
 
-
 - **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: the re-platformed Runtime service socket API lands on the production path (D-GOV-43)`) — App client conformance against the retained and repaired Runtime socket API (topology A2, D-APP-127); Codex is the only engine and the multi-engine port abstractions are retired, not generalized.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
   Plan: current Codex/App-client conformance coverage; AT-013/AT-015/AT-017 App-client portions; RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
@@ -19,15 +18,6 @@
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
   Return: Conformance evidence for the single Codex engine path, explicit terminal outcomes and no automatic fallback, bound to the pinned Codex version; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: App conformance against the repaired socket API lands with the spike evidence.
-
-
-
-
-
-
-
-
-- **DEL-03-01-R5-RESIDUALS** — Map accepted-input ordering, terminal durability, request/session correctness, current capabilities, permission decisions, applicable tool exposure, interruption, native resume and redaction to current Codex checks and S-1–S-8. Reuse source-valid evidence and run each missing distinct check; neither a blanket legacy-suite gate nor unproved equivalence qualifies the live Codex path. Stub and retained SDK results prove only their own subjects. Structural redaction and current App-client verification remain required. Facade retirement and D-APP-101 routing are already settled by D-APP-118; no rollback-support task remains. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
 
 
 ## History

@@ -12,11 +12,6 @@
 
 The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-09-06-V3-02** — Verify current typed account and user-selected Codex policy projection; record actual App renderer/service/update transport restrictions and S-8 isolation evidence. The old per-root networkApprovalContext mechanism is historical and is not a required current implementation.
-  Locus/owner: App/Runtime boundary and native evidence; App WORKING_ITEMS coordinates the named owning surface.
-  Check/return: Actual Codex policy/request projection and denied-request non-execution, renderer/IPC/CSP, bounded App endpoint restrictions and S-8 other-client isolation; do not impose the retired App endpoint allowlist on user-configured Codex command transport.
-  Gate: Current production binding and affected native checks; retired per-root consent/A1 re-stage gates do not apply.
-
 - **DEL-09-06-V3-03** — Complete synthetic-secret scanning for account, approval, thread, policy and tool-activity field families at every sink.
   Locus/owner: DEL-05-03 field contract and App security evidence; App WORKING_ITEMS coordinates the named owning surface.
   Check/return: Structural-redaction tests plus actual scan records; existing legacy proofs are not post-A2 outcomes.
