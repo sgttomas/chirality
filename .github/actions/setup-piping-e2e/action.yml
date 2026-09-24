@@ -81,19 +81,28 @@ runs:
         source /etc/os-release
         test -n "${VERSION_CODENAME}"
         test -f /usr/share/keyrings/ubuntu-archive-keyring.gpg
+        # Explicitly attempt immutable index URLs; APT can still fall back to
+        # stable filenames. Signature, hash, and expiry checks remain enabled.
         sudo tee /etc/apt/sources.list.d/ubuntu.sources >/dev/null <<EOF
         Types: deb
         URIs: https://archive.ubuntu.com/ubuntu/
         Suites: ${VERSION_CODENAME} ${VERSION_CODENAME}-updates ${VERSION_CODENAME}-backports
         Components: main restricted universe multiverse
+        By-Hash: force
         Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
         Types: deb
         URIs: https://security.ubuntu.com/ubuntu/
         Suites: ${VERSION_CODENAME}-security
         Components: main restricted universe multiverse
+        By-Hash: force
         Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
         EOF
+        echo 'Rendered Ubuntu package sources:'
+        cat /etc/apt/sources.list.d/ubuntu.sources
+        echo 'Explicit APT acquisition configuration (unset values are omitted; defaults may apply):'
+        apt-config shell BY_HASH Acquire::By-Hash PACKAGES_BY_HASH Acquire::IndexTargets::deb::Packages::By-Hash DEP11_BY_HASH Acquire::IndexTargets::deb::DEP-11::By-Hash HTTP_NO_CACHE Acquire::http::No-Cache HTTPS_NO_CACHE Acquire::https::No-Cache
+        apt-config --version
 
     - name: Install Chromium system dependencies
       if: steps.playwright-cache.outputs.cache-hit == 'true'
