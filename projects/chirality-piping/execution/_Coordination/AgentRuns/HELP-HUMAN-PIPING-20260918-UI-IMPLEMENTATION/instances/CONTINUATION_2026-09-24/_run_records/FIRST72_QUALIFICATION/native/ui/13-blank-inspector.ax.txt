@@ -1,0 +1,24 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~						21 button (expanded) Inspector, Help: Inspector (⌘I), Secondary Actions: Collapse
++					129 button Close inspector, Help: Close (⎋)
++					130 container Property inspector
++						131 heading Blank Local Model — project:project:blank-local-20260924t213049z, Value: 2
++							132 text Blank Local Model —  project : project:blank-local-20260924t213049z
++						133 tab group (selectable) Inspector views
++							134 tab (selected) Properties
++							135 tab (selectable) Task
++						136 summary All properties, Value: off
++							137 text All properties
++						138 summary Sources and units, Value: off
++							139 text Sources and units
++						140 summary New support configuration, Value: off
++							141 text New support configuration
++						142 summary New section, Value: off
++							143 text New section
++						144 summary New material, Value: off
++							145 text New material
++						146 summary New support, Value: off
++							147 text New support
++						148 summary New component, Value: off
++							149 text New component
+The focused UI element is 3 HTML content Description: SWBPIPE, URL: tauri://localhost

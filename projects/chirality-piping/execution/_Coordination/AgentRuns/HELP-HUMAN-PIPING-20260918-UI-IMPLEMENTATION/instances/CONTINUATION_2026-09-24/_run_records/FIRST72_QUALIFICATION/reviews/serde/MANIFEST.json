@@ -1,0 +1,282 @@
+{
+  "actor": "/root/integration_graph_review",
+  "parent": "/root",
+  "role": "TASK Type2",
+  "mechanism": "delegated-harness-native",
+  "read_at": "2026-09-24T21:23:45.278607+00:00",
+  "scope": "Controlled serde/shared-Cargo-target diagnosis and proposed target isolation remedy, evidence-only review",
+  "inputs": [
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/DIAGNOSIS.md",
+      "sha256": "88a5348f74ad95c81324a32263c65f259b9f7bb9d17f92143d0b436f6893d7ab",
+      "bytes": 2655
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/applier-overwrite.log",
+      "sha256": "3a844b904954ae821c8d0f02feae8aa4a4c9e3c46810503127c94df4d9956579",
+      "bytes": 78045
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/audit-after-overwrite.log",
+      "sha256": "875a169949ebb6d7feb6ecedb0cc03bebf81155b6ba0763405a0961a3bb83fe5",
+      "bytes": 24564
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/audit-fresh.log",
+      "sha256": "083c962e397d187894ed8eb22926074a7d45e7f876fe984704d0f53a7afd51b9",
+      "bytes": 135889
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/isolation-control.json",
+      "sha256": "adb94cffa803b131d8971f76b75349cd332676a04d6b4f9d3cb713e1c99cf690",
+      "bytes": 3195
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/isolation-control.py",
+      "sha256": "36e0b47dc54435a6ae6babcd21ea7e8c8e0c99e38b3e86e30acb4a911026cebc",
+      "bytes": 1945
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/metadata.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/metadata.stdout",
+      "sha256": "931be04c994cad4115ed65f1336642371f0167308f08a91807e39773b291e5fe",
+      "bytes": 134573
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/open_pipe_stress_operation_applier.d",
+      "sha256": "a6dbb50ecfe49f3efab65a08d14cec6c7ec1da89709a2ce122cf01da50d52df9",
+      "bytes": 920
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/pre-run-artifacts.json",
+      "sha256": "fc621d94a4d8080325aec222d06b0734d43a3597e98b244a7b15bc858ade0085",
+      "bytes": 5109
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/reproduce.py",
+      "sha256": "800ce5ac3111bb00655e26278212b3b886e7cfec95e2f1e71dab76420f60a627",
+      "bytes": 1237
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/shared-reproduction.json",
+      "sha256": "d8dddaf4400749c9cf625841f14c068837deb9f29a06c7fabd45289c8444ee2c",
+      "bytes": 745
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/shared-reproduction.log",
+      "sha256": "37c71ad9e380088c3295892a090151993a8d4548d940f316511ccdc66bef582c",
+      "bytes": 17110
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/tree.stdout",
+      "sha256": "96910d310653dd82d6123add37baea18f06c24f6b3feac73c4a524cbfff449c8",
+      "bytes": 7314
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/versions.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/versions.stdout",
+      "sha256": "e794146d99fad54562fdcbd4a7c8b22b0240d2b0312ff6d879d67939b3131850",
+      "bytes": 192
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier",
+      "sha256": "e39306beb1c131a4445c35590cb79014cb91ebbe991ba4b70709fbc88867ed80",
+      "bytes": 16
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier.json",
+      "sha256": "9b5f951f2eed1f14ecb1719e2d73ca529806bd7d23d3c3ec49122cf348bc392d",
+      "bytes": 739
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier",
+      "sha256": "d0836f5d4895e71ce7dfe2592e65efbf90163e8dbfbda8ea0dcc78c083487dc7",
+      "bytes": 16
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier.json",
+      "sha256": "c129e2a4347b63a167ec6c3b4624db5727a2b4eccfdc0ac76c7bb0b0ff3c7fd2",
+      "bytes": 739
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier",
+      "sha256": "96375d2f5766d907194b94175420d456c430971be51b717bd01fdd670cfd2b59",
+      "bytes": 16
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier.json",
+      "sha256": "5e142d5fdc4052a652cf75023585b623f2d7419258953c8ee858db245cacf274",
+      "bytes": 739
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product",
+      "sha256": "d81084c58484539981117438374645d5dfc64b2e1ff468613a49d951fe02afd9",
+      "bytes": 16
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product.json",
+      "sha256": "f096f2b67c03da57f8297034d2fae4aaee8c1a3f976c9e5a8cd08723a938f770",
+      "bytes": 738
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-validation-72-20260924/serde-diagnosis/fingerprints/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product.json",
+      "sha256": "4c61ec1a782f358a975d69ae3515685bdd4af8a8602bf14e276a75bbea598d0a",
+      "bytes": 741
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/core/model_operations/operation_applier/Cargo.toml",
+      "sha256": "0a60331dac87de644cdc3ff4c4b2a0a125a313b73fb74efcf3e6e29c55deeff6",
+      "bytes": 1168
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock",
+      "sha256": "ea31afc93ac9e721234a0d6843777ff4caa240545f108208d3f550c447efe116",
+      "bytes": 7062
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.toml",
+      "sha256": "07cd2bff347cf20796eebab20e587b6b2d829dfda7e6319e3394613ee07e840c",
+      "bytes": 342
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock",
+      "sha256": "9e05f6cc80383de85adf3c430c430ad7fde424791d7120d6f9e31d344a3b31d7",
+      "bytes": 7756
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/tools/release/check_release_readiness.py",
+      "sha256": "c386cdef9fe16ae0239dc509cb29dbadf0f6ce138cf7c0b7ab40867cb34e930f",
+      "bytes": 8456
+    },
+    {
+      "path": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping/tools/release/run_evidence_sweep.py",
+      "sha256": "cdb7bd4914652e6e5497f09f084d755107977dbbf58968dadfebda9f44ddcd3c",
+      "bytes": 50340
+    },
+    {
+      "path": "/private/tmp/piping-hosted-binding-20260924/886-72/candidate-inputs/core/model_operations/operation_applier/Cargo.lock",
+      "sha256": "ea31afc93ac9e721234a0d6843777ff4caa240545f108208d3f550c447efe116",
+      "bytes": 7062
+    },
+    {
+      "path": "/private/tmp/piping-hosted-binding-20260924/886-72/candidate-inputs/validation/benchmarks/physics_audit_regression/Cargo.lock",
+      "sha256": "9e05f6cc80383de85adf3c430c430ad7fde424791d7120d6f9e31d344a3b31d7",
+      "bytes": 7756
+    }
+  ],
+  "checks": [
+    {
+      "name": "Three controlled log hashes plus original-cache reproduction hash",
+      "result": "PASS"
+    },
+    {
+      "name": "Retained pre-run fingerprint copies",
+      "result": "PASS",
+      "copies": 10
+    },
+    {
+      "name": "Final controlled rlib hash matches on-disk artifact",
+      "result": "PASS",
+      "sha256": "541132a78bc0ffb95ccae8354f7349e77b0a1911c1f532e80d5db1ca9d190a73"
+    },
+    {
+      "name": "Controlled sequence",
+      "result": "PASS",
+      "exit_codes": [
+        0,
+        0,
+        101
+      ],
+      "fresh_tests_passed": 5,
+      "same_compiler_error_signatures": [
+        [
+          "E0308",
+          "arguments to this function are incorrect"
+        ],
+        [
+          "E0277",
+          "the trait bound `serde_json::value::Value: serde::Serialize` is not satisfied"
+        ],
+        [
+          "E0277",
+          "can't compare `Value` with `serde_json::value::Value`"
+        ],
+        [
+          "E0308",
+          "arguments to this function are incorrect"
+        ],
+        [
+          "E0308",
+          "arguments to this function are incorrect"
+        ]
+      ]
+    },
+    {
+      "name": "Exact72 serde lock closures",
+      "result": "PASS",
+      "basis": "Compared current two Cargo.lock files to retained candidate-inputs previously bound to exact Git objects",
+      "operation_applier": [
+        "serde 1.0.228",
+        "serde_json 1.0.150"
+      ],
+      "physics_audit_regression": [
+        "serde 1.0.229",
+        "serde_json 1.0.151"
+      ]
+    },
+    {
+      "name": "Target isolation remedy static check",
+      "result": "PASS for proposed subsequent qualification",
+      "runner": "Inherited environment; per-manifest cargo test; no explicit shared --target-dir",
+      "observed_benchmark_metadata_target": "validation/benchmarks/physics_audit_regression/target",
+      "existing_cargo_config_paths": [],
+      "reviewer_process_target_overrides": {}
+    },
+    {
+      "name": "Frozen diagnosis inputs stable",
+      "result": "PASS"
+    }
+  ],
+  "limits": [
+    "No heavy/native/browser/Git/network operations",
+    "No source change or runtime reproduction by reviewer",
+    "Not source/engineering/product qualification"
+  ],
+  "result": "PASS: causal diagnosis supported; per-manifest target remedy adequate for subsequent exact72 requalification; full sweep remains pending",
+  "finished_at": "2026-09-24T21:26:37.149144+00:00",
+  "source_identity_limit": "ROOT supplies unchanged exact72 source premise. Reviewer did not invoke Git or capture a new full source before/after experiment freeze. Recorded HEAD, locked commands, and two maintained lockfiles agree with retained exact72 inputs.",
+  "return_sha256": "7d1b1ee527fb9810e6b719ff8f7708bc3fb4312a39c078e3f0277091c57eb45a"
+}

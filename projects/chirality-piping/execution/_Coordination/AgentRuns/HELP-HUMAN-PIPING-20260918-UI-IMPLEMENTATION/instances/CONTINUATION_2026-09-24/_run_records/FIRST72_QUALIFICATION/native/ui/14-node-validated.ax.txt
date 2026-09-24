@@ -1,0 +1,13 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 197
+~								196 text Validation passed. Review the exact operations and diff, then Apply.
++								205 container
++									206 text Single operation :  op:viewport-create-node-node:native72-unit-check-001
++								207 container
++									208 text Validated model hash: sha256:ca96a5117f0a2e3ecf6f207b8e8f5aeab03b3f2c1cf3f5ba8f448510012ce589
++								209 content list
++									210 container node:native72-unit-check nodes:not_present → {"id":"node:native72-unit-check","label":"Native unit check","position":{"x":1,"y":2,"z":3},"provenance":"Original local native qualification data"} [m]
++										211 list marker •
++										212 text node:native72-unit-check nodes : not_present  →  {"id":"node:native72-unit-check","label":"Native unit check","position":{"x":1,"y":2,"z":3},"provenance":"Original local native qualification data"}  [ m ]
+~								198 button Apply
+The focused UI element is 3 HTML content Description: SWBPIPE, URL: tauri://localhost

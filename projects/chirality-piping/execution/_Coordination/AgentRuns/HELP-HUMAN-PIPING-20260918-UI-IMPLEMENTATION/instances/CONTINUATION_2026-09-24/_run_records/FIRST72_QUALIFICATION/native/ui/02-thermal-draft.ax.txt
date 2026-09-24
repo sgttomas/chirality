@@ -1,0 +1,292 @@
+Window: "Invented Utility Loop Preview — SWBPIPE", App: SWBPIPE.
+0 standard window Invented Utility Loop Preview — SWBPIPE, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: SWBPIPE, URL: tauri://localhost
+			3 container
+				4 container Toolbar
+					5 heading SWBPIPE, Value: 1
+						6 text SWBPIPE
+					7 container Invented Utility Loop Preview
+						8 text Invented Utility Loop Preview
+					9 container Editing tools
+						10 button (disabled) Undo model edit, Help: Nothing to undo
+						11 button (disabled) Redo model edit, Help: Nothing to redo
+						12 toggle button Select, Help: Select (⎋), Value: on
+					13 container View
+						14 toggle button Table, Help: Table view (⌘1), Value: on
+						15 toggle button Model, Help: Model view (⌘2), Value: off
+						16 toggle button Both, Help: Both view (⌘3), Value: off
+					17 button Run
+					18 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
+					19 container Panels
+						20 button (disabled, collapsed) Inspector, Help: Table view opens rows in place, Secondary Actions: Expand
+						21 button (disabled) Agent, Help: Agent: not available yet
+					22 pop up button Display units, Value: Entered, Help: Display units. Readouts use the selected units where conversion is available. Unavailable quantities retain entered values. Editing uses entered units.
+					23 summary Appearance, Value: off
+					24 container Human toolkit
+						25 button (collapsed) Find modeling commands, Help: Search or command (⌘K), Secondary Actions: Expand
+				26 container Stages
+					27 content list
+						28 toggle button Model, Value: off
+						29 toggle button Loads, Value: on
+						30 toggle button (disabled) Results, Help: No run yet, Value: off
+						31 toggle button (disabled) Review, Help: No run yet, Value: off
+					32 content list
+						33 button (collapsed) Libraries, Secondary Actions: Expand
+						34 button (collapsed) Rules, Secondary Actions: Expand
+						35 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
+				36 container Modeling workspace
+					37 container Tables
+						38 toggle button Load Cases, Value: on
+						39 button (disabled, expanded) Collapse table drawer, Help: Table view shows the tables at full width, Secondary Actions: Collapse
+					40 container Load Cases section
+						41 container Load case manager
+							42 text LOAD CASES
+							43 container
+								44 text 2  load cases;  9  primitive loads;  1  combinations; unit posture=single_unit_system_preview; saved_project_mutated=false
+							45 container Create load case
+								46 text load:L-300
+								47 text new empty load case; primitives=0; unit=none
+								48 container
+									49 text ID
+									50 text field (settable) New load case id, Value: load:L-300
+								51 container
+									52 text Label
+									53 text field (settable) New load case label, Value: User load case
+								54 container
+									55 text Kind
+									56 text field (settable) New load case kind, Value: primitive_user_load
+								57 container
+									58 text Status
+									59 text field (settable) New load case status, Value: draft
+								60 container
+									61 text Provenance
+									62 text field (settable) New load case provenance, Value: user_entered_local_preview
+								63 button Queue case, Help: Queue load-case creation operation
+								64 text op:load-manager-create-load:L-300; before=not_present; after=load:L-300; unit=none; dimensionless; primitive_loads=0; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							65 container Create primitive load
+								66 text load:L-100-F300
+								67 text concentrated_force ; target= node:N-100 ; unit= N
+								68 container
+									69 text Type
+									70 pop up button Primitive load category, Value: concentrated_force
+								71 container
+									72 text Primitive load case
+									73 combo box (expanded, settable) Primitive load case, Placeholder: Search targets, Secondary Actions: Collapse
+										74 text Search targets
+								75 container Primitive load case current value
+									76 text Invented operating gravity and pressure preview (load:L-100)
+									77 button Clear
+								78 container
+									79 text 2  of  2  targets
+								80 container (settable) Primitive load case options
+									81 text (selected) Invented operating gravity and pressure preview load:L-100
+									82 text Invented alternate gravity and pressure preview load:L-200
+								83 container
+									84 text ID
+									85 text field (settable) New primitive load id, Value: load:L-100-F300
+								86 container
+									87 text Concentrated force target node
+									88 combo box (expanded, settable) Concentrated force target node, Placeholder: Search targets, Secondary Actions: Collapse
+										89 text Search targets
+								90 container Concentrated force target node current value
+									91 text Pump nozzle (node:N-100)
+									92 button Clear
+								93 container
+									94 text 5  of  5  targets
+								95 container (settable) Concentrated force target node options
+									96 text (selected) Pump nozzle node:N-100
+									97 text Low point elbow node:N-110
+									98 text Riser elbow node:N-120
+									99 text Rack turn node:N-130
+									100 text Terminal tie-in node:N-140
+								101 container
+									102 text Dir
+									103 pop up button Primitive load direction, Value: global_y
+								104 container
+									105 text Magnitude unit
+									106 pop up button Primitive load unit, Value: N (DEC-018 canonical)
+								107 container
+									108 text Magnitude ( N, DEC-018 canonical )
+									109 text field (settable) Primitive load magnitude, Value: 250
+								110 container
+									111 text Provenance
+									112 text field (settable) Primitive load provenance, Value: user_entered_local_preview
+								113 button Queue load, Help: Queue primitive load operation
+								114 text op:load-manager-load:L-100-load:L-100-F300-primitive; before=not_present; after=load:L-100-F300; target=node:N-100; direction=global_y; unit=N; force; unit_validation=dec018_catalog_dimension_match; direct_model_mutation_allowed=false; professional_approval=false
+							115 container Create combination
+								116 text combination:C-300
+								117 text basis=mechanics; term=load:L-100 x 1
+								118 container
+									119 text ID
+									120 text field (settable) New combination id, Value: combination:C-300
+								121 container
+									122 text Label
+									123 text field (settable) New combination label, Value: User mechanics combination
+								124 container
+									125 text Basis
+									126 pop up button New combination basis, Value: mechanics
+								127 container
+									128 text New combination initial load case
+									129 combo box (expanded, settable) New combination initial load case, Placeholder: Search targets, Secondary Actions: Collapse
+										130 text Search targets
+								131 container New combination initial load case current value
+									132 text Invented operating gravity and pressure preview (load:L-100)
+									133 button Clear
+								134 container
+									135 text 2  of  2  targets
+								136 container (settable) New combination initial load case options
+									137 text (selected) Invented operating gravity and pressure preview load:L-100
+									138 text Invented alternate gravity and pressure preview load:L-200
+								139 container
+									140 text Factor
+									141 text field (settable) New combination factor, Value: 1
+								142 container
+									143 text Provenance
+									144 text field (settable) New combination provenance, Value: user_entered_local_preview
+								145 container
+									146 text Rationale
+									147 text field (settable) New combination rationale, Value: user_entered_combination_create_preview_change
+								148 button Queue combo, Help: Queue combination creation operation
+								149 text op:load-manager-create-combination:C-300; before=not_present; after=combination:C-300; term=load:L-100 x 1; unit=none; dimensionless; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							150 container Load cases
+								151 button Invented operating gravity and pressure preview load:L-100; primitive_user_load; preview_only; primitives=5 invented_example_no_code_combination
+								152 button Invented alternate gravity and pressure preview load:L-200; primitive_user_load; preview_only; primitives=4 invented_example_no_code_combination
+							153 container Load case metadata editor
+								154 text load:L-100
+								155 text field= status ; current= preview_only ; path= status
+								156 container
+									157 text Field
+									158 pop up button Load case metadata field, Value: Status
+								159 container
+									160 text Value
+									161 pop up button Load case metadata value, Value: preview_only
+								162 container
+									163 text Rationale
+									164 text field (settable) Load case metadata rationale, Value: user_entered_load_case_metadata_preview_change
+								165 button (disabled) Queue metadata, Help: Queue load-case metadata operation
+								166 text current=preview_only; no changed status queued
+								167 container
+									168 text Delete rationale
+									169 text field (settable) Load case delete rationale, Value: user_entered_load_case_delete_preview_change
+								170 button Queue delete case, Help: Queue load-case delete operation
+								171 text op:load-manager-load:L-100-delete; before=load:L-100; Invented operating gravity and pressure preview; primitive_user_load; preview_only; primitives=5; after=not_present; unit=none; dimensionless; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							172 toggle button weight; -190 N/m load:L-100-Z; element:pipe:P-120; global_z; dimension=force_per_length, Value: off
+							173 toggle button occasional; 350 N load:L-100-Y; node:node:N-140; global_y; dimension=force, Value: off
+							174 toggle button pressure; 1200000 Pa load:L-100-P; element:pipe:P-120; global_x; dimension=pressure, Value: off
+							175 toggle button pressure; 1200000 Pa load:L-100-P-EJ; element:pipe:P-130; global_x; dimension=pressure, Value: off
+							176 toggle button thermal; 12.5 degC load:L-100-T; element:pipe:P-120; global_z; dimension=temperature_interval, Value: on
+							177 toggle button weight; -95 N/m load:L-200-Z; element:pipe:P-120; global_z; dimension=force_per_length, Value: off
+							178 toggle button occasional; 125 N load:L-200-Y; node:node:N-140; global_y; dimension=force, Value: off
+							179 toggle button pressure; 600000 Pa load:L-200-P; element:pipe:P-120; global_x; dimension=pressure, Value: off
+							180 toggle button pressure; 600000 Pa load:L-200-P-EJ; element:pipe:P-130; global_x; dimension=pressure, Value: off
+							181 container Primitive load magnitude editor
+								182 text load:L-100-T
+								183 text load:L-100 ; path=primitive_loads. 4 .magnitude.value
+								184 container
+									185 text Magnitude unit
+									186 pop up button Selected primitive load unit, Value: degF (DEC-018 display)
+								187 container
+									188 text Magnitude ( degF, DEC-018 display )
+									189 text field (settable) Primitive load magnitude, Value: 45
+								190 container
+									191 text Rationale
+									192 text field (settable) Load case edit rationale, Value: user_entered_load_case_preview_change
+								193 button Queue magnitude, Help: Queue load-magnitude operation
+								194 text op:load-manager-load:L-100-load:L-100-T-magnitude; before=12.5; after={"value":45,"unit":"degF"}; unit=degF; temperature_interval; unit_validation=dec018_catalog_dimension_match; direct_model_mutation_allowed=false; professional_approval=false
+								195 container
+									196 text Delete rationale
+									197 text field (settable) Primitive load delete rationale, Value: user_entered_primitive_load_delete_preview_change
+									198 button Queue delete, Help: Queue primitive-load delete operation
+								199 text op:load-manager-load:L-100-load:L-100-T-delete; before=load:L-100-T; thermal; element:pipe:P-120; global_z; 12.5 degC; temperature_interval; after=not_present; unit=degC; temperature_interval; unit_validation=dec018_catalog_dimension_match; direct_model_mutation_allowed=false; professional_approval=false
+							200 container
+								201 toggle button Value: on, Invented explicit operating plus alternate preview combination:C-OPER-ALT; basis=mechanics; terms=load:L-100 x 1; load:L-200 x 0.5
+								202 button load:L-100 x 1
+								203 button load:L-200 x 0.5
+							204 container Create combination term
+								205 text combination:C-OPER-ALT
+								206 text new term; load= load:L-100 ; factor= 1
+								207 container
+									208 text Combination term target combination
+									209 combo box (expanded, settable) Combination term target combination, Placeholder: Search targets, Secondary Actions: Collapse
+										210 text Search targets
+								211 container Combination term target combination current value
+									212 text Invented explicit operating plus alternate preview (combination:C-OPER-ALT)
+									213 button Clear
+								214 container
+									215 text 1  of  1  targets
+								216 container (settable) Combination term target combination options
+									217 text (selected) Invented explicit operating plus alternate preview combination:C-OPER-ALT
+								218 container
+									219 text Combination term load case
+									220 combo box (expanded, settable) Combination term load case, Placeholder: Search targets, Secondary Actions: Collapse
+										221 text Search targets
+								222 container Combination term load case current value
+									223 text Invented operating gravity and pressure preview (load:L-100)
+									224 button Clear
+								225 container
+									226 text 2  of  2  targets
+								227 container (settable) Combination term load case options
+									228 text (selected) Invented operating gravity and pressure preview load:L-100
+									229 text Invented alternate gravity and pressure preview load:L-200
+								230 container
+									231 text Factor
+									232 text field (settable) Combination term factor, Value: 1
+								233 container
+									234 text Rationale
+									235 text field (settable) Combination term creation rationale, Value: user_entered_combination_term_preview_change
+								236 button Queue term, Help: Queue combination-term creation operation
+								237 text op:load-manager-combination:C-OPER-ALT-term-2-create; before=not_present; after=load:L-100 x 1; unit=none; dimensionless; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							238 container Combination basis editor
+								239 text combination:C-OPER-ALT
+								240 text field=basis; current= mechanics ; path=basis
+								241 container
+									242 text Basis
+									243 pop up button Combination basis, Value: mechanics
+								244 container
+									245 text Rationale
+									246 text field (settable) Combination basis rationale, Value: user_entered_combination_basis_preview_change
+								247 button (disabled) Queue basis, Help: Queue combination-basis operation
+								248 text current=mechanics; no changed combination basis queued
+								249 container
+									250 text Delete rationale
+									251 text field (settable) Combination delete rationale, Value: user_entered_combination_delete_preview_change
+								252 button Queue delete combo, Help: Queue combination delete operation
+								253 text op:load-manager-combination:C-OPER-ALT-delete; before=combination:C-OPER-ALT; Invented explicit operating plus alternate preview; basis=mechanics; terms=load:L-100 x 1; load:L-200 x 0.5; after=not_present; unit=none; dimensionless; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							254 container Combination term factor editor
+								255 text combination:C-OPER-ALT
+								256 text term= load:L-100 ; path=terms. 0 .factor
+								257 container
+									258 text Factor
+									259 text field (settable) Combination term factor, Value: 1
+								260 container
+									261 text Rationale
+									262 text field (settable) Combination term rationale, Value: user_entered_combination_factor_preview_change
+								263 button (disabled) Queue factor, Help: Queue combination-factor operation
+								264 text current=1; no changed combination factor queued
+								265 container
+									266 text Delete rationale
+									267 text field (settable) Combination term delete rationale, Value: user_entered_combination_term_delete_preview_change
+								268 button Queue delete, Help: Queue combination-term delete operation
+								269 text op:load-manager-combination:C-OPER-ALT-term-0-delete; before=load:L-100 x 1; after=not_present; unit=none; dimensionless; unit_validation=not_required_dimensionless; direct_model_mutation_allowed=false; professional_approval=false
+							270 text Load edits are queued as structured operations, applied only after user action, and remain local-session changes until saved. This panel does not add rule-code combinations, protected standards content, or professional approval.
+				271 container Agent
+					272 button (disabled) Agent, Help: Agent: not available yet
+				273 container Workspace status
+					274 container Analysis statuses
+					275 button (collapsed) 5 Issues, Secondary Actions: Expand
+					276 text load: load:L-100 Entered
+					277 button (collapsed) About SWBPIPE…, Secondary Actions: Expand
+	278 close button
+	279 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	280 minimize button
+	281 text Invented Utility Loop Preview — SWBPIPE
+282 menu bar
+	283 SWBPIPE
+	284 File
+	285 Edit
+	286 View
+	287 Insert
+	288 Analyze
+
+The focused UI element is 189 text field (settable) Primitive load magnitude, Value: 45

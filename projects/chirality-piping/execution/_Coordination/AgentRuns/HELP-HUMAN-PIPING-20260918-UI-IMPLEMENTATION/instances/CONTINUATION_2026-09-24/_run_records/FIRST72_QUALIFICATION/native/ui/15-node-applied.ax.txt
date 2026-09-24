@@ -1,0 +1,40 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 205-208, 210-212
+~1 standard window Blank Local Model · Edited — SWBPIPE, Secondary Actions: Raise
++						205 container Unsaved model edits
++							206 text  · Edited
+~						11 button Undo model edit, Help: Undo (⌘Z)
+~								53 text 3  of  3  model entities visible
+~							56 button Blank Local Model project:blank-local-20260924t213049z, Help: Blank Local Model (project:blank-local-20260924t213049z)
++							207 button (expanded) Nodes, Secondary Actions: Collapse
++							208 button (selected) Native unit check node:native72-unit-check, Help: Native unit check (node:native72-unit-check)
+~							74 button Hide, Help: Hide selected geometry (H). Hidden geometry is removed from canvas picking.
+~							75 button Isolate, Help: Isolate selected geometry (I): dim other shown geometry to 20%. Dimmed geometry remains selectable; Hide wins.
+~							80 button Fit Selection, Help: Fit currently visible selected geometry.
+~						86 text Selected:  node:native72-unit-check
+~									169 text field (settable) New node ID, Placeholder: node:N-3
+~									172 text field (settable) New node label, Placeholder: Node label
+~									175 text field (settable) New node X coordinate, Placeholder: 0
+~									178 text field (settable) New node Y coordinate, Placeholder: 0
+~									181 text field (settable) New node Z coordinate, Placeholder: 0
+~									190 text field (settable) New node provenance
+~								191 button (disabled) Add node, Help: Enter a node ID.; Enter a node label.; Enter finite X, Y, and Z coordinates.; Enter node provenance.
+~								192 text Enter a node ID.; Enter a node label.; Enter finite X, Y, and Z coordinates.; Enter node provenance.
+~								196 text The affected selection changed. Add again to review the current draft.
+~								209 text Add a complete node or route to generate the service validation and exact diff.
+~								198 button (disabled) Apply, Help: Add and review a draft before applying.
+~						131 heading Native unit check — node:node:native72-unit-check, Value: 2
+~							132 text Native unit check —  node : node:native72-unit-check
+~								154 text PROVENANCE
++								210 description list
++									211 text Source
++									212 text Original local native qualification data
++						213 container Delete node intent
++							214 heading Delete node, Value: 3
++								215 text Delete node
++							216 button Queue delete node, Help: Queue node delete intent
++							217 container
++								218 text Operation op:delete-node-node:native72-unit-check; delete; proposed Target Node; node:native72-unit-check Change delete_node; Explicit node deletion; nodes; before=Native unit check; x=1; y=2; z=3; after=not_present Unit basis dimensionless; unit=none; explicit user-entered node deletion; endpoint and load reference integrity required Validation not_run; not_run; not_required_dimensionless; not_generated; not_applied Audit boundary Routed through the structured operations only; no direct model mutation; requires your acceptance; does not change the accepted model until applied Professional boundary Requires human review; no compliance claim; no approval claim Rationale explicit user-entered node deletion for project:blank-local-20260924t213049z; requires reference validation before durable model change.
+~					116 text node: node:native72-unit-check Entered
+~	121 text Blank Local Model · Edited — SWBPIPE
+The focused UI element is 3 HTML content Description: SWBPIPE, URL: tauri://localhost

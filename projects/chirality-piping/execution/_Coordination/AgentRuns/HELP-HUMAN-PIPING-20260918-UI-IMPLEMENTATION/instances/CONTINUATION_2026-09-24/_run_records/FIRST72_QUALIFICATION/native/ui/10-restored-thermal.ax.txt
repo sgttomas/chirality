@@ -1,0 +1,13 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 777-778
+~0 standard window Invented Utility Loop Preview — SWBPIPE, Secondary Actions: Raise
+~						12 button (disabled) Undo model edit, Help: Nothing to undo
+~						13 button Redo model edit, Help: Redo (⇧⌘Z)
+~							682 toggle button thermal; 12.5 degC load:L-100-T; element:pipe:P-120; global_z; dimension=temperature_interval, Value: on
+~									692 pop up button Selected primitive load unit, Value: degC (DEC-018 display)
+~									694 text Magnitude ( degC, DEC-018 display )
+~									695 text field (settable) Primitive load magnitude, Value: 12.5
+~								700 text current=12.5 degC; no changed magnitude queued
+~								705 text op:load-manager-load:L-100-load:L-100-T-delete; before=load:L-100-T; thermal; element:pipe:P-120; global_z; 12.5 degC; temperature_interval; after=not_present; unit=degC; temperature_interval; unit_validation=dec018_catalog_dimension_match; direct_model_mutation_allowed=false; professional_approval=false
+~	537 text Invented Utility Loop Preview — SWBPIPE
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

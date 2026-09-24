@@ -1,0 +1,1260 @@
+﻿2026-09-24T19:31:40.9900623Z Current runner version: '2.337.0'
+2026-09-24T19:31:40.9917855Z ##[group]Runner Image Provisioner
+2026-09-24T19:31:40.9918363Z Hosted Compute Agent
+2026-09-24T19:31:40.9918818Z Version: 20260828.587
+2026-09-24T19:31:40.9919228Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-24T19:31:40.9919696Z Build Date: 2026-08-28T16:44:25Z
+2026-09-24T19:31:40.9920103Z Worker ID: {b74131b9-e16a-4cf1-91f4-e1255b4a4af5}
+2026-09-24T19:31:40.9920511Z Azure Region: centralus
+2026-09-24T19:31:40.9920905Z ##[endgroup]
+2026-09-24T19:31:40.9921653Z ##[group]Operating System
+2026-09-24T19:31:40.9922036Z Ubuntu
+2026-09-24T19:31:40.9922362Z 24.04.5
+2026-09-24T19:31:40.9922669Z LTS
+2026-09-24T19:31:40.9923044Z ##[endgroup]
+2026-09-24T19:31:40.9923396Z ##[group]Runner Image
+2026-09-24T19:31:40.9923773Z Image: ubuntu-24.04
+2026-09-24T19:31:40.9924121Z Version: 20260920.314.1
+2026-09-24T19:31:40.9924884Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-24T19:31:40.9925978Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-24T19:31:40.9926556Z ##[endgroup]
+2026-09-24T19:31:40.9927200Z ##[group]GITHUB_TOKEN Permissions
+2026-09-24T19:31:40.9928392Z Contents: read
+2026-09-24T19:31:40.9928777Z Metadata: read
+2026-09-24T19:31:40.9929108Z ##[endgroup]
+2026-09-24T19:31:40.9930368Z Secret source: Actions
+2026-09-24T19:31:40.9930947Z Cache mode: write
+2026-09-24T19:31:40.9931406Z Prepare workflow directory
+2026-09-24T19:31:41.0602403Z Prepare all required actions
+2026-09-24T19:31:41.0643931Z Getting action download info
+2026-09-24T19:31:41.2722344Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-24T19:31:41.6715624Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-24T19:31:42.1374093Z Complete job name: Select source coverage
+2026-09-24T19:31:42.1869077Z ##[group]Run actions/checkout@v4
+2026-09-24T19:31:42.1869557Z with:
+2026-09-24T19:31:42.1869856Z   ref: 72f09c4b195b1cb9e6576eafa963997a1b289a01
+2026-09-24T19:31:42.1870211Z   fetch-depth: 0
+2026-09-24T19:31:42.1870471Z   filter: blob:none
+2026-09-24T19:31:42.1870749Z   repository: sgttomas/chirality
+2026-09-24T19:31:42.1873093Z   token: ***
+2026-09-24T19:31:42.1873364Z   ssh-strict: true
+2026-09-24T19:31:42.1873630Z   ssh-user: git
+2026-09-24T19:31:42.1873898Z   persist-credentials: true
+2026-09-24T19:31:42.1874206Z   clean: true
+2026-09-24T19:31:42.1874484Z   sparse-checkout-cone-mode: true
+2026-09-24T19:31:42.1874806Z   fetch-tags: false
+2026-09-24T19:31:42.1875091Z   show-progress: true
+2026-09-24T19:31:42.1875376Z   lfs: false
+2026-09-24T19:31:42.1875629Z   submodules: false
+2026-09-24T19:31:42.1876104Z   set-safe-directory: true
+2026-09-24T19:31:42.1876424Z   allow-unsafe-pr-checkout: false
+2026-09-24T19:31:42.1876834Z env:
+2026-09-24T19:31:42.1877080Z   CI: true
+2026-09-24T19:31:42.1877377Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-24T19:31:42.1877687Z   PLAYWRIGHT_WORKERS: 1
+2026-09-24T19:31:42.1877970Z ##[endgroup]
+2026-09-24T19:31:42.2533288Z Syncing repository: sgttomas/chirality
+2026-09-24T19:31:42.2534653Z ##[group]Getting Git version info
+2026-09-24T19:31:42.2535077Z Working directory is '/home/runner/work/chirality/chirality'
+2026-09-24T19:31:42.2535668Z [command]/usr/bin/git version
+2026-09-24T19:31:42.2616260Z git version 2.55.0
+2026-09-24T19:31:42.2627925Z ##[endgroup]
+2026-09-24T19:31:42.2637411Z Temporarily overriding HOME='/home/runner/work/_temp/dd53d7d6-f932-4ecf-b3a5-7d2dd61b78e2' before making global git config changes
+2026-09-24T19:31:42.2640657Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-24T19:31:42.2641605Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-24T19:31:42.3676178Z Deleting the contents of '/home/runner/work/chirality/chirality'
+2026-09-24T19:31:42.3679601Z ##[group]Initializing the repository
+2026-09-24T19:31:42.3683263Z [command]/usr/bin/git init /home/runner/work/chirality/chirality
+2026-09-24T19:31:42.4372467Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-24T19:31:42.4374000Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-24T19:31:42.4375066Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-24T19:31:42.4376001Z hint: call:
+2026-09-24T19:31:42.4376490Z hint:
+2026-09-24T19:31:42.4377097Z hint: 	git config --global init.defaultBranch <name>
+2026-09-24T19:31:42.4377758Z hint:
+2026-09-24T19:31:42.4378416Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-24T19:31:42.4379411Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-24T19:31:42.4380198Z hint:
+2026-09-24T19:31:42.4380679Z hint: 	git branch -m <name>
+2026-09-24T19:31:42.4381240Z hint:
+2026-09-24T19:31:42.4382058Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-24T19:31:42.4383413Z Initialized empty Git repository in /home/runner/work/chirality/chirality/.git/
+2026-09-24T19:31:42.4385604Z [command]/usr/bin/git remote add origin https://github.com/sgttomas/chirality
+2026-09-24T19:31:42.4458605Z ##[endgroup]
+2026-09-24T19:31:42.4459342Z ##[group]Disabling automatic garbage collection
+2026-09-24T19:31:42.4460598Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-24T19:31:42.4563403Z ##[endgroup]
+2026-09-24T19:31:42.4564059Z ##[group]Setting up auth
+2026-09-24T19:31:42.4567982Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-24T19:31:42.4591059Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-24T19:31:42.4892905Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-24T19:31:42.4918615Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-24T19:31:42.5106702Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-24T19:31:42.5132327Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-24T19:31:42.5311402Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-24T19:31:42.5869485Z ##[endgroup]
+2026-09-24T19:31:42.5870331Z ##[group]Fetching the repository
+2026-09-24T19:31:42.5877561Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-09-24T19:31:44.1460211Z From https://github.com/sgttomas/chirality
+2026-09-24T19:31:44.1460989Z  * [new branch]          claude/app-concordance-d128-activation -> origin/claude/app-concordance-d128-activation
+2026-09-24T19:31:44.1461698Z  * [new branch]          claude/app-concordance-d128-r0 -> origin/claude/app-concordance-d128-r0
+2026-09-24T19:31:44.1462346Z  * [new branch]          claude/app-concordance-d128-r2 -> origin/claude/app-concordance-d128-r2
+2026-09-24T19:31:44.1462943Z  * [new branch]          claude/app-concordance-d128-r3 -> origin/claude/app-concordance-d128-r3
+2026-09-24T19:31:44.1463593Z  * [new branch]          claude/app-concordance-d128-r4-close -> origin/claude/app-concordance-d128-r4-close
+2026-09-24T19:31:44.1464322Z  * [new branch]          claude/app-dev-loop-init-generic -> origin/claude/app-dev-loop-init-generic
+2026-09-24T19:31:44.1464948Z  * [new branch]          claude/app-loop-handoff-hygiene -> origin/claude/app-loop-handoff-hygiene
+2026-09-24T19:31:44.1465601Z  * [new branch]          claude/app-owner-intent-of-record -> origin/claude/app-owner-intent-of-record
+2026-09-24T19:31:44.1466409Z  * [new branch]          claude/chirality-app-release-077eeb -> origin/claude/chirality-app-release-077eeb
+2026-09-24T19:31:44.1467508Z  * [new branch]          claude/chirality-codex-replatform-3999f1 -> origin/claude/chirality-codex-replatform-3999f1
+2026-09-24T19:31:44.1468231Z  * [new branch]          claude/chirality-piping-reconciliation-7f7e70 -> origin/claude/chirality-piping-reconciliation-7f7e70
+2026-09-24T19:31:44.1468924Z  * [new branch]          claude/chirality-piping-ui-design-a31fd2 -> origin/claude/chirality-piping-ui-design-a31fd2
+2026-09-24T19:31:44.1469417Z  * [new branch]          claude/chirality-ui-refinement-20260912 -> origin/claude/chirality-ui-refinement-20260912
+2026-09-24T19:31:44.1469901Z  * [new branch]          claude/chirality-v3-mvp-trial-ab05cb -> origin/claude/chirality-v3-mvp-trial-ab05cb
+2026-09-24T19:31:44.1470377Z  * [new branch]          claude/concordance-claim-granularity -> origin/claude/concordance-claim-granularity
+2026-09-24T19:31:44.1470865Z  * [new branch]          claude/dec046-translation-delta-unit-20260923 -> origin/claude/dec046-translation-delta-unit-20260923
+2026-09-24T19:31:44.1471300Z  * [new branch]          claude/dgov43-launch-prompt -> origin/claude/dgov43-launch-prompt
+2026-09-24T19:31:44.1471714Z  * [new branch]          claude/dgov43-launch-prompt-orientation -> origin/claude/dgov43-launch-prompt-orientation
+2026-09-24T19:31:44.1472161Z  * [new branch]          claude/dgov43-launch-prompt-pointer -> origin/claude/dgov43-launch-prompt-pointer
+2026-09-24T19:31:44.1472581Z  * [new branch]          claude/dgov43-post-merge-closeout -> origin/claude/dgov43-post-merge-closeout
+2026-09-24T19:31:44.1473026Z  * [new branch]          claude/loop-init-consolidation-d-app-112 -> origin/claude/loop-init-consolidation-d-app-112
+2026-09-24T19:31:44.1473513Z  * [new branch]          claude/loop-init-d-app-113-residuals -> origin/claude/loop-init-d-app-113-residuals
+2026-09-24T19:31:44.1474076Z  * [new branch]          claude/nonlinear-moment-unit-20260923 -> origin/claude/nonlinear-moment-unit-20260923
+2026-09-24T19:31:44.1474667Z  * [new branch]          claude/pec-project-assessment-6106d5 -> origin/claude/pec-project-assessment-6106d5
+2026-09-24T19:31:44.1475211Z  * [new branch]          claude/piping-e2e-path-triggers -> origin/claude/piping-e2e-path-triggers
+2026-09-24T19:31:44.1475830Z  * [new branch]          claude/piping-recon-r0-20260921 -> origin/claude/piping-recon-r0-20260921
+2026-09-24T19:31:44.1476269Z  * [new branch]          claude/piping-recon-r2-w1-20260921 -> origin/claude/piping-recon-r2-w1-20260921
+2026-09-24T19:31:44.1476663Z  * [new branch]          claude/piping-recon-r3-20260922 -> origin/claude/piping-recon-r3-20260922
+2026-09-24T19:31:44.1477139Z  * [new branch]          claude/sca-app-010-dependency-closure -> origin/claude/sca-app-010-dependency-closure
+2026-09-24T19:31:44.1477613Z  * [new branch]          claude/sca-app-010-gate1-intake -> origin/claude/sca-app-010-gate1-intake
+2026-09-24T19:31:44.1477975Z  * [new branch]          claude/sca-app-010-pointer -> origin/claude/sca-app-010-pointer
+2026-09-24T19:31:44.1478400Z  * [new branch]          claude/sca-app-010-pointers-d-app-111 -> origin/claude/sca-app-010-pointers-d-app-111
+2026-09-24T19:31:44.1478781Z  * [new branch]          claude/sca-app-010-seating -> origin/claude/sca-app-010-seating
+2026-09-24T19:31:44.1479166Z  * [new branch]          claude/swbpipe-mit-licence-20260922 -> origin/claude/swbpipe-mit-licence-20260922
+2026-09-24T19:31:44.1479621Z  * [new branch]          claude/valmanual-record-reconcile-20260922 -> origin/claude/valmanual-record-reconcile-20260922
+2026-09-24T19:31:44.1480082Z  * [new branch]          codex/add-workflow-proposals-20260922 -> origin/codex/add-workflow-proposals-20260922
+2026-09-24T19:31:44.1480629Z  * [new branch]          codex/alignment-manual-and-agent-guide-20260922 -> origin/codex/alignment-manual-and-agent-guide-20260922
+2026-09-24T19:31:44.1481383Z  * [new branch]          codex/app-agent-card-presentation -> origin/codex/app-agent-card-presentation
+2026-09-24T19:31:44.1481969Z  * [new branch]          codex/app-dapp86-helper-parity-rerun-20260820 -> origin/codex/app-dapp86-helper-parity-rerun-20260820
+2026-09-24T19:31:44.1482476Z  * [new branch]          codex/app-electron-concordance-2026-09-03 -> origin/codex/app-electron-concordance-2026-09-03
+2026-09-24T19:31:44.1483023Z  * [new branch]          codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04 -> origin/codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04
+2026-09-24T19:31:44.1483605Z  * [new branch]          codex/app-loop-discovery-handoff-cleanup-20260903 -> origin/codex/app-loop-discovery-handoff-cleanup-20260903
+2026-09-24T19:31:44.1484075Z  * [new branch]          codex/app-loop-shell-20260905 -> origin/codex/app-loop-shell-20260905
+2026-09-24T19:31:44.1484423Z  * [new branch]          codex/app-loop-trial    -> origin/codex/app-loop-trial
+2026-09-24T19:31:44.1484790Z  * [new branch]          codex/app-loop-trial-closeout -> origin/codex/app-loop-trial-closeout
+2026-09-24T19:31:44.1485215Z  * [new branch]          codex/app-loop-workgraph-20260919 -> origin/codex/app-loop-workgraph-20260919
+2026-09-24T19:31:44.1485678Z  * [new branch]          codex/app-piping-central-loop-receipts -> origin/codex/app-piping-central-loop-receipts
+2026-09-24T19:31:44.1486415Z  * [new branch]          codex/app-reconciliation-closeout-20260922 -> origin/codex/app-reconciliation-closeout-20260922
+2026-09-24T19:31:44.1486870Z  * [new branch]          codex/app-remaining-exceptions -> origin/codex/app-remaining-exceptions
+2026-09-24T19:31:44.1487285Z  * [new branch]          codex/app-remaining-retire-final -> origin/codex/app-remaining-retire-final
+2026-09-24T19:31:44.1487694Z  * [new branch]          codex/app-remaining-retirement -> origin/codex/app-remaining-retirement
+2026-09-24T19:31:44.1488115Z  * [new branch]          codex/app-tm-g0-rulings-2026-09-03 -> origin/codex/app-tm-g0-rulings-2026-09-03
+2026-09-24T19:31:44.1488699Z  * [new branch]          codex/app-v3-nodeA-credential-ipc-2026-09-03 -> origin/codex/app-v3-nodeA-credential-ipc-2026-09-03
+2026-09-24T19:31:44.1489205Z  * [new branch]          codex/app-v3-nodeB-wp09-prep-2026-09-03 -> origin/codex/app-v3-nodeB-wp09-prep-2026-09-03
+2026-09-24T19:31:44.1489715Z  * [new branch]          codex/app-v3-nodeD-v2-session-access-2026-09-03 -> origin/codex/app-v3-nodeD-v2-session-access-2026-09-03
+2026-09-24T19:31:44.1490243Z  * [new branch]          codex/app-v3-nodeE-at053-evidence-2026-09-03 -> origin/codex/app-v3-nodeE-at053-evidence-2026-09-03
+2026-09-24T19:31:44.1491082Z  * [new branch]          codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03 -> origin/codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03
+2026-09-24T19:31:44.1492082Z  * [new branch]          codex/app-v3-nodeG-egress-probe-restriction-2026-09-03 -> origin/codex/app-v3-nodeG-egress-probe-restriction-2026-09-03
+2026-09-24T19:31:44.1493089Z  * [new branch]          codex/app-v3-nodeH-section8-preservation-2026-09-03 -> origin/codex/app-v3-nodeH-section8-preservation-2026-09-03
+2026-09-24T19:31:44.1494170Z  * [new branch]          codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03 -> origin/codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03
+2026-09-24T19:31:44.1495194Z  * [new branch]          codex/app-v3-nodeJ-section8-revision2-2026-09-03 -> origin/codex/app-v3-nodeJ-section8-revision2-2026-09-03
+2026-09-24T19:31:44.1496113Z  * [new branch]          codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03 -> origin/codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03
+2026-09-24T19:31:44.1497057Z  * [new branch]          codex/app-v3-nodeL-consent-fake-guards-2026-09-03 -> origin/codex/app-v3-nodeL-consent-fake-guards-2026-09-03
+2026-09-24T19:31:44.1497747Z  * [new branch]          codex/app-v3-nodeM-a15-owner-rulings-2026-09-04 -> origin/codex/app-v3-nodeM-a15-owner-rulings-2026-09-04
+2026-09-24T19:31:44.1498445Z  * [new branch]          codex/app-v3-nodeN-csp-nonce-2026-09-04 -> origin/codex/app-v3-nodeN-csp-nonce-2026-09-04
+2026-09-24T19:31:44.1498994Z  * [new branch]          codex/app-v3-nodeO-section8-rev3-2026-09-04 -> origin/codex/app-v3-nodeO-section8-rev3-2026-09-04
+2026-09-24T19:31:44.1499599Z  * [new branch]          codex/app-v3-pathway-seating-2026-09-03 -> origin/codex/app-v3-pathway-seating-2026-09-03
+2026-09-24T19:31:44.1500297Z  * [new branch]          codex/automatic-update-checks-20260913 -> origin/codex/automatic-update-checks-20260913
+2026-09-24T19:31:44.1501099Z  * [new branch]          codex/chirality-app-v3-release-plan-20260822 -> origin/codex/chirality-app-v3-release-plan-20260822
+2026-09-24T19:31:44.1501999Z  * [new branch]          codex/chirality-app-v3-release-plan-final-20260822 -> origin/codex/chirality-app-v3-release-plan-final-20260822
+2026-09-24T19:31:44.1502885Z  * [new branch]          codex/chirality-app-v3-release-plan-v2-20260822 -> origin/codex/chirality-app-v3-release-plan-v2-20260822
+2026-09-24T19:31:44.1503668Z  * [new branch]          codex/chirality-app-v3-release-plan-v3-20260822 -> origin/codex/chirality-app-v3-release-plan-v3-20260822
+2026-09-24T19:31:44.1504422Z  * [new branch]          codex/chirality-change-lessons-20260910 -> origin/codex/chirality-change-lessons-20260910
+2026-09-24T19:31:44.1504995Z  * [new branch]          codex/chirality-v3-adoption-20260909 -> origin/codex/chirality-v3-adoption-20260909
+2026-09-24T19:31:44.1505585Z  * [new branch]          codex/day1-maintenance  -> origin/codex/day1-maintenance
+2026-09-24T19:31:44.1506210Z  * [new branch]          codex/deferred-four-graphs-orientation-20260919 -> origin/codex/deferred-four-graphs-orientation-20260919
+2026-09-24T19:31:44.1506714Z  * [new branch]          codex/del0907-init-admission-2026-09-04 -> origin/codex/del0907-init-admission-2026-09-04
+2026-09-24T19:31:44.1507160Z  * [new branch]          codex/del0907-setup-followon-20260905 -> origin/codex/del0907-setup-followon-20260905
+2026-09-24T19:31:44.1507676Z  * [new branch]          codex/del0907-sow-init-20260904 -> origin/codex/del0907-sow-init-20260904
+2026-09-24T19:31:44.1508218Z  * [new branch]          codex/development-loop-integration -> origin/codex/development-loop-integration
+2026-09-24T19:31:44.1508891Z  * [new branch]          codex/domain-separation-20260820 -> origin/codex/domain-separation-20260820
+2026-09-24T19:31:44.1509320Z  * [new branch]          codex/evergreen-development-loops -> origin/codex/evergreen-development-loops
+2026-09-24T19:31:44.1509716Z  * [new branch]          codex/field-book-v1-20260923 -> origin/codex/field-book-v1-20260923
+2026-09-24T19:31:44.1510109Z  * [new branch]          codex/four-role-workflow-overhaul -> origin/codex/four-role-workflow-overhaul
+2026-09-24T19:31:44.1510549Z  * [new branch]          codex/graceful-source-closure-20260908 -> origin/codex/graceful-source-closure-20260908
+2026-09-24T19:31:44.1510965Z  * [new branch]          codex/local-work-graph-loops -> origin/codex/local-work-graph-loops
+2026-09-24T19:31:44.1511371Z  * [new branch]          codex/loop-clarifications-20260919 -> origin/codex/loop-clarifications-20260919
+2026-09-24T19:31:44.1511905Z  * [new branch]          codex/management-manual-authorship-frontmatter-20260922 -> origin/codex/management-manual-authorship-frontmatter-20260922
+2026-09-24T19:31:44.1512590Z  * [new branch]          codex/management-manual-publication-edit-20260922 -> origin/codex/management-manual-publication-edit-20260922
+2026-09-24T19:31:44.1513185Z  * [new branch]          codex/management-manual-v2-formats-20260922 -> origin/codex/management-manual-v2-formats-20260922
+2026-09-24T19:31:44.1513648Z  * [new branch]          codex/management-manual-v7-20260922 -> origin/codex/management-manual-v7-20260922
+2026-09-24T19:31:44.1514038Z  * [new branch]          codex/manual-theory-20260919 -> origin/codex/manual-theory-20260919
+2026-09-24T19:31:44.1514443Z  * [new branch]          codex/pec-d83-d84-activation-20260907 -> origin/codex/pec-d83-d84-activation-20260907
+2026-09-24T19:31:44.1514881Z  * [new branch]          codex/pec-d83-d84-execution-20260907 -> origin/codex/pec-d83-d84-execution-20260907
+2026-09-24T19:31:44.1515392Z  * [new branch]          codex/pec-d85-store-guard-20260908 -> origin/codex/pec-d85-store-guard-20260908
+2026-09-24T19:31:44.1516073Z  * [new branch]          codex/pec-d85-store-guard-production-20260908 -> origin/codex/pec-d85-store-guard-production-20260908
+2026-09-24T19:31:44.1516660Z  * [new branch]          codex/pec-loop-home-consolidation-20260905 -> origin/codex/pec-loop-home-consolidation-20260905
+2026-09-24T19:31:44.1517143Z  * [new branch]          codex/pec-remaining-calibration-20260905 -> origin/codex/pec-remaining-calibration-20260905
+2026-09-24T19:31:44.1517593Z  * [new branch]          codex/pec-remaining-corpus-20260905 -> origin/codex/pec-remaining-corpus-20260905
+2026-09-24T19:31:44.1518063Z  * [new branch]          codex/pec-remaining-reconciliation-20260905 -> origin/codex/pec-remaining-reconciliation-20260905
+2026-09-24T19:31:44.1518512Z  * [new branch]          codex/piping-c4-policy-20260924 -> origin/codex/piping-c4-policy-20260924
+2026-09-24T19:31:44.1518908Z  * [new branch]          codex/piping-dec025-baseline -> origin/codex/piping-dec025-baseline
+2026-09-24T19:31:44.1519459Z  * [new branch]          codex/piping-dec025-records-closeout -> origin/codex/piping-dec025-records-closeout
+2026-09-24T19:31:44.1519912Z  * [new branch]          codex/piping-first-correctness-20260924 -> origin/codex/piping-first-correctness-20260924
+2026-09-24T19:31:44.1520324Z  * [new branch]          codex/piping-linter-closeout -> origin/codex/piping-linter-closeout
+2026-09-24T19:31:44.1520717Z  * [new branch]          codex/piping-live-control-20260924 -> origin/codex/piping-live-control-20260924
+2026-09-24T19:31:44.1521091Z  * [new branch]          codex/piping-loop-trial -> origin/codex/piping-loop-trial
+2026-09-24T19:31:44.1521478Z  * [new branch]          codex/piping-loop-workgraph-20260919 -> origin/codex/piping-loop-workgraph-20260919
+2026-09-24T19:31:44.1522048Z  * [new branch]          codex/piping-modeling-workspace -> origin/codex/piping-modeling-workspace
+2026-09-24T19:31:44.1522463Z  * [new branch]          codex/piping-numerical-ci-20260924 -> origin/codex/piping-numerical-ci-20260924
+2026-09-24T19:31:44.1522912Z  * [new branch]          codex/piping-ownership-amendment-20260922 -> origin/codex/piping-ownership-amendment-20260922
+2026-09-24T19:31:44.1523330Z  * [new branch]          codex/piping-physics-audit -> origin/codex/piping-physics-audit
+2026-09-24T19:31:44.1523761Z  * [new branch]          codex/piping-physics-ui-execution-20260908 -> origin/codex/piping-physics-ui-execution-20260908
+2026-09-24T19:31:44.1524280Z  * [new branch]          codex/piping-physics-ui-implementation-20260908 -> origin/codex/piping-physics-ui-implementation-20260908
+2026-09-24T19:31:44.1524804Z  * [new branch]          codex/piping-physics-ui-preparation-20260907 -> origin/codex/piping-physics-ui-preparation-20260907
+2026-09-24T19:31:44.1525333Z  * [new branch]          codex/piping-picking-runtime-evidence-20260918 -> origin/codex/piping-picking-runtime-evidence-20260918
+2026-09-24T19:31:44.1525952Z  * [new branch]          codex/piping-picking-stability-20260918 -> origin/codex/piping-picking-stability-20260918
+2026-09-24T19:31:44.1526373Z  * [new branch]          codex/piping-product-20260820 -> origin/codex/piping-product-20260820
+2026-09-24T19:31:44.1526776Z  * [new branch]          codex/piping-remaining-retire-final -> origin/codex/piping-remaining-retire-final
+2026-09-24T19:31:44.1527201Z  * [new branch]          codex/piping-remaining-retirement -> origin/codex/piping-remaining-retirement
+2026-09-24T19:31:44.1527662Z  * [new branch]          codex/piping-remaining-retirement-followon -> origin/codex/piping-remaining-retirement-followon
+2026-09-24T19:31:44.1528154Z  * [new branch]          codex/piping-rendering-baseline-20260917 -> origin/codex/piping-rendering-baseline-20260917
+2026-09-24T19:31:44.1528687Z  * [new branch]          codex/piping-result-compatibility-pressure-20260914 -> origin/codex/piping-result-compatibility-pressure-20260914
+2026-09-24T19:31:44.1529236Z  * [new branch]          codex/piping-results-engineering-3d-20260913 -> origin/codex/piping-results-engineering-3d-20260913
+2026-09-24T19:31:44.1529842Z  * [new branch]          codex/piping-standing-loop-alignment-20260919 -> origin/codex/piping-standing-loop-alignment-20260919
+2026-09-24T19:31:44.1530314Z  * [new branch]          codex/piping-ui-foundation-20260915 -> origin/codex/piping-ui-foundation-20260915
+2026-09-24T19:31:44.1530720Z  * [new branch]          codex/piping-ui-resume-20260924 -> origin/codex/piping-ui-resume-20260924
+2026-09-24T19:31:44.1531114Z  * [new branch]          codex/piping-ui-toolkit-parity -> origin/codex/piping-ui-toolkit-parity
+2026-09-24T19:31:44.1531543Z  * [new branch]          codex/piping-viewport-routing-20260909 -> origin/codex/piping-viewport-routing-20260909
+2026-09-24T19:31:44.1531995Z  * [new branch]          codex/piping-workflow-contact-20260913 -> origin/codex/piping-workflow-contact-20260913
+2026-09-24T19:31:44.1532421Z  * [new branch]          codex/plans-four-graphs-20260919 -> origin/codex/plans-four-graphs-20260919
+2026-09-24T19:31:44.1532846Z  * [new branch]          codex/product-instructions-savepoint -> origin/codex/product-instructions-savepoint
+2026-09-24T19:31:44.1588859Z  * [new branch]          codex/public-export-ci  -> origin/codex/public-export-ci
+2026-09-24T19:31:44.1589536Z  * [new branch]          codex/r5-r6-cross-project-reconciliation -> origin/codex/r5-r6-cross-project-reconciliation
+2026-09-24T19:31:44.1590246Z  * [new branch]          codex/readme-human-agent-overview -> origin/codex/readme-human-agent-overview
+2026-09-24T19:31:44.1591029Z  * [new branch]          codex/reconciliation-decision-bundles-20260922 -> origin/codex/reconciliation-decision-bundles-20260922
+2026-09-24T19:31:44.1591733Z  * [new branch]          codex/release-3.0.1     -> origin/codex/release-3.0.1
+2026-09-24T19:31:44.1592377Z  * [new branch]          codex/remove-readme-domain-clone -> origin/codex/remove-readme-domain-clone
+2026-09-24T19:31:44.1592854Z  * [new branch]          codex/retire-harness-contract-facade-20260922 -> origin/codex/retire-harness-contract-facade-20260922
+2026-09-24T19:31:44.1593348Z  * [new branch]          codex/root-d126-custody-application -> origin/codex/root-d126-custody-application
+2026-09-24T19:31:44.1593822Z  * [new branch]          codex/root-four-graph-orientation-20260919 -> origin/codex/root-four-graph-orientation-20260919
+2026-09-24T19:31:44.1594268Z  * [new branch]          codex/root-loop-consolidation -> origin/codex/root-loop-consolidation
+2026-09-24T19:31:44.1594682Z  * [new branch]          codex/root-r16-g05-spikes-2026-08-27 -> origin/codex/root-r16-g05-spikes-2026-08-27
+2026-09-24T19:31:44.1595121Z  * [new branch]          codex/root-r18-tm-root-122-2026-09-03 -> origin/codex/root-r18-tm-root-122-2026-09-03
+2026-09-24T19:31:44.1595622Z  * [new branch]          codex/root-runtime-revision-recognition-20260906 -> origin/codex/root-runtime-revision-recognition-20260906
+2026-09-24T19:31:44.1608688Z  * [new branch]          codex/root-runtime-stage2-adoption-20260907 -> origin/codex/root-runtime-stage2-adoption-20260907
+2026-09-24T19:31:44.1609202Z  * [new branch]          codex/runtime-app-sow-publication -> origin/codex/runtime-app-sow-publication
+2026-09-24T19:31:44.1609639Z  * [new branch]          codex/runtime-application-tools -> origin/codex/runtime-application-tools
+2026-09-24T19:31:44.1610056Z  * [new branch]          codex/runtime-consumer-readiness -> origin/codex/runtime-consumer-readiness
+2026-09-24T19:31:44.1610463Z  * [new branch]          codex/runtime-custody-amendment -> origin/codex/runtime-custody-amendment
+2026-09-24T19:31:44.1610888Z  * [new branch]          codex/runtime-effective-publication -> origin/codex/runtime-effective-publication
+2026-09-24T19:31:44.1611276Z  * [new branch]          codex/runtime-execution -> origin/codex/runtime-execution
+2026-09-24T19:31:44.1611651Z  * [new branch]          codex/runtime-gate5-confirmation -> origin/codex/runtime-gate5-confirmation
+2026-09-24T19:31:44.1612080Z  * [new branch]          codex/runtime-governance-propagation -> origin/codex/runtime-governance-propagation
+2026-09-24T19:31:44.1612734Z  * [new branch]          codex/runtime-hosted-status-hardening -> origin/codex/runtime-hosted-status-hardening
+2026-09-24T19:31:44.1613156Z  * [new branch]          codex/runtime-mcp-v2-evidence -> origin/codex/runtime-mcp-v2-evidence
+2026-09-24T19:31:44.1613580Z  * [new branch]          codex/runtime-packaging-integration -> origin/codex/runtime-packaging-integration
+2026-09-24T19:31:44.1613993Z  * [new branch]          codex/runtime-project-migration -> origin/codex/runtime-project-migration
+2026-09-24T19:31:44.1614418Z  * [new branch]          codex/runtime-project-migration-plan -> origin/codex/runtime-project-migration-plan
+2026-09-24T19:31:44.1614806Z  * [new branch]          codex/runtime-readiness -> origin/codex/runtime-readiness
+2026-09-24T19:31:44.1615202Z  * [new branch]          codex/runtime-stage2-sow-propagation -> origin/codex/runtime-stage2-sow-propagation
+2026-09-24T19:31:44.1615874Z  * [new branch]          codex/sca-app-009-gate5-actual-r4-2026-09-04 -> origin/codex/sca-app-009-gate5-actual-r4-2026-09-04
+2026-09-24T19:31:44.1616387Z  * [new branch]          codex/scoped-pr-ci      -> origin/codex/scoped-pr-ci
+2026-09-24T19:31:44.1616792Z  * [new branch]          codex/shell-redesign-convergence-20260906 -> origin/codex/shell-redesign-convergence-20260906
+2026-09-24T19:31:44.1617251Z  * [new branch]          codex/shell-redesign-resume-20260906 -> origin/codex/shell-redesign-resume-20260906
+2026-09-24T19:31:44.1617667Z  * [new branch]          codex/standing-merge-authority -> origin/codex/standing-merge-authority
+2026-09-24T19:31:44.1618044Z  * [new branch]          codex/swb-ui-contradictions -> origin/codex/swb-ui-contradictions
+2026-09-24T19:31:44.1618408Z  * [new branch]          codex/swb-ui-d71-d72-rulings -> origin/codex/swb-ui-d71-d72-rulings
+2026-09-24T19:31:44.1618944Z  * [new branch]          codex/swb-ui-design-handoff-reconciliation -> origin/codex/swb-ui-design-handoff-reconciliation
+2026-09-24T19:31:44.1619375Z  * [new branch]          codex/swb-ui-revision-pass -> origin/codex/swb-ui-revision-pass
+2026-09-24T19:31:44.1619768Z  * [new branch]          codex/swbpipe-a1-followups-20260918 -> origin/codex/swbpipe-a1-followups-20260918
+2026-09-24T19:31:44.1620224Z  * [new branch]          codex/swbpipe-a1-visible-rename-20260918 -> origin/codex/swbpipe-a1-visible-rename-20260918
+2026-09-24T19:31:44.1620661Z  * [new branch]          codex/swbpipe-b-canvas-20260918 -> origin/codex/swbpipe-b-canvas-20260918
+2026-09-24T19:31:44.1621054Z  * [new branch]          codex/swbpipe-b-shell-20260918 -> origin/codex/swbpipe-b-shell-20260918
+2026-09-24T19:31:44.1621443Z  * [new branch]          codex/swbpipe-b1-tokens-20260918 -> origin/codex/swbpipe-b1-tokens-20260918
+2026-09-24T19:31:44.1621813Z  * [new branch]          codex/swbpipe-b2f-20260919 -> origin/codex/swbpipe-b2f-20260919
+2026-09-24T19:31:44.1622158Z  * [new branch]          codex/swbpipe-b3-20260919 -> origin/codex/swbpipe-b3-20260919
+2026-09-24T19:31:44.1622518Z  * [new branch]          codex/swbpipe-b3a-i1-20260920 -> origin/codex/swbpipe-b3a-i1-20260920
+2026-09-24T19:31:44.1622912Z  * [new branch]          codex/swbpipe-b4-controls-20260920 -> origin/codex/swbpipe-b4-controls-20260920
+2026-09-24T19:31:44.1623392Z  * [new branch]          codex/swbpipe-b4-materials-integration-20260921 -> origin/codex/swbpipe-b4-materials-integration-20260921
+2026-09-24T19:31:44.1623905Z  * [new branch]          codex/swbpipe-b4-node-integration-20260920 -> origin/codex/swbpipe-b4-node-integration-20260920
+2026-09-24T19:31:44.1624410Z  * [new branch]          codex/swbpipe-b4-sections-integration-20260921 -> origin/codex/swbpipe-b4-sections-integration-20260921
+2026-09-24T19:31:44.1624849Z  * [new branch]          codex/swbpipe-c-pr1-20260919 -> origin/codex/swbpipe-c-pr1-20260919
+2026-09-24T19:31:44.1625200Z  * [new branch]          codex/swbpipe-c2-20260919 -> origin/codex/swbpipe-c2-20260919
+2026-09-24T19:31:44.1625570Z  * [new branch]          codex/swbpipe-ci-economy-20260920 -> origin/codex/swbpipe-ci-economy-20260920
+2026-09-24T19:31:44.1626225Z  * [new branch]          codex/swbpipe-continuation-20260919 -> origin/codex/swbpipe-continuation-20260919
+2026-09-24T19:31:44.1626699Z  * [new branch]          codex/swbpipe-control-first-handoff-20260919 -> origin/codex/swbpipe-control-first-handoff-20260919
+2026-09-24T19:31:44.1627191Z  * [new branch]          codex/swbpipe-design-system-v14-20260918 -> origin/codex/swbpipe-design-system-v14-20260918
+2026-09-24T19:31:44.1627691Z  * [new branch]          codex/swbpipe-handoff-selfsufficient-20260919 -> origin/codex/swbpipe-handoff-selfsufficient-20260919
+2026-09-24T19:31:44.1628131Z  * [new branch]          codex/swbpipe-intended-logo -> origin/codex/swbpipe-intended-logo
+2026-09-24T19:31:44.1628505Z  * [new branch]          codex/swbpipe-records-20260919 -> origin/codex/swbpipe-records-20260919
+2026-09-24T19:31:44.1628943Z  * [new branch]          codex/swbpipe-successor-prompt-2-20260919 -> origin/codex/swbpipe-successor-prompt-2-20260919
+2026-09-24T19:31:44.1629450Z  * [new branch]          codex/swbpipe-successor-prompt-20260919 -> origin/codex/swbpipe-successor-prompt-20260919
+2026-09-24T19:31:44.1629923Z  * [new branch]          codex/swbpipe-successor-prompt-3-20260919 -> origin/codex/swbpipe-successor-prompt-3-20260919
+2026-09-24T19:31:44.1630359Z  * [new branch]          codex/swbpipe-workgraph-20260919 -> origin/codex/swbpipe-workgraph-20260919
+2026-09-24T19:31:44.1630722Z  * [new branch]          codex/tm-register-audit -> origin/codex/tm-register-audit
+2026-09-24T19:31:44.1631139Z  * [new branch]          codex/ui-refinement-package-record-20260912 -> origin/codex/ui-refinement-package-record-20260912
+2026-09-24T19:31:44.1631647Z  * [new branch]          codex/ui-refinement-packaged-handoff-20260912 -> origin/codex/ui-refinement-packaged-handoff-20260912
+2026-09-24T19:31:44.1632240Z  * [new branch]          codex/user-journey-build-evidence-20260913 -> origin/codex/user-journey-build-evidence-20260913
+2026-09-24T19:31:44.1632683Z  * [new branch]          codex/user-journey-plan-20260912 -> origin/codex/user-journey-plan-20260912
+2026-09-24T19:31:44.1633130Z  * [new branch]          codex/user-journey-release-handoff-20260913 -> origin/codex/user-journey-release-handoff-20260913
+2026-09-24T19:31:44.1633608Z  * [new branch]          codex/v3-public-release-record-20260913 -> origin/codex/v3-public-release-record-20260913
+2026-09-24T19:31:44.1634091Z  * [new branch]          codex/v3-publication-complete-20260913 -> origin/codex/v3-publication-complete-20260913
+2026-09-24T19:31:44.1634511Z  * [new branch]          codex/v3-readme-release-refresh -> origin/codex/v3-readme-release-refresh
+2026-09-24T19:31:44.1634894Z  * [new branch]          codex/workgraphs-path-anchor -> origin/codex/workgraphs-path-anchor
+2026-09-24T19:31:44.1635259Z  * [new branch]          docs/readme-product-intent -> origin/docs/readme-product-intent
+2026-09-24T19:31:44.1635593Z  * [new branch]          docs/task-mgmt-addendum -> origin/docs/task-mgmt-addendum
+2026-09-24T19:31:44.1636051Z  * [new branch]          feat/daemon-handoff     -> origin/feat/daemon-handoff
+2026-09-24T19:31:44.1636362Z  * [new branch]          feat/daemon-service     -> origin/feat/daemon-service
+2026-09-24T19:31:44.1636736Z  * [new branch]          gov/agentsmd-simplification-20260802 -> origin/gov/agentsmd-simplification-20260802
+2026-09-24T19:31:44.1637127Z  * [new branch]          gov/appdev-maturity-survey -> origin/gov/appdev-maturity-survey
+2026-09-24T19:31:44.1637459Z  * [new branch]          gov/five-explorations   -> origin/gov/five-explorations
+2026-09-24T19:31:44.1637812Z  * [new branch]          gov/five-investigations-report -> origin/gov/five-investigations-report
+2026-09-24T19:31:44.1638186Z  * [new branch]          gov/manifest-gap-disclosure -> origin/gov/manifest-gap-disclosure
+2026-09-24T19:31:44.1638572Z  * [new branch]          gov/pi-agent2-capability-intent -> origin/gov/pi-agent2-capability-intent
+2026-09-24T19:31:44.1639025Z  * [new branch]          gov/piping-intent-record -> origin/gov/piping-intent-record
+2026-09-24T19:31:44.1639356Z  * [new branch]          gov/piping-solver-survey -> origin/gov/piping-solver-survey
+2026-09-24T19:31:44.1639674Z  * [new branch]          gov/stage-a-closure     -> origin/gov/stage-a-closure
+2026-09-24T19:31:44.1640016Z  * [new branch]          gov/stage-a-step0-sha-backfill -> origin/gov/stage-a-step0-sha-backfill
+2026-09-24T19:31:44.1640401Z  * [new branch]          gov/stage-a-step1-ktm-contract -> origin/gov/stage-a-step1-ktm-contract
+2026-09-24T19:31:44.1640791Z  * [new branch]          gov/stage-a-step23-register-seed -> origin/gov/stage-a-step23-register-seed
+2026-09-24T19:31:44.1641168Z  * [new branch]          gov/stage-a-step45-tm-agent -> origin/gov/stage-a-step45-tm-agent
+2026-09-24T19:31:44.1641510Z  * [new branch]          gov/stage-a-step6-triage -> origin/gov/stage-a-step6-triage
+2026-09-24T19:31:44.1641882Z  * [new branch]          gov/stage-a-step7-stageb-packets -> origin/gov/stage-a-step7-stageb-packets
+2026-09-24T19:31:44.1642258Z  * [new branch]          gov/stage-a-step8-taskmgmt -> origin/gov/stage-a-step8-taskmgmt
+2026-09-24T19:31:44.1642604Z  * [new branch]          gov/step1-evidence-landing -> origin/gov/step1-evidence-landing
+2026-09-24T19:31:44.1642956Z  * [new branch]          gov/step2-app-ratification -> origin/gov/step2-app-ratification
+2026-09-24T19:31:44.1643300Z  * [new branch]          gov/step2-pec-ratification -> origin/gov/step2-pec-ratification
+2026-09-24T19:31:44.1643662Z  * [new branch]          gov/step2-piping-ratification -> origin/gov/step2-piping-ratification
+2026-09-24T19:31:44.1644019Z  * [new branch]          gov/step2-root-disclosure -> origin/gov/step2-root-disclosure
+2026-09-24T19:31:44.1644347Z  * [new branch]          gov/step3-d8-candidates -> origin/gov/step3-d8-candidates
+2026-09-24T19:31:44.1644777Z  * [new branch]          gov/step4-operative-surfaces -> origin/gov/step4-operative-surfaces
+2026-09-24T19:31:44.1645127Z  * [new branch]          gov/step4-sca-application -> origin/gov/step4-sca-application
+2026-09-24T19:31:44.1645478Z  * [new branch]          gov/step4-sca-decomposition -> origin/gov/step4-sca-decomposition
+2026-09-24T19:31:44.1645884Z  * [new branch]          gov/step5-loop-slates   -> origin/gov/step5-loop-slates
+2026-09-24T19:31:44.1646201Z  * [new branch]          gov/step5-root-readiness -> origin/gov/step5-root-readiness
+2026-09-24T19:31:44.1646497Z  * [new branch]          main                    -> origin/main
+2026-09-24T19:31:44.1646850Z  * [new branch]          minder/root-r16-g05-spikes-2026-08-27 -> origin/minder/root-r16-g05-spikes-2026-08-27
+2026-09-24T19:31:44.1647328Z  * [new branch]          minder/root-r17-v3-pathway-adoption-2026-08-27 -> origin/minder/root-r17-v3-pathway-adoption-2026-08-27
+2026-09-24T19:31:44.1647752Z  * [new tag]             pre-bridge-session-2026-07-06 -> pre-bridge-session-2026-07-06
+2026-09-24T19:31:44.1648833Z [command]/usr/bin/git rev-parse --verify --quiet 72f09c4b195b1cb9e6576eafa963997a1b289a01^{object}
+2026-09-24T19:31:44.1649230Z 72f09c4b195b1cb9e6576eafa963997a1b289a01
+2026-09-24T19:31:44.1649776Z ##[endgroup]
+2026-09-24T19:31:44.1650043Z ##[group]Determining the checkout info
+2026-09-24T19:31:44.1650317Z ##[endgroup]
+2026-09-24T19:31:44.1650492Z [command]/usr/bin/git sparse-checkout disable
+2026-09-24T19:31:44.1650981Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-24T19:31:44.1651564Z ##[group]Checking out the ref
+2026-09-24T19:31:44.1651838Z [command]/usr/bin/git checkout --progress --force 72f09c4b195b1cb9e6576eafa963997a1b289a01
+2026-09-24T19:36:03.4814072Z Updating files:   0% (1/94420)
+2026-09-24T19:36:03.5304638Z Updating files:   1% (945/94420)
+2026-09-24T19:36:03.5689034Z Updating files:   2% (1889/94420)
+2026-09-24T19:36:03.6060302Z Updating files:   3% (2833/94420)
+2026-09-24T19:36:03.6445824Z Updating files:   4% (3777/94420)
+2026-09-24T19:36:03.6771793Z Updating files:   5% (4721/94420)
+2026-09-24T19:36:03.7153089Z Updating files:   6% (5666/94420)
+2026-09-24T19:36:03.7825532Z Updating files:   7% (6610/94420)
+2026-09-24T19:36:03.8196818Z Updating files:   8% (7554/94420)
+2026-09-24T19:36:03.8559593Z Updating files:   9% (8498/94420)
+2026-09-24T19:36:03.8930607Z Updating files:  10% (9442/94420)
+2026-09-24T19:36:03.9317495Z Updating files:  11% (10387/94420)
+2026-09-24T19:36:03.9647347Z Updating files:  12% (11331/94420)
+2026-09-24T19:36:04.0038107Z Updating files:  13% (12275/94420)
+2026-09-24T19:36:04.0337521Z Updating files:  14% (13219/94420)
+2026-09-24T19:36:04.0664336Z Updating files:  15% (14163/94420)
+2026-09-24T19:36:04.0958656Z Updating files:  16% (15108/94420)
+2026-09-24T19:36:04.1282317Z Updating files:  17% (16052/94420)
+2026-09-24T19:36:04.1600196Z Updating files:  18% (16996/94420)
+2026-09-24T19:36:04.1926848Z Updating files:  19% (17940/94420)
+2026-09-24T19:36:04.2234873Z Updating files:  20% (18884/94420)
+2026-09-24T19:36:04.2255233Z Updating files:  20% (19776/94420)
+2026-09-24T19:36:04.2561936Z Updating files:  21% (19829/94420)
+2026-09-24T19:36:04.3166338Z Updating files:  22% (20773/94420)
+2026-09-24T19:36:04.3508028Z Updating files:  23% (21717/94420)
+2026-09-24T19:36:04.3833567Z Updating files:  24% (22661/94420)
+2026-09-24T19:36:04.4151396Z Updating files:  25% (23605/94420)
+2026-09-24T19:36:04.4481751Z Updating files:  26% (24550/94420)
+2026-09-24T19:36:04.4804685Z Updating files:  27% (25494/94420)
+2026-09-24T19:36:04.5143787Z Updating files:  28% (26438/94420)
+2026-09-24T19:36:04.5481439Z Updating files:  29% (27382/94420)
+2026-09-24T19:36:04.5796770Z Updating files:  30% (28326/94420)
+2026-09-24T19:36:04.6119206Z Updating files:  31% (29271/94420)
+2026-09-24T19:36:04.6500818Z Updating files:  32% (30215/94420)
+2026-09-24T19:36:04.6842936Z Updating files:  33% (31159/94420)
+2026-09-24T19:36:04.7197671Z Updating files:  34% (32103/94420)
+2026-09-24T19:36:04.7511977Z Updating files:  35% (33047/94420)
+2026-09-24T19:36:04.7854873Z Updating files:  36% (33992/94420)
+2026-09-24T19:36:04.8172520Z Updating files:  37% (34936/94420)
+2026-09-24T19:36:04.8558159Z Updating files:  38% (35880/94420)
+2026-09-24T19:36:04.8912893Z Updating files:  39% (36824/94420)
+2026-09-24T19:36:04.9397763Z Updating files:  40% (37768/94420)
+2026-09-24T19:36:05.0237612Z Updating files:  41% (38713/94420)
+2026-09-24T19:36:05.0677589Z Updating files:  42% (39657/94420)
+2026-09-24T19:36:05.1075000Z Updating files:  43% (40601/94420)
+2026-09-24T19:36:05.1518631Z Updating files:  44% (41545/94420)
+2026-09-24T19:36:05.1888201Z Updating files:  45% (42489/94420)
+2026-09-24T19:36:05.2148677Z Updating files:  46% (43434/94420)
+2026-09-24T19:36:05.2234620Z Updating files:  47% (44378/94420)
+2026-09-24T19:36:05.2727959Z Updating files:  47% (44618/94420)
+2026-09-24T19:36:05.4032733Z Updating files:  48% (45322/94420)
+2026-09-24T19:36:05.5743021Z Updating files:  49% (46266/94420)
+2026-09-24T19:36:05.6556043Z Updating files:  50% (47210/94420)
+2026-09-24T19:36:05.7054711Z Updating files:  51% (48155/94420)
+2026-09-24T19:36:05.8237111Z Updating files:  52% (49099/94420)
+2026-09-24T19:36:05.8632361Z Updating files:  53% (50043/94420)
+2026-09-24T19:36:05.9041863Z Updating files:  54% (50987/94420)
+2026-09-24T19:36:05.9750186Z Updating files:  55% (51931/94420)
+2026-09-24T19:36:06.0337861Z Updating files:  56% (52876/94420)
+2026-09-24T19:36:06.1126593Z Updating files:  57% (53820/94420)
+2026-09-24T19:36:06.1592333Z Updating files:  58% (54764/94420)
+2026-09-24T19:36:06.2298527Z Updating files:  59% (55708/94420)
+2026-09-24T19:36:06.2736823Z Updating files:  59% (56231/94420)
+2026-09-24T19:36:06.3220033Z Updating files:  60% (56652/94420)
+2026-09-24T19:36:06.3634008Z Updating files:  61% (57597/94420)
+2026-09-24T19:36:06.4091376Z Updating files:  62% (58541/94420)
+2026-09-24T19:36:06.4471000Z Updating files:  63% (59485/94420)
+2026-09-24T19:36:06.4883005Z Updating files:  64% (60429/94420)
+2026-09-24T19:36:06.5373318Z Updating files:  65% (61373/94420)
+2026-09-24T19:36:06.6163320Z Updating files:  66% (62318/94420)
+2026-09-24T19:36:06.6800238Z Updating files:  67% (63262/94420)
+2026-09-24T19:36:06.7379695Z Updating files:  68% (64206/94420)
+2026-09-24T19:36:06.8295920Z Updating files:  69% (65150/94420)
+2026-09-24T19:36:06.9543647Z Updating files:  70% (66094/94420)
+2026-09-24T19:36:07.1034160Z Updating files:  71% (67039/94420)
+2026-09-24T19:36:07.2670354Z Updating files:  72% (67983/94420)
+2026-09-24T19:36:07.9391620Z Updating files:  72% (68284/94420)
+2026-09-24T19:36:08.1005901Z Updating files:  73% (68927/94420)
+2026-09-24T19:36:08.2251355Z Updating files:  74% (69871/94420)
+2026-09-24T19:36:08.2446104Z Updating files:  74% (70668/94420)
+2026-09-24T19:36:08.3138388Z Updating files:  75% (70815/94420)
+2026-09-24T19:36:08.5425295Z Updating files:  76% (71760/94420)
+2026-09-24T19:36:08.7099347Z Updating files:  77% (72704/94420)
+2026-09-24T19:36:08.9361807Z Updating files:  78% (73648/94420)
+2026-09-24T19:36:09.1019770Z Updating files:  79% (74592/94420)
+2026-09-24T19:36:09.2299968Z Updating files:  80% (75536/94420)
+2026-09-24T19:36:09.4805381Z Updating files:  80% (75893/94420)
+2026-09-24T19:36:09.7597854Z Updating files:  81% (76481/94420)
+2026-09-24T19:36:09.8382607Z Updating files:  82% (77425/94420)
+2026-09-24T19:36:10.0008584Z Updating files:  83% (78369/94420)
+2026-09-24T19:36:10.2503898Z Updating files:  84% (79313/94420)
+2026-09-24T19:36:10.2805147Z Updating files:  84% (80227/94420)
+2026-09-24T19:36:10.6763581Z Updating files:  85% (80257/94420)
+2026-09-24T19:36:10.8218465Z Updating files:  86% (81202/94420)
+2026-09-24T19:36:11.1599359Z Updating files:  87% (82146/94420)
+2026-09-24T19:36:11.2248114Z Updating files:  88% (83090/94420)
+2026-09-24T19:36:11.3081520Z Updating files:  88% (83665/94420)
+2026-09-24T19:36:11.4024085Z Updating files:  89% (84034/94420)
+2026-09-24T19:36:11.4486976Z Updating files:  90% (84978/94420)
+2026-09-24T19:36:11.5616385Z Updating files:  91% (85923/94420)
+2026-09-24T19:36:11.6090932Z Updating files:  92% (86867/94420)
+2026-09-24T19:36:11.6461540Z Updating files:  93% (87811/94420)
+2026-09-24T19:36:11.6899414Z Updating files:  94% (88755/94420)
+2026-09-24T19:36:11.7430505Z Updating files:  95% (89699/94420)
+2026-09-24T19:36:11.8904225Z Updating files:  96% (90644/94420)
+2026-09-24T19:36:12.2311205Z Updating files:  97% (91588/94420)
+2026-09-24T19:36:12.3524741Z Updating files:  97% (92371/94420)
+2026-09-24T19:36:12.5568855Z Updating files:  98% (92532/94420)
+2026-09-24T19:36:12.6198084Z Updating files:  99% (93476/94420)
+2026-09-24T19:36:12.6198383Z Updating files: 100% (94420/94420)
+2026-09-24T19:36:12.6198591Z Updating files: 100% (94420/94420), done.
+2026-09-24T19:36:12.7313424Z Note: switching to '72f09c4b195b1cb9e6576eafa963997a1b289a01'.
+2026-09-24T19:36:12.7313703Z 
+2026-09-24T19:36:12.7313953Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-24T19:36:12.7314337Z changes and commit them, and you can discard any commits you make in this
+2026-09-24T19:36:12.7314747Z state without impacting any branches by switching back to a branch.
+2026-09-24T19:36:12.7314974Z 
+2026-09-24T19:36:12.7315123Z If you want to create a new branch to retain commits you create, you may
+2026-09-24T19:36:12.7315507Z do so (now or later) by using -c with the switch command. Example:
+2026-09-24T19:36:12.7315848Z 
+2026-09-24T19:36:12.7315942Z   git switch -c <new-branch-name>
+2026-09-24T19:36:12.7316085Z 
+2026-09-24T19:36:12.7316174Z Or undo this operation with:
+2026-09-24T19:36:12.7316305Z 
+2026-09-24T19:36:12.7316378Z   git switch -
+2026-09-24T19:36:12.7316475Z 
+2026-09-24T19:36:12.7316652Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-24T19:36:12.7316903Z 
+2026-09-24T19:36:12.7317223Z HEAD is now at 72f09c4b1 Merge commit 'a0ac94eb0624a3635a3713cfa505d8cb880b19b3' into codex/piping-first-correctness-20260924
+2026-09-24T19:36:12.7577319Z ##[endgroup]
+2026-09-24T19:36:12.7611175Z [command]/usr/bin/git log -1 --format=%H
+2026-09-24T19:36:12.7628114Z 72f09c4b195b1cb9e6576eafa963997a1b289a01
+2026-09-24T19:36:12.7972335Z ##[group]Run python3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v
+2026-09-24T19:36:12.7972888Z [36;1mpython3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v[0m
+2026-09-24T19:36:12.8365309Z shell: /usr/bin/bash -e {0}
+2026-09-24T19:36:12.8365450Z env:
+2026-09-24T19:36:12.8365554Z   CI: true
+2026-09-24T19:36:12.8365663Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-24T19:36:12.8365978Z   PLAYWRIGHT_WORKERS: 1
+2026-09-24T19:36:12.8366095Z ##[endgroup]
+2026-09-24T19:36:12.9861308Z test_bash_syntax_and_bounded_diagnostics (test_ci_apt_sources.UbuntuSourceTests.test_bash_syntax_and_bounded_diagnostics) ... ok
+2026-09-24T19:36:12.9863479Z test_both_playwright_cache_paths_remain_available (test_ci_apt_sources.UbuntuSourceTests.test_both_playwright_cache_paths_remain_available) ... ok
+2026-09-24T19:36:12.9890955Z test_rendered_sources_preserve_trust_and_request_by_hash (test_ci_apt_sources.UbuntuSourceTests.test_rendered_sources_preserve_trust_and_request_by_hash) ... ok
+2026-09-24T19:36:12.9931464Z test_balancing_is_deterministic_exact_and_keeps_serial_file (test_ci_e2e_plan.CollectionTests.test_balancing_is_deterministic_exact_and_keeps_serial_file) ... ok
+2026-09-24T19:36:12.9932597Z test_dedup_matrix_loss_and_override_are_refused (test_ci_e2e_plan.CollectionTests.test_dedup_matrix_loss_and_override_are_refused) ... ok
+2026-09-24T19:36:12.9933273Z test_empty_error_collection_refused (test_ci_e2e_plan.CollectionTests.test_empty_error_collection_refused) ... ok
+2026-09-24T19:36:12.9934199Z test_empty_missing_extra_or_duplicate_partition_fails (test_ci_e2e_plan.CollectionTests.test_empty_missing_extra_or_duplicate_partition_fails) ... ok
+2026-09-24T19:36:12.9935317Z test_exact_list_preserves_project_file_and_nested_titles (test_ci_e2e_plan.CollectionTests.test_exact_list_preserves_project_file_and_nested_titles) ... ok
+2026-09-24T19:36:12.9937111Z test_full_and_lean_preserve_explicit_selection (test_ci_e2e_plan.CollectionTests.test_full_and_lean_preserve_explicit_selection) ... ok
+2026-09-24T19:36:12.9937739Z test_json_reporter_tag_spelling_is_normalized (test_ci_e2e_plan.CollectionTests.test_json_reporter_tag_spelling_is_normalized) ... ok
+2026-09-24T19:36:12.9939374Z test_missing_duplicate_title_or_profile_fails (test_ci_e2e_plan.CollectionTests.test_missing_duplicate_title_or_profile_fails) ... ok
+2026-09-24T19:36:12.9952275Z test_new_unobserved_tests_remain_in_full_union (test_ci_e2e_plan.CollectionTests.test_new_unobserved_tests_remain_in_full_union) ... ok
+2026-09-24T19:36:12.9952891Z test_every_mode_fails_closed (test_ci_e2e_plan.GateTests.test_every_mode_fails_closed) ... ok
+2026-09-24T19:36:13.0845161Z test_actual_import_closure_includes_shared_instrument_consumers (test_ci_e2e_plan.PolicyTests.test_actual_import_closure_includes_shared_instrument_consumers) ... ok
+2026-09-24T19:36:13.2521447Z test_b3b_dedicated_spec_follows_product_only_persistence_change (test_ci_e2e_plan.PolicyTests.test_b3b_dedicated_spec_follows_product_only_persistence_change) ... ok
+2026-09-24T19:36:13.4141517Z test_b4_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_b4_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-24T19:36:13.5327520Z test_b4_dedicated_spec_follows_product_only_table_host_change (test_ci_e2e_plan.PolicyTests.test_b4_dedicated_spec_follows_product_only_table_host_change) ... ok
+2026-09-24T19:36:13.7873951Z test_c3_dedicated_spec_follows_product_only_authoring_change (test_ci_e2e_plan.PolicyTests.test_c3_dedicated_spec_follows_product_only_authoring_change) ... ok
+2026-09-24T19:36:14.0605587Z test_c3_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_c3_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-24T19:36:14.7778201Z test_closed_pr_exception_is_retired (test_ci_e2e_plan.PolicyTests.test_closed_pr_exception_is_retired) ... ok
+2026-09-24T19:36:15.0632725Z test_complete_pr_diff_prevents_last_commit_underselection (test_ci_e2e_plan.PolicyTests.test_complete_pr_diff_prevents_last_commit_underselection) ... ok
+2026-09-24T19:36:15.3851898Z test_host_event_cannot_be_relabelled (test_ci_e2e_plan.PolicyTests.test_host_event_cannot_be_relabelled) ... ok
+2026-09-24T19:36:16.1341015Z test_instruction_edits_cannot_mask_a_product_edit (test_ci_e2e_plan.PolicyTests.test_instruction_edits_cannot_mask_a_product_edit) ... ok
+2026-09-24T19:36:16.8139668Z test_known_unrelated_projects_and_records_are_explicit_na (test_ci_e2e_plan.PolicyTests.test_known_unrelated_projects_and_records_are_explicit_na) ... ok
+2026-09-24T19:36:17.1566428Z test_lean_and_affected_ownership (test_ci_e2e_plan.PolicyTests.test_lean_and_affected_ownership) ... ok
+2026-09-24T19:36:17.4062493Z test_malformed_and_stale_plan_are_refused (test_ci_e2e_plan.PolicyTests.test_malformed_and_stale_plan_are_refused) ... ok
+2026-09-24T19:36:17.7105466Z test_manual_event_cannot_drop_requested_target_or_change_head (test_ci_e2e_plan.PolicyTests.test_manual_event_cannot_drop_requested_target_or_change_head) ... ok
+2026-09-24T19:36:18.1376899Z test_manual_full_is_explicit_milestone (test_ci_e2e_plan.PolicyTests.test_manual_full_is_explicit_milestone) ... ok
+2026-09-24T19:36:18.8041191Z test_manual_retarget_proof_requires_integrated_explicit_target (test_ci_e2e_plan.PolicyTests.test_manual_retarget_proof_requires_integrated_explicit_target) ... ok
+2026-09-24T19:36:19.2371894Z test_numerical_policy_is_independent_and_whole_pr (test_ci_e2e_plan.PolicyTests.test_numerical_policy_is_independent_and_whole_pr) ... ok
+2026-09-24T19:36:19.5603377Z test_root_instruction_packages_and_project_agent_guidance_are_not_product_inputs (test_ci_e2e_plan.PolicyTests.test_root_instruction_packages_and_project_agent_guidance_are_not_product_inputs) ... ok
+2026-09-24T19:36:19.9395623Z test_sections_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_sections_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-24T19:36:20.1736087Z test_sections_dedicated_spec_follows_product_only_table_host_change (test_ci_e2e_plan.PolicyTests.test_sections_dedicated_spec_follows_product_only_table_host_change) ... ok
+2026-09-24T19:36:21.8000775Z test_shared_unknown_ci_dependencies_and_model_inputs_are_full (test_ci_e2e_plan.PolicyTests.test_shared_unknown_ci_dependencies_and_model_inputs_are_full) ... ok
+2026-09-24T19:36:22.1360221Z test_source_spec_only_and_deleted_renamed_fallback (test_ci_e2e_plan.PolicyTests.test_source_spec_only_and_deleted_renamed_fallback) ... ok
+2026-09-24T19:36:22.4610192Z test_stale_target_is_distinct_from_merge_base_and_blocks (test_ci_e2e_plan.PolicyTests.test_stale_target_is_distinct_from_merge_base_and_blocks) ... ok
+2026-09-24T19:36:22.6272019Z test_unavailable_target_blocks_even_na (test_ci_e2e_plan.PolicyTests.test_unavailable_target_blocks_even_na) ... ok
+2026-09-24T19:36:22.8293967Z test_unknown_instrument_and_fixture_inputs_are_full (test_ci_e2e_plan.PolicyTests.test_unknown_instrument_and_fixture_inputs_are_full) ... ok
+2026-09-24T19:36:22.8296548Z test_metadata_events_cannot_create_or_replace_validation_checks (test_ci_e2e_plan.WorkflowTriggerTests.test_metadata_events_cannot_create_or_replace_validation_checks) ... ok
+2026-09-24T19:36:22.8307056Z test_all_fetches_precede_tests (test_ci_numerical.NumericalTests.test_all_fetches_precede_tests) ... ok
+2026-09-24T19:36:22.8316485Z test_cargo_launch_exception_after_version_success_is_nonzero (test_ci_numerical.NumericalTests.test_cargo_launch_exception_after_version_success_is_nonzero) ... OSError: launch failed
+2026-09-24T19:36:22.8319906Z ok
+2026-09-24T19:36:22.9259632Z test_discovery_requires_nonempty_manifests_and_locks (test_ci_numerical.NumericalTests.test_discovery_requires_nonempty_manifests_and_locks) ... ok
+2026-09-24T19:36:22.9260513Z test_gate_requires_exact_numerical_state (test_ci_numerical.NumericalTests.test_gate_requires_exact_numerical_state) ... ok
+2026-09-24T19:36:22.9262388Z test_invalid_candidate_still_writes_failure_evidence (test_ci_numerical.NumericalTests.test_invalid_candidate_still_writes_failure_evidence) ... ValueError: wrong candidate
+2026-09-24T19:36:22.9263752Z ok
+2026-09-24T19:36:22.9853946Z test_real_rust_literal_includes_require_numerical (test_ci_numerical.NumericalTests.test_real_rust_literal_includes_require_numerical) ... ok
+2026-09-24T19:36:23.0576195Z test_real_rust_runtime_resource_literals_require_numerical (test_ci_numerical.NumericalTests.test_real_rust_runtime_resource_literals_require_numerical) ... ok
+2026-09-24T19:36:23.0577923Z Running: cargo test
+2026-09-24T19:36:23.0579869Z test_subprocess_failure_is_recorded_and_stops (test_ci_numerical.NumericalTests.test_subprocess_failure_is_recorded_and_stops) ... ok
+2026-09-24T19:36:23.0580303Z 
+2026-09-24T19:36:23.0580435Z ----------------------------------------------------------------------
+2026-09-24T19:36:23.0580741Z Ran 47 tests in 10.076s
+2026-09-24T19:36:23.0580858Z 
+2026-09-24T19:36:23.0580924Z OK
+2026-09-24T19:36:23.0710055Z ##[group]Run python3 projects/chirality-piping/tools/ci/e2e_plan.py plan --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR" --output piping-e2e-plan.json
+2026-09-24T19:36:23.0710629Z [36;1mpython3 projects/chirality-piping/tools/ci/e2e_plan.py plan --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR" --output piping-e2e-plan.json[0m
+2026-09-24T19:36:23.0761600Z shell: /usr/bin/bash -e {0}
+2026-09-24T19:36:23.0761734Z env:
+2026-09-24T19:36:23.0761838Z   CI: true
+2026-09-24T19:36:23.0761951Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-24T19:36:23.0762087Z   PLAYWRIGHT_WORKERS: 1
+2026-09-24T19:36:23.0762210Z   EVENT: pull_request
+2026-09-24T19:36:23.0762349Z   BASE: a0ac94eb0624a3635a3713cfa505d8cb880b19b3
+2026-09-24T19:36:23.0762524Z   HEAD: 72f09c4b195b1cb9e6576eafa963997a1b289a01
+2026-09-24T19:36:23.0762675Z   PR: 886
+2026-09-24T19:36:23.0762777Z ##[endgroup]
+2026-09-24T19:36:23.1201415Z ## Piping source selection
+2026-09-24T19:36:23.1201594Z 
+2026-09-24T19:36:23.1201911Z Full deduplicated source coverage requires barrier and four exact partitions to succeed.
+2026-09-24T19:36:23.1202251Z 
+2026-09-24T19:36:23.1202321Z ```json
+2026-09-24T19:36:23.1202477Z {
+2026-09-24T19:36:23.1202634Z   "version": 3,
+2026-09-24T19:36:23.1202784Z   "mode": "full",
+2026-09-24T19:36:23.1202961Z   "coverage_full": true,
+2026-09-24T19:36:23.1203156Z   "event": "pull_request",
+2026-09-24T19:36:23.1203342Z   "pr": "886",
+2026-09-24T19:36:23.1203549Z   "base": "a0ac94eb0624a3635a3713cfa505d8cb880b19b3",
+2026-09-24T19:36:23.1203878Z   "target_base": "a0ac94eb0624a3635a3713cfa505d8cb880b19b3",
+2026-09-24T19:36:23.1204185Z   "head": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+2026-09-24T19:36:23.1204441Z   "changed_paths": [
+2026-09-24T19:36:23.1204617Z     {
+2026-09-24T19:36:23.1204775Z       "status": "M",
+2026-09-24T19:36:23.1205051Z       "path": "projects/chirality-piping/apps/desktop/src/App.test.tsx"
+2026-09-24T19:36:23.1205348Z     },
+2026-09-24T19:36:23.1205497Z     {
+2026-09-24T19:36:23.1205652Z       "status": "M",
+2026-09-24T19:36:23.1206183Z       "path": "projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx"
+2026-09-24T19:36:23.1206594Z     },
+2026-09-24T19:36:23.1206739Z     {
+2026-09-24T19:36:23.1206892Z       "status": "A",
+2026-09-24T19:36:23.1207297Z       "path": "projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.units.test.tsx"
+2026-09-24T19:36:23.1207737Z     },
+2026-09-24T19:36:23.1207881Z     {
+2026-09-24T19:36:23.1208030Z       "status": "M",
+2026-09-24T19:36:23.1208350Z       "path": "projects/chirality-piping/apps/desktop/src/services/projectService.test.ts"
+2026-09-24T19:36:23.1208711Z     },
+2026-09-24T19:36:23.1208855Z     {
+2026-09-24T19:36:23.1209005Z       "status": "M",
+2026-09-24T19:36:23.1209305Z       "path": "projects/chirality-piping/apps/desktop/src/services/projectService.ts"
+2026-09-24T19:36:23.1209644Z     },
+2026-09-24T19:36:23.1209788Z     {
+2026-09-24T19:36:23.1209936Z       "status": "M",
+2026-09-24T19:36:23.1210273Z       "path": "projects/chirality-piping/apps/desktop/src/services/unitCatalogService.test.ts"
+2026-09-24T19:36:23.1210644Z     },
+2026-09-24T19:36:23.1210789Z     {
+2026-09-24T19:36:23.1210890Z       "status": "M",
+2026-09-24T19:36:23.1211266Z       "path": "projects/chirality-piping/apps/desktop/src/services/unitCatalogService.ts"
+2026-09-24T19:36:23.1211484Z     },
+2026-09-24T19:36:23.1211576Z     {
+2026-09-24T19:36:23.1211673Z       "status": "M",
+2026-09-24T19:36:23.1211873Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs"
+2026-09-24T19:36:23.1212115Z     },
+2026-09-24T19:36:23.1228357Z     {
+2026-09-24T19:36:23.1228519Z       "status": "A",
+2026-09-24T19:36:23.1228786Z       "path": "projects/chirality-piping/core/product_physics/README.md"
+2026-09-24T19:36:23.1229083Z     },
+2026-09-24T19:36:23.1229225Z     {
+2026-09-24T19:36:23.1229375Z       "status": "M",
+2026-09-24T19:36:23.1229925Z       "path": "projects/chirality-piping/core/product_physics/src/lib.rs"
+2026-09-24T19:36:23.1230162Z     },
+2026-09-24T19:36:23.1230333Z     {
+2026-09-24T19:36:23.1230431Z       "status": "M",
+2026-09-24T19:36:23.1230615Z       "path": "projects/chirality-piping/core/product_physics/src/validation.rs"
+2026-09-24T19:36:23.1230821Z     },
+2026-09-24T19:36:23.1230915Z     {
+2026-09-24T19:36:23.1231013Z       "status": "M",
+2026-09-24T19:36:23.1231166Z       "path": "projects/chirality-piping/core/units/README.md"
+2026-09-24T19:36:23.1231336Z     },
+2026-09-24T19:36:23.1231429Z     {
+2026-09-24T19:36:23.1231526Z       "status": "M",
+2026-09-24T19:36:23.1231679Z       "path": "projects/chirality-piping/core/units/src/lib.rs"
+2026-09-24T19:36:23.1231852Z     },
+2026-09-24T19:36:23.1231949Z     {
+2026-09-24T19:36:23.1232046Z       "status": "A",
+2026-09-24T19:36:23.1232466Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/CHECKED_CANDIDATE.json"
+2026-09-24T19:36:23.1232894Z     },
+2026-09-24T19:36:23.1232989Z     {
+2026-09-24T19:36:23.1233086Z       "status": "A",
+2026-09-24T19:36:23.1233488Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/DEPENDENCY_BASIS.json"
+2026-09-24T19:36:23.1233911Z     },
+2026-09-24T19:36:23.1234012Z     {
+2026-09-24T19:36:23.1234111Z       "status": "A",
+2026-09-24T19:36:23.1234511Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/EXPANDED_CANDIDATE.json"
+2026-09-24T19:36:23.1234928Z     },
+2026-09-24T19:36:23.1235024Z     {
+2026-09-24T19:36:23.1235122Z       "status": "A",
+2026-09-24T19:36:23.1235529Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/FROZEN_CANDIDATE.json"
+2026-09-24T19:36:23.1236256Z     },
+2026-09-24T19:36:23.1236352Z     {
+2026-09-24T19:36:23.1236452Z       "status": "A",
+2026-09-24T19:36:23.1236878Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/INDEPENDENT_PRECHECK/MANIFEST.json"
+2026-09-24T19:36:23.1237318Z     },
+2026-09-24T19:36:23.1237412Z     {
+2026-09-24T19:36:23.1237511Z       "status": "A",
+2026-09-24T19:36:23.1237920Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/INDEPENDENT_PRECHECK/RETURN.md"
+2026-09-24T19:36:23.1238348Z     },
+2026-09-24T19:36:23.1238443Z     {
+2026-09-24T19:36:23.1238541Z       "status": "A",
+2026-09-24T19:36:23.1238917Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/PLAN.md"
+2026-09-24T19:36:23.1239312Z     },
+2026-09-24T19:36:23.1239406Z     {
+2026-09-24T19:36:23.1239503Z       "status": "A",
+2026-09-24T19:36:23.1239891Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/PROVENANCE.json"
+2026-09-24T19:36:23.1240415Z     },
+2026-09-24T19:36:23.1240509Z     {
+2026-09-24T19:36:23.1240607Z       "status": "A",
+2026-09-24T19:36:23.1240996Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/REFERENCE_BASIS.md"
+2026-09-24T19:36:23.1241408Z     },
+2026-09-24T19:36:23.1241501Z     {
+2026-09-24T19:36:23.1241598Z       "status": "A",
+2026-09-24T19:36:23.1242062Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/RETURN.md"
+2026-09-24T19:36:23.1242453Z     },
+2026-09-24T19:36:23.1242546Z     {
+2026-09-24T19:36:23.1242644Z       "status": "A",
+2026-09-24T19:36:23.1243081Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/DEPENDENCY_BASIS.json"
+2026-09-24T19:36:23.1243540Z     },
+2026-09-24T19:36:23.1243628Z     {
+2026-09-24T19:36:23.1243729Z       "status": "A",
+2026-09-24T19:36:23.1244188Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/INDEPENDENT_PRECHECK/MANIFEST.json"
+2026-09-24T19:36:23.1244685Z     },
+2026-09-24T19:36:23.1244778Z     {
+2026-09-24T19:36:23.1244875Z       "status": "A",
+2026-09-24T19:36:23.1245305Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/PROVENANCE.json"
+2026-09-24T19:36:23.1245878Z     },
+2026-09-24T19:36:23.1245974Z     {
+2026-09-24T19:36:23.1246073Z       "status": "A",
+2026-09-24T19:36:23.1246542Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/operation_applier.result.json"
+2026-09-24T19:36:23.1247025Z     },
+2026-09-24T19:36:23.1247118Z     {
+2026-09-24T19:36:23.1247216Z       "status": "A",
+2026-09-24T19:36:23.1247667Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/tsc_expanded.result.json"
+2026-09-24T19:36:23.1248138Z     },
+2026-09-24T19:36:23.1248234Z     {
+2026-09-24T19:36:23.1248331Z       "status": "A",
+2026-09-24T19:36:23.1248786Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/tsc_initial.result.json"
+2026-09-24T19:36:23.1249251Z     },
+2026-09-24T19:36:23.1249346Z     {
+2026-09-24T19:36:23.1249445Z       "status": "A",
+2026-09-24T19:36:23.1249891Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/tsc_repair.result.json"
+2026-09-24T19:36:23.1250359Z     },
+2026-09-24T19:36:23.1250453Z     {
+2026-09-24T19:36:23.1250550Z       "status": "A",
+2026-09-24T19:36:23.1250988Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/units.result.json"
+2026-09-24T19:36:23.1251449Z     },
+2026-09-24T19:36:23.1251566Z     {
+2026-09-24T19:36:23.1251662Z       "status": "A",
+2026-09-24T19:36:23.1252102Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/vitest.result.json"
+2026-09-24T19:36:23.1252676Z     },
+2026-09-24T19:36:23.1252770Z     {
+2026-09-24T19:36:23.1252866Z       "status": "A",
+2026-09-24T19:36:23.1253321Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/vitest_expanded.result.json"
+2026-09-24T19:36:23.1253797Z     },
+2026-09-24T19:36:23.1253888Z     {
+2026-09-24T19:36:23.1253984Z       "status": "A",
+2026-09-24T19:36:23.1254523Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/vitest_repair.result.json"
+2026-09-24T19:36:23.1254993Z     },
+2026-09-24T19:36:23.1255087Z     {
+2026-09-24T19:36:23.1255184Z       "status": "A",
+2026-09-24T19:36:23.1255629Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/checks/wasm_build.result.json"
+2026-09-24T19:36:23.1256229Z     },
+2026-09-24T19:36:23.1256322Z     {
+2026-09-24T19:36:23.1256416Z       "status": "A",
+2026-09-24T19:36:23.1256865Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/units_implementation/CONTEXT.json"
+2026-09-24T19:36:23.1257332Z     },
+2026-09-24T19:36:23.1257423Z     {
+2026-09-24T19:36:23.1257519Z       "status": "A",
+2026-09-24T19:36:23.1257969Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/_run_records/portability/units_review/PROVENANCE.json"
+2026-09-24T19:36:23.1258429Z     },
+2026-09-24T19:36:23.1258524Z     {
+2026-09-24T19:36:23.1258617Z       "status": "A",
+2026-09-24T19:36:23.1259006Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/BUILD_BASIS.json"
+2026-09-24T19:36:23.1259415Z     },
+2026-09-24T19:36:23.1259508Z     {
+2026-09-24T19:36:23.1259602Z       "status": "A",
+2026-09-24T19:36:23.1260003Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/operation_applier.log"
+2026-09-24T19:36:23.1260420Z     },
+2026-09-24T19:36:23.1260511Z     {
+2026-09-24T19:36:23.1260605Z       "status": "A",
+2026-09-24T19:36:23.1261023Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/operation_applier.result.json"
+2026-09-24T19:36:23.1261456Z     },
+2026-09-24T19:36:23.1261546Z     {
+2026-09-24T19:36:23.1261640Z       "status": "A",
+2026-09-24T19:36:23.1262030Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_expanded.log"
+2026-09-24T19:36:23.1262442Z     },
+2026-09-24T19:36:23.1262533Z     {
+2026-09-24T19:36:23.1262627Z       "status": "A",
+2026-09-24T19:36:23.1263039Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_expanded.result.json"
+2026-09-24T19:36:23.1263464Z     },
+2026-09-24T19:36:23.1263555Z     {
+2026-09-24T19:36:23.1263653Z       "status": "A",
+2026-09-24T19:36:23.1264042Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_initial.log"
+2026-09-24T19:36:23.1264550Z     },
+2026-09-24T19:36:23.1264643Z     {
+2026-09-24T19:36:23.1264737Z       "status": "A",
+2026-09-24T19:36:23.1265140Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_initial.result.json"
+2026-09-24T19:36:23.1265561Z     },
+2026-09-24T19:36:23.1265652Z     {
+2026-09-24T19:36:23.1265894Z       "status": "A",
+2026-09-24T19:36:23.1266288Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_repair.log"
+2026-09-24T19:36:23.1266695Z     },
+2026-09-24T19:36:23.1266788Z     {
+2026-09-24T19:36:23.1266973Z       "status": "A",
+2026-09-24T19:36:23.1267376Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/tsc_repair.result.json"
+2026-09-24T19:36:23.1267799Z     },
+2026-09-24T19:36:23.1267889Z     {
+2026-09-24T19:36:23.1267984Z       "status": "A",
+2026-09-24T19:36:23.1268363Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/units.log"
+2026-09-24T19:36:23.1268763Z     },
+2026-09-24T19:36:23.1268854Z     {
+2026-09-24T19:36:23.1268949Z       "status": "A",
+2026-09-24T19:36:23.1269341Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/units.result.json"
+2026-09-24T19:36:23.1269751Z     },
+2026-09-24T19:36:23.1269846Z     {
+2026-09-24T19:36:23.1269940Z       "status": "A",
+2026-09-24T19:36:23.1270322Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest.log"
+2026-09-24T19:36:23.1270725Z     },
+2026-09-24T19:36:23.1270816Z     {
+2026-09-24T19:36:23.1270910Z       "status": "A",
+2026-09-24T19:36:23.1271303Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest.result.json"
+2026-09-24T19:36:23.1271719Z     },
+2026-09-24T19:36:23.1271809Z     {
+2026-09-24T19:36:23.1271903Z       "status": "A",
+2026-09-24T19:36:23.1272298Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest_expanded.log"
+2026-09-24T19:36:23.1272713Z     },
+2026-09-24T19:36:23.1272811Z     {
+2026-09-24T19:36:23.1272905Z       "status": "A",
+2026-09-24T19:36:23.1273315Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest_expanded.result.json"
+2026-09-24T19:36:23.1273747Z     },
+2026-09-24T19:36:23.1273843Z     {
+2026-09-24T19:36:23.1273940Z       "status": "A",
+2026-09-24T19:36:23.1274329Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest_repair.log"
+2026-09-24T19:36:23.1274739Z     },
+2026-09-24T19:36:23.1274830Z     {
+2026-09-24T19:36:23.1274923Z       "status": "A",
+2026-09-24T19:36:23.1275331Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/vitest_repair.result.json"
+2026-09-24T19:36:23.1275886Z     },
+2026-09-24T19:36:23.1275996Z     {
+2026-09-24T19:36:23.1276094Z       "status": "A",
+2026-09-24T19:36:23.1276482Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/wasm_build.log"
+2026-09-24T19:36:23.1276985Z     },
+2026-09-24T19:36:23.1277076Z     {
+2026-09-24T19:36:23.1277170Z       "status": "A",
+2026-09-24T19:36:23.1277571Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/checks/wasm_build.result.json"
+2026-09-24T19:36:23.1277990Z     },
+2026-09-24T19:36:23.1278081Z     {
+2026-09-24T19:36:23.1278176Z       "status": "A",
+2026-09-24T19:36:23.1278681Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/units_implementation/CANDIDATE_FILES.json"
+2026-09-24T19:36:23.1279123Z     },
+2026-09-24T19:36:23.1279215Z     {
+2026-09-24T19:36:23.1279313Z       "status": "A",
+2026-09-24T19:36:23.1279720Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/units_implementation/CONTEXT.json"
+2026-09-24T19:36:23.1280149Z     },
+2026-09-24T19:36:23.1280239Z     {
+2026-09-24T19:36:23.1280333Z       "status": "A",
+2026-09-24T19:36:23.1280736Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/units_implementation/RETURN.md"
+2026-09-24T19:36:23.1281157Z     },
+2026-09-24T19:36:23.1281248Z     {
+2026-09-24T19:36:23.1281342Z       "status": "A",
+2026-09-24T19:36:23.1281746Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/units_review/PROVENANCE.json"
+2026-09-24T19:36:23.1282167Z     },
+2026-09-24T19:36:23.1282258Z     {
+2026-09-24T19:36:23.1282352Z       "status": "A",
+2026-09-24T19:36:23.1282747Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/AUTHORING_MANAGER/units_review/RETURN.md"
+2026-09-24T19:36:23.1283165Z     },
+2026-09-24T19:36:23.1283256Z     {
+2026-09-24T19:36:23.1283351Z       "status": "A",
+2026-09-24T19:36:23.1283795Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/CHECKED_SOURCE.json"
+2026-09-24T19:36:23.1284261Z     },
+2026-09-24T19:36:23.1284352Z     {
+2026-09-24T19:36:23.1284447Z       "status": "A",
+2026-09-24T19:36:23.1284876Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/RETURN.md"
+2026-09-24T19:36:23.1285323Z     },
+2026-09-24T19:36:23.1285417Z     {
+2026-09-24T19:36:23.1285512Z       "status": "A",
+2026-09-24T19:36:23.1286122Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/CONTEXT.json"
+2026-09-24T19:36:23.1286596Z     },
+2026-09-24T19:36:23.1286688Z     {
+2026-09-24T19:36:23.1286784Z       "status": "A",
+2026-09-24T19:36:23.1287237Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/baseline.log"
+2026-09-24T19:36:23.1287706Z     },
+2026-09-24T19:36:23.1287798Z     {
+2026-09-24T19:36:23.1287898Z       "status": "A",
+2026-09-24T19:36:23.1288366Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/baseline.result.json"
+2026-09-24T19:36:23.1288961Z     },
+2026-09-24T19:36:23.1289052Z     {
+2026-09-24T19:36:23.1289147Z       "status": "A",
+2026-09-24T19:36:23.1289614Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/focused_repair.log"
+2026-09-24T19:36:23.1290096Z     },
+2026-09-24T19:36:23.1290187Z     {
+2026-09-24T19:36:23.1290281Z       "status": "A",
+2026-09-24T19:36:23.1290840Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/focused_repair.result.json"
+2026-09-24T19:36:23.1291337Z     },
+2026-09-24T19:36:23.1291428Z     {
+2026-09-24T19:36:23.1291524Z       "status": "A",
+2026-09-24T19:36:23.1291969Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/tsc.log"
+2026-09-24T19:36:23.1292437Z     },
+2026-09-24T19:36:23.1292528Z     {
+2026-09-24T19:36:23.1292623Z       "status": "A",
+2026-09-24T19:36:23.1293080Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/_run_records/tsc.result.json"
+2026-09-24T19:36:23.1293556Z     },
+2026-09-24T19:36:23.1293646Z     {
+2026-09-24T19:36:23.1293741Z       "status": "A",
+2026-09-24T19:36:23.1294201Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/implementation/DIAGNOSIS.md"
+2026-09-24T19:36:23.1294676Z     },
+2026-09-24T19:36:23.1294769Z     {
+2026-09-24T19:36:23.1294868Z       "status": "A",
+2026-09-24T19:36:23.1295336Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/implementation/repaired_source.json"
+2026-09-24T19:36:23.1295973Z     },
+2026-09-24T19:36:23.1296062Z     {
+2026-09-24T19:36:23.1296152Z       "status": "A",
+2026-09-24T19:36:23.1296612Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/implementation/source_basis.json"
+2026-09-24T19:36:23.1297094Z     },
+2026-09-24T19:36:23.1297182Z     {
+2026-09-24T19:36:23.1297277Z       "status": "A",
+2026-09-24T19:36:23.1297709Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/review/RETURN.md"
+2026-09-24T19:36:23.1298170Z     },
+2026-09-24T19:36:23.1298260Z     {
+2026-09-24T19:36:23.1298353Z       "status": "A",
+2026-09-24T19:36:23.1298831Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/review/_run_records/runtime_origins.json"
+2026-09-24T19:36:23.1299327Z     },
+2026-09-24T19:36:23.1299419Z     {
+2026-09-24T19:36:23.1299513Z       "status": "A",
+2026-09-24T19:36:23.1299961Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/ASYNC_UNIT_READINESS/review/source_basis.json"
+2026-09-24T19:36:23.1300429Z     },
+2026-09-24T19:36:23.1300520Z     {
+2026-09-24T19:36:23.1300614Z       "status": "A",
+2026-09-24T19:36:23.1301339Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/_run_records/MANIFEST.json"
+2026-09-24T19:36:23.1302124Z     },
+2026-09-24T19:36:23.1302216Z     {
+2026-09-24T19:36:23.1302310Z       "status": "A",
+2026-09-24T19:36:23.1302721Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/FIRST_CORRECTNESS_INTEGRATION/_run_records/RETURN.md"
+2026-09-24T19:36:23.1303150Z     },
+2026-09-24T19:36:23.1303240Z     {
+2026-09-24T19:36:23.1303334Z       "status": "A",
+2026-09-24T19:36:23.1303807Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/AUTHORED_UNIT_REFERENCE.md"
+2026-09-24T19:36:23.1304220Z     },
+2026-09-24T19:36:23.1304310Z     {
+2026-09-24T19:36:23.1304405Z       "status": "A",
+2026-09-24T19:36:23.1304763Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/BRIEF.md"
+2026-09-24T19:36:23.1305145Z     },
+2026-09-24T19:36:23.1305236Z     {
+2026-09-24T19:36:23.1305330Z       "status": "A",
+2026-09-24T19:36:23.1305863Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/BASELINE_RUN.json"
+2026-09-24T19:36:23.1306289Z     },
+2026-09-24T19:36:23.1306380Z     {
+2026-09-24T19:36:23.1306473Z       "status": "A",
+2026-09-24T19:36:23.1306881Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/CANDIDATE_RUN.json"
+2026-09-24T19:36:23.1307305Z     },
+2026-09-24T19:36:23.1307395Z     {
+2026-09-24T19:36:23.1307487Z       "status": "A",
+2026-09-24T19:36:23.1307884Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/ORIGINS.json"
+2026-09-24T19:36:23.1308297Z     },
+2026-09-24T19:36:23.1308387Z     {
+2026-09-24T19:36:23.1308480Z       "status": "A",
+2026-09-24T19:36:23.1308887Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/PRE_FIX_TESTS.patch"
+2026-09-24T19:36:23.1309315Z     },
+2026-09-24T19:36:23.1309406Z     {
+2026-09-24T19:36:23.1309499Z       "status": "A",
+2026-09-24T19:36:23.1309931Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/REFERENCE_QUALIFICATION.md"
+2026-09-24T19:36:23.1310375Z     },
+2026-09-24T19:36:23.1310468Z     {
+2026-09-24T19:36:23.1310561Z       "status": "A",
+2026-09-24T19:36:23.1310956Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/RETURN.md"
+2026-09-24T19:36:23.1311368Z     },
+2026-09-24T19:36:23.1311459Z     {
+2026-09-24T19:36:23.1311552Z       "status": "A",
+2026-09-24T19:36:23.1311950Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/baseline.log"
+2026-09-24T19:36:23.1312366Z     },
+2026-09-24T19:36:23.1312456Z     {
+2026-09-24T19:36:23.1312550Z       "status": "A",
+2026-09-24T19:36:23.1312948Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/focused.log"
+2026-09-24T19:36:23.1313360Z     },
+2026-09-24T19:36:23.1313451Z     {
+2026-09-24T19:36:23.1313642Z       "status": "A",
+2026-09-24T19:36:23.1314040Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/full-final.log"
+2026-09-24T19:36:23.1314459Z     },
+2026-09-24T19:36:23.1314550Z     {
+2026-09-24T19:36:23.1314645Z       "status": "A",
+2026-09-24T19:36:23.1315049Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_CONTRACTS/full-initial.log"
+2026-09-24T19:36:23.1315473Z     },
+2026-09-24T19:36:23.1315563Z     {
+2026-09-24T19:36:23.1315657Z       "status": "A",
+2026-09-24T19:36:23.1316204Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/BASELINE_RUN.json"
+2026-09-24T19:36:23.1316621Z     },
+2026-09-24T19:36:23.1316718Z     {
+2026-09-24T19:36:23.1316812Z       "status": "A",
+2026-09-24T19:36:23.1317213Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/CANDIDATE_RUN.json"
+2026-09-24T19:36:23.1317634Z     },
+2026-09-24T19:36:23.1317725Z     {
+2026-09-24T19:36:23.1317820Z       "status": "A",
+2026-09-24T19:36:23.1318211Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/ORIGINS.json"
+2026-09-24T19:36:23.1318622Z     },
+2026-09-24T19:36:23.1318713Z     {
+2026-09-24T19:36:23.1318807Z       "status": "A",
+2026-09-24T19:36:23.1319219Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/PRE_REPAIR_TESTS.patch"
+2026-09-24T19:36:23.1319653Z     },
+2026-09-24T19:36:23.1319745Z     {
+2026-09-24T19:36:23.1319839Z       "status": "A",
+2026-09-24T19:36:23.1320253Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/REFERENCE_QUALIFICATION.md"
+2026-09-24T19:36:23.1320689Z     },
+2026-09-24T19:36:23.1320781Z     {
+2026-09-24T19:36:23.1320875Z       "status": "A",
+2026-09-24T19:36:23.1321273Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/REPAIR_DIFF.patch"
+2026-09-24T19:36:23.1321694Z     },
+2026-09-24T19:36:23.1321786Z     {
+2026-09-24T19:36:23.1321885Z       "status": "A",
+2026-09-24T19:36:23.1322272Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/RETURN.md"
+2026-09-24T19:36:23.1322679Z     },
+2026-09-24T19:36:23.1322771Z     {
+2026-09-24T19:36:23.1322865Z       "status": "A",
+2026-09-24T19:36:23.1323256Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/baseline.log"
+2026-09-24T19:36:23.1323669Z     },
+2026-09-24T19:36:23.1323759Z     {
+2026-09-24T19:36:23.1323856Z       "status": "A",
+2026-09-24T19:36:23.1324246Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/focused.log"
+2026-09-24T19:36:23.1324653Z     },
+2026-09-24T19:36:23.1324745Z     {
+2026-09-24T19:36:23.1324842Z       "status": "A",
+2026-09-24T19:36:23.1325226Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REPAIR/full.log"
+2026-09-24T19:36:23.1325828Z     },
+2026-09-24T19:36:23.1325921Z     {
+2026-09-24T19:36:23.1326016Z       "status": "A",
+2026-09-24T19:36:23.1326410Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/BACKCHECK.md"
+2026-09-24T19:36:23.1326820Z     },
+2026-09-24T19:36:23.1326913Z     {
+2026-09-24T19:36:23.1327008Z       "status": "A",
+2026-09-24T19:36:23.1327415Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/BACKCHECK_ORIGINS.json"
+2026-09-24T19:36:23.1327841Z     },
+2026-09-24T19:36:23.1328013Z     {
+2026-09-24T19:36:23.1328109Z       "status": "A",
+2026-09-24T19:36:23.1328545Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/BACKCHECK_REFERENCE_CALCULATIONS.json"
+2026-09-24T19:36:23.1329004Z     },
+2026-09-24T19:36:23.1329095Z     {
+2026-09-24T19:36:23.1329189Z       "status": "A",
+2026-09-24T19:36:23.1329584Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/ORIGINS.json"
+2026-09-24T19:36:23.1329993Z     },
+2026-09-24T19:36:23.1330083Z     {
+2026-09-24T19:36:23.1330179Z       "status": "A",
+2026-09-24T19:36:23.1330595Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/REFERENCE_CALCULATIONS.json"
+2026-09-24T19:36:23.1331038Z     },
+2026-09-24T19:36:23.1331153Z     {
+2026-09-24T19:36:23.1331251Z       "status": "A",
+2026-09-24T19:36:23.1331649Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/REPAIR_DIFF.patch"
+2026-09-24T19:36:23.1332084Z     },
+2026-09-24T19:36:23.1332177Z     {
+2026-09-24T19:36:23.1332272Z       "status": "A",
+2026-09-24T19:36:23.1332657Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/REVIEW.md"
+2026-09-24T19:36:23.1333059Z     },
+2026-09-24T19:36:23.1333152Z     {
+2026-09-24T19:36:23.1333246Z       "status": "A",
+2026-09-24T19:36:23.1333645Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/SCOPE_CHECK.json"
+2026-09-24T19:36:23.1334057Z     },
+2026-09-24T19:36:23.1334148Z     {
+2026-09-24T19:36:23.1334242Z       "status": "A",
+2026-09-24T19:36:23.1334636Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/SOURCE_DIFF.patch"
+2026-09-24T19:36:23.1335056Z     },
+2026-09-24T19:36:23.1335147Z     {
+2026-09-24T19:36:23.1335242Z       "status": "A",
+2026-09-24T19:36:23.1335642Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INPUT_REVIEW/STATIC_CHECKS.json"
+2026-09-24T19:36:23.1336138Z     },
+2026-09-24T19:36:23.1336229Z     {
+2026-09-24T19:36:23.1336324Z       "status": "A",
+2026-09-24T19:36:23.1336709Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/INTEGRATION_RETURN.md"
+2026-09-24T19:36:23.1337113Z     },
+2026-09-24T19:36:23.1337203Z     {
+2026-09-24T19:36:23.1337297Z       "status": "A",
+2026-09-24T19:36:23.1337684Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/BRIEF.md"
+2026-09-24T19:36:23.1338189Z     },
+2026-09-24T19:36:23.1338280Z     {
+2026-09-24T19:36:23.1338373Z       "status": "A",
+2026-09-24T19:36:23.1338801Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/EXECUTOR_BASIS.json"
+2026-09-24T19:36:23.1339225Z     },
+2026-09-24T19:36:23.1339317Z     {
+2026-09-24T19:36:23.1339410Z       "status": "A",
+2026-09-24T19:36:23.1339887Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/FAN_IN.json"
+2026-09-24T19:36:23.1340300Z     },
+2026-09-24T19:36:23.1340392Z     {
+2026-09-24T19:36:23.1340488Z       "status": "A",
+2026-09-24T19:36:23.1340899Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/PORTABILITY_SCAN.json"
+2026-09-24T19:36:23.1341333Z     },
+2026-09-24T19:36:23.1341423Z     {
+2026-09-24T19:36:23.1341518Z       "status": "A",
+2026-09-24T19:36:23.1341907Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/RETURN.md"
+2026-09-24T19:36:23.1342316Z     },
+2026-09-24T19:36:23.1342407Z     {
+2026-09-24T19:36:23.1342501Z       "status": "A",
+2026-09-24T19:36:23.1342900Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/RUN_AFTER.json"
+2026-09-24T19:36:23.1343541Z     },
+2026-09-24T19:36:23.1343671Z     {
+2026-09-24T19:36:23.1343767Z       "status": "A",
+2026-09-24T19:36:23.1344168Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/RUN_BEFORE.json"
+2026-09-24T19:36:23.1344588Z     },
+2026-09-24T19:36:23.1344679Z     {
+2026-09-24T19:36:23.1344773Z       "status": "A",
+2026-09-24T19:36:23.1345464Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/_run_records/Cargo.lock.before"
+2026-09-24T19:36:23.1346220Z     },
+2026-09-24T19:36:23.1346314Z     {
+2026-09-24T19:36:23.1346409Z       "status": "A",
+2026-09-24T19:36:23.1346834Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/_run_records/EXECUTION.json"
+2026-09-24T19:36:23.1347275Z     },
+2026-09-24T19:36:23.1347365Z     {
+2026-09-24T19:36:23.1347461Z       "status": "A",
+2026-09-24T19:36:23.1347903Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_INTEGRATION/_run_records/authored_units_product.log"
+2026-09-24T19:36:23.1348365Z     },
+2026-09-24T19:36:23.1348454Z     {
+2026-09-24T19:36:23.1348547Z       "status": "A",
+2026-09-24T19:36:23.1348945Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/FINAL_MANIFEST.json"
+2026-09-24T19:36:23.1349358Z     },
+2026-09-24T19:36:23.1349447Z     {
+2026-09-24T19:36:23.1349540Z       "status": "A",
+2026-09-24T19:36:23.1349929Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/ORIGINS.json"
+2026-09-24T19:36:23.1350340Z     },
+2026-09-24T19:36:23.1350525Z     {
+2026-09-24T19:36:23.1350620Z       "status": "A",
+2026-09-24T19:36:23.1351001Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/RETURN.md"
+2026-09-24T19:36:23.1351403Z     },
+2026-09-24T19:36:23.1351513Z     {
+2026-09-24T19:36:23.1351607Z       "status": "A",
+2026-09-24T19:36:23.1351999Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/SCOPE_CHECK.json"
+2026-09-24T19:36:23.1352408Z     },
+2026-09-24T19:36:23.1352500Z     {
+2026-09-24T19:36:23.1352597Z       "status": "A",
+2026-09-24T19:36:23.1353073Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/STATIC_AUDIT.json"
+2026-09-24T19:36:23.1353484Z     },
+2026-09-24T19:36:23.1353579Z     {
+2026-09-24T19:36:23.1353673Z       "status": "A",
+2026-09-24T19:36:23.1354086Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/_run_records/EXECUTION.json"
+2026-09-24T19:36:23.1354513Z     },
+2026-09-24T19:36:23.1354604Z     {
+2026-09-24T19:36:23.1354699Z       "status": "A",
+2026-09-24T19:36:23.1355086Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/M24_REVIEW/audit.py"
+2026-09-24T19:36:23.1355486Z     },
+2026-09-24T19:36:23.1355576Z     {
+2026-09-24T19:36:23.1355676Z       "status": "A",
+2026-09-24T19:36:23.1356393Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_REFERENCE_PREP/PREPARATION.json"
+2026-09-24T19:36:23.1356837Z     },
+2026-09-24T19:36:23.1356927Z     {
+2026-09-24T19:36:23.1357020Z       "status": "A",
+2026-09-24T19:36:23.1357445Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_REFERENCE_PREP/independent_oracle.py"
+2026-09-24T19:36:23.1357888Z     },
+2026-09-24T19:36:23.1357979Z     {
+2026-09-24T19:36:23.1358074Z       "status": "A",
+2026-09-24T19:36:23.1358513Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_REFERENCE_PREP/prepared_expectations.json"
+2026-09-24T19:36:23.1358973Z     },
+2026-09-24T19:36:23.1359067Z     {
+2026-09-24T19:36:23.1359160Z       "status": "A",
+2026-09-24T19:36:23.1359553Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/PORTABILITY/CUSTODY.json"
+2026-09-24T19:36:23.1359965Z     },
+2026-09-24T19:36:23.1360055Z     {
+2026-09-24T19:36:23.1360147Z       "status": "A",
+2026-09-24T19:36:23.1360532Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/PORTABILITY/CUSTODY.md"
+2026-09-24T19:36:23.1360935Z     },
+2026-09-24T19:36:23.1361024Z     {
+2026-09-24T19:36:23.1361118Z       "status": "A",
+2026-09-24T19:36:23.1361491Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/PROVENANCE.json"
+2026-09-24T19:36:23.1361884Z     },
+2026-09-24T19:36:23.1361975Z     {
+2026-09-24T19:36:23.1362068Z       "status": "A",
+2026-09-24T19:36:23.1362514Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_CONTRACTS/BASELINE_RUN.json"
+2026-09-24T19:36:23.1363082Z     },
+2026-09-24T19:36:23.1363172Z     {
+2026-09-24T19:36:23.1363266Z       "status": "A",
+2026-09-24T19:36:23.1363711Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_CONTRACTS/CANDIDATE_RUN.json"
+2026-09-24T19:36:23.1364178Z     },
+2026-09-24T19:36:23.1364272Z     {
+2026-09-24T19:36:23.1364365Z       "status": "A",
+2026-09-24T19:36:23.1364884Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_CONTRACTS/ORIGINS.json"
+2026-09-24T19:36:23.1365340Z     },
+2026-09-24T19:36:23.1365430Z     {
+2026-09-24T19:36:23.1365523Z       "status": "A",
+2026-09-24T19:36:23.1366190Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_REPAIR/BASELINE_RUN.json"
+2026-09-24T19:36:23.1366654Z     },
+2026-09-24T19:36:23.1366745Z     {
+2026-09-24T19:36:23.1366841Z       "status": "A",
+2026-09-24T19:36:23.1367281Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_REPAIR/CANDIDATE_RUN.json"
+2026-09-24T19:36:23.1367743Z     },
+2026-09-24T19:36:23.1367833Z     {
+2026-09-24T19:36:23.1367925Z       "status": "A",
+2026-09-24T19:36:23.1368362Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_REVIEW/BACKCHECK.md"
+2026-09-24T19:36:23.1368810Z     },
+2026-09-24T19:36:23.1368901Z     {
+2026-09-24T19:36:23.1368999Z       "status": "A",
+2026-09-24T19:36:23.1369449Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_REVIEW/BACKCHECK_ORIGINS.json"
+2026-09-24T19:36:23.1369915Z     },
+2026-09-24T19:36:23.1370005Z     {
+2026-09-24T19:36:23.1370097Z       "status": "A",
+2026-09-24T19:36:23.1370529Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/INPUT_REVIEW/ORIGINS.json"
+2026-09-24T19:36:23.1370981Z     },
+2026-09-24T19:36:23.1371070Z     {
+2026-09-24T19:36:23.1371166Z       "status": "A",
+2026-09-24T19:36:23.1371631Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/NUMERICAL_REFERENCE_PREP/PREPARATION.json"
+2026-09-24T19:36:23.1372117Z     },
+2026-09-24T19:36:23.1372207Z     {
+2026-09-24T19:36:23.1372300Z       "status": "A",
+2026-09-24T19:36:23.1372717Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/_run_records/portability/PROVENANCE.json"
+2026-09-24T19:36:23.1373152Z     },
+2026-09-24T19:36:23.1373242Z     {
+2026-09-24T19:36:23.1373336Z       "status": "M",
+2026-09-24T19:36:23.1373552Z       "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock"
+2026-09-24T19:36:23.1373789Z     },
+2026-09-24T19:36:23.1373880Z     {
+2026-09-24T19:36:23.1373976Z       "status": "M",
+2026-09-24T19:36:23.1374189Z       "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.toml"
+2026-09-24T19:36:23.1374420Z     },
+2026-09-24T19:36:23.1374512Z     {
+2026-09-24T19:36:23.1374607Z       "status": "A",
+2026-09-24T19:36:23.1374956Z       "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/tests/authored_units_product.rs"
+2026-09-24T19:36:23.1375227Z     },
+2026-09-24T19:36:23.1375319Z     {
+2026-09-24T19:36:23.1375414Z       "status": "A",
+2026-09-24T19:36:23.1375646Z       "path": "projects/chirality-piping/validation/evidence/sweeps/SWEEP_20260924T162044Z_b9dda2addccc.json"
+2026-09-24T19:36:23.1376062Z     }
+2026-09-24T19:36:23.1376152Z   ],
+2026-09-24T19:36:23.1376249Z   "projects": [
+2026-09-24T19:36:23.1376367Z     "chromium-desktop",
+2026-09-24T19:36:23.1376491Z     "chromium-compact"
+2026-09-24T19:36:23.1376601Z   ],
+2026-09-24T19:36:23.1376696Z   "inventory": [
+2026-09-24T19:36:23.1376819Z     "e2e/b3-accessibility.spec.ts",
+2026-09-24T19:36:23.1377057Z     "e2e/b3a-session-status.spec.ts",
+2026-09-24T19:36:23.1377221Z     "e2e/b3b-project-persistence.spec.ts",
+2026-09-24T19:36:23.1377380Z     "e2e/b4-sections.spec.ts",
+2026-09-24T19:36:23.1377520Z     "e2e/b4-table-editing.spec.ts",
+2026-09-24T19:36:23.1377676Z     "e2e/c3-viewport-visibility.spec.ts",
+2026-09-24T19:36:23.1377838Z     "e2e/gui-workflow-validation.spec.ts",
+2026-09-24T19:36:23.1377994Z     "e2e/linear-authoring.spec.ts",
+2026-09-24T19:36:23.1378136Z     "e2e/r2-smoke.spec.ts",
+2026-09-24T19:36:23.1378275Z     "e2e/result-compatibility.spec.ts",
+2026-09-24T19:36:23.1378428Z     "e2e/ui-foundation.spec.ts",
+2026-09-24T19:36:23.1378597Z     "e2e/ui-foundation/causal-method-contract.spec.ts",
+2026-09-24T19:36:23.1378790Z     "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+2026-09-24T19:36:23.1378982Z     "e2e/ui-foundation/full-cohort-controller.spec.ts",
+2026-09-24T19:36:23.1379177Z     "e2e/ui-foundation/performance-targets.spec.ts",
+2026-09-24T19:36:23.1379356Z     "e2e/workspace-layout.spec.ts"
+2026-09-24T19:36:23.1379486Z   ],
+2026-09-24T19:36:23.1379585Z   "selected_specs": [
+2026-09-24T19:36:23.1379710Z     "e2e/b3-accessibility.spec.ts",
+2026-09-24T19:36:23.1379859Z     "e2e/b3a-session-status.spec.ts",
+2026-09-24T19:36:23.1380021Z     "e2e/b3b-project-persistence.spec.ts",
+2026-09-24T19:36:23.1380173Z     "e2e/b4-sections.spec.ts",
+2026-09-24T19:36:23.1380310Z     "e2e/b4-table-editing.spec.ts",
+2026-09-24T19:36:23.1380459Z     "e2e/c3-viewport-visibility.spec.ts",
+2026-09-24T19:36:23.1380623Z     "e2e/gui-workflow-validation.spec.ts",
+2026-09-24T19:36:23.1380780Z     "e2e/linear-authoring.spec.ts",
+2026-09-24T19:36:23.1380921Z     "e2e/r2-smoke.spec.ts",
+2026-09-24T19:36:23.1381057Z     "e2e/result-compatibility.spec.ts",
+2026-09-24T19:36:23.1381210Z     "e2e/ui-foundation.spec.ts",
+2026-09-24T19:36:23.1381375Z     "e2e/ui-foundation/causal-method-contract.spec.ts",
+2026-09-24T19:36:23.1381567Z     "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+2026-09-24T19:36:23.1381763Z     "e2e/ui-foundation/full-cohort-controller.spec.ts",
+2026-09-24T19:36:23.1381955Z     "e2e/ui-foundation/performance-targets.spec.ts",
+2026-09-24T19:36:23.1382127Z     "e2e/workspace-layout.spec.ts"
+2026-09-24T19:36:23.1382260Z   ],
+2026-09-24T19:36:23.1382363Z   "selected_titles": {},
+2026-09-24T19:36:23.1382495Z   "numerical_required": true,
+2026-09-24T19:36:23.1382627Z   "appearance": false,
+2026-09-24T19:36:23.1382745Z   "ownership": {},
+2026-09-24T19:36:23.1382854Z   "reasons": [
+2026-09-24T19:36:23.1382965Z     "Full source coverage"
+2026-09-24T19:36:23.1383081Z   ],
+2026-09-24T19:36:23.1383301Z   "coverage_note": "Full deduplicated source coverage requires barrier and four exact partitions to succeed."
+2026-09-24T19:36:23.1383555Z }
+2026-09-24T19:36:23.1383648Z ```
+2026-09-24T19:36:23.1383710Z 
+2026-09-24T19:36:23.1702515Z ##[group]Run actions/upload-artifact@v4
+2026-09-24T19:36:23.1702670Z with:
+2026-09-24T19:36:23.1702788Z   name: piping-e2e-selection
+2026-09-24T19:36:23.1702929Z   path: piping-e2e-plan.json
+2026-09-24T19:36:23.1703065Z   if-no-files-found: error
+2026-09-24T19:36:23.1703193Z   retention-days: 14
+2026-09-24T19:36:23.1703313Z   compression-level: 6
+2026-09-24T19:36:23.1703431Z   overwrite: false
+2026-09-24T19:36:23.1703663Z   include-hidden-files: false
+2026-09-24T19:36:23.1703793Z env:
+2026-09-24T19:36:23.1703893Z   CI: true
+2026-09-24T19:36:23.1704002Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-24T19:36:23.1704136Z   PLAYWRIGHT_WORKERS: 1
+2026-09-24T19:36:23.1704257Z ##[endgroup]
+2026-09-24T19:36:23.2794212Z (node:2762) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-24T19:36:23.2794805Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-24T19:36:23.2833158Z With the provided path, there will be 1 file uploaded
+2026-09-24T19:36:23.2837439Z Artifact name is valid!
+2026-09-24T19:36:23.2837891Z Root directory input is valid!
+2026-09-24T19:36:23.6163498Z Beginning upload of artifact content to blob storage
+2026-09-24T19:36:23.6276780Z (node:2762) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-24T19:36:23.7721253Z Uploaded bytes 2284
+2026-09-24T19:36:23.8130822Z Finished uploading artifact content to blob storage!
+2026-09-24T19:36:23.8131471Z SHA256 digest of uploaded artifact zip is ac54080ef250c24e2086488ba89125c4b27b34cc4a86b62b576eead5b921de63
+2026-09-24T19:36:23.8132765Z Finalizing artifact upload
+2026-09-24T19:36:24.0497750Z Artifact piping-e2e-selection.zip successfully finalized. Artifact ID 10829995791
+2026-09-24T19:36:24.0498455Z Artifact piping-e2e-selection has been successfully uploaded! Final size is 2284 bytes. Artifact ID is 10829995791
+2026-09-24T19:36:24.0502532Z Artifact download URL: https://github.com/sgttomas/chirality/actions/runs/36048742883/artifacts/10829995791
+2026-09-24T19:36:24.0648323Z Post job cleanup.
+2026-09-24T19:36:24.1192770Z [command]/usr/bin/git version
+2026-09-24T19:36:24.1221134Z git version 2.55.0
+2026-09-24T19:36:24.1241925Z Temporarily overriding HOME='/home/runner/work/_temp/6b32ed76-e6cd-401a-a4a5-e7d3a2eef2e6' before making global git config changes
+2026-09-24T19:36:24.1242646Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-24T19:36:24.1247428Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-24T19:36:24.1274934Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-24T19:36:24.1300244Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-24T19:36:24.1553591Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-24T19:36:24.1578208Z http.https://github.com/.extraheader
+2026-09-24T19:36:24.1585220Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-24T19:36:24.1768173Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-24T19:36:24.2030707Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-24T19:36:24.2060586Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-24T19:36:24.2441496Z Evaluate and set job outputs
+2026-09-24T19:36:24.2446430Z Set output 'mode'
+2026-09-24T19:36:24.2447475Z Set output 'numerical_required'
+2026-09-24T19:36:24.2448122Z Cleaning up orphan processes
+2026-09-24T19:36:24.2640631Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,20 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 477-480
+~0 standard window Invented Utility Loop Preview · Edited — SWBPIPE, Secondary Actions: Raise
++						547 container Unsaved model edits
++							548 text  · Edited
+~						182 button Undo model edit, Help: Undo (⌘Z)
+~						451 toggle button Review changes, Value: on
+~								470 text 0  queued;  1  applied this session. Applying validates through the structured-operation seam and replaces the session model document; saving the project stores it locally.
+~								472 text Engine  ready 0 unit-bearing queued, 0 dimensionless queued; passed; 1 applied receipts.
+~								474 button Undo, Help: Undo last local session model edit
+~								476 text 1  undo /  0  redo
++							549 text Applied op:load-manager-load:L-100-load:L-100-M300-primitive to the session model; previous solve results were cleared. Run a new solve, then save the project to store the edited model locally.
++							550 text Queue a review intent from the property inspector or viewport to validate and apply it here.
++							551 text APPLIED THIS SESSION
++							552 container
++								553 text op:load-manager-load:L-100-load:L-100-M300-primitive Load load:L-100 ;  primitive_loads :  not_present  to {"id":"load:L-100-M300","category":"concentrated_moment","target":{"type":"node","node":"node:N-140"},"direction":"rotation_z","magnitude":{"value":500,"unit":"N*m"},"dimension":"moment","provenance":"user_entered_local_preview"} Applied through  tauri_backend_apply . Acceptance basis  user_initiated_apply_in_local_session ; persistence session_state_only_not_yet_saved ; professional approval not recorded . model_hash= sha256:05448c2e204620d42…
+~						509 text Selected:  load:L-100
+~					448 text load: load:L-100 Entered
+~	165 text Invented Utility Loop Preview · Edited — SWBPIPE
+The focused UI element is 452 container Operation Apply section

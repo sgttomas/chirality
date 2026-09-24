@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping",
+    "started": "2026-09-24T21:55:16.924536+00:00",
+    "finished": "2026-09-24T21:55:16.939636+00:00",
+    "exit_code": 2,
+    "log": "profile-harness-0.log"
+  }
+]

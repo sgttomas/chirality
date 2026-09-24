@@ -1,0 +1,80 @@
+[
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier.json",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier.json",
+    "sha256": "5e142d5fdc4052a652cf75023585b623f2d7419258953c8ee858db245cacf274",
+    "mtime_ns": 1790260450422973240
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-f127fbfb528befec/lib-open_pipe_stress_operation_applier",
+    "sha256": "96375d2f5766d907194b94175420d456c430971be51b717bd01fdd670cfd2b59",
+    "mtime_ns": 1790260450422900406
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier.json",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier.json",
+    "sha256": "9b5f951f2eed1f14ecb1719e2d73ca529806bd7d23d3c3ec49122cf348bc392d",
+    "mtime_ns": 1790283485023742493
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-16d4a885b2d11b3f/lib-open_pipe_stress_operation_applier",
+    "sha256": "e39306beb1c131a4445c35590cb79014cb91ebbe991ba4b70709fbc88867ed80",
+    "mtime_ns": 1790283485023666952
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier.json",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier.json",
+    "sha256": "c129e2a4347b63a167ec6c3b4624db5727a2b4eccfdc0ac76c7bb0b0ff3c7fd2",
+    "mtime_ns": 1790266940982878742
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier",
+    "copy": "fingerprints/open_pipe_stress_operation_applier-2b21a187bf95fbbd/lib-open_pipe_stress_operation_applier",
+    "sha256": "d0836f5d4895e71ce7dfe2592e65efbf90163e8dbfbda8ea0dcc78c083487dc7",
+    "mtime_ns": 1790266940982797158
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product.json",
+    "copy": "fingerprints/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product.json",
+    "sha256": "4c61ec1a782f358a975d69ae3515685bdd4af8a8602bf14e276a75bbea598d0a",
+    "mtime_ns": 1790266941869231929
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product",
+    "copy": "fingerprints/open_pipe_stress_physics_audit_regression-db2024e27181a11a/test-integration-test-authored_units_product",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mtime_ns": 1790283513997903890
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product.json",
+    "copy": "fingerprints/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product.json",
+    "sha256": "f096f2b67c03da57f8297034d2fae4aaee8c1a3f976c9e5a8cd08723a938f770",
+    "mtime_ns": 1790260451246656801
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/.fingerprint/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product",
+    "copy": "fingerprints/open_pipe_stress_physics_audit_regression-2a8f4525cd0e266c/test-integration-test-authored_units_product",
+    "sha256": "d81084c58484539981117438374645d5dfc64b2e1ff468613a49d951fe02afd9",
+    "mtime_ns": 1790260451246582966
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/deps/libopen_pipe_stress_operation_applier.rlib",
+    "sha256": "dc25277634c504181f48afda5ce71df1ac7d1c66730a6fb6d91e28b1d93ae1ee",
+    "mtime_ns": 1790283485017738690,
+    "bytes": 12197880
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/deps/libopen_pipe_stress_operation_applier.dylib",
+    "sha256": "4273e5f6981c2cc44141182c5097d16fc7abc9e042ec608c09f580598f49bacd",
+    "mtime_ns": 1790283484989758704,
+    "bytes": 16728
+  },
+  {
+    "path": "/private/tmp/piping-solver-correctness-target/debug/deps/open_pipe_stress_operation_applier.d",
+    "sha256": "a6dbb50ecfe49f3efab65a08d14cec6c7ec1da89709a2ce122cf01da50d52df9",
+    "mtime_ns": 1790283484788627748,
+    "bytes": 920
+  }
+]

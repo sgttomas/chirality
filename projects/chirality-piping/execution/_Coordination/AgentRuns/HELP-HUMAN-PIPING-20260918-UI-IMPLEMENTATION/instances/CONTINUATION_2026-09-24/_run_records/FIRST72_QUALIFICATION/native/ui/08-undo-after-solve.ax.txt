@@ -1,0 +1,42 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 9-10, 44-460, 530
+~0 standard window Invented Utility Loop Preview — SWBPIPE, Secondary Actions: Raise
+~						12 button (disabled) Undo model edit, Help: Nothing to undo
+~						13 button Redo model edit, Help: Redo (⇧⌘Z)
+~					20 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
+~						32 toggle button (disabled) Results, Help: No run yet, Value: on
+~						33 toggle button (disabled) Review, Help: No run yet, Value: off
+~						37 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
++						545 container Results
++							546 text RESULTS
++							547 text Run the bounded preview mechanics path to populate result summaries.
++						548 container Comparison workspace
++							549 text COMPARISON
++							550 text Run mechanics preview to populate the local comparison workspace from stable result IDs and explicit source result references.
++						551 container Design-authoring workspace
++							552 text DESIGN WORKSPACE
++							553 container
++								554 checkbox Include known private values in this local export, Value: 0
++								555 text Include known private values in this local export
++							556 text decisions= 112 ; findings= 112 ; blocked= true
++							557 summary Details, Value: off
++								558 text Details
++							559 text Workspace JSON
++							560 text knowledge= 3 ; states= 0 ; runs= 0 ; comparisons= 0 ; operations= 0 Core contract
++							561 text records=2; warnings=1; states=2; runs=2; overlays=5
++							562 text Current browser
++							563 text analysis_run=not generated; comparison=not generated; result_rows=0
++							564 text Operation review
++							565 text records=0; accepted_mutation=false; application=empty_operation_queue
++							566 text Routing
++							567 text selected=none; route=no_selected_review_target
++							568 text Units
++							569 text model=angle=rad,force=N,length=m,pressure=Pa,stress=MPa,temperature=degC; results=none; comparison=none; conversion=false
++							570 text Boundary
++							571 text private_payload=false; protected=false; professional_claim=false
++							572 text Design workspace evidence is a local composition of GUI state, comparison context, and operation-review metadata. It does not apply operations or mutate accepted model state.
+~							465 summary Deformation · unavailable, Value: off
+~								466 text Deformation · unavailable
+~					531 button (collapsed) 5 Issues, Secondary Actions: Expand
+~	537 text Invented Utility Loop Preview — SWBPIPE
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

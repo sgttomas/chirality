@@ -1,0 +1,4 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~								311 text Engine  ready 1 unit-bearing queued, 0 dimensionless queued; passed; 0 applied receipts.
++								386 text validate_only  outcome:  not_applied . Schema  passed ; units  passed ; prior state  passed . Route tauri_backend_apply . diff:  load:L-100 primitive_loads.4.magnitude.value 12.5  to  {"value":45,"unit":"degF"}  [ degF ]
+The focused UI element is 291 container Operation Apply section

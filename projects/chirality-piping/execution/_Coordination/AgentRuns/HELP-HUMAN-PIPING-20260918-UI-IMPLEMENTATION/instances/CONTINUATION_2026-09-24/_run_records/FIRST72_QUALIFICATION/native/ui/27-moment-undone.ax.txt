@@ -1,0 +1,20 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 9-10, 143
+~0 standard window Invented Utility Loop Preview — SWBPIPE, Secondary Actions: Raise
+~						12 button (disabled) Undo model edit, Help: Nothing to undo
+~						13 button Redo model edit, Help: Redo (⇧⌘Z)
+~					20 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
+~						32 toggle button (disabled) Results, Help: No run yet, Value: off
+~						33 toggle button (disabled) Review, Help: No run yet, Value: off
+~						37 button (collapsed) Issues, 5, Help: Issues, Secondary Actions: Expand
+~								65 button (disabled) Undo, Help: Undo last local session model edit
+~								66 button Redo, Help: Redo last undone local session model edit
+~								67 text 0  undo /  1  redo
+~							68 text Undid op:load-manager-load:L-100-load:L-100-M300-primitive in the local session; previous solve results were cleared. Save is still required to persist the current session model.
+~							78 summary Deformation · unavailable, Value: off
+~								79 text Deformation · unavailable
+~						101 text Selected:  project:invented-loop-01
+~					144 button (collapsed) 5 Issues, Secondary Actions: Expand
+~					145 text project: project:invented-loop-01 Entered
+~	150 text Invented Utility Loop Preview — SWBPIPE
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

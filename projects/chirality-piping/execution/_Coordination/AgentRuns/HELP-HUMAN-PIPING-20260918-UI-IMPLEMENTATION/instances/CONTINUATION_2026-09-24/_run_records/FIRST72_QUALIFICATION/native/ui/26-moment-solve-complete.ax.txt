@@ -1,0 +1,161 @@
+Window: "Invented Utility Loop Preview · Edited — SWBPIPE", App: SWBPIPE.
+0 standard window Invented Utility Loop Preview · Edited — SWBPIPE, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: SWBPIPE, URL: tauri://localhost
+			3 container
+				4 container Toolbar
+					5 heading SWBPIPE, Value: 1
+						6 text SWBPIPE
+					7 container Invented Utility Loop Preview
+						8 text Invented Utility Loop Preview
+						9 container Unsaved model edits
+							10 text  · Edited
+					11 container Editing tools
+						12 button Undo model edit, Help: Undo (⌘Z)
+						13 button (disabled) Redo model edit, Help: Nothing to redo
+						14 toggle button Select, Help: Select (⎋), Value: on
+					15 container View
+						16 toggle button Table, Help: Table view (⌘1), Value: off
+						17 toggle button Model, Help: Model view (⌘2), Value: off
+						18 toggle button Both, Help: Both view (⌘3), Value: on
+					19 button Run
+					20 button (collapsed) Issues, 37, Help: Issues, Secondary Actions: Expand
+					21 container Panels
+						22 button (collapsed) Inspector, Help: Inspector (⌘I), Secondary Actions: Expand
+						23 button (disabled) Agent, Help: Agent: not available yet
+					24 pop up button Display units, Value: Entered, Help: Display units. Readouts use the selected units where conversion is available. Unavailable quantities retain entered values. Editing uses entered units.
+					25 summary Appearance, Value: off
+					26 container Human toolkit
+						27 button (collapsed) Find modeling commands, Help: Search or command (⌘K), Secondary Actions: Expand
+				28 container Stages
+					29 content list
+						30 toggle button Model, Value: on
+						31 toggle button Loads, Value: off
+						32 toggle button Results, Value: off
+						33 toggle button Review, Value: off
+					34 content list
+						35 button (collapsed) Libraries, Secondary Actions: Expand
+						36 button (collapsed) Rules, Secondary Actions: Expand
+						37 button (collapsed) Issues, 37, Help: Issues, Secondary Actions: Expand
+				38 container Modeling workspace
+					39 container Tables
+						40 toggle button Model, Value: off
+						41 toggle button Review changes, Value: on
+						42 button (disabled, expanded) Collapse table drawer, Help: Both view keeps the tables open, Secondary Actions: Collapse
+					43 container Operation Apply section
+						44 container Editing and review tools
+							45 toggle button Review changes, Value: on
+							46 toggle button Geometry, Value: off
+							47 toggle button Supports, Value: off
+							48 toggle button Self weight, Value: off
+							49 toggle button Agent, Value: off
+							50 toggle button Details, Value: off
+						51 container Batch review
+							52 heading Batch review, Value: 3
+								53 text Batch review
+							54 container
+								55 text 0  queued batches;  0  batches applied this session.
+							56 text Validate to preview all steps on temporary state. Apply commits the entire batch once or leaves the model unchanged. Batch drafts and receipts shown here belong to this session.
+							57 button (disabled) Clear pending changes and batches, Help: No pending batches or requests to clear.
+						58 container Apply structured operations
+							59 text APPLY OPERATIONS
+							60 container
+								61 text 0  queued;  1  applied this session. Applying validates through the structured-operation seam and replaces the session model document; saving the project stores it locally.
+							62 container Operation status
+								63 text Engine  ready 0 unit-bearing queued, 0 dimensionless queued; passed; 1 applied receipts.
+							64 container Session edit history
+								65 button Undo, Help: Undo last local session model edit
+								66 button (disabled) Redo, Help: Redo last undone local session model edit
+								67 text 1  undo /  0  redo
+							68 text Applied op:load-manager-load:L-100-load:L-100-M300-primitive to the session model; previous solve results were cleared. Run a new solve, then save the project to store the edited model locally.
+							69 text Queue a review intent from the property inspector or viewport to validate and apply it here.
+							70 text APPLIED THIS SESSION
+							71 container
+								72 text op:load-manager-load:L-100-load:L-100-M300-primitive Load load:L-100 ;  primitive_loads :  not_present  to {"id":"load:L-100-M300","category":"concentrated_moment","target":{"type":"node","node":"node:N-140"},"direction":"rotation_z","magnitude":{"value":500,"unit":"N*m"},"dimension":"moment","provenance":"user_entered_local_preview"} Applied through  tauri_backend_apply . Acceptance basis  user_initiated_apply_in_local_session ; persistence session_state_only_not_yet_saved ; professional approval not recorded . model_hash= sha256:05448c2e204620d42…
+							73 text Applying a structured operation records a user-initiated local-session acceptance only. Results of earlier solves are cleared because they no longer describe the edited model.
+					74 splitter Resize table and canvas, Value: 55
+					75 container Viewport controls
+						76 text 3D Centerline
+						77 container (collapsed) Viewport deformation overlay status, Secondary Actions: Expand
+							78 summary Deformation · normalized, Value: off
+								79 text Deformation · normalized
+						80 container Viewport display toggles
+							81 toggle button Labels, Help: Show or hide entity labels, Value: on
+							82 toggle button Loads, Help: Show or hide load arrows, Value: on
+							83 toggle button Grid, Help: Show or hide the ground grid, Value: on
+						84 container Viewport selection tools
+							85 toggle button Box Select, Value: off
+							86 container
+								87 text Selection filter
+								88 pop up button Selection filter, Value: All
+							89 button (disabled) Hide, Help: Select at least one valid drawable node, pipe, support, or component.
+							90 button (disabled) Isolate, Help: Select at least one valid drawable node, pipe, support, or component.
+							91 button (disabled) Show All, Help: All eligible entities are already shown.
+							92 text Isolate captures the selected geometry. Other shown geometry is dimmed to 20% and remains available to click, hover and box selection; nearer dimmed geometry can be picked before farther undimmed geometry. Selection does not change the snapshot. Hide takes precedence. Show All clears both. I and H apply while focus is in the viewport.
+							93 button Fit Model
+							94 button Fit Visible
+							95 button (disabled) Fit Selection, Help: No visible valid selected geometry can be fitted.
+						96 container Viewport geometry
+							97 toggle button Schematic, Value: on
+							98 toggle button Actual OD, Value: off
+							99 toggle button Measure, Value: off
+					100 container Viewport status
+						101 text Selected:  load:L-100
+						102 container Schematic centerline geometry
+							103 text Schematic centerline geometry
+						104 container View command status, Help: No view command dispatched.
+							105 text No view command dispatched.
+					106 container
+						107 container Three.js pipe centerline viewport, Help: Click a part to select it; drag to orbit, scroll to zoom
+						108 container Viewport entity selection
+							109 toggle button Select Vertical riser in viewport, Help: Vertical riser (pipe:P-110), Value: off
+							110 toggle button Select Invented branch connection marker in viewport, Help: Invented branch connection marker (component:C-120), Value: off
+							111 toggle button Select Low point elbow in viewport, Help: Low point elbow (node:N-110), Value: off
+							112 toggle button Select Riser elbow in viewport, Help: Riser elbow (node:N-120), Value: off
+							113 toggle button Select Rack span in viewport, Help: Rack span (pipe:P-120), Value: off
+							114 toggle button Select Pump discharge run in viewport, Help: Pump discharge run (pipe:P-100), Value: off
+							115 toggle button Select Tie-in rise in viewport, Help: Tie-in rise (pipe:P-130), Value: off
+							116 toggle button Select Invented semi-rigid valve marker in viewport, Help: Invented semi-rigid valve marker (component:C-130), Value: off
+							117 toggle button Select Pump nozzle in viewport, Help: Pump nozzle (node:N-100), Value: off
+							118 toggle button Select Rack turn in viewport, Help: Rack turn (node:N-130), Value: off
+							119 toggle button Select Terminal tie-in in viewport, Help: Terminal tie-in (node:N-140), Value: off
+							120 toggle button Select Preview sliding-friction rack shoe in viewport, Help: Preview sliding-friction rack shoe (support:NL-130-FRIC), Value: off
+							121 toggle button Select Preview one-way terminal stop in viewport, Help: Preview one-way terminal stop (support:NL-140), Value: off
+							122 toggle button Select Anchor at pump nozzle in viewport, Help: Anchor at pump nozzle (support:S-100), Value: off
+						123 image Orientation gizmo showing X, Y, Z axes
+						124 container View controls
+							125 toggle button Front, Value: off
+							126 toggle button Top, Value: off
+							127 toggle button Isometric, Value: on
+						128 text 1 m
+					129 container Command and selection bar
+						130 container Object creation tools
+							131 toggle button Node, Help: Arm node creation, Value: off
+							132 toggle button Pipe, Help: Arm pipe-run creation, Value: off
+							133 toggle button Support, Help: Arm support creation in the Inspector, Value: off
+							134 toggle button Component, Help: Arm component-symbol insertion, Value: off
+							135 toggle button Load, Help: Arm load creation in the Load Cases panel, Value: off
+						136 text Select
+						137 summary Selection & navigation, Value: off
+							138 text Selection & navigation
+				139 container Agent
+					140 button (disabled) Agent, Help: Agent: not available yet
+				141 container Workspace status
+					142 container Analysis statuses
+						143 button (collapsed) Solver · Mechanics solved, Help: MECHANICS_SOLVED, Secondary Actions: Expand
+					144 button (collapsed) 37 Issues, Secondary Actions: Expand
+					145 text load: load:L-100 Entered
+					146 button (collapsed) About SWBPIPE…, Secondary Actions: Expand
+	147 close button
+	148 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	149 minimize button
+	150 text Invented Utility Loop Preview · Edited — SWBPIPE
+151 menu bar
+	152 SWBPIPE
+	153 File
+	154 Edit
+	155 View
+	156 Insert
+	157 Analyze
+
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

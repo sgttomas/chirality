@@ -1,0 +1,30 @@
+[
+  {
+    "candidate": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/private/tmp/piping-first-correctness-20260924",
+    "started": "2026-09-24T21:55:34.104530+00:00",
+    "finished": "2026-09-24T21:56:07.390301+00:00",
+    "exit_code": 0,
+    "log": "profile-harness-0.log"
+  },
+  {
+    "candidate": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/private/tmp/piping-first-correctness-20260924",
+    "started": "2026-09-24T21:56:07.390839+00:00",
+    "finished": "2026-09-24T21:57:12.533553+00:00",
+    "exit_code": 0,
+    "log": "profile-harness-1.log"
+  }
+]

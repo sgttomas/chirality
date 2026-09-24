@@ -1,0 +1,10 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~					18 button (collapsed) Issues, 36, Help: Issues, Secondary Actions: Expand
+~						30 toggle button Results, Value: off
+~						31 toggle button Review, Value: off
+~						35 button (collapsed) Issues, 36, Help: Issues, Secondary Actions: Expand
+~							325 summary Deformation · normalized, Value: off
+~								326 text Deformation · normalized
++						393 button (collapsed) Solver · Mechanics solved, Help: MECHANICS_SOLVED, Secondary Actions: Expand
+~					275 button (collapsed) 36 Issues, Secondary Actions: Expand
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

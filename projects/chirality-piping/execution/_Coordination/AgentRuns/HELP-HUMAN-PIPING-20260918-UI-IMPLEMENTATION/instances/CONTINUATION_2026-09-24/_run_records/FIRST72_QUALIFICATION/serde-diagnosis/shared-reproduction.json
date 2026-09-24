@@ -1,0 +1,25 @@
+{
+  "head": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "validation/benchmarks/physics_audit_regression/Cargo.toml",
+    "--test",
+    "authored_units_product",
+    "--no-run",
+    "-vv"
+  ],
+  "cwd": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping",
+  "environment": {
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_NET_OFFLINE": "true",
+    "CARGO_TARGET_DIR": "/private/tmp/piping-solver-correctness-target"
+  },
+  "started_at": "2026-09-24T21:19:59.441794+00:00",
+  "exit_code": 101,
+  "finished_at": "2026-09-24T21:20:00.353423+00:00",
+  "log_sha256": "37c71ad9e380088c3295892a090151993a8d4548d940f316511ccdc66bef582c"
+}

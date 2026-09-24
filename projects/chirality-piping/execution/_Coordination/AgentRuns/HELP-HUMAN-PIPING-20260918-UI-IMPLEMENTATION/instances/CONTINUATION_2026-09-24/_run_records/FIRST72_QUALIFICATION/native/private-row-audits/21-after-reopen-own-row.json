@@ -1,0 +1,38 @@
+{
+  "view_kind": "bounded_original_test_observations_not_a_model_document",
+  "private_source": "/private/tmp/piping-native-first-72-records-20260924/ui/21-after-reopen-own-row.json",
+  "private_source_sha256": "1d19e8237bb2034857c92c64e322f0d8031c43dcc8b93a3d1d8af7122dd93dec",
+  "reason": "F-PIP-1: the native-created model document remains outside Git; only bounded original-test observations and source hashes are retained here.",
+  "project_id": "project:blank-local-20260924t213049z",
+  "temperature_unit": "degC",
+  "node_count": 1,
+  "node_observations": [
+    {
+      "id": "node:native72-unit-check",
+      "position": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "provenance": "Original local native qualification data"
+    }
+  ],
+  "model_json_sha256": "814cc2ece52395588a40c6243bae44625937c13d6cc405de5ef3e91ee76762dc",
+  "stored_model_hash": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs",
+    "hash_status": "computed_local_preview",
+    "payload_ref": "project:blank-local-20260924t213049z",
+    "payload_scope": "model_payload",
+    "value": "sha256:814cc2ece52395588a40c6243bae44625937c13d6cc405de5ef3e91ee76762dc"
+  },
+  "stored_project_envelope_hash": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs",
+    "hash_status": "computed_local_preview",
+    "payload_excludes": "storage_summary_and_envelope_hash_carrier_fields",
+    "payload_ref": "project:blank-local-20260924t213049z",
+    "payload_scope": "project_envelope_payload",
+    "value": "sha256:54717081c8e4efaf5426f2fd9b6b57c0f2efe6904e3d7756235b6351017c7b6c"
+  }
+}

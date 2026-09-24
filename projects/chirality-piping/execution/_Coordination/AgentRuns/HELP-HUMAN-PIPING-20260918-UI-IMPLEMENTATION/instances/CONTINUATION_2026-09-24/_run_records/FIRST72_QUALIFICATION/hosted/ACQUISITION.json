@@ -1,0 +1,98 @@
+{
+  "actor": "/root",
+  "role": "HELP_HUMAN",
+  "time": "2026-09-24T20:52:49.357833+00:00",
+  "failed_descendant_resume": "ROOT directly collected the stacked integration candidate",
+  "requests": [
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36048742883",
+      "path": "run.json",
+      "sha256": "f9704b650cc3d059ffc931a2e4ba7dbbe4749df5ccc66139415bbf4d35ca72f4"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36048742883/jobs?per_page=100",
+      "path": "jobs.json",
+      "sha256": "d6b01b8e59705899b8b264ebe9e1100d35d255b42d4e4a14c2c5db596ef6b612"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36048742883/artifacts?per_page=100",
+      "path": "artifacts.json",
+      "sha256": "336364fb7c2e5cf6d079582e77d099677734f3538e104ae3e4d30b2436024fad"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10831155767/zip",
+      "path": "piping-e2e-collection-shard-2-36048742883-1.zip",
+      "sha256": "062a54e4fc81cd8ee4932464ec670876738d12daa17673333123dbd0e25aac2e"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10830915396/zip",
+      "path": "piping-e2e-collection-shard-1-36048742883-1.zip",
+      "sha256": "00fcf852504b6450ef6b086053888420ee14d45d4dc4a067ab8cab98ab5a44a5"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10830350493/zip",
+      "path": "piping-numerical-36048742883-1.zip",
+      "sha256": "789de60b91362654ffe6f98c21ff4c815cf7c8d923cf07cb13b71fa3ecd48d03"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10830252677/zip",
+      "path": "piping-e2e-collection-shard-3-36048742883-1.zip",
+      "sha256": "76373cc565d864bcf67ad5448ae529d5b671c200212fb2634dc0b783a2be3aad"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10829995791/zip",
+      "path": "piping-e2e-selection.zip",
+      "sha256": "ac54080ef250c24e2086488ba89125c4b27b34cc4a86b62b576eead5b921de63"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10829891710/zip",
+      "path": "piping-e2e-collection-barrier-36048742883-1.zip",
+      "sha256": "ec7dafe5c2f20b7875896412d9136d6ed0f3e0aa62e857bf10a65bcd7fb77aa1"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10829814288/zip",
+      "path": "piping-e2e-collection-shard-4-36048742883-1.zip",
+      "sha256": "c11c5f7802ba6612b0438f3a74e8cd780d4ba5e178ccc1e4b37e11bea4511955"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107798690133/logs",
+      "path": "job-107798690133.log",
+      "sha256": "c94d3a5db3c0fade797cf6a08f91c1838c21f4e6d11fabdee93686977c494af7"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107800506719/logs",
+      "path": "job-107800506719.log",
+      "sha256": "ba10eb643a0febf291ed4b00b96a5d4cca670dede5d2c0e0f9903f33c2776128"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107800506804/logs",
+      "path": "job-107800506804.log",
+      "sha256": "d9d5481fed3d31081bb61c1193cac63475477813346bd20c0639542b6aeb5df4"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107802177627/logs",
+      "path": "job-107802177627.log",
+      "sha256": "f92b9a28567cf7519d4cf51543b08e9f4f75bea3595b52329b1d928a6944237c"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107802177672/logs",
+      "path": "job-107802177672.log",
+      "sha256": "714ea82eb269c9309123a7a4b18353fe7278e55235a588cf5f9d9d46b69622a8"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107802177734/logs",
+      "path": "job-107802177734.log",
+      "sha256": "04d4c39e0e06c8c8e9e7764691ee33396ac91304b6af5573623d981803819e7e"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107802178072/logs",
+      "path": "job-107802178072.log",
+      "sha256": "b3c01076529ea7a16a726a23d03326eb9c960f5419d1b617f5dfcc4f0dadb5e2"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107807442133/logs",
+      "path": "job-107807442133.log",
+      "sha256": "56542b476a67dd40b522aa9ed5896b4bbdd55a01a18a18a7fc07334830d0bdb3"
+    }
+  ]
+}

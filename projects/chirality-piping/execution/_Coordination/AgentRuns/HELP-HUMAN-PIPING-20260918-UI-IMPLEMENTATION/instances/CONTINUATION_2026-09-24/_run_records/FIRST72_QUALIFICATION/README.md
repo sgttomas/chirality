@@ -1,0 +1,11 @@
+# Exact72 qualification evidence
+
+Candidate72f09c4b195b1cb9e6576eafa963997a1b289a01 (PR886) retains its complete source, readiness-repair and parent-union reviews. Hosted run36048742883 passed source495 identities (475passed,20skipped) and38numerical crate graphs/1098tests. The isolated clean DEC-025 sweep passed all registered surfaces, including103desktop test files/1668tests. Practitioner self-check and379tests pass; exact-range G4 passes with148Piping paths and zero instruction-surface changes.
+
+The initial shared-target Cargo failure was reproduced through an unchanged-source controlled artifact-overwrite experiment; per-manifest output isolation repairs the execution environment. Source, lockfiles, tests and tolerances were unchanged. The original failure, diagnosis and independent review are retained. The initial practitioner command used the wrong working directory and exited before running tests; its preserved output is separate from the corrected repo-root execution.
+
+Native records bind the actual executable and921unchanged candidate inputs, thermal unit edit/validation/apply/solve/history, typed moment/native solve and native persistence. Independent review verified these bounded claims and exact rollout excerpts. No native hydrotest primitive workflow, broad numerical qualification, actual-human live witness or engineering acceptance is inferred. The saved original test project remains locally identifiable.
+
+F-PIP-1 keeps native-created full model documents outside Git. The three full SQLite row captures remain at their private execution origins; their hashes and bounded original-test observations are in native/private-row-audits. The native packet's original index/review describe the local originals; they are not claims that those full models are published here. The independent reviewer inspected the raw originals. Every other copied record is byte-identical; CUSTODY.json identifies copies, these explicit private exclusions and the three derivative audit views. Hosted extraction and candidate-input copies are reconstructible from retained ZIPs and exact Git blobs.
+
+These are per-slice execution records. The programme graph owns remaining work; this directory is not another central loop receipt or a release instrument.

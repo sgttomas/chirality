@@ -1,0 +1,641 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 289-315, 320, 388-392
+~						28 toggle button Model, Value: off
+~						30 toggle button Results, Value: on
++						394 toggle button Results, Value: on
++						395 toggle button Evidence, Value: off
++					396 container Results section
++						397 container Results
++							398 text RESULTS
++							399 container Result filtering
++								400 text Source result units
++								401 container
++									402 text MPa, N, N*m, mm, rad, boolean, count, m, mode_code, N*m/rad, N/m, state_code  ·  830  rows · entered units preserved; displayed quantities follow the display preference where available
++								403 container Result family filter
++									404 toggle button All 830, Value: on
++									405 toggle button Displacement 66, Value: off
++									406 toggle button Rotation 45, Value: off
++									407 toggle button Reaction 29, Value: off
++									408 toggle button Force 180, Value: off
++									409 toggle button Moment 180, Value: off
++									410 toggle button Stress 278, Value: off
++									411 toggle button Other 52, Value: off
++								412 container
++									413 text Filter results
++									414 search text field (settable) Filter result rows, Placeholder: ID, entity, component, location, or basis
++										415 text ID, entity, component, location, or basis
++								416 text 830  of  830  results match filter
++								417 button (disabled) Clear result filter
++								418 container Result page controls
++									419 container
++										420 text Rows
++										421 pop up button Rows per result page, Value: 50
++									422 text Showing  1  to  50  of  830  matching results; page  1  of  17
++									423 button (disabled) Previous result page
++									424 button Next result page
++							425 container Result detail
++								426 heading Result Detail, Value: 3
++									427 text Result Detail
++								428 text Select a computed result row to inspect recovery context and review boundary.
++							429 container Governing ratio state
++								430 heading Governing Ratio, Value: 3
++									431 text Governing Ratio
++								432 text unavailable; no user-rule ratio rows are present in this result envelope; mechanics results remain reviewable but no governing rule-check ratio is inferred
++								433 text This view reports supplied ratio rows only; it does not synthesize allowables or code criteria.
++							434 container Displacement results
++								435 heading Displacement, Value: 3
++									436 text Displacement
++								437 table
++									438 row (selectable) ID
+ENTITY
+LOCATION
+VALUE
+ENTERED SOURCE
++									439 row (selectable)
++										440 cell (selectable) result:nonlinear-support:support-NL-130-FRIC:uz-displacement
+physical_quantity
++										441 cell (selectable) support:NL-130-FRIC
++										442 cell (selectable) uz
++										443 cell (selectable) -3.879089
+mm
++										444 cell (selectable) Entered:
+-3.879089
+mm
++									445 row (selectable)
++										446 cell (selectable) result:nonlinear-support:support-NL-140:uy-displacement
+physical_quantity
++										447 cell (selectable) support:NL-140
++										448 cell (selectable) uy
++										449 cell (selectable) 0
+mm
++										450 cell (selectable) Entered:
+0
+mm
++									451 row (selectable)
++										452 cell (selectable) result:disp:node-N-100
+physical_quantity
++										453 cell (selectable) node:N-100
++										454 cell (selectable) summary
++										455 cell (selectable) 0
+mm
++										456 cell (selectable) Entered:
+0
+mm
++									457 row (selectable)
++										458 cell (selectable) result:disp:node-N-110
+physical_quantity
++										459 cell (selectable) node:N-110
++										460 cell (selectable) summary
++										461 cell (selectable) 0.615464
+mm
++										462 cell (selectable) Entered:
+0.615464
+mm
++									463 row (selectable)
++										464 cell (selectable) result:disp:node-N-120
+physical_quantity
++										465 cell (selectable) node:N-120
++										466 cell (selectable) summary
++										467 cell (selectable) 0
+mm
++										468 cell (selectable) Entered:
+0
+mm
++									469 row (selectable)
++										470 cell (selectable) result:disp:node-N-130
+physical_quantity
++										471 cell (selectable) node:N-130
++										472 cell (selectable) summary
++										473 cell (selectable) 4.144356
+mm
++										474 cell (selectable) Entered:
+4.144356
+mm
++									475 row (selectable)
++										476 cell (selectable) result:disp:node-N-140
+physical_quantity
++										477 cell (selectable) node:N-140
++										478 cell (selectable) summary
++										479 cell (selectable) 4.213275
+mm
++										480 cell (selectable) Entered:
+4.213275
+mm
++									481 row (selectable)
++										482 cell (selectable) result:disp:node-N-100:ux
+physical_quantity
++										483 cell (selectable) node:N-100
++										484 cell (selectable) node
++										485 cell (selectable) 0
+mm
++										486 cell (selectable) Entered:
+0
+mm
++									487 row (selectable)
++										488 cell (selectable) result:disp:node-N-100:uy
+physical_quantity
++										489 cell (selectable) node:N-100
++										490 cell (selectable) node
++										491 cell (selectable) 0
+mm
++										492 cell (selectable) Entered:
+0
+mm
++									493 row (selectable)
++										494 cell (selectable) result:disp:node-N-100:uz
+physical_quantity
++										495 cell (selectable) node:N-100
++										496 cell (selectable) node
++										497 cell (selectable) 0
+mm
++										498 cell (selectable) Entered:
+0
+mm
++									499 row (selectable)
++										500 cell (selectable) result:disp:node-N-110:ux
+physical_quantity
++										501 cell (selectable) node:N-110
++										502 cell (selectable) node
++										503 cell (selectable) 0
+mm
++										504 cell (selectable) Entered:
+0
+mm
++									505 row (selectable)
++										506 cell (selectable) result:disp:node-N-110:uy
+physical_quantity
++										507 cell (selectable) node:N-110
++										508 cell (selectable) node
++										509 cell (selectable) 0
+mm
++										510 cell (selectable) Entered:
+0
+mm
++									511 row (selectable)
++										512 cell (selectable) result:disp:node-N-110:uz
+physical_quantity
++										513 cell (selectable) node:N-110
++										514 cell (selectable) node
++										515 cell (selectable) -0.615464
+mm
++										516 cell (selectable) Entered:
+-0.615464
+mm
++									517 row (selectable)
++										518 cell (selectable) result:disp:node-N-120:ux
+physical_quantity
++										519 cell (selectable) node:N-120
++										520 cell (selectable) node
++										521 cell (selectable) 0
+mm
++										522 cell (selectable) Entered:
+0
+mm
++									523 row (selectable)
++										524 cell (selectable) result:disp:node-N-120:uy
+physical_quantity
++										525 cell (selectable) node:N-120
++										526 cell (selectable) node
++										527 cell (selectable) 0
+mm
++										528 cell (selectable) Entered:
+0
+mm
++									529 row (selectable)
++										530 cell (selectable) result:disp:node-N-120:uz
+physical_quantity
++										531 cell (selectable) node:N-120
++										532 cell (selectable) node
++										533 cell (selectable) 0
+mm
++										534 cell (selectable) Entered:
+0
+mm
++									535 row (selectable)
++										536 cell (selectable) result:disp:node-N-130:ux
+physical_quantity
++										537 cell (selectable) node:N-130
++										538 cell (selectable) node
++										539 cell (selectable) 1.458887
+mm
++										540 cell (selectable) Entered:
+1.458887
+mm
++									541 row (selectable)
++										542 cell (selectable) result:disp:node-N-130:uy
+physical_quantity
++										543 cell (selectable) node:N-130
++										544 cell (selectable) node
++										545 cell (selectable) 0
+mm
++										546 cell (selectable) Entered:
+0
+mm
++									547 row (selectable)
++										548 cell (selectable) result:disp:node-N-130:uz
+physical_quantity
++										549 cell (selectable) node:N-130
++										550 cell (selectable) node
++										551 cell (selectable) -3.879089
+mm
++										552 cell (selectable) Entered:
+-3.879089
+mm
++									553 row (selectable)
++										554 cell (selectable) result:disp:node-N-140:ux
+physical_quantity
++										555 cell (selectable) node:N-140
++										556 cell (selectable) node
++										557 cell (selectable) 1.794213
+mm
++										558 cell (selectable) Entered:
+1.794213
+mm
++									559 row (selectable)
++										560 cell (selectable) result:disp:node-N-140:uy
+physical_quantity
++										561 cell (selectable) node:N-140
++										562 cell (selectable) node
++										563 cell (selectable) 0
+mm
++										564 cell (selectable) Entered:
+0
+mm
++							565 container Rotation results
++								566 heading Rotation, Value: 3
++									567 text Rotation
++								568 table
++									569 row (selectable) ID
+ENTITY
+LOCATION
+VALUE
+ENTERED SOURCE
++									570 row (selectable)
++										571 cell (selectable) result:disp:node-N-100:rx
+physical_quantity
++										572 cell (selectable) node:N-100
++										573 cell (selectable) node
++										574 cell (selectable) 0
+rad
++										575 cell (selectable) Entered:
+0
+rad
++									576 row (selectable)
++										577 cell (selectable) result:disp:node-N-100:ry
+physical_quantity
++										578 cell (selectable) node:N-100
++										579 cell (selectable) node
++										580 cell (selectable) 0
+rad
++										581 cell (selectable) Entered:
+0
+rad
++									582 row (selectable)
++										583 cell (selectable) result:disp:node-N-100:rz
+physical_quantity
++										584 cell (selectable) node:N-100
++										585 cell (selectable) node
++										586 cell (selectable) 0
+rad
++										587 cell (selectable) Entered:
+0
+rad
++									588 row (selectable)
++										589 cell (selectable) result:disp:node-N-110:rx
+physical_quantity
++										590 cell (selectable) node:N-110
++										591 cell (selectable) node
++										592 cell (selectable) 0.000228
+rad
++										593 cell (selectable) Entered:
+0.000228
+rad
++									594 row (selectable)
++										595 cell (selectable) result:disp:node-N-110:ry
+physical_quantity
++										596 cell (selectable) node:N-110
++										597 cell (selectable) node
++										598 cell (selectable) 0.000452
+rad
++										599 cell (selectable) Entered:
+0.000452
+rad
++									600 row (selectable)
++										601 cell (selectable) result:disp:node-N-110:rz
+physical_quantity
++										602 cell (selectable) node:N-110
++										603 cell (selectable) node
++										604 cell (selectable) 0
+rad
++										605 cell (selectable) Entered:
+0
+rad
++									606 row (selectable)
++										607 cell (selectable) result:disp:node-N-120:rx
+physical_quantity
++										608 cell (selectable) node:N-120
++										609 cell (selectable) node
++										610 cell (selectable) 0.000247
+rad
++										611 cell (selectable) Entered:
+0.000247
+rad
++									612 row (selectable)
++										613 cell (selectable) result:disp:node-N-120:ry
+physical_quantity
++										614 cell (selectable) node:N-120
++										615 cell (selectable) node
++										616 cell (selectable) 0.001088
+rad
++										617 cell (selectable) Entered:
+0.001088
+rad
++									618 row (selectable)
++										619 cell (selectable) result:disp:node-N-120:rz
+physical_quantity
++										620 cell (selectable) node:N-120
++										621 cell (selectable) node
++										622 cell (selectable) 0
+rad
++										623 cell (selectable) Entered:
+0
+rad
++									624 row (selectable)
++										625 cell (selectable) result:disp:node-N-130:rx
+physical_quantity
++										626 cell (selectable) node:N-130
++										627 cell (selectable) node
++										628 cell (selectable) 0.000022
+rad
++										629 cell (selectable) Entered:
+0.000022
+rad
++									630 row (selectable)
++										631 cell (selectable) result:disp:node-N-130:ry
+physical_quantity
++										632 cell (selectable) node:N-130
++										633 cell (selectable) node
++										634 cell (selectable) 0.000314
+rad
++										635 cell (selectable) Entered:
+0.000314
+rad
++									636 row (selectable)
++										637 cell (selectable) result:disp:node-N-130:rz
+physical_quantity
++										638 cell (selectable) node:N-130
++										639 cell (selectable) node
++										640 cell (selectable) 0
+rad
++										641 cell (selectable) Entered:
+0
+rad
++							642 container Reaction results
++								643 heading Reaction, Value: 3
++									644 text Reaction
++								645 table
++									646 row (selectable) ID
+ENTITY
+LOCATION
+VALUE
+ENTERED SOURCE
++									647 row (selectable)
++										648 cell (selectable) result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction
+physical_quantity
++										649 cell (selectable) support:NL-130-FRIC
++										650 cell (selectable) uy
++										651 cell (selectable) 41.120279
+N
++										652 cell (selectable) Entered:
+41.120279
+N
++									653 row (selectable)
++										654 cell (selectable) result:nonlinear-support:support-NL-130-FRIC:uz-reaction
+physical_quantity
++										655 cell (selectable) support:NL-130-FRIC
++										656 cell (selectable) uz
++										657 cell (selectable) 0.411203
+N
++										658 cell (selectable) Entered:
+0.411203
+N
++									659 row (selectable)
++										660 cell (selectable) result:nonlinear-support:support-NL-140:uy-reaction
+physical_quantity
++										661 cell (selectable) support:NL-140
++										662 cell (selectable) uy
++										663 cell (selectable) -308.879721
+N
++										664 cell (selectable) Entered:
+-308.879721
+N
++							665 container Other results
++								666 heading Other, Value: 3
++									667 text Other
++								668 table
++									669 row (selectable) ID
+ENTITY
+LOCATION
+VALUE
+ENTERED SOURCE
++									670 row (selectable)
++										671 cell (selectable) result:solver-mode:linear-solve-basis
+solver_mode
++										672 cell (selectable) solver:linear_static_preview
++										673 cell (selectable) load:L-100
++										674 cell (selectable) 1
+mode_code
++										675 cell (selectable) Entered:
+1
+mode_code
++									676 row (selectable)
++										677 cell (selectable) result:nonlinear-support:iteration-count
+count
++										678 cell (selectable) nonlinear_supports
++										679 cell (selectable) load_case
++										680 cell (selectable) 2
+count
++										681 cell (selectable) Entered:
+2
+count
++									682 row (selectable)
++										683 cell (selectable) result:nonlinear-support:final-residual-count
+count
++										684 cell (selectable) nonlinear_supports
++										685 cell (selectable) load_case
++										686 cell (selectable) 0
+count
++										687 cell (selectable) Entered:
+0
+count
++									688 row (selectable)
++										689 cell (selectable) result:nonlinear-support:converged-flag
+flag
++										690 cell (selectable) nonlinear_supports
++										691 cell (selectable) load_case
++										692 cell (selectable) 1
+boolean
++										693 cell (selectable) Entered:
+1
+boolean
++									694 row (selectable)
++										695 cell (selectable) result:nonlinear-support:max-translation-delta
+diagnostic_observation
++										696 cell (selectable) nonlinear_supports
++										697 cell (selectable) final_iteration
++										698 cell (selectable) 0.003475
+mm
++										699 cell (selectable) Entered:
+0.003475
+mm
++									700 row (selectable)
++										701 cell (selectable) result:nonlinear-support:max-rotation-delta
+diagnostic_observation
++										702 cell (selectable) nonlinear_supports
++										703 cell (selectable) final_iteration
++										704 cell (selectable) 0.000001
+rad
++										705 cell (selectable) Entered:
+0.000001
+rad
++									706 row (selectable)
++										707 cell (selectable) result:nonlinear-support:max-force-reaction-delta
+diagnostic_observation
++										708 cell (selectable) nonlinear_supports
++										709 cell (selectable) final_iteration
++										710 cell (selectable) 0.411203
+N
++										711 cell (selectable) Entered:
+0.411203
+N
++									712 row (selectable)
++										713 cell (selectable) result:nonlinear-support:max-moment-reaction-delta
+diagnostic_observation
++										714 cell (selectable) nonlinear_supports
++										715 cell (selectable) final_iteration
++										716 cell (selectable) 0.136155
+N*m
++										717 cell (selectable) Entered:
+0.136155
+N*m
++									718 row (selectable)
++										719 cell (selectable) result:nonlinear-support:free-dof-force-residual
+diagnostic_observation
++										720 cell (selectable) nonlinear_supports
++										721 cell (selectable) final_iteration
++										722 cell (selectable) 0
+N
++										723 cell (selectable) Entered:
+0
+N
++									724 row (selectable)
++										725 cell (selectable) result:nonlinear-support:free-dof-moment-residual
+diagnostic_observation
++										726 cell (selectable) nonlinear_supports
++										727 cell (selectable) final_iteration
++										728 cell (selectable) 0
+N*m
++										729 cell (selectable) Entered:
+0
+N*m
++									730 row (selectable)
++										731 cell (selectable) result:nonlinear-support:free-dof-work-residual
+diagnostic_work
++										732 cell (selectable) nonlinear_supports
++										733 cell (selectable) final_iteration
++										734 cell (selectable) 0
+N*m
++										735 cell (selectable) Entered:
+0
+N*m
++									736 row (selectable)
++										737 cell (selectable) result:nonlinear-support:support-NL-130-FRIC:state-code
+state
++										738 cell (selectable) support:NL-130-FRIC
++										739 cell (selectable) uz
++										740 cell (selectable) 3
+state_code
++										741 cell (selectable) Entered:
+3
+state_code
++									742 row (selectable)
++										743 cell (selectable) result:nonlinear-support:support-NL-140:state-code
+state
++										744 cell (selectable) support:NL-140
++										745 cell (selectable) uy
++										746 cell (selectable) 1
+state_code
++										747 cell (selectable) Entered:
+1
+state_code
++									748 row (selectable)
++										749 cell (selectable) result:pressure-thrust:component-C-150
+review_evidence
++										750 cell (selectable) component:C-150
++										751 cell (selectable) pipe:P-130
++										752 cell (selectable) 21600
+N
++										753 cell (selectable) Entered:
+21600
+N
++							754 container Mechanics gap ledger
++								755 heading Mechanics Gap Ledger, Value: 3
++									756 text Mechanics Gap Ledger
++								757 container
++									758 text Endpoint-j local force/moment recovery implemented End-i and end-j local force/moment preview results are emitted and paired in result detail; arbitrary station sweeps remain deferred.
++								759 container
++									760 text Endpoint stress component recovery implemented End-i and end-j open-mechanics stress component preview results are emitted and paired when stress recovery succeeds.
++								761 container
++									762 text Intermediate station result recovery implemented Fixed station-grid preview force, moment, shear force, and stress rows are emitted from interpolated endpoint resultants; arbitrary station sweeps, exact internal diagrams, and shear stress recovery remain deferred.
++								763 container
++									764 text Pressure-to-frame load conversion implemented Closed-end pressure thrust for straight preview pipes is applied to frame resultants; broader pressure behavior remains deferred.
++								765 container
++									766 text Thermal behavior implemented Uniform axial temperature-change loads for straight preview pipes are implemented with explicit material expansion input; temperature-dependent properties and thermal combinations remain deferred.
++								767 container
++									768 text Support stiffness completeness deferred Linear support restraints are preview inputs; richer stiffness and nonlinear behavior require explicit data.
++								769 container
++									770 text Load combinations implemented Explicit mechanics-basis user load combinations are emitted from matching scalar load-case result rows; code/rule combinations remain deferred/private.
++								771 container
++									772 text Protected rule/code checks requires private inputs Private criteria, allowables, SIF/flexibility tables, and code checks are not bundled publicly.
++						773 container Comparison workspace
++							774 text COMPARISON Reference
++							775 text load:L-100; 279 rows
++							776 text Target
++							777 text combination:C-OPER-ALT; 261 rows
++							778 text Mapped
++							779 text 261 comparable pairs; 23 reference-only; 0 target-only
++							780 text Tolerance
++							781 text not_tolerance_checked; profile=TBD
++							782 text Source unit evidence
++							783 text units=MPa,N,N*m,mm,rad; matching=equal_explicit_units; conversion=false; tolerance=not_tolerance_checked
++							784 text Boundary
++							785 text review-only comparison
++							786 text stable result IDs plus explicit source_result_refs from the preview mechanics result envelope
++							787 button result:combination:combination-C-OPER-ALT:pressure-thrust:component-C-150 not tolerance checked component:C-150 expansion_joint_pressure_thrust; pipe:P-130 5400 N Reference: 21600 N Target: 27000 N
++							788 button result:combination:combination-C-OPER-ALT:reaction:support-S-120 not tolerance checked support:S-120 reaction_resultant; summary 191.44409499999995 N Reference: 765.77638N Target: 957.220475 N
++							789 button result:combination:combination-C-OPER-ALT:moment:pipe-P-120:quarter-3:bending-z not tolerance checked pipe:P-120 bending_moment_z;quarter_3 181.39244100000008 N*m Reference:725.569765 N*m Target: 906.962206N*m
++							790 button result:combination:combination-C-OPER-ALT:force:pipe-P-120:shear-y not tolerance checked pipe:P-120 shear_force_y; end_i 168.86962699999992 N Reference:675.478507 N Target: 844.348134 N
++							791 text 1  comparison diagnostic ; top 4  deltas shown from  261  mapped pairs.
++						792 container Design-authoring workspace
++							793 text DESIGN WORKSPACE
++							794 container
++								795 checkbox Include known private values in this local export, Value: 0
++								796 text Include known private values in this local export
++							797 text decisions= 127 ; findings= 127 ; blocked= true
++							798 summary Details, Value: off
++								799 text Details
++							800 text Workspace JSON
++							801 text knowledge= 3 ; states= 1 ; runs= 1 ; comparisons= 261 ; operations= 0 Core contract
++							802 text records=2; warnings=1; states=2; runs=2; overlays=5
++							803 text Current browser
++							804 text analysis_run=run:preview-linear-static-001; comparison=comparison:run:preview-linear-static-001:load-L-100-to-combination-C-OPER-ALT; result_rows=830
++							805 text Operation review
++							806 text records=0; accepted_mutation=false; application=empty_operation_queue
++							807 text Routing
++							808 text selected=none; route=no_selected_review_target
++							809 text Units
++							810 text model=angle=rad,force=N,length=m,pressure=Pa,stress=MPa,temperature=degC; results=MPa,N,N*m,N*m/rad,N/m,boolean,count,m,mm,mode_code,rad,state_code; comparison=MPa,N,N*m,mm,rad; conversion=false
++							811 text Boundary
++							812 text private_payload=false; protected=false; professional_claim=false
++							813 text Design workspace evidence is a local composition of GUI state, comparison context, and operation-review metadata. It does not apply operations or mutate accepted model state.
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

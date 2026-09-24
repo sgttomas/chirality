@@ -1,0 +1,10 @@
+{
+  "source": "/Users/ryan/.codex/sessions/2026/09/23/rollout-2026-09-23T19-15-28-01a0d0fb-58fc-73e2-8ad3-1da323452e8a.jsonl",
+  "selection": "Own native first72 CUA calls/outputs from exact first launch onward, plus exact own-row read-only persistence command attempts. No system/developer messages or unrelated tasks copied. Execution fields retained without rewriting; source-record hashes bind original JSONL lines.",
+  "calls": 66,
+  "records": 132,
+  "selected_first_line": 12807,
+  "selected_last_line": 13322,
+  "transcript_sha256": "0fcae660cbc304c873958b396155c34b293760ccee640521e6df90a43bf1aed4",
+  "excludes": "Internal transport metadata fields and unrelated conversation records are omitted."
+}

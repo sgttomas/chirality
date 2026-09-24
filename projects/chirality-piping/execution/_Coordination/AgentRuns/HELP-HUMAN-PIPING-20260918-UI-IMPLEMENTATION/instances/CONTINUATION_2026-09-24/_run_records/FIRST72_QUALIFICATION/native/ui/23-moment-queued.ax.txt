@@ -1,0 +1,106 @@
+The following is a diff from the previous accessibility tree for Window: "Invented Utility Loop Preview — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 210, 212-442
+~						186 toggle button Table, Help: Table view (⌘1), Value: off
+~						188 toggle button Both, Help: Both view (⌘3), Value: on
+~						192 button (collapsed) Inspector, Help: Inspector (⌘I), Secondary Actions: Expand
+~						200 toggle button Model, Value: on
+~						201 toggle button Loads, Value: off
++						450 toggle button Model, Value: off
++						451 toggle button Review changes 1, Help: Review changes, Value: on
+~						211 button (disabled, expanded) Collapse table drawer, Help: Both view keeps the tables open, Secondary Actions: Collapse
++					452 container Operation Apply section
++						453 container Editing and review tools
++							454 toggle button Review changes, Value: on
++							455 toggle button Geometry, Value: off
++							456 toggle button Supports, Value: off
++							457 toggle button Self weight, Value: off
++							458 toggle button Agent, Value: off
++							459 toggle button Details, Value: off
++						460 container Batch review
++							461 heading Batch review, Value: 3
++								462 text Batch review
++							463 container
++								464 text 0  queued batches;  0  batches applied this session.
++							465 text Validate to preview all steps on temporary state. Apply commits the entire batch once or leaves the model unchanged. Batch drafts and receipts shown here belong to this session.
++							466 button (disabled) Clear pending changes and batches, Help: No pending batches or requests to clear.
++						467 container Apply structured operations
++							468 text APPLY OPERATIONS
++							469 container
++								470 text 1  queued;  0  applied this session. Applying validates through the structured-operation seam and replaces the session model document; saving the project stores it locally.
++							471 container Operation status
++								472 text Engine  ready 1 unit-bearing queued, 0 dimensionless queued; no unit validations yet; 0 applied receipts.
++							473 container Session edit history
++								474 button (disabled) Undo, Help: Undo last local session model edit
++								475 button (disabled) Redo, Help: Redo last undone local session model edit
++								476 text 0  undo /  0  redo
++							477 container
++								478 text op:load-manager-load:L-100-load:L-100-M300-primitive Load load:L-100 ;  primitive_loads : not_present  to  {"id":"load:L-100-M300","category":"concentrated_moment","target":{"type":"node","node":"node:N-140"},"direction":"rotation_z","magnitude":{"value":500,"unit":"N*m"},"dimension":"moment","provenance":"user_entered_local_preview"}
++								479 button Validate, Help: Validate without applying
++								480 button Apply, Help: Validate and apply to the session model
++							481 text Applying a structured operation records a user-initiated local-session acceptance only. Results of earlier solves are cleared because they no longer describe the edited model.
++					482 splitter Resize table and canvas, Value: 55
++					483 container Viewport controls
++						484 text 3D Centerline
++						485 container (collapsed) Viewport deformation overlay status, Secondary Actions: Expand
++							486 summary Deformation · unavailable, Value: off
++								487 text Deformation · unavailable
++						488 container Viewport display toggles
++							489 toggle button Labels, Help: Show or hide entity labels, Value: on
++							490 toggle button Loads, Help: Show or hide load arrows, Value: on
++							491 toggle button Grid, Help: Show or hide the ground grid, Value: on
++						492 container Viewport selection tools
++							493 toggle button Box Select, Value: off
++							494 container
++								495 text Selection filter
++								496 pop up button Selection filter, Value: All
++							497 button (disabled) Hide, Help: Select at least one valid drawable node, pipe, support, or component.
++							498 button (disabled) Isolate, Help: Select at least one valid drawable node, pipe, support, or component.
++							499 button (disabled) Show All, Help: All eligible entities are already shown.
++							500 text Isolate captures the selected geometry. Other shown geometry is dimmed to 20% and remains available to click, hover and box selection; nearer dimmed geometry can be picked before farther undimmed geometry. Selection does not change the snapshot. Hide takes precedence. Show All clears both. I and H apply while focus is in the viewport.
++							501 button Fit Model
++							502 button Fit Visible
++							503 button (disabled) Fit Selection, Help: No visible valid selected geometry can be fitted.
++						504 container Viewport geometry
++							505 toggle button Schematic, Value: on
++							506 toggle button Actual OD, Value: off
++							507 toggle button Measure, Value: off
++					508 container Viewport status
++						509 text Selected:  project:invented-loop-01
++						510 container Schematic centerline geometry
++							511 text Schematic centerline geometry
++						512 container View command status, Help: No view command dispatched.
++							513 text No view command dispatched.
++					514 container
++						515 container Three.js pipe centerline viewport, Help: Click a part to select it; drag to orbit, scroll to zoom
++						516 container Viewport entity selection
++							517 toggle button Select Vertical riser in viewport, Help: Vertical riser (pipe:P-110), Value: off
++							518 toggle button Select Invented branch connection marker in viewport, Help: Invented branch connection marker (component:C-120), Value: off
++							519 toggle button Select Low point elbow in viewport, Help: Low point elbow (node:N-110), Value: off
++							520 toggle button Select Riser elbow in viewport, Help: Riser elbow (node:N-120), Value: off
++							521 toggle button Select Rack span in viewport, Help: Rack span (pipe:P-120), Value: off
++							522 toggle button Select Pump discharge run in viewport, Help: Pump discharge run (pipe:P-100), Value: off
++							523 toggle button Select Tie-in rise in viewport, Help: Tie-in rise (pipe:P-130), Value: off
++							524 toggle button Select Invented semi-rigid valve marker in viewport, Help: Invented semi-rigid valve marker (component:C-130), Value: off
++							525 toggle button Select Pump nozzle in viewport, Help: Pump nozzle (node:N-100), Value: off
++							526 toggle button Select Rack turn in viewport, Help: Rack turn (node:N-130), Value: off
++							527 toggle button Select Terminal tie-in in viewport, Help: Terminal tie-in (node:N-140), Value: off
++							528 toggle button Select Preview sliding-friction rack shoe in viewport, Help: Preview sliding-friction rack shoe (support:NL-130-FRIC), Value: off
++							529 toggle button Select Preview one-way terminal stop in viewport, Help: Preview one-way terminal stop (support:NL-140), Value: off
++							530 toggle button Select Anchor at pump nozzle in viewport, Help: Anchor at pump nozzle (support:S-100), Value: off
++						531 image Orientation gizmo showing X, Y, Z axes
++						532 container View controls
++							533 toggle button Front, Value: off
++							534 toggle button Top, Value: off
++							535 toggle button Isometric, Value: on
++						536 text 1 m
++					537 container Command and selection bar
++						538 container Object creation tools
++							539 toggle button Node, Help: Arm node creation, Value: off
++							540 toggle button Pipe, Help: Arm pipe-run creation, Value: off
++							541 toggle button Support, Help: Arm support creation in the Inspector, Value: off
++							542 toggle button Component, Help: Arm component-symbol insertion, Value: off
++							543 toggle button Load, Help: Arm load creation in the Load Cases panel, Value: off
++						544 text Select
++						545 summary Selection & navigation, Value: off
++							546 text Selection & navigation
+The focused UI element is 174 HTML content Description: SWBPIPE, URL: tauri://localhost

@@ -1,0 +1,88 @@
+[
+  {
+    "label": "audit-fresh",
+    "head": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "cwd": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml",
+      "--test",
+      "authored_units_product",
+      "-vv"
+    ],
+    "target": "/private/tmp/piping-serde-isolation-20260924-idd260lg",
+    "started_at": "2026-09-24T21:20:05.225167+00:00",
+    "exit_code": 0,
+    "finished_at": "2026-09-24T21:20:16.812249+00:00",
+    "log_sha256": "083c962e397d187894ed8eb22926074a7d45e7f876fe984704d0f53a7afd51b9",
+    "libopen_pipe_stress_operation_applier.rlib": {
+      "sha256": "b94e6d75aa902875a43ef5e98904d8426c8d5315f44261edf76c0ab08a55d4c1",
+      "mtime_ns": 1790284815562961490
+    },
+    "libopen_pipe_stress_operation_applier.dylib": {
+      "sha256": "a4e141f1fdba212ceaf89dfd17ca0a5ae48439b4a262652bfb71ca53d8764df8",
+      "mtime_ns": 1790284815548820115
+    }
+  },
+  {
+    "label": "applier-overwrite",
+    "head": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "cwd": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping",
+    "command": [
+      "cargo",
+      "build",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "core/model_operations/operation_applier/Cargo.toml",
+      "-vv"
+    ],
+    "target": "/private/tmp/piping-serde-isolation-20260924-idd260lg",
+    "started_at": "2026-09-24T21:20:16.829091+00:00",
+    "exit_code": 0,
+    "finished_at": "2026-09-24T21:20:23.899095+00:00",
+    "log_sha256": "3a844b904954ae821c8d0f02feae8aa4a4c9e3c46810503127c94df4d9956579",
+    "libopen_pipe_stress_operation_applier.rlib": {
+      "sha256": "541132a78bc0ffb95ccae8354f7349e77b0a1911c1f532e80d5db1ca9d190a73",
+      "mtime_ns": 1790284823890041327
+    },
+    "libopen_pipe_stress_operation_applier.dylib": {
+      "sha256": "a4e141f1fdba212ceaf89dfd17ca0a5ae48439b4a262652bfb71ca53d8764df8",
+      "mtime_ns": 1790284823875956909
+    }
+  },
+  {
+    "label": "audit-after-overwrite",
+    "head": "72f09c4b195b1cb9e6576eafa963997a1b289a01",
+    "cwd": "/private/tmp/piping-first-correctness-20260924/projects/chirality-piping",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml",
+      "--test",
+      "authored_units_product",
+      "--no-run",
+      "-vv"
+    ],
+    "target": "/private/tmp/piping-serde-isolation-20260924-idd260lg",
+    "started_at": "2026-09-24T21:20:23.915006+00:00",
+    "exit_code": 101,
+    "finished_at": "2026-09-24T21:20:24.072543+00:00",
+    "log_sha256": "875a169949ebb6d7feb6ecedb0cc03bebf81155b6ba0763405a0961a3bb83fe5",
+    "libopen_pipe_stress_operation_applier.rlib": {
+      "sha256": "541132a78bc0ffb95ccae8354f7349e77b0a1911c1f532e80d5db1ca9d190a73",
+      "mtime_ns": 1790284823890041327
+    },
+    "libopen_pipe_stress_operation_applier.dylib": {
+      "sha256": "a4e141f1fdba212ceaf89dfd17ca0a5ae48439b4a262652bfb71ca53d8764df8",
+      "mtime_ns": 1790284823875956909
+    }
+  }
+]
