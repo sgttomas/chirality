@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { openWorkspaceSection, projectCommand, selectTreeEntity, showCanvas, showModelTree } from "./workspace-driver";
 
 // Functional invented inputs only: no frozen benchmark helpers, caps or instrumentation.
-async function fixture(dense = false) {
+async function fixture(dense = false, coincident = false) {
   const model = JSON.parse(await readFile(new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url), "utf8"));
   const node = (id: string, x: number, y: number) => ({ ...model.nodes[0], id, label: id, position: { x, y, z: 0 } });
   // Wide row spacing leaves real gaps for bounded vertical placement offsets;
@@ -11,6 +11,14 @@ async function fixture(dense = false) {
   model.nodes = dense ? Array.from({ length: 136 }, (_, i) => node(`n${i}`, i % 17, Math.floor(i / 17) * 2.25))
     : [node("A", -4, -3), node("B", 4, 3), node("C", -4, 3), node("D", 4, -3)];
   model.pipe_segments = [{ ...model.pipe_segments[0], id: "P", label: "P", from: dense ? "n0" : "C", to: dense ? "n1" : "B" }];
+  if (coincident) {
+    // Two genuine, distinct identity populations intentionally share coordinates.
+    // Synthetic UI multiplicity only; no solver-readiness/engineering claim.
+    const positions = model.nodes.map((entry: any) => entry.position);
+    model.nodes = ["A", "B"].flatMap(prefix => positions.map((position: any, i: number) =>
+      node(`${prefix}${String(i + 1).padStart(3, "0")}`, position.x, position.y)));
+    model.pipe_segments[0].from = "A001"; model.pipe_segments[0].to = "A002";
+  }
   model.supports = []; model.components = []; model.load_cases = []; model.combinations = []; model.diagnostics = [];
   return model;
 }
@@ -73,7 +81,7 @@ async function witness(page: Page, info: TestInfo, name: string) {
     const canvas = document.querySelector('[data-testid="viewport-canvas"] canvas')!.getBoundingClientRect();
     const boxes = [...document.querySelectorAll<HTMLElement>('.viewport-select-target[data-label-placed="true"]')].map(el => ({
       key: el.dataset.entityKey, rect: el.getBoundingClientRect().toJSON(), pressed: el.getAttribute("aria-pressed") }));
-    return { labels: s.viewport.labels, selection: s.viewport.selection, canvas: canvas.toJSON(), boxes };
+    return { labels: s.viewport.labels, selection: s.viewport.selection, camera: s.viewport.camera, canvas: canvas.toJSON(), boxes };
   });
   await info.attach(name, { body: JSON.stringify(evidence, null, 2), contentType: "application/json" });
   expect(evidence.labels.placementStatus).toBe("applied");
@@ -113,7 +121,7 @@ export function registerC4LabelScenarios() {
     await selectTreeEntity(page, "node", "A"); await mode(page, "Off");
     await expect(page.getByTestId("viewport-select-A")).toBeVisible();
     await page.getByTestId("viewport-select-A").hover();
-    const off = await witness(page, info, "off-context-deduplicated-primary-hover-row"); expect(off.labels.ordinaryCount).toBe(0);
+    const off = await witness(page, info, "off-context-deduplicated-primary-hover"); expect(off.labels.ordinaryCount).toBe(0);
     expect(off.labels.contextCount).toBe(1); await page.mouse.move(0, 0);
     await page.getByRole("button", { name: "Isolate", exact: true }).click();
     await mode(page, "All");
@@ -140,6 +148,10 @@ export function registerC4LabelScenarios() {
     await showModelTree(page);
     await page.getByTestId("view-switch-both").click(); await page.getByTestId("layout-mode-grid").click();
     await page.getByTestId("table-cell-A-x").click();
+    const deduplicatedRow = await witness(page, info, "primary-A-current-fields-row-A-deduplicated");
+    expect(deduplicatedRow.labels.mode).toBe("Off");
+    expect(deduplicatedRow.labels.contextCount).toBe(1);
+    expect(deduplicatedRow.boxes.map(box => box.key)).toEqual([JSON.stringify(["node", "A"])]);
     await page.getByTestId("node-grid-review-disclosure").click();
     await page.getByTestId("review-cell-B-x").click();
     const current = await witness(page, info, "primary-A-review-B");
@@ -152,8 +164,15 @@ export function registerC4LabelScenarios() {
     await expect(page.getByTestId("viewport-select-B")).toBeHidden();
     expect(await invariants(page)).toEqual(before);
   });
-  test("C4 full node inventory and actual placed context overflow @explicit-viewport", async ({ page }, info) => {
-    await page.setViewportSize({ width: 1440, height: 920 }); const model = await fixture(true); await load(page, model);
+  for (const coincident of [false, true]) {
+  test(coincident
+    ? "C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport"
+    : "C4 unique full node inventory preserves spatial omissions @explicit-viewport", async ({ page }, info) => {
+    await page.setViewportSize({ width: 1440, height: 920 }); const model = await fixture(true, coincident);
+    await info.attach("dense-functional-fixture", { body: JSON.stringify({
+      purpose: coincident ? "Two distinct real node populations intentionally share coordinates; synthetic UI test, not engineering acceptance" : "Unique-position full inventory and finite spatial omissions",
+      model }, null, 2), contentType: "application/json" });
+    await load(page, model);
     await page.getByTestId("view-switch-both").click(); await page.getByTestId("viewport-fit-model").click();
     const before = await invariants(page); await mode(page, "Off");
     await page.getByTestId("viewport-selection-filter").selectOption("nodes"); await page.getByTestId("viewport-box-select").click();
@@ -176,14 +195,45 @@ export function registerC4LabelScenarios() {
     const result = await witness(page, info, "dense-actual-placement");
     expect(result.selection.orderedRefs).toHaveLength(model.nodes.length);
     expect(await page.locator('.viewport-select-target[data-entity-key]').count()).toBe(model.nodes.length + model.pipe_segments.length);
-    // This is deliberately a rendered-overflow assertion, never just requested > budget.
-    expect(result.labels.contextCount).toBeGreaterThan(result.labels.budget);
-    expect(result.labels.contextOverflow).toBe(result.labels.contextCount! - result.labels.budget);
-    expect(result.labels.ordinaryCount).toBe(0);
-    expect(result.labels.suppressed?.some(item => item.role === "ordinary" && item.reason === "budget")).toBe(true);
+    const expectedKeys = model.nodes.map((node: any) => JSON.stringify(["node", node.id])).sort();
+    expect(new Set(expectedKeys).size).toBe(coincident ? 272 : 136);
+    expect(result.selection.orderedRefs.map(ref => JSON.stringify([ref.type, ref.id])).sort()).toEqual(expectedKeys);
+    const placedContextKeys = result.boxes.filter(box => expectedKeys.includes(box.key!)).map(box => box.key!);
+    const unplacedContext = (result.labels.unplaced ?? []).filter(item => item.role !== "ordinary");
+    expect(placedContextKeys.length).toBe(result.labels.contextCount);
+    expect([...placedContextKeys, ...unplacedContext.map(item => item.key)].sort()).toEqual(expectedKeys);
+    expect((result.labels.suppressed ?? []).filter(item => item.role !== "ordinary")).toEqual([]);
+    expect((result.labels.ineligible ?? []).filter(item => item.role !== "ordinary")).toEqual([]);
+    for (const box of result.boxes) {
+      expect(model.nodes.some((node: any) => JSON.stringify(["node", node.id]) === box.key) ||
+        model.pipe_segments.some((pipe: any) => JSON.stringify(["pipe", pipe.id]) === box.key)).toBe(true);
+    }
+    if (coincident) {
+      const readableIdentities = [];
+      for (const box of result.boxes) {
+        const [type, id] = JSON.parse(box.key!);
+        if (type !== "node") continue;
+        const span = page.getByTestId(`viewport-select-${id}`).locator("span");
+        await expect(span).toHaveText(id);
+        const dimensions = await span.evaluate(element => ({ text: element.textContent,
+          scrollWidth: element.scrollWidth, clientWidth: element.clientWidth }));
+        expect(dimensions.scrollWidth, `${id} fits its unchanged visible label span`).toBeLessThanOrEqual(dimensions.clientWidth);
+        readableIdentities.push({ key: box.key, ...dimensions });
+      }
+      await info.attach("dense-readable-real-identities", { body: JSON.stringify(readableIdentities, null, 2), contentType: "application/json" });
+      // Rendered overflow is the gate; 272 requested identities alone prove nothing.
+      expect(result.labels.contextCount).toBeGreaterThan(result.labels.budget);
+      expect(result.labels.contextOverflow).toBe(result.labels.contextCount! - result.labels.budget);
+      expect(result.labels.ordinaryCount).toBe(0);
+      expect(result.labels.suppressed?.some(item => item.role === "ordinary" && item.reason === "budget")).toBe(true);
+    } else {
+      expect(unplacedContext.length).toBeGreaterThan(0);
+      expect(result.labels.contextOverflow).toBe(Math.max(0, result.labels.contextCount! - result.labels.budget));
+    }
     for (const node of model.nodes) expect((await projected(page, node.position)).unobscured).toBe(true);
     expect(await invariants(page)).toEqual(before);
   });
+  }
   test("C4 label modes preserve Current and Historical result standing", async ({ page }) => {
     await page.goto("/"); await openWorkspaceSection(page, "solve");
     await page.getByTestId("run-mechanics-preview").click();
