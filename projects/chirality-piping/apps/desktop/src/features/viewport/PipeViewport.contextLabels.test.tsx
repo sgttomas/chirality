@@ -251,9 +251,10 @@ describe("label hover hint publication ordering", () => {
     const oldUpdater = updater!;
     expect(lastInput().hoverKey).toBeNull();
     act(() => {
-      // Native dispatch queues React hover state. Execute the already-owned updater
-      // before act commits it, reproducing the measured capture → old-null-validation order.
-      plate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas }));
+      // React derives managed-to-managed enter from pointerout; standalone pointerover
+      // with a managed relatedTarget is ignored as a duplicate. Queue the real transition,
+      // then run the already-owned updater before act commits hover state.
+      canvas.dispatchEvent(new MouseEvent("pointerout", { bubbles: true, relatedTarget: plate }));
       oldUpdater();
       expect(lastInput().hoverKey).toBeNull();
       expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
@@ -268,7 +269,7 @@ describe("label hover hint publication ordering", () => {
     await act(async () => { flushFrames(); });
     expect(lastInput().hoverKey).toBeNull();
     expect(lastInput().preferredHoverCenter).toBeUndefined();
-    act(() => { plate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas })); });
+    act(() => { canvas.dispatchEvent(new MouseEvent("pointerout", { bubbles: true, relatedTarget: plate })); });
     await act(async () => { flushFrames(); });
     expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
     act(() => { width = 700; window.dispatchEvent(new Event("resize")); flushFrames(); });
@@ -283,7 +284,7 @@ describe("label hover hint publication ordering", () => {
     view.rerender(<PipeViewport {...props} />);
     await act(async () => { flushFrames(); });
     const shownPlate = ui.getByTestId("viewport-select-node:hover-b");
-    act(() => { shownPlate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas })); });
+    act(() => { canvas.dispatchEvent(new MouseEvent("pointerout", { bubbles: true, relatedTarget: shownPlate })); });
     await act(async () => { flushFrames(); });
     expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
     view.rerender(<PipeViewport {...props} modelIndex={modelIndexFor(model, 72, 0)} />);
