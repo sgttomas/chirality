@@ -1,0 +1,92 @@
+{
+  "schema": "pec-remaining-evidence-suite-observation/v1",
+  "item": "DEL-01-03-REM-003",
+  "label": "READ_ONLY_OBSERVATION_ONLY - not a new measurement, not acceptance, not a VER-discharge claim",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "v2/tests/storage",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "cwd": "projects/pec",
+  "python_version": "Python 3.13.7",
+  "utc_start": "2026-09-24T03:27:21Z",
+  "utc_end": "2026-09-24T03:27:22Z",
+  "head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "tests": [
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_admission_and_readback_preserve_all_five_typed_classes",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_policy_is_fixed_finite_and_domain_checked",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_database_journal_and_temp_artifacts_are_ignored",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_force_tracked_store_artifact_fails_before_any_write",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_later_negation_of_the_rule_fails_before_store_creation",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_009_loaded_suite_has_exact_execution_mapping",
+      "result": "ok"
+    }
+  ],
+  "totals": {
+    "ran": 13,
+    "ok": 13,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "summary_line": "OK",
+  "exit_code": 0,
+  "post_run_git_status_short": "unchanged relative to pre-run capture; no new path outside this folder",
+  "notes": [
+    "Tests create and remove their own temporary Git checkouts under the operating-system temporary directory; no repository path was written.",
+    "Registered check v2-store-guard uses the same command without -v and without PYTHONDONTWRITEBYTECODE (projects/pec/software-workflow.json:14-17)."
+  ]
+}

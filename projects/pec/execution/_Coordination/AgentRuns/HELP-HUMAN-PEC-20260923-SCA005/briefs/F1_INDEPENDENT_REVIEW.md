@@ -1,0 +1,14 @@
+# Brief F1 — fresh independent read-only review of the run candidate (TASK reviewer)
+
+Authority basis: D-PEC-86 §5 (independent review before PR); root `docs/PRD_ROOT.md` §5.3.1 merge gate. Role: TASK, read-only, fresh context; you authored nothing in this run. No delegation. Do not edit or write any file (instruction-asserted).
+
+Review target: the complete diff of branch `claude/pec-project-assessment-6106d5` against its merge base with `origin/main` (`git diff origin/main...HEAD --stat` and full diff), plus the untracked/added files it introduces.
+
+Verify, with exact locators and recomputed hashes:
+1. Boundary: every changed or added path is inside D-PEC-86 §4's write targets; nothing under `projects/pec/v2/**`, `software-workflow.json`, any `ScopeOfWork.md`, any `_STATUS.md`, live `docs/PRD.md`, live `_Decomposition/**`, `_ScopeChange/_LATEST.md`, `_DomainEngines/**`, or any non-PEC project changed.
+2. Truthfulness: D-PEC-86 quotes the owner's direction exactly as given (compare with the assessment/receipt transcription); no file asserts an owner acceptance of SCA-005 checkpoint 1, a lifecycle change, a PRD version change, or a decomposition revision change; the SCA-005 Brief/Impact Assessment label themselves awaiting owner acceptance; the DEL-01-03 reports close no Remaining item and keep UNKNOWN explicit; the TM rows are additive only; STATUS/README claims match live files.
+3. Evidence integrity: SHA-256 values quoted in the SCA-005 package, the design note, survey manifest, inventory, DEL-01-03 manifests and receipt match the live bytes; `Pre_Change_Coverage.json` matches the audit snapshot it claims to copy; `Amendment_Actions.csv` parses and its action types are valid per `workflows/scope-change/resources/contract.md`.
+4. Checks: rerun `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .`; `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check` (compare PEC findings with the pre-run baseline recorded in the run record); `python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv` and the same for `REGISTER_CLOSED.csv`; `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict` (must show no register change); `git diff --check`.
+5. Method conformance: the SCA-005 checkpoint-1 package contains what `workflows/scope-change/resources/method.md` "Checkpoint group 1" requires (parsed atomic actions with validation results, pre-change baseline, Impact Assessment with the required tables, Decision Log), and mirrors SCA-004's form where the method is silent.
+
+Return: findings ranked BLOCKING / MAJOR / MINOR / NOTE with file:line, what you verified clean, the commands run with exit codes, and a one-line verdict (PASS / PASS WITH MINOR / FAIL).
