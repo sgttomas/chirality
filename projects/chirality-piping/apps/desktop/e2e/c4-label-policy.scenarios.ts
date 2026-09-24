@@ -6,7 +6,9 @@ import { openWorkspaceSection, projectCommand, selectTreeEntity, showCanvas, sho
 async function fixture(dense = false) {
   const model = JSON.parse(await readFile(new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url), "utf8"));
   const node = (id: string, x: number, y: number) => ({ ...model.nodes[0], id, label: id, position: { x, y, z: 0 } });
-  model.nodes = dense ? Array.from({ length: 144 }, (_, i) => node(`n${i}`, i % 12, Math.floor(i / 12)))
+  // Wide row spacing leaves real gaps for bounded vertical placement offsets;
+  // this invented population is independent of protected performance fixtures.
+  model.nodes = dense ? Array.from({ length: 136 }, (_, i) => node(`n${i}`, i % 17, Math.floor(i / 17) * 2.25))
     : [node("A", -4, -3), node("B", 4, 3), node("C", -4, 3), node("D", 4, -3)];
   model.pipe_segments = [{ ...model.pipe_segments[0], id: "P", label: "P", from: dense ? "n0" : "C", to: dense ? "n1" : "B" }];
   model.supports = []; model.components = []; model.load_cases = []; model.combinations = []; model.diagnostics = [];
@@ -157,6 +159,16 @@ export function registerC4LabelScenarios() {
     await page.getByTestId("viewport-selection-filter").selectOption("nodes"); await page.getByTestId("viewport-box-select").click();
     const points = [];
     for (const node of model.nodes) points.push(await projected(page, node.position));
+    const preselection = await page.evaluate(() => {
+      const snapshot = globalThis.__openPipeStressUiDiagnosticsV1.readCurrent();
+      if ("status" in snapshot.viewport) throw new Error("Viewport unavailable");
+      const canvas = document.querySelector('[data-testid="viewport-canvas"] canvas')!.getBoundingClientRect();
+      return { camera: snapshot.viewport.camera, canvas: canvas.toJSON(),
+        measuredBudget: Math.floor(canvas.width * canvas.height / 3600), labels: snapshot.viewport.labels };
+    });
+    await info.attach("dense-projected-input-preselection", { body: JSON.stringify({
+      ...preselection, nodes: model.nodes.map((node: any, i: number) => ({ id: node.id, authored: node.position, projected: points[i] }))
+    }, null, 2), contentType: "application/json" });
     const left = Math.min(...points.map(p => p.x)) - 8, right = Math.max(...points.map(p => p.x)) + 8;
     const top = Math.min(...points.map(p => p.y)) - 8, bottom = Math.max(...points.map(p => p.y)) + 8;
     await page.mouse.move(left, top); await page.mouse.down(); await page.mouse.move(right, bottom, { steps: 6 }); await page.mouse.up();
