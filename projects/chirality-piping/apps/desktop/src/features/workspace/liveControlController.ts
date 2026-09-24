@@ -47,6 +47,7 @@ type Ticket = {
   hashing?: Promise<void>;
 };
 export type LiveHost = {
+  requestEpoch?: () => number;
   busy?: () => boolean;
   snapshot: () => LiveSnapshot | null;
   enqueue: (admission: LiveAdmission) => void;
@@ -228,6 +229,7 @@ export class LiveControlController {
     };
   }
   private async preview(params: unknown, requestId: string, signal: AbortSignal) {
+    const invocationEpoch = this.host.requestEpoch?.() ?? 0;
     const p = object(params, ["workspace", "basis", "changes"]);
     const b = this.bases.get(string(p.basis));
     if (!b)
@@ -322,6 +324,8 @@ export class LiveControlController {
       this.previewReservations -= 1;
     }
     this.fresh(record);
+    if ((this.host.requestEpoch?.() ?? 0) !== invocationEpoch)
+      fail("expired", "Local review invalidated this in-flight preview; prepare a fresh preview.");
     if (signal.aborted)
       fail("cancelled_before_publication", "Preview cancelled without publication.");
     if (outcome.batch_id !== batch.batch_id || outcome.initial_model_hash?.value !== record.admission.hash.value ||
@@ -467,6 +471,14 @@ export class LiveControlController {
       else if (t.published && t.state === "queued") {
         t.state = "withdrawn";
         t.reason = "cleared_in_review";
+      }
+    }
+  }
+  /** Clear retires unpublished admissions; only a committed absence settles them. */
+  clearPending() {
+    for (const ticket of this.tickets.values()) {
+      if (!ticket.published && !ticket.observed && !ticket.applying && !ticket.reason) {
+        ticket.cancelled = true;
       }
     }
   }

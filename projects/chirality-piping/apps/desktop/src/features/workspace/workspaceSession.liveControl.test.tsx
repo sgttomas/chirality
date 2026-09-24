@@ -5,6 +5,7 @@ const capture = vi.hoisted(() => ({ controller: null as LiveControlController | 
 vi.mock("../../services/liveControlBridge", () => ({ startLiveControlBridge: (controller: LiveControlController) => { capture.controller = controller; controller.bind("app-hook"); return () => controller.retire(); } }));
 import { useWorkspaceSession } from "./workspaceSession";
 import * as hashService from "../../services/hashService";
+import * as batchService from "../../services/operationBatchService";
 import type { LiveResponse } from "./liveControlTypes";
 function value(response: LiveResponse): Record<string, any> { if ("error" in response) throw new Error(JSON.stringify(response.error)); return response.result as Record<string, any>; }
 function request(method: string, params: unknown, signal = new AbortController().signal) {
@@ -93,4 +94,46 @@ describe("hook-owned committed live publication", () => {
     expect(value(await request("submit", next))).toMatchObject({ state: "expired", reason: "workspace_replaced" });
     expect(hook.result.current.operations.queuedBatches).toHaveLength(0);
   });
+  it("settles original and joined submit when Clear removes the scheduled entry before publication", async () => {
+    const hook = await ready();
+    const p = await prepare([hook.result.current.model.model!.nodes[0].id]);
+    let original!: Promise<LiveResponse>, joined!: Promise<LiveResponse>, settled = 0;
+    act(() => {
+      original = request("submit", p).then(r => { settled++; return r; });
+      joined = request("submit", p).then(r => { settled++; return r; });
+      hook.result.current.operations.handleClearReviewQueue();
+      expect(settled).toBe(0);
+    });
+    expect(hook.result.current.operations.queuedBatches).toHaveLength(0);
+    expect(await original).toMatchObject({ error: { code: "cancelled_before_publication" } });
+    expect(await joined).toEqual(await original);
+    expect(settled).toBe(2);
+    expect(hook.result.current.operations.undoStack).toHaveLength(0);
+  });
+  it("does not publish a preview whose real validation response was held across Clear", async () => {
+    const hook = await ready();
+    const before = structuredClone(hook.result.current.model.model!);
+    const workspace = value(await request("inspect", { scope: "workspace" })).workspace;
+    const inspected = value(await request("inspect", { scope: "nodes", workspace, node_ids: [before.nodes[0].id] }));
+    const node = inspected.nodes[0];
+    const params = { workspace, basis: inspected.basis, changes: [{ target: { object_type: "Node", ref: node.id }, field_path: "position.x", before: String(node.position.x), after: String(node.position.x + 0.01), unit: inspected.length_unit, dimension: "length" }] };
+    let release!: () => void, markStarted!: () => void;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    const started = new Promise<void>(resolve => { markStarted = resolve; });
+    const actual = batchService.validateOperationBatch;
+    vi.spyOn(batchService, "validateOperationBatch").mockImplementationOnce(async (...args) => {
+      const outcome = await actual(...args); markStarted(); await gate; return outcome;
+    });
+    const pending = request("preview", params);
+    await started;
+    act(() => hook.result.current.operations.handleClearReviewQueue());
+    release();
+    expect(await pending).toMatchObject({ error: { code: "expired" } });
+    expect(hook.result.current.model.model).toEqual(before);
+    expect(hook.result.current.operations.queuedBatches).toHaveLength(0);
+    expect(hook.result.current.operations.undoStack).toHaveLength(0);
+    expect(hook.result.current.operations.batchReceipts).toHaveLength(0);
+    expect(value(await request("preview", params))).toMatchObject({ validation: "passed", preview_ref: expect.any(String) });
+  });
+
 });

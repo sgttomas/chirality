@@ -41,3 +41,7 @@ Expanded controller blocks and object/intent/receipt construction using the loca
 Intentional implementation detail introduced during source authoring before the first SOURCE_READY handback, independently of the later formatting-only change: node inspection reuses the existing opaque basis when workspace/revision/hash match, then retains only that current inspection-basis snapshot. A later node inspection on a changed workspace/revision/hash replaces the stale inspection basis. An old unsubmitted basis therefore returns stale_basis rather than consuming a separate 1,024-basis allowance. The initial draft's extra 1,024 retained inspection-basis limit was removed; it was not a frozen wire limit.
 
 This does not evict frozen previews, tickets, or idempotency associations: each successful preview owns its copied basis/model/operations, and each submission owns its copied preview. Their promised controller-lifetime capacities remain 256 previews and 1,024 idempotency associations, with refusal rather than eviction. No product source or tests changed for this clarification, and no test/resource execution occurred.
+
+## Independent-review repair handback
+
+R2/R3 and coordinated R4 receiver source repairs are recorded in REPAIR_R2_R3_R4.md. SOURCE_READY.json is refreshed. Four precise Clear-race regressions plus exact listener-target assertions are authored; not executed by F. Manager retains serialized checks and independent backcheck.

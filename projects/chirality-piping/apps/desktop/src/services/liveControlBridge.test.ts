@@ -1,8 +1,9 @@
 import { waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-const mocks = vi.hoisted(() => ({ invoke: vi.fn(), listeners: new Map<string, (event: { payload: any }) => void>(), unlisten: vi.fn(), failListen: false }));
+const mocks = vi.hoisted(() => ({ invoke: vi.fn(), listeners: new Map<string, (event: { payload: any }) => void>(), unlisten: vi.fn(), targets: new Map<string, unknown>(), failListen: false }));
 vi.mock("@tauri-apps/api/core", () => ({ invoke: mocks.invoke }));
-vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name: string, handler: (event: { payload: any }) => void) => {
+vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name: string, handler: (event: { payload: any }) => void, options: unknown) => {
+  mocks.targets.set(name, options);
   if (mocks.failListen && name.endsWith("cancel")) throw new Error("listener failed");
   mocks.listeners.set(name, handler); return () => { mocks.unlisten(name); if (mocks.listeners.get(name) === handler) mocks.listeners.delete(name); };
 }) }));
@@ -33,7 +34,7 @@ afterEach(async () => {
     }
   } finally {
     disposers.clear(); unblockers.clear(); mocks.invoke.mockReset();
-    mocks.unlisten.mockReset(); mocks.listeners.clear(); mocks.failListen = false;
+    mocks.unlisten.mockReset(); mocks.targets.clear(); mocks.listeners.clear(); mocks.failListen = false;
     delete (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__;
   }
 });
@@ -47,6 +48,10 @@ describe("native live bridge lifecycle", () => {
     mocks.invoke.mockImplementation((command: string) => {
       if (command === "live_control_register") {
         expect(mocks.listeners.size).toBe(2);
+        expect([...mocks.targets.entries()]).toEqual([
+          ["piping-live-control-request", { target: { kind: "WebviewWindow", label: "main" } }],
+          ["piping-live-control-cancel", { target: { kind: "WebviewWindow", label: "main" } }]
+        ]);
         mocks.listeners.get("piping-live-control-request")!({ payload: request });
         return new Promise(resolve => { release = resolve; });
       }

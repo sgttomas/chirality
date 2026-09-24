@@ -554,6 +554,7 @@ export function useWorkspaceSession() {
   const liveEnqueue = useRef<(admission: LiveAdmission) => void>(() => {});
   const liveControllerRef = useRef<LiveControlController | null>(null);
   if (!liveControllerRef.current) liveControllerRef.current = new LiveControlController({
+    requestEpoch: () => requestEpochRef.current,
     busy: () => operationRequest.current.busy || projectOperationOwner.current !== null,
     snapshot: () => {
       const snapshot = liveSnapshot.current;
@@ -1018,6 +1019,7 @@ export function useWorkspaceSession() {
   }
 
   function handleClearReviewQueue() {
+    liveController.clearPending();
     requestEpochRef.current += 1;
     setRequestEpoch(requestEpochRef.current);
     setQueuedBatches([]);

@@ -36,12 +36,12 @@ export function startLiveControlBridge(controller: LiveControlController): () =>
       if (!registration && !disposed && payload.controller_session_id === controller.sessionId) {
         if (early.length < 32) early.push({ kind: "request", payload });
       } else dispatch(payload);
-    }));
+    }, { target: { kind: "WebviewWindow", label: "main" } }));
     unlisteners.push(await listen<Cancellation>("piping-live-control-cancel", ({ payload }) => {
       if (!registration && !disposed && payload.controller_session_id === controller.sessionId) {
         if (early.length < 32) early.push({ kind: "cancel", payload });
       } else cancel(payload);
-    }));
+    }, { target: { kind: "WebviewWindow", label: "main" } }));
     if (disposed) return;
     registration = await invoke<Registration>("live_control_register", { controllerSessionId: controller.sessionId });
     if (!disposed && registration.enabled && registration.app_instance_id) {

@@ -112,3 +112,28 @@ mod macos {
             .contains("SECRET_MALFORMED"));
     }
 }
+
+#[test]
+fn live_capability_is_local_main_listen_and_unlisten_only() {
+    let capability: Value =
+        serde_json::from_str(include_str!("../capabilities/live-control.json")).unwrap();
+    assert_eq!(capability["local"], true);
+    assert_eq!(capability["webviews"], json!(["main"]));
+    assert_eq!(
+        capability["permissions"],
+        json!(["core:event:allow-listen", "core:event:allow-unlisten"])
+    );
+    // Omitting windows avoids granting all webviews embedded in a main window.
+    assert!(capability.get("windows").is_none());
+    assert!(capability.get("remote").is_none());
+    let keys = capability.as_object().unwrap();
+    assert_eq!(keys.len(), 5);
+    assert!(keys.keys().all(|k| [
+        "identifier",
+        "description",
+        "local",
+        "webviews",
+        "permissions"
+    ]
+    .contains(&k.as_str())));
+}

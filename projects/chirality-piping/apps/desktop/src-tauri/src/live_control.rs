@@ -335,7 +335,9 @@ fn setup_enabled(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>>
             .map_err(|_| "live control registry unavailable")? =
             Some(Arc::new(move |event, payload| {
                 window
-                    .emit(event, payload)
+                    // Explicit target routing; supplier Any listeners are still eligible.
+                    // Local-main ACL admission and registration/source guards remain required.
+                    .emit_to(tauri::EventTarget::webview_window("main"), event, payload)
                     .map_err(|_| WireError::new("controller_unavailable"))
             }));
         transport::start(state).map_err(|_| "live control private endpoint unavailable")?;

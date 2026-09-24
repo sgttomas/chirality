@@ -126,22 +126,35 @@ fn validate_response(response: &Value, app: &str, id: &str) -> Result<(), WireEr
     let object = response
         .as_object()
         .ok_or_else(|| WireError::new("outcome_unknown"))?;
-    if object.len() != 4 || response["protocol_version"] != 1 || response["app_instance_id"] != app
+    let is_error = match (object.contains_key("result"), object.contains_key("error")) {
+        (true, false) => false,
+        (false, true) => true,
+        _ => return Err(WireError::new("outcome_unknown")),
+    };
+    let payload_key = if is_error { "error" } else { "result" };
+    let expected_keys = [
+        "protocol_version",
+        "app_instance_id",
+        "request_id",
+        payload_key,
+    ];
+    if object.len() != expected_keys.len()
+        || expected_keys.iter().any(|key| !object.contains_key(*key))
+        || object.get("protocol_version") != Some(&json!(1))
+        || object.get("app_instance_id").and_then(Value::as_str) != Some(app)
     {
         return Err(WireError::new("outcome_unknown"));
     }
-    // Admission can reject before reading correlation. Only a structured error may have null ID.
-    if response["request_id"] != id
-        && !(response["request_id"].is_null() && response.get("error").is_some())
-    {
-        return Err(WireError::new("outcome_unknown"));
+    // A missing key is never the explicit pre-correlation null allowed on errors.
+    match object.get("request_id") {
+        Some(Value::String(actual)) if actual == id => {}
+        Some(Value::Null) if is_error => {}
+        _ => return Err(WireError::new("outcome_unknown")),
     }
-    let body = if let Some(result) = response.get("result") {
-        json!({"result":result})
-    } else if let Some(error) = response.get("error") {
-        json!({"error":error})
+    let body = if is_error {
+        json!({"error": object["error"]})
     } else {
-        return Err(WireError::new("outcome_unknown"));
+        json!({"result": object["result"]})
     };
     wire::validate_reply(&body).map_err(|_| WireError::new("outcome_unknown"))
 }
@@ -157,5 +170,37 @@ mod tests {
         let mut bad = good;
         bad["capability"] = json!("forged");
         assert!(validate_response(&bad, "a", "r").is_err());
+    }
+    #[test]
+    fn cli_requires_exact_keys_and_explicit_typed_correlation() {
+        let error = serde_json::to_value(WireError::new("capacity")).unwrap();
+        let correlated_error =
+            json!({"protocol_version":1,"app_instance_id":"a","request_id":"r","error":error});
+        assert!(validate_response(&correlated_error, "a", "r").is_ok());
+        let mut null_error = correlated_error.clone();
+        null_error["request_id"] = Value::Null;
+        assert!(validate_response(&null_error, "a", "r").is_ok());
+
+        let missing_plus_unknown = json!({"protocol_version":1,"app_instance_id":"a","error":error,"unknown":"replacement"});
+        let missing_with_both =
+            json!({"protocol_version":1,"app_instance_id":"a","error":error,"result":null});
+        let null_success =
+            json!({"protocol_version":1,"app_instance_id":"a","request_id":null,"result":null});
+        let both = json!({"protocol_version":1,"app_instance_id":"a","request_id":"r","result":null,"error":error});
+        for invalid in [missing_plus_unknown, missing_with_both, null_success, both] {
+            let rejection = validate_response(&invalid, "a", "r").unwrap_err();
+            assert_eq!(rejection.code, "outcome_unknown");
+            assert!(rejection
+                .next_action
+                .contains("original workspace, preview and idempotency key"));
+        }
+        for wrong_type in [json!(1), json!(true), json!([]), json!({})] {
+            let mut invalid = correlated_error.clone();
+            invalid["request_id"] = wrong_type;
+            assert!(validate_response(&invalid, "a", "r").is_err());
+        }
+        let mut missing = correlated_error;
+        missing.as_object_mut().unwrap().remove("request_id");
+        assert!(validate_response(&missing, "a", "r").is_err());
     }
 }

@@ -10,6 +10,7 @@ let snapshot: LiveSnapshot;
 let controller: LiveControlController;
 let queued: LiveAdmission[];
 let busy = false;
+let epoch = 0;
 const call = (method: string, params: unknown, signal = new AbortController().signal) => controller.request({ controller_session_id: controller.sessionId, app_instance_id: "app-test", registration_id: "registration-test", dispatch_id: crypto.randomUUID(), request_id: "request-test", method, params } satisfies LiveRequest, signal);
 async function prepared(changes?: unknown[]) {
   const workspace = result(await call("inspect", { scope: "workspace" })).workspace;
@@ -24,8 +25,8 @@ beforeEach(async () => {
   const hash = await hashes.computeModelHash(model);
   if (!hash) throw new Error("No canonical hash");
   snapshot = { model, generation: 1, revision: 1, internalRevision: 4, hash, selection: [] };
-  queued = []; busy = false;
-  controller = new LiveControlController({ snapshot: () => snapshot, enqueue: a => queued.push(a), remove: token => { queued = queued.filter(a => a.token !== token); }, busy: () => busy });
+  queued = []; busy = false; epoch = 0;
+  controller = new LiveControlController({ requestEpoch: () => epoch, snapshot: () => snapshot, enqueue: a => queued.push(a), remove: token => { queued = queued.filter(a => a.token !== token); }, busy: () => busy });
   controller.bind("app-test");
 });
 afterEach(() => vi.restoreAllMocks());
@@ -153,6 +154,32 @@ describe("live controller publication and same-session recovery", () => {
     controller.bind("app-test");
     expect(result(await call("submit", p))).toMatchObject({ state: "outcome_unknown", reason: "controller_retired" });
     expect(queued).toHaveLength(1);
+  });
+
+  it("settles original and joined Clear-retired admissions only after observed absence", async () => {
+    const p = await prepared();
+    let settled = 0;
+    const first = call("submit", p).then(r => { settled++; return r; });
+    const joined = call("submit", p).then(r => { settled++; return r; });
+    controller.clearPending(); queued = [];
+    await Promise.resolve(); expect(settled).toBe(0);
+    controller.observe(new Set(), 1, 1, []);
+    expect(await first).toMatchObject({ error: { code: "cancelled_before_publication" } });
+    expect(await joined).toEqual(await first);
+    expect(settled).toBe(2);
+  });
+  it("rejects preview completion from a retired request epoch without invalidating fresh work", async () => {
+    const actual = batches.validateOperationBatch;
+    const wait = deferred<void>(), started = deferred<void>();
+    const spy = vi.spyOn(batches, "validateOperationBatch").mockImplementationOnce(async (...args) => {
+      const outcome = await actual(...args); started.resolve(); await wait.promise; return outcome;
+    });
+    const preparing = prepared(); await started.promise;
+    epoch++; controller.clearPending(); wait.resolve();
+    await expect(preparing).rejects.toThrow("expired");
+    expect(queued).toHaveLength(0);
+    spy.mockRestore();
+    expect((await prepared()).preview_ref).toBeTypeOf("string");
   });
 
 });

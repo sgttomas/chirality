@@ -1,0 +1,554 @@
+{
+  "reviewer": "/root/live_manager/implementation_review",
+  "parent": "/root/live_manager",
+  "role": "TASK Type 2; no descendants; independent nonimplementing review",
+  "mechanism": "delegated-harness-native descendant",
+  "checkout": "/private/tmp/piping-live-control-20260924",
+  "base": "2b31099233df5f3504959cdf8d9fbf90904ff938",
+  "candidate": "1811d70a129419d8d06502b61ef28bb2977a6d93",
+  "scope_check": {
+    "tool": "tools/software_workflow/validate_change_scope.py",
+    "status": "PASS",
+    "changed_paths": 54,
+    "product_test_guide_paths": 17,
+    "allowed_basis": "Exact N/F file enumeration plus maintained fixture binding clarification and owned implementation evidence/unchanged activation parity",
+    "violations": []
+  },
+  "identity_checks": {
+    "all_54_changed_worktree_files_equal_candidate": true,
+    "recorded_source_artifact_and_log_sha256_checks": 42,
+    "mismatches": [],
+    "activation_byte_equal_ROOT_adc346bcc4a5685a5dd3adcec0589742ffe9a21d": true
+  },
+  "execution_boundary": "No tests/build/npm/app/server/socket/browser/CUA/network/primary checkout/index/Git mutation; read-only source/supplier/evidence inspection and permitted report/manifest writes only. No PID9925 interaction.",
+  "sources": [
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/event/listener.rs",
+      "sha256": "67b976df6d02aba2000215f006808ae1eddbfaf7a8f8b6e8198e557cc0346581",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/ipc/authority.rs",
+      "sha256": "6da0f6200de5d8a417d0a13b5f6b08f69dafe6f78517691cc072a1dbc7e3859b",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/lib.rs",
+      "sha256": "dd9d3eeec873339b8fcdd0aa1719e3a875c440462f449a0dc8833685d95996d2",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/manager/mod.rs",
+      "sha256": "3b35d04bded3a068d3d9e1737d52a66a69ccfbc4b2300ec00ed6a5deaa85c79a",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/webview/mod.rs",
+      "sha256": "954cf212cb79d6b566c10b76d2ff2da05bc637cfc9f666c2f03d4e3dddf35f1c",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-codegen-2.6.1/src/context.rs",
+      "sha256": "ea13b70394f0166813d3aa1938d423ddd3ed809f81ecf541586c2f32f15255bd",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-utils-2.9.1/src/acl/mod.rs",
+      "sha256": "d724c2b14b377cc920a25c9d3e3b749ced35974107716677299da3949308d7d2",
+      "origin": "resolved local Cargo supplier source",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "sha256": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml",
+      "sha256": "ad7ee4d05b548c22e3ad2bf0cbf9ae98a78e525f62d694bd8e7a1ed15f00f18c",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/build.rs",
+      "sha256": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/acl-manifests.json",
+      "sha256": "d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/capabilities.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/bin/swbpipe-control.rs",
+      "sha256": "728cf2acb27b46564c7b67c08c6c12ca81b767bde70e8eef056ea931291c8107",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "sha256": "9bf20ec511f761eb4549a5b3ad051f1de72866f79b90593c9700320ef6f41979",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs",
+      "sha256": "4e41f4337d733ce893dc874d6cd49a111d711a673d0e8f1b9bdf537b0ca277b5",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_wire.rs",
+      "sha256": "7de038550e4f288423927f70e564c0ea6ac443914d13443356e7cce6fd0fdae5",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs",
+      "sha256": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-4f55822ee98d78f6/out/capabilities.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-56002360c732c218/out/capabilities.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/deps/tauri-d291aaf2e801a45d.d",
+      "sha256": "7d828551310455ef929548f73a4939c95a571a46f26613d9965519253d4340c5",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "sha256": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/fixtures/live-control-wire-v1.json",
+      "sha256": "6a35f885b5175ab9ee5c8ae9ea2290cfe118512b6476b59ff986f0aace1af8dc",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_cli.rs",
+      "sha256": "2580b515e7d40b531e48777e663b60da85860d7f0d7efed48bfafcf32b0cfc8f",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs",
+      "sha256": "482d1516366fa6f6fe51c04989be501d44589e81141310eed3abeefb94bb3c0b",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/toolkit/BatchReviewPanel.tsx",
+      "sha256": "6606236822ab4b126eb6e2b722bfce03eebdc8c2a3c3ee45806067ce1eb5d345",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.test.ts",
+      "sha256": "f68b6f38f0d07d29f8b5a3dd6ecbc40d8b668fadd0b52b2da425f05f8bdc3a79",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.ts",
+      "sha256": "15e56812e386a9ed135228db5343a06e51c8d7ee5d0c65a085de54997896f637",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlTypes.ts",
+      "sha256": "70d5a4e8cd319b7deeade59fc83ad97600272da37cf89dbdfb9fe2dee9f70d19",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/operationsSessionState.ts",
+      "sha256": "8a27435e58fb5a5c24e3c78a2ec846fa000745a70ae36babdab9082c24e4a292",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/projectSessionState.ts",
+      "sha256": "3c9cba4677a2d9f0a2c8845780e3cc7afbe9965fa5ed00f419951f01c4785dff",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx",
+      "sha256": "6042eb94889231eaab0d63da6b02d47187c278069ca472d2ccd2f017195f55be",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "614807f807353b53b201829d6aff0588b2e32350fd6aaf98450d6856ffe3f78e",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/hashService.ts",
+      "sha256": "0f1d342d60501b212c3a307b96ba1dfa625fcc1845cc33b47e54dd58341cf7e1",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.test.ts",
+      "sha256": "9fccc57b4a7c1fc5e62ee269516ecd8119d83b5d72d135e19112a379e0ad77f1",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.ts",
+      "sha256": "778a5424e8f9c204e16711abacf1ebe07f35a0db3698a91b495f40f62b167d69",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/nativeMenu.ts",
+      "sha256": "d3b960c14a648c20091e22828b34b483982b0a451c3521f0410c2096030b7e56",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/operationBatchService.ts",
+      "sha256": "0cf84f7b8ced2786fa03729087fd1197bf8773afb6d15a9653cb86e8a0ecc52f",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md",
+      "sha256": "e9db6a37088bc8fcbf5cfdb5f42889451c30a57b1eb3ea19b2dd15b299714b60",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_IMPLEMENTATION_ACTIVATION.md",
+      "sha256": "9fda39962acb516469ddcfa7898119e16a9104316b57ebb0d2a5e6b9356c6628",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/ACTIVATION_PARITY.json",
+      "sha256": "069ee23a69506ec2331ab8d9e90ce3ceb133c6d564601def0daa8f5b63ae3eaf",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/BINDING_CLARIFICATIONS.md",
+      "sha256": "24ee5e8db57cd3576b5ba8e2294c5a5fd02772ffec271087f5cec20ffb02dfaf",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/DELEGATION.json",
+      "sha256": "604b198a794707f1185de130100e2e587b206c38a34de7a1097e58062bb78084",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/ACK.md",
+      "sha256": "d169e854222df20c9e9f47e40e012bf15e1d353729df19dfc7c94ebfcb1f5f74",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/RETURN.md",
+      "sha256": "506c1546ba821edaf28c5fa5473fa456d29a4b4ecd0e1d2c4ecbd95451029007",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/SOURCE_READY.json",
+      "sha256": "297d5adbb89d1988ed57752434f9baa4e14bd2c18df7bfec3f930849c0c265ca",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND_RERUN_BASIS.json",
+      "sha256": "a277f2dc7c7f068cf2cb29a3e44aa8f9f68a0bba0bb64899310bccd04b8cee1a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/IMPLEMENTATION_RETURN.md",
+      "sha256": "80d20c16379685a83ff3cbc35583880293ca57b95ece573daef7aa4a5ac53a97",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/INTEGRATION_NOTES.md",
+      "sha256": "a7b1e3ed62ad8f5087c78b7256f40c6255081bbd729ae70e5bb9e7be1cec51a6",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/MANAGER_ACTIVATION.md",
+      "sha256": "50ee6807f042a2182bddbf18030d97270f11b012ac46bb1dd319cd5a5fd2095a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/ACK.md",
+      "sha256": "acebb38b2ccddd3137ff52225c30ee5887f48a818e88c0efe4eccb92331622cc",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/DESCRIBE_CORRECTION.json",
+      "sha256": "078cf96d2ceda4766ba0641992ad3c3520ef96c5fb80f156626c821560a6a228",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/FINAL_SOURCE.json",
+      "sha256": "b38332bc5793f3326064abe4735ce92c9804c20caedc4ac2b91cf2f541ba860a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/FIXTURE_CLEANUP_REPAIR.json",
+      "sha256": "3b9ae173c8e20004d6de65dbc350ad7d648c1cf41ef311f17338cfc8c602749b",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/PRE_RUN.json",
+      "sha256": "e0f4c162b4ebe101eba59ded62f91453a55462b292d387451b6a2da054bd074d",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/RETURN.md",
+      "sha256": "52c13a24399d86a3729a57924ef0a691575b93ac529b3e7cc4b14cdb0def440a",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/RUNS.json",
+      "sha256": "69c6ddd6e662b2b04a6ba1e3b39f47af512911b1d058099573f76ced103f4420",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/SOURCE_READY.md",
+      "sha256": "68d601c2b976b9ee60112537967ed3feba2ac2e2570418c2936f5216f6a1d3c9",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/cargo-cli-1.log",
+      "sha256": "77ed1bb7d20ddb62268e146d3f6962bbe9a836eea151ef76a7a70e619f5fa0fb",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/cargo-cli-build-1.log",
+      "sha256": "989536ca13f749f35aeebd9882bd0d4c7df8eb53a3844067d28817add85deebf",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/cargo-lib-1.log",
+      "sha256": "030927ad41ff7b2ead2e3b91dadd18bf372cf5dbff54add4cb8fa41bf6eb5797",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/cargo-transport-1.log",
+      "sha256": "f0aff17e0660e74b11cb500922ac9f3324e86d187f9b6e17b1ba48ebd2fb0a05",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/cargo-transport-2.log",
+      "sha256": "820880c1535ff2f976687ec3abc00b0efd8598d6126544e1e744f08cdbdd9958",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REPAIR_SCOPE.md",
+      "sha256": "c9bc845fd762b6ecdbc21365e6094bfb1466ee292b472a8ea26dced19cae0ce1",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/RESOURCE_RELEASE.md",
+      "sha256": "b1a89596d46057cdbe27c10b6daae4161b63c3fba5c9a65796dfa5aad09322d0",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW_BRIEF.md",
+      "sha256": "8175807138314016cba25e887d863a61c61f53009c84424f76edafc465617fe4",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/SOURCE_AUTHORING_RELEASE.md",
+      "sha256": "3bf2be3e2ae0fa5138805d9f438815b323a5f0116f58791119ed2be5ea325383",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/VALIDATION.json",
+      "sha256": "1fc760ee26082e4a17392502778a0d34a8b465bb2117210b471c5dcdda9699d2",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/WIRE_ACKS.json",
+      "sha256": "54a99a798261c4d6188997c82157023b64693b4a70211b44e0a416bdbe5a6546",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/build-wasm.raw.txt",
+      "sha256": "8b4a5c6d951cd3eb25eb9f4c8ed3941401db6b78753299c2f161ab4cd3a7ee22",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/frontend-tests-final.raw.txt",
+      "sha256": "a765192183d9353feb382b430bf7fd8694d61f1a7b06a1fe1955706ef1098223",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/frontend-tests.raw.txt",
+      "sha256": "7ace1e25b93263646c951eedbc29d6d86058b280d7f5d86442041f96b928f83d",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/npm-ci.raw.txt",
+      "sha256": "273c2a517f2cd52122be5c5df4ee17c9877b7a306c3445401254b5cdc65fc1e3",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/npm-logs/2026-09-24T04_48_09_592Z-debug-0.log",
+      "sha256": "b11699f208844b841f85c461d35a73b91981afed857d6512e7743c4448a05a47",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/tsc-final.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/tsc-repair.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/tsc.raw.txt",
+      "sha256": "bd6a2987fe3f3cb5a61f24839336fc250887c9a885d915b307b91073b6d58963",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/wire-fixtures.json",
+      "sha256": "6a35f885b5175ab9ee5c8ae9ea2290cfe118512b6476b59ff986f0aace1af8dc",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION_BRIEFS.md",
+      "sha256": "5a3116ca2a6999204a3d6f8dcd65d9cd4a176fa9404940f68b631fbb38938915",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/TEST_PLAN.md",
+      "sha256": "a68a1ca42c9a44fdd2aaa01b63813a4045fd69b64757d34892fe1278ab2e5bb7",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/WIRE_PROPOSAL.md",
+      "sha256": "91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/api/event.js",
+      "sha256": "f00d22c559ce7e58a85d860e35fd60d20826f13d7f534a5f3548a7ef94446e84",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    },
+    {
+      "path": "tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d",
+      "origin": "isolated checkout",
+      "consultation": "complete changed diff/content or relevant cited unchanged sections; raw logs reviewed for command/outcome/limits"
+    }
+  ]
+}

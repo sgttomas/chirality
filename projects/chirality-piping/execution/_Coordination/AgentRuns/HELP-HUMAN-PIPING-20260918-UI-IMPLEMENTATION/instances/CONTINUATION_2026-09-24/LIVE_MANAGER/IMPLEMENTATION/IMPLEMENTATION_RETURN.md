@@ -2,6 +2,10 @@
 
 Returned by WORKING_ITEMS /root/live_manager to /root. Implementation source and bounded component verification are complete for this handback; actual native connection and real-human witnesses remain open. All heavyweight processes have been released. No push, PR, merge, primary/C4 write, app launch, real endpoint, browser/native/CUA, benchmark or PID9925 interaction occurred. ROOT retains programme integration and broader checks.
 
+## Independent review update
+
+The first implementation candidate1811d70a1 received **changes required** in REVIEW/RETURN.md (R1–R5). Source-only repairs are dispatched under REPAIR_SCOPE.md. The passing checks below are initial-candidate component evidence and do not establish those defects repaired. Implementation fan-in remains held for affected checks and independent backcheck on repaired source. No native/human gate is closed.
+
 ## Result and exact ownership
 
 The isolated branch `codex/piping-live-control-20260924` starts at `2b31099233df5f3504959cdf8d9fbf90904ff938`. Both executing TASK writers acknowledged frozen wire `91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce` before product authoring; ACK identities and actual delegation are in WIRE_ACKS.json/DELEGATION.json. Implementation changes are restricted to the reviewed N/F scopes. The exact current source manifests are FRONTEND_RERUN_BASIS.json and NATIVE/FINAL_SOURCE.json. The scoped local Git commit supplies the integrated diff; its identity is returned through the task handoff, without a self-referential completion commit.

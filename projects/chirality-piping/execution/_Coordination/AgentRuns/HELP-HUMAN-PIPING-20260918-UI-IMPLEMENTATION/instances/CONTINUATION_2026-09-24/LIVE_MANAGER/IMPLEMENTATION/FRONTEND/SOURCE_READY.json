@@ -1,10 +1,10 @@
 {
-  "apps/desktop/src/features/workspace/workspaceSession.ts": "614807f807353b53b201829d6aff0588b2e32350fd6aaf98450d6856ffe3f78e",
+  "apps/desktop/src/features/workspace/workspaceSession.ts": "62096d15fd9cca561061893b8cd14370188c79c43dcb4c534ffbd9dd06743bca",
   "apps/desktop/src/features/toolkit/BatchReviewPanel.tsx": "6606236822ab4b126eb6e2b722bfce03eebdc8c2a3c3ee45806067ce1eb5d345",
   "apps/desktop/src/features/workspace/liveControlTypes.ts": "70d5a4e8cd319b7deeade59fc83ad97600272da37cf89dbdfb9fe2dee9f70d19",
-  "apps/desktop/src/features/workspace/liveControlController.ts": "15e56812e386a9ed135228db5343a06e51c8d7ee5d0c65a085de54997896f637",
-  "apps/desktop/src/services/liveControlBridge.ts": "778a5424e8f9c204e16711abacf1ebe07f35a0db3698a91b495f40f62b167d69",
-  "apps/desktop/src/features/workspace/liveControlController.test.ts": "f68b6f38f0d07d29f8b5a3dd6ecbc40d8b668fadd0b52b2da425f05f8bdc3a79",
-  "apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx": "6042eb94889231eaab0d63da6b02d47187c278069ca472d2ccd2f017195f55be",
-  "apps/desktop/src/services/liveControlBridge.test.ts": "9fccc57b4a7c1fc5e62ee269516ecd8119d83b5d72d135e19112a379e0ad77f1"
+  "apps/desktop/src/features/workspace/liveControlController.ts": "84bd87ae36a9420ca46b72243a726ce86438766817bcb09b7137b8f338059d64",
+  "apps/desktop/src/services/liveControlBridge.ts": "211e0ec6b7d2faa4ed3e7e85e020610c2a30313d054fa250c72a7b7de31d5855",
+  "apps/desktop/src/features/workspace/liveControlController.test.ts": "92ad476180a54a929ad63f350aacd1725d6a05d1db373b90caf243dee620090f",
+  "apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx": "c51b736d7fd619446ad2436bbd12be85ba60df0da2d9b07a7373d36c58c2b940",
+  "apps/desktop/src/services/liveControlBridge.test.ts": "57d827144f9fa5113ef3c8d0a6d8ad91b41ca0429e717dbce546afe3ffe20887"
 }
