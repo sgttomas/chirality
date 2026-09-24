@@ -1,0 +1,1093 @@
+{
+  "survey": "SCA-005 prep A1 sister-loop file-truth survey",
+  "run_id": "HELP-HUMAN-PEC-20260923-SCA005",
+  "node": "A1",
+  "role": "TASK",
+  "examined_through": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "hash_method": "SHA-256 of HEAD blob (git cat-file) for tracked files; of working-tree bytes for untracked run inputs",
+  "census_note": "Aggregate counts in the survey are computed over git ls-files at HEAD; files counted only in aggregate are not listed individually.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "loop": "root",
+      "role": "instruction",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "loop": "pec",
+      "role": "instruction",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "loop": "root",
+      "role": "instruction",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/briefs/A1_SURVEY.md",
+      "sha256": "f32e879f043a1205f4cc4eb2a56c8dab9f430a52da069bfe539f7d77246f0b05",
+      "loop": "pec",
+      "role": "brief",
+      "status": "CURRENT",
+      "hash_basis": "working-tree (untracked)"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/RUN.md",
+      "sha256": "cb4f8fe1b24053dc08594c13ad2743364875bb9b847792df46fd8113cc130583",
+      "loop": "pec",
+      "role": "run-record",
+      "status": "CURRENT",
+      "hash_basis": "working-tree (untracked)"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/SUPPLIED_BASIS.json",
+      "sha256": "d59821be6a0e3f3ccecb375344307c4d151a50ca7be7b84a18c68118a9b14354",
+      "loop": "pec",
+      "role": "run-record",
+      "status": "CURRENT",
+      "hash_basis": "working-tree (untracked)"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
+      "sha256": "7cc4dd0f9065f9a79e554aae6ddad5dfdb631a28556585e8d04a7e6a6bdb682b",
+      "loop": "pec",
+      "role": "accepted-basis",
+      "status": "CURRENT",
+      "hash_basis": "working-tree (untracked)"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ASSESSMENT_2026-09-23_APP_PIPING_PEC_UNISON.md",
+      "sha256": "0eed76e529a0640d20115413f7125710e8ebb07e9c9c0a4887b1fc70867b1974",
+      "loop": "pec",
+      "role": "orientation",
+      "status": "CURRENT",
+      "hash_basis": "working-tree (untracked)"
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+      "sha256": "5d286ec97f4c262be9e106537e3b7527e9756b6dd5bf0f1beb8259e1ca114440",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md",
+      "sha256": "5f20b1c48f4f383a07240e04bdf524e8b2443af37cb745c549f939cd6bb8db6e",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md",
+      "sha256": "c3e7928cbbcf1c552883f8268bff4899996f9943cc8fb1b52ca14c223bd7d872",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
+      "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md",
+      "sha256": "192df47d8d3d15316951066a24032b9a7d7a6cd0b660935fcb1799daf8af907e",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md",
+      "sha256": "c8ca6292bae19d2da754918bdf530d32a4c0a8348146ed10743acfd0acfbbec8",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+      "sha256": "d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "sha256": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
+      "loop": "pec",
+      "role": "pec-basis",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/v2/config/loops.json",
+      "sha256": "4ce07ad061abd222acabb2afe0f619fdc840b4cc11d31e49f1dff8fcc299d32e",
+      "loop": "pec",
+      "role": "pec-config",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "sha256": "1f4d1f0cf9abe5754ebb4260f588dea0d71e7f3cc37af2487b30b9c4aa39ba9b",
+      "loop": "pec",
+      "role": "pec-config",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "loop": "pec",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "sha256": "b51e17bae1be325e0c3dd9bfa672d3218f07efa55a452f9ac0a4cceabd4403c3",
+      "loop": "pec",
+      "role": "receipts-ledger",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba",
+      "loop": "pec",
+      "role": "decision-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD",
+      "worktree_sha256": "e10945de52a90e44898c57d9a160630c216fc03b2b89033888802b403fd1facb",
+      "note": "working tree differs from HEAD (concurrent in-run edit); HEAD bytes relied on"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "d350d007362641323dba7dac44309b27b3f8a091432abdf9bed825c4b5d5799d",
+      "loop": "pec",
+      "role": "tm-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "sha256": "ea730ae06f0805c720bbb29aed6d681c323e6d3b0c4a38d53db27e1075fafd94",
+      "loop": "pec",
+      "role": "tm-register-closed",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2",
+      "loop": "pec",
+      "role": "status-sample",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "sha256": "085a1412b40fdd0467f77e66ef7704d50a3a939d9f1d0911e2b6414ec1d99010",
+      "loop": "pec",
+      "role": "memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-12_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md",
+      "sha256": "3184697759b39db7569d70b5903a856c996ff6faade3cc1a1ba5d3de9213293d",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "sha256": "545092c1841a55766fd58932216b852db43c3a2663d61125e317140821a35d5e",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-23_APP_PIPING_RECEIPTS.md",
+      "sha256": "8e7170aee2c40ddd0f0be5b72f934d3af3fcdc158a1dc0a4d28a9f4f25850a71",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-23_EVERGREEN_LOOP_INSTRUCTIONS.md",
+      "sha256": "cc62933dd294c31cefa1c2abd5d36a742f5e67d48b9bcac6883dfd34baf95e5b",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md",
+      "sha256": "26d763192e88432afb1d996ec99791591b7d72cb94ecb3dcac2acaf16db6f744",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_ROOT_RUNTIME_PROJECT_MIGRATION_2026-09-05.md",
+      "sha256": "2c70ea97cb49ec40c613c19fd187760f68cbd4889c75669901bad7fb59a0f363",
+      "loop": "pec",
+      "role": "notice",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/validation/validate_pec_loop_receipts.py",
+      "sha256": "8eb6299558a4038f5a62f5f979a86460f16fece6ed6e2fcb8dd00ce12952bad9",
+      "loop": "pec",
+      "role": "validator",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "24268f3545eae68ac86bbfcb830314f5c8539f6da9de08bf4365b14d6f544525",
+      "loop": "root",
+      "role": "method",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "4411d0c25b1dc88da182e05660cb061d8e885ab97f4de8f27b05f7d3b0f12261",
+      "loop": "root",
+      "role": "method",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "sha256": "b40daec5d14877f32bcee133150ad66fc3fc9501116b5507591c7db0308bf683",
+      "loop": "root",
+      "role": "method",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "sha256": "db06263d41f2a17e12b965a337dd6ba0baf3bd21c71ed6e5dc0de7997e101e9b",
+      "loop": "root",
+      "role": "method",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "sha256": "e1c97a76b8a411873ca86a6ef4351a7f76303e74331a52307a3705a83827c837",
+      "loop": "root",
+      "role": "method",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "2d8b92471b9e33c58afede827116cfecedb4a1432ac029544418474bd81ca186",
+      "loop": "root",
+      "role": "governance",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/templates/MEMORY_TEMPLATE.md",
+      "sha256": "5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a",
+      "loop": "root",
+      "role": "template",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/AMENDMENT_2026-09-22_DEVELOPMENT_LOOP_MEMORY_GRAPH.md",
+      "sha256": "f934eeec032bc109e4c1180feb74e63c7179e90f087bcd34109d29543e5dc17e",
+      "loop": "root",
+      "role": "amendment",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "sha256": "f0894335d6101f59698564e9600e700d240eb385b8306dfa075dffdfc4b79d30",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-DEVELOPMENT-LOOP-MEMORY-20260922.yaml",
+      "sha256": "7df517e6cfe0da4a9dc35cef146aa070edef677e76c0df2afc2fa7222232735b",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/APP-REMAINING-RETIREMENT-20260923.yaml",
+      "sha256": "1d20d6ad5b548fa9126f8609038c891138025af524cf0e386d7a6b5cfd22f746",
+      "loop": "chirality-app-dev",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/PIPING-REMAINING-RETIREMENT-20260923.yaml",
+      "sha256": "009307b5cf0e35cdc92eb8f481a77d7ba7432104c33b76f0b9f79868291a609e",
+      "loop": "chirality-piping",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-WORKGRAPHS-PATH-ANCHOR-20260923.yaml",
+      "sha256": "e7149e9bd9330e738b650af090f23dec0d2abb927e377cd78a54bdc00b450dc4",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-APP-PIPING-CENTRAL-RECEIPTS-20260923.yaml",
+      "sha256": "e56dd83654b35875933a869f3d6ba9494ad10fa110c521f17a632f7aa38a40be",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-EVERGREEN-DEVELOPMENT-LOOPS-20260923.yaml",
+      "sha256": "bfe305e9461d228d171d5e66102f8dd2ba36f85570aa2fab13bdd6d430e5147f",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-SCOPED-PR-CI-20260923.yaml",
+      "sha256": "d140b2bcec517500c6d61f19274ec484123471e29f16074fb4b493af656b5775",
+      "loop": "root",
+      "role": "tranche-manifest",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/validation/loop_receipt_contract.py",
+      "sha256": "1b6907f5cc9ec4506a9954562a99df3e43c4fa62fab120f1dbec2726c4f687aa",
+      "loop": "root",
+      "role": "validator",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/validation/validate_app_dev_loop_receipts.py",
+      "sha256": "daf01933ecade2e62db95cbb48cdb763ae99f64da85b31e0e8b934ebbfd62f64",
+      "loop": "chirality-app-dev",
+      "role": "validator",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/validation/validate_piping_loop_receipts.py",
+      "sha256": "b6891b75614a183e4f0e33be8315a8ac49a2a4baa9a9d11ccfd8f704504a7965",
+      "loop": "chirality-piping",
+      "role": "validator",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "1daaf65cc2ef6aeabfe769ab99e5918156dbd0c150b62ae060b70bac9e349760",
+      "loop": "root",
+      "role": "decision-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md",
+      "sha256": "a6a4fc4f0c8136f0cdf25eab155c98a03276248776ed9ff779df6c4b88523f11",
+      "loop": "root",
+      "role": "decision-record",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+      "sha256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899",
+      "loop": "root",
+      "role": "decision-record",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md",
+      "sha256": "fa3756ad3bdf02104da47fc5ba697b4f96d8a02029f008b32bd96a094ec46cb2",
+      "loop": "root",
+      "role": "decision-record",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/README.md",
+      "sha256": "025eab1edd95b9dcdd793c410270b491f11bbf52b8f5fb9c98ccb791bdd9d889",
+      "loop": "chirality-runtime",
+      "role": "runtime-doc",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/docs/APPLICATION_CONSUMER_GUIDE.md",
+      "sha256": "2f9f37788a17be9c5030c631dbb53be2f1b59a325bd51bc5bf6ac4e86a781865",
+      "loop": "chirality-runtime",
+      "role": "runtime-doc",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/docs/APPLICATION_TOOLS.md",
+      "sha256": "59e401d14d566814983ba4c242b8449b71ecdb6f3dec1134289c51f836cc307b",
+      "loop": "chirality-runtime",
+      "role": "runtime-doc",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "sha256": "efccad4b2198e5f877b724a309b0a3bf171b81a21d80f1d7c56b14b97eb1dc8c",
+      "loop": "chirality-runtime",
+      "role": "runtime-source",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "e3c880a83d0bda0ea1a58c0b85809dcf3e52b73e796c1b668f59405c4052febd",
+      "loop": "chirality-runtime",
+      "role": "runtime-source",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-service-host.ts",
+      "sha256": "cf7a411531f4253ee669e31272e25a26baa099f988bdef4680339dc874c14801",
+      "loop": "chirality-app-dev",
+      "role": "app-source",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_INIT.md",
+      "sha256": "e23b86c52a2797ba92a6a2b56e4dc9242a0147579dfdb498f7cff914bd608082",
+      "loop": "root",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_RECEIPTS.md",
+      "sha256": "9f2f3186742276c641d50ee00ffa02824f268eb404a8124aa3a37e83a8d1dec4",
+      "loop": "root",
+      "role": "receipts-ledger",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_Coordination/CURRENT_WORKPLAN.md",
+      "sha256": "f332c0f14c1a25f9d04e7fedcdf0df448d98d6747a5d73db5125471165134fe0",
+      "loop": "root",
+      "role": "workplan-pointer",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_harness/adapter.yaml",
+      "sha256": "e481e79f1dd28d41bf47db50c58fa1ad50ed14e559fc3975240b6862a31275d4",
+      "loop": "root",
+      "role": "adapter",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af",
+      "loop": "root",
+      "role": "tm-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "sha256": "995d7ffd46008e1f8a8e471105e799a89830ced97ff0a98b12b2f7b563692fbc",
+      "loop": "root",
+      "role": "tm-register-closed",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "_DomainEngines/bridge/LOOP_INIT.md",
+      "sha256": "90e1be2a95cbd2fa90cc514de449f0cf5975de808efc367fb1a122b02766c920",
+      "loop": "bridge",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "_DomainEngines/bridge/LOOP_RECEIPTS.md",
+      "sha256": "16d58c513fc08b08082bdbfd0d31703b45312d0b175cc162493e0e0554b0ee67",
+      "loop": "bridge",
+      "role": "receipts-ledger",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md",
+      "sha256": "32c72c2e666fd70fcfab1d19a8f82b9b6df776e8bd72ad3bb01c217ee9dda944",
+      "loop": "bridge",
+      "role": "workplan",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "_DomainEngines/_DECISIONS/_REGISTER.md",
+      "sha256": "ebccf23234c7755a20555397fe12ccb708d7bebf6826fd9806b695f5fcd10e48",
+      "loop": "bridge",
+      "role": "decision-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "41995dfe123041e1d0235a73e532fddb913f2c2124a9e8ec43857a87d7e5822c",
+      "loop": "chirality-app-dev",
+      "role": "instruction",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "8b975c10acf6c4394f5423d4def20aeb4583159c691e8d3d11a41ce7451e6a25",
+      "loop": "chirality-app-dev",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "sha256": "97544833c6190f68483de4a92905f1d044567aaa3b029b73b0bb9f9a862c25c4",
+      "loop": "chirality-app-dev",
+      "role": "receipts-ledger",
+      "status": "HISTORICAL-FROZEN",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/_harness/adapter.yaml",
+      "sha256": "f4fbbf1f675b9aa7e9e7b71f26841de7d5031107c498f72e48cee4b5f0009e98",
+      "loop": "chirality-app-dev",
+      "role": "adapter",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "648117032619476bc6a98506b16225c0922e311a5867a862c96072ac0bca3f79",
+      "loop": "chirality-app-dev",
+      "role": "decision-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "5ca17f4a25e72b90f8650779297d883a777623d895de6c6d2761891f499addad",
+      "loop": "chirality-app-dev",
+      "role": "tm-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "sha256": "4b7fe664a517fc164f23aaaa68202c384a20ed2013d72fa21aec04033bb680a8",
+      "loop": "chirality-app-dev",
+      "role": "tm-register-closed",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/plans/workplans/WORKPLAN_2026-07-18_app_dev_loop.md",
+      "sha256": "111dc6d9c33d64a1626083f6a56b7bc29a2e5d63ca2a8cb3f7da2493e8abcc17",
+      "loop": "chirality-app-dev",
+      "role": "workplan",
+      "status": "HISTORICAL-FROZEN",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_STATUS.md",
+      "sha256": "0a19dc4dfe4c7866af2f3da146bf9e26a82664b75d4e55f4b6ad9bea1baa3a11",
+      "loop": "chirality-app-dev",
+      "role": "status-sample",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "loop": "chirality-piping",
+      "role": "instruction",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "loop": "chirality-piping",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_RECEIPTS.md",
+      "sha256": "9d514ff6f8c5ec87a1ad5627d266170ce7c54ece8832d9c68483fe93eacc60be",
+      "loop": "chirality-piping",
+      "role": "receipts-ledger",
+      "status": "HISTORICAL-FROZEN",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/loop/WORKPLAN_2026-09-19_piping_loop.md",
+      "sha256": "ae7dd4b65580cf0d5c023bb7f1f5664d011560e477fb1fcf6ff4742c8753d98e",
+      "loop": "chirality-piping",
+      "role": "workplan",
+      "status": "HISTORICAL-FROZEN",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/_harness/adapter.yaml",
+      "sha256": "2de9d3ab3b3e3b2eb622c0959dc292eff06a11c3da7c2665798978df08c20554",
+      "loop": "chirality-piping",
+      "role": "adapter",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "b4db2b062183f917f2e3dc26796249d41cc99403d291432acfca6a1c98496697",
+      "loop": "chirality-piping",
+      "role": "decision-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "b7c41d0888c2bdc48c24a1fea21ee0c321366cb326e19288bbbce2da8e9afc9d",
+      "loop": "chirality-piping",
+      "role": "tm-register",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "sha256": "60a3aab90ab26119ebef0a16343b49794e1718571499d61e751a5da8bd3c727d",
+      "loop": "chirality-piping",
+      "role": "tm-register-closed",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-05_Report protected-content linter/_STATUS.md",
+      "sha256": "e41e7fa6fc30fec41c3f9deecdacdbdd6a905b627330e07cdd66dedf43c5f58d",
+      "loop": "chirality-piping",
+      "role": "status-sample",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "loop": "chirality-runtime",
+      "role": "loop-init",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_RECEIPTS.md",
+      "sha256": "8ba7de3d37f3dd00fba8444071792cc3f25de2776a081d68df924eea22381802",
+      "loop": "chirality-runtime",
+      "role": "receipts-ledger",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/_harness/adapter.yaml",
+      "sha256": "fb70f812656bf51c217dfa104dc96a733fdb713a9071d563a447ca4fd27fff7e",
+      "loop": "chirality-runtime",
+      "role": "adapter",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_APPLICATION.md",
+      "sha256": "93977f5968a08a0e319dd76fc67fc878e378726b72caa099bc59c948206437c3",
+      "loop": "chirality-runtime",
+      "role": "decision-register-declared",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/CLOSEOUT_COMPARE.txt",
+      "sha256": "246b56a2deafb0b8c252bf7b5ed6c7dc8ee27f7e344a708d9f96e2d1b04b015a",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/ENTRYPOINT_CHECK.txt",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/FINAL_COMPARE.txt",
+      "sha256": "95386277d8f05383596311db311a9cdc9492dc3695c2a062e854dc9042cfe172",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/FINAL_PATH_CHECK.txt",
+      "sha256": "e27cf0dbfa001f4ba7f724d5fccbe48ba6940cdca76378b892df74ba0ae83638",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/FINAL_RECORD_CHECKS.json",
+      "sha256": "243525d677ef726dd43c9cd911551365e5270a40b8234556c4bb8e7c22525ead",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/GRAPH_POINTER_CHECK.txt",
+      "sha256": "7a96aa3ff738d0f73d63b727eacdfd28110e542793e17d50dd18274c1268f785",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/INPUTS.sha256",
+      "sha256": "4530d1f230ffc017fc3665d50d0ebf28428c102e2cb1b0d7c6b1e7b26ed4513d",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/PATH_ANCHOR_CHECK.txt",
+      "sha256": "e27cf0dbfa001f4ba7f724d5fccbe48ba6940cdca76378b892df74ba0ae83638",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/PATH_REPAIR_CHECKS.json",
+      "sha256": "6c37ec5e48dddb7b5474da84c24f0a15a47d063b4a2199f62ced07bd8b9d609c",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/PREMERGE_CHECK_CANONICAL_TMP.json",
+      "sha256": "63d78202070887002202b4170004d38310a1b317469e78404aa4755e85dc2de1",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/RECORD_CHECKS.json",
+      "sha256": "13ec9533a1b86e1757b37a56f4bb14a03afab5dabf584405d95b0c9b72f44606",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/REGISTERED_CHECKS.json",
+      "sha256": "fe6c06b670265e59ac327b37393b39fc26454489b5f19040f58550515e723b6d",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/RUN_EVIDENCE.md",
+      "sha256": "8427cd337c5be32148355748ca0cab5a2063f8dd06d6d0b5ff5995c5b96f2d44",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/SECTION8_SUMMARY.json",
+      "sha256": "a89b386d75740d88ab4e7b7daf1907813e1f0172f254dc0e3636a348ef4e348b",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/SECTION9_MANIFEST.json",
+      "sha256": "6a01eb393e93948a66a19fb5a172c38efd80cbd594f4aad827f67502e410b1b8",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/SECTION9_SUMMARY.json",
+      "sha256": "e599171e0cd5d7fe8ace9ffdd2969eacd3674ba6a7456118edcb24b486cdd382",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/SECTION9_VITEST.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/SECTION9_VITEST.stdout.log",
+      "sha256": "ad2e8a3ca6fcf78a02ac87c6dc9a1adf139638888b94a0f9aaf8c96e3ebf77bd",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/WORK_GRAPH.md",
+      "sha256": "6dbb884aed7ebf573abf476d54b404a3c6f8620208327dcae2453fef5757081f",
+      "loop": "chirality-app-dev",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/PIPING_LINTER_SCOPE_20260923/WORK_GRAPH.md",
+      "sha256": "50933010aef9920d1a615006775ea8997080e5388532ef7d3e9ac8bad92a9a9d",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/PIPING_LINTER_SCOPE_20260923/evidence/SWEEP_20260923T170102Z_896abb37cdd4.log.gz",
+      "sha256": "bca122814971809b3695fabe7d4112861108df1b6d9ffb4ca2d75f2130885f22",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/PIPING_LINTER_SCOPE_20260923/evidence/SWEEP_a77598822285.json",
+      "sha256": "75621c34f411fa6257b250eb6fd6a8c199587e075af2a19a6efdc1bc35d0d0df",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/dec025-clean-base-repair-2026-09-23/WORK_GRAPH.md",
+      "sha256": "74f068846dd56d97414244635fb6b99c642ffc33ddde5c1f3cf128d30d621428",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIPING_LINTER_SCOPE_20260923/RECEIPT.md",
+      "sha256": "eef5434b0ea17d757d4f8a8892d383df4edaab53a571c075af2f3d498c46dfa8",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/EVIDENCE.md",
+      "sha256": "f2c8dab41d6af54a916baeebede81e058d8aacf58672d8092b06e4dff421ab4a",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/checks/sweep-host-pass.log.gz",
+      "sha256": "3fc0693647d3175ded025423cf15dd61b199a75008d9c07ba1e155cca88e11ff",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/checks/sweep-sandbox-bind-failure.log.gz",
+      "sha256": "c6825928455947b6c1a8b4a56ab47db356cb158feb3a84e8cdca4b3360f56fe2",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/checks/vitest-focused-pass.log.gz",
+      "sha256": "93394844f7bd33400ffb205184b002ad818fd92b2d2464c34ef7937e614bd16c",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/checks/vitest-full-failure.log.gz",
+      "sha256": "0e9ad790b82dc78ebe9a2cf1f7a20e8a0255885101cb037202338cce15e72d04",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/checks/vitest-full-pass.log.gz",
+      "sha256": "761359ccacf7e542447aad901215fe4e0a0b5cee258d1708f536925bd922aab4",
+      "loop": "chirality-piping",
+      "role": "fixture",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/MEMORY.md",
+      "sha256": "bbf3ed50c94eda9f2b7cf796ebac170ce64b783e5f7359902e33955a0577b144",
+      "loop": "chirality-app-dev",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-08_Layered software test and acceptance strategy/MEMORY.md",
+      "sha256": "ead9e894f9896f6ae879587d0272ff3fe8c74a08f26b7cea2afbfe545c4c48f8",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/MEMORY.md",
+      "sha256": "5d4b20e3946abdc86217ad455b22a58ce21229fc20ebe3145513898577f41d2e",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-05_Report protected-content linter/MEMORY.md",
+      "sha256": "ec984ac7b59f6be791112b8eae16b2717f58db70fca240c5ec6f5dc4a8ae8bca",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/MEMORY.md",
+      "sha256": "8526eff38ab8b288f0ceb2a0fd2056f82f6ef1b9e676489ff0f066e2db80fa89",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/MEMORY.md",
+      "sha256": "b8911097102482d528683c35e1de6305b9c15630fda20fa82e7d476d02614100",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package/MEMORY.md",
+      "sha256": "af2c9a24338c43b09f60ebd66fe9e4eafe718107760058d7acabb4cd3d0881e6",
+      "loop": "chirality-piping",
+      "role": "fixture-memory",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/practitioner_harness/surface_roles.py",
+      "sha256": "7786998c8eb047e770c98b3e846353d40a307f5cfa9862c95681c3405866949e",
+      "loop": "root",
+      "role": "classifier",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    },
+    {
+      "path": "tools/validation/validate_path_anchors.py",
+      "sha256": "9981b426b6d9c8bb760ab35ee66b1bb0c91bc6427fde282b33506ec99879e07d",
+      "loop": "root",
+      "role": "validator",
+      "status": "CURRENT",
+      "hash_basis": "HEAD"
+    }
+  ]
+}
