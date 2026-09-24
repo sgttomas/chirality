@@ -76,6 +76,14 @@ class HostedCITests(unittest.TestCase):
         self.assertEqual(plan["modes"]["app"], "full")
         self.assertEqual(len(plan["paths"]), 2)
 
+    def test_consumed_doc_deletion_keeps_its_executable_app_checks(self):
+        path = "projects/chirality-app-dev/docs/harness/reliance_boundary_register.md"
+        self.write(path)
+        base = self.commit()
+        (self.root / path).unlink()
+        self.commit()
+        self.assertEqual(self.plan(base)["modes"]["app"], "full")
+
     def test_move_from_product_to_records_still_checks_removed_product(self):
         original = "projects/pec/server/src/a.ts"
         self.write(original)

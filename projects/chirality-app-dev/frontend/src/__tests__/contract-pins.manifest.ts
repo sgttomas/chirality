@@ -73,7 +73,9 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       'ORN-01 gate set: repo-root harness premerge workflow runs on pull requests without provider secrets (from harness-premerge-workflow.test.ts)',
     pins: [
       { kind: 'contains', value: 'pull_request:' },
-      { kind: 'contains', value: '- "docs/**"' },
+      // PR-trigger coverage and context placement are checked structurally by
+      // tools/software_workflow/test_hosted_ci_workflows.py. Documentation now
+      // reaches the affected-check selector before a product job is selected.
       { kind: 'contains', value: 'CHIRALITY_HARNESS_PROVIDER: stub' },
       {
         kind: 'contains',
@@ -92,7 +94,6 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
         kind: 'contains',
         value: 'echo "HARNESS_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev"'
       },
-      { kind: 'notContains', value: '${{ runner.temp }}' },
       { kind: 'contains', value: 'mkdir -p "${HARNESS_PROJECT_ROOT}"' },
       {
         kind: 'contains',

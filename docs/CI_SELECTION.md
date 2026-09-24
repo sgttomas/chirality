@@ -7,7 +7,7 @@ review, acceptance, native verification or release requirements.
 
 | PR contents | Hosted checks |
 |---|---|
-| Deliverable records, coordination notices, project loop prose | Governance harness; product selectors report not applicable. |
+| Deliverable records, coordination notices, project loop prose | Governance harness; product selectors report not applicable. Documents used as executable validation inputs retain their consumer checks. |
 | Root instructions, bundled workflows/skills and packaged instruction assets | Governance harness and App instruction-bundle construction/integrity. No App server or browser setup. |
 | App frontend, application configuration or public App export | Full App/Runtime pre-merge integration. |
 | Runtime source, tests, dependencies or configuration | Full App/Runtime integration and PEC workspace tests. |

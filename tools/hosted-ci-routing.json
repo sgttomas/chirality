@@ -38,6 +38,7 @@
     {
       "paths": [
         "projects/chirality-app-dev/frontend/**",
+        "projects/chirality-app-dev/docs/harness/reliance_boundary_register.md",
         "projects/chirality-app-dev/chirality.project.json",
         "projects/chirality-app-dev/software-workflow.json",
         "projects/chirality-app-dev/.github/**",

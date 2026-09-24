@@ -13,6 +13,8 @@ instruction_surface_paths:
   - tools/software_workflow/select_affected_checks.py
   - tools/software_workflow/hosted_ci.py
   - tools/software_workflow/test_hosted_ci.py
+  - tools/software_workflow/test_hosted_ci_workflows.py
+  - projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts
   - projects/chirality-piping/tools/ci/e2e_plan.py
   - projects/chirality-piping/tests/test_ci_e2e_plan.py
   - projects/chirality-piping/docs/CI_STRATEGY.md
@@ -46,7 +48,8 @@ m6_notice:
     scoped product checks and explicit full-run mechanism while preserving
     their local checks, accepted evidence obligations and release boundaries.
 scope_limits:
-  - CI applicability and coverage selection only; no assertions, thresholds or product tests are weakened.
+  - CI applicability and coverage selection; obsolete workflow text pins are replaced with structural trigger, gate and context checks.
+  - Product assertions, thresholds and evidence obligations are preserved; consumed-document changes retain their executable checks.
   - Governance harness remains mandatory; branch protection is unchanged.
   - Skipped/not-applicable jobs supply no product-test pass claim.
   - Existing local project check profiles, DEC-025 sweeps, native witnesses and release gates retain their requirements.
