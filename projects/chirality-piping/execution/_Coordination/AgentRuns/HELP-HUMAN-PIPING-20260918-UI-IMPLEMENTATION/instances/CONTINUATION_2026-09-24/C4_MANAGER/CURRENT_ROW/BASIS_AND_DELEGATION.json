@@ -35,5 +35,23 @@
   "write_scope": "App,ModelTree,EngineeringTable,narrow new presentation helper/hook,focused tests and CURRENT_ROW evidence; exact activation commit-only",
   "excluded": "session/controller/native/style/VirtualList/model/history/results/persistence/protected instruments/primary checkout",
   "resource_boundary": "source/test authoring only until explicit ROOT release; no test/build/browser/native/install execution",
-  "later_execution_admission": "ROOT released isolated sequential TypeScript/focused component/helper/App tests with maxWorkers1 after primary local sweep; B4 browser and LIVE isolated checks may overlap, no calibrated performance claim. No builds/browser/native/shared writes. Lane ended/released after observed checks."
+  "later_execution_admission": "ROOT released isolated sequential TypeScript/focused component/helper/App tests with maxWorkers1 after primary local sweep; B4 browser and LIVE isolated checks may overlap, no calibrated performance claim. No builds/browser/native/shared writes. Lane ended/released after observed checks.",
+  "independent_review": {
+    "agent": "/root/c4_manager/current_row_review",
+    "mechanism": "collaboration.spawn_agent fresh fork_turns none",
+    "requested_model": "gpt-6-astra",
+    "requested_effort": "xhigh",
+    "base": "fb29a8420f1692c779c87993c95ab5925a68da9f",
+    "candidate": "4b30631df98fdc9921bc72bdebfcd793d195585c",
+    "paths": 22,
+    "hash_bindings": 52,
+    "finding": "C4-ROW-R1 P2, same-cell readonly/busy pointer republish",
+    "return_sha256": "505a40b7c4830c8e5ede1731dd78064a994a26e435eac993dccde446dfeb2505"
+  },
+  "r1_repair": {
+    "agent": "/root/c4_manager/current_row_task",
+    "mechanism": "collaboration.followup_task retained Astra/low TASK",
+    "scope": "EngineeringTable same-cell publication and maintained regression test only, plus R1 evidence",
+    "authority": "owned correctness repair after full independent review returned; preserves active-editor/apply and all eligibility/generation guards"
+  }
 }

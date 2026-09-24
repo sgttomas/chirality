@@ -1,0 +1,17 @@
+$ npm --prefix projects/chirality-piping/apps/desktop test -- --maxWorkers=1 src/features/workspace/table/EngineeringTable.test.tsx src/App.currentRow.test.tsx
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run --maxWorkers=1 src/features/workspace/table/EngineeringTable.test.tsx src/App.currentRow.test.tsx
+
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  57 passed (57)
+   Start at  23:52:52
+   Duration  3.41s (transform 1.11s, setup 119ms, import 1.38s, tests 1.28s, environment 471ms)
+
+
+exit=0
+elapsed_seconds=3.952

@@ -1,0 +1,12 @@
+{
+  "basis": "4b30631df98fdc9921bc72bdebfcd793d195585c",
+  "before": {
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx": "3cabf283591cd8a56cc9f7ba63281afa0c0262747e76c3c1ecbb09bef67e870c",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx": "f8e936cd37fc3fbabe6914f8d8c26876affee661365d1a6a5df4e2bb100bb5d2"
+  },
+  "after": {
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx": "869c37e7522f457eb31c54163c2c8757e8f0a0755c0044d809bdc55e473b13fa",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx": "ef87a1296aa9b0fd072283bbc455420f7734b0928a65559da09ce15d549a2c32"
+  },
+  "scope": "EngineeringTable.tsx and maintained test only; no executable checks"
+}

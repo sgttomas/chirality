@@ -1,6 +1,6 @@
 # Current-row source return for independent review
 
-WORKING_ITEMS `/root/c4_manager`, parent ROOT, integrates bounded TASK `/root/c4_manager/current_row_task` on the isolated C4 branch. Base is `fb29a8420f1692c779c87993c95ab5925a68da9f`, the ROOT merge of primary01063c7f preserving compact guards/status and reviewed canvas behavior. Supplied activation is committed byte-unchanged under its exact grant. This candidate is source-authoring complete, not yet execution-verified or independently reviewed.
+WORKING_ITEMS `/root/c4_manager`, parent ROOT, integrates bounded TASK `/root/c4_manager/current_row_task` on the isolated C4 branch. Base is `fb29a8420f1692c779c87993c95ab5925a68da9f`, the ROOT merge of primary `01063c7f` preserving compact guards/status and reviewed canvas behavior. Supplied activation is committed byte-unchanged under its exact grant. This return preserves initial authoring plus later execution/review stages; the latest disposition is recorded below.
 
 Seven source/test files implement EngineeringTable → EntityGrid/ModelTree → App → the existing PipeViewport optional current-row prop. Node fields/review publish actual cell/row/editor activation under distinct owners; automatic roving fallback emits nothing. A separate publisher-active gate uses App page/tab/drawer and grid-layout eligibility without modifying compact geometry active flags. App-local presentation state reads the latest generation/index, validates node anchor/geometry, immediately derives null for invalid/deleted/generation-mismatched state, and ignores a different owner's late clear. Identity-guarded invalid-state cleanup does not erase a newer publication. Refocusing a remembered cell or valid editor can republish without changing direct/review selection semantics.
 
@@ -16,4 +16,8 @@ Fresh independent complete current-row delta review is dispatched against the fr
 
 ## Executed follow-up
 
-[VERIFICATION.md](VERIFICATION.md) supersedes the initial unexecuted-check state: desktop TypeScript passed; six unaffected files/99 tests passed, and the repaired new App test passed separately. Its initial failure was a collapsed-drawer test setup; only the test was repaired through the real Table-view control. Production code remains source48. All failure/probe evidence is retained. Independent current-row review is pending; no browser/native or qualification claim follows.
+[VERIFICATION.md](VERIFICATION.md) supersedes the initial unexecuted-check state: desktop TypeScript passed; six unaffected files/99 tests passed, and the repaired new App test passed separately. Its initial failure was a collapsed-drawer test setup; only the test was repaired through the real Table-view control. Production code remains source `48acc20d6`. All failure/probe evidence is retained. Independent current-row review is pending; no browser/native or qualification claim follows.
+
+## Independent R1 repair continuation
+
+Fresh complete current-row review covered 22 paths and 52 hash bindings, finding only C4-ROW-R1 (same-cell pointer publication when editing is blocked). The owned EngineeringTable branch and its maintained regression tests are repaired; full desktop TypeScript and affected 2-file/57-test one-worker rerun passed. [VERIFICATION.md](VERIFICATION.md) preserves exact stages/commands, including the earlier test-fixture failure. Independent repair backcheck is pending. All source authoring and execution processes ended; no browser/native/qualification or final C4 completion claim is made.

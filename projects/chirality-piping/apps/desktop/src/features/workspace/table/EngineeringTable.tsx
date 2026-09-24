@@ -406,7 +406,7 @@ export function EngineeringTable(props: Props) {
             }} onBlur={() => { if (sameCell(pointerFocus.current, address)) pointerFocus.current = null; }} onClick={() => {
               pointerFocus.current = null;
               if (editRef.current) { void apply(address, true); return; }
-              if (sameCell(focused, address)) startEdit(address); else focusCell(address);
+              if (sameCell(focused, address)) { publishCurrentRow(address.rowKey); startEdit(address); } else focusCell(address);
             }} onDoubleClick={() => { if (!editRef.current) startEdit(address); }} onKeyDown={(event) => cellKey(event, address, false)}>{row.cells[column.key].value}</button>}
             {row.cells[column.key].showUnit ? <span className="engineering-table-unit" title={editing && edit ? edit.captured.unit : row.cells[column.key].unit}>{(editing && edit ? edit.captured.unit : row.cells[column.key].unit) || "unit missing"}</span> : null}
             {row.cells[column.key].readout ? <small aria-label="Quantity readout">{row.cells[column.key].readout}</small> : null}

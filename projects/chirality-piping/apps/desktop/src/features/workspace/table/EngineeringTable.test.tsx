@@ -472,6 +472,42 @@ it("does not swallow a genuine supported-popover state-query failure", () => {
 
 
 describe("current row presentation publications", () => {
+  it.each(["readonly", "busy"] as const)("republishes remembered review B on pointer activation when %s prevents editing", (guard) => {
+    const publish = vi.fn(), select = vi.fn(), draft = vi.fn();
+    const data = rows().map((row, index) => index === 1 ? { ...row, cells: { ...row.cells, x: { ...row.cells.x, readonly: guard === "readonly" } } } : row);
+    const common = { label: "Review", policy: "review" as const, resetEditsKey: 0, rows: data, columns, generation: "g1", filter: "", density: "comfortable" as const, selectedKey: data[0].key, busy: guard === "busy", onSelect: select, onCurrentRowChange: publish, onDraftChange: draft, onKeepDraft: () => ({ retained: true, messages: [] }) };
+    const { rerender } = render(<EngineeringTable {...common} currentRowActive />);
+    const activateB = () => {
+      const target = screen.getByTestId("review-cell-n:1-x");
+      fireEvent.pointerDown(target); fireEvent.focus(target); fireEvent.click(target);
+    };
+    activateB();
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[1].key });
+    rerender(<EngineeringTable {...common} currentRowActive={false} />);
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: null });
+    publish.mockClear();
+    rerender(<EngineeringTable {...common} currentRowActive />);
+    expect(publish).not.toHaveBeenCalled();
+    activateB();
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[1].key });
+    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+    expect(select).not.toHaveBeenCalled(); expect(draft).not.toHaveBeenCalled();
+    expect(screen.getByTestId("review-cell-n:0-x").closest('[role="row"]')).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByTestId("review-cell-n:1-x").closest('[role="row"]')).toHaveAttribute("aria-selected", "false");
+  });
+  it("does not publish a clicked row while the current editor rejects leaving its owned row", () => {
+    const publish = vi.fn(), select = vi.fn(), keep = vi.fn(() => ({ retained: false, messages: ["Keep this editor open"] }));
+    const data = rows();
+    render(<EngineeringTable label="Review" policy="review" resetEditsKey={0} rows={data} columns={columns} generation="g1" filter="" density="comfortable" selectedKey={data[0].key} onSelect={select} onCurrentRowChange={publish} onDraftChange={() => {}} onKeepDraft={keep} />);
+    fireEvent.doubleClick(screen.getByTestId("review-cell-n:0-x"));
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[0].key });
+    publish.mockClear();
+    const other = screen.getByTestId("review-cell-n:1-x");
+    fireEvent.pointerDown(other); fireEvent.focus(other); fireEvent.click(other);
+    expect(keep).toHaveBeenCalledTimes(1);
+    expect(publish).not.toHaveBeenCalled(); expect(select).not.toHaveBeenCalled();
+    expect(screen.getByRole("textbox", { name: "n:0 X [m]" })).toBeInTheDocument();
+  });
   it("does not publish roving fallback; review pointer and keyboard activation leave primary A alone", () => {
     const publish = vi.fn(), select = vi.fn(); const data = rows();
     render(<EngineeringTable label="Review" policy="review" resetEditsKey={0} rows={data} columns={columns} generation="g1" filter="" density="comfortable" selectedKey={data[0].key} onSelect={select} onCurrentRowChange={publish} onDraftChange={() => {}} onKeepDraft={() => ({ retained: true, messages: [] })} />);
