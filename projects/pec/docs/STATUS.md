@@ -102,6 +102,8 @@ plan) and 3 (audited poststate) all remain; `_ScopeChange/_LATEST.md` still
 names SCA-004 until acceptance. The `D-PEC-79` postimage is an SCA-005 intake
 input (`SCA005-CP1-D79`), not applied.
 
+On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance and the TM-PEC-023 row selections (nine rows reduced to seven live choices). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
+
 **Task Management** (`execution/_Coordination/_TaskManagement/`): the live
 register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`
 rows after the 2026-09-22 review (Receipt 178). The 2026-09-23 notice triage
