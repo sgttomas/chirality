@@ -1,0 +1,19 @@
+{
+  "parent": "/root",
+  "manager": "/root/c4_manager",
+  "role": "WORKING_ITEMS Type1",
+  "requested_allocation": "Astra/high manager; Astra/xhigh independent TASK integration review",
+  "actual_grant": "ROOT collaboration assignment authorizes one local merge of exact49c67303 into clean c6a2178e; no push/PR/main mutation. Resolve genuine owned table/presentation conflicts only; return unexpected wider conflict. Run sequential one-worker TypeScript/focused tests, then fresh read-only integration backcheck. No browser/native/build.",
+  "boundary": "No conflict occurred; manager performed deterministic Git merge/equality inspection. No implementation child or manual source edit was needed. Independent review is the bounded TASK contribution.",
+  "instructions": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/chirality-change/SKILL.md": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    ".agents/skills/software-code-review/SKILL.md": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+  },
+  "read_history": "Full WORKING_ITEMS/TASK read this activation before delegation; Root/project/loop and selected skills retained from prior full reads, unchanged bytes.",
+  "reported_upstream": "At grant, ROOT reported four-file focus digest712c9871 with real Chromium148 and Chrome153 six-case passes; independent focus review active and actual-head CI starting. No completion of those gates is inferred."
+}

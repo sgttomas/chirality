@@ -1,0 +1,16 @@
+{
+  "grant": "ROOT exact one local merge of incoming commit; no push/PR/main mutation; no manual conflict resolution needed",
+  "ours": "c6a2178e50f9a53a76d2af43a86ea12bba564706",
+  "incoming": "49c67303b26cbd8f286e5098ea9651bc99826ad6",
+  "merge_base": "01063c7f1cfb7a651261401f62a5a72a5daa94dc",
+  "status": "automatic merge, no conflicts",
+  "equality_counts": {
+    "incoming_only": 55,
+    "c4_only": 100,
+    "same_both": 1
+  },
+  "both_changed": [
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx"
+  ],
+  "engineering_table": "Both normalized added/deleted-line deltas preserved exactly against opposite parent; inspected caller behavior also required."
+}

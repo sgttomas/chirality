@@ -1,0 +1,39 @@
+$ npm --prefix projects/chirality-piping/apps/desktop test -- --maxWorkers=1 src/features/workspace/currentRowPresentation.test.tsx src/features/workspace/table/EngineeringTable.test.tsx src/features/workspace/table/OverflowRail.test.tsx src/features/workspace/table/ModelTree.table.test.tsx src/features/model-tree/MaterialTable.test.tsx src/features/model-tree/SectionTable.test.tsx src/App.currentRow.test.tsx src/App.tableOperations.test.tsx
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run --maxWorkers=1 src/features/workspace/currentRowPresentation.test.tsx src/features/workspace/table/EngineeringTable.test.tsx src/features/workspace/table/OverflowRail.test.tsx src/features/workspace/table/ModelTree.table.test.tsx src/features/model-tree/MaterialTable.test.tsx src/features/model-tree/SectionTable.test.tsx src/App.currentRow.test.tsx src/App.tableOperations.test.tsx
+
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15472:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:917:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15476:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:917:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+
+ Test Files  8 passed (8)
+      Tests  110 passed (110)
+   Start at  00:19:59
+   Duration  11.44s (transform 1.19s, setup 324ms, import 2.03s, tests 6.81s, environment 1.63s)
+
+
+exit=0
+elapsed_seconds=11.870

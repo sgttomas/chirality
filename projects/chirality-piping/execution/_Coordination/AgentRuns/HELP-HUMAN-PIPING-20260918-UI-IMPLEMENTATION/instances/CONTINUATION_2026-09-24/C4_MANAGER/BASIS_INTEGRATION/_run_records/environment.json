@@ -1,0 +1,30 @@
+{
+  "candidate": "6bbaa0bc74268f885b0f95b7045050fada5c7f2e",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "source_inputs": {
+    "src/App.tsx": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+    "src/App.currentRow.test.tsx": "f013674f0ab5fce32ce9729492a68fd3d228454050d90e3e3fae5fb46d3cac4e",
+    "src/App.tableOperations.test.tsx": "de0f6ef29173b2aba5c157e48d2e69f06ea3b9411e7642037a811b53cb4678f5",
+    "src/features/model-tree/ModelTree.tsx": "28683c1348c65418a46ec83e4f847a11f64f4410277ed1086994ae2f7fb9cfa5",
+    "src/features/workspace/currentRowPresentation.ts": "d68ec597a749d50b4b5687016e0fafdef8232b4d8749f10316fa2d7f19cb6733",
+    "src/features/workspace/currentRowPresentation.test.tsx": "b99bbf79c0e25fcdac046a5a46a15558dbf8e191d497fc141650e4a1f376fd06",
+    "src/features/workspace/table/EngineeringTable.tsx": "6a83b263376ce03eb575f2b1873b8a95cb552d9eb5d53d78a190deaf13aa60fc",
+    "src/features/workspace/table/EngineeringTable.test.tsx": "ef87a1296aa9b0fd072283bbc455420f7734b0928a65559da09ce15d549a2c32",
+    "src/features/workspace/table/OverflowRail.tsx": "c80efb42ecea6dd7ef47fc7187c98c209dc87d478a599dd97146bc110a34f3d3",
+    "src/features/workspace/table/OverflowRail.test.tsx": "07dc4b3b57ad2ac8e6c811778cce1d48941765a577de360678eaeab91fe51e45",
+    "src/features/workspace/table/ModelTree.table.test.tsx": "e67ad561397a93cb6fad35f6d052dd065a9324d714da7121f27e59ddb4e52524",
+    "src/features/model-tree/MaterialTable.test.tsx": "c76f7f396201ccb14e0aefa2434c2fc5b8fbfafd66336a79e274eba1be2bedc5",
+    "src/features/model-tree/SectionTable.test.tsx": "896b184b5021fc0ff821e2c5a837b77a006a93465a8206bf1fdbe44f5446724c",
+    "e2e/b4-table-editing.spec.ts": "14aec754b7c41a68075d7e2be02ee08d3c59ef7da58d78e2aec438667c977e45",
+    "tsconfig.json": "cc32a3c2be133425d30e112e3dc863c9dbe1ecbbdd81123abf6d6a0300a8ae5c",
+    "vite.config.ts": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+    "src/test/setup.ts": "65c02a3ba648174d681c4389b61707c58e8ee02cc7228b9446074a2ac1772e38"
+  },
+  "package_lock": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732",
+  "dependencies": {
+    "typescript": "5.9.3",
+    "vitest": "4.1.10",
+    "vite": "7.3.3"
+  },
+  "resource_boundary": "Sequential TypeScript and one-worker focused units only; existing isolated deps/generated WASM; no build/install/browser/native/benchmark; no calibrated timing claim"
+}
