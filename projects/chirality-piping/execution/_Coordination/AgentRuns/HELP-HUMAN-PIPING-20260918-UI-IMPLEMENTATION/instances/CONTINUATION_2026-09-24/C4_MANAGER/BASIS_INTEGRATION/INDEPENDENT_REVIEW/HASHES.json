@@ -1,0 +1,348 @@
+{
+  "reviewer": "/root/c4_manager/basis_integration_review",
+  "direct_parent": "/root/c4_manager",
+  "root": "/root",
+  "role": "TASK Type 2",
+  "delegation": "actual delegated-harness-native collaboration child; no descendants",
+  "allocation": "Astra/xhigh requested in supplied brief; not independent host model attestation",
+  "review_boundary": "integration lineage, sole composed behavior, retained current-row/canvas reviews, frozen manager observed checks; upstream review/CI and combined browser/native qualification excluded",
+  "assignment_origin": "collaboration NEW_TASK from /root/c4_manager in this execution; exact frozen identifiers and read/write restrictions carried in session history",
+  "explicit_command_workdir": "/private/tmp/piping-c4-policy-20260924",
+  "instructions": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full body read; active review instructions"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full body read; active review instructions"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full body read; active review instructions"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "consultation": "full body read; active review instructions"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "full body read; active review instructions"
+    }
+  ],
+  "hash_only_not_activated": [
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "consultation": "hash binding only; body not loaded/adopted"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/.agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "consultation": "hash binding only; body not loaded/adopted"
+    }
+  ],
+  "revisions": {
+    "package": "bebebbbd8dbca3008623c85f13810984a7f9448b",
+    "source_merge": "6bbaa0bc74268f885b0f95b7045050fada5c7f2e",
+    "parents": [
+      "c6a2178e50f9a53a76d2af43a86ea12bba564706",
+      "49c67303b26cbd8f286e5098ea9651bc99826ad6"
+    ],
+    "merge_base": "01063c7f1cfb7a651261401f62a5a72a5daa94dc"
+  },
+  "lineage_audit": {
+    "manifest": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/MERGE_LINEAGE.json",
+    "sha256": "0cfb33ccab6a8362b49a7a4abb5e1b05b8f95cb2ac631165d6cdfa9c1086c0da",
+    "all_entries_parsed": 157,
+    "parent_combined_hash_bindings_verified": 471,
+    "mismatches": [],
+    "counts": {
+      "incoming_only": 55,
+      "c4_only": 100,
+      "same_both": 1,
+      "combined": 1
+    },
+    "whole_tree_mode_blob_comparison": "all merge entries outside parent delta union equal merge-base; all non-composed changed entries equal the appropriate parent including modes; EngineeringTable is sole blob different from both parents",
+    "same_both_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CURRENT_ROW_ACTIVATION.md",
+    "sole_composed_path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+    "package_after_merge": "only eight frozen evidence files; no product-source difference",
+    "checkout_bindings": "all 157 lineage paths plus eight evidence paths equal package blobs at audit; source remains frozen"
+  },
+  "normalized_delta_audit": {
+    "definition": "ordered git diff --unified=0 added/deleted lines, excluding +++/--- headers, joined by newline; compare original contribution and delta against opposite parent",
+    "incoming_count": 23,
+    "incoming_sha256": "97b2bc10f7a5d12c013e0d048b2c426468021624b38ee05405cda600e76efd3e",
+    "c4_count": 39,
+    "c4_sha256": "1541127beba95bde219c77787af7504807bcb5b719c365dfdea762c575bb0a40",
+    "both_equal": true
+  },
+  "scope_checks": [
+    {
+      "name": "merge_from_C4",
+      "status": "PASS",
+      "explicit_path_count": 56,
+      "violations": [],
+      "explicit_paths_binding": {
+        "manifest": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/MERGE_LINEAGE.json",
+        "sha256": "0cfb33ccab6a8362b49a7a4abb5e1b05b8f95cb2ac631165d6cdfa9c1086c0da",
+        "selection": "incoming_only and combined"
+      },
+      "allowance": "exact accepted incoming-only paths plus sole composed EngineeringTable",
+      "command_form": "python3 tools/software_workflow/validate_change_scope.py <repo> --path <each frozen path> --allowed <each accepted allowance>; explicit cwd; no untracked discovery"
+    },
+    {
+      "name": "evidence_package",
+      "status": "PASS",
+      "explicit_path_count": 8,
+      "violations": [],
+      "explicit_paths_binding": {
+        "paths": [
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/BRIEF_AND_BASIS.json",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/MERGE_LINEAGE.json",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/RETURN.md",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/environment.json",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/focused-vitest-01.txt",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/incoming-package-binding.json",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/merge-equality.txt",
+          "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/typescript-01.txt"
+        ]
+      },
+      "allowance": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION",
+      "command_form": "python3 tools/software_workflow/validate_change_scope.py <repo> --path <each frozen path> --allowed <each accepted allowance>; explicit cwd; no untracked discovery"
+    }
+  ],
+  "source_and_package_whitespace_checks": "git diff --check c6..6b -- projects/chirality-piping/apps/desktop and git diff --check 6b..beb; exit 0",
+  "other_verified_bindings": {
+    "manager_instruction_hashes": 7,
+    "environment_source_config_hashes": 17,
+    "package_lock": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732",
+    "incoming_four_file_digest": "712c9871f020f7eea67e5ea88bf23b130dcd83419a9898d8f5fc51d653cd4f37",
+    "digest_encoding": "SHA-256 of json.dumps(files, sort_keys=True, separators=(comma, colon)) UTF-8",
+    "merge_equality_summary": "counts/both_changed match independently calculated full-tree classification"
+  },
+  "observed_checks_not_reexecuted": {
+    "candidate": "6bbaa0bc74268f885b0f95b7045050fada5c7f2e",
+    "typescript": "typescript-01.txt: tsc --noEmit -p apps/desktop/tsconfig.json; exit 0",
+    "focused_vitest": "focused-vitest-01.txt: normal npm desktop test, maxWorkers=1, eight exact files, 110 tests passed, exit 0",
+    "warning": "raw jsdom HTMLCanvasElement.getContext / no-WebGL warnings retained; not rendered/native proof",
+    "environment": {
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "dependencies": {
+        "typescript": "5.9.3",
+        "vitest": "4.1.10",
+        "vite": "7.3.3"
+      }
+    },
+    "limit": "existing locked dependencies and generated assets manager-reported; no reviewer install/runtime/version probing"
+  },
+  "consulted": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+      "sha256": "6a83b263376ce03eb575f2b1873b8a95cb552d9eb5d53d78a190deaf13aa60fc",
+      "consultation": "complete combined changed hunks, lines 1-450 and relevant apply/editor/ownership context; both parent diffs"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx",
+      "sha256": "ef87a1296aa9b0fd072283bbc455420f7734b0928a65559da09ce15d549a2c32",
+      "consultation": "current-row tests at lines 474 onward, including readonly/busy same-cell and rejected active-editor guard"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/OverflowRail.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/table/OverflowRail.tsx",
+      "sha256": "c80efb42ecea6dd7ef47fc7187c98c209dc87d478a599dd97146bc110a34f3d3",
+      "consultation": "full source and incoming diff"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/OverflowRail.test.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/table/OverflowRail.test.tsx",
+      "sha256": "07dc4b3b57ad2ac8e6c811778cce1d48941765a577de360678eaeab91fe51e45",
+      "consultation": "full new test source via incoming diff"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts",
+      "sha256": "14aec754b7c41a68075d7e2be02ee08d3c59ef7da58d78e2aec438667c977e45",
+      "consultation": "incoming three added assertions plus classic scrollbar test lines 780-865"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.ts",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.ts",
+      "sha256": "d68ec597a749d50b4b5687016e0fafdef8232b4d8749f10316fa2d7f19cb6733",
+      "consultation": "full source via C4 diff"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.test.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.test.tsx",
+      "sha256": "b99bbf79c0e25fcdac046a5a46a15558dbf8e191d497fc141650e4a1f376fd06",
+      "consultation": "full source"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/App.tsx",
+      "sha256": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+      "consultation": "complete C4 diff; AppSession generation and ModelTree/PipeViewport connections; lines 370-425"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.currentRow.test.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/App.currentRow.test.tsx",
+      "sha256": "f013674f0ab5fce32ce9729492a68fd3d228454050d90e3e3fae5fb46d3cac4e",
+      "consultation": "full source"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "sha256": "28683c1348c65418a46ec83e4f847a11f64f4410277ed1086994ae2f7fb9cfa5",
+      "consultation": "complete C4 diff; owner provider, grid activity, generation, direct/review call sites lines 145-217,750-795,921-976"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CURRENT_ROW/INDEPENDENT_REVIEW/RETURN.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CURRENT_ROW/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "505a40b7c4830c8e5ede1731dd78064a994a26e435eac993dccde446dfeb2505",
+      "consultation": "full retained independent review/backcheck; inherited coverage, not renewed whole-canvas review"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CURRENT_ROW/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CURRENT_ROW/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "sha256": "3c06fbe73efb0bab9bcd944ab7d0a3cc39bd86eb7520cd259a82582962518824",
+      "consultation": "full retained independent review/backcheck; inherited coverage, not renewed whole-canvas review"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/RETURN.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "51bfff09283602aff02bda914e01313611ea00fdaf8dc2c0f8499a73e552db15",
+      "consultation": "full retained independent review/backcheck; inherited coverage, not renewed whole-canvas review"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "sha256": "2878fd465b5afdf2114098c987eff22b1b283015a47eee983900500acd36ccd4",
+      "consultation": "full retained independent review/backcheck; inherited coverage, not renewed whole-canvas review"
+    },
+    {
+      "path": "tools/software_workflow/validate_change_scope.py",
+      "origin": "/private/tmp/piping-c4-policy-20260924/tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d",
+      "consultation": "full body read; scope helper/profile"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "consultation": "full body read; scope helper/profile"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/CANDIDATE.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/CANDIDATE.json",
+      "sha256": "3c5b0a6694c331fc981093a96fdfffe11af58438efd586ac18b308acf3b01b72",
+      "consultation": "full four-file manifest; incoming blob hashes and aggregate digest independently recomputed"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/COMMANDS.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/COMMANDS.md",
+      "sha256": "ca2e815eaf4688dfe14f4a4ef7b438ea884ce637647f58cfe717e75b2c469c59",
+      "consultation": "only rg hits for digest/sha256/CANDIDATE.json; not full upstream review"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/RETURN.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/CI_FOCUS_REPAIR/TASK/RETURN.md",
+      "sha256": "dea03e689e09a79c3811131cd9c3a9c83ba7383f92d8af32a3689210f3cee1f8",
+      "consultation": "only rg hits for digest/sha256/CANDIDATE.json; not full upstream review"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/BRIEF_AND_BASIS.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/BRIEF_AND_BASIS.json",
+      "sha256": "20ce4817da4b2d8a74c387d96c0c63e2b85c2ea66db186125e4d808a9f3aa5d4",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/MERGE_LINEAGE.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/MERGE_LINEAGE.json",
+      "sha256": "0cfb33ccab6a8362b49a7a4abb5e1b05b8f95cb2ac631165d6cdfa9c1086c0da",
+      "consultation": "full frozen evidence read; MERGE_LINEAGE entries also parsed and every binding independently recomputed"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/RETURN.md",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/RETURN.md",
+      "sha256": "3ea7870cecb6f775304f4df131d914bccd06980484b8d3003db984a3fd79583d",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/environment.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/environment.json",
+      "sha256": "f399e6289e42bc91c32aaaa31af56b494cf485ca00120515f6e4fe9643a1e830",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/focused-vitest-01.txt",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/focused-vitest-01.txt",
+      "sha256": "785c34b329a44775c6a34c61540e67acbb3e0567b1c2e391741d91ed282dd1ac",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/incoming-package-binding.json",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/incoming-package-binding.json",
+      "sha256": "cc3f65ca2c747830189ada5fc9a018fbcb5d3c6d0cd33abce6d85d76bbd994c2",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/merge-equality.txt",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/merge-equality.txt",
+      "sha256": "48001757b95f65942076b7616edcc6e52337c935c1aec3dd2408afcad7ba824d",
+      "consultation": "full frozen evidence read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/typescript-01.txt",
+      "origin": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/_run_records/typescript-01.txt",
+      "sha256": "820c7f59eb9504ab7f0a85c52995c5a921719060e938f6414c9b7a189d45b76d",
+      "consultation": "full frozen evidence read"
+    }
+  ],
+  "retained_review_disposition": {
+    "CURRENT_ROW": "initial P2 C4-ROW-R1 repaired; BACKCHECK dbdbf566 clean and preserved from C4 parent",
+    "CANVAS": "initial P2 C4-CANVAS-R1 repaired; BACKCHECK 6f0f28af clean and preserved from C4 parent",
+    "limit": "inherited independent evidence, no assertion of new whole-source canvas/core review"
+  },
+  "prohibited_actions_not_performed": [
+    "tests",
+    "compiler",
+    "npm",
+    "build",
+    "install",
+    "browser",
+    "native",
+    "CUA",
+    "network",
+    "socket",
+    "server",
+    "background resources",
+    "Git mutation",
+    "delegation"
+  ],
+  "write_boundary": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/INDEPENDENT_REVIEW/RETURN.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/INDEPENDENT_REVIEW/HASHES.json"
+  ],
+  "findings": [],
+  "suitability": "suitable for bounded integration source/evidence fan-in; not merge readiness or programme closure",
+  "output_return_sha256": "32388df544dde0268c049142a02fb27a9563768476a1412b0121a646eef7b242",
+  "final_frozen_recheck": {
+    "head": "bebebbbd8dbca3008623c85f13810984a7f9448b",
+    "all_165_checkout_paths_equal": true,
+    "git_status": "only reviewer output directory untracked"
+  }
+}

@@ -45,3 +45,7 @@ Canvas source/evidence is frozen and independently backchecked at `6f0f28afdc595
 ## Current-row integration outcome
 
 The former canvas current-row seam is implemented in the isolated source and independently backchecked at `dbdbf566a1da275a378d776e79564dfc277fccf0`. [CURRENT_ROW/RETURN.md](CURRENT_ROW/RETURN.md) is the current return: real fields/review publication, App-local generation/owner-safe state, observed tests and the repaired pointer-path finding. The earlier null-only handoff description is historical. Actual latest B4 EngineeringTable/OverflowRail focus integration/backcheck, renderer/browser/native, whole-candidate and profile gates still apply; no programme closure or release is claimed.
+
+## Actual B4 focus-basis integration
+
+The exact ROOT-authorized primary49c67303 basis was merged locally at `6bbaa0bc74268f885b0f95b7045050fada5c7f2e`, preserving both source lineages without conflicts or manual source edits. [BASIS_INTEGRATION/RETURN.md](BASIS_INTEGRATION/RETURN.md) records the passing independent integration backcheck and normal desktop TypeScript plus eight-file/110-test focused pass. The earlier pending actual-basis integration condition is satisfied for that exact revision. Upstream review/CI completion is not inferred; combined browser/native/full-candidate/profile gates remain separate.
