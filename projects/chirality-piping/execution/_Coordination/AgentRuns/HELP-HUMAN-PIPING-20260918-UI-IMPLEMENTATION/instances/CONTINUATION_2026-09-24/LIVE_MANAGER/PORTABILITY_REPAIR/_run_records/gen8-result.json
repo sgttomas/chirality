@@ -1,0 +1,19 @@
+{
+  "source_before": "b92f250655d4a28fca93c9990e27025c15b7b877",
+  "candidate_delta": "MOVE_MANIFEST.json plus portable records/pointers; product unchanged",
+  "command": [
+    "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+    "-m",
+    "pytest",
+    "-q",
+    "tools/practitioner_harness/test_live_baseline.py::test_live_gen8_semantic_portability_invariants"
+  ],
+  "cwd": "/private/tmp/piping-live-control-20260924",
+  "exit_code": 0,
+  "result": "1 passed in31.98s",
+  "raw_log": "gen8-after.log",
+  "sha256": "c9e0b9fd66126dc91cd3c6aa32a93a41e9cc6a662d661cebebd3dbfc90154679",
+  "original_failure": "original-gen8-failure.log",
+  "criterion_changed": false,
+  "concurrency": "single manager verification process; ended before further writes"
+}

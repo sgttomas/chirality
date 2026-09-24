@@ -1,34 +1,7 @@
 {
-  "time_utc": "2026-09-24T06:12:32.667762+00:00",
-  "cli_present": true,
-  "cli_sha256": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
-  "cli_size": 1546464,
-  "command": "env -u SWBPIPE_LIVE_CONTROL CARGO_BUILD_JOBS=2 CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target npm_config_offline=true npm run tauri -- build --debug --bundles app",
-  "cwd": "projects/chirality-piping/apps/desktop",
-  "source_hashes": {
-    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_cli/swbpipe-control.rs": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
-    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml": "fa9647e95b607d42233cf2d4e31357d6e572043f9d86bac740498202eff2fd07",
-    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af",
-    "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
-    "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0",
-    "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md": "24203b9697ca43158a0fe7be2e12fbd1f673786776b80895430052a40fc00431"
-  },
-  "versions": {
-    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
-    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
-    "node": "v24.18.0",
-    "npm": "11.16.0"
-  },
-  "environment_presence_only": {
-    "TAURI_CONFIG": false,
-    "APPLE_SIGNING_IDENTITY": false,
-    "APPLE_CERTIFICATE": false,
-    "APPLE_CERTIFICATE_PASSWORD": false,
-    "APPLE_ID": false,
-    "APPLE_PASSWORD": false,
-    "APPLE_TEAM_ID": false,
-    "APPLE_API_ISSUER": false,
-    "APPLE_API_KEY": false,
-    "APPLE_API_KEY_PATH": false
-  }
+  "record_type": "portable_evidence_pointer",
+  "canonical_raw": "../../../PORTABILITY_REPAIR/_run_records/record-22.json",
+  "sha256": "2ff1d1ddcbcc50a243b0ddd60fe17c632e3dd7e236458107eefabef2450fef0a",
+  "original_reference_base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE",
+  "note": "Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied."
 }

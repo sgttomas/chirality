@@ -1,6 +1,6 @@
 # Fresh independent packaging delta backcheck
 
-TASK Type2 Astra/xhigh, nonimplementer, parent /root/live_manager; no descendants. Work only in isolated /private/tmp/piping-live-control-20260924. Read full canonical TASK, Root/project AGENTS and software-code-review skill. Parent read full TASK, exact design and scope addendum. Source candidate:4dcd48fe02e54ef225ea854dc438a05164218619. Delta base:c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f. Review complete delta including failed/successful packaging evidence, not just the renamed file.
+TASK Type2 Astra/xhigh, nonimplementer, parent /root/live_manager; no descendants. Work only in isolated {REPO_ROOT}. Read full canonical TASK, Root/project AGENTS and software-code-review skill. Parent read full TASK, exact design and scope addendum. Source candidate:4dcd48fe02e54ef225ea854dc438a05164218619. Delta base:c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f. Review complete delta including failed/successful packaging evidence, not just the renamed file.
 
 Read PACKAGING/SCOPE_ADDENDUM.md and DESIGN/RETURN.md (SHA-2567f91e02897de0a15a8d502e9dc351a77e6949d68b369cd891d44940f81a2da55), failed RETURN/ARTIFACTS/PRE_RUN/GENERATED_INPUTS and raw log, then REPAIR/ACTIVATION, MANAGER_CROSSCHECK/MANAGER_RETURN, NATIVE/RETURN/RUNS/PRE_EDIT/SOURCE_DELTA/IMMEDIATE_PRE_NORMAL_BUILD/FINAL_SOURCE/ARTIFACTS and raw logs. Paths are relative to PACKAGING. Frozen live wire remains unchanged in ../WIRE_PROPOSAL.md; prior implementation/R1–R5 review remains separate evidence.
 
@@ -9,3 +9,7 @@ Verify exactly unchanged-byte move out of src/bin to src/live_control_cli, only 
 Read-only: no test/build/npm/socket/native/app/self-test/browser/CUA/network/signing/installation/Git-index/primary action; source/artifact/hash inspection only. Write REVIEW/RETURN.md and concise consulted-source manifest only. Report actionable findings with trigger/impact/location and repair direction; conclude suitability for bounded packaging fan-in. Do not weaken known failure into an earlier pass or claim that package inventory supplies actual native I1/I2/H1/H2, self-test execution, integrated-candidate build or release.
 
 Return exact candidate/base and remaining gates to manager. Parent owns local integration; ROOT owns graph, broader checks, push/PR/merge and eventual native/human witnesses.
+
+## Preserved execution identity
+
+Original supplied bytes: [historical execution record](../../PORTABILITY_REPAIR/_run_records/record-25.md), SHA-256 `74ead654bcbf6031cfdac26f8ae48d2b37ed91498a52382ad7a29dae539ff123`. Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.

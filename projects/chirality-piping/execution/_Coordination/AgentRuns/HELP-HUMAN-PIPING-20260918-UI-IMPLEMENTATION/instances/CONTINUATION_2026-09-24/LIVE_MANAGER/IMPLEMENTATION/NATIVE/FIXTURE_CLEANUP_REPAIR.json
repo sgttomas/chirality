@@ -1,9 +1,7 @@
 {
-  "repair": "Construct fixture RAII guard before UnixListener bind so denied/failed setup removes directory.",
-  "source_sha256": "482d1516366fa6f6fe51c04989be501d44589e81141310eed3abeefb94bb3c0b",
-  "removed_empty_fixture_directories": [
-    "/private/tmp/swb-test-e71beba1731d2fee4c2",
-    "/private/tmp/swb-test-8dd8a45e2d385c9e851"
-  ],
-  "ownership_evidence": "Exactly two unique swb-test directories created at failed test timestamp1790225884.857; both empty; removed using nonrecursive rmdir."
+  "record_type": "portable_evidence_pointer",
+  "canonical_raw": "../../PORTABILITY_REPAIR/_run_records/record-05.json",
+  "sha256": "3b9ae173c8e20004d6de65dbc350ad7d648c1cf41ef311f17338cfc8c602749b",
+  "original_reference_base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE",
+  "note": "Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied."
 }

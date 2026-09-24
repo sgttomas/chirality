@@ -26,13 +26,19 @@
   "consulted_source_sha256": {
     "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/desktop-schema.json": "2a16f62c90a059a1b67e4501216bb3476f402087e99ba659dd38c9d0521f3b07",
     "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/acl-manifests.json": "d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699",
-    "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-utils-2.9.1/src/acl/capability.rs": "c462dac16d29c2904d9ca649c36dbcb73fb49362d1d885078df46054a945fbdf",
-    "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/lib.rs": "dd9d3eeec873339b8fcdd0aa1719e3a875c440462f449a0dc8833685d95996d2",
-    "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/manager/mod.rs": "3b35d04bded3a068d3d9e1737d52a66a69ccfbc4b2300ec00ed6a5deaa85c79a",
-    "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/event/listener.rs": "67b976df6d02aba2000215f006808ae1eddbfaf7a8f8b6e8198e557cc0346581",
+    "{CARGO_REGISTRY_SRC}/index.crates.io-1949cf8c6b5b557f/tauri-utils-2.9.1/src/acl/capability.rs": "c462dac16d29c2904d9ca649c36dbcb73fb49362d1d885078df46054a945fbdf",
+    "{CARGO_REGISTRY_SRC}/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/lib.rs": "dd9d3eeec873339b8fcdd0aa1719e3a875c440462f449a0dc8833685d95996d2",
+    "{CARGO_REGISTRY_SRC}/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/manager/mod.rs": "3b35d04bded3a068d3d9e1737d52a66a69ccfbc4b2300ec00ed6a5deaa85c79a",
+    "{CARGO_REGISTRY_SRC}/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/event/listener.rs": "67b976df6d02aba2000215f006808ae1eddbfaf7a8f8b6e8198e557cc0346581",
     "projects/chirality-piping/node_modules/@tauri-apps/api/event.d.ts": "0d738dff2ba5e25de6ef3fe078235a1f32f4c93438f50c4146cac00c9c0e7456",
     "projects/chirality-piping/node_modules/@tauri-apps/api/event.js": "f00d22c559ce7e58a85d860e35fd60d20826f13d7f534a5f3548a7ef94446e84",
     "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/RETURN.md": "eeb939a6c4c93e2e5f41d93e18bc9d12ba815fcd284a7a7d71a5d942643c0ada",
     "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REPAIR_SCOPE.md": "c7546bcdefaf7940b84c93ef9ceceaeefd8e83c2ee1097c2cdb5e2db82496ef1"
+  },
+  "historical_execution_record": {
+    "path": "../../PORTABILITY_REPAIR/_run_records/record-06.json",
+    "sha256": "5da1fd4502119abd16e5a4069560ed427bee956cc6c9540a58df181c706ccc7a",
+    "note": "Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.",
+    "anchor": "CARGO_REGISTRY_SRC denotes the supplier registry source directory used in the original execution; its exact original identity is retained in the raw record."
   }
 }

@@ -1,0 +1,16 @@
+{
+  "basis": "b92f250655d4a28fca93c9990e27025c15b7b877",
+  "raw_original_integrity_checks": 29,
+  "portable_surface_hash_checks": 29,
+  "tracked_changes_exact_manifest": true,
+  "new_paths_owned_only": true,
+  "product_harness_skill_unchanged": true,
+  "configured_python": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+  "command": [
+    "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+    "-m",
+    "pytest",
+    "-q",
+    "tools/practitioner_harness/test_live_baseline.py::test_live_gen8_semantic_portability_invariants"
+  ]
+}

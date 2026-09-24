@@ -1,6 +1,6 @@
 # Independent complete-diff implementation review brief
 
-ROOT explicitly requested fresh independent Astra/xhigh TASK review after the owned isolated implementation commit. Assigned by /root/live_manager; reviewer must not implement or delegate. Work only in /private/tmp/piping-live-control-20260924, branch codex/piping-live-control-20260924. Full TASK instructions: agents/AGENT_TASK.md, read by parent before dispatch; Root/project AGENTS and .agents/skills/software-code-review/SKILL.md apply. Read full bodies on activation and record actual origins/hashes.
+ROOT explicitly requested fresh independent Astra/xhigh TASK review after the owned isolated implementation commit. Assigned by /root/live_manager; reviewer must not implement or delegate. Work only in {REPO_ROOT}, branch codex/piping-live-control-20260924. Full TASK instructions: agents/AGENT_TASK.md, read by parent before dispatch; Root/project AGENTS and .agents/skills/software-code-review/SKILL.md apply. Read full bodies on activation and record actual origins/hashes.
 
 Frozen source/evidence candidate: 1811d70a129419d8d06502b61ef28bb2977a6d93.
 Complete diff base: 2b31099233df5f3504959cdf8d9fbf90904ff938.
@@ -16,3 +16,7 @@ Read-only review: no source changes, tests/build/npm/process/server/socket/brows
 Report actionable findings with exact candidate location, trigger, concrete consequence, evidence and repair direction, severity ordered. Separate confirmed defects from missing verification/residual risk. Conclude suitability for manager fan-in. Actual Tauri invoking-main-webview and live CLI-controller-human Apply connecting path I1/I2, package/default-target/self-test witnesses, long timeout/concurrency, unsupported-host qualification and actual human H1/H2 remain explicitly unqualified; do not relabel component tests or automated actions as those witnesses. No engineering/Runtime/usability/release acceptance.
 
 Return complete candidate identity, review findings/disposition and gaps to /root/live_manager. Manager integrates; ROOT retains programme graph/push/PR/merge and all later native/human resource grants.
+
+## Preserved execution identity
+
+Original supplied bytes: [historical execution record](../PORTABILITY_REPAIR/_run_records/record-11.md), SHA-256 `8175807138314016cba25e887d863a61c61f53009c84424f76edafc465617fe4`. Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.

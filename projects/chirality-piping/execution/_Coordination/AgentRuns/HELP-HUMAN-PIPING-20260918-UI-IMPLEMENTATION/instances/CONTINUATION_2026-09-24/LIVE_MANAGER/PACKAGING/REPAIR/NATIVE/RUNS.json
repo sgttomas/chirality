@@ -1,47 +1,7 @@
-[
-  {
-    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --lib live_control",
-    "cwd": "repository root",
-    "exit_code": 0,
-    "result": "8pass;102filtered",
-    "permission": "default sandbox",
-    "log": "cargo-lib.log",
-    "sha256": "82229d79617dfdee7a2b18cd1a0fb40dabcfb9dae8f6bdcfb844c24c954d2e87"
-  },
-  {
-    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --test live_control_transport",
-    "cwd": "repository root",
-    "exit_code": 0,
-    "result": "7pass",
-    "permission": "approved require_escalated process-owned socket fixtures",
-    "log": "cargo-transport.log",
-    "sha256": "effd0cb2281ba87f676e0f059d6a0b8a98629fbcc734a94f7d85f597cfc488b2"
-  },
-  {
-    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --features live-control-cli --bin swbpipe-control --test live_control_cli",
-    "cwd": "repository root",
-    "exit_code": 0,
-    "result": "4unit+3integration pass",
-    "permission": "approved require_escalated process-owned socket fixtures",
-    "log": "cargo-cli.log",
-    "sha256": "e5f2ccf1b3e44d3647b44b5890ff14f627bd6fd34459781d12b4a6806692d49b"
-  },
-  {
-    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo build --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --features live-control-cli --bin swbpipe-control",
-    "cwd": "repository root",
-    "exit_code": 0,
-    "result": "pass",
-    "permission": "default sandbox",
-    "log": "cargo-cli-build.log",
-    "sha256": "1f91ba57ac20ad3ff3cc6293544c418bf7a98bbf9d42f1019d534ffc649de679"
-  },
-  {
-    "command": "env -u SWBPIPE_LIVE_CONTROL CARGO_BUILD_JOBS=2 CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target npm_config_offline=true npm run tauri -- build --debug --bundles app",
-    "cwd": "projects/chirality-piping/apps/desktop",
-    "exit_code": 0,
-    "result": "normal package pass; desktop-only inventory verified separately",
-    "permission": "default sandbox",
-    "log": "normal-build.raw.txt",
-    "sha256": "305feff96692f1a02eff6ef67ccffb9b913eda0fd867c4d7fef1314f249cc947"
-  }
-]
+{
+  "record_type": "portable_evidence_pointer",
+  "canonical_raw": "../../../PORTABILITY_REPAIR/_run_records/record-24.json",
+  "sha256": "6a2ad996628410ed79afe4f4de6fe8c005687b15ab9ebdcbd48d44440aa79ffe",
+  "original_reference_base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE",
+  "note": "Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied."
+}
