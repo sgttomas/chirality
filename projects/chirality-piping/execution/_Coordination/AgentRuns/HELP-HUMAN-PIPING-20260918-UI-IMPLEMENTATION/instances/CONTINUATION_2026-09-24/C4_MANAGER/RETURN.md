@@ -41,3 +41,7 @@ The later merged basis `4555f6c13f4356d78eff2df9a4e077708af01944` and C4_CANVAS_
 ## Current bounded canvas outcome
 
 Canvas source/evidence is frozen and independently backchecked at `6f0f28afdc59527880224e907da4fa27e4daac96`. The one context-loss P2 is repaired; no new actionable finding remains in the [backcheck](CANVAS/INDEPENDENT_REVIEW/BACKCHECK.md). [CANVAS/RETURN.md](CANVAS/RETURN.md) is the current handoff, including passing TypeScript, the separate133-test and affected40-test runs, preserved failures/repairs and source/performance limits. [Current-row handoff](CANVAS/CURRENT_ROW_HANDOFF.md) remains for ROOT’s owning App/table writer. No source/browser/native/qualification completion or merge claim is added by this summary.
+
+## Current-row integration outcome
+
+The former canvas current-row seam is implemented in the isolated source and independently backchecked at `dbdbf566a1da275a378d776e79564dfc277fccf0`. [CURRENT_ROW/RETURN.md](CURRENT_ROW/RETURN.md) is the current return: real fields/review publication, App-local generation/owner-safe state, observed tests and the repaired pointer-path finding. The earlier null-only handoff description is historical. Actual latest B4 EngineeringTable/OverflowRail focus integration/backcheck, renderer/browser/native, whole-candidate and profile gates still apply; no programme closure or release is claimed.

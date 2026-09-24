@@ -21,3 +21,11 @@ Fresh independent complete current-row delta review is dispatched against the fr
 ## Independent R1 repair continuation
 
 Fresh complete current-row review covered 22 paths and 52 hash bindings, finding only C4-ROW-R1 (same-cell pointer publication when editing is blocked). The owned EngineeringTable branch and its maintained regression tests are repaired; full desktop TypeScript and affected 2-file/57-test one-worker rerun passed. [VERIFICATION.md](VERIFICATION.md) preserves exact stages/commands, including the earlier test-fixture failure. Independent repair backcheck is pending. All source authoring and execution processes ended; no browser/native/qualification or final C4 completion claim is made.
+
+## Final bounded current-row handoff
+
+Reviewed source/evidence freeze: `dbdbf566a1da275a378d776e79564dfc277fccf0`. The [independent backcheck](INDEPENDENT_REVIEW/BACKCHECK.md) resolves C4-ROW-R1 with no new actionable finding; its SHA256 is `3c06fbe73efb0bab9bcd944ab7d0a3cc39bd86eb7520cd259a82582962518824`. Complete cumulative current-row coverage is 29 changed paths against `fb29a8420f1692c779c87993c95ab5925a68da9f`. Final handoff metadata adds only the reviewer outputs and derivative status; production source remains the reviewed repair.
+
+Actual validation: desktop TypeScript passed; initial six unaffected files/99 tests passed, corrected App witness passed separately, and the post-review affected two-file/57-test one-worker rerun passed. All failure/diagnosis and historical evidence is retained. The source now supplies real current-row context through App; the earlier canvas null-only seam is implemented at source level. Tests distinguish review B from primary A through the actual table/App path, with viewport rendering mocked as stated.
+
+All child source writes and executable checks have ended; isolated lane released. No primary/index/graph writes, push, PR or merge. Ready for ROOT’s bounded source/evidence fan-in **after actual latest B4 focus-source integration and backcheck**. Browser/native visible plate and interaction evidence, full final-candidate registered checks and protected second-profile freeze/qualification remain open. This does not close C4 or the programme.
