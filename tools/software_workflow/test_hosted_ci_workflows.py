@@ -1,13 +1,22 @@
 """Hosted routing must receive PR changes and retain an honest result gate."""
 from pathlib import Path
+import json
 
 import yaml
+from select_affected_checks import select_checks
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 def workflow(name):
     return yaml.load((ROOT / ".github/workflows" / name).read_text(), Loader=yaml.BaseLoader)
+
+
+def test_changes_to_hosted_workflows_select_their_structural_tests():
+    profile = json.loads((ROOT / "tools/tools-test-routing.json").read_text())
+    for name in ["harness-premerge.yml", "pec-tests.yml"]:
+        selection = select_checks(profile, [f".github/workflows/{name}"])
+        assert "software_workflow" in selection["checks"]
 
 
 def test_every_pr_change_reaches_selection_and_full_dispatch_is_available():

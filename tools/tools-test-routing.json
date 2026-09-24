@@ -105,7 +105,7 @@
   },
   "path_rules": [
     {
-      "paths": ["tools/hosted-ci-routing.json"],
+      "paths": ["tools/hosted-ci-routing.json", ".github/workflows/harness-premerge.yml", ".github/workflows/pec-tests.yml"],
       "checks": ["software_workflow"]
     },
     {
