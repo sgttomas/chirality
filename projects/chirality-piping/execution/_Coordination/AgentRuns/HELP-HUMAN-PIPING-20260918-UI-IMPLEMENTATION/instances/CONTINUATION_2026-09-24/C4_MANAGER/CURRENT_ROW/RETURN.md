@@ -13,3 +13,7 @@ Actual execution so far: source inspection and git whitespace check only. ROOT r
 Excluded sources remain untouched: workspaceSession, operationsSessionState, selectionSessionState, styles, VirtualList, controller/model/history/results/persistence/native and reviewed canvas/core/projection fixes. No primary checkout/index/work-graph writes, push, PR or merge. No new loop receipt.
 
 Fresh independent complete current-row delta review is dispatched against the frozen commit, with prior C4 reviews and compact source as retained basis. Observed checks and any repair will receive follow-up coverage. Remaining programme gates include connected browser current-row/Hide/edit/source/generation and actual plate behavior, native witnesses, full candidate registered sweep/CI and owner-held second-profile population/method freeze and qualification. Source integration does not close C4 or the programme.
+
+## Executed follow-up
+
+[VERIFICATION.md](VERIFICATION.md) supersedes the initial unexecuted-check state: desktop TypeScript passed; six unaffected files/99 tests passed, and the repaired new App test passed separately. Its initial failure was a collapsed-drawer test setup; only the test was repaired through the real Table-view control. Production code remains source48. All failure/probe evidence is retained. Independent current-row review is pending; no browser/native or qualification claim follows.

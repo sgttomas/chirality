@@ -1,0 +1,27 @@
+{
+  "candidate": "48acc20d6c047fe789b436944fcf468f19346bf8",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "source_hashes": {
+    "projects/chirality-piping/apps/desktop/src/App.currentRow.test.tsx": "c93033345c36b4e02cfa96e3f28a34a8b7257b98bf1a8f44d7e7ca190d7a9f14",
+    "projects/chirality-piping/apps/desktop/src/App.tsx": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+    "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx": "28683c1348c65418a46ec83e4f847a11f64f4410277ed1086994ae2f7fb9cfa5",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.test.tsx": "b99bbf79c0e25fcdac046a5a46a15558dbf8e191d497fc141650e4a1f376fd06",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.ts": "d68ec597a749d50b4b5687016e0fafdef8232b4d8749f10316fa2d7f19cb6733",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx": "f8e936cd37fc3fbabe6914f8d8c26876affee661365d1a6a5df4e2bb100bb5d2",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx": "3cabf283591cd8a56cc9f7ba63281afa0c0262747e76c3c1ecbb09bef67e870c"
+  },
+  "input_hashes": {
+    "package-lock.json": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732",
+    "apps/desktop/vite.config.ts": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+    "apps/desktop/tsconfig.json": "cc32a3c2be133425d30e112e3dc863c9dbe1ecbbdd81123abf6d6a0300a8ae5c",
+    "apps/desktop/src/test/setup.ts": "65c02a3ba648174d681c4389b61707c58e8ee02cc7228b9446074a2ac1772e38",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm": "cf9301c369f7425808adbb49dbe31205a31907882a8817217babe4ce5515a251"
+  },
+  "dependencies": {
+    "typescript": "5.9.3",
+    "vitest": "4.1.10",
+    "vite": "7.3.3"
+  },
+  "concurrency": "ROOT released isolated sequential tsc/focused unit maxWorkers1 after primary local sweep passed; B4 browser diagnosis and LIVE isolated checks may overlap; no timing inference"
+}

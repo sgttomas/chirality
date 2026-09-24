@@ -1,0 +1,9 @@
+# App current-row witness diagnosis
+
+Observed manager reproduction: focused-vitest-01.txt reports 99 passing tests and one failure, App.currentRow.test.tsx line 26, expected node:N-110 current row but received null. Manager typecheck passed. TASK performed no execution reproduction; the manager's raw run is the empirical basis. Applied full software-defect-diagnosis skill, with origin/hash added to source manifest. Original frozen48 evidence remains untouched.
+
+Causal chain (high confidence from source, pending manager rerun): jsdom's default 1024px width makes chromeSessionState initialize narrowWindow and treeCollapsed true (lines 80–81). The default Model stage Both view is therefore a collapsed drawer; shellLayout tableDrawerState returns expanded=false. App correctly supplies currentRowActive=false through ModelTree. The authored test fired DOM events at retained mounted table buttons without exposing the table first. Primary selection updates through the preexisting handler, but presentation publication correctly rejects the ineligible surface. This explains the null prop before any live-index or generation acceptance. Existing App.tableOperations tests use similar direct event firing but do not assert current-row eligibility.
+
+Bounded repair: only App.currentRow.test.tsx now activates the actual view-switch-table control, asserts modeling-workspace data-view=table, and then opens the grid. Added an early assertion that direct A activation publishes A before review B; existing B-versus-primary-A and switch clear assertions remain. No production guards or assertions weakened.
+
+Required regression check: manager reruns App.currentRow.test.tsx and the focused candidate set. These remain prop-connection tests, not renderer/native visibility evidence. If the earliest A assertion fails, inspect active shell state and generation/index under that narrowed setup; no alternative production cause has been experimentally established.

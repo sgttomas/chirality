@@ -1,0 +1,7 @@
+{
+  "base": "48acc20d6c047fe789b436944fcf468f19346bf8",
+  "changed_source": {
+    "projects/chirality-piping/apps/desktop/src/App.currentRow.test.tsx": "f013674f0ab5fce32ce9729492a68fd3d228454050d90e3e3fae5fb46d3cac4e"
+  },
+  "reason": "test must expose actual Table view; production active-surface guard unchanged"
+}

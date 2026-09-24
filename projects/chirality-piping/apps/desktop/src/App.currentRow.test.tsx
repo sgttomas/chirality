@@ -13,9 +13,12 @@ vi.mock("./features/viewport/PipeViewport", async (importOriginal) => {
 describe("App current-row connection", () => {
   it("passes review B separately from primary A and clears on return to dormant fields", async () => {
     render(<App />); await screen.findByTestId("desktop-preview-shell");
+    fireEvent.click(screen.getByTestId("view-switch-table"));
+    expect(screen.getByTestId("modeling-workspace")).toHaveAttribute("data-view", "table");
     fireEvent.click(screen.getByTestId("layout-mode-grid"));
     expect(observed.props?.currentRowNodeKey).toBeNull();
     fireEvent.click(screen.getByTestId("table-cell-node:N-100-x"));
+    expect(observed.props?.currentRowNodeKey).toBe(entityKey({ type: "node", id: "node:N-100" }));
     const primary = observed.props?.selection;
     expect(primary).toEqual({ type: "node", id: "node:N-100" });
     fireEvent.click(screen.getByTestId("node-grid-review-disclosure"));

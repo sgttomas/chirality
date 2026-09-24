@@ -34,5 +34,6 @@
   },
   "write_scope": "App,ModelTree,EngineeringTable,narrow new presentation helper/hook,focused tests and CURRENT_ROW evidence; exact activation commit-only",
   "excluded": "session/controller/native/style/VirtualList/model/history/results/persistence/protected instruments/primary checkout",
-  "resource_boundary": "source/test authoring only until explicit ROOT release; no test/build/browser/native/install execution"
+  "resource_boundary": "source/test authoring only until explicit ROOT release; no test/build/browser/native/install execution",
+  "later_execution_admission": "ROOT released isolated sequential TypeScript/focused component/helper/App tests with maxWorkers1 after primary local sweep; B4 browser and LIVE isolated checks may overlap, no calibrated performance claim. No builds/browser/native/shared writes. Lane ended/released after observed checks."
 }
