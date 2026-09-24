@@ -69,6 +69,9 @@ the application owns argument/domain validation, live state and human acceptance
 See [Application tools](docs/APPLICATION_TOOLS.md) for the interface and limits.
 SWBPIPE client adoption and its live domain adapter remain separate work.
 
+For host configuration, project/session setup, restart rebinding and the remaining
+Tauri integration work, see [Embedding Runtime in another application](docs/APPLICATION_CONSUMER_GUIDE.md).
+
 ## Development
 
 Requires Node.js 22.19 or newer.
