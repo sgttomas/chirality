@@ -1,6 +1,8 @@
 import type { LabelRect } from "./labelPlacement";
 
-const CELL_SIZE = 64;
+// A 16px partition is comparable to picking diameters and half a typical plate
+// height, reducing coarse-cell candidates; oversized entries retain the fallback.
+const CELL_SIZE = 16;
 const MAX_CELLS = 256;
 
 type CollisionEntry = {

@@ -66,6 +66,36 @@ describe("label collision broad phase", () => {
     check(queries[0]);
   });
 
+  it("preserves strict 16px edges and exhaustive results across partition fallback boundaries", () => {
+    // 240px aligned squares span 16x16 cells; 256px squares span 17x17.
+    // Fractional/negative translations also exercise the floor boundary.
+    for (const offset of [-256, -16, -0.5, 0, 0.5, 16]) {
+      for (const size of [240, 255.75, 256]) {
+        const obstacle = rect(offset, offset, size, size);
+        const obstacles = [obstacle, rect(offset - 32, offset - 32, 16, 16)];
+        const index = new LabelCollisionIndex(obstacles);
+        const queries = [
+          rect(offset - 16, offset - 32, 16, 16), // exact 16px edge: clear
+          rect(offset - 16.25, offset - 32, 16, 16), // crosses that edge
+          rect(obstacle.right, offset, 16, 16), // exact large-rectangle edge
+          rect(obstacle.right - 0.25, offset, 16, 16),
+        ];
+        for (const querySize of [240, 255.75, 256]) {
+          queries.push(rect(offset, offset, querySize, querySize));
+          queries.push(rect(obstacle.right, offset, querySize, querySize));
+          queries.push(rect(obstacle.right - 0.25, offset, querySize, querySize));
+        }
+        // Repeat in reverse to interleave normal/oversized hits and misses.
+        for (const query of [...queries, ...queries.slice().reverse()]) {
+          const expected = obstacles.some((other) =>
+            query.left < other.right && query.right > other.left &&
+            query.top < other.bottom && query.bottom > other.top);
+          expect(index.overlaps(query)).toBe(expected);
+        }
+      }
+    }
+  });
+
   it("copies obstacle inputs and fails closed on invalid rectangles", () => {
     const obstacle = { left: 0, top: 0, right: 20, bottom: 20 };
     const index = new LabelCollisionIndex([obstacle]);
