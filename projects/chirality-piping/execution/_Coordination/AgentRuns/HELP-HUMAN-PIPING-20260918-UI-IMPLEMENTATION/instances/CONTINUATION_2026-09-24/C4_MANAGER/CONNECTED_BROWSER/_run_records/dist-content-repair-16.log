@@ -1,0 +1,16 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test --config playwright.dist.config.ts e2e/ui-foundation-dist.spec.ts --grep content-aware narrow canvas budget light comfortable --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repair-16
+[WebServer] (node:22076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:22078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop-dist] › e2e/ui-foundation-dist.spec.ts:314:3 › content-aware narrow canvas budget light comfortable (14.1s)
+
+  1 passed (15.1s)
+
+exit=0
+elapsed_seconds=15.424

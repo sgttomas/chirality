@@ -1,0 +1,70 @@
+{
+  "role": "TASK",
+  "agent": "/root/c4_resume/projection_task",
+  "parent": "/root/c4_resume",
+  "mechanism": "delegated-harness-native descendant",
+  "descendants": [],
+  "requested_model": "gpt-6-astra",
+  "requested_reasoning_effort": "low",
+  "source_basis": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "full_read_instructions_and_design": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/TASK_BRIEF.md",
+      "sha256": "e68f127afe604fd6f121b61dd3735b6f55a323f56b72dd91b71a75f0c1c13dfc"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_DESIGN/RECOMMENDATION.md",
+      "sha256": "8eda90f4905d0283b4aee058ea39e5409e31dcd9a8a553656bd23da8d5909fc2"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_DESIGN/BASIS.json",
+      "sha256": "c08166aa30443533977afc2de0db1bf3621595647fc38d6ecb71f788191bddb3"
+    }
+  ],
+  "changed_product_paths": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+      "sha256": "bca2762a08b6aaf29a47fb70c10b2345557526c6406c2b939dcc76e9d3cc22e7"
+    }
+  ],
+  "supporting_read_sources": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe.ts",
+      "sha256": "bf4db3b9c853e2146aeba413d1bdc012b020cbbbbce2046336ffc2aa60d6b803"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe-result.json",
+      "sha256": "e7c3433e38d905bce2e1a36b8185debb16030a03c866bf43044a5722bab0090b"
+    }
+  ],
+  "checks_executed": [],
+  "checks_status": "Authored only; manager owns execution; no acceptance claimed."
+}

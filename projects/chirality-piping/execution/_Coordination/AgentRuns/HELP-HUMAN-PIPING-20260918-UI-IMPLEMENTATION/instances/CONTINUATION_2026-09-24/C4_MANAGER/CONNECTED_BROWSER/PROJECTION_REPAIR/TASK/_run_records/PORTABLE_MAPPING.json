@@ -1,0 +1,16 @@
+{
+  "mapping": {
+    "/private/tmp/piping-c4-policy-20260924": "REPO_ROOT"
+  },
+  "original_records": [
+    {
+      "path": "_run_records/original-RETURN.md",
+      "sha256": "9b18310c695b152fbffa5f7b9f8b375ae8a614e4ec03a3e26aa227a535ea6877"
+    },
+    {
+      "path": "_run_records/original-HASHES.json",
+      "sha256": "b2c3809ea8abdc6226ffaa797dd396d4eb2b4a472f2e3ff67c31ed53df078d65"
+    }
+  ],
+  "purpose": "Exact original byte preservation; host path is historical evidence only."
+}

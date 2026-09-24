@@ -1,0 +1,388 @@
+{
+  "schema": "chirality-bounded-software-review/v1",
+  "recorded_at_utc": "2026-09-24T13:41:50.089916+00:00",
+  "reviewer": "/root/c4_resume/projection_review",
+  "parent": "/root/c4_resume",
+  "mechanism": "delegated-harness-native descendant",
+  "role": "TASK Type 2",
+  "descendants": [],
+  "requested_allocation": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "xhigh",
+    "independent_host_telemetry_inspected": false
+  },
+  "fresh_review": true,
+  "prior_reviewer_resumed": false,
+  "implemented_candidate": false,
+  "repo_root": "REPO_ROOT (assigned isolated checkout, resolved read-only)",
+  "scope": {
+    "product": "read-only",
+    "writes": [
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/RETURN.md",
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/HASHES.json"
+    ],
+    "read_only_git_clarification": "Parent explicitly permitted Git show/diff/status/scope inspection; revised REVIEW_BRIEF read before Git inspection.",
+    "prohibited_operations_executed": []
+  },
+  "basis": {
+    "base_revision": "6cf1811041dd53fd418ac3dd05ccac5274b74acc",
+    "candidate_revision": "158bd7f971744a91cb70563335518353a505debd",
+    "changed_paths": [
+      "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+      "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts"
+    ],
+    "complete_diff_sha256": "3369ca272a031537e61df6e562938a7ef1e7e3a18a957b7431c486d3d29c42f4",
+    "diff_command": [
+      "git",
+      "diff",
+      "--no-ext-diff",
+      "--no-renames",
+      "6cf1811041dd53fd418ac3dd05ccac5274b74acc",
+      "158bd7f971744a91cb70563335518353a505debd"
+    ],
+    "on_disk_matches_candidate_blobs": true,
+    "baseline_blobs": [
+      {
+        "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+        "revision": "6cf1811041dd53fd418ac3dd05ccac5274b74acc",
+        "sha256": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755"
+      },
+      {
+        "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+        "revision": "6cf1811041dd53fd418ac3dd05ccac5274b74acc",
+        "sha256": "e323e32b2e005b36581f5b9f43146fbb2b39a6d853ad7709d0c27ffe96c85bcf"
+      }
+    ]
+  },
+  "instructions": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full read"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "consultation": "full read"
+    },
+    {
+      "origin": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/REVIEW_BRIEF.md",
+      "sha256": "0c70010316b9b58d2453f606755f6da3deb39e92cd2ef39c097a8ee8d295e061",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/TASK_BRIEF.md",
+      "sha256": "e68f127afe604fd6f121b61dd3735b6f55a323f56b72dd91b71a75f0c1c13dfc",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-review-brief-original.md",
+      "sha256": "8a3d9e7d212a50ac6561913acc9ddf823c17b87c0e310114cd6b80bd3754913b",
+      "consultation": "original read at launch, before parent clarification"
+    }
+  ],
+  "sources": [
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+      "sha256": "dc6c06c1cb1f8ac656ffa99b8dd35688bd0d986d2a46114fd49949dbbf8a5ad0",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts",
+      "sha256": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+      "consultation": "full changed files; relevant caller/picker sections and full placement/collision/policy"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "sha256": "e2c07f2d9cfb8d22b19be6cc80078e1dfb60fbd0a734f616a22a3ae90905b811",
+      "consultation": "relevant startup/updater/caller sections inspected"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/App.tsx",
+      "sha256": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+      "consultation": "relevant startup/updater/caller sections inspected"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/main.tsx",
+      "sha256": "525f0802ef08be2869cec123731c5f88eb83b8819863f27010edf0824ce7e5c5",
+      "consultation": "relevant startup/updater/caller sections inspected"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts",
+      "sha256": "e796dc5c58fcb54e2ed02f9203363690719034d9b8509444b075ddeea09458b0",
+      "consultation": "relevant startup/updater/caller sections inspected"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+      "sha256": "a2b6fd7415e2f5de95927f8084c320dc1ea05c12549edd2e2b5d64e0da20ade2",
+      "consultation": "relevant startup/updater/caller sections inspected"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/playwright.dist.config.ts",
+      "sha256": "d53c01817b11718850b2b2b52e0132825931741998d4214a0d0c7e533c2b5756",
+      "consultation": "dist runtime configuration and exact narrow scenario source assertions"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts",
+      "sha256": "5fb469041a5a59d532d95cf78d0651e3205292c4bc0bb447e0546de8e0330850",
+      "consultation": "dist runtime configuration and exact narrow scenario source assertions"
+    }
+  ],
+  "evidence": [
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_DESIGN/RECOMMENDATION.md",
+      "sha256": "8eda90f4905d0283b4aee058ea39e5409e31dcd9a8a553656bd23da8d5909fc2",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_DESIGN/BASIS.json",
+      "sha256": "c08166aa30443533977afc2de0db1bf3621595647fc38d6ecb71f788191bddb3",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FINAL_REVIEW/DIST_MEASURE_DIAGNOSIS.md",
+      "sha256": "13ef92292c1686e9a9fcf7ef65fc1b4325c69a11a7fc2e828c2aab7cc2de4524",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FINAL_REVIEW/DIST_MEASURE_DIAGNOSIS.json",
+      "sha256": "5ecfd04d89fbc6a98ea3d9e19b0949b50dc1ca55a6241c2a64755515f3d121ae",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/TASK/RETURN.md",
+      "sha256": "6ba22e5cd9f8386ec174f2f0487f5ddd2b7135e76c221c8dadf83fccfcf0715d",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/TASK/HASHES.json",
+      "sha256": "6b80956568cab4c805c9955a1733ed39e16b009b666175046458fa8690f75ce3",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/TASK/_run_records/fixture-url-failed-labelProjection.test.ts",
+      "sha256": "bca2762a08b6aaf29a47fb70c10b2345557526c6406c2b939dcc76e9d3cc22e7",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-validation-01.json",
+      "sha256": "605341d3422c73b21817526049dde1b4fa6d7ac52d756e25de3a90a1061e5841",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-validation-02.json",
+      "sha256": "d067b6dba7d8701579bba46391615118cab7b77aa45b20451f92b1d905ac8b69",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-causal-red-01.log",
+      "sha256": "d8e2d5f8a62c5539a6738d7f4683d60fbc94e4091f9875859da1f6ab8c9b98c2",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-causal-red-02.log",
+      "sha256": "0fc2ae23b323d211f90b7750b6d6d97d58f184f71b6972b2f522d16d074405b1",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-focused-01.log",
+      "sha256": "b8bdaf93633d9d5790a433ee336d34287df8c2b9cfd49d40b0ecee6f083ba460",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-focused-02.log",
+      "sha256": "2bff24c58476a924d62915904e825b5b7d56fb53366b913b972ea7060138fc59",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-tsc-02.log",
+      "sha256": "f50819b1332d0003c297a51740aedb5b40302c68916896615dab0e6a0ebc8a9c",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe.ts",
+      "sha256": "bf4db3b9c853e2146aeba413d1bdc012b020cbbbbce2046336ffc2aa60d6b803",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe-result.json",
+      "sha256": "e7c3433e38d905bce2e1a36b8185debb16030a03c866bf43044a5722bab0090b",
+      "consultation": "read; probe data selectively extracted"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17-command.json",
+      "sha256": "1d05abc4087a7882390183bff2f44751180d5d0c711825e9948bd513be48574c",
+      "consultation": "bounded source17 report/command/context; trace event/network extraction"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17.json",
+      "sha256": "128b86716b3f24024678699da1a1819edd56bab4aaed936a1252618f4e63ad3b",
+      "consultation": "bounded source17 report/command/context; trace event/network extraction"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-desktop/error-context.md",
+      "sha256": "51827df0375e36ea47549c6d2987e052d7b4aaa452b7241991569fd5dd9ac4f3",
+      "consultation": "bounded source17 report/command/context; trace event/network extraction"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-desktop/trace.zip",
+      "sha256": "c1c3dcdda13e85d918e1149a57fa0f45e9de0db4c30dda6358f40fd013797b10",
+      "consultation": "bounded source17 report/command/context; trace event/network extraction"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-startup-repro-18-command.json",
+      "sha256": "19670150d45233f451586f74b62faf6cd86822ea4565092b2aa2b9068c087a1e",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-startup-repro-18.json",
+      "sha256": "957a8dfea2123c83ae310a0f5a66483a0c97c2f388ef0f0001c8dd5264550755",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/production-build-02-command.json",
+      "sha256": "f612e18a9391fb0f7c6a721ac0c61394b382cffeabc24908787b06c2fbb88d0e",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/production-build-02-result.json",
+      "sha256": "c4c9c8dafc381d946125c2549ec9942c45b1c6bce9710a3aabaa8da3fd62d846",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/production-build-02.log",
+      "sha256": "7c68f97def44d6bb4dffbcad9dadb3384c23a60ace77b328113bed73fd5b66ea",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repair-16-command.json",
+      "sha256": "e7ca8f20e8c15cd288cede0fba8a2dc41681e596af2e6f2a1434e6ac15aec4c0",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repair-16.json",
+      "sha256": "d8f178474ca0ee2738bd76dcedaca3d1383858eefb61177dd57b4bd098730881",
+      "consultation": "bounded raw report/result/command/log and hash binding backcheck"
+    }
+  ],
+  "verified_bindings": [
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-before-selected-pipe-keyboard-measurement.json",
+      "sha256": "1b6f16a80ce532a49d68843d0c0e6d7abfdc8612af85305faa3545762a34ed38",
+      "consultation": "hash binding only; diagnostic/fixture source identity"
+    },
+    {
+      "origin": "projects/chirality-piping/fixtures/product_preview/invented_preview_model.json",
+      "sha256": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c",
+      "consultation": "hash binding only; diagnostic/fixture source identity"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts",
+      "sha256": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9",
+      "consultation": "hash binding only; diagnostic/fixture source identity"
+    }
+  ],
+  "findings": [],
+  "verdict": "Combined readiness HELD: repeatable ordinary source 10k startup failure in runs17/18. No actionable source-correctness findings in the complete frozen two-file projection diff.",
+  "observed_external_validation": {
+    "projection_validation_01": "old/new fixture URL setup failure; not causal proof",
+    "projection_validation_02": "old projector P-100 null-placement assertion; repaired TypeScript exit 0 and 7 files / 64 tests pass",
+    "reviewer_executed_checks": false,
+    "build02": {
+      "exit": 0,
+      "candidate": "158bd7f971744a91cb70563335518353a505debd",
+      "recorded_input_hashes_verified": 292,
+      "recorded_output_hashes_verified": 21,
+      "missing_or_mismatched": 0
+    },
+    "dist16": {
+      "expected": 1,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "scenario": "content-aware narrow canvas budget light comfortable",
+      "actual_browser": "HeadlessChrome/148.0.7778.96",
+      "regular_and_wrapped_assertions_present": true,
+      "attachments": 78,
+      "raw_report_backchecked": true,
+      "screenshots_visually_inspected": false,
+      "full_matrix_claimed": false
+    }
+  },
+  "pending": [
+    "Diagnose and resolve repeatable ordinary 10k startup failure before completing affected-source validation",
+    "Complete full affected source and full maintained dist with exact candidate bindings",
+    "Owning manager remaining C4/native/positive-overflow/protected-profile/performance/DEC-025/programme gates"
+  ],
+  "return": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/RETURN.md",
+    "sha256": "45bbae58671ea48a6f10e52176e734c98bcfdb1604490a3c64ae41a0014bbd4e",
+    "consultation": "final authored review return and bounded follow-ups"
+  },
+  "followup": {
+    "requested_by": "/root/c4_resume",
+    "scope": "Static cost and bounded cache/coarse-fallback assessment; no implementation or causal timing claim",
+    "observed_source17": {
+      "expected": 16,
+      "unexpected": 1,
+      "skipped": 90,
+      "failure": "unchanged shell visibility assertion 10000ms on desktop 10k fixture",
+      "candidate": "158bd7f971744a91cb70563335518353a505debd"
+    },
+    "code_derived_matrix_applications_per_fully_subdivided_capsule": {
+      "old": 18,
+      "new": 138,
+      "timing_measurement": false
+    },
+    "causal_attribution": "unresolved",
+    "combined_readiness": "HELD",
+    "observed_source18": {
+      "expected": 1,
+      "unexpected": 1,
+      "skipped": 0,
+      "one_thousand": "passed",
+      "ten_thousand": "same shell absent at 10000ms expectation; total test 46618ms",
+      "candidate": "158bd7f971744a91cb70563335518353a505debd"
+    }
+  }
+}

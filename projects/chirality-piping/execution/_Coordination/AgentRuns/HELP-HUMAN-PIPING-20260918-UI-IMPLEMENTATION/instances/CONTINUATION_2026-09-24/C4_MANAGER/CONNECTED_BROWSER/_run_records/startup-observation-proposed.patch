@@ -1,0 +1,18 @@
+--- a/labelProjection.ts
++++ b/labelProjection.ts
+@@ -101,6 +101,8 @@
+   hiddenKeys: ReadonlySet<EntityKey>;
+   actualOdRadiusByPipe: ReadonlyMap<EntityKey, number>;
+ }>): readonly LabelRect[] {
++  const __observation = (globalThis as any).__c4ProjectionObservation as unknown[] | undefined;
++  const __started = __observation ? performance.now() : 0;
+   const { camera, width, height } = input;
+   if (!validCamera(camera, width, height)) throw new Error("Invalid label projection camera or CSS dimensions.");
+   const rectangles: LabelRect[] = [];
+@@ -159,5 +161,6 @@
+       if (rect) rectangles.push(rect);
+     }
+   }
++  if (__observation) __observation.push({ started: __started, ended: performance.now(), primitives: input.primitives.length, rectangles: rectangles.length, width, height });
+   return Object.freeze(rectangles);
+ }

@@ -1,0 +1,8 @@
+{
+  "change": "Clarify no Git mutation; explicitly permit read-only frozen diff/scope inspection",
+  "original": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/projection-review-brief-original.md",
+  "original_sha256": "8a3d9e7d212a50ac6561913acc9ddf823c17b87c0e310114cd6b80bd3754913b",
+  "current": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/REVIEW_BRIEF.md",
+  "current_sha256": "0c70010316b9b58d2453f606755f6da3deb39e92cd2ef39c097a8ee8d295e061",
+  "preservation": "Exact earlier brief reconstructed by reversing sole documented phrase edit; initial bytes were not archived before clarification"
+}

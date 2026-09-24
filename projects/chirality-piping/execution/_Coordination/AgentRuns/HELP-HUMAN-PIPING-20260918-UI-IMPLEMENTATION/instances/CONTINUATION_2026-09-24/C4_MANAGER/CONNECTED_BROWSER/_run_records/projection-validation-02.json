@@ -1,0 +1,46 @@
+{
+  "head": "6cf1811041dd53fd418ac3dd05ccac5274b74acc",
+  "old_source_sha256": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755",
+  "repaired_source_sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e",
+  "test_sha256": "dc6c06c1cb1f8ac656ffa99b8dd35688bd0d986d2a46114fd49949dbbf8a5ad0",
+  "commands": [
+    {
+      "name": "projection-causal-red-02",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/labelProjection.test.ts",
+        "-t",
+        "P-100",
+        "--maxWorkers=1"
+      ],
+      "exit": 1
+    },
+    {
+      "name": "projection-tsc-02",
+      "command": [
+        "../../node_modules/.bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "projection-focused-02",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/labelProjection.test.ts",
+        "src/features/viewport/labelPlacement.test.ts",
+        "src/features/viewport/labelCollisionIndex.test.ts",
+        "src/features/viewport/labelPolicy.test.ts",
+        "src/features/viewport/PipeViewport.contextLabels.test.tsx",
+        "src/features/viewport/PipeViewport.labels.test.tsx",
+        "src/features/viewport/viewportResource.test.ts",
+        "--maxWorkers=1"
+      ],
+      "exit": 0
+    }
+  ],
+  "exact_repaired_source_restored": true,
+  "source_unchanged_during_repaired_checks": true
+}

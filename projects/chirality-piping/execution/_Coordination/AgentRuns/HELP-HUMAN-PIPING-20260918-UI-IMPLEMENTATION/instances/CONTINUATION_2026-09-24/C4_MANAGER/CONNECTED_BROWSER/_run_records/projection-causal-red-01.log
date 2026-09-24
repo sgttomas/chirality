@@ -1,0 +1,29 @@
+$ ../../node_modules/.bin/vitest run src/features/viewport/labelProjection.test.ts -t P-100 --maxWorkers=1
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/viewport/labelProjection.test.ts (10 tests | 1 failed | 9 skipped) 4ms
+     × places retained default-model P-100 at 924x540 and 58x32 against all geometry 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/viewport/labelProjection.test.ts > label projection > places retained default-model P-100 at 924x540 and 58x32 against all geometry
+TypeError: The URL must be of scheme file
+ ❯ src/features/viewport/labelProjection.test.ts:242:31
+    240|     // raw reconstruction model SHA256 986c055944776ca8d0d849d552678e1…
+    241|     // Constants are retained here; this test never reads dated run ar…
+    242|     const source = JSON.parse(readFileSync(new URL("../../../../../fix…
+       |                               ^
+    243|       import.meta.url), "utf8")) as PreviewModel;
+    244|     const index = buildModelIndex(source, 1, 1), renderOrigin = { x: 3…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  07:27:53
+   Duration  554ms (transform 90ms, setup 89ms, import 80ms, tests 4ms, environment 297ms)
+
+
+exit=1

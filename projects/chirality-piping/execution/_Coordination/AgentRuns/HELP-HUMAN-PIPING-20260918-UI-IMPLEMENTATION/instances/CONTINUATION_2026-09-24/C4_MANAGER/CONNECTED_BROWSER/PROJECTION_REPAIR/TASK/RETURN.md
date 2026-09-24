@@ -1,0 +1,17 @@
+# Projection repair TASK return
+
+Authored, unexecuted; candidate ready for manager validation and independent review.
+
+Actual native descendant `/root/c4_resume/projection_task`, parent `/root/c4_resume`, TASK Type 2, no descendants. Requested allocation Astra/low; no claim of separately inspected host model telemetry. Explicit isolated cwd `REPO_ROOT` resolved with read-only git rev-parse. Production basis 383c941e902bac866bd8e09f468c258894e4dabe; manager reports evidence-only checkpoint 6cf181104. No Git mutation.
+
+Changed only labelProjection.ts, labelProjection.test.ts and this TASK evidence directory. Whole-original D and R are computed once, retaining D<=0 qualification. Nonzero strictly depth-interior capsules use eight equal-parameter segments with exact endpoints/shared joins/full R. Whole shape plus pieces performs at most nine envelope calculations and emits at most eight rectangles. Existing transform/clip/project/guard helper is shared. Touching/crossing near/far, zero or unsafe joins retain the whole envelope. Piece failure discards accumulated rectangles before fallback; original invalid/unrepresentable data still throws. Sphere/cone, OD map, duplicate keys, Hide and placement policy remain unchanged.
+
+Authored checks: existing orbit/OD/offscreen coverage recast as actual union assertions; exact eight/output bound and sixteen duplicate output; zero/unsafe joins and depth fallback; invalid/overflow throw; fault-injected second-piece projection failure proving partial-union discard; real picker sampling with nonzero hit counts for skew depth, camera/far crossing, joins/caps/tangency, OD, zero-length supplied primitive and duplicate keys; hidden picker/projector cases. Maintained product-preview fixture supplies exact retained P-100 regression at 924x540, camera42/near0.001/far1000, measured58x32 through unchanged placeMeasuredLabel, all geometry exclusions and nonzero own/all actual-picker hits. Runtime does not read run folders. P-100 test name includes P-100 for manager causal old/new comparison.
+
+No tests, compiler, build, browser, native, ports or network operations executed. Lightweight source reads only; all authored assertions await execution. No browser/native/performance/C4 acceptance claim. Manager must run exact old-projector failure/new-projector success, affected checks, obtain fresh independent frozen-diff review, and carry remaining integration gates.
+
+## Fixture-loader repair
+
+Manager-reported first validation: TypeScript passed; focused checks had 63 passes and one P-100 fixture-loading failure caused by transformed import.meta.url. The old-projector run failed for the same setup reason, so it did not establish causality. Replaced only that loader with the maintained static JSON import pattern from HandoffPanel.test.tsx; assertions and product source unchanged. No checks executed by TASK after repair. Manager owns reruns and raw validation evidence.
+
+The exact original RETURN.md and HASHES.json bytes are retained under `_run_records/original-*`. `_run_records/PORTABLE_MAPPING.json` maps the original host checkout spelling to REPO_ROOT; current durable paths are repository-relative.

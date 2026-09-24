@@ -1,0 +1,74 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/ui-foundation.spec.ts e2e/c3-viewport-visibility.spec.ts e2e/c4-label-policy.spec.ts --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17
+[WebServer] (node:22221) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 107 tests using 1 worker
+
+(node:22223) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22223) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:78:1 › C3 snapshot, Hide precedence, persistent hidden count, theme and Show All preserve model/history (5.1s)
+  ✓    2 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:153:1 › C3 dimmed geometry remains available to hover, click and box selection (2.7s)
+  ✓    3 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:188:1 › C3 nearer dimmed pipe wins unchanged point ordering and viewport keyboard focus is visible (3.0s)
+  ✓    4 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:227:1 › C3 isolation remains clearable when every drawable entity belongs to the snapshot (1.5s)
+  ✓    5 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:244:1 › C3 deletion retains active empty snapshot; new geometry dims; project replacement clears it (3.4s)
+  ✓    6 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:279:1 › C3 visibility leaves Current results current and never revives Historical overlays (5.9s)
+  ✓    7 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:314:1 › C4 applied labels retain context, fit measured boxes, preserve hover and leave geometry pickable (3.0s)
+  ✓    8 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:179:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport (5.6s)
+  ✓    9 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:283:3 › C4 current review row B remains distinct from primary A @explicit-viewport (3.7s)
+  ✓   10 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:321:3 › C4 unique full node inventory preserves spatial omissions @explicit-viewport (12.1s)
+  ✓   11 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:400:3 › C4 label modes preserve Current and Historical result standing (6.0s)
+  ✓   12 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:420:3 › C4 real WebGL loss/restoration fails closed and recovers (3.8s)
+  ✓   13 [chromium-desktop] › e2e/ui-foundation.spec.ts:38:1 › [preflight] maintained fixture supports typed selection and a keyboard-authored measurement (3.1s)
+  ✓   14 [chromium-desktop] › e2e/ui-foundation.spec.ts:82:1 › a first late diagnostics pull is RAF-neutral and projection refreshes after a real camera change (1.4s)
+  ✓   15 [chromium-desktop] › e2e/ui-foundation.spec.ts:242:1 › typed raw-ID collisions remain distinct through ordered selection and an ABA membership change (1.8s)
+  ✓   16 [chromium-desktop] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture (5.5s)
+  ✘   17 [chromium-desktop] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture (46.8s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-desktop] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('desktop-preview-shell')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByTestId('desktop-preview-shell')[22m
+
+
+       at ui-foundation-workflows.ts:93
+
+      91 |   await routeModelFixture(page, fixture);
+      92 |   await page.goto("/");
+    > 93 |   await expect(page.getByTestId("desktop-preview-shell")).toBeVisible();
+         |                                                           ^
+      94 |   await expect(page.getByTestId("viewport-canvas").locator("canvas")).toHaveCount(1);
+      95 |   return fixture.model;
+      96 | }
+        at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts:271:19
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-projection-regression-17/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-desktop] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture 
+  90 did not run
+  16 passed (1.9m)
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=116.068

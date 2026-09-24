@@ -1,0 +1,29 @@
+$ ../../node_modules/.bin/vitest run src/features/viewport/labelProjection.test.ts -t P-100 --maxWorkers=1
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/viewport/labelProjection.test.ts (10 tests | 1 failed | 9 skipped) 14ms
+     × places retained default-model P-100 at 924x540 and 58x32 against all geometry 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/viewport/labelProjection.test.ts > label projection > places retained default-model P-100 at 924x540 and 58x32 against all geometry
+AssertionError: expected null not to be null
+ ❯ src/features/viewport/labelProjection.test.ts:255:32
+    253|       hiddenKeys: new Set(), actualOdRadiusByPipe: new Map() });
+    254|     const placement = placeMeasuredLabel({ ...anchor, width: 58, heigh…
+    255|     expect(placement.rect).not.toBeNull();
+       |                                ^
+    256|     expect(placement.reasons).toEqual([]);
+    257|     expect(rects.every((rect) => !labelRectsOverlap(placement.rect!, r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  07:30:14
+   Duration  394ms (transform 81ms, setup 60ms, import 74ms, tests 14ms, environment 167ms)
+
+
+exit=1
