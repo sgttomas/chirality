@@ -1025,9 +1025,13 @@ export class ViewportResource {
   };
 
   private handleContextLost = (event: Event): void => {
+    if (this.disposed) return;
     event.preventDefault();
     this.contextLostCount += 1;
     this.contextStatus = "lost";
+    // Retire DOM labels before pause/status callbacks can expose diagnostics.
+    // A paused renderer will not reach its normal per-frame label update.
+    this.labelUpdater?.();
     this.cancelNavigation();
     this.scheduler.pause();
     this.options.onContextStatus?.("lost");
@@ -1035,8 +1039,10 @@ export class ViewportResource {
   };
 
   private handleContextRestored = (): void => {
+    if (this.disposed) return;
     this.contextRestoredCount += 1;
     this.contextStatus = "restoring";
+    this.labelUpdater?.();
     this.options.onContextStatus?.("restoring");
     this.options.onRestore?.();
     this.contextStatus = "ready";

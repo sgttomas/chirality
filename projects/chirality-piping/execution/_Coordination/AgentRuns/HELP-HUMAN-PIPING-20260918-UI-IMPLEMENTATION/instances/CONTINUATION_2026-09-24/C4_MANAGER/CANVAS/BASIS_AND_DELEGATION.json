@@ -108,5 +108,31 @@
       "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
       "use": "Full body read by manager for diagnosis/review coordination."
     }
-  ]
+  ],
+  "independent_review": {
+    "agent": "/root/c4_manager/canvas_review",
+    "mechanism": "collaboration.spawn_agent fresh fork_turns none",
+    "role": "TASK Type2",
+    "requested_model": "gpt-6-astra",
+    "requested_effort": "xhigh",
+    "candidate": "a7cc327725f622fa901371e913a308af57d52b9e",
+    "complete_base": "c57cd17b1ff05ab9bb35d2eaac6725aaffa953e2",
+    "result": "Changes requested: C4-CANVAS-R1 P2 only",
+    "files": 60,
+    "manifest_bindings": 168,
+    "return_sha256": "51bfff09283602aff02bda914e01313611ea00fdaf8dc2c0f8499a73e552db15"
+  },
+  "r1_repair": {
+    "agent": "/root/c4_manager/canvas_task",
+    "mechanism": "collaboration.followup_task retained Astra/low TASK",
+    "scope": "minimal PipeViewport/viewportResource lifecycle fix + focused regression and R1 evidence",
+    "authorization": "ROOT confirmed owned actionable lifecycle repair; completion of full frozen review preceded repair dispatch",
+    "execution_window": "ROOT authorized manager sequential focused lifecycle/unit + TypeScript, one Vitest worker; announce start/end; no browser/native/benchmark"
+  },
+  "activation_commit_grant": {
+    "origin_commit": "adc346bcc",
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+    "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+    "scope": "ROOT exact supplied file commit-only ownership; byte equality verified; no edits authorized"
+  }
 }

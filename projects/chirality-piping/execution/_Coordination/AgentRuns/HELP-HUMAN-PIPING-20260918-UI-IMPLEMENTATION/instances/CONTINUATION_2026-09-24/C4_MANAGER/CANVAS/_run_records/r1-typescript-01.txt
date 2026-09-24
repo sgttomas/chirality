@@ -1,0 +1,4 @@
+$ ./node_modules/.bin/tsc --noEmit -p apps/desktop/tsconfig.json
+
+exit=0
+elapsed_seconds=4.968

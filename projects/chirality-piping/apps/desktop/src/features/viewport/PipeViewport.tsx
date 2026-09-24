@@ -458,6 +458,7 @@ export function PipeViewport({
   const preferredHoverRef = useRef<{ key: EntityKey; x: number; y: number; generation: string;
     cameraSequence: number; width: number; height: number; radii: ReadonlyMap<EntityKey, number> } | null>(null);
   const [labelSummary, setLabelSummary] = useState<LabelPolicyResult | null>(null);
+  const labelOmissionsRef = useRef<HTMLDetailsElement | null>(null);
   const [labelError, setLabelError] = useState<string | null>(null);
   const labelSummarySignatureRef = useRef("");
   const cycleLabelMode = () => setLabelMode((mode) => mode === "Budget" ? "All" : mode === "All" ? "Off" : "Budget");
@@ -1407,6 +1408,7 @@ export function PipeViewport({
         if (labelProjectionErrorRef.current !== message) setLabelError(message);
         labelProjectionErrorRef.current = message;
         appliedLabelsRef.current = null;
+        if (labelOmissionsRef.current) labelOmissionsRef.current.hidden = true;
         for (const button of buttons.values()) {
           if (button === document.activeElement) hostRef.current?.focus();
           button.dataset.labelPlaced = "false";
@@ -1432,6 +1434,7 @@ export function PipeViewport({
         }
       }
       appliedLabelsRef.current = resource.projectionAvailable ? result : null;
+      if (labelOmissionsRef.current) labelOmissionsRef.current.hidden = false;
       // Positions are applied imperatively; publish React only when semantic counts/identities change.
       const summary = appliedLabelsRef.current;
       const signature = JSON.stringify(summary && { mode: summary.mode, budget: summary.nominalBudget,
@@ -1459,7 +1462,7 @@ export function PipeViewport({
       appliedLabelsRef.current = null;
     };
   }, [activeModelIndex, labelKeys, renderTransform, labelMode, orderedPrimarySelectionKey,
-    hoveredEntityKey, currentRowNodeKey, orderedSelectionKeys, hiddenKeys, pickPrimitives, pickRadii, webglAvailable]);
+    hoveredEntityKey, currentRowNodeKey, orderedSelectionKeys, hiddenKeys, pickPrimitives, pickRadii, webglAvailable, viewportContextStatus]);
 
   useEffect(() => {
     const resource = viewportResourceRef.current;
@@ -2362,7 +2365,7 @@ export function PipeViewport({
           {hiddenCount > 0 ? <button type="button" className="viewport-hidden-count" data-testid="viewport-hidden-count" onClick={() => dispatchViewportViewCommand({ type: "show-all" })} title="Clear Hide and isolation">{hiddenCount} hidden · Show all</button> : null}
           {selectedHiddenCount > 0 ? <span role="status" title={`${selectedHiddenCount} selected item${selectedHiddenCount === 1 ? " is" : "s are"} hidden`}>{selectedHiddenCount} selected item{selectedHiddenCount === 1 ? " is" : "s are"} hidden</span> : null}
           {labelError ? <span role="status" data-testid="viewport-label-error" title={labelError}>Labels unavailable</span> : null}
-          {labelSummary ? <details className="viewport-label-omissions" data-testid="viewport-label-omissions">
+          {labelSummary ? <details ref={labelOmissionsRef} className="viewport-label-omissions" data-testid="viewport-label-omissions">
             <summary>{labelSummary.counts.suppressed + labelSummary.counts.unplaced} annotations omitted</summary>
             <div><p>{labelSummary.counts.context} context · {labelSummary.counts.ordinary} ordinary · budget {labelSummary.nominalBudget} · context overflow {labelSummary.counts.contextOverflow}</p>
               <ul>{[...labelSummary.suppressed.map((item) => ({ key: item.key, reason: item.reason })),
