@@ -1,0 +1,32 @@
+{
+  "candidate": "a0ac94eb0624a3635a3713cfa505d8cb880b19b3",
+  "package_inputs": [
+    {
+      "path": "package.json",
+      "sha256": "7e719791e3ffdc7b57eddb2bb32d682705bf945af5b7207ffc699a2a45648656"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732"
+    },
+    {
+      "path": "apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa"
+    }
+  ],
+  "dependency_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules",
+  "physical_node_modules_links": 150,
+  "hidden_transient_caches": "not linked; .bin retained as dependency executable wrappers",
+  "workspace_source_links": [
+    {
+      "path": "node_modules/@openpipestress/desktop",
+      "target": "/private/tmp/piping-pan-qualification-20260924/projects/chirality-piping/apps/desktop",
+      "scope": "remapped into the clean candidate, not the primary checkout"
+    }
+  ],
+  "native_input_count": 857,
+  "all_native_inputs_match_root_and_clean_candidate": true,
+  "native_input_manifest_sha256": "a085216d0835acf8d8cac13cbd95074b46c4fdb81fd846cb0abd1ff46d3d19d7",
+  "main_incoming_overlap_with_owned_pan_paths": 0,
+  "initial_preflight_correction": "Initial broad scope link exposed the workspace alias; caught before any tests or build, replaced by candidate-local alias."
+}

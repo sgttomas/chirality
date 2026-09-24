@@ -1,0 +1,52 @@
+{
+  "actor": "/root",
+  "original_collector_sha256": "6a10b34297ded857f4aaadbef4ebcaba9e6ac34950bf3e23a70327dd61c81f46",
+  "failure": "Attempted log acquisition for explicitly skipped numerical job returned HTTP404; response retained separately, no numerical execution claimed",
+  "missing_executed_logs": [
+    107802192040
+  ],
+  "recovery": "Retained successful downloads; verified and extracted six archives; no CI rerun",
+  "head": "a0ac94eb0624a3635a3713cfa505d8cb880b19b3",
+  "jobs": [
+    {
+      "id": 107794242524,
+      "name": "Select source coverage",
+      "conclusion": "success"
+    },
+    {
+      "id": 107794808279,
+      "name": "Accessibility barrier and selected coverage",
+      "conclusion": "success"
+    },
+    {
+      "id": 107794810323,
+      "name": "Numerical cargo suite",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 107796370225,
+      "name": "Source remainder (1/4)",
+      "conclusion": "success"
+    },
+    {
+      "id": 107796370335,
+      "name": "Source remainder (2/4)",
+      "conclusion": "success"
+    },
+    {
+      "id": 107796370388,
+      "name": "Source remainder (3/4)",
+      "conclusion": "success"
+    },
+    {
+      "id": 107796370544,
+      "name": "Source remainder (4/4)",
+      "conclusion": "success"
+    },
+    {
+      "id": 107802192040,
+      "name": "Desktop E2E (source mode)",
+      "conclusion": "success"
+    }
+  ]
+}

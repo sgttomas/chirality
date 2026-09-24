@@ -1,0 +1,26 @@
+[
+  {
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "started": "2026-09-24T19:42:19.787377+00:00",
+    "finished": "2026-09-24T19:42:52.028332+00:00",
+    "exit_code": 0,
+    "log": "profile-harness-0.log"
+  },
+  {
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "started": "2026-09-24T19:42:52.028729+00:00",
+    "finished": "2026-09-24T19:43:57.681229+00:00",
+    "exit_code": 0,
+    "log": "profile-harness-1.log"
+  }
+]

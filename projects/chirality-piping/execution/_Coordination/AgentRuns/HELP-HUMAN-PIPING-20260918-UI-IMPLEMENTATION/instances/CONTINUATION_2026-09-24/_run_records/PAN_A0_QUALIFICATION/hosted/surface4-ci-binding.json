@@ -1,0 +1,12 @@
+{
+  "workflow_path": ".github/workflows/piping-desktop-e2e.yml",
+  "run_id": 36047403774,
+  "run_attempt": 1,
+  "head_sha": "a0ac94eb0624a3635a3713cfa505d8cb880b19b3",
+  "conclusion": "success",
+  "registered_e2e_specs_executed": true,
+  "viewport_projects": [
+    "chromium-desktop",
+    "chromium-compact"
+  ]
+}
