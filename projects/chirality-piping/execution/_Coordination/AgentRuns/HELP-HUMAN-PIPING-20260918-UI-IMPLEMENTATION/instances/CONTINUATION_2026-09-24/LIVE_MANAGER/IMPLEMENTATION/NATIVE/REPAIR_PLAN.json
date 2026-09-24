@@ -38,7 +38,7 @@
   "historical_execution_record": {
     "path": "../../PORTABILITY_REPAIR/_run_records/record-06.json",
     "sha256": "5da1fd4502119abd16e5a4069560ed427bee956cc6c9540a58df181c706ccc7a",
-    "note": "Historical execution record; relative references inside raw bytes retain the original_reference_base, not the raw storage directory. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.",
+    "note": "Historical execution record; original_reference_base records the original document directory and applies only to otherwise document-relative links, never the raw storage directory. Explicit schema/field roots and declared repository, project, package, bundle or temporary-directory bases take precedence; repository-relative paths and absolute historical identities retain their original meaning. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.",
     "anchor": "CARGO_REGISTRY_SRC denotes the supplier registry source directory used in the original execution; its exact original identity is retained in the raw record."
   }
 }
