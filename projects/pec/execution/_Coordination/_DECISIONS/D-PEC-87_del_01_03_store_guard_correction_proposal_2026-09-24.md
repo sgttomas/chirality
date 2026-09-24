@@ -9,7 +9,7 @@ Status: **PROPOSAL / AWAITING_RULING**. Prepared by a TASK (Type 2) under HELP_H
   - `REMAINING_EVIDENCE_DEL-01-03-REM-001/REPORT.md`, SHA-256 `8fcb3ff3c317a2819f0043fdd548f34b5558cb89136fdeaaa33544a19de3c312`
   - `REMAINING_EVIDENCE_DEL-01-03-REM-002/REPORT.md`, SHA-256 `b5d6632df94cd3cb7d3ba57b5ff8b0331e732cf9a0182040c8eefa6850364c60`
   - `REMAINING_EVIDENCE_DEL-01-03-REM-003/REPORT.md`, SHA-256 `ca1b7b3e03ad96e3eaa8aef32751be0945331bfe34f10c32ae54d0bdc69ca930`
-- **Triage.** `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/OBLIGATION_TRIAGE_DEL-01-03.md`, SHA-256 `cc30ec4d954a7703a3b8e4f318f57331a1be6031488f55e67a1fa7bce6f19960`. It classifies the 32 returned obligations as follows:
+- **Triage.** `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/OBLIGATION_TRIAGE_DEL-01-03.md`, SHA-256 `db335614da29883212ce653cc12b672c68c5d6639200c33280c78c7b466ae6ea`. It classifies the 32 returned obligations as follows:
   - 6 resolved by evidence;
   - 9 resolved by an existing ruling;
   - 13 needing repair, reduced to 8 distinct repairs (R1–R8), plus one registration finding, X-1;

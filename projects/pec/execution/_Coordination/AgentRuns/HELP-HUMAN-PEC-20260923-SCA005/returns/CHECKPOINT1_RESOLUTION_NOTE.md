@@ -45,7 +45,7 @@ tables already carry the alternative action sets.
 
 Not part of SCA-005, but returned to the owner in the same slate. Triage record:
 `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/OBLIGATION_TRIAGE_DEL-01-03.md`
-(SHA-256 `cc30ec4d954a7703a3b8e4f318f57331a1be6031488f55e67a1fa7bce6f19960`). Of 32 obligations: 6 are answered by the repository as it
+(SHA-256 `db335614da29883212ce653cc12b672c68c5d6639200c33280c78c7b466ae6ea`). Of 32 obligations: 6 are answered by the repository as it
 stands, 9 are settled by an existing ruling or contract, 13 collapse into eight
 bounded repairs of the merged D-PEC-85 slice (one live defect, O-2-2, plus
 accounting, test-identity and evidence gaps), and 4 reduce to two owner
