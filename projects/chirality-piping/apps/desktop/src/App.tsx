@@ -1,3 +1,4 @@
+import { useCurrentRowPresentation } from "./features/workspace/currentRowPresentation";
 import { CompactSelectScope } from "./features/workspace/CompactSelect";
 import { HangerSelectionPanel } from "./features/hanger-selection";
 import { SelfWeightPlanPanel } from "./features/self-weight-authoring";
@@ -284,6 +285,8 @@ function AppSession() {
     toggleWorkspaceRail
   } = session.chrome;
 
+  const { currentRowNodeKey, publishCurrentRow } = useCurrentRowPresentation(JSON.stringify([model?.project.id, projectSessionGeneration]), activeModelIndex);
+
   // In the packaged Tauri shell the OS-level menu bar is the single menu, so the
   // in-DOM menu bar is suppressed to avoid a redundant second row. In the
   // browser/Playwright preview there is no native menu, so the in-DOM bar
@@ -391,6 +394,8 @@ function AppSession() {
             <div className="shell-table-body" id="shell-table-body">
             <div className={shell.tab === "model-tree" ? "shell-tree-host" : "shell-tree-host inactive"} data-testid="shell-tree-host">
             <ModelTree
+              active={!shell.page && shell.tab === "model-tree" && tableDrawer.expanded}
+              onCurrentRowChange={publishCurrentRow}
               boundedGrid
               compactGrid={tableDrawer.collapsible}
               density={uiPreferences.density}
@@ -711,6 +716,7 @@ function AppSession() {
           />
           <div className="workspace-pane workspace-pane-viewport">
             <PipeViewport
+              currentRowNodeKey={currentRowNodeKey}
               authoringPanelContainer={routingPanelContainer}
               presentationBottomInsetPx={treeCollapsed && (stageView === "model" || (stageView === "both" && narrowWindow)) ? 28 : 0}
               viewCommandRef={viewportViewCommandRef}

@@ -469,3 +469,39 @@ it("does not swallow a genuine supported-popover state-query failure", () => {
     expect(observed).toBe(failure); expect(hide).not.toHaveBeenCalled();
   } finally { window.removeEventListener("error", captureExpected, true); stateQuery.mockRestore(); Reflect.deleteProperty(info, "hidePopover"); }
 });
+
+
+describe("current row presentation publications", () => {
+  it("does not publish roving fallback; review pointer and keyboard activation leave primary A alone", () => {
+    const publish = vi.fn(), select = vi.fn(); const data = rows();
+    render(<EngineeringTable label="Review" policy="review" resetEditsKey={0} rows={data} columns={columns} generation="g1" filter="" density="comfortable" selectedKey={data[0].key} onSelect={select} onCurrentRowChange={publish} onDraftChange={() => {}} onKeepDraft={() => ({ retained: true, messages: [] })} />);
+    expect(publish).not.toHaveBeenCalled();
+    fireEvent.pointerDown(screen.getByTestId("review-cell-n:1-x")); fireEvent.click(screen.getByTestId("review-cell-n:1-x"));
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[1].key });
+    fireEvent.keyDown(screen.getByTestId("review-cell-n:1-x"), { key: "ArrowDown" });
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[2].key });
+    expect(select).not.toHaveBeenCalled();
+  });
+  it("retains a valid filtered edit but clears deletion, hidden eligibility and generation replacement", () => {
+    const publish = vi.fn(); const data = rows();
+    const common = { label: "Fields", columns, density: "comfortable" as const, selectedKey: data[0].key, onSelect: vi.fn(), onCurrentRowChange: publish, onApply: async () => ({ applied: true, messages: [] }) };
+    const { rerender } = render(<EngineeringTable {...common} rows={data} generation="g1" filter="" />);
+    fireEvent.doubleClick(cell(1));
+    rerender(<EngineeringTable {...common} rows={data} generation="g1" filter="n:0" />);
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: data[1].key });
+    rerender(<EngineeringTable {...common} rows={[data[0]]} generation="g1" filter="n:0" />);
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g1", rowKey: null });
+    rerender(<EngineeringTable {...common} rows={data} generation="g2" filter="" />);
+    fireEvent.click(cell(0));
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g2", rowKey: data[0].key });
+    rerender(<EngineeringTable {...common} rows={data} generation="g2" filter="" currentRowActive={false} />);
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g2", rowKey: null });
+    rerender(<EngineeringTable {...common} rows={data} generation="g2" filter="" currentRowActive />);
+    fireEvent.focus(cell(0));
+    expect(publish).toHaveBeenLastCalledWith({ generation: "g2", rowKey: data[0].key });
+    rerender(<EngineeringTable {...common} rows={data} generation="g2" filter="" currentRowActive={false} />);
+    publish.mockClear();
+    rerender(<EngineeringTable {...common} rows={data} generation="g3" filter="" currentRowActive={false} />);
+    expect(publish).not.toHaveBeenCalled();
+  });
+});

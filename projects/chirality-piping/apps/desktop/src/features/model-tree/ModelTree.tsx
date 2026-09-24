@@ -1,3 +1,4 @@
+import type { CurrentRowPublication } from "../workspace/currentRowPresentation";
 import { QuantityReadout } from "../display-units";
 import { Anchor, Box, CircleDot, GitBranch, ListTree, Search, SquareStack, Table2, Waypoints, X, Zap } from "lucide-react";
 import type React from "react";
@@ -14,6 +15,8 @@ import { quantityCellKey, useQuantitySortProjection } from "../workspace/table/q
 import { capturedCellIsCurrent, type CapturedCell, type TableRow } from "../workspace/table/tableState";
 
 type Props = {
+  active?: boolean;
+  onCurrentRowChange?: (publication: CurrentRowPublication) => void;
   model: PreviewModel;
   boundedGrid?: boolean;
   compactGrid?: boolean;
@@ -57,7 +60,7 @@ const GRID_ENTITY_TYPES: ReadonlyArray<{ id: GridEntityType; label: string }> = 
   { id: "combinations", label: "Combinations" }
 ];
 
-export function ModelTree({ boundedGrid = false, compactGrid = false, model, modelIndex, selection, selectionState, density = "comfortable", hiddenKeys = new Set(), projectSessionGeneration = 0, onSelect, onFocusChange = () => {}, onFilterPublication = () => {}, onQueueIntent, onApplyCellIntent, operationBusy }: Props) {
+export function ModelTree({ active = true, onCurrentRowChange, boundedGrid = false, compactGrid = false, model, modelIndex, selection, selectionState, density = "comfortable", hiddenKeys = new Set(), projectSessionGeneration = 0, onSelect, onFocusChange = () => {}, onFilterPublication = () => {}, onQueueIntent, onApplyCellIntent, operationBusy }: Props) {
   const [columnTarget, setColumnTarget] = useState<HTMLDivElement | null>(null);
   const [chromeOwner, setChromeOwner] = useState<string | null>(null);
   const [toolbarTarget, setToolbarTarget] = useState<HTMLDivElement | null>(null);
@@ -188,6 +191,8 @@ export function ModelTree({ boundedGrid = false, compactGrid = false, model, mod
       </div>
       {gridOpened ? <div className="model-grid-frame" hidden={layoutMode !== "grid"} inert={layoutMode !== "grid"}>
         <EntityGrid
+          currentRowActive={active && layoutMode === "grid"}
+          onCurrentRowChange={onCurrentRowChange}
           bounded={boundedGrid}
           compact={compactGrid && layoutMode === "grid"}
           toolbarTarget={toolbarTarget}
@@ -702,6 +707,7 @@ function treeRowDomId(row: FlatTreeRow): string {
 }
 
 function EntityGrid({
+  currentRowActive, onCurrentRowChange,
   compact, toolbarTarget,
   bounded,
   density,
@@ -720,6 +726,8 @@ function EntityGrid({
   setFocusedGridKey,
   projectSessionGeneration
 }: {
+  currentRowActive: boolean;
+  onCurrentRowChange?: (publication: CurrentRowPublication) => void;
   bounded: boolean;
   compact: boolean;
   toolbarTarget: HTMLDivElement | null;
@@ -917,7 +925,7 @@ function EntityGrid({
       </div>
       {!directVisible && directDraftRetained ? <p className="retained-direct-draft" role="status" data-testid="retained-direct-draft">Direct node edit retained. Return to node fields to correct or cancel it.</p> : null}
       <div className="direct-coordinate-workarea" hidden={!directVisible} inert={!directVisible}>
-        <EngineeringTable label="Node fields" bounded={bounded} compact={compact} active={directVisible} onDraftStateChange={setDirectDraftRetained} rows={tableRows} columns={coordinateColumns} generation={tableGeneration}
+        <EngineeringTable label="Node fields" bounded={bounded} compact={compact} active={directVisible} currentRowActive={currentRowActive} onCurrentRowChange={(publication) => onCurrentRowChange?.({ ...publication, source: "node-fields" })} onDraftStateChange={setDirectDraftRetained} rows={tableRows} columns={coordinateColumns} generation={tableGeneration}
           filter={filterText} density={density} selectedKey={entityKey(selection)} busy={operationBusy}
           onSelect={(key) => { const row = nodeRows.find((candidate) => entityKey(candidate) === key); if (row) onSelect({ type: row.type, id: row.id }); }}
           onApply={applyCoordinate} />
@@ -946,7 +954,7 @@ function EntityGrid({
         <span data-testid="entity-grid-change-count">{changedCells.length} changed cells</span>
       </div>
       <div className="node-review-workarea" hidden={entityType !== "nodes"} inert={entityType !== "nodes"}>
-        <EngineeringTable label="Node review drafts" persistentEditor policy="review" resetEditsKey={reviewReset} bounded={bounded} compact={compact} active={reviewVisible && entityType === "nodes"}
+        <EngineeringTable label="Node review drafts" persistentEditor policy="review" resetEditsKey={reviewReset} bounded={bounded} compact={compact} active={reviewVisible && entityType === "nodes"} currentRowActive={currentRowActive} onCurrentRowChange={(publication) => onCurrentRowChange?.({ ...publication, source: "node-review" })}
           rows={reviewRows} columns={reviewColumns} generation={tableGeneration} filter={filterText} density={density} selectedKey={entityKey(selection)}
           onSelect={(key) => { const row = nodeRows.find((candidate) => entityKey(candidate) === key); if (row) onSelect({ type: row.type, id: row.id }); }}
           onDraftChange={(captured, text) => {

@@ -1,0 +1,13 @@
+{
+  "base": "fb29a8420f1692c779c87993c95ab5925a68da9f",
+  "sources": {
+    "projects/chirality-piping/apps/desktop/src/App.currentRow.test.tsx": "c93033345c36b4e02cfa96e3f28a34a8b7257b98bf1a8f44d7e7ca190d7a9f14",
+    "projects/chirality-piping/apps/desktop/src/App.tsx": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+    "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx": "28683c1348c65418a46ec83e4f847a11f64f4410277ed1086994ae2f7fb9cfa5",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.test.tsx": "b99bbf79c0e25fcdac046a5a46a15558dbf8e191d497fc141650e4a1f376fd06",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/currentRowPresentation.ts": "d68ec597a749d50b4b5687016e0fafdef8232b4d8749f10316fa2d7f19cb6733",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx": "f8e936cd37fc3fbabe6914f8d8c26876affee661365d1a6a5df4e2bb100bb5d2",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx": "3cabf283591cd8a56cc9f7ba63281afa0c0262747e76c3c1ecbb09bef67e870c"
+  },
+  "execution": "source/test authoring only; no tests/compiler/build/browser/native executed"
+}

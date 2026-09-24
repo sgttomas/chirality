@@ -10,6 +10,8 @@ import {
   type CapturedCell, type CellAddress, type TableColumn, type TableEdit, type TableRow, type TableSort
 } from "./tableState";
 
+import type { TableCurrentRow } from "../currentRowPresentation";
+
 export type TableApplyResult = Readonly<{ applied: boolean; rejected?: boolean; messages: readonly string[] }>;
 export type TableDraftResult = Readonly<{ retained: boolean; messages: readonly string[] }>;
 type Props = Readonly<{
@@ -20,6 +22,8 @@ type Props = Readonly<{
   bounded?: boolean;
   compact?: boolean;
   active?: boolean;
+  currentRowActive?: boolean;
+  onCurrentRowChange?: (publication: TableCurrentRow) => void;
   onDraftStateChange?: (retained: boolean) => void;
   rows: readonly TableRow[];
   columns: readonly TableColumn[];
@@ -88,6 +92,29 @@ export function EngineeringTable(props: Props) {
     document.addEventListener("focusin", track);
     return () => document.removeEventListener("focusin", track);
   }, []);
+  const currentRow = useRef<TableCurrentRow | null>(null);
+  function publishCurrentRow(rowKey: EntityKey) {
+    const live = latest.current;
+    if (live.generation !== generation || live.active === false || live.currentRowActive === false || !live.rows.some((row) => row.key === rowKey)) return;
+    currentRow.current = { generation, rowKey };
+    live.onCurrentRowChange?.(currentRow.current);
+  }
+  function clearCurrentRow() {
+    const previous = currentRow.current;
+    if (!previous) return;
+    currentRow.current = null;
+    latest.current.onCurrentRowChange?.({ generation: previous.generation, rowKey: null });
+  }
+  useLayoutEffect(() => () => clearCurrentRow(), []);
+  useLayoutEffect(() => {
+    const current = currentRow.current;
+    if (!current) return;
+    const live = rows.find((row) => row.key === current.rowKey);
+    const captured = edit?.captured;
+    const validEdit = captured?.rowKey === current.rowKey && captured.generation === generation && live?.cells[captured.columnKey] && !live.cells[captured.columnKey].readonly && live.cells[captured.columnKey].unit === captured.unit;
+    const matches = live && (!filter.trim() || (live.searchText ?? `${live.label} ${live.key}`).toLowerCase().includes(filter.trim().toLowerCase()));
+    if (!surfaceActive || props.currentRowActive === false || current.generation !== generation || !live || (captured?.rowKey === current.rowKey ? !validEdit : !matches)) clearCurrentRow();
+  }, [generation, rows, filter, surfaceActive, props.currentRowActive, edit]);
   function setEdit(value: TableEdit | null) { editRef.current = value; setEditState(value); }
 
   const matchingRows = useMemo(() => rows.filter((row) => !filter.trim() || (row.searchText ?? `${row.label} ${row.key}`).toLowerCase().includes(filter.trim().toLowerCase())), [rows, filter]);
@@ -173,6 +200,7 @@ export function EngineeringTable(props: Props) {
   }, [focused, viewRows, reveal]);
 
   function focusCell(address: CellAddress, moveDomFocus = true) {
+    publishCurrentRow(address.rowKey);
     setFocused(address);
     // Review editing preserves the existing ordered selection; its rowheader
     // remains the explicit model-selection control.
@@ -305,6 +333,8 @@ export function EngineeringTable(props: Props) {
     active: surfaceActive, initialTyped: edit?.initialSelection === "end", text: edit?.text ?? "", pending: Boolean(edit?.pending), onChange: changeText });
   const editor = edit && column ? <input {...enumeration.attributes} ref={input} id={editorId} data-kind={column.kind} autoFocus aria-label={`${edit.captured.row.label} ${column.label}${column.kind === "text" ? "" : ` [${edit.captured.unit}]`}`} aria-invalid={Boolean(edit.error)} aria-describedby={edit.error ? errorId : undefined} value={edit.text} readOnly={edit.pending} onClick={() => enumeration.show()} onFocus={(event) => {
               enumeration.show();
+              const live = latest.current.rows.find((row) => row.key === edit.captured.rowKey)?.cells[edit.captured.columnKey];
+              if (edit.captured.generation === latest.current.generation && live && !live.readonly && live.unit === edit.captured.unit) publishCurrentRow(edit.captured.rowKey);
               if (initializedInputToken.current === edit.captured.token) return;
               initializedInputToken.current = edit.captured.token;
               if (edit.initialSelection === "all") event.currentTarget.select();
@@ -364,12 +394,15 @@ export function EngineeringTable(props: Props) {
       </div>
       <div className="engineering-table-body-slot" ref={body.ref}>
       <VirtualList items={viewRows} itemKey={(row) => row.key} activeIndex={activeIndex} pinIndex={activeIndex} revealActiveRequest={reveal} height={bounded ? Math.min(body.height, viewRows.length * (density === "compact" ? 30 : 36)) : 360} rowHeight={density === "compact" ? 30 : 36} role="rowgroup" testId={`${props.testIdPrefix ?? ""}${review ? "engineering-table-review-rows" : "engineering-table-rows"}`} renderItem={(row, index) => <div role="row" aria-rowindex={index + 2} aria-selected={selectedKey === row.key} className={`engineering-table-row${index % 2 ? " stripe" : ""}${selectedKey === row.key ? " selected" : ""}`} style={rowStyle}>
-        <div role="rowheader" data-column-index={0}><button type="button" disabled={!rows.some((canonical) => canonical.key === row.key)} onClick={() => onSelect(row.key)} title={row.label}>{row.label}{!rows.some((canonical) => canonical.key === row.key) ? " (removed edit)" : ""}</button></div>
+        <div role="rowheader" data-column-index={0}><button type="button" disabled={!rows.some((canonical) => canonical.key === row.key)} onClick={() => { publishCurrentRow(row.key); onSelect(row.key); }} title={row.label}>{row.label}{!rows.some((canonical) => canonical.key === row.key) ? " (removed edit)" : ""}</button></div>
         {columns.map((column, index) => {
           const address = { rowKey: row.key, columnKey: column.key }; const editing = sameCell(edit?.captured ?? null, address);
           return <div key={column.key} role="gridcell" data-column-index={index + 1} aria-owns={editing && props.persistentEditor ? editorId : undefined} aria-selected={sameCell(focused, address)} title={row.cells[column.key].unavailable} aria-readonly={Boolean(row.cells[column.key].readonly)} data-kind={column.kind} className={`engineering-table-cell${row.cells[column.key].readout ? " has-readout" : ""}${editing ? " editing" : ""}${editing && edit?.error ? " invalid" : ""}`}>
             {editing && edit ? props.persistentEditor ? <span className="engineering-table-editor-anchor" data-editor-anchor={edit.captured.token} /> : editor : <button type="button" disabled={!rows.some((canonical) => canonical.key === row.key)} data-table-cell="true" data-row-key={row.key} data-column-key={column.key} data-testid={`${review ? "review" : "table"}-cell-${row.label}-${column.key}`} aria-label={`${row.label} ${column.label}: ${row.cells[column.key].value}${column.kind === "text" ? "" : ` ${row.cells[column.key].unit}`}`} tabIndex={sameCell(rovingFocus, address) ? 0 : -1} onPointerDown={() => { pointerFocus.current = address; }} onFocus={() => {
-              if (!sameCell(pointerFocus.current, address) && !editRef.current && !sameCell(focused, address)) focusCell(address, false);
+              if (!sameCell(pointerFocus.current, address) && !editRef.current) {
+                if (!sameCell(focused, address)) focusCell(address, false);
+                else publishCurrentRow(address.rowKey);
+              }
             }} onBlur={() => { if (sameCell(pointerFocus.current, address)) pointerFocus.current = null; }} onClick={() => {
               pointerFocus.current = null;
               if (editRef.current) { void apply(address, true); return; }

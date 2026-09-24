@@ -1,0 +1,6 @@
+Base=fb29a8420f1692c779c87993c95ab5925a68da9f
+Initial post-dispatch live-hash assertion stopped at App.tsx because authorized child edits were already underway; no file reset/repair was made.
+Fixed-base Git blob validation: all five shared-source hashes match activation.
+Root/project/loop instruction hashes match retained full-read basis.
+Manager read full WORKING_ITEMS and TASK roles before actual fresh bounded child dispatch.
+No test/build/resource execution.

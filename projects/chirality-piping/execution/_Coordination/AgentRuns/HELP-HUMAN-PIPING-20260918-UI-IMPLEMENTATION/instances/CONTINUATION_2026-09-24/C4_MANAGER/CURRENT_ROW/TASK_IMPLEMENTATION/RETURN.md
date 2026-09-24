@@ -1,0 +1,11 @@
+# Current-row TASK return
+
+Implemented typed node-fields/node-review publication through EngineeringTable, EntityGrid, ModelTree, App and the existing PipeViewport prop. App-local hook validates current session generation and current index on every publication and render. Different-source late clears and old-generation callbacks cannot replace the current owner. Invalid geometry, deleted and non-node keys derive null. Table publications originate in user cell/row activation or valid editor focus; automatic roving fallback emits nothing. Canonical valid edits remain current outside filters. Source eligibility clears ownership across table mode, grid/tree, stage/page/drawer switches without changing the existing geometry active flags.
+
+Authored focused table and helper tests plus App.currentRow.test.tsx using the actual table/ModelTree/App path and a mocked viewport prop witness. These tests explicitly do not establish visible renderer plate behavior. Existing selection controls and controller data flow are preserved; no controller/model/history/results/persistence writes were introduced.
+
+Actual checks: source inspection; git diff --check passed. No test/build/typecheck/install execution: manager retains the execution lane. No Git mutations, browser/native/CUA calls, ports or delegated children. Instruction supply and authored source hashes are in SOURCE_MANIFEST.json. All commands used the assigned isolated checkout explicitly. Root AGENTS, TASK, Piping AGENTS, LOOP_INIT, activation and canvas handoff were read; Piping AGENTS was reread independently after combined output truncation.
+
+Manager pending commands (desktop app cwd): npm exec vitest run src/features/workspace/currentRowPresentation.test.tsx src/features/workspace/table/EngineeringTable.test.tsx src/App.currentRow.test.tsx; project typecheck and relevant existing ModelTree/App suites. Follow the actual package scripts for broader verification.
+
+Remaining gates: fresh independent complete frozen-diff review/backcheck, connected browser current-row/context/Hide/edit/source/generation scenarios, native witness, full-candidate registered sweep/CI and applicable historical receipt/self-check/practitioner obligations. Second-profile owner freeze remains separate. Source integration, acceptance and release are not claimed.

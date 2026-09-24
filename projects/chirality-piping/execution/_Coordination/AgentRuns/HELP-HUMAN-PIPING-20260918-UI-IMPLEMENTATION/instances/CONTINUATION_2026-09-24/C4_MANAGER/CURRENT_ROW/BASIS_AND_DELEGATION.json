@@ -1,0 +1,38 @@
+{
+  "manager": "/root/c4_manager",
+  "role": "WORKING_ITEMS Type1",
+  "parent": "/root",
+  "base": "fb29a8420f1692c779c87993c95ab5925a68da9f",
+  "sources": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/chirality-change/SKILL.md": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    ".agents/skills/software-code-review/SKILL.md": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+    ".agents/skills/software-defect-diagnosis/SKILL.md": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CURRENT_ROW_ACTIVATION.md": "f7ad051e1790cd89c2e93880d645febe82c7fb431e720740b5329b95003abe62",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/CURRENT_ROW_HANDOFF.md": "2c50b69ac7357b2aca094d51799ecf1357f12a8306dba221a9f5a2b47e351a53",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a"
+  },
+  "read_history": "Full WORKING_ITEMS/TASK/current activation/handoff read this activation; Root/project/loop previously read full and exact hashes revalidated; selected skills retained from prior full reads.",
+  "shared_source_hashes_at_base": {
+    "apps/desktop/src/App.tsx": "5f900ec96cc7e1d58f13f53a653bf845b448594c0a3d9bcb7b20e10df387e86e",
+    "apps/desktop/src/features/model-tree/ModelTree.tsx": "e3c0e0363dfe81892de475e3b056c02018f1b7d20bbc4e3c203f68d50633b522",
+    "apps/desktop/src/features/workspace/table/EngineeringTable.tsx": "aadd9d2e086c09e1d38a0f7192b5d69ee044e2f0b78bde6f2399f7e4622c41f7",
+    "apps/desktop/src/features/workspace/workspaceSession.ts": "fe0f9eea5a991d965dc097553e73e8c4c23c7968ed1743a8709af94f02dab20d",
+    "apps/desktop/src/features/workspace/operationsSessionState.ts": "8a27435e58fb5a5c24e3c78a2ec846fa000745a70ae36babdab9082c24e4a292"
+  },
+  "child": {
+    "name": "/root/c4_manager/current_row_task",
+    "mechanism": "actual collaboration.spawn_agent fresh fork_turns none",
+    "role": "TASK Type2",
+    "requested_model": "gpt-6-astra",
+    "requested_effort": "low"
+  },
+  "write_scope": "App,ModelTree,EngineeringTable,narrow new presentation helper/hook,focused tests and CURRENT_ROW evidence; exact activation commit-only",
+  "excluded": "session/controller/native/style/VirtualList/model/history/results/persistence/protected instruments/primary checkout",
+  "resource_boundary": "source/test authoring only until explicit ROOT release; no test/build/browser/native/install execution"
+}
