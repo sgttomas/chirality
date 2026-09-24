@@ -1,0 +1,17 @@
+{
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "all_named_product_sources_match_HEAD": true,
+  "git_input_objects": {
+    "projects/chirality-piping/apps/desktop": "9225911c550ca3f4dd3174d2af18246b7bf6ec84",
+    "projects/chirality-piping/core": "2ab2ed323ff47ae779473abb54da5951b2d75fd3",
+    "projects/chirality-piping/fixtures": "142b2acbdeeb4afbb09df5e5951370c8c00a85c0",
+    "projects/chirality-piping/package.json": "d24b2f7784cb822c8ae4a6756e405bbe167a5887",
+    "projects/chirality-piping/package-lock.json": "490bae945bd016ee6c43b879b36b71c184b8cb67"
+  },
+  "source_or_config_changes": false,
+  "dependency_package_hashes": {
+    "projects/chirality-piping/node_modules/@tauri-apps/cli/package.json": "0e2b570d3f07cb905ab582ef9998815d7bf682900398aa7af5d79a502f5da7a7",
+    "projects/chirality-piping/node_modules/@tauri-apps/cli-darwin-arm64/package.json": "5c2ea5432f47a5903baef736709a8d54bee314cee638ed5c34674453d5a590fd"
+  },
+  "native_supplemental_tests_retained_by_exact_git_equality": true
+}

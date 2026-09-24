@@ -1,0 +1,14 @@
+{
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "manager_read_only_check": "PASS",
+  "desktop_sha256": "b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef",
+  "retained_cli_sha256": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "desktop_only_bundle": true,
+  "self_test_pid": 87681,
+  "self_test_exit": 0,
+  "raw_output_hashes_match": true,
+  "observed_wrapper_subtree_now_absent": true,
+  "only_unchanged_sentinel_remains": true,
+  "product_source_unchanged": true,
+  "no_broader_claim": "No ordinary GUI/controller/I1/I2/H1/H2 verification; no repeat invocation by manager."
+}

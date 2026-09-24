@@ -1,0 +1,22 @@
+{
+  "pid": 87681,
+  "argv": [
+    "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop",
+    "--self-test-saved-edited-load"
+  ],
+  "cwd": "/private/tmp/piping-live-control-20260924",
+  "start_utc": "2026-09-24T07:15:05.400239+00:00",
+  "binary_sha256": "b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef",
+  "TMPDIR": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3",
+  "SWBPIPE_LIVE_CONTROL_present": false,
+  "HOME_overridden": false,
+  "parent_mode": "0o700",
+  "before": [
+    {
+      "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+      "relative": "sibling-sentinel.txt",
+      "kind": "file",
+      "size": 70
+    }
+  ]
+}
