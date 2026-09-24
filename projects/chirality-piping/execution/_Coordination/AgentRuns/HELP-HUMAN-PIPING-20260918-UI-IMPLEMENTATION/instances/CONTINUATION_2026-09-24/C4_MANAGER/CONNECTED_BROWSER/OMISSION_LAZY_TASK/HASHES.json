@@ -1,0 +1,13 @@
+{
+  "inputs": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md": "00a3de9154db3079e8e15b1e7e0bce42627f9be0d9aa96d40415ac3520aa1bf5",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.json": "9794c44d76b2448c9014cd0207f0b3962af8c4418cd1a8259dc93074c4b9eb5d"
+  },
+  "outputs": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.contextLabels.test.tsx": "1891213f884f15c6072569e15ee116281ec931c4ad4591f34591b6ac3a5c750c"
+  }
+}

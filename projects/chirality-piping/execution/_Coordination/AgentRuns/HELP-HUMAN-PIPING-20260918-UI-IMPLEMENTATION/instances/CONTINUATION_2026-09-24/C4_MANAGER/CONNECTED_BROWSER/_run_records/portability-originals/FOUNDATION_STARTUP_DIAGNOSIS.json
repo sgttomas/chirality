@@ -1,0 +1,131 @@
+{
+  "reviewer": "/root/c4_manager/basis_integration_review",
+  "parent": "/root/c4_manager",
+  "role": "TASK Type 2; resumed delegated-harness-native child, no descendants",
+  "cwd": "/private/tmp/piping-c4-policy-20260924",
+  "initial_candidate": "781dbe76b9253fdbcde19545f99ca525c43c2237",
+  "rerun_candidate": "4942ca78629302355a5dff7c50cf2a0abc5ed614",
+  "binding": "all 12 consulted source/config/fixture files byte-equal to initial candidate at diagnosis; no reviewer runtime execution",
+  "instruction_basis": "TASK and diagnosis skill fully read this assignment; Root/project/loop full earlier reads retained with unchanged SHA-256",
+  "inputs_sha256": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/software-defect-diagnosis/SKILL.md": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+    "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts": "e796dc5c58fcb54e2ed02f9203363690719034d9b8509444b075ddeea09458b0",
+    "projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts": "a2b6fd7415e2f5de95927f8084c320dc1ea05c12549edd2e2b5d64e0da20ade2",
+    "projects/chirality-piping/apps/desktop/e2e/ui-foundation/benchmark-harness.ts": "fd4e463b2b2c9b644f415824106b5da501d6d027b95b314a09431f788228946a",
+    "projects/chirality-piping/apps/desktop/e2e/ui-foundation/fixtures/ui-foundation-10000.model.json": "dcdcac0ff2031050c3de2c4cdef23a052ec68f2f663acc2ab53e7dab648f8b85",
+    "projects/chirality-piping/apps/desktop/playwright.config.ts": "d861a8567ce54c803e2bef914a5b9965906f90e0eda58ab4d907160d10eed31a",
+    "projects/chirality-piping/apps/desktop/src/main.tsx": "525f0802ef08be2869cec123731c5f88eb83b8819863f27010edf0824ce7e5c5",
+    "projects/chirality-piping/apps/desktop/src/App.tsx": "7db92e3725a61d911d2412231fbb89611bc6e9ff52d393acfd6a0665305bfc67",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts": "fe0f9eea5a991d965dc097553e73e8c4c23c7968ed1743a8709af94f02dab20d",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "e8f6993eec7776c9081a009efd70a3b0be09ed1153d5d8c2fb47b57b98033cb3",
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts": "9047e26a578d92f5dc986e1018b7945649b1d9cda662b131e53c4ca633ae10d7",
+    "projects/chirality-piping/apps/desktop/src/services/projectService.ts": "da38305ab02c69be95cdae4e79c9546568038716d597cc72385883938cc1363d",
+    "projects/chirality-piping/apps/desktop/src/services/hashService.ts": "0f1d342d60501b212c3a307b96ba1dfa625fcc1845cc33b47e54dd58341cf7e1",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-01-command.json": "a0e1a1bcb6d23a23129e583b511fb14d029cf6b3a39af58d2819717d2366663a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-01.json": "e9ea215359e652efe23f7f8bffe60e13d1eeb0376750f7d5fc1e315048e950e3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-01.log": "2e0a0e2bb41aa3fcacae6b62e450e62cd4370762ab983ee92000996a1b5e02fa",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-repro-02-command.json": "5b43d1ad8811e018ab2764fc42f695b9e695f9318e5224536cb1b74a87f3603a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-repro-02.json": "eb1f84dec09b31f45054d051df04590867c8e5ab6c1346250b8059784ef4b596",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-repro-02.log": "192c4d3caae11f61ea8067c4e48da3981fc4164b285201f7d40e479b5ba22e75",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-01/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/trace.zip": "bbee82ae2dbc16e03efd421583a655f4014855ddad7f2ff53802ec335598989c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-01/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/error-context.md": "51827df0375e36ea47549c6d2987e052d7b4aaa452b7241991569fd5dd9ac4f3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03-command.json": "044ad21ea536a6445ae75533365f6e49707f69af4f61ce4cce51e07f0ad143a3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03.json": "58a5541b6e1fdc6770d7702dc2f122b53efad3a8dbbd71a51e93a16340b3cd3f",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03.log": "860c77b52d4ffd5dcaa4f5c123a9cdaa1c0d5215def0717f6be24073549a0637",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/trace.zip": "0e7d203baad86cdbc6d5212a324f837b0492a68b898c46281282909b29858558",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/error-context.md": "51827df0375e36ea47549c6d2987e052d7b4aaa452b7241991569fd5dd9ac4f3"
+  },
+  "trace_entries_sha256": {
+    "test.trace": "a4ee3ef0f1b23f2576444f5aa0176247d1ed34a3599aef975c4cbc6140d72a2e",
+    "0-trace.trace": "16a41771ef9fad05c943321e792e07ca6dc60a9eee546d89af4a26dcd549fdb6",
+    "0-trace.network": "7225a5a5afb7a44c90c0d2cded62374e8792806594dbe63548bc6d9ea6b7d17e"
+  },
+  "initial_result": {
+    "passed": 53,
+    "failed": 1,
+    "not_run": 32,
+    "desktop_passed": 49,
+    "compact_passed": 4,
+    "failing_test": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture",
+    "failure": "desktop-preview-shell absent under 10000 ms expect; pointer steps never reached"
+  },
+  "timing_trace_ms": {
+    "navigation_start": 399842.083,
+    "navigation_end": 400159.953,
+    "expect_start": 400177.801,
+    "fixture_request_start": 400178.25,
+    "fixture_request_duration": 109.01,
+    "last_recorded_network_end": 400317.178,
+    "expect_error": 410209.864,
+    "after_snapshot": 417687.014,
+    "after_snapshot_collection_ms": 668.7000002861023,
+    "test_layer_expect_end": 417881.755
+  },
+  "network_console": {
+    "recorded_responses": 192,
+    "http_200": 192,
+    "console": [
+      "vite connecting",
+      "vite connected",
+      "React DevTools info"
+    ],
+    "recorded_page_errors": 0,
+    "fixture_module_matches_maintained_10k": true,
+    "fixture_module_characters": 6454981,
+    "captureGlobalRaf": false,
+    "causalFeedbackMarkers": false,
+    "syntheticObserverSetupFault": false
+  },
+  "late_snapshot": {
+    "shell": true,
+    "canvas": 1,
+    "tree_rows": 29,
+    "viewport_labels": 20601,
+    "placed_labels": 48,
+    "unplaced_hidden_untabbable_labels": 20553,
+    "omission_list_entries": 20553,
+    "snapshot_resolved_element_nodes_count": 145917,
+    "limit": "structural snapshot count; not CPU attribution, exact startup finish time, layout or native timing qualification"
+  },
+  "unchanged_reproduction": {
+    "passed": 2,
+    "failed": 0,
+    "one_k_duration_ms": 5319,
+    "ten_k_duration_ms": 33383,
+    "exit": 0,
+    "meaning": "nonreproduction; not repair or root-cause proof"
+  },
+  "conclusion": "Repeated sequence-dependent startup deadline failure, followed by shell appearance. Full compact prefix reproduced twice; narrow unchanged pair passed. Full label DOM/measurement and eager closed omission list are concrete C4 growth surfaces. Earliest expensive phase and contribution of each surface are not timed/isolated.",
+  "writes": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.json"
+  ],
+  "repeated_sequence": {
+    "run": "source-foundation-compact-03",
+    "passed_before_failure": 4,
+    "failed": 1,
+    "not_run": 32,
+    "same_failure": "10000 ms shell expect returned Loading; after-snapshot contains shell",
+    "expect_start": 13574.123,
+    "expect_error": 23599.123,
+    "after_snapshot": 28638.72,
+    "after_snapshot_collection_ms": 557,
+    "network_responses": 192,
+    "http_200": 192,
+    "fixture_duration_ms": 85.141,
+    "latest_network_end": 13683.927,
+    "closed_omission_rows": 20553,
+    "interpretation": "same-sequence reproduction twice; short 1k+10k pair passes, full compact prefix fails; individual factor within preceding prefix not isolated"
+  },
+  "historical_comparison": {
+    "01063c7f1cfb7a651261401f62a5a72a5daa94dc:projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "69565ede18bb93d0eb18fcff126a2c7543a2c4f17e31571a37e8d98e94be3ef8",
+    "01063c7f1cfb7a651261401f62a5a72a5daa94dc:projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5",
+    "49c67303b26cbd8f286e5098ea9651bc99826ad6:projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "69565ede18bb93d0eb18fcff126a2c7543a2c4f17e31571a37e8d98e94be3ef8",
+    "49c67303b26cbd8f286e5098ea9651bc99826ad6:projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5"
+  },
+  "repair_assessment": "Manager proposed native-details lazy omission contents is supported removal of confirmed closed disclosure work; preserve summary, full identities/reasons when open, diagnostics, priorities and unlimited context. Not sole proven cause; full 20601 measurement plates remain."
+}

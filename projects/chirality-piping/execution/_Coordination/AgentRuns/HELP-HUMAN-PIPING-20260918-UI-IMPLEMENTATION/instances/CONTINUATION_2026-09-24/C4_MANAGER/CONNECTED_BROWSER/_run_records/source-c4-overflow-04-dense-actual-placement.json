@@ -1,0 +1,4015 @@
+{
+  "labels": {
+    "enabled": true,
+    "renderedCount": 90,
+    "budget": 113,
+    "mode": "Budget",
+    "placementStatus": "applied",
+    "projectionError": null,
+    "contextCount": 90,
+    "ordinaryCount": 0,
+    "contextOverflow": 0,
+    "suppressed": [],
+    "ineligible": [],
+    "unplaced": [
+      {
+        "key": "[\"node\",\"A014\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "collision",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A015\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "containment",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A016\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "containment",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A017\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A030\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A031\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A032\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A033\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A034\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A047\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A048\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A049\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A050\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A051\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A063\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A064\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A065\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A066\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A067\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A068\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A078\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A080\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A081\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A082\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A083\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A084\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A085\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A095\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A097\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A098\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A099\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A100\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A101\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A102\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A108\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A110\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A112\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A114\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A115\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A116\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A117\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A118\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A119\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A123\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A125\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A127\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A128\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A129\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A130\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A131\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A133\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A134\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A135\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"A136\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B001\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "containment",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B002\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "collision",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B003\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "collision",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B004\"]",
+        "role": "selected",
+        "reasons": [
+          "picking",
+          "collision",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B005\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B007\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B008\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B009\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B010\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B011\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B012\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B013\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B014\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B015\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B016\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B017\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B019\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B021\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B023\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B024\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B025\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B026\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B027\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B028\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B029\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B030\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B031\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B032\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B033\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B034\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B036\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B038\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B040\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B041\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B042\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B043\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B044\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B045\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B046\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B047\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B048\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B049\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B050\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B051\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B052\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B053\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B054\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B055\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B056\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B057\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B058\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B059\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B060\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B061\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B062\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B063\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B064\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B065\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B066\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B067\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B068\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B069\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B070\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B071\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B072\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B073\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B074\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B075\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B076\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B077\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B078\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B079\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B080\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B081\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B082\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B083\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B084\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B085\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B086\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B087\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B088\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B089\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B090\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B091\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B092\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B093\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B094\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B095\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B096\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B097\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B098\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B099\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B100\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B101\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B102\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B103\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B104\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B105\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B106\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B107\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B108\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B109\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B110\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B111\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B112\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B113\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B114\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B115\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B116\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B117\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B118\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B119\"]",
+        "role": "selected",
+        "reasons": [
+          "containment",
+          "picking",
+          "collision"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B120\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B121\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B122\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B123\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B124\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B125\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B126\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B127\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B128\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B129\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B130\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B131\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B132\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B133\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B134\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"node\",\"B135\"]",
+        "role": "selected",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      },
+      {
+        "key": "[\"pipe\",\"P\"]",
+        "role": "ordinary",
+        "reasons": [
+          "collision",
+          "picking",
+          "containment"
+        ]
+      }
+    ]
+  },
+  "selection": {
+    "actionSequence": 3,
+    "generation": 2,
+    "inputKind": "pointer",
+    "pointerDownAt": 13447.099999904633,
+    "orderedRefs": [
+      {
+        "type": "node",
+        "id": "A001"
+      },
+      {
+        "type": "node",
+        "id": "A002"
+      },
+      {
+        "type": "node",
+        "id": "A003"
+      },
+      {
+        "type": "node",
+        "id": "A004"
+      },
+      {
+        "type": "node",
+        "id": "A005"
+      },
+      {
+        "type": "node",
+        "id": "A006"
+      },
+      {
+        "type": "node",
+        "id": "A007"
+      },
+      {
+        "type": "node",
+        "id": "A008"
+      },
+      {
+        "type": "node",
+        "id": "A009"
+      },
+      {
+        "type": "node",
+        "id": "A010"
+      },
+      {
+        "type": "node",
+        "id": "A011"
+      },
+      {
+        "type": "node",
+        "id": "A012"
+      },
+      {
+        "type": "node",
+        "id": "A013"
+      },
+      {
+        "type": "node",
+        "id": "A014"
+      },
+      {
+        "type": "node",
+        "id": "A015"
+      },
+      {
+        "type": "node",
+        "id": "A016"
+      },
+      {
+        "type": "node",
+        "id": "A017"
+      },
+      {
+        "type": "node",
+        "id": "A018"
+      },
+      {
+        "type": "node",
+        "id": "A019"
+      },
+      {
+        "type": "node",
+        "id": "A020"
+      },
+      {
+        "type": "node",
+        "id": "A021"
+      },
+      {
+        "type": "node",
+        "id": "A022"
+      },
+      {
+        "type": "node",
+        "id": "A023"
+      },
+      {
+        "type": "node",
+        "id": "A024"
+      },
+      {
+        "type": "node",
+        "id": "A025"
+      },
+      {
+        "type": "node",
+        "id": "A026"
+      },
+      {
+        "type": "node",
+        "id": "A027"
+      },
+      {
+        "type": "node",
+        "id": "A028"
+      },
+      {
+        "type": "node",
+        "id": "A029"
+      },
+      {
+        "type": "node",
+        "id": "A030"
+      },
+      {
+        "type": "node",
+        "id": "A031"
+      },
+      {
+        "type": "node",
+        "id": "A032"
+      },
+      {
+        "type": "node",
+        "id": "A033"
+      },
+      {
+        "type": "node",
+        "id": "A034"
+      },
+      {
+        "type": "node",
+        "id": "A035"
+      },
+      {
+        "type": "node",
+        "id": "A036"
+      },
+      {
+        "type": "node",
+        "id": "A037"
+      },
+      {
+        "type": "node",
+        "id": "A038"
+      },
+      {
+        "type": "node",
+        "id": "A039"
+      },
+      {
+        "type": "node",
+        "id": "A040"
+      },
+      {
+        "type": "node",
+        "id": "A041"
+      },
+      {
+        "type": "node",
+        "id": "A042"
+      },
+      {
+        "type": "node",
+        "id": "A043"
+      },
+      {
+        "type": "node",
+        "id": "A044"
+      },
+      {
+        "type": "node",
+        "id": "A045"
+      },
+      {
+        "type": "node",
+        "id": "A046"
+      },
+      {
+        "type": "node",
+        "id": "A047"
+      },
+      {
+        "type": "node",
+        "id": "A048"
+      },
+      {
+        "type": "node",
+        "id": "A049"
+      },
+      {
+        "type": "node",
+        "id": "A050"
+      },
+      {
+        "type": "node",
+        "id": "A051"
+      },
+      {
+        "type": "node",
+        "id": "A052"
+      },
+      {
+        "type": "node",
+        "id": "A053"
+      },
+      {
+        "type": "node",
+        "id": "A054"
+      },
+      {
+        "type": "node",
+        "id": "A055"
+      },
+      {
+        "type": "node",
+        "id": "A056"
+      },
+      {
+        "type": "node",
+        "id": "A057"
+      },
+      {
+        "type": "node",
+        "id": "A058"
+      },
+      {
+        "type": "node",
+        "id": "A059"
+      },
+      {
+        "type": "node",
+        "id": "A060"
+      },
+      {
+        "type": "node",
+        "id": "A061"
+      },
+      {
+        "type": "node",
+        "id": "A062"
+      },
+      {
+        "type": "node",
+        "id": "A063"
+      },
+      {
+        "type": "node",
+        "id": "A064"
+      },
+      {
+        "type": "node",
+        "id": "A065"
+      },
+      {
+        "type": "node",
+        "id": "A066"
+      },
+      {
+        "type": "node",
+        "id": "A067"
+      },
+      {
+        "type": "node",
+        "id": "A068"
+      },
+      {
+        "type": "node",
+        "id": "A069"
+      },
+      {
+        "type": "node",
+        "id": "A070"
+      },
+      {
+        "type": "node",
+        "id": "A071"
+      },
+      {
+        "type": "node",
+        "id": "A072"
+      },
+      {
+        "type": "node",
+        "id": "A073"
+      },
+      {
+        "type": "node",
+        "id": "A074"
+      },
+      {
+        "type": "node",
+        "id": "A075"
+      },
+      {
+        "type": "node",
+        "id": "A076"
+      },
+      {
+        "type": "node",
+        "id": "A077"
+      },
+      {
+        "type": "node",
+        "id": "A078"
+      },
+      {
+        "type": "node",
+        "id": "A079"
+      },
+      {
+        "type": "node",
+        "id": "A080"
+      },
+      {
+        "type": "node",
+        "id": "A081"
+      },
+      {
+        "type": "node",
+        "id": "A082"
+      },
+      {
+        "type": "node",
+        "id": "A083"
+      },
+      {
+        "type": "node",
+        "id": "A084"
+      },
+      {
+        "type": "node",
+        "id": "A085"
+      },
+      {
+        "type": "node",
+        "id": "A086"
+      },
+      {
+        "type": "node",
+        "id": "A087"
+      },
+      {
+        "type": "node",
+        "id": "A088"
+      },
+      {
+        "type": "node",
+        "id": "A089"
+      },
+      {
+        "type": "node",
+        "id": "A090"
+      },
+      {
+        "type": "node",
+        "id": "A091"
+      },
+      {
+        "type": "node",
+        "id": "A092"
+      },
+      {
+        "type": "node",
+        "id": "A093"
+      },
+      {
+        "type": "node",
+        "id": "A094"
+      },
+      {
+        "type": "node",
+        "id": "A095"
+      },
+      {
+        "type": "node",
+        "id": "A096"
+      },
+      {
+        "type": "node",
+        "id": "A097"
+      },
+      {
+        "type": "node",
+        "id": "A098"
+      },
+      {
+        "type": "node",
+        "id": "A099"
+      },
+      {
+        "type": "node",
+        "id": "A100"
+      },
+      {
+        "type": "node",
+        "id": "A101"
+      },
+      {
+        "type": "node",
+        "id": "A102"
+      },
+      {
+        "type": "node",
+        "id": "A103"
+      },
+      {
+        "type": "node",
+        "id": "A104"
+      },
+      {
+        "type": "node",
+        "id": "A105"
+      },
+      {
+        "type": "node",
+        "id": "A106"
+      },
+      {
+        "type": "node",
+        "id": "A107"
+      },
+      {
+        "type": "node",
+        "id": "A108"
+      },
+      {
+        "type": "node",
+        "id": "A109"
+      },
+      {
+        "type": "node",
+        "id": "A110"
+      },
+      {
+        "type": "node",
+        "id": "A111"
+      },
+      {
+        "type": "node",
+        "id": "A112"
+      },
+      {
+        "type": "node",
+        "id": "A113"
+      },
+      {
+        "type": "node",
+        "id": "A114"
+      },
+      {
+        "type": "node",
+        "id": "A115"
+      },
+      {
+        "type": "node",
+        "id": "A116"
+      },
+      {
+        "type": "node",
+        "id": "A117"
+      },
+      {
+        "type": "node",
+        "id": "A118"
+      },
+      {
+        "type": "node",
+        "id": "A119"
+      },
+      {
+        "type": "node",
+        "id": "A120"
+      },
+      {
+        "type": "node",
+        "id": "A121"
+      },
+      {
+        "type": "node",
+        "id": "A122"
+      },
+      {
+        "type": "node",
+        "id": "A123"
+      },
+      {
+        "type": "node",
+        "id": "A124"
+      },
+      {
+        "type": "node",
+        "id": "A125"
+      },
+      {
+        "type": "node",
+        "id": "A126"
+      },
+      {
+        "type": "node",
+        "id": "A127"
+      },
+      {
+        "type": "node",
+        "id": "A128"
+      },
+      {
+        "type": "node",
+        "id": "A129"
+      },
+      {
+        "type": "node",
+        "id": "A130"
+      },
+      {
+        "type": "node",
+        "id": "A131"
+      },
+      {
+        "type": "node",
+        "id": "A132"
+      },
+      {
+        "type": "node",
+        "id": "A133"
+      },
+      {
+        "type": "node",
+        "id": "A134"
+      },
+      {
+        "type": "node",
+        "id": "A135"
+      },
+      {
+        "type": "node",
+        "id": "A136"
+      },
+      {
+        "type": "node",
+        "id": "B001"
+      },
+      {
+        "type": "node",
+        "id": "B002"
+      },
+      {
+        "type": "node",
+        "id": "B003"
+      },
+      {
+        "type": "node",
+        "id": "B004"
+      },
+      {
+        "type": "node",
+        "id": "B005"
+      },
+      {
+        "type": "node",
+        "id": "B006"
+      },
+      {
+        "type": "node",
+        "id": "B007"
+      },
+      {
+        "type": "node",
+        "id": "B008"
+      },
+      {
+        "type": "node",
+        "id": "B009"
+      },
+      {
+        "type": "node",
+        "id": "B010"
+      },
+      {
+        "type": "node",
+        "id": "B011"
+      },
+      {
+        "type": "node",
+        "id": "B012"
+      },
+      {
+        "type": "node",
+        "id": "B013"
+      },
+      {
+        "type": "node",
+        "id": "B014"
+      },
+      {
+        "type": "node",
+        "id": "B015"
+      },
+      {
+        "type": "node",
+        "id": "B016"
+      },
+      {
+        "type": "node",
+        "id": "B017"
+      },
+      {
+        "type": "node",
+        "id": "B018"
+      },
+      {
+        "type": "node",
+        "id": "B019"
+      },
+      {
+        "type": "node",
+        "id": "B020"
+      },
+      {
+        "type": "node",
+        "id": "B021"
+      },
+      {
+        "type": "node",
+        "id": "B022"
+      },
+      {
+        "type": "node",
+        "id": "B023"
+      },
+      {
+        "type": "node",
+        "id": "B024"
+      },
+      {
+        "type": "node",
+        "id": "B025"
+      },
+      {
+        "type": "node",
+        "id": "B026"
+      },
+      {
+        "type": "node",
+        "id": "B027"
+      },
+      {
+        "type": "node",
+        "id": "B028"
+      },
+      {
+        "type": "node",
+        "id": "B029"
+      },
+      {
+        "type": "node",
+        "id": "B030"
+      },
+      {
+        "type": "node",
+        "id": "B031"
+      },
+      {
+        "type": "node",
+        "id": "B032"
+      },
+      {
+        "type": "node",
+        "id": "B033"
+      },
+      {
+        "type": "node",
+        "id": "B034"
+      },
+      {
+        "type": "node",
+        "id": "B035"
+      },
+      {
+        "type": "node",
+        "id": "B036"
+      },
+      {
+        "type": "node",
+        "id": "B037"
+      },
+      {
+        "type": "node",
+        "id": "B038"
+      },
+      {
+        "type": "node",
+        "id": "B039"
+      },
+      {
+        "type": "node",
+        "id": "B040"
+      },
+      {
+        "type": "node",
+        "id": "B041"
+      },
+      {
+        "type": "node",
+        "id": "B042"
+      },
+      {
+        "type": "node",
+        "id": "B043"
+      },
+      {
+        "type": "node",
+        "id": "B044"
+      },
+      {
+        "type": "node",
+        "id": "B045"
+      },
+      {
+        "type": "node",
+        "id": "B046"
+      },
+      {
+        "type": "node",
+        "id": "B047"
+      },
+      {
+        "type": "node",
+        "id": "B048"
+      },
+      {
+        "type": "node",
+        "id": "B049"
+      },
+      {
+        "type": "node",
+        "id": "B050"
+      },
+      {
+        "type": "node",
+        "id": "B051"
+      },
+      {
+        "type": "node",
+        "id": "B052"
+      },
+      {
+        "type": "node",
+        "id": "B053"
+      },
+      {
+        "type": "node",
+        "id": "B054"
+      },
+      {
+        "type": "node",
+        "id": "B055"
+      },
+      {
+        "type": "node",
+        "id": "B056"
+      },
+      {
+        "type": "node",
+        "id": "B057"
+      },
+      {
+        "type": "node",
+        "id": "B058"
+      },
+      {
+        "type": "node",
+        "id": "B059"
+      },
+      {
+        "type": "node",
+        "id": "B060"
+      },
+      {
+        "type": "node",
+        "id": "B061"
+      },
+      {
+        "type": "node",
+        "id": "B062"
+      },
+      {
+        "type": "node",
+        "id": "B063"
+      },
+      {
+        "type": "node",
+        "id": "B064"
+      },
+      {
+        "type": "node",
+        "id": "B065"
+      },
+      {
+        "type": "node",
+        "id": "B066"
+      },
+      {
+        "type": "node",
+        "id": "B067"
+      },
+      {
+        "type": "node",
+        "id": "B068"
+      },
+      {
+        "type": "node",
+        "id": "B069"
+      },
+      {
+        "type": "node",
+        "id": "B070"
+      },
+      {
+        "type": "node",
+        "id": "B071"
+      },
+      {
+        "type": "node",
+        "id": "B072"
+      },
+      {
+        "type": "node",
+        "id": "B073"
+      },
+      {
+        "type": "node",
+        "id": "B074"
+      },
+      {
+        "type": "node",
+        "id": "B075"
+      },
+      {
+        "type": "node",
+        "id": "B076"
+      },
+      {
+        "type": "node",
+        "id": "B077"
+      },
+      {
+        "type": "node",
+        "id": "B078"
+      },
+      {
+        "type": "node",
+        "id": "B079"
+      },
+      {
+        "type": "node",
+        "id": "B080"
+      },
+      {
+        "type": "node",
+        "id": "B081"
+      },
+      {
+        "type": "node",
+        "id": "B082"
+      },
+      {
+        "type": "node",
+        "id": "B083"
+      },
+      {
+        "type": "node",
+        "id": "B084"
+      },
+      {
+        "type": "node",
+        "id": "B085"
+      },
+      {
+        "type": "node",
+        "id": "B086"
+      },
+      {
+        "type": "node",
+        "id": "B087"
+      },
+      {
+        "type": "node",
+        "id": "B088"
+      },
+      {
+        "type": "node",
+        "id": "B089"
+      },
+      {
+        "type": "node",
+        "id": "B090"
+      },
+      {
+        "type": "node",
+        "id": "B091"
+      },
+      {
+        "type": "node",
+        "id": "B092"
+      },
+      {
+        "type": "node",
+        "id": "B093"
+      },
+      {
+        "type": "node",
+        "id": "B094"
+      },
+      {
+        "type": "node",
+        "id": "B095"
+      },
+      {
+        "type": "node",
+        "id": "B096"
+      },
+      {
+        "type": "node",
+        "id": "B097"
+      },
+      {
+        "type": "node",
+        "id": "B098"
+      },
+      {
+        "type": "node",
+        "id": "B099"
+      },
+      {
+        "type": "node",
+        "id": "B100"
+      },
+      {
+        "type": "node",
+        "id": "B101"
+      },
+      {
+        "type": "node",
+        "id": "B102"
+      },
+      {
+        "type": "node",
+        "id": "B103"
+      },
+      {
+        "type": "node",
+        "id": "B104"
+      },
+      {
+        "type": "node",
+        "id": "B105"
+      },
+      {
+        "type": "node",
+        "id": "B106"
+      },
+      {
+        "type": "node",
+        "id": "B107"
+      },
+      {
+        "type": "node",
+        "id": "B108"
+      },
+      {
+        "type": "node",
+        "id": "B109"
+      },
+      {
+        "type": "node",
+        "id": "B110"
+      },
+      {
+        "type": "node",
+        "id": "B111"
+      },
+      {
+        "type": "node",
+        "id": "B112"
+      },
+      {
+        "type": "node",
+        "id": "B113"
+      },
+      {
+        "type": "node",
+        "id": "B114"
+      },
+      {
+        "type": "node",
+        "id": "B115"
+      },
+      {
+        "type": "node",
+        "id": "B116"
+      },
+      {
+        "type": "node",
+        "id": "B117"
+      },
+      {
+        "type": "node",
+        "id": "B118"
+      },
+      {
+        "type": "node",
+        "id": "B119"
+      },
+      {
+        "type": "node",
+        "id": "B120"
+      },
+      {
+        "type": "node",
+        "id": "B121"
+      },
+      {
+        "type": "node",
+        "id": "B122"
+      },
+      {
+        "type": "node",
+        "id": "B123"
+      },
+      {
+        "type": "node",
+        "id": "B124"
+      },
+      {
+        "type": "node",
+        "id": "B125"
+      },
+      {
+        "type": "node",
+        "id": "B126"
+      },
+      {
+        "type": "node",
+        "id": "B127"
+      },
+      {
+        "type": "node",
+        "id": "B128"
+      },
+      {
+        "type": "node",
+        "id": "B129"
+      },
+      {
+        "type": "node",
+        "id": "B130"
+      },
+      {
+        "type": "node",
+        "id": "B131"
+      },
+      {
+        "type": "node",
+        "id": "B132"
+      },
+      {
+        "type": "node",
+        "id": "B133"
+      },
+      {
+        "type": "node",
+        "id": "B134"
+      },
+      {
+        "type": "node",
+        "id": "B135"
+      },
+      {
+        "type": "node",
+        "id": "B136"
+      }
+    ],
+    "primaryRef": {
+      "type": "node",
+      "id": "B136"
+    },
+    "publishedAt": 13788.699999809265,
+    "renderSubmissionSequence": 16
+  },
+  "camera": {
+    "sequence": 16,
+    "kind": "perspective",
+    "position": [
+      7.999999999999999,
+      7.875,
+      29.141999999999996
+    ],
+    "target": [
+      7.999999999999999,
+      7.875,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fovDegrees": 42,
+    "near": 0.001,
+    "far": 1000,
+    "aspect": 0.8880706921944035,
+    "localRenderOrigin": [
+      8,
+      7.875,
+      0
+    ]
+  },
+  "canvas": {
+    "x": 793,
+    "y": 217,
+    "width": 603,
+    "height": 679,
+    "top": 217,
+    "right": 1396,
+    "bottom": 896,
+    "left": 793
+  },
+  "boxes": [
+    {
+      "key": "[\"node\",\"A001\"]",
+      "rect": {
+        "x": 917.703125,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 975.703125,
+        "bottom": 867.484375,
+        "left": 917.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A002\"]",
+      "rect": {
+        "x": 853.046875,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 911.046875,
+        "bottom": 867.484375,
+        "left": 853.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A003\"]",
+      "rect": {
+        "x": 978.40625,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1036.40625,
+        "bottom": 867.484375,
+        "left": 978.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A004\"]",
+      "rect": {
+        "x": 1070.75,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 1128.75,
+        "bottom": 719.484375,
+        "left": 1070.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A005\"]",
+      "rect": {
+        "x": 1039.09375,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1097.09375,
+        "bottom": 867.484375,
+        "left": 1039.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A006\"]",
+      "rect": {
+        "x": 1131.453125,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 1189.453125,
+        "bottom": 719.484375,
+        "left": 1131.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A007\"]",
+      "rect": {
+        "x": 1099.796875,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1157.796875,
+        "bottom": 867.484375,
+        "left": 1099.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A008\"]",
+      "rect": {
+        "x": 1192.140625,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 1250.140625,
+        "bottom": 719.484375,
+        "left": 1192.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A009\"]",
+      "rect": {
+        "x": 1160.5,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1218.5,
+        "bottom": 867.484375,
+        "left": 1160.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A010\"]",
+      "rect": {
+        "x": 1252.84375,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 1310.84375,
+        "bottom": 719.484375,
+        "left": 1252.84375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A011\"]",
+      "rect": {
+        "x": 1221.1875,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1279.1875,
+        "bottom": 867.484375,
+        "left": 1221.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A012\"]",
+      "rect": {
+        "x": 1313.53125,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 1371.53125,
+        "bottom": 719.484375,
+        "left": 1313.53125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A013\"]",
+      "rect": {
+        "x": 1281.890625,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 1339.890625,
+        "bottom": 867.484375,
+        "left": 1281.890625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A018\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1037.703125,
+        "bottom": 651.203125,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A019\"]",
+      "rect": {
+        "x": 1010.046875,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1068.046875,
+        "bottom": 835.203125,
+        "left": 1010.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A020\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1098.40625,
+        "bottom": 651.203125,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A021\"]",
+      "rect": {
+        "x": 1070.75,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1128.75,
+        "bottom": 835.203125,
+        "left": 1070.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A022\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1159.09375,
+        "bottom": 651.203125,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A023\"]",
+      "rect": {
+        "x": 1131.453125,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1189.453125,
+        "bottom": 835.203125,
+        "left": 1131.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A024\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1219.796875,
+        "bottom": 651.203125,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A025\"]",
+      "rect": {
+        "x": 1192.140625,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1250.140625,
+        "bottom": 835.203125,
+        "left": 1192.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A026\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1280.5,
+        "bottom": 651.203125,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A027\"]",
+      "rect": {
+        "x": 1252.84375,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1310.84375,
+        "bottom": 835.203125,
+        "left": 1252.84375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A028\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 619.203125,
+        "width": 58,
+        "height": 32,
+        "top": 619.203125,
+        "right": 1341.1875,
+        "bottom": 651.203125,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A029\"]",
+      "rect": {
+        "x": 1313.53125,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1371.53125,
+        "bottom": 835.203125,
+        "left": 1313.53125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A035\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1037.703125,
+        "bottom": 582.921875,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A036\"]",
+      "rect": {
+        "x": 1010.046875,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1068.046875,
+        "bottom": 766.921875,
+        "left": 1010.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A037\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1098.40625,
+        "bottom": 582.921875,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A038\"]",
+      "rect": {
+        "x": 1070.75,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1128.75,
+        "bottom": 766.921875,
+        "left": 1070.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A039\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1159.09375,
+        "bottom": 582.921875,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A040\"]",
+      "rect": {
+        "x": 1131.453125,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1189.453125,
+        "bottom": 766.921875,
+        "left": 1131.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A041\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1219.796875,
+        "bottom": 582.921875,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A042\"]",
+      "rect": {
+        "x": 1192.140625,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1250.140625,
+        "bottom": 766.921875,
+        "left": 1192.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A043\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1280.5,
+        "bottom": 582.921875,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A044\"]",
+      "rect": {
+        "x": 1252.84375,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1310.84375,
+        "bottom": 766.921875,
+        "left": 1252.84375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A045\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 550.921875,
+        "width": 58,
+        "height": 32,
+        "top": 550.921875,
+        "right": 1341.1875,
+        "bottom": 582.921875,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A046\"]",
+      "rect": {
+        "x": 1313.53125,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1371.53125,
+        "bottom": 766.921875,
+        "left": 1313.53125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A052\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1037.703125,
+        "bottom": 514.640625,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A053\"]",
+      "rect": {
+        "x": 1010.046875,
+        "y": 666.640625,
+        "width": 58,
+        "height": 32,
+        "top": 666.640625,
+        "right": 1068.046875,
+        "bottom": 698.640625,
+        "left": 1010.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A054\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1098.40625,
+        "bottom": 514.640625,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A055\"]",
+      "rect": {
+        "x": 913.75,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 971.75,
+        "bottom": 514.640625,
+        "left": 913.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A056\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1159.09375,
+        "bottom": 514.640625,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A057\"]",
+      "rect": {
+        "x": 817.453125,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 875.453125,
+        "bottom": 514.640625,
+        "left": 817.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A058\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1219.796875,
+        "bottom": 514.640625,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A059\"]",
+      "rect": {
+        "x": 878.140625,
+        "y": 666.640625,
+        "width": 58,
+        "height": 32,
+        "top": 666.640625,
+        "right": 936.140625,
+        "bottom": 698.640625,
+        "left": 878.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A060\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1280.5,
+        "bottom": 514.640625,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A061\"]",
+      "rect": {
+        "x": 938.84375,
+        "y": 666.640625,
+        "width": 58,
+        "height": 32,
+        "top": 666.640625,
+        "right": 996.84375,
+        "bottom": 698.640625,
+        "left": 938.84375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A062\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 482.640625,
+        "width": 58,
+        "height": 32,
+        "top": 482.640625,
+        "right": 1341.1875,
+        "bottom": 514.640625,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A069\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1037.703125,
+        "bottom": 446.34375,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A070\"]",
+      "rect": {
+        "x": 853.046875,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 911.046875,
+        "bottom": 446.34375,
+        "left": 853.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A071\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1098.40625,
+        "bottom": 446.34375,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A072\"]",
+      "rect": {
+        "x": 913.75,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 971.75,
+        "bottom": 446.34375,
+        "left": 913.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A073\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1159.09375,
+        "bottom": 446.34375,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A074\"]",
+      "rect": {
+        "x": 817.453125,
+        "y": 598.34375,
+        "width": 58,
+        "height": 32,
+        "top": 598.34375,
+        "right": 875.453125,
+        "bottom": 630.34375,
+        "left": 817.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A075\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1219.796875,
+        "bottom": 446.34375,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A076\"]",
+      "rect": {
+        "x": 878.140625,
+        "y": 598.34375,
+        "width": 58,
+        "height": 32,
+        "top": 598.34375,
+        "right": 936.140625,
+        "bottom": 630.34375,
+        "left": 878.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A077\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1280.5,
+        "bottom": 446.34375,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A079\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 414.34375,
+        "width": 58,
+        "height": 32,
+        "top": 414.34375,
+        "right": 1341.1875,
+        "bottom": 446.34375,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A086\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1037.703125,
+        "bottom": 378.0625,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A087\"]",
+      "rect": {
+        "x": 853.046875,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 911.046875,
+        "bottom": 378.0625,
+        "left": 853.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A088\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1098.40625,
+        "bottom": 378.0625,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A089\"]",
+      "rect": {
+        "x": 913.75,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 971.75,
+        "bottom": 378.0625,
+        "left": 913.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A090\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1159.09375,
+        "bottom": 378.0625,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A091\"]",
+      "rect": {
+        "x": 817.453125,
+        "y": 530.0625,
+        "width": 58,
+        "height": 32,
+        "top": 530.0625,
+        "right": 875.453125,
+        "bottom": 562.0625,
+        "left": 817.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A092\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1219.796875,
+        "bottom": 378.0625,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A093\"]",
+      "rect": {
+        "x": 878.140625,
+        "y": 530.0625,
+        "width": 58,
+        "height": 32,
+        "top": 530.0625,
+        "right": 936.140625,
+        "bottom": 562.0625,
+        "left": 878.140625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A094\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1280.5,
+        "bottom": 378.0625,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A096\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 346.0625,
+        "width": 58,
+        "height": 32,
+        "top": 346.0625,
+        "right": 1341.1875,
+        "bottom": 378.0625,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A103\"]",
+      "rect": {
+        "x": 979.703125,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1037.703125,
+        "bottom": 309.78125,
+        "left": 979.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A104\"]",
+      "rect": {
+        "x": 853.046875,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 911.046875,
+        "bottom": 309.78125,
+        "left": 853.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A105\"]",
+      "rect": {
+        "x": 1040.40625,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1098.40625,
+        "bottom": 309.78125,
+        "left": 1040.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A106\"]",
+      "rect": {
+        "x": 913.75,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 971.75,
+        "bottom": 309.78125,
+        "left": 913.75
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A107\"]",
+      "rect": {
+        "x": 1101.09375,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1159.09375,
+        "bottom": 309.78125,
+        "left": 1101.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A109\"]",
+      "rect": {
+        "x": 1161.796875,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1219.796875,
+        "bottom": 309.78125,
+        "left": 1161.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A111\"]",
+      "rect": {
+        "x": 1222.5,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1280.5,
+        "bottom": 309.78125,
+        "left": 1222.5
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A113\"]",
+      "rect": {
+        "x": 1283.1875,
+        "y": 277.78125,
+        "width": 58,
+        "height": 32,
+        "top": 277.78125,
+        "right": 1341.1875,
+        "bottom": 309.78125,
+        "left": 1283.1875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A120\"]",
+      "rect": {
+        "x": 917.703125,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 975.703125,
+        "bottom": 277.5,
+        "left": 917.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A121\"]",
+      "rect": {
+        "x": 853.046875,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 911.046875,
+        "bottom": 277.5,
+        "left": 853.046875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A122\"]",
+      "rect": {
+        "x": 978.40625,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 1036.40625,
+        "bottom": 277.5,
+        "left": 978.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A124\"]",
+      "rect": {
+        "x": 1039.09375,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 1097.09375,
+        "bottom": 277.5,
+        "left": 1039.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A126\"]",
+      "rect": {
+        "x": 1099.796875,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 1157.796875,
+        "bottom": 277.5,
+        "left": 1099.796875
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"A132\"]",
+      "rect": {
+        "x": 1281.890625,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 1339.890625,
+        "bottom": 277.5,
+        "left": 1281.890625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B006\"]",
+      "rect": {
+        "x": 817.453125,
+        "y": 687.484375,
+        "width": 58,
+        "height": 32,
+        "top": 687.484375,
+        "right": 875.453125,
+        "bottom": 719.484375,
+        "left": 817.453125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B018\"]",
+      "rect": {
+        "x": 822.703125,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 880.703125,
+        "bottom": 835.203125,
+        "left": 822.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B020\"]",
+      "rect": {
+        "x": 883.40625,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 941.40625,
+        "bottom": 835.203125,
+        "left": 883.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B022\"]",
+      "rect": {
+        "x": 944.09375,
+        "y": 803.203125,
+        "width": 58,
+        "height": 32,
+        "top": 803.203125,
+        "right": 1002.09375,
+        "bottom": 835.203125,
+        "left": 944.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B035\"]",
+      "rect": {
+        "x": 822.703125,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 880.703125,
+        "bottom": 766.921875,
+        "left": 822.703125
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B037\"]",
+      "rect": {
+        "x": 883.40625,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 941.40625,
+        "bottom": 766.921875,
+        "left": 883.40625
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B039\"]",
+      "rect": {
+        "x": 944.09375,
+        "y": 734.921875,
+        "width": 58,
+        "height": 32,
+        "top": 734.921875,
+        "right": 1002.09375,
+        "bottom": 766.921875,
+        "left": 944.09375
+      },
+      "pressed": "true"
+    },
+    {
+      "key": "[\"node\",\"B136\"]",
+      "rect": {
+        "x": 1213.28125,
+        "y": 245.5,
+        "width": 58,
+        "height": 32,
+        "top": 245.5,
+        "right": 1271.28125,
+        "bottom": 277.5,
+        "left": 1213.28125
+      },
+      "pressed": "true"
+    }
+  ]
+}

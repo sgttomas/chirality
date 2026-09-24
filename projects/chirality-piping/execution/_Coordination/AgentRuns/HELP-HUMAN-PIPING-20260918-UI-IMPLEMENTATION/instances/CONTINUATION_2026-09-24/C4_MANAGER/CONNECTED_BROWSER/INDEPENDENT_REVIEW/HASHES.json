@@ -1,0 +1,236 @@
+{
+  "schema": "chirality-bounded-independent-review/v1",
+  "recorded_at_utc": "2026-09-24T07:58:19.443634+00:00",
+  "checkout_origin": "{REPO_ROOT}",
+  "reviewer": "/root/c4_manager/connected_review",
+  "parent": "/root/c4_manager",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK Type 2",
+  "descendants": [],
+  "model_allocation": {
+    "supplied": "Astra/xhigh",
+    "independent_host_attestation": false
+  },
+  "supplied_basis": {
+    "candidate": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+    "previous_reviewed_package": "8c5ac0fc5730765e972da48e3e3abad659df3eb9",
+    "lazy_parent": "4942ca78629302355a5dff7c50cf2a0abc5ed614",
+    "combined_product_base": "6bbaa0bc74268f885b0f95b7045050fada5c7f2e",
+    "workflow": null
+  },
+  "boundaries": {
+    "writes": [
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/RETURN.md",
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HASHES.json"
+    ],
+    "prohibited_operations_performed": false,
+    "tests_or_browser_executed_by_reviewer": false
+  },
+  "finding_status": {
+    "C4-CONNECTED-R1": "open; manager accepted for repair",
+    "C4-CONNECTED-R2": "open; manager accepted for repair"
+  },
+  "frozen_changed_files": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy-dist.spec.ts",
+      "commit": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "sha256": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+      "coverage": "full changed source/test diff and relevant context; new E2E files/full regression read in full"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts",
+      "commit": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "sha256": "848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c",
+      "coverage": "full changed source/test diff and relevant context; new E2E files/full regression read in full"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.spec.ts",
+      "commit": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "sha256": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+      "coverage": "full changed source/test diff and relevant context; new E2E files/full regression read in full"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.contextLabels.test.tsx",
+      "commit": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "sha256": "1891213f884f15c6072569e15ee116281ec931c4ad4591f34591b6ac3a5c750c",
+      "coverage": "full changed source/test diff and relevant context; new E2E files/full regression read in full"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "commit": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+      "coverage": "full changed source/test diff and relevant context; new E2E files/full regression read in full"
+    }
+  ],
+  "consulted_origins": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "sha256": "e2c07f2d9cfb8d22b19be6cc80078e1dfb60fbd0a734f616a22a3ae90905b811",
+      "consultation": "selected lifecycle/projection passages and search"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts",
+      "sha256": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9",
+      "consultation": "selected generation/index construction passages"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/workspace-driver.ts",
+      "sha256": "4927514880caee095e22945940baba2627e3dbde0ed5ee766f39c5d76beab462",
+      "consultation": "first 240 lines: visible navigation and selection helper contracts"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/c3-viewport-visibility.spec.ts",
+      "sha256": "be12801debc9d5065524c76c3feecedf405e0a10c2311ba8c4ff83007b52000a",
+      "consultation": "selected C3 pointer/selection and C4 measured-label tests"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/playwright.config.ts",
+      "sha256": "d861a8567ce54c803e2bef914a5b9965906f90e0eda58ab4d907160d10eed31a",
+      "consultation": "full source configuration"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/playwright.dist.config.ts",
+      "sha256": "d53c01817b11718850b2b2b52e0132825931741998d4214a0d0c7e533c2b5756",
+      "consultation": "full dist configuration"
+    },
+    {
+      "origin": "projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "consultation": "full check profile"
+    },
+    {
+      "origin": "tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d",
+      "consultation": "full read-only validator"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "185d903d1ada30c756c55d780118e092fa5dac7b27b002fe18a34765e3f80a0d",
+      "consultation": "selected historical comprehensive policy review; not newly repeated"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "sha256": "2878fd465b5afdf2114098c987eff22b1b283015a47eee983900500acd36ccd4",
+      "consultation": "full retained canvas repair backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CURRENT_ROW/INDEPENDENT_REVIEW/BACKCHECK.md",
+      "sha256": "3c06fbe73efb0bab9bcd944ab7d0a3cc39bd86eb7520cd259a82582962518824",
+      "consultation": "full retained row repair backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/RETURN.md",
+      "sha256": "3ba92a435be9e79803e63febb4a589efb71ddedd4972929d6ec3ce9ac0328a9f",
+      "consultation": "full retained integration return"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "32388df544dde0268c049142a02fb27a9563768476a1412b0121a646eef7b242",
+      "consultation": "full retained integration backcheck"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PLAN.md",
+      "sha256": "9b8e86c404cf6564df61f5396e33bcbe0d4e5e714dd5dedf13db7f4f35d5ec1c",
+      "consultation": "full live stage plan"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROGRESS.md",
+      "sha256": "22c63b4619e9a4b4ba3e318071a2fce0998ca855043e04333b19a2608416ed05",
+      "consultation": "full intermediate checkpoint; live evidence, not acceptance"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/OMISSION_LAZY_TASK/RETURN.md",
+      "sha256": "177515ecc4851257676ae6e9219d45ba9a56903913dafcd7dc3c7d99cda01f05",
+      "consultation": "full lazy author return"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md",
+      "sha256": "00a3de9154db3079e8e15b1e7e0bce42627f9be0d9aa96d40415ac3520aa1bf5",
+      "consultation": "full independent diagnosis narrative"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_GUIDANCE.md",
+      "sha256": "c1f6b1f55a4310722a329890f910d7800f705a40a73abff037cf7035e6ef8832",
+      "consultation": "full bounded fixture guidance"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/TASK_CASES/RETURN.md",
+      "sha256": "c7e0bc11df926db297f14c9ea66d7cc7a80097654d080fe984116f315a07eb55",
+      "consultation": "full authoring history"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/lazy-validation.json",
+      "sha256": "a29272d6aa8bd991ebd5f9da5ffb8d2d1c4eea0256e98635d0afaa8b2d937d09",
+      "consultation": "full command/candidate/exit record"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/lazy-unit.log",
+      "sha256": "f8a41ff4616582acdfe6ebe2ff01979f0b1f6d181b3a4904ea6dd083e55b8d69",
+      "consultation": "full raw test output"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-functional-05-command.json",
+      "sha256": "074fbc6e3c78caa6f05632e0421e110fa6f4ad98e621a9f14c736cac3011d616",
+      "consultation": "full candidate/environment/test-input record"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-functional-05.log",
+      "sha256": "a38e84842b8c4ba1be49109305ced2a8f104bcdec542e925998d0aa0fa6e6324",
+      "consultation": "full raw seven-case output"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04.log",
+      "sha256": "910f8604884f79513025d1b36988d38bfc2e68b872db77298537e9526f5b5373",
+      "consultation": "full raw failed overflow trial"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-actual-placement.json",
+      "sha256": "7ea80eb0ba463ebb0e47e4c0302282dcb01dd6f732ad49b8a51948a400e27e8b",
+      "consultation": "selected diagnostic counts search; not complete attachment audit"
+    }
+  ],
+  "read_only_checks": {
+    "scope_validator": "PASS; explicit five frozen paths and five exact allowances",
+    "whitespace": "PASS git diff --check 8c5ac0fc5730765e972da48e3e3abad659df3eb9 8589065f6d86389babd7bc18a3bfc6c42643f3be",
+    "worktree_equal_at_scope_check": true
+  },
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "67ba34cefaa47daeaa961ea565d7afc72a7a52e77b043c47c5a46637fe0b4aff"
+    }
+  ],
+  "limits": "Frozen source review is complete for five changed paths; two scenario-verification findings open. Live connected evidence has not received final frozen audit. No native/profile/full-programme acceptance.",
+  "_portable_view": {
+    "kind": "portable derivative of preserved historical evidence",
+    "original_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HASHES.json",
+    "original_bytes": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/portability-originals/INDEPENDENT_REVIEW/HASHES.json",
+    "original_sha256": "43548a5bfb05603db0c7f0f6258c1cd624dc56e6cfcd3f2c58c898e8061d8e46",
+    "field_roots": {
+      "REPO_ROOT": "Git root of the isolated C4 checkout supplied at execution; actual machine path remains in original_bytes",
+      "relative_paths": "Keep original field-specific roots; input/source path maps remain repository-relative unless their owning record explicitly states otherwise",
+      "hash_bindings": "Historical hash values retain their original checked bytes. For the eleven converted records resolve original_path plus original_sha256 through PORTABILITY_DISPOSITION.json; no binding is silently rehashed."
+    },
+    "semantic_change": false
+  }
+}

@@ -1,0 +1,26 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-policy.spec.ts --project chromium-desktop --project chromium-compact --grep modes, dedup|current review row|unique full node|Current and Historical|real WebGL --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-functional-05
+[WebServer] (node:94657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:94659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:94659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:185:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport (6.3s)
+  ✓  2 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:249:3 › C4 current review row B remains distinct from primary A @explicit-viewport (4.4s)
+  ✓  3 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:288:5 › C4 unique full node inventory preserves spatial omissions @explicit-viewport (15.0s)
+  ✓  4 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:398:3 › C4 label modes preserve Current and Historical result standing (6.4s)
+  ✓  5 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:418:3 › C4 real WebGL loss/restoration fails closed and recovers (4.0s)
+(node:94778) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:94778) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 [chromium-compact] › e2e/c4-label-policy.scenarios.ts:398:3 › C4 label modes preserve Current and Historical result standing (6.4s)
+  ✓  7 [chromium-compact] › e2e/c4-label-policy.scenarios.ts:418:3 › C4 real WebGL loss/restoration fails closed and recovers (4.0s)
+
+  7 passed (47.9s)
+
+exit=0
+elapsed_seconds=48.202

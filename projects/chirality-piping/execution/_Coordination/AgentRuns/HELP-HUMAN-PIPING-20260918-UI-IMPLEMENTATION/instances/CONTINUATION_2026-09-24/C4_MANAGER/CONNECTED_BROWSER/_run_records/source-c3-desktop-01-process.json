@@ -1,0 +1,19 @@
+{
+  "pid": 79542,
+  "cwd": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop",
+  "command": [
+    "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright",
+    "test",
+    "e2e/c3-viewport-visibility.spec.ts",
+    "--project",
+    "chromium-desktop",
+    "--workers",
+    "1",
+    "--max-failures",
+    "1",
+    "--reporter=list,json",
+    "--output",
+    "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c3-desktop-01"
+  ],
+  "port": 5174
+}

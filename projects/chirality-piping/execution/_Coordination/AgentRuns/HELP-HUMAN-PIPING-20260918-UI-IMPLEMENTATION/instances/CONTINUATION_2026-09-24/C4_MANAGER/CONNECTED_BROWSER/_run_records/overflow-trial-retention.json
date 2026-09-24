@@ -1,0 +1,6 @@
+{
+  "source_commit": "4942ca78629302355a5dff7c50cf2a0abc5ed614",
+  "source_path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts",
+  "sha256": "848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c",
+  "disposition": "Exact failed trial retained. ROOT authorized removal of speculative positive overflow scenario from maintained execution; connected actual context above budget remains OPEN, not passed. No original assertion or raw failure modified."
+}

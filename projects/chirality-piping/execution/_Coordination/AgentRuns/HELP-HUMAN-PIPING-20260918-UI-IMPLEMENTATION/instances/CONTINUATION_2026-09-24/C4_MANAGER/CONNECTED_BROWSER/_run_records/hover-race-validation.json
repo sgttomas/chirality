@@ -1,0 +1,43 @@
+{
+  "head": "dc3a640dfe16234247a1a04f0ab9f69a0e6561a1",
+  "cwd": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop",
+  "old_source_sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+  "repaired_source_sha256": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d",
+  "commands": [
+    {
+      "name": "hover-race-red",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/PipeViewport.contextLabels.test.tsx",
+        "-t",
+        "preserves a newly captured center",
+        "--maxWorkers=1"
+      ],
+      "exit": 1
+    },
+    {
+      "name": "hover-race-tsc",
+      "command": [
+        "../../node_modules/.bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "hover-race-green",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/PipeViewport.contextLabels.test.tsx",
+        "src/features/viewport/PipeViewport.labels.test.tsx",
+        "src/features/viewport/viewportResource.test.ts",
+        "src/features/viewport/labelPolicy.test.ts",
+        "src/features/viewport/labelPlacement.test.ts",
+        "--maxWorkers=1"
+      ],
+      "exit": 1
+    }
+  ],
+  "exact_repaired_source_restored": true
+}

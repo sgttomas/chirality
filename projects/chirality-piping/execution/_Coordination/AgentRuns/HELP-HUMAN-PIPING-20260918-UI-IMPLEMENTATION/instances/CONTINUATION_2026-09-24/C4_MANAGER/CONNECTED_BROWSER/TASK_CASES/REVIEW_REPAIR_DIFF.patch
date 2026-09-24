@@ -1,0 +1,162 @@
+--- projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts (archived trial04)
++++ projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts
+@@ -3,7 +3,7 @@
+ import { openWorkspaceSection, projectCommand, selectTreeEntity, showCanvas, showModelTree } from "./workspace-driver";
+ 
+ // Functional invented inputs only: no frozen benchmark helpers, caps or instrumentation.
+-async function fixture(dense = false, coincident = false) {
++async function fixture(dense = false) {
+   const model = JSON.parse(await readFile(new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url), "utf8"));
+   const node = (id: string, x: number, y: number) => ({ ...model.nodes[0], id, label: id, position: { x, y, z: 0 } });
+   // Wide row spacing leaves real gaps for bounded vertical placement offsets;
+@@ -11,14 +11,6 @@
+   model.nodes = dense ? Array.from({ length: 136 }, (_, i) => node(`n${i}`, i % 17, Math.floor(i / 17) * 2.25))
+     : [node("A", -4, -3), node("B", 4, 3), node("C", -4, 3), node("D", 4, -3)];
+   model.pipe_segments = [{ ...model.pipe_segments[0], id: "P", label: "P", from: dense ? "n0" : "C", to: dense ? "n1" : "B" }];
+-  if (coincident) {
+-    // Two genuine, distinct identity populations intentionally share coordinates.
+-    // Synthetic UI multiplicity only; no solver-readiness/engineering claim.
+-    const positions = model.nodes.map((entry: any) => entry.position);
+-    model.nodes = ["A", "B"].flatMap(prefix => positions.map((position: any, i: number) =>
+-      node(`${prefix}${String(i + 1).padStart(3, "0")}`, position.x, position.y)));
+-    model.pipe_segments[0].from = "A001"; model.pipe_segments[0].to = "A002";
+-  }
+   model.supports = []; model.components = []; model.load_cases = []; model.combinations = []; model.diagnostics = [];
+   return model;
+ }
+@@ -94,11 +86,16 @@
+     for (const { rect: b } of evidence.boxes.slice(i + 1)) expect(a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top).toBe(false);
+   }
+   const omissions = page.getByTestId("viewport-label-omissions");
++  await expect(omissions.locator("li")).toHaveCount(0);
+   await omissions.locator("summary").click();
+-  const omitted = [...(evidence.labels.suppressed ?? []), ...(evidence.labels.unplaced ?? [])];
+-  await expect(omissions.locator("li")).toHaveCount(omitted.length);
+-  for (const item of omitted) await expect(omissions).toContainText(item.key);
++  const omittedRows = [
++    ...(evidence.labels.suppressed ?? []).map(item => `${item.key}: ${item.reason}`),
++    ...(evidence.labels.unplaced ?? []).map(item => `${item.key}: ${item.reasons.join(", ")}`),
++  ];
++  await expect(omissions.locator("li")).toHaveCount(omittedRows.length);
++  await expect.poll(() => omissions.locator("li").allTextContents()).toEqual(omittedRows);
+   await omissions.locator("summary").click();
++  await expect(omissions.locator("li")).toHaveCount(0);
+   return evidence;
+ }
+ async function projected(page: Page, position: { x: number; y: number; z: number }) {
+@@ -118,29 +115,41 @@
+     await page.setViewportSize({ width: 1440, height: 920 }); await load(page, await fixture());
+     const before = await invariants(page);
+     await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Budget");
+-    await selectTreeEntity(page, "node", "A"); await mode(page, "Off");
++    await selectTreeEntity(page, "node", "A");
++    const readSelection = async () => {
++      const snapshot = await state(page);
++      if ("status" in snapshot.viewport) throw new Error("Viewport unavailable");
++      return { orderedRefs: snapshot.viewport.selection.orderedRefs, primaryRef: snapshot.viewport.selection.primaryRef };
++    };
++    await settle(page);
++    const selectedA = await readSelection();
++    expect(selectedA).toEqual({ orderedRefs: [{ type: "node", id: "A" }], primaryRef: { type: "node", id: "A" } });
++    const selectionUnchanged = async () => { await settle(page); expect(await readSelection()).toEqual(selectedA); };
++    await mode(page, "Off"); await selectionUnchanged();
+     await expect(page.getByTestId("viewport-select-A")).toBeVisible();
+     await page.getByTestId("viewport-select-A").hover();
+     const off = await witness(page, info, "off-context-deduplicated-primary-hover"); expect(off.labels.ordinaryCount).toBe(0);
+-    expect(off.labels.contextCount).toBe(1); await page.mouse.move(0, 0);
+-    await page.getByRole("button", { name: "Isolate", exact: true }).click();
+-    await mode(page, "All");
++    expect(off.labels.contextCount).toBe(1); await selectionUnchanged(); await page.mouse.move(0, 0); await selectionUnchanged();
++    await page.getByRole("button", { name: "Isolate", exact: true }).click(); await selectionUnchanged();
++    await mode(page, "All"); await selectionUnchanged();
+     await expect(page.getByTestId("viewport-select-B")).toHaveAttribute("data-dimmed", "true");
+     const ordinary = page.locator('.viewport-select-target[data-label-placed="true"][aria-pressed="false"]').first();
+     const box = await ordinary.boundingBox(); await ordinary.hover();
+-    for (let i = 0; i < 3; i++) { await settle(page); expect(await ordinary.boundingBox()).toEqual(box); }
+-    await page.mouse.move(0, 0); await witness(page, info, "all-hover-stable");
+-    await page.getByRole("button", { name: "Hide", exact: true }).click();
+-    for (const m of ["Budget", "All", "Off"] as const) { await mode(page, m); await expect(page.getByTestId("viewport-select-A")).toHaveCount(0); }
++    for (let i = 0; i < 3; i++) { await settle(page); expect(await ordinary.boundingBox()).toEqual(box); await selectionUnchanged(); }
++    await page.mouse.move(0, 0); await witness(page, info, "all-hover-stable"); await selectionUnchanged();
++    await page.getByRole("button", { name: "Hide", exact: true }).click(); await selectionUnchanged();
++    for (const m of ["Budget", "All", "Off"] as const) { await mode(page, m); await selectionUnchanged(); await expect(page.getByTestId("viewport-select-A")).toHaveCount(0); }
+     await expect(page.getByTestId("viewport-hidden-count")).toHaveText("1 hidden · Show all");
+-    await page.getByRole("button", { name: "Show All", exact: true }).click();
+-    await mode(page, "All"); await page.setViewportSize({ width: 1100, height: 850 });
+-    await page.getByTestId("viewport-fit-model").click(); await witness(page, info, "resized-front");
++    await page.getByRole("button", { name: "Show All", exact: true }).click(); await selectionUnchanged();
++    await mode(page, "All"); await selectionUnchanged(); await page.setViewportSize({ width: 1100, height: 850 }); await selectionUnchanged();
++    await page.getByTestId("viewport-fit-model").click(); await witness(page, info, "resized-front"); await selectionUnchanged();
+     for (const node of (await fixture()).nodes) expect((await projected(page, node.position)).unobscured).toBe(true);
+-    await page.getByRole("button", { name: "Top", exact: true }).click(); await witness(page, info, "camera-top");
++    await page.getByRole("button", { name: "Top", exact: true }).click(); await witness(page, info, "camera-top"); await selectionUnchanged();
+     await page.getByTestId("viewport-canvas").focus(); await page.keyboard.press("l");
+     await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Off");
+-    expect(await invariants(page)).toEqual(before);
++    await selectionUnchanged();
++    expect(await invariants(page)).toEqual(before);
++    await selectionUnchanged();
+   });
+   test("C4 current review row B remains distinct from primary A @explicit-viewport", async ({ page }, info) => {
+     await page.setViewportSize({ width: 1440, height: 920 }); await load(page, await fixture());
+@@ -164,13 +173,10 @@
+     await expect(page.getByTestId("viewport-select-B")).toBeHidden();
+     expect(await invariants(page)).toEqual(before);
+   });
+-  for (const coincident of [false, true]) {
+-  test(coincident
+-    ? "C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport"
+-    : "C4 unique full node inventory preserves spatial omissions @explicit-viewport", async ({ page }, info) => {
+-    await page.setViewportSize({ width: 1440, height: 920 }); const model = await fixture(true, coincident);
++  test("C4 unique full node inventory preserves spatial omissions @explicit-viewport", async ({ page }, info) => {
++    await page.setViewportSize({ width: 1440, height: 920 }); const model = await fixture(true);
+     await info.attach("dense-functional-fixture", { body: JSON.stringify({
+-      purpose: coincident ? "Two distinct real node populations intentionally share coordinates; synthetic UI test, not engineering acceptance" : "Unique-position full inventory and finite spatial omissions",
++      purpose: "Unique-position full inventory and finite spatial omissions",
+       model }, null, 2), contentType: "application/json" });
+     await load(page, model);
+     await page.getByTestId("view-switch-both").click(); await page.getByTestId("viewport-fit-model").click();
+@@ -196,7 +202,7 @@
+     expect(result.selection.orderedRefs).toHaveLength(model.nodes.length);
+     expect(await page.locator('.viewport-select-target[data-entity-key]').count()).toBe(model.nodes.length + model.pipe_segments.length);
+     const expectedKeys = model.nodes.map((node: any) => JSON.stringify(["node", node.id])).sort();
+-    expect(new Set(expectedKeys).size).toBe(coincident ? 272 : 136);
++    expect(new Set(expectedKeys).size).toBe(136);
+     expect(result.selection.orderedRefs.map(ref => JSON.stringify([ref.type, ref.id])).sort()).toEqual(expectedKeys);
+     const placedContextKeys = result.boxes.filter(box => expectedKeys.includes(box.key!)).map(box => box.key!);
+     const unplacedContext = (result.labels.unplaced ?? []).filter(item => item.role !== "ordinary");
+@@ -208,32 +214,11 @@
+       expect(model.nodes.some((node: any) => JSON.stringify(["node", node.id]) === box.key) ||
+         model.pipe_segments.some((pipe: any) => JSON.stringify(["pipe", pipe.id]) === box.key)).toBe(true);
+     }
+-    if (coincident) {
+-      const readableIdentities = [];
+-      for (const box of result.boxes) {
+-        const [type, id] = JSON.parse(box.key!);
+-        if (type !== "node") continue;
+-        const span = page.getByTestId(`viewport-select-${id}`).locator("span");
+-        await expect(span).toHaveText(id);
+-        const dimensions = await span.evaluate(element => ({ text: element.textContent,
+-          scrollWidth: element.scrollWidth, clientWidth: element.clientWidth }));
+-        expect(dimensions.scrollWidth, `${id} fits its unchanged visible label span`).toBeLessThanOrEqual(dimensions.clientWidth);
+-        readableIdentities.push({ key: box.key, ...dimensions });
+-      }
+-      await info.attach("dense-readable-real-identities", { body: JSON.stringify(readableIdentities, null, 2), contentType: "application/json" });
+-      // Rendered overflow is the gate; 272 requested identities alone prove nothing.
+-      expect(result.labels.contextCount).toBeGreaterThan(result.labels.budget);
+-      expect(result.labels.contextOverflow).toBe(result.labels.contextCount! - result.labels.budget);
+-      expect(result.labels.ordinaryCount).toBe(0);
+-      expect(result.labels.suppressed?.some(item => item.role === "ordinary" && item.reason === "budget")).toBe(true);
+-    } else {
+-      expect(unplacedContext.length).toBeGreaterThan(0);
+-      expect(result.labels.contextOverflow).toBe(Math.max(0, result.labels.contextCount! - result.labels.budget));
+-    }
++    expect(unplacedContext.length).toBeGreaterThan(0);
++    expect(result.labels.contextOverflow).toBe(Math.max(0, result.labels.contextCount! - result.labels.budget));
+     for (const node of model.nodes) expect((await projected(page, node.position)).unobscured).toBe(true);
+     expect(await invariants(page)).toEqual(before);
+   });
+-  }
+   test("C4 label modes preserve Current and Historical result standing", async ({ page }) => {
+     await page.goto("/"); await openWorkspaceSection(page, "solve");
+     await page.getByTestId("run-mechanics-preview").click();

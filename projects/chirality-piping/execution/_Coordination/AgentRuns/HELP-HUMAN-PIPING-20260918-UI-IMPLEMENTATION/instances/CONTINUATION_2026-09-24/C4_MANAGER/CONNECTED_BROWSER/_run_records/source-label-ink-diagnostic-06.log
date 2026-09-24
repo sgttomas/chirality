@@ -1,0 +1,16 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-ink-diagnostic.spec.ts --project chromium-desktop --grep actual placed context overflow --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06
+[WebServer] (node:99336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:99339) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:99339) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop] › e2e/c4-label-ink-diagnostic.spec.ts:169:3 › C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport (34.2s)
+
+  1 passed (35.2s)
+
+exit=0
+elapsed_seconds=35.669

@@ -1,0 +1,6 @@
+{
+  "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-01-tested-scenarios.ts",
+  "sha256": "854e2b3ce1c1e39345d415514785f6eac239df7671b6bfc2ceb5ead61bb4bd0b",
+  "method": "Recovered exact failed-run input by reversing only the documented three-line navigation repair; byte hash equals recorded tested-input hash. Not represented as original capture.",
+  "current_repaired_sha256": "3832365b243f220de5200b49bf8f5c6b583d366f8590ff97e2c80bbe08c1892d"
+}

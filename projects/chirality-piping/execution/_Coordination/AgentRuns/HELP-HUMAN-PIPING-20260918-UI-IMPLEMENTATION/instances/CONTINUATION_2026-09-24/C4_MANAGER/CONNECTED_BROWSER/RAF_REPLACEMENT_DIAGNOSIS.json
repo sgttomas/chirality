@@ -1,0 +1,832 @@
+{
+  "reviewer": "/root/c4_manager/basis_integration_review",
+  "parent": "/root/c4_manager",
+  "role": "TASK Type 2; resumed collaboration child, no descendants",
+  "candidate": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+  "cwd": "{REPO_ROOT}",
+  "inputs_sha256": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-lazy-04-command.json": "7ca7134b99bef624fc13e53c0afbd51986aad46b29e8f742f80ac48f60f7bde4",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-lazy-04.json": "8032700f6fdecdad2240743dd63e8daf25c2f6aa466ee11ba7046bc0d030a3eb",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-lazy-04.log": "dd3c9e127744d69e0b72f438330063ac4311efc0d5f6ebd8e465b55ed153e283",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-lazy-04/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/trace.zip": "e18f435dc22c4845d4a6afdd83fb11d9532961a61fb0c00b22e2ff891d7cdebf",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-lazy-04/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/error-context.md": "cad6c54fc36b8dd46452de15ed862b17e68d324be78cec388d57bd0fa1b0a441",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05-command.json": "879e2976096817b54529da0f0d714138cca60c9ffb99cb4ce8749083d4171937",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05.json": "842a4da60c72977a9425c76c9c1cfcca230eed585b4c2ff5b8ca003c5fe11a13",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05.log": "594d5c8d176e6db4d7ab280a5f1a225a754f794b93b00639f175b304e08cbde8",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/trace.zip": "78e9b117ade48a2e5763f18059d512e4d72290bf60a6b45cb4f47481de6736bf",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/error-context.md": "c8609cf300e6ad00e94e2feeb5d1fa69db44a2af36fee2cddfc14b813049ed52",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts": "e2c07f2d9cfb8d22b19be6cc80078e1dfb60fbd0a734f616a22a3ae90905b811",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+    "projects/chirality-piping/apps/desktop/src/styles.css": "2d174ef051e8229b6c060f3bd3414181a75cd890cc60c78b8684bf849b189824",
+    "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts": "e796dc5c58fcb54e2ed02f9203363690719034d9b8509444b075ddeea09458b0",
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/software-defect-diagnosis/SKILL.md": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-journal-07-boundaries.json": "4aa20f51c52e58d8c5ebcc200ad0d0fe52e38e0f5e1bca25bf735680fd1fe553",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-journal-07-command.json": "efa5fbfa63f01ea80d7d5a0228fcec63a9c1a2dd54c7e3dcb18dd5ae684876bf",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-journal-07.json": "e738cec76a3cf251dab7e2df923642234d8af4c89ecfc5eed4c034a94482e7c7",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-journal-07.log": "f409ce5f9ca9d39e74bd1777ad39e9a745f3d235731774ad37855c1499a80e0f",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-hints-08-journal.json": "e6df2a7fc19481acc89bdfe853cf43ab7c18abbb268abb989204b4bff15bb33b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-hints-08-command.json": "0c1b6f1362a45dad0f455fce2b953b4f532871feacc6eb37e630abdc6df41c27",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-hints-08.json": "35caa2880047474886004746af45873a6b506ec55914394ab5bbf09f8b3ccf2d",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-hints-08.log": "1165aae82185ef2527abe0594434f595405bf1533d659a77d67d6fff4cdd93ac",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/hint-diagnostic-source-binding.json": "f9e4f4e7436d305a788873dee98d5af451ae7d3aa34a49bfa61664d8cb6a9f45",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/hint-diagnostic-original-PipeViewport.tsx": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/hint-diagnostic-instrumented-PipeViewport.tsx": "305db2013543131ef010d6ff117bae55abb7636e03ed42e1e8f6f9f97589558c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/c4-replacement-hint-diagnostic.spec.ts": "e2080377bf387b94ce1d2216cf36620f097235fa459bfe97da9f85379412e2a2"
+  },
+  "instruction_reads": "TASK/diagnosis full this assignment; Root/project/loop prior full reads retained and unchanged hashes",
+  "runs": {
+    "source-foundation-compact-lazy-04": {
+      "stats": {
+        "startTime": "2026-09-24T07:52:44.494Z",
+        "duration": 259271.4,
+        "expected": 28,
+        "skipped": 8,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "trace_entry_sha256": "63d4f3c26008043c23164ccce5a2475a131209b0b40378ed30a96ec3482d859e",
+      "poll_columns": [
+        "call",
+        "trace_end_ms",
+        "camera_sequence",
+        "render_sequence",
+        "owned_pending_raf",
+        "context_count",
+        "rendered_count",
+        "observers_created",
+        "observers_disposed",
+        "box_rectangles",
+        "pointer_key_events"
+      ],
+      "polls": [
+        [
+          "call@5339",
+          248424.217,
+          15,
+          19,
+          1,
+          1,
+          23,
+          13,
+          11,
+          0,
+          22
+        ],
+        [
+          "call@5341",
+          248482.151,
+          15,
+          22,
+          1,
+          0,
+          22,
+          16,
+          14,
+          0,
+          22
+        ],
+        [
+          "call@5343",
+          248543.296,
+          15,
+          25,
+          1,
+          1,
+          23,
+          19,
+          17,
+          0,
+          22
+        ],
+        [
+          "call@5345",
+          248851.298,
+          15,
+          31,
+          1,
+          0,
+          22,
+          24,
+          22,
+          0,
+          22
+        ],
+        [
+          "call@5347",
+          249193.411,
+          15,
+          49,
+          1,
+          0,
+          22,
+          42,
+          40,
+          0,
+          22
+        ],
+        [
+          "call@5349",
+          249850.431,
+          15,
+          76,
+          1,
+          1,
+          23,
+          69,
+          67,
+          0,
+          22
+        ],
+        [
+          "call@5351",
+          250947.745,
+          15,
+          123,
+          1,
+          1,
+          23,
+          117,
+          115,
+          0,
+          22
+        ],
+        [
+          "call@5353",
+          252003.325,
+          15,
+          181,
+          1,
+          0,
+          22,
+          174,
+          172,
+          0,
+          22
+        ],
+        [
+          "call@5355",
+          253052.993,
+          15,
+          235,
+          1,
+          0,
+          22,
+          228,
+          226,
+          0,
+          22
+        ],
+        [
+          "call@5357",
+          254101.785,
+          15,
+          293,
+          1,
+          0,
+          22,
+          286,
+          284,
+          0,
+          22
+        ],
+        [
+          "call@5359",
+          255157.869,
+          15,
+          351,
+          1,
+          0,
+          22,
+          344,
+          342,
+          0,
+          22
+        ],
+        [
+          "call@5361",
+          256218.825,
+          15,
+          406,
+          1,
+          1,
+          23,
+          399,
+          397,
+          0,
+          22
+        ],
+        [
+          "call@5363",
+          257282.357,
+          15,
+          463,
+          1,
+          0,
+          22,
+          456,
+          454,
+          0,
+          22
+        ],
+        [
+          "call@5365",
+          258341.156,
+          15,
+          520,
+          1,
+          1,
+          23,
+          513,
+          511,
+          0,
+          22
+        ]
+      ],
+      "full_camera_equal_across_post_open_polls": true,
+      "camera": {
+        "sequence": 15,
+        "kind": "perspective",
+        "position": [
+          3.3094010767585034,
+          2.3097845767585032,
+          2.3096040767585033
+        ],
+        "target": [
+          1,
+          0.00038350000000000016,
+          0.00020300000000000006
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fovDegrees": 42,
+        "near": 0.001,
+        "far": 1000,
+        "aspect": 0.9499105545617174,
+        "localRenderOrigin": [
+          1,
+          0.00038350000000000016,
+          0.00020300000000000006
+        ]
+      },
+      "last_event": {
+        "type": "lostpointercapture",
+        "trusted": true,
+        "key": null,
+        "pointerId": 1,
+        "buttons": 1,
+        "targetTag": "CANVAS",
+        "mainCanvas": true
+      }
+    },
+    "source-foundation-open-repro-05": {
+      "stats": {
+        "startTime": "2026-09-24T07:58:37.261Z",
+        "duration": 16489.646,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "trace_entry_sha256": "c88dd8d02785b10949b46f0d93ebb5b132250c27fdc31f05af34675ea58419ff",
+      "poll_columns": [
+        "call",
+        "trace_end_ms",
+        "camera_sequence",
+        "render_sequence",
+        "owned_pending_raf",
+        "context_count",
+        "rendered_count",
+        "observers_created",
+        "observers_disposed",
+        "box_rectangles",
+        "pointer_key_events"
+      ],
+      "polls": [
+        [
+          "call@141",
+          5706.9,
+          15,
+          19,
+          1,
+          1,
+          23,
+          13,
+          11,
+          0,
+          22
+        ],
+        [
+          "call@143",
+          5764.739,
+          15,
+          22,
+          1,
+          0,
+          22,
+          16,
+          14,
+          0,
+          22
+        ],
+        [
+          "call@145",
+          5822.195,
+          15,
+          25,
+          1,
+          1,
+          23,
+          19,
+          17,
+          0,
+          22
+        ],
+        [
+          "call@147",
+          6122.519,
+          15,
+          31,
+          1,
+          0,
+          22,
+          24,
+          22,
+          0,
+          22
+        ],
+        [
+          "call@149",
+          6468.861,
+          15,
+          49,
+          1,
+          0,
+          22,
+          42,
+          40,
+          0,
+          22
+        ],
+        [
+          "call@151",
+          7183.258,
+          15,
+          77,
+          1,
+          0,
+          22,
+          70,
+          68,
+          0,
+          22
+        ],
+        [
+          "call@153",
+          8237.108,
+          15,
+          126,
+          1,
+          0,
+          22,
+          120,
+          118,
+          0,
+          22
+        ],
+        [
+          "call@155",
+          9291.47,
+          15,
+          183,
+          1,
+          1,
+          23,
+          177,
+          175,
+          0,
+          22
+        ],
+        [
+          "call@157",
+          10349.274,
+          15,
+          241,
+          1,
+          0,
+          22,
+          234,
+          232,
+          0,
+          22
+        ],
+        [
+          "call@159",
+          11402.209,
+          15,
+          301,
+          1,
+          1,
+          23,
+          295,
+          293,
+          0,
+          22
+        ],
+        [
+          "call@161",
+          12456.599,
+          15,
+          362,
+          1,
+          0,
+          22,
+          356,
+          354,
+          0,
+          22
+        ],
+        [
+          "call@163",
+          13507.767,
+          15,
+          422,
+          1,
+          0,
+          22,
+          416,
+          414,
+          0,
+          22
+        ],
+        [
+          "call@165",
+          14561.824,
+          15,
+          482,
+          1,
+          0,
+          22,
+          476,
+          474,
+          0,
+          22
+        ],
+        [
+          "call@167",
+          15623.848,
+          15,
+          527,
+          1,
+          1,
+          23,
+          521,
+          519,
+          0,
+          22
+        ]
+      ],
+      "full_camera_equal_across_post_open_polls": true,
+      "camera": {
+        "sequence": 15,
+        "kind": "perspective",
+        "position": [
+          3.3094010767585034,
+          2.3097845767585032,
+          2.3096040767585033
+        ],
+        "target": [
+          1,
+          0.00038350000000000016,
+          0.00020300000000000006
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fovDegrees": 42,
+        "near": 0.001,
+        "far": 1000,
+        "aspect": 0.9499105545617174,
+        "localRenderOrigin": [
+          1,
+          0.00038350000000000016,
+          0.00020300000000000006
+        ]
+      },
+      "last_event": {
+        "type": "lostpointercapture",
+        "trusted": true,
+        "key": null,
+        "pointerId": 1,
+        "buttons": 1,
+        "targetTag": "CANVAS",
+        "mainCanvas": true
+      }
+    }
+  },
+  "observed_pointer": {
+    "client": [
+      803.235,
+      605.505
+    ],
+    "canvas_origin": [
+      705,
+      217
+    ],
+    "canvas_relative": [
+      98.235,
+      388.505
+    ],
+    "last_witness_event": "lostpointercapture CANVAS buttons=1; no subsequent pointermove before failed poll"
+  },
+  "dom_position_witness": {
+    "trace": "source-foundation-open-repro-05",
+    "entity_key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "positions": [
+      {
+        "snapshot": "before@call@141",
+        "left": 92.1813,
+        "top": 363.631
+      },
+      {
+        "snapshot": "after@call@139",
+        "left": 344.181,
+        "top": 215.631
+      }
+    ],
+    "css_size": [
+      58,
+      26
+    ],
+    "notes": "both placed and aria-hidden=false; first box contains stationary point with canvas/overlay origin relation; other does not. Snapshots and diagnostics are different sampling instants; hover-role mapping is not asserted.",
+    "measured_size_journal07": [
+      58,
+      32
+    ],
+    "css_size_limit": "58x26 was base CSS declaration only; journal07 supplies actual 58x32 bounding rect"
+  },
+  "inference": "Established recorded cause: a fresh live-hover hint is invalidated by an older render callback comparing it against captured hover=null; next hover layout has no hint and relocates plate, producing stationary-pointer enter/leave feedback and repeated invalidation.",
+  "instrumentation_proposal": "bounded boundary-event journal before begin; optional source-only logging at hint capture, invalidation checks and policy result; no extra RAF/timers or DOM writes; preserve original poll and rethrow on failure",
+  "historical_files_unchanged": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md": "00a3de9154db3079e8e15b1e7e0bce42627f9be0d9aa96d40415ac3520aa1bf5",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.json": "9794c44d76b2448c9014cd0207f0b3962af8c4418cd1a8259dc93074c4b9eb5d"
+  },
+  "writes": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.json"
+  ],
+  "journal07": {
+    "events": 160,
+    "post_capture_loss_events": 25,
+    "post_capture_loss_index": 135,
+    "same_camera": true,
+    "same_pointer": [
+      [
+        803.2349853515625,
+        605.5050048828125,
+        1
+      ]
+    ],
+    "recorded_event_samples": [
+      {
+        "type": "lostpointercapture",
+        "target": "CANVAS",
+        "related": null,
+        "x": 803.2349853515625,
+        "y": 605.5050048828125,
+        "buttons": 1,
+        "time": 2960.3999996185303,
+        "hit": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "rect": {
+          "x": 705,
+          "y": 217,
+          "width": 531,
+          "height": 559,
+          "top": 217,
+          "right": 1236,
+          "bottom": 776,
+          "left": 705
+        },
+        "context_count": 0
+      },
+      {
+        "type": "pointerenter",
+        "target": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "related": "CANVAS",
+        "x": 803.2349853515625,
+        "y": 605.5050048828125,
+        "buttons": 1,
+        "time": 2960.699999809265,
+        "hit": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "rect": {
+          "x": 797.171875,
+          "y": 580.625,
+          "width": 58,
+          "height": 32,
+          "top": 580.625,
+          "right": 855.171875,
+          "bottom": 612.625,
+          "left": 797.171875
+        },
+        "context_count": 0
+      },
+      {
+        "type": "pointerleave",
+        "target": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "related": "CANVAS",
+        "x": 803.2349853515625,
+        "y": 605.5050048828125,
+        "buttons": 1,
+        "time": 3213.7999997138977,
+        "hit": "CANVAS",
+        "rect": {
+          "x": 1049.171875,
+          "y": 432.625,
+          "width": 58,
+          "height": 32,
+          "top": 432.625,
+          "right": 1107.171875,
+          "bottom": 464.625,
+          "left": 1049.171875
+        },
+        "context_count": 1
+      },
+      {
+        "type": "pointerenter",
+        "target": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "related": "CANVAS",
+        "x": 803.2349853515625,
+        "y": 605.5050048828125,
+        "buttons": 1,
+        "time": 3234.0999999046326,
+        "hit": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "rect": {
+          "x": 797.171875,
+          "y": 580.625,
+          "width": 58,
+          "height": 32,
+          "top": 580.625,
+          "right": 855.171875,
+          "bottom": 612.625,
+          "left": 797.171875
+        },
+        "context_count": 0
+      },
+      {
+        "type": "pointerleave",
+        "target": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "related": "CANVAS",
+        "x": 803.2349853515625,
+        "y": 605.5050048828125,
+        "buttons": 1,
+        "time": 3253.3999996185303,
+        "hit": "CANVAS",
+        "rect": {
+          "x": 1049.171875,
+          "y": 432.625,
+          "width": 58,
+          "height": 32,
+          "top": 432.625,
+          "right": 1107.171875,
+          "bottom": 464.625,
+          "left": 1049.171875
+        },
+        "context_count": 1
+      }
+    ],
+    "finding": "actual node00011 hover-placement feedback established; hint capture/invalidation/placement rejection not directly observed",
+    "diagnostic_hash_at_command": "8d3a8b72047d09debc0c72d4a3aafb2801740cfc032cbcdaf75001b2766d3931",
+    "current_helper_binding_limit": "live helper has subsequent hint-logging edits; not asserted equal to journal07 command hash",
+    "required_next": "three optional logs: capture, pre-invalidation booleans, resulting placement; manager-reported run08 active, no result inferred"
+  },
+  "journal08": {
+    "events": 200,
+    "capture_count": 33,
+    "validation_count": 33,
+    "all_validations_only_stale_key_mismatch": true,
+    "first_capture": {
+      "phase": "capture",
+      "time": 3070.5,
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "closureHover": null,
+      "hint": {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "x": 121.1813155180389,
+        "y": 379.6309035592872,
+        "generation": "3:3",
+        "cameraSequence": 15,
+        "width": 531,
+        "height": 559,
+        "radii": {}
+      },
+      "priorPlacement": {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    },
+    "first_validation": {
+      "phase": "validate",
+      "time": 3085.6000003814697,
+      "closureHover": null,
+      "preferred": {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "x": 121.1813155180389,
+        "y": 379.6309035592872,
+        "generation": "3:3",
+        "cameraSequence": 15,
+        "width": 531,
+        "height": 559,
+        "radii": {}
+      },
+      "invalid": {
+        "key": true,
+        "hidden": false,
+        "generation": false,
+        "camera": false,
+        "width": false,
+        "height": false,
+        "radii": false
+      }
+    },
+    "first_committed_hover_placement": {
+      "phase": "placed",
+      "time": 3312.7000002861023,
+      "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "hint": null,
+      "rendered": [
+        {
+          "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+          "role": "hover",
+          "rect": {
+            "left": 344.1813155180389,
+            "right": 402.1813155180389,
+            "top": 215.63090355928722,
+            "bottom": 247.63090355928722
+          }
+        },
+        {
+          "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+          "role": "ordinary",
+          "rect": {
+            "left": 400.0657695637786,
+            "right": 458.0657695637786,
+            "top": 175.609765018703,
+            "bottom": 207.609765018703
+          }
+        }
+      ],
+      "counts": {
+        "context": 1,
+        "ordinary": 22,
+        "total": 23,
+        "contextOverflow": 0,
+        "suppressed": 0,
+        "ineligible": 1,
+        "unplaced": 19
+      }
+    },
+    "bound_source_hashes": {
+      "product_base": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+      "original_sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+      "instrumented_sha256": "305db2013543131ef010d6ff117bae55abb7636e03ed42e1e8f6f9f97589558c",
+      "limit": "temporary optional bounded journal only, no semantic changes; restore exact original after diagnosis; test original assertion rethrows"
+    },
+    "archived_diagnostic_spec_matches_command": true,
+    "restoration_observation": {
+      "current_PipeViewport_equals_858": true,
+      "sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+      "temporary_spec_absent": true
+    },
+    "limit": "temporary diagnostic logging perturbs timing; same failure reproduced in two earlier unchanged source runs. Proves recorded stale-key hint invalidation, not general performance qualification."
+  },
+  "repair_direction": "Publish synchronous live hover identity on every actual hover transition; hint key validation reads live ref, policy input remains React state; retain all geometry/Hide/generation guards and clear retired/mismatched hints without discarding a fresh matching entry hint.",
+  "remaining_verification": "No repair yet inspected. Deterministic capture\u2192old updater\u2192new hover regression, true invalidation regressions, unchanged exact case and full compact connected reruns required.",
+  "_portable_view": {
+    "kind": "portable derivative of preserved historical evidence",
+    "original_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.json",
+    "original_bytes": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/portability-originals/RAF_REPLACEMENT_DIAGNOSIS.json",
+    "original_sha256": "78cf096772cc1fd4006de5b96b13d2920d4b32e9e389fa8c1e51a793fca7fcfe",
+    "field_roots": {
+      "REPO_ROOT": "Git root of the isolated C4 checkout supplied at execution; actual machine path remains in original_bytes",
+      "relative_paths": "Keep original field-specific roots; input/source path maps remain repository-relative unless their owning record explicitly states otherwise",
+      "hash_bindings": "Historical hash values retain their original checked bytes. For the eleven converted records resolve original_path plus original_sha256 through PORTABILITY_DISPOSITION.json; no binding is silently rehashed."
+    },
+    "semantic_change": false
+  }
+}

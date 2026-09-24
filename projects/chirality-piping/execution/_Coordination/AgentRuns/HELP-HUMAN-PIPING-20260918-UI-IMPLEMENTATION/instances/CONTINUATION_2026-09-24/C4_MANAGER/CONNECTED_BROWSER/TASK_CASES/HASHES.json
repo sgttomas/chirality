@@ -1,0 +1,70 @@
+{
+  "mechanism": "delegated-harness-native",
+  "agent": "/root/c4_manager/browser_cases_task",
+  "parent": "/root/c4_manager",
+  "role": "TASK Type 2",
+  "source_merge": "6bbaa0bc74268f885b0f95b7045050fada5c7f2e",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md",
+      "sha256": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/BASIS_INTEGRATION/RETURN.md",
+      "sha256": "3ba92a435be9e79803e63febb4a589efb71ddedd4972929d6ec3ce9ac0328a9f",
+      "kind": "supplied-basis"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts",
+      "sha256": "03bcacb89c2aa475b785656f41598784c4f79576c2f438e5a6d77f11aae9c0eb",
+      "kind": "output"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.spec.ts",
+      "sha256": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+      "kind": "output"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/c4-label-policy-dist.spec.ts",
+      "sha256": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+      "kind": "output"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_GUIDANCE.md",
+      "sha256": "2d9c1f760c7b0c75cdaa53890ff9f28f03850f1a47ec8d85ca2fa59225b32be8",
+      "kind": "supplied-basis"
+    }
+  ],
+  "review_repair_basis": {
+    "manager_reported_head": "8589065f6",
+    "preedit_sha256": "848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c",
+    "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-tested-scenarios.ts",
+    "archive_sha256": "848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c"
+  }
+}

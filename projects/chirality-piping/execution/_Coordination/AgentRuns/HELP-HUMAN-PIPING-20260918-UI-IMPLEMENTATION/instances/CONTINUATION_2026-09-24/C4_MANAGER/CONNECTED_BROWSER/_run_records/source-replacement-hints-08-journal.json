@@ -1,0 +1,6610 @@
+[
+  {
+    "phase": "placed",
+    "time": 3038.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3070.5,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3085.6000003814697,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3086.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3302.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3312.7000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3323.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3334.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3342.4000000953674,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3342.9000000953674,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3343.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3354,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3361.4000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3372.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3380.2000002861023,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3381.7000002861023,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3382.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3393.2000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3401.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3412.7000002861023,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3418.7000002861023,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3419.1000003814697,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3419.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3430.6000003814697,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3438.9000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3449.7000002861023,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3457.2000002861023,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3457.800000190735,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3458.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3469.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3476.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3487.4000000953674,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3494.800000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3495.2000002861023,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3495.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3506.300000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3512.4000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3522.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3527.6000003814697,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3528.1000003814697,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3528.7000002861023,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3581.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3648.7000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3704,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3769.2000002861023,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3769.7000002861023,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3770.4000000953674,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3823.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3830,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3843,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3848,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3848.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3849.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3859.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3866.1000003814697,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3877,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3882,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3882.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3883.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3894,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3900.2000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3911.9000000953674,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3917,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3917.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3917.9000000953674,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3928.2000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3934.1000003814697,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3945.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3950.2000002861023,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3950.7000002861023,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3951.2000002861023,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3962,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3967.9000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3978.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 3983.1000003814697,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 3983.6000003814697,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3984.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 3994.9000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4001.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4012.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4017.1000003814697,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4017.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4018.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4028.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4034.2000002861023,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4045.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4050.4000000953674,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4050.9000000953674,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4051.4000000953674,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4061.6000003814697,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4067.4000000953674,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4078.1000003814697,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4082.9000000953674,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4083.4000000953674,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4084,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4095,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4101,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4114.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4119.300000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4119.800000190735,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4120.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4132,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4137.900000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4151.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4156.10000038147,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4156.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4157,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4167.700000286102,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4173.400000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4184.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4189.5,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4189.800000190735,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4190.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4200.60000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4206.400000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4217.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4222.200000286102,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4222.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4223.10000038147,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4233.400000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4239.10000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4249.700000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4254.60000038147,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4255,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4255.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4265.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4272.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4283.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4288,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4288.300000190735,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4288.900000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4299.60000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4305.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4316.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4321.300000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4321.700000286102,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4322.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4332.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4338.400000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4348.900000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4353.60000038147,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4354,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4354.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4365.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4371.700000286102,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4382.60000038147,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4387.400000095367,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4387.900000095367,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4388.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4399.10000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4404.800000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4415.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4420,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4420.400000095367,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4420.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4431.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4437.300000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4447.900000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4453.5,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4454,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4454.5,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4465,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4470.700000286102,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4481.400000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4486.300000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4486.700000286102,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4487.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4497.60000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4503.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4514.300000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4519.300000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4519.800000190735,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4520.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4530.700000286102,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4537.400000095367,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4589.700000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4650.800000190735,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4651.200000286102,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4651.700000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4703.60000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4765.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4821.10000038147,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4826,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4826.400000095367,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4826.900000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4838.5,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4844.300000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4857.200000286102,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4862.200000286102,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4862.60000038147,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4863.10000038147,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4873.200000286102,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4879,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4893.800000190735,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "capture",
+    "time": 4899,
+    "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "closureHover": null,
+    "hint": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "priorPlacement": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "role": "ordinary",
+      "rect": {
+        "left": 92.1813155180389,
+        "right": 150.1813155180389,
+        "top": 363.6309035592872,
+        "bottom": 395.6309035592872
+      }
+    }
+  },
+  {
+    "phase": "validate",
+    "time": 4899.5,
+    "closureHover": null,
+    "preferred": {
+      "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+      "x": 121.1813155180389,
+      "y": 379.6309035592872,
+      "generation": "3:3",
+      "cameraSequence": 15,
+      "width": 531,
+      "height": 559,
+      "radii": {}
+    },
+    "invalid": {
+      "key": true,
+      "hidden": false,
+      "generation": false,
+      "camera": false,
+      "width": false,
+      "height": false,
+      "radii": false
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4899.900000095367,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4910.300000190735,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4916.10000038147,
+    "hover": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "hover",
+        "rect": {
+          "left": 344.1813155180389,
+          "right": 402.1813155180389,
+          "top": 215.63090355928722,
+          "bottom": 247.63090355928722
+        }
+      },
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 400.0657695637786,
+          "right": 458.0657695637786,
+          "top": 175.609765018703,
+          "bottom": 207.609765018703
+        }
+      }
+    ],
+    "counts": {
+      "context": 1,
+      "ordinary": 22,
+      "total": 23,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 19
+    }
+  },
+  {
+    "phase": "placed",
+    "time": 4926.60000038147,
+    "hover": null,
+    "hint": null,
+    "rendered": [
+      {
+        "key": "[\"pipe\",\"pipe:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 148.0657695637786,
+          "right": 206.0657695637786,
+          "top": 323.609765018703,
+          "bottom": 355.609765018703
+        }
+      },
+      {
+        "key": "[\"node\",\"node:UIF-PRECISION-00011\"]",
+        "role": "ordinary",
+        "rect": {
+          "left": 92.1813155180389,
+          "right": 150.1813155180389,
+          "top": 363.6309035592872,
+          "bottom": 395.6309035592872
+        }
+      }
+    ],
+    "counts": {
+      "context": 0,
+      "ordinary": 22,
+      "total": 22,
+      "contextOverflow": 0,
+      "suppressed": 0,
+      "ineligible": 1,
+      "unplaced": 20
+    }
+  }
+]

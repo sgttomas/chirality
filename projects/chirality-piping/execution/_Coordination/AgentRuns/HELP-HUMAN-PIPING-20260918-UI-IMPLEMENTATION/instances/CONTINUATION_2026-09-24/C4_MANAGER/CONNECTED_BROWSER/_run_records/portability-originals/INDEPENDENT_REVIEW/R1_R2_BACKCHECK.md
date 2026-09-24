@@ -1,0 +1,29 @@
+# R1/R2 frozen E2E backcheck
+
+**C4-CONNECTED-R1 and C4-CONNECTED-R2 are resolved in source. No new actionable finding in the complete one-file frozen delta.** Candidate `d502c8357d8ecac46a3e3052ed65c59d242a3e55` is suitable for bounded test-source fan-in; affected browser execution remains a separate requirement. This return does not review the in-progress product hover repair, claim a full-suite pass or close connected actual overflow.
+
+## Exact review basis and scope
+
+Reviewed the full scenario file and complete delta from `8589065f6d86389babd7bc18a3bfc6c42643f3be` to the candidate above. The only changed path is `projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts`, exact SHA-256 `03bcacb89c2aa475b785656f41598784c4f79576c2f438e5a6d77f11aae9c0eb`. Source was read from the frozen Git blob, avoiding the concurrently changing product worktree. The explicit one-path repository scope validator and frozen-diff whitespace check passed. No wrapper, product, helper, configuration, protected instrument or limit changes occur in this delta.
+
+Original RETURN.md/HASHES.json, including both reported findings, remain unchanged. This separate backcheck supplies their disposition. A001_DIAGNOSIS.md/JSON also remain unchanged.
+
+## Finding resolutions
+
+**R1 resolved — exact accessible omission contents.** The shared `witness` helper at lines 87–99 now requires zero list rows while closed, opens the actual summary control, constructs canonical ordered suppressed `key: reason` and unplaced `key: joined reasons` arrays, checks list count and polls the full `allTextContents()` array for exact equality. It closes through the summary and requires zero mounted rows again. Incorrect reasons, duplicated/substituted identity rows and n1/n10 substring ambiguity no longer satisfy the oracle. Polling waits for React/native-toggle publication without dropping identities or weakening equality. All source/dist scenarios use this same helper.
+
+**R2 resolved — selection-preservation checkpoints.** The first scenario at lines 118–154 reads orderedRefs and primaryRef after deliberate visible A selection, first verifies that baseline equals exactly one selected node A with primary A, and then compares fresh diagnostics with that baseline after mode changes, primary/ordinary hover and leave, Isolate, Hide, Show All, resize, Fit Model, camera preset, viewport accelerator and final invariant-navigation phases. The baseline is not silently taken from an incorrect selection. The checks remain local to presentation-only actions, so the intentional review/tree/box routes in other cases are not falsely required to preserve a global selection snapshot. Existing model/hash/history/results assertions remain.
+
+These changes repair the assertions identified by the original review. No execution was performed by this reviewer, and no passing runtime result is inferred from the static backcheck. The manager separately reports a product hover race under diagnosis/repair; that product behavior is deliberately outside this frozen test-only review. Its candidate and affected execution need later independent coverage.
+
+## Failed overflow trial preservation and remaining gate
+
+The removed code is only the newly introduced speculative coincident-positive-overflow branch, its fixture multiplier and its strict branch-specific checks. The unique 136-node spatial-omission scenario keeps its inventory, exact selected/placed-plus-unplaced contextual identity conservation, zero context suppression/ineligibility, nonempty truthful omissions, arithmetic, containment/non-overlap, exposed projected node points and model/history/result invariants. Five maintained scenario definitions remain; unchanged wrappers/configuration determine source/dist project expansion.
+
+The current parent brief explicitly relays ROOT authorization to archive that unsuccessful speculative case. `_run_records/overflow-trial-retention.json` keeps the exact former source commit/path/hash and states that connected actual context above budget remains OPEN, not passed. Its `source-c4-overflow-04-tested-scenarios.ts` is byte-for-byte equal to the canonical `4942ca78629302355a5dff7c50cf2a0abc5ed614` blob, SHA-256 `848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c`, including the failed original readability/overflow assertions. Previously hashed trial04 command, raw failure, placement attachment, error snapshot, trace and screenshot all remain unchanged. This is authorized archival with exact recoverability, not an observed repair or conversion of a failed check into acceptance.
+
+Trial04 still establishes 90 placed contexts versus B113 and failed full inline A001 readability. The separate completed A001 diagnosis identifies contained existing ellipsis without a C4 measurement defect. Neither removing the speculative case nor the remaining omission case supplies the missing actual-overflow witness. The later product hover repair, affected source/dist checks, final connected evidence freeze, full registered/CI/native/profile requirements and the OPEN overflow gate remain with the manager/ROOT.
+
+## Execution attribution
+
+Reviewer `/root/c4_manager/connected_review` resumed as independent TASK Type 2 through delegated-harness-native collaboration under `/root/c4_manager`; no descendants. Full previously read Root/project/TASK/software-code-review instruction hashes were checked unchanged. Every command explicitly used `/private/tmp/piping-c4-policy-20260924`. Only this R1_R2_BACKCHECK.md and R1_R2_BACKCHECK_HASHES.json were written. No compiler/tests/build, browser/native/CUA, resources/ports/network, product edits, Git mutation or delegation occurred. The parent integrates the result and owns runtime verification. The adjacent manifest binds the frozen source, exact archive, retained original review and actual checks.

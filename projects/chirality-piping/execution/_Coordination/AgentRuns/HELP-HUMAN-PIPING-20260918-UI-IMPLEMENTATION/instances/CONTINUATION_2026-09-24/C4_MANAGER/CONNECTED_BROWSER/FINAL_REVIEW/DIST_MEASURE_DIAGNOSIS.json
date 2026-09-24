@@ -1,0 +1,161 @@
+{
+  "schema": "chirality-bounded-software-diagnosis/v1",
+  "recorded_at_utc": "2026-09-24T13:13:02.361362+00:00",
+  "reviewer": "/root/c4_resume/final_review",
+  "parent": "/root/c4_resume",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK Type 2",
+  "descendants": [],
+  "candidate": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "classification": "confirmed finite-placement / maintained keyboard-workflow compatibility gap; unresolved dist failure",
+  "reproductions": {
+    "dist13": {
+      "expected": 8,
+      "unexpected": 1,
+      "not_run": 45
+    },
+    "unchanged14": "same timeout",
+    "diagnostic15": "same timeout, captured Fit-before-Measure divergence"
+  },
+  "own_rectangle": [
+    288.474403045736,
+    162.97597737844478,
+    635.5255969542636,
+    377.02402262155556
+  ],
+  "independent_numeric_record_check": {
+    "candidate_count": 24,
+    "all_contained": true,
+    "all_overlap_own_rectangle": true
+  },
+  "probe_bindings_verified": true,
+  "reviewer_executed_product_or_test": false,
+  "sources": [
+    {
+      "origin": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts",
+      "sha256": "5fb469041a5a59d532d95cf78d0651e3205292c4bc0bb447e0546de8e0330850"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts",
+      "sha256": "e796dc5c58fcb54e2ed02f9203363690719034d9b8509444b075ddeea09458b0"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+      "sha256": "a2b6fd7415e2f5de95927f8084c320dc1ea05c12549edd2e2b5d64e0da20ade2"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "sha256": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/styles.css",
+      "sha256": "2d174ef051e8229b6c060f3bd3414181a75cd890cc60c78b8684bf849b189824"
+    },
+    {
+      "origin": "projects/chirality-piping/fixtures/product_preview/invented_preview_model.json",
+      "sha256": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-connected-replacement-13.json",
+      "sha256": "1754b726ec1daa1cacd1b351cc80edd1a19ad6bfe0e54922181ced23f680fec8"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-connected-replacement-13-command.json",
+      "sha256": "1789fcf8377df1c53a9ad9e5861d582c489fc1ed7527c30ce366aec908d3dd02"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repro-14.json",
+      "sha256": "d482d6aeaf6d05149d8494f43880055c826466fd56839d0c456299ee9ac240fa"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repro-14-command.json",
+      "sha256": "32ac7745ff9c9379d8484c94eb584183ce26f9a9fbb9f99f90b219820690b629"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15.json",
+      "sha256": "168628244f729dc9b7d5719d3fb53494f8beaf0ab0cf2dcbb75b5ef3e352a36f"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-command.json",
+      "sha256": "a0823ba5e121205145183b5b5af63252dac479c8c18bd187263ac64c8c7f14f2"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-tested-spec.ts",
+      "sha256": "7f518ed4a5fc280774d307087ea74a01030da49085f0a188f36cb89882870190"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-before-fit-selection.json",
+      "sha256": "7895aea5151a27cae15967cc999eeff3a20b1871e07cc984e25dd7e2d38c82a6"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-after-fit-selection.json",
+      "sha256": "eab056489cf249085c7514657ac685f3998835a261585bc58aea6513112814eb"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-diagnostic-15-before-selected-pipe-keyboard-measurement.json",
+      "sha256": "1b6f16a80ce532a49d68843d0c0e6d7abfdc8612af85305faa3545762a34ed38"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe.ts",
+      "sha256": "bf4db3b9c853e2146aeba413d1bdc012b020cbbbbce2046336ffc2aa60d6b803"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe.mjs",
+      "sha256": "5ea4e4f7f00a8a968e2d59cedbc47778737a2e599eab15d23ec1cfd7311e7cc7"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe.log",
+      "sha256": "98bc7bff3168bcd1c498ab112828e20332fadf1a971fd606154202b93663067d"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe-result.json",
+      "sha256": "e7c3433e38d905bce2e1a36b8185debb16030a03c866bf43044a5722bab0090b"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/production-build-01-command.json",
+      "sha256": "713e8a71fc5e7d762f6d7bc35f1206274b373d690ded568d9b75d319071fe330"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/production-build-01-result.json",
+      "sha256": "d21ca0a3178d06d2f75373340fe95511acb8f93353d5f47fd068671657833210"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-connected-replacement-13/ui-foundation-dist-content-2b756-as-budget-light-comfortable-chromium-desktop-dist/trace.zip",
+      "sha256": "77a0027abeef589ad501e79b3ebae54febd09bd6ab527a14d60b9d4c21e6310f"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-connected-replacement-13/ui-foundation-dist-content-2b756-as-budget-light-comfortable-chromium-desktop-dist/error-context.md",
+      "sha256": "152269531e5012ec1590e1ad172b4eaeb55231560660668d0dfa54fa46ecbef9"
+    }
+  ],
+  "report": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FINAL_REVIEW/DIST_MEASURE_DIAGNOSIS.md",
+    "sha256": "13ef92292c1686e9a9fcf7ef65fc1b4325c69a11a7fc2e828c2aab7cc2de4524"
+  },
+  "limits": [
+    "No implementation or test-contract change authorized by diagnosis.",
+    "Broader dist/final connected verdict unresolved.",
+    "Positive connected overflow remains OPEN.",
+    "No native/performance/fullgate acceptance."
+  ]
+}

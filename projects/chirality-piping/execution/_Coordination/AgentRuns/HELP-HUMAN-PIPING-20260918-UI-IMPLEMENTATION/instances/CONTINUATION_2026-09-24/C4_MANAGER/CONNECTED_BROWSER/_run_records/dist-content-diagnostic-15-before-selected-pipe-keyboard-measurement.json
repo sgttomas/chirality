@@ -1,0 +1,690 @@
+{
+  "snapshot": {
+    "model": {
+      "projectId": "project:invented-loop-01",
+      "generation": 1,
+      "indexGeneration": "1:1",
+      "projectSessionGeneration": 1,
+      "identityHash": "ui-model-fnv32x2:84ac339b9c2d0cf7:13480",
+      "assignment": {
+        "status": "committed",
+        "generation": 1,
+        "startedAt": 94.5,
+        "committedAt": 95.30000019073486
+      }
+    },
+    "tree": {
+      "generation": 1,
+      "publicationSequence": 3,
+      "query": "",
+      "visibleCount": 27,
+      "publishedAt": 2272.9000000953674
+    },
+    "viewport": {
+      "generation": 1,
+      "canvas": {
+        "cssLeft": 56,
+        "cssTop": 204,
+        "cssWidth": 924,
+        "cssHeight": 540,
+        "dpr": 1,
+        "bufferWidth": 924,
+        "bufferHeight": 540
+      },
+      "camera": {
+        "sequence": 9,
+        "kind": "perspective",
+        "position": [
+          5.033617520924543,
+          3.4336175209245434,
+          3.433617520924543
+        ],
+        "target": [
+          1.6,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fovDegrees": 42,
+        "near": 0.001,
+        "far": 1000,
+        "aspect": 1.711111111111111,
+        "localRenderOrigin": [
+          3.8,
+          1.2,
+          1.1
+        ]
+      },
+      "mainRender": {
+        "submissionSequence": 12,
+        "generation": 1,
+        "reason": "invalidation",
+        "submittedAt": 2474,
+        "selectionPresentation": {
+          "resourceGeneration": 1,
+          "modelGeneration": 1,
+          "revision": 7,
+          "appliedAfterSubmissionSequence": 7,
+          "renderedSubmissionSequence": 12,
+          "orderedRefs": [
+            {
+              "type": "pipe",
+              "id": "pipe:P-100"
+            }
+          ]
+        },
+        "nextPaintOpportunity": null
+      },
+      "selection": {
+        "actionSequence": 2,
+        "generation": 1,
+        "inputKind": "external",
+        "pointerDownAt": null,
+        "orderedRefs": [
+          {
+            "type": "pipe",
+            "id": "pipe:P-100"
+          }
+        ],
+        "primaryRef": {
+          "type": "pipe",
+          "id": "pipe:P-100"
+        },
+        "publishedAt": 1932.5999999046326,
+        "renderSubmissionSequence": 12
+      },
+      "inspector": {
+        "generation": 1,
+        "ref": {
+          "type": "pipe",
+          "id": "pipe:P-100"
+        },
+        "publicationSequence": 1,
+        "publishedAt": 2446.300000190735
+      },
+      "filter": {
+        "actionSequence": 2,
+        "generation": 1,
+        "query": "",
+        "visibleCount": 27,
+        "inputAt": 2270.5,
+        "inputEventTimeStamp": 2269.9000000953674,
+        "publishedAt": 2272.9000000953674,
+        "renderSubmissionSequence": 12
+      },
+      "box": {
+        "status": "unavailable"
+      },
+      "labels": {
+        "enabled": true,
+        "renderedCount": 8,
+        "budget": 138,
+        "mode": "Budget",
+        "placementStatus": "applied",
+        "projectionError": null,
+        "contextCount": 0,
+        "ordinaryCount": 8,
+        "contextOverflow": 0,
+        "suppressed": [],
+        "ineligible": [],
+        "unplaced": [
+          {
+            "key": "[\"pipe\",\"pipe:P-100\"]",
+            "role": "primary",
+            "reasons": [
+              "picking"
+            ]
+          },
+          {
+            "key": "[\"component\",\"component:C-120\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"pipe\",\"pipe:P-120\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"component\",\"component:C-130\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"node\",\"node:N-130\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"support\",\"support:NL-130-FRIC\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"support\",\"support:S-130\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"pipe\",\"pipe:P-130\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"component\",\"component:C-140\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"component\",\"component:C-150\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"node\",\"node:N-140\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"support\",\"support:NL-140\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          },
+          {
+            "key": "[\"support\",\"support:SH-140\"]",
+            "role": "ordinary",
+            "reasons": [
+              "outside-frustum"
+            ]
+          }
+        ]
+      },
+      "geometry": {
+        "mode": "schematic",
+        "odGeneration": 0,
+        "odStatus": "not-requested"
+      },
+      "resources": {
+        "rendererInfo": {
+          "geometries": 17,
+          "textures": 3,
+          "calls": 14,
+          "triangles": 2580,
+          "points": 1,
+          "lines": 27
+        },
+        "ownedPendingRafCount": 0,
+        "owned": {
+          "generation": 1,
+          "live": {
+            "pipeMeshes": 8,
+            "nodeMeshes": 8,
+            "supportMeshes": 2,
+            "componentMeshes": 8,
+            "geometries": 20,
+            "materials": 35,
+            "textures": 3,
+            "instanceMatrices": 28,
+            "instanceColors": 26,
+            "controls": 1,
+            "eventBindings": 8,
+            "resizeObservers": 2
+          },
+          "created": {
+            "pipeMeshes": 8,
+            "nodeMeshes": 8,
+            "supportMeshes": 2,
+            "componentMeshes": 8,
+            "geometries": 20,
+            "materials": 35,
+            "textures": 3,
+            "instanceMatrices": 28,
+            "instanceColors": 26,
+            "controls": 1,
+            "eventBindings": 10,
+            "resizeObservers": 4
+          },
+          "disposed": {
+            "pipeMeshes": 0,
+            "nodeMeshes": 0,
+            "supportMeshes": 0,
+            "componentMeshes": 0,
+            "geometries": 0,
+            "materials": 0,
+            "textures": 0,
+            "instanceMatrices": 0,
+            "instanceColors": 0,
+            "controls": 0,
+            "eventBindings": 2,
+            "resizeObservers": 2
+          }
+        },
+        "context": {
+          "generation": 1,
+          "canvasConnected": true,
+          "lostCount": 0,
+          "restoredCount": 0
+        }
+      }
+    },
+    "schema": "openpipestress.ui-diagnostics/v1",
+    "snapshotSequence": 3,
+    "capturedAt": 2540.5
+  },
+  "canvas": {
+    "x": 56,
+    "y": 204,
+    "width": 924,
+    "height": 540,
+    "top": 204,
+    "right": 980,
+    "bottom": 744,
+    "left": 56
+  },
+  "labels": [
+    {
+      "key": "[\"node\",\"node:N-100\"]",
+      "aria": "Select Pump nozzle in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 222.183px; top: 131.133px;",
+      "rect": {
+        "x": 278.171875,
+        "y": 335.125,
+        "width": 58,
+        "height": 32,
+        "top": 335.125,
+        "right": 336.171875,
+        "bottom": 367.125,
+        "left": 278.171875
+      },
+      "text": "N-100"
+    },
+    {
+      "key": "[\"node\",\"node:N-110\"]",
+      "aria": "Select Low point elbow in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 591.413px; top: 437.46px;",
+      "rect": {
+        "x": 647.40625,
+        "y": 641.453125,
+        "width": 58,
+        "height": 32,
+        "top": 641.453125,
+        "right": 705.40625,
+        "bottom": 673.453125,
+        "left": 647.40625
+      },
+      "text": "N-110"
+    },
+    {
+      "key": "[\"node\",\"node:N-120\"]",
+      "aria": "Select Riser elbow in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 494.752px; top: 1.4066px;",
+      "rect": {
+        "x": 550.75,
+        "y": 205.40625,
+        "width": 58,
+        "height": 32,
+        "top": 205.40625,
+        "right": 608.75,
+        "bottom": 237.40625,
+        "left": 550.75
+      },
+      "text": "N-120"
+    },
+    {
+      "key": "[\"node\",\"node:N-130\"]",
+      "aria": "Select Rack turn in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 741.248px; top: 261.538px;",
+      "rect": {
+        "x": 797.234375,
+        "y": 465.53125,
+        "width": 58,
+        "height": 32,
+        "top": 465.53125,
+        "right": 855.234375,
+        "bottom": 497.53125,
+        "left": 797.234375
+      },
+      "text": "N-130"
+    },
+    {
+      "key": "[\"node\",\"node:N-140\"]",
+      "aria": "Select Terminal tie-in in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 565.196px; top: 380.67px;",
+      "rect": {
+        "x": 621.1875,
+        "y": 584.65625,
+        "width": 58,
+        "height": 32,
+        "top": 584.65625,
+        "right": 679.1875,
+        "bottom": 616.65625,
+        "left": 621.1875
+      },
+      "text": "N-140"
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-100\"]",
+      "aria": "Select Pump discharge run in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 304.391px; top: 182.124px;",
+      "rect": {
+        "x": 360.375,
+        "y": 386.109375,
+        "width": 58,
+        "height": 32,
+        "top": 386.109375,
+        "right": 418.375,
+        "bottom": 418.109375,
+        "left": 360.375
+      },
+      "text": "P-100"
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-110\"]",
+      "aria": "Select Vertical riser in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 459.756px; top: 108.954px;",
+      "rect": {
+        "x": 515.75,
+        "y": 312.953125,
+        "width": 58,
+        "height": 32,
+        "top": 312.953125,
+        "right": 573.75,
+        "bottom": 344.953125,
+        "left": 515.75
+      },
+      "text": "P-110"
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-120\"]",
+      "aria": "Select Rack span in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 695.751px; top: 119.035px;",
+      "rect": {
+        "x": 751.75,
+        "y": 323.03125,
+        "width": 58,
+        "height": 32,
+        "top": 323.03125,
+        "right": 809.75,
+        "bottom": 355.03125,
+        "left": 751.75
+      },
+      "text": "P-120"
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-130\"]",
+      "aria": "Select Tie-in rise in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 765.107px; top: 199.247px;",
+      "rect": {
+        "x": 821.09375,
+        "y": 403.234375,
+        "width": 58,
+        "height": 32,
+        "top": 403.234375,
+        "right": 879.09375,
+        "bottom": 435.234375,
+        "left": 821.09375
+      },
+      "text": "P-130"
+    },
+    {
+      "key": "[\"support\",\"support:S-100\"]",
+      "aria": "Select Anchor at pump nozzle in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 224.659px; top: 265.83px;",
+      "rect": {
+        "x": 280.65625,
+        "y": 469.828125,
+        "width": 58,
+        "height": 32,
+        "top": 469.828125,
+        "right": 338.65625,
+        "bottom": 501.828125,
+        "left": 280.65625
+      },
+      "text": "S-100"
+    },
+    {
+      "key": "[\"support\",\"support:S-120\"]",
+      "aria": "Select Guide on riser in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 486.083px; top: 50.8364px;",
+      "rect": {
+        "x": 542.078125,
+        "y": 254.828125,
+        "width": 58,
+        "height": 32,
+        "top": 254.828125,
+        "right": 600.078125,
+        "bottom": 286.828125,
+        "left": 542.078125
+      },
+      "text": "S-120"
+    },
+    {
+      "key": "[\"support\",\"support:S-130\"]",
+      "aria": "Select Rack shoe in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 800.483px; top: 274.336px;",
+      "rect": {
+        "x": 856.46875,
+        "y": 478.328125,
+        "width": 58,
+        "height": 32,
+        "top": 478.328125,
+        "right": 914.46875,
+        "bottom": 510.328125,
+        "left": 856.46875
+      },
+      "text": "S-130"
+    },
+    {
+      "key": "[\"support\",\"support:NL-140\"]",
+      "aria": "Select Preview one-way terminal stop in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 720.271px; top: 430.126px;",
+      "rect": {
+        "x": 776.265625,
+        "y": 634.125,
+        "width": 58,
+        "height": 32,
+        "top": 634.125,
+        "right": 834.265625,
+        "bottom": 666.125,
+        "left": 776.265625
+      },
+      "text": "NL-140"
+    },
+    {
+      "key": "[\"support\",\"support:NL-130-FRIC\"]",
+      "aria": "Select Preview sliding-friction rack shoe in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 800.483px; top: 366.336px;",
+      "rect": {
+        "x": 856.46875,
+        "y": 570.328125,
+        "width": 58,
+        "height": 32,
+        "top": 570.328125,
+        "right": 914.46875,
+        "bottom": 602.328125,
+        "left": 856.46875
+      },
+      "text": "NL-130-FRIC"
+    },
+    {
+      "key": "[\"support\",\"support:SH-140\"]",
+      "aria": "Select Invented variable spring hanger in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 406.271px; top: 430.126px;",
+      "rect": {
+        "x": 462.265625,
+        "y": 634.125,
+        "width": 58,
+        "height": 32,
+        "top": 634.125,
+        "right": 520.265625,
+        "bottom": 666.125,
+        "left": 462.265625
+      },
+      "text": "SH-140"
+    },
+    {
+      "key": "[\"support\",\"support:CE-120\"]",
+      "aria": "Select Invented constant-effort support in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 548.083px; top: 106.836px;",
+      "rect": {
+        "x": 604.078125,
+        "y": 310.828125,
+        "width": 58,
+        "height": 32,
+        "top": 310.828125,
+        "right": 662.078125,
+        "bottom": 342.828125,
+        "left": 604.078125
+      },
+      "text": "CE-120"
+    },
+    {
+      "key": "[\"component\",\"component:C-110\"]",
+      "aria": "Select Invented elbow marker in viewport",
+      "hidden": false,
+      "ariaHidden": "false",
+      "style": "left: 438.14px; top: 416.209px;",
+      "rect": {
+        "x": 494.125,
+        "y": 620.203125,
+        "width": 58,
+        "height": 32,
+        "top": 620.203125,
+        "right": 552.125,
+        "bottom": 652.203125,
+        "left": 494.125
+      },
+      "text": "C-110"
+    },
+    {
+      "key": "[\"component\",\"component:C-120\"]",
+      "aria": "Select Invented branch connection marker in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 545.951px; top: 104.723px;",
+      "rect": {
+        "x": 601.9375,
+        "y": 308.71875,
+        "width": 58,
+        "height": 32,
+        "top": 308.71875,
+        "right": 659.9375,
+        "bottom": 340.71875,
+        "left": 601.9375
+      },
+      "text": "C-120"
+    },
+    {
+      "key": "[\"component\",\"component:C-130\"]",
+      "aria": "Select Invented semi-rigid valve marker in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 743.424px; top: 307.462px;",
+      "rect": {
+        "x": 799.421875,
+        "y": 511.453125,
+        "width": 58,
+        "height": 32,
+        "top": 511.453125,
+        "right": 857.421875,
+        "bottom": 543.453125,
+        "left": 799.421875
+      },
+      "text": "C-130"
+    },
+    {
+      "key": "[\"component\",\"component:C-140\"]",
+      "aria": "Select Invented tie-in marker in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 661.716px; top: 370.045px;",
+      "rect": {
+        "x": 717.703125,
+        "y": 574.03125,
+        "width": 58,
+        "height": 32,
+        "top": 574.03125,
+        "right": 775.703125,
+        "bottom": 606.03125,
+        "left": 717.703125
+      },
+      "text": "C-140"
+    },
+    {
+      "key": "[\"component\",\"component:C-150\"]",
+      "aria": "Select Invented expansion joint marker in viewport",
+      "hidden": false,
+      "ariaHidden": "true",
+      "style": "left: 471.716px; top: 370.045px;",
+      "rect": {
+        "x": 527.703125,
+        "y": 574.03125,
+        "width": 58,
+        "height": 32,
+        "top": 574.03125,
+        "right": 585.703125,
+        "bottom": 606.03125,
+        "left": 527.703125
+      },
+      "text": "C-150"
+    }
+  ]
+}

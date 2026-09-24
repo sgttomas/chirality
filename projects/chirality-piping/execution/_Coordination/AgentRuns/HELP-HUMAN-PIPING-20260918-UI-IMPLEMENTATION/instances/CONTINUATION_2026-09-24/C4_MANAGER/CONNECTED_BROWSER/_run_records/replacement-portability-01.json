@@ -1,0 +1,240 @@
+{
+  "scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER",
+  "checked": 119,
+  "findings": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.json",
+      "line": 6,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"cwd\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FINAL_REVIEW_BRIEF.md",
+      "line": 3,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "TASK Type2 under replacement manager `/root/c4_resume`; actual fresh Astra/xhigh instance, no descendants. Read full Root AGENTS.md, agents/AGENT_TASK.md, Piping AGENTS.md and loop/LOOP_INIT.md plus software-code-review skill. Parent read intended TASK role before this brief. Checkout explicitly `/private/tmp/piping-c4-policy-20260924`; every command must target it. ROOT alone owns primary integration. Read-only source and existing evidence; write only CONNECTED_BROWSER/FINAL_REVIEW/RETURN.md and HASHES.json. No tests/builds/browser/native/CUA/ports/network/Git changes; no delegation."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 7,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"root\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 18,
+      "match": "/private/tmp/piping-c4-policy-20260924/AGENTS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/AGENTS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 23,
+      "match": "/private/tmp/piping-c4-policy-20260924/agents/AGENT_HELPS_HUMANS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/agents/AGENT_HELPS_HUMANS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 28,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/AGENTS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/AGENTS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 33,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 38,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 43,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 48,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 53,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 58,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/styles.css",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/styles.css\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 63,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 68,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02-dense-observation.json",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02-dense-observation.json\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 73,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03-dense-projected-input-preselection.json",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03-dense-projected-input-preselection.json\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 78,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03-dense-actual-placement.json",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03-dense-actual-placement.json\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 83,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-actual-placement.json",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-actual-placement.json\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 88,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-projected-input-preselection.json",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-projected-input-preselection.json\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 182,
+      "match": "/private/tmp/piping-c4-policy-20260924/AGENTS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/AGENTS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 187,
+      "match": "/private/tmp/piping-c4-policy-20260924/agents/AGENT_HELPS_HUMANS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/agents/AGENT_HELPS_HUMANS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 192,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/AGENTS.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/AGENTS.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 197,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/loop/LOOP_INIT.md\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 202,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 207,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/selectionState.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/selectionState.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 212,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 217,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 222,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 227,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "line": 232,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "text": "\"origin\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.json",
+      "line": 5,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"cwd\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md",
+      "line": 29,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "Reviewer `/root/c4_manager/basis_integration_review` resumed as bounded TASK Type 2 under `/root/c4_manager`; no descendants. TASK and software-defect-diagnosis were read fully; earlier full Root/project/loop reads were retained after unchanged-hash checks. Every command used `/private/tmp/piping-c4-policy-20260924`. Twelve consulted source/config/fixture files match initial candidate bytes; later C4 scenario-test work is separate. Only this file and the compact adjacent JSON evidence were written. No tests/browser/build/resources/network/Git/source edits were performed. The manager owns all reproduction and repair execution. [FOUNDATION_STARTUP_DIAGNOSIS.json](FOUNDATION_STARTUP_DIAGNOSIS.json) binds input origins/hashes and decoded observations."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.md",
+      "line": 41,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "Reviewer `/root/c4_manager/basis_integration_review` is the resumed TASK Type 2 child under `/root/c4_manager`, with no descendants. Full TASK/diagnosis instructions and retained unchanged Root/project/loop instructions govern this read-only assignment. All commands used `/private/tmp/piping-c4-policy-20260924`. Only this diagnosis and its adjacent JSON were written; no tests/browser/build/resources/network/Git/source mutation was performed. The manager owns all runtime and repair execution. [RAF_REPLACEMENT_DIAGNOSIS.json](RAF_REPLACEMENT_DIAGNOSIS.json) binds source/evidence origins and hashes, decoded polling, boundary samples and decisive hint records."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/A001_DIAGNOSIS.json",
+      "line": 8,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"checkout_origin\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/R1_R2_BACKCHECK_HASHES.json",
+      "line": 8,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"checkout_origin\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HASHES.json",
+      "line": 4,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"checkout_origin\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HOVER_BACKCHECK.md",
+      "line": 37,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "Reviewer `/root/c4_manager/connected_review` resumed as independent TASK Type 2 under `/root/c4_manager` using delegated-harness-native collaboration; no descendants. Previously read full Root/project/TASK/software-code-review instructions were hash-checked unchanged. The diagnosis and relevant source/runtime/evidence were loaded for this bounded stage. Every command explicitly used `/private/tmp/piping-c4-policy-20260924`. Only HOVER_BACKCHECK.md and HOVER_BACKCHECK_HASHES.json were written. No tests/compiler/build, browser/native/CUA, resources/ports/network, Git mutation, source edits or delegation occurred. Prior review, R1/R2 backcheck and A001 artifacts remain byte-identical. The adjacent manifest records consulted origins, causal observations, exact source/evidence bindings and check limits. The parent owns integration and remaining execution."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HOVER_BACKCHECK_HASHES.json",
+      "line": 8,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "\"checkout_origin\": \"/private/tmp/piping-c4-policy-20260924\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HOVER_BACKCHECK_HASHES.json",
+      "line": 163,
+      "match": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop",
+      "text": "\"cwd\": \"/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop\","
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/R1_R2_BACKCHECK.md",
+      "line": 29,
+      "match": "/private/tmp/piping-c4-policy-20260924",
+      "text": "Reviewer `/root/c4_manager/connected_review` resumed as independent TASK Type 2 through delegated-harness-native collaboration under `/root/c4_manager`; no descendants. Full previously read Root/project/TASK/software-code-review instruction hashes were checked unchanged. Every command explicitly used `/private/tmp/piping-c4-policy-20260924`. Only this R1_R2_BACKCHECK.md and R1_R2_BACKCHECK_HASHES.json were written. No compiler/tests/build, browser/native/CUA, resources/ports/network, product edits, Git mutation or delegation occurred. The parent integrates the result and owns runtime verification. The adjacent manifest binds the frozen source, exact archive, retained original review and actual checks."
+    }
+  ]
+}

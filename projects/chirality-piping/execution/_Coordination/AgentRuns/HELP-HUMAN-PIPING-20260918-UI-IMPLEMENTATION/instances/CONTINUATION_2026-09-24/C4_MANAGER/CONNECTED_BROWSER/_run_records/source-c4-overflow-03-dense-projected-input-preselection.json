@@ -1,0 +1,2517 @@
+{
+  "camera": {
+    "sequence": 16,
+    "kind": "perspective",
+    "position": [
+      7.999999999999999,
+      7.875,
+      29.141999999999996
+    ],
+    "target": [
+      7.999999999999999,
+      7.875,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fovDegrees": 42,
+    "near": 0.001,
+    "far": 1000,
+    "aspect": 0.8880706921944035,
+    "localRenderOrigin": [
+      8,
+      7.875,
+      0
+    ]
+  },
+  "canvas": {
+    "x": 793,
+    "y": 217,
+    "width": 603,
+    "height": 679,
+    "top": 217,
+    "right": 1396,
+    "bottom": 896,
+    "left": 793
+  },
+  "measuredBudget": 113,
+  "labels": {
+    "enabled": false,
+    "renderedCount": 0,
+    "budget": 113,
+    "mode": "Off",
+    "placementStatus": "applied",
+    "projectionError": null,
+    "contextCount": 0,
+    "ordinaryCount": 0,
+    "contextOverflow": 0,
+    "suppressed": [
+      {
+        "key": "[\"node\",\"n59\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n76\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n58\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n75\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n60\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n77\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n57\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n74\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n61\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n78\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n56\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n73\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n62\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n79\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n42\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n93\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n41\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n43\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n92\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n94\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n40\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n91\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n44\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n95\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n55\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n72\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n63\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n80\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n39\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n90\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n45\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n96\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n54\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n71\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n64\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n81\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n38\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n89\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n46\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n97\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n110\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n25\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n109\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n111\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n24\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n26\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n108\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n23\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n112\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n27\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n37\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n88\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n47\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n98\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n53\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n70\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n65\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n82\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n107\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n113\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n22\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n28\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n36\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n87\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n48\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n99\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n106\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n21\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n114\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n29\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n52\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n69\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n66\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n83\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n105\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n20\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n115\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n30\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n35\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n86\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n100\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n49\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n127\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n8\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n126\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n128\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n7\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n9\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n51\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n68\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n67\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n84\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n10\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n125\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n129\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n6\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n104\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n19\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n116\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n31\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n124\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n5\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n11\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n130\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n34\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n85\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n101\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n50\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n12\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n123\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n131\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n4\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n103\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n18\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n117\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n32\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n122\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n3\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n13\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n132\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n102\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n17\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n118\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n33\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n121\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n133\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n14\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n2\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n1\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n120\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n134\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n15\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"pipe\",\"P\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n0\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n119\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n135\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"n16\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      }
+    ],
+    "ineligible": [
+      {
+        "key": "[\"project\",\"project:invented-loop-01\"]",
+        "role": "primary",
+        "reason": "unsupported"
+      }
+    ],
+    "unplaced": []
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "authored": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n1",
+      "authored": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n2",
+      "authored": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n3",
+      "authored": {
+        "x": 3,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n4",
+      "authored": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n5",
+      "authored": {
+        "x": 5,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n6",
+      "authored": {
+        "x": 6,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n7",
+      "authored": {
+        "x": 7,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n8",
+      "authored": {
+        "x": 8,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n9",
+      "authored": {
+        "x": 9,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n10",
+      "authored": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n11",
+      "authored": {
+        "x": 11,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n12",
+      "authored": {
+        "x": 12,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n13",
+      "authored": {
+        "x": 13,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n14",
+      "authored": {
+        "x": 14,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n15",
+      "authored": {
+        "x": 15,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n16",
+      "authored": {
+        "x": 16,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n17",
+      "authored": {
+        "x": 0,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n18",
+      "authored": {
+        "x": 1,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n19",
+      "authored": {
+        "x": 2,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n20",
+      "authored": {
+        "x": 3,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n21",
+      "authored": {
+        "x": 4,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n22",
+      "authored": {
+        "x": 5,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n23",
+      "authored": {
+        "x": 6,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n24",
+      "authored": {
+        "x": 7,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n25",
+      "authored": {
+        "x": 8,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n26",
+      "authored": {
+        "x": 9,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n27",
+      "authored": {
+        "x": 10,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n28",
+      "authored": {
+        "x": 11,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n29",
+      "authored": {
+        "x": 12,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n30",
+      "authored": {
+        "x": 13,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n31",
+      "authored": {
+        "x": 14,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n32",
+      "authored": {
+        "x": 15,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n33",
+      "authored": {
+        "x": 16,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n34",
+      "authored": {
+        "x": 0,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n35",
+      "authored": {
+        "x": 1,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n36",
+      "authored": {
+        "x": 2,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n37",
+      "authored": {
+        "x": 3,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n38",
+      "authored": {
+        "x": 4,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n39",
+      "authored": {
+        "x": 5,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n40",
+      "authored": {
+        "x": 6,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n41",
+      "authored": {
+        "x": 7,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n42",
+      "authored": {
+        "x": 8,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n43",
+      "authored": {
+        "x": 9,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n44",
+      "authored": {
+        "x": 10,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n45",
+      "authored": {
+        "x": 11,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n46",
+      "authored": {
+        "x": 12,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n47",
+      "authored": {
+        "x": 13,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n48",
+      "authored": {
+        "x": 14,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n49",
+      "authored": {
+        "x": 15,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n50",
+      "authored": {
+        "x": 16,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n51",
+      "authored": {
+        "x": 0,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n52",
+      "authored": {
+        "x": 1,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n53",
+      "authored": {
+        "x": 2,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n54",
+      "authored": {
+        "x": 3,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n55",
+      "authored": {
+        "x": 4,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n56",
+      "authored": {
+        "x": 5,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n57",
+      "authored": {
+        "x": 6,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n58",
+      "authored": {
+        "x": 7,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n59",
+      "authored": {
+        "x": 8,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n60",
+      "authored": {
+        "x": 9,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n61",
+      "authored": {
+        "x": 10,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n62",
+      "authored": {
+        "x": 11,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n63",
+      "authored": {
+        "x": 12,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n64",
+      "authored": {
+        "x": 13,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n65",
+      "authored": {
+        "x": 14,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n66",
+      "authored": {
+        "x": 15,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n67",
+      "authored": {
+        "x": 16,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n68",
+      "authored": {
+        "x": 0,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n69",
+      "authored": {
+        "x": 1,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n70",
+      "authored": {
+        "x": 2,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n71",
+      "authored": {
+        "x": 3,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n72",
+      "authored": {
+        "x": 4,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n73",
+      "authored": {
+        "x": 5,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n74",
+      "authored": {
+        "x": 6,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n75",
+      "authored": {
+        "x": 7,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n76",
+      "authored": {
+        "x": 8,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n77",
+      "authored": {
+        "x": 9,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n78",
+      "authored": {
+        "x": 10,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n79",
+      "authored": {
+        "x": 11,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n80",
+      "authored": {
+        "x": 12,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n81",
+      "authored": {
+        "x": 13,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n82",
+      "authored": {
+        "x": 14,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n83",
+      "authored": {
+        "x": 15,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n84",
+      "authored": {
+        "x": 16,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n85",
+      "authored": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n86",
+      "authored": {
+        "x": 1,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n87",
+      "authored": {
+        "x": 2,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n88",
+      "authored": {
+        "x": 3,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n89",
+      "authored": {
+        "x": 4,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n90",
+      "authored": {
+        "x": 5,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n91",
+      "authored": {
+        "x": 6,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n92",
+      "authored": {
+        "x": 7,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n93",
+      "authored": {
+        "x": 8,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n94",
+      "authored": {
+        "x": 9,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n95",
+      "authored": {
+        "x": 10,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n96",
+      "authored": {
+        "x": 11,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n97",
+      "authored": {
+        "x": 12,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n98",
+      "authored": {
+        "x": 13,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n99",
+      "authored": {
+        "x": 14,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n100",
+      "authored": {
+        "x": 15,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n101",
+      "authored": {
+        "x": 16,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n102",
+      "authored": {
+        "x": 0,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n103",
+      "authored": {
+        "x": 1,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n104",
+      "authored": {
+        "x": 2,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n105",
+      "authored": {
+        "x": 3,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n106",
+      "authored": {
+        "x": 4,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n107",
+      "authored": {
+        "x": 5,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n108",
+      "authored": {
+        "x": 6,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n109",
+      "authored": {
+        "x": 7,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n110",
+      "authored": {
+        "x": 8,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n111",
+      "authored": {
+        "x": 9,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n112",
+      "authored": {
+        "x": 10,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n113",
+      "authored": {
+        "x": 11,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n114",
+      "authored": {
+        "x": 12,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n115",
+      "authored": {
+        "x": 13,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n116",
+      "authored": {
+        "x": 14,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n117",
+      "authored": {
+        "x": 15,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n118",
+      "authored": {
+        "x": 16,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n119",
+      "authored": {
+        "x": 0,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n120",
+      "authored": {
+        "x": 1,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n121",
+      "authored": {
+        "x": 2,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n122",
+      "authored": {
+        "x": 3,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n123",
+      "authored": {
+        "x": 4,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n124",
+      "authored": {
+        "x": 5,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n125",
+      "authored": {
+        "x": 6,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n126",
+      "authored": {
+        "x": 7,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n127",
+      "authored": {
+        "x": 8,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n128",
+      "authored": {
+        "x": 9,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n129",
+      "authored": {
+        "x": 10,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n130",
+      "authored": {
+        "x": 11,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n131",
+      "authored": {
+        "x": 12,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n132",
+      "authored": {
+        "x": 13,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n133",
+      "authored": {
+        "x": 14,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n134",
+      "authored": {
+        "x": 15,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "n135",
+      "authored": {
+        "x": 16,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    }
+  ]
+}

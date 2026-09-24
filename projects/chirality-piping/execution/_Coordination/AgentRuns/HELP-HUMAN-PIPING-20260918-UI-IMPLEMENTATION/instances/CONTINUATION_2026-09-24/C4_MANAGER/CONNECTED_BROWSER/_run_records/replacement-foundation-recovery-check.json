@@ -1,0 +1,15 @@
+{
+  "head": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "foundation_spec_matches": true,
+  "source_tracked_diff": "",
+  "review_hash_original": "e8a1075a337e7934efb8f53695cc12ce502ab28277eb95208708bae492030d8d",
+  "foundation_stats": {
+    "startTime": "2026-09-24T08:13:34.222Z",
+    "duration": 599279.404,
+    "expected": 86,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "foundation_log_exit0": true
+}

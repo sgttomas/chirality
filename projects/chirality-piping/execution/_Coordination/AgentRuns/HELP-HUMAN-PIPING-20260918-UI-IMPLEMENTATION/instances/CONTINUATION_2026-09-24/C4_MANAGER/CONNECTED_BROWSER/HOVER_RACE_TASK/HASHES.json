@@ -1,0 +1,10 @@
+{
+  "inputs": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.md": "361ca2d025de35dfc9a2b3982ca8a23a4e285fc99768dea02a5273ef157039eb",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-replacement-hints-08-journal.json": "e6df2a7fc19481acc89bdfe853cf43ab7c18abbb268abb989204b4bff15bb33b"
+  },
+  "outputs": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.contextLabels.test.tsx": "6ea52e73f0366ff87cc79ae0f3bfbc90cacca856280dada0ad1e13a13358ba42"
+  }
+}

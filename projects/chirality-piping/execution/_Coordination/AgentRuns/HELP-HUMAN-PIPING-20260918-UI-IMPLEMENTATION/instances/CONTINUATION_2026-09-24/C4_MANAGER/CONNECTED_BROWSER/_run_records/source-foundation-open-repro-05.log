@@ -1,0 +1,50 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/ui-foundation.spec.ts --project chromium-compact --grep same-ID Open retires old captured Box --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05
+[WebServer] (node:97132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:97134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium-compact] › e2e/ui-foundation.spec.ts:2161:1 › captured Box lifetime › same-ID Open retires old captured Box before delayed pointer up (14.3s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-compact] › e2e/ui-foundation.spec.ts:2161:1 › captured Box lifetime › same-ID Open retires old captured Box before delayed pointer up 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      2099 | }
+      2100 | async function settle(page: Page) {
+    > 2101 |   await expect.poll(async () => (await read(page)).snapshot.viewport.resources.ownedPendingRafCount).toBe(0);
+           |                                                                                                      ^
+      2102 |   return read(page);
+      2103 | }
+      2104 | async function setup(page: Page) {
+        at settle (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts:2101:102)
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts:2178:26
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-open-repro-05/ui-foundation-captured-Box-6fb1c-x-before-delayed-pointer-up-chromium-compact/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-compact] › e2e/ui-foundation.spec.ts:2161:1 › captured Box lifetime › same-ID Open retires old captured Box before delayed pointer up 
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=17.000

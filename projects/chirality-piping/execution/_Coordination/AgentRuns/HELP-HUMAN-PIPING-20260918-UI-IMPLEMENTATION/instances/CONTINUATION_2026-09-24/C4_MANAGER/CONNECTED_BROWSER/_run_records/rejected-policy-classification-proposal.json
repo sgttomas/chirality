@@ -1,0 +1,93 @@
+{
+  "status": "proposed exact evidence classification; ROOT policy owner",
+  "entries": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/DESIGN_OVERFLOW_SOURCES.json",
+      "sha256": "a3f5af49bca99cf0c5d39eba5d718385d12d063125a55058195118c0e1d4c9db",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.json",
+      "sha256": "9794c44d76b2448c9014cd0207f0b3962af8c4418cd1a8259dc93074c4b9eb5d",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/FOUNDATION_STARTUP_DIAGNOSIS.md",
+      "sha256": "00a3de9154db3079e8e15b1e7e0bce42627f9be0d9aa96d40415ac3520aa1bf5",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/A001_DIAGNOSIS.json",
+      "sha256": "20914481ff5301e48d10e2c9fbe373f60d9771260e4c86e8d2ee6533cdb05743",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HASHES.json",
+      "sha256": "43548a5bfb05603db0c7f0f6258c1cd624dc56e6cfcd3f2c58c898e8061d8e46",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HOVER_BACKCHECK.md",
+      "sha256": "e8a1075a337e7934efb8f53695cc12ce502ab28277eb95208708bae492030d8d",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/HOVER_BACKCHECK_HASHES.json",
+      "sha256": "d46e438792f63b52d21aa0e24f1fbae3309b48c3ef07e7aaeb0ad54fb08f7ed0",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/R1_R2_BACKCHECK.md",
+      "sha256": "6d7e3c75f3726ce4b9861647e4a057b2a778fea6cae4a8c0e765eb851bf6fc5f",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/R1_R2_BACKCHECK_HASHES.json",
+      "sha256": "d127bef88cb3ea6019e05f23442e34dadca8584f9ece9f85a49039ee8c456cfe",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.json",
+      "sha256": "78cf096772cc1fd4006de5b96b13d2920d4b32e9e389fa8c1e51a793fca7fcfe",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/RAF_REPLACEMENT_DIAGNOSIS.md",
+      "sha256": "41faf4e54e1e578da114c45adad501296f95fb4c2987789262a170ce32b53dff",
+      "entry_type": "historical_role_override",
+      "role": "EVIDENCE",
+      "reason": "Immutable completed C4 connected-browser diagnosis or independent review preserves actual host/source origins. Historical evidence only; current replay uses portable controls.",
+      "authority": "PENDING ROOT disposition under standing coordination authority; this proposal does not itself classify the surface."
+    }
+  ]
+}

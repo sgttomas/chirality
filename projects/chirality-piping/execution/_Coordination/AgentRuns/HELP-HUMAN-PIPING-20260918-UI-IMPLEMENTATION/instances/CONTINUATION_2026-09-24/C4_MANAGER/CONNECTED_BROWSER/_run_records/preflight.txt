@@ -1,0 +1,19 @@
+$ git rev-parse HEAD
+8c5ac0fc5730765e972da48e3e3abad659df3eb9
+exit=0
+$ node --version
+v24.18.0
+exit=0
+$ npm --version
+11.16.0
+exit=0
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright --version
+Version 1.60.0
+exit=0
+$ /Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell --version
+Google Chrome for Testing 148.0.7778.96
+exit=0
+$ lsof -nP -iTCP:5174 -sTCP:LISTEN
+exit=1
+$ lsof -nP -iTCP:5175 -sTCP:LISTEN
+exit=1

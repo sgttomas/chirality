@@ -1,0 +1,46 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-policy.spec.ts --project chromium-desktop --grep actual placed context overflow --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03
+[WebServer] (node:86319) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:86322) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86322) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:274:3 › C4 full node inventory and actual placed context overflow @explicit-viewport (10.2s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:274:3 › C4 full node inventory and actual placed context overflow @explicit-viewport 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m113[39m
+    Received:   [31m83[39m
+
+      178 |     expect(await page.locator('.viewport-select-target[data-entity-key]').count()).toBe(model.nodes.length + model.pipe_segments.length);
+      179 |     // This is deliberately a rendered-overflow assertion, never just requested > budget.
+    > 180 |     expect(result.labels.contextCount).toBeGreaterThan(result.labels.budget);
+          |                                        ^
+      181 |     expect(result.labels.contextOverflow).toBe(result.labels.contextCount! - result.labels.budget);
+      182 |     expect(result.labels.ordinaryCount).toBe(0);
+      183 |     expect(result.labels.suppressed?.some(item => item.role === "ordinary" && item.reason === "budget")).toBe(true);
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts:180:40
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-03/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:274:3 › C4 full node inventory and actual placed context overflow @explicit-viewport 
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=11.839

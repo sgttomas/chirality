@@ -1,0 +1,76 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-policy.spec.ts --project chromium-desktop --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-01
+[WebServer] (node:84154) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:84156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:171:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport (2.0m)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:171:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('workspace-review')[22m
+    [2m    - locator resolved to <button type="button" class="shell-tab" aria-pressed="false" title="Review changes" data-testid="workspace-review">Review changes</button>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <header class="workspace-dock-header" data-testid="workspace-dock-header">…</header> from <section data-page="project" data-testid="workspace-dock" aria-label="Workspace sections" class="workspace-dock shell-page">…</section> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <header class="workspace-dock-header" data-testid="workspace-dock-header">…</header> from <section data-page="project" data-testid="workspace-dock" aria-label="Workspace sections" class="workspace-dock shell-page">…</section> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    226 × waiting for element to be visible, enabled and stable[22m
+    [2m        - element is visible, enabled and stable[22m
+    [2m        - scrolling into view if needed[22m
+    [2m        - done scrolling[22m
+    [2m        - <header class="workspace-dock-header" data-testid="workspace-dock-header">…</header> from <section data-page="project" data-testid="workspace-dock" aria-label="Workspace sections" class="workspace-dock shell-page">…</section> subtree intercepts pointer events[22m
+    [2m      - retrying click action[22m
+    [2m        - waiting 500ms[22m
+
+
+       at workspace-driver.ts:33
+
+      31 |     // section command, as every other section is.
+      32 |     if (sectionId === "operations" && await page.getByTestId("workspace-review").isVisible()) {
+    > 33 |       await page.getByTestId("workspace-review").click();
+         |                                                  ^
+      34 |     } else {
+      35 |       await page.getByTestId("menu-view").click();
+      36 |       await page.getByTestId(`menu-item-view.section.${sectionId}`).click();
+        at openWorkspaceSection (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/workspace-driver.ts:33:50)
+        at invariants (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts:56:3)
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts:106:20
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-01/c4-label-policy-C4-modes-d-cfb14-nmutation-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-01/c4-label-policy-C4-modes-d-cfb14-nmutation-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-01/c4-label-policy-C4-modes-d-cfb14-nmutation-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:171:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport 
+  4 did not run
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=121.619

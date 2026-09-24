@@ -1,0 +1,62 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/ui-foundation.spec.ts --project chromium-compact --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03
+[WebServer] (node:95063) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 37 tests using 1 worker
+
+(node:95065) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:95065) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium-compact] › e2e/ui-foundation.spec.ts:38:1 › [preflight] maintained fixture supports typed selection and a keyboard-authored measurement (4.1s)
+  ✓   2 [chromium-compact] › e2e/ui-foundation.spec.ts:82:1 › a first late diagnostics pull is RAF-neutral and projection refreshes after a real camera change (1.4s)
+  ✓   3 [chromium-compact] › e2e/ui-foundation.spec.ts:242:1 › typed raw-ID collisions remain distinct through ordered selection and an ABA membership change (1.9s)
+  ✓   4 [chromium-compact] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture (4.5s)
+  ✘   5 [chromium-compact] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture (15.6s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-compact] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('desktop-preview-shell')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByTestId('desktop-preview-shell')[22m
+
+
+       at ui-foundation-workflows.ts:93
+
+      91 |   await routeModelFixture(page, fixture);
+      92 |   await page.goto("/");
+    > 93 |   await expect(page.getByTestId("desktop-preview-shell")).toBeVisible();
+         |                                                           ^
+      94 |   await expect(page.getByTestId("viewport-canvas").locator("canvas")).toHaveCount(1);
+      95 |   return fixture.model;
+      96 | }
+        at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts:271:19
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-foundation-compact-03/ui-foundation-Project-poin-25723--Project-on-the-10k-fixture-chromium-compact/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-compact] › e2e/ui-foundation.spec.ts:270:3 › Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture 
+  32 did not run
+  4 passed (29.0s)
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=29.325

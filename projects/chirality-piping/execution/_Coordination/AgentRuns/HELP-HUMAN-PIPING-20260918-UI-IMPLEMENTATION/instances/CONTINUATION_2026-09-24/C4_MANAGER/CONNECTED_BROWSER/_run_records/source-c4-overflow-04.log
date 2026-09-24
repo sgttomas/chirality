@@ -1,0 +1,48 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-policy.spec.ts --project chromium-desktop --grep actual placed context overflow --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04
+[WebServer] (node:94466) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:94468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:94468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:288:5 › C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport (19.3s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:288:5 › C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport 
+
+    Error: A001 fits its unchanged visible label span
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m28[39m
+    Received:    [31m29[39m
+
+      218 |         const dimensions = await span.evaluate(element => ({ text: element.textContent,
+      219 |           scrollWidth: element.scrollWidth, clientWidth: element.clientWidth }));
+    > 220 |         expect(dimensions.scrollWidth, `${id} fits its unchanged visible label span`).toBeLessThanOrEqual(dimensions.clientWidth);
+          |                                                                                       ^
+      221 |         readableIdentities.push({ key: box.key, ...dimensions });
+      222 |       }
+      223 |       await info.attach("dense-readable-real-identities", { body: JSON.stringify(readableIdentities, null, 2), contentType: "application/json" });
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts:220:87
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:288:5 › C4 synthetic coincident real identities produce actual placed context overflow @explicit-viewport 
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=21.063

@@ -1,0 +1,50 @@
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c4-label-policy.spec.ts --project chromium-desktop --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02
+[WebServer] (node:84894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:84896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:174:3 › C4 modes, dedup, Hide/Isolate, hover, camera, resize and nonmutation @explicit-viewport (6.3s)
+  ✓  2 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:238:3 › C4 current review row B remains distinct from primary A @explicit-viewport (3.7s)
+  ✘  3 [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:272:3 › C4 full node inventory and actual placed context overflow @explicit-viewport (10.7s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:272:3 › C4 full node inventory and actual placed context overflow @explicit-viewport 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m113[39m
+    Received:   [31m15[39m
+
+      166 |     expect(await page.locator('.viewport-select-target[data-entity-key]').count()).toBe(model.nodes.length + model.pipe_segments.length);
+      167 |     // This is deliberately a rendered-overflow assertion, never just requested > budget.
+    > 168 |     expect(result.labels.contextCount).toBeGreaterThan(result.labels.budget);
+          |                                        ^
+      169 |     expect(result.labels.contextOverflow).toBe(result.labels.contextCount! - result.labels.budget);
+      170 |     expect(result.labels.ordinaryCount).toBe(0);
+      171 |     expect(result.labels.suppressed?.some(item => item.role === "ordinary" && item.reason === "budget")).toBe(true);
+        at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts:168:40
+
+    Error Context: ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-desktop-02/c4-label-policy-C4-full-no-d7b23--overflow-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-desktop] › e2e/c4-label-policy.scenarios.ts:272:3 › C4 full node inventory and actual placed context overflow @explicit-viewport 
+  2 did not run
+  2 passed (21.8s)
+  1 error was not a part of any test, see above for details
+
+exit=1
+elapsed_seconds=22.320

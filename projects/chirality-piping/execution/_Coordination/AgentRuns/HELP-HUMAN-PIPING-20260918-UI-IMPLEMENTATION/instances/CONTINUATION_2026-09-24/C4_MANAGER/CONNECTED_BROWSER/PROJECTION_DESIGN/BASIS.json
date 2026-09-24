@@ -1,0 +1,68 @@
+{
+  "role": "HELPS_HUMANS",
+  "agent": "/root/c4_projection_design",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native descendant",
+  "coordinator": "/root/c4_resume",
+  "source_revision": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "scope": "Read-only product/source/design review. New PROJECTION_DESIGN records only. No tests/build/browser/native/endpoint execution, no delegation, no source or Git mutation.",
+  "status": "Design recommendation; not implementation, activation, acceptance, or executed verification.",
+  "supplied_basis": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+      "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "sha256": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+      "sha256": "e323e32b2e005b36581f5b9f43146fbb2b39a6d853ad7709d0c27ffe96c85bcf"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts",
+      "sha256": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts",
+      "sha256": "5fb469041a5a59d532d95cf78d0651e3205292c4bc0bb447e0546de8e0330850"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-projection-probe-result.json",
+      "sha256": "e7c3433e38d905bce2e1a36b8185debb16030a03c866bf43044a5722bab0090b"
+    }
+  ]
+}

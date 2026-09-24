@@ -1,0 +1,26 @@
+{
+  "head": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+  "cwd": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop",
+  "commands": [
+    {
+      "name": "lazy-tsc",
+      "command": [
+        "../../node_modules/.bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "lazy-unit",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/PipeViewport.contextLabels.test.tsx",
+        "src/features/viewport/PipeViewport.labels.test.tsx",
+        "src/features/viewport/viewportResource.test.ts",
+        "--maxWorkers=1"
+      ],
+      "exit": 0
+    }
+  ]
+}

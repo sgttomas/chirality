@@ -1,0 +1,53 @@
+# Dist selected-pipe keyboard measurement diagnosis
+
+**Confirmed finite-placement / keyboard-workflow compatibility gap. Fit Selection in the default Isometric view causes the selected P100 label to be legitimately rejected by the current conservative picking enclosure. The maintained keyboard measurement setup then cannot reach its target.** This is not count-cap suppression, a bad selected identity, a stale hover/RAF race, a measured-box error or Measure-induced resize. It is an actual failing user-control route that remains unresolved; documenting that the current placement algorithm behaves as specified does not make the dist gate pass.
+
+The governing C4 ruling allows context omissions when finite placement fails, and the inherited projector explicitly documents over-exclusion of diagonal geometry. Therefore these observations do not establish a violation of that policy or prove physical label placement impossible. They expose the compatibility seam between that newly adopted finite search and a maintained keyboard workflow that assumes its selected label is available after the default Fit Selection pose. A bounded product improvement may preserve both contracts; changing the workflow's preconditions needs an explicit contract rationale, not an unexplained test relaxation.
+
+## Reproduction and earliest divergence
+
+Candidate is `383c941e902bac866bd8e09f468c258894e4dabe`; normal production build01 records exit0. Dist13 uses the unchanged maintained production-dist config and pinned Chromium148 on macOS. It records all5 new C4 cases and3 foundation cases passed, then `content-aware narrow canvas budget light comfortable` times out waiting to focus `Select Pump discharge run in viewport`;45 later cases did not run. Narrow unchanged reproduction14 fails identically. Diagnostic15 preserves that failure while adding read-only snapshots to an archived temporary spec; it is not a repaired test or acceptance pass. The reviewer executed no reproduction or product code.
+
+The failing scenario is the regular default preview branch at1024×768, light/comfortable. It solves the invented mechanics preview, selects `pipe:P-100`, opens an Inspector Task and retains text, invokes Fit Selection by keyboard, enables Measure by keyboard, then focuses/activates the selected pipe label. It has not yet reached the later drawer heights, readout fitting, clipping or retained-draft assertions. Its wrapped-ID branch has not run. The source foundation preflight uses a different precision fixture and pipe; its86-pass result does not exercise this default-model dist case.
+
+Raw trace13 localizes the first observed label retirement before Measure. P100 is present with its correct accessible name, `aria-pressed=true`, `data-label-placed=true`, `aria-hidden=false` and tabindex0 after selection and Inspector opening. After Fit Selection Enter (`after@call@3931`, trace time42991.002ms), it becomes placed=false/aria-hidden=true/tabindex−1 while selection stays true. Measure focus begins42992.036ms and activation43012.987ms; target focus starts43033.587ms and waits until the test deadline. The error is disappearance from the accessible role locator because placement deliberately retires the plate, not a misspelled locator or ordinary focus blur. All13 recorded page/asset responses are200.
+
+Diagnostic15 independently records the state around that seam:
+
+| Observation | Before Fit | After Fit / after Measure |
+|---|---|---|
+| Canvas |924×540 CSS px, DPR1|same|
+| Camera sequence |8|9, unchanged by Measure|
+| Selected/primary |P100 only|P100 only|
+| Model identity/generation |unchanged|unchanged|
+| Labels |21 total,1 context, no omissions|8 ordinary,0 context,13 unplaced|
+| P100 policy reason |placed|primary, unplaced solely `picking`|
+| Owned pending RAF |0|0|
+
+The post-Fit camera targets authored `[1.6,0,0]` from `[5.033617520924543,3.4336175209245434,3.433617520924543]`, FOV42. P100's measured plate remains58×32. Its stale retained left/top style is not applied visible evidence: the placed/ARIA/keyboard flags correctly retire it. No projection error, suppression or ineligibility is recorded. Because primary is attempted first, collision with an earlier placed label cannot be its blocker.
+
+## Exact source and geometry chain
+
+P100 spans `(0,0,0)`→`(3.2,0,0)`. `displayedBoundsForEntityKeys` includes the schematic0.052 radius; `fitViewportCamera` and `fittedViewportDistance` fit that geometry envelope in the chosen Isometric pose, without promising annotation clearance. The active model's complete picker geometry remains in the exclusion inventory.
+
+The manager's archived immutable offline probe reconstructs the same source/model/camera and actual DOM dimensions. I read the probe, verified its five source hashes plus model and diagnostic hashes, and independently checked its recorded24 rectangles against the returned own exclusion. I did not execute the probe or infer that its counterfactual is an allowed product behavior.
+
+The P100 anchor projects to approximately `(462,270)`, inside the frustum. Its own single conservative projected pick rectangle is `[288.474403045736,162.97597737844478]–[635.5255969542636,377.02402262155556]`. All24 normal58×32 candidates are contained in the canvas and overlap that rectangle. The farthest center offsets are±157 horizontally and±92 vertically; even those plates overlap an envelope extending about±173.526 and±107.024 from the anchor. The actual placement function returns only `picking` with the full scene, and also with P100's exclusion alone. Removing P100's exclusion in the diagnostic counterfactual admits the first candidate; that localizes the blocker but must never become a repair that drops own-entity protection.
+
+`labelProjection.ts` conservatively expands the full world segment box using max(physical radius, Actual OD, existing six-CSS-pixel tolerance at the farthest endpoint depth), encloses its transformed corners in another camera-axis box, clips near/far, then projects a single rectangle. This deliberately over-excludes diagonal segment geometry. `labelPlacement.ts` has a fixed24-candidate search and checks every own/other pick rectangle. `labelPolicy.ts` attempts primary first without the ordinary Budget cutoff and reports the failure. PipeViewport then correctly hides/untabs the unplaced button. The keyboard helper subsequently has no accessible label target at this pose. The earlier lazy disclosure and live-hover repairs introduce none of these projection/search rules; there is no evidence those two repairs caused this failure.
+
+Confidence is high for the observed causal chain. No corruption, asynchronous settling, font-size/plate measurement, stale generation, wrong row, ordinary count cap or Measure drawer change is needed to explain the reproduced result. Actual screen-space picker support has not been exhaustively traced by this review, so the probe establishes conservative-envelope blockage, not the minimum possible exclusion or a globally optimal label location.
+
+## Bounded repair directions and proof
+
+A legitimate product direction is to tighten the conservative representation of long capsules while preserving actual picker coverage. A small fixed number of subsegments can each receive the **original whole primitive's** physical/OD/maximum-depth tolerance radius; the union of expanded subsegment boxes covers the original capsule support. Project those conservative boxes with the current near/far rules and retain a safe fallback where necessary. This can reduce empty diagonal corners without changing the picker, its six-pixel tolerance, all-entity protection, label dimensions,24-attempt bound, count policy or non-overlap. It is a proposed direction, not an implemented or verified repair.
+
+Do not naively run the present projector independently on synthetic subprimitives: its depth≤0 early skip and locally recomputed tolerance could remove coverage belonging to the original qualifying capsule near the camera plane. Keep the original qualification/radius while partitioning its enclosure, or prove a different conservative construction. Degenerate segments, near/far crossings, large OD, hidden geometry, camera changes and floating-origin coordinates all need bounded coverage checks. No exemption for the label's own pipe is permissible. This review grants no new implementation scope.
+
+A normal user camera route could alternatively establish a deliberately visible target before a layout-only scenario—for example a supported preset plus Fit—but it is not yet evidenced, and this diagnosis does not authorize silently changing the maintained default-Isometric requirement. If the owning scenario contract permits a camera precondition, retain all actual keyboard target activation, measured target/readout exposure, all drawer sizes/densities/content variants, retained draft/history/model/results and protected numeric assertions; separately retain this failed original route and its limitation. No force click, hidden-element focus, direct state mutation, timeout increase or discarded assertion is an adequate repair.
+
+Required proof for any selected repair: a regression at the captured source/model/camera/58×32 inputs that fails before and passes after while retaining conservative picker coverage; the unchanged exact default regular/light/comfortable dist reproduction through all subsequent assertions; affected full maintained dist matrix and ordinary C4/C3 source behavior after any product change; exact source/build/asset identities and fresh independent review of the new delta. The broad dist gate and final complete connected-stage review remain blocked by this unresolved failure; positive connected overflow, native, performance/profile and full programme gates remain separate and OPEN where already recorded.
+
+## Attribution and custody
+
+This diagnosis is an explicit extension of fresh TASK `/root/c4_resume/final_review` under `/root/c4_resume`, through delegated-harness-native collaboration, no descendants. The software-defect-diagnosis skill was newly read in full. Existing instruction/source basis remains pinned. All commands used assigned isolated REPO_ROOT; only authorized diagnosis/own review outputs were written. No tests/build/browser/native/CUA/network/ports/Git/source mutation or delegation occurred. The manager owns all reproduction and repair execution. Adjacent JSON binds the actual consulted origins, raw reports/trace/snapshots/probe, extracted observations and limits. A failed lookup of a nonexistent installed Playwright trace-source folder produced no evidence and caused no mutation.

@@ -1,0 +1,150 @@
+{
+  "config": {
+    "configFile": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/playwright.dist.config.ts",
+    "rootDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repro-14",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-desktop-dist",
+        "name": "chromium-desktop-dist",
+        "testDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*-dist.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview -- --host 127.0.0.1 --port 5175 --strictPort",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "url": "http://127.0.0.1:5175"
+    }
+  },
+  "suites": [
+    {
+      "title": "ui-foundation-dist.spec.ts",
+      "file": "ui-foundation-dist.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "content-aware narrow canvas budget light comfortable",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop-dist",
+              "projectName": "chromium-desktop-dist",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 60147,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                        "column": 17,
+                        "line": 175
+                      },
+                      "message": "Error: locator.focus: Test timeout of 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Select Pump discharge run in viewport', exact: true })\u001b[22m\n\n\n   at ui-foundation-workflows.ts:175\n\n  173 |\n  174 | export async function activateWithKeyboard(page: Page, control: Locator): Promise<void> {\n> 175 |   await control.focus();\n      |                 ^\n  176 |   await expect(control).toBeFocused();\n  177 |   await page.keyboard.press(\"Enter\");\n  178 | }\n    at activateWithKeyboard (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:175:17)\n    at keyboardMeasureTargets (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:819:11)\n    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts:356:23"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T13:04:42.934Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiSGVhZGxlc3NDaHJvbWUvMTQ4LjAuNzc3OC45NiIsCiAgICAicmV2aXNpb24iOiAiQDg2MjVlMDY2ZmViYzcyMWUwMTVlYTk5ODQyZGExMjkwMWViN2VkNzMiLAogICAgInVzZXJBZ2VudCI6ICJNb3ppbGxhLzUuMCAoTWFjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAxMF8xNV83KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBIZWFkbGVzc0Nocm9tZS8xNDguMC43Nzc4Ljk2IFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNC44LjE3OC4xNCIKICB9LAogICJwbGF5d3JpZ2h0QnJvd3NlclZlcnNpb24iOiAiMTQ4LjAuNzc3OC45NiIsCiAgImV4ZWN1dGFibGVQYXRoIjogIi9Vc2Vycy9yeWFuL0xpYnJhcnkvQ2FjaGVzL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTIyMy9jaHJvbWUtaGVhZGxlc3Mtc2hlbGwtbWFjLWFybTY0L2Nocm9tZS1oZWFkbGVzcy1zaGVsbCIsCiAgImV4ZWN1dGFibGVTaGEyNTYiOiAiYWEyNWYyZTc5NWMwMmQ1Y2I1ZWY1ZDY5ODc3NDVjYzViYmU3ZDhiZWE1ODgyNzM5MGM3YTRjODFjOGQyZGQ3YiIKfQ=="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repro-14/ui-foundation-dist-content-2b756-as-budget-light-comfortable-chromium-desktop-dist/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-content-repro-14/ui-foundation-dist-content-2b756-as-budget-light-comfortable-chromium-desktop-dist/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "9f95ad2e5e980436d6c9-7d10b6676c298f0d013c",
+          "file": "ui-foundation-dist.spec.ts",
+          "line": 314,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "Testing stopped early after 1 maximum allowed failures."
+    }
+  ],
+  "stats": {
+    "startTime": "2026-09-24T13:04:42.228Z",
+    "duration": 61235.736,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

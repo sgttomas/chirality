@@ -1,0 +1,1279 @@
+{
+  "kind": "offline reconstruction from exact observed camera/model/DOM dimensions; no browser or product mutation",
+  "sourceHashes": {
+    "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb"
+  },
+  "modelHash": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c",
+  "diagnosticHash": "1b6f16a80ce532a49d68843d0c0e6d7abfdc8612af85305faa3545762a34ed38",
+  "camera": {
+    "sequence": 9,
+    "kind": "perspective",
+    "position": [
+      5.033617520924543,
+      3.4336175209245434,
+      3.433617520924543
+    ],
+    "target": [
+      1.6,
+      0,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fovDegrees": 42,
+    "near": 0.001,
+    "far": 1000,
+    "aspect": 1.711111111111111,
+    "localRenderOrigin": [
+      3.8,
+      1.2,
+      1.1
+    ]
+  },
+  "width": 924,
+  "height": 540,
+  "label": {
+    "x": 461.99999999999983,
+    "y": 270.0000000000001,
+    "inFrustum": true,
+    "width": 58,
+    "height": 32
+  },
+  "dom": {
+    "key": "[\"pipe\",\"pipe:P-100\"]",
+    "aria": "Select Pump discharge run in viewport",
+    "hidden": false,
+    "ariaHidden": "true",
+    "style": "left: 304.391px; top: 182.124px;",
+    "rect": {
+      "x": 360.375,
+      "y": 386.109375,
+      "width": 58,
+      "height": 32,
+      "top": 386.109375,
+      "right": 418.375,
+      "bottom": 418.109375,
+      "left": 360.375
+    },
+    "text": "P-100"
+  },
+  "exclusions": [
+    {
+      "key": "[\"pipe\",\"pipe:P-100\"]",
+      "primitive": {
+        "key": "[\"pipe\",\"pipe:P-100\"]",
+        "ref": {
+          "type": "pipe",
+          "id": "pipe:P-100"
+        },
+        "kind": "pipe",
+        "shape": "capsule",
+        "center": {
+          "x": -2.1999999999999997,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "start": {
+          "x": -3.8,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "end": {
+          "x": -0.5999999999999996,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "radius": 0.052,
+        "height": 0,
+        "displayOrder": 7
+      },
+      "rects": [
+        {
+          "left": 288.474403045736,
+          "right": 635.5255969542636,
+          "top": 162.97597737844478,
+          "bottom": 377.02402262155556
+        }
+      ]
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-110\"]",
+      "primitive": {
+        "key": "[\"pipe\",\"pipe:P-110\"]",
+        "ref": {
+          "type": "pipe",
+          "id": "pipe:P-110"
+        },
+        "kind": "pipe",
+        "shape": "capsule",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": 0,
+          "z": -1.1
+        },
+        "start": {
+          "x": -0.5999999999999996,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "end": {
+          "x": -0.5999999999999996,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "radius": 0.052,
+        "height": 0,
+        "displayOrder": 8
+      },
+      "rects": [
+        {
+          "left": 607.5069951116297,
+          "right": 700.8857592980971,
+          "top": 0,
+          "bottom": 416.3384920438974
+        }
+      ]
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-120\"]",
+      "primitive": {
+        "key": "[\"pipe\",\"pipe:P-120\"]",
+        "ref": {
+          "type": "pipe",
+          "id": "pipe:P-120"
+        },
+        "kind": "pipe",
+        "shape": "capsule",
+        "center": {
+          "x": 1.6000000000000005,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "start": {
+          "x": -0.5999999999999996,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "end": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "radius": 0.052,
+        "height": 0,
+        "displayOrder": 9
+      },
+      "rects": [
+        {
+          "left": 661.5917069170827,
+          "right": 924,
+          "top": 0,
+          "bottom": 540
+        }
+      ]
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-130\"]",
+      "primitive": {
+        "key": "[\"pipe\",\"pipe:P-130\"]",
+        "ref": {
+          "type": "pipe",
+          "id": "pipe:P-130"
+        },
+        "kind": "pipe",
+        "shape": "capsule",
+        "center": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": 0
+        },
+        "start": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "end": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": 1.1
+        },
+        "radius": 0.052,
+        "height": 0,
+        "displayOrder": 10
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"node\",\"node:N-100\"]",
+      "primitive": {
+        "key": "[\"node\",\"node:N-100\"]",
+        "ref": {
+          "type": "node",
+          "id": "node:N-100"
+        },
+        "kind": "node",
+        "shape": "sphere",
+        "center": {
+          "x": -3.8,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.095,
+        "height": 0,
+        "displayOrder": 2
+      },
+      "rects": [
+        {
+          "left": 329.2500971798218,
+          "right": 362.32304546842585,
+          "top": 185.2214635853052,
+          "bottom": 220.20629434955694
+        }
+      ]
+    },
+    {
+      "key": "[\"node\",\"node:N-110\"]",
+      "primitive": {
+        "key": "[\"node\",\"node:N-110\"]",
+        "ref": {
+          "type": "node",
+          "id": "node:N-110"
+        },
+        "kind": "node",
+        "shape": "sphere",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": -1.2,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.095,
+        "height": 0,
+        "displayOrder": 3
+      },
+      "rects": [
+        {
+          "left": 597.1734806489112,
+          "right": 645.2260001823882,
+          "top": 337.5260413023244,
+          "bottom": 387.0142509573954
+        }
+      ]
+    },
+    {
+      "key": "[\"node\",\"node:N-120\"]",
+      "primitive": {
+        "key": "[\"node\",\"node:N-120\"]",
+        "ref": {
+          "type": "node",
+          "id": "node:N-120"
+        },
+        "kind": "node",
+        "shape": "sphere",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.095,
+        "height": 0,
+        "displayOrder": 4
+      },
+      "rects": [
+        {
+          "left": 646.4330977182553,
+          "right": 718.323233548591,
+          "top": 0,
+          "bottom": 57.034988475447754
+        }
+      ]
+    },
+    {
+      "key": "[\"node\",\"node:N-130\"]",
+      "primitive": {
+        "key": "[\"node\",\"node:N-130\"]",
+        "ref": {
+          "type": "node",
+          "id": "node:N-130"
+        },
+        "kind": "node",
+        "shape": "sphere",
+        "center": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.095,
+        "height": 0,
+        "displayOrder": 5
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"node\",\"node:N-140\"]",
+      "primitive": {
+        "key": "[\"node\",\"node:N-140\"]",
+        "ref": {
+          "type": "node",
+          "id": "node:N-140"
+        },
+        "kind": "node",
+        "shape": "sphere",
+        "center": {
+          "x": 3.8,
+          "y": 1.2,
+          "z": 1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.095,
+        "height": 0,
+        "displayOrder": 6
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"support\",\"support:S-100\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:S-100\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:S-100"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": -3.8,
+          "y": -1.46,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 11
+      },
+      "rects": [
+        {
+          "left": 316.8300367581124,
+          "right": 377.82902085258723,
+          "top": 193.88323518385698,
+          "bottom": 255.10771134352143
+        }
+      ]
+    },
+    {
+      "key": "[\"support\",\"support:S-120\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:S-120\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:S-120"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": 0.9399999999999997,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 12
+      },
+      "rects": [
+        {
+          "left": 612.6450732697613,
+          "right": 741.9686949722293,
+          "top": 0,
+          "bottom": 131.1206138805858
+        }
+      ]
+    },
+    {
+      "key": "[\"support\",\"support:S-130\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:S-130\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:S-130"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": 3.8,
+          "y": 0.9399999999999997,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 13
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"support\",\"support:NL-140\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:NL-140\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:NL-140"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": 3.8,
+          "y": 0.9399999999999997,
+          "z": 1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 14
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"support\",\"support:NL-130-FRIC\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:NL-130-FRIC\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:NL-130-FRIC"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": 3.8,
+          "y": 0.9399999999999997,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 15
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"support\",\"support:SH-140\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:SH-140\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:SH-140"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": 3.8,
+          "y": 0.9399999999999997,
+          "z": 1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 16
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"support\",\"support:CE-120\"]",
+      "primitive": {
+        "key": "[\"support\",\"support:CE-120\"]",
+        "ref": {
+          "type": "support",
+          "id": "support:CE-120"
+        },
+        "kind": "support",
+        "shape": "cone",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": 0.9399999999999997,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.18,
+        "height": 0.34,
+        "displayOrder": 17
+      },
+      "rects": [
+        {
+          "left": 612.6450732697613,
+          "right": 741.9686949722293,
+          "top": 0,
+          "bottom": 131.1206138805858
+        }
+      ]
+    },
+    {
+      "key": "[\"component\",\"component:C-110\"]",
+      "primitive": {
+        "key": "[\"component\",\"component:C-110\"]",
+        "ref": {
+          "type": "component",
+          "id": "component:C-110"
+        },
+        "kind": "component",
+        "shape": "sphere",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": -1,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.3,
+        "height": 0,
+        "displayOrder": 18
+      },
+      "rects": [
+        {
+          "left": 553.6356131440712,
+          "right": 711.340314489591,
+          "top": 269.9999076000001,
+          "bottom": 427.0437044107927
+        }
+      ]
+    },
+    {
+      "key": "[\"component\",\"component:C-120\"]",
+      "primitive": {
+        "key": "[\"component\",\"component:C-120\"]",
+        "ref": {
+          "type": "component",
+          "id": "component:C-120"
+        },
+        "kind": "component",
+        "shape": "sphere",
+        "center": {
+          "x": -0.5999999999999996,
+          "y": 1.4000000000000001,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.3,
+        "height": 0,
+        "displayOrder": 19
+      },
+      "rects": [
+        {
+          "left": 585.0497432566242,
+          "right": 826.4015521986412,
+          "top": 0,
+          "bottom": 99.49723862378113
+        }
+      ]
+    },
+    {
+      "key": "[\"component\",\"component:C-130\"]",
+      "primitive": {
+        "key": "[\"component\",\"component:C-130\"]",
+        "ref": {
+          "type": "component",
+          "id": "component:C-130"
+        },
+        "kind": "component",
+        "shape": "sphere",
+        "center": {
+          "x": 3.8,
+          "y": 1.4000000000000001,
+          "z": -1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.25,
+        "height": 0,
+        "displayOrder": 20
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"component\",\"component:C-140\"]",
+      "primitive": {
+        "key": "[\"component\",\"component:C-140\"]",
+        "ref": {
+          "type": "component",
+          "id": "component:C-140"
+        },
+        "kind": "component",
+        "shape": "sphere",
+        "center": {
+          "x": 3.8,
+          "y": 1.4000000000000001,
+          "z": 1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.20784609690826525,
+        "height": 0,
+        "displayOrder": 21
+      },
+      "rects": []
+    },
+    {
+      "key": "[\"component\",\"component:C-150\"]",
+      "primitive": {
+        "key": "[\"component\",\"component:C-150\"]",
+        "ref": {
+          "type": "component",
+          "id": "component:C-150"
+        },
+        "kind": "component",
+        "shape": "sphere",
+        "center": {
+          "x": 3.8,
+          "y": 1.4000000000000001,
+          "z": 1.1
+        },
+        "start": null,
+        "end": null,
+        "radius": 0.25,
+        "height": 0,
+        "displayOrder": 22
+      },
+      "rects": []
+    }
+  ],
+  "candidates": [
+    {
+      "ring": 1,
+      "dx": 1,
+      "dy": -1,
+      "rect": {
+        "left": 465.99999999999983,
+        "right": 523.9999999999998,
+        "top": 234.0000000000001,
+        "bottom": 266.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": 1,
+      "dy": 1,
+      "rect": {
+        "left": 465.99999999999983,
+        "right": 523.9999999999998,
+        "top": 274.0000000000001,
+        "bottom": 306.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": -1,
+      "dy": -1,
+      "rect": {
+        "left": 399.99999999999983,
+        "right": 457.99999999999983,
+        "top": 234.0000000000001,
+        "bottom": 266.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": -1,
+      "dy": 1,
+      "rect": {
+        "left": 399.99999999999983,
+        "right": 457.99999999999983,
+        "top": 274.0000000000001,
+        "bottom": 306.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": 0,
+      "dy": -1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 234.0000000000001,
+        "bottom": 266.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": 0,
+      "dy": 1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 274.0000000000001,
+        "bottom": 306.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": 1,
+      "dy": 0,
+      "rect": {
+        "left": 465.99999999999983,
+        "right": 523.9999999999998,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 1,
+      "dx": -1,
+      "dy": 0,
+      "rect": {
+        "left": 399.99999999999983,
+        "right": 457.99999999999983,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": 1,
+      "dy": -1,
+      "rect": {
+        "left": 527.9999999999998,
+        "right": 585.9999999999998,
+        "top": 198.0000000000001,
+        "bottom": 230.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": 1,
+      "dy": 1,
+      "rect": {
+        "left": 527.9999999999998,
+        "right": 585.9999999999998,
+        "top": 310.0000000000001,
+        "bottom": 342.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"component\",\"component:C-110\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": -1,
+      "dy": -1,
+      "rect": {
+        "left": 337.99999999999983,
+        "right": 395.99999999999983,
+        "top": 198.0000000000001,
+        "bottom": 230.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"node\",\"node:N-100\"]",
+        "[\"support\",\"support:S-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": -1,
+      "dy": 1,
+      "rect": {
+        "left": 337.99999999999983,
+        "right": 395.99999999999983,
+        "top": 310.0000000000001,
+        "bottom": 342.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": 0,
+      "dy": -1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 198.0000000000001,
+        "bottom": 230.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": 0,
+      "dy": 1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 310.0000000000001,
+        "bottom": 342.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": 1,
+      "dy": 0,
+      "rect": {
+        "left": 527.9999999999998,
+        "right": 585.9999999999998,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"component\",\"component:C-110\"]"
+      ]
+    },
+    {
+      "ring": 2,
+      "dx": -1,
+      "dy": 0,
+      "rect": {
+        "left": 337.99999999999983,
+        "right": 395.99999999999983,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"support\",\"support:S-100\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": 1,
+      "dy": -1,
+      "rect": {
+        "left": 589.9999999999998,
+        "right": 647.9999999999998,
+        "top": 162.0000000000001,
+        "bottom": 194.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"pipe\",\"pipe:P-110\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": 1,
+      "dy": 1,
+      "rect": {
+        "left": 589.9999999999998,
+        "right": 647.9999999999998,
+        "top": 346.0000000000001,
+        "bottom": 378.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"pipe\",\"pipe:P-110\"]",
+        "[\"node\",\"node:N-110\"]",
+        "[\"component\",\"component:C-110\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": -1,
+      "dy": -1,
+      "rect": {
+        "left": 275.99999999999983,
+        "right": 333.99999999999983,
+        "top": 162.0000000000001,
+        "bottom": 194.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"node\",\"node:N-100\"]",
+        "[\"support\",\"support:S-100\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": -1,
+      "dy": 1,
+      "rect": {
+        "left": 275.99999999999983,
+        "right": 333.99999999999983,
+        "top": 346.0000000000001,
+        "bottom": 378.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": 0,
+      "dy": -1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 162.0000000000001,
+        "bottom": 194.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": 0,
+      "dy": 1,
+      "rect": {
+        "left": 432.99999999999983,
+        "right": 490.99999999999983,
+        "top": 346.0000000000001,
+        "bottom": 378.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": 1,
+      "dy": 0,
+      "rect": {
+        "left": 589.9999999999998,
+        "right": 647.9999999999998,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"pipe\",\"pipe:P-110\"]",
+        "[\"component\",\"component:C-110\"]"
+      ]
+    },
+    {
+      "ring": 3,
+      "dx": -1,
+      "dy": 0,
+      "rect": {
+        "left": 275.99999999999983,
+        "right": 333.99999999999983,
+        "top": 254.0000000000001,
+        "bottom": 286.0000000000001
+      },
+      "blockedBy": [
+        "[\"pipe\",\"pipe:P-100\"]",
+        "[\"support\",\"support:S-100\"]"
+      ]
+    }
+  ],
+  "all": {
+    "rect": null,
+    "reasons": [
+      "picking"
+    ]
+  },
+  "withoutOwn": {
+    "rect": {
+      "left": 465.99999999999983,
+      "right": 523.9999999999998,
+      "top": 234.0000000000001,
+      "bottom": 266.0000000000001
+    },
+    "reasons": []
+  },
+  "byPrimitive": [
+    {
+      "key": "[\"pipe\",\"pipe:P-100\"]",
+      "result": {
+        "rect": null,
+        "reasons": [
+          "picking"
+        ]
+      }
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-110\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-120\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"pipe\",\"pipe:P-130\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"node\",\"node:N-100\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"node\",\"node:N-110\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"node\",\"node:N-120\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"node\",\"node:N-130\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"node\",\"node:N-140\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:S-100\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:S-120\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:S-130\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:NL-140\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:NL-130-FRIC\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:SH-140\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"support\",\"support:CE-120\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"component\",\"component:C-110\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"component\",\"component:C-120\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"component\",\"component:C-130\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"component\",\"component:C-140\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    },
+    {
+      "key": "[\"component\",\"component:C-150\"]",
+      "result": {
+        "rect": {
+          "left": 465.99999999999983,
+          "right": 523.9999999999998,
+          "top": 234.0000000000001,
+          "bottom": 266.0000000000001
+        },
+        "reasons": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "schema": "chirality-bounded-defect-diagnosis/v1",
+  "recorded_at_utc": "2026-09-24T08:06:41.768597+00:00",
+  "reviewer": "/root/c4_manager/connected_review",
+  "parent": "/root/c4_manager",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK Type 2",
+  "checkout_origin": "/private/tmp/piping-c4-policy-20260924",
+  "symptom_candidate": "4942ca78629302355a5dff7c50cf2a0abc5ed614",
+  "later_lazy_candidate": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+  "reproduction": "retained trial inspected; no new execution",
+  "symptom": {
+    "text": "A001",
+    "scrollWidth": 29,
+    "clientWidth": 28,
+    "button_rect_css": {
+      "x": 917.703125,
+      "y": 835.484375,
+      "width": 58,
+      "height": 32
+    },
+    "title": "A001 (A001)",
+    "aria_label": "Select A001 in viewport"
+  },
+  "conclusion": {
+    "confirmed": "diagnostic06 PNG visibly A0\u2026 inside measured 58\u00d732 plate; explicit computed clipping; full A001 semantic attributes retained",
+    "classification": "existing explicit ellipsis presentation limitation; no confirmed C4 measured-plate/ink-overflow defect for A001",
+    "source_inference": "selected border reduces content width; exact threshold not experimentally isolated",
+    "unproven": [
+      "resolved font face",
+      "icon and per-side-border geometry",
+      "assistive-technology announcement/native tooltip"
+    ],
+    "actual_overflow_gate": "OPEN: 90 contexts versus B113",
+    "further_browser_measurement_required_for_bounded_question": false
+  },
+  "read_instructions": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full selected instruction"
+    },
+    {
+      "origin": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "full selected instruction"
+    }
+  ],
+  "consulted_origins": [
+    {
+      "origin": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+      "consultation": "full selected skill"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/styles.css",
+      "sha256": "2d174ef051e8229b6c060f3bd3414181a75cd890cc60c78b8684bf849b189824",
+      "consultation": "selected base, viewport, theme/pressed and density rules"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+      "consultation": "selected dimensions, target markup, icons, target derivation and shortEntityToken"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+      "consultation": "full measured-rectangle placement implementation"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-command.json",
+      "sha256": "e3ebc81303a1b5f5bfa77d1fb335f73fef28cc23346b025fabb877b0c88b6e51",
+      "consultation": "full candidate/environment command binding"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04.log",
+      "sha256": "910f8604884f79513025d1b36988d38bfc2e68b872db77298537e9526f5b5373",
+      "consultation": "full retained failed trial log"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04-dense-actual-placement.json",
+      "sha256": "7ea80eb0ba463ebb0e47e4c0302282dcb01dd6f732ad49b8a51948a400e27e8b",
+      "consultation": "selected canvas/A001 box and diagnostic counts"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/error-context.md",
+      "sha256": "31b1e78a7c1e8b5360cb9fc0f95a0a56579435e6cf83786c1b3401ea65d8d540",
+      "consultation": "selected failure, density and A001 accessibility snapshot"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "sha256": "334afaf3d438bf8f90c8f7b0b06ffb2ce391ed3f1537785cef5a92a31992dd93",
+      "consultation": "selected trace events/snapshots, embedded source hash and attachment inspection"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/.playwright-artifacts-0/traces/resources/page@510a9fdbc550a42d6562c69c5426bd23-1790235744230.jpeg",
+      "sha256": "45ee733059b387a5e68c859987fa80e4ecddce23f5b0efdddc034753371379fb",
+      "consultation": "actual visual inspection; standard-library header confirms 798x510 downscaled JPEG"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/A001-actual-ink-and-measured-box.json",
+      "sha256": "f78cf1f109e5c211f8d23c8d604cbb752abbb7c3fcd0711e347153c110109da5",
+      "consultation": "full manager actual browser measurement; report attachment equality verified"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/A001-ink-diagnostic.spec.ts",
+      "sha256": "276335fc8bc3529f9fec47a92b7a1b8f14af989f27fda6c62328de7b751bd4a5",
+      "consultation": "full delta against exact frozen trial04, unchanged fixture/control path verified"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06-command.json",
+      "sha256": "4177fceed8711c3d5eee825fc3d246e428ae80eeb398d5a51f6bc53f6b165113",
+      "consultation": "full candidate/input/environment binding"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06.log",
+      "sha256": "d41fff492c38a9f8a9536103ee49f2d1fd4896229c2612402783914f651a050f",
+      "consultation": "full diagnostic raw output"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06.json",
+      "sha256": "52371176d801706c905044cd0bc2ef444682f8d9a0810eab47872aa3bd0a83e3",
+      "consultation": "selected report stats/results and canonical attachment equality"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06/c4-label-ink-diagnostic-C4-0f409--overflow-explicit-viewport-chromium-desktop/A001-actual-label.png",
+      "sha256": "c701b825a4139fc9d27ab39520ea1cc9cd8e75455e3b63c233f9f1331f47afc9",
+      "consultation": "actual visual inspection at original image resolution",
+      "pixel_dimensions": [
+        59,
+        33
+      ]
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-label-ink-diagnostic-06/c4-label-ink-diagnostic-C4-0f409--overflow-explicit-viewport-chromium-desktop/coincident-trial-actual-canvas.png",
+      "sha256": "ee2cb45aa7098401a383b03bb4a175f10d545fbc16683837065c35b15e675f06",
+      "consultation": "actual full-page visual inspection at original image resolution",
+      "pixel_dimensions": [
+        1440,
+        920
+      ]
+    }
+  ],
+  "trace_members": [
+    {
+      "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "member": "test.trace",
+      "sha256": "613256a1ca6b7f72b49150f1cf38cafb60d0cffc070532e4fae72931a39450d9"
+    },
+    {
+      "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "member": "0-trace.trace",
+      "sha256": "1d1f21186a4beaf0ddcb2df20c62754d6200188d58197cdf5af5998edff2343b"
+    },
+    {
+      "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "member": "resources/src@334c6c6365d92fd7c88b9265d68e8305586bb6d9.txt",
+      "sha256": "848db6e5c48793200f3de5ea581b89a7fa8e3352a1b3d80079902134e7abe84c"
+    },
+    {
+      "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "member": "resources/958e2b21a9dd0589b75fe6634944014ad192b03d",
+      "sha256": "787b28c10cb5b48845afbada8a3929c7cba402c7ba73d5d5715a5c8088628fff"
+    },
+    {
+      "archive": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c4-overflow-04/c4-label-policy-C4-synthet-0aff1--overflow-explicit-viewport-chromium-desktop/trace.zip",
+      "member": "resources/page@510a9fdbc550a42d6562c69c5426bd23-1790235744230.jpeg",
+      "sha256": "45ee733059b387a5e68c859987fa80e4ecddce23f5b0efdddc034753371379fb"
+    }
+  ],
+  "prior_review_preserved": {
+    "RETURN.md": "67ba34cefaa47daeaa961ea565d7afc72a7a52e77b043c47c5a46637fe0b4aff",
+    "HASHES.json": "43548a5bfb05603db0c7f0f6258c1cd624dc56e6cfcd3f2c58c898e8061d8e46"
+  },
+  "output": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/INDEPENDENT_REVIEW/A001_DIAGNOSIS.md",
+    "sha256": "de5f63056dd1d72ca54bb736d0ae1e23db6ab6929f43426b5319d6abbd886273"
+  },
+  "operations": {
+    "source_edits": false,
+    "tests_build_browser_resources": false,
+    "git_mutations": false,
+    "descendants": []
+  },
+  "diagnostic06": {
+    "head": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+    "source_sha256": "276335fc8bc3529f9fec47a92b7a1b8f14af989f27fda6c62328de7b751bd4a5",
+    "observed": {
+      "text": "A001",
+      "title": "A001 (A001)",
+      "ariaLabel": "Select A001 in viewport",
+      "buttonRect": {
+        "x": 917.703125,
+        "y": 835.484375,
+        "width": 58,
+        "height": 32,
+        "top": 835.484375,
+        "right": 975.703125,
+        "bottom": 867.484375,
+        "left": 917.703125
+      },
+      "spanRect": {
+        "x": 942.125,
+        "y": 845.984375,
+        "width": 27.578125,
+        "height": 11,
+        "top": 845.984375,
+        "right": 969.703125,
+        "bottom": 856.984375,
+        "left": 942.125
+      },
+      "rawTextRange": {
+        "x": 942.125,
+        "y": 844.984375,
+        "width": 28.84375,
+        "height": 13,
+        "top": 844.984375,
+        "right": 970.96875,
+        "bottom": 857.984375,
+        "left": 942.125
+      },
+      "scrollWidth": 29,
+      "clientWidth": 28,
+      "buttonStyle": {
+        "width": "58px",
+        "height": "32px",
+        "boxSizing": "border-box",
+        "overflow": "visible",
+        "padding": "0px 5px",
+        "border": "",
+        "font": "700 11px / 11px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+      },
+      "spanStyle": {
+        "overflow": "hidden",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+        "font": "700 11px / 11px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+      },
+      "placed": "true"
+    },
+    "standalone_json_matches_report_attachment": true,
+    "source_delta": "diagnostic copy preserves fixture/control path and adds measurements/screenshots while removing strict readability and positive-overflow assertions only in that copy",
+    "pass_interpretation": "diagnostic completion only, not readability/overflow acceptance"
+  }
+}

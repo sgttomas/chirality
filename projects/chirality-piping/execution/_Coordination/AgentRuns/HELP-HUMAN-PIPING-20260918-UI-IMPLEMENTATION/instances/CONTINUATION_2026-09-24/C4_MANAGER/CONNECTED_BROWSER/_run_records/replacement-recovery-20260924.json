@@ -1,0 +1,109 @@
+{
+  "created_utc": "2026-09-24T12:50:36.515856+00:00",
+  "mechanism": "delegated-harness-native collaboration.spawn_agent",
+  "parent": "/root",
+  "manager": "/root/c4_resume",
+  "role": "WORKING_ITEMS Type1",
+  "model_allocation": "Astra/high per preserved owner strategy",
+  "replacement": true,
+  "prior_instance": "/root/c4_manager; not resumed",
+  "head": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "origins": [
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER_BRIEF.md",
+      "sha256": "fd8a7b6ea94221e0741baa33eeac146fd34c803aff48433d4f9cfc4d239ff531"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+      "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CURRENT_ROW_ACTIVATION.md",
+      "sha256": "f7ad051e1790cd89c2e93880d645febe82c7fb431e720740b5329b95003abe62"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md",
+      "sha256": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md",
+      "sha256": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02"
+    },
+    {
+      "root": "/Users/ryan/.codex/worktrees/6614/chirality",
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "c79a1b2e6fd923f88c35a6dfbe3e8c0d10afd47c0e34ac281371f31b1aca212e",
+      "authority": "derivative execution state; ROOT sole writer"
+    },
+    {
+      "root": "/private/tmp/piping-c4-policy-20260924",
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+      "purpose": "later selected for reproduced dist keyboard-measurement failure"
+    }
+  ],
+  "scope": "Prior authorized C4 product and C4_MANAGER records in isolated branch only; no primary writes/push/PR/merge",
+  "resource": "Source12/build01/dist13/repro14/diagnostic15 ended; both5174/5175 verified free and released to ROOT for design wait",
+  "recovered_foundation": {
+    "name": "source-foundation-repaired-10",
+    "head": "383c941e902bac866bd8e09f468c258894e4dabe",
+    "expected": 86,
+    "unexpected": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "errors": [],
+    "exit": 0,
+    "port_released": true
+  },
+  "limits": [
+    "Positive actual context-above-B witness OPEN; no fixture fishing",
+    "A001 existing inline ellipsis; full title/aria available",
+    "Full candidate/CI/native/profile gates remain",
+    "No source-profile/calibrated performance/native/CUA/endpoint/signing/Rust work"
+  ]
+}

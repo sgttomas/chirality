@@ -1,0 +1,49 @@
+{
+  "head": "383c941e902bac866bd8e09f468c258894e4dabe",
+  "cwd": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop",
+  "port": 5175,
+  "command": [
+    "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright",
+    "test",
+    "--config",
+    "playwright.dist.config.ts",
+    "e2e/ui-foundation-dist.spec.ts",
+    "e2e/c4-label-policy-dist.spec.ts",
+    "--workers",
+    "1",
+    "--max-failures",
+    "1",
+    "--reporter=list,json",
+    "--output",
+    "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/dist-connected-replacement-13"
+  ],
+  "browser": {
+    "candidate": "8c5ac0fc5730765e972da48e3e3abad659df3eb9",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "browser_path": "/Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+    "browser_sha256": "aa25f2e795c02d5cb5ef5d6987745cc5bbe7d8bea58827390c7a4c81c8d2dd7b",
+    "browser_version": "Google Chrome for Testing 148.0.7778.96",
+    "package_version": "Version 1.60.0",
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "assets": {
+      "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm": "cf9301c369f7425808adbb49dbe31205a31907882a8817217babe4ce5515a251",
+      "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8",
+      "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16",
+      "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595",
+      "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm.d.ts": "dd78c7c8fa07894717b89a9bcda4d781200ca7a4d02a8dc153b7763290085c7b",
+      "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.js": "ea2b3fd611a6478222e552b1230ceb717abd60cdd6df5ba30b4827511543f8f3",
+      "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.d.ts": "634546fac35bc42da31bf903e52a5799429422f44291d901495675bb4da4cc01",
+      "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm": "04d466ae73a2fc2b5dd949744794ad2cce476c5923852567e7f4ee3073ac6c5a"
+    },
+    "ports": "5174/5175 free at preflight; sequential manager ownership requested by ROOT; browser launch not yet performed"
+  },
+  "test_inputs": {
+    "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.scenarios.ts": "03bcacb89c2aa475b785656f41598784c4f79576c2f438e5a6d77f11aae9c0eb",
+    "projects/chirality-piping/apps/desktop/e2e/c4-label-policy.spec.ts": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+    "projects/chirality-piping/apps/desktop/e2e/c4-label-policy-dist.spec.ts": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee",
+    "e2e/ui-foundation-dist.spec.ts": "5fb469041a5a59d532d95cf78d0651e3205292c4bc0bb447e0546de8e0330850",
+    "e2e/c4-label-policy-dist.spec.ts": "a947d5f489f278d6c7a1cd3054c39ff640b4315ddc9e6f7e61ce6f56d836e4ee"
+  },
+  "pid": 16788
+}

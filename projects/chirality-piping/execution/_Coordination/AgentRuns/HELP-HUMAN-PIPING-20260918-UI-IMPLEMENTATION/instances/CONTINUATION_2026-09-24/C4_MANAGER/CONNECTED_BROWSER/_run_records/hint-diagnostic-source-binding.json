@@ -1,0 +1,6 @@
+{
+  "product_base": "8589065f6d86389babd7bc18a3bfc6c42643f3be",
+  "original_sha256": "6f8df9f0824eba9ef82e783808279079fbbe427e6193b2478ccd9df5bf66ac50",
+  "instrumented_sha256": "305db2013543131ef010d6ff117bae55abb7636e03ed42e1e8f6f9f97589558c",
+  "limit": "temporary optional bounded journal only, no semantic changes; restore exact original after diagnosis; test original assertion rethrows"
+}

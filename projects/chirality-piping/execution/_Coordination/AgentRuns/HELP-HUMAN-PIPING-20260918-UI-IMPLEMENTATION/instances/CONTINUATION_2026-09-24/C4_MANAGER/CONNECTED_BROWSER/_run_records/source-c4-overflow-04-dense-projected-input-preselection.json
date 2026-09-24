@@ -1,0 +1,4965 @@
+{
+  "camera": {
+    "sequence": 16,
+    "kind": "perspective",
+    "position": [
+      7.999999999999999,
+      7.875,
+      29.141999999999996
+    ],
+    "target": [
+      7.999999999999999,
+      7.875,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fovDegrees": 42,
+    "near": 0.001,
+    "far": 1000,
+    "aspect": 0.8880706921944035,
+    "localRenderOrigin": [
+      8,
+      7.875,
+      0
+    ]
+  },
+  "canvas": {
+    "x": 793,
+    "y": 217,
+    "width": 603,
+    "height": 679,
+    "top": 217,
+    "right": 1396,
+    "bottom": 896,
+    "left": 793
+  },
+  "measuredBudget": 113,
+  "labels": {
+    "enabled": false,
+    "renderedCount": 0,
+    "budget": 113,
+    "mode": "Off",
+    "placementStatus": "applied",
+    "projectionError": null,
+    "contextCount": 0,
+    "ordinaryCount": 0,
+    "contextOverflow": 0,
+    "suppressed": [
+      {
+        "key": "[\"node\",\"A060\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A077\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B060\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B077\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A059\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A076\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B059\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B076\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A061\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A078\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B061\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B078\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A058\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A075\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B058\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B075\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A062\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A079\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B062\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B079\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A057\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A074\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B057\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B074\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A063\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A080\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B063\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B080\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A043\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A094\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B043\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B094\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A042\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A044\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A093\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A095\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B042\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B044\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B093\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B095\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A041\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A092\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B041\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B092\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A045\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A096\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B045\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B096\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A056\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A073\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B056\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B073\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A064\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A081\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B064\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B081\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A040\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A091\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B040\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B091\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A046\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A097\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B046\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B097\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A055\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A072\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B055\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B072\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A065\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A082\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B065\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B082\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A039\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A090\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B039\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B090\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A047\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A098\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B047\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B098\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A026\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A111\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B026\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B111\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A025\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A027\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A110\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A112\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B025\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B027\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B110\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B112\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A024\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A109\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B024\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B109\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A028\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A113\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B028\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B113\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A038\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A089\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B038\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B089\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A048\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A099\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B048\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B099\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A054\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A071\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B054\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B071\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A066\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A083\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B066\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B083\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A023\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A029\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A108\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A114\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B023\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B029\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B108\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B114\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A037\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A088\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B037\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B088\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A049\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A100\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B049\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B100\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A022\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A107\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B022\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B107\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A030\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A115\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B030\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B115\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A053\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A070\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B053\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B070\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A067\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A084\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B067\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B084\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A021\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A106\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B021\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B106\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A031\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A116\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B031\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B116\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A036\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A087\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B036\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B087\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A050\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A101\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B050\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B101\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A009\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A128\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B009\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B128\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A008\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A010\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A127\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A129\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B008\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B010\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B127\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B129\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A052\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A069\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B052\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B069\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A068\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A085\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B068\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B085\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A007\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A011\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A126\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A130\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B007\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B011\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B126\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B130\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A020\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A105\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B020\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B105\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A032\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A117\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B032\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B117\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A006\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A125\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B006\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B125\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A012\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A131\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B012\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B131\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A035\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A086\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B035\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B086\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A051\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A102\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B051\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B102\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A005\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A013\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A124\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A132\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B005\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B013\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B124\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B132\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A019\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A104\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B019\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B104\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A033\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A118\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B033\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B118\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A004\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A123\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B004\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B123\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A014\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A133\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B014\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B133\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A018\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A103\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B018\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B103\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A034\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A119\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B034\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B119\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A003\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A015\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A122\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A134\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B003\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B015\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B122\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B134\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A002\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A016\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A121\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A135\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B002\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B016\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B121\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B135\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"pipe\",\"P\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A001\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A120\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B001\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B120\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A017\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"A136\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B017\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      },
+      {
+        "key": "[\"node\",\"B136\"]",
+        "role": "ordinary",
+        "reason": "mode"
+      }
+    ],
+    "ineligible": [
+      {
+        "key": "[\"project\",\"project:invented-loop-01\"]",
+        "role": "primary",
+        "reason": "unsupported"
+      }
+    ],
+    "unplaced": []
+  },
+  "nodes": [
+    {
+      "id": "A001",
+      "authored": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A002",
+      "authored": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A003",
+      "authored": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A004",
+      "authored": {
+        "x": 3,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A005",
+      "authored": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A006",
+      "authored": {
+        "x": 5,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A007",
+      "authored": {
+        "x": 6,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A008",
+      "authored": {
+        "x": 7,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A009",
+      "authored": {
+        "x": 8,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A010",
+      "authored": {
+        "x": 9,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A011",
+      "authored": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A012",
+      "authored": {
+        "x": 11,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A013",
+      "authored": {
+        "x": 12,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A014",
+      "authored": {
+        "x": 13,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A015",
+      "authored": {
+        "x": 14,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A016",
+      "authored": {
+        "x": 15,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A017",
+      "authored": {
+        "x": 16,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A018",
+      "authored": {
+        "x": 0,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A019",
+      "authored": {
+        "x": 1,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A020",
+      "authored": {
+        "x": 2,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A021",
+      "authored": {
+        "x": 3,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A022",
+      "authored": {
+        "x": 4,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A023",
+      "authored": {
+        "x": 5,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A024",
+      "authored": {
+        "x": 6,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A025",
+      "authored": {
+        "x": 7,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A026",
+      "authored": {
+        "x": 8,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A027",
+      "authored": {
+        "x": 9,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A028",
+      "authored": {
+        "x": 10,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A029",
+      "authored": {
+        "x": 11,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A030",
+      "authored": {
+        "x": 12,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A031",
+      "authored": {
+        "x": 13,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A032",
+      "authored": {
+        "x": 14,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A033",
+      "authored": {
+        "x": 15,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A034",
+      "authored": {
+        "x": 16,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A035",
+      "authored": {
+        "x": 0,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A036",
+      "authored": {
+        "x": 1,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A037",
+      "authored": {
+        "x": 2,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A038",
+      "authored": {
+        "x": 3,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A039",
+      "authored": {
+        "x": 4,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A040",
+      "authored": {
+        "x": 5,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A041",
+      "authored": {
+        "x": 6,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A042",
+      "authored": {
+        "x": 7,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A043",
+      "authored": {
+        "x": 8,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A044",
+      "authored": {
+        "x": 9,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A045",
+      "authored": {
+        "x": 10,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A046",
+      "authored": {
+        "x": 11,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A047",
+      "authored": {
+        "x": 12,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A048",
+      "authored": {
+        "x": 13,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A049",
+      "authored": {
+        "x": 14,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A050",
+      "authored": {
+        "x": 15,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A051",
+      "authored": {
+        "x": 16,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A052",
+      "authored": {
+        "x": 0,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A053",
+      "authored": {
+        "x": 1,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A054",
+      "authored": {
+        "x": 2,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A055",
+      "authored": {
+        "x": 3,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A056",
+      "authored": {
+        "x": 4,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A057",
+      "authored": {
+        "x": 5,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A058",
+      "authored": {
+        "x": 6,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A059",
+      "authored": {
+        "x": 7,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A060",
+      "authored": {
+        "x": 8,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A061",
+      "authored": {
+        "x": 9,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A062",
+      "authored": {
+        "x": 10,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A063",
+      "authored": {
+        "x": 11,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A064",
+      "authored": {
+        "x": 12,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A065",
+      "authored": {
+        "x": 13,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A066",
+      "authored": {
+        "x": 14,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A067",
+      "authored": {
+        "x": 15,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A068",
+      "authored": {
+        "x": 16,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A069",
+      "authored": {
+        "x": 0,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A070",
+      "authored": {
+        "x": 1,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A071",
+      "authored": {
+        "x": 2,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A072",
+      "authored": {
+        "x": 3,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A073",
+      "authored": {
+        "x": 4,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A074",
+      "authored": {
+        "x": 5,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A075",
+      "authored": {
+        "x": 6,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A076",
+      "authored": {
+        "x": 7,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A077",
+      "authored": {
+        "x": 8,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A078",
+      "authored": {
+        "x": 9,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A079",
+      "authored": {
+        "x": 10,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A080",
+      "authored": {
+        "x": 11,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A081",
+      "authored": {
+        "x": 12,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A082",
+      "authored": {
+        "x": 13,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A083",
+      "authored": {
+        "x": 14,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A084",
+      "authored": {
+        "x": 15,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A085",
+      "authored": {
+        "x": 16,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A086",
+      "authored": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A087",
+      "authored": {
+        "x": 1,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A088",
+      "authored": {
+        "x": 2,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A089",
+      "authored": {
+        "x": 3,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A090",
+      "authored": {
+        "x": 4,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A091",
+      "authored": {
+        "x": 5,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A092",
+      "authored": {
+        "x": 6,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A093",
+      "authored": {
+        "x": 7,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A094",
+      "authored": {
+        "x": 8,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A095",
+      "authored": {
+        "x": 9,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A096",
+      "authored": {
+        "x": 10,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A097",
+      "authored": {
+        "x": 11,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A098",
+      "authored": {
+        "x": 12,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A099",
+      "authored": {
+        "x": 13,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A100",
+      "authored": {
+        "x": 14,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A101",
+      "authored": {
+        "x": 15,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A102",
+      "authored": {
+        "x": 16,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A103",
+      "authored": {
+        "x": 0,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A104",
+      "authored": {
+        "x": 1,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A105",
+      "authored": {
+        "x": 2,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A106",
+      "authored": {
+        "x": 3,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A107",
+      "authored": {
+        "x": 4,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A108",
+      "authored": {
+        "x": 5,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A109",
+      "authored": {
+        "x": 6,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A110",
+      "authored": {
+        "x": 7,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A111",
+      "authored": {
+        "x": 8,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A112",
+      "authored": {
+        "x": 9,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A113",
+      "authored": {
+        "x": 10,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A114",
+      "authored": {
+        "x": 11,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A115",
+      "authored": {
+        "x": 12,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A116",
+      "authored": {
+        "x": 13,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A117",
+      "authored": {
+        "x": 14,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A118",
+      "authored": {
+        "x": 15,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A119",
+      "authored": {
+        "x": 16,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A120",
+      "authored": {
+        "x": 0,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A121",
+      "authored": {
+        "x": 1,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A122",
+      "authored": {
+        "x": 2,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A123",
+      "authored": {
+        "x": 3,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A124",
+      "authored": {
+        "x": 4,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A125",
+      "authored": {
+        "x": 5,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A126",
+      "authored": {
+        "x": 6,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A127",
+      "authored": {
+        "x": 7,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A128",
+      "authored": {
+        "x": 8,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A129",
+      "authored": {
+        "x": 9,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A130",
+      "authored": {
+        "x": 10,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A131",
+      "authored": {
+        "x": 11,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A132",
+      "authored": {
+        "x": 12,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A133",
+      "authored": {
+        "x": 13,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A134",
+      "authored": {
+        "x": 14,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A135",
+      "authored": {
+        "x": 15,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "A136",
+      "authored": {
+        "x": 16,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B001",
+      "authored": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B002",
+      "authored": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B003",
+      "authored": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B004",
+      "authored": {
+        "x": 3,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B005",
+      "authored": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B006",
+      "authored": {
+        "x": 5,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B007",
+      "authored": {
+        "x": 6,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B008",
+      "authored": {
+        "x": 7,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B009",
+      "authored": {
+        "x": 8,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B010",
+      "authored": {
+        "x": 9,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B011",
+      "authored": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B012",
+      "authored": {
+        "x": 11,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B013",
+      "authored": {
+        "x": 12,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B014",
+      "authored": {
+        "x": 13,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B015",
+      "authored": {
+        "x": 14,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B016",
+      "authored": {
+        "x": 15,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B017",
+      "authored": {
+        "x": 16,
+        "y": 0,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 795.4976128105628,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B018",
+      "authored": {
+        "x": 0,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B019",
+      "authored": {
+        "x": 1,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B020",
+      "authored": {
+        "x": 2,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B021",
+      "authored": {
+        "x": 3,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B022",
+      "authored": {
+        "x": 4,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B023",
+      "authored": {
+        "x": 5,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B024",
+      "authored": {
+        "x": 6,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B025",
+      "authored": {
+        "x": 7,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B026",
+      "authored": {
+        "x": 8,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B027",
+      "authored": {
+        "x": 9,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B028",
+      "authored": {
+        "x": 10,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B029",
+      "authored": {
+        "x": 11,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B030",
+      "authored": {
+        "x": 12,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B031",
+      "authored": {
+        "x": 13,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B032",
+      "authored": {
+        "x": 14,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B033",
+      "authored": {
+        "x": 15,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B034",
+      "authored": {
+        "x": 16,
+        "y": 2.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 727.2125805789735,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B035",
+      "authored": {
+        "x": 0,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B036",
+      "authored": {
+        "x": 1,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B037",
+      "authored": {
+        "x": 2,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B038",
+      "authored": {
+        "x": 3,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B039",
+      "authored": {
+        "x": 4,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B040",
+      "authored": {
+        "x": 5,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B041",
+      "authored": {
+        "x": 6,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B042",
+      "authored": {
+        "x": 7,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B043",
+      "authored": {
+        "x": 8,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B044",
+      "authored": {
+        "x": 9,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B045",
+      "authored": {
+        "x": 10,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B046",
+      "authored": {
+        "x": 11,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B047",
+      "authored": {
+        "x": 12,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B048",
+      "authored": {
+        "x": 13,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B049",
+      "authored": {
+        "x": 14,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B050",
+      "authored": {
+        "x": 15,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B051",
+      "authored": {
+        "x": 16,
+        "y": 4.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 658.9275483473841,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B052",
+      "authored": {
+        "x": 0,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B053",
+      "authored": {
+        "x": 1,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B054",
+      "authored": {
+        "x": 2,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B055",
+      "authored": {
+        "x": 3,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B056",
+      "authored": {
+        "x": 4,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B057",
+      "authored": {
+        "x": 5,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B058",
+      "authored": {
+        "x": 6,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B059",
+      "authored": {
+        "x": 7,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B060",
+      "authored": {
+        "x": 8,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B061",
+      "authored": {
+        "x": 9,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B062",
+      "authored": {
+        "x": 10,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B063",
+      "authored": {
+        "x": 11,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B064",
+      "authored": {
+        "x": 12,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B065",
+      "authored": {
+        "x": 13,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B066",
+      "authored": {
+        "x": 14,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B067",
+      "authored": {
+        "x": 15,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B068",
+      "authored": {
+        "x": 16,
+        "y": 6.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 590.6425161157947,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B069",
+      "authored": {
+        "x": 0,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B070",
+      "authored": {
+        "x": 1,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B071",
+      "authored": {
+        "x": 2,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B072",
+      "authored": {
+        "x": 3,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B073",
+      "authored": {
+        "x": 4,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B074",
+      "authored": {
+        "x": 5,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B075",
+      "authored": {
+        "x": 6,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B076",
+      "authored": {
+        "x": 7,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B077",
+      "authored": {
+        "x": 8,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B078",
+      "authored": {
+        "x": 9,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B079",
+      "authored": {
+        "x": 10,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B080",
+      "authored": {
+        "x": 11,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B081",
+      "authored": {
+        "x": 12,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B082",
+      "authored": {
+        "x": 13,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B083",
+      "authored": {
+        "x": 14,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B084",
+      "authored": {
+        "x": 15,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B085",
+      "authored": {
+        "x": 16,
+        "y": 9,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 522.3574838842053,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B086",
+      "authored": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B087",
+      "authored": {
+        "x": 1,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B088",
+      "authored": {
+        "x": 2,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B089",
+      "authored": {
+        "x": 3,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B090",
+      "authored": {
+        "x": 4,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B091",
+      "authored": {
+        "x": 5,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B092",
+      "authored": {
+        "x": 6,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B093",
+      "authored": {
+        "x": 7,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B094",
+      "authored": {
+        "x": 8,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B095",
+      "authored": {
+        "x": 9,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B096",
+      "authored": {
+        "x": 10,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B097",
+      "authored": {
+        "x": 11,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B098",
+      "authored": {
+        "x": 12,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B099",
+      "authored": {
+        "x": 13,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B100",
+      "authored": {
+        "x": 14,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B101",
+      "authored": {
+        "x": 15,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B102",
+      "authored": {
+        "x": 16,
+        "y": 11.25,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 454.07245165261594,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B103",
+      "authored": {
+        "x": 0,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B104",
+      "authored": {
+        "x": 1,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B105",
+      "authored": {
+        "x": 2,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B106",
+      "authored": {
+        "x": 3,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B107",
+      "authored": {
+        "x": 4,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B108",
+      "authored": {
+        "x": 5,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B109",
+      "authored": {
+        "x": 6,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B110",
+      "authored": {
+        "x": 7,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B111",
+      "authored": {
+        "x": 8,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B112",
+      "authored": {
+        "x": 9,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B113",
+      "authored": {
+        "x": 10,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B114",
+      "authored": {
+        "x": 11,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B115",
+      "authored": {
+        "x": 12,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B116",
+      "authored": {
+        "x": 13,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B117",
+      "authored": {
+        "x": 14,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B118",
+      "authored": {
+        "x": 15,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B119",
+      "authored": {
+        "x": 16,
+        "y": 13.5,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 385.7874194210266,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B120",
+      "authored": {
+        "x": 0,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 851.7087742876822,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B121",
+      "authored": {
+        "x": 1,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 882.0576775017219,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B122",
+      "authored": {
+        "x": 2,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 912.4065807157616,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B123",
+      "authored": {
+        "x": 3,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 942.7554839298014,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B124",
+      "authored": {
+        "x": 4,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 973.1043871438411,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B125",
+      "authored": {
+        "x": 5,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1003.4532903578809,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B126",
+      "authored": {
+        "x": 6,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1033.8021935719205,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B127",
+      "authored": {
+        "x": 7,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1064.1510967859604,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B128",
+      "authored": {
+        "x": 8,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1094.5,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B129",
+      "authored": {
+        "x": 9,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1124.8489032140396,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B130",
+      "authored": {
+        "x": 10,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1155.1978064280795,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B131",
+      "authored": {
+        "x": 11,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1185.5467096421191,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B132",
+      "authored": {
+        "x": 12,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1215.895612856159,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B133",
+      "authored": {
+        "x": 13,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1246.2445160701986,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B134",
+      "authored": {
+        "x": 14,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1276.5934192842383,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B135",
+      "authored": {
+        "x": 15,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1306.9423224982781,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    },
+    {
+      "id": "B136",
+      "authored": {
+        "x": 16,
+        "y": 15.75,
+        "z": 0
+      },
+      "projected": {
+        "x": 1337.291225712318,
+        "y": 317.5023871894372,
+        "unobscured": true
+      }
+    }
+  ]
+}

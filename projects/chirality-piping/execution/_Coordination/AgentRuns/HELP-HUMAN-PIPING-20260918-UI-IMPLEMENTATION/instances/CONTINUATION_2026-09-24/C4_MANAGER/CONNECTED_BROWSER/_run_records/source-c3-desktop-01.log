@@ -1,0 +1,25 @@
+Source head=8c5ac0fc5730765e972da48e3e3abad659df3eb9
+Spec SHA256=be12801debc9d5065524c76c3feecedf405e0a10c2311ba8c4ff83007b52000a
+Browser=/Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell
+$ /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/.bin/playwright test e2e/c3-viewport-visibility.spec.ts --project chromium-desktop --workers 1 --max-failures 1 --reporter=list,json --output /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-c3-desktop-01
+[WebServer] (node:79578) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:79582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:78:1 › C3 snapshot, Hide precedence, persistent hidden count, theme and Show All preserve model/history (5.4s)
+  ✓  2 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:153:1 › C3 dimmed geometry remains available to hover, click and box selection (2.9s)
+  ✓  3 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:188:1 › C3 nearer dimmed pipe wins unchanged point ordering and viewport keyboard focus is visible (3.3s)
+  ✓  4 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:227:1 › C3 isolation remains clearable when every drawable entity belongs to the snapshot (1.6s)
+  ✓  5 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:244:1 › C3 deletion retains active empty snapshot; new geometry dims; project replacement clears it (3.9s)
+  ✓  6 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:279:1 › C3 visibility leaves Current results current and never revives Historical overlays (6.3s)
+  ✓  7 [chromium-desktop] › e2e/c3-viewport-visibility.spec.ts:314:1 › C4 applied labels retain context, fit measured boxes, preserve hover and leave geometry pickable (3.1s)
+
+  7 passed (28.3s)
+
+exit=0
+elapsed_seconds=28.903

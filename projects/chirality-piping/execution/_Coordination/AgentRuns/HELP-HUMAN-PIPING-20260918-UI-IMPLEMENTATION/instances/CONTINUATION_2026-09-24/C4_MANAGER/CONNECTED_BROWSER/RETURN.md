@@ -1,0 +1,38 @@
+# Connected C4 browser stage return
+
+Status: dist keyboard-measurement compatibility failure reproduced and isolated; ROOT design proof and bounded product repair are pending. Production source candidate is `383c941e902bac866bd8e09f468c258894e4dabe` on isolated `codex/piping-c4-policy-20260924`; product source remains byte-identical through this replacement-manager continuation. ROOT owns primary integration and the programme graph. No push, PR, primary merge or C4 closure is claimed.
+
+## Result and current evidence
+
+The connected stage adds maintained source/dist C4 scenarios and repairs two observed product issues: closed omission disclosures eagerly mounted thousands of unnecessary rows; an old hover callback discarded a newer preferred label position and created a persistent hover/RAF loop after same-ID Open. Existing diagnosis, failed browser sequences, initial invalid event-harness attempts and old-red/new-green component proof remain preserved. Source commits are8589065f6 (lazy omission contents), dc3a640df (live hover publication), and383c941e9 (correct managed pointer transition regression). Independent original hover backcheck SHA-256 is `e8a1075a337e7934efb8f53695cc12ce502ab28277eb95208708bae492030d8d`; its exact bytes are retained under the portability archive.
+
+Actual selected checks against source383:
+
+- Recovered `source-foundation-repaired-10`: **86 passed**, both maintained source projects, no failures/skips/flaky outcomes, exit0; exact foundation spec/source binding verified. This completed while the previous manager was interrupted and was inspected rather than repeated.
+- Replacement `source-affected-replacement-12`: **81 passed**, maintained C4/C3/table-editing/Sections specs across normal projects, no failures/skips/flaky outcomes, exit0. Actual WEBGL loss/restoration cases ran; neither extension witness skipped. The registered explicit-viewport exclusions remained unchanged.
+- `production-build-01`: ordinary `npm run build --workspace apps/desktop` passed (`tsc -b && vite build`), with unchanged source and eight exact previously generated WASM-related asset hashes. Build input and resulting dist hashes are retained. Existing large-chunk advisory remains; no config or threshold changed.
+- `dist-connected-replacement-13`: **8 passed / 1 failed / 45 did not run**, exit1. All five C4 cases passed; the light/comfortable content-aware narrow-canvas foundation case timed out locating the selected P100 keyboard label. Unchanged narrow reproduction14 and diagnostic15 fail identically. No dist completion claim.
+
+The new source launch11 failed before tests because the sandbox denied localhost5174 binding (EPERM). Its raw command/log/report remain. Command12 used the actual supported escalation and completed. Every browser run used pinned Chromium148.0.7778.96, Playwright1.60.0, one worker and unchanged maintained configs/deadlines/criteria. These are macOS functional observations, not Linux/native-Tauri or calibrated-performance evidence. Both5174 and5175 were verified listener-free after diagnostic15 and handed back to ROOT while geometric design review proceeds.
+
+## Preserved limits
+
+Actual rendered contextual count above nominal Budget remains **OPEN**. Earlier trials with83/B113 and90/B113 establish finite spatial omissions, not successful overflow. Exact unsuccessful trial4942 source and failed raw evidence are retained; the maintained scenario tests136 unique identities and exact placement/omission accounting. ROOT ended fixture fishing after the bounded design investigation found no grounded next construction. No requested count is substituted for actual renderer count.
+
+A001 deliberately displays inline ellipsis within its measured58×32 plate; full title and accessible identity remain available. Actual browser observation and independent diagnosis found no measured-box/ink-overflow mismatch. This is a disclosed inline-readability limitation, not full inline text readability. No font, plate, geometry, count cap, first-profile helper/fixture/validator/oracle or numeric limit was changed.
+
+Full source-stage registered/DEC-025/CI gates, actual native rendering/interaction evidence, second-profile population/method freeze and timed qualification remain separate. This return covers a bounded connected source/dist stage; it does not complete C4 or the larger UI programme. No native/CUA/app/endpoint/signing/Rust work occurred in this replacement continuation.
+
+## Recovery, portability and independent review
+
+Replacement manager `/root/c4_resume` is a new WORKING_ITEMS Type1 instance under ROOT, using delegated-harness-native collaboration and the preserved Astra/high allocation. Previous instances were not resumed. Fresh reviewer `/root/c4_resume/final_review` is Astra/xhigh TASK Type2, read-only except its own return/hash record, no descendants. Instruction origins, supplied scope and actual recovery identities are in `_run_records/replacement-recovery-20260924.json`. Root/TASK roles were fully read before dispatch.
+
+ROOT instructed exact-byte historical preservation plus portable derived records. Eleven historical diagnosis/review records now retain their original schemas/fields and hash claims, with actual machine-origin bytes archived under `_run_records/portability-originals`. [PORTABILITY_DISPOSITION.json](PORTABILITY_DISPOSITION.json) binds every original/portable hash and defines field roots. Original historical hash references resolve to original bytes through that map; they are never silently rebound to rewritten views. The bounded postrepair path-anchor scan passed138 files with zero findings. No shared classifier, harness or policy changed. The rejected policy-exception proposal remains raw history.
+
+Final independent complete stage verdict: pending the isolated dist defect resolution and final evidence checkpoint. Earlier fresh static review found no actionable blocker and verified repair causality, all eleven portable transformations and the exact archived failed trial. Its completed final return will be linked from `FINAL_REVIEW/RETURN.md`.
+
+## Dist compatibility diagnosis and scoped next step
+
+The maintained default-Isometric Fit Selection removes the selected pipe label before Measure is enabled. Browser capture15 shows the primary P100 label goes from placed to unplaced solely for `picking`, with canvas924×540 unchanged, stable camera9 and zero owned RAF. Offline reconstruction invokes the immutable model-index, picker primitives, projector and placement implementation against the exact captured camera and58×32 DOM measurement. P100's own conservative rectangle[288.4744,162.9760]–[635.5256,377.0240] intersects every one of the24 candidate plates; its own primitive alone reproduces failure. Removing that rectangle is only a diagnostic counterfactual, never an authorized repair. Every actual source/model/observation hash and all24 blocker lists are retained in `dist-content-projection-probe-result.json`.
+
+Independent review confirms existing finite-placement policy behaves as documented but exposes a keyboard-measurement compatibility seam. ROOT has assigned HELPS_HUMANS `/root/c4_projection_design` to prove a bounded conservative capsule-envelope refinement, including whole-primitive depth qualification, unchanged original maximum-depth/physical-radius tolerance, near-plane behavior and safe fallback. Product source is frozen until the design proof and exact scope arrive and the manager sends ROOT the bounded implementation brief. Test-only camera adjustment, dropping own pick exclusions, adding attempts or weakening the existing measurement assertions is excluded.

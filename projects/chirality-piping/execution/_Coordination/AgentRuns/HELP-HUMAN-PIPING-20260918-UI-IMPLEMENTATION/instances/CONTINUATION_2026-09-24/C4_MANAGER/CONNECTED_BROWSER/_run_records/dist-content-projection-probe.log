@@ -1,0 +1,125 @@
+{
+  "label": {
+    "x": 461.99999999999983,
+    "y": 270.0000000000001,
+    "inFrustum": true,
+    "width": 58,
+    "height": 32
+  },
+  "all": {
+    "rect": null,
+    "reasons": [
+      "picking"
+    ]
+  },
+  "withoutOwn": {
+    "rect": {
+      "left": 465.99999999999983,
+      "right": 523.9999999999998,
+      "top": 234.0000000000001,
+      "bottom": 266.0000000000001
+    },
+    "reasons": []
+  },
+  "blockers": [
+    {
+      "key": "[\"pipe\",\"pipe:P-100\"]",
+      "result": {
+        "rect": null,
+        "reasons": [
+          "picking"
+        ]
+      }
+    }
+  ],
+  "candidateBlockers": [
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"component\",\"component:C-110\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"node\",\"node:N-100\"]",
+      "[\"support\",\"support:S-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"component\",\"component:C-110\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"support\",\"support:S-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"pipe\",\"pipe:P-110\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"pipe\",\"pipe:P-110\"]",
+      "[\"node\",\"node:N-110\"]",
+      "[\"component\",\"component:C-110\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"node\",\"node:N-100\"]",
+      "[\"support\",\"support:S-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"pipe\",\"pipe:P-110\"]",
+      "[\"component\",\"component:C-110\"]"
+    ],
+    [
+      "[\"pipe\",\"pipe:P-100\"]",
+      "[\"support\",\"support:S-100\"]"
+    ]
+  ]
+}
+
+exit=0
