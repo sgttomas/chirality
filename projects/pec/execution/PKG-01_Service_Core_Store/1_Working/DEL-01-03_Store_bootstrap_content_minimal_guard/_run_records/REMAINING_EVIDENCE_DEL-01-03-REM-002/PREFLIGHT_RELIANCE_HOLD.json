@@ -1,0 +1,28 @@
+{
+  "item": "DEL-01-03-REM-002",
+  "run_by": "WORKING_ITEMS manager (instruction-asserted)",
+  "utc": "2026-09-24T03:20:39Z",
+  "cwd": "projects/pec",
+  "git_head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "command": [
+    "python3",
+    "execution/_Scripts/pec_reliance_hold.py",
+    "--register",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+    "--target",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+    "--operation",
+    "historical-read-only-inspection"
+  ],
+  "exit_code": 0,
+  "stdout_json": {
+    "operation": "historical-read-only-inspection",
+    "status": "ALLOW"
+  },
+  "sha256": {
+    "execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+    "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+    "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+  }
+}

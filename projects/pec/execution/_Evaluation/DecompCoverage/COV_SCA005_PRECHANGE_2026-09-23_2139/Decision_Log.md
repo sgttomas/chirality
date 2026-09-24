@@ -1,0 +1,19 @@
+# Decision Log — COV_SCA005_PRECHANGE_2026-09-23
+
+| Ref | Decision | Rationale |
+|---|---|---|
+| D-1 | Audit `ALL`; bind `Packages` (prefix → `## 4. Packages (Phase 4)`, line 351), `Deliverables` (prefix → `## 5. Deliverables (Phase 5)`, line 377), `Scope Ledger` (exact → `## 6. Scope Ledger`, line 511) and `Objectives` (prefix → `## 3. Objectives (Phase 3)`, line 312) by heading text; no rank was ambiguous. | Sealed brief and the contract's Variant Section Binding. |
+| D-2 | Bind the pre-change basis to revision 1.4 `current_basis` at the exact SHA-256 values in `Brief.md`, and cite D-PEC-86 separately as opened SCA-005 Gate 1 intake. | D-PEC-86 records Gate 1 opened by owner direction; checkpoint group 1 is not accepted, so it is intake evidence, not accepted basis. |
+| D-3 | Check 9 is `SKIPPED`. | Derivative-package parity is not variant-owned for SOFTWARE; the current method retains that rule. |
+| D-4 | Apply full companion-register severity in Check 9b. | Companion registers exist; `Companion_Inventory.csv` and the main-document inventory make roles discoverable. |
+| D-5 | Resolve 32 contracts as `SOW_V1` and 32 as absent (`NONE`) at `OPEN`; no legacy four-doc or dual form. | Exact `schema: chirality-deliverable-sow/v1` line in each of the 32 `ScopeOfWork.md` files; no `Datasheet.md`/`Specification.md`/`Guidance.md`/`Procedure.md` exists in any deliverable folder. |
+| D-6 | Treat anticipated-artifact matching as deliverable-folder-local, unchanged from SCA-004 D-6. | Check 6 scans the deliverable folder; accepted or candidate bytes elsewhere are cited, not silently relocated or reclassified. |
+| D-7 | Escalate the absent anticipated sets of `DEL-01-03` and `DEL-01-05` (both `IN_PROGRESS`) and `DEL-08-02` (`CHECKING`) to `WARNING`. | Method Step 6 escalates at `IN_PROGRESS` or later. `IN_PROGRESS` deliverables now exist. |
+| D-8 | Do not count `_REVIEW.md`, `Review_Findings.csv`, `_run_records/**` (including the untracked `REMAINING_EVIDENCE_DEL-01-03-REM-00{1,2,3}/` folders) as anticipated artifacts. | They are review and run evidence, not the anticipated product artifacts named in `Deliverables.csv`. |
+| D-9 | Read each deliverable's `_STATUS.md` `**Current State:**` line as authoritative; read the only sibling memory file present (`DEL-01-03/MEMORY.md`) as non-authoritative context. | Paired-read rule. The memory agrees with `IN_PROGRESS`. No `_MEMORY.md` exists. |
+| D-10 | Check 10 passes against the accepted SCA-004 pointer state. SCA-005 is cited as opened intake. | `_ScopeChange/_LATEST.md` uniquely names SCA-004. That snapshot is complete for its SOFTWARE contract, and its claims are not cleaner than the evidence. |
+| D-11 | Record the stale metadata-alignment fields in both pointers as `INFO` (COV-071), not `WARNING`. | The pointers claim *less* closure than the evidence shows (metadata aligned 64/64 on 2026-08-03). The method fails a pointer only for a later or cleaner claim. |
+| D-12 | Record the empty `_ScopeChange/SCA-005_2026-09-23_2139/` folder as `INFO` (COV-072), not as historical-residue `WARNING`. | It is the non-active candidate write target that D-PEC-86 §4 opens. It is neither historical nor active. |
+| D-13 | Do not evaluate the SCA-004 snapshot against the newer `checkpoint_snapshots/` layout in the current scope-change method. | SCA-004 was produced and accepted under its Gate 1–5 model. Required core artifacts are evaluated; applying the new layout backwards would reinterpret accepted history. |
+| D-14 | Formal comparison mode (Step 12) is `SKIPPED`. The report still includes an informational delta against `COV_SCA004_POSTCHANGE_2026-08-03_1442`. | `PRIOR_RUN_LABEL` was not supplied, but the caller asked for the change against that snapshot. |
+| D-15 | Do not update `_Evaluation/DecompCoverage/_LATEST.md`. | The sealed brief narrows the normal protocol to one immutable snapshot with no pointer write (as SCA-004 D-9). |

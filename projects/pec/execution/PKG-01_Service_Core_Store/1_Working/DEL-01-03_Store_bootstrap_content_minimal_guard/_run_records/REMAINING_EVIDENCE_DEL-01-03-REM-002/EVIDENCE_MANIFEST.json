@@ -1,0 +1,725 @@
+{
+  "item": "DEL-01-03-REM-002",
+  "date": "2026-09-23",
+  "head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "author_role": "TASK (Type 2), instruction-asserted; serving model claude-opus-5-5[1m] as reported by host, unverified",
+  "parent": "WORKING_ITEMS manager (PEC loop), under D-PEC-86 §3 I-4",
+  "preflight": {
+    "item": "DEL-01-03-REM-002",
+    "run_by": "WORKING_ITEMS manager (instruction-asserted)",
+    "utc": "2026-09-24T03:20:39Z",
+    "cwd": "projects/pec",
+    "git_head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+    "command": [
+      "python3",
+      "execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "--operation",
+      "historical-read-only-inspection"
+    ],
+    "exit_code": 0,
+    "stdout_json": {
+      "operation": "historical-read-only-inspection",
+      "status": "ALLOW"
+    },
+    "sha256": {
+      "execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    }
+  },
+  "linked_claims": [
+    "DEL-01-03::OUT-002",
+    "DEL-01-03::REQ-003",
+    "DEL-01-03::REQ-004",
+    "DEL-01-03::REQ-005",
+    "DEL-01-03::REQ-006",
+    "DEL-01-03::AC-003",
+    "DEL-01-03::AC-004",
+    "DEL-01-03::AC-005",
+    "DEL-01-03::AC-006",
+    "DEL-01-03::VER-003",
+    "DEL-01-03::VER-004",
+    "DEL-01-03::VER-005",
+    "DEL-01-03::VER-006"
+  ],
+  "sources": [
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/__init__.py",
+      "sha256": "c9d8b3e5a1338ecf9dbc5a7405c47c69956e3c68e3219f60e3c988c1f1880540"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"
+    },
+    {
+      "path": "projects/pec/.gitignore",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "sha256": "085a1412b40fdd0467f77e66ef7704d50a3a939d9f1d0911e2b6414ec1d99010"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md",
+      "sha256": "ed453eaa112e1c8af9b1c201d0e4c3b5bb00b11e776c7658cbd333d430a6e058"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "sha256": "e422c16797c1f5bf0ea19f47a714eacd4bbaa4534b7358a5cde7f413266a4fad"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_DEPENDENCIES.md",
+      "sha256": "1d8e46a7bd77331e2ba0aa430448127acc86b3a0d5b6adbbc723fe1a41f14e0c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/CHILD_BRIEF.md",
+      "sha256": "a1d49b7f47eb9d443d4e876319d6076831ec5172230368b23e67fde6d100be9a"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/PREFLIGHT_RELIANCE_HOLD.json",
+      "sha256": "319b6f5b5c4db64f2cf58811a4bf7026d97e32538db8ce5c07dd7d4526cff110"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/ACTIVATION.md",
+      "sha256": "11ee3961e764ea7e81b697d39ad718005f7dd691f7279d8721152a1a1bb3adc0"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/TECHNICAL_FAN_IN.md",
+      "sha256": "0938c96726c869146f6603d59336ea829afdffb80f0c460d5e3af3b7f7ca9e8f"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/HANDOFF_STATE.md",
+      "sha256": "361f799f757afcd399f4a6b4c534e89a8bd8ffe12ccdaef5fba2f6eefa0fc8c9"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/FINAL_VALIDATION.json",
+      "sha256": "ce37c9ed530b433ce3c5691cee2f0a0ae483c9cf0776a4e190ec54617a61e5bc"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/CHECK_REGISTRATION.json",
+      "sha256": "1d5aeef46462f6b5896a3af02ef70600d632e83dc49cde47dc436f4ef3ac8f15"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/WORK_GRAPH.json",
+      "sha256": "f4152c8d17a49fd18bce2fe292fc37acdc3b3188ec0709ad6cf6a97db1099aca"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY/REVIEW.md",
+      "sha256": "cf4932c5c3d9469d332142c39b692aa377d83237aa89370b33bfda77c104e896"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AUTHORIZED_SCOPE.md",
+      "sha256": "301fd94e3fd054f21e429319dbe38d676ada694eb433035324b1cf3d80995743"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FAN_IN.md",
+      "sha256": "bf0706c2dac1a9aaba2829ffc940983e8958e57a3c7aade9215dcd43fc7d9a32"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/HANDOFF_STATE.md",
+      "sha256": "2a85d16f77f8fb4f560a9b6d821937a7c14a007871de46da518b634f48b68c9d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
+      "sha256": "7cc4dd0f9065f9a79e554aae6ddad5dfdb631a28556585e8d04a7e6a6bdb682b"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md",
+      "sha256": "021820b8cc9bd034ffdc95709864e1cdb1009ea93026ab2297a5fdc24453159b"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/PROPOSED_ITEMS.csv",
+      "sha256": "91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CLAIM_TO_PROPOSAL_MAP.json",
+      "sha256": "c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/build_full_preparation.py",
+      "sha256": "c5d7baf5a1dd7631329b2de8f6389df8577604fdde8baeda91818fe5c2acc210"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_CLAIMS.csv",
+      "sha256": "82e9b1cd27325da2d1bfa6ccc9a1ee834e4c7714b87366bf2186883e2985464d"
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba"
+    }
+  ],
+  "search_scopes": [
+    {
+      "id": "SCOPE_PEC",
+      "scope": "projects/pec (excluding execution/ and .git)"
+    },
+    {
+      "id": "SCOPE_V2",
+      "scope": "projects/pec/v2 (all files)"
+    },
+    {
+      "id": "SCOPE_V2SRC",
+      "scope": "projects/pec/v2/src (11 .py files)"
+    },
+    {
+      "id": "SCOPE_P1",
+      "scope": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/** (53 files)"
+    }
+  ],
+  "evidence_rows": [
+    {
+      "row": "E01",
+      "claim": "DEL-01-03::OUT-002",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "15-20;129-197",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E02",
+      "claim": "DEL-01-03::OUT-002",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "42;45-63",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E03",
+      "claim": "DEL-01-03::OUT-002",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "lines": "22-44;56-62",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "row": "E04",
+      "claim": "DEL-01-03::OUT-002",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FAN_IN.md",
+      "lines": "1-8;34-39",
+      "sha256": "bf0706c2dac1a9aaba2829ffc940983e8958e57a3c7aade9215dcd43fc7d9a32"
+    },
+    {
+      "row": "E05",
+      "claim": "DEL-01-03::REQ-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "54-63;248-267",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E06",
+      "claim": "DEL-01-03::REQ-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "123-149;225-246",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E07",
+      "claim": "DEL-01-03::REQ-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "41;248-249",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E08",
+      "claim": "DEL-01-03::REQ-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec (excluding execution/ and .git)",
+      "lines": "n/a",
+      "sha256": "n/a (search scope)"
+    },
+    {
+      "row": "E09",
+      "claim": "DEL-01-03::REQ-003",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "lines": "47-50",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "row": "E10",
+      "claim": "DEL-01-03::AC-003",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "20",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "E11",
+      "claim": "DEL-01-03::AC-003",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "144-150",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E12",
+      "claim": "DEL-01-03::VER-003",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "23",
+      "sha256": "c2460fc0f4934f72b2cf37ddf5b60e8a3f39119dae7d1bcd1981fb1c7c0317f9"
+    },
+    {
+      "row": "E13",
+      "claim": "DEL-01-03::VER-003",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "111",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "E14",
+      "claim": "DEL-01-03::REQ-004",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "199-225;241-285",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E15",
+      "claim": "DEL-01-03::REQ-004",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "229-244",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E16",
+      "claim": "DEL-01-03::REQ-004",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "288-296",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E17",
+      "claim": "DEL-01-03::REQ-004",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "217-224",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E18",
+      "claim": "DEL-01-03::REQ-004",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "lines": "11-26;40-42",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "row": "E19",
+      "claim": "DEL-01-03::AC-004",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "11",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "E20",
+      "claim": "DEL-01-03::AC-004",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "80-82",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E21",
+      "claim": "DEL-01-03::AC-004",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "92",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E22",
+      "claim": "DEL-01-03::VER-004",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "13-14;17",
+      "sha256": "c2460fc0f4934f72b2cf37ddf5b60e8a3f39119dae7d1bcd1981fb1c7c0317f9"
+    },
+    {
+      "row": "E23",
+      "claim": "DEL-01-03::VER-004",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "lines": "78-97",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118"
+    },
+    {
+      "row": "E24",
+      "claim": "DEL-01-03::VER-004",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/** (53 files)",
+      "lines": "n/a",
+      "sha256": "n/a (search scope)"
+    },
+    {
+      "row": "E25",
+      "claim": "DEL-01-03::REQ-005",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "110-116;139-187",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E26",
+      "claim": "DEL-01-03::REQ-005",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "133-145",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E27",
+      "claim": "DEL-01-03::REQ-005",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2 (all files)",
+      "lines": "n/a",
+      "sha256": "n/a (search scope)"
+    },
+    {
+      "row": "E28",
+      "claim": "DEL-01-03::REQ-005",
+      "class": "UNKNOWN",
+      "path": "projects/pec/docs/PRD.md",
+      "lines": "262",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba"
+    },
+    {
+      "row": "E29",
+      "claim": "DEL-01-03::AC-005",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "83-91",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E30",
+      "claim": "DEL-01-03::AC-005",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "12",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "E31",
+      "claim": "DEL-01-03::AC-005",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "95-109",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E32",
+      "claim": "DEL-01-03::VER-005",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "15",
+      "sha256": "c2460fc0f4934f72b2cf37ddf5b60e8a3f39119dae7d1bcd1981fb1c7c0317f9"
+    },
+    {
+      "row": "E33",
+      "claim": "DEL-01-03::VER-005",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "100-103",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E34",
+      "claim": "DEL-01-03::REQ-006",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "129-132",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "E35",
+      "claim": "DEL-01-03::REQ-006",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/src (11 .py files)",
+      "lines": "n/a",
+      "sha256": "n/a (search scope)"
+    },
+    {
+      "row": "E36",
+      "claim": "DEL-01-03::REQ-006",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AUTHORIZED_SCOPE.md",
+      "lines": "20-25",
+      "sha256": "301fd94e3fd054f21e429319dbe38d676ada694eb433035324b1cf3d80995743"
+    },
+    {
+      "row": "E37",
+      "claim": "DEL-01-03::AC-006",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "13",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "E38",
+      "claim": "DEL-01-03::AC-006",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "111-125",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E39",
+      "claim": "DEL-01-03::VER-006",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "16",
+      "sha256": "c2460fc0f4934f72b2cf37ddf5b60e8a3f39119dae7d1bcd1981fb1c7c0317f9"
+    },
+    {
+      "row": "E40",
+      "claim": "DEL-01-03::VER-006",
+      "class": "UNKNOWN",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "93-98",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    }
+  ],
+  "class_counts": {
+    "rows_by_class": {
+      "OBSERVED_IMPLEMENTATION": 13,
+      "BOUNDED_LOCAL_ABSENCE": 4,
+      "MISSING_OR_UNMAPPED": 7,
+      "FINITE_METHOD_EXECUTION": 11,
+      "HISTORICAL_ACCEPTANCE": 3,
+      "UNKNOWN": 2
+    },
+    "claims_with_class": {
+      "OBSERVED_IMPLEMENTATION": 6,
+      "BOUNDED_LOCAL_ABSENCE": 4,
+      "MISSING_OR_UNMAPPED": 6,
+      "FINITE_METHOD_EXECUTION": 10,
+      "HISTORICAL_ACCEPTANCE": 2,
+      "UNKNOWN": 2
+    },
+    "total_rows": 40,
+    "total_claims": 13
+  },
+  "unknowns": [
+    {
+      "id": "U-1",
+      "claims": [
+        "REQ-005",
+        "AC-005"
+      ],
+      "summary": "Whether a feed that cannot be admitted is stated as a limitation (PEC-ORI-006). No feed exists in v2.",
+      "resolves": "A real feed ingest path with its limitation reporting and executing evidence (e.g. DEL-03-01 reconciler)."
+    },
+    {
+      "id": "U-2",
+      "claims": [
+        "REQ-006",
+        "AC-006",
+        "VER-006"
+      ],
+      "summary": "Whether real reconciler, presence/Git and event ingest paths route through admit_batch and reject identically.",
+      "resolves": "Integration evidence from DEL-03-01, the presence/Git owner and DEL-07-01 when those paths exist."
+    },
+    {
+      "id": "U-3",
+      "claims": [
+        "REQ-004",
+        "AC-004"
+      ],
+      "summary": "Whether file-content, diff or register-prose text wrapped in a validly constructed RepositoryPath is admitted. Code reading shows no rule that would reject it; no execution exercised it.",
+      "resolves": "A separately authorized test or measurement, or a production ruling on the PATH domain."
+    },
+    {
+      "id": "U-4",
+      "claims": [
+        "AC-004",
+        "VER-004"
+      ],
+      "summary": "Whether any content residue exists outside the adapter read path (sidecars, free pages, other tables) after rejection.",
+      "resolves": "A separately authorized full persisted-field and file-level dump."
+    },
+    {
+      "id": "U-5",
+      "claims": [
+        "REQ-003",
+        "AC-003"
+      ],
+      "summary": "Whether any future in-process caller bypasses the guard through private members; the boundary is conventional.",
+      "resolves": "Per-consumer call-graph inspection, or a production ruling on structural enforcement."
+    },
+    {
+      "id": "U-6",
+      "claims": [
+        "REQ-004"
+      ],
+      "summary": "The test separating a state token from prose (CON-001) is unresolved; it belongs to held REM-004.",
+      "resolves": "The owner disposition of REM-004 (CON-001), or SCOPE_CHANGE."
+    }
+  ],
+  "obligations": [
+    {
+      "id": "O-2-1",
+      "claims": [
+        "REQ-003",
+        "AC-003",
+        "VER-003"
+      ],
+      "summary": "Decide whether the heuristic test_ver_003 and conventional privacy suffice for the single boundary, or whether a recorded write-surface/call-graph inventory (record writes versus lifecycle writes) and/or structural enforcement is required.",
+      "authority_needed": "Owner ruling; any new artifact, test or code change needs a separate DEL-01-03 production ruling."
+    },
+    {
+      "id": "O-2-2",
+      "claims": [
+        "REQ-004",
+        "AC-004"
+      ],
+      "summary": "Decide the PATH-domain gap: no length or whitespace/newline bound, so content-shaped text in a valid RepositoryPath is not rejected by any inspected rule (U-3).",
+      "authority_needed": "Production ruling; SCOPE_CHANGE or REM-004/CON-001 routing if it changes what the store may hold."
+    },
+    {
+      "id": "O-2-3",
+      "claims": [
+        "AC-004",
+        "VER-004"
+      ],
+      "summary": "Decide whether raw-str fixtures and read_all-based residue checking meet \"dump every persisted field\", or whether a realistic corpus and full persisted-field dump are required (U-4).",
+      "authority_needed": "Separate measurement run, or production ruling for a test change."
+    },
+    {
+      "id": "O-2-4",
+      "claims": [
+        "REQ-005",
+        "AC-005",
+        "VER-005"
+      ],
+      "summary": "Decide whether `<unknown>` record location with no input index, nine unasserted guard failure codes (including UNKNOWN_FIELD_CLASS and INVALID_VALUE), and a derived rejected count satisfy located rejection and no-silent-loss accounting.",
+      "authority_needed": "Owner acceptance of the current accounting, or production ruling for a change."
+    },
+    {
+      "id": "O-2-5",
+      "claims": [
+        "REQ-005"
+      ],
+      "summary": "Route the PEC-ORI-006 feed-limitation clause, which stays UNKNOWN (U-1), to the deliverables that will own feeds.",
+      "authority_needed": "Owner routing decision; later production in DEL-03-01 or orientation owners."
+    },
+    {
+      "id": "O-2-6",
+      "claims": [
+        "REQ-006",
+        "AC-006",
+        "VER-006"
+      ],
+      "summary": "Decide whether stand-ins suffice for this deliverable, given the bounded local absence of real ingest paths. They use different strings, only the STATE class and one record type, and the by-construction claim is not executed (U-2).",
+      "authority_needed": "Owner ruling; integration evidence in DEL-03-01, the presence/Git owner and DEL-07-01; any test revision needs a production ruling."
+    },
+    {
+      "id": "O-2-7",
+      "claims": [
+        "OUT-002"
+      ],
+      "summary": "No artifact or lifecycle acceptance of the guard exists (D85 technical fan-in only). Decide the disposition of DEL-01-03-REM-002 and of any reliance beyond technical fan-in.",
+      "authority_needed": "Owner acceptance / owner Remaining disposition."
+    },
+    {
+      "id": "O-2-8",
+      "claims": [
+        "REQ-004",
+        "AC-004"
+      ],
+      "summary": "Record that prose-versus-state rejection depends on CON-001 (REQ-009, AC-009, VER-008 in held REM-004); the in-scope claims cannot resolve that dependency (U-6).",
+      "authority_needed": "Owner ruling on REM-004 or SCOPE_CHANGE."
+    }
+  ],
+  "suite_observation": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-002/STORAGE_SUITE_OBSERVATION.json",
+    "sha256": "c2460fc0f4934f72b2cf37ddf5b60e8a3f39119dae7d1bcd1981fb1c7c0317f9",
+    "label": "read-only observation; not a measurement, acceptance or VER discharge"
+  },
+  "report_sha256": "b5d6632df94cd3cb7d3ba57b5ff8b0331e732cf9a0182040c8eefa6850364c60",
+  "write_set": [
+    "REPORT.md",
+    "EVIDENCE_MANIFEST.json",
+    "STORAGE_SUITE_OBSERVATION.json"
+  ],
+  "disposition_proposed": null,
+  "revisions": [
+    {
+      "number": 1,
+      "label": "Revision 1 (verifier cycle 1)",
+      "change": "E20 observation reworded to split STATE KnownState identity rejection (content_minimal_guard.py:213,270-281; TG:80-81) from PATH wrapper-type rejection (content_minimal_guard.py:242; TG:82); no class, count, unknown or obligation change",
+      "suite_rerun": false
+    },
+    {
+      "number": 2,
+      "label": "Revision 2 (verifier cycle 2)",
+      "change": "E31 observation and O-2-4 summary list all nine unasserted guard failure codes, adding UNKNOWN_FIELD_CLASS (content_minimal_guard.py:206) and INVALID_VALUE (:224); count wording corrected from eight; only .code assertion is DUPLICATE_RECORD at test_content_minimal_guard.py:108; no class, count, unknown or obligation-set change",
+      "suite_rerun": false
+    }
+  ]
+}
