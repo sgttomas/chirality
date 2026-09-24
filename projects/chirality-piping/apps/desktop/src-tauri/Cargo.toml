@@ -16,7 +16,7 @@ path = "src/main.rs"
 
 [[bin]]
 name = "swbpipe-control"
-path = "src/bin/swbpipe-control.rs"
+path = "src/live_control_cli/swbpipe-control.rs"
 required-features = ["live-control-cli"]
 
 [lib]

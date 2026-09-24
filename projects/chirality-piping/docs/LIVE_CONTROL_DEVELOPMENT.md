@@ -75,7 +75,7 @@ Normal shutdown cancels outstanding dispatches against their original registrati
 
 ## Development checks and boundaries
 
-Cargo explicitly selects `openpipestress-desktop` as the default binary. The CLI requires the `live-control-cli` feature; its entrypoint imports only shared wire code and never starts the desktop. The existing desktop main and `--self-test-saved-edited-load` route remain unchanged. Actual Tauri package selection and the packaged self-test must still be witnessed on each qualified candidate.
+Cargo explicitly selects `openpipestress-desktop` as the default binary. The CLI requires the `live-control-cli` feature, and its explicit entrypoint lives at `src/live_control_cli/swbpipe-control.rs`, outside Tauri 2.11.1's independent `src/bin` discovery. Both the feature gate and source placement are required for normal bundle separation; default-run and Cargo autobins alone do not exclude discovered sources. Normal Tauri packaging must omit the `live-control-cli` feature; intentionally enabling it selects the CLI for that bundle. The CLI entrypoint imports only shared wire code and never starts the desktop. Build/test/invocation commands and the `CARGO_BIN_EXE_swbpipe-control` integration-test binding are unchanged. The existing desktop main and `--self-test-saved-edited-load` route remain unchanged. Actual Tauri package selection and the packaged self-test must still be witnessed on each qualified candidate.
 
 Focused checks, only in a released test/build lane:
 

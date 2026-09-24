@@ -1,0 +1,111 @@
+{
+  "candidate": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "build_exit_code": 0,
+  "packaging_check": "FAIL: normal app bundle includes feature-gated standalone CLI artifact",
+  "raw_log_sha256": "01c02a638f92fdc858fe5f093edc8924ab54d508a453f2f625cb68f774dca2a1",
+  "bundle_path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app",
+  "bundle_hash_method": "SHA-256 over canonical JSON of sorted relative file path, byte size, and per-file SHA-256 manifest",
+  "bundle_manifest_sha256": "1a283b2a280db132792a7bce2f2a27ee193139e9d6f95ea7a70e12ef86565710",
+  "files": [
+    {
+      "path": "Contents/Info.plist",
+      "size": 979,
+      "sha256": "573a9848c4b521dc352ba10ef10298c645702b53f0557e62bade6a1855261fd8"
+    },
+    {
+      "path": "Contents/MacOS/openpipestress-desktop",
+      "size": 57105528,
+      "sha256": "df9b338d82af90e79af8042c1166302ba98bf4bbb22ffa5e704e499f288a3379"
+    },
+    {
+      "path": "Contents/MacOS/swbpipe-control",
+      "size": 1546336,
+      "sha256": "ff2073bb59b62a3c8b06ae82a88320ac2a8a8fc9ed36321fbb29c5797e96f175"
+    },
+    {
+      "path": "Contents/Resources/icon.icns",
+      "size": 77148,
+      "sha256": "2ddf5cdbfe7c2023349d49fd45efee4debad28e72a4cf8401834aa402f3d238e"
+    }
+  ],
+  "plist": {
+    "CFBundleDevelopmentRegion": "English",
+    "CFBundleDisplayName": "SWBPIPE",
+    "CFBundleExecutable": "openpipestress-desktop",
+    "CFBundleIdentifier": "com.chirality.swbpipe",
+    "CFBundleInfoDictionaryVersion": "6.0",
+    "CFBundleName": "SWBPIPE",
+    "CFBundlePackageType": "APPL",
+    "CFBundleShortVersionString": "0.1.0",
+    "CFBundleVersion": "0.1.0",
+    "CSResourcesFileMapped": true,
+    "LSMinimumSystemVersion": "10.13",
+    "CFBundleIconFile": "icon.icns",
+    "LSRequiresCarbon": true,
+    "NSHighResolutionCapable": true
+  },
+  "macos_executables": [
+    "openpipestress-desktop",
+    "swbpipe-control"
+  ],
+  "cfbundleexecutable_is_desktop": true,
+  "cli_absent": false,
+  "binaries": {
+    "openpipestress-desktop": {
+      "bundled_sha256": "df9b338d82af90e79af8042c1166302ba98bf4bbb22ffa5e704e499f288a3379",
+      "size": 57105528,
+      "file_description": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop: Mach-O 64-bit executable arm64",
+      "built_binary_path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/openpipestress-desktop",
+      "built_binary_sha256": "df9b338d82af90e79af8042c1166302ba98bf4bbb22ffa5e704e499f288a3379",
+      "equals_target_binary": true,
+      "target_mtime_utc": "2026-09-24T05:55:19.377708+00:00"
+    },
+    "swbpipe-control": {
+      "bundled_sha256": "ff2073bb59b62a3c8b06ae82a88320ac2a8a8fc9ed36321fbb29c5797e96f175",
+      "size": 1546336,
+      "file_description": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/swbpipe-control: Mach-O 64-bit executable arm64",
+      "built_binary_path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/swbpipe-control",
+      "built_binary_sha256": "ff2073bb59b62a3c8b06ae82a88320ac2a8a8fc9ed36321fbb29c5797e96f175",
+      "equals_target_binary": true,
+      "target_mtime_utc": "2026-09-24T05:36:09.593207+00:00"
+    }
+  },
+  "cargo_binary_fingerprints": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-4b3d5d48282c054c/bin-openpipestress-desktop.json",
+      "mtime_utc": "2026-09-24T05:55:19.268336+00:00",
+      "sha256": "31db98f87a807b4ccec36d8aab7d001218a247769a59a94841562b6ec8d3e03c",
+      "features": "[]",
+      "declared_features": "[\"live-control-cli\"]",
+      "rustflags": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-5bc034c21459a086/bin-openpipestress-desktop.json",
+      "mtime_utc": "2026-09-24T05:35:47.443712+00:00",
+      "sha256": "19dfc8b71edec558e89320906af076bf1c4a84c980790dc567607473df7329a7",
+      "features": "[]",
+      "declared_features": "[\"live-control-cli\"]",
+      "rustflags": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-bf215c4ccfc207b3/bin-openpipestress-desktop.json",
+      "mtime_utc": "2026-09-24T05:36:09.759902+00:00",
+      "sha256": "3872dd41c671d908cf95c2d7050dbab5c51bd76147100182e961612d9bb4c7de",
+      "features": "[\"live-control-cli\"]",
+      "declared_features": "[\"live-control-cli\"]",
+      "rustflags": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-e640860082413388/bin-swbpipe-control.json",
+      "mtime_utc": "2026-09-24T05:36:09.605365+00:00",
+      "sha256": "6e2731a95dec12acf2e3243e03f29618d2bae88eaf366d0f2dda0312bd74bec6",
+      "features": "[\"live-control-cli\"]",
+      "declared_features": "[\"live-control-cli\"]",
+      "rustflags": []
+    }
+  ],
+  "self_test_source_unchanged_since_base": true,
+  "main_source_sha256": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
+  "self_test_argument_bytes_present_in_bundle": true,
+  "no_app_or_self_test_execution": true
+}

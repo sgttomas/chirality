@@ -1,0 +1,15 @@
+# Packaging repair manager return
+
+ROOT's exact SCOPE_ADDENDUM and adopted DESIGN return bound this repair. WORKING_ITEMS /root/live_manager resumed existing native TASK /root/live_manager/native (Astra/low), supplied full TASK and current project instructions, and retained source/command/role hashes in REPAIR/ACTIVATION.json and NATIVE/PRE_EDIT.json. No new package, workspace, target, configuration, capability or protocol was introduced.
+
+The only product delta from c6837e02 is the byte-identical CLI source relocation to `src/live_control_cli/swbpipe-control.rs`, its Cargo target path, and bounded guide explanation. Manager independently checked byte parity SHA-256 `725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5`, exactly one Cargo path replacement, no old src/bin stub, and unchanged wire/main/lib/lock/config/capabilities/tests. See MANAGER_CROSSCHECK.json.
+
+All supplemental native checks passed: 8 library, 7 transport, 4 CLI unit, 3 CLI integration. Feature CLI build and the same maintained normal debug app build passed. NATIVE/RUNS.json and raw outputs retain exact commands/exits and permission modes. No execution failure or scope departure occurred.
+
+The decisive normal bundle test retained a feature-built `target/debug/swbpipe-control` in the same target directory. Its immediate pre/post normal-build hash is unchanged: `75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d`. Full `Contents/MacOS` is now exactly `["openpipestress-desktop"]`, CFBundleExecutable matches, and bundled desktop bytes equal the intended built main. The successful canonical bundle-manifest hash is `086d5ed9cbc98526106180237735b4f506af1793636727d0b6fa3ca232cd8566`. No output surgery or target cleaning was used. Required CLI checks naturally rebuilt the relocated CLI before the immediately-bound normal-build test; its presence was never manually removed to obtain exclusion.
+
+Failed packaging evidence remains untouched in PACKAGING/RETURN.md, ARTIFACTS.json and raw log. The complete failed app was byte-copied before normal bundler regeneration into ignored isolated `target/packaging-evidence/c6837e02-failed/SWBPIPE.app`; its per-file manifest still matches the original failure. Both failed and successful manifests are retained, not rewritten as a pass.
+
+All heavy processes are released. No app, self-test, real endpoint, browser/CUA, installer/signing-account interaction, primary artifact write or PID9925 action occurred. This proves the bounded source-layout and bundle-inventory repair only. Actual native I1/I2, self-test/default run execution, human H1/H2, whole integration checks and a freshly bound integrated-candidate build remain ROOT-owned/open.
+
+Fresh independent complete-delta backcheck is the remaining manager handback check; no PASS is claimed here before its return. Local commit identity is returned separately so this record does not require a self-referential commit. No push/PR/merge is authorized or performed by this lane.
