@@ -1,0 +1,147 @@
+{
+  "schema": "chirality-software-workflow/v1",
+  "project_root": "..",
+  "description": "Hosted App/Runtime and PEC job routing through the existing affected-check selector. Unmatched paths conservatively select the owning product suites. Piping retains its own source coverage planner; governance checks always run separately.",
+  "checks": {
+    "app": {
+      "description": "Complete App/Runtime pre-merge integration suite"
+    },
+    "instructions": {
+      "description": "Build and verify the App's packaged instruction root"
+    },
+    "pec": {
+      "description": "Complete PEC workspace suite with its Runtime dependency"
+    },
+    "records": {
+      "description": "No App/PEC product input; governance validation still applies"
+    }
+  },
+  "always_checks": [],
+  "path_rules": [
+    {
+      "paths": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "README.md",
+        "docs/**",
+        "agents/**",
+        "workflows/**",
+        ".agents/**",
+        "skills/**",
+        "tools/**",
+        "projects/chirality-app-dev/instructions/**"
+      ],
+      "checks": [
+        "instructions"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-app-dev/frontend/**",
+        "projects/chirality-app-dev/docs/harness/reliance_boundary_register.md",
+        "projects/chirality-app-dev/chirality.project.json",
+        "projects/chirality-app-dev/software-workflow.json",
+        "projects/chirality-app-dev/.github/**",
+        "projects/chirality-app-dev/.gitignore",
+        "exports/chirality-app/**",
+        "_DomainEngines/**",
+        ".github/workflows/harness-premerge.yml",
+        ".github/workflows/desktop-release-template.yml"
+      ],
+      "checks": [
+        "app"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-runtime/packages/**",
+        "projects/chirality-runtime/tests/**",
+        "projects/chirality-runtime/package.json",
+        "projects/chirality-runtime/package-lock.json",
+        "projects/chirality-runtime/tsconfig.json",
+        "projects/chirality-runtime/tsconfig.base.json",
+        "projects/chirality-runtime/vitest.config.ts",
+        "projects/chirality-runtime/vitest.custody.config.ts",
+        "projects/chirality-runtime/chirality.project.json",
+        "projects/chirality-runtime/software-workflow.json",
+        "projects/chirality-runtime/.gitattributes"
+      ],
+      "checks": [
+        "app",
+        "pec"
+      ]
+    },
+    {
+      "paths": [
+        "projects/pec/core/**",
+        "projects/pec/server/**",
+        "projects/pec/agent-sidecar/**",
+        "projects/pec/web/**",
+        "projects/pec/v2/**",
+        "projects/pec/fixtures/**",
+        "projects/pec/tools/**",
+        "projects/pec/package.json",
+        "projects/pec/package-lock.json",
+        "projects/pec/chirality.project.json",
+        "projects/pec/software-workflow.json",
+        "projects/pec/tsconfig.base.json",
+        "projects/pec/.gitignore",
+        ".github/workflows/pec-tests.yml"
+      ],
+      "checks": [
+        "pec"
+      ]
+    },
+    {
+      "paths": [
+        "tools/hosted-ci-routing.json",
+        "tools/software_workflow/hosted_ci.py",
+        "tools/software_workflow/select_affected_checks.py",
+        "tools/software_workflow/software_workflow_common.py"
+      ],
+      "checks": [
+        "app",
+        "pec"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-app-dev/execution/**",
+        "projects/chirality-app-dev/docs/**",
+        "projects/chirality-app-dev/plans/**",
+        "projects/chirality-app-dev/loop/**",
+        "projects/chirality-app-dev/init/**",
+        "projects/chirality-app-dev/_harness/**",
+        "projects/chirality-runtime/execution/**",
+        "projects/chirality-runtime/docs/**",
+        "projects/chirality-runtime/plans/**",
+        "projects/chirality-runtime/loop/**",
+        "projects/chirality-runtime/init/**",
+        "projects/chirality-runtime/_harness/**",
+        "projects/pec/execution/**",
+        "projects/pec/docs/**",
+        "projects/pec/plans/**",
+        "projects/pec/loop/**",
+        "projects/pec/init/**",
+        "projects/pec/_harness/**",
+        "projects/chirality-app-dev/AGENTS.md",
+        "projects/chirality-app-dev/README.md",
+        "projects/chirality-runtime/AGENTS.md",
+        "projects/chirality-runtime/README.md",
+        "projects/pec/AGENTS.md",
+        "projects/pec/README.md",
+        "projects/chirality-piping/**",
+        "plans/**",
+        "execution/**",
+        "init/**",
+        ".github/workflows/governance-harness.yml",
+        ".github/workflows/piping-desktop-e2e.yml",
+        ".github/workflows/piping-e2e-cache.yml",
+        ".github/actions/setup-piping-e2e/**"
+      ],
+      "checks": [
+        "records"
+      ]
+    }
+  ]
+}

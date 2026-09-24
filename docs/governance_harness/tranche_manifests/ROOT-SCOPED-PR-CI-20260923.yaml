@@ -1,0 +1,56 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-SCOPED-PR-CI-20260923
+title: Automatic affected PR checks with explicit full coverage
+date: 2026-09-23
+basis: 3c41c6f59968f792c9f538ce530838a8aa9b72e0
+instruction_surface_paths:
+  - .github/workflows/governance-harness.yml
+  - .github/workflows/harness-premerge.yml
+  - .github/workflows/pec-tests.yml
+  - docs/CI_SELECTION.md
+  - tools/hosted-ci-routing.json
+  - tools/tools-test-routing.json
+  - tools/software_workflow/select_affected_checks.py
+  - tools/software_workflow/hosted_ci.py
+  - tools/software_workflow/test_hosted_ci.py
+  - tools/software_workflow/test_hosted_ci_workflows.py
+  - projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts
+  - projects/chirality-piping/tools/ci/e2e_plan.py
+  - projects/chirality-piping/tests/test_ci_e2e_plan.py
+  - projects/chirality-piping/docs/CI_STRATEGY.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+  - docs/governance_harness/tranche_manifests/ROOT-SCOPED-PR-CI-20260923.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed in active chat: 'we need to change the way CI is done
+    so there's options depending on what the PR actually entails.' Asked whether
+    routing should be automatic or manually selected for each PR, the owner
+    selected 'Automatic scoped checks; optional full coverage'. Reuse the
+    existing affected-check profile machinery and preserve full coverage for
+    product inputs, unknown inputs, policy changes and explicit full requests.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-23
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-23_SCOPED_PR_CI.md
+  rationale: >-
+    GitHub job routing affects all four project loops. Notices identify the
+    scoped product checks and explicit full-run mechanism while preserving
+    their local checks, accepted evidence obligations and release boundaries.
+scope_limits:
+  - CI applicability and coverage selection; obsolete workflow text pins are replaced with structural trigger, gate and context checks.
+  - Product assertions, thresholds and evidence obligations are preserved; consumed-document changes retain their executable checks.
+  - Governance harness remains mandatory; branch protection is unchanged.
+  - Skipped/not-applicable jobs supply no product-test pass claim.
+  - Existing local project check profiles, DEC-025 sweeps, native witnesses and release gates retain their requirements.
+  - PEC loop/work-selection changes and manual updates are outside this tranche.

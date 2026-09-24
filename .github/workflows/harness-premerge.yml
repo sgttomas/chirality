@@ -2,24 +2,8 @@ name: Harness Pre-merge Validation
 
 on:
   pull_request:
-    paths:
-      - ".github/workflows/harness-premerge.yml"
-      - "projects/chirality-app-dev/**"
-      - "projects/chirality-runtime/**"
-      - "exports/chirality-app/**"
-      - ".agents/skills/**"
-      - "agents/**"
-      - "docs/**"
-      - "workflows/**"
-      - "tools/scaffolding/**"
-      - "tools/retrieval/**"
-      - "tools/scope_of_work/**"
-      - "tools/software_workflow/**"
-      - "tools/source_catalog/**"
-      - "tools/validation/**"
-      - "AGENTS.md"
-      - "CLAUDE.md"
-      - "README.md"
+    types: [opened, synchronize, reopened]
+  # Run on the selected branch to explicitly request full App/Runtime coverage.
   workflow_dispatch:
 
 permissions:
@@ -31,8 +15,78 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  selection:
+    name: Select App coverage
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: tools
+      - name: Test hosted selection policy
+        run: python3 -m unittest discover -s tools/software_workflow -p test_hosted_ci.py
+      - name: Select checks from the complete PR diff
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py plan --suite app
+          --event "$EVENT" --base "$BASE" --head "$HEAD" --output app-ci-selection.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-ci-selection
+          path: app-ci-selection.json
+
+  instructions:
+    name: App instruction bundle
+    needs: selection
+    if: needs.selection.outputs.mode == 'instructions'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: |
+            .agents
+            agents
+            docs
+            workflows
+            tools
+            projects/chirality-app-dev/instructions
+            projects/chirality-app-dev/frontend/scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Build and verify the instruction bundle
+        env:
+          BUNDLE_ROOT: ${{ runner.temp }}/chirality-instruction-root
+          EVIDENCE_ROOT: ${{ runner.temp }}/instruction-root-evidence
+        run: |
+          node projects/chirality-app-dev/frontend/scripts/prepare-packaged-instruction-root.mjs \
+            --source-root "$GITHUB_WORKSPACE" --docs-root "$GITHUB_WORKSPACE/docs" \
+            --output-root "$BUNDLE_ROOT"
+          node projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs \
+            --root-files-root "$GITHUB_WORKSPACE" --agents-root "$GITHUB_WORKSPACE/agents" \
+            --docs-root "$GITHUB_WORKSPACE/docs" --bundle-root "$BUNDLE_ROOT" \
+            --output-root "$EVIDENCE_ROOT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: instruction-root-evidence
+          path: ${{ runner.temp }}/instruction-root-evidence
+
   harness-premerge:
-    name: Harness pre-merge
+    name: App Runtime integration
+    needs: selection
+    if: needs.selection.outputs.mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -43,6 +97,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           # execution/ is intentionally excluded and is never read by this job
           # (frontend code references _DomainEngines and project-local
           # execution/ dirs only, both listed below). Cone mode keeps all
@@ -268,3 +323,24 @@ jobs:
           if [ -f /tmp/chirality-runtime-daemon.pid ]; then
             kill "$(cat /tmp/chirality-runtime-daemon.pid)" || true
           fi
+
+  result:
+    name: Harness pre-merge
+    needs: [selection, instructions, harness-premerge]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: tools/software_workflow
+      - name: Require the selected checks
+        env:
+          MODE: ${{ needs.selection.outputs.mode }}
+          SELECTION: ${{ needs.selection.result }}
+          PRODUCT: ${{ needs.harness-premerge.result }}
+          INSTRUCTIONS: ${{ needs.instructions.result }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite app
+          --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT" --instructions "$INSTRUCTIONS"
