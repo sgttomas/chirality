@@ -1,4 +1,6 @@
 mod atomic_report_package_save;
+mod live_control;
+mod live_control_wire;
 mod model_document_migration;
 mod native_result_download;
 mod report_package_bridge;
@@ -4603,9 +4605,11 @@ async fn save_local_result_json(
 }
 
 pub fn run() {
-    tauri::Builder::default()
+    let app = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .manage(SolveJobRegistry::default())
+        .manage(live_control::LiveControl::default())
+        .setup(live_control::setup)
         .manage(native_result_download::SaveAdmission::default())
         .menu(|handle| build_app_menu(handle))
         .on_menu_event(|app, event| {
@@ -4613,6 +4617,9 @@ pub fn run() {
             dispatch_native_menu_command(app, &event.id().0);
         })
         .invoke_handler(tauri::generate_handler![
+            live_control::live_control_register,
+            live_control::live_control_reply,
+            live_control::live_control_unregister,
             load_preview_model,
             load_design_knowledge,
             run_preview_mechanics,
@@ -4651,8 +4658,13 @@ pub fn run() {
             save_report_package,
             save_local_result_json
         ])
-        .run(tauri::generate_context!())
-        .expect("error while running SWBPIPE");
+        .build(tauri::generate_context!())
+        .expect("error while building SWBPIPE");
+    app.run(|handle, event| {
+        if matches!(event, tauri::RunEvent::Exit) {
+            handle.state::<live_control::LiveControl>().shutdown();
+        }
+    });
 }
 
 #[cfg(test)]

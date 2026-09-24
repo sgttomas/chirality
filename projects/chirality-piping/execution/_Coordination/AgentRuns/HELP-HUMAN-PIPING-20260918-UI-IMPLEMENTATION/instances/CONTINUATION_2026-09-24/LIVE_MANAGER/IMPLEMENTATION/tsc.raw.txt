@@ -1,0 +1,1 @@
+apps/desktop/src/features/workspace/liveControlController.ts(99,128): error TS2367: This comparison appears to be unintentional because the types '"blocked" | "not_applied"' and '"applied_to_session_model"' have no overlap.

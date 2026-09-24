@@ -1,0 +1,393 @@
+{
+  "fixture_version": 1,
+  "wire_sha256": "91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce",
+  "provenance": "Invented synthetic carrier examples only; no live app, capability, model hashes, user identity or engine qualification. Domain semantic tests must use actual generated outcomes.",
+  "cases": [
+    {
+      "name": "inspect_workspace",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r1",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "inspect",
+        "params": {
+          "scope": "workspace"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r1",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "identity": {
+            "app_instance_id": "fixture-app",
+            "controller_session_id": "fixture-controller",
+            "workspace_id": "fixture-workspace-id",
+            "project_generation": 1,
+            "project_id": "fixture-project"
+          },
+          "readiness": "ready",
+          "selection": [
+            {
+              "object_type": "Node",
+              "ref": "node:1"
+            }
+          ],
+          "supported": {
+            "object_type": "Node",
+            "field_path": "position.x",
+            "operation_kind": "modify",
+            "change_kind": "set_field",
+            "dimension": "length",
+            "length_unit": "mm"
+          },
+          "limits": {
+            "max_node_ids": 128,
+            "max_changes": 64
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_queued",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r2",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "submit",
+        "params": {
+          "workspace": "fixture-workspace",
+          "preview_ref": "fixture-preview",
+          "idempotency_key": "fixture-key"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r2",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket",
+          "state": "queued",
+          "reason": null,
+          "receipt": null
+        }
+      }
+    },
+    {
+      "name": "same_key_retry",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r3",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "submit",
+        "params": {
+          "workspace": "fixture-workspace",
+          "preview_ref": "fixture-preview",
+          "idempotency_key": "fixture-key"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r3",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket",
+          "state": "queued",
+          "reason": null,
+          "receipt": null
+        }
+      }
+    },
+    {
+      "name": "conflicting_key",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r4",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "submit",
+        "params": {
+          "workspace": "fixture-workspace",
+          "preview_ref": "different-preview",
+          "idempotency_key": "fixture-key"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r4",
+        "app_instance_id": "fixture-app",
+        "error": {
+          "code": "idempotency_conflict",
+          "message": "The key already identifies another preview.",
+          "retryable": false,
+          "next_action": "Recover using the original workspace, preview and key."
+        }
+      }
+    },
+    {
+      "name": "cancel_before_publication",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r5",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "submit",
+        "params": {
+          "workspace": "fixture-workspace",
+          "preview_ref": "fixture-preview",
+          "idempotency_key": "fixture-key"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r5",
+        "app_instance_id": "fixture-app",
+        "error": {
+          "code": "cancelled_before_publication",
+          "message": "Queue publication was cancelled and absence was confirmed.",
+          "retryable": false,
+          "next_action": "Inspect the current workspace before preparing new work."
+        }
+      }
+    },
+    {
+      "name": "uncertain_timeout",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r6",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "submit",
+        "params": {
+          "workspace": "fixture-workspace",
+          "preview_ref": "fixture-preview",
+          "idempotency_key": "fixture-key"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r6",
+        "app_instance_id": "fixture-app",
+        "error": {
+          "code": "outcome_unknown",
+          "message": "The request deadline expired before its outcome could be delivered.",
+          "retryable": true,
+          "next_action": "Retry with the original workspace, preview and idempotency key."
+        }
+      }
+    },
+    {
+      "name": "withdrawn",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r7",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "status",
+        "params": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r7",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket",
+          "state": "withdrawn",
+          "reason": "ui_clear",
+          "receipt": null
+        }
+      }
+    },
+    {
+      "name": "expired",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r8",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "status",
+        "params": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r8",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket",
+          "state": "expired",
+          "reason": "workspace_replaced",
+          "receipt": null
+        }
+      }
+    },
+    {
+      "name": "unsupported_method",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r-unsupported_method",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "apply",
+        "params": {
+          "scope": "workspace"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r-unsupported_method",
+        "app_instance_id": "fixture-app",
+        "error": {
+          "code": "unsupported_method",
+          "message": "The request is not admitted.",
+          "retryable": false,
+          "next_action": "Use a valid attachment and a supported method."
+        }
+      }
+    },
+    {
+      "name": "unauthorized",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r-unauthorized",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "inspect",
+        "params": {
+          "scope": "workspace"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r-unauthorized",
+        "app_instance_id": "fixture-app",
+        "error": {
+          "code": "unauthorized",
+          "message": "The request is not admitted.",
+          "retryable": false,
+          "next_action": "Use a valid attachment and a supported method."
+        }
+      }
+    },
+    {
+      "name": "committed_historical_workspace",
+      "scenario": "current project generation has changed, but original session ticket and receipt are retained",
+      "request": {
+        "protocol_version": 1,
+        "request_id": "r-historical",
+        "app_instance_id": "fixture-app",
+        "capability": "synthetic-fixture-capability",
+        "method": "status",
+        "params": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket"
+        }
+      },
+      "response": {
+        "protocol_version": 1,
+        "request_id": "r-historical",
+        "app_instance_id": "fixture-app",
+        "result": {
+          "workspace": "fixture-workspace",
+          "ticket": "fixture-ticket",
+          "state": "committed",
+          "reason": null,
+          "receipt": {
+            "ticket": "fixture-ticket",
+            "workspace": "fixture-workspace",
+            "identity": {
+              "app_instance_id": "fixture-app",
+              "controller_session_id": "fixture-controller",
+              "workspace_id": "fixture-workspace-id",
+              "project_generation": 1,
+              "project_id": "fixture-project"
+            },
+            "batch_id": "fixture-batch",
+            "operation_ids": [
+              "fixture-operation-1",
+              "fixture-operation-2"
+            ],
+            "origin": {
+              "actor_type": "agent",
+              "source_channel": "local_json_cli",
+              "request_id": "r2"
+            },
+            "acceptance": {
+              "route": "local_review_apply",
+              "identity_verification": "not_performed",
+              "professional_approval": false
+            },
+            "before": {
+              "model_revision": 1,
+              "model_hash": {
+                "algorithm": "sha256",
+                "canonicalization": "rfc8785_jcs",
+                "payload_scope": "model_payload",
+                "payload_ref": "fixture-project",
+                "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+                "hash_status": "computed_local_preview"
+              }
+            },
+            "after": {
+              "model_revision": 2,
+              "model_hash": {
+                "algorithm": "sha256",
+                "canonicalization": "rfc8785_jcs",
+                "payload_scope": "model_payload",
+                "payload_ref": "fixture-project",
+                "value": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+                "hash_status": "computed_local_preview"
+              }
+            },
+            "publication": {
+              "undo_checkpoint_id": "fixture-undo",
+              "applied_receipt_id": "fixture-applied",
+              "batch_receipt_id": "fixture-batch-receipt",
+              "queue_entry_removed": true,
+              "computed_results_invalidated": true
+            },
+            "persistence_status": "session_state_only_not_yet_saved"
+          }
+        }
+      }
+    }
+  ],
+  "dispatch_example": {
+    "registration_id": "fixture-registration",
+    "controller_session_id": "fixture-controller",
+    "dispatch_id": "fixture-dispatch",
+    "request_id": "r1",
+    "app_instance_id": "fixture-app",
+    "method": "inspect",
+    "params": {
+      "scope": "workspace"
+    }
+  },
+  "cancel_example": {
+    "registration_id": "fixture-registration",
+    "controller_session_id": "fixture-controller",
+    "dispatch_id": "fixture-dispatch",
+    "request_id": "r1",
+    "reason": "disconnect"
+  },
+  "disabled_registration_example": {
+    "enabled": false,
+    "app_instance_id": null,
+    "registration_id": null,
+    "controller_session_id": "fixture-controller"
+  },
+  "fixture_revision": 2
+}

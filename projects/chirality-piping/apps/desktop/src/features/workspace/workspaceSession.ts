@@ -1,4 +1,7 @@
 import type React from "react";
+import { LiveControlController, liveId } from "./liveControlController";
+import type { LiveAdmission, LivePublication, LiveSnapshot } from "./liveControlTypes";
+import { startLiveControlBridge } from "../../services/liveControlBridge";
 import { isTauriRuntime, syncNativeShellState } from "../../services/nativeMenu";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
@@ -93,6 +96,7 @@ import {
   applyDisplayedRange,
   applySelection,
   emptySelection,
+  entityRefFromKey,
   primarySelection,
   pruneSelection,
   sameSelection,
@@ -542,6 +546,67 @@ export function useWorkspaceSession() {
       active = false;
     };
   }, [model]);
+
+  // The bridge reads only a committed coherent snapshot. Private refs below do
+  // not extend the six public controller slices or export model/history setters.
+  const liveSnapshot = useRef<LiveSnapshot | null>(null);
+  const liveExpected = useRef(new Map<string, LivePublication>());
+  const liveEnqueue = useRef<(admission: LiveAdmission) => void>(() => {});
+  const liveControllerRef = useRef<LiveControlController | null>(null);
+  if (!liveControllerRef.current) liveControllerRef.current = new LiveControlController({
+    busy: () => operationRequest.current.busy || projectOperationOwner.current !== null,
+    snapshot: () => {
+      const snapshot = liveSnapshot.current;
+      return snapshot && snapshot.generation === projectSessionGenerationRef.current &&
+        snapshot.revision === uiModelRevisionRef.current && snapshot.model === currentModel.current ? snapshot : null;
+    },
+    enqueue: admission => liveEnqueue.current(admission),
+    remove: token => setQueuedBatches(current => current.filter(entry => entry.live?.token !== token))
+  });
+  const liveController = liveControllerRef.current;
+  useEffect(() => startLiveControlBridge(liveController), [liveController]);
+  useLayoutEffect(() => {
+    liveSnapshot.current = model && currentHashOwned && modelHash ? {
+      model, generation: projectSessionGeneration, revision: uiModelRevision,
+      internalRevision: modelRevision.current, hash: modelHash,
+      selection: orderedSelection.orderedKeys.flatMap(key => {
+        const ref = entityRefFromKey(key);
+        return ref ? [{ object_type: ref.type === "node" ? "Node" : ref.type, ref: ref.id }] : [];
+      })
+    } : null;
+    liveEnqueue.current = admission => {
+      // Admission uses a previously observed basis, never a submit-time model.
+      if (admission.generation !== projectSessionGenerationRef.current || admission.revision !== uiModelRevisionRef.current) {
+        setQueuedBatches(current => [...current]);
+        return;
+      }
+      setQueuedBatches(current => [...current, { key: `live-${admission.token}`, batch: admission.batch,
+        basisModel: admission.model, basisHash: admission.hash, basisRevision: admission.internalRevision, live: admission }]);
+      setBatchMessage("External proposal queued for local review and explicit Apply.");
+      setActiveSection("operations"); setOperationTab("review");
+      setToolkitFocus({ testId: "", elementId: "batch-review" });
+    };
+    const publications: LivePublication[] = [];
+    for (const [token, expected] of liveExpected.current) {
+      const receipt = batchReceipts.find(item => item.liveReceiptId === expected.batchReceiptId);
+      const checkpoint = undoStack.find(item => item.checkpoint_id === expected.undoCheckpointId);
+      const applied = appliedOperations.find(item => item.receipt_id === expected.appliedReceiptId);
+      if (model === expected.model && uiModelRevision === expected.revision && checkpoint && receipt && applied &&
+        receipt.outcome.applied_model === model && receipt.batch.batch_id === checkpoint.operation_id &&
+        applied.operation_id === receipt.batch.batch_id && redoStack.length === 0 &&
+        !queuedBatches.some(entry => entry.live?.token === token) &&
+        result === null && analysisRun === null && inputManifest === null && ruleCheckAggregate === null &&
+        historicalRun === null && solveProof === null) {
+        // Controller immediately copies this transition before starting its hash.
+        publications.push(expected);
+        liveExpected.current.delete(token);
+      }
+    }
+    liveController.observe(new Set(queuedBatches.filter(entry => entry.live &&
+      entry.key === `live-${entry.live.token}` && entry.batch === entry.live.batch && entry.basisModel === entry.live.model &&
+      entry.basisHash === entry.live.hash && entry.basisRevision === entry.live.internalRevision
+    ).map(entry => entry.live!.token)), projectSessionGeneration, uiModelRevision, publications);
+  });
 
   function commitModel(nextModel: PreviewModel, directDraftToken: string | null = null) {
     modelHashOwner.current = null;
@@ -993,11 +1058,13 @@ export function useWorkspaceSession() {
   }
 
   async function handleRunOperationBatch(entry: QueuedBatch, apply: boolean) {
-    if (operationRequest.current.busy || entry.basisRevision !== modelRevision.current) return;
+    if (operationRequest.current.busy || entry.basisRevision !== modelRevision.current ||
+      (entry.live && (entry.live.generation !== projectSessionGenerationRef.current || entry.live.revision !== uiModelRevisionRef.current))) return;
     const revision = modelRevision.current;
     const request = ++operationRequest.current.sequence;
     operationRequest.current.busy = true;
-    const stillCurrent = () => operationRequest.current.sequence === request && modelRevision.current === revision;
+    const generation = projectSessionGenerationRef.current;
+    const stillCurrent = () => operationRequest.current.sequence === request && modelRevision.current === revision && projectSessionGenerationRef.current === generation;
     setOperationBusy(true);
     setBatchMessage(null);
     try {
@@ -1020,10 +1087,20 @@ export function useWorkspaceSession() {
         throw new Error("Validation returned an application result; it was discarded.");
       }
       setBatchOutcomes((current) => ({ ...current, [entry.key]: outcome }));
-      if (!apply || outcome.validation.application_status !== "applied_to_session_model") return;
+      if (!apply || outcome.validation.application_status !== "applied_to_session_model") {
+        if (apply && entry.live) liveController.reject(entry.live.token);
+        return;
+      }
       if (!outcome.applied_model || !outcome.acceptance || outcome.simulation_disposition !== "committed_as_one_batch") {
         throw new Error("The batch did not return a complete application receipt; the model was not changed.");
       }
+      const liveReceiptId = entry.live ? `live-batch-receipt-${liveId()}` : undefined;
+      if (entry.live) liveController.beginApply(entry.live.token);
+      if (entry.live && liveReceiptId) liveExpected.current.set(entry.live.token, {
+        token: entry.live.token, model: outcome.applied_model,
+        revision: uiModelRevisionRef.current + 1, undoCheckpointId: `undo-${entry.key}`,
+        appliedReceiptId: `applied-${entry.key}`, batchReceiptId: liveReceiptId
+      });
       setUndoStack((current) => [{
         checkpoint_id: `undo-${entry.key}`,
         operation_id: entry.batch.batch_id,
@@ -1031,7 +1108,7 @@ export function useWorkspaceSession() {
         selection: selection ?? defaultSelection(entry.basisModel)
       }, ...current].slice(0, 25));
       setRedoStack([]);
-      setBatchReceipts((current) => [...current, { batch: entry.batch, outcome }]);
+      setBatchReceipts((current) => [...current, { batch: entry.batch, outcome, liveReceiptId }]);
       setRetainedReviewContext((current) => [...current, ...structuredClone(entry.batch.operations)]);
       setAppliedOperations((current) => [...current, {
         receipt_id: `applied-${entry.key}`,

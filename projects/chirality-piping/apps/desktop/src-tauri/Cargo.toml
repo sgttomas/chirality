@@ -4,6 +4,20 @@ version = "0.1.0"
 description = "SWBPIPE macOS desktop shell"
 authors = ["OpenPipeStress contributors"]
 edition = "2021"
+default-run = "openpipestress-desktop"
+autobins = false
+
+[features]
+live-control-cli = []
+
+[[bin]]
+name = "openpipestress-desktop"
+path = "src/main.rs"
+
+[[bin]]
+name = "swbpipe-control"
+path = "src/bin/swbpipe-control.rs"
+required-features = ["live-control-cli"]
 
 [lib]
 name = "openpipestress_desktop_lib"
