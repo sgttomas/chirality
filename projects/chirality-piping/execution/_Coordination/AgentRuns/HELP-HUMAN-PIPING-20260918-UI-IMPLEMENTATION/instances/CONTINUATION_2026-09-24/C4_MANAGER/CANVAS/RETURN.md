@@ -25,3 +25,11 @@ Full eligible button inventory remains mounted invisibly when unplaced, though m
 ## Independent R1 repair continuation
 
 Complete independent review at a7 found one P2, C4-CANVAS-R1, and no second source/evidence defect. [R1_VERIFICATION.md](R1_VERIFICATION.md) records the narrowly owned synchronous lifecycle repair, new actual-path simulated regression, passing desktop TypeScript and five-file/40-test affected rerun. The one-worker functional overlap with ROOT’s primary sweep is disclosed. Original review/failures remain preserved. Independent repair backcheck is the current pending source/evidence gate; no browser/native/current-row/profile acceptance is inferred.
+
+## Final bounded handoff
+
+Reviewed source/evidence freeze: `6f0f28afdc59527880224e907da4fa27e4daac96`, following initial canvas commit `a7cc327725f622fa901371e913a308af57d52b9e` and merged compact basis4555. The [independent backcheck](INDEPENDENT_REVIEW/BACKCHECK.md) resolves R1 with no new actionable defect and finds source/evidence fan-in suitable. Its SHA256 is `2878fd465b5afdf2114098c987eff22b1b283015a47eee983900500acd36ccd4`; combined coverage reaches70 distinct files versus primarycompact c57cd17. The final manager handoff commit adds only backcheck records and this derivative status; source bytes remain6f.
+
+Actual checks: initial complete focused slice9files/133tests plus desktop TypeScript passed; after R1, affected5files/40tests with one worker plus desktop TypeScript passed. Failures, diagnosis and repairs remain in raw evidence. These are separate runs. Review/backcheck did not execute tests. No active check/build/browser/native process remains; limited validation lane released. No push/PR/merge.
+
+Ready for ROOT’s authorized cross-branch source integration, subject to later candidate checks and shared-source ownership. Still incomplete: App/table actual current-row publication (preferred App-local generation/owner-safe seam), connected source/dist/browser and native rendering/keyboard/resize/context witnesses, complete final DEC-025/merge checks, and second-profile population freeze/timed qualification. Full invisible measurement DOM and conservative pick envelopes retain disclosed cost/yield limits. C4 and the programme remain open.

@@ -1,0 +1,114 @@
+{
+  "reviewer": "/root/c4_manager/canvas_review",
+  "parent": "/root/c4_manager",
+  "role": "TASK Type 2",
+  "mechanism": "collaboration.followup_task resumes independent delegated-harness-native reviewer; no implementation or descendants",
+  "delta_base": "a7cc327725f622fa901371e913a308af57d52b9e",
+  "candidate": "6f0f28afdc59527880224e907da4fa27e4daac96",
+  "complete_comparison_base": "c57cd17b1ff05ab9bb35d2eaac6725aaffa953e2",
+  "cumulative_unique_changed_files": 70,
+  "prior_review_preserved_sha256": {
+    "RETURN.md": "51bfff09283602aff02bda914e01313611ea00fdaf8dc2c0f8499a73e552db15",
+    "HASHES.json": "fc9d046bab84c4cd192f1e55f8df2dd77af7ab44e3f7ff578e55047f502816f6"
+  },
+  "inherited_basis": "Full instructions, authority and targeted inputs are recorded in unchanged HASHES.json input_origins; all 16 current hashes rechecked and identical. Prior full60-file review remains the first-stage coverage, not a claim this delta re-executed tests.",
+  "new_brief_origin": "Actual parent collaboration NEW_TASK fixing6f0f28, complete14-file delta, exact activation commit-only permission, review-only resource boundary and two output paths; no host model attestation inferred.",
+  "coverage": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.contextLabels.test.tsx",
+      "sha256": "71ff3da4f3af2eac36d20215ec0024fa49c39d63320b4af2a15a5747a09404a4",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "e8f6993eec7776c9081a009efd70a3b0be09ed1153d5d8c2fb47b57b98033cb3",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "sha256": "e2c07f2d9cfb8d22b19be6cc80078e1dfb60fbd0a734f616a22a3ae90905b811",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+      "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/BASIS_AND_DELEGATION.json",
+      "sha256": "ddb1998d8963ae885e4c47449be77df875383c6f1aae0e56c7a59acf2b2105e8",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/HASHES.json",
+      "sha256": "fc9d046bab84c4cd192f1e55f8df2dd77af7ab44e3f7ff578e55047f502816f6",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "51bfff09283602aff02bda914e01313611ea00fdaf8dc2c0f8499a73e552db15",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/R1_VERIFICATION.md",
+      "sha256": "eb54a6fdf71b542a03cac4be7ed5ec92e94acdf1450bad5e235e92f5086662b0",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/RETURN.md",
+      "sha256": "b376449d7f0c1137e39474885993ab210390925ab29374b36f057cd76c69c586",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/TASK_CANVAS/R1_OUTPUTS.json",
+      "sha256": "2e5ff30f5f4c1559b2f06f10ca91d574a906129be7d30c0600a1c000eec7eaf5",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/TASK_CANVAS/R1_RETURN.md",
+      "sha256": "e6a9adfcf34fa3cdac9dba3e1e43c3ef51f83eabe83d5b9d9a504725b04adf99",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/_run_records/r1-candidate-01.json",
+      "sha256": "6e63aa4437f6ac103ac4bf00f50ad47a97e0b7abf3d9bec29c6e74b358c87056",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/_run_records/r1-focused-vitest-01.txt",
+      "sha256": "d5bb235737aaef39ae75a620b518539e5e807193387270bc6fb9bbad7a9ba045",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/_run_records/r1-typescript-01.txt",
+      "sha256": "fbc8fbc21328838e8e2aba9895b08211b0aef09d52c57412e03d5a002ab585ef",
+      "coverage": "full repair source/test/evidence delta; own previously authored review outputs verified byte-identical"
+    }
+  ],
+  "scope_validation": {
+    "status": "PASS",
+    "exit": 0,
+    "paths_mode": "all14 frozen paths explicitly passed by --path",
+    "allowed": [
+      "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.contextLabels.test.tsx",
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER",
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md"
+    ],
+    "violations": []
+  },
+  "binding_results": {
+    "frozen_worktree_matches": 14,
+    "repair_source_bindings_matched": 6,
+    "repair_source_mismatches": 0,
+    "prior_inputs_unchanged": 16,
+    "original_review_files_unchanged": 2,
+    "activation_sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+    "activation_matches_commit": "adc346bcc",
+    "delta_whitespace_exit": 0
+  },
+  "reviewed_execution": "Manager TypeScript exit0 and --maxWorkers=1 focused5 files/40 tests exit0; prior9 files/133 separate run retained. GPU/layout/RAF simulated; no reviewer execution.",
+  "result": "C4-CANVAS-R1 resolved, including synchronous diagnostic read boundary; no new actionable finding; source/evidence fan-in suitable within stated programme limits.",
+  "writes": "Only BACKCHECK.md and BACKCHECK_HASHES.json; initial RETURN.md/HASHES.json preserved; no Git mutations/test/compiler/npm/build/browser/native/CUA/network/server/socket/background/delegation."
+}

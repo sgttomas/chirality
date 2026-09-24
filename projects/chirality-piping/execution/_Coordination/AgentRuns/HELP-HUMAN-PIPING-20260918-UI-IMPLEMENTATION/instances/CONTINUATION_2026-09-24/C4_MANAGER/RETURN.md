@@ -37,3 +37,7 @@ Actual parent `/root`, manager `/root/c4_manager` WORKING_ITEMS Type 1, child `/
 ## Activated canvas continuation
 
 The later merged basis `4555f6c13f4356d78eff2df9a4e077708af01944` and C4_CANVAS_ACTIVATION authorized canvas/diagnostics/label CSS implementation. [CANVAS/RETURN.md](CANVAS/RETURN.md) records the resulting source, authorized hover-core extension, actual failures/repairs and final desktop TypeScript plus nine-file/133-test focused pass. Earlier pure-source0ec review/checks remain historical and do not cover the new canvas diff. True current-row App/table publication, fresh continuation review, browser/native/full-sweep and qualification gates remain open as stated there.
+
+## Current bounded canvas outcome
+
+Canvas source/evidence is frozen and independently backchecked at `6f0f28afdc59527880224e907da4fa27e4daac96`. The one context-loss P2 is repaired; no new actionable finding remains in the [backcheck](CANVAS/INDEPENDENT_REVIEW/BACKCHECK.md). [CANVAS/RETURN.md](CANVAS/RETURN.md) is the current handoff, including passing TypeScript, the separate133-test and affected40-test runs, preserved failures/repairs and source/performance limits. [Current-row handoff](CANVAS/CURRENT_ROW_HANDOFF.md) remains for ROOT’s owning App/table writer. No source/browser/native/qualification completion or merge claim is added by this summary.
