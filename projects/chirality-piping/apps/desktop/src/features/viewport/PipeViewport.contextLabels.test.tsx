@@ -6,6 +6,7 @@ import { modelIndexFor } from "../workspace/modelIndex";
 import { entityKey } from "../workspace/selectionState";
 import { PipeViewport } from "./PipeViewport";
 import { ViewportResource } from "./viewportResource";
+import * as labelPolicy from "./labelPolicy";
 
 // Simulated lifecycle: actual component, resource, event bindings, Three geometry/math,
 // label policy and diagnostics; only GPU rendering and browser layout are inert fixtures.
@@ -196,5 +197,100 @@ describe("applied labels across context loss and restoration", () => {
     canvas.dispatchEvent(new Event("webglcontextlost", { cancelable: true }));
     canvas.dispatchEvent(new Event("webglcontextrestored"));
     expect(unavailableUpdates).toHaveLength(afterUnmount);
+  });
+});
+
+
+describe("label hover hint publication ordering", () => {
+  it("preserves a newly captured center through an old queued updater and retires it on actual invalidation", async () => {
+    const frames = new Map<number, FrameRequestCallback>();
+    let sequence = 0;
+    let width = 800;
+    vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => { frames.set(++sequence, callback); return sequence; });
+    vi.stubGlobal("cancelAnimationFrame", (handle: number) => frames.delete(handle));
+    vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => width);
+    vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockReturnValue(600);
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
+      const plate = this.classList.contains("viewport-select-target");
+      return new DOMRect(10 + (plate ? parseFloat(this.style.left) || 0 : 0),
+        20 + (plate ? parseFloat(this.style.top) || 0 : 0), plate ? 58 : width, plate ? 26 : 600);
+    });
+    const flushFrames = () => {
+      for (let turn = 0; turn < 5 && frames.size; turn++) {
+        const pending = [...frames]; frames.clear();
+        for (const [, callback] of pending) callback(performance.now());
+      }
+    };
+    let updater: (() => void) | null = null;
+    const originalUpdater = ViewportResource.prototype.setLabelUpdater;
+    vi.spyOn(ViewportResource.prototype, "setLabelUpdater").mockImplementation(function (this: ViewportResource, next) {
+      updater = next;
+      originalUpdater.call(this, next);
+    });
+    const policy = vi.spyOn(labelPolicy, "layoutViewportLabels");
+    const lastInput = () => policy.mock.calls[policy.mock.calls.length - 1][1];
+    const loaded = await loadPreviewModel();
+    const model = { ...loaded, nodes: ["node:hover-primary", "node:hover-a", "node:hover-b"].map(id =>
+      ({ ...loaded.nodes[0], id, position: { x: 0, y: 0, z: 0 } })),
+      pipe_segments: [], supports: [], components: [], load_cases: [], combinations: [], diagnostics: [] };
+    const index = modelIndexFor(model, 71, 0);
+    const selection = { type: "node" as const, id: model.nodes[0].id };
+    const key = entityKey(selection);
+    const hoverKey = entityKey({ type: "node", id: "node:hover-b" });
+    const selected = { orderedKeys: [key], primaryKey: key, rangeAnchorKey: key, focusKey: key, preparationEpoch: 0 };
+    const props = { model, modelIndex: index, selection, selectionState: selected, onSelect: () => selected };
+    const view = render(<PipeViewport {...props} />);
+    await act(async () => { flushFrames(); });
+    const ui = within(view.container);
+    const canvas = ui.getByTestId("viewport-canvas").querySelector("canvas")!;
+    const plate = ui.getByTestId("viewport-select-node:hover-b");
+    expect(plate).toHaveAttribute("data-label-placed", "true");
+    const ordinaryBox = plate.getBoundingClientRect().toJSON();
+    const oldUpdater = updater!;
+    expect(lastInput().hoverKey).toBeNull();
+    act(() => {
+      // Native dispatch queues React hover state. Execute the already-owned updater
+      // before act commits it, reproducing the measured capture → old-null-validation order.
+      plate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas }));
+      oldUpdater();
+      expect(lastInput().hoverKey).toBeNull();
+      expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
+    });
+    await act(async () => { flushFrames(); });
+    expect(lastInput().hoverKey).toBe(hoverKey);
+    expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
+    expect(plate.getBoundingClientRect().toJSON()).toEqual(ordinaryBox);
+    expect(frames.size).toBe(0);
+
+    act(() => { plate.dispatchEvent(new MouseEvent("pointerout", { bubbles: true, relatedTarget: canvas })); });
+    await act(async () => { flushFrames(); });
+    expect(lastInput().hoverKey).toBeNull();
+    expect(lastInput().preferredHoverCenter).toBeUndefined();
+    act(() => { plate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas })); });
+    await act(async () => { flushFrames(); });
+    expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
+    act(() => { width = 700; window.dispatchEvent(new Event("resize")); flushFrames(); });
+    expect(lastInput().preferredHoverCenter).toBeUndefined();
+    expect(plate.getBoundingClientRect().right).toBeLessThanOrEqual(710);
+
+    view.rerender(<PipeViewport {...props} hiddenKeys={new Set([hoverKey])} />);
+    await act(async () => { flushFrames(); });
+    expect(ui.queryByTestId("viewport-select-node:hover-b")).toBeNull();
+    expect(lastInput().hoverKey).toBeNull();
+    expect(lastInput().preferredHoverCenter).toBeUndefined();
+    view.rerender(<PipeViewport {...props} />);
+    await act(async () => { flushFrames(); });
+    const shownPlate = ui.getByTestId("viewport-select-node:hover-b");
+    act(() => { shownPlate.dispatchEvent(new MouseEvent("pointerover", { bubbles: true, relatedTarget: canvas })); });
+    await act(async () => { flushFrames(); });
+    expect(lastInput().preferredHoverCenter?.key).toBe(hoverKey);
+    view.rerender(<PipeViewport {...props} modelIndex={modelIndexFor(model, 72, 0)} />);
+    await act(async () => { flushFrames(); });
+    expect(lastInput().hoverKey).toBeNull();
+    expect(lastInput().preferredHoverCenter).toBeUndefined();
+    view.unmount();
+    expect(frames.size).toBe(0);
   });
 });

@@ -521,7 +521,16 @@ export function PipeViewport({
   const visibilitySelectionReason = visibilitySelectionKeys.length > 0
     ? null
     : "Select at least one valid drawable node, pipe, support, or component.";
-  const [hoveredEntityKey, setHoveredEntityKey] = useState<EntityKey | null>(null);
+  const [hoveredEntityKey, setHoveredEntityKeyState] = useState<EntityKey | null>(null);
+  // A queued label updater can still hold the previous React hover value.
+  // Event-owned identity protects a freshly captured center until that state commits.
+  const liveHoveredEntityKeyRef = useRef<EntityKey | null>(null);
+  function setHoveredEntityKey(next: EntityKey | null | ((current: EntityKey | null) => EntityKey | null)) {
+    const key = typeof next === "function" ? next(liveHoveredEntityKeyRef.current) : next;
+    liveHoveredEntityKeyRef.current = key;
+    if (preferredHoverRef.current?.key !== key) preferredHoverRef.current = null;
+    setHoveredEntityKeyState(key);
+  }
   useEffect(() => {
     setHoveredEntityKey((current) => current && !hiddenKeys.has(current) ? current : null);
   }, [activeModelIndex.sessionGeneration, hiddenKeys]);
@@ -1385,7 +1394,7 @@ export function PipeViewport({
       }
       measurementDirty = false;
       const preferred = preferredHoverRef.current;
-      if (preferred && (preferred.key !== hoveredEntityKey || hiddenKeys.has(preferred.key) ||
+      if (preferred && (preferred.key !== liveHoveredEntityKeyRef.current || hiddenKeys.has(preferred.key) ||
           preferred.generation !== activeModelIndex.generation || preferred.cameraSequence !== resource.cameraSequence ||
           preferred.width !== canvas.width || preferred.height !== canvas.height || preferred.radii !== pickRadii)) {
         preferredHoverRef.current = null;
