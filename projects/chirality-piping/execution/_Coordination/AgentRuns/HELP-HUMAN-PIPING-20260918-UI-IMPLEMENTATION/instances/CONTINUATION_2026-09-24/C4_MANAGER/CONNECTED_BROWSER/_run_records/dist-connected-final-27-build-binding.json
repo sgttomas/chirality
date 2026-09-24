@@ -1,0 +1,8 @@
+{
+  "head": "64875257f5cd85a9e9b6c270db36df042fde9206",
+  "build_result": "production-build-03-result.json",
+  "build_result_sha256": "51e1ca690f8b297c7c9d2347afda2dbc5ba07e39dad8d9b43701712ede5422ad",
+  "dist_files_verified": 21,
+  "every_dist_hash_matches": true,
+  "tracked_app_diff": ""
+}

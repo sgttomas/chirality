@@ -1,0 +1,140 @@
+{
+  "projection": [
+    {
+      "started": 1001.2999997138977,
+      "ended": 1017,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 1571.2999997138977,
+      "ended": 1577.0999999046326,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 2802.5,
+      "ended": 2807.699999809265,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 3710.5,
+      "ended": 3715.5,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 4467.400000095367,
+      "ended": 4475.099999904633,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 5056.5,
+      "ended": 5060.599999904633,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    }
+  ],
+  "policy": [
+    {
+      "started": 1017.1999998092651,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 1019,
+      "postIndex": 1021.1999998092651,
+      "ended": 1298.0999999046326,
+      "candidates": 2061,
+      "rendered": 54,
+      "unplaced": 2007,
+      "suppressed": 0
+    },
+    {
+      "started": 1577.0999999046326,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 1579.0999999046326,
+      "postIndex": 1580.0999999046326,
+      "ended": 1851.6999998092651,
+      "candidates": 2061,
+      "rendered": 54,
+      "unplaced": 2007,
+      "suppressed": 0
+    },
+    {
+      "started": 2807.699999809265,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 2809.199999809265,
+      "postIndex": 2811.199999809265,
+      "ended": 3079.9000000953674,
+      "candidates": 2061,
+      "rendered": 54,
+      "unplaced": 2007,
+      "suppressed": 0
+    },
+    {
+      "started": 3715.5,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 3717,
+      "postIndex": 3717.9000000953674,
+      "ended": 3986.9000000953674,
+      "candidates": 2061,
+      "rendered": 53,
+      "unplaced": 2008,
+      "suppressed": 0
+    },
+    {
+      "started": 4475.099999904633,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 4481.400000095367,
+      "postIndex": 4483,
+      "ended": 4756.5,
+      "candidates": 2061,
+      "rendered": 53,
+      "unplaced": 2008,
+      "suppressed": 0
+    },
+    {
+      "started": 5060.599999904633,
+      "primitives": 9061,
+      "measurements": 2061,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 5062,
+      "postIndex": 5063.5,
+      "ended": 5329.699999809265,
+      "candidates": 2061,
+      "rendered": 53,
+      "unplaced": 2008,
+      "suppressed": 0
+    }
+  ],
+  "shell": true,
+  "labels": 2061
+}

@@ -1,0 +1,52 @@
+{
+  "observations": [
+    {
+      "complete": true,
+      "preparation_ms": 21.299999713897705,
+      "index_ms": 13.300000190734863,
+      "placement_ms": 12650.400000095367,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0,
+      "pick_obstacle_count": 90601
+    },
+    {
+      "complete": true,
+      "preparation_ms": 22.5,
+      "index_ms": 12.0,
+      "placement_ms": 12604.699999809265,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0,
+      "pick_obstacle_count": 90601
+    },
+    {
+      "complete": true,
+      "preparation_ms": 21.300000190734863,
+      "index_ms": 10.800000190734863,
+      "placement_ms": 12457.89999961853,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0,
+      "pick_obstacle_count": 90601
+    }
+  ],
+  "source_records": [
+    "../_run_records/startup-observation-19-2.json",
+    "../_run_records/startup-policy-observation-20-2.json"
+  ],
+  "record_sha256": {
+    "_run_records/startup-observation-19-2.json": "c3adacccc9e30f469c4c60cd588292a7c2c8e7195a50f8608ef5b3cfe99a13e4",
+    "_run_records/startup-policy-observation-20-2.json": "8fa039391946629b73f4ea31371b68e1515372335c07f3a2ada41b3ce12c50f5",
+    "_run_records/startup-policy-observation-20-restoration.json": "5c3063a119a2f289c100d51fac0276a5c092f2e12f0428eae3880344a8fca025"
+  },
+  "status": "diagnosed dominant stage; repair experiment unexecuted",
+  "independent_review": {
+    "path": "../PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_POLICY_DIAGNOSIS.md",
+    "sha256": "e93ee6a536659610f71dec1a576250bef34226ad7bdb038eab460ee30ff372f7",
+    "result": "Dominant placement phase confirmed; token equivalence conditions checked; efficacy unproven"
+  }
+}

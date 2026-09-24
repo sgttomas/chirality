@@ -1,0 +1,54 @@
+{
+  "projection": [
+    {
+      "started": 1016.2000002861023,
+      "ended": 1031.8000001907349,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 1616.4000000953674,
+      "ended": 1621.9000000953674,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 2863.6000003814697,
+      "ended": 2868.5,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 3898.7000002861023,
+      "ended": 3904.5,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 4334.200000286102,
+      "ended": 4337.700000286102,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 4924.10000038147,
+      "ended": 4928.200000286102,
+      "primitives": 2061,
+      "rectangles": 9061,
+      "width": 603,
+      "height": 679
+    }
+  ],
+  "shell": true,
+  "labels": 2061
+}

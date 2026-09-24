@@ -1,0 +1,18 @@
+{
+  "time_utc": "2026-09-24T13:53:52.949628+00:00",
+  "manager": "/root/c4_resume",
+  "parent": "/root",
+  "role": "WORKING_ITEMS Type1; same replacement instance resumed",
+  "activation_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md",
+  "activation_sha256": "a3a22c0af6250fafb611c776e605d2f36989c919948904047f373ce5c139c170",
+  "instruction_hashes": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/software-defect-diagnosis/SKILL.md": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+  },
+  "basis": "57f3a255c14ff58107cf7c365d91050c15ac302a; product158bd7f",
+  "authorization": "ROOT relayed owner correctness activation and expressly authorized exact prepared startup observation with byte-exact restoration; singlefunctionalbrowser/build lane; noRust/native/profilequalification"
+}

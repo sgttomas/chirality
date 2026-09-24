@@ -1,0 +1,47 @@
+--- a/labelCollisionIndex.ts
++++ b/labelCollisionIndex.ts
+@@ -28,8 +28,14 @@
+   private readonly oversized: CollisionEntry[] = [];
+   private readonly all: CollisionEntry[] = [];
+   private invalid = false;
++  private __stats: Record<string, number> | null = null;
+ 
+   constructor(rectangles: readonly LabelRect[] = []) {
++    const observations = (globalThis as any).__c4IndexObservation as unknown[] | undefined;
++    if (observations) {
++      this.__stats = { initialRectangles: rectangles.length, queries: 0, invalidQueries: 0, allTests: 0, oversizedTests: 0, cells: 0, maxBucket: 0, bucketEntries: 0, visits: 0, duplicateSkips: 0, narrowTests: 0, normalHits: 0 };
++      observations.push(this.__stats);
++    }
+     for (const rect of rectangles) this.insert(rect);
+   }
+ 
+@@ -51,18 +57,23 @@
+ 
+   overlaps(rect: LabelRect): boolean {
+     // Invalid obstacles/queries must never become an accidental clear placement.
+-    if (this.invalid || !validRect(rect)) return true;
++    const stats = this.__stats; if (stats) stats.queries++;
++    if (this.invalid || !validRect(rect)) { if (stats) stats.invalidQueries++; return true; }
+     const keys = cellKeys(rect);
+-    if (keys === null) return this.all.some((other) => labelRectsOverlap(rect, other.rect));
+-    if (this.oversized.some((other) => labelRectsOverlap(rect, other.rect))) return true;
++    if (keys === null) return this.all.some((other) => { if (stats) stats.allTests++; return labelRectsOverlap(rect, other.rect); });
++    if (this.oversized.some((other) => { if (stats) stats.oversizedTests++; return labelRectsOverlap(rect, other.rect); })) return true;
+     // A fresh identity cannot collide with markers retained by earlier queries.
+     // Buckets share private entries; caller rectangles are never marked.
+     const query = {};
+     for (const key of keys) {
+-      for (const other of this.cells.get(key) ?? []) {
+-        if (other.lastQuery === query) continue;
++      const bucket = this.cells.get(key) ?? [];
++      if (stats) { stats.cells++; stats.maxBucket = Math.max(stats.maxBucket, bucket.length); stats.bucketEntries += bucket.length; }
++      for (const other of bucket) {
++        if (stats) stats.visits++;
++        if (other.lastQuery === query) { if (stats) stats.duplicateSkips++; continue; }
+         other.lastQuery = query;
+-        if (labelRectsOverlap(rect, other.rect)) return true;
++        if (stats) stats.narrowTests++;
++        if (labelRectsOverlap(rect, other.rect)) { if (stats) stats.normalHits++; return true; }
+       }
+     }
+     return false;

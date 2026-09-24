@@ -1,0 +1,160 @@
+{
+  "projection": [
+    {
+      "started": 3574.2000002861023,
+      "ended": 3622.5,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 8040.800000190735,
+      "ended": 8077.300000190735,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 13202.5,
+      "ended": 13236.400000095367,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    }
+  ],
+  "policy": [
+    {
+      "started": 3622.7000002861023,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 3644.9000000953674,
+      "postIndex": 3660.0999999046326,
+      "ended": 6886.300000190735,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    },
+    {
+      "started": 8077.300000190735,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 8100.599999904633,
+      "postIndex": 8112.5,
+      "ended": 11209.599999904633,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    },
+    {
+      "started": 13236.400000095367,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 13257.700000286102,
+      "postIndex": 13268.800000190735,
+      "ended": 16264,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    }
+  ],
+  "index": [
+    {
+      "initialRectangles": 0,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 1034559,
+      "maxBucket": 6,
+      "bucketEntries": 1116907,
+      "visits": 879618,
+      "duplicateSkips": 102353,
+      "narrowTests": 777265,
+      "normalHits": 237159
+    },
+    {
+      "initialRectangles": 90601,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 778456,
+      "maxBucket": 23019,
+      "bucketEntries": 3907958382,
+      "visits": 414218587,
+      "duplicateSkips": 14720974,
+      "narrowTests": 399497613,
+      "normalHits": 364945
+    },
+    {
+      "initialRectangles": 0,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 1034559,
+      "maxBucket": 6,
+      "bucketEntries": 1116907,
+      "visits": 879618,
+      "duplicateSkips": 102353,
+      "narrowTests": 777265,
+      "normalHits": 237159
+    },
+    {
+      "initialRectangles": 90601,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 778456,
+      "maxBucket": 23019,
+      "bucketEntries": 3907958382,
+      "visits": 414218587,
+      "duplicateSkips": 14720974,
+      "narrowTests": 399497613,
+      "normalHits": 364945
+    },
+    {
+      "initialRectangles": 0,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 1034559,
+      "maxBucket": 6,
+      "bucketEntries": 1116907,
+      "visits": 879618,
+      "duplicateSkips": 102353,
+      "narrowTests": 777265,
+      "normalHits": 237159
+    },
+    {
+      "initialRectangles": 90601,
+      "queries": 494186,
+      "invalidQueries": 0,
+      "allTests": 0,
+      "oversizedTests": 0,
+      "cells": 778456,
+      "maxBucket": 23019,
+      "bucketEntries": 3907958382,
+      "visits": 414218587,
+      "duplicateSkips": 14720974,
+      "narrowTests": 399497613,
+      "normalHits": 364945
+    }
+  ],
+  "shell": true,
+  "labels": 20601
+}

@@ -1,0 +1,32 @@
+{
+  "agent": "/root/solver_manager/input_contracts",
+  "physical_parent": "/root/solver_manager",
+  "assignment_caller_and_integration_return": "/root/c4_resume",
+  "root_authorization": "Named executor transfer after solver source handback; source authoring only.",
+  "role": "TASK Type 2",
+  "mechanism": "delegated-harness-native, existing session reused; not a fresh-context child or reparenting",
+  "model_allocation": "Astra/low retained per ROOT assignment",
+  "isolation": "Shared host; coordinated file ownership, no OS-isolation claim",
+  "supplied_checkpoint": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "supplied_product_basis": "158bd7f971744a91cb70563335518353a505debd",
+  "origins": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/STARTUP_REPAIR/TASK_BRIEF.md": "5df02cf6bc025b9cf834ced3d251de42d2916719dcba4ab343352df3c6dd71e3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/STARTUP_REPAIR/DIAGNOSIS.md": "12d9f781aab2192da1a0e0705f711cf22efb2073e670c1a510ccadd45c5a2ad3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/STARTUP_REPAIR/DIAGNOSIS.json": "f3f81cfc1c21f2b5f7b41d3e61d981df5bb957ba1ff999adc6e56148307e4635",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-1.json": "9c3ce272eb77fd138ba488af0c49f3f4b7ea8c1c677078a9c69d0e4b246056de",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-2.json": "8fa039391946629b73f4ea31371b68e1515372335c07f3a2ada41b3ce12c50f5",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-bindings.json": "aabee31ccef5e84c7a22464e760598df00f32e8626aef01e687eb92e40ba372d",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-restoration.json": "5c3063a119a2f289c100d51fac0276a5c092f2e12f0428eae3880344a8fca025",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_POLICY_DIAGNOSIS.md": "e93ee6a536659610f71dec1a576250bef34226ad7bdb038eab460ee30ff372f7"
+  },
+  "changed_source_sha256": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": "4a1ffe7296fd3b00fde9a9ff44a454c1daace22280c49ba1d0d7cf5c95cd1044",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts": "0a507c845550ec6eedbe2eac9ce95c1db2bc2d3f0b95f9a0264b8c70e2cc2897"
+  },
+  "checks_executed": [],
+  "execution_limits": "No tests/compiler/build/benchmark/browser/native/network/Git execution."
+}

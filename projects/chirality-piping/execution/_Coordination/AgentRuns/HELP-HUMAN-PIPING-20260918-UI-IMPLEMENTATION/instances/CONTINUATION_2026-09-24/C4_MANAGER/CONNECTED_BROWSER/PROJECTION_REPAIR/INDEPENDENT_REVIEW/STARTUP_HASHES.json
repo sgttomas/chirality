@@ -1,0 +1,289 @@
+{
+  "schema": "chirality-bounded-software-diagnosis/v1",
+  "recorded_at_utc": "2026-09-24T13:59:00.040806+00:00",
+  "reviewer": "/root/c4_resume/projection_review",
+  "parent": "/root/c4_resume",
+  "mechanism": "delegated-harness-native descendant",
+  "role": "TASK Type 2",
+  "descendants": [],
+  "resumed_instance": "same projection_review TASK; new bounded startup diagnosis assignment",
+  "prior_final_reviewer_resumed": false,
+  "parent_assignment": "Inspect prepared run19 observation, frozen candidate and restoration; separate projector attribution from remaining DOM/policy work; propose repair only when warranted. Read-only except STARTUP_DIAGNOSIS.md and STARTUP_HASHES.json.",
+  "retained_instructions": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full read"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "consultation": "full read"
+    }
+  ],
+  "newly_read_skill": {
+    "origin": ".agents/skills/software-defect-diagnosis/SKILL.md",
+    "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+    "consultation": "full read"
+  },
+  "prior_source_review": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/RETURN.md",
+    "sha256": "45bbae58671ea48a6f10e52176e734c98bcfdb1604490a3c64ae41a0014bbd4e",
+    "consultation": "retained prior source/evidence review"
+  },
+  "product_basis": "158bd7f971744a91cb70563335518353a505debd",
+  "execution_head": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "desktop_diff_between_basis_and_execution_head": [],
+  "instrumentation_scope_verified": true,
+  "maintained_spec_exact_prefix_verified": true,
+  "source_restoration_independently_verified": true,
+  "temporary_spec_absence_verified": true,
+  "frozen_sources": [
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "ac846dcd291a561ee1967dbab8ce7ea5b86e4d3d04c658aded564b23bb63c33d"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "revision": "158bd7f971744a91cb70563335518353a505debd",
+      "sha256": "e2c07f2d9cfb8d22b19be6cc80078e1dfb60fbd0a734f616a22a3ae90905b811"
+    }
+  ],
+  "evidence": [
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-proposal.json",
+      "sha256": "8303de28c8212b4336048d77d45630452b5a285eb55d7b473fe0e07b0fa8a63c",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-activation.json",
+      "sha256": "984f170a21cd2007d6309fdd83cdace07138a1fd2ab3cfe52139c6848ff20a6a",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-proposed.patch",
+      "sha256": "6a861933656cfe4f987014dd68753e1d081b58c19e1a86ef4965754343c1ce8b",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-proposed-projector.ts",
+      "sha256": "b9f3a6726d6c34fec14997ba44a8f03b5b3488d1298083a65b9cd2b18d1b7787",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-proposed-spec.ts",
+      "sha256": "0ca769d4f5faa346834c913eca4c07681a1e5ca279d7a69d011b65037024d65a",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/run_startup_observation_19.py",
+      "sha256": "7255cd2510c9264f222683a53ef319592207f8c5483442acb82b87b0d3c63fbe",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/run_browser.py",
+      "sha256": "c06459394e35eb37d78da7d0fe8cd97fad1afc2f24215c75d680ab40231d76ec",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-19-bindings.json",
+      "sha256": "c0b73a0af84fb479f29b2b82a02eec8732b29d984e5b8ffa0d0d420785817b93",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-observation-19-restoration.json",
+      "sha256": "965c09dec8d6d0a38ef1e6576f674450458110211132ad21c7751860e2c1be2e",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19-command.json",
+      "sha256": "52a102c8da24fa0135995655482b2f6196c40104238fa226463fc78c60f7e762",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19.json",
+      "sha256": "3781034429c8ef378b5ed7f9fc507a34af35af103c85589854513c18cc68ce7a",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19.log",
+      "sha256": "b633cfbe27269391c72770ac3768aab36a96594be2ce945d4c9234a2e6fc9669",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19-port-after.json",
+      "sha256": "275c08e0aad6ab7c4b78d6399234df134f56d71adbcd829f4e29a076b944e150",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/trace.zip",
+      "sha256": "31661b4a2b90b2f0002a433fe24b4860c18b438b836c905433d6ff539c17e6cc",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/error-context.md",
+      "sha256": "d7dd313a7030f1756b13c1ced46cf6697efc29705a4ab6962c9db280428f40e2",
+      "consultation": "read, hash-bound; report/trace selectively decoded"
+    }
+  ],
+  "observations": [
+    {
+      "scenario": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture",
+      "status": "passed",
+      "test_duration_ms": 5853,
+      "raw": {
+        "projection": [
+          {
+            "started": 1016.2000002861023,
+            "ended": 1031.8000001907349,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 1616.4000000953674,
+            "ended": 1621.9000000953674,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 2863.6000003814697,
+            "ended": 2868.5,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 3898.7000002861023,
+            "ended": 3904.5,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 4334.200000286102,
+            "ended": 4337.700000286102,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 4924.10000038147,
+            "ended": 4928.200000286102,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          }
+        ],
+        "shell": true,
+        "labels": 2061
+      },
+      "completed_call_duration_sum_ms": 39.399999141693115,
+      "between_completed_calls_ms": [
+        584.5999999046326,
+        1241.7000002861023,
+        1030.2000002861023,
+        429.7000002861023,
+        586.4000000953674
+      ]
+    },
+    {
+      "scenario": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture",
+      "status": "failed",
+      "test_duration_ms": 49357,
+      "raw": {
+        "projection": [
+          {
+            "started": 3514,
+            "ended": 3565.2999997138977,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 17665.5,
+            "ended": 17702.900000095367,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 33338,
+            "ended": 33373.699999809265,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          }
+        ],
+        "shell": true,
+        "labels": 20601
+      },
+      "completed_call_duration_sum_ms": 124.39999961853027,
+      "between_completed_calls_ms": [
+        14100.200000286102,
+        15635.099999904633
+      ]
+    }
+  ],
+  "classification": "Repeatable startup gate failure; completed projector arithmetic not dominant; downstream bottleneck unisolated",
+  "combined_readiness": "HELD",
+  "repair_recommended": null,
+  "next_observation": "Separate policy candidate preparation, index construction and placement; preserve failure records, unchanged fixtures/assertions/deadlines and byte-exact restoration. If short, time existing label measurement/DOM-write sections.",
+  "limits": [
+    "No reviewer product/test/browser/native/build/ports/network execution or Git/source mutation",
+    "Successful projector returns only; no error-entry counters",
+    "Page and trace absolute clocks not equated",
+    "No DOM/policy/GC attribution yet",
+    "No performance calibration, protected-profile qualification, C4 or native acceptance"
+  ],
+  "writes": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_DIAGNOSIS.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_HASHES.json"
+  ],
+  "report": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_DIAGNOSIS.md",
+    "sha256": "06df6a20bafc92820e9c15718f27196d2fe293ae4b359cf193a8377cb1bb30c2",
+    "consultation": "authored independent diagnosis"
+  }
+}

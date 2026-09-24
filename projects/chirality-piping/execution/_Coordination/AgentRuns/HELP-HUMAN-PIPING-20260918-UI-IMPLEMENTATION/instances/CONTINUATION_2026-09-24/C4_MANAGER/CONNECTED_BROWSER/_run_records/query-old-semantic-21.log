@@ -1,0 +1,12 @@
+$ ../../node_modules/.bin/vitest run src/features/viewport/labelCollisionIndex.test.ts --maxWorkers=1
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  08:17:36
+   Duration  515ms (transform 51ms, setup 92ms, import 16ms, tests 12ms, environment 308ms)
+
+
+exit=0

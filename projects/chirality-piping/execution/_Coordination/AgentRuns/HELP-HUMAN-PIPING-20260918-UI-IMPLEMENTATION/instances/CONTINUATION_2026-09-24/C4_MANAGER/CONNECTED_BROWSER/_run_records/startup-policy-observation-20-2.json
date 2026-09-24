@@ -1,0 +1,74 @@
+{
+  "projection": [
+    {
+      "started": 3538.4000000953674,
+      "ended": 3590.0999999046326,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 17415.199999809265,
+      "ended": 17451.900000095367,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 32195.900000095367,
+      "ended": 32231.199999809265,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    }
+  ],
+  "policy": [
+    {
+      "started": 3590.300000190735,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 3611.5999999046326,
+      "postIndex": 3624.9000000953674,
+      "ended": 16275.300000190735,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    },
+    {
+      "started": 17451.900000095367,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 17474.400000095367,
+      "postIndex": 17486.400000095367,
+      "ended": 30091.099999904633,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    },
+    {
+      "started": 32231.199999809265,
+      "primitives": 90601,
+      "measurements": 20601,
+      "mode": "Budget",
+      "completed": true,
+      "preIndex": 32252.5,
+      "postIndex": 32263.300000190735,
+      "ended": 44721.199999809265,
+      "candidates": 20601,
+      "rendered": 56,
+      "unplaced": 20545,
+      "suppressed": 0
+    }
+  ],
+  "shell": true,
+  "labels": 20601
+}

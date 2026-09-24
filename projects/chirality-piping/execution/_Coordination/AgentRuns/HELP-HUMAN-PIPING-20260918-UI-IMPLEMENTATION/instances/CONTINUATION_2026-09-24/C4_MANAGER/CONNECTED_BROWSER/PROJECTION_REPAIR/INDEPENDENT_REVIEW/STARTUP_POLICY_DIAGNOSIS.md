@@ -1,0 +1,43 @@
+# Independent policy-stage startup diagnosis — run20
+
+**The owned placement loop is the dominant measured startup bottleneck. Combined readiness remains HELD.** Run20 supports a minimal, exact-output collision-query optimization experiment; it does not yet prove that Set bookkeeping dominates the loop or that replacing it will meet the unchanged startup gate.
+
+This is the same independent TASK Type 2 `/root/c4_resume/projection_review`, parent `/root/c4_resume`, delegated-harness-native collaboration, no descendants. The parent assigned this bounded run20 attribution and proposed-token risk review, with ROOT retaining the execution lane. Previously read canonical TASK, Root/Piping instructions and software-defect-diagnosis/software-code-review skills remain the basis. I read/compared source and evidence, decoded the raw report and checked hashes; no source edit, product/test/build/browser/native/ports/network execution, Git mutation or delegation occurred. Writes are limited to this report and STARTUP_POLICY_HASHES.json.
+
+## Evidence and causal boundary
+
+Execution HEAD is `57f3a255c14ff58107cf7c365d91050c15ac302a`, with product basis `158bd7f971744a91cb70563335518353a505debd`. The tested projector retains run19's timestamps. The only policy changes append an entry before work, record preIndex/postIndex/end boundaries and aggregate counts, and preserve thrown errors with an incomplete/error record. I independently compared the tested policy to the frozen blob and verified the archived patch is exact. No per-query counters were inserted. The temporary test is the byte-exact maintained foundation spec followed by array initialization and afterEach read/attachment hooks. Existing cases, fixtures and the 10000ms expectation remain unchanged. Both extracted observation JSONs exactly equal the decoded raw report attachments. The wrapper's try/finally restoration record is present; current projector/policy hashes match product158 and the temporary spec is absent.
+
+The 1k scenario passes; 10k fails at the same shell-visibility assertion before Project/Shift-node actions. The raw report records 1 expected, 1 unexpected, 0 skipped and no flaky result; the runner's extra error is the configured max-failures stop. AfterEach eventually observes the shell and all 20601 labels, which does not satisfy the missed deadline.
+
+The three 10k policy calls all complete with 20601 candidates/measurements, 90601 picking rectangles, 56 rendered, 20545 unplaced and 0 suppressed, in Budget mode on a 603x679 canvas. The nominal count budget is floor(603x679/3600)=113. Because only 56 labels fit, the count budget never stops traversal of the remaining candidates. That is the existing truthful-omission policy, not permission to cap their work by dropping geometry or changing the policy.
+
+| 10k call | Candidate preparation | Index construction | Placement loop |
+|---|---:|---:|---:|
+| 1 | 21.3ms | 13.3ms | 12650.4ms |
+| 2 | 22.5ms | 12.0ms | 12604.7ms |
+| 3 | 21.3ms | 10.8ms | 12457.9ms |
+
+The first placement loop alone occupies about 12.65 seconds of synchronous policy work, exceeding the unchanged 10-second startup expectation. This localizes a sufficient blocking computation in the startup path and explains most of run19's inter-projector gaps. Candidate preparation and index construction are comparatively small. These are uncalibrated defect observations, not benchmark qualification. The loop timing includes measurement lookup, candidate construction/validation, occupied and picking queries, and result-array/reason bookkeeping. It does not separate those costs or count actual collision comparisons. Therefore exact Set-specific CPU attribution remains open. DOM/React work and repeat-update scheduling can still contribute additional delay, but are no longer needed to explain the observed deadline conflict. Run20 does not establish a controlled before/after causal attribution of this cost to the eight-piece repair.
+
+## Proposed token optimization: conditionally sound
+
+I reviewed the prepared `STARTUP_REPAIR/TASK_BRIEF.md` and the maintained index/placement source and tests. The proposed change is confined to deduplication bookkeeping in normal collision queries: each inserted obstacle remains an independently copied private entry; all its cell buckets reference that same entry; each normal query receives a fresh opaque identity; the entry stores the identity on first encounter before applying the unchanged overlap predicate. Query cell order, entry order, early-return behavior and the predicate remain unchanged.
+
+For a fixed query q and private entry e, the old Set contains e exactly after q's first encounter with e. With a unique q token and no geometry mutation, `e.lastQuery === q` has the same truth value at each encounter. Thus the first-encounter sequence of rectangle comparisons is identical, duplicates across cells are skipped identically, and the returned boolean is identical. Since placement sees the same boolean sequence, it must produce the same ordered boxes and failure reasons. This proves a representation equivalence for the maintained synchronous value-input path; the actual implementation still needs frozen-diff review and executed differential evidence.
+
+Boundary requirements:
+
+- Tokens must be fresh per normal query. Use an object or Symbol identity; an unchecked numeric counter can lose uniqueness at integer-precision limits or rollover and silently skip a real obstacle. Do not reuse the previous token after early return.
+- Mark private entries, never caller objects. Duplicate-coordinate insertions and repeated insertion of the same input object remain independent copied entries; all cells for one insertion must share one entry. Keep copying and input-mutation isolation intact.
+- Invalid index/query handling must remain fail-closed before normal traversal. Oversized queries must still test the complete `all` list, and oversized obstacles must still be tested independently before cell traversal. A token optimization must not make those paths depend on prior markers.
+- Insertions after earlier queries must participate immediately; a new entry's initial marker must not equal the active query token. Alternate normal, early-hit, no-hit, oversized and invalid queries to cover stale-marker consequences.
+- Retention is bounded: at most one marker reference per stored entry plus the active token. Different old token objects may stay reachable through different entries, so the bound is O(entries), not globally one token. Destroying the index releases its entry/marker references. Preserve synchronous query execution and private immutable geometry.
+
+No change to cell size64, MAX_CELLS256, strict edge-overlap semantics, fallback ordering, invalid-state stickiness or public API is needed. The eight-piece projector, all picking obstacles, 24 candidate attempts, label dimensions, priorities and protected criteria remain untouched. The proposed brief already states these constraints. No actionable defect in the proposal itself was found; its benefit remains an empirical hypothesis. Removing Set bookkeeping changes a constant cost, not the dense query's worst-case O(obstacles) behavior, and cannot promise startup success from the stage measurements alone.
+
+## Minimal repair and proof obligation
+
+The smallest supported implementation experiment is the proposed private-entry token deduplication in `labelCollisionIndex.ts` plus meaningful public-behavior regressions in its maintained test file. Existing exhaustive-overlap and ordered-placement tests remain intact. Extend the exhaustive oracle over dense multicell entries, duplicate coordinates, repeated alternating hit/no-hit queries, late insertion and input mutation; retain strict edges, extreme finite/oversized paths and invalid fail-closed cases. Compare ordered placements and reasons exactly. These cases detect stale tokens and mistaken entry sharing; private-field assertions and timing thresholds are unnecessary.
+
+After the ROOT-owned execution lane is available, a controlled old/new comparison must show exact output equivalence and whether this change actually reduces the diagnosed stage enough. The unchanged 1k/10k source scenarios must pass without changing their deadline or setup, then complete affected projection/placement/policy/viewport checks and the required production-dist cases. If the startup gate still fails, preserve that result and isolate the remaining loop cost rather than enlarging the token change into a geometry, policy or timeout change. This diagnosis authorizes no source writes by the reviewer and grants no acceptance, merge, native, profile/performance or C4 closure.

@@ -1,0 +1,10 @@
+{
+  "head": "64875257f5cd85a9e9b6c270db36df042fde9206",
+  "checked_files": 279,
+  "portability_findings": [],
+  "original_files_preserved": 3033,
+  "preservation_mismatches": [],
+  "fresh_review_sha256": "634db21d1a89a09d9d8f6e297ba8341238ee9ff49e34249ead90404841d2e7e5",
+  "manager_return_sha256": "9f412b0543ec90ec0d62e5279ab63ef691a5da9fad540e3907012abaf0c7d666",
+  "source_diff": ""
+}

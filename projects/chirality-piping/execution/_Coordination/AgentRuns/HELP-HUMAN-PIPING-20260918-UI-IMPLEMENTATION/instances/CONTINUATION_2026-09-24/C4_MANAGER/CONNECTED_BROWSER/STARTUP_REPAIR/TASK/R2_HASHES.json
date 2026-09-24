@@ -1,0 +1,18 @@
+{
+  "agent": "/root/solver_manager/input_contracts",
+  "physical_parent": "/root/solver_manager",
+  "assignment_caller_and_integration_return": "/root/c4_resume",
+  "role": "TASK Type 2",
+  "mechanism": "delegated-harness-native, same existing session; no descendants",
+  "model_allocation": "Astra/low retained",
+  "supplied_source_base": "ab2561246c9f2983914402f413f0add97eb54bab",
+  "authorization": "ROOT fixed finer partition grant via C4 PARTITION_BRIEF; only previous CELL_SIZE64 constraint superseded",
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/STARTUP_REPAIR/PARTITION_BRIEF.md",
+  "brief_sha256": "4e3326fd93e9fd480059efe33cedd3d887750a5d0e4451957ae5d53aaf3b3099",
+  "source_sha256": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": "b6d4eb2ff2de41e6d458f58db5a943b91532c6682ce05f15d77542002d0cad73",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts": "af378ece75cac36b5535da5bb327b87e25b93a0301e67e7aa2b10e0ee14f4fa8"
+  },
+  "checks_executed": [],
+  "limits": "Source authoring only; no tests/compiler/build/browser/native/network/Git execution. No efficacy claim."
+}

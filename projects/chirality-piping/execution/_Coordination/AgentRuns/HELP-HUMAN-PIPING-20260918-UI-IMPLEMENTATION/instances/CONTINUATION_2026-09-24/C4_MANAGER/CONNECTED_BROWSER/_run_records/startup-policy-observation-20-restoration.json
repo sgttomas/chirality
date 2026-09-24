@@ -1,0 +1,21 @@
+{
+  "head": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "scope": "Temporary aggregate policy-stage and projector observation; uncalibrated diagnosis only",
+  "source": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts": {
+      "original_sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e",
+      "tested_sha256": "b9f3a6726d6c34fec14997ba44a8f03b5b3488d1298083a65b9cd2b18d1b7787"
+    },
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": {
+      "original_sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+      "tested_sha256": "9d9dbdebbf46e3b66678f55b28e5fb3cd53703762f62395bf4517f68f2951170"
+    }
+  },
+  "test_sha256": "79dfe79cefb84f046ec7b86862f8164d98f920ca7e698e2cf0af1c039bd79a53",
+  "exit": 1,
+  "restored": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts": true,
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": true
+  },
+  "temporary_spec_removed": true
+}

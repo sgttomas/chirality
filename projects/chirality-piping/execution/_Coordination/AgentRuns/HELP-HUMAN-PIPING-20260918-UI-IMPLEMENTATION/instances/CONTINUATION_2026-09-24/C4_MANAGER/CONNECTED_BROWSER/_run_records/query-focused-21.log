@@ -1,0 +1,34 @@
+$ ../../node_modules/.bin/vitest run src/features/viewport/labelCollisionIndex.test.ts src/features/viewport/labelPlacement.test.ts src/features/viewport/labelPolicy.test.ts src/features/viewport/labelProjection.test.ts src/features/viewport/PipeViewport.contextLabels.test.tsx src/features/viewport/PipeViewport.labels.test.tsx src/features/viewport/viewportResource.test.ts --maxWorkers=1
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15472:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:927:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15476:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:927:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+
+ Test Files  7 passed (7)
+      Tests  65 passed (65)
+   Start at  08:17:42
+   Duration  4.20s (transform 318ms, setup 220ms, import 608ms, tests 1.66s, environment 1.18s)
+
+
+exit=0

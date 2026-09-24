@@ -1,0 +1,223 @@
+{
+  "config": {
+    "configFile": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/playwright.config.ts",
+    "rootDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-desktop",
+        "name": "chromium-desktop",
+        "testDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-compact",
+        "name": "chromium-compact",
+        "testDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "url": "http://127.0.0.1:5174"
+    }
+  },
+  "suites": [
+    {
+      "title": "c4-startup-observation.spec.ts",
+      "file": "c4-startup-observation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5978,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T13:58:53.027Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiSGVhZGxlc3NDaHJvbWUvMTQ4LjAuNzc3OC45NiIsCiAgICAicmV2aXNpb24iOiAiQDg2MjVlMDY2ZmViYzcyMWUwMTVlYTk5ODQyZGExMjkwMWViN2VkNzMiLAogICAgInVzZXJBZ2VudCI6ICJNb3ppbGxhLzUuMCAoTWFjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAxMF8xNV83KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBIZWFkbGVzc0Nocm9tZS8xNDguMC43Nzc4Ljk2IFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNC44LjE3OC4xNCIKICB9LAogICJwbGF5d3JpZ2h0QnJvd3NlclZlcnNpb24iOiAiMTQ4LjAuNzc3OC45NiIsCiAgImV4ZWN1dGFibGVQYXRoIjogIi9Vc2Vycy9yeWFuL0xpYnJhcnkvQ2FjaGVzL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTIyMy9jaHJvbWUtaGVhZGxlc3Mtc2hlbGwtbWFjLWFybTY0L2Nocm9tZS1oZWFkbGVzcy1zaGVsbCIsCiAgImV4ZWN1dGFibGVTaGEyNTYiOiAiYWEyNWYyZTc5NWMwMmQ1Y2I1ZWY1ZDY5ODc3NDVjYzViYmU3ZDhiZWE1ODgyNzM5MGM3YTRjODFjOGQyZGQ3YiIKfQ=="
+                    },
+                    {
+                      "name": "startup-projection-observation",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9qZWN0aW9uIjogWwogICAgewogICAgICAic3RhcnRlZCI6IDEwMDEuMjk5OTk5NzEzODk3NywKICAgICAgImVuZGVkIjogMTAxNywKICAgICAgInByaW1pdGl2ZXMiOiAyMDYxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiAxNTcxLjI5OTk5OTcxMzg5NzcsCiAgICAgICJlbmRlZCI6IDE1NzcuMDk5OTk5OTA0NjMyNiwKICAgICAgInByaW1pdGl2ZXMiOiAyMDYxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiAyODAyLjUsCiAgICAgICJlbmRlZCI6IDI4MDcuNjk5OTk5ODA5MjY1LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDM3MTAuNSwKICAgICAgImVuZGVkIjogMzcxNS41LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDQ0NjcuNDAwMDAwMDk1MzY3LAogICAgICAiZW5kZWQiOiA0NDc1LjA5OTk5OTkwNDYzMywKICAgICAgInByaW1pdGl2ZXMiOiAyMDYxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiA1MDU2LjUsCiAgICAgICJlbmRlZCI6IDUwNjAuNTk5OTk5OTA0NjMzLAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9CiAgXSwKICAicG9saWN5IjogWwogICAgewogICAgICAic3RhcnRlZCI6IDEwMTcuMTk5OTk5ODA5MjY1MSwKICAgICAgInByaW1pdGl2ZXMiOiA5MDYxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MSwKICAgICAgIm1vZGUiOiAiQnVkZ2V0IiwKICAgICAgImNvbXBsZXRlZCI6IHRydWUsCiAgICAgICJwcmVJbmRleCI6IDEwMTksCiAgICAgICJwb3N0SW5kZXgiOiAxMDIxLjE5OTk5OTgwOTI2NTEsCiAgICAgICJlbmRlZCI6IDEyOTguMDk5OTk5OTA0NjMyNiwKICAgICAgImNhbmRpZGF0ZXMiOiAyMDYxLAogICAgICAicmVuZGVyZWQiOiA1NCwKICAgICAgInVucGxhY2VkIjogMjAwNywKICAgICAgInN1cHByZXNzZWQiOiAwCiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDE1NzcuMDk5OTk5OTA0NjMyNiwKICAgICAgInByaW1pdGl2ZXMiOiA5MDYxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MSwKICAgICAgIm1vZGUiOiAiQnVkZ2V0IiwKICAgICAgImNvbXBsZXRlZCI6IHRydWUsCiAgICAgICJwcmVJbmRleCI6IDE1NzkuMDk5OTk5OTA0NjMyNiwKICAgICAgInBvc3RJbmRleCI6IDE1ODAuMDk5OTk5OTA0NjMyNiwKICAgICAgImVuZGVkIjogMTg1MS42OTk5OTk4MDkyNjUxLAogICAgICAiY2FuZGlkYXRlcyI6IDIwNjEsCiAgICAgICJyZW5kZXJlZCI6IDU0LAogICAgICAidW5wbGFjZWQiOiAyMDA3LAogICAgICAic3VwcHJlc3NlZCI6IDAKICAgIH0sCiAgICB7CiAgICAgICJzdGFydGVkIjogMjgwNy42OTk5OTk4MDkyNjUsCiAgICAgICJwcmltaXRpdmVzIjogOTA2MSwKICAgICAgIm1lYXN1cmVtZW50cyI6IDIwNjEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiAyODA5LjE5OTk5OTgwOTI2NSwKICAgICAgInBvc3RJbmRleCI6IDI4MTEuMTk5OTk5ODA5MjY1LAogICAgICAiZW5kZWQiOiAzMDc5LjkwMDAwMDA5NTM2NzQsCiAgICAgICJjYW5kaWRhdGVzIjogMjA2MSwKICAgICAgInJlbmRlcmVkIjogNTQsCiAgICAgICJ1bnBsYWNlZCI6IDIwMDcsCiAgICAgICJzdXBwcmVzc2VkIjogMAogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiAzNzE1LjUsCiAgICAgICJwcmltaXRpdmVzIjogOTA2MSwKICAgICAgIm1lYXN1cmVtZW50cyI6IDIwNjEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiAzNzE3LAogICAgICAicG9zdEluZGV4IjogMzcxNy45MDAwMDAwOTUzNjc0LAogICAgICAiZW5kZWQiOiAzOTg2LjkwMDAwMDA5NTM2NzQsCiAgICAgICJjYW5kaWRhdGVzIjogMjA2MSwKICAgICAgInJlbmRlcmVkIjogNTMsCiAgICAgICJ1bnBsYWNlZCI6IDIwMDgsCiAgICAgICJzdXBwcmVzc2VkIjogMAogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiA0NDc1LjA5OTk5OTkwNDYzMywKICAgICAgInByaW1pdGl2ZXMiOiA5MDYxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MSwKICAgICAgIm1vZGUiOiAiQnVkZ2V0IiwKICAgICAgImNvbXBsZXRlZCI6IHRydWUsCiAgICAgICJwcmVJbmRleCI6IDQ0ODEuNDAwMDAwMDk1MzY3LAogICAgICAicG9zdEluZGV4IjogNDQ4MywKICAgICAgImVuZGVkIjogNDc1Ni41LAogICAgICAiY2FuZGlkYXRlcyI6IDIwNjEsCiAgICAgICJyZW5kZXJlZCI6IDUzLAogICAgICAidW5wbGFjZWQiOiAyMDA4LAogICAgICAic3VwcHJlc3NlZCI6IDAKICAgIH0sCiAgICB7CiAgICAgICJzdGFydGVkIjogNTA2MC41OTk5OTk5MDQ2MzMsCiAgICAgICJwcmltaXRpdmVzIjogOTA2MSwKICAgICAgIm1lYXN1cmVtZW50cyI6IDIwNjEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiA1MDYyLAogICAgICAicG9zdEluZGV4IjogNTA2My41LAogICAgICAiZW5kZWQiOiA1MzI5LjY5OTk5OTgwOTI2NSwKICAgICAgImNhbmRpZGF0ZXMiOiAyMDYxLAogICAgICAicmVuZGVyZWQiOiA1MywKICAgICAgInVucGxhY2VkIjogMjAwOCwKICAgICAgInN1cHByZXNzZWQiOiAwCiAgICB9CiAgXSwKICAic2hlbGwiOiB0cnVlLAogICJsYWJlbHMiOiAyMDYxCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c81ddb6dba840dae18bd-9ddf0db4dc51ec9682ff",
+          "file": "c4-startup-observation.spec.ts",
+          "line": 270,
+          "column": 3
+        },
+        {
+          "title": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 48142,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n\n    at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)\n    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-startup-observation.spec.ts:271:19",
+                    "location": {
+                      "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                      "column": 59,
+                      "line": 93
+                    },
+                    "snippet": "   at ui-foundation-workflows.ts:93\n\n  91 |   await routeModelFixture(page, fixture);\n  92 |   await page.goto(\"/\");\n> 93 |   await expect(page.getByTestId(\"desktop-preview-shell\")).toBeVisible();\n     |                                                           ^\n  94 |   await expect(page.getByTestId(\"viewport-canvas\").locator(\"canvas\")).toHaveCount(1);\n  95 |   return fixture.model;\n  96 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                        "column": 59,
+                        "line": 93
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n\n\n   at ui-foundation-workflows.ts:93\n\n  91 |   await routeModelFixture(page, fixture);\n  92 |   await page.goto(\"/\");\n> 93 |   await expect(page.getByTestId(\"desktop-preview-shell\")).toBeVisible();\n     |                                                           ^\n  94 |   await expect(page.getByTestId(\"viewport-canvas\").locator(\"canvas\")).toHaveCount(1);\n  95 |   return fixture.model;\n  96 | }\n    at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)\n    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-startup-observation.spec.ts:271:19"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T13:58:59.292Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "startup-projection-observation",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9qZWN0aW9uIjogWwogICAgewogICAgICAic3RhcnRlZCI6IDM1MzguNDAwMDAwMDk1MzY3NCwKICAgICAgImVuZGVkIjogMzU5MC4wOTk5OTk5MDQ2MzI2LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjAxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjAxLAogICAgICAid2lkdGgiOiA2MDMsCiAgICAgICJoZWlnaHQiOiA2NzkKICAgIH0sCiAgICB7CiAgICAgICJzdGFydGVkIjogMTc0MTUuMTk5OTk5ODA5MjY1LAogICAgICAiZW5kZWQiOiAxNzQ1MS45MDAwMDAwOTUzNjcsCiAgICAgICJwcmltaXRpdmVzIjogMjA2MDEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MDEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiAzMjE5NS45MDAwMDAwOTUzNjcsCiAgICAgICJlbmRlZCI6IDMyMjMxLjE5OTk5OTgwOTI2NSwKICAgICAgInByaW1pdGl2ZXMiOiAyMDYwMSwKICAgICAgInJlY3RhbmdsZXMiOiA5MDYwMSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9CiAgXSwKICAicG9saWN5IjogWwogICAgewogICAgICAic3RhcnRlZCI6IDM1OTAuMzAwMDAwMTkwNzM1LAogICAgICAicHJpbWl0aXZlcyI6IDkwNjAxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MDEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiAzNjExLjU5OTk5OTkwNDYzMjYsCiAgICAgICJwb3N0SW5kZXgiOiAzNjI0LjkwMDAwMDA5NTM2NzQsCiAgICAgICJlbmRlZCI6IDE2Mjc1LjMwMDAwMDE5MDczNSwKICAgICAgImNhbmRpZGF0ZXMiOiAyMDYwMSwKICAgICAgInJlbmRlcmVkIjogNTYsCiAgICAgICJ1bnBsYWNlZCI6IDIwNTQ1LAogICAgICAic3VwcHJlc3NlZCI6IDAKICAgIH0sCiAgICB7CiAgICAgICJzdGFydGVkIjogMTc0NTEuOTAwMDAwMDk1MzY3LAogICAgICAicHJpbWl0aXZlcyI6IDkwNjAxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MDEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiAxNzQ3NC40MDAwMDAwOTUzNjcsCiAgICAgICJwb3N0SW5kZXgiOiAxNzQ4Ni40MDAwMDAwOTUzNjcsCiAgICAgICJlbmRlZCI6IDMwMDkxLjA5OTk5OTkwNDYzMywKICAgICAgImNhbmRpZGF0ZXMiOiAyMDYwMSwKICAgICAgInJlbmRlcmVkIjogNTYsCiAgICAgICJ1bnBsYWNlZCI6IDIwNTQ1LAogICAgICAic3VwcHJlc3NlZCI6IDAKICAgIH0sCiAgICB7CiAgICAgICJzdGFydGVkIjogMzIyMzEuMTk5OTk5ODA5MjY1LAogICAgICAicHJpbWl0aXZlcyI6IDkwNjAxLAogICAgICAibWVhc3VyZW1lbnRzIjogMjA2MDEsCiAgICAgICJtb2RlIjogIkJ1ZGdldCIsCiAgICAgICJjb21wbGV0ZWQiOiB0cnVlLAogICAgICAicHJlSW5kZXgiOiAzMjI1Mi41LAogICAgICAicG9zdEluZGV4IjogMzIyNjMuMzAwMDAwMTkwNzM1LAogICAgICAiZW5kZWQiOiA0NDcyMS4xOTk5OTk4MDkyNjUsCiAgICAgICJjYW5kaWRhdGVzIjogMjA2MDEsCiAgICAgICJyZW5kZXJlZCI6IDU2LAogICAgICAidW5wbGFjZWQiOiAyMDU0NSwKICAgICAgInN1cHByZXNzZWQiOiAwCiAgICB9CiAgXSwKICAic2hlbGwiOiB0cnVlLAogICJsYWJlbHMiOiAyMDYwMQp9"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                    "column": 59,
+                    "line": 93
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c81ddb6dba840dae18bd-9617b8255d8dd489ba48",
+          "file": "c4-startup-observation.spec.ts",
+          "line": 270,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "Testing stopped early after 1 maximum allowed failures."
+    }
+  ],
+  "stats": {
+    "startTime": "2026-09-24T13:58:52.051Z",
+    "duration": 55754.555,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

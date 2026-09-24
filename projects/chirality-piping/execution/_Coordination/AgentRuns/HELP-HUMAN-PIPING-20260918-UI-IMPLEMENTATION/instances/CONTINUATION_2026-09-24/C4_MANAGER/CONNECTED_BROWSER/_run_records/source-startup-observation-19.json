@@ -1,0 +1,223 @@
+{
+  "config": {
+    "configFile": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/playwright.config.ts",
+    "rootDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-desktop",
+        "name": "chromium-desktop",
+        "testDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-compact",
+        "name": "chromium-compact",
+        "testDir": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "url": "http://127.0.0.1:5174"
+    }
+  },
+  "suites": [
+    {
+      "title": "c4-startup-observation.spec.ts",
+      "file": "c4-startup-observation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5853,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T13:54:00.432Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiSGVhZGxlc3NDaHJvbWUvMTQ4LjAuNzc3OC45NiIsCiAgICAicmV2aXNpb24iOiAiQDg2MjVlMDY2ZmViYzcyMWUwMTVlYTk5ODQyZGExMjkwMWViN2VkNzMiLAogICAgInVzZXJBZ2VudCI6ICJNb3ppbGxhLzUuMCAoTWFjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAxMF8xNV83KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBIZWFkbGVzc0Nocm9tZS8xNDguMC43Nzc4Ljk2IFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNC44LjE3OC4xNCIKICB9LAogICJwbGF5d3JpZ2h0QnJvd3NlclZlcnNpb24iOiAiMTQ4LjAuNzc3OC45NiIsCiAgImV4ZWN1dGFibGVQYXRoIjogIi9Vc2Vycy9yeWFuL0xpYnJhcnkvQ2FjaGVzL21zLXBsYXl3cmlnaHQvY2hyb21pdW1faGVhZGxlc3Nfc2hlbGwtMTIyMy9jaHJvbWUtaGVhZGxlc3Mtc2hlbGwtbWFjLWFybTY0L2Nocm9tZS1oZWFkbGVzcy1zaGVsbCIsCiAgImV4ZWN1dGFibGVTaGEyNTYiOiAiYWEyNWYyZTc5NWMwMmQ1Y2I1ZWY1ZDY5ODc3NDVjYzViYmU3ZDhiZWE1ODgyNzM5MGM3YTRjODFjOGQyZGQ3YiIKfQ=="
+                    },
+                    {
+                      "name": "startup-projection-observation",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9qZWN0aW9uIjogWwogICAgewogICAgICAic3RhcnRlZCI6IDEwMTYuMjAwMDAwMjg2MTAyMywKICAgICAgImVuZGVkIjogMTAzMS44MDAwMDAxOTA3MzQ5LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDE2MTYuNDAwMDAwMDk1MzY3NCwKICAgICAgImVuZGVkIjogMTYyMS45MDAwMDAwOTUzNjc0LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDI4NjMuNjAwMDAwMzgxNDY5NywKICAgICAgImVuZGVkIjogMjg2OC41LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDM4OTguNzAwMDAwMjg2MTAyMywKICAgICAgImVuZGVkIjogMzkwNC41LAogICAgICAicHJpbWl0aXZlcyI6IDIwNjEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDQzMzQuMjAwMDAwMjg2MTAyLAogICAgICAiZW5kZWQiOiA0MzM3LjcwMDAwMDI4NjEwMiwKICAgICAgInByaW1pdGl2ZXMiOiAyMDYxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfSwKICAgIHsKICAgICAgInN0YXJ0ZWQiOiA0OTI0LjEwMDAwMDM4MTQ3LAogICAgICAiZW5kZWQiOiA0OTI4LjIwMDAwMDI4NjEwMiwKICAgICAgInByaW1pdGl2ZXMiOiAyMDYxLAogICAgICAicmVjdGFuZ2xlcyI6IDkwNjEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfQogIF0sCiAgInNoZWxsIjogdHJ1ZSwKICAibGFiZWxzIjogMjA2MQp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c81ddb6dba840dae18bd-9ddf0db4dc51ec9682ff",
+          "file": "c4-startup-observation.spec.ts",
+          "line": 270,
+          "column": 3
+        },
+        {
+          "title": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 49357,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n\n    at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)\n    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-startup-observation.spec.ts:271:19",
+                    "location": {
+                      "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                      "column": 59,
+                      "line": 93
+                    },
+                    "snippet": "   at ui-foundation-workflows.ts:93\n\n  91 |   await routeModelFixture(page, fixture);\n  92 |   await page.goto(\"/\");\n> 93 |   await expect(page.getByTestId(\"desktop-preview-shell\")).toBeVisible();\n     |                                                           ^\n  94 |   await expect(page.getByTestId(\"viewport-canvas\").locator(\"canvas\")).toHaveCount(1);\n  95 |   return fixture.model;\n  96 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                        "column": 59,
+                        "line": 93
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('desktop-preview-shell')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('desktop-preview-shell')\u001b[22m\n\n\n   at ui-foundation-workflows.ts:93\n\n  91 |   await routeModelFixture(page, fixture);\n  92 |   await page.goto(\"/\");\n> 93 |   await expect(page.getByTestId(\"desktop-preview-shell\")).toBeVisible();\n     |                                                           ^\n  94 |   await expect(page.getByTestId(\"viewport-canvas\").locator(\"canvas\")).toHaveCount(1);\n  95 |   return fixture.model;\n  96 | }\n    at gotoRoutedFixture (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts:93:59)\n    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/c4-startup-observation.spec.ts:271:19"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T13:54:06.565Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "startup-projection-observation",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9qZWN0aW9uIjogWwogICAgewogICAgICAic3RhcnRlZCI6IDM1MTQsCiAgICAgICJlbmRlZCI6IDM1NjUuMjk5OTk5NzEzODk3NywKICAgICAgInByaW1pdGl2ZXMiOiAyMDYwMSwKICAgICAgInJlY3RhbmdsZXMiOiA5MDYwMSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDE3NjY1LjUsCiAgICAgICJlbmRlZCI6IDE3NzAyLjkwMDAwMDA5NTM2NywKICAgICAgInByaW1pdGl2ZXMiOiAyMDYwMSwKICAgICAgInJlY3RhbmdsZXMiOiA5MDYwMSwKICAgICAgIndpZHRoIjogNjAzLAogICAgICAiaGVpZ2h0IjogNjc5CiAgICB9LAogICAgewogICAgICAic3RhcnRlZCI6IDMzMzM4LAogICAgICAiZW5kZWQiOiAzMzM3My42OTk5OTk4MDkyNjUsCiAgICAgICJwcmltaXRpdmVzIjogMjA2MDEsCiAgICAgICJyZWN0YW5nbGVzIjogOTA2MDEsCiAgICAgICJ3aWR0aCI6IDYwMywKICAgICAgImhlaWdodCI6IDY3OQogICAgfQogIF0sCiAgInNoZWxsIjogdHJ1ZSwKICAibGFiZWxzIjogMjA2MDEKfQ=="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-observation-19/c4-startup-observation-Pro-12c79--Project-on-the-10k-fixture-chromium-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/e2e/ui-foundation-workflows.ts",
+                    "column": 59,
+                    "line": 93
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c81ddb6dba840dae18bd-9617b8255d8dd489ba48",
+          "file": "c4-startup-observation.spec.ts",
+          "line": 270,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "Testing stopped early after 1 maximum allowed failures."
+    }
+  ],
+  "stats": {
+    "startTime": "2026-09-24T13:53:59.459Z",
+    "duration": 56844.461,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

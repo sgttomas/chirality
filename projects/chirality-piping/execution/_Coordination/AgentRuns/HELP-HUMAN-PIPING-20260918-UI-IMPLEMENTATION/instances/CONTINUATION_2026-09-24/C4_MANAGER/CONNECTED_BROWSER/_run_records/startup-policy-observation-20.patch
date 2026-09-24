@@ -1,0 +1,35 @@
+--- a/labelPolicy.ts
++++ b/labelPolicy.ts
+@@ -44,6 +44,10 @@
+ 
+ /** Pure policy for existing node/pipe/support/component identity labels, not engineering plates. */
+ export function layoutViewportLabels(index: ModelIndex, input: LabelPolicyInput): LabelPolicyResult {
++  const __observations = (globalThis as any).__c4PolicyObservation as unknown[] | undefined;
++  const __entry: Record<string, unknown> = { started: performance.now(), primitives: input.pickTargets.length, measurements: input.measurements.size, mode: input.mode, completed: false };
++  if (__observations) __observations.push(__entry);
++  try {
+   const nominalBudget = nominalLabelBudget(input.width, input.height);
+   const candidates: LabelIdentity[] = [];
+   const seen = new Set<EntityKey>();
+@@ -84,7 +88,9 @@
+   const rendered: Array<LabelPolicyResult["rendered"][number]> = [];
+   const suppressed: Array<LabelPolicyResult["suppressed"][number]> = [];
+   const unplaced: Array<LabelPolicyResult["unplaced"][number]> = [];
++  __entry.preIndex = performance.now();
+   const place = createLabelPlacementSearch(input, input.pickTargets);
++  __entry.postIndex = performance.now();
+   let context = 0;
+   let ordinaryCount = 0;
+   for (const identity of candidates) {
+@@ -101,8 +107,11 @@
+     rendered.push({ ...identity, rect: placed.rect });
+     if (identity.role === "ordinary") ordinaryCount++; else context++;
+   }
++  __entry.ended = performance.now(); __entry.completed = true;
++  __entry.candidates = candidates.length; __entry.rendered = rendered.length; __entry.unplaced = unplaced.length; __entry.suppressed = suppressed.length;
+   return { mode: input.mode, nominalBudget, rendered, suppressed, ineligible, unplaced,
+     counts: { context, ordinary: ordinaryCount, total: rendered.length,
+       contextOverflow: input.mode === "Budget" ? Math.max(context - nominalBudget, 0) : 0,
+       suppressed: suppressed.length, ineligible: ineligible.length, unplaced: unplaced.length } };
++  } catch (error) { __entry.ended = performance.now(); __entry.error = String(error); throw error; }
+ }

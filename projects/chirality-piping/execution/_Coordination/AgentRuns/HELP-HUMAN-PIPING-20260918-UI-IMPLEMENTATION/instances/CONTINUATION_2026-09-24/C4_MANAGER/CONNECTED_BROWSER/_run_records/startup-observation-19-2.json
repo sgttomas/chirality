@@ -1,0 +1,30 @@
+{
+  "projection": [
+    {
+      "started": 3514,
+      "ended": 3565.2999997138977,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 17665.5,
+      "ended": 17702.900000095367,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    },
+    {
+      "started": 33338,
+      "ended": 33373.699999809265,
+      "primitives": 20601,
+      "rectangles": 90601,
+      "width": 603,
+      "height": 679
+    }
+  ],
+  "shell": true,
+  "labels": 20601
+}

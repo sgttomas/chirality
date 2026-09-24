@@ -1,0 +1,13 @@
+{
+  "status": "Prepared only; no source application or execution",
+  "base": "ab2561246c9f2983914402f413f0add97eb54bab",
+  "index_source_sha256": "4a1ffe7296fd3b00fde9a9ff44a454c1daace22280c49ba1d0d7cf5c95cd1044",
+  "instrumented_sha256": "c4d69909f330b3057ed8bc2667f06053895eef7690c345f893df55316bd73145",
+  "purpose": "Aggregate logical collision work counts. Counter overhead means timings cannot be compared as calibrated performance. No output/predicate/grid/deadline change.",
+  "source_scope": [
+    "labelProjection.ts (same19observations)",
+    "labelPolicy.ts (same20stageobservations)",
+    "labelCollisionIndex.ts (newlogicalcounts)"
+  ],
+  "restore": "All three exact current source bytes restored; temporary copiedspec removed after preserved raw evidence"
+}

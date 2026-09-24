@@ -1,0 +1,47 @@
+{
+  "started_utc": "2026-09-24T14:17:35.945696+00:00",
+  "head": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "old_source_sha256": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb",
+  "candidate_source_sha256": "4a1ffe7296fd3b00fde9a9ff44a454c1daace22280c49ba1d0d7cf5c95cd1044",
+  "test_sha256": "743939a1ddfa41cea0ad312a5d2093d59b0b7646997df64fd5ef7586d4f37607",
+  "claim": "Shared semantic tests should pass old/new; this is not a timing/performance or old-red test",
+  "commands": [
+    {
+      "name": "query-old-semantic-21",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/labelCollisionIndex.test.ts",
+        "--maxWorkers=1"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "query-tsc-21",
+      "command": [
+        "../../node_modules/.bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "query-focused-21",
+      "command": [
+        "../../node_modules/.bin/vitest",
+        "run",
+        "src/features/viewport/labelCollisionIndex.test.ts",
+        "src/features/viewport/labelPlacement.test.ts",
+        "src/features/viewport/labelPolicy.test.ts",
+        "src/features/viewport/labelProjection.test.ts",
+        "src/features/viewport/PipeViewport.contextLabels.test.tsx",
+        "src/features/viewport/PipeViewport.labels.test.tsx",
+        "src/features/viewport/viewportResource.test.ts",
+        "--maxWorkers=1"
+      ],
+      "exit": 0
+    }
+  ],
+  "old_semantic_exit": 0,
+  "ended_utc": "2026-09-24T14:17:46.266779+00:00",
+  "candidate_restored_and_unchanged": true
+}

@@ -1,0 +1,26 @@
+{
+  "head": "ab2561246c9f2983914402f413f0add97eb54bab",
+  "scope": "Temporary aggregate collision-work counts with policy/projector intervals; uncalibrated diagnosis only",
+  "source": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts": {
+      "original_sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e",
+      "tested_sha256": "b9f3a6726d6c34fec14997ba44a8f03b5b3488d1298083a65b9cd2b18d1b7787"
+    },
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": {
+      "original_sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+      "tested_sha256": "9d9dbdebbf46e3b66678f55b28e5fb3cd53703762f62395bf4517f68f2951170"
+    },
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": {
+      "original_sha256": "4a1ffe7296fd3b00fde9a9ff44a454c1daace22280c49ba1d0d7cf5c95cd1044",
+      "tested_sha256": "c4d69909f330b3057ed8bc2667f06053895eef7690c345f893df55316bd73145"
+    }
+  },
+  "test_sha256": "6b4d5bf8ee81da4266a4459f423d1bc87b4ca7c1a346ff2a9e0ad2dbcb7a2e7f",
+  "exit": 1,
+  "restored": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts": true,
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": true,
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": true
+  },
+  "temporary_spec_removed": true
+}

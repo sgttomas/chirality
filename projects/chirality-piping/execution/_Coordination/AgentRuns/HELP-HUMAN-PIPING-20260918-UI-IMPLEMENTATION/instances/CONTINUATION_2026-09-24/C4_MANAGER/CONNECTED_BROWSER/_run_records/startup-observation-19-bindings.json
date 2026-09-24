@@ -1,0 +1,7 @@
+{
+  "head": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "original_source_sha256": "696e138ae6c7a281f8bc6d6b977d7e6b9580862e929368b51f5296cd6c08b60e",
+  "instrumented_source_sha256": "b9f3a6726d6c34fec14997ba44a8f03b5b3488d1298083a65b9cd2b18d1b7787",
+  "test_sha256": "0ca769d4f5faa346834c913eca4c07681a1e5ca279d7a69d011b65037024d65a",
+  "purpose": "Uncalibrated defect attribution only; unchanged maintained test bodies/assertions/deadlines"
+}

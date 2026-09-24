@@ -1,0 +1,438 @@
+{
+  "schema": "chirality-bounded-software-diagnosis/v1",
+  "recorded_at_utc": "2026-09-24T14:06:54.320110+00:00",
+  "reviewer": "/root/c4_resume/projection_review",
+  "parent": "/root/c4_resume",
+  "role": "TASK Type 2",
+  "mechanism": "delegated-harness-native descendant",
+  "descendants": [],
+  "assignment": "Independent run20 phase attribution and proposed private-entry token risks; analysis/authoring only while ROOT owns CPU/browser lane.",
+  "retained_instructions": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "full read"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "full read"
+    },
+    {
+      "origin": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "consultation": "full read"
+    }
+  ],
+  "retained_skills": [
+    {
+      "origin": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+      "consultation": "previously read in full"
+    },
+    {
+      "origin": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "previously read in full"
+    }
+  ],
+  "product_basis": "158bd7f971744a91cb70563335518353a505debd",
+  "execution_head": "57f3a255c14ff58107cf7c365d91050c15ac302a",
+  "evidence": [
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20.patch",
+      "sha256": "dc4c8e7f46d5b92f823d4af8ed1aaec978b2566cd1b235a0baeed3e1dd853619",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-tested-policy.ts",
+      "sha256": "9d9dbdebbf46e3b66678f55b28e5fb3cd53703762f62395bf4517f68f2951170",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-tested-spec.ts",
+      "sha256": "79dfe79cefb84f046ec7b86862f8164d98f920ca7e698e2cf0af1c039bd79a53",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/run_startup_policy_observation_20.py",
+      "sha256": "d1046414c9eb5505a244e24de62167dbdf78faf002c76e0ab90ce1bb67ab5c3a",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-bindings.json",
+      "sha256": "aabee31ccef5e84c7a22464e760598df00f32e8626aef01e687eb92e40ba372d",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-restoration.json",
+      "sha256": "5c3063a119a2f289c100d51fac0276a5c092f2e12f0428eae3880344a8fca025",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20-command.json",
+      "sha256": "c3c06e444214b14a0afcd13b2a4e967bec777bf5639357942877876cb46c4676",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/source-startup-policy-observation-20.json",
+      "sha256": "f05ee6e2f2ac5b18af9e80834a086bccd911e6e906e084b30774e802a2c2111d",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-1.json",
+      "sha256": "9c3ce272eb77fd138ba488af0c49f3f4b7ea8c1c677078a9c69d0e4b246056de",
+      "consultation": "read/decoded and bound"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/_run_records/startup-policy-observation-20-2.json",
+      "sha256": "8fa039391946629b73f4ea31371b68e1515372335c07f3a2ada41b3ce12c50f5",
+      "consultation": "read/decoded and bound"
+    }
+  ],
+  "sources": [
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts",
+      "sha256": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb",
+      "consultation": "maintained behavior and oracle review"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts",
+      "sha256": "c521a109cdbd73afe2988f694af47ac21b23e63508026e49703468885c7ec1b0",
+      "consultation": "maintained behavior and oracle review"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+      "consultation": "maintained behavior and oracle review"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.test.ts",
+      "sha256": "8045a4c1b1b9e1b0d10c2a8d0ec01ca3fedcb8f4e24c5fcb79e6a29cd2def38f",
+      "consultation": "maintained behavior and oracle review"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "sha256": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+      "consultation": "maintained behavior and oracle review"
+    }
+  ],
+  "proposal": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/STARTUP_REPAIR/TASK_BRIEF.md",
+    "sha256": "31b66494800a5b643b9aea3401178815613b5def95bad26f1e9131d8c976306e",
+    "consultation": "read full proposed source-only brief"
+  },
+  "observations": [
+    {
+      "scenario": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 1k fixture",
+      "status": "passed",
+      "raw": {
+        "projection": [
+          {
+            "started": 1001.2999997138977,
+            "ended": 1017,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 1571.2999997138977,
+            "ended": 1577.0999999046326,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 2802.5,
+            "ended": 2807.699999809265,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 3710.5,
+            "ended": 3715.5,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 4467.400000095367,
+            "ended": 4475.099999904633,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 5056.5,
+            "ended": 5060.599999904633,
+            "primitives": 2061,
+            "rectangles": 9061,
+            "width": 603,
+            "height": 679
+          }
+        ],
+        "policy": [
+          {
+            "started": 1017.1999998092651,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 1019,
+            "postIndex": 1021.1999998092651,
+            "ended": 1298.0999999046326,
+            "candidates": 2061,
+            "rendered": 54,
+            "unplaced": 2007,
+            "suppressed": 0
+          },
+          {
+            "started": 1577.0999999046326,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 1579.0999999046326,
+            "postIndex": 1580.0999999046326,
+            "ended": 1851.6999998092651,
+            "candidates": 2061,
+            "rendered": 54,
+            "unplaced": 2007,
+            "suppressed": 0
+          },
+          {
+            "started": 2807.699999809265,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 2809.199999809265,
+            "postIndex": 2811.199999809265,
+            "ended": 3079.9000000953674,
+            "candidates": 2061,
+            "rendered": 54,
+            "unplaced": 2007,
+            "suppressed": 0
+          },
+          {
+            "started": 3715.5,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 3717,
+            "postIndex": 3717.9000000953674,
+            "ended": 3986.9000000953674,
+            "candidates": 2061,
+            "rendered": 53,
+            "unplaced": 2008,
+            "suppressed": 0
+          },
+          {
+            "started": 4475.099999904633,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 4481.400000095367,
+            "postIndex": 4483,
+            "ended": 4756.5,
+            "candidates": 2061,
+            "rendered": 53,
+            "unplaced": 2008,
+            "suppressed": 0
+          },
+          {
+            "started": 5060.599999904633,
+            "primitives": 9061,
+            "measurements": 2061,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 5062,
+            "postIndex": 5063.5,
+            "ended": 5329.699999809265,
+            "candidates": 2061,
+            "rendered": 53,
+            "unplaced": 2008,
+            "suppressed": 0
+          }
+        ],
+        "shell": true,
+        "labels": 2061
+      },
+      "policy_stages_ms": [
+        {
+          "prepare": 1.8000001907348633,
+          "index": 2.1999998092651367,
+          "placement_loop": 276.90000009536743,
+          "completed": true
+        },
+        {
+          "prepare": 2.0,
+          "index": 1.0,
+          "placement_loop": 271.59999990463257,
+          "completed": true
+        },
+        {
+          "prepare": 1.5,
+          "index": 2.0,
+          "placement_loop": 268.7000002861023,
+          "completed": true
+        },
+        {
+          "prepare": 1.5,
+          "index": 0.9000000953674316,
+          "placement_loop": 269.0,
+          "completed": true
+        },
+        {
+          "prepare": 6.300000190734863,
+          "index": 1.5999999046325684,
+          "placement_loop": 273.5,
+          "completed": true
+        },
+        {
+          "prepare": 1.4000000953674316,
+          "index": 1.5,
+          "placement_loop": 266.19999980926514,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "scenario": "Project pointer click followed by Shift-node preserves the displayed entity range and excludes Project on the 10k fixture",
+      "status": "failed",
+      "raw": {
+        "projection": [
+          {
+            "started": 3538.4000000953674,
+            "ended": 3590.0999999046326,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 17415.199999809265,
+            "ended": 17451.900000095367,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          },
+          {
+            "started": 32195.900000095367,
+            "ended": 32231.199999809265,
+            "primitives": 20601,
+            "rectangles": 90601,
+            "width": 603,
+            "height": 679
+          }
+        ],
+        "policy": [
+          {
+            "started": 3590.300000190735,
+            "primitives": 90601,
+            "measurements": 20601,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 3611.5999999046326,
+            "postIndex": 3624.9000000953674,
+            "ended": 16275.300000190735,
+            "candidates": 20601,
+            "rendered": 56,
+            "unplaced": 20545,
+            "suppressed": 0
+          },
+          {
+            "started": 17451.900000095367,
+            "primitives": 90601,
+            "measurements": 20601,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 17474.400000095367,
+            "postIndex": 17486.400000095367,
+            "ended": 30091.099999904633,
+            "candidates": 20601,
+            "rendered": 56,
+            "unplaced": 20545,
+            "suppressed": 0
+          },
+          {
+            "started": 32231.199999809265,
+            "primitives": 90601,
+            "measurements": 20601,
+            "mode": "Budget",
+            "completed": true,
+            "preIndex": 32252.5,
+            "postIndex": 32263.300000190735,
+            "ended": 44721.199999809265,
+            "candidates": 20601,
+            "rendered": 56,
+            "unplaced": 20545,
+            "suppressed": 0
+          }
+        ],
+        "shell": true,
+        "labels": 20601
+      },
+      "policy_stages_ms": [
+        {
+          "prepare": 21.299999713897705,
+          "index": 13.300000190734863,
+          "placement_loop": 12650.400000095367,
+          "completed": true
+        },
+        {
+          "prepare": 22.5,
+          "index": 12.0,
+          "placement_loop": 12604.699999809265,
+          "completed": true
+        },
+        {
+          "prepare": 21.300000190734863,
+          "index": 10.800000190734863,
+          "placement_loop": 12457.89999961853,
+          "completed": true
+        }
+      ]
+    }
+  ],
+  "raw_attachment_extraction_verified": true,
+  "archived_policy_patch_verified_exact": true,
+  "current_source_restoration_verified": true,
+  "temporary_spec_absent": true,
+  "classification": "Dominant owned placement loop isolated; Set-specific CPU attribution and repair efficacy unproven",
+  "proposed_change": "Unique opaque per-query token on private copied rectangle entry replacing per-query Set deduplication only",
+  "conditional_semantic_equivalence": "same first-encounter comparisons, boolean results and ordered placement/reason results when token uniqueness and all boundary paths are preserved",
+  "proposal_findings": [],
+  "combined_readiness": "HELD",
+  "execution_by_reviewer": false,
+  "repair_efficacy_claimed": false,
+  "remaining": [
+    "Independent review of actual implementation",
+    "Executed exhaustive/differential exact-output evidence",
+    "Controlled old/new placement-stage attribution and unchanged 1k/10k scenario success",
+    "Full affected source/dist and owning native/profile/performance/C4 gates"
+  ],
+  "writes": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_POLICY_DIAGNOSIS.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_POLICY_HASHES.json"
+  ],
+  "report": {
+    "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CONNECTED_BROWSER/PROJECTION_REPAIR/INDEPENDENT_REVIEW/STARTUP_POLICY_DIAGNOSIS.md",
+    "sha256": "e93ee6a536659610f71dec1a576250bef34226ad7bdb038eab460ee30ff372f7",
+    "consultation": "authored independent diagnosis"
+  }
+}
