@@ -1,0 +1,51 @@
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/workspace/table/ModelTree.table.test.tsx (43 tests | 1 failed) 8765ms
+     × does not dispatch equivalent explicit-unit edits, but rejects a different unit 105ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/workspace/table/ModelTree.table.test.tsx > Pipe optional quantities and material references > does not dispatch equivalent explicit-unit edits, but rejects a different unit
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <button
+  aria-label="pipe:P-100 Mill tol. (absent: value unit): 0 mm"
+  data-column-key="mill-tolerance"
+  data-row-key="["pipe","pipe:P-100"]"
+  data-table-cell="true"
+  data-testid="table-cell-pipe:P-100-mill-tolerance"
+  tabindex="-1"
+  type="button"
+>
+  0
+</button>
+Received element with focus:
+  <button
+  aria-label="pipe:P-100 Mill tol. (absent: value unit): 0 mm"
+  data-column-key="mill-tolerance"
+  data-row-key="["pipe","pipe:P-100"]"
+  data-table-cell="true"
+  data-testid="table-cell-pipe:P-100-mill-tolerance"
+  tabindex="0"
+  type="button"
+>
+  0
+</button>
+ ❯ src/features/workspace/table/ModelTree.table.test.tsx:286:90
+    284|       fireEvent.doubleClick(cell); fireEvent.change(table.querySelecto…
+    285|       fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+    286|       await waitFor(() => expect(table.querySelector("input")).toBeNul…
+       |                                                                                          ^
+    287|       expect(apply).not.toHaveBeenCalled();
+    288|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 129 passed (130)
+   Start at  14:55:03
+   Duration  9.75s (transform 660ms, setup 414ms, import 914ms, tests 11.45s, environment 1.27s)
+

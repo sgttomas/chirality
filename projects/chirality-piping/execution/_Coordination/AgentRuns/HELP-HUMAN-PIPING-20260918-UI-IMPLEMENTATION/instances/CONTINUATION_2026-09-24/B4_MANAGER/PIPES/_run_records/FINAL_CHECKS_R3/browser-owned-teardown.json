@@ -1,0 +1,48 @@
+{
+  "reason": "Stalled beyond five minutes and no completion after SIGINT; preserved partial trace before bounded owned-descendant termination",
+  "runner": 56133,
+  "processes": [
+    {
+      "pid": 56205,
+      "ppid": 56160,
+      "command": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/playwright/lib/worker/workerProcessEntry.js",
+      "signal": "SIGTERM",
+      "sent": true
+    },
+    {
+      "pid": 56202,
+      "ppid": 56201,
+      "command": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@esbuild/darwin-arm64/bin/esbuild --service=0.27.7 --ping",
+      "signal": "SIGTERM",
+      "sent": true
+    },
+    {
+      "pid": 56201,
+      "ppid": 56161,
+      "command": "node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/.bin/vite --host 127.0.0.1 --port 5174",
+      "signal": "SIGTERM",
+      "sent": true
+    },
+    {
+      "pid": 56161,
+      "ppid": 56160,
+      "command": "npm run dev --port 5174",
+      "signal": "SIGTERM",
+      "sent": true
+    },
+    {
+      "pid": 56160,
+      "ppid": 56137,
+      "command": "node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/.bin/playwright test e2e/b4-pipes.spec.ts e2e/b4-table-editing.spec.ts e2e/b4-sections.spec.ts --grep B4 Pipes|B4 node coordinates apply|B4 Materials preserve mixed-unit|B4 Sections mixed-unit|B4 Sections enum explicit|B4 Sections moved review row --workers=2 --max-failures=1 --output=/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R3/browser-artifacts",
+      "signal": "SIGTERM",
+      "sent": true
+    },
+    {
+      "pid": 56137,
+      "ppid": 56133,
+      "command": "npm exec playwright test e2e/b4-pipes.spec.ts e2e/b4-table-editing.spec.ts e2e/b4-sections.spec.ts --grep B4 Pipes|B4 node coordinates apply|B4 Materials preserve mixed-unit|B4 Sections mixed-unit|B4 Sections enum explicit|B4 Sections moved review row --workers=2 --max-failures=1 --output=/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R3/browser-artifacts",
+      "signal": "SIGTERM",
+      "sent": true
+    }
+  ]
+}

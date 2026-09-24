@@ -84,6 +84,30 @@ fn geometry(section: &Value) -> BindingResult<()> {
     Ok(())
 }
 
+// Incomplete inline geometry remains authorable. Enforce each relation only
+// when its participating quantities have explicit, accepted length values.
+fn known_local_geometry(section: &Value) -> BindingResult<()> {
+    let od = length(section, "outside_diameter").ok();
+    let wall = length(section, "wall_thickness").ok();
+    if od.is_some_and(|v| v <= 0.0)
+        || wall.is_some_and(|v| v <= 0.0)
+        || od.zip(wall).is_some_and(|(od, wall)| wall >= od / 2.0)
+    {
+        return Err("Section requires 0 < wall < outside diameter / 2".into());
+    }
+    let tolerance = length(section, "mill_tolerance").ok();
+    if tolerance.is_some_and(|v| v < 0.0)
+        || wall
+            .zip(tolerance)
+            .is_some_and(|(wall, tolerance)| wall - tolerance <= 0.0)
+    {
+        return Err(
+            "Mill tolerance must be nonnegative and leave a positive effective wall".into(),
+        );
+    }
+    Ok(())
+}
+
 fn check_cache(pipe: &Value, props: &Value) -> BindingResult<()> {
     let section = pipe
         .get("section")
@@ -233,6 +257,14 @@ pub(super) fn validate_local(
             unique(candidate, "pipe_segments", id)?,
             source(candidate, reference)?,
         )?;
+    }
+    if matches!(
+        path,
+        "section.outside_diameter.value"
+            | "section.wall_thickness.value"
+            | "section.mill_tolerance.value"
+    ) {
+        known_local_geometry(&unique(candidate, "pipe_segments", id)?["section"])?;
     }
     Ok(())
 }

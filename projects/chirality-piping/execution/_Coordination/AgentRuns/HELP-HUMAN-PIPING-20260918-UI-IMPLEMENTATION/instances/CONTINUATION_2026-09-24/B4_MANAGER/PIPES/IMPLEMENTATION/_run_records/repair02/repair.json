@@ -1,0 +1,36 @@
+{
+  "task": "/root/native_pan_manager/pipes_implementation",
+  "parent": "/root/native_pan_manager",
+  "role": "TASK Type2",
+  "allocation": "Astra/low actual continued TASK execution (parent assignment)",
+  "authorization": "R2 optional capturedUnit equivalence interface; tableState.ts and EngineeringTable.tsx added to owned scope; no controller/engine writes",
+  "checks": "No tests/browser/build/native executed for this repair. Manager owns new grant and validation.",
+  "files": [
+    {
+      "path": "apps/desktop/src/features/workspace/table/tableState.ts",
+      "before_sha256": "8f8a159741f7f9389dddee17378d35466877353bab441be6fe9291b4817ba403",
+      "after_sha256": "1e24c67d0bb1bf01c3755915b9a320a089c6988163400aed7d9f6569ef4660ca"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+      "before_sha256": "9a6bbecbb166ea989f239d231ec7a77266eca41a2d3d502d6146c4c07d56c370",
+      "after_sha256": "c13f45c6838eeff2442039dae30da27f90fb36cc576744e73ee381a307996038"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/table/modelTableAdapter.ts",
+      "before_sha256": "df6f920d29c08fd254da50625bee243df1737867641c5bde0af5b8ed311bd67b",
+      "after_sha256": "ffc54b3adac8ae474b1425759e0a9aeb4f41efa79594f6ba4ea70d4ff0800b53"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+      "before_sha256": "fc610d683a2ba27beb99dface1f07fe446aba0ca4d8365cc259961507e7e27db",
+      "after_sha256": "b4ffafe12b1174380ffc4b04f4bb91e6993f06618772edb6611b5ec664051330"
+    },
+    {
+      "path": "apps/desktop/e2e/b4-pipes.spec.ts",
+      "before_sha256": "07220e7598136da3133b4ada90c20adef23238bc3f4bfd53071f43536a416613",
+      "after_sha256": "37bbfc2a3e0d93d8910a7b68fc71d51268ccf7638055db4e144d5d79c4f4761b"
+    }
+  ],
+  "result_control": "New browser test invokes actual preview on custom mill-zero model and compares unchanged solve-job export receipt/readiness after no-ops. This is blocked-result retention, not mechanics proof; no synthetic result state."
+}

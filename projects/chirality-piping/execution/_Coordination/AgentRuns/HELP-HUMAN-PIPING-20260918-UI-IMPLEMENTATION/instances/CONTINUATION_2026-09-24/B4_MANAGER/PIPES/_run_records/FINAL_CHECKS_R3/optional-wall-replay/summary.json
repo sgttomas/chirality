@@ -1,0 +1,84 @@
+[
+  {
+    "name": "bound-equal-wall.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "okay": true
+  },
+  {
+    "name": "bound-greater-wall.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "okay": true
+  },
+  {
+    "name": "bound-negative.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "okay": true
+  },
+  {
+    "name": "bound-positive-valid.json",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "okay": true
+  },
+  {
+    "name": "bound-zero.json",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "okay": true
+  },
+  {
+    "name": "unbound-equal-wall.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "okay": true
+  },
+  {
+    "name": "unbound-greater-wall.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "okay": true
+  },
+  {
+    "name": "unbound-negative.json",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "okay": true
+  },
+  {
+    "name": "unbound-positive-valid.json",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "okay": true
+  },
+  {
+    "name": "unbound-zero.json",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "okay": true
+  }
+]

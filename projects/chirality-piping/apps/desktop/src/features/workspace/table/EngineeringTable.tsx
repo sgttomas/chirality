@@ -247,7 +247,7 @@ export function EngineeringTable(props: Props) {
       if (!result.retained) { setEdit({ ...current, error: result.messages.join(" · ") }); return false; }
       setEdit(null); setFeedback(result.messages.join(" · ")); finishFocus(); return true;
     }
-    if (column?.equivalent?.(captured.before, current.text) ?? current.text === captured.before) {
+    if (column?.equivalent?.(captured.before, current.text, captured.unit) ?? current.text === captured.before) {
       setEdit(null); finishFocus(); return true;
     }
     setEdit({ ...current, pending: true, error: undefined });

@@ -13,6 +13,8 @@ export type GridColumn = {
   value: (row: GridRow) => string;
   unitEditable?: boolean;
   quantity?: boolean;
+  optionalQuantity?: boolean;
+  referenceCollection?: "materials";
   readonly?: boolean;
   options?: readonly string[];
 };
@@ -41,11 +43,13 @@ export function buildGridOperationIntent({
   interaction?: "review" | "cell";
 }): EditorOperationIntent {
   const operationToken = `${safeToken(row.id)}-${safeToken(column.fieldPath)}-${sequence.toString().padStart(2, "0")}`;
-  const unit = column.unit(row);
+  const entry = column.optionalQuantity ? parseOptionalQuantityEntry(value, column.unit(row)) : null;
+  if (column.optionalQuantity && !entry) throw new Error("Enter a non-negative finite value and an explicit unit for an absent quantity.");
+  const unit = entry?.unit ?? column.unit(row);
   const after =
     column.dimension === "dimensionless"
       ? value.trim() || "TBD"
-      : JSON.stringify({ value: parseQuantityPayloadValue(value), unit });
+      : JSON.stringify({ value: entry?.value ?? parseQuantityPayloadValue(value), unit });
 
   return {
     operation_id: `op:grid-intent-${operationToken}`,
@@ -76,7 +80,7 @@ export function buildGridOperationIntent({
       schema_validation: "not_run",
       constraint_validation: "not_run",
       unit_validation:
-        column.dimension === "dimensionless" ? "not_required_dimensionless" : (column.objectType === "Material" || column.objectType === "Section") ? "not_run" : "model_metadata_unit_dimension_declared",
+        column.dimension === "dimensionless" ? "not_required_dimensionless" : (column.optionalQuantity || column.objectType === "Material" || column.objectType === "Section") ? "not_run" : "model_metadata_unit_dimension_declared",
       diff_preview_status: "not_generated",
       application_status: "not_applied"
     },
@@ -156,4 +160,30 @@ export function sectionTableColumns(review = false): TableColumn[] {
       validate: review ? undefined : coordinateError,
       equivalent: review ? undefined : (before, after) => Number(before) === Number(after)
     })), text("provenance", "Provenance")];
+}
+
+/** Optional authoring captures a unit explicitly; an existing unit is never inferred. */
+export function parseOptionalQuantityEntry(text: string, storedUnit: string): { value: number; unit: string } | null {
+  const match = text.trim().match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)(?:\s+(\S+))?$/);
+  if (!match || !Number.isFinite(Number(match[1])) || Number(match[1]) < 0) return null;
+  const unit = match[2] ?? storedUnit;
+  if (!unit.trim() || (storedUnit && unit !== storedUnit)) return null;
+  return { value: Number(match[1]), unit };
+}
+
+export function pipeTableColumns(materialIds: readonly string[], review = false): TableColumn[] {
+  const text = (key: string, label: string): TableColumn => ({ key, label, unit: "", kind: "text",
+    validate: review ? undefined : (value) => value.trim() ? undefined : "Enter text or explicitly enter TBD.",
+    equivalent: review ? undefined : (before, after) => before === after.trim()
+  });
+  return [text("label", "Label"), text("section-ref", "Shared section"), text("from", "From"), text("to", "To"),
+    { key: "mill-tolerance", label: "Mill tol. (absent: value unit)", unit: "actual entered unit", kind: "quantity", projectedSort: true, minWidth: 220,
+      equivalent: review ? undefined : (before, after, capturedUnit = "") => {
+        const current = parseOptionalQuantityEntry(before, capturedUnit);
+        const replacement = parseOptionalQuantityEntry(after, capturedUnit);
+        return Boolean(current && replacement && current.value === replacement.value && current.unit === replacement.unit);
+      } },
+    { ...text("material", "Material"), options: materialIds,
+      validate: (value) => materialIds.includes(value.trim()) ? undefined : "Choose an existing material ID." },
+    text("provenance", "Provenance")];
 }

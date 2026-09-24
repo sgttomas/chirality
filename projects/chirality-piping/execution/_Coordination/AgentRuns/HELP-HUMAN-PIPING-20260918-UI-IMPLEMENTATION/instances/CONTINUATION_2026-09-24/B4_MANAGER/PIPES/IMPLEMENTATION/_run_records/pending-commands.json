@@ -1,0 +1,25 @@
+{
+  "cwd": "projects/chirality-piping/apps/desktop",
+  "pending_after_lane_grant": [
+    [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    [
+      "npx",
+      "vitest",
+      "run",
+      "src/features/workspace/table/ModelTree.table.test.tsx",
+      "--maxWorkers=2"
+    ],
+    [
+      "npx",
+      "playwright",
+      "test",
+      "e2e/b4-pipes.spec.ts",
+      "--workers=2"
+    ]
+  ],
+  "browser_precondition": "Separate Rust backend repair and current candidate WASM rebuild; explicit ROOT browser lane. Use output paths under this structural _run_records directory."
+}

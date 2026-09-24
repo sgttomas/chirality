@@ -1,0 +1,621 @@
+{
+  "config": {
+    "configFile": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop/playwright.config.ts",
+    "rootDir": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-desktop",
+        "name": "chromium-desktop",
+        "testDir": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-compact",
+        "name": "chromium-compact",
+        "testDir": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "url": "http://127.0.0.1:5174"
+    }
+  },
+  "suites": [
+    {
+      "title": "b4-pipes.spec.ts",
+      "file": "b4-pipes.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "B4 Pipes absent zero, entered unit, material ID and history use real operation routes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3442,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:00.918Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    },
+                    {
+                      "name": "pipe-final-model-hash",
+                      "contentType": "text/plain",
+                      "body": "c2hhMjU2OmU1NjgzYTk5NjFiMDZlMzVhMDI4NzQ0NDg0ZmIyYmRhMTI4NTgxNGY2MzYzZDI1MDVlNzg1YWVjZTdlOGRkNGY="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-e9f370e3d8ff298d378b",
+          "file": "b4-pipes.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "B4 Pipes shared section effective-wall rejection preserves model and history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2148,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:04.956Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-b217d351d0c097a6c4b7",
+          "file": "b4-pipes.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "B4 Pipes direct and review author the same optional quantity with retained incomplete drafts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3592,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:07.109Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-4fb98ccff2d5d1fbf74b",
+          "file": "b4-pipes.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2087,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:10.707Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-e2be54130b39828c0fab",
+          "file": "b4-pipes.spec.ts",
+          "line": 56,
+          "column": 35
+        },
+        {
+          "title": "B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2101,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:12.798Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-5f55fd3e951671831cc0",
+          "file": "b4-pipes.spec.ts",
+          "line": 56,
+          "column": 35
+        },
+        {
+          "title": "B4 Pipes compact label provenance and material completion retain editor ownership",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3082,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:14.905Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-f8583862d26e0b68a4d8",
+          "file": "b4-pipes.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "B4 Pipes equivalent explicit-unit edits preserve model and history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4352,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:17.992Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    },
+                    {
+                      "name": "actual-blocked-run-receipt",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY2hlbWFfdmVyc2lvbiI6ICIwLjEuMCIsCiAgImRvY3VtZW50X2tpbmQiOiAib3BlbnBpcGVzdHJlc3MudGVjaG5pY2FsX3ByZXZpZXcuc29sdmVfam9iX2F1ZGl0IiwKICAiZXhwb3J0X3Njb3BlIjogImxvY2FsX2Jyb3dzZXJfZG93bmxvYWRfcHJldmlldyIsCiAgImRlbGl2ZXJhYmxlX3JlZnMiOiBbCiAgICAiREVMLTA3LTA3IiwKICAgICJERUwtMTQtMDIiLAogICAgIkRFTC0wNC0wNiIsCiAgICAiREVMLTAyLTAyIgogIF0sCiAgInNjb3BlX2l0ZW1zIjogWwogICAgIlNPVy0wNTUiLAogICAgIlNPVy0wNzIiLAogICAgIlNPVy0wNTMiCiAgXSwKICAib2JqZWN0aXZlcyI6IFsKICAgICJPQkotMDA2IiwKICAgICJPQkotMDA3IiwKICAgICJPQkotMDE2IgogIF0sCiAgInByb2plY3RfcmVmIjogInByb2plY3Q6aW52ZW50ZWQtbG9vcC0wMSIsCiAgImpvYl9pZCI6ICJqb2I6cHJldmlldy1saW5lYXItc3RhdGljOnByb2plY3QtaW52ZW50ZWQtbG9vcC0wMSIsCiAgInN1bW1hcnkiOiB7CiAgICAiam9iX3N0YXRlIjogImNvbXBsZXRlZCIsCiAgICAic29sdmVyX21vZGUiOiAic3BhcnNlX2ludGVyYWN0aXZlIiwKICAgICJldmVudF9jb3VudCI6IDMsCiAgICAicmVzdWx0X3Jvd19jb3VudCI6IDAsCiAgICAiZGlhZ25vc3RpY19jb3VudCI6IDIsCiAgICAiY2FuY2VsbGF0aW9uX3JlcXVlc3RlZCI6IGZhbHNlLAogICAgImNhbmNlbGxhdGlvbl9zdGF0dXMiOiAibm90X3JlcXVlc3RlZCIsCiAgICAicnVubmluZyI6IGZhbHNlCiAgfSwKICAicHJvZ3Jlc3NfY29udHJhY3QiOiB7CiAgICAic29sdmVyX21vZGUiOiAic3BhcnNlX2ludGVyYWN0aXZlIiwKICAgICJzcGFyc2VfaW50ZXJhY3RpdmVfZGVmYXVsdCI6IHRydWUsCiAgICAiZGVuc2Vfc2NydXRpbnlfZXhwbGljaXQiOiBmYWxzZSwKICAgICJwcm9ncmVzc19iYXNpcyI6ICJwcmV2aWV3X3NlcnZpY2VfZXZlbnRfc3RhdGVfb25seV9ub19wZXJjZW50X3N0cmVhbSIsCiAgICAicGVyY2VudGFnZXNfc3ludGhlc2l6ZWQiOiBmYWxzZSwKICAgICJiYWNrZW5kX3BlcmNlbnRfc3RyZWFtX2F2YWlsYWJsZSI6IGZhbHNlLAogICAgImxhdGVzdF9ldmVudF9zdGF0ZSI6ICJjb21wbGV0ZWQiCiAgfSwKICAiY2FuY2VsbGF0aW9uIjogewogICAgInJlcXVlc3RfY29udHJvbF92aXNpYmxlIjogdHJ1ZSwKICAgICJyZXF1ZXN0X2VuYWJsZWQiOiBmYWxzZSwKICAgICJyZXF1ZXN0ZWQiOiBmYWxzZSwKICAgICJzdGF0dXMiOiAibm90X3JlcXVlc3RlZCIsCiAgICAiYmFja2VuZF9qb2Jfc2VhbSI6ICJicm93c2VyX2ZpeHR1cmVfbm9fYmFja2VuZF9qb2IiLAogICAgImJhY2tlbmRfam9iX2lkIjogbnVsbCwKICAgICJiYWNrZW5kX2NhbmNlbGxhdGlvbl90b2tlbiI6ICJ1bmF2YWlsYWJsZV9ub19iYWNrZW5kX2pvYl9icm93c2VyX2ZpeHR1cmVfbW9kZSIsCiAgICAiY2FuY2VsbGF0aW9uX3Njb3BlIjogInVpX3JlcXVlc3RfcmVjb3JkX29ubHlfbm9fYmFja2VuZF9qb2IiLAogICAgIm11dGF0ZXNfc29sdmVyX3Byb2Nlc3NfZGlyZWN0bHkiOiBmYWxzZSwKICAgICJjYW5jZWxsYXRpb25fc3VjY2Vzc19jbGFpbWVkIjogZmFsc2UKICB9LAogICJtb2RlbF9zdGF0ZV9yZWYiOiB7CiAgICAib2JqZWN0X3R5cGUiOiAiTW9kZWxTdGF0ZSIsCiAgICAicmVmIjogInN0YXRlOnByb2plY3Q6aW52ZW50ZWQtbG9vcC0wMTpwcmV2aWV3IgogIH0sCiAgImFuYWx5c2lzX3J1bl9yZWYiOiB7CiAgICAib2JqZWN0X3R5cGUiOiAiQW5hbHlzaXNSdW4iLAogICAgInJlZiI6ICJydW46cHJldmlldy1saW5lYXItc3RhdGljLWJyb3dzZXItYmxvY2tlZDpwcm9qZWN0LWludmVudGVkLWxvb3AtMDEiCiAgfSwKICAicnVuX2tpbmQiOiAibWVjaGFuaWNzX3NvbHZlIiwKICAiYW5hbHlzaXNfc3RhdHVzIjogWwogICAgIkhVTUFOX1JFVklFV19SRVFVSVJFRCIsCiAgICAiTU9ERUxfSU5DT01QTEVURSIsCiAgICAiUlVMRV9JTlBVVFNfSU5DT01QTEVURSIKICBdLAogICJyZXN1bHRfaGFzaF9jb3VudCI6IDAsCiAgImhhc2hfc2NvcGVzIjogWwogICAgImFuYWx5c2lzX3J1bl9yZWNvcmQiLAogICAgInJlY2VpdmVkX3Jlc3VsdCIKICBdLAogICJpbnB1dF9tYW5pZmVzdF9yZWZzIjogWwogICAgewogICAgICAib2JqZWN0X3R5cGUiOiAiSW5wdXRNYW5pZmVzdCIsCiAgICAgICJyZWYiOiAiaW5wdXQtbWFuaWZlc3Q6cHJvamVjdC1pbnZlbnRlZC1sb29wLTAxOmI4NGY3ZGJiMTQ5MjJhMzA2MWY0ZDBhZDIxNjllNGZjMzY3NTVhZGQwYmJlMWExNmJmNDlmNGNkNGJmMmY5ZWQiCiAgICB9CiAgXSwKICAidW5pdF9wb2xpY3lfZXZpZGVuY2UiOiB7CiAgICAiZXZpZGVuY2VfaWQiOiAidW5pdC1wb2xpY3ktZXZpZGVuY2U6c29sdmUtam9iLWF1ZGl0IiwKICAgICJ1bml0X3N5c3RlbV9yZWYiOiB7CiAgICAgICJvYmplY3RfdHlwZSI6ICJVbml0U3lzdGVtIiwKICAgICAgInJlZiI6ICJ1bml0LXN5c3RlbTpkZWMtMDE4LXNpLWR1YWwtZGlzcGxheSIKICAgIH0sCiAgICAic3RvcmFnZV9jb252ZW50aW9uIjogImVudGVyZWRfdW5pdHNfcHJlc2VydmVkIiwKICAgICJzb2x2ZV9qb2JfdW5pdF9wb2xpY3kiOiAic29sdmVfam9iX2F1ZGl0X3JlY29yZHNfbW9kZWxfYW5kX3Jlc3VsdF91bml0c193aXRob3V0X2NvbnZlcnNpb24iLAogICAgIm1vZGVsX3VuaXRzIjogewogICAgICAiYW5nbGUiOiAicmFkIiwKICAgICAgImZvcmNlIjogIk4iLAogICAgICAibGVuZ3RoIjogIm0iLAogICAgICAicHJlc3N1cmUiOiAiUGEiLAogICAgICAic3RyZXNzIjogIk1QYSIsCiAgICAgICJ0ZW1wZXJhdHVyZSI6ICJkZWdDIgogICAgfSwKICAgICJyZXN1bHRfdW5pdHMiOiBbXSwKICAgICJyZXN1bHRfcm93X2NvdW50IjogMCwKICAgICJhbmFseXNpc19ydW5fcmVmIjogewogICAgICAib2JqZWN0X3R5cGUiOiAiQW5hbHlzaXNSdW4iLAogICAgICAicmVmIjogInJ1bjpwcmV2aWV3LWxpbmVhci1zdGF0aWMtYnJvd3Nlci1ibG9ja2VkOnByb2plY3QtaW52ZW50ZWQtbG9vcC0wMSIKICAgIH0sCiAgICAiY29udmVyc2lvbl9wb2xpY3kiOiAic29sdmVfam9iX2F1ZGl0X3ByZXNlcnZlc19zb3VyY2VfdW5pdHNfbm9fY29udmVyc2lvbiIsCiAgICAiY29udmVyc2lvbl9wZXJmb3JtZWQiOiBmYWxzZSwKICAgICJzb3VyY2UiOiAiYXBwcy9kZXNrdG9wL3NyYy9mZWF0dXJlcy9zb2x2ZS9Tb2x2ZVBhbmVsLnRzeCIsCiAgICAiZGVjaXNpb25fYmFzaXNfcmVmcyI6IFsKICAgICAgewogICAgICAgICJvYmplY3RfdHlwZSI6ICJEZWNpc2lvbiIsCiAgICAgICAgInJlZiI6ICJERUMtMDE4IgogICAgICB9LAogICAgICB7CiAgICAgICAgIm9iamVjdF90eXBlIjogIkRlbGl2ZXJhYmxlIiwKICAgICAgICAicmVmIjogIkRFTC0wMi0wMiIKICAgICAgfSwKICAgICAgewogICAgICAgICJvYmplY3RfdHlwZSI6ICJEZWxpdmVyYWJsZSIsCiAgICAgICAgInJlZiI6ICJERUwtMDctMDciCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAib2JqZWN0X3R5cGUiOiAiRGVsaXZlcmFibGUiLAogICAgICAgICJyZWYiOiAiREVMLTE0LTAyIgogICAgICB9CiAgICBdCiAgfSwKICAiZXZlbnRzIjogWwogICAgewogICAgICAiZXZlbnRfaWQiOiAic29sdmUtcHJldmlldy1xdWV1ZWQiLAogICAgICAic3RhdGUiOiAicXVldWVkIiwKICAgICAgIm1lc3NhZ2UiOiAiUHJldmlldyBtZWNoYW5pY3MgY29tbWFuZCBxdWV1ZWQgdGhyb3VnaCB0aGUgYXBwbGljYXRpb24gc2VydmljZSBib3VuZGFyeS4iLAogICAgICAicmVzdWx0X2F2YWlsYWJsZSI6IGZhbHNlLAogICAgICAiZGlhZ25vc3RpY19jb3VudCI6IDAsCiAgICAgICJyZXN1bHRfcm93X2NvdW50IjogMCwKICAgICAgImFuYWx5c2lzX3N0YXR1cyI6IFtdCiAgICB9LAogICAgewogICAgICAiZXZlbnRfaWQiOiAic29sdmUtcHJldmlldy1ydW5uaW5nIiwKICAgICAgInN0YXRlIjogInJ1bm5pbmciLAogICAgICAibWVzc2FnZSI6ICJQcmV2aWV3IG1lY2hhbmljcyBjb21tYW5kIGlzIGV4ZWN1dGluZyBpbiBicm93c2VyIGZpeHR1cmUgbW9kZSB3aXRob3V0IGEgYmFja2VuZCBqb2I7IHRoaXMgc2VydmljZSBwYXRoIGRvZXMgbm90IHN0cmVhbSBwZXJjZW50YWdlIHByb2dyZXNzLiIsCiAgICAgICJyZXN1bHRfYXZhaWxhYmxlIjogZmFsc2UsCiAgICAgICJkaWFnbm9zdGljX2NvdW50IjogMSwKICAgICAgInJlc3VsdF9yb3dfY291bnQiOiAwLAogICAgICAiYW5hbHlzaXNfc3RhdHVzIjogWwogICAgICAgICJyZWFkeV9mb3JfcHJldmlld19kaWFnbm9zdGljcyIsCiAgICAgICAgIm5vdF9wZXJmb3JtZWRfdXNlcl9ydWxlX2lucHV0c19taXNzaW5nIgogICAgICBdCiAgICB9LAogICAgewogICAgICAiZXZlbnRfaWQiOiAic29sdmUtcHJldmlldy1jb21wbGV0ZWQiLAogICAgICAic3RhdGUiOiAiY29tcGxldGVkIiwKICAgICAgIm1lc3NhZ2UiOiAiUHJldmlldyBtZWNoYW5pY3MgY29tcGxldGVkIHdpdGggMCByZXN1bHQgcm93cyBib3VuZCB0byBydW46cHJldmlldy1saW5lYXItc3RhdGljLWJyb3dzZXItYmxvY2tlZDpwcm9qZWN0LWludmVudGVkLWxvb3AtMDEuIiwKICAgICAgInJlc3VsdF9hdmFpbGFibGUiOiB0cnVlLAogICAgICAiZGlhZ25vc3RpY19jb3VudCI6IDEsCiAgICAgICJyZXN1bHRfcm93X2NvdW50IjogMCwKICAgICAgImFuYWx5c2lzX3N0YXR1cyI6IFsKICAgICAgICAiSFVNQU5fUkVWSUVXX1JFUVVJUkVEIiwKICAgICAgICAiTU9ERUxfSU5DT01QTEVURSIsCiAgICAgICAgIlJVTEVfSU5QVVRTX0lOQ09NUExFVEUiCiAgICAgIF0KICAgIH0KICBdLAogICJkaWFnbm9zdGljcyI6IFsKICAgIHsKICAgICAgImNvZGUiOiAiUlVMRV9JTlBVVFNfTUlTU0lORyIsCiAgICAgICJtZXNzYWdlIjogIlJ1bGUtY2hlY2sgaW5wdXRzIGFyZSBpbnRlbnRpb25hbGx5IGFic2VudCBmcm9tIHRoaXMgaW52ZW50ZWQgcHJldmlldy4iLAogICAgICAic2V2ZXJpdHkiOiAid2FybmluZyIsCiAgICAgICJzb3VyY2UiOiAiZml4dHVyZXMvcHJvZHVjdF9wcmV2aWV3L2ludmVudGVkX3ByZXZpZXdfbW9kZWwuanNvbiIKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJkaWFnbm9zdGljOmJyb3dzZXItc29sdmU6ZWRpdGVkLW1vZGVsLWJhY2tlbmQtcmVxdWlyZWQiLAogICAgICAiY29kZSI6ICJCUk9XU0VSX1NPTFZFX0JBQ0tFTkRfUkVRVUlSRURfRk9SX0VESVRFRF9NT0RFTCIsCiAgICAgICJzZXZlcml0eSI6ICJibG9ja2luZyIsCiAgICAgICJzb3VyY2UiOiAiYXBwcy9kZXNrdG9wL3NyYy9zZXJ2aWNlcy9wcmV2aWV3U2VydmljZS50cyIsCiAgICAgICJhZmZlY3RlZF9yZWZzIjogWwogICAgICAgICJwcm9qZWN0OmludmVudGVkLWxvb3AtMDEiCiAgICAgIF0sCiAgICAgICJtZXNzYWdlIjogIkJyb3dzZXIgZml4dHVyZSBtb2RlIHdpbGwgbm90IHJldXNlIGJ1bmRsZWQgc29sdmVkLXJlc3VsdCByb3dzIGZvciBhbiBlZGl0ZWQgbW9kZWw7IHJ1biB0aHJvdWdoIHRoZSBUYXVyaSBiYWNrZW5kIHNvbHZlIHBhdGggZm9yIG1vZGVsLWJvdW5kIG1lY2hhbmljcyByZXN1bHRzLiIKICAgIH0KICBdLAogICJlcnJvcl9tZXNzYWdlIjogbnVsbCwKICAiZGF0YV9ib3VuZGFyeSI6IHsKICAgICJwcml2YXRlX2RhdGFfcG9saWN5IjogIm5vX3ByaXZhdGVfcHJvamVjdF9kYXRhIiwKICAgICJwcm9mZXNzaW9uYWxfYm91bmRhcnkiOiAidGVjaG5pY2FsX3ByZXZpZXdfcmVxdWlyZXNfaHVtYW5fZW5naW5lZXJpbmdfcmV2aWV3IiwKICAgICJwcm90ZWN0ZWRfc291cmNlX3BvbGljeSI6ICJub19idW5kbGVkX3Byb3RlY3RlZF9vd25lcl9vcl9zdGFuZGFyZHNfZGF0YSIsCiAgICAicHVibGljX2V4YW1wbGVzX3BvbGljeSI6ICJpbnZlbnRlZF9vcl9jbGVhcmVkX2RhdGFfb25seSIKICB9LAogICJwcml2YXRlX3BheWxvYWRfaW5jbHVkZWQiOiBmYWxzZSwKICAicHJvdGVjdGVkX2NvbnRlbnRfaW5jbHVkZWQiOiBmYWxzZSwKICAicmVsZWFzZV9vcl9wcm9mZXNzaW9uYWxfY2xhaW0iOiBmYWxzZSwKICAicHJvZmVzc2lvbmFsX2JvdW5kYXJ5IjogewogICAgImh1bWFuX3Jldmlld19yZXF1aXJlZCI6IHRydWUsCiAgICAic29mdHdhcmVfbWFrZXNfY29tcGxpYW5jZV9jbGFpbSI6IGZhbHNlLAogICAgInNvZnR3YXJlX21ha2VzX2NlcnRpZmljYXRpb25fY2xhaW0iOiBmYWxzZSwKICAgICJzb2Z0d2FyZV9tYWtlc19zZWFsaW5nX2NsYWltIjogZmFsc2UsCiAgICAic29mdHdhcmVfbWFrZXNfYXBwcm92YWxfY2xhaW0iOiBmYWxzZSwKICAgICJzb2Z0d2FyZV9tYWtlc19hdXRoZW50aWNhdGlvbl9jbGFpbSI6IGZhbHNlCiAgfQp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "10f825e2cf8306c4bbc8-5f9d088d3cb23c293e47",
+          "file": "b4-pipes.spec.ts",
+          "line": 87,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "b4-sections.spec.ts",
+      "file": "b4-sections.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:22.362Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53c0d84efc0f4ae20b8c-b74cf87014bc2cec7030",
+          "file": "b4-sections.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "B4 Sections enum explicit completion, passive cancellation and raw review retention",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:24.512Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    },
+                    {
+                      "name": "section-enum-light-computed-style",
+                      "contentType": "application/json",
+                      "body": "ewogICJiYWNrZ3JvdW5kIjogInJnYigyNTUsIDI1NSwgMjU1KSIsCiAgInRleHQiOiAicmdiKDM0LCAzOSwgNDQpIiwKICAiYm9yZGVyIjogInJnYigyMTMsIDIxNiwgMjE5KSIsCiAgImJvcmRlclN0eWxlIjogInNvbGlkIiwKICAiYm9yZGVyV2lkdGgiOiAiMXB4IiwKICAib3B0aW9uQmFja2dyb3VuZCI6ICJyZ2IoMjI2LCAyMzgsIDI1NCkiLAogICJvcHRpb25UZXh0IjogInJnYigzNCwgMzksIDQ0KSIsCiAgImhpdCI6IHRydWUsCiAgInJvb3RTdXJmYWNlIjogInJnYigyNTUsIDI1NSwgMjU1KSIsCiAgInJvb3RUZXh0IjogInJnYigzNCwgMzksIDQ0KSIsCiAgInJvb3RCb3JkZXIiOiAicmdiKDIxMywgMjE2LCAyMTkpIiwKICAicm9vdFNlbGVjdGlvbiI6ICJyZ2IoMjI2LCAyMzgsIDI1NCkiCn0="
+                    },
+                    {
+                      "name": "section-enum-dark-computed-style",
+                      "contentType": "application/json",
+                      "body": "ewogICJiYWNrZ3JvdW5kIjogInJnYigzNywgNDAsIDQ0KSIsCiAgInRleHQiOiAicmdiKDIyOSwgMjMyLCAyMzYpIiwKICAiYm9yZGVyIjogInJnYig1NywgNjIsIDY2KSIsCiAgImJvcmRlclN0eWxlIjogInNvbGlkIiwKICAiYm9yZGVyV2lkdGgiOiAiMXB4IiwKICAib3B0aW9uQmFja2dyb3VuZCI6ICJyZ2IoMzQsIDYyLCA5NykiLAogICJvcHRpb25UZXh0IjogInJnYigyMjksIDIzMiwgMjM2KSIsCiAgImhpdCI6IHRydWUsCiAgInJvb3RTdXJmYWNlIjogInJnYigzNywgNDAsIDQ0KSIsCiAgInJvb3RUZXh0IjogInJnYigyMjksIDIzMiwgMjM2KSIsCiAgInJvb3RCb3JkZXIiOiAicmdiKDU3LCA2MiwgNjYpIiwKICAicm9vdFNlbGVjdGlvbiI6ICJyZ2IoMzQsIDYyLCA5NykiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53c0d84efc0f4ae20b8c-a9924d7fcd982969eb0a",
+          "file": "b4-sections.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3169,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:28.527Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53c0d84efc0f4ae20b8c-bd4e4b9aea9c68e90f9e",
+          "file": "b4-sections.spec.ts",
+          "line": 121,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "b4-table-editing.spec.ts",
+      "file": "b4-table-editing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3030,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:31.718Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-a805bc792388c8b58216",
+          "file": "b4-table-editing.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-compact",
+              "projectName": "chromium-compact",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5979,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T21:47:34.753Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-identity",
+                      "contentType": "application/json",
+                      "body": "ewogICJjZHBWZXJzaW9uIjogewogICAgInByb3RvY29sVmVyc2lvbiI6ICIxLjMiLAogICAgInByb2R1Y3QiOiAiQ2hyb21lLzE1My4wLjgwMTAuNTQiLAogICAgInJldmlzaW9uIjogIkBhYjNlY2JhODYzZmQ3ODUyY2M5YjBmZTU3MzYxODdlMTllZDUyYTFjIiwKICAgICJ1c2VyQWdlbnQiOiAiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgSGVhZGxlc3NDaHJvbWUvMTUzLjAuMC4wIFNhZmFyaS81MzcuMzYiLAogICAgImpzVmVyc2lvbiI6ICIxNS4zLjc2LjEzIgogIH0sCiAgInBsYXl3cmlnaHRCcm93c2VyVmVyc2lvbiI6ICIxNTMuMC44MDEwLjU0IiwKICAiZXhlY3V0YWJsZVBhdGgiOiAiL0FwcGxpY2F0aW9ucy9Hb29nbGUgQ2hyb21lLmFwcC9Db250ZW50cy9NYWNPUy9Hb29nbGUgQ2hyb21lIiwKICAiZXhlY3V0YWJsZVNoYTI1NiI6ICJmYjJiZjFjMzAwN2YyMjNlZGNiNGQ5NzBmMzNiMGM4MjhmNzE4M2IzZWU4MzJkNmE3MzdmZTY5NDVkYTgwNDYyIgp9"
+                    },
+                    {
+                      "name": "materials-contained-units",
+                      "contentType": "application/json",
+                      "body": "ewogICJwYW5lIjogewogICAgIngiOiA1NiwKICAgICJ5IjogODEsCiAgICAid2lkdGgiOiAxMTgwLAogICAgImhlaWdodCI6IDY5NSwKICAgICJib3R0b20iOiA3NzYKICB9LAogICJoZWFkZXIiOiB7CiAgICAieCI6IDY4LAogICAgInkiOiAyOTMuMTg3NSwKICAgICJ3aWR0aCI6IDExNTYsCiAgICAiaGVpZ2h0IjogNDYuMTg3NSwKICAgICJib3R0b20iOiAzMzkuMzc1CiAgfSwKICAiYm9keSI6IHsKICAgICJ4IjogNjgsCiAgICAieSI6IDMzOS4zNzUsCiAgICAid2lkdGgiOiAxMTU2LAogICAgImhlaWdodCI6IDMxNi44MjgxMjUsCiAgICAiYm90dG9tIjogNjU2LjIwMzEyNQogIH0sCiAgImZvb3RlciI6IHsKICAgICJ4IjogNjgsCiAgICAieSI6IDY1Ni4yMDMxMjUsCiAgICAid2lkdGgiOiAxMTU2LAogICAgImhlaWdodCI6IDQxLAogICAgImJvdHRvbSI6IDY5Ny4yMDMxMjUKICB9LAogICJ1bml0cyI6IFsKICAgIHsKICAgICAgInRleHQiOiAiTVBhIiwKICAgICAgIngiOiA1NzkuNzgxMjUsCiAgICAgICJ5IjogMzQ5Ljg3NSwKICAgICAgIndpZHRoIjogMjguNzgxMjUsCiAgICAgICJoZWlnaHQiOiAxNCwKICAgICAgImJvdHRvbSI6IDM2My44NzUsCiAgICAgICJjbGllbnQiOiAyOSwKICAgICAgInNjcm9sbCI6IDI5CiAgICB9LAogICAgewogICAgICAidGV4dCI6ICJQYSIsCiAgICAgICJ4IjogNzIzLjU3ODEyNSwKICAgICAgInkiOiAzNDkuODc1LAogICAgICAid2lkdGgiOiAxOS45MjE4NzUsCiAgICAgICJoZWlnaHQiOiAxNCwKICAgICAgImJvdHRvbSI6IDM2My44NzUsCiAgICAgICJjbGllbnQiOiAyMCwKICAgICAgInNjcm9sbCI6IDIwCiAgICB9LAogICAgewogICAgICAidGV4dCI6ICIxL2RlZ0MiLAogICAgICAieCI6IDg4MiwKICAgICAgInkiOiAzNDkuODc1LAogICAgICAid2lkdGgiOiA0MS41LAogICAgICAiaGVpZ2h0IjogMTQsCiAgICAgICJib3R0b20iOiAzNjMuODc1LAogICAgICAiY2xpZW50IjogNDIsCiAgICAgICJzY3JvbGwiOiA0MgogICAgfSwKICAgIHsKICAgICAgInRleHQiOiAiUGEiLAogICAgICAieCI6IDU0My41NzgxMjUsCiAgICAgICJ5IjogMzg1Ljg3NSwKICAgICAgIndpZHRoIjogMTkuOTIxODc1LAogICAgICAiaGVpZ2h0IjogMTQsCiAgICAgICJib3R0b20iOiAzOTkuODc1LAogICAgICAiY2xpZW50IjogMjAsCiAgICAgICJzY3JvbGwiOiAyMAogICAgfSwKICAgIHsKICAgICAgInRleHQiOiAiUGEiLAogICAgICAieCI6IDcyMy41NzgxMjUsCiAgICAgICJ5IjogMzg1Ljg3NSwKICAgICAgIndpZHRoIjogMTkuOTIxODc1LAogICAgICAiaGVpZ2h0IjogMTQsCiAgICAgICJib3R0b20iOiAzOTkuODc1LAogICAgICAiY2xpZW50IjogMjAsCiAgICAgICJzY3JvbGwiOiAyMAogICAgfSwKICAgIHsKICAgICAgInRleHQiOiAiMS9kZWdDIiwKICAgICAgIngiOiA4ODIsCiAgICAgICJ5IjogMzg1Ljg3NSwKICAgICAgIndpZHRoIjogNDEuNSwKICAgICAgImhlaWdodCI6IDE0LAogICAgICAiYm90dG9tIjogMzk5Ljg3NSwKICAgICAgImNsaWVudCI6IDQyLAogICAgICAic2Nyb2xsIjogNDIKICAgIH0KICBdCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-8621e0e729f364808f4d",
+          "file": "b4-table-editing.spec.ts",
+          "line": 363,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-24T21:47:00.088Z",
+    "duration": 52388.352999999996,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

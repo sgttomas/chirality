@@ -1,0 +1,15 @@
+{
+  "unchanged_prior_freeze_paths": [
+    "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts",
+    "projects/chirality-piping/core/model_operations/operation_applier/src/section_bindings.rs",
+    "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/tableState.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx"
+  ],
+  "changed_path": "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts",
+  "wasm_maintained_input_count": 260,
+  "wasm_source_lock_drift": []
+}

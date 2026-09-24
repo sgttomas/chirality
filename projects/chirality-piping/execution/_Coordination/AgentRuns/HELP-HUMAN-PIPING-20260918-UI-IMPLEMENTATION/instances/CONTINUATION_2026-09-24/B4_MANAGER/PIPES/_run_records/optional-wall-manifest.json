@@ -1,0 +1,66 @@
+{
+  "scope": "bounded existing-WASM10case probe; no rebuild",
+  "entries": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-equal-wall.json",
+      "bytes": 31142,
+      "sha256": "3459c3f9ff081b83470c35679d8a79e95c81f99e9bc00056680c66338f2258e0"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-greater-wall.json",
+      "bytes": 31156,
+      "sha256": "d91f424f6fbc6c0805f987c5577f90df52205b8724c9b397000fa903f2cc9e41"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-negative.json",
+      "bytes": 31205,
+      "sha256": "447ebd6d59cedd1baa108c64084d9f6fc50c420587ea099fd075a40abebcb3c8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-positive-valid.json",
+      "bytes": 56795,
+      "sha256": "a7b736bd5baf2dfc68c6a4062a13b0d9edaa9176d0aa183e6c9f76c5bb1b44ac"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-zero.json",
+      "bytes": 56709,
+      "sha256": "3e944699bf40993b1af6c3848d0d8128754126f3657f07cd831bf61a2a93e5a6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/identity.json",
+      "bytes": 1402,
+      "sha256": "13b9c15b650c533ae9334db3a63fda2af842d214ea60be86f9bbf8859c0ff84d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/summary.json",
+      "bytes": 1588,
+      "sha256": "713b1f065c37b2263e4500db982c69bda0341902c0b3d560804ed6a8db496e9c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-equal-wall.json",
+      "bytes": 56683,
+      "sha256": "ad9c33228fe4a3ddaac41cf9573e3096496541af79272c5acb919cea70a71fe8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-greater-wall.json",
+      "bytes": 56697,
+      "sha256": "f9193e19cbbb13ebae40bb6368c087f61d6a42023bb90bd61afb43b596c56f06"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-negative.json",
+      "bytes": 31167,
+      "sha256": "5391a7d3d4afb4c0426f144cea41b2f959e4d74150a9dd9d8d8e38523b4f468f"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-positive-valid.json",
+      "bytes": 56710,
+      "sha256": "8a6d0f9939eaf7462269b3e06dc07fa4a55e89e0ce7dbba8a8fce13078372eb2"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-zero.json",
+      "bytes": 56624,
+      "sha256": "2e29a4a764894ce4111dbe2ed98e3a06217e29e2ad41981871e7ae1dd6666b92"
+    }
+  ],
+  "script_sha256": "2f5ec40d6fd84d2c90497b473eb348a3b4b463c752e1e883b2b0cfb278478890"
+}

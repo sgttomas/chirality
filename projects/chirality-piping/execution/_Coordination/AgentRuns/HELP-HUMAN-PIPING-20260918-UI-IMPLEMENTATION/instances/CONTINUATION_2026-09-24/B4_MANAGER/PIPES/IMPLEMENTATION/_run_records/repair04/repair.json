@@ -1,0 +1,36 @@
+{
+  "task": "/root/native_pan_manager/pipes_implementation",
+  "allocation": "Astra/low",
+  "scope": "R4 test-only route correction; no product changes",
+  "file": "apps/desktop/e2e/b4-pipes.spec.ts",
+  "before_sha256": "37bbfc2a3e0d93d8910a7b68fc71d51268ccf7638055db4e144d5d79c4f4761b",
+  "after_sha256": "5e2b81ce56858d88386acd622ff3797ee27d0ef8859b8f727a6ac829d410f56c",
+  "source_basis": [
+    {
+      "path": "apps/desktop/src/services/previewService.ts",
+      "sha256": "9047e26a578d92f5dc986e1018b7945649b1d9cda662b131e53c4ca633ae10d7"
+    },
+    {
+      "path": "apps/desktop/src/features/solve/SolvePanel.tsx",
+      "sha256": "e3aa7600d846e4ab5e8e3db78e5e24ad5bb292e4c708a62ebd0001be6467817d"
+    },
+    {
+      "path": "apps/desktop/e2e/workspace-driver.ts",
+      "sha256": "4927514880caee095e22945940baba2627e3dbde0ed5ee766f39c5d76beab462"
+    },
+    {
+      "path": "apps/desktop/e2e/ui-foundation-workflows.ts",
+      "sha256": "a2b6fd7415e2f5de95927f8084c320dc1ea05c12549edd2e2b5d64e0da20ade2"
+    },
+    {
+      "path": "fixtures/product_preview/invented_preview_model.json",
+      "sha256": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c"
+    },
+    {
+      "path": "apps/desktop/src/services/analysisRunCompatibility.ts",
+      "sha256": "8acfdd9844480a0f895a7c4d893b4ec8aeb56ecd8eacd8f11c829423047615f3"
+    }
+  ],
+  "route": "Unrouted page default fixture project:invented-loop-01, pipe:P-100, two load cases. Actual direct 0mm authoring then browser Save local/Open local resets history/edited state. Existing showModelTree/openWorkspaceSection stage helpers. Actual run returns blocked edited-model envelope; strict completed state, MODEL_INCOMPLETE readiness, diagnostic/project/run identity and unchanged receipt asserted.",
+  "verification": "No tests/build/browser/native/Git mutations. Manager and original independent reviewer own verification; previous failures/freezes preserved."
+}

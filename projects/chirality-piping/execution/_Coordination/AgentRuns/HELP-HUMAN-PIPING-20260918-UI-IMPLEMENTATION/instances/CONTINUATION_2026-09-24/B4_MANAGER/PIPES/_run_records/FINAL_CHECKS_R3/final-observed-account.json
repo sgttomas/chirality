@@ -1,0 +1,41 @@
+{
+  "reported_pass_count": 17,
+  "reported_passes": [
+    "\u2713   2 [chromium-desktop] \u203a e2e/b4-sections.spec.ts:17:1 \u203a B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history (3.1s)",
+    "\u2713   1 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:10:1 \u203a B4 Pipes absent zero, entered unit, material ID and history use real operation routes (4.3s)",
+    "\u2713   4 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:28:1 \u203a B4 Pipes shared section effective-wall rejection preserves model and history (2.7s)",
+    "\u2713   3 [chromium-desktop] \u203a e2e/b4-sections.spec.ts:36:1 \u203a B4 Sections enum explicit completion, passive cancellation and raw review retention (5.1s)",
+    "\u2713   5 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:39:1 \u203a B4 Pipes direct and review author the same optional quantity with retained incomplete drafts (4.7s)",
+    "\u2713   6 [chromium-desktop] \u203a e2e/b4-sections.spec.ts:121:1 \u203a B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes (4.2s)",
+    "\u2713   7 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:56:35 \u203a B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall (2.8s)",
+    "\u2713   8 [chromium-desktop] \u203a e2e/b4-table-editing.spec.ts:7:1 \u203a B4 node coordinates apply through one operation with keyboard, history and saved-state ownership (4.0s)",
+    "\u2713   9 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:56:35 \u203a B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall (2.8s)",
+    "\u2713  11 [chromium-desktop] \u203a e2e/b4-pipes.spec.ts:65:1 \u203a B4 Pipes compact label provenance and material completion retain editor ownership (3.7s)",
+    "\u2713  10 [chromium-desktop] \u203a e2e/b4-table-editing.spec.ts:363:1 \u203a B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership (7.2s)",
+    "\u2713  13 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:10:1 \u203a B4 Pipes absent zero, entered unit, material ID and history use real operation routes (3.7s)",
+    "\u2713  14 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:28:1 \u203a B4 Pipes shared section effective-wall rejection preserves model and history (2.3s)",
+    "\u2713  15 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:39:1 \u203a B4 Pipes direct and review author the same optional quantity with retained incomplete drafts (3.8s)",
+    "\u2713  16 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:56:35 \u203a B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall (2.3s)",
+    "\u2713  17 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:56:35 \u203a B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall (2.2s)",
+    "\u2713  18 [chromium-compact] \u203a e2e/b4-pipes.spec.ts:65:1 \u203a B4 Pipes compact label provenance and material completion retain editor ownership (3.1s)"
+  ],
+  "desktop_noop": "Observed assertion failed before equivalent edit: completed expected, failed job received",
+  "compact_noop": "Reported failure; completed trace has page fixture timeout and browserContext.newPage Test ended, so body outcome not established",
+  "selected_cases_without_completion_evidence": 5,
+  "runner_exit": -15,
+  "aggregate_pass": false,
+  "later_worker_57198_verified_absent": true,
+  "log_sha256": "fa0e5c153e6c403a1e5a3cc52c3396616b368dfba24f9b05f1b32ce79356e8d5",
+  "corrected_authored_preimages": [
+    {
+      "current_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/BROWSER_R4_DIAGNOSIS.md",
+      "preserved_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/BROWSER_R4_DIAGNOSIS.before-final-browser-account.md",
+      "sha256": "a1f9e64371e667f7dfd15ec83e800c4a5187000f2c397e1e308358f8c236efd4"
+    },
+    {
+      "current_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/RESUME_CHECKPOINT.md",
+      "preserved_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/RESUME_CHECKPOINT.before-final-browser-account.md",
+      "sha256": "99f23d57ee1126215ca82eb085dc88f5c94591f0a5c6bf070ab01979675e34a7"
+    }
+  ]
+}

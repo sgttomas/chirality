@@ -1,0 +1,1237 @@
+{"cwd": "projects/chirality-piping/apps/desktop", "argv": ["npx", "vitest", "run", "src/features/workspace/table/ModelTree.table.test.tsx", "src/features/workspace/table/modelTableAdapter.test.ts", "src/features/model-tree/ModelTree.test.tsx", "--maxWorkers=2"]}
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop
+
+stderr | src/features/workspace/table/ModelTree.table.test.tsx > Pipe optional quantities and material references > requires an explicit absent unit, captures zero as an authored quantity and queues the same payload
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/features/workspace/table/ModelTree.table.test.tsx > Pipe optional quantities and material references > preserves actual units, rejects stale unit/catalog and keeps malformed quantities and reference routes readonly
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to LibraryTable inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ❯ src/features/workspace/table/ModelTree.table.test.tsx (41 tests | 2 failed) 8212ms
+     × requires an explicit absent unit, captures zero as an authored quantity and queues the same payload 73ms
+     × preserves actual units, rejects stale unit/catalog and keeps malformed quantities and reference routes readonly 592ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/workspace/table/ModelTree.table.test.tsx > Pipe optional quantities and material references > requires an explicit absent unit, captures zero as an authored quantity and queues the same payload
+Error: expect(element).toHaveAccessibleName()
+
+Expected element to have accessible name:
+  pipe:P-100 Mill tol. (absent: value unit) []
+Received:
+
+ ❯ src/features/workspace/table/ModelTree.table.test.tsx:284:66
+    282|     const table = screen.getByTestId("pipe-engineering-table"); const …
+    283|     expect(cell).toHaveTextContent("TBD"); fireEvent.doubleClick(cell);
+    284|     const editor = table.querySelector("input")!; expect(editor).toHav…
+       |                                                                  ^
+    285|     fireEvent.change(editor, { target: { value: "0" } }); fireEvent.cl…
+    286|     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextCo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/features/workspace/table/ModelTree.table.test.tsx > Pipe optional quantities and material references > preserves actual units, rejects stale unit/catalog and keeps malformed quantities and reference routes readonly
+TestingLibraryElementError: Unable to find an accessible element with the role "combobox"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Layout grid mode":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Layout grid mode"[39m
+    [33mclass[39m=[32m"layout-mode-toggle"[39m
+    [33mdata-testid[39m=[32m"layout-grid-mode-toggle"[39m
+  [36m/>[39m
+
+  Name "Model tree filtering":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Model tree filtering"[39m
+    [33mclass[39m=[32m"model-tree-controls"[39m
+    [33mdata-testid[39m=[32m"model-tree-controls"[39m
+  [36m/>[39m
+
+  Name "Bulk entity grid":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Bulk entity grid"[39m
+    [33mclass[39m=[32m"entity-grid"[39m
+    [33mdata-testid[39m=[32m"entity-grid"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Tree":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"layout-mode-tree"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Grid":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"layout-mode-grid"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Clear model tree filter":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Clear model tree filter"[39m
+    [33mdata-testid[39m=[32m"clear-model-tree-filter"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Nodes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-nodes"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Pipes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-pipes"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Supports":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-supports"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Materials":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-materials"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sections":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-sections"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Components":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-components"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Load Cases":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-load_cases"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Combinations":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mdata-testid[39m=[32m"entity-grid-type-combinations"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort Label":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort Label"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort Shared section":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort Shared section"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort From":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort From"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort To":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort To"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort Mill tol. (absent: value unit)":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort Mill tol. (absent: value unit)"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort Material":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort Material"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sort Provenance":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Sort Provenance"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100":
+  [36m<button[39m
+    [33mtitle[39m=[32m"pipe:P-100"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 Label: Pump discharge run":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 Label: Pump discharge run"[39m
+    [33mdata-column-key[39m=[32m"label"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-label"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 Shared section:":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 Shared section: "[39m
+    [33mdata-column-key[39m=[32m"section-ref"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-section-ref"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 From: node:N-100":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 From: node:N-100"[39m
+    [33mdata-column-key[39m=[32m"from"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-from"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 To: node:N-110":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 To: node:N-110"[39m
+    [33mdata-column-key[39m=[32m"to"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-to"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 Mill tol. (absent: value unit): 1":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 Mill tol. (absent: value unit): 1 "[39m
+    [33mdata-column-key[39m=[32m"mill-tolerance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-mill-tolerance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 Provenance: {"source_ref":"preserve"}":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-100 Provenance: {\"source_ref\":\"preserve\"}"[39m
+    [33mdata-column-key[39m=[32m"provenance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-100\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-100-provenance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110":
+  [36m<button[39m
+    [33mtitle[39m=[32m"pipe:P-110"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Label: Vertical riser":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 Label: Vertical riser"[39m
+    [33mdata-column-key[39m=[32m"label"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-label"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Shared section:":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 Shared section: "[39m
+    [33mdata-column-key[39m=[32m"section-ref"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-section-ref"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 From: node:N-110":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 From: node:N-110"[39m
+    [33mdata-column-key[39m=[32m"from"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-from"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 To: node:N-120":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 To: node:N-120"[39m
+    [33mdata-column-key[39m=[32m"to"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-to"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Mill tol. (absent: value unit): TBD":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 Mill tol. (absent: value unit): TBD "[39m
+    [33mdata-column-key[39m=[32m"mill-tolerance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-mill-tolerance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Material: material:invented-carbon-steel":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 Material: material:invented-carbon-steel"[39m
+    [33mdata-column-key[39m=[32m"material"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-material"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Provenance: invented_example_no_standard_catalog":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-110 Provenance: invented_example_no_standard_catalog"[39m
+    [33mdata-column-key[39m=[32m"provenance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-110\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-110-provenance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120":
+  [36m<button[39m
+    [33mtitle[39m=[32m"pipe:P-120"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Label: Rack span":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 Label: Rack span"[39m
+    [33mdata-column-key[39m=[32m"label"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-label"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Shared section:":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 Shared section: "[39m
+    [33mdata-column-key[39m=[32m"section-ref"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-section-ref"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 From: node:N-120":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 From: node:N-120"[39m
+    [33mdata-column-key[39m=[32m"from"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-from"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 To: node:N-130":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 To: node:N-130"[39m
+    [33mdata-column-key[39m=[32m"to"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-to"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Mill tol. (absent: value unit): TBD":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 Mill tol. (absent: value unit): TBD "[39m
+    [33mdata-column-key[39m=[32m"mill-tolerance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-mill-tolerance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Material: material:invented-carbon-steel":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 Material: material:invented-carbon-steel"[39m
+    [33mdata-column-key[39m=[32m"material"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-material"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Provenance: invented_example_no_standard_catalog":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-120 Provenance: invented_example_no_standard_catalog"[39m
+    [33mdata-column-key[39m=[32m"provenance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-120\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-120-provenance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130":
+  [36m<button[39m
+    [33mtitle[39m=[32m"pipe:P-130"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Label: Tie-in rise":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 Label: Tie-in rise"[39m
+    [33mdata-column-key[39m=[32m"label"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-label"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Shared section:":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 Shared section: "[39m
+    [33mdata-column-key[39m=[32m"section-ref"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-section-ref"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 From: node:N-130":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 From: node:N-130"[39m
+    [33mdata-column-key[39m=[32m"from"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-from"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 To: node:N-140":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 To: node:N-140"[39m
+    [33mdata-column-key[39m=[32m"to"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-to"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Mill tol. (absent: value unit): TBD":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 Mill tol. (absent: value unit): TBD "[39m
+    [33mdata-column-key[39m=[32m"mill-tolerance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-mill-tolerance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Material: material:invented-carbon-steel":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 Material: material:invented-carbon-steel"[39m
+    [33mdata-column-key[39m=[32m"material"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-material"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Provenance: invented_example_no_standard_catalog":
+  [36m<button[39m
+    [33maria-label[39m=[32m"pipe:P-130 Provenance: invented_example_no_standard_catalog"[39m
+    [33mdata-column-key[39m=[32m"provenance"[39m
+    [33mdata-row-key[39m=[32m"[\"pipe\",\"pipe:P-130\"]"[39m
+    [33mdata-table-cell[39m=[32m"true"[39m
+    [33mdata-testid[39m=[32m"table-cell-pipe:P-130-provenance"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Apply":
+  [36m<button[39m
+    [33mdata-table-action[39m=[32m"apply"[39m
+    [33mtitle[39m=[32m"Apply (Enter)"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Cancel":
+  [36m<button[39m
+    [33mdata-table-action[39m=[32m"cancel"[39m
+    [33mtitle[39m=[32m"Cancel (Escape)"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Review multiple changes":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"_r_1j6_"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"entity-grid-review-toggle"[39m
+    [33mdata-testid[39m=[32m"pipe-grid-review-disclosure"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "Filter model tree":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Filter model tree"[39m
+    [33mdata-testid[39m=[32m"model-tree-filter-input"[39m
+    [33mplaceholder[39m=[32m"Name, ID, type, or group"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  grid:
+
+  Name "Pipe fields":
+  [36m<div[39m
+    [33maria-colcount[39m=[32m"8"[39m
+    [33maria-label[39m=[32m"Pipe fields"[39m
+    [33maria-rowcount[39m=[32m"5"[39m
+    [33mrole[39m=[32m"grid"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  row:
+
+  Name "Pipe Label Shared section From To Mill tol. (absent: value unit) [actual entered unit] Material Provenance":
+  [36m<div[39m
+    [33mclass[39m=[32m"engineering-table-row engineering-table-header"[39m
+    [33mrole[39m=[32m"row"[39m
+    [33mstyle[39m=[32m"grid-template-columns: 130px 150px 150px 150px 150px 220px 150px 150px; width: 1250px;"[39m
+  [36m/>[39m
+
+  Name "pipe:P-100 Pump discharge run node:N-100 node:N-110 1 unit missing Quantity readout {"source_ref":"preserve"}":
+  [36m<div[39m
+    [33maria-rowindex[39m=[32m"2"[39m
+    [33maria-selected[39m=[32m"true"[39m
+    [33mclass[39m=[32m"engineering-table-row selected"[39m
+    [33mrole[39m=[32m"row"[39m
+    [33mstyle[39m=[32m"grid-template-columns: 130px 150px 150px 150px 150px 220px 150px 150px; width: 1250px;"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110 Vertical riser node:N-110 node:N-120 TBD unit missing Quantity readout material:invented-carbon-steel invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-rowindex[39m=[32m"3"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-row stripe"[39m
+    [33mrole[39m=[32m"row"[39m
+    [33mstyle[39m=[32m"grid-template-columns: 130px 150px 150px 150px 150px 220px 150px 150px; width: 1250px;"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120 Rack span node:N-120 node:N-130 TBD unit missing Quantity readout material:invented-carbon-steel invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-rowindex[39m=[32m"4"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-row"[39m
+    [33mrole[39m=[32m"row"[39m
+    [33mstyle[39m=[32m"grid-template-columns: 130px 150px 150px 150px 150px 220px 150px 150px; width: 1250px;"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130 Tie-in rise node:N-130 node:N-140 TBD unit missing Quantity readout material:invented-carbon-steel invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-rowindex[39m=[32m"5"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-row stripe"[39m
+    [33mrole[39m=[32m"row"[39m
+    [33mstyle[39m=[32m"grid-template-columns: 130px 150px 150px 150px 150px 220px 150px 150px; width: 1250px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  columnheader:
+
+  Name "Pipe":
+  [36m<div[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "Label":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"1"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "Shared section":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"2"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "From":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"3"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "To":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"4"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "Mill tol. (absent: value unit) [actual entered unit]":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"5"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "Material":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"6"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  Name "Provenance":
+  [36m<div[39m
+    [33maria-sort[39m=[32m"none"[39m
+    [33mdata-column-index[39m=[32m"7"[39m
+    [33mrole[39m=[32m"columnheader"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  rowgroup:
+
+  Name "":
+  [36m<div[39m
+    [33mdata-testid[39m=[32m"pipe-engineering-table-rows"[39m
+    [33mrole[39m=[32m"rowgroup"[39m
+    [33mstyle[39m=[32m"height: 360px; overflow-y: hidden;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  rowheader:
+
+  Name "pipe:P-100":
+  [36m<div[39m
+    [33mdata-column-index[39m=[32m"0"[39m
+    [33mrole[39m=[32m"rowheader"[39m
+  [36m/>[39m
+
+  Name "pipe:P-110":
+  [36m<div[39m
+    [33mdata-column-index[39m=[32m"0"[39m
+    [33mrole[39m=[32m"rowheader"[39m
+  [36m/>[39m
+
+  Name "pipe:P-120":
+  [36m<div[39m
+    [33mdata-column-index[39m=[32m"0"[39m
+    [33mrole[39m=[32m"rowheader"[39m
+  [36m/>[39m
+
+  Name "pipe:P-130":
+  [36m<div[39m
+    [33mdata-column-index[39m=[32m"0"[39m
+    [33mrole[39m=[32m"rowheader"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  gridcell:
+
+  Name "Pump discharge run":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"1"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"2"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-100":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"3"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-110":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"4"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "1 unit missing Quantity readout":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell has-readout"[39m
+    [33mdata-column-index[39m=[32m"5"[39m
+    [33mdata-kind[39m=[32m"quantity"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<div[39m
+    [33maria-owns[39m=[32m"_r_1jo_"[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"true"[39m
+    [33mclass[39m=[32m"engineering-table-cell editing"[39m
+    [33mdata-column-index[39m=[32m"6"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "{"source_ref":"preserve"}":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"7"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "Vertical riser":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"1"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"2"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-110":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"3"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-120":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"4"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "TBD unit missing Quantity readout":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell has-readout"[39m
+    [33mdata-column-index[39m=[32m"5"[39m
+    [33mdata-kind[39m=[32m"quantity"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "material:invented-carbon-steel":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"6"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"7"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "Rack span":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"1"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"2"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-120":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"3"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-130":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"4"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "TBD unit missing Quantity readout":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell has-readout"[39m
+    [33mdata-column-index[39m=[32m"5"[39m
+    [33mdata-kind[39m=[32m"quantity"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "material:invented-carbon-steel":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"6"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"7"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "Tie-in rise":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"1"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"2"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-130":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"3"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "node:N-140":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"true"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"4"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "TBD unit missing Quantity readout":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell has-readout"[39m
+    [33mdata-column-index[39m=[32m"5"[39m
+    [33mdata-kind[39m=[32m"quantity"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "material:invented-carbon-steel":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"6"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  Name "invented_example_no_standard_catalog":
+  [36m<div[39m
+    [33maria-readonly[39m=[32m"false"[39m
+    [33maria-selected[39m=[32m"false"[39m
+    [33mclass[39m=[32m"engineering-table-cell"[39m
+    [33mdata-column-index[39m=[32m"7"[39m
+    [33mdata-kind[39m=[32m"text"[39m
+    [33mrole[39m=[32m"gridcell"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Pipe fields footer":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Pipe fields footer"[39m
+    [33mclass[39m=[32m"engineering-table-footer"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"Model tree"[39m
+      [33mclass[39m=[32m"panel model-tree"[39m
+      [33mdata-bounded-grid[39m=[32m"false"[39m
+      [33mdata-compact-grid[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"panel-title"[39m
+      [36m>[39m
+        [0mModel[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"model-grid-toolbar"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"table-overflow-rail"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"table-overflow-viewport"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"table-overflow-content"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-label[39m=[32m"Layout grid mode"[39m
+                [33mclass[39m=[32m"layout-mode-toggle"[39m
+                [33mdata-testid[39m=[32m"layout-grid-mode-toggle"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mdata-testid[39m=[32m"layout-mode-tree"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-list-tree"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"14"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"14"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M21 12h-8"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M21 6H8"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M21 18h-8"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [0mTree[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"true"[39m
+                  [33mdata-testid[39m=[32m"layout-mode-grid"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-table2"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"14"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"14"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [0mGrid[0m
+                [36m</button>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-label[39m=[32m"Model tree filtering"[39m
+                [33mclass[39m=[32m"model-tree-controls"[39m
+                [33mdata-testid[39m=[32m"model-tree-controls"[39m
+              [36m>[39m
+                [36m<label>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-search"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"14"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"14"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<circle[39m
+                      [33mcx[39m=[32m"11"[39m
+                      [33mcy[39m=[32m"11"[39m
+                      [33mr[39m=[32m"8"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m21 21-4.3-4.3"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [36m<span>[39m
+                    [0mFilter model[0m
+                  [36m</span>[39m
+                  [36m<input[39m
+                    [33maria-label[39m=[32m"Filter model tree"[39m
+                    [33mdata-testid[39m=[32m"model-tree-filter-input"[39m
+                    [33mplaceholder[39m=[32m"Name, ID, type, or group"[39m
+                    [33mtype[39m=[32m"search"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m/>[39m
+                [36m</label>[39m
+                [36m<span[39m
+                  [33mdata-testid[39m=[32m"model-tree-filter-summary"[39m
+                [36m>[39m
+                  [0m27[0m
+                  [0m of [0m
+                  [0m27[0m
+                  [0m model entities visible[0m
+                [36m</span>[39m
+                [36m<button[39m
+                  [33maria-label[39m=[32m"Clear model tree filter"[39m
+                  [33mdata-testid[39m=[32m"clear-model-tree-filter"[39m
+                  [33mdisabled[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-x"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"14"[39m
+                    ...
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/workspace/table/ModelTree.table.test.tsx:316:106
+    314|     expect(screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`).…
+    315|     expect(screen.getByTestId(`table-cell-${pipe.id}-provenance`).pare…
+    316|     fireEvent.doubleClick(screen.getByTestId(`table-cell-${pipe.id}-ma…
+       |                                                                                                          ^
+    317|     fireEvent.change(material, { target: { value: "material:missing" }…
+    318|     expect(screen.getByRole("alert")).toHaveTextContent("existing mate…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 67 passed (69)
+   Start at  14:33:39
+   Duration  9.07s (transform 549ms, setup 230ms, import 764ms, tests 9.63s, environment 847ms)
+

@@ -272,3 +272,87 @@ describe("compact pan active material draft ownership", () => {
     });
   }
 });
+
+describe("Pipe optional quantities and material references", () => {
+  it("does not dispatch equivalent explicit-unit edits, but rejects a different unit", async () => {
+    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; pipe.section.mill_tolerance = { value: 0, unit: "mm" };
+    const apply = vi.fn(async (_intent: import("../../../types").EditorOperationIntent) => ({ applied: true, messages: [] }));
+    render(<ModelTree model={model} selection={{ type: "pipe", id: pipe.id }} onSelect={vi.fn()} onApplyCellIntent={apply} />);
+    fireEvent.click(screen.getByTestId("layout-mode-grid")); const table = screen.getByTestId("pipe-engineering-table");
+    const cell = () => screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`);
+    for (const value of ["0", "0.0", "0 mm", "0.0 mm"]) {
+      fireEvent.doubleClick(cell()); fireEvent.change(table.querySelector("input")!, { target: { value } });
+      fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+      await waitFor(() => expect(table.querySelector("input")).toBeNull()); expect(cell()).toHaveFocus();
+      expect(apply).not.toHaveBeenCalled();
+    }
+    fireEvent.doubleClick(cell()); fireEvent.change(table.querySelector("input")!, { target: { value: "0 m" } });
+    fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("existing unit"));
+    expect(table.querySelector("input")).toHaveValue("0 m"); expect(apply).not.toHaveBeenCalled();
+    expect(pipe.section.mill_tolerance).toEqual({ value: 0, unit: "mm" });
+  });
+
+  it.each(["omitted", "null"] as const)("requires an explicit unit for %s, captures zero and queues the same direct/review payload", async (absence) => {
+    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; delete pipe.section.mill_tolerance;
+    if (absence === "null") Object.assign(pipe.section, { mill_tolerance: null });
+    const apply = vi.fn(async (_intent: import("../../../types").EditorOperationIntent) => ({ applied: true, messages: [] })); const queue = vi.fn();
+    render(<ModelTree model={model} selection={{ type: "pipe", id: pipe.id }} onSelect={vi.fn()} onApplyCellIntent={apply} onQueueIntent={queue} />);
+    fireEvent.click(screen.getByTestId("layout-mode-grid"));
+    const table = screen.getByTestId("pipe-engineering-table"); const cell = screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`);
+    expect(cell).toHaveTextContent("TBD"); fireEvent.doubleClick(cell);
+    const editor = table.querySelector("input")!; expect(editor).toHaveAttribute("aria-label", `${pipe.id} Mill tol. (absent: value unit) []`);
+    fireEvent.change(editor, { target: { value: "0" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("value and unit")); expect(apply).not.toHaveBeenCalled();
+    fireEvent.change(editor, { target: { value: "0 mm" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+    await waitFor(() => expect(apply).toHaveBeenCalledTimes(1));
+    expect(apply.mock.calls[0][0].change).toMatchObject({ before: "TBD", after: '{"value":0,"unit":"mm"}', unit: "mm", dimension: "length" });
+    fireEvent.click(screen.getByTestId("pipe-grid-review-disclosure"));
+    fireEvent.doubleClick(screen.getByTestId(`review-cell-${pipe.id}-mill-tolerance`));
+    fireEvent.change(screen.getByTestId("pipe-engineering-table-review").querySelector("input")!, { target: { value: "0 mm" } });
+    fireEvent.click(screen.getByRole("button", { name: "Keep draft" })); fireEvent.click(screen.getByTestId("queue-entity-grid-intents"));
+    expect(queue).toHaveBeenCalledTimes(1); expect(queue.mock.calls[0][0].change.after).toBe(apply.mock.calls[0][0].change.after);
+    expect(queue.mock.calls[0][0].change.before).toBe("TBD"); expect(pipe.section.mill_tolerance).toBe(absence === "null" ? null : undefined);
+  });
+
+  it("preserves actual units, rejects stale unit/catalog and keeps malformed quantities and reference routes readonly", async () => {
+    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; pipe.section.mill_tolerance = { value: 1, unit: "mm" };
+    const apply = vi.fn(async (_intent: import("../../../types").EditorOperationIntent) => ({ applied: true, messages: [] }));
+    const props = { model, selection: { type: "pipe" as const, id: pipe.id }, onSelect: vi.fn(), onApplyCellIntent: apply };
+    const view = render(<ModelTree {...props} />); fireEvent.click(screen.getByTestId("layout-mode-grid"));
+    for (const key of ["from", "to", "section-ref"]) expect(screen.getByTestId(`table-cell-${pipe.id}-${key}`).parentElement).toHaveAttribute("aria-readonly", "true");
+    fireEvent.doubleClick(screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`));
+    fireEvent.change(screen.getByTestId("pipe-engineering-table").querySelector("input")!, { target: { value: "0" } });
+    const catalog = structuredClone(model); catalog.materials = [...(catalog.materials ?? []), { ...catalog.materials![0], id: "material:unrelated" }];
+    view.rerender(<ModelTree {...props} model={catalog} />);
+    expect(screen.getByTestId("pipe-engineering-table").querySelector("input")).toHaveValue("0");
+    const changed = structuredClone(model); changed.pipe_segments[0].section.mill_tolerance.unit = "m"; view.rerender(<ModelTree {...props} model={changed} />);
+    fireEvent.click(screen.getByRole("button", { name: "Apply" })); expect(apply).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    Object.assign(changed.pipe_segments[0].section.mill_tolerance, { unit: "" }); Object.assign(changed.pipe_segments[0], { provenance: { source_ref: "preserve" } });
+    view.rerender(<ModelTree {...props} model={structuredClone(changed)} />);
+    expect(screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`).parentElement).toHaveAttribute("aria-readonly", "true");
+    expect(screen.getByTestId(`table-cell-${pipe.id}-provenance`).parentElement).toHaveAttribute("aria-readonly", "true");
+    fireEvent.doubleClick(screen.getByTestId(`table-cell-${pipe.id}-material`)); const material = screen.getByTestId("pipe-engineering-table").querySelector("input")!;
+    const chosen = changed.materials![0].id;
+    fireEvent.change(material, { target: { value: chosen } });
+    const removed = structuredClone(changed); removed.materials = removed.materials!.filter((entry) => entry.id !== chosen);
+    view.rerender(<ModelTree {...props} model={removed} />);
+    expect(screen.getByTestId("pipe-engineering-table").querySelector("input")).toHaveValue(chosen);
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("existing material ID"); expect(apply).not.toHaveBeenCalled();
+  });
+
+  it("retains incomplete review entries across families and clears them without queueing", async () => {
+    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; delete pipe.section.mill_tolerance;
+    const queue = vi.fn(); render(<ModelTree model={model} selection={{ type: "pipe", id: pipe.id }} onSelect={vi.fn()} onQueueIntent={queue} />);
+    fireEvent.click(screen.getByTestId("layout-mode-grid")); fireEvent.click(screen.getByTestId("pipe-grid-review-disclosure"));
+    fireEvent.doubleClick(screen.getByTestId(`review-cell-${pipe.id}-mill-tolerance`));
+    fireEvent.change(screen.getByTestId("pipe-engineering-table-review").querySelector("input")!, { target: { value: "0" } });
+    fireEvent.click(screen.getByRole("button", { name: "Keep draft" })); expect(screen.getByTestId("queue-entity-grid-intents")).toBeDisabled();
+    fireEvent.click(screen.getByTestId("entity-grid-type-nodes")); fireEvent.click(screen.getByTestId("entity-grid-type-pipes"));
+    expect(screen.getByTestId(`review-cell-${pipe.id}-mill-tolerance`)).toHaveTextContent("0");
+    fireEvent.click(screen.getByTestId("clear-entity-grid-drafts")); expect(screen.getByTestId(`review-cell-${pipe.id}-mill-tolerance`)).toHaveTextContent("TBD"); expect(queue).not.toHaveBeenCalled();
+  });
+});

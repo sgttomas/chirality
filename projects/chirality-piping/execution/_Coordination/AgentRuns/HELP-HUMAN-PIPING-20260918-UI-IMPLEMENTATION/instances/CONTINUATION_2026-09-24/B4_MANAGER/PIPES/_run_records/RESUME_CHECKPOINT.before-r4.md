@@ -1,0 +1,19 @@
+# Frozen Pipes validation checkpoint
+
+The current nine-file source is `_run_records/COMBINED_FREEZE_R3.json` and complete `combined-candidate-r3.diff` (ca59c34444cdcfdd82e8e0fb8172feaeef2f15000f88446c3bc406003dafee2b). The original seven-file packet, source review with R1/R2, their nine-file repair freeze and failed test output are preserved separately. No product writer is active. ROOT owns source/Git/resource coordination.
+
+Actual execution so far: unchanged Rust helper/tests passed139unit+9integration offline/locked with two build jobs and isolated target. Pre-R1/R2 frontend127tests+TypeScript passed. The repaired frontend's first rerun passed129of130; the only failure held a detached pre-editor cell button when the new live same-ID button correctly had focus. UI TASK corrected only this test's lookups, retaining exact focus/no-dispatch assertions. No test, TypeScript, WASM rebuild, backend replay or browser has run after that R3 correction. The latest source review found R1/R2 repaired; distinct R3 test-delta backcheck is requested before execution resumes.
+
+ROOT explicitly released the Pipes lane to run its first-correctness clean sweep. No Pipes tests/build/browser/server/native process remains running. Do not resume heavy work until ROOT returns the lane.
+
+## Next bounded stage
+
+From REPO_ROOT, verify every R3 source hash before execution and stop if any mismatch needs integration. Raw commands, versions, source/lock hashes, outputs, before/after generated-artifact identities and exit statuses belong under `_run_records/FINAL_CHECKS_R3/`, not portable manifests. Preserve failures; any source/test repair needs the affected independent backcheck before resuming.
+
+1. From `projects/chirality-piping/apps/desktop`, run Vitest for `ModelTree.table.test.tsx`, `modelTableAdapter.test.ts`, `ModelTree.test.tsx`, `EngineeringTable.test.tsx` and `OverflowRail.test.tsx`, maximum two workers; then TypeScript `npx tsc --noEmit`.
+2. Rebuild the current operation WASM through the maintained build method with two jobs and isolated target, recording exact Rust/source/lock identities and verifying no maintained lock/source drift. Do not reuse the old artifact as proof of the Rust repair. The standard desktop `build:wasm` script also regenerates the unchanged self-weight engine as its normal package step; preserve that scope accurately if used.
+3. Run the prepared `_run_records/optional-wall-replay.mjs` against the rebuilt module. It reads the same10 preserved input records from `optional-wall-probe/`, never rewrites those originals, records their hashes, and checks expected model/validation-only/atomic rejection. Its output target is `FINAL_CHECKS_R3/optional-wall-replay`.
+4. Check localhost5174/5175 ownership. Run all seven `b4-pipes.spec.ts` scenarios and five bounded existing scenarios: B4 node coordinates; B4 Materials mixed-unit/delayed review sort/history; B4 Sections mixed-unit/shared rejection; B4 Sections enum; B4 Sections moved review row. Use the source config's two declared viewports and at most two workers. These are7+5 scenarios, normally24 project/scenario executions. No native app launch. Use supported permission escalation if the sandbox denies the local server, recording actual failure/approval rather than weakening checks.
+5. Stop owned servers/processes and verify ports free. Obtain the original reviewer's evidence backcheck if runtime findings caused any repair; current native/CI/cleanDEC-025/integration gates remain ROOT-owned. Bind final evidence and return exact source whitelist and hashes.
+
+R2's browser control retains the real browser's blocked-result receipt/readiness on an edited model; it is not a native solve or physical correctness claim. Model/history and no-operation assertions remain real observable application behavior. No temporary test-result fabrication or UI-only backend physics check is authorized.

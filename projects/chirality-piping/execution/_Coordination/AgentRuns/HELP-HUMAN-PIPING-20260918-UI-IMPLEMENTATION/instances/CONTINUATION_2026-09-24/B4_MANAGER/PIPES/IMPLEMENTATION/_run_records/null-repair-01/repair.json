@@ -1,0 +1,22 @@
+{
+  "assignment": "Independent review null optional-admission repair; parent /root/native_pan_manager; TASK /root/native_pan_manager/pipes_implementation",
+  "change": "Exclude raw null from malformed optional quantities; existing Material/Section value/unit admission unchanged. Parameterize UI direct/review and actual-operation adapter regressions over omitted and null.",
+  "checks": "No tests, build, browser or native run by implementation TASK. Manager owns affected verification.",
+  "files": [
+    {
+      "path": "apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "before_sha256": "2628b409fc0e70b5b54192a2ad7c9c009caee1eba2b1a95b7d41a8125c92d07c",
+      "after_sha256": "95549a27c4afa15573b7553e2ab45a248f29d160c2d346662b1d36295da6871c"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+      "before_sha256": "ed36237544a76cc2ddfe780e2192ca9bca0a4b195cfe91cdb6119f331a4c9b43",
+      "after_sha256": "fc610d683a2ba27beb99dface1f07fe446aba0ca4d8365cc259961507e7e27db"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts",
+      "before_sha256": "d1723735643e216b90aad645b60d4abedd88ddac4d067f2c4d8daa8f6cb5eab0",
+      "after_sha256": "ce75b993ae64b0327527fcac8122eb24db0ed881b39c9f311d35b575f763f0a3"
+    }
+  ]
+}

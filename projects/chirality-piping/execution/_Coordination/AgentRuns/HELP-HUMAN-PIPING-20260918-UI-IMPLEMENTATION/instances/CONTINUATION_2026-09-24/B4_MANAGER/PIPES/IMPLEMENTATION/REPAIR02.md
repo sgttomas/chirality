@@ -1,0 +1,7 @@
+# Explicit-unit no-op repair
+
+R2 extends `TableColumn.equivalent` with an optional captured-unit argument, supplied by `EngineeringTable`. Existing callbacks remain unchanged. Only the Pipe mill-tolerance callback parses both entries using the actual captured unit and compares value plus unit. Existing `0 mm` and `0.0 mm` entries are equivalent to stored zero in mm; `0 m` is rejected by the existing unit constraint. Absent TBD remains different from authored zero. R1 null admission is preserved.
+
+The maintained ModelTree test verifies no operation dispatch and focus return for bare and explicit-unit no-ops, and retained wrong-unit rejection. The browser test verifies unchanged history, model hash and project edited state. It invokes the real browser preview for the custom mill-zero model and compares the existing solve-job receipt and readiness after no-ops. That browser route produces an honest blocked result; the control tests result retention, not solved mechanics or numerical correctness. No synthetic result state is supplied.
+
+Actual TASK execution allocation is Astra/low under `/root/native_pan_manager`. The scope adds `tableState.ts` and `EngineeringTable.tsx` to the existing table writer ownership. Exact before/after identities are in [_run_records/repair02/repair.json](_run_records/repair02/repair.json). No tests, build, browser, native or Git mutations were run for this repair. The manager owns final validation and the independent reviewer backcheck; prior freezes and findings remain preserved.

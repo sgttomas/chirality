@@ -1,0 +1,37 @@
+[WebServer] (node:56201) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 24 tests using 2 workers
+
+(node:56205) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56206) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56205) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56206) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium-desktop] › e2e/b4-sections.spec.ts:17:1 › B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history (3.1s)
+  ✓   1 [chromium-desktop] › e2e/b4-pipes.spec.ts:10:1 › B4 Pipes absent zero, entered unit, material ID and history use real operation routes (4.3s)
+  ✓   4 [chromium-desktop] › e2e/b4-pipes.spec.ts:28:1 › B4 Pipes shared section effective-wall rejection preserves model and history (2.7s)
+  ✓   3 [chromium-desktop] › e2e/b4-sections.spec.ts:36:1 › B4 Sections enum explicit completion, passive cancellation and raw review retention (5.1s)
+  ✓   5 [chromium-desktop] › e2e/b4-pipes.spec.ts:39:1 › B4 Pipes direct and review author the same optional quantity with retained incomplete drafts (4.7s)
+  ✓   6 [chromium-desktop] › e2e/b4-sections.spec.ts:121:1 › B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes (4.2s)
+  ✓   7 [chromium-desktop] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall (2.8s)
+  ✓   8 [chromium-desktop] › e2e/b4-table-editing.spec.ts:7:1 › B4 node coordinates apply through one operation with keyboard, history and saved-state ownership (4.0s)
+  ✓   9 [chromium-desktop] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall (2.8s)
+  ✓  11 [chromium-desktop] › e2e/b4-pipes.spec.ts:65:1 › B4 Pipes compact label provenance and material completion retain editor ownership (3.7s)
+  ✓  10 [chromium-desktop] › e2e/b4-table-editing.spec.ts:363:1 › B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership (7.2s)
+Error: worker-1 process did not exit within 300000ms after stop, force-killed it
+Error: worker-1 process did not exit within 300000ms after stop, force-killed it
+(node:57198) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57198) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium-compact] › e2e/b4-pipes.spec.ts:10:1 › B4 Pipes absent zero, entered unit, material ID and history use real operation routes (3.7s)
+  ✓  14 [chromium-compact] › e2e/b4-pipes.spec.ts:28:1 › B4 Pipes shared section effective-wall rejection preserves model and history (2.3s)
+  ✓  15 [chromium-compact] › e2e/b4-pipes.spec.ts:39:1 › B4 Pipes direct and review author the same optional quantity with retained incomplete drafts (3.8s)
+  ✓  16 [chromium-compact] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall (2.3s)
+  ✓  17 [chromium-compact] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall (2.2s)
+  ✓  18 [chromium-compact] › e2e/b4-pipes.spec.ts:65:1 › B4 Pipes compact label provenance and material completion retain editor ownership (3.1s)
+  ✘  19 [chromium-compact] › e2e/b4-pipes.spec.ts:87:1 › B4 Pipes equivalent explicit-unit edits preserve model and history (108ms)

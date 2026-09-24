@@ -1,0 +1,230 @@
+{
+  "schema": "chirality-bounded-software-review-backcheck/v1",
+  "recorded_at": "2026-09-24T20:54:47.699095+00:00",
+  "executor": {
+    "mechanism": "delegated-harness-native",
+    "task": "/root/native_pan_manager/pipes_review",
+    "parent": "/root/native_pan_manager",
+    "role": "TASK Type 2",
+    "allocation_as_supplied": "Astra/xhigh",
+    "independent_from_product_writer": true
+  },
+  "authority": {
+    "same_role_and_skill_basis": "REVIEW/_run_records/MANIFEST.json",
+    "backcheck_brief": "Active parent followup authorizes full nine-file repair review and writes only REVIEW/BACKCHECK.md plus REVIEW/_run_records/BACKCHECK_MANIFEST.json; ROOT confirmation of two added table helper paths supplied by manager.",
+    "scope_extension_paths": [
+      "apps/desktop/src/features/workspace/table/tableState.ts",
+      "apps/desktop/src/features/workspace/table/EngineeringTable.tsx"
+    ]
+  },
+  "execution": {
+    "cwd": "/Users/ryan/.codex/worktrees/6614/chirality",
+    "performed": [
+      "Read both repair returns and raw repair identities",
+      "Read complete repaired diff and compare initial/repaired unified diff text using Python difflib",
+      "Inspect all equivalence callback definitions and single production invocation, stale/read-only/busy guards and branch ordering",
+      "Check nine source hashes and full diff hash twice",
+      "Verify original review report hash unchanged",
+      "Write only the two authorized backcheck outputs"
+    ],
+    "not_performed": [
+      "product changes",
+      "tests",
+      "build",
+      "browser",
+      "native",
+      "Git",
+      "delegation"
+    ],
+    "branch_identity": "Parent freeze metadata; Git calls remain prohibited",
+    "tool_io": "Actual shell requests and raw returns retained in the delegated task transcript"
+  },
+  "frozen_basis": {
+    "head": "aee49b99843dee3db6d8c7b6d6bc55c82711293d",
+    "branch": "codex/piping-pipes-20260924",
+    "files": [
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+        "sha256": "95549a27c4afa15573b7553e2ab45a248f29d160c2d346662b1d36295da6871c"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.ts",
+        "sha256": "ffc54b3adac8ae474b1425759e0a9aeb4f41efa79594f6ba4ea70d4ff0800b53"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+        "sha256": "b4ffafe12b1174380ffc4b04f4bb91e6993f06618772edb6611b5ec664051330"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts",
+        "sha256": "ce75b993ae64b0327527fcac8122eb24db0ed881b39c9f311d35b575f763f0a3"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts",
+        "sha256": "37bbfc2a3e0d93d8910a7b68fc71d51268ccf7638055db4e144d5d79c4f4761b"
+      },
+      {
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/src/section_bindings.rs",
+        "sha256": "e7443363a756b9f1737e1984324a3e1e3ca87bc92682b094859072e26bfeb3e2"
+      },
+      {
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+        "sha256": "83e88887a235053fe726a206dc47cad9ac8d0d25def555c27b987670d6ee6f73"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/tableState.ts",
+        "sha256": "1e24c67d0bb1bf01c3755915b9a320a089c6988163400aed7d9f6569ef4660ca"
+      },
+      {
+        "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+        "sha256": "c13f45c6838eeff2442039dae30da27f90fb36cc576744e73ee381a307996038"
+      }
+    ],
+    "diff_sha256": "8da1da8d0eb01f25dd492c94ce5c206fc90f7c794a617ac92bbc43a4893f136b",
+    "diff_includes_new_files": [
+      "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts"
+    ],
+    "prior_freeze": "COMBINED_FREEZE.json",
+    "repairs": "R1 nullable optional absence; R2 captured-unit semantic no-op. Original review and source freeze preserved. No manager product edits; actual UI implementation Astra/low."
+  },
+  "source_hash_checks": {
+    "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx": true,
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.ts": true,
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx": true,
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts": true,
+    "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts": true,
+    "projects/chirality-piping/core/model_operations/operation_applier/src/section_bindings.rs": true,
+    "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs": true,
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/tableState.ts": true,
+    "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx": true
+  },
+  "initial_return_preserved": true,
+  "findings": [],
+  "prior_findings": [
+    {
+      "id": "R1",
+      "status": "source_corrected",
+      "verification": "null/undefined preserve TBD and empty-unit explicit authoring; maintained UI and actual engine adapter tests parameterized over both representations; runtime repair checks pending"
+    },
+    {
+      "id": "R2",
+      "status": "source_corrected",
+      "verification": "Captured actual unit reaches parsed equivalence; same numeric value/unit skips dispatch, explicit mismatch rejects, absence is distinct from zero; maintained unit and honest blocked-result retention browser checks added; runtime repair checks pending"
+    }
+  ],
+  "regression_assessment": {
+    "backend_files_unchanged": true,
+    "shared_interface": "One optional third callback parameter with one production invocation; existing two-argument callbacks unchanged",
+    "existing_editor_order": "Stale/read-only/busy validation still precedes direct equivalence; review exits before equivalence",
+    "protected_criteria_changed": false
+  },
+  "evidence_status": {
+    "repair_checks_directory_present_at_return": false,
+    "repair_runtime_pass_claim": false,
+    "initial_ui_evidence_not_reused_as_repair_pass": true,
+    "unchanged_backend_evidence": {
+      "unit_tests": 139,
+      "integration_tests": 9,
+      "reference": "BACKEND/_run_records/test-command.json"
+    }
+  },
+  "suitability": "Clear source backcheck for bounded manager fan-in; affected runtime checks and ROOT native/CI/clean sweep/final integration remain open; no acceptance/release claim",
+  "source_identities": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/COMBINED_FREEZE_REPAIR.json",
+      "sha256": "f22dc3976750438abb16105f019db5c5f39a18823252487fcc9c1f68644aafbe",
+      "bytes": 2300
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/combined-candidate-repair.diff",
+      "sha256": "8da1da8d0eb01f25dd492c94ce5c206fc90f7c794a617ac92bbc43a4893f136b",
+      "bytes": 61906
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/COMBINED_FREEZE.json",
+      "sha256": "cc4637e5d433a31a3e047b7ff49a68578ebaf717db8ad94584ca4bc16ba12fca",
+      "bytes": 2008
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/combined-candidate.diff",
+      "sha256": "3b2abe2903fcc1e875f8bd41570ef3a1420eec61f52133af773f4c1b1eb9758c",
+      "bytes": 54463
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/IMPLEMENTATION/NULL_REPAIR_01.md",
+      "sha256": "92a2ae0bc7f7880e23a69bea3496a0e05e24d63775cc68581b0c56cda63cfee5",
+      "bytes": 1160
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/IMPLEMENTATION/REPAIR02.md",
+      "sha256": "9c7753243f58522d32211fc671766b0e12b6ee545cf04a3b55e998c517db7354",
+      "bytes": 1530
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/IMPLEMENTATION/_run_records/null-repair-01/repair.json",
+      "sha256": "3775899f50710cd554ba5a8b0e696b944c5fd3eadf2ab85335a3a4c798b05c0f",
+      "bytes": 1324
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/IMPLEMENTATION/_run_records/repair02/repair.json",
+      "sha256": "6d44bf95f40c96c7ec22a9260385cc139e6b2b1753a9091ae4b70ed7fdf75433",
+      "bytes": 2069
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/REVIEW/RETURN.md",
+      "sha256": "ae05c14a5232f3265dbb35073fb6a127a71222f6dbef0a0177fd419a94ad1937",
+      "bytes": 6242
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/REVIEW/_run_records/MANIFEST.json",
+      "sha256": "9fd359e1d5e47978620bf392ae474e6017d75c9646148682d0460b1cbe926a16",
+      "bytes": 18345
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "sha256": "95549a27c4afa15573b7553e2ab45a248f29d160c2d346662b1d36295da6871c",
+      "bytes": 87832
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.ts",
+      "sha256": "ffc54b3adac8ae474b1425759e0a9aeb4f41efa79594f6ba4ea70d4ff0800b53",
+      "bytes": 8901
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+      "sha256": "b4ffafe12b1174380ffc4b04f4bb91e6993f06618772edb6611b5ec664051330",
+      "bytes": 32552
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts",
+      "sha256": "ce75b993ae64b0327527fcac8122eb24db0ed881b39c9f311d35b575f763f0a3",
+      "bytes": 6324
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts",
+      "sha256": "37bbfc2a3e0d93d8910a7b68fc71d51268ccf7638055db4e144d5d79c4f4761b",
+      "bytes": 13147
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/section_bindings.rs",
+      "sha256": "e7443363a756b9f1737e1984324a3e1e3ca87bc92682b094859072e26bfeb3e2",
+      "bytes": 9393
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+      "sha256": "83e88887a235053fe726a206dc47cad9ac8d0d25def555c27b987670d6ee6f73",
+      "bytes": 536713
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/tableState.ts",
+      "sha256": "1e24c67d0bb1bf01c3755915b9a320a089c6988163400aed7d9f6569ef4660ca",
+      "bytes": 3180
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+      "sha256": "c13f45c6838eeff2442039dae30da27f90fb36cc576744e73ee381a307996038",
+      "bytes": 39658
+    }
+  ],
+  "backcheck_return_sha256": "8c934227a07c7ef027a5bb8de172613e6a1e5f4243b281aef7be7b20470f3bdc"
+}

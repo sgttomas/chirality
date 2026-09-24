@@ -1,0 +1,90 @@
+[
+  {
+    "bound": true,
+    "name": "zero",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "matches": true
+  },
+  {
+    "bound": true,
+    "name": "positive-valid",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "matches": true
+  },
+  {
+    "bound": true,
+    "name": "equal-wall",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "matches": true
+  },
+  {
+    "bound": true,
+    "name": "greater-wall",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "matches": true
+  },
+  {
+    "bound": true,
+    "name": "negative",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "matches": true
+  },
+  {
+    "bound": false,
+    "name": "zero",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "matches": true
+  },
+  {
+    "bound": false,
+    "name": "positive-valid",
+    "shouldApply": true,
+    "actualApplied": true,
+    "codes": [],
+    "matches": true
+  },
+  {
+    "bound": false,
+    "name": "equal-wall",
+    "shouldApply": false,
+    "actualApplied": true,
+    "codes": [],
+    "matches": false
+  },
+  {
+    "bound": false,
+    "name": "greater-wall",
+    "shouldApply": false,
+    "actualApplied": true,
+    "codes": [],
+    "matches": false
+  },
+  {
+    "bound": false,
+    "name": "negative",
+    "shouldApply": false,
+    "actualApplied": false,
+    "codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "matches": true
+  }
+]

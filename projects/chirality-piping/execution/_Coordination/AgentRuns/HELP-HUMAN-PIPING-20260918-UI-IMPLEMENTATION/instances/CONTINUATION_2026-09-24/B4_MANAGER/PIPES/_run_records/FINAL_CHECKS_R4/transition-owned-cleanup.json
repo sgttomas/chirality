@@ -1,0 +1,54 @@
+{
+  "before": {
+    "71760": {
+      "ppid": 9485,
+      "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/run-r4-browser.py browser"
+    },
+    "71764": {
+      "ppid": 71760,
+      "command": "npm exec playwright test e2e/b4-pipes.spec.ts e2e/b4-table-editing.spec.ts e2e/b4-sections.spec.ts --grep B4 Pipes|B4 node coordinates apply|B4 Materials preserve mixed-unit|B4 Sections mixed-unit|B4 Sections enum explicit|B4 Sections moved review row --workers=2 --max-failures=1 --output=/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4/browser-artifacts"
+    },
+    "71787": {
+      "ppid": 71764,
+      "command": "node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/.bin/playwright test e2e/b4-pipes.spec.ts e2e/b4-table-editing.spec.ts e2e/b4-sections.spec.ts --grep B4 Pipes|B4 node coordinates apply|B4 Materials preserve mixed-unit|B4 Sections mixed-unit|B4 Sections enum explicit|B4 Sections moved review row --workers=2 --max-failures=1 --output=/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4/browser-artifacts"
+    },
+    "71790": {
+      "ppid": 71787,
+      "command": "npm run dev --port 5174"
+    },
+    "71830": {
+      "ppid": 71790,
+      "command": "node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/.bin/vite --host 127.0.0.1 --port 5174"
+    },
+    "71833": {
+      "ppid": 71830,
+      "command": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@esbuild/darwin-arm64/bin/esbuild --service=0.27.7 --ping"
+    },
+    "71838": {
+      "ppid": 71787,
+      "command": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/playwright/lib/worker/workerProcessEntry.js"
+    },
+    "71839": {
+      "ppid": 71787,
+      "command": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node /Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/playwright/lib/worker/workerProcessEntry.js"
+    }
+  },
+  "log_sha256": "408f3f65b6de7fcd661de3da6667559a7ee9a2e89ebe0ae15d9152d2cf2eacef",
+  "signals": [
+    {
+      "pid": 71787,
+      "signal": "SIGINT"
+    }
+  ],
+  "reason": "All12desktoptests passed; stalled project/worker transition. ROOT authorizes bounded cleanup then serial per-project recovery.",
+  "known_pids": [
+    71760,
+    71764,
+    71787,
+    71790,
+    71830,
+    71833,
+    71838,
+    71839
+  ]
+}

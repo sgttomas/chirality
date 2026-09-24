@@ -1,0 +1,11 @@
+{
+  "task": "/root/native_pan_manager/pipes_implementation",
+  "allocation": "Astra/low",
+  "scope": "Test fixture only; product files untouched",
+  "path": "apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+  "before_sha256": "b4ffafe12b1174380ffc4b04f4bb91e6993f06618772edb6611b5ec664051330",
+  "after_sha256": "a904128367ad9b1719d91b724aa3d7d501b5de7e13d24b2e4d163f5b0f610599",
+  "cause": "R2 fixture retained a cell DOM element replaced by the editor lifecycle. Focus correctly returned to the new live cell with the same identity, while assertion targeted detached element.",
+  "repair": "Query live cell before every edit and after editor closure for exact focus assertion. Preserve no-dispatch and wrong-unit assertions.",
+  "verification": "No tests/browser/build executed; manager and independent reviewer own validation/backcheck. Original failure preserved under FINAL_CHECKS_REPAIR/ui-final.log."
+}

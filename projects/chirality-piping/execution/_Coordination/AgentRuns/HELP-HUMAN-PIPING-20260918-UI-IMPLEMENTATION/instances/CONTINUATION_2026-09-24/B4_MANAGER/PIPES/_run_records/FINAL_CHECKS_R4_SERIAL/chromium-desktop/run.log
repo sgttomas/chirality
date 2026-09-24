@@ -1,0 +1,23 @@
+[WebServer] (node:72775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:72785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium-desktop] › e2e/b4-pipes.spec.ts:10:1 › B4 Pipes absent zero, entered unit, material ID and history use real operation routes (3.5s)
+  ✓   2 [chromium-desktop] › e2e/b4-pipes.spec.ts:28:1 › B4 Pipes shared section effective-wall rejection preserves model and history (2.1s)
+  ✓   3 [chromium-desktop] › e2e/b4-pipes.spec.ts:39:1 › B4 Pipes direct and review author the same optional quantity with retained incomplete drafts (3.6s)
+  ✓   4 [chromium-desktop] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall (2.0s)
+  ✓   5 [chromium-desktop] › e2e/b4-pipes.spec.ts:56:35 › B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall (2.0s)
+  ✓   6 [chromium-desktop] › e2e/b4-pipes.spec.ts:65:1 › B4 Pipes compact label provenance and material completion retain editor ownership (3.0s)
+  ✓   7 [chromium-desktop] › e2e/b4-pipes.spec.ts:87:1 › B4 Pipes equivalent explicit-unit edits preserve model and history (4.1s)
+  ✓   8 [chromium-desktop] › e2e/b4-sections.spec.ts:17:1 › B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history (2.3s)
+  ✓   9 [chromium-desktop] › e2e/b4-sections.spec.ts:36:1 › B4 Sections enum explicit completion, passive cancellation and raw review retention (4.0s)
+  ✓  10 [chromium-desktop] › e2e/b4-sections.spec.ts:121:1 › B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes (3.4s)
+  ✓  11 [chromium-desktop] › e2e/b4-table-editing.spec.ts:7:1 › B4 node coordinates apply through one operation with keyboard, history and saved-state ownership (3.0s)
+  ✓  12 [chromium-desktop] › e2e/b4-table-editing.spec.ts:363:1 › B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership (6.0s)
+
+  12 passed (1.3m)

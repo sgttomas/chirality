@@ -13952,6 +13952,138 @@ mod tests {
     }
 
     #[test]
+    fn local_pipe_geometry_checks_known_relations_without_requiring_complete_authoring() {
+        for bound in [false, true] {
+            for (value, accepted, code) in [
+                (0.0, true, ""),
+                (1.0, true, ""),
+                (5.0, false, "OP-SECTION-BINDING-INVALID"),
+                (6.0, false, "OP-SECTION-BINDING-INVALID"),
+                (-1.0, false, "OP-VALUE-NEGATIVE"),
+            ] {
+                let mut model = bound_test_model();
+                if !bound {
+                    model["pipe_segments"][0]
+                        .as_object_mut()
+                        .unwrap()
+                        .remove("section_ref");
+                }
+                let original = model.clone();
+                let intent = modify_intent(
+                    "Element",
+                    "pipe:P-1",
+                    "set_field",
+                    "section.mill_tolerance.value",
+                    "TBD",
+                    &json!({"value":value,"unit":"mm"}).to_string(),
+                    "mm",
+                    "length",
+                );
+                let validation = validate_operation(&model, &intent, None);
+                let applied = apply_operation(&model, &intent, None);
+                assert!(validation.applied_model.is_none());
+                assert_eq!(
+                    applied.applied_model.is_some(),
+                    accepted,
+                    "{:?}",
+                    applied.diagnostics
+                );
+                if accepted {
+                    assert!(validation.diagnostics.is_empty());
+                    let mut expected = model.clone();
+                    expected["pipe_segments"][0]["section"]["mill_tolerance"] =
+                        json!({"value":value,"unit":"mm"});
+                    assert_eq!(applied.applied_model.unwrap(), expected);
+                } else {
+                    for out in [&validation, &applied] {
+                        assert!(codes(out).contains(&code));
+                        assert!(out.diff_preview.is_empty());
+                    }
+                }
+                assert_eq!(model, original);
+            }
+        }
+        // A known wall and tolerance suffice even when OD has not been authored.
+        for wall in [
+            json!(null),
+            json!({"value":0.007}),
+            json!({"value":0.007,"unit":"m"}),
+        ] {
+            let mut model = sample_model();
+            model["pipe_segments"][0]["section"]
+                .as_object_mut()
+                .unwrap()
+                .remove("outside_diameter");
+            model["pipe_segments"][0]["section"]["wall_thickness"] = wall.clone();
+            let original = model.clone();
+            let intent = modify_intent(
+                "Element",
+                "pipe:P-1",
+                "set_field",
+                "section.mill_tolerance.value",
+                "TBD",
+                r#"{"value":7,"unit":"mm"}"#,
+                "mm",
+                "length",
+            );
+            let out = apply_operation(&model, &intent, None);
+            assert_eq!(
+                out.applied_model.is_some(),
+                wall.get("unit").is_none(),
+                "{:?}",
+                out.diagnostics
+            );
+            assert_eq!(model, original);
+            // Existing invalid known relations must not gate unrelated authoring.
+            model["pipe_segments"][0]["section"]["mill_tolerance"] = json!({"value":7,"unit":"mm"});
+            for (path, before, after) in [
+                ("label", "Run", "Renamed"),
+                ("material", "material:steel", "material:steel"),
+            ] {
+                let edit = modify_intent(
+                    "Element",
+                    "pipe:P-1",
+                    "set_field",
+                    path,
+                    before,
+                    after,
+                    "none",
+                    "dimensionless",
+                );
+                assert!(apply_operation(&model, &edit, None).applied_model.is_some());
+            }
+        }
+        for (path, before, after) in [
+            ("section.outside_diameter.value", "0.168", "0.01"),
+            ("section.wall_thickness.value", "0.007", "0.09"),
+            ("section.wall_thickness.value", "0.007", "0.001"),
+        ] {
+            let mut model = sample_model();
+            model["pipe_segments"][0]["section"]["mill_tolerance"] = json!({"value":1,"unit":"mm"});
+            let original = model.clone();
+            let edit = modify_intent(
+                "Element",
+                "pipe:P-1",
+                "set_field",
+                path,
+                before,
+                after,
+                "m",
+                "length",
+            );
+            for out in [
+                validate_operation(&model, &edit, None),
+                apply_operation(&model, &edit, None),
+            ] {
+                assert!(codes(&out).contains(&"OP-SECTION-BINDING-INVALID"));
+                assert!(out.applied_model.is_none());
+                assert!(out.diff_preview.is_empty());
+            }
+            assert_eq!(model, original);
+        }
+    }
+
+    #[test]
     fn mill_tolerance_accepts_explicit_zero_and_rejects_negative_entries() {
         let model = sample_model();
         let zero = apply_operation(

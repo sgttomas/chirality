@@ -1,0 +1,14 @@
+{
+  "cwd": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop",
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "src/features/workspace/table/ModelTree.table.test.tsx",
+    "src/features/workspace/table/modelTableAdapter.test.ts",
+    "src/features/model-tree/ModelTree.test.tsx",
+    "src/features/workspace/table/EngineeringTable.test.tsx",
+    "src/features/workspace/table/OverflowRail.test.tsx",
+    "--maxWorkers=2"
+  ]
+}

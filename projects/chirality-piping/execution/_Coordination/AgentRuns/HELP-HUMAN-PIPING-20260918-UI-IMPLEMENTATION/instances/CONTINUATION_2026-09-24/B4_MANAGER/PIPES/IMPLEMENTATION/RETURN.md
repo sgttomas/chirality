@@ -1,0 +1,15 @@
+# Pipe implementation
+
+TASK `/root/native_pan_manager/pipes_implementation` implements the bounded Pipe table under manager `/root/native_pan_manager`. Actual delegation, supplied origins and limits are in [_run_records/provenance.json](_run_records/provenance.json).
+
+Product writer owns `apps/desktop/src/features/model-tree/ModelTree.tsx` and `apps/desktop/src/features/workspace/table/modelTableAdapter.ts`, with maintained `ModelTree.table.test.tsx`, `modelTableAdapter.test.ts` and `e2e/b4-pipes.spec.ts`. Paths are relative to `projects/chirality-piping`. No shared controller, engine, native, geometry, or table-core edits.
+
+Optional authoring accepts an explicit combined value/unit entry when absent; existing quantity edits retain actual sibling units. Material choices carry current IDs through the existing enum interaction and EntityRef route. Endpoints/shared section and non-string provenance remain readonly. Existing direct/review interaction handles retained drafts, selection, feedback and stale guards.
+
+Focused verification: TypeScript passed in `_run_records/check02-0.log`; 28 adapter/ModelTree tests passed in `_run_records/check02-1.log`; 41 ModelTree.table tests passed in `_run_records/check03.log`. All 69 focused tests passed across those runs. ROOT granted the lane with at most two workers; released after completion. `_run_records/candidate.json` binds the five current source/test files.
+
+Failed attempts are retained: check01 TypeScript rejected Testing Library's unsupported `exact` option; Vitest rejected obsolete `--minWorkers`. Check02 had two new test fixture failures because jsdom does not lay out the persistent editor, making the otherwise mounted input inaccessible to default role/name lookup. Assertions now inspect its real aria-label and mounted input, following existing library fixtures. No product code was changed to obtain these passes. Actual browser accessibility remains a separate required witness. Check03 emitted no act warnings.
+
+Maintained browser cases are prepared but not run: absent zero/material/history, bound effective-wall rejection, and direct/review model-hash parity with incomplete-draft retention/Clear. A backend-dependent unbound rejection witness remains required. Browser/build lane not yet granted. Manager independently confirmed and routed an unbound effective-wall backend gap; this implementation does not mask it with UI physics. Native, full CI/sweep, independent frozen-candidate review and backend gap resolution remain outstanding.
+
+Provisional freeze: six maintained browser cases now include unbound equal/greater-wall rejection (requires rebuilt backend), compact label/string-provenance, pointer and keyboard material completion, history and pan-retained editor. Bound fixture appends its section and preserves existing unrelated bindings. The latest test delta proves a selected valid material ID removed during editing remains a draft and cannot Apply; its rerun is pending the lane. No product changes after focused passes. Current provisional hashes are in `_run_records/candidate.json`; prepared commands in `_run_records/pending-commands.json`.

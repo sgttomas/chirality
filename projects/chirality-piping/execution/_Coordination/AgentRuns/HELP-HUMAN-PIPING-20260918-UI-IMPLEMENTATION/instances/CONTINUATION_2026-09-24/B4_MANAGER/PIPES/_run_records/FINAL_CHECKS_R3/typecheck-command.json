@@ -1,0 +1,8 @@
+{
+  "cwd": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/apps/desktop",
+  "argv": [
+    "npx",
+    "tsc",
+    "--noEmit"
+  ]
+}

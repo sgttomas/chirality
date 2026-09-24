@@ -1,0 +1,32 @@
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { createHash } from "node:crypto";
+const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
+const project = resolve(repo, "projects/chirality-piping");
+const output = resolve(dirname(fileURLToPath(import.meta.url)), "optional-wall-probe");
+mkdirSync(output, { recursive: true });
+const js = resolve(project, "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js");
+const wasm = resolve(project, "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm");
+const fixture = resolve(project, "apps/desktop/e2e/ui-foundation/fixtures/precision-origin-base.model.json");
+const engine = await import(pathToFileURL(js).href); engine.initSync({ module: readFileSync(wasm) });
+const base = JSON.parse(readFileSync(fixture, "utf8"));
+const sourcePaths = [js, wasm, fixture, resolve(project, "core/model_operations/operation_applier/src/lib.rs"), resolve(project, "core/model_operations/operation_applier/src/section_bindings.rs")];
+const identity = { repo, node: process.version, head: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), inputs: sourcePaths.map(path => ({ path, sha256: createHash("sha256").update(readFileSync(path)).digest("hex") })) };
+writeFileSync(resolve(output, "identity.json"), JSON.stringify(identity, null, 2)+"\n");
+const results=[];
+for (const bound of [true,false]) for (const [name,value,shouldApply] of [["zero",0,true],["positive-valid",0.001,true],["equal-wall",0.004,false],["greater-wall",0.005,false],["negative",-0.001,false]]) {
+ const model=structuredClone(base); const pipe=model.pipe_segments[0];
+ if (!bound) delete pipe.section_ref;
+ delete pipe.section.mill_tolerance;
+ const intent={operation_id:`op:pipe-wall-${bound}-${name}`,operation_kind:"modify",operation_status:"proposed",author_type:"user",source:{source_ref:"probe:invented-pipe-wall",source_channel:"local_desktop_preview",source_role:"gui_editor"},target:{object_type:"Element",ref:pipe.id},change:{change_id:`change:pipe-wall-${bound}-${name}`,change_kind:"set_field",field_label:"Mill tolerance",field_path:"section.mill_tolerance.value",before:"TBD",after:JSON.stringify({value,unit:"m"}),unit:"m",dimension:"length",source_note:"invented bounded Pipe optional-quantity backend probe"},validation:{schema_validation:"not_run",constraint_validation:"not_run",unit_validation:"not_run",diff_preview_status:"not_generated",application_status:"not_applied"},audit_boundary:{mutation_route:"structured_operations_only",direct_model_mutation_allowed:false,requires_user_acceptance:true,mutates_accepted_model_state:false},professional_boundary:{human_review_required:true,software_makes_compliance_claim:false,software_makes_certification_claim:false,software_makes_sealing_claim:false,software_makes_approval_claim:false,software_makes_authentication_claim:false},rationale:"bounded non-native backend correctness probe"};
+ const validation=JSON.parse(engine.validate_operation_json(JSON.stringify(model),JSON.stringify(intent),"null"));
+ const applied=JSON.parse(engine.apply_operation_json(JSON.stringify(model),JSON.stringify(intent),"null"));
+ const actualApplied=Boolean(applied.applied_model); const record={bound,name,shouldApply,actualApplied,model,intent,validation,applied};
+ writeFileSync(resolve(output,`${bound?"bound":"unbound"}-${name}.json`),JSON.stringify(record,null,2)+"\n");
+ results.push({bound,name,shouldApply,actualApplied,codes:applied.diagnostics?.map(x=>x.code)??[],matches:shouldApply===actualApplied});
+}
+writeFileSync(resolve(output,"summary.json"),JSON.stringify(results,null,2)+"\n");
+console.log(JSON.stringify(results,null,2));
+process.exitCode=results.every(x=>x.matches)?0:1;

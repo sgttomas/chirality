@@ -1,0 +1,910 @@
+{
+  "schema": "chirality-pipes-final-browser-partition/v1",
+  "actual_head": "47030e390b1d201a10ae4980ed52f412147bccb3",
+  "source_diff_sha256": "ebb1f148ef770648e71a8b05d2326176399df04bfd826b6b95e49a35930bb369",
+  "scenarios_per_project": 12,
+  "project_count": 2,
+  "passed": 24,
+  "skipped": 0,
+  "flaky": 0,
+  "unexpected": 0,
+  "browser_versions": [
+    "153.0.8010.54"
+  ],
+  "runs": [
+    {
+      "project": "chromium-desktop",
+      "stats": {
+        "startTime": "2026-09-24T21:45:19.925Z",
+        "duration": 78709.695,
+        "expected": 12,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report_sha256": "667ed8316a4c9ad2103222c54cfcd1287e9efbd62e8746b908b3b60622d92014",
+      "exit_code": 0
+    },
+    {
+      "project": "chromium-compact",
+      "stats": {
+        "startTime": "2026-09-24T21:47:00.088Z",
+        "duration": 52388.352999999996,
+        "expected": 12,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report_sha256": "c5552f4762e6de34f03141bdb94259e6a2bf4743dbd4d993e47294ebf790ea1f",
+      "exit_code": 0
+    }
+  ],
+  "blocked_receipt_evidence": [
+    {
+      "project": "chromium-desktop",
+      "body_sha256": "2261fd08953e38064fd5fd8525b3bcf3dc9e04636d840dc077311fe0c8db220f",
+      "project_ref": "project:invented-loop-01",
+      "analysis_run_ref": {
+        "object_type": "AnalysisRun",
+        "ref": "run:preview-linear-static-browser-blocked:project-invented-loop-01"
+      },
+      "model_state_ref": {
+        "object_type": "ModelState",
+        "ref": "state:project:invented-loop-01:preview"
+      },
+      "analysis_status": [
+        "HUMAN_REVIEW_REQUIRED",
+        "MODEL_INCOMPLETE",
+        "RULE_INPUTS_INCOMPLETE"
+      ],
+      "diagnostic_codes": [
+        "RULE_INPUTS_MISSING",
+        "BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL"
+      ]
+    },
+    {
+      "project": "chromium-compact",
+      "body_sha256": "2261fd08953e38064fd5fd8525b3bcf3dc9e04636d840dc077311fe0c8db220f",
+      "project_ref": "project:invented-loop-01",
+      "analysis_run_ref": {
+        "object_type": "AnalysisRun",
+        "ref": "run:preview-linear-static-browser-blocked:project-invented-loop-01"
+      },
+      "model_state_ref": {
+        "object_type": "ModelState",
+        "ref": "state:project:invented-loop-01:preview"
+      },
+      "analysis_status": [
+        "HUMAN_REVIEW_REQUIRED",
+        "MODEL_INCOMPLETE",
+        "RULE_INPUTS_INCOMPLETE"
+      ],
+      "diagnostic_codes": [
+        "RULE_INPUTS_MISSING",
+        "BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes absent zero, entered unit, material ID and history use real operation routes",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-a02965cd177244226047",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes absent zero, entered unit, material ID and history use real operation routes",
+      "line": 10,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3466,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "pipe-final-model-hash",
+          "content_type": "text/plain",
+          "body_sha256": "310bffa579f1d5217b06143cf0f50b42428447a9465fa21f479769663ceeac3a"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes shared section effective-wall rejection preserves model and history",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-ef3e8ea56a1029b2c73e",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes shared section effective-wall rejection preserves model and history",
+      "line": 28,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2120,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes direct and review author the same optional quantity with retained incomplete drafts",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-e1ddde4a4b541f0a3a6a",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes direct and review author the same optional quantity with retained incomplete drafts",
+      "line": 39,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3645,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-63b41a519ad9ed10ac30",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall",
+      "line": 56,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2040,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-292d51fd718cac109ab7",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall",
+      "line": 56,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2031,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes compact label provenance and material completion retain editor ownership",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-e7d362abfc6fbd999ba7",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes compact label provenance and material completion retain editor ownership",
+      "line": 65,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2989,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-pipes.spec.ts::B4 Pipes equivalent explicit-unit edits preserve model and history",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-9b63df55a7e0a3060927",
+      "project": "chromium-desktop",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes equivalent explicit-unit edits preserve model and history",
+      "line": 87,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 4089,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "actual-blocked-run-receipt",
+          "content_type": "application/json",
+          "body_sha256": "2261fd08953e38064fd5fd8525b3bcf3dc9e04636d840dc077311fe0c8db220f"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-sections.spec.ts::B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-3421ee48124d6e8de58f",
+      "project": "chromium-desktop",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history",
+      "line": 17,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2303,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-sections.spec.ts::B4 Sections enum explicit completion, passive cancellation and raw review retention",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-d72fee417620b1319a8e",
+      "project": "chromium-desktop",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections enum explicit completion, passive cancellation and raw review retention",
+      "line": 36,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 4002,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "section-enum-light-computed-style",
+          "content_type": "application/json",
+          "body_sha256": "98b22923c07af60252f2eae04f39d8f17a8e58500b459d3d0da1ae401c332a15"
+        },
+        {
+          "name": "section-enum-dark-computed-style",
+          "content_type": "application/json",
+          "body_sha256": "27400fd06cd7aa1b458cab70f940c63e673dba1c38e99d26d20dfc63c08545e5"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-sections.spec.ts::B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-ea18c6c8e7253446b508",
+      "project": "chromium-desktop",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes",
+      "line": 121,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3360,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-table-editing.spec.ts::B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+      "playwright_spec_id": "6f49393ff246acadcad3-182dfe51bb974081b623",
+      "project": "chromium-desktop",
+      "file": "b4-table-editing.spec.ts",
+      "title": "B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+      "line": 7,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3020,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-desktop::b4-table-editing.spec.ts::B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+      "playwright_spec_id": "6f49393ff246acadcad3-307e6d13fc6cb3c94cd8",
+      "project": "chromium-desktop",
+      "file": "b4-table-editing.spec.ts",
+      "title": "B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+      "line": 363,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 6022,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "materials-contained-units",
+          "content_type": "application/json",
+          "body_sha256": "2ebd521e0cffb5aa5313dbbc94782f127771a5f6ad8de94a76fadd40757996b3"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-desktop/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes absent zero, entered unit, material ID and history use real operation routes",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-e9f370e3d8ff298d378b",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes absent zero, entered unit, material ID and history use real operation routes",
+      "line": 10,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3442,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "pipe-final-model-hash",
+          "content_type": "text/plain",
+          "body_sha256": "310bffa579f1d5217b06143cf0f50b42428447a9465fa21f479769663ceeac3a"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes shared section effective-wall rejection preserves model and history",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-b217d351d0c097a6c4b7",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes shared section effective-wall rejection preserves model and history",
+      "line": 28,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2148,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes direct and review author the same optional quantity with retained incomplete drafts",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-4fb98ccff2d5d1fbf74b",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes direct and review author the same optional quantity with retained incomplete drafts",
+      "line": 39,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3592,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-e2be54130b39828c0fab",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes unbound mill tolerance 10 rejects exhausted effective wall",
+      "line": 56,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2087,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-5f55fd3e951671831cc0",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes unbound mill tolerance 11 rejects exhausted effective wall",
+      "line": 56,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2101,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes compact label provenance and material completion retain editor ownership",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-f8583862d26e0b68a4d8",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes compact label provenance and material completion retain editor ownership",
+      "line": 65,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3082,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-pipes.spec.ts::B4 Pipes equivalent explicit-unit edits preserve model and history",
+      "playwright_spec_id": "10f825e2cf8306c4bbc8-5f9d088d3cb23c293e47",
+      "project": "chromium-compact",
+      "file": "b4-pipes.spec.ts",
+      "title": "B4 Pipes equivalent explicit-unit edits preserve model and history",
+      "line": 87,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 4352,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "actual-blocked-run-receipt",
+          "content_type": "application/json",
+          "body_sha256": "2261fd08953e38064fd5fd8525b3bcf3dc9e04636d840dc077311fe0c8db220f"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-sections.spec.ts::B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-b74cf87014bc2cec7030",
+      "project": "chromium-compact",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-pipe rejection and history",
+      "line": 17,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 2145,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-sections.spec.ts::B4 Sections enum explicit completion, passive cancellation and raw review retention",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-a9924d7fcd982969eb0a",
+      "project": "chromium-compact",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections enum explicit completion, passive cancellation and raw review retention",
+      "line": 36,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 4009,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "section-enum-light-computed-style",
+          "content_type": "application/json",
+          "body_sha256": "98b22923c07af60252f2eae04f39d8f17a8e58500b459d3d0da1ae401c332a15"
+        },
+        {
+          "name": "section-enum-dark-computed-style",
+          "content_type": "application/json",
+          "body_sha256": "27400fd06cd7aa1b458cab70f940c63e673dba1c38e99d26d20dfc63c08545e5"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-sections.spec.ts::B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes",
+      "playwright_spec_id": "53c0d84efc0f4ae20b8c-bd4e4b9aea9c68e90f9e",
+      "project": "chromium-compact",
+      "file": "b4-sections.spec.ts",
+      "title": "B4 Sections moved review row preserves text Undo, input ownership and virtual hidden lifetimes",
+      "line": 121,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3169,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-table-editing.spec.ts::B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+      "playwright_spec_id": "6f49393ff246acadcad3-a805bc792388c8b58216",
+      "project": "chromium-compact",
+      "file": "b4-table-editing.spec.ts",
+      "title": "B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+      "line": 7,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 3030,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    },
+    {
+      "identity": "chromium-compact::b4-table-editing.spec.ts::B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+      "playwright_spec_id": "6f49393ff246acadcad3-8621e0e729f364808f4d",
+      "project": "chromium-compact",
+      "file": "b4-table-editing.spec.ts",
+      "title": "B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+      "line": 363,
+      "status": "passed",
+      "retry": 0,
+      "timeout_ms": 120000,
+      "duration_ms": 5979,
+      "attachments": [
+        {
+          "name": "browser-identity",
+          "content_type": "application/json",
+          "body_sha256": "961aa1cde825f38d64cd21a08e224fa5837decf265053c0dad5613ea39537479",
+          "browser_identity": {
+            "cdpVersion": {
+              "protocolVersion": "1.3",
+              "product": "Chrome/153.0.8010.54",
+              "revision": "@ab3ecba863fd7852cc9b0fe5736187e19ed52a1c",
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+              "jsVersion": "15.3.76.13"
+            },
+            "playwrightBrowserVersion": "153.0.8010.54",
+            "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "executableSha256": "fb2bf1c3007f223edcb4d970f33b0c828f7183b3ee832d6a737fe6945da80462"
+          }
+        },
+        {
+          "name": "materials-contained-units",
+          "content_type": "application/json",
+          "body_sha256": "62d1b0ade37b44f86003192e7aa61e14d7bd26b5517da2a91428ffde76efbc6c"
+        }
+      ],
+      "source_report": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R4_SERIAL/chromium-compact/report.json"
+    }
+  ],
+  "source_and_built_assets_unchanged": true,
+  "limits": "Functional browser evidence, not native/physics/performance qualification; earlier failed/interrupted attempts retained."
+}

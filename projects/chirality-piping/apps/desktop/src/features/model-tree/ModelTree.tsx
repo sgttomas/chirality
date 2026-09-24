@@ -9,7 +9,7 @@ import { modelIndexFor, type ModelIndex } from "../workspace/modelIndex";
 import { VirtualList } from "../workspace/VirtualList";
 import { OverflowRail, TableChromeContext } from "../workspace/table/OverflowRail";
 import { EngineeringTable, useTableBodyHeight, type TableApplyResult } from "../workspace/table/EngineeringTable";
-import { buildGridOperationIntent, materialTableColumns, sectionTableColumns, nodeTableColumns, type GridColumn, type GridRow } from "../workspace/table/modelTableAdapter";
+import { buildGridOperationIntent, parseOptionalQuantityEntry, pipeTableColumns, materialTableColumns, sectionTableColumns, nodeTableColumns, type GridColumn, type GridRow } from "../workspace/table/modelTableAdapter";
 import { quantityCellKey, useQuantitySortProjection } from "../workspace/table/quantitySortProjection";
 import { capturedCellIsCurrent, type CapturedCell, type TableRow } from "../workspace/table/tableState";
 
@@ -742,6 +742,9 @@ function EntityGrid({
   const [queuedMessage, setQueuedMessage] = useState("");
   const [reviewOpen, setReviewOpen] = useState(false);
   const [materialReviewOpen, setMaterialReviewOpen] = useState(false);
+  const [pipeReviewOpen, setPipeReviewOpen] = useState(false);
+  const [pipeDraftRetained, setPipeDraftRetained] = useState(false);
+  const [pipeReviewReset, setPipeReviewReset] = useState(0);
   const [sectionReviewOpen, setSectionReviewOpen] = useState(false);
   const [sectionDraftRetained, setSectionDraftRetained] = useState(false);
   const [sectionReviewReset, setSectionReviewReset] = useState(0);
@@ -749,8 +752,8 @@ function EntityGrid({
   const [directDraftRetained, setDirectDraftRetained] = useState(false);
   const [reviewReset, setReviewReset] = useState(0);
   const [materialReviewReset, setMaterialReviewReset] = useState(0);
-  const commonFamily = entityType === "nodes" || entityType === "materials" || entityType === "sections";
-  const currentReviewOpen = entityType === "sections" ? sectionReviewOpen : entityType === "materials" ? materialReviewOpen : reviewOpen;
+  const commonFamily = entityType === "nodes" || entityType === "materials" || entityType === "sections" || entityType === "pipes";
+  const currentReviewOpen = entityType === "pipes" ? pipeReviewOpen : entityType === "sections" ? sectionReviewOpen : entityType === "materials" ? materialReviewOpen : reviewOpen;
   const reviewVisible = !commonFamily || currentReviewOpen;
   const directVisible = entityType === "nodes" && !reviewOpen;
   const reviewRegionId = useId();
@@ -772,6 +775,10 @@ function EntityGrid({
   const retainedMaterialDrafts = changedGridCells({ columns: gridColumns(model, "materials"), drafts, rows: gridRows(model, "materials"), projectSessionGeneration }).length;
   // Retained raw enum drafts may be ineligible for Queue, but remain visible here.
   const retainedSectionDrafts = gridRows(model, "sections").reduce((count, row) => count + gridColumns(model, "sections").filter((column) => {
+    const value = drafts[draftKey(row, column, projectSessionGeneration)];
+    return value !== undefined && value !== column.value(row);
+  }).length, 0);
+  const retainedPipeDrafts = gridRows(model, "pipes").reduce((count, row) => count + gridColumns(model, "pipes").filter((column) => {
     const value = drafts[draftKey(row, column, projectSessionGeneration)];
     return value !== undefined && value !== column.value(row);
   }).length, 0);
@@ -838,7 +845,8 @@ function EntityGrid({
         })
       );
     });
-    if (entityType === "sections") setSectionReviewReset((value) => value + 1);
+    if (entityType === "pipes") setPipeReviewReset((value) => value + 1);
+    else if (entityType === "sections") setSectionReviewReset((value) => value + 1);
     else if (entityType === "materials") setMaterialReviewReset((value) => value + 1);
     else setReviewReset((value) => value + 1);
     setQueuedMessage(
@@ -865,18 +873,18 @@ function EntityGrid({
         </button>
         <button
           data-testid="clear-entity-grid-drafts"
-          disabled={entityType === "materials" || entityType === "sections" ? Object.keys(drafts).length === 0 : changedCells.length === 0}
-          onClick={() => { setReviewReset((value) => value + 1); setMaterialReviewReset((value) => value + 1); setSectionReviewReset((value) => value + 1); setDrafts({}); }}
+          disabled={entityType === "pipes" || entityType === "materials" || entityType === "sections" ? Object.keys(drafts).length === 0 : changedCells.length === 0}
+          onClick={() => { setReviewReset((value) => value + 1); setMaterialReviewReset((value) => value + 1); setSectionReviewReset((value) => value + 1); setPipeReviewReset((value) => value + 1); setDrafts({}); }}
           type="button"
         >
           <X size={14} aria-hidden="true" />
           {compact ? "Clear" : "Clear grid edits"}
         </button>
       </div>;
-  const retainedReviewCount = entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts;
-  const reviewToggle = <button className="entity-grid-review-toggle" hidden={!commonFamily} data-testid={`${entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"}-grid-review-disclosure`}
-        type="button" aria-label={compact && currentReviewOpen ? `Return to ${entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"} fields` : undefined} aria-expanded={reviewVisible} aria-controls={reviewRegionId} onClick={() => entityType === "sections" ? setSectionReviewOpen((value) => !value) : entityType === "materials" ? setMaterialReviewOpen((value) => !value) : setReviewOpen((value) => !value)}>
-        {compact ? currentReviewOpen ? "Fields" : "Review changes" : currentReviewOpen ? `Return to ${entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"} fields` : "Review multiple changes"}{!compact && !currentReviewOpen && (entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts) > 0 ? ` · ${entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts} retained draft${(entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts) === 1 ? "" : "s"}` : ""}
+  const retainedReviewCount = entityType === "pipes" ? retainedPipeDrafts : entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts;
+  const reviewToggle = <button className="entity-grid-review-toggle" hidden={!commonFamily} data-testid={`${entityType === "pipes" ? "pipe" : entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"}-grid-review-disclosure`}
+        type="button" aria-label={compact && currentReviewOpen ? `Return to ${entityType === "pipes" ? "pipe" : entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"} fields` : undefined} aria-expanded={reviewVisible} aria-controls={reviewRegionId} onClick={() => entityType === "pipes" ? setPipeReviewOpen((value) => !value) : entityType === "sections" ? setSectionReviewOpen((value) => !value) : entityType === "materials" ? setMaterialReviewOpen((value) => !value) : setReviewOpen((value) => !value)}>
+        {compact ? currentReviewOpen ? "Fields" : "Review changes" : currentReviewOpen ? `Return to ${entityType === "pipes" ? "pipe" : entityType === "sections" ? "section" : entityType === "materials" ? "material" : "node"} fields` : "Review multiple changes"}{!compact && !currentReviewOpen && (entityType === "pipes" ? retainedPipeDrafts : entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts) > 0 ? ` · ${entityType === "pipes" ? retainedPipeDrafts : entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts} retained draft${(entityType === "pipes" ? retainedPipeDrafts : entityType === "sections" ? retainedSectionDrafts : entityType === "materials" ? retainedMaterialDrafts : retainedNodeDrafts) === 1 ? "" : "s"}` : ""}
       </button>;
   const compactControls = <>
     <label className="compact-family-label">Family
@@ -896,6 +904,7 @@ function EntityGrid({
       <p>Grid mode fans each changed cell into a structured review intent; storage remains local. {commonFamily ? "Blank or whitespace text becomes TBD when queued; keeping a draft does not change the model." : ""}</p>
       {directDraftRetained ? <p>Direct node edit retained. Return to node fields to correct or cancel it.</p> : null}
       {materialDraftRetained ? <p>Direct material edit retained. Return to material fields to correct or cancel it.</p> : null}
+      {pipeDraftRetained ? <p>Direct pipe edit retained. Return to pipe fields to correct or cancel it.</p> : null}
       {sectionDraftRetained ? <p>Direct section edit retained. Return to section fields to correct or cancel it.</p> : null}
     </div>
   </>;
@@ -936,6 +945,13 @@ function EntityGrid({
           onSelect={onSelect} onApplyCellIntent={onApplyCellIntent} operationBusy={operationBusy} onDraftStateChange={setSectionDraftRetained}
           updateCell={updateCell} resetEditsKey={sectionReviewReset} />
       </div>
+      {!(entityType === "pipes" && !pipeReviewOpen) && pipeDraftRetained ? <p className="retained-direct-draft" role="status">Direct pipe edit retained. Return to pipe fields to correct or cancel it.</p> : null}
+      <div className="direct-coordinate-workarea" hidden={entityType !== "pipes" || pipeReviewOpen} inert={entityType !== "pipes" || pipeReviewOpen}>
+        <LibraryTable family="pipes" model={model} drafts={drafts} generation={tableGeneration} projectSessionGeneration={projectSessionGeneration}
+          active={entityType === "pipes" && !pipeReviewOpen} bounded={bounded} compact={compact} density={density} filter={filterText} selection={selection}
+          onSelect={onSelect} onApplyCellIntent={onApplyCellIntent} operationBusy={operationBusy} onDraftStateChange={setPipeDraftRetained}
+          updateCell={updateCell} resetEditsKey={pipeReviewReset} />
+      </div>
       <div className={`entity-grid-review${!commonFamily ? " other-family" : ""}`} id={reviewRegionId} hidden={!reviewVisible} inert={!reviewVisible}>
         <div className="entity-grid-review-content">
       <div className="entity-grid-summary">
@@ -965,6 +981,11 @@ function EntityGrid({
         <LibraryTable family="sections" model={model} drafts={drafts} generation={tableGeneration} projectSessionGeneration={projectSessionGeneration} review
           active={reviewVisible && entityType === "sections"} bounded={bounded} compact={compact} density={density} filter={filterText} selection={selection}
           onSelect={onSelect} updateCell={updateCell} resetEditsKey={sectionReviewReset} />
+      </div>
+      <div className="node-review-workarea" hidden={entityType !== "pipes"} inert={entityType !== "pipes"}>
+        <LibraryTable family="pipes" model={model} drafts={drafts} generation={tableGeneration} projectSessionGeneration={projectSessionGeneration} review
+          active={reviewVisible && entityType === "pipes"} bounded={bounded} compact={compact} density={density} filter={filterText} selection={selection}
+          onSelect={onSelect} updateCell={updateCell} resetEditsKey={pipeReviewReset} />
       </div>
       {!commonFamily ? <div className="entity-grid-scroll" role="region" aria-label="Editable model entity table">
         {virtualGrid ? (
@@ -1082,10 +1103,10 @@ function EntityGrid({
 }
 
 
-function actualLibraryQuantity(row: GridRow, fieldPath: string): { value: unknown; unit: string } {
+function actualLibraryQuantity(row: GridRow, fieldPath: string): { value: unknown; unit: string; malformed: boolean } {
   const raw = fieldPath.split(".").slice(0, -1).reduce<unknown>((value, key) => value && typeof value === "object" ? (value as Record<string, unknown>)[key] : undefined, row.raw);
   const quantity = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
-  return { value: quantity.value, unit: typeof quantity.unit === "string" ? quantity.unit : "" };
+  return { value: quantity.value, unit: typeof quantity.unit === "string" ? quantity.unit : "", malformed: raw !== undefined && raw !== null && (typeof raw !== "object" || typeof quantity.value !== "number" || !Number.isFinite(quantity.value)) };
 }
 
 /** The two mounted policies retain independent editor state; both use the same
@@ -1093,7 +1114,7 @@ function actualLibraryQuantity(row: GridRow, fieldPath: string): { value: unknow
 function LibraryTable({ family, model, drafts, generation, projectSessionGeneration, review = false, active, bounded, compact, density, filter, selection,
   onSelect, onApplyCellIntent, operationBusy, onDraftStateChange, updateCell, resetEditsKey
 }: {
-  family: "materials" | "sections"; model: PreviewModel; drafts: Record<string, string>; generation: string; projectSessionGeneration: number; review?: boolean;
+  family: "materials" | "sections" | "pipes"; model: PreviewModel; drafts: Record<string, string>; generation: string; projectSessionGeneration: number; review?: boolean;
   active: boolean; bounded: boolean; compact: boolean; density: "comfortable" | "compact"; filter: string; selection: EntityRef;
   onSelect: (selection: EntityRef) => void; onApplyCellIntent?: (intent: EditorOperationIntent) => Promise<TableApplyResult>;
   operationBusy?: boolean; onDraftStateChange?: (retained: boolean) => void;
@@ -1101,12 +1122,12 @@ function LibraryTable({ family, model, drafts, generation, projectSessionGenerat
 }) {
   const sourceRows = useMemo(() => gridRows(model, family), [model, family]);
   const grid = useMemo(() => gridColumns(model, family), [model, family]);
-  const columns = useMemo(() => family === "sections" ? sectionTableColumns(review) : materialTableColumns(review), [review, family]);
+  const columns = useMemo(() => family === "pipes" ? pipeTableColumns((model.materials ?? []).map((material) => material.id), review) : family === "sections" ? sectionTableColumns(review) : materialTableColumns(review), [review, family, model.materials]);
   const quantities = useMemo(() => grid.filter((column) => column.quantity), [grid]);
   const rows: TableRow[] = useMemo(() => sourceRows.map((row) => ({ key: entityKey(row), label: row.id, searchText: row.searchText,
     cells: Object.fromEntries(grid.map((column) => {
       const quantity = column.quantity ? actualLibraryQuantity(row, column.fieldPath) : null;
-      const unavailable = quantity && (typeof quantity.value !== "number" || !Number.isFinite(quantity.value) || !quantity.unit.trim());
+      const unavailable = quantity && !column.optionalQuantity && (typeof quantity.value !== "number" || !Number.isFinite(quantity.value) || !quantity.unit.trim());
       const draft = review ? drafts[draftKey(row, column, projectSessionGeneration)] : undefined;
       return [column.key, { value: draft ?? column.value(row), unit: column.unit(row), enumSource: column.options ? column.value(row) : undefined,
         showUnit: Boolean(quantity),
@@ -1123,20 +1144,22 @@ function LibraryTable({ family, model, drafts, generation, projectSessionGenerat
     const cellKey = quantityCellKey(row.key, key);
     const value = projection.sortValues.get(cellKey);
     const eligible = projection.eligibleCells.has(cellKey);
-    return [key, { ...cell, sortValue: value, readonly: cell.readonly || (!review && !eligible),
-      unavailable: cell.unavailable ?? (!review && !eligible ? "Direct editing unavailable while this quantity or its actual unit cannot be converted." : undefined) }];
-  })) })), [rows, quantities, projection, review]);
+    return [key, { ...cell, sortValue: value, readonly: cell.readonly || (!review && !eligible && !grid.find((column) => column.key === key)?.optionalQuantity),
+      unavailable: cell.unavailable ?? (!review && !eligible && !grid.find((column) => column.key === key)?.optionalQuantity ? "Direct editing unavailable while this quantity or its actual unit cannot be converted." : undefined) }];
+  })) })), [rows, quantities, projection, review, grid]);
   async function apply(captured: CapturedCell, value: string): Promise<TableApplyResult> {
     if (!onApplyCellIntent) return { applied: false, messages: ["The operation route is unavailable."] };
     if (!capturedCellIsCurrent(captured, projectedRows, generation)) return { applied: false, messages: ["The cell or project changed. Cancel and edit the current value."] };
     const row = sourceRows.find((candidate) => entityKey(candidate) === captured.rowKey);
     const column = grid.find((candidate) => candidate.key === captured.columnKey);
     if (!row || !column || projectedRows.find((candidate) => candidate.key === captured.rowKey)?.cells[captured.columnKey].readonly) return { applied: false, messages: ["The target cell is unavailable."] };
+    if (column.optionalQuantity && !parseOptionalQuantityEntry(value, captured.unit)) return { applied: false, messages: ["Enter a non-negative finite value in the existing unit; for an absent quantity enter value and unit, for example 0 mm."] };
+    if (column.referenceCollection && !column.options?.includes(value.trim())) return { applied: false, messages: ["The material ID is no longer available. Choose a current material ID."] };
     const intent = buildGridOperationIntent({ row, column: { ...column, unit: () => captured.unit, value: () => captured.before }, model, sequence: 1, value, interaction: "cell" });
     const identity = crypto.randomUUID(); intent.operation_id = `op:table-cell-${identity}`; intent.change.change_id = `change:table-cell-${identity}`;
     return onApplyCellIntent(intent);
   }
-  const familyLabel = family === "sections" ? "Section" : "Material";
+  const familyLabel = family === "pipes" ? "Pipe" : family === "sections" ? "Section" : "Material";
   const common = { label: `${familyLabel} ${review ? "review drafts" : "fields"}`, rowHeader: familyLabel, testIdPrefix: `${familyLabel.toLowerCase()}-`, persistentEditor: true, rows: projectedRows, columns,
     generation, active, bounded, compact, density, filter, selectedKey: entityKey(selection), onDraftStateChange,
     onSelect: (key: EntityKey) => { const row = sourceRows.find((candidate) => entityKey(candidate) === key); if (row) onSelect({ type: row.type, id: row.id }); } };
@@ -1280,15 +1303,17 @@ function gridColumns(model: PreviewModel, entityType: GridEntityType): GridColum
       readonlyGridColumn("section-ref", "Shared section", "section_ref", "Element"),
       readonlyGridColumn("from", "From", "from", "Element"),
       readonlyGridColumn("to", "To", "to", "Element"),
-      quantityGridColumn(
+      { ...quantityGridColumn(
         "mill-tolerance",
         "Mill tol.",
         "section.mill_tolerance.value",
         "Element",
         "length",
-        lengthUnit
-      ),
-      scalarGridColumn("material", "Material", "material", "Element", "material reference"),
+        ""
+      ), optionalQuantity: true,
+        unit: (row) => actualLibraryQuantity(row, "section.mill_tolerance.value").unit,
+        value: (row) => typeof actualLibraryQuantity(row, "section.mill_tolerance.value").value === "number" ? stringValueAtPath(row.raw, "section.mill_tolerance.value") : "TBD" },
+      { ...scalarGridColumn("material", "Material", "material", "Element", "material reference"), referenceCollection: "materials", options: (model.materials ?? []).map((material) => material.id) },
       scalarGridColumn("provenance", "Provenance", "provenance", "Element", "public/private source note")
     ];
   }
@@ -1680,8 +1705,14 @@ function readonlyGridColumn(
 }
 
 function gridCellReadonly(column: GridColumn, row: GridRow): boolean {
+  if (column.optionalQuantity) {
+    const quantity = actualLibraryQuantity(row, column.fieldPath);
+    if (quantity.malformed) return true;
+    if (typeof quantity.value === "number" && (!Number.isFinite(quantity.value) || !quantity.unit.trim())) return true;
+    if (quantity.value !== undefined && typeof quantity.value !== "number") return true;
+  }
   // Structured provenance must never be flattened into a user-entered string.
-  return Boolean(column.readonly || (column.fieldPath === "provenance" && ((row.type === "section" && typeof (row.raw as { provenance?: unknown }).provenance !== "string") || ((row.type === "node" || row.type === "material") && typeof (row.raw as { provenance?: unknown }).provenance !== "string"))));
+  return Boolean(column.readonly || (column.fieldPath === "provenance" && ((row.type === "section" && typeof (row.raw as { provenance?: unknown }).provenance !== "string") || ((row.type === "node" || row.type === "material" || row.type === "pipe") && typeof (row.raw as { provenance?: unknown }).provenance !== "string"))));
 }
 
 function changedGridCells({
@@ -1700,7 +1731,7 @@ function changedGridCells({
       if (gridCellReadonly(column, row)) return [];
       const key = draftKey(row, column, projectSessionGeneration);
       const value = drafts[key];
-      if (value === undefined || value === column.value(row) || (column.options && !column.options.includes(value))) return [];
+      if (value === undefined || value === column.value(row) || (column.options && !column.options.includes(column.referenceCollection ? value.trim() : value)) || (column.optionalQuantity && !parseOptionalQuantityEntry(value, column.unit(row)))) return [];
       return [{ row, column, value }];
     })
   );

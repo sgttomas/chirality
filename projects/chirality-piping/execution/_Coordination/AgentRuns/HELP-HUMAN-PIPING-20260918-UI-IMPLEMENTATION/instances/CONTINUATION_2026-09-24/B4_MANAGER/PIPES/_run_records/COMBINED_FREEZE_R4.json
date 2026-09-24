@@ -1,0 +1,48 @@
+{
+  "head": "47030e390b1d201a10ae4980ed52f412147bccb3",
+  "branch": "codex/piping-pipes-20260924",
+  "files": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "sha256": "95549a27c4afa15573b7553e2ab45a248f29d160c2d346662b1d36295da6871c"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.ts",
+      "sha256": "ffc54b3adac8ae474b1425759e0a9aeb4f41efa79594f6ba4ea70d4ff0800b53"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx",
+      "sha256": "a904128367ad9b1719d91b724aa3d7d501b5de7e13d24b2e4d163f5b0f610599"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/modelTableAdapter.test.ts",
+      "sha256": "ce75b993ae64b0327527fcac8122eb24db0ed881b39c9f311d35b575f763f0a3"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts",
+      "sha256": "5e2b81ce56858d88386acd622ff3797ee27d0ef8859b8f727a6ac829d410f56c"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/section_bindings.rs",
+      "sha256": "e7443363a756b9f1737e1984324a3e1e3ca87bc92682b094859072e26bfeb3e2"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+      "sha256": "83e88887a235053fe726a206dc47cad9ac8d0d25def555c27b987670d6ee6f73"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/tableState.ts",
+      "sha256": "1e24c67d0bb1bf01c3755915b9a320a089c6988163400aed7d9f6569ef4660ca"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx",
+      "sha256": "c13f45c6838eeff2442039dae30da27f90fb36cc576744e73ee381a307996038"
+    }
+  ],
+  "diff_sha256": "ebb1f148ef770648e71a8b05d2326176399df04bfd826b6b95e49a35930bb369",
+  "diff_includes_new_files": [
+    "projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts"
+  ],
+  "prior_freeze": "COMBINED_FREEZE_R3.json",
+  "repairs": "R4 browser test-only route correction, no product changes. Current HEAD is ROOT continuity-only checkpoint."
+}

@@ -44,3 +44,18 @@ describe("Materials existing quantity contract", () => {
     if (accepted) expect((result.applied_model!.materials![0] as unknown as Record<string, { value: number; unit: string }>)[fieldPath.split(".")[0]]).toMatchObject({ value: Number(value), unit: quantity.unit });
   });
 });
+
+describe("Pipe optional quantity operation payload", () => {
+  it.each(["omitted", "null"] as const)("authors %s zero with explicit units and gives direct and review the same engine result", async (absence) => {
+    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; delete pipe.section.mill_tolerance;
+    if (absence === "null") Object.assign(pipe.section, { mill_tolerance: null });
+    const column: GridColumn = { key: "mill", label: "Mill tol.", fieldPath: "section.mill_tolerance.value", objectType: "Element", changeKind: "set_field", dimension: "length", sourceNote: "explicit optional entry", optionalQuantity: true, unit: () => "", value: () => "TBD" };
+    const basis = { column, model, row: { id: pipe.id, label: pipe.label, type: "pipe" as const, searchText: "", raw: pipe }, sequence: 1, value: "0 mm" };
+    expect(() => buildGridOperationIntent({ ...basis, value: "0" })).toThrow("explicit unit");
+    const direct = buildGridOperationIntent({ ...basis, interaction: "cell" }); const review = buildGridOperationIntent(basis);
+    expect(direct.change).toMatchObject({ before: "TBD", after: '{"value":0,"unit":"mm"}', unit: "mm" });
+    const hash = await computeModelHash(model); const a = await applyModelOperation(model, direct, hash); const b = await applyModelOperation(model, review, hash);
+    expect(a.validation.application_status).toBe("applied_to_session_model"); expect(a.applied_model).toEqual(b.applied_model);
+    expect(a.applied_model!.pipe_segments[0].section.mill_tolerance).toEqual({ value: 0, unit: "mm" }); expect(pipe.section.mill_tolerance).toBe(absence === "null" ? null : undefined);
+  });
+});

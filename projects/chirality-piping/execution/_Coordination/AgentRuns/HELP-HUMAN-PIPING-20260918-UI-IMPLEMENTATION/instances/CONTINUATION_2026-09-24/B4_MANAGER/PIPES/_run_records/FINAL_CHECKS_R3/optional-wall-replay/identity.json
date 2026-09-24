@@ -1,0 +1,22 @@
+{
+  "repo": "/Users/ryan/.codex/worktrees/6614/chirality",
+  "node": "v24.18.0",
+  "assets": [
+    {
+      "name": "open_pipe_stress_operation_applier.d.ts",
+      "sha256": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8"
+    },
+    {
+      "name": "open_pipe_stress_operation_applier.js",
+      "sha256": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595"
+    },
+    {
+      "name": "open_pipe_stress_operation_applier_bg.wasm",
+      "sha256": "6bee62d77d4503f4d0e6f0a7fbc34dab899ac823168ff83cf2401974b4219b75"
+    },
+    {
+      "name": "open_pipe_stress_operation_applier_bg.wasm.d.ts",
+      "sha256": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16"
+    }
+  ]
+}

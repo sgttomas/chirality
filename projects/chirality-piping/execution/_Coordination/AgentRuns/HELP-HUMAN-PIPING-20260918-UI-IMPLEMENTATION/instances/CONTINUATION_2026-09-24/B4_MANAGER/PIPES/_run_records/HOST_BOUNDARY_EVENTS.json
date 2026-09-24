@@ -1,0 +1,15 @@
+{
+  "source": "Manager tool transcript; bounded derived account",
+  "events": [
+    {
+      "operation": "Initial read-only ps process inspection during R3 teardown",
+      "result": "Sandbox PermissionError: [Errno 1] Operation not permitted: ps",
+      "recovery": "Read-only process inspection retried with supported require_escalated approval, then owned cleanup and absence verified."
+    },
+    {
+      "operation": "Local Vite browser servers",
+      "result": "Authorized through require_escalated; no permission bypass or host policy change."
+    }
+  ],
+  "limits": "These are host execution boundaries, not product test passes/failures."
+}

@@ -1,0 +1,1 @@
+{"cwd": "projects/chirality-piping/apps/desktop", "argv": ["npx", "tsc", "--noEmit"]}

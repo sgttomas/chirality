@@ -1,0 +1,328 @@
+[
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-equal-wall.json",
+    "sha256": "3459c3f9ff081b83470c35679d8a79e95c81f99e9bc00056680c66338f2258e0",
+    "bound": true,
+    "name": "equal-wall",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-true-equal-wall",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.004,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": false,
+    "validation_codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "apply_codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ]
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-greater-wall.json",
+    "sha256": "d91f424f6fbc6c0805f987c5577f90df52205b8724c9b397000fa903f2cc9e41",
+    "bound": true,
+    "name": "greater-wall",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-true-greater-wall",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.005,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": false,
+    "validation_codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ],
+    "apply_codes": [
+      "OP-SECTION-BINDING-INVALID"
+    ]
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-negative.json",
+    "sha256": "447ebd6d59cedd1baa108c64084d9f6fc50c420587ea099fd075a40abebcb3c8",
+    "bound": true,
+    "name": "negative",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-true-negative",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":-0.001,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": false,
+    "validation_codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "apply_codes": [
+      "OP-VALUE-NEGATIVE"
+    ]
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-positive-valid.json",
+    "sha256": "a7b736bd5baf2dfc68c6a4062a13b0d9edaa9176d0aa183e6c9f76c5bb1b44ac",
+    "bound": true,
+    "name": "positive-valid",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-true-positive-valid",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.001,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": true,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/bound-zero.json",
+    "sha256": "3e944699bf40993b1af6c3848d0d8128754126f3657f07cd831bf61a2a93e5a6",
+    "bound": true,
+    "name": "zero",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-true-zero",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": true,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-equal-wall.json",
+    "sha256": "ad9c33228fe4a3ddaac41cf9573e3096496541af79272c5acb919cea70a71fe8",
+    "bound": false,
+    "name": "equal-wall",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-false-equal-wall",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.004,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-greater-wall.json",
+    "sha256": "f9193e19cbbb13ebae40bb6368c087f61d6a42023bb90bd61afb43b596c56f06",
+    "bound": false,
+    "name": "greater-wall",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-false-greater-wall",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.005,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-negative.json",
+    "sha256": "5391a7d3d4afb4c0426f144cea41b2f959e4d74150a9dd9d8d8e38523b4f468f",
+    "bound": false,
+    "name": "negative",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-false-negative",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":-0.001,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": false,
+    "actual": false,
+    "validation_codes": [
+      "OP-VALUE-NEGATIVE"
+    ],
+    "apply_codes": [
+      "OP-VALUE-NEGATIVE"
+    ]
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-positive-valid.json",
+    "sha256": "8a6d0f9939eaf7462269b3e06dc07fa4a55e89e0ce7dbba8a8fce13078372eb2",
+    "bound": false,
+    "name": "positive-valid",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-false-positive-valid",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0.001,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": true,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  },
+  {
+    "file": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/optional-wall-probe/unbound-zero.json",
+    "sha256": "2e29a4a764894ce4111dbe2ed98e3a06217e29e2ad41981871e7ae1dd6666b92",
+    "bound": false,
+    "name": "zero",
+    "section": {
+      "outside_diameter": {
+        "value": 0.06,
+        "unit": "m"
+      },
+      "wall_thickness": {
+        "value": 0.004,
+        "unit": "m"
+      }
+    },
+    "change": {
+      "change_id": "change:pipe-wall-false-zero",
+      "change_kind": "set_field",
+      "field_label": "Mill tolerance",
+      "field_path": "section.mill_tolerance.value",
+      "before": "TBD",
+      "after": "{\"value\":0,\"unit\":\"m\"}",
+      "unit": "m",
+      "dimension": "length",
+      "source_note": "invented bounded Pipe optional-quantity backend probe"
+    },
+    "expected": true,
+    "actual": true,
+    "validation_codes": [],
+    "apply_codes": []
+  }
+]
