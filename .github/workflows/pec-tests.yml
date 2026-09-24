@@ -5,10 +5,8 @@ name: pec-tests
 
 on:
   pull_request:
-    paths:
-      - ".github/workflows/pec-tests.yml"
-      - "projects/pec/**"
-      - "projects/chirality-runtime/**"
+    types: [opened, synchronize, reopened]
+  # Explicit full coverage on the selected branch.
   workflow_dispatch:
 
 permissions:
@@ -19,12 +17,44 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  selection:
+    name: Select PEC coverage
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: tools
+      - name: Test hosted selection policy
+        run: python3 -m unittest discover -s tools/software_workflow -p test_hosted_ci.py
+      - name: Select checks from the complete PR diff
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py plan --suite pec
+          --event "$EVENT" --base "$BASE" --head "$HEAD" --output pec-ci-selection.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pec-ci-selection
+          path: pec-ci-selection.json
+
   pec:
+    name: PEC workspace tests
+    needs: selection
+    if: needs.selection.outputs.mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           filter: blob:none
           # The runtime project is required: @pec/server depends on
           # runtime-client/contracts via file:../../chirality-runtime/packages/.
@@ -50,3 +80,23 @@ jobs:
       - name: Run workspace test suites
         run: npm test
         working-directory: projects/pec
+
+  result:
+    name: pec
+    needs: [selection, pec]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: tools/software_workflow
+      - name: Require the selected checks
+        env:
+          MODE: ${{ needs.selection.outputs.mode }}
+          SELECTION: ${{ needs.selection.result }}
+          PRODUCT: ${{ needs.pec.result }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite pec
+          --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"

@@ -105,6 +105,10 @@
   },
   "path_rules": [
     {
+      "paths": ["tools/hosted-ci-routing.json"],
+      "checks": ["software_workflow"]
+    },
+    {
       "paths": [
         "tools/analysis/*"
       ],
