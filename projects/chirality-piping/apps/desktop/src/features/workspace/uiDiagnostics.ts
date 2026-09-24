@@ -1,3 +1,4 @@
+import type { LabelMode, LabelPolicyResult } from "../viewport/labelPolicy";
 import * as THREE from "three";
 import type { EntityRef, Vec3 } from "../../types";
 
@@ -132,7 +133,12 @@ export type UiDiagnosticsSnapshot = Readonly<{
       publishedAt: number | null;
       renderSubmissionSequence: number;
     }> | Unavailable;
-    labels: Readonly<{ enabled: boolean; renderedCount: number; budget: number }>;
+    labels: Readonly<{ enabled: boolean; renderedCount: number; budget: number;
+      mode?: LabelMode; placementStatus?: "applied" | "unavailable"; projectionError?: string | null;
+      contextCount?: number; ordinaryCount?: number; contextOverflow?: number;
+      suppressed?: LabelPolicyResult["suppressed"]; ineligible?: LabelPolicyResult["ineligible"];
+      unplaced?: LabelPolicyResult["unplaced"];
+    }>;
     geometry: Readonly<{ mode: "schematic" | "actual-od"; odGeneration: number; odStatus: string }>;
     resources: Readonly<{
       rendererInfo: UiRendererInfo;

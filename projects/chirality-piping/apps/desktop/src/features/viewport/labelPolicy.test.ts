@@ -26,6 +26,43 @@ function input(count = 5): LabelPolicyInput {
 }
 
 describe("viewport label policy", () => {
+  it("keeps a visible ordinary label at its prior center when promoted to hover", () => {
+    const index = buildModelIndex(fixture(2), 1, 1);
+    const measurements = new Map([key("0"), key("1")].map((id) => [id,
+      { x: 100, y: 100, width: 10, height: 8, inFrustum: true }]));
+    const state = { ...input(2), measurements, cameraTarget: { x: 0, y: 0, z: 0 } };
+    const previous = layoutViewportLabels(index, state).rendered.find((item) => item.key === key("1"))!.rect;
+    const hovered = { ...state, hoverKey: key("1") };
+    expect(layoutViewportLabels(index, hovered).rendered[0].rect).not.toEqual(previous);
+    const preferredHoverCenter = { key: key("1"), x: (previous.left + previous.right) / 2,
+      y: (previous.top + previous.bottom) / 2 };
+    const result = layoutViewportLabels(index, { ...hovered, preferredHoverCenter });
+    expect(result.rendered[0]).toEqual({ key: key("1"), role: "hover", rect: previous });
+    expect(result.rendered.filter((item) => item.key === key("1"))).toHaveLength(1);
+    expect(result.counts).toEqual({ context: 1, ordinary: 1, total: 2,
+      contextOverflow: 0, suppressed: 0, ineligible: 0, unplaced: 0 });
+    expect(layoutViewportLabels(index, { ...hovered, preferredHoverCenter })).toEqual(result);
+  });
+
+  it("does not let preferred hover placement bypass Hide, primary priority or identity matching", () => {
+    const index = buildModelIndex(fixture(2), 1, 1);
+    const state = { ...input(2), primaryKey: key("0"), hoverKey: key("1") };
+    const baseline = layoutViewportLabels(index, state);
+    const primary = baseline.rendered[0].rect;
+    const preferredHoverCenter = { key: key("1"), x: (primary.left + primary.right) / 2,
+      y: (primary.top + primary.bottom) / 2 };
+    const result = layoutViewportLabels(index, { ...state, preferredHoverCenter });
+    expect(result.rendered[0]).toEqual(baseline.rendered[0]);
+    expect(labelRectsOverlap(result.rendered[0].rect, result.rendered[1].rect)).toBe(false);
+    expect(layoutViewportLabels(index, { ...state, preferredHoverCenter: { ...preferredHoverCenter, key: key("0") } }))
+      .toEqual(baseline);
+    for (const mode of ["Budget", "All", "Off"] as const) {
+      const hidden = layoutViewportLabels(index, { ...state, mode, preferredHoverCenter, hiddenKeys: new Set([key("1")]) });
+      expect(hidden.rendered.some((item) => item.key === key("1"))).toBe(false);
+      expect(hidden.ineligible).toContainEqual({ key: key("1"), role: "hover", reason: "hidden" });
+    }
+  });
+
   it("uses drawable CSS area without a DPR input and tolerates invalid extents", () => {
     expect(nominalLabelBudget(603, 828)).toBe(138);
     expect(nominalLabelBudget(1000, 828)).toBe(230);

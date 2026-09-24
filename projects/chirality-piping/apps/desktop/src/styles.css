@@ -1386,7 +1386,21 @@ button:focus-visible {
   font-weight: 700;
   line-height: 1;
   pointer-events: auto;
-  transform: translate(-50%, -50%);
+  transform: none;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.viewport-select-target[data-label-placed="true"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.viewport-label-omissions { position: relative; }
+.viewport-label-omissions > div {
+  position: absolute; right: 0; top: 100%; z-index: 12;
+  width: 320px; max-height: 240px; overflow: auto;
+  padding: 8px; background: var(--ui-surface, white); border: 1px solid var(--ui-border);
 }
 
 .viewport-select-target span {

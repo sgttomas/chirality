@@ -1,0 +1,112 @@
+{
+  "manager": "/root/c4_manager",
+  "role": "WORKING_ITEMS Type1",
+  "parent": "/root",
+  "base": "4555f6c13f4356d78eff2df9a4e077708af01944",
+  "actual_head": "4555f6c13f4356d78eff2df9a4e077708af01944",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+      "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md",
+      "sha256": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md",
+      "sha256": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/INTEGRATION_PLAN.md",
+      "sha256": "2c14fc78f1e369a8bb3766577bdb958439cc201c5b92a8427233119afdfbb2bb",
+      "read": "full role/root/project/loop/activation this resume; retained policy/plan bodies previously read and hash-revalidated"
+    }
+  ],
+  "shared_source_handback": {
+    "src/App.tsx": "5f900ec96cc7e1d58f13f53a653bf845b448594c0a3d9bcb7b20e10df387e86e",
+    "src/features/model-tree/ModelTree.tsx": "5d47cada05fba6e3f331f35cff6a92d1a002346301cc4b11a8f26cfeb9302f75",
+    "src/features/workspace/table/EngineeringTable.tsx": "3e632f492a9069ec194bb0e716290c08db5081ce449e1468b8f0f34b514fdbc8",
+    "src/styles.css": "9565a3909c6f1f65facb04da2ea05604ca206554d414437927dda65886683c7c",
+    "src/features/workspace/workspaceSession.ts": "fe0f9eea5a991d965dc097553e73e8c4c23c7968ed1743a8709af94f02dab20d"
+  },
+  "children": [
+    {
+      "name": "/root/c4_manager/projection_task",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "fork_turns": "none",
+      "scope": "new labelProjection.ts/test + TASK_PROJECTION evidence"
+    },
+    {
+      "name": "/root/c4_manager/canvas_task",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "fork_turns": "none",
+      "scope": "PipeViewport; narrowly necessary viewportResource; uiDiagnostics/tests; label-only styles; new viewport integration tests; three named ordinary E2E mode scenarios + TASK_CANVAS evidence"
+    },
+    {
+      "name": "/root/c4_manager/policy_task",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "mechanism": "collaboration.followup_task retained bounded Type2 child",
+      "scope": "labelPolicy.ts/labelPlacement.ts and their tests; TASK_HOVER evidence only",
+      "authority": "ROOT explicit response confirming demonstrated connected hover need fits bounded core-extension authority; fresh focused checks and independent backcheck required",
+      "api": "preferredHoverCenter?: Readonly<{key:EntityKey;x:number;y:number}>; matching hovered eligible identity only; prior center reconstructed with current measured dimensions, validates containment/collision/picks; maximum24 candidates retained"
+    }
+  ],
+  "mechanism": "actual collaboration.spawn_agent delegated-harness-native children; no Type2 delegation",
+  "resource_admission": "source/test authoring only; no test/compiler/npm/build/browser/native/CUA/ports until explicit ROOT release",
+  "current_row": "optional typed null-by-default prop only; no App/table/session writes",
+  "later_resource_admission": "ROOT released sequential locked offline dependency setup, desktop TypeScript and focused unit/component tests in this isolated checkout; no whole App suite/browser/native/ports/benchmarks. Existing verified dependencies/WASM are present; no rebuild or reinstall needed. Manager owns commands and will return lane before primary clean-sweep rerun.",
+  "additional_selected_skills": [
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "use": "Full body read by manager for diagnosis/review coordination."
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+      "use": "Full body read by manager for diagnosis/review coordination."
+    }
+  ]
+}

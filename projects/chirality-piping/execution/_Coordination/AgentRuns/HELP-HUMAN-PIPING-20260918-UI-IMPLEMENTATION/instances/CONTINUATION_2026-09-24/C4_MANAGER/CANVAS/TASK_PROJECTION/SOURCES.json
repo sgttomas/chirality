@@ -1,0 +1,91 @@
+{
+  "basis_commit": "4555f6c13f4356d78eff2df9a4e077708af01944",
+  "mechanism": "delegated-harness-native descendant",
+  "parent": "/root/c4_manager",
+  "child": "/root/c4_manager/projection_task",
+  "role": "TASK Type 2",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md",
+      "sha256": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md",
+      "sha256": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md",
+      "sha256": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/INTEGRATION_PLAN.md",
+      "sha256": "2c14fc78f1e369a8bb3766577bdb958439cc201c5b92a8427233119afdfbb2bb"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.test.ts",
+      "sha256": "bff08f70bdf0259e94e56eaac2e8911c76f1e7be77f3adc9f8335eb6b36b1aa0"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts",
+      "sha256": "ecc235baa8867101b9ac913d37f3072f3493992393f1253ae65b50fc47b98153"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts",
+      "sha256": "b7b8c5f08a6a42afb7ec197327c2bcfecb308f104b0510d738479d84a18645e8"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts",
+      "sha256": "06246bd2ada58f062273bb586c5cc16124229c04959cb6b140fa3748fd3ab0fe"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "sha256": "a2ccaf863646c48c3f1c3303ad31ae87132311c28f72b343824f47ac58a83314"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts",
+      "sha256": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/CANVAS/_run_records/projection-camera-probe.txt",
+      "sha256": "38ea55f6fbe51312f839d9e97f3ff0b8422a9ca9abec5cd6a2f195f72f01f15d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.ts",
+      "sha256": "6cfaf16db361d45a8e605439d48f2e15bbe4a08abf0f59014122ad5605ee3755"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/viewport/labelProjection.test.ts",
+      "sha256": "e323e32b2e005b36581f5b9f43146fbb2b39a6d853ad7709d0c27ffe96c85bcf"
+    }
+  ]
+}

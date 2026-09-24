@@ -1,0 +1,57 @@
+$ npm --prefix projects/chirality-piping/apps/desktop test -- src/features/viewport/labelPolicy.test.ts src/features/viewport/labelPlacement.test.ts src/features/viewport/labelCollisionIndex.test.ts src/features/viewport/labelProjection.test.ts src/features/viewport/PipeViewport.labels.test.tsx src/features/viewport/viewportLabelMeasurements.test.ts src/features/viewport/viewportResource.test.ts src/features/viewport/viewportSelection.test.ts src/features/workspace/uiDiagnostics.test.ts
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/viewport/labelPolicy.test.ts src/features/viewport/labelPlacement.test.ts src/features/viewport/labelCollisionIndex.test.ts src/features/viewport/labelProjection.test.ts src/features/viewport/PipeViewport.labels.test.tsx src/features/viewport/viewportLabelMeasurements.test.ts src/features/viewport/viewportResource.test.ts src/features/viewport/viewportSelection.test.ts src/features/workspace/uiDiagnostics.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/viewport/labelProjection.test.ts (5 tests | 1 failed) 155ms
+     × contains every sampled actual picker hit across orbit, clipping, capsule, sphere, cone and OD variants 132ms
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15472:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:916:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15476:11)
+    at new ViewportResource (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:510:21)
+    at /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:916:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-c4-policy-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/viewport/labelProjection.test.ts > label projection > contains every sampled actual picker hit across orbit, clipping, capsule, sphere, cone and OD variants
+Error: Invalid label projection camera or CSS dimensions.
+ ❯ projectLabelPickTargets src/features/viewport/labelProjection.ts:62:50
+     60| }>): readonly LabelRect[] {
+     61|   const { camera, width, height } = input;
+     62|   if (!validCamera(camera, width, height)) throw new Error("Invalid la…
+       |                                                  ^
+     63|   const rectangles: LabelRect[] = [];
+     64|   for (const primitive of input.primitives) {
+ ❯ src/features/viewport/labelProjection.test.ts:102:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  1 failed | 131 passed (132)
+   Start at  22:52:24
+   Duration  1.80s (transform 1.87s, setup 1.60s, import 1.90s, tests 717ms, environment 5.84s)
+
+
+exit=1
+elapsed_seconds=2.330

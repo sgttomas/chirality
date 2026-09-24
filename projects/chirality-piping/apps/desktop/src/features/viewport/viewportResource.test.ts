@@ -604,6 +604,7 @@ describe("viewport resource primitives", () => {
       contextRestoredCount: 0,
       scheduler,
       resizeObserver,
+      labelMeasurementDisposers: new Set(),
       controls,
       renderer,
       host,

@@ -1,0 +1,22 @@
+{
+  "role": "chirality-root:agents/AGENT_TASK.md (TASK Type 2)",
+  "parent": "/root/c4_manager",
+  "child": "/root/c4_manager/policy_task",
+  "mechanism": "delegated-harness-native resumed child",
+  "base_commit": "4555f6c13f4356d78eff2df9a4e077708af01944",
+  "origins": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a"
+  },
+  "outputs": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": "d1c8c2b748e3b6e6fa75c70e7eb508e0907a162aebab50f5839d617bd43907c6",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "4bc83a6bcd008169286fdad4037624c34fa2d34efa142e8eea0768f560637ea3",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.test.ts": "8f2cc27af83f331e351025798f85e9478b1d26d627ba80d032bed42921d45b16",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.test.ts": "8045a4c1b1b9e1b0d10c2a8d0ec01ca3fedcb8f4e24c5fcb79e6a29cd2def38f"
+  }
+}

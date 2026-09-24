@@ -1,0 +1,12 @@
+$ ./node_modules/.bin/tsc --noEmit -p apps/desktop/tsconfig.json
+apps/desktop/src/features/workspace/uiDiagnostics.test.ts(263,77): error TS2322: Type '{ enabled: boolean; mode: "Off"; placementStatus: "applied"; renderedCount: number; budget: number; contextCount: number; ordinaryCount: number; contextOverflow: number; suppressed: { key: "node:ordinary"; role: "ordinary"; reason: "mode"; }[]; ineligible: never[]; unplaced: { ...; }[]; }' is not assignable to type 'Readonly<{ enabled: boolean; renderedCount: number; budget: number; mode?: LabelMode | undefined; placementStatus?: "unavailable" | "applied" | undefined; projectionError?: string | null | undefined; ... 5 more ...; unplaced?: readonly (Readonly<...> & { ...; })[] | undefined; }>'.
+  Types of property 'suppressed' are incompatible.
+    Type '{ key: "node:ordinary"; role: "ordinary"; reason: "mode"; }[]' is not assignable to type 'readonly (Readonly<{ key: EntityKey; role: LabelRole; }> & { reason: "mode" | "budget"; })[]'.
+      Type '{ key: "node:ordinary"; role: "ordinary"; reason: "mode"; }' is not assignable to type 'Readonly<{ key: EntityKey; role: LabelRole; }> & { reason: "mode" | "budget"; }'.
+        Type '{ key: "node:ordinary"; role: "ordinary"; reason: "mode"; }' is not assignable to type 'Readonly<{ key: EntityKey; role: LabelRole; }>'.
+          Types of property 'key' are incompatible.
+            Type 'string' is not assignable to type 'EntityKey'.
+              Type 'string' is not assignable to type '{ readonly __entityKey: unique symbol; }'.
+
+exit=2
+elapsed_seconds=9.078

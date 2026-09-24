@@ -403,7 +403,7 @@ test("real box gestures obey the visible Nodes and Pipes filters without replaci
   await page.getByTestId("viewport-selection-filter").selectOption("nodes");
   const box = await canvas.boundingBox();
   expect(box).not.toBeNull();
-  const allProjectedTargets = await page.getByTestId("viewport-selection-layer").locator(".viewport-select-target.node, .viewport-select-target.pipe").evaluateAll((targets) =>
+  const allProjectedTargets = await page.getByTestId("viewport-selection-layer").locator('.viewport-select-target.node[data-label-placed="true"], .viewport-select-target.pipe[data-label-placed="true"]').evaluateAll((targets) =>
     targets.map((target) => {
       const rect = target.getBoundingClientRect();
       return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
@@ -576,8 +576,8 @@ test("Box Select keeps the camera and authored projection invariant for plain, S
   expectStableViewportEndpoint(isometricEndpoint, firstIsometric, "orbit to Isometric preset");
   expect(await page.getByTestId("command-selection-readout").innerText()).toBe(selectionReadoutAfterFit);
 
-  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("aria-pressed", "true");
-  const labelSample = await page.getByTestId("viewport-selection-layer").locator(".viewport-select-target").evaluateAll((targets) => {
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Budget");
+  const labelSample = await page.getByTestId("viewport-selection-layer").locator('.viewport-select-target[data-label-placed="true"]').evaluateAll((targets) => {
     const mainCanvas = document.querySelector<HTMLCanvasElement>('[data-testid="viewport-canvas"] canvas');
     const canvasRect = mainCanvas?.getBoundingClientRect();
     if (!mainCanvas || !canvasRect) return null;
@@ -1887,8 +1887,8 @@ test("empty ordered selection publishes independently from project inspector", a
     }, model.nodes[10].position);
     await testInfo.attach(name, { body: JSON.stringify({ before, after, projected, selectedNode: model.nodes[10] }, null, 2), contentType: "application/json" });
   };
-  await activateWithKeyboard(page, page.getByTestId("toggle-viewport-labels"));
-  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("aria-pressed", "false");
+  await setCurrentLabelMode(page, "Off");
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Off");
   const baseline = await identity([project], project, project);
   const resultsBefore = await page.getByTestId("results-panel").allTextContents();
   await selectTreeRow(page, node.type, node.id);
@@ -1985,8 +1985,8 @@ test("decorative viewport overlays pass real canvas gestures while view controls
   });
   const model = await gotoRoutedFixture(page);
   expect(model.components ?? []).toHaveLength(0);
-  await activateWithKeyboard(page, page.getByTestId("toggle-viewport-labels"));
-  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("aria-pressed", "false");
+  await setCurrentLabelMode(page, "Off");
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Off");
   const canvas = page.getByTestId("viewport-canvas").locator("canvas");
   const axis = page.getByRole("img", { name: "Orientation gizmo showing X, Y, Z axes", exact: true });
   const scale = page.getByTestId("viewport-scale-bar");
@@ -2072,7 +2072,7 @@ test("decorative viewport overlays pass real canvas gestures while view controls
   await front.click(); await expect(front).toHaveAttribute("aria-pressed", "true");
   const frontAfter = await settled(); expect(frontAfter.camera.position).not.toEqual(wheelAfter.camera.position);
   await page.getByTestId("viewport-view-isometric").click(); await settled();
-  await activateWithKeyboard(page, page.getByTestId("toggle-viewport-labels"));
+  await setCurrentLabelMode(page, "Budget");
   const node = model.nodes[10]; await selectTreeRow(page, "node", node.id);
   const label = page.getByRole("button", { name: `Select ${node.label} in viewport`, exact: true });
   await expect(label).toBeVisible(); await label.click();
@@ -2103,7 +2103,7 @@ async function settle(page: Page) {
 }
 async function setup(page: Page) {
   const model = await gotoRoutedFixture(page); expect(model.components ?? []).toHaveLength(0);
-  await activateWithKeyboard(page, page.getByTestId("toggle-viewport-labels"));
+  await setCurrentLabelMode(page, "Off");
   await selectTreeRow(page, "node", model.nodes[10].id);
   await expect.poll(async () => (await read(page)).snapshot.viewport.selection.orderedRefs).toEqual([{ type: "node", id: model.nodes[10].id }]);
   await page.evaluate(() => {
@@ -2305,4 +2305,12 @@ async function openNodeGridReview(page: import("@playwright/test").Page) {
   if (await summary.getAttribute("aria-expanded") !== "true") {
     await activateWithKeyboard(page, summary);
   }
+}
+
+async function setCurrentLabelMode(page: Page, mode: "Budget" | "All" | "Off") {
+  const button = page.getByTestId("toggle-viewport-labels");
+  for (let step = 0; step < 3 && await button.getAttribute("data-label-mode") !== mode; step++) {
+    await activateWithKeyboard(page, button);
+  }
+  await expect(button).toHaveAttribute("data-label-mode", mode);
 }

@@ -33,3 +33,7 @@ Actual parent `/root`, manager `/root/c4_manager` WORKING_ITEMS Type 1, child `/
 ## Integration planning handback
 
 [INTEGRATION_PLAN.md](INTEGRATION_PLAN.md) maps fixed-base caller data and exact proposed writer/test scopes. No product edit or rerun accompanied review fan-in or planning. The fit owner’s latest ModelTree/table handback remains required before implementing the proposed row publication interface. The reviewed source remains unchanged.
+
+## Activated canvas continuation
+
+The later merged basis `4555f6c13f4356d78eff2df9a4e077708af01944` and C4_CANVAS_ACTIVATION authorized canvas/diagnostics/label CSS implementation. [CANVAS/RETURN.md](CANVAS/RETURN.md) records the resulting source, authorized hover-core extension, actual failures/repairs and final desktop TypeScript plus nine-file/133-test focused pass. Earlier pure-source0ec review/checks remain historical and do not cover the new canvas diff. True current-row App/table publication, fresh continuation review, browser/native/full-sweep and qualification gates remain open as stated there.

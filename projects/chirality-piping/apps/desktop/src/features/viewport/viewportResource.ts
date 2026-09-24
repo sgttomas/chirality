@@ -468,6 +468,7 @@ export class ViewportResource {
   private readonly gizmoScene = new THREE.Scene();
   private readonly gizmoCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   private readonly resizeObserver: ResizeObserver | null;
+  private readonly labelMeasurementDisposers = new Set<() => void>();
   private readonly raycaster = new THREE.Raycaster();
   private pickables: THREE.Object3D[] = [];
   private pointPrimitives: readonly PointPickPrimitive[] = [];
@@ -651,6 +652,29 @@ export class ViewportResource {
 
   setActualOdRadiusByPipe(radii: ReadonlyMap<EntityKey, number>): void {
     this.actualOdRadiusByPipe = new Map(radii);
+  }
+
+  /** Label measurement invalidation participates in the same owned-resource ledger. */
+  observeLabelMeasurements(elements: readonly Element[], invalidate: () => void): () => void {
+    if (this.disposed) return () => {};
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(invalidate);
+    observer?.observe(this.renderer.domElement);
+    for (const element of elements) observer?.observe(element);
+    const fonts = this.renderer.domElement.ownerDocument.fonts;
+    fonts?.addEventListener("loadingdone", invalidate);
+    const counts = { resizeObservers: observer ? 1 : 0, eventBindings: fonts ? 1 : 0 };
+    this.ownership.createLifecycle(counts);
+    let active = true;
+    const dispose = () => {
+      if (!active) return;
+      active = false;
+      observer?.disconnect();
+      fonts?.removeEventListener("loadingdone", invalidate);
+      this.ownership.disposeLifecycle(counts);
+      this.labelMeasurementDisposers.delete(dispose);
+    };
+    this.labelMeasurementDisposers.add(dispose);
+    return dispose;
   }
 
   setLabelUpdater(updater: (() => void) | null): void {
@@ -874,6 +898,7 @@ export class ViewportResource {
     if (this.disposed) return;
     this.disposed = true;
     this.scheduler.dispose();
+    for (const dispose of this.labelMeasurementDisposers) dispose();
     this.resizeObserver?.disconnect();
     window.removeEventListener("resize", this.resize);
     document.removeEventListener("visibilitychange", this.handleVisibilityChange);

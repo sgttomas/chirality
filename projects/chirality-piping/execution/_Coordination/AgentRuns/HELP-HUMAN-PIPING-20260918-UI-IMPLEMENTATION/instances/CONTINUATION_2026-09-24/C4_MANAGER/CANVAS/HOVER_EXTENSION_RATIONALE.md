@@ -1,0 +1,9 @@
+# Connected hover need and bounded core extension
+
+During canvas authoring, changing an already visible ordinary label to hover priority can move its button. Pointer-leave then demotes it, allowing repeated movement. This is a source-derived integration concern, not an executed browser witness. The canvas child raised it; manager rejected an independent retained-layout/count override because policy placement and diagnostics could diverge.
+
+ROOT explicitly confirmed that core-owned optional prior-center validation fits the existing bounded extension authority. The requested solution preserves priority, non-overlap, picking exclusions, Hide, current dimensions/bounds and the original at-most-24 candidate search. A stale/nonfinite/noncontained center falls through to ordinary placement. A valid preferred candidate replaces one normal attempt; it does not introduce an extra unrestricted search. The caller must bind retention to hovered identity and source geometry/generation and clear it when no longer applicable.
+
+The retained Astra/low TASK `/root/c4_manager/policy_task` owns only labelPolicy/labelPlacement and their maintained tests, plus TASK_HOVER evidence. It does not edit the collision index, caller or other files. The canvas child consumes the agreed optional `preferredHoverCenter: {key,x,y}` and keeps model/selection/session writers untouched. This is a new reviewed-core delta requiring fresh focused tests and independent backcheck; original source0ec review/pass is not represented as covering it. Source authoring only remains active until ROOT releases execution.
+
+Required later connection evidence: unchanged-geometry pointer hover remains stable; Hide, resize/model replacement invalidate prior placement; current-size/picking collisions still require relocation. No protected workload, timing threshold or semantic ruling changes.

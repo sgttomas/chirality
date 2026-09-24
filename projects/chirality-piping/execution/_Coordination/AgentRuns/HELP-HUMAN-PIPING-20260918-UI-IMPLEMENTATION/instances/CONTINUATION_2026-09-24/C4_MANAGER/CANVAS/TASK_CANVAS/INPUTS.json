@@ -1,0 +1,16 @@
+{
+  "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+  "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+  "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+  "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+  "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_CANVAS_ACTIVATION.md": "cf47440ab4f198f7160e05576112b6a597f00c2efb65b57d69f93b2f6ca767ba",
+  "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+  "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a",
+  "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02",
+  "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/INTEGRATION_PLAN.md": "2c14fc78f1e369a8bb3766577bdb958439cc201c5b92a8427233119afdfbb2bb",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "69565ede18bb93d0eb18fcff126a2c7543a2c4f17e31571a37e8d98e94be3ef8",
+  "projects/chirality-piping/apps/desktop/src/features/workspace/uiDiagnostics.ts": "9cee0e7c543cceaeaa9045ff91f74ff3f2fc2cbcaecf2eab6fb2fd958fecfca7",
+  "projects/chirality-piping/apps/desktop/src/styles.css": "9565a3909c6f1f65facb04da2ea05604ca206554d414437927dda65886683c7c",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": "b7b8c5f08a6a42afb7ec197327c2bcfecb308f104b0510d738479d84a18645e8",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "06246bd2ada58f062273bb586c5cc16124229c04959cb6b140fa3748fd3ab0fe"
+}

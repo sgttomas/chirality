@@ -1,0 +1,13 @@
+{
+  "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "87eca16196da8fdc54cc1f424be7c639bc6d9c8bb2d5ec55b236b5dddbdb9e76",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.labels.test.tsx": "8ca827afbffd4bc8a737d2360e46040785f3cd8d6b66be11ebf9f6bf62635f04",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts": "aeb2ef6aab9e3e62d09c7fc9d0195be59eb0eb4f3b63ceb4d35a1517db9f7586",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.test.ts": "e6d7a4d130c1a572fa7b4f1d5312aba28ee4cba9dfb3a75d3366ba58d7c566c8",
+  "projects/chirality-piping/apps/desktop/src/features/viewport/viewportLabelMeasurements.test.ts": "6a34dea5341b446dd58172034771ee5f06fdd1206841a0eef311b4761bf4a251",
+  "projects/chirality-piping/apps/desktop/src/features/workspace/uiDiagnostics.ts": "3a9e35985829e80127e4305586825651a915d6679925ed437c78ddcc39f62b56",
+  "projects/chirality-piping/apps/desktop/src/features/workspace/uiDiagnostics.test.ts": "da910fc9b78c8d633f6311088444389f18eb3e65c0ac1349e30576df0ae77c3b",
+  "projects/chirality-piping/apps/desktop/src/styles.css": "2d174ef051e8229b6c060f3bd3414181a75cd890cc60c78b8684bf849b189824",
+  "projects/chirality-piping/apps/desktop/e2e/c3-viewport-visibility.spec.ts": "be12801debc9d5065524c76c3feecedf405e0a10c2311ba8c4ff83007b52000a",
+  "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts": "e796dc5c58fcb54e2ed02f9203363690719034d9b8509444b075ddeea09458b0",
+  "projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts": "5fb469041a5a59d532d95cf78d0651e3205292c4bc0bb447e0546de8e0330850"
+}

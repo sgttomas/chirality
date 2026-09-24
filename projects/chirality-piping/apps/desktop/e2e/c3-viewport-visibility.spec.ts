@@ -156,7 +156,7 @@ test("C3 dimmed geometry remains available to hover, click and box selection", a
   await page.getByTestId("viewport-fit-model").click();
   await selectTreeRow(page, "pipe", "pipe:C3-A");
   await control(page, "Isolate").click();
-  await page.getByTestId("toggle-viewport-labels").click();
+  await setCurrentLabelMode(page, "Off");
   const p = await point(page, { x: 0, y: 3, z: 0 });
   await expectMainCanvasPoint(page, p);
   await page.mouse.move(0, 0); await ready(page);
@@ -167,9 +167,9 @@ test("C3 dimmed geometry remains available to hover, click and box selection", a
   await info.attach("dimmed-hover", { body: hovered, contentType: "image/png" });
   await page.mouse.click(p.x, p.y);
   await expect.poll(() => selected(page)).toEqual([{ type: "pipe", id: "pipe:C3-B" }]);
-  await page.getByTestId("toggle-viewport-labels").click();
+  await setCurrentLabelMode(page, "Budget");
   await expect(label(page, "pipe:C3-B")).toHaveAttribute("data-dimmed", "true");
-  await page.getByTestId("toggle-viewport-labels").click();
+  await setCurrentLabelMode(page, "Off");
   await page.getByTestId("viewport-box-select").click();
   await page.getByTestId("viewport-selection-filter").selectOption("pipes");
   const left = await point(page, { x: -4, y: 3, z: 0 });
@@ -181,7 +181,7 @@ test("C3 dimmed geometry remains available to hover, click and box selection", a
   await page.mouse.move(end.x, end.y, { steps: 5 }); await page.mouse.up();
   await expect.poll(() => selected(page)).toEqual([{ type: "pipe", id: "pipe:C3-B" }]);
   await page.getByTestId("viewport-box-select").click();
-  await page.getByTestId("toggle-viewport-labels").click();
+  await setCurrentLabelMode(page, "Budget");
   await expect(label(page, "pipe:C3-B")).toHaveAttribute("data-dimmed", "true");
 });
 
@@ -192,7 +192,7 @@ test("C3 nearer dimmed pipe wins unchanged point ordering and viewport keyboard 
   const canvas = page.getByTestId("viewport-canvas");
   await narrowBothPane(page);
   await page.getByTestId("viewport-fit-model").click();
-  await page.getByTestId("toggle-viewport-labels").click();
+  await setCurrentLabelMode(page, "Off");
   const far = await point(page, { x: 0, y: 0, z: 0 });
   const near = await point(page, { x: 0, y: 0, z: 2 });
   expect(far.x).toBeCloseTo(near.x, 5); expect(far.y).toBeCloseTo(near.y, 5);
@@ -303,4 +303,76 @@ test("C3 visibility leaves Current results current and never revives Historical 
   await expect(page.getByTestId("historical-run-context")).toBeVisible();
   await openWorkspaceSection(page, "evidence");
   await expect(page.getByTestId("status-pill-solve-proof")).toHaveCount(0);
+});
+
+async function setCurrentLabelMode(page: Page, mode: "Budget" | "All" | "Off") {
+  const button = page.getByTestId("toggle-viewport-labels");
+  for (let step = 0; step < 3 && await button.getAttribute("data-label-mode") !== mode; step++) await button.click();
+  await expect(button).toHaveAttribute("data-label-mode", mode);
+}
+
+test("C4 applied labels retain context, fit measured boxes, preserve hover and leave geometry pickable", async ({ page }) => {
+  await gotoModel(page, await fixture());
+  await control(page, "Front").click();
+  await page.getByTestId("viewport-fit-model").click();
+  const beforeHash = await currentModelHashThroughVisibleExport(page);
+  const beforeHistory = await history(page);
+  const results = await page.getByTestId("results-panel").allTextContents();
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Budget");
+  await selectTreeRow(page, "node", "node:C3-loose");
+  await setCurrentLabelMode(page, "Off");
+  await ready(page);
+  await expect(label(page, "node:C3-loose")).toBeVisible();
+  const off = await page.evaluate(() => {
+    const s = globalThis.__openPipeStressUiDiagnosticsV1.readCurrent();
+    if ("status" in s.viewport) throw new Error("Viewport unavailable");
+    return s.viewport.labels;
+  });
+  expect(off.mode).toBe("Off");
+  expect(off.ordinaryCount).toBe(0);
+  expect(off.contextCount).toBeGreaterThan(0);
+  expect(off.renderedCount).toBe(off.contextCount);
+  await setCurrentLabelMode(page, "All");
+  await ready(page);
+  const ordinary = page.locator('.viewport-select-target[data-label-placed="true"][aria-pressed="false"]').first();
+  await expect(ordinary).toBeVisible();
+  const beforeHover = await ordinary.boundingBox();
+  await ordinary.hover();
+  await ready(page);
+  expect(await ordinary.boundingBox(), "hover priority retains its valid applied box").toEqual(beforeHover);
+  await page.mouse.move(0, 0);
+  await ready(page);
+  await ordinary.focus();
+  await page.keyboard.press("l");
+  await expect(page.getByTestId("viewport-canvas")).toBeFocused();
+  await expect(ordinary).toBeHidden();
+  await setCurrentLabelMode(page, "All");
+  await page.mouse.move(0, 0);
+  await page.setViewportSize({ width: 1100, height: 850 });
+  await ready(page);
+  const layout = await page.evaluate(() => {
+    const s = globalThis.__openPipeStressUiDiagnosticsV1.readCurrent();
+    if ("status" in s.viewport) throw new Error("Viewport unavailable");
+    const canvas = document.querySelector('[data-testid="viewport-canvas"] canvas')!.getBoundingClientRect();
+    const boxes = [...document.querySelectorAll<HTMLElement>('.viewport-select-target[data-label-placed="true"]')]
+      .map((button) => { const r = button.getBoundingClientRect(); return { left: r.left, top: r.top, right: r.right, bottom: r.bottom }; });
+    const contained = boxes.every(r => r.left >= canvas.left && r.top >= canvas.top && r.right <= canvas.right && r.bottom <= canvas.bottom);
+    const overlap = boxes.some((a, i) => boxes.slice(i + 1).some(b => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top));
+    return { labels: s.viewport.labels, count: boxes.length, contained, overlap, budget: Math.floor(canvas.width * canvas.height / 3600) };
+  });
+  expect(layout.contained).toBe(true);
+  expect(layout.overlap).toBe(false);
+  expect(layout.labels.renderedCount).toBe(layout.count);
+  expect(layout.labels.budget).toBe(layout.budget);
+  await expectMainCanvasPoint(page, await point(page, { x: 0, y: -3, z: 0 }));
+  await page.getByTestId("viewport-canvas").focus();
+  await page.keyboard.press("l");
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Off");
+  await control(page, "Hide").click();
+  await expect(label(page, "node:C3-loose")).toHaveCount(0);
+  await control(page, "Show All").click();
+  expect(await currentModelHashThroughVisibleExport(page)).toBe(beforeHash);
+  expect(await history(page)).toBe(beforeHistory);
+  expect(await page.getByTestId("results-panel").allTextContents()).toEqual(results);
+  await expect(page.getByTestId("toggle-viewport-labels")).toHaveAttribute("data-label-mode", "Off");
 });

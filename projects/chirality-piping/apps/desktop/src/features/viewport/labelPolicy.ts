@@ -12,6 +12,8 @@ export type LabelPolicyInput = Readonly<{
   height: number;
   primaryKey: EntityKey | null;
   hoverKey: EntityKey | null;
+  /** Previous rendered CSS center for this hover only; revalidated by placement. */
+  preferredHoverCenter?: Readonly<{ key: EntityKey; x: number; y: number }>;
   /** Resolved independently by the shell; never inferred from primary selection. */
   currentRowNodeKey: EntityKey | null;
   selectedKeys: readonly EntityKey[];
@@ -92,7 +94,9 @@ export function layoutViewportLabels(index: ModelIndex, input: LabelPolicyInput)
     }
     const measurement = input.measurements.get(identity.key);
     if (!measurement) { unplaced.push({ ...identity, reasons: ["missing-measurement"] }); continue; }
-    const placed = place(measurement);
+    const preferred = input.preferredHoverCenter;
+    const placed = place(measurement, preferred && preferred.key === input.hoverKey && preferred.key === identity.key
+      ? preferred : undefined);
     if (placed.rect === null) { unplaced.push({ ...identity, reasons: placed.reasons }); continue; }
     rendered.push({ ...identity, rect: placed.rect });
     if (identity.role === "ordinary") ordinaryCount++; else context++;

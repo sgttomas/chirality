@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import { entityKey } from "./selectionState";
 import {
   clearUiDiagnosticsPublisher,
   UI_DIAGNOSTICS_SCHEMA,
@@ -247,5 +248,24 @@ describe("UI diagnostics attachment", () => {
       cameraSequence: 3,
       authoredPoint: { x: 1_000_000_000, y: 0, z: 0 }
     })).toEqual({ status: "invalid", reason: "NO_CURRENT_CAMERA" });
+  });
+});
+
+describe("C4 applied label diagnostics", () => {
+  it("preserves Off context, nominal overflow and typed omissions without applying a legacy total cap", () => {
+    const source = publication();
+    if ("status" in source.viewport) throw new Error("Expected active fixture");
+    const activeViewport = source.viewport;
+    const labels = { enabled: true, mode: "Off" as const, placementStatus: "applied" as const,
+      renderedCount: 2, budget: 1, contextCount: 2, ordinaryCount: 0, contextOverflow: 0,
+      suppressed: [{ key: entityKey({ type: "node", id: "ordinary" }), role: "ordinary" as const, reason: "mode" as const }],
+      ineligible: [], unplaced: [{ key: entityKey({ type: "node", id: "unplaced" }), role: "selected" as const,
+        reasons: ["picking" as const] }] };
+    publishUiDiagnostics(() => ({ ...source, viewport: { ...activeViewport, labels } }));
+    const snapshot = globalThis.__openPipeStressUiDiagnosticsV1.readCurrent();
+    if ("status" in snapshot.viewport) throw new Error("Expected active snapshot");
+    expect(snapshot.viewport.labels).toEqual(labels);
+    expect(Object.isFrozen(snapshot.viewport.labels.unplaced?.[0].reasons)).toBe(true);
+    clearUiDiagnosticsPublisher();
   });
 });

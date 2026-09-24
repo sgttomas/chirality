@@ -1,0 +1,13 @@
+$ node --input-type=module -e <probe below>
+import * as THREE from "three";
+for (const pos of [[0,0,10],[6,5,9],[0,10,0]]) {
+ const c=new THREE.PerspectiveCamera(60,1.5,0.1,100);c.position.set(...pos);c.lookAt(0,0,0);c.updateMatrixWorld();
+ const p=c.projectionMatrix.elements,v=c.matrixWorldInverse.elements;
+ const axes=[new THREE.Vector3(v[0],v[1],v[2]),new THREE.Vector3(v[4],v[5],v[6]),new THREE.Vector3(v[8],v[9],v[10])];
+ console.log(JSON.stringify({pos,p11:p[11],p15:p[15],v3:v[3],v7:v[7],v11:v[11],v15:v[15],axisLengths:axes.map(a=>a.lengthSq()),dot:[axes[0].dot(axes[1]),axes[0].dot(axes[2]),axes[1].dot(axes[2])]}));
+}
+{"pos":[0,0,10],"p11":-1,"p15":0,"v3":0,"v7":0,"v11":0,"v15":1,"axisLengths":[1,1,1],"dot":[0,0,0]}
+{"pos":[6,5,9],"p11":-1,"p15":0,"v3":0,"v7":0,"v11":0,"v15":0.9999999999999999,"axisLengths":[1,1.0000000000000002,1],"dot":[-5.551115123125783e-17,-1.1102230246251565e-16,-1.1102230246251565e-16]}
+{"pos":[0,10,0],"p11":-1,"p15":0,"v3":0,"v7":0,"v11":0,"v15":1,"axisLengths":[1,1,1],"dot":[0,0,0]}
+
+exit=0
