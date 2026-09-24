@@ -1,0 +1,62 @@
+{
+  "candidate": "3b36fe81b0d5becc59e062804d12515a9e410cfc",
+  "source_commit": "0ec48a4f891de3a1a48fb967c52da75b0640a196",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "commands": {
+    "node": {
+      "output": "v24.18.0\n",
+      "exit": 0
+    },
+    "npm": {
+      "output": "11.16.0\n",
+      "exit": 0
+    },
+    "cargo": {
+      "output": "cargo 1.97.1 (c980f4866 2026-06-30)\n",
+      "exit": 0
+    },
+    "rustc": {
+      "output": "rustc 1.97.1 (8bab26f4f 2026-07-14)\n",
+      "exit": 0
+    },
+    "wasm-bindgen": {
+      "output": "wasm-bindgen 0.2.123\n",
+      "exit": 0
+    }
+  },
+  "sha256": {
+    "package-lock.json": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732",
+    "apps/desktop/package.json": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+    "apps/desktop/tsconfig.json": "cc32a3c2be133425d30e112e3dc863c9dbe1ecbbdd81123abf6d6a0300a8ae5c",
+    "apps/desktop/vite.config.ts": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+    "apps/desktop/src/test/setup.ts": "65c02a3ba648174d681c4389b61707c58e8ee02cc7228b9446074a2ac1772e38",
+    "apps/desktop/scripts/build-wasm-engine.mjs": "331a792124925e9dc436e3c4dd563bdd22cc4d370cc87a53afe0a33f82a04ee5",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm": "cf9301c369f7425808adbb49dbe31205a31907882a8817217babe4ce5515a251",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16",
+    "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595",
+    "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm.d.ts": "dd78c7c8fa07894717b89a9bcda4d781200ca7a4d02a8dc153b7763290085c7b",
+    "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.js": "ea2b3fd611a6478222e552b1230ceb717abd60cdd6df5ba30b4827511543f8f3",
+    "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.d.ts": "634546fac35bc42da31bf903e52a5799429422f44291d901495675bb4da4cc01",
+    "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm": "04d466ae73a2fc2b5dd949744794ad2cce476c5923852567e7f4ee3073ac6c5a"
+  },
+  "execution_environment": {
+    "CARGO_BUILD_JOBS": "2 (WASM setup)",
+    "CARGO_TARGET_DIR": null,
+    "CARGO_NET_OFFLINE": "true (normal build script child processes)"
+  },
+  "resolved_dependencies": {
+    "vitest": "4.1.10",
+    "typescript": "5.9.3",
+    "vite": "7.3.3"
+  },
+  "verified_source_sha256": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": "b7b8c5f08a6a42afb7ec197327c2bcfecb308f104b0510d738479d84a18645e8",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "06246bd2ada58f062273bb586c5cc16124229c04959cb6b140fa3748fd3ab0fe",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.test.ts": "fccff0434499a44d85c8d096f7682bc7f194cde6fae3b42fd642e64faee3d993",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.test.ts": "981d9014f87fc0d6a6766197bcaadde965aaee1ac0ffd4d19450c50e98cf40be",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts": "c521a109cdbd73afe2988f694af47ac21b23e63508026e49703468885c7ec1b0"
+  }
+}

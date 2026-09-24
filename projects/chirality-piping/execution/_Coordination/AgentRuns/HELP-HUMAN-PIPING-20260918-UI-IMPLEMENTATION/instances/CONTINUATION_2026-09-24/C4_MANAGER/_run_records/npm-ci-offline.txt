@@ -1,0 +1,12 @@
+$ npm ci --offline --ignore-scripts
+npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+
+added 206 packages, and audited 208 packages in 2s
+
+35 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+exit=0
+elapsed_seconds=1.886

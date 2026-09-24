@@ -1,0 +1,17 @@
+$ npm --prefix projects/chirality-piping/apps/desktop test -- src/features/viewport/labelPolicy.test.ts src/features/viewport/labelPlacement.test.ts src/features/viewport/labelCollisionIndex.test.ts
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/viewport/labelPolicy.test.ts src/features/viewport/labelPlacement.test.ts src/features/viewport/labelCollisionIndex.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/piping-c4-policy-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  3 passed (3)
+      Tests  15 passed (15)
+   Start at  21:40:01
+   Duration  452ms (transform 165ms, setup 213ms, import 89ms, tests 78ms, environment 587ms)
+
+
+exit=0
+elapsed_seconds=1.904
