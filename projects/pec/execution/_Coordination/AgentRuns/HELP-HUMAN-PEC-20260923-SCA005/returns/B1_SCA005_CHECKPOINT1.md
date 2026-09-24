@@ -16,6 +16,6 @@ Unresolved / not done: `validate_scope_change_packet.py` targets a different pac
 
 Hash update 2026-09-24 (HELP_HUMAN): Decision_Log.md `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` and Handoff_State.md `789065360f715eff380ee23324198fcc8b44b06c582e2cdca2d971ddc44d7518` after the companion pointer to `Checkpoint1_Resolution_Note.md`; IA and Actions unchanged.
 
-Hash update 2026-09-24 (after review of PR #884): Decision_Log.md `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f`, Handoff_State.md `789065360f715eff380ee23324198fcc8b44b06c582e2cdca2d971ddc44d7518`; note relocated to `returns/CHECKPOINT1_RESOLUTION_NOTE.md` (`3c4093e15c2a3a94f00331b5eb5b97ebbcc530c4fe1db9f840ca4f74fca1ff03`).
+Hash update 2026-09-24 (after review of PR #884): Decision_Log.md `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f`, Handoff_State.md `789065360f715eff380ee23324198fcc8b44b06c582e2cdca2d971ddc44d7518`; note relocated to `returns/CHECKPOINT1_RESOLUTION_NOTE.md` (`af4e46d0dba2fb71c8f4aceca69098d81806b9add1ac960f074aa8fe949b0ad2`).
 
 Hash update 2026-09-24 (backcheck repair): Handoff_State.md `789065360f715eff380ee23324198fcc8b44b06c582e2cdca2d971ddc44d7518` after its stale Decision_Log reference was corrected; Decision_Log.md remains `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f`.
