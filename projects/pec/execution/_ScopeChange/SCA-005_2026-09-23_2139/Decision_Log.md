@@ -61,4 +61,4 @@ acceptances.
 - The checkpoint-1 decision snapshot will be written under
   `_ScopeChange/checkpoint_snapshots/` only after the owner's acceptance.
 
-Companion (2026-09-24): `Checkpoint1_Resolution_Note.md` records, per question, the accepted source that decides it and narrows the owner's live choices to CP1-A/CP1-B and the TM-PEC-023 row selections. It selects nothing; the rows above remain `AWAITING_OWNER` until the owner's act.
+Companion (2026-09-24): `../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` records, per question, the accepted source that decides it and narrows the owner's live choices to CP1-A/CP1-B and seven TM-PEC-023 row selections. It selects nothing; the rows above remain `AWAITING_OWNER` until the owner's act.

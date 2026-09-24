@@ -106,7 +106,7 @@ Every new test ID must be added to `TEST_TO_VERIFICATION` (SL:30-44), because `t
 **File G.** Replace the check at G:291-292. Add the following module constants and body checks, and keep the existing normalization check at G:293-295:
 
 ```python
-_PATH_FORBIDDEN = re.compile(r"[\x00-\x1f\x7f-\x9f  \\]")
+_PATH_FORBIDDEN = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029\\]")
 _MAX_PATH_BYTES = 4096      # PATH_MAX
 _MAX_SEGMENT_BYTES = 255    # NAME_MAX
 # inside _repository_path_problem, after the non-empty check:
@@ -130,7 +130,7 @@ if len(encoded) > _MAX_PATH_BYTES or any(len(s.encode("utf-8")) > _MAX_SEGMENT_B
 
 **Files CG and SL (tests).** Extend `test_ver_008_policy_is_fixed_finite_and_domain_checked` in place:
 
-- In the bad-path loop (CG:148), add `"a\nb"`, `"a\rb"`, `"a\tb"`, `"a\x7fb"`, `"a b"`, `"x/" + "y"*256` and `"y/"*2049`.
+- In the bad-path loop (CG:148), add `"a\nb"`, `"a\rb"`, `"a\tb"`, `"a\x7fb"`, `"a\u2028b", "a\u2029b"`, `"x/" + "y"*256` and `"y/"*2048 + "y"` (4,097 bytes).
 - Add positive admissions for `"docs/a b.md"`, a 255-byte segment and a 4,096-byte total.
 - In `test_ver_008_forged_wrappers…` (CG:169), add a forged `RepositoryPath` whose `value` is `"line one\n+line two"`, as both a field and a `source_path`. Assert located rejection and empty readback.
 

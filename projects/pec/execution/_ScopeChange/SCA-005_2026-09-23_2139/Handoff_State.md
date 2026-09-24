@@ -144,4 +144,4 @@ paths are byte-unchanged.
    re-extraction is UNKNOWN; which SCA-004 downstream repairs have happened
    since 2026-08-03 was not verified here.
 
-Amendment 2026-09-24 (HELP_HUMAN): `Decision_Log.md` gained a companion pointer to `Checkpoint1_Resolution_Note.md` (SHA-256 `6e2eccfe984a16f442995b0d874824d62654dc36bb632e93806c3a085d6edb5c`); its hash above is updated from `701ae542…` to `2dc6fb3e…`. `Impact_Assessment.md` and `Amendment_Actions.csv` are unchanged.
+Amendment 2026-09-24 (HELP_HUMAN): `Decision_Log.md` gained a companion pointer to the run-record note `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` (kept outside this snapshot per D-PEC-86 §4); its hash above is updated from `701ae542…` to `2dc6fb3e…`. `Impact_Assessment.md` and `Amendment_Actions.csv` are unchanged.
