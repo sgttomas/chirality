@@ -1,0 +1,98 @@
+{
+  "manager": "/root/c4_manager",
+  "role": "WORKING_ITEMS Type 1",
+  "mechanism": "delegated-harness-native descendant",
+  "parent": "/root",
+  "requested_model": "gpt-6-astra",
+  "requested_effort": "high (inherited manager allocation)",
+  "base_commit": "5cfd2257cafca0fb141fc7dd5085c627d8caae9e",
+  "branch": "codex/piping-c4-policy-20260924",
+  "sources": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "origin": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "origin": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "origin": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER_BRIEF.md",
+      "sha256": "fd8a7b6ea94221e0741baa33eeac146fd34c803aff48433d4f9cfc4d239ff531"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md",
+      "sha256": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md",
+      "sha256": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02"
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/vite.config.ts",
+      "sha256": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/tsconfig.json",
+      "sha256": "cc32a3c2be133425d30e112e3dc863c9dbe1ecbbdd81123abf6d6a0300a8ae5c",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/test/setup.ts",
+      "sha256": "65c02a3ba648174d681c4389b61707c58e8ee02cc7228b9446074a2ac1772e38",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportVisibility.ts",
+      "sha256": "1e97cf7ad3467e06b45fe39085eb29f5a46bd3f74bf4849dcb618921d2ad46a3",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts",
+      "sha256": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "sha256": "69565ede18bb93d0eb18fcff126a2c7543a2c4f17e31571a37e8d98e94be3ef8",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts",
+      "sha256": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/RETURN.md",
+      "sha256": "74be013b6405f8987155453a8e70829d59d463678c57dffdd271679551ba965a",
+      "use": "Targeted source inspection; historical DESIGN_MANAGER RETURN pending decisions superseded by OWNER_DECISIONS."
+    }
+  ],
+  "deliberate_wider_role_consultation": "TASK role read before bounded child dispatch, per brief."
+}

@@ -1,0 +1,26 @@
+$ git status --short
+?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/
+?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER_BRIEF.md
+exit=0
+$ git rev-parse HEAD
+5cfd2257cafca0fb141fc7dd5085c627d8caae9e
+exit=0
+$ git branch --show-current
+codex/piping-c4-policy-20260924
+exit=0
+$ ls -ld projects/chirality-piping/node_modules projects/chirality-piping/apps/desktop/node_modules
+ls: projects/chirality-piping/apps/desktop/node_modules: No such file or directory
+ls: projects/chirality-piping/node_modules: No such file or directory
+exit=1
+$ cat projects/chirality-piping/apps/desktop/src/test/setup.ts
+import "@testing-library/jest-dom/vitest";
+
+// Pre-warm the wasm operation engine (DEC-020 / ADR-0001) so jsdom suites
+// that exercise the edit loop start with the engine ready. An absent
+// artifact fails the suite loudly here with the exact build command
+// (WASM-ENGINE-ASSET-ABSENT → `npm run build:wasm --workspace apps/desktop`);
+// no fallback engine exists.
+import { loadWasmEngine } from "../services/wasmEngine/loadWasmEngine";
+
+await loadWasmEngine();
+exit=0

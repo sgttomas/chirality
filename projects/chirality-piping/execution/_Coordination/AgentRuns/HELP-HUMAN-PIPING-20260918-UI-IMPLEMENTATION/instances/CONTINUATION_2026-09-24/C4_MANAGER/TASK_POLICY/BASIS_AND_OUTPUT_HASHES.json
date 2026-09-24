@@ -1,0 +1,30 @@
+{
+  "role": "chirality-root:agents/AGENT_TASK.md (TASK Type 2)",
+  "parent": "/root/c4_manager",
+  "child": "/root/c4_manager/policy_task",
+  "mechanism": "delegated-harness-native collaboration.spawn_agent",
+  "base_commit": "5cfd2257cafca0fb141fc7dd5085c627d8caae9e",
+  "instruction_and_source_origins": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER_BRIEF.md": "fd8a7b6ea94221e0741baa33eeac146fd34c803aff48433d4f9cfc4d239ff531",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/OWNER_RULING_APPLICATION.md": "e3f76a85aa4370f697c669ad0fc89bb724028f54e551feba1ae87cb6d14acc4a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/DESIGN_MANAGER/C4_CHECK_ADMISSION.md": "0a29eb388633b1a68e596156d44c3bd5fc6042160db7849f5252863095417f02",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx": "69565ede18bb93d0eb18fcff126a2c7543a2c4f17e31571a37e8d98e94be3ef8",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/viewportSelection.ts": "fdf3eaa49b9685b932bce404421086c45a82fa22e5c8abc3f8146fc09cb846d5",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/viewportVisibility.ts": "1e97cf7ad3467e06b45fe39085eb29f5a46bd3f74bf4849dcb618921d2ad46a3",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/modelIndex.ts": "7daf63de7e0f4834b8dba7252065a528438b5fe7dd558d3107350e7855b30bd9",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/selectionState.ts": "e6eb8cb213692f94b2fa1fe21a0a7de17c9954e3038a90889dca20d631d3dbb2"
+  },
+  "output_sha256": {
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts": "b7b8c5f08a6a42afb7ec197327c2bcfecb308f104b0510d738479d84a18645e8",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts": "06246bd2ada58f062273bb586c5cc16124229c04959cb6b140fa3748fd3ab0fe",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.test.ts": "fccff0434499a44d85c8d096f7682bc7f194cde6fae3b42fd642e64faee3d993",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.test.ts": "981d9014f87fc0d6a6766197bcaadde965aaee1ac0ffd4d19450c50e98cf40be",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts": "e32576397c30ed0a46295932590aaee6bbe049aa16a53571616835281edc6cdb",
+    "projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts": "c521a109cdbd73afe2988f694af47ac21b23e63508026e49703468885c7ec1b0"
+  }
+}

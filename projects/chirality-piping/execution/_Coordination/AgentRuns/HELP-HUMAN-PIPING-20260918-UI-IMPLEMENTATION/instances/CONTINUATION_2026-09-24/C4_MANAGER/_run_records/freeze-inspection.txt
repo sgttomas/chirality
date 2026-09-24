@@ -1,0 +1,39 @@
+$ git show --format=fuller --stat HEAD
+commit 0ec48a4f891de3a1a48fb967c52da75b0640a196
+Author:     Ryan C Tufts <ryan@chirality.ai>
+AuthorDate: Wed Sep 23 20:34:31 2026 -0600
+Commit:     Ryan C Tufts <ryan@chirality.ai>
+CommitDate: Wed Sep 23 20:34:31 2026 -0600
+
+    feat(piping): add pure C4 label policy and bounded placement core
+    
+    Source-only local freeze. Maintained tests authored; execution awaits admitted dependency and WASM setup. No live UI wiring or qualification claim.
+    
+    Co-authored-by: Codex <noreply@openai.com>
+
+ .../features/viewport/labelCollisionIndex.test.ts  |  51 +++++++
+ .../src/features/viewport/labelCollisionIndex.ts   |  78 +++++++++++
+ .../src/features/viewport/labelPlacement.test.ts   |  52 +++++++
+ .../src/features/viewport/labelPlacement.ts        |  71 ++++++++++
+ .../src/features/viewport/labelPolicy.test.ts      | 154 +++++++++++++++++++++
+ .../desktop/src/features/viewport/labelPolicy.ts   | 104 ++++++++++++++
+ 6 files changed, 510 insertions(+)
+exit=0
+$ git diff --check HEAD^ HEAD
+exit=0
+$ git diff --name-only HEAD^ HEAD
+projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.test.ts
+projects/chirality-piping/apps/desktop/src/features/viewport/labelCollisionIndex.ts
+projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.test.ts
+projects/chirality-piping/apps/desktop/src/features/viewport/labelPlacement.ts
+projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.test.ts
+projects/chirality-piping/apps/desktop/src/features/viewport/labelPolicy.ts
+exit=0
+$ git status --short
+?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER/
+?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/C4_MANAGER_BRIEF.md
+exit=0
+$ git config --get core.hooksPath
+exit=1
+All six child output SHA-256 values match source freeze. No runtime tests executed.
+Source commit invoked core.hooksPath=/dev/null. Subsequent read showed no configured core.hooksPath and only inactive *.sample hooks in common Git hooks directory; no actual local hook was suppressed. This does not establish any merge gate.

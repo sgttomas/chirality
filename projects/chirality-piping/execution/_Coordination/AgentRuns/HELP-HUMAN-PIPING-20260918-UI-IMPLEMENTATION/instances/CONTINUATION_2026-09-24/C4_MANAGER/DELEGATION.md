@@ -1,0 +1,11 @@
+# C4 bounded delegation
+
+Manager `/root/c4_manager` is a delegated-harness-native child of `/root`, operating as WORKING_ITEMS Type 1. Parent supplied the isolated checkout and base `5cfd2257cafca0fb141fc7dd5085c627d8caae9e`; manager verified branch `codex/piping-c4-policy-20260924`. REPO_ROOT is obtained from `git rev-parse --show-toplevel`; WORKING_ROOT is `{REPO_ROOT}/projects/chirality-piping`. This record uses portable repository-relative origins in SUPPLIED_BASIS.json.
+
+The manager read the complete WORKING_ITEMS and TASK role instructions before dispatch. The TASK role consultation was deliberate and required by C4_MANAGER_BRIEF.md. The executing child is `/root/c4_manager/policy_task`, launched through `collaboration.spawn_agent` with fresh context (`fork_turns: none`), model `gpt-6-astra`, effort `low`. This is an actual executing descendant, not only a launch brief. The child was given the exact C4_MANAGER_BRIEF and owner/application/admission source paths, project/root/TASK instructions, the implementation requirement, and resource/write restrictions. Child source hashes and return belong in TASK_POLICY.
+
+Child write scope: new pure policy/placement modules and maintained tests only under `apps/desktop/src/features/viewport`, plus `C4_MANAGER/TASK_POLICY` evidence. No existing source/config/instrument edits, no commits, no downstream delegation. Manager alone owns C4 branch fan-in/freeze. Neither role may edit parent checkout, programme graph or another project. No browser, native, app/WASM/Rust build, server/port or timed work is admitted. This is prompt-scoped delegated-harness enforcement; no narrower host sandbox than the actual session is claimed.
+
+The manager independently found absent local node_modules and normal Vitest setup's unconditional `loadWasmEngine()` call, then explicitly instructed the child not to run/install/symlink/replace the harness. Pure source and maintained tests continue; execution is outstanding. Raw preflight is in `_run_records/readiness.txt`.
+
+Manager integration inspection is not the later fresh-context complete-diff review required for a mergeable candidate. ROOT owns that review, UI writer assignment, shared resource scheduling, publication and integration.
