@@ -1,0 +1,37 @@
+{
+  "run_id": "HELP-HUMAN-PEC-20260923-SCA005",
+  "role": "HELP_HUMAN (Agent 0)",
+  "serving_model_as_reported_by_host": "claude-fable-5-1",
+  "basis_commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "branch": "claude/pec-project-assessment-6106d5",
+  "owner_direction_record": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
+  "subagent_definitions": {
+    "note": "Custom .claude/agents definitions (pec-manager, pec-task, pec-reviewer; model opus, effort high) were written but the host's agent roster is fixed at session start, so they were not selectable. Actual dispatch used subagent_type 'general-purpose' with model parameter 'opus' (host maps to claude-opus-5-5). Reasoning effort 'high' was requested in every brief and is instruction-asserted; the Agent tool exposes no effort parameter, so it is not mechanically pinned. Read-only reviewer boundaries are instruction-asserted, not tool-enforced.",
+    "dispatched_as": {
+      "subagent_type": "general-purpose",
+      "model": "opus",
+      "effort": "high (requested in brief; not tool-enforced)"
+    }
+  },
+  "instruction_basis_sha256": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "projects/pec/AGENTS.md": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+    "agents/AGENT_HELP_HUMAN.md": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+    "agents/AGENT_HELPS_HUMANS.md": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "workflows/scope-change/WORKFLOW.md": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90",
+    "workflows/scope-change/resources/contract.md": "4453a719f1588c4eba08bdb4a979140ff3541ed5a29f04477ea58a844f344d02",
+    "workflows/scope-change/resources/method.md": "34187e83856853f655389625e3465e3c2cb9ff8ad38be1f4d138ee7470d167f5",
+    "projects/pec/loop/LOOP_INIT.md": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053"
+  },
+  "authority_basis_sha256": {
+    "projects/pec/docs/PRD.md (v2.2 live)": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md (rev 1.4)": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81",
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25",
+    "projects/pec/execution/_Decomposition/Deliverables.csv": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72",
+    "PRD_V2_3_CANDIDATE_POSTIMAGE.md (D-PEC-79 adopted, not applied)": "92627ee1d384dd8ef0f2db5d63362ec54eee9da30794b9c2d776bd46fb20f5b0",
+    "TM-PEC-023 DECISION_SURFACE.md": "3a61a24db9a0c5019302588831e5245e5c9436ef03b9e4595ea70615941071ef"
+  },
+  "wider_consultation": "HELP_HUMAN read agents/AGENT_HELPS_HUMANS.md, AGENT_WORKING_ITEMS.md and AGENT_TASK.md to compose briefs (root AGENTS.md permits deliberate consultation for coordination; recorded here)."
+}

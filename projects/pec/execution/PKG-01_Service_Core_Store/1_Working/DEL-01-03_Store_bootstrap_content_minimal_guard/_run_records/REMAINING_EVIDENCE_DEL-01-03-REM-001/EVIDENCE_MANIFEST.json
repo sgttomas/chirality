@@ -1,0 +1,907 @@
+{
+  "item": "DEL-01-03-REM-001",
+  "date": "2026-09-23",
+  "head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "author_role": "TASK (instruction-asserted); serving model exposed by host: claude-opus-5-5[1m]; parent: WORKING_ITEMS manager (PEC loop)",
+  "nature": "Read-only derivative evidence report; not a contract, implementation, test, measurement run, acceptance, lifecycle or production act.",
+  "preflight": {
+    "item": "DEL-01-03-REM-001",
+    "run_by": "WORKING_ITEMS manager (instruction-asserted)",
+    "utc": "2026-09-24T03:20:39Z",
+    "cwd": "projects/pec",
+    "git_head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+    "command": [
+      "python3",
+      "execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "--operation",
+      "historical-read-only-inspection"
+    ],
+    "exit_code": 0,
+    "stdout_json": {
+      "operation": "historical-read-only-inspection",
+      "status": "ALLOW"
+    },
+    "sha256": {
+      "execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    }
+  },
+  "linked_claims": [
+    "DEL-01-03::OUT-001",
+    "DEL-01-03::REQ-001",
+    "DEL-01-03::REQ-002",
+    "DEL-01-03::REQ-007",
+    "DEL-01-03::REQ-008",
+    "DEL-01-03::AC-001",
+    "DEL-01-03::AC-002",
+    "DEL-01-03::AC-007",
+    "DEL-01-03::AC-008",
+    "DEL-01-03::VER-001",
+    "DEL-01-03::VER-002",
+    "DEL-01-03::VER-007"
+  ],
+  "sources": [
+    {
+      "path": ".gitignore",
+      "sha256": "d73df5933af0f7629e1f0fc5e4322070bbcc65740c08ce4f2a9222b6a11d472e"
+    },
+    {
+      "path": "projects/pec/.gitignore",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "sha256": "e422c16797c1f5bf0ea19f47a714eacd4bbaa4534b7358a5cde7f413266a4fad"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "sha256": "085a1412b40fdd0467f77e66ef7704d50a3a939d9f1d0911e2b6414ec1d99010"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md",
+      "sha256": "ed453eaa112e1c8af9b1c201d0e4c3b5bb00b11e776c7658cbd333d430a6e058"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_DEPENDENCIES.md",
+      "sha256": "1d8e46a7bd77331e2ba0aa430448127acc86b3a0d5b6adbbc723fe1a41f14e0c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/ACTIVATION.md",
+      "sha256": "11ee3961e764ea7e81b697d39ad718005f7dd691f7279d8721152a1a1bb3adc0"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/CANDIDATE_ATTEMPT_02_MANIFEST.json",
+      "sha256": "302e1a45ab6d5946d22fec2bfdb583684599324a056580d4a41047c552fe9880"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/CHECK_REGISTRATION.json",
+      "sha256": "1d5aeef46462f6b5896a3af02ef70600d632e83dc49cde47dc436f4ef3ac8f15"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/FINAL_VALIDATION.json",
+      "sha256": "ce37c9ed530b433ce3c5691cee2f0a0ae483c9cf0776a4e190ec54617a61e5bc"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/HANDOFF_STATE.md",
+      "sha256": "361f799f757afcd399f4a6b4c534e89a8bd8ffe12ccdaef5fba2f6eefa0fc8c9"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/PREFLIGHTS.json",
+      "sha256": "dc42b08c6453f1f0de1abbd269bfe1856791f2e006572b1c8d36f3d59e2ba43a"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/TECHNICAL_FAN_IN.md",
+      "sha256": "0938c96726c869146f6603d59336ea829afdffb80f0c460d5e3af3b7f7ca9e8f"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/WORK_GRAPH.json",
+      "sha256": "f4152c8d17a49fd18bce2fe292fc37acdc3b3188ec0709ad6cf6a97db1099aca"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY/REVIEW.md",
+      "sha256": "cf4932c5c3d9469d332142c39b692aa377d83237aa89370b33bfda77c104e896"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/CHILD_BRIEF.md",
+      "sha256": "f7438ce4a0eb13a2be4898b8abfe63be23fd7cc347eadbafdc1ae85311b253ba"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/PREFLIGHT_RELIANCE_HOLD.json",
+      "sha256": "a534416c2d80637728077f2c59a176aef7ecdc61a4e8e3c46d90befe0a384208"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/STORAGE_SUITE_OBSERVATION.json",
+      "sha256": "603b327101c411c21304bfab214c6bd60d8759dcfec6335e6cebb9e6f67a4158"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+      "sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05/HANDOFF_STATE.md",
+      "sha256": "89514afdcb20b0a78d94d101e273801a307f5bbc9564535434487afca5741c11"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "sha256": "a547b53d9712d22d93daade037debac4659571b01d662f1201c29a9d02396ea7"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+      "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md",
+      "sha256": "021820b8cc9bd034ffdc95709864e1cdb1009ea93026ab2297a5fdc24453159b"
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AUTHORIZED_SCOPE.md",
+      "sha256": "301fd94e3fd054f21e429319dbe38d676ada694eb433035324b1cf3d80995743"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/HANDOFF_STATE.md",
+      "sha256": "d43faed1b6c3ebc521f184b6396d6135297003be90cf14e23941e1fad54a8d4d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/OWNER_DIRECTION.md",
+      "sha256": "d3423d071a4f32a6b20b5852a1738f5c078024cf8c90b884178599d0212dcaf0"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/RUN_BASIS.md",
+      "sha256": "0a6dc52578bdd7f0cd111922156e387324a094cc08de8c9046d4379a84332147"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/FINDINGS.md",
+      "sha256": "1d898fce22d2b048a786081ba424a154912afe6ff4d668fba508b66ce0d79056"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/HANDOFF.md",
+      "sha256": "117ce6816f52274cfd301e4d9a55f247f8b7a9888decfbe441bf3d00aba6b5d0"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FAN_IN.md",
+      "sha256": "bf0706c2dac1a9aaba2829ffc940983e8958e57a3c7aade9215dcd43fc7d9a32"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FINAL_VALIDATION.json",
+      "sha256": "3f2f7e0602429985e11ca5ae7a32ae4356671b6bf5a9ff64abeec9f654f046c2"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/HANDOFF_STATE.md",
+      "sha256": "2a85d16f77f8fb4f560a9b6d821937a7c14a007871de46da518b634f48b68c9d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/RUN_BASIS.md",
+      "sha256": "5a87b86d98455feeec071ac00dce12057937bb6604060684ef2c49f166d42528"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CLAIM_TO_PROPOSAL_MAP.json",
+      "sha256": "c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/PROPOSED_ITEMS.csv",
+      "sha256": "91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/build_full_preparation.py",
+      "sha256": "c5d7baf5a1dd7631329b2de8f6389df8577604fdde8baeda91818fe5c2acc210"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_CLAIMS.csv",
+      "sha256": "82e9b1cd27325da2d1bfa6ccc9a1ee834e4c7714b87366bf2186883e2985464d"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"
+    },
+    {
+      "path": "projects/pec/v2/config/service_core_posture.json",
+      "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed"
+    },
+    {
+      "path": "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+      "sha256": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489"
+    },
+    {
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/__init__.py",
+      "sha256": "c9d8b3e5a1338ecf9dbc5a7405c47c69956e3c68e3219f60e3c988c1f1880540"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/__init__.py",
+      "sha256": "33c54e244e8e19b66cb2c53c81fa747979f6d512f227f7a56e3f8d57cfb9ff4a"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+      "sha256": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb"
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "sha256": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89"
+    }
+  ],
+  "evidence_rows": [
+    {
+      "row": "R01",
+      "claim": "OUT-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "21-24,35-43,123-149",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R02",
+      "claim": "OUT-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "lines": "24-43",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"
+    },
+    {
+      "row": "R03",
+      "claim": "OUT-001",
+      "class": "UNKNOWN",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "59",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "R04",
+      "claim": "OUT-001",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "lines": "22-44,60-62",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "row": "R05",
+      "claim": "OUT-001",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/FINAL_VALIDATION.json",
+      "lines": "1-46",
+      "sha256": "ce37c9ed530b433ce3c5691cee2f0a0ae483c9cf0776a4e190ec54617a61e5bc"
+    },
+    {
+      "row": "R06",
+      "claim": "OUT-001",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FINAL_VALIDATION.json",
+      "lines": "36-41",
+      "sha256": "3f2f7e0602429985e11ca5ae7a32ae4356671b6bf5a9ff64abeec9f654f046c2"
+    },
+    {
+      "row": "R07",
+      "claim": "REQ-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "21-22,38-40",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R08",
+      "claim": "REQ-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "123-127,156-223",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R09",
+      "claim": "REQ-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/.gitignore",
+      "lines": "17",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da"
+    },
+    {
+      "row": "R10",
+      "claim": "REQ-001",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": ".gitignore",
+      "lines": "1-96",
+      "sha256": "d73df5933af0f7629e1f0fc5e4322070bbcc65740c08ce4f2a9222b6a11d472e"
+    },
+    {
+      "row": "R11",
+      "claim": "REQ-001",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "190-196",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R12",
+      "claim": "REQ-001",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "lines": "38-40",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "row": "R13",
+      "claim": "REQ-002",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "123-149",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R14",
+      "claim": "REQ-002",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "21-24,139-145",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R15",
+      "claim": "REQ-002",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/software-workflow.json",
+      "lines": "42",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"
+    },
+    {
+      "row": "R16",
+      "claim": "REQ-002",
+      "class": "UNKNOWN",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "76,87",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "R17",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "3-18",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R18",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "3-8",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    },
+    {
+      "row": "R19",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "lines": "3-8",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"
+    },
+    {
+      "row": "R20",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "168-223",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R21",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/config/service_core_posture.json",
+      "lines": "3",
+      "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed"
+    },
+    {
+      "row": "R22",
+      "claim": "REQ-007",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+      "lines": "72",
+      "sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53"
+    },
+    {
+      "row": "R23",
+      "claim": "REQ-007",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "lines": "157-172,236-251,551-553",
+      "sha256": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89"
+    },
+    {
+      "row": "R24",
+      "claim": "REQ-008",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "lines": "24-43",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af"
+    },
+    {
+      "row": "R25",
+      "claim": "REQ-008",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "27-32,112,156-223",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R26",
+      "claim": "REQ-008",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/__init__.py",
+      "lines": "3-5",
+      "sha256": "c9d8b3e5a1338ecf9dbc5a7405c47c69956e3c68e3219f60e3c988c1f1880540"
+    },
+    {
+      "row": "R27",
+      "claim": "REQ-008",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+      "lines": "1-5",
+      "sha256": "669e1569216722509dcea0ae5ed42dc4a0ca856a196676568ee78d7a38a1edeb"
+    },
+    {
+      "row": "R28",
+      "claim": "AC-001",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "16-18",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "R29",
+      "claim": "AC-001",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "47-56",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "R30",
+      "claim": "AC-001",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/.gitignore",
+      "lines": "17",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da",
+      "execution": {
+        "utc": "time not recorded; during this inquiry, 2026-09-24T03:2xZ window",
+        "cwd": "REPO_ROOT",
+        "commands": [
+          "git check-ignore -v --no-index projects/pec/.pec-v2/record_store.sqlite3 projects/pec/.pec-v2/record_store.sqlite3-wal",
+          "ls -la projects/pec/.pec-v2",
+          "git ls-files -- projects/pec/.pec-v2"
+        ]
+      }
+    },
+    {
+      "row": "R31",
+      "claim": "AC-001",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "lines": "51-57",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "row": "R32",
+      "claim": "AC-002",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "112-134",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "R33",
+      "claim": "AC-002",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "139-140",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "R34",
+      "claim": "AC-002",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "133",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "R35",
+      "claim": "AC-007",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "152-169",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "R36",
+      "claim": "AC-007",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "lines": "40-57",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118"
+    },
+    {
+      "row": "R37",
+      "claim": "AC-007",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/TECHNICAL_FAN_IN.md",
+      "lines": "12-22",
+      "sha256": "0938c96726c869146f6603d59336ea829afdffb80f0c460d5e3af3b7f7ca9e8f"
+    },
+    {
+      "row": "R38",
+      "claim": "AC-008",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "136-142",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "R39",
+      "claim": "AC-008",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "65,93",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "R40",
+      "claim": "AC-008",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "lines": "58-59",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "row": "R41",
+      "claim": "VER-001",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "38,42,46,66-73",
+      "sha256": "603b327101c411c21304bfab214c6bd60d8759dcfec6335e6cebb9e6f67a4158"
+    },
+    {
+      "row": "R42",
+      "claim": "VER-001",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "81",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "row": "R43",
+      "claim": "VER-002",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "19",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "R44",
+      "claim": "VER-002",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "50",
+      "sha256": "603b327101c411c21304bfab214c6bd60d8759dcfec6335e6cebb9e6f67a4158"
+    },
+    {
+      "row": "R45",
+      "claim": "VER-002",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "lines": "3-8",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415"
+    },
+    {
+      "row": "R46",
+      "claim": "VER-002",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md",
+      "lines": "12",
+      "sha256": "021820b8cc9bd034ffdc95709864e1cdb1009ea93026ab2297a5fdc24453159b",
+      "additional_locators": [
+        {
+          "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+          "lines": "125",
+          "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+        }
+      ]
+    },
+    {
+      "row": "R47",
+      "claim": "VER-007",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "21",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "R48",
+      "claim": "VER-007",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "41-42,136-142",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "R49",
+      "claim": "VER-007",
+      "class": "UNKNOWN",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "lines": "3,13-17",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+    },
+    {
+      "row": "R50",
+      "claim": "VER-007",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D84_SCANNER_REPAIR_2026-09-05/HANDOFF_STATE.md",
+      "lines": "3,11-17",
+      "sha256": "89514afdcb20b0a78d94d101e273801a307f5bbc9564535434487afca5741c11"
+    },
+    {
+      "row": "R51",
+      "claim": "VER-007",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "lines": "9-13",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+    }
+  ],
+  "class_counts": {
+    "rows_by_class": {
+      "OBSERVED_IMPLEMENTATION": 17,
+      "BOUNDED_LOCAL_ABSENCE": 5,
+      "MISSING_OR_UNMAPPED": 6,
+      "FINITE_METHOD_EXECUTION": 14,
+      "HISTORICAL_ACCEPTANCE": 6,
+      "UNKNOWN": 3
+    },
+    "claims_with_class": {
+      "OBSERVED_IMPLEMENTATION": 5,
+      "BOUNDED_LOCAL_ABSENCE": 5,
+      "MISSING_OR_UNMAPPED": 5,
+      "FINITE_METHOD_EXECUTION": 8,
+      "HISTORICAL_ACCEPTANCE": 5,
+      "UNKNOWN": 3
+    },
+    "total_rows": 51,
+    "total_claims": 12
+  },
+  "unknowns": [
+    {
+      "id": "U-1",
+      "claims": "OUT-001; REQ-007; AC-007; VER-007",
+      "summary": "Whether the lifecycle adapter under `adapters/storage` meets OUT-001's \"in the PEC service core\", and whether REQ-007 enforcement must reach it. DEL-01-05 evaluates `core/**` only.",
+      "resolving_evidence": "An owner ruling on the term for DEL-01-03, or an accepted change to the DEL-01-05 target."
+    },
+    {
+      "id": "U-2",
+      "claims": "REQ-001; AC-001; VER-001",
+      "summary": "Which directory is \"the hosting checkout\" (the `projects/pec` project root, which carries the rule, or the repository root, which does not), and whether AC-001 holds there with a populated store.",
+      "resolving_evidence": "An owner reading of the phrase, plus an authorized hosting-checkout transcript with a populated store."
+    },
+    {
+      "id": "U-3",
+      "claims": "REQ-001",
+      "summary": "Whether the engine creates artifact names beyond the five verified (REQ-001 names index and lock files).",
+      "resolving_evidence": "Engine-behaviour evidence or a separately authorized measurement."
+    },
+    {
+      "id": "U-4",
+      "claims": "AC-002; VER-002",
+      "summary": "Whether \"PEC stopped/running\" means handle-level close/open (tested) or process-level stop/start and external deletion while live (untested, and no runtime exists).",
+      "resolving_evidence": "An owner interpretation, then a measurement run once a runtime exists if it is process-level."
+    },
+    {
+      "id": "U-5",
+      "claims": "REQ-002",
+      "summary": "Whether store deletion blocks any governed act (PEC-K-01).",
+      "resolving_evidence": "A DEL-10-02 kill-test result under SOW-055. Not dischargeable here."
+    },
+    {
+      "id": "U-6",
+      "claims": "REQ-007; AC-007",
+      "summary": "Whether invoking the external `git` executable through `subprocess` counts as a third-party runtime dependency under PEC-SVC-001.",
+      "resolving_evidence": "An owner ruling, or a DEL-01-05 interpretation."
+    },
+    {
+      "id": "U-7",
+      "claims": "VER-007; AC-007",
+      "summary": "Whether DEL-01-05 is \"available\" for VER-007's re-run, and the posture verdict at HEAD, which was not re-executed here.",
+      "resolving_evidence": "DEL-01-05 acceptance disposition, then a separately authorized posture run bound to the exact state."
+    },
+    {
+      "id": "U-8",
+      "claims": "REQ-008; AC-008",
+      "summary": "Whether adapter-defined exceptions and naming the concrete adapter class at construction amount to storage-engine leakage for consumers.",
+      "resolving_evidence": "An owner/production ruling; later consumer-integration evidence."
+    }
+  ],
+  "obligations": [
+    {
+      "id": "O-1-1",
+      "claims": [
+        "OUT-001",
+        "REQ-007",
+        "AC-007",
+        "VER-007"
+      ],
+      "summary": "Decide whether the lifecycle adapter outside `v2/src/pec_v2/core` satisfies OUT-001 \"in the PEC service core\", and whether REQ-007/VER-007 enforcement must evaluate `adapters/storage/sqlite_store.py`, which DEL-01-05's target excludes.",
+      "authority_needed": "Owner ruling; SCOPE_CHANGE or a DEL-01-05 instrument if the enforcement target changes"
+    },
+    {
+      "id": "O-1-2",
+      "claims": [
+        "REQ-001",
+        "AC-001",
+        "VER-001"
+      ],
+      "summary": "Identify the hosting checkout and obtain (or waive) a transcript with a populated store showing `git check-ignore` against the checked-in rule and a clean `git status`. Existing evidence is scratch-checkout only, with an uncommitted test-written rule.",
+      "authority_needed": "Owner ruling on sufficiency, or a separately authorized measurement run"
+    },
+    {
+      "id": "O-1-3",
+      "claims": [
+        "REQ-001",
+        "AC-001"
+      ],
+      "summary": "Coverage of engine artifact names beyond the five enforced (REQ-001 index and lock files) is unevidenced.",
+      "authority_needed": "Separately authorized measurement or production ruling"
+    },
+    {
+      "id": "O-1-4",
+      "claims": [
+        "REQ-002",
+        "AC-002",
+        "VER-002"
+      ],
+      "summary": "The stopped and running cases lack process-level delete-and-restart transcripts. The running case is exercised only through the store's own `delete` on its handle, and no runtime/daemon exists.",
+      "authority_needed": "Owner interpretation; production ruling (runtime integration) plus a separate measurement run"
+    },
+    {
+      "id": "O-1-5",
+      "claims": [
+        "REQ-002",
+        "AC-002",
+        "VER-002"
+      ],
+      "summary": "Whether deletion blocks any governed act is the system kill test. DEL-10-02 is INITIALIZED with no harness or result. No store-local evidence may stand in for it.",
+      "authority_needed": "DEL-10-02 (SOW-055, E-P71) under its own instruments"
+    },
+    {
+      "id": "O-1-6",
+      "claims": [
+        "REQ-007",
+        "AC-007"
+      ],
+      "summary": "The `git` subprocess invoked on every store open is unclassified against PEC-SVC-001 \"third-party runtime dependency\"; `test_ver_007_*` does not inspect subprocess use.",
+      "authority_needed": "Owner ruling, or DEL-01-05 interpretation"
+    },
+    {
+      "id": "O-1-7",
+      "claims": [
+        "VER-007",
+        "AC-007"
+      ],
+      "summary": "VER-007's DEL-01-05 re-run is unresolved: DEL-01-05 is IN_PROGRESS with repaired bytes unaccepted, and the last posture PASS (D85, 2026-09-08) was not re-run at HEAD.",
+      "authority_needed": "DEL-01-05 acceptance (REVIEW/owner), then a separately authorized run"
+    },
+    {
+      "id": "O-1-8",
+      "claims": [
+        "VER-007",
+        "REQ-008",
+        "AC-008"
+      ],
+      "summary": "The interface-signature inspection that VER-007 requires is tagged VER-003 in the executing-test map; the link to VER-007 is prose only.",
+      "authority_needed": "Owner acceptance of the cross-reference, or a production ruling to retag"
+    },
+    {
+      "id": "O-1-9",
+      "claims": [
+        "REQ-008",
+        "AC-008"
+      ],
+      "summary": "The consumer-facing surface includes adapter-defined exceptions and adapter-class construction; no composition root or consumer exists, so \"changes no consumer deliverable\" is unexercised.",
+      "authority_needed": "Owner/production ruling; consumer deliverables DEL-03-01, DEL-07-01, DEL-01-02 later"
+    },
+    {
+      "id": "O-1-10",
+      "claims": [
+        "OUT-001",
+        "REQ-001",
+        "REQ-002",
+        "REQ-007",
+        "REQ-008",
+        "AC-001",
+        "AC-002",
+        "AC-007",
+        "AC-008",
+        "VER-001",
+        "VER-002",
+        "VER-007"
+      ],
+      "summary": "No artifact, lifecycle or full DEL-01-03 acceptance exists for any linked claim (D85 was technical fan-in only). Disposition of DEL-01-03-REM-001 itself remains with the owner.",
+      "authority_needed": "Owner acceptance / REVIEW; owner disposition of the Remaining item"
+    }
+  ],
+  "suite_observation": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-001/STORAGE_SUITE_OBSERVATION.json",
+    "sha256": "603b327101c411c21304bfab214c6bd60d8759dcfec6335e6cebb9e6f67a4158",
+    "label": "observation only; not measurement, acceptance or VER discharge"
+  },
+  "deviations": [
+    "Additional read-only git commands (log, merge-base --is-ancestor, check-ignore --no-index, ls-files, status) beyond file reads; none writes.",
+    "Transient session-scratch files outside the repository (status snapshots, suite stdout) were written and then removed."
+  ],
+  "report_sha256": "8fcb3ff3c317a2819f0043fdd548f34b5558cb89136fdeaaa33544a19de3c312",
+  "revision": {
+    "id": "Revision 1 (verifier cycle 1)",
+    "changes": [
+      "sources: removed MANAGER_LOG.md (stale hash; not relied on)",
+      "R28 reworded",
+      "R25 lines 27-32,112,156-223",
+      "R46 additional locator ScopeOfWork.md:125",
+      "R30 execution time/commands"
+    ]
+  }
+}

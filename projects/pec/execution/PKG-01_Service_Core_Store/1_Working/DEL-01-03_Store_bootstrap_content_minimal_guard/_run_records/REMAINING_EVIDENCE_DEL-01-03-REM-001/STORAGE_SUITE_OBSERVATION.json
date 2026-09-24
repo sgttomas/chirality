@@ -1,0 +1,75 @@
+{
+  "schema": "pec-remaining-evidence-suite-observation/v1",
+  "item": "DEL-01-03-REM-001",
+  "label": "OBSERVATION ONLY - not a new measurement, not acceptance, and not a VER-discharge claim. One read-only execution of the registered storage suite at HEAD, recorded for evidence mapping.",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s v2/tests/storage -p 'test_*.py' -v",
+  "cwd": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-project-assessment-6106d5/projects/pec",
+  "python_version": "Python 3.13.7",
+  "utc_start": "2026-09-24T03:26:51Z",
+  "utc_end": "2026-09-24T03:26:52Z",
+  "local_date": "2026-09-23",
+  "head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "results": [
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_admission_and_readback_preserve_all_five_typed_classes",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing",
+      "result": "ok"
+    },
+    {
+      "id": "test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_policy_is_fixed_finite_and_domain_checked",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_database_journal_and_temp_artifacts_are_ignored",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_force_tracked_store_artifact_fails_before_any_write",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_001_later_negation_of_the_rule_fails_before_store_creation",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call",
+      "result": "ok"
+    },
+    {
+      "id": "test_store_lifecycle.StoreLifecycleTests.test_ver_009_loaded_suite_has_exact_execution_mapping",
+      "result": "ok"
+    }
+  ],
+  "totals": {
+    "ran": 13,
+    "ok": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exit_code": 0,
+  "post_run_git_status": "No new or modified path under projects/pec/v2 or projects/pec/.pec-v2; no tracked modification beyond the pre-existing projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md. Test fixtures use tempfile directories outside the repository."
+}

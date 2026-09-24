@@ -1,0 +1,986 @@
+{
+  "schema": "pec-remaining-evidence-manifest/v1",
+  "revision": "2 (verifier cycle 2)",
+  "item": "DEL-01-03-REM-003",
+  "date": "2026-09-23",
+  "head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+  "author_role": "TASK (Type 2), instruction-asserted; parent WORKING_ITEMS manager; serving model claude-opus-5-5[1m] as stated by host context, not independently verified",
+  "preflight": {
+    "item": "DEL-01-03-REM-003",
+    "run_by": "WORKING_ITEMS manager (instruction-asserted)",
+    "utc": "2026-09-24T03:20:39Z",
+    "cwd": "projects/pec",
+    "git_head": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+    "command": [
+      "python3",
+      "execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "--operation",
+      "historical-read-only-inspection"
+    ],
+    "exit_code": 0,
+    "stdout_json": {
+      "operation": "historical-read-only-inspection",
+      "status": "ALLOW"
+    },
+    "sha256": {
+      "execution/_Scripts/pec_reliance_hold.py": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+      "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    }
+  },
+  "linked_claims": [
+    "DEL-01-03::OUT-003",
+    "DEL-01-03::REQ-010",
+    "DEL-01-03::AC-010",
+    "DEL-01-03::VER-009",
+    "DEL-01-03::CURRENT-REMAINING"
+  ],
+  "sources": [
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "sha256": "085a1412b40fdd0467f77e66ef7704d50a3a939d9f1d0911e2b6414ec1d99010",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md",
+      "sha256": "ed453eaa112e1c8af9b1c201d0e4c3b5bb00b11e776c7658cbd333d430a6e058",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "sha256": "e422c16797c1f5bf0ea19f47a714eacd4bbaa4534b7358a5cde7f413266a4fad",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_DEPENDENCIES.md",
+      "sha256": "1d8e46a7bd77331e2ba0aa430448127acc86b3a0d5b6adbbc723fe1a41f14e0c",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/CHILD_BRIEF.md",
+      "sha256": "4487b8460d1c4a4bd69da25a7d6673e9115ec08f7ad83e49594a18fa83550df0",
+      "tracked_at_head": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/PREFLIGHT_RELIANCE_HOLD.json",
+      "sha256": "d4c5ed9c6aba5f204d82661c41bc330b9e9b9ae8a86e46c78995ffc55f0791cf",
+      "tracked_at_head": false
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-25_1408.md",
+      "sha256": "b7f1a04a1941c286c8c9375ad61a47a532ac8637ac548675fc2b49261be46b86",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-25_1444.md",
+      "sha256": "dc391380cb938415883795ae9853275a9eccf4392a4e2046378980b9003a3e0c",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md",
+      "sha256": "8c0ed35bf617b69a93431643eef3f1eef7fb11153b4361cb15f46a0ccf211108",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/TECHNICAL_FAN_IN.md",
+      "sha256": "0938c96726c869146f6603d59336ea829afdffb80f0c460d5e3af3b7f7ca9e8f",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/FINAL_VALIDATION.json",
+      "sha256": "ce37c9ed530b433ce3c5691cee2f0a0ae483c9cf0776a4e190ec54617a61e5bc",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/CHECK_REGISTRATION.json",
+      "sha256": "1d5aeef46462f6b5896a3af02ef70600d632e83dc49cde47dc436f4ef3ac8f15",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY/REVIEW.md",
+      "sha256": "cf4932c5c3d9469d332142c39b692aa377d83237aa89370b33bfda77c104e896",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/AUTHORIZED_SCOPE.md",
+      "sha256": "301fd94e3fd054f21e429319dbe38d676ada694eb433035324b1cf3d80995743",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_EXECUTION_2026-09-08/VERIFICATION/VERIFICATION.md",
+      "sha256": "0d35aee6b4bca38ac112924d45dd11042698e9e6e9d55aeab1a8f35f018b095f",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FAN_IN.md",
+      "sha256": "bf0706c2dac1a9aaba2829ffc940983e8958e57a3c7aade9215dcd43fc7d9a32",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FINAL_VALIDATION.json",
+      "sha256": "3f2f7e0602429985e11ca5ae7a32ae4356671b6bf5a9ff64abeec9f654f046c2",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md",
+      "sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
+      "sha256": "7cc4dd0f9065f9a79e554aae6ddad5dfdb631a28556585e8d04a7e6a6bdb682b",
+      "tracked_at_head": false
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_EXECUTION_2026-09-07/ITERATION_02_APPLICATION_AND_REVERSAL/ACTIVATION.md",
+      "sha256": "daedb91e6fa7bf5a2c7e8777e22368014fb99ba8eed630c6fb451faaefd660e3",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_EXECUTION_2026-09-07/ITERATION_02_APPLICATION_AND_REVERSAL/ACTUAL_RETURNS/D83_APPLICATION.md",
+      "sha256": "c32a3a75fad709c4211f5ae82297955f77ae9db8bc41d82b9bf678db40ea546d",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/store.py",
+      "sha256": "2f5cdbf50bb1ed8b02ce8b7d820f81b749da4ca2d62e195afec39c78a035a4af",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/__init__.py",
+      "sha256": "c9d8b3e5a1338ecf9dbc5a7405c47c69956e3c68e3219f60e3c988c1f1880540",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+      "sha256": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/config/service_core_posture.json",
+      "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "sha256": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/.gitignore",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/package.json",
+      "sha256": "a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/tools/run-workspace-tests.ts",
+      "sha256": "ba5306cb181758c6277515b898df7cbcb0ea9648f685b370ecd740ff26511d01",
+      "tracked_at_head": true
+    },
+    {
+      "path": ".github/workflows/pec-tests.yml",
+      "sha256": "337611cef97e0c691f5a3cb305b804aef6f5300b7337a3ad23dd2b53689f5a7d",
+      "tracked_at_head": true
+    },
+    {
+      "path": "tools/hosted-ci-routing.json",
+      "sha256": "1850e9a4477eb8198efe2a096f5059e7249230e14a72eb98d422e04a19a08b97",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+      "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "sha256": "a547b53d9712d22d93daade037debac4659571b01d662f1201c29a9d02396ea7",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_run_records/TASK_RUN_2026-07-25_repair_D-PEC-65.md",
+      "sha256": "c98cb5e6bc7388a9d0fd237be85ade5ec7c34de1d3d643db1e6e56c86a3f7072",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_run_records/TASK_RUN_2026-07-25_scope_of_work_init.md",
+      "sha256": "de968c6f2e048179121266deb00f986ef2b53ecf7714e02e4f6082dd0f5f8858",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_run_records/TASK_RUN_2026-07-25_scope_of_work_revision.md",
+      "sha256": "dfc696394398f266718139f284f4acc07ec3440c3fcb998098305d59ffcc31cf",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/PROPOSED_ITEMS.csv",
+      "sha256": "91be362163e94b0225fbea85c6ecbf9eed3a47f9f3f05b8bcf936dfb2c569b75",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/CLAIM_TO_PROPOSAL_MAP.json",
+      "sha256": "c6cdf4e27518d38b395256cea7bd36a4c708b3837f2aad6d8e0a57364361d1ab",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/APPLICATION_PREPARATION/FULL_01/build_full_preparation.py",
+      "sha256": "c5d7baf5a1dd7631329b2de8f6389df8577604fdde8baeda91818fe5c2acc210",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_CLAIMS.csv",
+      "sha256": "82e9b1cd27325da2d1bfa6ccc9a1ee834e4c7714b87366bf2186883e2985464d",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/OUTPUT_MANIFEST.json",
+      "sha256": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d",
+      "tracked_at_head": true
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/STORAGE_SUITE_OBSERVATION.json",
+      "sha256": "bd22aad2867794ffbacf144fa9958a8273bbec3e33953509b0554ac21dd6c02c",
+      "tracked_at_head": false
+    }
+  ],
+  "evidence_rows": [
+    {
+      "row": "E-01",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "30-44",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-02",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "47-56,68-110",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-03",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/.gitignore",
+      "lines": "17",
+      "sha256": "352a305b5d6e002da80daa248a0d0bc330886685d039dbcfdf8b41897bfde9da"
+    },
+    {
+      "row": "E-04",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "47-56",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-05",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "112-134",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-06",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "139-145",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E-07",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "93-98",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "row": "E-08",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "136-150",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-09",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "52-93",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E-10",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "95-109",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E-11",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "111-125",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E-12",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "152-169",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-13",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "115",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "E-14",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/config/service_core_posture.json",
+      "lines": "3",
+      "sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed"
+    },
+    {
+      "row": "E-15",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "UNKNOWN",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "lines": "3-13",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c"
+    },
+    {
+      "row": "E-16",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "127-209",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E-17",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "43-75",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "row": "E-18",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-25_1408.md",
+      "lines": "91-95",
+      "sha256": "b7f1a04a1941c286c8c9375ad61a47a532ac8637ac548675fc2b49261be46b86"
+    },
+    {
+      "row": "E-19",
+      "claim": "DEL-01-03::REQ-010",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "77-89",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "row": "E-20",
+      "claim": "DEL-01-03::REQ-010",
+      "class": "UNKNOWN",
+      "path": "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+      "lines": "106-108,124,130-133,148-155",
+      "sha256": "2c4bfc3682710402a9374366dd3f89fb75508b21546e12ce458d75bc4cc46127"
+    },
+    {
+      "row": "E-21",
+      "claim": "DEL-01-03::REQ-010",
+      "class": "UNKNOWN",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "138-139",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-22",
+      "claim": "DEL-01-03::REQ-010",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-25_1444.md",
+      "lines": "32,37-47",
+      "sha256": "dc391380cb938415883795ae9853275a9eccf4392a4e2046378980b9003a3e0c"
+    },
+    {
+      "row": "E-23",
+      "claim": "DEL-01-03::AC-010",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/software-workflow.json",
+      "lines": "14-17",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"
+    },
+    {
+      "row": "E-24",
+      "claim": "DEL-01-03::AC-010",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/software-workflow.json",
+      "lines": "27,41-44",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a"
+    },
+    {
+      "row": "E-25",
+      "claim": "DEL-01-03::AC-010",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "95",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "E-26",
+      "claim": "DEL-01-03::AC-010",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "tools/hosted-ci-routing.json",
+      "lines": "74-94",
+      "sha256": "1850e9a4477eb8198efe2a096f5059e7249230e14a72eb98d422e04a19a08b97"
+    },
+    {
+      "row": "E-27",
+      "claim": "DEL-01-03::AC-010",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/tools/run-workspace-tests.ts",
+      "lines": "17",
+      "sha256": "ba5306cb181758c6277515b898df7cbcb0ea9648f685b370ecd740ff26511d01"
+    },
+    {
+      "row": "E-28",
+      "claim": "DEL-01-03::AC-010",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/checks/MANAGER_REGISTERED_CHECKS_FINAL.json",
+      "lines": "78-97",
+      "sha256": "63392e5ca7e75c3160fe57da2ab991b358513e3dac0b1a5d46584367030ab118"
+    },
+    {
+      "row": "E-29",
+      "claim": "DEL-01-03::AC-010",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/TECHNICAL_FAN_IN.md",
+      "lines": "12-22",
+      "sha256": "0938c96726c869146f6603d59336ea829afdffb80f0c460d5e3af3b7f7ca9e8f"
+    },
+    {
+      "row": "E-30",
+      "claim": "DEL-01-03::AC-010",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/STORAGE_SUITE_OBSERVATION.json",
+      "lines": "1-92",
+      "sha256": "bd22aad2867794ffbacf144fa9958a8273bbec3e33953509b0554ac21dd6c02c"
+    },
+    {
+      "row": "E-31",
+      "claim": "DEL-01-03::AC-010",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "lines": "22-44,56-62",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851"
+    },
+    {
+      "row": "E-32",
+      "claim": "DEL-01-03::AC-010",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/FINAL_VALIDATION.json",
+      "lines": "27-42",
+      "sha256": "3f2f7e0602429985e11ca5ae7a32ae4356671b6bf5a9ff64abeec9f654f046c2"
+    },
+    {
+      "row": "E-33",
+      "claim": "DEL-01-03::VER-009",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/tests/storage/test_store_lifecycle.py",
+      "lines": "171-189",
+      "sha256": "ed99fbc5a46587e364eed4cfb0521cf6fd4bce920e332714ec851f15ca6c4bef"
+    },
+    {
+      "row": "E-34",
+      "claim": "DEL-01-03::VER-009",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json",
+      "lines": "1-24",
+      "sha256": "73da805fcdd4ff455804b27f65e3394091efc385f536f0cfa03f812b94eba2e3"
+    },
+    {
+      "row": "E-35",
+      "claim": "DEL-01-03::VER-009",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY/REVIEW.md",
+      "lines": "37-54",
+      "sha256": "cf4932c5c3d9469d332142c39b692aa377d83237aa89370b33bfda77c104e896"
+    },
+    {
+      "row": "E-36",
+      "claim": "DEL-01-03::VER-009",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/children/VERIFY_BACKCHECK_02/REVIEW.md",
+      "lines": "28-36,63-65",
+      "sha256": "be6cb4bf3379120f64d85bdb97a23669f2923c6b988b94a87f4455dc9f91f123"
+    },
+    {
+      "row": "E-37",
+      "claim": "DEL-01-03::VER-009",
+      "class": "MISSING_OR_UNMAPPED",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "lines": "117",
+      "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+    },
+    {
+      "row": "E-38",
+      "claim": "DEL-01-03::VER-009",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "lines": "3,10-18",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415"
+    },
+    {
+      "row": "E-39",
+      "claim": "DEL-01-03::VER-009",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_run_records/TASK_RUN_2026-07-25_scope_of_work_init.md",
+      "lines": "128",
+      "sha256": "de968c6f2e048179121266deb00f986ef2b53ecf7714e02e4f6082dd0f5f8858"
+    },
+    {
+      "row": "E-40",
+      "claim": "DEL-01-03::VER-009",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "lines": "100-103",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48"
+    },
+    {
+      "row": "E-41",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/CONSOLIDATED_CLAIMS.csv",
+      "lines": "229",
+      "sha256": "82e9b1cd27325da2d1bfa6ccc9a1ee834e4c7714b87366bf2186883e2985464d",
+      "additional_locators": [
+        {
+          "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md",
+          "lines": "13",
+          "sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492"
+        },
+        {
+          "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R1_R4_2026-09-05/SYNTHESIS/FULL_02/OUTPUT_MANIFEST.json",
+          "lines": "9",
+          "sha256": "0062cc22f1a234444f9438d49c0f470448cdaa60fa2922eac670960c2beea92d"
+        }
+      ]
+    },
+    {
+      "row": "E-42",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md",
+      "lines": "13-16",
+      "sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492"
+    },
+    {
+      "row": "E-43",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/_Coordination/D83_D84_EXECUTION_2026-09-07/ITERATION_02_APPLICATION_AND_REVERSAL/ACTUAL_RETURNS/D83_APPLICATION.md",
+      "lines": "8-17,32-33",
+      "sha256": "c32a3a75fad709c4211f5ae82297955f77ae9db8bc41d82b9bf678db40ea546d"
+    },
+    {
+      "row": "E-44",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "lines": "12-24",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    },
+    {
+      "row": "E-45",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "lines": "22-24",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2"
+    },
+    {
+      "row": "E-46",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/FINAL_VALIDATION.json",
+      "lines": "42-45",
+      "sha256": "ce37c9ed530b433ce3c5691cee2f0a0ae483c9cf0776a4e190ec54617a61e5bc"
+    },
+    {
+      "row": "E-47",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "HISTORICAL_ACCEPTANCE",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
+      "lines": "61",
+      "sha256": "7cc4dd0f9065f9a79e554aae6ddad5dfdb631a28556585e8d04a7e6a6bdb682b"
+    },
+    {
+      "row": "E-48",
+      "claim": "DEL-01-03::CURRENT-REMAINING",
+      "class": "FINITE_METHOD_EXECUTION",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md",
+      "lines": "1-6",
+      "sha256": "8c0ed35bf617b69a93431643eef3f1eef7fb11153b4361cb15f46a0ccf211108"
+    },
+    {
+      "row": "E-49",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "OBSERVED_IMPLEMENTATION",
+      "path": "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+      "lines": "83-90",
+      "sha256": "03cf799f02def3e9f3d5e20b26ba14607461b5ce5189eb1b0d9a643f2cdc10a8"
+    },
+    {
+      "row": "E-50",
+      "claim": "DEL-01-03::OUT-003",
+      "class": "BOUNDED_LOCAL_ABSENCE",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "lines": "132-224",
+      "sha256": "3d66bb9131eee421c13fcf323bff59a646d5e17d9727e1ea4ef64142b3d54a01"
+    }
+  ],
+  "class_counts": {
+    "rows_by_class": {
+      "OBSERVED_IMPLEMENTATION": 22,
+      "BOUNDED_LOCAL_ABSENCE": 8,
+      "MISSING_OR_UNMAPPED": 1,
+      "FINITE_METHOD_EXECUTION": 11,
+      "HISTORICAL_ACCEPTANCE": 5,
+      "UNKNOWN": 3
+    },
+    "claims_with_class": {
+      "OBSERVED_IMPLEMENTATION": 5,
+      "BOUNDED_LOCAL_ABSENCE": 3,
+      "MISSING_OR_UNMAPPED": 1,
+      "FINITE_METHOD_EXECUTION": 5,
+      "HISTORICAL_ACCEPTANCE": 2,
+      "UNKNOWN": 2
+    }
+  },
+  "unknowns": [
+    {
+      "id": "U-1",
+      "claims": [
+        "DEL-01-03::AC-010"
+      ],
+      "summary": "Whether registered path-selected v2-store-guard is 'the service-core test run'",
+      "resolves_with": "Owner or accepted-source definition of that run and trigger"
+    },
+    {
+      "id": "U-2",
+      "claims": [
+        "DEL-01-03::REQ-010",
+        "DEL-01-03::VER-009",
+        "DEL-01-03::AC-010"
+      ],
+      "summary": "Whether any storage assertion states a criterion absent from the contract (E-20, E-21)",
+      "resolves_with": "Authorized independent contract trace plus owner ruling per candidate"
+    },
+    {
+      "id": "U-3",
+      "claims": [
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Whether DEL-01-05 is 'available' for the VER-007 re-run and whether its core-only target would evaluate adapters/storage",
+      "resolves_with": "DEL-01-05 lifecycle/owner determination, then a separately authorized run"
+    },
+    {
+      "id": "U-4",
+      "claims": [
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Whether open-handle delete() satisfies VER-002 'while it is running' with no PEC process",
+      "resolves_with": "Owner interpretation (overlaps REM-001)"
+    },
+    {
+      "id": "U-5",
+      "claims": [
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Whether differing test-local stand-ins satisfy VER-006 'same fixture corpus' and 'by construction'",
+      "resolves_with": "Owner interpretation (overlaps REM-002)"
+    },
+    {
+      "id": "U-6",
+      "claims": [
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Whether VER-008 (documented-rule review) needs an executing automated test under VER-009",
+      "resolves_with": "Owner ruling"
+    },
+    {
+      "id": "U-7",
+      "claims": [
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Whether the scratch-checkout VER-001 test suffices for 'hosting checkout'; hosting-checkout identity itself UNKNOWN per REM-001 U-2",
+      "resolves_with": "Owner ruling or separately authorized hosting-checkout measurement"
+    },
+    {
+      "id": "U-8",
+      "claims": [
+        "DEL-01-03::AC-010",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "D85 check and ledger records carry no commit or timestamp; HEAD binding is by nine-file hash equality only; Git and OS environment unrecorded",
+      "resolves_with": "Nothing further unless owner requires an environment-bound run"
+    },
+    {
+      "id": "U-9",
+      "claims": [
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "No DEL-10-02 kill-test evidence; the system-level property remains unknown and is not addressed here",
+      "resolves_with": "DEL-10-02 production and its own inquiries"
+    },
+    {
+      "id": "U-10",
+      "claims": [
+        "DEL-01-03::CURRENT-REMAINING"
+      ],
+      "summary": "Publication and effectiveness of D-PEC-86 (the cited authority for this inquiry) is unknown at HEAD; the file is untracked",
+      "resolves_with": "Owner or CHANGE publication records"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "O-3-1",
+      "claims": [
+        "DEL-01-03::AC-010",
+        "DEL-01-03::OUT-003"
+      ],
+      "summary": "Define 'the service-core test run' and decide whether path-selected v2-store-guard (not in always_checks, not in hosted CI) satisfies 'executes in'",
+      "authority_needed": "Owner ruling; separate production/CI scope if wiring changes"
+    },
+    {
+      "id": "O-3-2",
+      "claims": [
+        "DEL-01-03::REQ-010",
+        "DEL-01-03::VER-009",
+        "DEL-01-03::AC-010"
+      ],
+      "summary": "The 'no test asserts a criterion absent from this contract' clause is unevidenced; candidate assertions are in E-20 and E-21",
+      "authority_needed": "Owner-authorized independent contract-trace review, then owner ruling per candidate"
+    },
+    {
+      "id": "O-3-3",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-001: no hosting-checkout populated-store git check-ignore/status run; scratch checkout only",
+      "authority_needed": "Owner ruling on sufficiency or a separate measurement run"
+    },
+    {
+      "id": "O-3-4",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-002: 'while it is running' covered only as open-handle close-then-delete; no running PEC process",
+      "authority_needed": "Owner interpretation; any runtime test is later production (coordinate with REM-001)"
+    },
+    {
+      "id": "O-3-5",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-003: text and AST token checks, not import/call-graph inspection",
+      "authority_needed": "Owner ruling on sufficiency; any added test is production (coordinate with REM-002)"
+    },
+    {
+      "id": "O-3-6",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-004: 'dump every persisted field' evidenced only through API readback",
+      "authority_needed": "Owner ruling; any added test is production (coordinate with REM-002)"
+    },
+    {
+      "id": "O-3-7",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-006: no shared fixture corpus and no by-construction assertion; shapes are test-local stand-ins",
+      "authority_needed": "Owner interpretation; real ingest paths belong to DEL-03-01, DEL-01-02, DEL-07-01"
+    },
+    {
+      "id": "O-3-8",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-007: no dependency manifest; DEL-01-05 re-run not performed; posture target excludes adapters/storage",
+      "authority_needed": "DEL-01-05 lifecycle plus owner ruling; separate authorized run"
+    },
+    {
+      "id": "O-3-9",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-008: documented-rule review against PRD 7.1/7.2 is not an executing test; only the D85 backcheck statement exists",
+      "authority_needed": "Owner ruling on the form VER-008 evidence must take"
+    },
+    {
+      "id": "O-3-10",
+      "claims": [
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "Store-local delete/recreate must not be presented as kill-test evidence; DEL-10-02 is INITIALIZED with SOW-format runs only",
+      "authority_needed": "DEL-10-02 production and its REM-001/REM-002; owner"
+    },
+    {
+      "id": "O-3-11",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::AC-010"
+      ],
+      "summary": "No artifact or fitness acceptance of the test suite; D85 is technical fan-in only",
+      "authority_needed": "Owner acceptance or governed CHECKING route under a separate ruling"
+    },
+    {
+      "id": "O-3-12",
+      "claims": [
+        "DEL-01-03::CURRENT-REMAINING"
+      ],
+      "summary": "Disposition of the unchecked REM-003 row, applied by 14f42e9ce under D-PEC-83 A-A, given this report; no checkbox or _STATUS.md edit made or proposed",
+      "authority_needed": "Owner disposition (reserved by D-PEC-86 I-4)"
+    },
+    {
+      "id": "O-3-13",
+      "claims": [
+        "DEL-01-03::CURRENT-REMAINING"
+      ],
+      "summary": "D-PEC-86, the authority cited for this inquiry, is untracked at HEAD",
+      "authority_needed": "Owner or CHANGE publication decision"
+    },
+    {
+      "id": "O-3-14",
+      "claims": [
+        "DEL-01-03::OUT-003",
+        "DEL-01-03::VER-009"
+      ],
+      "summary": "VER-005 partial: count reconciliation derived by construction (sqlite_store.py:88; E-49); nine failure codes (incl. UNKNOWN_FIELD_CLASS, INVALID_VALUE) and the <unknown> record location never asserted, only DUPLICATE_RECORD (E-50)",
+      "authority_needed": "Owner ruling on sufficiency; any added test is production; coordinate with REM-002 O-2-4"
+    }
+  ],
+  "suite_observation": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/STORAGE_SUITE_OBSERVATION.json",
+    "sha256": "bd22aad2867794ffbacf144fa9958a8273bbec3e33953509b0554ac21dd6c02c",
+    "label": "read-only observation; not measurement, acceptance or VER discharge"
+  },
+  "git_facts": {
+    "remaining_application_commit": "14f42e9ce17effa52e6415cc205a2df969b1256d",
+    "status_preimage_sha256_at_14f42e9ce_parent": "c2f5ee7bd025a83c73b7a884e7eecd5e9545496fb81fdc0ffc6deacfbbb7c959",
+    "remaining_section_identical_14f42e9ce_to_head": true,
+    "d85_postimages_equal_head_bytes": true
+  },
+  "write_set": [
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/REPORT.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/EVIDENCE_MANIFEST.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-003/STORAGE_SUITE_OBSERVATION.json"
+  ],
+  "dispositions_made": false,
+  "report_sha256": "ca1b7b3e03ad96e3eaa8aef32751be0945331bfe34f10c32ae54d0bdc69ca930"
+}
