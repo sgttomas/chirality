@@ -459,6 +459,7 @@ export function PipeViewport({
     cameraSequence: number; width: number; height: number; radii: ReadonlyMap<EntityKey, number> } | null>(null);
   const [labelSummary, setLabelSummary] = useState<LabelPolicyResult | null>(null);
   const labelOmissionsRef = useRef<HTMLDetailsElement | null>(null);
+  const [labelOmissionsOpenGeneration, setLabelOmissionsOpenGeneration] = useState<string | null>(null);
   const [labelError, setLabelError] = useState<string | null>(null);
   const labelSummarySignatureRef = useRef("");
   const cycleLabelMode = () => setLabelMode((mode) => mode === "Budget" ? "All" : mode === "All" ? "Off" : "Budget");
@@ -1353,6 +1354,7 @@ export function PipeViewport({
       labelSummarySignatureRef.current = "unavailable";
       labelProjectionErrorRef.current = "Viewport projection unavailable";
       setLabelSummary(null);
+      setLabelOmissionsOpenGeneration(null);
       setLabelError("Viewport projection unavailable");
       preferredHoverRef.current = null;
       return;
@@ -1408,7 +1410,11 @@ export function PipeViewport({
         if (labelProjectionErrorRef.current !== message) setLabelError(message);
         labelProjectionErrorRef.current = message;
         appliedLabelsRef.current = null;
-        if (labelOmissionsRef.current) labelOmissionsRef.current.hidden = true;
+        if (labelOmissionsRef.current) {
+          labelOmissionsRef.current.hidden = true;
+          labelOmissionsRef.current.open = false;
+        }
+        setLabelOmissionsOpenGeneration(null);
         for (const button of buttons.values()) {
           if (button === document.activeElement) hostRef.current?.focus();
           button.dataset.labelPlaced = "false";
@@ -2365,13 +2371,18 @@ export function PipeViewport({
           {hiddenCount > 0 ? <button type="button" className="viewport-hidden-count" data-testid="viewport-hidden-count" onClick={() => dispatchViewportViewCommand({ type: "show-all" })} title="Clear Hide and isolation">{hiddenCount} hidden · Show all</button> : null}
           {selectedHiddenCount > 0 ? <span role="status" title={`${selectedHiddenCount} selected item${selectedHiddenCount === 1 ? " is" : "s are"} hidden`}>{selectedHiddenCount} selected item{selectedHiddenCount === 1 ? " is" : "s are"} hidden</span> : null}
           {labelError ? <span role="status" data-testid="viewport-label-error" title={labelError}>Labels unavailable</span> : null}
-          {labelSummary ? <details ref={labelOmissionsRef} className="viewport-label-omissions" data-testid="viewport-label-omissions">
+          {labelSummary ? <details key={activeModelIndex.generation} ref={labelOmissionsRef}
+            className="viewport-label-omissions" data-testid="viewport-label-omissions"
+            open={labelOmissionsOpenGeneration === activeModelIndex.generation}
+            onToggle={(event) => setLabelOmissionsOpenGeneration(
+              event.currentTarget.open && !event.currentTarget.hidden && viewportResourceRef.current?.projectionAvailable
+                ? activeModelIndex.generation : null)}>
             <summary>{labelSummary.counts.suppressed + labelSummary.counts.unplaced} annotations omitted</summary>
-            <div><p>{labelSummary.counts.context} context · {labelSummary.counts.ordinary} ordinary · budget {labelSummary.nominalBudget} · context overflow {labelSummary.counts.contextOverflow}</p>
+            {labelOmissionsOpenGeneration === activeModelIndex.generation ? <div><p>{labelSummary.counts.context} context · {labelSummary.counts.ordinary} ordinary · budget {labelSummary.nominalBudget} · context overflow {labelSummary.counts.contextOverflow}</p>
               <ul>{[...labelSummary.suppressed.map((item) => ({ key: item.key, reason: item.reason })),
                 ...labelSummary.unplaced.map((item) => ({ key: item.key, reason: item.reasons.join(", ") }))]
                 .map((item) => <li key={item.key}>{item.key}: {item.reason}</li>)}</ul>
-            </div>
+            </div> : null}
           </details> : null}
           <span role="status" data-testid="viewport-od-status" title={geometryMode === "actual-od" ? actualOd.reason : "Schematic centerline geometry"}>{geometryMode === "actual-od" ? actualOd.reason : "Schematic centerline geometry"}</span>
           <span role="status" aria-label="View command status" data-testid="viewport-view-command-status" title={viewCommandStatus}>{viewCommandStatus}</span>
