@@ -1,0 +1,17 @@
+
+> openpipestress-workspace@0.1.0 test:desktop
+> npm test --workspace apps/desktop src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx
+
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx
+
+
+ RUN  v4.1.10 /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  4 passed (4)
+      Tests  37 passed (37)
+   Start at  23:34:44
+   Duration  1.76s (transform 762ms, setup 397ms, import 984ms, tests 2.08s, environment 1.37s)
+

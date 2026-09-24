@@ -1,0 +1,16 @@
+warning: constant `MAX_DESCRIPTOR_BYTES` is never used
+ --> src/live_control_wire.rs:9:11
+  |
+9 | pub const MAX_DESCRIPTOR_BYTES: usize = 16_384;
+  |           ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_attachment` is never used
+   --> src/live_control_wire.rs:237:12
+    |
+237 |     pub fn read_attachment(path: &Path) -> Result<Attachment, WireError> {
+    |            ^^^^^^^^^^^^^^^
+
+warning: `openpipestress-desktop` (lib) generated 2 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.18s

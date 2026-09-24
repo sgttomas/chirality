@@ -62,8 +62,17 @@
   ],
   "resource_status": "All heavy processes finished and released to ROOT before source-only closeout. No broad follow-on test/resource use authorized now.",
   "coverage_limits": [
-    "First failed frontend execution preceded final source manifest; raw failure and repairs are retained, no pass is attached to those bytes. Final frontend checks are bound to FRONTEND_RERUN_BASIS.json.",
+    "First failed frontend execution preceded initial source manifest; raw failure and repairs are retained, no pass is attached to those bytes. Initial-candidate passing frontend checks are bound to FRONTEND_RERUN_BASIS.json; final repair checks are separately bound to REPAIR_FRONTEND_VALIDATION.json.",
     "No actual app launch, bundle, real live endpoint, browser/CUA, benchmark or human acceptance occurred.",
-    "No independent complete-diff implementation review or whole-programme CI/evidence sweep is claimed."
-  ]
+    "Complete independent implementation review and repaired-candidate backcheck passed. Whole-programme CI/evidence sweep and actual native/human qualification remain ROOT-owned."
+  ],
+  "repaired_candidate": "de52a7cfc6cca083877ef53df559f5ee73701615",
+  "repair_frontend": "REPAIR_FRONTEND_VALIDATION.json",
+  "repair_native": "NATIVE/REPAIR_RUNS.json",
+  "generated_acl": "NATIVE/REPAIR_RETURN.md",
+  "final_independent_backcheck": {
+    "path": "REVIEW/BACKCHECK_RETURN.md",
+    "sha256": "006a76077d95426d23da34336300e828763531a70686fa1bc762a2dd6b923d1a",
+    "disposition": "PASS for implementation fan-in, R1\u2013R5 closed; actual native/package/human and ROOT integration checks pending"
+  }
 }
