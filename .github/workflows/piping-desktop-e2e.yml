@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       mode: ${{ steps.plan.outputs.mode }}
+      numerical_required: ${{ steps.plan.outputs.numerical_required }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,7 +44,7 @@ jobs:
           # Keep ancestry checks without downloading all historical evidence blobs.
           filter: blob:none
       - name: Test selection policy
-        run: python3 -m unittest discover -s projects/chirality-piping/tests -p test_ci_e2e_plan.py -v
+        run: python3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v
       - name: Plan complete PR diff
         id: plan
         env:
@@ -145,9 +146,39 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  numerical:
+    name: Numerical cargo suite
+    needs: selection
+    if: needs.selection.outputs.numerical_required == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+      - uses: actions/download-artifact@v4
+        with:
+          name: piping-e2e-selection
+      - uses: dtolnay/rust-toolchain@1.97.1
+      - name: Fetch locked dependencies and run offline numerical tests
+        run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-e2e-plan.json --evidence-dir piping-numerical-evidence
+      - name: Retain numerical candidate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-numerical-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            piping-numerical-evidence/numerical.json
+            piping-numerical-evidence/*.log
+            piping-numerical-evidence/cargo-logs/*.log
+          if-no-files-found: error
+          retention-days: 14
+
   desktop-e2e:
     name: Desktop E2E (source mode)
-    needs: [selection, barrier, remainder]
+    needs: [selection, barrier, remainder, numerical]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -160,6 +191,9 @@ jobs:
           SELECTION: ${{ needs.selection.result }}
           BARRIER: ${{ needs.barrier.result }}
           REMAINDER: ${{ needs.remainder.result }}
+          NUMERICAL_REQUIRED: ${{ needs.selection.outputs.numerical_required }}
+          NUMERICAL: ${{ needs.numerical.result }}
         run: >-
           python3 projects/chirality-piping/tools/ci/e2e_plan.py aggregate
           --mode "$MODE" --selection "$SELECTION" --barrier "$BARRIER" --remainder "$REMAINDER"
+          --numerical-required "$NUMERICAL_REQUIRED" --numerical "$NUMERICAL"
