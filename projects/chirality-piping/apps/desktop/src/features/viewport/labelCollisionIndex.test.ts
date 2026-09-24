@@ -25,6 +25,47 @@ describe("label collision broad phase", () => {
     expect(index.overlaps(rect(530, 530, 1, 1))).toBe(false);
   });
 
+  it("matches exhaustive queries through dense shared cells, alternating paths and late insertions", () => {
+    // Repeated coordinates are distinct insertions, each crossing several cells.
+    const inputs = Array.from({ length: 512 }, (_, i) =>
+      ({ ...rect(-128 + (i % 8), -128 + (i % 5), 190, 190) }));
+    inputs.push(rect(1000, 1000, 2000, 2000));
+    const snapshots = inputs.map((entry) => ({ ...entry }));
+    const index = new LabelCollisionIndex(inputs);
+    const check = (query: LabelRect) => {
+      const expected = snapshots.some((other) =>
+        query.left < other.right && query.right > other.left &&
+        query.top < other.bottom && query.bottom > other.top);
+      expect(index.overlaps(query)).toBe(expected);
+    };
+    // Full traversal without a hit, early hit, exact edge, oversized miss/hit.
+    const queries = [rect(70, -120, 1, 180), rect(-120, -120, 10, 10),
+      rect(69, -120, 1, 180), rect(4000, 4000, 2000, 2000),
+      rect(-5000, -5000, 10000, 10000), rect(2999, 2999, 1, 1)];
+    for (let pass = 0; pass < 8; pass++) {
+      for (const query of queries) check(query);
+      expect(index.overlaps({ left: NaN, top: 0, right: 1, bottom: 1 })).toBe(true);
+      expect(index.overlaps({ left: 1, top: 0, right: 0, bottom: 1 })).toBe(true);
+      expect(index.valid).toBe(true);
+      check(queries[0]);
+    }
+    const late = { ...rect(70, -120, 1, 180) };
+    check(late);
+    index.insert(late);
+    snapshots.push({ ...late });
+    // Reusing and then mutating a caller object must not share stored geometry.
+    late.left = 200;
+    late.right = 201;
+    index.insert(late);
+    snapshots.push({ ...late });
+    late.left = 10000;
+    late.right = 10001;
+    inputs[0].right = 10000;
+    for (const query of [...queries, rect(200, -120, 1, 1), rect(500, -120, 1, 1)]) check(query);
+    check({ left: 1e30, top: 1e30, right: 2e30, bottom: 2e30 });
+    check(queries[0]);
+  });
+
   it("copies obstacle inputs and fails closed on invalid rectangles", () => {
     const obstacle = { left: 0, top: 0, right: 20, bottom: 20 };
     const index = new LabelCollisionIndex([obstacle]);

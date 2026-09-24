@@ -3,6 +3,11 @@ import type { LabelRect } from "./labelPlacement";
 const CELL_SIZE = 64;
 const MAX_CELLS = 256;
 
+type CollisionEntry = {
+  readonly rect: LabelRect;
+  lastQuery: object | null;
+};
+
 export function labelRectsOverlap(a: LabelRect, b: LabelRect): boolean {
   return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
 }
@@ -19,9 +24,9 @@ function validRect(rect: LabelRect): boolean {
  * still scan all obstacles: this is not a worst-case sublinear packing guarantee.
  */
 export class LabelCollisionIndex {
-  private readonly cells = new Map<string, LabelRect[]>();
-  private readonly oversized: LabelRect[] = [];
-  private readonly all: LabelRect[] = [];
+  private readonly cells = new Map<string, CollisionEntry[]>();
+  private readonly oversized: CollisionEntry[] = [];
+  private readonly all: CollisionEntry[] = [];
   private invalid = false;
 
   constructor(rectangles: readonly LabelRect[] = []) {
@@ -33,13 +38,14 @@ export class LabelCollisionIndex {
   insert(rect: LabelRect): void {
     if (!validRect(rect)) { this.invalid = true; return; }
     const snapshot = { ...rect };
-    this.all.push(snapshot);
+    const entry: CollisionEntry = { rect: snapshot, lastQuery: null };
+    this.all.push(entry);
     const keys = cellKeys(snapshot);
-    if (keys === null) { this.oversized.push(snapshot); return; }
+    if (keys === null) { this.oversized.push(entry); return; }
     for (const key of keys) {
       const bucket = this.cells.get(key);
-      if (bucket) bucket.push(snapshot);
-      else this.cells.set(key, [snapshot]);
+      if (bucket) bucket.push(entry);
+      else this.cells.set(key, [entry]);
     }
   }
 
@@ -47,14 +53,16 @@ export class LabelCollisionIndex {
     // Invalid obstacles/queries must never become an accidental clear placement.
     if (this.invalid || !validRect(rect)) return true;
     const keys = cellKeys(rect);
-    if (keys === null) return this.all.some((other) => labelRectsOverlap(rect, other));
-    if (this.oversized.some((other) => labelRectsOverlap(rect, other))) return true;
-    const seen = new Set<LabelRect>();
+    if (keys === null) return this.all.some((other) => labelRectsOverlap(rect, other.rect));
+    if (this.oversized.some((other) => labelRectsOverlap(rect, other.rect))) return true;
+    // A fresh identity cannot collide with markers retained by earlier queries.
+    // Buckets share private entries; caller rectangles are never marked.
+    const query = {};
     for (const key of keys) {
       for (const other of this.cells.get(key) ?? []) {
-        if (seen.has(other)) continue;
-        seen.add(other);
-        if (labelRectsOverlap(rect, other)) return true;
+        if (other.lastQuery === query) continue;
+        other.lastQuery = query;
+        if (labelRectsOverlap(rect, other.rect)) return true;
       }
     }
     return false;
