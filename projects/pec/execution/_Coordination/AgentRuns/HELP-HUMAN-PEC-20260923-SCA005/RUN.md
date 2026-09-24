@@ -29,3 +29,12 @@ completion.
 
 
 Dispatch note: the host's agent roster is fixed at session start, so the gitignored `.claude/agents/` definitions (`pec-manager`, `pec-task`, `pec-reviewer`; `model: opus`, `effort: high`) were not selectable; every node ran as `general-purpose` with `model: opus` and high effort requested in its brief. See `SUPPLIED_BASIS.json`.
+
+## Continuation 2026-09-24 (owner: "Have you tried answering those matters yourself?")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| H1 checkpoint-1 resolutions from the repository | HELP_HUMAN | merged PR #882 | `_ScopeChange/SCA-005_2026-09-23_2139/Checkpoint1_Resolution_Note.md`; pointer lines in `Decision_Log.md`, `Handoff_State.md`, `docs/STATUS.md` | COMPLETE |
+| H2 DEL-01-03 obligations triage | TASK / general-purpose opus (high requested) | none | `returns/OBLIGATION_TRIAGE_DEL-01-03.md` | COMPLETE — 6 A / 9 B / 13 C (8 repairs) / 4 D (2 choices) |
+| H3 D-PEC-87 correction-packet proposal | same TASK, resumed | H2 | `_DECISIONS/D-PEC-87_del_01_03_store_guard_correction_proposal_2026-09-24.md` | COMPLETE — SHA-256 `99dd06d4…`; register row AWAITING_RULING |
+| G2 receipt 180, register row, PR, CI, merge | HELP_HUMAN | H3 | `loop/LOOP_RECEIPTS.md`, `_DECISIONS/_REGISTER.md` | in progress |

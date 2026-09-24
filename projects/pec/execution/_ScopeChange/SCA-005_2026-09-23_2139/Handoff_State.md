@@ -50,7 +50,7 @@ finalized (or dropped if the PRD successor lands first) at checkpoint 2.
 | `Impact_Assessment.md` | `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` |
 | `Amendment_Actions.csv` (PROPOSED) | `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2` |
 | `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
-| `Decision_Log.md` | `701ae54257b94d61dfa692445ab7a9bd923b978f8dc5ff38c28279fc9e20db30` |
+| `Decision_Log.md` | `2dc6fb3e78d21f78757382c72a862afdbb7d828483eb44de5ccd4139d636e029` |
 
 ## Pre-change audit snapshot hashes (written by the TASK child)
 
@@ -115,7 +115,7 @@ this snapshot only. Superseded hashes: `Impact_Assessment.md`
 `Amendment_Actions.csv` `e4013f25…cd30` →
 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`;
 `Decision_Log.md` `44a87380…7ab6` →
-`701ae54257b94d61dfa692445ab7a9bd923b978f8dc5ff38c28279fc9e20db30`.
+`2dc6fb3e78d21f78757382c72a862afdbb7d828483eb44de5ccd4139d636e029`.
 `Brief.md` quotes neither hash and is unchanged.
 
 ## Write containment
@@ -143,3 +143,5 @@ paths are byte-unchanged.
    flags a zero-coverage retired row (UNKNOWN now); dependency topology after
    re-extraction is UNKNOWN; which SCA-004 downstream repairs have happened
    since 2026-08-03 was not verified here.
+
+Amendment 2026-09-24 (HELP_HUMAN): `Decision_Log.md` gained a companion pointer to `Checkpoint1_Resolution_Note.md` (SHA-256 `6e2eccfe984a16f442995b0d874824d62654dc36bb632e93806c3a085d6edb5c`); its hash above is updated from `701ae542…` to `2dc6fb3e…`. `Impact_Assessment.md` and `Amendment_Actions.csv` are unchanged.
