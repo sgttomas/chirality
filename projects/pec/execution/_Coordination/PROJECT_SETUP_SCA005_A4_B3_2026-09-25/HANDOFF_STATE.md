@@ -99,7 +99,11 @@ not by editing the accepted SCA-005 snapshot:
   recorded above. N-1 is carried as a disclosure; N-4 concerns the ruled
   proposal text (an abbreviated tool hash at its line 270) and is routed to
   HELP_HUMAN, not repaired here.
-- Later verdicts, if any, follow as `VERIFIER_VERDICT_NN.md`.
+- **Verdict 02 (reviewed `3984cb475`): PASS**, no blocking or non-blocking
+  finding (`VERIFIER_VERDICT_02.md`; also `returns/C5_VERIFIER_VERDICT_02.md`).
+  The same verifier confirmed the repairs resolve N-2, N-3 and N-5 without
+  overstatement, that no product path, audit file or pointer changed, that
+  verdict 01 was transcribed faithfully, and that `checks/00b` reproduces.
 
 ## Not claimed
 
