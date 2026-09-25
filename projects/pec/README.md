@@ -39,8 +39,9 @@ incomplete only for TM-PEC-023. Lifecycle census: 32 `OPEN` / 26
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
 promotion follows from either. The three DEL-01-03 read-only evidence
-inquiries are reported with obligations awaiting owner disposition; no
-Remaining item is closed. Build phases P1–P4 remain
+inquiries are reported, and the owner ruled `D-PEC-87` on 2026-09-24: one
+correction slice on seven existing files, the three inquiry rows to be
+ticked, and review of the corrected bytes. No Remaining item is closed yet. Build phases P1–P4 remain
 separately owner-gated. `D-PEC-80` made `projects/pec/loop/` the loop home:
 follow `projects/pec/loop/LOOP_INIT.md` to discover
 work from deliverable `## Remaining` surfaces. Retired plans live in
