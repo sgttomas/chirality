@@ -90,10 +90,15 @@ since `D-PEC-85` and documented in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md`.
 Its closure, with three port-error gaps (two routed by the slice, one found
 in preparation) and the echo of invalid identifiers, was proposed as
 `D-PEC-89`, which the owner ruled A on 2026-09-24
-(`execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`); its
-slice is next. HELP_HUMAN has sequenced the L-2a
-review after the `D-PEC-89` A slice lands, a coordination choice rather than a
-ruling, so that it reviews the resulting bytes.
+(`execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`). That
+slice merged on 2026-09-25 (PR #897, `e8562c068`; evidence under DEL-01-03
+`_run_records/P1_STORE_GUARD_03/`, independent verifier PASS in one cycle):
+the guard now accepts only exact `str`/`tuple` caller values, rejections name
+positions instead of echoing input, and the three port-error gaps are closed.
+The one case left open is outside the stated threat boundary. DEL-01-03 stays
+`IN_PROGRESS`. The L-2a review of the corrected bytes is next; HELP_HUMAN
+sequenced it after this slice, a coordination choice rather than a ruling, so
+that it reviews the resulting bytes.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
@@ -171,7 +176,7 @@ P-A.
 
 ## What's next (owner gates, in order)
 
-Current owner gates (2026-09-24; none is accepted or inferred here):
+Current owner gates (2026-09-25; none is accepted or inferred here):
 
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
@@ -185,6 +190,10 @@ Current owner gates (2026-09-24; none is accepted or inferred here):
 - **Later rulings:** live application of the `D-PEC-79` postimage (only via
   SCA-005 checkpoint 2 if accepted there) and PEC loop-method migration
   (`D-PEC-86` §3 I-7, after SCA-005 closes).
+- **Agent reliance on PEC data:** the owner stated on 2026-09-25 that agents
+  should rely on PEC's data. That conflicts with PRD v2.2 PEC-K-02, PEC-K-03
+  and §8 and with a Root `AGENTS.md` sentence, so HELP_HUMAN will prepare it
+  as a proposal (`D-PEC-90`) for a ruling; nothing changes before then.
 
 Gate lineage (historical record; the current gates are listed above):
 
