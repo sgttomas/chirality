@@ -1,1 +1,0 @@
-Improve shell session navigation and activity presentation

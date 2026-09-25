@@ -1,3 +1,0 @@
-partial_legacy_exit=1; format=INVALID; output=present; verdict=PASS
-unauthorized_dual_exit=1; format=AMBIGUOUS; output=present; verdict=PASS
-unauthorized_checklist_exit=1; output_artifact=absent; verdict=PASS

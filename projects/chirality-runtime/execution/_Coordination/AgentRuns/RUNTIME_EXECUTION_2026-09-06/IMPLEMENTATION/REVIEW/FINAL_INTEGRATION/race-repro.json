@@ -1,7 +1,0 @@
-{
-  "iterations": 30,
-  "unreadable": 30,
-  "errors": [
-    "Terminal does not bind current thread association"
-  ]
-}

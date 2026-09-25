@@ -1,1 +1,0 @@
-PASS: no trailing whitespace in selected text artifacts

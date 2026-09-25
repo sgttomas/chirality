@@ -1,1 +1,0 @@
-T3 plain text fixture: no authority or runtime content.

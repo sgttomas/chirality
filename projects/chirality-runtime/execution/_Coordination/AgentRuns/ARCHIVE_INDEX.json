@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-agent-runs-archive-index/v1",
+  "decision": "D-GOV-45",
+  "tool": "tools/archive_agent_runs.py",
+  "archives": [
+    {
+      "tag": "archive/agent-runs-2026-09-25",
+      "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
+      "archived_on": "2026-09-25",
+      "rule": "folders untouched 14 days; binaries untouched 7 days",
+      "runs": [
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/LOCAL_IDENTITY_STOPPED_BRANCH_REMEDIATION_V2",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_CONFORMANCE_RESUME_2026-09-06",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_2026-09-06",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_EXECUTION_WAVE1_2026-09-06",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_HOSTED_STATUS_IMPLEMENTATION_2026-09-07",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_PACKAGING_2026-09-06",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_READINESS_2026-09-06",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_DECISION_TEXT_2026-09-07",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_ACTIVATION_PREPARATION_2026-09-07",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_SOURCE_COMPATIBILITY_ADDENDUM_2026-09-07",
+        "projects/chirality-runtime/execution/_Coordination/AgentRuns/SCA005_SETUP"
+      ],
+      "files": [],
+      "restore": "git restore --source=archive/agent-runs-2026-09-25 -- <path>   |   git show archive/agent-runs-2026-09-25:<path>"
+    }
+  ]
+}

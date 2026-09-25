@@ -1,0 +1,45 @@
+{
+  "schema": "chirality-agent-runs-archive-index/v1",
+  "decision": "D-GOV-45",
+  "tool": "tools/archive_agent_runs.py",
+  "archives": [
+    {
+      "tag": "archive/agent-runs-2026-09-25",
+      "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
+      "archived_on": "2026-09-25",
+      "rule": "folders untouched 14 days; binaries untouched 7 days",
+      "runs": [
+        "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-04_L1-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-04_L1-evidence-02",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-04_L2-backup-create-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-04_L2-backup-restore-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-04_tier0-prep",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC01-execution-basis",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC01-pilot-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC01-pilot-evidence-02",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC01-pilot-evidence-03",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC01-pilot-evidence-04",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_DPEC10-rehearsal-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_L2-seed-demo-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-05_L3-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_BRIDGE-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DEMOREADY-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DPEC10-triage-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DPEC13-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DPEC13-evidence-02",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DPEC17-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-06_DPEC20-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-07_DPEC21-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-07_DPEC22-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-07_DPEC23-evidence-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_2026-07-24_profile-amendment-01",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05",
+        "projects/pec/execution/_Coordination/AgentRuns/PEC_RUNTIME_PROJECT_MIGRATION_2026-09-05",
+        "projects/pec/execution/_Coordination/AgentRuns/RUN_2026-07-25_sca002"
+      ],
+      "files": [],
+      "restore": "git restore --source=archive/agent-runs-2026-09-25 -- <path>   |   git show archive/agent-runs-2026-09-25:<path>"
+    }
+  ]
+}

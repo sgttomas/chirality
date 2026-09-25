@@ -53,7 +53,11 @@ baseline module runs the self-check once and requires no BLOCK finding or
 identity refusal, and CI sets `CHIRALITY_REQUIRE_LIVE_TESTS=1` so those tests
 fail rather than skip. Its checkout omits binary run evidence (archives, images,
 databases) under `_Coordination/AgentRuns`, which no gate or test reads; governed
-binaries elsewhere are still checked out.
+binaries elsewhere are still checked out. Under D-GOV-45, run records are
+history and are not tested: governance-harness scans only the run records a
+change adds or modifies, for credentials (BLOCK) and files over 5 MB (WARN).
+Closed run records are archived out of the working tree by
+`tools/archive_agent_runs.py`; references into them resolve to the archive tag.
 Main pushes and manually requested governance runs retain the full tools estate.
 Existing stable check names and branch-protection configuration are unchanged.
 

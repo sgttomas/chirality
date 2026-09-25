@@ -1,2 +1,0 @@
-poll=1 time=2026-08-04T18:14:57Z state=alive
-poll=2 time=2026-08-04T18:14:57Z state=exited

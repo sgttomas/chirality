@@ -1,5 +1,0 @@
-	state = running
-	runs = 2
-	pid = 94247
-		state = active
-		state = active
