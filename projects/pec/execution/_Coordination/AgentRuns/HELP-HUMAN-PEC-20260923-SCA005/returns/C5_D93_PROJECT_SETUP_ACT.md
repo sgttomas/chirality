@@ -159,9 +159,16 @@ read that it did not create was the C5 brief.
 
 ## What the caller must resolve
 
-1. **Merge.** The PR is open and not merged. `origin/main` has moved to
-   `23aad15d6` (PR #905, `projects/chirality-piping/**` only; no overlap);
-   CI must run on the actual merge candidate.
+1. **Merge.** The PR is open and not merged. `origin/main` moved to
+   `23aad15d6` (PR #905, `projects/chirality-piping/**` only; no overlap).
+   The first CI run on `77bc78b48` failed "Select source coverage" with
+   "Update the PR base: event target base is missing, unavailable or not
+   integrated into head", and "Desktop E2E (source mode)" failed as its
+   dependent gate. The manager merged `origin/main` into the branch
+   (`ecbaaa2ba`, no conflicts; the merge brings only
+   `projects/chirality-piping/**`). The verifier reviewed `f64a9a7c0` and
+   `3984cb475`; the merge changes no PEC path. CI must pass on the final
+   head before merge.
 2. **Executor disclosure (N-1).** The proposal's administrative grant names a
    TASK author for the generator; the C5 brief (and `RUN.md`'s C5 work graph)
    gave the run to the manager. The two `_STATUS.md` history lines read
