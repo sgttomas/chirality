@@ -1,0 +1,2003 @@
+{
+  "contract": {
+    "basis": "docs/SPEC.md sections 1-2; production format via tools/scope_of_work/common.py",
+    "partition_directories": [
+      "0_References",
+      "1_Working",
+      "2_Checking",
+      "3_Issued"
+    ],
+    "tool_roots": [
+      "_Aggregation",
+      "_Coordination",
+      "_Decomposition",
+      "_Estimates",
+      "_Reconciliation",
+      "_Sources"
+    ],
+    "version": "structure-audit/v1"
+  },
+  "inventory_source": "live variant discovery",
+  "issues": [
+    "partition directory contract is incomplete",
+    "required tool roots are missing"
+  ],
+  "partitions": [
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-00_Architecture_Runway_Contracts"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards"
+    },
+    {
+      "missing_directories": [
+        "0_References",
+        "2_Checking",
+        "3_Issued"
+      ],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement"
+    }
+  ],
+  "root": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution",
+  "run_status": "COMPLETE",
+  "schema_version": 1,
+  "subject_status": "FAIL",
+  "summary": {
+    "fail": 0,
+    "lifecycle_states": {
+      "CHECKING": 4,
+      "INITIALIZED": 26,
+      "IN_PROGRESS": 2,
+      "OPEN": 28,
+      "RETIRED": 4
+    },
+    "partitions": 11,
+    "pass": 64,
+    "production_formats": {
+      "INVALID": 32,
+      "SOW_V1": 32
+    },
+    "units": 64
+  },
+  "tool_roots": {
+    "_Aggregation": false,
+    "_Coordination": true,
+    "_Decomposition": true,
+    "_Estimates": false,
+    "_Reconciliation": true,
+    "_Sources": false
+  },
+  "units": [
+    {
+      "current_state": "CHECKING",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-00-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-00-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "CHECKING",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-00-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "IN_PROGRESS",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "IN_PROGRESS",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-01-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-02-07",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-03-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-04-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-04-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-04-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-04-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-04-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-05-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-05-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "RETIRED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-06-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-07-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "RETIRED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-07-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-07-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "RETIRED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-07-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "RETIRED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-07-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-08-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "CHECKING",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-08-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-08-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-08-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-08-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-09-07",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "CHECKING",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-01",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-02",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-03",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-04",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-05",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-06",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-07",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-08",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-09",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-10",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "INITIALIZED",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": true,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-11",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+      "production_format": {
+        "accepted_baseline": true,
+        "issues": [],
+        "state": "SOW_V1",
+        "valid": true
+      },
+      "subject_status": "PASS"
+    },
+    {
+      "current_state": "OPEN",
+      "files": {
+        "Datasheet.md": false,
+        "Dependencies.csv": true,
+        "Guidance.md": false,
+        "Procedure.md": false,
+        "ScopeOfWork.md": false,
+        "Specification.md": false,
+        "_CONTEXT.md": true,
+        "_DEPENDENCIES.md": true,
+        "_MEMORY.md": false,
+        "_REFERENCES.md": true,
+        "_SEMANTIC.md": true,
+        "_SEMANTIC_LENSING.md": false,
+        "_STATUS.md": true
+      },
+      "id": "DEL-10-12",
+      "issues": [],
+      "path": "/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.tVmCbCiNh3/base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement",
+      "production_format": {
+        "accepted_baseline": false,
+        "issues": [
+          "missing production contract"
+        ],
+        "state": "INVALID",
+        "valid": false
+      },
+      "subject_status": "PASS"
+    }
+  ],
+  "variant": "SOFTWARE"
+}

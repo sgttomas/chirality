@@ -199,8 +199,8 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
 - **SCA-005 follow-on work (each separately gated):** SCA-005 closed for
   scope change only on 2026-09-25
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`).
-  Open: DEL-02-08/09 preparation with the dependency rerun (PROJECT_SETUP
-  under its own packet) and a re-audit; context and reference re-pinning to
+  Open: DEL-02-08/09 preparation with the dependency rerun and a re-audit
+  (ruled as `D-PEC-93` A on 2026-09-25; the act is next); context and reference re-pinning to
   revision 1.5; SOW currency; DEL-00-01/00-03 derivative review; the loop
   registry source packet; P1 fixtures; TM-PEC-023 disposition; the
   `projects/pec/AGENTS.md` instruction tranche (it still names PRD v2.2); the

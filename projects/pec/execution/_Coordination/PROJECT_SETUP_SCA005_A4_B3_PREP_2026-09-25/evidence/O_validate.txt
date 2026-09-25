@@ -1,0 +1,14 @@
+Register validation — projects/pec/execution
+  Families: SCH, EVQ, XRG, DRB
+  Registers scanned: 66  Dependency rows: 264  Deliverables declared: 66
+
+Evidence-cell metrics by row class
+  class         rows  well-formed  locus=quote  quoted-locus  empty-quote  ph-locus  waived  file-pop  file-res
+  ANCHOR         140          140            0             0            0         0       0       140       140
+  EXECUTION      124          124            0             0            0         0       0       124       124
+
+Summary by check code
+  (none)
+
+  ERROR findings:   0
+  WARNING findings: 0

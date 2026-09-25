@@ -1,0 +1,18 @@
+Register validation — projects/pec/execution
+  Families: SCH, EVQ, XRG, DRB
+  Registers scanned: 64  Dependency rows: 255  Deliverables declared: 66
+
+Evidence-cell metrics by row class
+  class         rows  well-formed  locus=quote  quoted-locus  empty-quote  ph-locus  waived  file-pop  file-res
+  ANCHOR         136          136            0             0            0         0       0       136       136
+  EXECUTION      119          119            0             0            0         0       0       119       119
+
+Findings
+  WARNING DRB-008 _Decomposition/Deliverables.csv [DEL-02-08] — DEL-02-08 has no deliverable-local Dependencies.csv in any of 1_Working/2_Checking/3_Issued; a register outside these folders is not scanned
+  WARNING DRB-008 _Decomposition/Deliverables.csv [DEL-02-09] — DEL-02-09 has no deliverable-local Dependencies.csv in any of 1_Working/2_Checking/3_Issued; a register outside these folders is not scanned
+
+Summary by check code
+  WARNING DRB-008      2  Deliverables.csv row has no deliverable-local Dependencies.csv in any scanned lifecycle folder
+
+  ERROR findings:   0
+  WARNING findings: 2
