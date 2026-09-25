@@ -1,0 +1,348 @@
+{
+  "version": 3,
+  "mode": "full",
+  "coverage_full": true,
+  "event": "pull_request",
+  "pr": "901",
+  "base": "eec2855d829d9cd3704892fc7d603562fbd39b88",
+  "target_base": "eec2855d829d9cd3704892fc7d603562fbd39b88",
+  "head": "98b423d93e41338551bf744def1e2c5a303aeaab",
+  "changed_paths": [
+    {
+      "status": "M",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/README.md"
+    },
+    {
+      "status": "M",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/adapter.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/src/bin/openpipestress_jcs_binary64.rs"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/src/binary64.rs"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/src/binary64_cli.rs"
+    },
+    {
+      "status": "M",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/src/lib.rs"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/core/serialization/canonical_json/tests/binary64_profile.rs"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/API_PLAN.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/BASIS.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/BRIEF.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/DELEGATION.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/HANDOFF_WHITELIST.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/CANONICAL_OUTPUT_LIMIT.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/CANONICAL_OUTPUT_LIMIT_REPAIR.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/FINAL_CHECKED_BASIS.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/FINDINGS.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/INITIAL_CHECKED_BASIS.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/NUMERIC_EDGE_PROBES.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/RESOURCE_ORDER.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/RESOURCE_REPAIR_DELTA.patch"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/RESOURCE_REPAIR_PROBES.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/RETURN.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/REVIEW_SCOPE.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/_run_records/INTERMEDIATE_REPAIR_CHECKS.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/probe_canonical_output_limit.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/probe_numeric_edges.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/probe_resource_order.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/INDEPENDENT_REVIEW/probe_resource_repair.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/RESOURCE_REPAIR.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/RETURN.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/SOURCE_CANDIDATE_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/SOURCE_FREEZE_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/SOURCE_FREEZE_02.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/SOURCE_FREEZE_03.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/SOURCE_FREEZE_04.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/COMMITTED_DESIGN_BACKCHECK.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/ENVIRONMENT.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/ENVIRONMENT_02.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/ENVIRONMENT_03.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/ENVIRONMENT_04.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/FINAL_MANAGER_SOURCE_CHECK.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/INITIAL_SYNTAX_CHECK.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/LEGACY_SOURCE_PRESERVATION.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/TEST_SETUP_DISCOVERY.md"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/adapter_pretransport_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/adapter_pretransport_01.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/explicit_scientific_build_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/explicit_scientific_build_01.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_01.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_02.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_02.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_03.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_03.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_04.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/python_cross_language_04.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/run_check.py"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_01.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_01.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_02.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_02.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_03.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_03.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_04.json"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/rust_full_04.log"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/source_candidate_01.patch"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/source_candidate_02.patch"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/source_candidate_03.patch"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SCIENTIFIC_TRANSPORT_FOUNDATION/_run_records/source_candidate_04.patch"
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/tests/test_binary64_canonical_json_adapter.py"
+    },
+    {
+      "status": "M",
+      "path": "projects/chirality-piping/tools/serialization/build_checked_json.py"
+    }
+  ],
+  "projects": [
+    "chromium-desktop",
+    "chromium-compact"
+  ],
+  "inventory": [
+    "e2e/b3-accessibility.spec.ts",
+    "e2e/b3a-session-status.spec.ts",
+    "e2e/b3b-project-persistence.spec.ts",
+    "e2e/b4-sections.spec.ts",
+    "e2e/b4-table-editing.spec.ts",
+    "e2e/c3-viewport-visibility.spec.ts",
+    "e2e/gui-workflow-validation.spec.ts",
+    "e2e/linear-authoring.spec.ts",
+    "e2e/r2-smoke.spec.ts",
+    "e2e/result-compatibility.spec.ts",
+    "e2e/ui-foundation.spec.ts",
+    "e2e/ui-foundation/causal-method-contract.spec.ts",
+    "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+    "e2e/ui-foundation/full-cohort-controller.spec.ts",
+    "e2e/ui-foundation/performance-targets.spec.ts",
+    "e2e/workspace-layout.spec.ts"
+  ],
+  "selected_specs": [
+    "e2e/b3-accessibility.spec.ts",
+    "e2e/b3a-session-status.spec.ts",
+    "e2e/b3b-project-persistence.spec.ts",
+    "e2e/b4-sections.spec.ts",
+    "e2e/b4-table-editing.spec.ts",
+    "e2e/c3-viewport-visibility.spec.ts",
+    "e2e/gui-workflow-validation.spec.ts",
+    "e2e/linear-authoring.spec.ts",
+    "e2e/r2-smoke.spec.ts",
+    "e2e/result-compatibility.spec.ts",
+    "e2e/ui-foundation.spec.ts",
+    "e2e/ui-foundation/causal-method-contract.spec.ts",
+    "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+    "e2e/ui-foundation/full-cohort-controller.spec.ts",
+    "e2e/ui-foundation/performance-targets.spec.ts",
+    "e2e/workspace-layout.spec.ts"
+  ],
+  "selected_titles": {},
+  "numerical_required": true,
+  "appearance": false,
+  "ownership": {},
+  "reasons": [
+    "Full source coverage"
+  ],
+  "coverage_note": "Full deduplicated source coverage requires barrier and four exact partitions to succeed."
+}

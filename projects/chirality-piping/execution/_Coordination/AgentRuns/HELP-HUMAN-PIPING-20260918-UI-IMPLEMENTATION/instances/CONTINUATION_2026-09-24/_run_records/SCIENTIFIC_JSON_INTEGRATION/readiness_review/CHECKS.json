@@ -1,0 +1,84 @@
+{
+  "status": "CLEAR",
+  "candidate": "98b423d93e41338551bf744def1e2c5a303aeaab",
+  "clean_candidate": true,
+  "tested_base": "eec2855d829d9cd3704892fc7d603562fbd39b88",
+  "upstream": "8b6553850aa8a98cb44aed02e9fe91e23b1234bd",
+  "upstream_only_pec_paths": [
+    "projects/pec/README.md",
+    "projects/pec/docs/STATUS.md",
+    "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/RUN.md",
+    "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F11_REVIEW_D91_RULING.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-91_RULING_2026-09-25.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md"
+  ],
+  "custody_records_verified": 202,
+  "source_review": {
+    "ten_source_hashes_match": true,
+    "complete_72_path_foundation_blobs_match_prior_review": true,
+    "only_later_delta": "byte-identical evidence move plus sole whitelist path update",
+    "integration_review_covers_delta": true
+  },
+  "hosted": {
+    "run": "https://github.com/sgttomas/chirality/actions/runs/36112629958",
+    "head": "98b423d93e41338551bf744def1e2c5a303aeaab",
+    "source_denominator": 495,
+    "outcomes": {
+      "passed": 475,
+      "skipped": 20
+    },
+    "source_specs": 16,
+    "viewports": [
+      "chromium-compact",
+      "chromium-desktop"
+    ],
+    "all_required_recorded_checks_success": true,
+    "unchanged_source_skips": 20,
+    "governance_actual_head": {
+      "conclusion": "success",
+      "headSha": "98b423d93e41338551bf744def1e2c5a303aeaab",
+      "status": "completed",
+      "url": "https://github.com/sgttomas/chirality/actions/runs/36112629940"
+    },
+    "source_identities_accounted": 495
+  },
+  "numerical": {
+    "locked_crates": 38,
+    "fetch_commands": 38,
+    "command_logs_hashed": 78,
+    "input_hashes_verified": 76,
+    "counts": {
+      "passed": 1154,
+      "failed": 0,
+      "ignored": 0
+    }
+  },
+  "local": {
+    "clean_DEC025_surfaces": 5,
+    "rust": {
+      "passed": 1154,
+      "failed": 0,
+      "ignored": 0
+    },
+    "python_passed": 1200,
+    "python_subtests": 18,
+    "desktop_passed": 1675,
+    "desktop_files": 104,
+    "production_build": true,
+    "practitioner_passed": 379,
+    "selfcheck_no_portability_or_block_findings": true,
+    "G4_no_block_lines": true
+  },
+  "history_preserved": {
+    "prior_governance_failure": true,
+    "prior_source_cancelled": true,
+    "source_verifier_corrections_present": true
+  },
+  "limits": [
+    "No source review repeated or solver accuracy claimed",
+    "No new native application path/adoption/witness",
+    "No network/current remote status query; Root owns final Git/PR state check",
+    "Original24Rust/55Python547token foundation evidence retains its original scope; fresh current-main counts used above"
+  ]
+}

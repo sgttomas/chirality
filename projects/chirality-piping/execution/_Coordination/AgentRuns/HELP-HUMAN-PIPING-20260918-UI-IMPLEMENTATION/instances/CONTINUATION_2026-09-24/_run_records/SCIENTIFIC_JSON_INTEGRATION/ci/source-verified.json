@@ -1,0 +1,48 @@
+{
+  "candidate": "98b423d93e41338551bf744def1e2c5a303aeaab",
+  "workflow_run": 36112629958,
+  "attempt": 1,
+  "selected_mode": "full",
+  "source_identities": 495,
+  "execution_identities": 495,
+  "outcomes": {
+    "passed": 475,
+    "skipped": 20
+  },
+  "missing": [],
+  "unexpected_or_duplicate": [],
+  "source_specs_hashed": 16,
+  "projects": [
+    "chromium-compact",
+    "chromium-desktop"
+  ],
+  "selection_is_not_pass": "Actual executed outcomes parsed independently from successful run log; every collected identity required once.",
+  "run_sha256": "fdebc7750a4a52d53df3b6490995baef739b7e4cdc714a4241d32e30b4d7446e",
+  "log_sha256": "a5353fc4a27508b7691ee56d737189365edfcc9b8ac3b4d9dbd458852bb9f585",
+  "explicit_skipped_execution_lines": [
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:21.7323501Z   -  117 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1063:1 \u203a frozen actual product/profile inputs validate read-only when explicitly supplied",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0041844Z   -  120 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1130:1 \u203a continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0324990Z   -  123 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1215:1 \u203a captured scrollable inspector dimensions remain observations while true layout drift rejects",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0392618Z   -  124 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: target-miss",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0454432Z   -  125 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,valid",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0525769Z   -  126 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0605658Z   -  127 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: interrupted,valid",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0675943Z   -  128 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: empty-exit0,valid",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0739304Z   -  129 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: stale-success",
+    "Source remainder (4/4)\tUNKNOWN STEP\t2026-09-25T08:39:23.0808706Z   -  130 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1333:1 \u203a explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:06.4151340Z   -   51 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1063:1 \u203a frozen actual product/profile inputs validate read-only when explicitly supplied",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5213055Z   -   54 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1130:1 \u203a continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5412821Z   -   57 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1215:1 \u203a captured scrollable inspector dimensions remain observations while true layout drift rejects",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5459992Z   -   58 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: target-miss",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5502144Z   -   59 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,valid",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5543583Z   -   60 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5591288Z   -   61 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: interrupted,valid",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5633305Z   -   62 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: empty-exit0,valid",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5685559Z   -   63 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: stale-success",
+    "Source remainder (3/4)\tUNKNOWN STEP\t2026-09-25T08:33:07.5730896Z   -   64 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1333:1 \u203a explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates"
+  ],
+  "checker_corrections": [
+    "Command logs distinguish38fetch from38test invocations.",
+    "Playwright displays metadata tags if not already inline in title; both initial parse attempts retained, no test rerun or outcome change."
+  ]
+}

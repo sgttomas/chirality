@@ -1,0 +1,264 @@
+{
+  "candidate": "98b423d93e41338551bf744def1e2c5a303aeaab",
+  "workflow_run": 36112629958,
+  "attempt": 1,
+  "selected_mode": "full",
+  "source_identities": 495,
+  "execution_identities": 495,
+  "outcomes": {
+    "passed": 475,
+    "skipped": 20
+  },
+  "missing": [
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 180 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 280 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 500 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 180 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 280 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 500 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 180 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 280 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 500 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 180 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 280 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 500 @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      717,
+      "B4 Details owns traversed Escape and preserves editor ownership in model @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      717,
+      "B4 Details owns traversed Escape and preserves editor ownership in both @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 1 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 1 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport @explicit-viewport"
+    ]
+  ],
+  "unexpected_or_duplicate": [
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 180 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 280 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model comfortable 500 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 180 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 280 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both comfortable 500 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 180 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 280 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer model compact 500 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 180 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 280 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      651,
+      "B4 compact drawer both compact 500 @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      717,
+      "B4 Details owns traversed Escape and preserves editor ownership in model @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      717,
+      "B4 Details owns traversed Escape and preserves editor ownership in both @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 1 preserves tracks and nonmutating pans @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 1 preserves tracks and nonmutating pans @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport"
+    ],
+    [
+      "chromium-desktop",
+      "e2e/b4-table-editing.spec.ts",
+      783,
+      "classic scrollbar allocation \u203a B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport"
+    ]
+  ],
+  "source_specs_hashed": 16,
+  "projects": [
+    "chromium-compact",
+    "chromium-desktop"
+  ],
+  "selection_is_not_pass": "Actual executed outcomes parsed independently from successful run log; every collected identity required once.",
+  "run_sha256": "fdebc7750a4a52d53df3b6490995baef739b7e4cdc714a4241d32e30b4d7446e",
+  "log_sha256": "a5353fc4a27508b7691ee56d737189365edfcc9b8ac3b4d9dbd458852bb9f585"
+}

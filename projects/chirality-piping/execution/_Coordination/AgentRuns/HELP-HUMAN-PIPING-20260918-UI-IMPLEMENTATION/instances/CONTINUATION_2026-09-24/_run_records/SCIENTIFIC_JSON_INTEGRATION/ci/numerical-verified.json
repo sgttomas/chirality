@@ -1,0 +1,12 @@
+{
+  "candidate": "98b423d93e41338551bf744def1e2c5a303aeaab",
+  "numerical_manifests": 38,
+  "executed_test_commands": 38,
+  "all_command_logs_hashed": 78,
+  "passes": 1154,
+  "failed": 0,
+  "ignored": 0,
+  "bound_input_hashes_verified": 76,
+  "scope": "actual hosted current-main candidate; prior source-only counts not substituted",
+  "checker_correction": "Initial scan counted all fetch+test logs as one log per crate; command inventory used instead. No product failure or rerun."
+}
