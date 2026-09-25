@@ -1,5 +1,0 @@
-	state = not running
-	runs = 4
-	last exit code = 0
-		state = active
-		state = active

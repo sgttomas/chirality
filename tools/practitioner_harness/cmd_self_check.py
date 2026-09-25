@@ -58,6 +58,7 @@ from pathlib import Path
 
 import adapter_domain_engines
 import cmd_bridge_status
+from agent_runs_archive import archive_tag
 from surface_roles import (
     MACHINE_ABS_PATH_RE,
     SurfaceRole,
@@ -1255,7 +1256,13 @@ def _resolve_ref_path(
 
 
 def _resolves(ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> bool:
-    return _resolve_ref_path(ref, repo_root, file_dir, de_root) is not None
+    if _resolve_ref_path(ref, repo_root, file_dir, de_root) is not None:
+        return True
+    # D-GOV-45: a reference into an archived run record resolves to history.
+    ref = ref.strip()
+    return any(archive_tag(repo_root, cand) for cand in
+               (repo_root / ref, file_dir / ref,
+                *(repo_root / "projects" / p / ref for p in ("chirality-app-dev", "chirality-piping", "pec"))))
 
 
 def _is_declared_generated_root_ref(ref: str) -> bool:

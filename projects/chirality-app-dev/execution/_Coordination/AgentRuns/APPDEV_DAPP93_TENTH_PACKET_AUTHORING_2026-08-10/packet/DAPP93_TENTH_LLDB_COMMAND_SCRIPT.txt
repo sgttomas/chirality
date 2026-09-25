@@ -1,2 +1,0 @@
-STUB_UNFILLED
-Required content: exact debugger payload matching Stage 6 byte-for-byte.

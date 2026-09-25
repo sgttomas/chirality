@@ -1,4 +1,0 @@
-partial_exit=1
-dual_exit=1
-checklist_exit=1
-checklist_absent=0

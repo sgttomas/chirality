@@ -1,0 +1,50 @@
+{
+  "schema": "chirality-agent-runs-archive-policy/v1",
+  "decision": "D-GOV-45",
+  "roots": [
+    "execution/_Coordination/AgentRuns",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns",
+    "projects/pec/execution/_Coordination/AgentRuns"
+  ],
+  "closed_days": 14,
+  "binary_days": 7,
+  "binary_extensions": [
+    "zip",
+    "png",
+    "jpg",
+    "jpeg",
+    "gif",
+    "webp",
+    "webm",
+    "gz",
+    "sqlite3",
+    "bin"
+  ],
+  "containers": [
+    "runtime"
+  ],
+  "keep": [
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07"
+  ],
+  "keep_reasons": {
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07": "Root runtime-migration governance state or evidence read by the root governance tests (traced 2026-09-25: tools/validation/test_root_governance_state.py, test_root_runtime_successors.py, practitioner_harness/test_root_adoption.py).",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py).",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05": "Root runtime-migration governance state or evidence read by the root governance tests (traced 2026-09-25: tools/validation/test_root_governance_state.py, test_root_runtime_successors.py, practitioner_harness/test_root_adoption.py).",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py).",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py).",
+    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07": "Root runtime-migration governance state or evidence read by the root governance tests (traced 2026-09-25: tools/validation/test_root_governance_state.py, test_root_runtime_successors.py, practitioner_harness/test_root_adoption.py).",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py).",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py).",
+    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07": "Governance state or evidence read by the root governance gates G0-G3 (traced 2026-09-25: tools/validation/root_governance_state.py and root_runtime_successors.py)."
+  }
+}

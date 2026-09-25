@@ -1,1 +1,0 @@
-    "/private/tmp/chirality-dapp94-option-c-keychain-probe-r8-20260809/home/Library/Keychains/login.keychain-db"
