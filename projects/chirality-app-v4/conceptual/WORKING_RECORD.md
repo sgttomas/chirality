@@ -1,0 +1,111 @@
+# Working record — V4-CONCEPT-20260925
+
+Standing: **working record (agent).** Position, basis, delegation and open
+work of the conceptual undertaking. Revised in place as the work proceeds;
+Git history keeps earlier states.
+
+## Assignment
+
+| Field | Value |
+|---|---|
+| Undertaking | Chirality App v4 conceptual undertaking (OD-01) |
+| Owner | Ryan Tufts (the human accountable for acceptance) |
+| Active role | HELPS_HUMANS (Type 1), engaged directly by the owner |
+| Selected workflow | `chirality-root:bundled:workflow:reverse-engineer-software` (bundled; no project or user workflow of that name exists, so no collision) |
+| Brief | [Opening brief](../execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/OPENING_BRIEF.md), 2026-09-25; directions in [`DECISIONS.md`](DECISIONS.md) |
+| Host | Claude Code desktop, model Claude Opus 5.5; worktree `chirality-app-v4-architecture-9f35c4`, branch `claude/chirality-app-v4-architecture-9f35c4` |
+| Working root | `projects/chirality-app-v4/` (did not exist before 2026-09-25) |
+| First completion boundary | An independently reviewed seed set presented for acceptance (OD-12) |
+
+## Instructions and methods actually supplied
+
+SHA-256 of the bytes at the investigation revision `2b0572fe0`.
+
+| Item | Origin | SHA-256 | How it entered |
+|---|---|---|---|
+| Root `AGENTS.md` (imported by `CLAUDE.md`) | Root | `c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd` | Host project instructions |
+| `CLAUDE.md` | Root | `336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49` | Host project instructions |
+| `agents/AGENT_HELPS_HUMANS.md` | Root | `a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e` | Read on selection |
+| `workflows/reverse-engineer-software/WORKFLOW.md` | Root, bundled | `51b99054ac6d93989ab6a427ef3867d602a03832583104789bfbe5dfc601c9f7` | Read on selection |
+| `…/resources/successor-basis.md` | Root, bundled | `7fc969aa7ee61886576b1eb4dddcd1d45b9c6e47bf7625b89c472dff611e37a7` | Read for the output guidance |
+| `…/resources/worked-example.md` | Root, bundled | `e337148a5c29918d2daa1b56f9a4ad4bcbea3bd63f4202b37654061bd6441d90` | Hashed, not loaded (optional) |
+| `.agents/skills/chirality-change/SKILL.md` | Root, project skill | `2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba` | Read for Git and PR conventions |
+
+No other role's instructions were consulted.
+
+## Delegation
+
+Seven read-only TASK investigations were dispatched in parallel through the
+host's native subagent mechanism (Claude Code background agents; parent:
+this HELPS_HUMANS session). Each brief stated a read-only boundary; the
+boundary was instruction-asserted, not host-enforced (the children had the
+host's general tools). Briefs and returns are preserved verbatim in
+[`tasks/`](../execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/tasks/),
+extracted programmatically from the host's transcripts.
+
+| Task | Subject | Model | Dispatched → returned (UTC) |
+|---|---|---|---|
+| T1 | Thesis and owner notes | claude-opus-5-5 | 19:58:39 → 20:03:57 |
+| T2 | Manuals and practice | claude-opus-5-5 | 19:58:39 → 20:06:40 |
+| T3 | App v3 (fallback line) | claude-opus-5-5 | 19:58:39 → 20:12:07 |
+| T4 | App history and archives | claude-opus-5-5 | 19:58:39 → 20:11:19 |
+| T5 | Runtime, PEC, Root program | claude-opus-5-5 | 19:58:39 → 20:09:25 |
+| T6 | SWBPIPE as host | claude-opus-5-5 | 19:58:39 → 20:10:23 |
+| T7 | Supplier landscape (web) | claude-opus-5-5 | dispatched after T1–T6; see below |
+
+Notes on the returns:
+
+- The host flagged T4's return for an instruction-shaped pattern
+  ("bypass-permissions"). On inspection it is T4 describing v1's historical
+  permission default (`dontAsk` mapped to `bypassPermissions`); a finding,
+  not an instruction.
+- HELPS_HUMANS checked the load-bearing claims used in the questions against
+  their primary files (application-tool design; the A2 Tauri rationale; the
+  owner's 2026-09-11/12 words; D-APP-87; D-PEC-57; the peer-reported
+  local-model intent; the 1,044 / 3,217 census). One refinement: the D-PEC-57
+  line about a "human-used project-management tool" is an agent's summary of
+  the owner's direction, and is cited as such.
+- All returns and the synthesis are same-family model work; none of it is
+  independent review.
+
+## Work performed (2026-09-25)
+
+1. Inspected existing state: no `projects/chirality-app-v4/`; clean worktree
+   at `2b0572fe0` = `origin/main`.
+2. Pinned the investigation revision and the v3.0.1 fallback
+   ([`REFERENCES.md`](../reference/REFERENCES.md)).
+3. Inventoried the Git-ignored archives, wrote a read-only digest tool, and
+   recorded and verified digests for 19 locations and 57,073 files
+   ([`ARCHIVES.md`](../reference/archives/ARCHIVES.md)). `sgttomas/chirality`
+   is public, so the committed digests name nothing below the 19 locations
+   (subtree keys are hashes of their paths); the tool was tested against a
+   disposable fake root for added, changed and removed subtrees. The
+   inventory and the TASK returns do name and briefly describe some archived
+   documents, at the level the thesis and repository records already do.
+4. Carried `docs/thesis/` forward byte-for-byte (19 files; blob identity and
+   byte comparison matched) with a transfer companion
+   ([`foundation/README.md`](../foundation/README.md)).
+5. Read the thesis README, the Field Book, and the owner-words records
+   directly; dispatched T1–T7.
+6. Wrote the source inventory, exemplars and lessons, questions, and this plan.
+
+## Current position
+
+Stage C (first synthesis) complete; Stage D (direction conversation) next.
+No v4 requirement is accepted. The questions in [`QUESTIONS.md`](QUESTIONS.md)
+await the owner.
+
+## Open work
+
+| Item | Owner | Condition |
+|---|---|---|
+| Answers to Q-01…Q-14 | Owner | Stage D |
+| Supplier landscape return (T7) folded into the questions and inventory | HELPS_HUMANS | On return |
+| Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
+| Check after commit: `git rev-parse HEAD:projects/chirality-app-v4/foundation/thesis` = `47fc49e96c2931ba18090f1a82d56a49f230b3ee` | HELPS_HUMANS | At commit |
+| Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
+
+## Next
+
+Present the inventory, plan, questions and first exemplars to the owner;
+record the answers; select Stage E work.
