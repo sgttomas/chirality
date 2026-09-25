@@ -2051,3 +2051,14 @@
   - Checks: slice checks `v2-store-guard`, `v2-core-posture`, `v2-loop-registry`, `v2-api-contract`, `harness-self-check` exit 0 on the slice candidate (outputs under `P1_STORE_GUARD_02/checks/`), storage suite and posture rerun by HELP_HUMAN on the PR head exit 0, O-2-2 inputs probed rejected; PR #893 CI green after a base update that changed no slice byte; receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of this closeout candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F6_REVIEW_CLOSEOUT_D88_D89.md`.
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; slice manager, author and verifier dispatched as host `subagent_type` `pec-manager`, `pec-task`, `pec-reviewer` with `model: opus`, model reported `claude-opus-5-5`; D-PEC-89 drafting TASK the same; roles instruction-asserted.
   - Gate-Outcome: `EXECUTED` — slice landed and owner acts recorded; D-PEC-89 awaits the owner; no lifecycle change (DEL-01-03 stays in its current state), no artifact acceptance, release or reliance act.
+
+- **2026-09-24 — Receipt 185** (owner ruling on D-PEC-89 recorded; exact-type closure slice authorized on publication).
+  - Receipt-ID: `Receipt-185`
+  - Examined-Through: `6af541bbe962af40e3c6b1e393d7ba60eecc69bc`
+  - Parent-Receipt: `Receipt-184`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — “D-PEC-89: A.” The act of record is file-native (K-AUTH-1) in `execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`, which also records HELP_HUMAN's reading that option A includes R13 and keeps the default model steer.
+  - Pointers: `_DECISIONS/D-PEC-89_RULING_2026-09-24.md` (SHA-256 `536b058873a011a4ef3df60f243fc55ecd389c2900132bfa30592ba414d263e3`; five-path product grant, run root `P1_STORE_GUARD_03/`); `_DECISIONS/_REGISTER.md` D-PEC-89 entry; `docs/STATUS.md` and `README.md` present-current lines under D-PEC-88; run record nodes G8, G9, C3.
+  - Stale-Map-Delta: the D-PEC-89 proposal bytes stay unchanged at `962a7879…8a73`; the eight preimage paths still match its rollback table at the examined commit. No `v2/**`, `software-workflow.json`, `_STATUS.md`, decomposition, PRD or pointer byte changed in this publication.
+  - Checks: receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F7_REVIEW_D89_RULING.md`.
+  - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; reviewer dispatched with host `subagent_type: pec-reviewer`, model reported by the host; roles instruction-asserted.
+  - Gate-Outcome: `EXECUTED` — ruling recorded; the slice starts only after this publication is observed on `origin/main`; no product, lifecycle, artifact-acceptance, release or reliance act.
