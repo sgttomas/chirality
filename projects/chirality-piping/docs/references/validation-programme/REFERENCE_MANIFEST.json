@@ -1,0 +1,28 @@
+{
+  "schema": "piping.validation_planning_reference_custody/1",
+  "incorporation_date": "2026-09-25",
+  "authority": "Owner request to preserve both supplied documents, build the work graph, obtain independent review, then hold.",
+  "byte_identity": "Compared directly with both owner-supplied files; no edits to their bytes.",
+  "references": [
+    {
+      "source_id": "VAL-REF-01",
+      "source_kind": "owner_supplied_external_agent_research_and_planning",
+      "original_filename": "piping_stress_solver_research_and_agent_plan.md",
+      "repository_path": "projects/chirality-piping/docs/references/validation-programme/piping_stress_solver_research_and_agent_plan.md",
+      "sha256": "7c1944fa56b1350008d553e6873ed019ab30b0de1cc3bda74d87796ce5d09774",
+      "bytes": 103134,
+      "status": "preserved_reference_not_operative_instructions",
+      "upstream_catalogue_qualification": "not_established_by_incorporation"
+    },
+    {
+      "source_id": "VAL-REF-02",
+      "source_kind": "owner_supplied_external_agent_research_and_planning",
+      "original_filename": "piping_solver_benchmark_research_and_agent_plan.md",
+      "repository_path": "projects/chirality-piping/docs/references/validation-programme/piping_solver_benchmark_research_and_agent_plan.md",
+      "sha256": "3c455c627dbbcd08717a1bfcff5d4951cbb0ea00e70e4e6e59daf2e519fa4d3e",
+      "bytes": 91697,
+      "status": "preserved_reference_not_operative_instructions",
+      "upstream_catalogue_qualification": "not_established_by_incorporation"
+    }
+  ]
+}

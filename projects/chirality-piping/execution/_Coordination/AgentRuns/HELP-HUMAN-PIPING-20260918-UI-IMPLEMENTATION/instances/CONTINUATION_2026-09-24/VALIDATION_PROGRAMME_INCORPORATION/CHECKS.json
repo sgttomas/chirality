@@ -1,0 +1,143 @@
+{
+  "utc": "2026-09-25T07:52:55.380927+00:00",
+  "scope": "Read-only custody and structural checks, no validation programme execution",
+  "reference_custody": [
+    {
+      "source_id": "VAL-REF-01",
+      "bytes": 103134,
+      "sha256": "7c1944fa56b1350008d553e6873ed019ab30b0de1cc3bda74d87796ce5d09774",
+      "original_equals_copy": true
+    },
+    {
+      "source_id": "VAL-REF-02",
+      "bytes": 91697,
+      "sha256": "3c455c627dbbcd08717a1bfcff5d4951cbb0ea00e70e4e6e59daf2e519fa4d3e",
+      "original_equals_copy": true
+    }
+  ],
+  "graph_sha256": "bbde55c3d3530b06f763cffd21f5d62f8c3031599d1228d60ba56e3fdc5348bd",
+  "node_count": 17,
+  "unique_ids": true,
+  "all_future_nodes_held": true,
+  "cycle_check": "acyclic conservative union of named mandatory/conditional VP prerequisites",
+  "dependency_observation": {
+    "VP-REF": [],
+    "VP-GO": [
+      "VP-REF"
+    ],
+    "VP-SCOPE": [
+      "VP-GO"
+    ],
+    "VP-HARNESS": [
+      "VP-SCOPE"
+    ],
+    "VP-ORACLES": [
+      "VP-SCOPE"
+    ],
+    "VP-SOURCES": [
+      "VP-SCOPE"
+    ],
+    "VP-STATIC": [
+      "VP-HARNESS",
+      "VP-ORACLES"
+    ],
+    "VP-RESTRAINT": [
+      "VP-HARNESS",
+      "VP-ORACLES"
+    ],
+    "VP-PUBLISHED": [
+      "VP-HARNESS",
+      "VP-SOURCES",
+      "VP-STATIC"
+    ],
+    "VP-INTERCHANGE": [
+      "VP-HARNESS",
+      "VP-SOURCES"
+    ],
+    "VP-LICENSED": [
+      "VP-HARNESS",
+      "VP-SOURCES"
+    ],
+    "VP-WORKFLOW": [
+      "VP-HARNESS"
+    ],
+    "VP-ROBUST": [
+      "VP-HARNESS",
+      "VP-ORACLES"
+    ],
+    "VP-DYNAMICS": [
+      "VP-HARNESS",
+      "VP-ORACLES",
+      "VP-SOURCES"
+    ],
+    "VP-PHYSICAL": [
+      "VP-SOURCES",
+      "VP-HARNESS"
+    ],
+    "VP-SEARCH": [
+      "VP-WORKFLOW",
+      "VP-ROBUST"
+    ],
+    "VP-ASSESS": [
+      "VP-SCOPE",
+      "VP-STATIC",
+      "VP-RESTRAINT",
+      "VP-PUBLISHED",
+      "VP-INTERCHANGE",
+      "VP-LICENSED",
+      "VP-WORKFLOW",
+      "VP-ROBUST",
+      "VP-DYNAMICS",
+      "VP-PHYSICAL",
+      "VP-SEARCH"
+    ]
+  },
+  "observation_limit": "Semantic/ownership correctness remains independent review; conditional branches are not automatically mandatory profiles. This is derivative evidence, not a second graph.",
+  "local_links": [
+    {
+      "from": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "target": "piping_stress_solver_research_and_agent_plan.md",
+      "exists": true
+    },
+    {
+      "from": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "target": "piping_solver_benchmark_research_and_agent_plan.md",
+      "exists": true
+    },
+    {
+      "from": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "target": "REFERENCE_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "from": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "target": "../../../execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "exists": true
+    },
+    {
+      "from": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "target": "../../../../docs/references/validation-programme/README.md",
+      "exists": true
+    },
+    {
+      "from": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "target": "../../AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_PROGRAMME_INCORPORATION/BRIEF.md",
+      "exists": true
+    }
+  ],
+  "protected_and_scope_checks": [
+    "existing applicable1e-9 preserved",
+    "raw embedded instructions inert",
+    "current CLOSE/RECORD/FINAL boundary preserved",
+    "no catalogue/rule population",
+    "explicit owner go-ahead before programme execution"
+  ],
+  "not_run": [
+    "external/reference solvers",
+    "bootstrap oracle generator",
+    "benchmark campaigns",
+    "product tests",
+    "native UI",
+    "runtime configuration"
+  ]
+}

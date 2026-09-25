@@ -1,0 +1,111 @@
+{
+  "reviewer": "/root/physics_resume/joined_consumer_review",
+  "original_actual_parent": "/root/physics_resume",
+  "assigner": "/root",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK Type2",
+  "delegation": "none",
+  "author_independence": "ROOT authored the graph/catalogue/basis; this TASK did not",
+  "base": "a09931a74e197627105c1287c03957317a297351",
+  "graph_diff_sha256": "18d7ea3f4700c84e6d8917d23a9261342b3b48137db4fa3b34a254399a340f75",
+  "files": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "7d2a5b909859df2dfe0de150f871c9d1c4a9a87ada9b478f13bc5a1286a73755",
+      "bytes": 101060
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "sha256": "94c3001655b6cd48403999dcfd99baa23601a27d4ac3d05be5aecadf57652449",
+      "bytes": 6482
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/REFERENCE_MANIFEST.json",
+      "sha256": "671add72377452ac3e3e6f0aab8d315bab96579af62f685d60e3ea0fbb763409",
+      "bytes": 1534
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/piping_solver_benchmark_research_and_agent_plan.md",
+      "sha256": "3c455c627dbbcd08717a1bfcff5d4951cbb0ea00e70e4e6e59daf2e519fa4d3e",
+      "bytes": 91697
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/piping_stress_solver_research_and_agent_plan.md",
+      "sha256": "7c1944fa56b1350008d553e6873ed019ab30b0de1cc3bda74d87796ce5d09774",
+      "bytes": 103134
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_PROGRAMME_INCORPORATION/BRIEF.md",
+      "sha256": "a7a31f46db1814badd2b3060ff2b1a1f89f832e8808a3c6cfc4a33ed796f7e2b",
+      "bytes": 3129
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_PROGRAMME_INCORPORATION/SOURCE_BASIS.json",
+      "sha256": "686c608bec15d171f0d42b3c596e71bf0037b0268769b0d79d835c1382064f67",
+      "bytes": 42083
+    }
+  ],
+  "instructions_and_method": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "24268f3545eae68ac86bbfcb830314f5c8539f6da9de08bf4365b14d6f544525"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "4411d0c25b1dc88da182e05660cb061d8e885ab97f4de8f27b05f7d3b0f12261"
+    }
+  ],
+  "accepted_mapping_records": [
+    {
+      "path": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+      "sha256": "6335bc5cb1b0d1c13c41181b0fbd3e3ab4547fa355b6c9ddc49513307b721422"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_DAG/DAG-011/APPROVAL_RECORD.md",
+      "sha256": "df5dd3572429324c484c14c82afe285c4e3796e2ca98543045a695b955700bd7"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_DAG/DAG-011/DeliverableNodes.csv",
+      "sha256": "91eb889930f4e97594a4b8627708d667473f066e9cde7e5fca0bf9a2b053613f"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_ScopeChange/_PostAcceptanceValidation/SCA-011_20260922T173404Z/OWNER_DECISION.md",
+      "sha256": "6797151ce24132d0c6cf4fa4d1976bc4a3b73557e6cc7d52e268140fc346c9d3"
+    }
+  ],
+  "checks_sha256": "3af61a02740bc6f242353b916d9bcf94b98894f706963b007d11c6b8b30c0eee",
+  "report_sha256": "b720bc8462b59352b66564fcafd18bc352c501a0bf4bd5580d5d13979bb07fd2",
+  "finding_status": {
+    "VI-R1": "resolved; independent external references no longer depend on completed production-export qualification"
+  },
+  "verdict": "clear for bounded records checkpoint, then hold",
+  "limits": [
+    "No validation/reference generator/product/native execution",
+    "No network or new external-reference qualification",
+    "No Git mutation",
+    "Final status-only graph delta requires explicitly requested backcheck"
+  ],
+  "final_status_backcheck": "STATUS_BACKCHECK.json",
+  "final_status_backcheck_sha256": "fba238bf7c82dddf5687f0c82c64d91e6ab679b1ca35003b67b78ea108642fd2",
+  "graph_diff_sha256_before_status_backcheck": "d917ff65a1fafa962b18349433e98923c7b5c1b4be82cb69dfc0114661b68947"
+}

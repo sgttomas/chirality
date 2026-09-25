@@ -1,0 +1,486 @@
+{
+  "actor": "/root",
+  "role": "HELP_HUMAN",
+  "utc": "2026-09-25T07:47:33.804079+00:00",
+  "git_basis": "a09931a74e197627105c1287c03957317a297351",
+  "authority": "Owner incorporation/review/then-hold message quoted in BRIEF.md",
+  "instruction_and_method_origins": [
+    {
+      "kind": "instruction",
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "instruction",
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "instruction",
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "instruction",
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "instruction",
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "method",
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "24268f3545eae68ac86bbfcb830314f5c8539f6da9de08bf4365b14d6f544525",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "method",
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "4411d0c25b1dc88da182e05660cb061d8e885ab97f4de8f27b05f7d3b0f12261",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    },
+    {
+      "kind": "graph_basis",
+      "path": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+      "sha256": "6335bc5cb1b0d1c13c41181b0fbd3e3ab4547fa355b6c9ddc49513307b721422",
+      "read_extent": "complete current source; skill bodies previously read in this continuing session"
+    }
+  ],
+  "deliverable_mapping_basis": [
+    {
+      "deliverable_id": "DEL-09-01",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/ScopeOfWork.md",
+      "sha256": "181b1e37201d93916f03e38e9cdb8e1082d70da5d6297af429bbb8c47d15648e",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A mechanics benchmark-suite contract covering cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms with original/public/permissive provenance is produced."
+        },
+        {
+          "line": 64,
+          "text": "> Current deliverable obligation: Create benchmark cases for cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 132,
+          "text": "> Current deliverable obligation: Create benchmark cases for cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 198,
+          "text": "- **AC-001** \u2014 The contract preserves unit-aware inputs and outputs, solver diagnostics, result-envelope fields, assumptions, provenance, limitations, fixture-local unit evidence, and DEC-018 project-unit authority with separately verified suite binding, DEC-026 tolerance authority and explicit unmeasured per-kind values. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081)."
+        },
+        {
+          "line": 212,
+          "text": "> Current deliverable obligation: Create benchmark cases for cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-09-02",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-02_Stress recovery benchmark suite/ScopeOfWork.md",
+      "sha256": "74bc07e54fcf39dd7596e213505ef1c60d17443fd6db16766e728469c2b70655",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A stress-recovery benchmark-suite contract covering axial, bending, torsion, pressure, and stress-range mechanics behavior with governed evidence boundaries is produced."
+        },
+        {
+          "line": 78,
+          "text": "> Current deliverable obligation: Create stress recovery benchmark cases for axial, bending, torsion, pressure, and stress range behavior. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 123,
+          "text": "> Current deliverable obligation: Create stress recovery benchmark cases for axial, bending, torsion, pressure, and stress range behavior. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 188,
+          "text": "- **AC-001** \u2014 The contract preserves public/original/permissive provenance, unit and sign conventions, diagnostics and governed result-envelope evidence, DEC-026's measured analytic relative seed, and explicit unmeasured per-kind relative-plus-absolute TBDs; fatigue acceptance remains out of scope. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081)."
+        },
+        {
+          "line": 202,
+          "text": "> Current deliverable obligation: Create stress recovery benchmark cases for axial, bending, torsion, pressure, and stress range behavior. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 272,
+          "text": "> Current deliverable obligation: Create stress recovery benchmark cases for axial, bending, torsion, pressure, and stress range behavior. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 319,
+          "text": "> Current deliverable obligation: Create stress recovery benchmark cases for axial, bending, torsion, pressure, and stress range behavior. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-09-03",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/ScopeOfWork.md",
+      "sha256": "f97f949356782ecc0ac7156fdb6b68aed942e9c9939679df389b7f58d3ead662",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A nonlinear-support regression-suite contract covering active-set, gap, friction, lift-off, convergence, non-convergence, and deterministic rerun evidence is produced."
+        },
+        {
+          "line": 65,
+          "text": "> Current deliverable obligation: Create active-set/gap/friction/lift-off convergence and regression cases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 105,
+          "text": "> Current deliverable obligation: Create active-set/gap/friction/lift-off convergence and regression cases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 192,
+          "text": "- **AC-001** \u2014 The contract preserves source-qualified public/original/permissive cases, unit-aware observations, active and friction state, gap and lift-off, iteration and tolerance basis, diagnostics, solver-maturity dependencies, scope-specific DEC-046 governed threshold records and explicit TBDs for unadopted scopes, and the software-verification-only authority boundary."
+        },
+        {
+          "line": 206,
+          "text": "> Current deliverable obligation: Create active-set/gap/friction/lift-off convergence and regression cases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 306,
+          "text": "> Current deliverable obligation: Create active-set/gap/friction/lift-off convergence and regression cases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 335,
+          "text": "> Current deliverable obligation: Create active-set/gap/friction/lift-off convergence and regression cases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-09-04",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-04_Validation manual skeleton/ScopeOfWork.md",
+      "sha256": "bc55e58b40d5505e6913155faa4ac4934bbf845fd0eb7c9d9f39724853a03742",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A validation-manual skeleton contract separating mechanics verification, intended-use workflow validation, user rule checks, and professional reliance across the required manual outline is produced."
+        },
+        {
+          "line": 123,
+          "text": "> Current deliverable obligation: Draft validation manual structure distinguishing verification, validation, user rule checks, and professional reliance. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 189,
+          "text": "- **AC-001** \u2014 The contract preserves the ten manual sections, unit/schema/diagnostic/result-envelope evidence slots, public/private and protected-content boundaries, visible gaps and limitations, software-release versus project-reliance distinction, and human-owned professional judgment. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081)."
+        },
+        {
+          "line": 210,
+          "text": "> Current deliverable obligation: Draft validation manual structure distinguishing verification, validation, user rule checks, and professional reliance. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-09-05",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/ScopeOfWork.md",
+      "sha256": "1ea1aee96fba5ab29996d274a4bdf041191252f96467a895c032235f6fb639b0",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A release quality-gate checklist contract routing solver, rule-engine, GUI, report-template, and mixed changes to bounded software-quality evidence and human governance decisions is produced."
+        },
+        {
+          "line": 32,
+          "text": "> Current deliverable obligation: Define release gates for solver changes, rule-engine changes, GUI releases, and report-template releases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 61,
+          "text": "> Current deliverable obligation: Define release gates for solver changes, rule-engine changes, GUI releases, and report-template releases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 116,
+          "text": "> Current deliverable obligation: Define release gates for solver changes, rule-engine changes, GUI releases, and report-template releases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 191,
+          "text": "- **AC-001** \u2014 The contract preserves deterministic gate evidence, union routing, provenance, protected/private-data controls, missing-data findings, open risks and TBD thresholds, gate outcome vocabulary, human waiver/risk disposition, and the distinction between release governance and professional engineering approval."
+        },
+        {
+          "line": 272,
+          "text": "> Current deliverable obligation: Define release gates for solver changes, rule-engine changes, GUI releases, and report-template releases. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-10-04",
+      "path": "projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/ScopeOfWork.md",
+      "sha256": "29a31514d6eb923a165a4590632edd6f29992114bf2d34b79c3ea878e3d50c01",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A reproducible build, packaging, and CI/CD pipeline contract for supported development and release-preparation surfaces is produced."
+        },
+        {
+          "line": 78,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 133,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 248,
+          "text": "- **AC-001** \u2014 The contract preserves deterministic build and test gates, Rust and GUI/toolchain boundaries, artifact provenance and checksums, platform/package evidence, protected-content and private-data controls, failure diagnostics, current implementation evidence, and the ruled DEC-025/057/059/060/089/093 CI, signing, publication, coverage-tooling and platform boundaries with unfulfilled release acts and unadopted numeric floors explicit without making release or security assurances."
+        },
+        {
+          "line": 261,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 270,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 341,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 394,
+          "text": "> Current deliverable obligation: implement reproducible builds, tests, packaging skeleton, and release artifacts for supported platforms. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-10-05",
+      "path": "projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/ScopeOfWork.md",
+      "sha256": "a5ed8fb84017c02ccd1c72cd2be51b8011c24894646276a11ca4caa58ba0f2dd",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A headless CLI and structured-I/O analysis-runner contract for governed solve, input validation, result export, benchmark, and regression workflows is produced."
+        },
+        {
+          "line": 102,
+          "text": "> Current deliverable obligation: implement a CLI or equivalent headless interface for schema-driven solve execution, benchmark automation, and report/result export before full GUI maturity. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 173,
+          "text": "- **AC-001** \u2014 The contract preserves the DEC-065 local command surface, schema-first application-service routing, unit-aware deterministic I/O, blocking diagnostics, result-envelope and reproducibility evidence, invented/permitted fixtures, local-first private-data behavior, current bounded implementation evidence, and the current payload-binding evidence and separately unresolved persisted-project, external-adapter, public-transport and release obligations under the ruled CI/release policies without compliance claims."
+        },
+        {
+          "line": 187,
+          "text": "> Current deliverable obligation: implement a CLI or equivalent headless interface for schema-driven solve execution, benchmark automation, and report/result export before full GUI maturity. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 196,
+          "text": "> Current deliverable obligation: implement a CLI or equivalent headless interface for schema-driven solve execution, benchmark automation, and report/result export before full GUI maturity. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        },
+        {
+          "line": 304,
+          "text": "> Current deliverable obligation: implement a CLI or equivalent headless interface for schema-driven solve execution, benchmark automation, and report/result export before full GUI maturity. Implementation and record changes require an active bounded brief under `AGENTS.md`; `_STATUS.md` records lifecycle; this Scope of Work, owning decisions and the selected graph carry current work. References below to the original setup write boundary apply only to that historical run. They do not exclude later authorized delivery, waive the retained requirements, or authorize issuance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-14-02",
+      "path": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-02_Analysis run records/ScopeOfWork.md",
+      "sha256": "606e86c1233c8bc66f0fdc89efc2e19855bdce24d6f4f862903f22939a527831",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 An immutable analysis-run record contract binding results to exact model states, solver versions and settings, units, load cases, diagnostics, references, results, and hashes is produced."
+        },
+        {
+          "line": 205,
+          "text": "- **AC-001** \u2014 The contract preserves schema-first run-record categories, immutable run evidence, explicit unit and dimension diagnostics, version-qualified serialization (0.1 `SORTED_COMPACT_JSON`; D-67 0.2 checked `openpipestress_jcs_ijson_v1`) without re-labeling historical bytes, payload scope, rule-pack/library provenance boundaries, professional-status exclusions, and visible producer diagnostic, unit/dimension, schema-field, and implementation TBDs."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-14-04",
+      "path": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-04_Analysis-run comparison engine/ScopeOfWork.md",
+      "sha256": "200f5c8afb8de77810cb303937303a7b418e097d4e71ced818f92ccad6e1df79",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A deterministic analysis-run comparison contract for exact and manual mappings, unit-aware result deltas, diagnostics, settings, and tolerance-driven classification is produced."
+        },
+        {
+          "line": 237,
+          "text": "- **AC-001** \u2014 The contract preserves exact run/model-state basis, automatic mapping only for unique identical IDs with matching identity metadata, manual-only handling for different or ambiguous IDs, raw evidence before tolerance interpretation, explicit unit/dimension diagnostics, schema-first envelope intent, output-schema and engineering-validation holds, source-labeled assumptions, public-safe fixture boundaries, and no external-validation or professional-approval claims."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-14-05",
+      "path": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts/ScopeOfWork.md",
+      "sha256": "7677ad2ce7e9250a7036ff238aae1aba1cbb5c395db3f073d471a9beaf9c3b48",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A comparison mapping, unmatched-classification, tolerance-profile, and CSV, JSON, and report-section export contract is produced."
+        },
+        {
+          "line": 204,
+          "text": "- **AC-001** \u2014 The contract preserves stable-ID and manual mapping evidence, explicit unmatched slots, unit-aware tolerance and export metadata, schema-first envelopes, diagnostics, provenance, hashes, statuses, limitations, no-silent-default behavior, exact mapping-enum, classification, tolerance, field, column, and layout TBDs, reporting-owner residuals, public/private data controls, and the separation from comparison-engine implementation, external validation, or professional approval."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-17-01",
+      "path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-01_CAEPIPE and export-format source basis/ScopeOfWork.md",
+      "sha256": "0509342f1d9359a2e558a9e065a652660c4f207872cfccede1be4154c273c4df",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A governed CAEPIPE and export-format source-basis contract with admitted sources, source-grounded findings, downstream-consumption rules, and an explicit unanswered-question register is produced."
+        },
+        {
+          "line": 198,
+          "text": "- **AC-001** \u2014 The contract preserves official/public and project-owned source authority, best-effort locations, CAEPIPE MBF, external-run and CSV boundaries, conservative PCF and review-only GLB/glTF classifications, downstream gating, protected/proprietary-content exclusions, explicit target-behavior TBDs, and professional non-authority without implementing or claiming compatibility."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-17-02",
+      "path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/ScopeOfWork.md",
+      "sha256": "cd307b6c2240a0847e3fcb3e852e3f7f04700a1aef3194088b3a9b14a29919e6",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A schema-first common export-package, target-profile, stable-ID-map, manifest, and loss-report contract for deterministic interoperability is produced."
+        },
+        {
+          "line": 346,
+          "text": "- **AC-001** \u2014 The contract preserves source-basis identifiers, JSON Schema 2020-12 and no-bypass boundaries, export identity and hash metadata, explicit profile/version and unit/coordinate semantics, stable canonical-ID carrier and sidecar modes, exported/omitted/approximated/delegated/unsupported/TBD loss categories, diagnostics and provenance, downstream target gates, protected/private-data controls, and all carried target-specific TBDs without implying equivalence or professional acceptance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-17-05",
+      "path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser/ScopeOfWork.md",
+      "sha256": "35b822e300dd89075adfea80195e2fb2dafcae3f0cd17adc07d84280f7a5bc0e",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 An optional user-owned CAEPIPE external-run harness and bounded CSV-parser contract for regression and handoff evidence is produced."
+        },
+        {
+          "line": 260,
+          "text": "- **AC-001** \u2014 The contract preserves explicit user configuration, executable and license ownership, accepted MBF package/profile inputs, run-directory and environment metadata, documented invocation with unresolved profile gates, output discovery, bounded fixture-confirmed parser coverage, canonical-ID correlation, skip-without-executable public-CI behavior, diagnostics for unknown/unmapped sections, private-user-data handling, and regression-only evidence classification without bundling CAEPIPE or implying compatibility, code compliance, formal validation, or professional acceptance."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-17-09",
+      "path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-09_Export adapter SDK and additional targets/ScopeOfWork.md",
+      "sha256": "142a7a23d59752eb8e4f46ef8c5bc226322d0acff0f9d4e5931cb1a599302bf9",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A contract-level export adapter SDK and conservative target-admission model for future community and additional targets is produced."
+        },
+        {
+          "line": 248,
+          "text": "- **AC-001** \u2014 The contract preserves the common package/profile/stable-ID/manifest/loss contract, admitted target source basis, target registry states, no-bypass validation and permission boundaries, explicit behavior classifications, diagnostics, protected/private-data controls, optional user-owned external execution, and unresolved runtime, schema, target, reviewer, and approval details as TBD without implementing adapters or claiming support."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-15-02",
+      "path": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-02_Target mapping and unsupported-behavior contract/ScopeOfWork.md",
+      "sha256": "2b6bef9811c392ccbe2d6c9b3c20403804523a6a055dd4dbff8984fa43bdbe22",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A provider-neutral target-mapping and unsupported or approximate behavior contract for handoff exports is produced."
+        },
+        {
+          "line": 195,
+          "text": "- **AC-001** \u2014 The contract preserves mapping identity, source and target references, mapping and behavior statuses, unit and dimensional metadata, assumptions, warnings, diagnostics, provenance, privacy and redaction boundaries, explicit no-silent-default behavior, target-specific mapping and taxonomy gates, DEC-028 container strategy, separately open per-target realization, and current canonical dependency authority, and professional non-authority without implying target equivalence or validation."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-15-04",
+      "path": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-04_External prover boundary metadata/ScopeOfWork.md",
+      "sha256": "9692bda6934465898684ad8d81d6d9374e8326e162e54dc329093ee9a6f6cc72",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 A schema-first flexible external-prover boundary metadata contract for descriptive references, attachments, and handoff or comparison links is produced."
+        },
+        {
+          "line": 174,
+          "text": "- **AC-001** \u2014 The contract preserves provider-neutral names, tags, notes, external references, reference-only attachments, handoff, mapping, export and immutable-state links, assumptions, warnings, unsupported-target flags, rejected authority claims, diagnostics, provenance, privacy and protected-content boundaries, external human-owned hash-bound acceptance only, and explicit exclusion of formal prover lifecycle, commercial ingestion, and automatic professional authority."
+        }
+      ]
+    },
+    {
+      "deliverable_id": "DEL-07-12",
+      "path": "projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-12_Interoperability and evidence-review workspace/ScopeOfWork.md",
+      "sha256": "0371486975ac777300e54b5a3b7c43ce709108e80b78db430714e6a314bfad8c",
+      "read_extent": "purpose/output/current-obligation/acceptance excerpts for ownership mapping; full DEL-07-12 read",
+      "excerpts": [
+        {
+          "line": 18,
+          "text": "- **OUT-001** \u2014 Verified contract for DEL-07-12-REQ-001."
+        },
+        {
+          "line": 19,
+          "text": "- **OUT-002** \u2014 Verified contract for DEL-07-12-REQ-002."
+        },
+        {
+          "line": 20,
+          "text": "- **OUT-003** \u2014 Verified contract for DEL-07-12-REQ-003."
+        },
+        {
+          "line": 21,
+          "text": "- **OUT-004** \u2014 Verified contract for DEL-07-12-REQ-004."
+        },
+        {
+          "line": 45,
+          "text": "- **AC-001** \u2014 CLM-001 is supported by the corresponding witness, including invalid/unsupported paths and declared limitations."
+        },
+        {
+          "line": 46,
+          "text": "- **AC-002** \u2014 CLM-002 is supported by the corresponding witness, including invalid/unsupported paths and declared limitations."
+        },
+        {
+          "line": 47,
+          "text": "- **AC-003** \u2014 CLM-003 is supported by the corresponding witness, including invalid/unsupported paths and declared limitations."
+        },
+        {
+          "line": 48,
+          "text": "- **AC-004** \u2014 CLM-004 is supported by the corresponding witness, including invalid/unsupported paths and declared limitations."
+        }
+      ]
+    }
+  ],
+  "reference_manifest": "projects/chirality-piping/docs/references/validation-programme/REFERENCE_MANIFEST.json",
+  "validation_execution": "not_activated",
+  "external_reference_verification": "No new source acquisition campaign or reference run. Previous limited NASA/ANSYS spot checks are reading context only; Code_Aster case sources were not verified through that browser pass."
+}

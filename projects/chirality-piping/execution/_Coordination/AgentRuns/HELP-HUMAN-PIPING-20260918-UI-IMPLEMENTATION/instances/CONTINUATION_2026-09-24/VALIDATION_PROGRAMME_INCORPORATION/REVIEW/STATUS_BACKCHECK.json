@@ -1,0 +1,17 @@
+{
+  "scope": "Final status-cell and link backcheck only; no repeated full checks or Git mutation",
+  "original_actual_parent": "/root/physics_resume",
+  "assigner": "/root",
+  "reviewer": "/root/physics_resume/joined_consumer_review",
+  "prior_graph_sha256": "bbde55c3d3530b06f763cffd21f5d62f8c3031599d1228d60ba56e3fdc5348bd",
+  "final_graph_sha256": "7d2a5b909859df2dfe0de150f871c9d1c4a9a87ada9b478f13bc5a1286a73755",
+  "line": 99,
+  "old_status": "ACTIVE; copies and candidate route prepared, independent review pending",
+  "new_status": "COMPLETE reference/graph preparation; [independent review](../../AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_PROGRAMME_INCORPORATION/REVIEW/RETURN.md) clear after sequencing repair; the containing Git checkpoint preserves this candidate; execution held",
+  "review_link": "../../AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_PROGRAMME_INCORPORATION/REVIEW/RETURN.md",
+  "review_link_resolves": true,
+  "other_checked_root_files_unchanged": true,
+  "future_nodes_held": 16,
+  "interpretation": "Preparation/review complete; containing checkpoint is the pending final Git step, not a claim of a completed commit/push. No wording correction required.",
+  "verdict": "clear for scoped Git checkpoint, then hold"
+}
