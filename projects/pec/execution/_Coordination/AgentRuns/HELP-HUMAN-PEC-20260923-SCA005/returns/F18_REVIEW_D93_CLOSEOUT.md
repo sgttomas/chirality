@@ -13,3 +13,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | 3 | STATUS "two `_LATEST.md` pointers" ambiguous; `RUN_SUMMARY.md` still lists the re-audit as open; `_COORDINATION.md` stale; the 19 stale quotes missing from the open list | STATUS names the files, notes `RUN_SUMMARY.md` and `_COORDINATION.md`, adds the quote residual and the first DEL-02-08/09 SOWs |
 | 4 | Receipt 196 "registers" ambiguous | Now "the decomposition and its four registers" |
 | 5 | RUN.md G20 said "this unmerged PR" | Now "PR #913 before its merge" |
+
+## Final-head confirmation of `59c65b08bf543aeecbee2d1746709fe02cf8c0d5`
+
+Same reviewer, re-reviewing the repair commit `a5d27c8b7..59c65b08b`. **Verdict: PASS.** Findings 2–5 repaired and true against the files (recount: 24 of 66 contexts and 2 of 66 references name revision 1.5); no byte changed under `PKG-*`, `_Decomposition`, `_ScopeChange`, `_Evaluation`, `v2/**` or `docs/PRD.md`; `git diff --check` clean; receipts append-only and VALID; this transcription fair. Non-blocking note: `_COORDINATION.md` does not mention the audit; it is out of date because it still names revision 1.4 as `current_basis` (line 183), so STATUS's "pre-setup audit state" is loose for that file; carried for a later wording fix. This section is added append-only after that head; no other byte changes.
