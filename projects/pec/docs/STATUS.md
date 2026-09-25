@@ -139,7 +139,7 @@ checkpoint group 1 on 2026-09-24 (verbatim in its `Decision_Log.md`; group-1
 snapshot `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
 as HELP_HUMAN had asked, which HELP_HUMAN records as selecting the
 resolution note's Section A options (interpretation in the group-1
-`DECISION.md`); checkpoint-2 preparation is authorized and not started. The pre-change audit is
+`DECISION.md`); the checkpoint-2 package was prepared and independently verified on 2026-09-25 and awaits the owner (see What's next). The pre-change audit is
 `execution/_Evaluation/DecompCoverage/COV_SCA005_PRECHANGE_2026-09-23_2139/`
 (`WARNINGS`: 0 blockers / 3 warnings). The design note
 `execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md`

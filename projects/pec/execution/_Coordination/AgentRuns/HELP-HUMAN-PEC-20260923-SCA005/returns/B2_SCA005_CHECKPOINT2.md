@@ -1,6 +1,6 @@
 # Return B2 — SCA-005 checkpoint-2 package (WORKING_ITEMS, `pec-manager`/opus)
 
-HELP_HUMAN filing of the manager's final report, verbatim below the rule. The host required the manager to hand back before it could write this file, so HELP_HUMAN extracted the report from the manager's SubagentHandback call and filed it here unedited. After handback HELP_HUMAN updated the PR branch from `main` (`f9c31a5c8`, PR #906; no `projects/pec/` byte changed). The drafter returns T1 and T2 that HELP_HUMAN relayed remain in the session scratchpad only.
+HELP_HUMAN filing of the manager's final report, verbatim below the rule. The host required the manager to hand back before it could write this file, so HELP_HUMAN extracted the report from the manager's SubagentHandback call and filed it here unedited (extracted text SHA-256 `078b32c380ef525b35c7d178570c9144d226dd32897b59b1e557a193d3cf0755`, session scratchpad). After handback HELP_HUMAN updated the PR branch from `main` (`f9c31a5c8`, PR #906; no `projects/pec/` byte changed). The drafter returns T1 and T2 that HELP_HUMAN relayed remain in the session scratchpad only.
 
 ---
 

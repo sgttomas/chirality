@@ -1,6 +1,6 @@
 # B2 verifier verdict 03 — confirmation of the final repair delta (`pec-reviewer`/opus)
 
-HELP_HUMAN filing of the verifier's cycle-3 report, verbatim below the rule. It reached HELP_HUMAN after the manager had handed back, so HELP_HUMAN extracted it from the verifier's SubagentHandback call and filed it here unedited. It reviewed `c81945fe8`. The residual NIT (a 27-character wrapped line at candidate `SOFTWARE_DECOMP.md` L107) is cosmetic; the candidate bytes stand as hashed.
+HELP_HUMAN filing of the verifier's cycle-3 report, verbatim below the rule. It reached HELP_HUMAN after the manager had handed back, so HELP_HUMAN extracted it from the verifier's SubagentHandback call and filed it here unedited (extracted text SHA-256 `4c4be7734afaa23c641433bb96422bef89e4e2e3679cb501d36ad31dd566fef8`, session scratchpad). It reviewed `c81945fe8`. The residual NIT (a 27-character wrapped line at candidate `SOFTWARE_DECOMP.md` L107) is cosmetic; the candidate bytes stand as hashed.
 
 ---
 
