@@ -12,3 +12,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | 2 | STATUS "line 122" did not name the file | Now names `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) |
 | 3 | Receipt 190 Stale-Map-Delta omitted the new run root | Added |
 | 4 | Manager host type not recorded in the slice `RUN.md` | C4 row now records HELP_HUMAN's dispatch (`pec-manager`, `model: opus`, `isolation: worktree`) |
+
+## Final-head confirmation of `e21b6603b7236add26c66ccf21a65caaebc4737b`
+
+Same reviewer, re-reviewing the repair commit `b0647bac7..e21b6603b`. **Verdict: PASS, no findings.** Each repair matches findings 1–4; Receipt 190 stays append-only against `origin/main`; the manager dispatch type is HELP_HUMAN's own record, consistent with the slice `RUN.md` and Receipt 190; this transcription is fair; receipts validator VALID, `git diff --check` clean, decomposition `--strict` exit 0; scope limited to the eight closeout files. This section is added append-only after that head; no other byte changes.
