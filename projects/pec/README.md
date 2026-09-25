@@ -61,6 +61,13 @@ and deferred the cmux adapter out of scope on 2026-09-24
 (`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
 applied yet. See `docs/STATUS.md` for current gates.
 
+**Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
+(2026-09-25): agents may act on PEC record-tier data as true as of the
+response's examined-through commit, within stated bounds, while authority
+stays file-native; agents may eventually query PEC directly through tool
+calls. The PRD v2.2 wording stands until a later scope change after SCA-005
+checkpoint 2 amends it.
+
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
 SCOPE_CHANGE mapping session: neither mappings nor blanks are ruled, all nine
