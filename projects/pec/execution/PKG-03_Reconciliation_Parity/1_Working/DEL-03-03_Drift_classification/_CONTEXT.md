@@ -14,7 +14,7 @@
 
 ## Description
 
-Classified drift between successive snapshots, reported as DriftFindings; sources never modified.
+Classified drift between successive snapshots, reported as DriftFindings; sources never modified. Lag classes: terminal-node lag after the final-PR merge is "trailing by method design" (derived completion, not drift); non-terminal graph-behind-Git is a DriftFinding; unchanged historical surfaces are never staleness.
 
 ## Anticipated artifacts
 
@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
 successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
+successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
+then by revision 1.5 (`current_basis`, SCA-005 successor).
 Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.
