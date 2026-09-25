@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 import sqlite3
 import subprocess
 from pathlib import Path
@@ -15,21 +16,18 @@ from ...core.content_minimal_guard import (
     GuardedRecord,
     MetadataRecord,
 )
-from ...core.ports.store import AdmissionResult, StoreClosedError
+from ...core.ports.store import (
+    AdmissionResult,
+    StoreClosedError,
+    StoreConfigurationError,
+    StoreDataError,
+)
 
 
 _STORE_DIRECTORY = ".pec-v2"
 _STORE_FILENAME = "record_store.sqlite3"
 _IGNORE_RULE = "/.pec-v2/"
 _DATABASE_SUFFIXES = ("", "-journal", "-shm", "-wal")
-
-
-class StoreConfigurationError(RuntimeError):
-    """The checkout does not provide the required gitignore boundary."""
-
-
-class StoreDataError(RuntimeError):
-    """Stored bytes do not satisfy the guarded metadata envelope."""
 
 
 class SqliteMetadataStore:
@@ -48,50 +46,75 @@ class SqliteMetadataStore:
         accepted_ids: list[str] = []
         failures: list[AdmissionFailure] = []
         decisions = [self._guard.guard(candidate) for candidate in candidates]
+        guard_rejected = 0
+        duplicate_rejected = 0
 
-        connection.execute("BEGIN IMMEDIATE")
         try:
-            for index, decision in enumerate(decisions):
-                if not decision.accepted:
-                    failures.extend(decision.failures)
-                    continue
-                record = decision.record
-                assert record is not None
-                savepoint = f"record_{index}"
-                connection.execute(f"SAVEPOINT {savepoint}")
-                try:
-                    self._insert_guarded(connection, record)
-                except sqlite3.IntegrityError:
-                    connection.execute(f"ROLLBACK TO {savepoint}")
-                    failures.append(
-                        AdmissionFailure(
-                            record.record_id,
-                            "<record>",
-                            "DUPLICATE_RECORD",
-                            "record id already exists; existing data was preserved",
+            connection.execute("BEGIN IMMEDIATE")
+            try:
+                for index, decision in enumerate(decisions):
+                    if not decision.accepted:
+                        guard_rejected += 1
+                        failures.extend(
+                            dataclasses.replace(failure, record_id=f"<input:{index}>")
+                            if failure.record_id == "<unknown>"
+                            else failure
+                            for failure in decision.failures
                         )
+                        continue
+                    record = decision.record
+                    assert record is not None
+                    savepoint = f"record_{index}"
+                    connection.execute(f"SAVEPOINT {savepoint}")
+                    try:
+                        self._insert_guarded(connection, record)
+                    except sqlite3.IntegrityError:
+                        connection.execute(f"ROLLBACK TO {savepoint}")
+                        duplicate_rejected += 1
+                        failures.append(
+                            AdmissionFailure(
+                                record.record_id,
+                                "<record>",
+                                "DUPLICATE_RECORD",
+                                "record id already exists; existing data was preserved",
+                            )
+                        )
+                    else:
+                        accepted_ids.append(record.record_id)
+                    finally:
+                        connection.execute(f"RELEASE {savepoint}")
+                attempted = len(candidates)
+                accepted = len(accepted_ids)
+                rejected = guard_rejected + duplicate_rejected
+                if attempted != accepted + rejected:
+                    raise RuntimeError(
+                        "admission accounting mismatch: attempted "
+                        f"{attempted} != accepted {accepted} + rejected {rejected}"
                     )
-                else:
-                    accepted_ids.append(record.record_id)
-                finally:
-                    connection.execute(f"RELEASE {savepoint}")
-            connection.commit()
-        except BaseException:
-            connection.rollback()
-            raise
+                connection.commit()
+            except BaseException:
+                connection.rollback()
+                raise
+        except sqlite3.Error as error:
+            raise StoreDataError("metadata store could not complete the admission batch") from error
 
-        attempted = len(candidates)
-        accepted = len(accepted_ids)
         return AdmissionResult(
             attempted=attempted,
             accepted=accepted,
-            rejected=attempted - accepted,
+            rejected=rejected,
             accepted_record_ids=tuple(accepted_ids),
             failures=tuple(failures),
         )
 
     def read_all(self) -> tuple[GuardedRecord, ...]:
         connection = self._require_open()
+        try:
+            return self._read_all(connection)
+        except sqlite3.Error as error:
+            raise StoreDataError("metadata store could not be read") from error
+
+    @staticmethod
+    def _read_all(connection: sqlite3.Connection) -> tuple[GuardedRecord, ...]:
         record_rows = connection.execute(
             "SELECT record_id, source_path, source_sha_algorithm, source_sha_digest "
             "FROM metadata_records ORDER BY record_id"
@@ -125,19 +148,28 @@ class SqliteMetadataStore:
             return
         self._verify_ignore_rule()
         self._database_path.parent.mkdir(parents=True, exist_ok=True)
-        connection = sqlite3.connect(self._database_path)
+        try:
+            connection = sqlite3.connect(self._database_path)
+        except sqlite3.Error as error:
+            raise StoreConfigurationError("metadata store could not be opened") from error
         try:
             connection.execute("PRAGMA foreign_keys = ON")
             connection.execute("PRAGMA journal_mode = WAL")
             self._create_schema(connection)
             connection.commit()
+        except sqlite3.Error as error:
+            connection.close()
+            raise StoreConfigurationError("metadata store could not be opened") from error
         except BaseException:
             connection.close()
             raise
         self._connection = connection
 
     def delete(self) -> None:
-        self.close()
+        try:
+            self.close()
+        except sqlite3.Error as error:
+            raise StoreDataError("metadata store could not be closed for deletion") from error
         for suffix in _DATABASE_SUFFIXES:
             try:
                 Path(f"{self._database_path}{suffix}").unlink()

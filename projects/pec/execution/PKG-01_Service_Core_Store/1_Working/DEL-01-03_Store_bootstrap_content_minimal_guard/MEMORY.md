@@ -78,3 +78,30 @@ No store-local evidence is presented as DEL-10-02 kill-test evidence.
 No Remaining item is closed by this run. `_STATUS.md`, the checkboxes, the SOW,
 source, tests and `software-workflow.json` are unchanged. Disposition of each
 obligation and of each Remaining row stays with the owner.
+
+## 2026-09-24 — D-PEC-87 C-A correction slice (P1_STORE_GUARD_02)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-87 C-A slice on the seven granted
+paths, after checking the ruling on fetched `origin/main` `6b4a0f59d`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R1–R8 and X-1.
+R1 bounds the PATH domain: it rejects C0/C1 controls, DEL, U+2028/U+2029 and
+backslash, caps paths at 4,096 UTF-8 bytes and segments at 255, and rejects
+lone surrogates. R2 counts rejections independently and locates each one.
+R3 checks the write surface through the AST. R4 dumps raw residue. R5 runs
+one shared corpus through three shapes. R6 covers external deletion while
+open. R7 adds the VER-007 tag. R8 moves the error types to the port. X-1
+widens the `v2-store-guard` selector. The suite stays at 13 tests with no new
+test ID.
+
+A fresh read-only verifier returned FAIL in cycle 1 on a documentation
+overclaim (B-1). A `str` subclass can carry arbitrary text into the store
+through `__conform__`/`__format__`. The channel is guard-wide and has existed
+since D-PEC-85. The slice now documents it as a residual that R1 does not
+close. Cycles 2 and 3 passed. All five registered checks exit 0.
+
+Routed to HELP_HUMAN, not closed here: the exact-`str` code closure (with the
+method-override bypass and the in-process adapter threat boundary);
+`close()` and `reopen()` `mkdir` errors left outside R8; and consumers not
+logging echoed invalid identifiers. Under L-1a, REM-001..003 are ticked.
+DEL-01-03 remains IN_PROGRESS. No CHECKING, ISSUED or artifact acceptance.
+Record: `_run_records/P1_STORE_GUARD_02/RUN.md`.

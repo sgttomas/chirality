@@ -39,7 +39,7 @@
       "checks": ["v2-core-posture"]
     },
     {
-      "paths": ["v2/src/pec_v2/core/ports/store.py", "v2/src/pec_v2/core/content_minimal_guard.py", "v2/src/pec_v2/adapters/storage/__init__.py", "v2/src/pec_v2/adapters/storage/sqlite_store.py", "v2/tests/storage/**", "v2/docs/STORE_LIFECYCLE_AND_GUARD.md", ".gitignore", "software-workflow.json"],
+      "paths": ["v2/src/pec_v2/core/ports/store.py", "v2/src/pec_v2/core/content_minimal_guard.py", "v2/src/pec_v2/adapters/storage/__init__.py", "v2/src/pec_v2/adapters/storage/sqlite_store.py", "v2/tests/storage/**", "v2/docs/STORE_LIFECYCLE_AND_GUARD.md", ".gitignore", "software-workflow.json", "v2/src/pec_v2/**"],
       "checks": ["v2-store-guard"]
     },
     {

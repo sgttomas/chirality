@@ -1,0 +1,31 @@
+test_ver_004_admission_and_readback_preserve_all_five_typed_classes (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_admission_and_readback_preserve_all_five_typed_classes) ... ok
+test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically)
+VER-004: prohibited values leave no field or record residue. ... ok
+test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution)
+VER-005: attempted equals accepted plus rejected with located failures. ... ok
+test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary)
+VER-006: three future shapes send one shared corpus and receive identical rejection. ... ok
+test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing)
+VER-004/008: forged typed shells cannot bypass admission domains. ... ok
+test_ver_008_policy_is_fixed_finite_and_domain_checked (test_content_minimal_guard.ContentMinimalGuardTests.test_ver_008_policy_is_fixed_finite_and_domain_checked)
+VER-008: field classes and state vocabulary are finite and non-extensible by callers. ... ok
+test_ver_001_database_journal_and_temp_artifacts_are_ignored (test_store_lifecycle.StoreLifecycleTests.test_ver_001_database_journal_and_temp_artifacts_are_ignored)
+VER-001: the checked-in root rule covers every store artifact shape. ... ok
+test_ver_001_force_tracked_store_artifact_fails_before_any_write (test_store_lifecycle.StoreLifecycleTests.test_ver_001_force_tracked_store_artifact_fails_before_any_write)
+VER-001: tracked store bytes are rejected even when the ignore rule matches. ... ok
+test_ver_001_later_negation_of_the_rule_fails_before_store_creation (test_store_lifecycle.StoreLifecycleTests.test_ver_001_later_negation_of_the_rule_fails_before_store_creation)
+VER-001: a literal rule is insufficient when later policy undoes it. ... ok
+test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation (test_store_lifecycle.StoreLifecycleTests.test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation)
+VER-002: every local lifecycle reaches a valid empty recreation. ... ok
+test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface (test_store_lifecycle.StoreLifecycleTests.test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface)
+VER-003: consumer methods leak no engine/path and writes call one guard. ... ok
+test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call (test_store_lifecycle.StoreLifecycleTests.test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call)
+VER-007: implementation is local, stdlib-only, and port-isolated. ... ok
+test_ver_009_loaded_suite_has_exact_execution_mapping (test_store_lifecycle.StoreLifecycleTests.test_ver_009_loaded_suite_has_exact_execution_mapping)
+VER-009: every discovered test ID is mapped and every VER is covered. ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.465s
+
+OK
+exit=0
