@@ -15,3 +15,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N5 | The Root `LOOP_INIT` notice said App and Piping "now write" central receipts; only one exists | Notice reworded (prescribed by their `LOOP_INIT.md` §5; one existed at the survey) before publication |
 | N6 | `RUN_SUMMARY.md` and `Handoff_State.md` still say the notices are to be written | Superseded by commit `653e645a6`; stated to the owner and carried into the group-3 record |
 | N7 | Root `.gitattributes` CSV rule does not cover `projects/pec/`; "adjusted reading WARN" is not a contract value | Noted; labelled as a reading |
+
+## Final-head confirmation of `259a76b39f7f6c3f7812eea36aa3f77b5eeb4246`
+
+Same reviewer, re-reviewing the repair commit `653e645a6..259a76b39`. **Verdict: PASS.** Only the Root `LOOP_INIT` notice, README, STATUS and this file changed; no Lane A path, snapshot, COV file, pointer or accepted byte moved. N1, N2 and N5 repairs are true against the files (census recounted at the head: 28 OPEN / 26 INITIALIZED / 4 CHECKING / 2 IN_PROGRESS / 4 RETIRED; the central-receipt statement matches the tree). This transcription is fair. Nit: the owner-facing wording of N4 should match STATUS's "a refusal would return" (a refusal is itself an owner act). Receipts validator VALID; `git diff --check` flags only the known `Supersession_Map.csv` CRLF lines. This section is added append-only after that head; no other byte changes.
