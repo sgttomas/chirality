@@ -53,8 +53,10 @@ checkpoint-group-1 package at `execution/_ScopeChange/SCA-005_2026-09-23_2139/`
 proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` on
 2026-09-24 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`). Owner
-checkpoints 2–3 remain, and TM-PEC-023 is folded into its intake with no
-option selected. See `docs/STATUS.md` for current gates.
+checkpoints 2–3 remain. The owner selected the TM-PEC-023 objective values
+and deferred the cmux adapter out of scope on 2026-09-24
+(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
+applied yet. See `docs/STATUS.md` for current gates.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
