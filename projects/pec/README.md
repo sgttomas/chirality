@@ -10,18 +10,20 @@ coordination plane that doesn't need to exist**: files and Git remain the
 sole authority, every potential consumer has a file-native fallback, and
 deleting PEC degrades throughput, never correctness.
 
-Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.2
-(v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted by
-`D-PEC-61`; exact consumer-interface rows adopted by `D-PEC-67`; surrounding
-concordance adopted by `D-PEC-68`). The `D-PEC-79` PRD v2.3 §16.3 postimage
-is adopted but not applied; live `docs/PRD.md` remains v2.2. **New here? Read
+Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.3, adopted
+2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance (`D-PEC-92`) and
+applied in checkpoint-3 preparation; it carries the `D-PEC-79` §16.3 hunks.
+Earlier versions: v2.0 `D-PEC-58`, v2.1 `D-PEC-61`, exact consumer-interface
+rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 [`docs/STATUS.md`](docs/STATUS.md) first.**
 
 ## State
 
 Early P1 implementation (present-current as of 2026-09-23, `D-PEC-86` §3
 I-5). Decomposition revision 1.4 is the accepted current
-basis after `SCA-004` under `D-PEC-78` O-A; PROJECT_SETUP has materialized the
+basis after `SCA-004` under `D-PEC-78` O-A (the live files already hold the
+SCA-005 revision 1.5 candidate, applied and audited, awaiting the owner's
+checkpoint-3 acceptance; the `_LATEST.md` pointers still name 1.4); PROJECT_SETUP has materialized the
 owner-selected full DAG, scaffolded 11 packages / 64 deliverables, and completed
 the SCA-004 metadata-alignment subset: 64/64 context provenance blocks and
 64/64 reference packets are current, and DEL-01-06 carries the non-gating
@@ -96,11 +98,11 @@ TM-PEC-023 moved into SCA-005 intake.
 
 | Path | Contents |
 |---|---|
-| `docs/PRD.md` | Adopted product definition (v2.2, coordination plane) |
+| `docs/PRD.md` | Adopted product definition (v2.3, coordination plane) |
 | `docs/STATUS.md` | Status & handoff — read first |
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
-| `execution/_Decomposition/` | Accepted software decomposition revision 1.4 and authoritative companion registers |
+| `execution/_Decomposition/` | Software decomposition and authoritative companion registers: live files hold the revision 1.5 candidate awaiting checkpoint 3; revision 1.4 remains the accepted basis until then |
 | `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package and its accepted group-1 snapshot under `checkpoint_snapshots/`, and active scope-change pointer |
 | `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
