@@ -109,7 +109,7 @@ located rejection, plus a read-only-checkout test and documentation of the
 encoding residual. That slice merged on 2026-09-25 (PR #903, `97344617f`;
 evidence under DEL-01-03 `_run_records/P1_STORE_GUARD_04/`, independent
 verifier PASS in one cycle). DEL-01-03 stays `IN_PROGRESS`. Carried residuals:
-one doc sentence (line 122) is broader than the new bound and needs a later
+one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broader than the new bound and needs a later
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
