@@ -2684,6 +2684,35 @@
     },
     {
       "kind": "workflow",
+      "name": "reverse-engineer-software",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Examine existing software and reconstruct a specification of its capabilities, behaviour, relationships, and constraints to support designing a new implementation. Use when a reference product is a starting point for developing product intent.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "resources/worked-example.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 8,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "review",
       "source": "bundled",
       "sourceRootId": "chirality-root",

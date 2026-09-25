@@ -105,6 +105,9 @@
           },
           {
             "name": "software-repository-reconnaissance"
+          },
+          {
+            "name": "reverse-engineer-software"
           }
         ]
       },
