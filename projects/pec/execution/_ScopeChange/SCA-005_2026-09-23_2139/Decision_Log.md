@@ -36,6 +36,7 @@ rulings.
 | SCA005-A1-TM | 1 (amendment 1) | TM-PEC-023 selections: row 1 DEL-00-02 `OBJ-003`; row 2 DEL-03-05 `OBJ-001`; row 3 DEL-05-01 `OBJ-004`; row 5 DEL-07-03 `OBJ-003`; row 8 DEL-08-05 `OBJ-001;OBJ-003`; row 9 DEL-10-08 `OBJ-001` (supersedes DL-14's objective-free rationale); rows 4, 6, 7 moot (retired); no typed non-mapping, so the surface's mechanic and objective-side-table rulings are moot | `SELECTED BY OWNER` | Owner acts 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/DECISION.md` |
 | SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
 | SCA005-A2-SOW033 | 1 (amendment 2) | Add to intake: Seq 79 SOW-033 `ObjectiveIDs` to `OBJ-003` (DEL-07-01 unchanged at `OBJ-003`); no IN scope item remains without an objective after application | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/DECISION.md` |
+| SCA005-D90-NOTE | 2 (preparation note) | Carry into checkpoint-2 preparation: DEL-04-01 and the PRD §8 refresh are not rebuilt around verify-before-rely; PEC-K-03, §8, §9, §12 and `projects/pec/AGENTS.md` reliance text is amended by a later PEC scope change after checkpoint 2 is accepted (D-PEC-90 R-A). Checkpoint 2 still quotes the in-force PRD v2.2 (including PEC-K-03 verify-before-rely) where it quotes at all; the note means do not design around verify-before-rely, not diverge from the in-force text. Adds no scope and changes no accepted selection | `DIRECTED BY OWNER` | Owner act 2026-09-25 (verbatim below); `../../_Coordination/_DECISIONS/D-PEC-90_RULING_2026-09-25.md` |
 | SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
 | SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
 
@@ -87,6 +88,16 @@ Owner, 2026-09-24, after HELP_HUMAN asked whether to map SOW-033 to OBJ-003 and 
 > yes map SOW-033 to OBJ-003 and yes maintain the Status page and README.
 
 The first clause is amendment 2 (`../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`); the second is `D-PEC-88` and does not concern SCA-005.
+
+## SCA005-D90 — owner act of record (verbatim)
+
+Owner, 2026-09-25, on the `D-PEC-90` operational-reliance proposal:
+
+> D-PEC-90: R-A.
+
+> agents may eventually query PEC directly, yes.  Through tool calls.
+
+R-A's first grant item is row SCA005-D90-NOTE. It is a preparation note, not a checkpoint-1 amendment: no snapshot is created, no action is added to the intake, and the accepted group-1 snapshot and amendments 1 and 2 are unchanged.
 
 ## Non-decisions recorded for clarity
 

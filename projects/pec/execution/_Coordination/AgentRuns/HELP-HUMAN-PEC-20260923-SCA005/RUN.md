@@ -84,4 +84,13 @@ The first two directions started and carried C3 (above). HELP_HUMAN watched PEC 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
 | G10 C3 closeout | HELP_HUMAN | C3 merged | this file; `briefs/C3_D89_EXACT_TYPE_SLICE.md`, `returns/C3_D89_EXACT_TYPE_SLICE.md` (new); `_REGISTER.md` D-PEC-89 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 186 | in progress — PR, independent review, CI, merge |
-| H5 D-PEC-90 proposal: agent reliance on PEC data | HELP_HUMAN drafts (TASK help optional) | G10 merged | `_DECISIONS/` proposal (new) | NOT_STARTED — distinguish relying on PEC to act (the direction) from treating PEC output as authority (rulings, acceptance and lifecycle stay file-native); list the PRD, Root and App/runtime consumer text touched and the SCA-005 actions affected; options: fold into SCA-005 checkpoint 2 or a separate scope change after it |
+| H5 D-PEC-90 proposal: agent reliance on PEC data | HELP_HUMAN drafts (TASK help optional) | G10 merged | `_DECISIONS/` proposal (new) | COMPLETE — draft SHA-256 `b04a8aa25c1d402fb03f6f15b6fb1eb27a0110e5cd3f3ded1db3717649a5e147`, ruled R-A (G11) before publication and published unchanged; it was to distinguish relying on PEC to act (the direction) from treating PEC output as authority (rulings, acceptance and lifecycle stay file-native); list the PRD, Root and App/runtime consumer text touched and the SCA-005 actions affected; options: fold into SCA-005 checkpoint 2 or a separate scope change after it |
+
+## Continuation 2026-09-25 (owner: "D-PEC-90: R-A."; "agents may eventually query PEC directly, yes.  Through tool calls.")
+
+The owner ruled on HELP_HUMAN's chat summary of the H5 draft; the draft is published unchanged as the instrument. The second line answers the proposal's question 2 and steers the later §8 amendment.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G11 record D-PEC-90 ruling | HELP_HUMAN | G10 merged | `_DECISIONS/D-PEC-90_*` (new, two files); `_REGISTER.md` D-PEC-90 row; SCA-005 `Decision_Log.md` row SCA005-D90-NOTE and `Handoff_State.md` sixth amendment; Root and App `NOTICE_2026-09-25_D-PEC-90_*` (new); `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 187 | in progress — PR, independent review, CI, merge |
+| H6 D-PEC-90 reliance amendment (PRD K-03, §8 incl. direct query through tool calls, §9, §12; `projects/pec/AGENTS.md`) | HELP_HUMAN prepares; scope-change method | SCA-005 checkpoint 2 accepted | a later PEC scope-change package | NOT_STARTED |

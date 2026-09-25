@@ -182,7 +182,8 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   once prepared from the accepted group-1 snapshot
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
   and its amendments 1 and 2, carrying the owner-selected TM-PEC-023 values, the
-  cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate; checkpoint 3 (audited
+  cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate, and
+  carrying the `D-PEC-90` note; checkpoint 3 (audited
   poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
@@ -190,11 +191,15 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
 - **Later rulings:** live application of the `D-PEC-79` postimage (only via
   SCA-005 checkpoint 2 if accepted there) and PEC loop-method migration
   (`D-PEC-86` §3 I-7, after SCA-005 closes).
-- **Agent reliance on PEC data:** the owner stated on 2026-09-25 that agents
-  should rely on PEC's data. That is in tension with PRD v2.2 PEC-K-03
-  (verify-before-rely) and §8, the PEC-K-02 gloss in `projects/pec/AGENTS.md`,
-  and a Root `AGENTS.md` sentence, so HELP_HUMAN will prepare it
-  as a proposal (`D-PEC-90`) for a ruling; nothing changes before then.
+- **Agent reliance on PEC data:** the owner ruled `D-PEC-90` R-A on
+  2026-09-25: agents may act on PEC record-tier data as true as of the
+  response's examined-through commit, within stated bounds, and authority
+  stays file-native; agents may eventually query PEC directly through tool
+  calls. Reliance begins at a PEC release whose gates prove parity and
+  coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
+  amended by a later PEC scope change after SCA-005 checkpoint 2 is accepted;
+  until then the v2.2 wording stands. Checkpoint 2 carries a note so
+  DEL-04-01 and the §8 refresh are not rebuilt around verify-before-rely.
 
 Gate lineage (historical record; the current gates are listed above):
 
