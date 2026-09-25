@@ -51,14 +51,17 @@ extracted programmatically from the host's transcripts.
 | T4 | App history and archives | claude-opus-5-5 | 19:58:39 → 20:11:19 |
 | T5 | Runtime, PEC, Root program | claude-opus-5-5 | 19:58:39 → 20:09:25 |
 | T6 | SWBPIPE as host | claude-opus-5-5 | 19:58:39 → 20:10:23 |
-| T7 | Supplier landscape (web) | claude-opus-5-5 | dispatched after T1–T6; see below |
+| T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
 
 Notes on the returns:
 
-- The host flagged T4's return for an instruction-shaped pattern
-  ("bypass-permissions"). On inspection it is T4 describing v1's historical
-  permission default (`dontAsk` mapped to `bypassPermissions`); a finding,
-  not an instruction.
+- The host flagged T4's and T7's returns for an instruction-shaped pattern
+  ("bypass-permissions"). On inspection both describe permission modes (v1's
+  historical default mapped to `bypassPermissions`; the Claude Agent SDK's
+  documented modes); findings, not instructions.
+- T7's web claims are vendor documentation, release notes or third-party
+  reports retrieved 2026-09-25; some reached it only as tool summaries and are
+  marked so. None has been tested locally.
 - HELPS_HUMANS checked the load-bearing claims used in the questions against
   their primary files (application-tool design; the A2 Tauri rationale; the
   owner's 2026-09-11/12 words; D-APP-87; D-PEC-57; the peer-reported
@@ -88,6 +91,9 @@ Notes on the returns:
 5. Read the thesis README, the Field Book, and the owner-words records
    directly; dispatched T1–T7.
 6. Wrote the source inventory, exemplars and lessons, questions, and this plan.
+7. Committed `3c37fe292`; the committed thesis tree equals the source tree
+   object `47fc49e96c2931ba18090f1a82d56a49f230b3ee`. Pushed the branch.
+8. Folded T7 (supplier landscape) into Q-02, Q-04, Q-05 and a new Q-15.
 
 ## Current position
 
@@ -100,9 +106,7 @@ await the owner.
 | Item | Owner | Condition |
 |---|---|---|
 | Answers to Q-01…Q-14 | Owner | Stage D |
-| Supplier landscape return (T7) folded into the questions and inventory | HELPS_HUMANS | On return |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
-| Check after commit: `git rev-parse HEAD:projects/chirality-app-v4/foundation/thesis` = `47fc49e96c2931ba18090f1a82d56a49f230b3ee` | HELPS_HUMANS | At commit |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
 
 ## Next

@@ -111,7 +111,7 @@ or HELPS_HUMANS directly (HH). Pinned revisions are in
 
 | Source | What it can support | Examined by |
 |---|---|---|
-| Supplier documentation and releases for agent harnesses, embedding protocols and computer use (web, retrieved 2026-09-25) | Current capabilities, interfaces, terms, limits — to be tested locally before any fitness claim | T7 (landscape) |
+| Supplier documentation, release notes and third-party reports for agent harnesses (Codex App Server and SDK, Claude Agent SDK, Copilot SDK, OpenAI Agents SDK, ADK and Gemini CLI, Pi, goose, OpenHands, OpenCode, frameworks), embedding protocols (MCP 2026-07-28, MCP Apps, ACP, AG-UI, A2A) and computer use; 80+ sources listed in T7 with retrieval dates | Current capabilities, interfaces, terms and limits as published — each to be tested locally before any fitness claim; credential terms need vendor confirmation | T7 |
 
 ## 10. Not examined in this pass
 

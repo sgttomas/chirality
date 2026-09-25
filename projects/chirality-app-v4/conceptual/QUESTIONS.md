@@ -8,8 +8,8 @@ in [`DECISIONS.md`](DECISIONS.md); this file then records the disposition.
 Exemplar (`X-`), lesson (`L-`) and tension (`N-`) references point to
 [`EXEMPLARS_AND_LESSONS.md`](EXEMPLARS_AND_LESSONS.md).
 
-Questions Q-01 to Q-08 shape the PRD. Q-09 to Q-14 are narrower and can be
-answered briefly or deferred.
+Questions Q-01 to Q-08 and Q-15 (placed after Q-05, which it informs) shape
+the PRD. Q-09 to Q-14 are narrower and can be answered briefly or deferred.
 
 ---
 
@@ -52,7 +52,9 @@ OD-04).
 | D. One contract, two routes | Define a single host-integration contract — typed objects, reads, previews, proposals, receipts, basis binding (X-08) — used first by an outside controller (A) and then by the embedded panel (B) | The contract becomes the core of the product; topology stays an architecture choice tested in Stage E3 |
 
 **Recommendation.** D, with B as the leading embedded topology pending the
-supplier investigation. **Evidence that would settle the topology:** a
+supplier investigation. The panel itself could be host-native components,
+or a standard surface such as an MCP Apps panel or an AG-UI event stream
+(T7 §2); that choice follows the experiments. **Evidence that would settle the topology:** a
 disposable spike hosting a candidate harness beside a Tauri shell with two
 application tools (Stage E3). **Needed by:** the PRD's boundary section (the
 contract); the architecture basis (the topology).
@@ -88,7 +90,9 @@ different directions (N-3): near-parity autonomy with prescribed gates
 | B. Graduated | The workflow or the human sets what the agent may apply directly, per operation class and consequence, with origin marks, undo and later checking; human acts are required at declared gates |
 | C. Proposal always at first, graduated by design | Ship A in the first host; shape the contract so B can be enabled per project and per workflow later |
 
-**Recommendation.** C. **Also asked:** which acts are always reserved to the
+**Recommendation.** C. **Also asked:** may a harness's model-classifier
+approval mode (T7 §4) ever resolve a request on the human's behalf, and if
+so for which classes of operation? And which acts are always reserved to the
 human in every host — for example accepting a change to the engineering
 model, marking work checked, issuing a report, and any act of reliance or
 approval? **Needed by:** the PRD's interaction and decision-rights sections.
@@ -111,6 +115,29 @@ a consumer sign-in recorded as unconfirmed). Root `AGENTS.md` still states
 | B. Require, shortlist, then select | The seed states the behaviour v4 needs from a harness and a shortlist; selection follows disposable experiments before FEED; the incumbent is the reference | The seed can be accepted without a supplier; architecture work waits on the experiments |
 | C. Harness-neutral layer | Build an adapter layer so several harnesses can be used | The pattern v1/v2 paid for (L-05) |
 
+**What the landscape scan found** (T7, vendor documentation and releases
+retrieved 2026-09-25; to be confirmed by experiment before any fitness claim):
+
+- Every major vendor now ships an embedding surface: the Codex App Server (a
+  native binary speaking JSON-RPC over stdio — plausibly a Tauri sidecar), the
+  Claude Agent SDK (a TypeScript or Python library around a bundled binary; no
+  Rust SDK), and the GitHub Copilot SDK (includes Rust; bring-your-own-key).
+  Open harnesses (Pi, goose, OpenHands, OpenCode) are permissively licensed
+  and differ widely in how much approval and delegation they provide.
+- Credentials and billing are the least stable facts. Anthropic's documentation
+  says third-party products may not offer claude.ai login without approval
+  (API keys instead). Using a ChatGPT plan inside third-party harnesses is
+  reported as tolerated practice, not a contractual permission.
+- Both leading harnesses offer approval modes in which a model classifier
+  decides (`auto`; `auto_review` / `guardian`). This bears directly on Q-04.
+- Vendor desktop computer-use features are tied to the vendors' own apps and
+  are not available through their embedding surfaces; API-level computer use
+  and accessibility-tree tools are.
+- The protocol layer is consolidating: MCP (stateless core, Tasks, MCP Apps
+  for interface panels rendered by the host), ACP (editor-to-agent), AG-UI
+  (application interface events). Seven disposable experiments are proposed
+  in T7 §5.
+
 **Recommendation.** B. The agent reads the Root Codex clause as scoped to the
 v3 App MVP; if v4 selects differently, the clause needs a Root instruction
 change with its own scope. **Also asked:** is local-model operation (on the
@@ -118,6 +145,23 @@ user's machine or an organisation server) a v4.0 requirement or later? A peer
 agent reported it as "central to the premium feature after MVP" for SWBPIPE
 (`…/OWNER_CLI_PROTOCOL_DISPOSITION_PEER_2026-09-20.md`, reported, not
 verbatim). **Needed by:** the architecture basis; selection before FEED.
+
+---
+
+## Q-15 Distribution and whose credentials pay
+
+**Why it matters.** Vendor terms turn on it (Q-05), and so does the
+professional record: engineering data may leave the machine through the
+model provider.
+
+Will v4 and SWBPIPE-class hosts go to other engineers (the owner's release
+stance is open source once the paradigm is established, AT §1 item 6)? If so,
+whose model access do they use: each user's API key, an organisation
+account, each user's consumer subscription, a local model, or a mix? Is
+macOS-only acceptable for v4.0? **Recommendation:** decide the intended
+distribution for v4.0 now (even "owner's own use first" is a useful answer);
+the credential model then follows. **Needed by:** the supplier requirement
+statement (Stage E3).
 
 ---
 
