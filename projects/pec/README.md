@@ -56,13 +56,14 @@ development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
 checkpoint-group-1 package at `execution/_ScopeChange/SCA-005_2026-09-23_2139/`
 proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` on
-2026-09-24 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`). Owner
-checkpoints 2–3 remain. The owner selected the TM-PEC-023 objective values
+2026-09-24 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`) and
+checkpoint 2 on 2026-09-25; checkpoint 3 remains. The owner selected the TM-PEC-023 objective values
 and deferred the cmux adapter out of scope on 2026-09-24
 (`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
-applied yet. The checkpoint-2 package (exact amendment, propagation plan and
-PRD v2.3 successor candidate) was prepared and independently verified on
-2026-09-25 and awaits the owner; nothing is applied. See `docs/STATUS.md` for
+applied yet. The owner accepted checkpoint 2 on 2026-09-25 (exact amendment
+to revision 1.5, propagation plan and PRD v2.3 successor candidate; `D-PEC-92`),
+with the new DEL-02-08/09 folders deferred to PROJECT_SETUP; the writes are
+applied and audited in checkpoint-3 preparation. See `docs/STATUS.md` for
 current gates.
 
 **Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
@@ -70,8 +71,9 @@ current gates.
 response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
-coverage, not now. The PRD v2.2 wording stands until a later scope change after SCA-005
-checkpoint 2 amends it.
+coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
+until a later scope change, which may be prepared now that SCA-005 checkpoint 2
+is accepted, amends it.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
