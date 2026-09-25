@@ -2161,3 +2161,14 @@
   - Checks: live decomposition equals the accepted candidate hash and the four registers and `docs/PRD.md` equal their accepted candidates (`cmp`); receipts validator VALID, exit 0; decomposition registers `--strict` with 0 errors and the two expected DRB-008 warnings; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F16_REVIEW_CP3_DECISION.md`.
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; reviewer dispatched with host `subagent_type: pec-reviewer`, `model: opus`; roles instruction-asserted.
   - Gate-Outcome: `EXECUTED` — SCA-005 checkpoint 3 accepted and closed for scope change only; no Lane B, A4, SOW, source, lifecycle beyond the accepted retirements, artifact-acceptance, release or reliance act.
+
+- **2026-09-25 — Receipt 195** (D-PEC-93 PROJECT_SETUP proposal for SCA-005 A4 and B3 published for an owner ruling).
+  - Receipt-ID: `Receipt-195`
+  - Examined-Through: `6dac281c679e779e9e8507add693554f102242d2`
+  - Parent-Receipt: `Receipt-194`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — “go ahead with the PROJECT_SETUP packet”. `projects/pec/AGENTS.md` requires an owner-ruled D-PEC packet for these writes, so the direction is carried out by preparing D-PEC-93 for a ruling; nothing is written to product paths.
+  - Pointers: `_DECISIONS/D-PEC-93_project_setup_sca005_a4_b3_proposal_2026-09-25.md` (SHA-256 `46470575625522398fa47d0a39aa09d2b4d252dd89c083ba317f9e577f489422`); `_Coordination/PROJECT_SETUP_SCA005_A4_B3_PREP_2026-09-25/` (bound generator `gen_d93.py` and prototype evidence, copied verbatim with its `SHA256SUMS`); `_DECISIONS/_REGISTER.md` D-PEC-93 entry; run record nodes G18, H8, G19, C5 and brief `briefs/H8_D93_PROJECT_SETUP_PROPOSAL.md`; `docs/STATUS.md` present-current lines under D-PEC-88.
+  - Stale-Map-Delta: none; preparation was read-only over the base and no decomposition, register, `Dependencies.csv`, `_DEPENDENCIES.md`, `_CONTEXT.md`, `_STATUS.md`, SOW or PRD byte changed.
+  - Checks: prototype results recorded in the proposal and evidence (strict registers 0 errors and 0 warnings; closure with no cycles or bidirectional pairs; deterministic rerun; reliance-hold ALLOW); for this publication, receipts validator VALID, exit 0; decomposition registers `--strict` unchanged on the live tree; `git diff --check` flags only verbatim tool-output evidence in the preparation folder (CRLF closure-tool CSVs and diffs of CRLF registers); independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F17_REVIEW_D93_PROPOSAL.md`.
+  - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; preparer dispatched with host `subagent_type: pec-task`, `model: opus`; roles instruction-asserted.
+  - Gate-Outcome: `EXECUTED` — proposal published for an owner ruling; no product, lifecycle, artifact-acceptance, release or reliance act.

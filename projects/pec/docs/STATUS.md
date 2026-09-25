@@ -196,6 +196,10 @@ P-A.
 
 Current owner gates (2026-09-25; none is accepted or inferred here):
 
+- **`D-PEC-93` (PROJECT_SETUP for SCA-005 A4 and B3):** choose A
+  (recommended: the two new folders, the dependency rerun, a re-audit and the
+  audit pointer), P, the O or B1 add-ons, amend or defer
+  (`execution/_Coordination/_DECISIONS/D-PEC-93_project_setup_sca005_a4_b3_proposal_2026-09-25.md`).
 - **SCA-005 follow-on work (each separately gated):** SCA-005 closed for
   scope change only on 2026-09-25
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`).
