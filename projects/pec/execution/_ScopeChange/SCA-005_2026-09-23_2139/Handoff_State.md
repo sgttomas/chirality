@@ -2,9 +2,9 @@
 amendment_id: SCA-005
 doc_kind: scope_change.handoff_state
 decomp_variant: SOFTWARE
-checkpoint_group: 1
+checkpoint_group: 3
 created: 2026-09-23
-status: checkpoint_1_package_prepared_awaiting_owner
+status: checkpoint_2_accepted_checkpoint_3_preparation_authorized
 ---
 
 # SCA-005 Checkpoint-group-1 Handoff State
@@ -50,7 +50,7 @@ finalized (or dropped if the PRD successor lands first) at checkpoint 2.
 | `Impact_Assessment.md` | `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` |
 | `Amendment_Actions.csv` (PROPOSED) | `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2` |
 | `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
-| `Decision_Log.md` | `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` (after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
+| `Decision_Log.md` | `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` (after the checkpoint-2 acceptance, 2026-09-25; `7dcbc51dd30c66bb273e3528e8675e9adba317d974ec63a438ff816d15af371b` after the checkpoint-2 package row, 2026-09-25; `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
 
 ## Pre-change audit snapshot hashes (written by the TASK child)
 
@@ -155,3 +155,21 @@ Amendment 2026-09-24 (fourth, HELP_HUMAN): the owner selected the TM-PEC-023 val
 Amendment 2026-09-24 (fifth, HELP_HUMAN): the owner mapped SOW-033 to OBJ-003 (verbatim in `Decision_Log.md` §"SCA005-A2 — owner act of record"). The additive snapshot is `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`; the group-1 snapshot and amendment 1 are unchanged. `Decision_Log.md` now hashes `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924` (row SCA005-A2-SOW033 added; CP2 row reworded); the hash table above is updated in place. Next owning actor unchanged: WORKING_ITEMS (scope-change) for checkpoint-2 preparation, consuming the group-1 snapshot and amendments 1 and 2 together.
 
 Amendment 2026-09-25 (sixth, HELP_HUMAN): the owner ruled `D-PEC-90` R-A (verbatim in `Decision_Log.md` §"SCA005-D90 — owner act of record"). Row SCA005-D90-NOTE carries a preparation note into checkpoint 2: DEL-04-01 and the PRD §8 refresh are not rebuilt around verify-before-rely, and the reliance text is amended by a later PEC scope change. No snapshot is created and no intake action changes. `Decision_Log.md` now hashes `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11`; the hash table above is updated in place. Next owning actor unchanged: WORKING_ITEMS (scope-change) for checkpoint-2 preparation, consuming the group-1 snapshot and amendments 1 and 2, and carrying the D-PEC-90 note.
+
+Amendment 2026-09-25 (seventh, WORKING_ITEMS B2): the checkpoint-group-2 package is prepared and independently verified, awaiting the owner. Brief `B2_SCA005_CHECKPOINT2.md` SHA-256 `75a8f596712e00926358aa721455a296e6370ee69dda4b8c2eb7c57324e48f11`. `Decision_Log.md` row SCA005-CP2 moved to `PREPARED / AWAITING_OWNER` with the package hashes (its new hash is in the table above). Nothing is applied: live decomposition revision 1.4, registers, PRD v2.2, every SOW, `_CONTEXT.md`, `_STATUS.md`, `v2/**`, both `_LATEST.md` pointers and the checkpoint snapshots are byte-unchanged. `Impact_Assessment.md`, `Amendment_Actions.csv`, `Brief.md` and `Pre_Change_Coverage.json` are unchanged.
+
+### State fields after checkpoint-2 preparation (2026-09-25)
+
+| Field | Value | Note |
+|---|---|---|
+| `DecompositionTruthState` | `INCOMPLETE` | exact amendment prepared as candidate postimages; not applied |
+| `DerivativePackageState` | `INCOMPLETE` | every derivative obligation is future work (`Propagation_Plan.md` Lane B) |
+| `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant |
+| `DownstreamRerunState` | `FROZEN` | no downstream rerun authorized |
+| `MetadataAlignmentState` | `NOT_STARTED` | 22 direct `_CONTEXT.md` mirrors and 4 `_STATUS.md` retirements planned (Lane A2/A3), not applied |
+| `AuditState` | `WARNINGS` | pre-change baseline only; candidate register validation 0 errors / 2 expected DRB-008 warnings; post-change audit `NOT_RUN` |
+| `ReadyForNextPhase` | `NO` | |
+
+Next owning actor: the owner (checkpoint-2 question set), then HELP_HUMAN (group-2 decision snapshot, D-PEC register row, receipt, STATUS/README), then WORKING_ITEMS for checkpoint-3 preparation from the accepted group-2 snapshot.
+
+Amendment 2026-09-25 (eighth, HELP_HUMAN): the owner accepted checkpoint group 2 (verbatim in `Decision_Log.md` §"SCA005-CP2 — owner acceptance of record"): Q-CP2-A accept, Q-CP2-1..3 (a), Q-CP2-4 (a) with Lane A4 deferred. The group-2 decision snapshot is `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/` (`DECISION.md`, `ACCEPTED_MANIFEST.csv`, `Handoff_State.md`) with the amendment-qualified pointer `../SCA-005_GROUP-2_AUTHORIZED.md`; register row `D-PEC-92` makes it the D-PEC packet opening Lane A except A4. `Decision_Log.md` now hashes `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` (SCA005-CP2 row `ACCEPTED`, SCA005-CP3 row `PREPARATION AUTHORIZED / NOT_STARTED`); the hash table above is updated in place. No checkpoint-2 artifact changed. Next owning actor: WORKING_ITEMS (scope-change) for checkpoint-3 preparation. State fields: `DecompositionTruthState` `INCOMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `FROZEN`; `MetadataAlignmentState` `NOT_STARTED`; `ReadyForNextPhase` `NO`.
