@@ -35,7 +35,13 @@ PATTERNS = {
     'google-api-key': r'\bAIza[0-9A-Za-z_-]{35}\b',
     'stripe-live-key': r'\b[rs]k_live_[0-9A-Za-z]{20,}',
     'private-key': r'-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP |ENCRYPTED )?PRIVATE KEY(?: BLOCK)?-----',
-    'bearer-token': r'(?i)\bauthorization:\s*bearer\s+[A-Za-z0-9._~+/-]{32,}',
+    'bearer-token': r'(?i)\bauthorization["\']?\s*[:=]\s*["\']?bearer\s+[A-Za-z0-9._~+/-]{32,}',
+    'jwt': r'\beyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{20,}',
+    'aws-secret-key': r'(?i)aws_?secret_?access_?key["\']?\s*[:=]\s*["\']?[A-Za-z0-9/+]{40}\b',
+    'gitlab-token': r'\bglpat-[A-Za-z0-9_-]{20,}',
+    'huggingface-token': r'\bhf_[A-Za-z]{34,}\b',
+    'npm-token': r'\bnpm_[A-Za-z0-9]{36}\b',
+    'slack-webhook': r'https://hooks\.slack\.com/services/T[A-Z0-9]+/B[A-Z0-9]+/[A-Za-z0-9]{20,}',
 }
 COMPILED = {name: re.compile(pattern) for name, pattern in PATTERNS.items()}
 
@@ -72,10 +78,10 @@ def main() -> int:
     args = parser.parse_args()
     try:
         paths = changed_run_records(args.base, args.head)
+        results = [f for p in paths for f in findings(p, git('show', f'{args.head}:{p}'))]
     except subprocess.CalledProcessError as exc:
-        print(f'ERROR: cannot diff {args.base}..{args.head}: {exc}', file=sys.stderr)
+        print(f'ERROR: cannot read {args.base}..{args.head}: {exc}', file=sys.stderr)
         return 2
-    results = [f for p in paths for f in findings(p, git('show', f'{args.head}:{p}'))]
     for severity, message in results:
         print(f'{severity}: {message}')
     blocks = sum(severity == 'BLOCK' for severity, _ in results)

@@ -136,7 +136,17 @@
         "projects/chirality-app-dev/execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22",
         "projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A",
         "projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A-R1",
-        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime"
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/0107f526-93b7-4fe6-910b-7b9d9806f469",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/2bc97f83-b784-40b7-abdf-86303668f5a4",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/53986da2-57b3-407f-b9be-4843a9660862",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/709c021a-f1e7-4004-81e0-6e0737f103ca",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/882701a0-ac8a-4521-aab0-a3b21ce94b2a",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/98317974-a975-4a80-ae6e-c97d4df92030",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/b75c9ecb-2be1-4730-a20c-b7cbc2c67ea9",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/b7685a98-5285-42d0-897b-9fe2da2d257f",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/c20be5e6-a897-4fe6-8825-e9a1365c00ac",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/f252d738-39dc-4a86-8944-1ce49a0c2dc3",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/runtime/ff22d588-e3c8-4816-9ca4-7d1444dc5a86"
       ],
       "files": [],
       "restore": "git restore --source=archive/agent-runs-2026-09-25 -- <path>   |   git show archive/agent-runs-2026-09-25:<path>"

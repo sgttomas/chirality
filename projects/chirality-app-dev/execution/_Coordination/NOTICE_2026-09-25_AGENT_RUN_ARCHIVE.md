@@ -5,7 +5,8 @@ is owner-directed. It treats run records as history. All five execution roots
 were archived together on 2026-09-25.
 
 For App, `execution/_Coordination/AgentRuns/` no longer contains
-128 run folders untouched for 14 days, or 0 binary files
+138 run folders untouched for 14 days (Runtime's `runtime/<runId>` records count
+individually), or 0 binary files
 untouched for 7 days in run folders still in use. Their exact bytes are held at
 tag `archive/agent-runs-2026-09-25`. `ARCHIVE_INDEX.json` lists every path; `ARCHIVE.md` shows
 how to read (`git show <tag>:<path>`) or restore one.

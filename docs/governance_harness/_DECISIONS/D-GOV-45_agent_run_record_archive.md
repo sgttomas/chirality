@@ -69,6 +69,10 @@ Item 5's owner action is complete: the repository API reported
    - In folders still in use, binary evidence (traces, screenshots, archives,
      databases) that no commit has touched for **7 days** is archived file by
      file.
+   - "Touched" is measured by committer date from 00:00 local time on the
+     cutoff date, so a run's result depends only on its as-of date. A policy
+     `containers` entry (Runtime's `AgentRuns/runtime/`) holds one run per
+     child directory.
 
    Archiving removes paths from the working tree only. The exact bytes stay in
    Git history at an immutable annotated tag `archive/agent-runs-<date>`, whose
@@ -109,14 +113,14 @@ Item 5's owner action is complete: the repository API reported
 
 ## Application and assurance (first archive, 2026-09-25)
 
-- **Archived:** 313 run folders (53,393 files) and 248 binary files from
-  active folders, about 1.15 GB, across all five execution roots, at tag
+- **Archived:** 323 run folders (53,393 files) and 229 binary files from
+  active folders, about 1.14 GB, across all five execution roots, at tag
   `archive/agent-runs-2026-09-25` (commit
   8007c59270bc83035eac8ec6eab65926cfe8668c).
 - **Checked on the archived tree:**
   - gates G0–G4 exit 0;
   - the self-check reports the same finding counts as the full tree;
-  - all 1,492 tools tests pass with `CHIRALITY_REQUIRE_LIVE_TESTS=1`, including
+  - the full tools suite passes with `CHIRALITY_REQUIRE_LIVE_TESTS=1`, including
     a live check that every indexed path is held by its tag and no longer
     tracked;
   - the Runtime (407), App (2,274), PEC and Piping Python (1,209) suites pass.

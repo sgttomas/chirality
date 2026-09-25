@@ -32,6 +32,19 @@ def test_resolves_archived_runs_inner_paths_and_files(tmp_path):
         assert archive_tag(tmp_path, other) is None
 
 
+def test_index_entries_outside_run_records_never_resolve(tmp_path):
+    index = tmp_path / 'execution/_Coordination/AgentRuns/ARCHIVE_INDEX.json'
+    index.parent.mkdir(parents=True)
+    index.write_text(json.dumps({'archives': [{'tag': 'archive/t', 'runs': [
+        'docs', 'execution/PKG-01', 'execution/_Coordination/AgentRuns/../../PKG-01', 'execution/_Coordination/AgentRuns/'],
+        'files': ['execution/_harness/root_guards.yaml', 'execution/_Coordination/AgentRuns/R/t.zip']}]}))
+    agent_runs_archive._entries.cache_clear()
+    for path in ['docs/SPEC.md', 'execution/PKG-01/x.md', 'execution/_harness/root_guards.yaml',
+                 'execution/_Coordination/AgentRuns/OTHER/x.md']:
+        assert archive_tag(tmp_path, path) is None, path
+    assert archive_tag(tmp_path, 'execution/_Coordination/AgentRuns/R/t.zip') == 'archive/t'
+
+
 @pytest.mark.skipif(not INDEXES and os.environ.get('CHIRALITY_REQUIRE_LIVE_TESTS') != '1',
                     reason='no live archive index')
 def test_live_archive_indexes_are_held_by_their_tags_and_no_longer_tracked():

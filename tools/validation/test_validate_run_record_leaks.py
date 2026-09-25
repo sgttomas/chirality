@@ -43,6 +43,18 @@ def test_credential_in_new_run_record_blocks(repo):
     assert 'possible github-token' in result.stdout and GITHUB_TOKEN not in result.stdout
 
 
+@pytest.mark.parametrize('secret', [
+    '"Authorization": "Bearer ' + 'Zx9' * 12 + '"',
+    'eyJ' + 'hbGciOiJIUzI1NiJ9' + '.eyJ' + 'zdWIiOiIxMjM0NTY3ODkwIn0' + '.' + 'Qk9' * 8,
+    'aws_secret_access_key = ' + 'wJalrXUtnFEMIK7MDENGbPxRfiCY' + 'Zx9Qk9Zx9Qk9',
+    'glpat-' + 'Zx9Qk9' * 4,
+    'https://hooks.slack.com/services/' + 'T0AB12CD3/B0AB12CD3/' + 'Zx9Qk9' * 4,
+])
+def test_more_credential_formats_block(repo, secret):
+    result = run(repo, {RUN + 'response.json': secret + '\n'})
+    assert result.returncode == 1, result.stdout
+
+
 def test_history_other_paths_and_fake_values_pass(repo):
     result = run(repo, {'docs/notes.md': f'{GITHUB_TOKEN}\n',
                         RUN + 'fixture.txt': 'AKIAIOSFODNN7EXAMPLE sk-ant-dummy-value-for-tests-0123456789abcdef\n',

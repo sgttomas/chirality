@@ -22,6 +22,9 @@
     "sqlite3",
     "bin"
   ],
+  "containers": [
+    "runtime"
+  ],
   "keep": [
     "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07",
     "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06",

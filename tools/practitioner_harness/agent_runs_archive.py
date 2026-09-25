@@ -25,9 +25,16 @@ def _entries(repo_root: str) -> tuple[dict[str, str], dict[str, str]]:
     for pattern in INDEX_GLOBS:
         for index in sorted(root.glob(pattern)):
             for archive in json.loads(index.read_text(encoding="utf-8")).get("archives", []):
-                runs.update({run: archive["tag"] for run in archive.get("runs", [])})
-                files.update({path: archive["tag"] for path in archive.get("files", [])})
+                # Only run records can be archived: an index entry outside
+                # `_Coordination/AgentRuns/<RUN>` never resolves anything.
+                runs.update({run: archive["tag"] for run in archive.get("runs", []) if _run_record(run)})
+                files.update({path: archive["tag"] for path in archive.get("files", []) if _run_record(path)})
     return runs, files
+
+
+def _run_record(path: str) -> bool:
+    head, sep, rest = path.partition("_Coordination/AgentRuns/")
+    return bool(sep and rest and ".." not in path.split("/") and (head == "" or head.endswith("execution/")))
 
 
 def archive_tag(repo_root: Path, path: Path | str) -> str | None:

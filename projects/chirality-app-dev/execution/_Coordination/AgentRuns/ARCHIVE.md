@@ -19,4 +19,4 @@ git restore --source=<tag> -- <path>
 
 | Tag | Archived on | Run folders | Binary files |
 |---|---|---|---|
-| `archive/agent-runs-2026-09-25` | 2026-09-25 | 128 | 0 |
+| `archive/agent-runs-2026-09-25` | 2026-09-25 | 138 | 0 |

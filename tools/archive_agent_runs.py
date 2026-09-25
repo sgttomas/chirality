@@ -8,7 +8,12 @@ commit has touched for `--binary-days` is archived file by file. Archiving
 removes the paths from the working tree only. Their exact bytes stay in Git
 history at an immutable tag, and each AgentRuns directory carries
 `ARCHIVE_INDEX.json`, which the governance tools use to resolve references
-into archived records (tools/validation/agent_runs_archive.py).
+into archived records (tools/practitioner_harness/agent_runs_archive.py).
+
+"Touched" means a commit on the checked-out history, by committer date, from
+00:00 local time on the cutoff date, so the result depends only on `--as-of`.
+Policy `containers` (e.g. Runtime's `AgentRuns/runtime/<runId>/`) hold one run
+per child directory.
 
 Paths listed in tools/agent_runs_archive_policy.json `keep` are never
 archived: they are current governance inputs that happen to be filed in run
@@ -42,7 +47,7 @@ def policy() -> dict:
 
 
 def touched_since(root: str, since: dt.date, ref: str) -> set[str]:
-    out = git('log', ref, f'--since={since.isoformat()}', '--name-only', '--format=', '--', root)
+    out = git('log', ref, f'--since={since.isoformat()} 00:00:00', '--name-only', '--format=', '--', root)
     return {line for line in out.splitlines() if line}
 
 
@@ -59,9 +64,10 @@ def plan(as_of: dt.date, ref: str = 'HEAD') -> dict:
         fresh_binaries = touched_since(root, as_of - dt.timedelta(days=rules['binary_days']), ref)
         by_run: dict[str, list[str]] = {}
         for path in tracked:
-            rest = path[len(root) + 1:]
-            if '/' in rest:  # files directly under AgentRuns (indexes, READMEs) stay
-                by_run.setdefault(root + '/' + rest.split('/')[0], []).append(path)
+            parts = path[len(root) + 1:].split('/')
+            depth = 2 if parts[0] in rules.get('containers', []) else 1
+            if len(parts) > depth:  # files directly under AgentRuns or a container stay
+                by_run.setdefault('/'.join([root, *parts[:depth]]), []).append(path)
         for run, paths in sorted(by_run.items()):
             kept = [p for p in paths if any(p == k or p.startswith(k.rstrip('/') + '/') for k in keep)]
             if not any(p in recent for p in paths) and not kept:
