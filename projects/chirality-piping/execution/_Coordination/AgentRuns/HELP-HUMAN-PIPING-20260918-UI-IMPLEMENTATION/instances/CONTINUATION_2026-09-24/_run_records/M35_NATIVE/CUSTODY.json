@@ -1,0 +1,347 @@
+{
+  "built_candidate": "64487068b740977083275baa4ead5ed4171c6084",
+  "current_candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "executor": "/root",
+  "mechanism": "Codex native cua_repl application UI; read-only SQLite audit scoped to agent-created project",
+  "private_source_root": "/private/tmp/piping-native-m35-records-20260925",
+  "committed_raw_files": [
+    {
+      "path": "_run_records/basis.json",
+      "sha256": "4c4802ffa164bdf356afb2eeff6d9c7459de033728b5d144acbccf8728ea5eed",
+      "bytes": 369
+    },
+    {
+      "path": "_run_records/artifact-identity.json",
+      "sha256": "b4cf0aa7fc29d9a73224c3b6ab565e44f8c9611345f8bad829f435930e2e6e58",
+      "bytes": 6269
+    },
+    {
+      "path": "_run_records/build-command.json",
+      "sha256": "6c6af0d21cd0c03b327034e7cc3efc7a10247f4dc4a7ee00f9650f14a87ae083",
+      "bytes": 1483
+    },
+    {
+      "path": "_run_records/build.log",
+      "sha256": "76f4421baf7043c042ad85c1fa35395335c147f95ef10e98d535eecb07eed68a",
+      "bytes": 15742
+    },
+    {
+      "path": "_run_records/build.py",
+      "sha256": "041f857c43c3a5b05f41973f7a0edf19915b357fd3b053de52d790d0835e0dc7",
+      "bytes": 3427
+    },
+    {
+      "path": "_run_records/inputs-pre.json",
+      "sha256": "a966a86b72f18fb104638f368c8e042fec1ea12cc042f0e65c5c8bc8edafef13",
+      "bytes": 174774
+    },
+    {
+      "path": "_run_records/inputs-post.json",
+      "sha256": "a966a86b72f18fb104638f368c8e042fec1ea12cc042f0e65c5c8bc8edafef13",
+      "bytes": 174774
+    },
+    {
+      "path": "_run_records/old-bundle-pre.json",
+      "sha256": "0c9379ec426f2d2163873d3e94afceffe6d387478aac6c53466e9fb054d2643b",
+      "bytes": 466
+    },
+    {
+      "path": "_run_records/post-check.json",
+      "sha256": "83fee10b57c92e66f432d974f8a53b3ce6ed55f21a965386b4624a4b3a349d91",
+      "bytes": 176
+    },
+    {
+      "path": "_run_records/capture_store.py",
+      "sha256": "2f113fe002254e343bee5f172dfeb40c1f8f21ef964a20104e3831b58e06bb76",
+      "bytes": 1885
+    },
+    {
+      "path": "_run_records/analytical-native-checks.json",
+      "sha256": "2e18388a15f122351fcfbddd384d4aec3c34b3414615e66edb87ed6c588e5ec3",
+      "bytes": 4279
+    },
+    {
+      "path": "_run_records/ui/15-weight-applied-run.txt",
+      "sha256": "e9aaab0c5db0db6d95e4a5d68f0a16180bba1572698a38abd2265eeeebd3a5c9",
+      "bytes": 859
+    },
+    {
+      "path": "_run_records/ui/16-original-weight-results.txt",
+      "sha256": "24abb372a3ad7a5f45f5e0fe8b237d9a149f108a45e1664a3bfeebe9690a8a4d",
+      "bytes": 531
+    },
+    {
+      "path": "_run_records/ui/17-save-baseline.txt",
+      "sha256": "c890cefd1e647aed78285356a7264b859fd34d1030ea622c3a973e54f77479b1",
+      "bytes": 2956
+    },
+    {
+      "path": "_run_records/ui/18-density2000-stale-run.txt",
+      "sha256": "f5c861fa9c7e29b4080612cf613816f50e4b8cd66eb42c17bd7994fb929715a9",
+      "bytes": 752
+    },
+    {
+      "path": "_run_records/ui/19-stale-diagnostic.txt",
+      "sha256": "f73acdc6d640ac2e3fbdaa68138ce348eaf7cfee2fa10f1bdcfe8290ed330169",
+      "bytes": 4530
+    },
+    {
+      "path": "_run_records/ui/20-refresh-plan.txt",
+      "sha256": "4610293906a8eb4597b4e4c43eab93ef5a13c87b8d540840ca24bfa750ecdddf",
+      "bytes": 919
+    },
+    {
+      "path": "_run_records/ui/21-refreshed-run.txt",
+      "sha256": "cc794b46fe04293fba84a4d3729ffb66407b319c0b72af1f668b52f5f64360a5",
+      "bytes": 857
+    },
+    {
+      "path": "_run_records/ui/22-refreshed-save.txt",
+      "sha256": "4dd73294a74f89a902395d1aca88efb9290de29e39bfca2d2323fe0a25e88209",
+      "bytes": 6763
+    },
+    {
+      "path": "_run_records/ui/23-refresh-undo.txt",
+      "sha256": "72c58832bf8ffa2e3849d4b3505382c9b01cd9fdc7990ccba48d9e0546a6d17e",
+      "bytes": 1177
+    },
+    {
+      "path": "_run_records/ui/24-undo-stale-run.txt",
+      "sha256": "ad94b663c5bd598e7cecee15d12e87b5344648ee0d4ed6be7c071067044638d1",
+      "bytes": 4530
+    },
+    {
+      "path": "_run_records/ui/25-refresh-redo-run.txt",
+      "sha256": "b7276dfc9c0f43f1928e3e6065187ccbed83bcc829b2f9ba200fc8ecad90cc6f",
+      "bytes": 847
+    },
+    {
+      "path": "_run_records/ui/26-reopen-chooser.txt",
+      "sha256": "de49836e5cf7c671abee1f6cbfc5862397d91b5568a7715012af87bc2b49257b",
+      "bytes": 2973
+    },
+    {
+      "path": "_run_records/ui/27-reopened.txt",
+      "sha256": "a06a3d0191f00c2017e4fceb8b5560c6d932af88e5e667ba3979c7b4af8651b1",
+      "bytes": 2972
+    },
+    {
+      "path": "_run_records/ui/28-reopened-native-run.txt",
+      "sha256": "5f766e9eb10ddaff2903d322af9095387e8b7b54822aae3d8dde60da2c0e9746",
+      "bytes": 719
+    },
+    {
+      "path": "_run_records/ui/29-span3-run.txt",
+      "sha256": "d51d37882556d26823da9952ae2dec0adf8f23f91d454f24a9b62457560a2744",
+      "bytes": 857
+    },
+    {
+      "path": "_run_records/ui/30-span3-save.txt",
+      "sha256": "43651f9602abc02c3b1e517d7dda111716ba6b8a77bc1ca633e815618b8748ac",
+      "bytes": 181
+    },
+    {
+      "path": "_run_records/ui/31-modified-weight-blocked.txt",
+      "sha256": "fd2e29c6c8646a5166a4c98d2c8dfc8585b8e03eb3423e13f7104f2af4eff17c",
+      "bytes": 4567
+    },
+    {
+      "path": "_run_records/ui/32-default-refresh-modified-blocked.txt",
+      "sha256": "4507111eec1eb6e6a19aad48e9bd7064015ad042e09def80d5c9fa3a4a4533d8",
+      "bytes": 551
+    },
+    {
+      "path": "_run_records/ui/33-explicit-manual-preserve-plan.txt",
+      "sha256": "fbfc2ff7a5edcee6bcd06627ab909e6b86d5868b1601b6dbf08346fa6bc0f8bf",
+      "bytes": 960
+    },
+    {
+      "path": "_run_records/ui/34-manual-preserved-run.txt",
+      "sha256": "cc3733b03d103c7d2e611faecb3d3e7fa551d2d0edd1129731db94e016724066",
+      "bytes": 6829
+    },
+    {
+      "path": "_run_records/ui/35-density4000-applied.txt",
+      "sha256": "a6b1152aafe58171cbffcc3bb196a72c4967f106561fd523153186d436c9ea69",
+      "bytes": 1086
+    },
+    {
+      "path": "_run_records/ui/36-density4000-solved.txt",
+      "sha256": "cc3733b03d103c7d2e611faecb3d3e7fa551d2d0edd1129731db94e016724066",
+      "bytes": 6829
+    },
+    {
+      "path": "_run_records/ui/37-density4000-saved.txt",
+      "sha256": "a9b31f4a3b78b9d68ca2a981da4d9bbb27d42d98a606474f19210c8c8bc077ff",
+      "bytes": 6732
+    },
+    {
+      "path": "_run_records/row-audits/baseline.json",
+      "sha256": "4c44476248704afc4a036b750afb9421ec3219752260c9662263c41c87dc1ae5",
+      "bytes": 1152
+    },
+    {
+      "path": "_run_records/row-audits/manual-density4000.json",
+      "sha256": "4165c2956356ead785de64b3d1787de4f002620c60d36cb6630db899a6adb3bd",
+      "bytes": 1284
+    },
+    {
+      "path": "_run_records/row-audits/manual-preserved.json",
+      "sha256": "214e33925446bf464e048a3546df4902298f177e80292e395dca4d3407502997",
+      "bytes": 1284
+    },
+    {
+      "path": "_run_records/row-audits/refreshed.json",
+      "sha256": "7c3a778da451e15ca1bcf46aca965cd829da3d190bd648ed5a5b62dfddb504f8",
+      "bytes": 1262
+    },
+    {
+      "path": "_run_records/row-audits/span3.json",
+      "sha256": "77212efeab8edebc89bf87174b9e1aa72d66cc0794f865e8150787262f637b22",
+      "bytes": 1263
+    }
+  ],
+  "private_only_files": [
+    {
+      "private_relative_path": "density1000-batch.json",
+      "sha256": "2af60939dc23c5d88542abcdeafe8841b18dc6801a2e1f85be9b1e567fcef297",
+      "bytes": 1854
+    },
+    {
+      "private_relative_path": "density2000-batch.json",
+      "sha256": "66e79c773b2b0137e7a7387be7cff39f17717e6746f39179a3628f36ac088b32",
+      "bytes": 1823
+    },
+    {
+      "private_relative_path": "density3000-batch.json",
+      "sha256": "f8f0ee4cd05887fdac559f98c094eca5dd9c60da8d60e5b9484d59a03fe700cf",
+      "bytes": 1823
+    },
+    {
+      "private_relative_path": "density4000-batch.json",
+      "sha256": "a5a08e22aefa840eef1a9584bd43e59c4802384e24cde26dcbf306dafa15a73b",
+      "bytes": 1832
+    },
+    {
+      "private_relative_path": "manual-and-density3000-batch.json",
+      "sha256": "39be8b70380d20c53292caf4695711f0a596fe80ae66fbc82cc60782c7219e23",
+      "bytes": 3646
+    },
+    {
+      "private_relative_path": "private-rows/baseline.json",
+      "sha256": "9335fe9b1114b6790aaa1eab5146a68530820285d83eb6fd0ab56d49fb051d03",
+      "bytes": 169411
+    },
+    {
+      "private_relative_path": "private-rows/manual-density4000.json",
+      "sha256": "9ed540b72ed91e89a5e4feca37482d640cddb9f6d1062863aa580ce3c69c3e3c",
+      "bytes": 196983
+    },
+    {
+      "private_relative_path": "private-rows/manual-preserved.json",
+      "sha256": "00d65a1ebf3dce0ff72a5a031aece9c2f7e5035baa140bc720baacbab193176d",
+      "bytes": 195522
+    },
+    {
+      "private_relative_path": "private-rows/refreshed.json",
+      "sha256": "ddb93023db7a2c414e26ec855cb5017c4cdf6482e1d4b68a31b399001083cc11",
+      "bytes": 181844
+    },
+    {
+      "private_relative_path": "private-rows/span3.json",
+      "sha256": "2ef99cb36255ea920b606beea5ddcf3642dc7c48c665786b249c7e0e1549c426",
+      "bytes": 183243
+    },
+    {
+      "private_relative_path": "setup-batch-r2.json",
+      "sha256": "8160c9c4ce38c3b00b2ad9d2a3de982e84ca9dbc3735ab16fe6109e8bda44b14",
+      "bytes": 9724
+    },
+    {
+      "private_relative_path": "setup-batch.json",
+      "sha256": "fc76da9b02945d09b87172621dc1f7a0ad19ab66fecf7a0d8de5aaa1f7e8e237",
+      "bytes": 8859
+    },
+    {
+      "private_relative_path": "span3-batch.json",
+      "sha256": "bfe5a401ad02c5fb6060aea0fa0411a37623f0d92759bbad1bd2e0898220e6bc",
+      "bytes": 1758
+    },
+    {
+      "private_relative_path": "tip-and-density2000-batch.json",
+      "sha256": "97e0a816de9416ec457e7d9a459a88d662962d3364df4a935b00fa805b8ab8dd",
+      "bytes": 3842
+    },
+    {
+      "private_relative_path": "ui/01-initial.txt",
+      "sha256": "40f86f2efd1a73cd04ee3fc9c14cf0095ea7854c62c3317c9af854512b498f8d",
+      "bytes": 193
+    },
+    {
+      "private_relative_path": "ui/02-new-blank.txt",
+      "sha256": "43651f9602abc02c3b1e517d7dda111716ba6b8a77bc1ca633e815618b8748ac",
+      "bytes": 181
+    },
+    {
+      "private_relative_path": "ui/03-setup-queued.txt",
+      "sha256": "ea4023e2eaff7beb4890bbbb9c6d286b66b48f0028aa0a411af5353a4b5a838d",
+      "bytes": 2478
+    },
+    {
+      "private_relative_path": "ui/04-setup-validate.txt",
+      "sha256": "8cd015edab38f6a8e949eede1804e6bc04cb75d6c9d20432b50468d8f3eb269c",
+      "bytes": 593
+    },
+    {
+      "private_relative_path": "ui/05-setup-r2-validation.txt",
+      "sha256": "89bb84c938d8bfd5fe4a28cfce3fc1241bdc9078a04b1325d53e863db8cec3e2",
+      "bytes": 2250
+    },
+    {
+      "private_relative_path": "ui/06-setup-r2-full-validation.txt",
+      "sha256": "a989f5b4b26d3b42ecac7fe82b1e49a2985180e90d7f69798f1a4f97bad5012a",
+      "bytes": 10434
+    },
+    {
+      "private_relative_path": "ui/07-setup-applied.txt",
+      "sha256": "145c62278a6cfd921e54feb6ba64677b539441f52631779e00e07271defe76c4",
+      "bytes": 2375
+    },
+    {
+      "private_relative_path": "ui/08-weight-plan.txt",
+      "sha256": "b74500fa14b9cdc4b7304b0b7e3b9b623ea54a47bf84e07cde6d66f86d4116a2",
+      "bytes": 435
+    },
+    {
+      "private_relative_path": "ui/09-weight-plan-full.txt",
+      "sha256": "4ced1309a12f2c0228edf0d08a9f3fb37c789f6ffdd43c2a100b16dcd4061509",
+      "bytes": 9276
+    },
+    {
+      "private_relative_path": "ui/10-density1000-queued.txt",
+      "sha256": "8ed5983add83454322c9e7bca4edafbefde6a464e5ac21181c12fae7c67cfa96",
+      "bytes": 395
+    },
+    {
+      "private_relative_path": "ui/11-density1000-applied.txt",
+      "sha256": "a17832895a4f1470107b12fad84a64a73a6c815a62a5eefd56e6ab545a601fa2",
+      "bytes": 277
+    },
+    {
+      "private_relative_path": "ui/12-density1000-visible.png",
+      "sha256": "b28540a10f749713c976ca2df3a5c43d2cf980542e28afd592b97b6deb389162",
+      "bytes": 492121
+    },
+    {
+      "private_relative_path": "ui/13-weight-generated.txt",
+      "sha256": "bd41a2449dfc93329fb99a6f76778a8baaa17a89278a9368521d3fb0b7d70839",
+      "bytes": 1208
+    },
+    {
+      "private_relative_path": "ui/14-weight-plan-full.txt",
+      "sha256": "c19d1e9f8730538c6dd17f0ad3513cfc67898608371f11e009a849839fb53322",
+      "bytes": 10009
+    }
+  ],
+  "private_only_reason": "Native-created full models and operation batches remain outside Git under F-PIP-1; selected read-only observations are retained. Hashes identify private evidence, not permanent availability."
+}

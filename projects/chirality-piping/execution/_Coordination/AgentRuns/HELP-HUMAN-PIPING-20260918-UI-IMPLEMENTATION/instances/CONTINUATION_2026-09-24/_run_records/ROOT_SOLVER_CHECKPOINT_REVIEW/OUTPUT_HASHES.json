@@ -1,0 +1,38 @@
+[
+  {
+    "path": "RETURN.md",
+    "sha256": "b90ce793351cbfd34f2133bf6b68ce6af35d84fbcbc6c030e52dc47a4cd82a80"
+  },
+  {
+    "path": "COVERAGE.json",
+    "sha256": "8ddc7036cb81167ed46968945bfb6e50e3ded226959ce9e7567e439511ccf3c0"
+  },
+  {
+    "path": "verification.json",
+    "sha256": "59312a0e27ee0d833ad11a90cb15fb7743d60dac94c7698927cad927815b89ab"
+  },
+  {
+    "path": "verification-final.json",
+    "sha256": "a50709a4d15bdfea5f6ed8c235822e115d1b005c5960951169bccc3c32d2bb6a"
+  },
+  {
+    "path": "verify.py",
+    "sha256": "3d7b5cb716683b4b8d18ba5ad8361d9ad60d9120df908d48a56aa9920fe679bb"
+  },
+  {
+    "path": "candidate.json",
+    "sha256": "c15633d04f346660f0a244225ddd53a2e46eff36a1c495def62d634bfa4514fe"
+  },
+  {
+    "path": "candidate-final.json",
+    "sha256": "8114e66f53e9470f48b84878c552ba5dd590df6766f8e7ff03a22ca075ff6b9a"
+  },
+  {
+    "path": "candidate-cleanup-delta.json",
+    "sha256": "4a7dad53dbebb9e8391ded6b248837c0be7de9c2f8d00797d542b070da00b7d9"
+  },
+  {
+    "path": "graph.diff",
+    "sha256": "5d97db7f009f6630c9276b7439ab83497fa2d4933294b7c3e4a4eeee70bcf9e4"
+  }
+]

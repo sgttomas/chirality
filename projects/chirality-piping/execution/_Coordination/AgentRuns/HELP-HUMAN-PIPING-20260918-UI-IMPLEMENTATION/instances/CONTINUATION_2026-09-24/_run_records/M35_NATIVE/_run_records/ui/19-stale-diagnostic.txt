@@ -1,0 +1,57 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~					75 button (expanded) Issues, 6, Help: Issues, Secondary Actions: Collapse
+~						92 button (expanded) Issues, 6, Help: Issues, Secondary Actions: Collapse
+~					166 button (expanded) 6 Issues, Secondary Actions: Collapse
++				172 container Issues home
++					173 text ISSUES
++					174 heading Diagnostics and required inputs, Value: 2
++						175 text Diagnostics and required inputs
++					176 button Close
++					177 container Diagnostics
++						178 text DIAGNOSTICS
++						179 container Diagnostic filtering
++							180 container
++								181 text Filter diagnostics
++								182 search text field (settable) Filter diagnostics, Placeholder: Code, severity, source, message, or affected ref
++									183 text Code, severity, source, message, or affected ref
++							184 text 4  of  4  diagnostics visible
++							185 button (disabled) Clear diagnostic filter
++							186 container Diagnostic severity summary
++								187 text 2 Blocking 0 Errors 1 Warnings 1 Info
++						188 container Diagnostic detail
++							189 heading Diagnostic Detail, Value: 3
++								190 text Diagnostic Detail
++							191 text Select a diagnostic to inspect affected refs, linked results, and review context.
++						192 button BLANK_PROJECT_AUTHORING_TARGET Blank local model document is intentionally incomplete; no fixture entities, hidden loads, or engineering defaults were inserted.
++						193 button SUPPORT_STIFFNESS_UNRESOLVED Support linear_stiffness and rotational_stiffness values are not supplied; preview mechanics uses bounded placeholder diagnostics.
++						194 button RULE_CHECK_NOT_PERFORMED No code or owner rule pack is loaded in the technical preview.
++						195 button SELF_WEIGHT_INPUTS_STALE Consumed self-weight inputs changed; explicitly refresh this generated load before solving.
++					196 container Missing-data blocking review
++						197 text MISSING DATA BLOCKING
++						198 container
++							199 checkbox Include known private values in this local export, Value: 0
++							200 text Include known private values in this local export
++						201 text decisions= 234 ; findings= 226 ; blocked= true
++						202 summary Details, Value: off
++							203 text Details
++						204 text Warning JSON
++						205 text available; classes= 6 ; active= 3 ; solve_blocked= true ; rule_blocked= true ; private_payload= false Class coverage
++						206 text SOLVE_BLOCKING:active; RULE_CHECK_BLOCKING:active; PROVENANCE_WARNING:available_no_active_preview_item; ASSUMPTION_WARNING:active; NONLINEAR_WARNING:available_no_active_preview_item; IP_BOUNDARY_WARNING:available_no_active_preview_item
++						207 text Status separation
++						208 text mechanics=MODEL_INCOMPLETE; rule_check=RULE_INPUTS_INCOMPLETE; mechanics_reviewable=false; mechanics_qualified=true
++						209 text Unit input policy
++						210 text required=true; default_units=false; conversion=false; model_units=N,N*m,Pa,degC,m
++						211 text Blocking
++						212 text solve=1; rule=2; ids=rule-check-required-inputs,solve-required-physical-inputs
++						213 text Assistive fields
++						214 text class,severity,affected_refs,message,remediation; color_only=false
++						215 text Boundary
++						216 text silent_defaults=false; auto_fill=false; protected=false; compliance=false
++						217 container
++							218 text ASSUMPTION_WARNING warning ; solve_blocking= false ; rule_blocking= false No hash-bound human acceptance record is attached to this preview state. Treat outputs as review context until human authority records acceptance outside the software.
++						219 container
++							220 text RULE_CHECK_BLOCKING warning ; solve_blocking= false ; rule_blocking= true User-rule required inputs are absent, so rule-check pass/fail and ratios stay blocked. Provide private rule-pack criteria, user-supplied values, provenance, and checksums before rule-check reliance.
++						221 container
++							222 text SOLVE_BLOCKING blocking ; solve_blocking= true ; rule_blocking= true Mechanics solve-required data is incomplete. Provide explicit geometry, support, load, material, section, and unit data before solving.
++						223 text Missing-data warnings distinguish mechanics solve readiness from user-rule checking. They do not fill missing engineering values.
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

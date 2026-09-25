@@ -1,0 +1,20 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++							142 container
++								143 text 1  proposed changes for  1  selected pipes.
++							144 text Review the source evidence, then queue the complete plan as one batch.
++							145 container Self-weight source evidence
++								146 text [
+  {
+    "case_id": "case:weight",
+    "manual_overrides": "block",
+    "primitive_id": "load:self-weight:11:case:weight:9:pipe:beam",
+    "reason_codes": [
+      "SELF_WEIGHT_INPUTS_STALE"
+    ],
+    "state": "stale"
+  }
+]
++							147 summary Proposed changes and model basis, Value: off
++								148 text Proposed changes and model basis
++							149 button Queue complete self-weight plan
+The focused UI element is 51 container Self-weight planning

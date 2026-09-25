@@ -1,0 +1,93 @@
+{
+  "candidate_count": 44,
+  "candidate_hash_mismatches": [],
+  "committed_raw_count": 39,
+  "raw_copy_mismatches": [],
+  "private_hash_count": 28,
+  "private_hash_mismatches": [],
+  "native_input_count": 926,
+  "native_input_mismatches": [],
+  "m35_head": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "m35_tracked_dirty": "",
+  "built_to_current_native_input_diff": "",
+  "native_executable_hash_matches": true,
+  "native_bundle_hash_mismatches": [],
+  "pre_post_identical": true,
+  "audit_reconstruction_mismatches": [],
+  "manual_density_invariance": {
+    "density_before": 3000,
+    "density_after": 4000,
+    "all_load_cases_equal": true,
+    "all_results_equal": true
+  },
+  "independent_balance": [
+    {
+      "state": "baseline",
+      "force_error": -4.3523140647039327e-07,
+      "moment_error": -4.3523140647039327e-07,
+      "rounded_matches": true
+    },
+    {
+      "state": "refreshed",
+      "force_error": 1.295371987453109e-07,
+      "moment_error": 1.295371987453109e-07,
+      "rounded_matches": true
+    },
+    {
+      "state": "span3",
+      "force_error": -3.056941864088003e-07,
+      "moment_error": -4.585413364566193e-07,
+      "rounded_matches": true
+    },
+    {
+      "state": "manual-preserved",
+      "force_error": 0.0,
+      "moment_error": 0.0,
+      "rounded_matches": true
+    },
+    {
+      "state": "manual-density4000",
+      "force_error": 0.0,
+      "moment_error": 0.0,
+      "rounded_matches": true
+    }
+  ],
+  "privacy_full_model_markers": {},
+  "input_basis_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    }
+  ],
+  "review_inputs": [
+    {
+      "path": "candidate.json",
+      "sha256": "c15633d04f346660f0a244225ddd53a2e46eff36a1c495def62d634bfa4514fe"
+    },
+    {
+      "path": "graph.diff",
+      "sha256": "5d97db7f009f6630c9276b7439ab83497fa2d4933294b7c3e4a4eeee70bcf9e4"
+    }
+  ],
+  "checkpoint_heads": {
+    "/private/tmp/piping-numerical-corrections-20260924": "0a438a68672269e5750900792c9565ae9e5555b0",
+    "/private/tmp/piping-pressure-stress-20260924": "af4120ba52b46922da8bae5a876033e53818adfa",
+    "/private/tmp/piping-engine-integration-20260925": "0a438a68672269e5750900792c9565ae9e5555b0"
+  }
+}

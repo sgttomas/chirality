@@ -1,0 +1,11 @@
+The following is a diff from the previous accessibility tree for Window: "Blank Local Model · Edited — SWBPIPE" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 109
+~					20 button (collapsed) Issues, 8, Help: Issues, Secondary Actions: Expand
+~						32 toggle button Results, Value: off
+~						33 toggle button Review, Value: off
+~						37 button (collapsed) Issues, 8, Help: Issues, Secondary Actions: Expand
+~							55 summary Deformation · normalized, Value: off
+~								56 text Deformation · normalized
++						124 button (collapsed) Solver · Mechanics solved, Help: MECHANICS_SOLVED, Secondary Actions: Expand
+~					110 button (collapsed) 8 Issues, Secondary Actions: Expand
+The focused UI element is 2 HTML content Description: SWBPIPE, URL: tauri://localhost

@@ -1,0 +1,12 @@
+{
+  "tool": "mcp__cua_repl.js",
+  "observed_menu": [
+    "About SWBPIPE",
+    "Quit SWBPIPE",
+    "Quit and Keep Windows"
+  ],
+  "action": "m35App.click(3) on current Quit SWBPIPE menu item",
+  "verification": "cua.listApps filtered for SWBPIPE after action",
+  "matching_apps": [],
+  "owned_project_saved_before_quit": true
+}

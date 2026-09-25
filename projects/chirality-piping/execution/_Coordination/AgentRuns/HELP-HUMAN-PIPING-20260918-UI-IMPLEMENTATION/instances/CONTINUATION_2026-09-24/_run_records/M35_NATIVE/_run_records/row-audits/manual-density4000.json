@@ -1,0 +1,54 @@
+{
+  "project_id": "project:blank-local-20260925t030113z",
+  "density": {
+    "unit": "kg/m^3",
+    "value": 4000
+  },
+  "span_tip_x": 3,
+  "model_hash": {
+    "algorithm": "sha256",
+    "canonicalization": "rfc8785_jcs",
+    "hash_status": "computed_local_preview",
+    "payload_ref": "project:blank-local-20260925t030113z",
+    "payload_scope": "model_payload",
+    "value": "sha256:33b1503fd92152e4c4e5e43fb09ee6cfa4fadd092822afc41b5829df2a9ae3bb"
+  },
+  "load_ids": [
+    "load:self-weight:11:case:weight:9:pipe:beam",
+    "load:manual-tip"
+  ],
+  "magnitudes": [
+    {
+      "unit": "N/m",
+      "value": -123.456
+    },
+    {
+      "unit": "N",
+      "value": -11
+    }
+  ],
+  "result_status": {
+    "mechanics": "MECHANICS_SOLVED",
+    "professional_acceptance": "NOT_PROVIDED",
+    "rule_check": "RULE_INPUTS_INCOMPLETE"
+  },
+  "reactions": [
+    {
+      "basis_ref": {
+        "ref_id": "case:weight",
+        "ref_type": "load_case"
+      },
+      "entity_ref": "support:root",
+      "id": "result:reaction:support-root",
+      "kind": "reaction_resultant",
+      "unit": "N",
+      "value": 381.368
+    }
+  ],
+  "diagnostics": [
+    "SELF_WEIGHT_MANUAL_OVERRIDE",
+    "LOAD_CATEGORY_PREVIEW_MAPPED",
+    "LOAD_CATEGORY_PREVIEW_MAPPED",
+    "RULE_CHECK_INPUTS_MISSING"
+  ]
+}

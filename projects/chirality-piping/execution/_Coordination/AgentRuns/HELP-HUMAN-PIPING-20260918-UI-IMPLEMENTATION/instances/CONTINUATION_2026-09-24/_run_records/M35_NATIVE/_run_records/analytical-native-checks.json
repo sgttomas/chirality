@@ -1,0 +1,122 @@
+{
+  "reference": "Independent uniform distributed-load cantilever balance: supportY=-qL+tip, rootMz magnitude=-qL\u00b2/2+tipL; source area pi*t*(OD-t), explicit rho/g",
+  "checks": [
+    {
+      "state": "baseline",
+      "q_N_per_m": -19.7920337176157,
+      "length_m": 2,
+      "manual_tip_N": 0,
+      "expected_support_force_N": 39.5840674352314,
+      "observed_support_force_N": 39.584067,
+      "expected_root_bending_magnitude_Nm": 39.5840674352314,
+      "matching_actual_moment_rows": [
+        {
+          "basis_ref": {
+            "ref_id": "case:weight",
+            "ref_type": "load_case"
+          },
+          "entity_ref": "pipe:beam",
+          "id": "result:moment:pipe-beam:bending-z",
+          "kind": "element_local_bending_moment_z",
+          "metadata": {
+            "basis": "recovered_from_local_element_stiffness",
+            "component": "bending_moment_z",
+            "coordinate_system": "element_local",
+            "location": "end_i",
+            "sign_convention": "positive value follows the element-local DOF at the i-end force vector"
+          },
+          "unit": "N*m",
+          "value": 39.584067
+        }
+      ]
+    },
+    {
+      "state": "refreshed",
+      "q_N_per_m": -39.5840674352314,
+      "length_m": 2,
+      "manual_tip_N": -11,
+      "expected_support_force_N": 90.1681348704628,
+      "observed_support_force_N": 90.168135,
+      "expected_root_bending_magnitude_Nm": 101.1681348704628,
+      "matching_actual_moment_rows": [
+        {
+          "basis_ref": {
+            "ref_id": "case:weight",
+            "ref_type": "load_case"
+          },
+          "entity_ref": "pipe:beam",
+          "id": "result:moment:pipe-beam:bending-z",
+          "kind": "element_local_bending_moment_z",
+          "metadata": {
+            "basis": "recovered_from_local_element_stiffness",
+            "component": "bending_moment_z",
+            "coordinate_system": "element_local",
+            "location": "end_i",
+            "sign_convention": "positive value follows the element-local DOF at the i-end force vector"
+          },
+          "unit": "N*m",
+          "value": 101.168135
+        }
+      ]
+    },
+    {
+      "state": "span3",
+      "q_N_per_m": -39.5840674352314,
+      "length_m": 3,
+      "manual_tip_N": -11,
+      "expected_support_force_N": 129.7522023056942,
+      "observed_support_force_N": 129.752202,
+      "expected_root_bending_magnitude_Nm": 211.1283034585413,
+      "matching_actual_moment_rows": [
+        {
+          "basis_ref": {
+            "ref_id": "case:weight",
+            "ref_type": "load_case"
+          },
+          "entity_ref": "pipe:beam",
+          "id": "result:moment:pipe-beam:bending-z",
+          "kind": "element_local_bending_moment_z",
+          "metadata": {
+            "basis": "recovered_from_local_element_stiffness",
+            "component": "bending_moment_z",
+            "coordinate_system": "element_local",
+            "location": "end_i",
+            "sign_convention": "positive value follows the element-local DOF at the i-end force vector"
+          },
+          "unit": "N*m",
+          "value": 211.128303
+        }
+      ]
+    },
+    {
+      "state": "manual-preserved",
+      "q_N_per_m": -123.456,
+      "length_m": 3,
+      "manual_tip_N": -11,
+      "expected_support_force_N": 381.368,
+      "observed_support_force_N": 381.368,
+      "expected_root_bending_magnitude_Nm": 588.552,
+      "matching_actual_moment_rows": [
+        {
+          "basis_ref": {
+            "ref_id": "case:weight",
+            "ref_type": "load_case"
+          },
+          "entity_ref": "pipe:beam",
+          "id": "result:moment:pipe-beam:bending-z",
+          "kind": "element_local_bending_moment_z",
+          "metadata": {
+            "basis": "recovered_from_local_element_stiffness",
+            "component": "bending_moment_z",
+            "coordinate_system": "element_local",
+            "location": "end_i",
+            "sign_convention": "positive value follows the element-local DOF at the i-end force vector"
+          },
+          "unit": "N*m",
+          "value": 588.552
+        }
+      ]
+    }
+  ],
+  "criterion": "Existing rounded product representation: .5001e-6 +abs(reference)*1e-10; this nativebranch doesnotcarryunmergedM34 fullprecision"
+}
