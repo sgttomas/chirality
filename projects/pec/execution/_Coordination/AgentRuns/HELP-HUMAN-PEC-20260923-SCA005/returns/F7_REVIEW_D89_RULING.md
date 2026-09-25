@@ -18,3 +18,9 @@ Passed: owner text byte-identical in the ruling, register row and Receipt 185; H
 ## Cycle 2 — final-candidate confirmation
 
 Requested for the head that carries this transcription; appended below when returned.
+
+Reviewed `6181e4cfe795abbbac35563616275427a0dae577`. Verdict: **PASS** (no finding at or above MINOR).
+
+The diff `0b607b67..6181e4cf` touched only STATUS, `RUN.md`, `_REGISTER.md` and this file, each hunk one cycle-1 disposition; the F7 cycle-1 transcription confirmed faithful; ruling hash unchanged at `536b0588…63e3`; no quoted hash went stale; receipts validator VALID; `git diff --check` exit 0; `--strict` 0/0. One optional NIT (the `RUN.md` L2a State cell could say "after C3") is not applied here; the Depends cell already carries the condition, and the next run-record update will align it.
+
+The following commit appends only this section to this file; HELP_HUMAN verified mechanically that it is an append-only change to this one file.
