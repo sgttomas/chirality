@@ -92,7 +92,7 @@ in preparation) and the echo of invalid identifiers, was proposed as
 `D-PEC-89`, which the owner ruled A on 2026-09-24
 (`execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`); its
 slice is next. HELP_HUMAN has sequenced the L-2a
-review after `D-PEC-89` is disposed of, a coordination choice rather than a
+review after the `D-PEC-89` A slice lands, a coordination choice rather than a
 ruling, so that it reviews the resulting bytes.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
@@ -172,7 +172,6 @@ P-A.
 ## What's next (owner gates, in order)
 
 Current owner gates (2026-09-24; none is accepted or inferred here):
-
 
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
