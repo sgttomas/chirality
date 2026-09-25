@@ -1,7 +1,7 @@
 # D-GOV-45 — Agent run records are history: rolling archive and leak-only checks
 
-Status: OWNER-DIRECTED 2026-09-25 — drafted by HELP_HUMAN for owner
-ratification; application carried in the same pull request as this record
+Status: RATIFIED 2026-09-25 — “ratified, merge when green.”; application
+carried in the same pull request as this record
 
 Date: 2026-09-25 (America/Edmonton)
 
@@ -46,6 +46,17 @@ this record):
 > 3. All five at once.
 > 4. ok, proceed accordingly.
 
+## Owner ratification (verbatim)
+
+Owner Ryan Tufts, 2026-09-25, on reviewing this record in pull request #910:
+
+> ratified, merge when green.  I also updated the Advanced Security,
+> additionally I've restricted to PR merging to collaborators only.
+
+Item 5's owner action is complete: the repository API reported
+`secret_scanning=enabled` and `secret_scanning_push_protection=enabled` on
+2026-09-25.
+
 ## Decision
 
 1. **Run records are history.** A run folder is a direct child of
@@ -84,8 +95,8 @@ this record):
    - a credential pattern is BLOCK;
    - a file larger than 5 MB is WARN (keep large evidence as CI artifacts).
 
-   The owner is asked to also enable GitHub secret scanning and push
-   protection, which block a credential before it is pushed at all.
+   GitHub secret scanning and push protection, enabled by the owner on
+   2026-09-25, block a credential before it is pushed at all.
 6. **Unchanged.** This decision leaves the following as they are:
    - Deliverable folders (`execution/PKG-*`) and their contents;
    - `_Reconciliation`, `_ScopeChange`, decision records, and `_Coordination`

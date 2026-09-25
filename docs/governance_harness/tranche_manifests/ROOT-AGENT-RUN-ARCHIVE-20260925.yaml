@@ -51,6 +51,8 @@ candidate_paths:
   - execution/_Coordination/AgentRuns/**
   - projects/*/execution/_Coordination/AgentRuns/**
   - projects/*/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+  - projects/chirality-piping/tools/ci/e2e_plan.py
+  - projects/chirality-piping/tests/test_ci_e2e_plan.py
 scope_limits:
   - Working-tree removal only; Git history and every commit SHA are unchanged, and the archive tag holds the exact bytes.
   - Deliverable folders, _Reconciliation, _ScopeChange and decision records are untouched.
