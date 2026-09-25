@@ -1,0 +1,13 @@
+PRODUCT (31 paths): exit=0 notices=0
+WHOLE DIFF: exit=2 notices=109
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/bidirectional_pairs.csv
+  67	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/coverage.csv
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/cycles_sample.csv
+  2	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/hubs.csv
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/id_normalization.csv
+  7	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/isolated.csv
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/orphans.csv
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/outside_scope.csv
+  1	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/closure/scc_summary.csv
+  27	projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/gen_d93_report.tsv
+kinds: {'trailing whitespace.': 109}

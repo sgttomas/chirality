@@ -19,7 +19,16 @@ Register storage is deliverable-local by owner ruling (no central register).
 | DEL-02-04 (Run-evidence JSON parser) | PROPOSAL | CONSUMES |  | E-P22 |
 | DEL-02-05 (Dependency register parser) | PROPOSAL | CONSUMES |  | E-P23 |
 | DEL-02-06 (Workplan/LOOP_INIT parser) | PROPOSAL | CONSUMES |  | E-P24 |
-| DEL-02-07 (`adapter.yaml` feed-manifest consumer) | PROPOSAL | CONSUMES |  | E-P25 |
+| ~~DEL-02-07 (`adapter.yaml` feed-manifest consumer)~~ | PROPOSAL | CONSUMES |  | ~~E-P25~~ |
+| DEL-02-08 (Work-graph parser) | PROPOSAL | CONSUMES |  | E-P81 |
+| DEL-02-09 (MEMORY run-index parser) | PROPOSAL | CONSUMES |  | E-P82 |
+
+**SCA-005 dependency refresh 2026-09-25 (D-PEC-93):** `E-P25` is retired — register
+row `DEP-03-01-014` kept with `Status=RETIRED`, because `_harness/adapter.yaml`
+is a parity-peer input, not the feed manifest (A-07, A-18). `E-P18`
+(`DEP-03-01-007`) now cites PRD v2.3 PEC-RCN-002: each loop-registry row declares
+the feed profile the reconciler reads. `E-P81` and `E-P82` (`DEP-03-01-015`,
+`DEP-03-01-016`) add the work-graph and MEMORY run-index parsers (A-19, A-20).
 
 ## Downstream (informational; consumers of this deliverable)
 

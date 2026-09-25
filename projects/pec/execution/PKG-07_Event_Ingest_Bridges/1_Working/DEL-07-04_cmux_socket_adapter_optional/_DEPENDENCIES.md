@@ -9,8 +9,12 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 | Predecessor | Stratum | Kind | Flag | EdgeID |
 |---|---|---|---|---|
-| DEL-00-02 (Event-contract schema v1) | DERIVED | CONSUMES |  | E-A04 |
-| DEL-07-01 (Idempotent event ingest + durable message store) | PROPOSAL | CONSUMES |  | E-P50 |
+| ~~DEL-00-02 (Event-contract schema v1)~~ | DERIVED | CONSUMES |  | ~~E-A04~~ |
+| ~~DEL-07-01 (Idempotent event ingest + durable message store)~~ | PROPOSAL | CONSUMES |  | ~~E-P50~~ |
+
+**RETIRED 2026-09-25 under SCA-005 (D-PEC-93):** DEL-07-04 is retired (A-78; SOW-037 OUT).
+Every row of `Dependencies.csv` is kept with `Status=RETIRED` — tree anchors
+`DEP-07-04-001`/`002` and execution rows `DEP-07-04-003`/`004`; the struck edges above no longer gate or feed any deliverable.
 
 ## Non-gating constraints and register-wide rules
 

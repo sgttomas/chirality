@@ -13,7 +13,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 ## Downstream (informational; consumers of this deliverable)
 
-- DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P25]
+- ~~DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P25]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: `_harness/adapter.yaml` is a parity-peer input, not the feed manifest (A-07, A-18); register row `DEP-03-01-014` kept with `Status=RETIRED`
 
 ## Non-gating constraints and register-wide rules
 
