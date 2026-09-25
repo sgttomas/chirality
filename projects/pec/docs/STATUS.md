@@ -91,18 +91,21 @@ the shared App/Piping development-loop file shapes and the A2 Runtime
 topology. Its checkpoint-group-1 package is
 `execution/_ScopeChange/SCA-005_2026-09-23_2139/`: `Impact_Assessment.md`
 SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`
-and 76 PROPOSED actions in `Amendment_Actions.csv`; every checkpoint-1 row
-in its `Decision_Log.md` is `AWAITING_OWNER`. The pre-change audit is
+and 76 PROPOSED actions in `Amendment_Actions.csv`. The owner accepted
+checkpoint group 1 on 2026-09-24 (verbatim in its `Decision_Log.md`; group-1
+snapshot `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
+selecting the resolution note's Section A options; checkpoint-2 preparation
+is authorized and not started. The pre-change audit is
 `execution/_Evaluation/DecompCoverage/COV_SCA005_PRECHANGE_2026-09-23_2139/`
 (`WARNINGS`: 0 blockers / 3 warnings). The design note
 `execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md`
-recommends feed model O-B2 with presence option P-β; that is a proposal, not
-a ruling. Owner checkpoints 1 (impact), 2 (exact amendment and propagation
-plan) and 3 (audited poststate) all remain; `_ScopeChange/_LATEST.md` still
+recommended feed model O-B2 with presence option P-β; both were selected at
+checkpoint 1. Owner checkpoints 2 (exact amendment and propagation
+plan) and 3 (audited poststate) remain; `_ScopeChange/_LATEST.md` still
 names SCA-004 until acceptance. The `D-PEC-79` postimage is an SCA-005 intake
 input (`SCA005-CP1-D79`), not applied.
 
-On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance and the TM-PEC-023 row selections (nine rows reduced to seven live choices). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
+On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance (given 2026-09-24) and the TM-PEC-023 row selections (nine rows reduced to seven live choices, still the owner's at checkpoint 2). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
 
 **Task Management** (`execution/_Coordination/_TaskManagement/`): the live
 register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`

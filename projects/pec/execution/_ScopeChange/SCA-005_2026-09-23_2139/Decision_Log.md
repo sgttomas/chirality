@@ -2,8 +2,8 @@
 amendment_id: SCA-005
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
-current_checkpoint_group: 1
-status: checkpoint_1_awaiting_owner
+current_checkpoint_group: 2
+status: checkpoint_1_accepted_checkpoint_2_preparation_authorized
 ---
 
 # SCA-005 Decision Log
@@ -15,25 +15,25 @@ rulings.
 | DecisionRef | Checkpoint | Decision | Status | Authority |
 |---|---|---|---|---|
 | SCA005-G1 | Gate 1 intake | Open SCA-005 (SOFTWARE variant) under `chirality-root:bundled:workflow:scope-change` to rebaseline PEC's feed model | `OPENED BY OWNER DIRECTION` | Owner direction, 2026-09-23 (verbatim below); recorded in D-PEC-86 §1 |
-| SCA005-CP1 | 1 | Confirm or modify the parsed change set (`Amendment_Actions.csv`, SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions) and accept `Impact_Assessment.md` at SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`, together with the owner items below | `AWAITING_OWNER` | — |
-| SCA005-CP1-Q1 | 1 | Feed model (O-A / O-B2 / O-B1 / O-C) | `AWAITING_OWNER` | design note recommends O-B2 |
-| SCA005-CP1-Q2 | 1 | `adapter.yaml` / SOW-017 / DEL-02-07 fate | `AWAITING_OWNER` | recommends (b) parity-peer input only |
-| SCA005-CP1-Q3 | 1 | Presence and streams under A2 | `AWAITING_OWNER` | recommends P-β |
-| SCA005-CP1-R | 1 | P-β deferral representation (R1 Deferred OUT + retire / R2 keep IN) | `AWAITING_OWNER` | manager recommends R1 |
-| SCA005-CP1-Q4 | 1 | Orientation semantics over graph node states incl. Git-derived terminal completion | `AWAITING_OWNER` | recommends (a) |
-| SCA005-CP1-Q5 | 1 | When the external trials enter (three fixture classes) | `AWAITING_OWNER` | recommends (a) P1 pinned parser fixture suites only |
-| SCA005-CP1-Q6 | 1 | A2 effects on PRD §16.2/16.6/16.8/16.9 | `AWAITING_OWNER` | recommends re-express, decisions still open |
-| SCA005-CP1-Q7 | 1 | Ref scope for in-flight graphs | `AWAITING_OWNER` | recommends (b) |
-| SCA005-CP1-Q8 | 1 | PEC's own registry row now vs after migration | `AWAITING_OWNER` | recommends (a) `remaining-loop` now |
-| SCA005-CP1-Q9 | 1 | Step-0 baseline loops | `AWAITING_OWNER` | design note (a); manager (c) because DEL-10-01 is CHECKING with an accepted pre-P1 baseline |
-| SCA005-CP1-Q10 | 1 | P1 parity comparable set | `AWAITING_OWNER` | recommends (c) |
-| SCA005-CP1-D79 | 1 | D-PEC-79 path: (a) apply then amend / (b) carry into one successor candidate | `AWAITING_OWNER` | recommends (b); either needs checkpoint-2 acceptance |
-| SCA005-CP1-TM | 1 | TM-PEC-023 nine rows carried as candidate MODIFYs, no option selected; rows 1/4/7 behind Q3 | `AWAITING_OWNER` | recommends confirm |
-| SCA005-CP1-X | 1 | New feed items: ADD-new vs extend-existing; receipts in SOW-013 vs new item | `AWAITING_OWNER` | manager recommends ADD-new, receipts in SOW-013 |
-| SCA005-CP1-N | 1 | Retain names/paths of DEL-02-03/04/06/07 | `AWAITING_OWNER` | manager recommends retain |
-| SCA005-CP1-V | 1 | Whether a strict, versioned registry schema v2 is within D-PEC-78 O-A / D-PEC-79 "strict-version-1" | `AWAITING_OWNER` | manager recommends confirm as supplementary extension |
-| SCA005-CP1-O | 1 | OBJ-001;OBJ-002 for SOW-095/096 and DEL-02-08/09 | `AWAITING_OWNER` | manager recommends confirm (DL-17 precedent) |
-| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD successor candidate and TM-PEC-023 row selections) | `NOT_STARTED` | requires SCA005-CP1 acceptance |
+| SCA005-CP1 | 1 | Confirm the parsed change set (`Amendment_Actions.csv`, SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions; Seq 72 dropped at checkpoint 2 under Q9) and accept `Impact_Assessment.md` at SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`, with the resolution note's Section A as the selected options | `ACCEPTED` | Owner act, 2026-09-24 (verbatim below); group-1 snapshot `../checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/` |
+| SCA005-CP1-Q1 | 1 | Feed model: **O-B2** (per-loop declared grammar in the PEC-owned registry) | `SELECTED VIA CP1-B` | Resolution note §A Q1: DEL-02-03 OUT-001; `adapter.yaml` header; D-PEC-78 O-A |
+| SCA005-CP1-Q2 | 1 | `adapter.yaml` / SOW-017 / DEL-02-07: **(b)** parity-peer input only, DEL-02-07 re-purposed | `SELECTED VIA CP1-B` | Resolution note §A Q2 |
+| SCA005-CP1-Q3 | 1 | Presence and streams under A2: **P-β** (deferred with the design note's three-part trigger) | `SELECTED VIA CP1-B` | Resolution note §A Q3 |
+| SCA005-CP1-R | 1 | P-β deferral representation: **R1** (`OUT` + `**Deferred**` note; DEL-06-04 / DEL-07-02 / DEL-07-05 retired non-destructively at Gate 5) | `SELECTED VIA CP1-B` | Resolution note §A CP1-R: `ScopeLedger.csv` rows 82–85; scope-change contract |
+| SCA005-CP1-Q4 | 1 | Orientation over graph node states: **(a)** READY/ACTIVE/BLOCKED with Git-derived terminal completion | `SELECTED VIA CP1-B` | Resolution note §A Q4: construct-local-work-graph §3–4 |
+| SCA005-CP1-Q5 | 1 | External trials: **(a)** P1 pinned parser fixture suites only, three fixture classes | `SELECTED VIA CP1-B` | Resolution note §A Q5: PRD §12 P1 |
+| SCA005-CP1-Q6 | 1 | A2 effects on PRD §16.2/16.6/16.8/16.9: **re-express as premise; each decision stays open** | `SELECTED VIA CP1-B` | Resolution note §A Q6: PRD §16 heading and closing line |
+| SCA005-CP1-Q7 | 1 | Ref scope for in-flight graphs: **(b)** integration ref default, local refs opt-in and labelled | `SELECTED VIA CP1-B` | Resolution note §A Q7 (agent method choice) |
+| SCA005-CP1-Q8 | 1 | PEC's own registry row: **(a)** declare `remaining-loop` now | `SELECTED VIA CP1-B` | Resolution note §A Q8: D-PEC-86 I-7; `loop/LOOP_INIT.md` §4 |
+| SCA005-CP1-Q9 | 1 | Step-0 baseline loops: **no change to SOW-058; Seq 72 dropped** (neither design-note (a) nor manager (c)) | `SELECTED VIA CP1-B` | Resolution note §A Q9: DEL-10-01 `STEP0_COST_BASELINE_METHOD.md` §§1–2; PRD §11 |
+| SCA005-CP1-Q10 | 1 | P1 parity comparable set: **(a)** self-check facts plus explained census absence; no PRD exit-test change | `SELECTED VIA CP1-B` | Resolution note §A Q10: PRD §12 P1 row; `harness.py` `OBSERVABLE_PROJECTS` |
+| SCA005-CP1-D79 | 1 | D-PEC-79 path: **(b)** carry the six hunks into one successor v2.3 candidate; adopted bytes preserved as historical exact input | `SELECTED VIA CP1-B` | Resolution note §A CP1-D79; D-PEC-79 handoff and ruling; exact gate at checkpoint 2/3 |
+| SCA005-CP1-TM | 1 | TM-PEC-023 nine rows carried as candidate MODIFYs, no option selected; Rows 4 and 7 (DEL-07-02, DEL-07-05) moot under R1; seven live rows selected by the owner at checkpoint 2 via mechanic M1 | `CONFIRMED` | Owner act 2026-09-24 (CP1); owner ruling 2026-08-03 reserves every selection |
+| SCA005-CP1-X | 1 | New feed items: **ADD SOW-095/096 + DEL-02-08/09; central receipts in SOW-013 / DEL-02-03** | `SELECTED VIA CP1-B` | Resolution note §A CP1-X: decomposition standard artifact-kind granularity |
+| SCA005-CP1-N | 1 | **Retain** IDs, names and paths of DEL-02-03/04/06/07; label drift recorded per MODIFY | `SELECTED VIA CP1-B` | Resolution note §A CP1-N: `ALLOW_RENUMBERING = false` |
+| SCA005-CP1-V | 1 | Strict, versioned registry schema v2 is **within D-PEC-78 O-A; no supersession** | `SELECTED VIA CP1-B` | Resolution note §A CP1-V: D-PEC-78 `PACKET.md` §4.2 (ruled option O-A) |
+| SCA005-CP1-O | 1 | Objectives for SOW-095/096 and DEL-02-08/09: **OBJ-001;OBJ-002** | `SELECTED VIA CP1-B` | Resolution note §A CP1-O: `Deliverables.csv` DEL-02-01..07 |
+| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, TM-PEC-023 row selections) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
 | SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
 
 ## SCA005-G1 — owner direction of record (verbatim)
@@ -51,14 +51,27 @@ opening SCA-005 at Gate 1 and authorizing preparation of the complete
 checkpoint-group-1 package, with checkpoint groups 1–3 remaining owner
 acceptances.
 
+## SCA005-CP1 — owner acceptance of record (verbatim)
+
+Owner, 2026-09-24, in the session chat, after HELP_HUMAN asked for acceptance
+"at Impact Assessment hash `0bcbe9bd…39bf` with the note's resolutions as the
+selected options":
+
+> I accept checkpoint 1 and the Impact Assessment.  Explain to me the other decisions I face with the context I need.
+
+HELP_HUMAN's interpretation, the accepted manifest and the boundary of the
+act are recorded in `../checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`
+(`DECISION.md`, `ACCEPTED_MANIFEST.csv`, `Handoff_State.md`). The acceptance
+authorizes checkpoint-2 preparation only.
+
 ## Non-decisions recorded for clarity
 
-- No option of any owner question above has been selected.
 - No TM-PEC-023 mapping or non-mapping disposition has been selected.
 - The D-PEC-79 postimage has not been applied and no PRD byte has changed.
-- No decomposition, register, pointer, `checkpoint_snapshots/`, SOW,
-  `_CONTEXT.md`, `_STATUS.md`, `v2/**` or foreign surface has changed.
-- The checkpoint-1 decision snapshot will be written under
-  `_ScopeChange/checkpoint_snapshots/` only after the owner's acceptance.
+- D-PEC-87 is not ruled by this acceptance.
+- No decomposition, register, pointer, SOW, `_CONTEXT.md`, `_STATUS.md`,
+  `v2/**` or foreign surface has changed; `Amendment_Actions.csv` and
+  `Impact_Assessment.md` in this snapshot are byte-unchanged from the
+  accepted hashes.
 
-Companion (2026-09-24): `../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` records, per question, the accepted source that decides it and narrows the owner's live choices to CP1-A/CP1-B and seven TM-PEC-023 row selections. It selects nothing; the rows above remain `AWAITING_OWNER` until the owner's act.
+Companion (2026-09-24): `../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` records, per question, the accepted source that decided it. Its Section A became the selected options through the CP1-B acceptance above; its Section B TM-PEC-023 rows remain the owner's at checkpoint 2.

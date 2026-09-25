@@ -47,12 +47,13 @@ work from deliverable `## Remaining` surfaces. Retired plans live in
 `projects/pec/plans/workplans/` as history only. PEC's adoption of the shared
 development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
 
-**SCA-005** (feed-model rebaseline) is open at Gate 1 under `D-PEC-86`. Its
+**SCA-005** (feed-model rebaseline) is open under `D-PEC-86`. Its
 checkpoint-group-1 package at `execution/_ScopeChange/SCA-005_2026-09-23_2139/`
-proposes 76 actions; `Impact_Assessment.md` SHA-256
-`0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` awaits the
-owner. Owner checkpoints 1–3 remain, and TM-PEC-023 is folded into its intake
-with no option selected. See `docs/STATUS.md` for current gates.
+proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
+`0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` on
+2026-09-24 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`). Owner
+checkpoints 2–3 remain, and TM-PEC-023 is folded into its intake with no
+option selected. See `docs/STATUS.md` for current gates.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
@@ -79,7 +80,7 @@ TM-PEC-023 moved into SCA-005 intake.
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.4 and authoritative companion registers |
-| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package (awaiting owner), and active scope-change pointer |
+| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package and its accepted group-1 snapshot under `checkpoint_snapshots/`, and active scope-change pointer |
 | `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
