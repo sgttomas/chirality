@@ -2687,7 +2687,7 @@
       "name": "reverse-engineer-software",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Examine existing software and reconstruct a specification of its capabilities, behaviour, relationships, and constraints to support designing a new implementation. Use when a reference product is a starting point for developing product intent.",
+      "description": "Examine an existing software project, recover useful exemplars and lessons from its implementation and records, and develop a successor PRD and supporting documents with the human. Also supports a bounded reference account when that is the requested outcome.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2698,6 +2698,7 @@
       ],
       "resources": [
         "WORKFLOW.md",
+        "resources/successor-basis.md",
         "resources/worked-example.md"
       ],
       "navigation": {
