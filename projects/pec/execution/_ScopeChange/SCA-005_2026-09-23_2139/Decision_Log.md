@@ -37,7 +37,7 @@ rulings.
 | SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
 | SCA005-A2-SOW033 | 1 (amendment 2) | Add to intake: Seq 79 SOW-033 `ObjectiveIDs` to `OBJ-003` (DEL-07-01 unchanged at `OBJ-003`); no IN scope item remains without an objective after application | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/DECISION.md` |
 | SCA005-D90-NOTE | 2 (preparation note) | Carry into checkpoint-2 preparation: DEL-04-01 and the PRD §8 refresh are not rebuilt around verify-before-rely; PEC-K-03, §8, §9, §12 and `projects/pec/AGENTS.md` reliance text is amended by a later PEC scope change after checkpoint 2 is accepted (D-PEC-90 R-A). Checkpoint 2 still quotes the in-force PRD v2.2 (including PEC-K-03 verify-before-rely) where it quotes at all; the note means do not design around verify-before-rely, not diverge from the in-force text. Adds no scope and changes no accepted selection | `DIRECTED BY OWNER` | Owner act 2026-09-25 (verbatim below); `../../_Coordination/_DECISIONS/D-PEC-90_RULING_2026-09-25.md` |
-| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
+| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2): `Amendment_Preview.md` `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4`; `Propagation_Plan.md` `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350`; `Amendment_Actions_CP2.csv` `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987`; `Supersession_Delta.csv` `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06`; PRD candidate `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`; postimages listed in §"SCA005-CP2 — package prepared" below | `PREPARED / AWAITING_OWNER` | SCA005-CP1 acceptance 2026-09-24 and the owner's 2026-09-25 direction "Proceed towards checkpoint 2 as indicated." (preparation only); acceptance is a later owner act |
 | SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
 
 ## SCA005-G1 — owner direction of record (verbatim)
@@ -111,3 +111,23 @@ R-A's first grant item is row SCA005-D90-NOTE. It is a preparation note, not a c
   accepted hashes.
 
 Companion (2026-09-24): `../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` records, per question, the accepted source that decided it. Its Section A became the selected options through the CP1-B acceptance above; its Section B TM-PEC-023 rows remain the owner's at checkpoint 2.
+
+## SCA005-CP2 — package prepared (not a decision)
+
+Prepared 2026-09-25 by WORKING_ITEMS node B2 of HELP_HUMAN run `HELP-HUMAN-PEC-20260923-SCA005` under brief `B2_SCA005_CHECKPOINT2.md` (SHA-256 `75a8f596712e00926358aa721455a296e6370ee69dda4b8c2eb7c57324e48f11`). No owner decision is recorded here: every checkpoint-2 question in `Propagation_Plan.md` §"Checkpoint-2 owner question set" is `AWAITING_OWNER`. Package hashes:
+
+| Artifact | SHA-256 |
+|---|---|
+| `Amendment_Preview.md` | `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4` |
+| `Propagation_Plan.md` | `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350` |
+| `Amendment_Actions_CP2.csv` | `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987` |
+| `Supersession_Delta.csv` | `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06` |
+| `PRD_V2_3_SUCCESSOR_DIFF.md` | `153a4dedb4551102ffe20c26a4dd7d4d4dba9138b28ce47f2e0889925197eba2` |
+| `CP2_CANDIDATE/docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` |
+| `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660` |
+| `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df` |
+| `CP2_CANDIDATE/_Decomposition/Deliverables.csv` | `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` |
+| `CP2_CANDIDATE/_Decomposition/ContextBudgetQA.csv` | `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` |
+| `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` |
+
+Independent verification: `B2_VERIFIER_VERDICT_01.md` (`434958b94d3a7559a86c977623224bb3a66f2b0026558e6adccacb0e0c063b60`); `B2_VERIFIER_VERDICT_02.md` (`e514d2aa2ce429a9450e92621e1a0f658c5d991122199e0bc4dff2185d2f906a`) in the run's `returns/` folder.
