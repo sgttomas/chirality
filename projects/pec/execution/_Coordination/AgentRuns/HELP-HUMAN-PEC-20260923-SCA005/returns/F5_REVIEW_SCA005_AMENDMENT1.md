@@ -35,3 +35,9 @@ Verdict: **PASS WITH MINOR** (two MINOR, three NOTE). The cycle-1 MAJOR is fixed
 ## Cycle 3 — final-candidate confirmation
 
 Requested for the head that carries this transcription; appended below when returned.
+
+Reviewed `e148fc6d9a83d8b7d2e5a6140e3689214234f5f8`. Verdict: **PASS** (no finding at or above MINOR).
+
+The diff `9d4d1920..e148fc6d` contained only the stated changes with no over-claim; the three new delta rows were verified against the Impact Assessment and the selections (objective views; retired-set counts, 119 − 10 − 1 = 108; action mix 8 ADD / 64 MODIFY / 4 REMOVE, still 76); the cycle-2 transcription above was confirmed faithful; the G5 merge claim was verified on `origin/main`; immutable and protected paths untouched; receipts validator exit 0; `--strict` registers exit 0; `git diff --check` exit 0 on both ranges. One NOTE: the `RUN.md` C2 dispatch claim cannot be checked from repository bytes; the C2 return will confirm it.
+
+The following commit appends only this section to this file; HELP_HUMAN verified mechanically that it is an append-only change to this one file.
