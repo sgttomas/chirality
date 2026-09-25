@@ -344,7 +344,8 @@ fn preflight_operation(value: &Value) -> Result<(), String> {
     string(target, "ref", false)?;
     if !matches!(
         string(target, "object_type", false)?,
-        "Material"
+        "Model"
+            | "Material"
             | "Section"
             | "Node"
             | "Element"

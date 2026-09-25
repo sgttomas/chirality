@@ -78,6 +78,52 @@ fn nonnegative(v: &Value, dim: Dimension) -> Result<f64> {
     }
     Ok(n)
 }
+
+/// Check explicit inline source inputs without normalizing their stored JSON.
+/// The return value marks an incomplete insulation pair, which remains
+/// authorable but cannot supply insulation mass until both inputs are present.
+pub(crate) fn validate_pipe_section_inputs(section: &Value) -> Result<bool> {
+    let record = object(
+        section,
+        &[
+            "outside_diameter",
+            "wall_thickness",
+            "material_density",
+            "mill_tolerance",
+            "contents_density",
+            "insulation_thickness",
+            "insulation_density",
+        ],
+    )?;
+    quantity(&section["outside_diameter"], Dimension::Length, true)?;
+    let wall = quantity(&section["wall_thickness"], Dimension::Length, true)?;
+    for (key, dimension, positive) in [
+        ("material_density", Dimension::Density, true),
+        ("mill_tolerance", Dimension::Length, false),
+        ("contents_density", Dimension::Density, false),
+        ("insulation_thickness", Dimension::Length, false),
+        ("insulation_density", Dimension::Density, false),
+    ] {
+        if let Some(value) = record.get(key).filter(|v| !v.is_null()) {
+            let normalized = if positive {
+                quantity(value, dimension, true)
+            } else {
+                nonnegative(value, dimension)
+            }
+            .map_err(|error| err(format!("section.{key}: {}", error.message)))?;
+            if key == "mill_tolerance" && wall - normalized <= 0.0 {
+                return Err(err("Mill tolerance must leave a positive effective wall"));
+            }
+        }
+    }
+    Ok(record
+        .get("insulation_thickness")
+        .is_some_and(|v| !v.is_null())
+        != record
+            .get("insulation_density")
+            .is_some_and(|v| !v.is_null()))
+}
+
 fn entity<'a>(model: &'a Value, collection: &str, id: &str) -> Result<&'a Value> {
     let list = model
         .get(collection)
@@ -547,6 +593,8 @@ fn validate_temperature_points(
     points: &Value,
     warnings: &mut Vec<String>,
 ) -> Result<()> {
+    let exact_profile = model["schema_version"] == "0.3.0" && model.pointer("/pressure_contract/mode").is_some_and(|v| v == "exact_straight_pressure_v2");
+    let modulus_pair_field = if exact_profile { "poisson_ratio" } else { "shear_modulus" };
     let points = points
         .as_array()
         .ok_or_else(|| err("temperature_points must be an array"))?;
@@ -560,6 +608,7 @@ fn validate_temperature_points(
                 "temperature",
                 "elastic_modulus",
                 "shear_modulus",
+                "poisson_ratio",
                 "thermal_expansion_coefficient",
                 "provenance",
             ],
@@ -568,6 +617,7 @@ fn validate_temperature_points(
             return Err(err("Duplicate material temperature point id"));
         }
         optional_text(o, &["provenance"])?;
+        if let Some(nu) = o.get("poisson_ratio") { crate::pressure_authoring::validate_nu(nu)?; }
         for (key, dim, positive) in [
             ("temperature", Dimension::Temperature, false),
             ("elastic_modulus", Dimension::Stress, true),
@@ -588,7 +638,7 @@ fn validate_temperature_points(
         if [
             "temperature",
             "elastic_modulus",
-            "shear_modulus",
+            modulus_pair_field,
             "thermal_expansion_coefficient",
         ]
         .iter()
@@ -634,7 +684,7 @@ fn validate_temperature_points(
                 .iter()
                 .find(|p| p["id"].as_str() == Some(id))
                 .ok_or_else(|| err(format!("Selected modulus basis {id} cannot be deleted")))?;
-            for k in ["elastic_modulus", "shear_modulus"] {
+            for k in ["elastic_modulus", modulus_pair_field] {
                 if p.get(k).is_none() {
                     return Err(err(format!("Selected point {id} requires {k}")));
                 }
@@ -643,13 +693,14 @@ fn validate_temperature_points(
         if let Some(t) = temp {
             let t = quantity(t, Dimension::Temperature, false)?;
             let bracket=temperatures.windows(2).find(|w|w[0].0<t && t<w[1].0).ok_or_else(||err("Selected solve temperature requires a strict adjacent bracket; no extrapolation"))?;
+            let thermal_required = !exact_profile || case["primitive_loads"].as_array().is_some_and(|loads| loads.iter().any(|load| {
+                load["category"] == "thermal" && model["pipe_segments"].as_array().is_some_and(|pipes| pipes.iter().any(|pipe| pipe["id"] == load["target"]["pipe"] && pipe["material"] == material["id"]))
+            }));
+            let mut required_fields = vec!["elastic_modulus", modulus_pair_field];
+            if thermal_required { required_fields.push("thermal_expansion_coefficient"); }
             for (_, p) in bracket {
-                for k in [
-                    "elastic_modulus",
-                    "shear_modulus",
-                    "thermal_expansion_coefficient",
-                ] {
-                    if p.get(k).is_none() {
+                for k in &required_fields {
+                    if p.get(*k).is_none() {
                         return Err(err(format!("Interpolation point requires {k}")));
                     }
                 }

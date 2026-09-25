@@ -6,10 +6,16 @@
 //! bundled examples remain invented. No standards criteria, allowables, SIF tables,
 //! private datasets, or professional acceptance are bundled by this crate.
 
-pub mod self_weight;
 mod annulus_geometry;
+mod pressure_sum;
+pub mod self_weight;
+mod source_recovery;
+mod source_receipt;
+#[cfg(test)]
+mod source_budget_tests;
 
 use open_pipe_stress_curved_bend::CurvedBendMacroElement;
+use open_pipe_stress_frame_kernel::structural::{SolveQuality, StructuralError, StructuralReport};
 use open_pipe_stress_frame_kernel::{
     assemble_global_stiffness_with_user_elements, element_dof_map, reduce_system, solve_dense,
     FrameElement, FrameKernelError, FrameNode, Matrix12, UserStiffnessElement, DOF_PER_NODE,
@@ -23,6 +29,9 @@ use open_pipe_stress_load_case_algebra::{
     evaluate_linear_combination, evaluate_range_envelope, evaluate_result_state_subtraction,
     AlgebraOperand, AlgebraQuantity, AlgebraResult, AnalysisStatus as AlgebraAnalysisStatus,
     CombinationTerm, FindingCode, RangeMode,
+};
+use open_pipe_stress_nonlinear_integration::structural_adapter::{
+    AssemblyEvidence, StrictGapEvidence,
 };
 use open_pipe_stress_nonlinear_integration::{
     eligible_contact_dofs, solve_active_set_frame_with_mode_and_springs, ConvergenceControl,
@@ -61,8 +70,15 @@ use std::f64::consts::PI;
 mod validation;
 use validation::validate_model_inputs;
 
+#[cfg(test)]
+mod historical_pressure_reference;
+#[cfg(test)]
+mod membrane_publication_range;
 #[allow(dead_code)]
 mod pressure_exact;
+mod pressure_material;
+mod pressure_runtime;
+pub use pressure_runtime::{PressureContractInput, PressureRegionInput, PressureTerminalInput};
 
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
     "DEC-046-CV-B-product-preview-active-set-count-v1";
@@ -103,6 +119,8 @@ const DEC_070_CURVED_BEND_PLANE_TOLERANCE: f64 = 1.0e-9;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct PreviewModel {
+    #[serde(default)]
+    pub pressure_contract: Option<PressureContractInput>,
     pub schema_version: String,
     pub document_kind: String,
     pub project: Project,
@@ -220,6 +238,8 @@ pub struct VectorQuantity {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct PreviewComponent {
+    #[serde(default)]
+    pub objective_connector: Option<serde_json::Value>,
     pub id: String,
     #[serde(default)]
     pub label: Option<String>,
@@ -418,6 +438,8 @@ pub struct FrictionNormalReactionSourceInput {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct PreviewLoadCase {
+    #[serde(default)]
+    pub pressure_regions: Option<Vec<PressureRegionInput>>,
     pub id: String,
     #[serde(default)]
     pub primitive_loads: Vec<PreviewPrimitiveLoad>,
@@ -557,9 +579,14 @@ pub enum LoadTargetInput {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct MaterialInput {
+    #[serde(default)]
+    pub constitutive_basis: Option<String>,
+    #[serde(default)]
+    pub poisson_ratio: Option<Quantity>,
     pub id: String,
     pub elastic_modulus: Quantity,
-    pub shear_modulus: Quantity,
+    #[serde(default)]
+    pub shear_modulus: Option<Quantity>,
     #[serde(default)]
     pub thermal_expansion_coefficient: Option<Quantity>,
     /// User-entered temperature-indexed property points (DEC-068 item 1).
@@ -575,6 +602,8 @@ pub struct MaterialInput {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct MaterialTemperaturePointInput {
+    #[serde(default)]
+    pub poisson_ratio: Option<Quantity>,
     /// Stable user-assigned basis id (e.g. a temperature-case label).
     pub id: String,
     #[serde(default)]
@@ -644,7 +673,14 @@ impl Default for PreviewSolverMode {
 
 #[derive(Debug, Clone, Serialize)]
 pub struct MechanicsEnvelope {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub contract_evidence: Option<serde_json::Value>,
     pub schema_version: String,
+    pub producer: MechanicsProducer,
+    pub numerical_quality: NumericalQuality,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_block_recovery: Option<serde_json::Value>,
+    pub formulation_basis: FormulationBasis,
     pub document_kind: String,
     pub run_id: String,
     pub model_ref: String,
@@ -654,6 +690,338 @@ pub struct MechanicsEnvelope {
     pub diagnostics: Vec<Diagnostic>,
     pub professional_boundary: ProfessionalBoundary,
     pub accepted_model_state_mutated: bool,
+}
+
+/// Prospective source semantics; historical raw 0.1 carriers retain their identity.
+pub const MECHANICS_SCHEMA_VERSION: &str = "0.2.0";
+// Initial source-method work-reservation policy; generic/strict-gap defaults are separate.
+const SOURCE_BLOCKS_WORK_LIMIT: usize = 4_000_000;
+const PHYSICS_SOURCE_WORK_LIMIT: usize = 8_000_000;
+const SOURCE_BLOCKS_INVOCATION_WORK_LIMIT: usize = 64_000_000;
+#[derive(Debug)]
+struct SourceRecoveryBudget {
+    per_case_limit: usize,
+    invocation_limit: usize,
+    charged: usize,
+    failed_charged: usize,
+    publication_charged: usize,
+    rejected: usize,
+    attempts: usize,
+}
+impl Default for SourceRecoveryBudget {
+    fn default() -> Self { Self { per_case_limit: SOURCE_BLOCKS_WORK_LIMIT, invocation_limit: SOURCE_BLOCKS_INVOCATION_WORK_LIMIT, charged: 0, failed_charged: 0, publication_charged: 0, rejected: 0, attempts: 0 } }
+}
+impl SourceRecoveryBudget {
+    fn case_limit(&self) -> usize { self.per_case_limit.min(self.invocation_limit.saturating_sub(self.charged)) }
+    fn reserve_publication(&mut self, amount: usize) -> Result<(), open_pipe_stress_frame_kernel::structural::exact_boundary::WorkReport> {
+        if amount > self.invocation_limit.saturating_sub(self.charged) {
+            self.rejected = self.rejected.saturating_add(amount);
+            return Err(open_pipe_stress_frame_kernel::structural::exact_boundary::WorkReport { charged: self.charged, rejected: amount, limit: self.invocation_limit });
+        }
+        self.charged += amount;
+        self.publication_charged += amount;
+        Ok(())
+    }
+    fn debit(&mut self, charged: usize, failed: bool) {
+        // Every fresh attempt was allocated at most this remaining amount;
+        // failure never resets or refunds executed reservations.
+        assert!(charged <= self.invocation_limit.saturating_sub(self.charged));
+        self.charged += charged;
+        if failed { self.failed_charged += charged; }
+    }
+}
+
+pub const SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID: &str =
+    "openpipestress.result_semantics/0.3.0/source-blocks-1";
+pub const PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID: &str =
+    "openpipestress.result_semantics/0.3.0/physics-source-1";
+pub const PRECISION_SEMANTIC_CONTRACT_ID: &str =
+    "openpipestress.result_semantics/0.3.0/precision-1";
+pub const PHYSICS_SEMANTIC_CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/physics-1";
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct MechanicsProducer {
+    pub component_name: String,
+    pub component_version: String,
+    pub semantic_contract_id: String,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum NumericalQualityStatus {
+    NotAssessed,
+    ChecksPassed,
+    Sensitive,
+    Unresolved,
+    Failed,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum StructuralStatus {
+    PassiveModelBasis,
+    PhysicalMechanismWitnessed,
+    NegativeEnergyWitnessed,
+    NumericallyUnresolved,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum ModelMatrixFidelity {
+    RepresentedEquationsRetained,
+    AssemblyLossDetected,
+    AssemblyUncertainty,
+    NotAssessed,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum AccuracyEvidence {
+    NotClaimed,
+    ReferenceVerified,
+    Unresolved,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct NumericalCaseQuality {
+    pub basis_ref: ResultBasisRef,
+    pub structural_status: StructuralStatus,
+    pub solve_quality: NumericalQualityStatus,
+    pub model_matrix_fidelity: ModelMatrixFidelity,
+    pub accuracy_evidence: AccuracyEvidence,
+    pub evidence_refs: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct NumericalQuality {
+    pub value_representation: String,
+    pub publication_quantization: String,
+    pub integrity_policy: String,
+    pub status: NumericalQualityStatus,
+    pub cases: Vec<NumericalCaseQuality>,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct FormulationBasis {
+    pub profile_id: String,
+    pub limitations: Vec<String>,
+}
+
+pub fn mechanics_producer() -> MechanicsProducer {
+    MechanicsProducer {
+        component_name: solver_component_name().to_string(),
+        component_version: solver_component_version().to_string(),
+        semantic_contract_id: PRECISION_SEMANTIC_CONTRACT_ID.to_string(),
+    }
+}
+
+fn mechanics_producer_for_model(model: &PreviewModel) -> MechanicsProducer {
+    let mut producer = mechanics_producer();
+    if pressure_runtime::is_exact(model) {
+        producer.semantic_contract_id = PHYSICS_SEMANTIC_CONTRACT_ID.to_string();
+    }
+    producer
+}
+
+fn formulation_basis_for_model(model: &PreviewModel) -> FormulationBasis {
+    if !pressure_runtime::is_exact(model) {
+        return preview_formulation_basis();
+    }
+    FormulationBasis {
+        profile_id: "exact_straight_pressure_v2".to_string(),
+        limitations: vec![
+            "Small-displacement homogeneous-isotropic straight circular members with explicit common E/nu selection; G is derived, and source OD/effective wall define the section.".to_string(),
+            "Pressure is internal differential with zero external pressure, explicit case-scoped collinear equal-bore regions and closure-transfer paths; pressure bends, joints and nonlinear support composition remain unimplemented.".to_string(),
+            "Mechanical, pressure-eigen and cap-transfer contributions remain distinct; rounded cap/eigen ledgers are observational and do not replace source-grouped pressure assembly.".to_string(),
+            "Pressure is uniform within each region. Structural line loads act as entered; contents density does not imply hydrostatic pressure head or a coupled static-fluid pressure/weight state.".to_string(),
+            "Signed support actions are attributed only for admitted linear restraints and springs; ambiguous coincident rigid attribution is refused.".to_string(),
+            "The circular normal-stress maximum bounds the supplied binary64 section-statical coefficients; solver/coefficient formation error is separate, and incomplete coverage withholds the headline.".to_string(),
+            "Exact-profile combinations and equivalent-static generators remain unsupported; no code compliance or professional acceptance is produced, and actual numerical admission remains separate.".to_string(),
+        ],
+    }
+}
+
+/// Precision preservation alone supplies no structural integrity assessment.
+fn integrity_dof_map(model: &PreviewModel) -> Vec<String> {
+    model
+        .nodes
+        .iter()
+        .flat_map(|node| {
+            ["UX", "UY", "UZ", "RX", "RY", "RZ"].map(|dof| format!("{}:{dof}", node.id))
+        })
+        .collect()
+}
+
+// Byte lengths delimit exact source identities without lossy punctuation folding.
+fn exact_source_identity(parts: &[&str]) -> String {
+    parts
+        .iter()
+        .map(|part| format!("{}:{part}", part.len()))
+        .collect()
+}
+
+fn integrity_diagnostic_id(case_id: &str) -> String {
+    format!("diagnostic:numerical-integrity:{case_id}")
+}
+
+fn append_integrity_report(
+    diagnostics: &mut Vec<Diagnostic>,
+    case_id: &str,
+    report: &StructuralReport,
+    model: &PreviewModel,
+    equilibrium: Option<
+        &open_pipe_stress_nonlinear_integration::product_equilibrium::ProductEquilibriumReport,
+    >,
+) {
+    let code = if report.quality == SolveQuality::Sensitive {
+        "NUMERICAL_INTEGRITY_SENSITIVE"
+    } else {
+        "NUMERICAL_INTEGRITY_CHECKS_PASSED"
+    };
+    diagnostics.push(diag(&integrity_diagnostic_id(case_id), code, if report.quality == SolveQuality::Sensitive { "warning" } else { "info" },
+        format!("{} represented original-equation structural evidence for load case {}: {:?}; global_dof_map={:?}. {} No certified inertia, guaranteed forward accuracy, or pressure/component/stress engineering qualification is claimed.", report.policy, case_id, report, integrity_dof_map(model),
+            equilibrium.map(|e|format!("{} final same-state evaluated equilibrium and derived residual-work evidence: {:?}; residual units are N for global DOF%6<3 and N*m otherwise; work units N*m; observed maximum only, exact represented maximum not claimed; general-energy historical alias is residual work, not total energy balance; separate zero count/cap/contact/sliding checks passed",e.policy,e)).unwrap_or_else(||"The contribution audit distinguishes intended assembly from stored equations; physical formulation limitations remain applicable.".into())),
+        vec![case_id.to_string()]));
+}
+
+fn append_integrity_failure(
+    diagnostics: &mut Vec<Diagnostic>,
+    case_id: &str,
+    error: &StructuralError,
+    model: &PreviewModel,
+) {
+    let code = match error {
+        StructuralError::Mechanism { .. } => "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+        StructuralError::NegativeEnergy { .. } => "NUMERICAL_INTEGRITY_NEGATIVE_ENERGY",
+        StructuralError::Asymmetric { .. } | StructuralError::InvalidInput(_) => {
+            "NUMERICAL_INTEGRITY_FAILED"
+        }
+        StructuralError::NumericallyUnresolved { reason, .. }
+            if reason.contains("contribution") || reason.contains("assembly") =>
+        {
+            "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED"
+        }
+        _ => "NUMERICAL_INTEGRITY_UNRESOLVED",
+    };
+    diagnostics.push(diag(&integrity_diagnostic_id(case_id), code, "blocking", format!("Load case {case_id}: {error}; global_dof_map={:?}; no structural rejection is bypassed by generic LU or output quantization", integrity_dof_map(model)), vec![case_id.to_string()]));
+}
+
+fn assessed_numerical_quality(
+    model: &PreviewModel,
+    diagnostics: &[Diagnostic],
+) -> NumericalQuality {
+    let mut quality = unassessed_numerical_quality();
+    for case in &model.load_cases {
+        let evidence = diagnostics
+            .iter()
+            .find(|d| d.id == integrity_diagnostic_id(&case.id));
+        let (structural_status, solve_quality, model_matrix_fidelity, accuracy_evidence) =
+            match evidence.map(|d| d.code.as_str()) {
+                Some("NUMERICAL_INTEGRITY_CHECKS_PASSED") => (
+                    StructuralStatus::PassiveModelBasis,
+                    NumericalQualityStatus::ChecksPassed,
+                    ModelMatrixFidelity::RepresentedEquationsRetained,
+                    AccuracyEvidence::NotClaimed,
+                ),
+                Some("NUMERICAL_INTEGRITY_SENSITIVE") => (
+                    StructuralStatus::PassiveModelBasis,
+                    NumericalQualityStatus::Sensitive,
+                    ModelMatrixFidelity::RepresentedEquationsRetained,
+                    AccuracyEvidence::NotClaimed,
+                ),
+                Some("NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM") => (
+                    StructuralStatus::PhysicalMechanismWitnessed,
+                    NumericalQualityStatus::Failed,
+                    ModelMatrixFidelity::NotAssessed,
+                    AccuracyEvidence::NotClaimed,
+                ),
+                Some("NUMERICAL_INTEGRITY_NEGATIVE_ENERGY") => (
+                    StructuralStatus::NegativeEnergyWitnessed,
+                    NumericalQualityStatus::Failed,
+                    ModelMatrixFidelity::NotAssessed,
+                    AccuracyEvidence::NotClaimed,
+                ),
+                Some("NUMERICAL_INTEGRITY_RECOVERY_BASIS_UNQUALIFIED") => (
+                    StructuralStatus::NumericallyUnresolved,
+                    NumericalQualityStatus::Unresolved,
+                    ModelMatrixFidelity::NotAssessed,
+                    AccuracyEvidence::Unresolved,
+                ),
+                Some("NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED") => (
+                    StructuralStatus::NumericallyUnresolved,
+                    NumericalQualityStatus::Unresolved,
+                    ModelMatrixFidelity::AssemblyLossDetected,
+                    AccuracyEvidence::Unresolved,
+                ),
+                Some("NUMERICAL_INTEGRITY_FAILED") => (
+                    StructuralStatus::NumericallyUnresolved,
+                    NumericalQualityStatus::Failed,
+                    ModelMatrixFidelity::AssemblyUncertainty,
+                    AccuracyEvidence::Unresolved,
+                ),
+                Some(_) => (
+                    StructuralStatus::NumericallyUnresolved,
+                    NumericalQualityStatus::Unresolved,
+                    ModelMatrixFidelity::AssemblyUncertainty,
+                    AccuracyEvidence::Unresolved,
+                ),
+                None => (
+                    StructuralStatus::NumericallyUnresolved,
+                    NumericalQualityStatus::NotAssessed,
+                    ModelMatrixFidelity::NotAssessed,
+                    AccuracyEvidence::NotClaimed,
+                ),
+            };
+        quality.cases.push(NumericalCaseQuality {
+            basis_ref: ResultBasisRef {
+                ref_type: "load_case".into(),
+                ref_id: case.id.clone(),
+            },
+            structural_status,
+            solve_quality,
+            model_matrix_fidelity,
+            accuracy_evidence,
+            evidence_refs: evidence.map(|d| vec![d.id.clone()]).unwrap_or_default(),
+        });
+    }
+    let rank = |status: NumericalQualityStatus| match status {
+        NumericalQualityStatus::ChecksPassed => 0,
+        NumericalQualityStatus::Sensitive => 1,
+        NumericalQualityStatus::NotAssessed => 2,
+        NumericalQualityStatus::Unresolved => 3,
+        NumericalQualityStatus::Failed => 4,
+    };
+    quality.status = quality
+        .cases
+        .iter()
+        .map(|case| case.solve_quality)
+        .max_by_key(|&status| rank(status))
+        .unwrap_or(NumericalQualityStatus::NotAssessed);
+    quality
+}
+
+pub fn unassessed_numerical_quality() -> NumericalQuality {
+    NumericalQuality {
+        value_representation: "finite_binary64".to_string(),
+        publication_quantization: "none".to_string(),
+        integrity_policy: "M03-INTEGRITY-v1".to_string(),
+        status: NumericalQualityStatus::NotAssessed,
+        cases: Vec::new(),
+    }
+}
+
+pub fn preview_formulation_basis() -> FormulationBasis {
+    FormulationBasis {
+        profile_id: "product_preview_mechanics_v1".to_string(),
+        limitations: vec![
+            "Small-displacement product-preview mechanics; numerical integrity does not establish physical formulation correctness.".to_string(),
+            "Pressure thrust and pressure stress retain the existing preview formulation and capability qualifications; pressure formulation qualification remains open.".to_string(),
+            "Component stiffness, flexibility and stress modifiers depend on declared user inputs and supported component families; no general component qualification is provided.".to_string(),
+            "Open-formula stress recovery retains its existing section, station and load-basis limitations; no code compliance result is produced.".to_string(),
+            "Support, spring-hanger and nonlinear active-state behavior retain their existing capability and convergence qualifications; numerical precision does not qualify their constitutive models.".to_string(),
+            "Protected rule inputs and professional acceptance are not provided; human review remains required.".to_string(),
+        ],
+    }
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -672,6 +1040,7 @@ pub struct Summary {
 
 #[derive(Debug, Clone, Serialize)]
 pub struct LocatedQuantity {
+    #[serde(serialize_with = "serialize_finite_f64")]
     pub value: f64,
     pub unit: String,
     pub location_ref: String,
@@ -682,6 +1051,7 @@ pub struct LocatedQuantity {
 pub struct ResultItem {
     pub id: String,
     pub kind: String,
+    #[serde(serialize_with = "serialize_finite_f64")]
     pub value: f64,
     pub unit: String,
     pub entity_ref: String,
@@ -691,6 +1061,20 @@ pub struct ResultItem {
     pub source_result_refs: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option<ResultMetadata>,
+}
+
+// serde_json otherwise converts nonfinite f64s to null. Even independently
+// constructed public quantity rows must retain the finite scientific-value contract.
+fn serialize_finite_f64<S: serde::Serializer>(
+    value: &f64,
+    serializer: S,
+) -> Result<S::Ok, S::Error> {
+    if !value.is_finite() {
+        return Err(serde::ser::Error::custom(
+            "mechanics quantity must be finite",
+        ));
+    }
+    serializer.serialize_f64(*value)
 }
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
@@ -731,6 +1115,7 @@ pub struct ProfessionalBoundary {
 
 #[derive(Debug)]
 struct BuiltModel {
+    exact_sections: HashMap<String, pressure_exact::SourceAnnulus>,
     nodes: Vec<FrameNode>,
     pipes: Vec<StraightPipeElement>,
     frame_elements: Vec<FrameElement>,
@@ -744,8 +1129,12 @@ struct BuiltModel {
     sections: HashMap<String, DerivedSection>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 struct LoadCaseSolve {
+    exact_case_evidence: Option<serde_json::Value>,
+    pressure_evidence: Vec<serde_json::Value>,
+    source_case: Option<source_receipt::FinalizedSourceBlockCase>,
+    source_selected: bool,
     load_case_id: String,
     results: Vec<ResultItem>,
     max_displacement: Option<LocatedQuantity>,
@@ -832,6 +1221,40 @@ pub fn run_linear_static_preview_with_mode(
     request: LinearStaticPreviewRequest,
     solver_mode: PreviewSolverMode,
 ) -> MechanicsEnvelope {
+    // This historical typed entry has no original request-Value custody.
+    run_linear_static_preview_captured(request, solver_mode, None, &mut SourceRecoveryBudget::default())
+}
+
+/// Capture the exact actual request before parsing. This is the source-block
+/// method's invocation boundary; typed reserialization cannot substitute for it.
+pub fn run_linear_static_preview_value_with_mode(
+    actual_request: serde_json::Value,
+    solver_mode: PreviewSolverMode,
+) -> Result<MechanicsEnvelope, String> {
+    let (request, capture) = source_receipt::CapturedInvocation::parse(actual_request, solver_mode)
+        .map_err(|error| error.0)?;
+    // The composite profile pays for retained-source and physical evidence.
+    // This closed resource policy does not change old source-blocks-1 or the
+    // exact helper defaults, and never changes the numerical criterion.
+    let mut budget = SourceRecoveryBudget::default();
+    if pressure_runtime::is_exact(&request.model) {
+        budget.per_case_limit = PHYSICS_SOURCE_WORK_LIMIT;
+    }
+    let result = run_linear_static_preview_captured(request, solver_mode, Some(&capture), &mut budget);
+    if matches!(result.producer.semantic_contract_id.as_str(), SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID | PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID)
+        && result.source_block_recovery.is_none()
+    {
+        return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
+    }
+    Ok(result)
+}
+
+fn run_linear_static_preview_captured(
+    request: LinearStaticPreviewRequest,
+    solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
+) -> MechanicsEnvelope {
     let mut model = request.model;
     let mut materials = if request.materials.is_empty() {
         model.materials.clone()
@@ -840,6 +1263,7 @@ pub fn run_linear_static_preview_with_mode(
     };
     let mut diagnostics = Vec::new();
 
+    pressure_runtime::validate_profile(&model, &mut diagnostics);
     validate_model_inputs(&model, &materials, &mut diagnostics);
     validate_support_family_tokens(&model, &mut diagnostics);
     if model.document_kind != "openpipestress.product_preview.model" {
@@ -879,6 +1303,10 @@ pub fn run_linear_static_preview_with_mode(
         return blocked_envelope(model, diagnostics);
     }
 
+    pressure_material::resolve_base(&model, &mut materials, &mut diagnostics);
+    if has_blocking(&diagnostics) {
+        return blocked_envelope(model, diagnostics);
+    }
     let built = build_model(&model, &materials, &mut diagnostics);
     if has_blocking(&diagnostics) {
         return blocked_envelope(model, diagnostics);
@@ -986,6 +1414,8 @@ pub fn run_linear_static_preview_with_mode(
                 load_case,
                 basis_record.as_deref(),
                 solver_mode,
+                capture,
+                source_budget,
                 &mut diagnostics,
             ) {
                 Ok(solve) => load_case_solves.push(solve),
@@ -1051,6 +1481,8 @@ pub fn run_linear_static_preview_with_mode(
             load_case,
             basis_record.as_deref(),
             solver_mode,
+            capture,
+            source_budget,
             &mut diagnostics,
         ) {
             Ok(solve) => load_case_solves.push(solve),
@@ -1061,13 +1493,18 @@ pub fn run_linear_static_preview_with_mode(
         }
     }
     let built = &basis_solve_states[0].2;
-
-    let mut max_displacement = load_case_solves
-        .first()
-        .and_then(|solve| solve.max_displacement.clone());
-    let mut max_stress = load_case_solves
-        .first()
-        .and_then(|solve| solve.max_stress.clone());
+    let source_selected = load_case_solves.iter().any(|solve| solve.source_selected);
+    let source_cases: Vec<_> = load_case_solves.iter_mut().filter_map(|solve| solve.source_case.take()).collect();
+    let max_displacement = if pressure_runtime::is_exact(&model) || source_selected {
+        maximum_across_cases(&load_case_solves, false)
+    } else {
+        load_case_solves.first().and_then(|solve| solve.max_displacement.clone())
+    };
+    let max_stress = if pressure_runtime::is_exact(&model) || source_selected {
+        maximum_across_cases(&load_case_solves, true)
+    } else {
+        load_case_solves.first().and_then(|solve| solve.max_stress.clone())
+    };
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
@@ -1077,9 +1514,22 @@ pub fn run_linear_static_preview_with_mode(
         .map(|solve| solve.component_pressure_thrust_load_count)
         .sum();
     let mut results = Vec::new();
+    let mut pressure_evidence = Vec::new();
+    let mut exact_cases = Vec::new();
     let mut rows_by_base_id: HashMap<String, HashMap<String, ResultItem>> = HashMap::new();
     let mut support_vectors_by_case = HashMap::new();
     for (index, solve) in load_case_solves.into_iter().enumerate() {
+        pressure_evidence.extend(solve.pressure_evidence.iter().cloned());
+        if let Some(mut evidence) = solve.exact_case_evidence.clone() {
+            if source_selected {
+                evidence["recovery_method"] = serde_json::json!(if solve.source_selected {
+                    "retained_source_blocks_exact_v1"
+                } else if solver_mode == PreviewSolverMode::DenseScrutiny {
+                    "ordinary_dense_structural_v1"
+                } else { "ordinary_sparse_structural_v1" });
+            }
+            exact_cases.push(evidence);
+        }
         let is_default = index == 0;
         let load_case_id = solve.load_case_id.clone();
         support_vectors_by_case.insert(load_case_id.clone(), solve.support_force_vectors);
@@ -1089,7 +1539,7 @@ pub fn run_linear_static_preview_with_mode(
             .map(|row| {
                 (
                     row.id.clone(),
-                    if is_default {
+                    if is_default || (pressure_runtime::is_exact(&model) && row.kind.ends_with("_v2")) {
                         row.id.clone()
                     } else {
                         qualified_load_case_result_id(&load_case_id, &row.id)
@@ -1103,7 +1553,7 @@ pub fn run_linear_static_preview_with_mode(
                 ref_type: "load_case".to_string(),
                 ref_id: load_case_id.clone(),
             });
-            if !is_default {
+            if !is_default && !(pressure_runtime::is_exact(&model) && result.kind.ends_with("_v2")) {
                 result.id = qualified_load_case_result_id(&load_case_id, &base_id);
             }
             for source_ref in &mut result.source_result_refs {
@@ -1160,16 +1610,16 @@ pub fn run_linear_static_preview_with_mode(
     ) {
         return solver_blocked(model, diagnostics, error);
     }
-    // Publication is the sole numerical rounding boundary. Algebra and decisions above
-    // consume full precision, including selected nonlinear results and summaries.
-    for result in &mut results {
-        result.value = round6(result.value);
-    }
-    for quantity in max_displacement.iter_mut().chain(max_stress.iter_mut()) {
-        quantity.value = round6(quantity.value);
-    }
-    MechanicsEnvelope {
-        schema_version: "0.1.0".to_string(),
+    // Publish finite computed binary64 quantities without an absolute decimal quantum.
+    let composite = source_selected && pressure_runtime::is_exact(&model);
+    let mut envelope = MechanicsEnvelope {
+        contract_evidence: pressure_runtime::is_exact(&model)
+            .then(|| serde_json::json!({"pressure": pressure_evidence, "connector": [], "exact_cases": exact_cases})),
+        schema_version: MECHANICS_SCHEMA_VERSION.to_string(),
+        producer: mechanics_producer_for_model(&model),
+        numerical_quality: assessed_numerical_quality(&model, &diagnostics),
+        source_block_recovery: None,
+        formulation_basis: formulation_basis_for_model(&model),
         document_kind: "openpipestress.product_preview.mechanics_result".to_string(),
         run_id: "run:preview-linear-static-001".to_string(),
         model_ref: model.project.id,
@@ -1194,7 +1644,61 @@ pub fn run_linear_static_preview_with_mode(
         diagnostics,
         professional_boundary: professional_boundary(),
         accepted_model_state_mutated: false,
+    };
+    if source_selected {
+        envelope.producer.semantic_contract_id = if composite { PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID } else { SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID }.into();
+        if let Some(capture) = capture {
+            let finalized = if composite {
+                source_receipt::FinalizedSourceBlockReceipt::finalize_composite(capture, &envelope, source_cases, source_budget)
+            } else {
+                source_receipt::FinalizedSourceBlockReceipt::finalize(capture, &envelope, source_cases, source_budget)
+            };
+            match finalized {
+                Ok(receipt) => envelope.source_block_recovery = Some(receipt.into_wire()),
+                Err(error) => envelope.diagnostics.push(diag("diagnostic:source-recovery:publication", "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED", "blocking", format!("{}; actual_finalization_work={:?}", error.0, error.1), vec![])),
+            }
+        }
     }
+    envelope
+}
+
+fn maximum_across_cases(cases: &[LoadCaseSolve], stress: bool) -> Option<LocatedQuantity> {
+    // A headline covers the complete requested domain, never only available members.
+    if cases.iter().any(|case| {
+        if stress {
+            case.max_stress.is_none()
+        } else {
+            case.max_displacement.is_none()
+        }
+    }) {
+        return None;
+    }
+    cases
+        .iter()
+        .enumerate()
+        .filter_map(|(index, case)| {
+            let mut q = if stress {
+                case.max_stress.clone()
+            } else {
+                case.max_displacement.clone()
+            }?;
+            let already_qualified = case
+                .results
+                .iter()
+                .find(|r| r.id == q.result_ref)
+                .is_some_and(|r| r.kind.ends_with("_v2"));
+            if index > 0 && !already_qualified {
+                q.result_ref = qualified_load_case_result_id(&case.load_case_id, &q.result_ref);
+            }
+            Some((&case.load_case_id, q))
+        })
+        .max_by(|(case_a, a), (case_b, b)| {
+            a.value
+                .total_cmp(&b.value)
+                .then_with(|| case_b.cmp(case_a))
+                .then_with(|| b.location_ref.cmp(&a.location_ref))
+        })
+        .map(|(_, q)| q)
 }
 
 fn require_finite_mechanics(values: impl IntoIterator<Item = f64>) -> Result<(), FrameKernelError> {
@@ -1219,8 +1723,12 @@ fn solve_load_case(
     load_case: &PreviewLoadCase,
     modulus_basis_record: Option<&str>,
     solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<LoadCaseSolve, FrameKernelError> {
+    let exact_pressure =
+        pressure_runtime::build_pressure_case(model, built, materials, load_case, diagnostics);
     let loads = build_load_case_primitive_loads(model, load_case, diagnostics);
     let load_application = prepare_loads(built.nodes.len(), built.pipes.len(), &loads);
     for finding in &load_application.findings {
@@ -1234,6 +1742,10 @@ fn solve_load_case(
     }
     if has_blocking(diagnostics) {
         return Ok(LoadCaseSolve {
+            exact_case_evidence: None,
+            pressure_evidence: Vec::new(),
+            source_case: None,
+            source_selected: false,
             load_case_id: load_case.id.clone(),
             results: Vec::new(),
             max_displacement: None,
@@ -1302,6 +1814,11 @@ fn solve_load_case(
         &built.pipes,
         &curved_bends_by_pipe,
     );
+    if let Some(exact) = &exact_pressure {
+        for (total, pressure_rhs) in force.iter_mut().zip(&exact.assembled_loads) {
+            *total += pressure_rhs;
+        }
+    }
     // DEC-049 constant-effort consumption enters here — the one assembled
     // force-vector seam shared by the dense, sparse, and nonlinear
     // active-set solve paths.
@@ -1319,7 +1836,7 @@ fn solve_load_case(
     let mut preliminary_diagnostics = Vec::new();
     let attempted_linear = solve_preview_reduced_system(
         solver_mode,
-        &reduced.stiffness,
+        stiffness,
         &reduced.force,
         built,
         spring_entries,
@@ -1328,13 +1845,55 @@ fn solve_load_case(
         load_case,
         &mut preliminary_diagnostics,
     );
+    let ordinary_attempt = match &attempted_linear {
+        Ok(solve) => source_receipt::OrdinaryAttempt::passed(solver_mode, &solve.structural_report, integrity_diagnostic_id(&load_case.id)),
+        Err(error) => source_receipt::OrdinaryAttempt::rejected(solver_mode, error, integrity_diagnostic_id(&load_case.id)),
+    };
+    let prescribed: Vec<_> = restrained_dofs.iter().map(|&dof| (dof, 0.0)).collect();
+    let recovery_input = || source_recovery::Input {
+        model, built, stiffness, force: &force, free: &reduced.free_dofs,
+        prescribed: &prescribed, spring_entries, load_case, load_application: &load_application,
+        thermal_loads: &thermal_loads, pressure_thrust_loads: &pressure_thrust_loads,
+    };
+    let needs_source_recovery = match &attempted_linear {
+        Ok(solve) => solve.structural_report.quality == SolveQuality::Sensitive,
+        Err(_) => true,
+    };
+    let mut selected_source = None;
+    let mut source_failure = None;
+    if capture.is_some() && built.nonlinear_supports.is_empty() && model.combinations.is_empty() && needs_source_recovery {
+        source_budget.attempts += 1;
+        match source_recovery::solve(recovery_input(), open_pipe_stress_frame_kernel::structural::exact_boundary::Limits { operations: source_budget.case_limit(), ..Default::default() }) {
+            Ok(recovery) => selected_source = Some(recovery),
+            Err(failure) => {
+                source_budget.debit(failure.work.charged, true);
+                diagnostics.push(diag(
+                    &format!("diagnostic:source-recovery:{}", load_case.id),
+                    "SOURCE_BLOCK_RECOVERY_UNAVAILABLE", "info",
+                    format!("The bounded retained-source method did not produce a selected response: {failure:?}"),
+                    vec![load_case.id.clone()],
+                ));
+                source_failure = Some(failure);
+            }
+        }
+    }
     let linear_solve = match attempted_linear {
         Ok(solve) => {
             diagnostics.extend(preliminary_diagnostics);
             Some(solve)
         }
-        Err(FrameKernelError::SingularSystem { .. })
-            if eligible_contact_dofs(
+        Err(error) if selected_source.is_some() => {
+            // Preserve the rejected ordinary attempt as evidence. It is not the
+            // selected solve and is not relabelled as a successful factorization.
+            append_integrity_failure(diagnostics, &load_case.id, &error, model);
+            if let Some(record) = diagnostics.last_mut() {
+                record.severity = "info".into();
+                record.message = format!("Rejected ordinary attempt; a separate retained-source response is selected. {}", record.message);
+            }
+            None
+        }
+        Err(error)
+            if open_pipe_stress_nonlinear_integration::structural_adapter::permits_contact_seed_trial(&error, built.user_stiffness_elements.is_empty() && built.curved_bend_elements.is_empty()) && eligible_contact_dofs(
                 built.nodes.len(),
                 restrained_dofs,
                 &built.nonlinear_supports,
@@ -1347,7 +1906,22 @@ fn solve_load_case(
         // The staged solver diagnostics currently contain only the warning
         // advertising a completed dense fallback. A failed attempt has no
         // solution basis to advertise; propagate its actual error alone.
-        Err(error) => return Err(error),
+        Err(error) => {
+            append_integrity_failure(diagnostics, &load_case.id, &error, model);
+            return Ok(LoadCaseSolve {
+                pressure_evidence: Vec::new(),
+                exact_case_evidence: None,
+            source_case: None,
+            source_selected: false,
+                load_case_id: load_case.id.clone(),
+                results: Vec::new(),
+                max_displacement: None,
+                max_stress: None,
+                component_stress_modifier_count: 0,
+                component_pressure_thrust_load_count: 0,
+                support_force_vectors: HashMap::new(),
+            });
+        }
     };
 
     let mut displacements = vec![0.0; built.nodes.len() * DOF_PER_NODE];
@@ -1357,23 +1931,39 @@ fn solve_load_case(
         for (index, dof) in reduced.free_dofs.iter().enumerate() {
             displacements[*dof] = linear_solve.solution[index];
         }
-        append_linear_solver_mode_evidence(&mut results, &load_case.id, solver_mode, linear_solve);
-        if solver_mode == PreviewSolverMode::DenseScrutiny {
-            append_sparse_live_path_evidence(
-                &mut results,
-                diagnostics,
-                &load_case.id,
-                built,
-                spring_entries,
-                &force,
-                restrained_dofs,
-                &linear_solve.solution,
-            );
+        if selected_source.is_none() {
+            append_linear_solver_mode_evidence(&mut results, &load_case.id, solver_mode, linear_solve);
         }
+        if solver_mode == PreviewSolverMode::DenseScrutiny {
+            // Protected DEC050/053 comparison retains the legacy unscaled LU
+            // reference. This observation never selects a published solution.
+            if let Ok(legacy_dense) = solve_dense(&reduced.stiffness, &reduced.force) {
+                append_sparse_live_path_evidence(
+                    &mut results,
+                    diagnostics,
+                    &load_case.id,
+                    built,
+                    spring_entries,
+                    &force,
+                    restrained_dofs,
+                    &legacy_dense,
+                );
+            }
+        }
+    }
+    if let Some(recovery) = &selected_source {
+        displacements.copy_from_slice(recovery.displacements());
+        diagnostics.push(diag(
+            &format!("diagnostic:source-recovery:{}:selected", load_case.id),
+            "SOURCE_BLOCK_RECOVERY_SELECTED", "info",
+            format!("requested_mode={}; selected_method=retained_source_blocks_exact_v1; complete source-bound displacement/member/station/device projections precede binary64 publication; ordinary-attempt evidence remains separate; {:?}", solver_mode.as_str(), recovery.summary()),
+            vec![load_case.id.clone()],
+        ));
     }
     let selected_nonlinear = append_nonlinear_support_loop_results(
         &mut results,
         diagnostics,
+        model,
         built,
         restrained_dofs,
         &force,
@@ -1393,6 +1983,10 @@ fn solve_load_case(
                     vec![load_case.id.clone()],
                 ));
                 return Ok(LoadCaseSolve {
+                    exact_case_evidence: None,
+                    pressure_evidence: Vec::new(),
+            source_case: None,
+            source_selected: false,
                     load_case_id: load_case.id.clone(),
                     results: Vec::new(),
                     max_displacement: None,
@@ -1402,6 +1996,54 @@ fn solve_load_case(
                     support_force_vectors: HashMap::new(),
                 });
             }
+        }
+    }
+    if built.nonlinear_supports.is_empty() {
+        if let Some(linear) = &linear_solve {
+            append_integrity_report(
+                diagnostics,
+                &load_case.id,
+                &linear.structural_report,
+                model,
+                None,
+            );
+        }
+    } else if let Some(iteration) = selected_nonlinear
+        .as_ref()
+        .and_then(|solve| solve.iterations.last())
+    {
+        if matches!(&iteration.strict_gap, StrictGapEvidence::Qualified(_)) {
+            // The ordinary factor/solve report precedes exact-ratio selection.
+            // It cannot qualify the selected mixed field-recovery basis.
+            diagnostics.push(diag(
+                &integrity_diagnostic_id(&load_case.id),
+                "NUMERICAL_INTEGRITY_RECOVERY_BASIS_UNQUALIFIED",
+                "warning",
+                format!(
+                    "Load case {} selected represented-exact-ratio global displacement and support reactions, while member fields are recovered from projected binary64 displacement. The ordinary structural report is a preprojection precondition, and selected-public-displacement equilibrium does not prove exact-ratio equilibrium or complete field recovery. Mixed recovery remains numerically unresolved and unavailable for Current reliance; computed loop and quantity rows remain inspection evidence only. Ordinary structural precondition: {:?}; selected-public-displacement equilibrium: {:?}",
+                    load_case.id, iteration.structural_report, iteration.product_equilibrium
+                ),
+                vec![load_case.id.clone()],
+            ));
+        } else if let StrictGapEvidence::Unsupported { reason, .. } = &iteration.strict_gap {
+            diagnostics.push(diag(
+                &integrity_diagnostic_id(&load_case.id),
+                "NUMERICAL_INTEGRITY_RECOVERY_BASIS_UNQUALIFIED",
+                "warning",
+                format!(
+                    "Load case {} retains source-bound ordinary binary64 mechanics for inspection only: strict-gap proof is unavailable ({reason}). Ordinary original-system equilibrium, returned-state classifier, separate zero count/cap/contact/sliding checks passed. Delta rows retain their scoped observation/policy metadata; no universal delta acceptance is asserted. Exact-gap and recovery qualification remain unresolved; these rows do not grant Current or downstream qualified use. Ordinary structural report: {:?}; ordinary selected-state equilibrium: {:?}",
+                    load_case.id, iteration.structural_report, iteration.product_equilibrium
+                ),
+                vec![load_case.id.clone()],
+            ));
+        } else {
+            append_integrity_report(
+                diagnostics,
+                &load_case.id,
+                &iteration.structural_report,
+                model,
+                Some(&iteration.product_equilibrium),
+            );
         }
     }
     require_finite_mechanics(displacements.iter().copied())?;
@@ -1414,15 +2056,23 @@ fn solve_load_case(
     let mut max_displacement = None;
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
-        let magnitude = displacement_magnitude(&displacements, node_index);
+        let magnitude_mm = selected_source.as_ref().map(|recovery| {
+            let values = &recovery.published_nodal_components()[node_index * DOF_PER_NODE..];
+            source_receipt::scaled_norm([values[0], values[1], values[2]])
+        }).unwrap_or_else(|| displacement_magnitude(&displacements, node_index) * 1000.0);
         let result_id = format!("result:disp:{}", stable_suffix(&node.id));
         if max_displacement
             .as_ref()
-            .map(|q: &LocatedQuantity| magnitude * 1000.0 > q.value)
+            .map(|q: &LocatedQuantity| {
+                magnitude_mm > q.value
+                    || (pressure_runtime::is_exact(model)
+                        && magnitude_mm == q.value
+                        && node.id < q.location_ref)
+            })
             .unwrap_or(true)
         {
             max_displacement = Some(LocatedQuantity {
-                value: magnitude * 1000.0,
+                value: magnitude_mm,
                 unit: "mm".to_string(),
                 location_ref: node.id.clone(),
                 result_ref: result_id.clone(),
@@ -1431,7 +2081,7 @@ fn solve_load_case(
         results.push(ResultItem {
             id: result_id,
             kind: "displacement_magnitude".to_string(),
-            value: magnitude * 1000.0,
+            value: magnitude_mm,
             unit: "mm".to_string(),
             entity_ref: node.id.clone(),
             basis_ref: None,
@@ -1441,17 +2091,23 @@ fn solve_load_case(
     }
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
+        let first = results.len();
         append_node_displacement_component_results(
             &mut results,
             &node.id,
             &displacements,
             node_index,
         );
+        if let Some(recovery) = &selected_source {
+            for (component, row) in results[first..].iter_mut().enumerate() {
+                row.value = recovery.published_nodal_components()[node_index * DOF_PER_NODE + component];
+            }
+        }
     }
 
-    let reactions = selected_nonlinear
+    let reactions = selected_source.as_ref().map(|recovery| recovery.reactions().to_vec()).or_else(|| selected_nonlinear
         .as_ref()
-        .map(|solve| solve.reactions.clone())
+        .map(|solve| solve.reactions.clone()))
         .unwrap_or_else(|| {
             multiply_matrix_vector(stiffness, &displacements)
                 .into_iter()
@@ -1463,7 +2119,11 @@ fn solve_load_case(
     let mut support_force_vectors = HashMap::new();
     for support in &model.supports {
         if let Some(index) = node_index(model, &support.node) {
-            let mut vector = [0.0; 3];
+            let mut vector = [0.0; 6];
+            let source_action = selected_source.as_ref().and_then(|recovery| recovery.support_actions().iter().find(|action| action.support_id == support.id));
+            if let Some(action) = source_action {
+                vector = action.values;
+            } else {
             if let Some(linear) = built
                 .supports
                 .iter()
@@ -1471,7 +2131,7 @@ fn solve_load_case(
             {
                 for dof in &linear.restrained_dofs {
                     let slot = dof_index(*dof);
-                    if slot < 3 {
+                    if slot < 6 {
                         vector[slot] = reactions[index * DOF_PER_NODE + slot];
                     }
                 }
@@ -1481,7 +2141,7 @@ fn solve_load_case(
                 .filter(|item| item.support_id == support.id)
             {
                 let global = spring.node_dof.global_index();
-                if global % DOF_PER_NODE < 3 {
+                if global % DOF_PER_NODE < 6 {
                     vector[global % DOF_PER_NODE] = -spring.stiffness.value * displacements[global];
                 }
             }
@@ -1491,23 +2151,64 @@ fn solve_load_case(
                 .find(|item| item.support_id == support.id)
             {
                 let slot = dof_index(nonlinear.dof);
-                if slot < 3 {
+                if slot < 6 {
                     vector[slot] = reactions[index * DOF_PER_NODE + slot];
                 }
             }
+            }
+            if let Some(action) = source_action.filter(|_| !pressure_runtime::is_exact(model)) {
+                for (component, name) in ["Fx", "Fy", "Fz", "Mx", "My", "Mz"].iter().enumerate() {
+                    results.push(ResultItem {
+                        id: format!("result:support-component-v2:{}:{name}", exact_source_identity(&[&load_case.id, &support.id])),
+                        kind: "support_reaction_component_v2".into(),
+                        value: action.values[component],
+                        unit: if component < 3 { "N" } else { "N*m" }.into(),
+                        entity_ref: support.id.clone(), basis_ref: None, source_result_refs: Vec::new(),
+                        metadata: Some(ResultMetadata {
+                            basis: "recovered_from_assembled_support_law".into(), component: (*name).into(),
+                            coordinate_system: "global".into(), location: "node".into(),
+                            sign_convention: "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node".into(),
+                        }),
+                    });
+                }
+            }
             require_finite_mechanics(vector)?;
-            let magnitude = vector[0].hypot(vector[1]).hypot(vector[2]);
-            support_force_vectors.insert(support.id.clone(), vector);
-            results.push(ResultItem {
-                id: format!("result:reaction:{}", stable_suffix(&support.id)),
-                kind: "reaction_resultant".to_string(),
-                value: magnitude,
-                unit: "N".to_string(),
-                entity_ref: support.id.clone(),
-                basis_ref: None,
-                source_result_refs: Vec::new(),
-                metadata: None,
-            });
+            let force_vector = [vector[0], vector[1], vector[2]];
+            let magnitude = if selected_source.is_some() {
+                source_receipt::scaled_norm(force_vector)
+            } else {
+                force_vector[0].hypot(force_vector[1]).hypot(force_vector[2])
+            };
+            support_force_vectors.insert(support.id.clone(), [vector[0], vector[1], vector[2]]);
+            if pressure_runtime::is_exact(model) {
+                if let Some(selected) = selected_source.as_mut() {
+                    match source_receipt::composite_support_norms(&recovery_input(), selected, &support.id) {
+                        Ok(norms) => {
+                            append_signed_support_results(&mut results, load_case, support, vector);
+                            let end = results.len();
+                            results[end - 2].value = norms[0];
+                            results[end - 1].value = norms[1];
+                        }
+                        Err(error) => diagnostics.push(diag(
+                            &format!("diagnostic:source-recovery:{}:{}:support-norm", load_case.id, support.id),
+                            "SOURCE_BLOCK_RECOVERY_DERIVED_UNAVAILABLE", "blocking", error.0,
+                            vec![load_case.id.clone(), support.id.clone()],
+                        )),
+                    }
+                } else { append_signed_support_results(&mut results, load_case, support, vector); }
+            }
+            if !pressure_runtime::is_exact(model) {
+                results.push(ResultItem {
+                    id: format!("result:reaction:{}", stable_suffix(&support.id)),
+                    kind: "reaction_resultant".to_string(),
+                    value: magnitude,
+                    unit: "N".to_string(),
+                    entity_ref: support.id.clone(),
+                    basis_ref: None,
+                    source_result_refs: Vec::new(),
+                    metadata: None,
+                });
+            }
         }
     }
 
@@ -1520,6 +2221,8 @@ fn solve_load_case(
     );
 
     let mut max_stress = None;
+    let mut pipe_stress_extrema = Vec::new();
+    let mut unavailable_stress_maximum_members = Vec::new();
     let mut component_stress_modifier_count = 0;
     for (pipe_index, pipe) in built.pipes.iter().enumerate() {
         let macro_bend = curved_bends_by_pipe.get(&pipe_index).copied();
@@ -1548,7 +2251,11 @@ fn solve_load_case(
         } else {
             Vec::new()
         };
-        let corrected_local_forces = if let Some(bend) = macro_bend {
+        let mut exact_mechanical_local_forces = None;
+        let recovered_member = selected_source.as_ref().and_then(|recovery| recovery.members().get(pipe_index));
+        let corrected_local_forces = if let Some(member) = recovered_member {
+            member.end_forces.to_vec()
+        } else if let Some(bend) = macro_bend {
             // Macro-span end forces come from the assembled arc stiffness
             // (K_macro * d minus the exact free-expansion thermal part and
             // minus the arc-consistent distributed equivalent loads),
@@ -1603,18 +2310,60 @@ fn solve_load_case(
             };
             let mechanical =
                 std::array::from_fn::<_, ELEMENT_DOF, _>(|i| local.local_forces[i] - equivalent[i]);
-            corrected_local_forces_for_axial_effects(
+            let mut wall = corrected_local_forces_for_axial_effects(
                 &mechanical,
                 pipe_index,
                 &thermal_loads,
-                &pressure_thrust_loads,
-            )
+                if pressure_runtime::is_exact(model) {
+                    &[]
+                } else {
+                    &pressure_thrust_loads
+                },
+            );
+            if let Some(state) = exact_pressure
+                .as_ref()
+                .and_then(|case| case.pipe_states.get(&pipe_index))
+            {
+                exact_mechanical_local_forces = Some(wall.clone());
+                let ends = (
+                    state.annulus.recover_wall_effective_membrane(
+                        -wall[UX],
+                        state.material,
+                        state.pressure,
+                    ),
+                    state.annulus.recover_wall_effective_membrane(
+                        wall[DOF_PER_NODE + UX],
+                        state.material,
+                        state.pressure,
+                    ),
+                );
+                match ends {
+                    (Ok(i), Ok(j)) => {
+                        wall[UX] = -i.0;
+                        wall[DOF_PER_NODE + UX] = j.0;
+                    }
+                    _ => {
+                        diagnostics.push(diag(
+                            "diagnostic:exact-pressure:wall-action",
+                            "EXACT_PRESSURE_RECOVERY_FAILED",
+                            "blocking",
+                            "source pressure wall action cannot be represented",
+                            vec![load_case.id.clone(), pipe.element_id.clone()],
+                        ));
+                        continue;
+                    }
+                }
+            }
+            wall
         };
         require_finite_mechanics(corrected_local_forces.iter().copied())?;
         append_element_force_results(&mut results, &pipe.element_id, &corrected_local_forces);
         // Raw end rows remain node-on-element actions. Stress recovery and
         // station rows consume the common j-side section-cut convention.
-        let station_resultants = if let Some(bend) = macro_bend {
+        let station_resultants = if let Some(member) = recovered_member {
+            [("quarter_1", 1usize), ("midspan", 2), ("quarter_3", 3)].into_iter()
+                .map(|(location, index)| StationResultants { location, resultants: member.sections[index] }).collect::<Vec<_>>()
+        } else if let Some(bend) = macro_bend {
             match curved_bend_station_resultants(
                 bend,
                 pipe,
@@ -1670,7 +2419,16 @@ fn solve_load_case(
             }
             stations
         };
-        let endpoint_resultants = if let Some(bend) = macro_bend {
+        let endpoint_resultants = if let Some(member) = recovered_member {
+            if pressure_runtime::is_exact(model) {
+                // Composite stresses and endpoint maxima share the actual
+                // retained section-cut functionals, including endpoint zeros.
+                [member.sections[0], member.sections[4]]
+            } else {
+                // Retained source-blocks-1 keeps its original publication basis.
+                [std::array::from_fn(|i| -member.end_forces[i]), std::array::from_fn(|i| member.end_forces[6 + i])]
+            }
+        } else if let Some(bend) = macro_bend {
             let evaluate = |fraction| {
                 curved_bend_section_resultants(
                     bend,
@@ -1885,7 +2643,7 @@ fn solve_load_case(
                 summary_values.push(value);
             }
         }
-        if macro_bend.is_none() {
+        if macro_bend.is_none() && !pressure_runtime::is_exact(model) && recovered_member.is_none() {
             match straight_summary_extrema(
                 pipe,
                 &corrected_local_forces,
@@ -1904,7 +2662,86 @@ fn solve_load_case(
                 )),
             }
         }
-        let summary_value = summary_values.into_iter().reduce(f64::max);
+        let summary_value = if pressure_runtime::is_exact(model) && selected_source.is_some() {
+            let maximum = source_receipt::composite_member_maximum(
+                &recovery_input(), selected_source.as_mut().expect("selected source"), &pipe.element_id,
+            );
+            match maximum {
+                Ok(maximum) => {
+                    let value = maximum.value_pa();
+                    let result_id = format!("result:elastic-maximum:{}:{}:{}:{}", load_case.id.len(), load_case.id, pipe.element_id.len(), pipe.element_id);
+                    results.push(ResultItem { id: result_id.clone(), kind: "pipe_elastic_normal_stress_maximum_v2".into(), value, unit: "Pa".into(), entity_ref: pipe.element_id.clone(), basis_ref: None, source_result_refs: Vec::new(), metadata: Some(ResultMetadata {
+                        component: "maximum_absolute_normal_stress".into(), coordinate_system: "pipe_section".into(), location: "governing_station".into(), basis: "retained_source_endpoint_normal_max_v1".into(),
+                        sign_convention: "nonnegative maximum absolute axial-plus-bending normal stress over an unloaded circular straight span; retained endpoint actions with projected-action and arithmetic bounds; endpoint witness does not imply uniqueness; torsional shear separate".into(),
+                    }) });
+                    if max_stress.as_ref().is_none_or(|q: &LocatedQuantity| value > q.value || (value == q.value && pipe.element_id < q.location_ref)) {
+                        max_stress = Some(LocatedQuantity { value, unit: "Pa".into(), location_ref: pipe.element_id.clone(), result_ref: result_id.clone() });
+                    }
+                    pipe_stress_extrema.push(maximum.evidence(&result_id));
+                }
+                Err(error) => {
+                    unavailable_stress_maximum_members.push(pipe.element_id.clone());
+                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:{}:maximum",load_case.id,pipe.element_id), "SOURCE_ENDPOINT_MAXIMUM_UNAVAILABLE", "warning", error.0, vec![load_case.id.clone(),pipe.element_id.clone()]));
+                }
+            }
+            None
+        } else if pressure_runtime::is_exact(model) {
+            match exact_straight_summary_extrema(
+                pipe,
+                exact_mechanical_local_forces
+                    .as_ref()
+                    .map(Vec::as_slice)
+                    .unwrap_or(&corrected_local_forces),
+                &straight_loads,
+                section,
+                exact_pressure
+                    .as_ref()
+                    .and_then(|case| case.pipe_states.get(&pipe_index)),
+            ) {
+                Ok(maximum) => {
+                    let value =
+                        maximum.value_lower + 0.5 * (maximum.value_upper - maximum.value_lower);
+                    let result_id = format!(
+                        "result:elastic-maximum:{}:{}:{}:{}",
+                        load_case.id.len(),
+                        load_case.id,
+                        pipe.element_id.len(),
+                        pipe.element_id
+                    );
+                    results.push(ResultItem { id:result_id.clone(),kind:"pipe_elastic_normal_stress_maximum_v2".to_string(),value,unit:"Pa".to_string(),entity_ref:pipe.element_id.clone(),basis_ref:None,source_result_refs:Vec::new(),metadata:Some(ResultMetadata {
+                        component:"maximum_absolute_normal_stress".to_string(),coordinate_system:"pipe_section".to_string(),location:"governing_station".to_string(),basis:"recovered_from_open_mechanics_stress_components".to_string(),
+                        sign_convention:"nonnegative circumferential maximum |Nw/As|+hypot(My,Mz)/Z; bounded over all straight statics intervals; torsional shear remains separate; no code stress or equivalent stress claim".to_string() }) });
+                    if max_stress
+                        .as_ref()
+                        .map(|q: &LocatedQuantity| {
+                            value > q.value
+                                || (value == q.value && pipe.element_id < q.location_ref)
+                        })
+                        .unwrap_or(true)
+                    {
+                        max_stress = Some(LocatedQuantity {
+                            value,
+                            unit: "Pa".to_string(),
+                            location_ref: pipe.element_id.clone(),
+                            result_ref: result_id.clone(),
+                        });
+                    }
+                    pipe_stress_extrema.push(serde_json::json!({"pipe_id":pipe.element_id,"result_id":result_id,
+                        "station_fraction":maximum.station,"span_index":maximum.span_index,"local_fraction":maximum.local_fraction,
+                        "value_lower_pa":maximum.value_lower,"value_upper_pa":maximum.value_upper,"global_upper_bound_pa":maximum.upper_bound,
+                        "certified_gap_pa":maximum.certified_gap,"subdivisions":maximum.subdivisions,
+                        "approximation":"piecewise_quadratic_straight_section_statics","coefficient_basis":"j_side_section_equilibrium_binary64",
+                        "enclosure_scope":"supplied_binary64_polynomial_coefficients; solution and coefficient formation error are separate"}));
+                }
+                Err(error) => {
+                    unavailable_stress_maximum_members.push(pipe.element_id.clone());
+                    diagnostics.push(diag(&format!("diagnostic:exact-stress:{}:extrema",stable_suffix(&pipe.element_id)),"EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE","warning",format!("signed physical rows remain available; governing circular-normal-stress maximum is unavailable: {error}"),vec![load_case.id.clone(),pipe.element_id.clone()]));
+                }
+            }
+            None
+        } else {
+            summary_values.into_iter().reduce(f64::max)
+        };
         if let Some(value) = summary_value {
             let result_id = format!("result:stress:{}", stable_suffix(&pipe.element_id));
             if max_stress
@@ -1930,10 +2767,29 @@ fn solve_load_case(
                 metadata: None,
             });
         }
+        if let Some(state) = exact_pressure
+            .as_ref()
+            .and_then(|case| case.pipe_states.get(&pipe_index))
+        {
+            append_exact_pressure_results(
+                &mut results,
+                diagnostics,
+                load_case,
+                &pipe.element_id,
+                state,
+                &corrected_local_forces,
+                exact_mechanical_local_forces
+                    .as_ref()
+                    .expect("exact region member retains mechanical/thermal recovery"),
+                pipe,
+                &straight_loads,
+            );
+        }
         component_stress_modifier_count += append_component_stress_multiplier_results(
             &mut results,
             diagnostics,
             model,
+            &load_case.id,
             &pipe.element_id,
             &end_i_stress,
             &end_j_stress,
@@ -1942,7 +2798,98 @@ fn solve_load_case(
     }
 
     require_finite_mechanics(results.iter().map(|row| row.value))?;
+    let pressure_assembly_evidence = exact_pressure.as_ref().map(|p| p.assembly_evidence.clone());
+    let pressure_evidence = exact_pressure
+        .map(|mut p| {
+            for evidence in &mut p.evidence {
+                let region_id = evidence
+                    .get("region_id")
+                    .and_then(|id| id.as_str())
+                    .unwrap_or("");
+                let members = p
+                    .pipe_states
+                    .iter()
+                    .filter(|(_, state)| state.region_id == region_id)
+                    .map(|(index, _)| built.pipes[*index].element_id.as_str())
+                    .collect::<HashSet<_>>();
+                evidence["result_ids"] = serde_json::json!(results
+                    .iter()
+                    .filter(|r| members.contains(r.entity_ref.as_str())
+                        && r.kind.starts_with("pipe_")
+                        && r.kind.ends_with("_v2"))
+                    .map(|r| &r.id)
+                    .collect::<Vec<_>>());
+            }
+            p.evidence
+        })
+        .unwrap_or_default();
+    if pressure_runtime::is_exact(model) && !unavailable_stress_maximum_members.is_empty() {
+        max_stress = None;
+    }
+    let exact_case_evidence = pressure_runtime::is_exact(model).then(|| serde_json::json!({
+        "load_case_id":load_case.id,"profile_mode":"exact_straight_pressure_v2",
+        "material_basis":modulus_basis_record.unwrap_or("base_material_common_E_nu"),
+        "pressure_rhs_assembly":pressure_assembly_evidence,
+        "pipe_sections":built.pipes.iter().map(|pipe| exact_section_evidence(&pipe.element_id,*built.exact_sections.get(&pipe.element_id).expect("every built exact member has source geometry"))).collect::<Vec<_>>(),
+        "pipe_stress_extrema":pipe_stress_extrema,
+        "stress_maximum_coverage":{"complete":unavailable_stress_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_stress_maximum_members},
+        "pipe_materials":model.pipe_segments.iter().map(|pipe| {
+            let material=materials.iter().find(|m| m.id==pipe.material).expect("built exact member material is validated");
+            let thermal_consumed=load_case.primitive_loads.iter().any(|load| load.category=="thermal" && is_temperature_change_dimension(&load.dimension) && matches!(&load.target,LoadTargetInput::Element{pipe:target} if target==&pipe.id));
+            serde_json::json!({"pipe_id":pipe.id,"material_id":material.id,
+                "E_pa":material.elastic_modulus.value,"nu":material.poisson_ratio.as_ref().expect("validated exact nu").value,
+                "G_pa":material.shear_modulus.as_ref().expect("validated exact G").value,"constitutive_basis":material.constitutive_basis,
+                "thermal_consumed":thermal_consumed,"alpha_per_kelvin":if thermal_consumed {material.thermal_expansion_coefficient.as_ref().map(|a|a.value)} else {None},
+                "provenance":material.provenance})
+        }).collect::<Vec<_>>()
+    }));
+    let source_selected = selected_source.is_some();
+    let source_case = if let Some(capture) = capture {
+        let qualified = qualify_source_case_rows(model, &load_case.id, &results);
+        let finalized = if let Some(selected) = selected_source.take() {
+            match source_row_bindings(&selected, &qualified) {
+                Ok(bindings) => {
+                    if pressure_runtime::is_exact(model) {
+                        let mut physical = exact_case_evidence.clone().expect("exact physical evidence");
+                        physical["recovery_method"] = serde_json::json!("retained_source_blocks_exact_v1");
+                        source_receipt::FinalizedSourceBlockCase::composite_exact(capture, recovery_input(), selected, ordinary_attempt, &qualified, &bindings, &physical)
+                    } else {
+                        source_receipt::FinalizedSourceBlockCase::exact(capture, recovery_input(), selected, ordinary_attempt, &qualified, &bindings)
+                    }
+                },
+                Err(message) => Err(source_receipt::ReceiptError(message, Some(selected.summary().work))),
+            }
+        } else if let Some(failure) = &source_failure {
+            source_receipt::FinalizedSourceBlockCase::failed(capture, &load_case.id, ordinary_attempt, failure, &format!("diagnostic:source-recovery:{}", load_case.id), &qualified)
+        } else if pressure_runtime::is_exact(model) {
+            let mut physical = exact_case_evidence.clone().expect("exact physical evidence");
+            physical["recovery_method"] = serde_json::json!(if solver_mode == PreviewSolverMode::DenseScrutiny { "ordinary_dense_structural_v1" } else { "ordinary_sparse_structural_v1" });
+            source_receipt::FinalizedSourceBlockCase::ordinary_physics(capture, &load_case.id, ordinary_attempt, &qualified, &physical, &pressure_evidence)
+        } else {
+            source_receipt::FinalizedSourceBlockCase::ordinary(capture, &load_case.id, ordinary_attempt, &qualified)
+        };
+        match finalized {
+            Ok(case) => {
+                if source_selected { source_budget.debit(case.charged_work(), false); }
+                if source_selected && !case.is_qualified() {
+                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:derived-unqualified", load_case.id), "SOURCE_RECOVERY_DERIVED_UNQUALIFIED", "warning", "Primary source projections are retained, but an unsupported derived row withholds whole-envelope numerical use", vec![load_case.id.clone()]));
+                }
+                Some(case)
+            }
+            Err(error) => {
+                if source_selected {
+                    if let Some(work) = error.1 { source_budget.debit(work.charged, true); }
+                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:finalization", load_case.id), "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED", "blocking", format!("{}; actual_finalization_work={:?}", error.0, error.1), vec![load_case.id.clone()]));
+                }
+                None
+            }
+        }
+    } else { None };
     Ok(LoadCaseSolve {
+        exact_case_evidence,
+        pressure_evidence,
+        source_case,
+        source_selected,
         load_case_id: load_case.id.clone(),
         results,
         max_displacement,
@@ -1951,6 +2898,46 @@ fn solve_load_case(
         component_pressure_thrust_load_count,
         support_force_vectors,
     })
+}
+
+fn qualify_source_case_rows(model: &PreviewModel, case_id: &str, rows: &[ResultItem]) -> Vec<ResultItem> {
+    let is_default = model.load_cases.first().is_some_and(|case| case.id == case_id);
+    let ids: HashMap<_, _> = rows.iter().map(|row| (row.id.clone(), if is_default || (pressure_runtime::is_exact(model) && row.kind.ends_with("_v2")) { row.id.clone() } else { qualified_load_case_result_id(case_id, &row.id) })).collect();
+    rows.iter().cloned().map(|mut row| {
+        row.id = ids[&row.id].clone();
+        row.basis_ref = Some(ResultBasisRef { ref_type: "load_case".into(), ref_id: case_id.into() });
+        for reference in &mut row.source_result_refs {
+            if let Some(qualified) = ids.get(reference) { *reference = qualified.clone(); }
+        }
+        row
+    }).collect()
+}
+
+fn source_row_bindings(
+    selected: &source_recovery::SelectedSourceRecovery,
+    rows: &[ResultItem],
+) -> Result<Vec<source_receipt::FunctionalRowBinding>, String> {
+    use open_pipe_stress_frame_kernel::structural::exact_boundary::functionals::{FunctionalQuantity, MemberEnd};
+    let force_kinds = ["element_local_axial_force", "element_local_shear_force_y", "element_local_shear_force_z", "element_local_torsional_moment", "element_local_bending_moment_y", "element_local_bending_moment_z"];
+    let node_kinds = ["global_nodal_displacement_x", "global_nodal_displacement_y", "global_nodal_displacement_z", "global_nodal_rotation_x", "global_nodal_rotation_y", "global_nodal_rotation_z"];
+    let mut bindings = Vec::new();
+    for (index, descriptor) in selected.retained().descriptors().iter().enumerate() {
+        let (entity, kind, location, component) = match &descriptor.key.quantity {
+            FunctionalQuantity::NodeDisplacement { node, dof } => (node.as_str(), node_kinds[dof % 6], "node", None),
+            FunctionalQuantity::MemberEnd { member, end, row } => (member.as_str(), force_kinds[*row as usize], if *end == MemberEnd::I { "end_i" } else { "end_j" }, None),
+            FunctionalQuantity::MemberSection { member, station_bits, component } => {
+                let station = f64::from_bits(*station_bits);
+                let location = if station == 0.25 { "quarter_1" } else if station == 0.5 { "midspan" } else if station == 0.75 { "quarter_3" } else { continue };
+                (member.as_str(), force_kinds[*component as usize], location, None)
+            }
+            FunctionalQuantity::SupportAction { support, component, .. } => (support.as_str(), "support_reaction_component_v2", "node", Some(["Fx", "Fy", "Fz", "Mx", "My", "Mz"][*component as usize])),
+            _ => continue,
+        };
+        let matched: Vec<_> = rows.iter().filter(|row| row.entity_ref == entity && row.kind == kind && row.metadata.as_ref().is_some_and(|metadata| metadata.location == location && component.map_or(true, |name| metadata.component == name))).collect();
+        if matched.len() != 1 { return Err(format!("source functional row binding is not unique: {entity}/{kind}/{location}")); }
+        bindings.push(source_receipt::FunctionalRowBinding { functional_index: index, result_id: matched[0].id.clone() });
+    }
+    Ok(bindings)
 }
 
 #[derive(Debug, Default)]
@@ -1964,6 +2951,7 @@ struct NonlinearSupportBuild {
 fn append_nonlinear_support_loop_results(
     results: &mut Vec<ResultItem>,
     diagnostics: &mut Vec<Diagnostic>,
+    model: &PreviewModel,
     built: &BuiltModel,
     restrained_dofs: &[usize],
     force: &[f64],
@@ -1982,11 +2970,9 @@ fn append_nonlinear_support_loop_results(
     // fallback exists on this path.
     let mut curved_bend_stiffness_elements = Vec::with_capacity(built.curved_bend_elements.len());
     for element in &built.curved_bend_elements {
-        match CurvedBendStiffnessElement::new(
+        match CurvedBendStiffnessElement::from_macro_element(
             element.component_id.clone(),
-            element.node_i,
-            element.node_j,
-            element.global_stiffness,
+            &element.macro_element,
         ) {
             Ok(slot) => curved_bend_stiffness_elements.push(slot),
             Err(error) => {
@@ -2032,6 +3018,28 @@ fn append_nonlinear_support_loop_results(
         &springs,
     ) {
         Ok(solve) => {
+            if solve.converged {
+                match open_pipe_stress_nonlinear_integration::product_selected_state_is_qualified(
+                    &input, &springs, &solve,
+                ) {
+                    Ok(true) => {}
+                    Ok(false)
+                        if matches!(
+                            open_pipe_stress_nonlinear_integration::product_unsupported_gap_state_is_inspectable(
+                                &input, &springs, &solve,
+                            ),
+                            Ok(true)
+                        ) => {}
+                    outcome => {
+                        let error=StructuralError::NumericallyUnresolved{reason:"M03 product final same-state equilibrium/contact qualification failed",global_dof:None};
+                        append_integrity_failure(diagnostics, &load_case.id, &error, model);
+                        if let Err(error) = outcome {
+                            diagnostics.push(nonlinear_loop_blocked_diag(&load_case.id, error));
+                        }
+                        return None;
+                    }
+                }
+            }
             for (index, solver_diagnostic) in solve.diagnostics.iter().enumerate() {
                 diagnostics.push(product_diag_from_solver_diag(
                     solver_diagnostic,
@@ -2098,6 +3106,7 @@ fn append_nonlinear_support_loop_results(
                 append_nonlinear_residual_observation_results(
                     results,
                     &final_iteration.residuals,
+                    &final_iteration.product_equilibrium,
                     &solve.policy_ref,
                     solver_mode,
                 );
@@ -2219,13 +3228,13 @@ fn append_nonlinear_support_loop_results(
                 },
                 if solve.converged { "info" } else { "warning" },
                 format!(
-                    "{} nonlinear support active-set preview completed {} iteration(s); final residual count {}; accepted active-set-count policy_ref={}; accepted free-DOF force/moment residual policy_ref={}; accepted free-DOF work residual policy_ref={}; accepted general-energy residual policy_ref={}; accepted displacement/reaction-delta policy_ref={} for emitted product-preview delta rows; timing/RSS/hardware sparse evidence remains observational, not thresholded",
+                    "{} nonlinear support active-set preview completed {} iteration(s); final residual count {}; accepted active-set-count policy_ref={}; prospective evaluated force/moment equilibrium policy_ref={}; derived per-row residual-work policy_ref={}; historical general-energy alias is residual work, not total energy balance; historical policy_ref={}; accepted displacement/reaction-delta policy_ref={} for emitted product-preview delta rows; timing/RSS/hardware sparse evidence remains observational, not thresholded",
                     solver_mode.as_str(),
                     solve.iterations.len(),
                     final_residual,
                     solve.policy_ref,
-                    DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF,
-                    DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF,
+                    open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY,
+                    open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY,
                     DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF,
                     DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_POLICY_REF
                 ),
@@ -2234,6 +3243,9 @@ fn append_nonlinear_support_loop_results(
             Some(solve)
         }
         Err(error) => {
+            if let NonlinearIntegrationError::Structural(structural) = &error {
+                append_integrity_failure(diagnostics, &load_case.id, structural, model);
+            }
             diagnostics.push(nonlinear_loop_blocked_diag(&load_case.id, error));
             None
         }
@@ -2268,6 +3280,7 @@ fn product_preview_policy_support_classes(supports: &[NonlinearSupport]) -> Vec<
 
 #[derive(Debug, Clone)]
 struct PreviewLinearSolve {
+    structural_report: StructuralReport,
     solution: Vec<f64>,
     solution_basis: &'static str,
     sparse_entry_count: Option<usize>,
@@ -2283,107 +3296,86 @@ struct PreviewLinearSolve {
 
 fn solve_preview_reduced_system(
     solver_mode: PreviewSolverMode,
-    reduced_stiffness: &[Vec<f64>],
-    reduced_force: &[f64],
+    original_stiffness: &[Vec<f64>],
+    _reduced_force: &[f64],
     built: &BuiltModel,
     spring_entries: &[SpringEntry],
     global_force: &[f64],
     restrained_dofs: &[usize],
-    load_case: &PreviewLoadCase,
-    diagnostics: &mut Vec<Diagnostic>,
-) -> Result<PreviewLinearSolve, FrameKernelError> {
-    match solver_mode {
-        PreviewSolverMode::SparseInteractive => {
-            let direct_system = match assemble_reduced_sparse_entry_system(
-                built.nodes.len(),
-                &built.frame_elements,
-                &built.user_stiffness_elements,
-                &built.curved_bend_elements,
-                spring_entries,
-                global_force,
-                restrained_dofs,
-            ) {
-                Ok(system) => system,
-                Err(error) => {
-                    let message = error.to_string();
-                    diagnostics.push(sparse_interactive_fallback_diag(&load_case.id, &message));
-                    let solution = solve_dense(reduced_stiffness, reduced_force)?;
-                    return Ok(PreviewLinearSolve {
-                        solution,
-                        solution_basis: "dense_fallback_after_sparse_failure",
-                        sparse_entry_count: None,
-                        original_profile_entry_count: None,
-                        ordered_profile_entry_count: None,
-                        original_max_half_bandwidth: None,
-                        ordered_max_half_bandwidth: None,
-                        nonpositive_pivot_count: None,
-                        pivot_condition_ratio_estimate: None,
-                        sparse_residual: None,
-                        dense_fallback_message: Some(message),
-                    });
-                }
-            };
-            match solve_symmetric_system_from_entries(
-                direct_system.dimension,
-                &direct_system.entries,
-                &direct_system.force,
-            ) {
-                Ok(sparse) => {
-                    let sparse_residual = max_abs_entry_residual(
-                        direct_system.dimension,
-                        &direct_system.entries,
-                        &sparse.solution,
-                        &direct_system.force,
-                    );
-                    Ok(PreviewLinearSolve {
-                        solution: sparse.solution,
-                        solution_basis: "sparse_profile_direct_primary",
-                        sparse_entry_count: Some(direct_system.entries.len()),
-                        original_profile_entry_count: Some(sparse.original_profile_entry_count),
-                        ordered_profile_entry_count: Some(sparse.ordered_profile_entry_count),
-                        original_max_half_bandwidth: Some(sparse.original_max_half_bandwidth),
-                        ordered_max_half_bandwidth: Some(sparse.ordered_max_half_bandwidth),
-                        nonpositive_pivot_count: Some(sparse.factorization.nonpositive_pivot_count),
-                        pivot_condition_ratio_estimate: sparse
-                            .factorization
-                            .pivot_condition_ratio_estimate,
-                        sparse_residual: Some(sparse_residual),
-                        dense_fallback_message: None,
-                    })
-                }
-                Err(error) => {
-                    let message = error.to_string();
-                    diagnostics.push(sparse_interactive_fallback_diag(&load_case.id, &message));
-                    Ok(PreviewLinearSolve {
-                        solution: solve_dense(reduced_stiffness, reduced_force)?,
-                        solution_basis: "dense_fallback_after_sparse_failure",
-                        sparse_entry_count: Some(direct_system.entries.len()),
-                        original_profile_entry_count: None,
-                        ordered_profile_entry_count: None,
-                        original_max_half_bandwidth: None,
-                        ordered_max_half_bandwidth: None,
-                        nonpositive_pivot_count: None,
-                        pivot_condition_ratio_estimate: None,
-                        sparse_residual: None,
-                        dense_fallback_message: Some(message),
-                    })
-                }
-            }
-        }
-        PreviewSolverMode::DenseScrutiny => Ok(PreviewLinearSolve {
-            solution: solve_dense(reduced_stiffness, reduced_force)?,
-            solution_basis: "dense_scrutiny_primary",
-            sparse_entry_count: None,
-            original_profile_entry_count: None,
-            ordered_profile_entry_count: None,
-            original_max_half_bandwidth: None,
-            ordered_max_half_bandwidth: None,
-            nonpositive_pivot_count: None,
-            pivot_condition_ratio_estimate: None,
-            sparse_residual: None,
-            dense_fallback_message: None,
-        }),
-    }
+    _load_case: &PreviewLoadCase,
+    _diagnostics: &mut Vec<Diagnostic>,
+) -> Result<PreviewLinearSolve, StructuralError> {
+    let curved = built
+        .curved_bend_elements
+        .iter()
+        .map(|e| {
+            CurvedBendStiffnessElement::from_macro_element(e.component_id.clone(), &e.macro_element)
+        })
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|_| StructuralError::InvalidInput("curved formation evidence"))?;
+    let springs = spring_entries
+        .iter()
+        .map(|e| (e.node_dof.global_index(), e.stiffness.value))
+        .collect::<Vec<_>>();
+    let assembly = AssemblyEvidence::new(
+        built.nodes.len(),
+        &built.frame_elements,
+        &built.user_stiffness_elements,
+        &curved,
+        &springs,
+    )?;
+    let free = (0..global_force.len())
+        .filter(|i| !restrained_dofs.contains(i))
+        .collect::<Vec<_>>();
+    let prescribed = restrained_dofs
+        .iter()
+        .map(|&i| (i, 0.0))
+        .collect::<Vec<_>>();
+    let mode = match solver_mode {
+        PreviewSolverMode::DenseScrutiny => LinearSolveMode::DenseScrutiny,
+        PreviewSolverMode::SparseInteractive => LinearSolveMode::SparseInteractive,
+    };
+    let checked = assembly.solve(original_stiffness, global_force, &free, &prescribed, mode)?;
+    // Legacy raw DEC050/053 observations retain their own unscaled algorithm.
+    // They neither select the solution nor rescue a rejected structural gate.
+    let direct = assemble_reduced_sparse_entry_system(
+        built.nodes.len(),
+        &built.frame_elements,
+        &built.user_stiffness_elements,
+        &built.curved_bend_elements,
+        spring_entries,
+        global_force,
+        restrained_dofs,
+    )
+    .ok();
+    let legacy = direct
+        .as_ref()
+        .and_then(|d| solve_symmetric_system_from_entries(d.dimension, &d.entries, &d.force).ok());
+    let residual = direct
+        .as_ref()
+        .zip(legacy.as_ref())
+        .map(|(d, l)| max_abs_entry_residual(d.dimension, &d.entries, &l.solution, &d.force));
+    Ok(PreviewLinearSolve {
+        solution: free.iter().map(|&i| checked.displacements[i]).collect(),
+        structural_report: checked.report,
+        solution_basis: match solver_mode {
+            PreviewSolverMode::DenseScrutiny => "dense_structural_integrity_primary",
+            PreviewSolverMode::SparseInteractive => "sparse_structural_integrity_primary",
+        },
+        sparse_entry_count: direct.as_ref().map(|d| d.entries.len()),
+        original_profile_entry_count: legacy.as_ref().map(|l| l.original_profile_entry_count),
+        ordered_profile_entry_count: legacy.as_ref().map(|l| l.ordered_profile_entry_count),
+        original_max_half_bandwidth: legacy.as_ref().map(|l| l.original_max_half_bandwidth),
+        ordered_max_half_bandwidth: legacy.as_ref().map(|l| l.ordered_max_half_bandwidth),
+        nonpositive_pivot_count: legacy
+            .as_ref()
+            .map(|l| l.factorization.nonpositive_pivot_count),
+        pivot_condition_ratio_estimate: legacy
+            .as_ref()
+            .and_then(|l| l.factorization.pivot_condition_ratio_estimate),
+        sparse_residual: residual,
+        dense_fallback_message: None,
+    })
 }
 
 fn append_linear_solver_mode_evidence(
@@ -2394,7 +3386,7 @@ fn append_linear_solver_mode_evidence(
 ) {
     let fallback = linear_solve.dense_fallback_message.is_some();
     let basis = format!(
-        "DEC-053 sparse_default_promotion; solver_mode={}; solution_basis={}; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; nonpositive_pivots={}; pivot_condition_ratio_proxy={}; max_abs_sparse_residual={}; dense_fallback={}; dense_fallback_message={}",
+        "DEC-053 sparse_default_promotion; solver_mode={}; solution_basis={}; structural_policy=M03-INTEGRITY-v1; profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053;  default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; nonpositive_pivots={}; pivot_condition_ratio_proxy={}; max_abs_sparse_residual={}; dense_fallback={}; dense_fallback_message={}",
         solver_mode.as_str(),
         linear_solve.solution_basis,
         optional_usize(linear_solve.sparse_entry_count),
@@ -2432,21 +3424,6 @@ fn append_linear_solver_mode_evidence(
     });
 }
 
-fn sparse_interactive_fallback_diag(load_case_id: &str, message: &str) -> Diagnostic {
-    diag(
-        &format!(
-            "diagnostic:sparse-interactive:{}:dense-fallback",
-            stable_suffix(load_case_id)
-        ),
-        "SPARSE_INTERACTIVE_DENSE_FALLBACK",
-        "warning",
-        format!(
-            "DEC-053 sparse interactive solve could not complete for load case {load_case_id}; dense fallback was used and the result basis is explicit: {message}"
-        ),
-        vec![load_case_id.to_string(), "DEC-053".to_string()],
-    )
-}
-
 fn optional_usize(value: Option<usize>) -> String {
     value
         .map(|value| value.to_string())
@@ -2456,7 +3433,7 @@ fn optional_usize(value: Option<usize>) -> String {
 fn optional_f64(value: Option<f64>) -> String {
     value
         .filter(|value| value.is_finite())
-        .map(|value| round6(value).to_string())
+        .map(|value| value.to_string())
         .unwrap_or_else(|| "not_observed".to_string())
 }
 
@@ -2578,8 +3555,8 @@ fn append_sparse_live_path_evidence(
                 sparse.ordered_profile_entry_count,
                 sparse.original_max_half_bandwidth,
                 sparse.ordered_max_half_bandwidth,
-                round6(max_abs_dense_sparse_solution_delta),
-                round6(sparse_residual),
+                max_abs_dense_sparse_solution_delta,
+                sparse_residual,
                 sparse.factorization.nonpositive_pivot_count
             ),
             sign_convention:
@@ -2836,6 +3813,7 @@ fn append_nonlinear_scalar_result(
 fn append_nonlinear_residual_observation_results(
     results: &mut Vec<ResultItem>,
     residuals: &NonlinearResidualObservation,
+    equilibrium: &open_pipe_stress_nonlinear_integration::product_equilibrium::ProductEquilibriumReport,
     policy_ref: &str,
     solver_mode: PreviewSolverMode,
 ) {
@@ -2850,20 +3828,11 @@ fn append_nonlinear_residual_observation_results(
         DEC_046_PRODUCT_PREVIEW_MOMENT_REACTION_DELTA_ABSOLUTE_LIMIT_N_M
     );
     let free_dof_work_threshold_basis = format!(
-        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; residual_basis=free_dof_work_residual; work_threshold={} N*m; general_energy_threshold_policy_ref={}; general_energy_threshold_policy_status=accepted; general_energy_threshold={} N*m; product_preview_only",
-        solver_mode.as_str(),
-        DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF,
-        DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_ABSOLUTE_LIMIT,
-        DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF,
-        DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_ABSOLUTE_LIMIT
-    );
+        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; observed_compliance={}; residual_basis=free_dof_work_residual; work_target=per_row_abs_u_times_tau_times_original_denominator_with_evaluation_allowance; observed_governing_global_dof={:?}; general_energy_alias=residual_work_not_total_energy_balance; historical_superseded_policy_refs={},{}, historical_limits={} N*m,{} N*m; product_preview_only",
+        solver_mode.as_str(),equilibrium.policy,equilibrium.passed,equilibrium.observed_governing_work_dof,DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF,DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF,DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_ABSOLUTE_LIMIT,DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_ABSOLUTE_LIMIT);
     let force_moment_threshold_basis = format!(
-        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; residual_basis=free_dof_force_moment_equilibrium; force_threshold={} N; moment_threshold={} N*m; product_preview_only",
-        solver_mode.as_str(),
-        DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF,
-        DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_ABSOLUTE_LIMIT,
-        DEC_046_PRODUCT_PREVIEW_FREE_DOF_MOMENT_ABSOLUTE_LIMIT
-    );
+        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; observed_compliance={}; residual_basis=free_dof_force_moment_equilibrium; target=64*gamma(actual_row_operation_count); original_full_equations_with_prescribed_coupling; evaluation_allowance_and_denominator_guard; historical_superseded_policy_ref={}; historical_zero_limits={} N,{} N*m; product_preview_only",
+        solver_mode.as_str(),equilibrium.policy,equilibrium.passed,DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF,DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_ABSOLUTE_LIMIT,DEC_046_PRODUCT_PREVIEW_FREE_DOF_MOMENT_ABSOLUTE_LIMIT);
     if let Some(value) = residuals.max_abs_translation_delta_from_previous {
         append_nonlinear_scalar_result(
             results,
@@ -2924,7 +3893,7 @@ fn append_nonlinear_residual_observation_results(
         results,
         "result:nonlinear-support:free-dof-force-residual",
         "nonlinear_support_observed_free_dof_force_residual",
-        residuals.max_abs_free_dof_force_residual,
+        equilibrium.rows.iter().filter(|r|r.global_dof%6<3).map(|r|r.residual.abs()).fold(0.0,f64::max),
         "N",
         "nonlinear_supports",
         "observed_free_dof_force_residual",
@@ -2936,7 +3905,7 @@ fn append_nonlinear_residual_observation_results(
         results,
         "result:nonlinear-support:free-dof-moment-residual",
         "nonlinear_support_observed_free_dof_moment_residual",
-        residuals.max_abs_free_dof_moment_residual,
+        equilibrium.rows.iter().filter(|r|r.global_dof%6>=3).map(|r|r.residual.abs()).fold(0.0,f64::max),
         "N*m",
         "nonlinear_supports",
         "observed_free_dof_moment_residual",
@@ -2948,7 +3917,11 @@ fn append_nonlinear_residual_observation_results(
         results,
         "result:nonlinear-support:free-dof-work-residual",
         "nonlinear_support_free_dof_work_residual",
-        residuals.max_abs_free_dof_work_residual,
+        equilibrium
+            .work_rows
+            .iter()
+            .map(|r| r.observed_work)
+            .fold(0.0, f64::max),
         "N*m",
         "nonlinear_supports",
         "free_dof_work_residual",
@@ -3421,6 +4394,7 @@ fn build_model(
     let mut pipes = Vec::new();
     let mut frame_elements = Vec::new();
     let mut sections = HashMap::new();
+    let mut exact_sections = HashMap::new();
     for pipe in &model.pipe_segments {
         let Some(&from) = node_map.get(pipe.from.as_str()) else {
             diagnostics.push(diag(
@@ -3446,9 +4420,27 @@ fn build_model(
             diagnostics.push(diag(&format!("diagnostic:material:{}", stable_suffix(&pipe.material)), "MATERIAL_INPUT_MISSING", "blocking", "pipe material requires explicit elastic and shear modulus inputs; no defaults are applied", vec![pipe.id.clone(), pipe.material.clone()]));
             continue;
         };
-        let Some(derived) = derive_pipe_section(&pipe.section, &pipe.id, diagnostics) else {
+        let Some(mut derived) = derive_pipe_section(&pipe.section, &pipe.id, diagnostics) else {
             continue;
         };
+        if pressure_runtime::is_exact(model) {
+            let geometry = match pressure_exact::SourceAnnulus::from_od_wall(
+                pipe.section.outside_diameter.value,
+                derived.wall_thickness,
+            ) {
+                Ok(geometry) => geometry,
+                Err(error) => {
+                    diagnostics.push(diag(&format!("diagnostic:exact-section:{}",stable_suffix(&pipe.id)),"EXACT_SECTION_GEOMETRY_UNREPRESENTABLE","blocking",format!("source OD/effective-wall annulus requires distinct positive represented radii and finite positive area/I/J/Z: {error:?}"),vec![pipe.id.clone()]));
+                    continue;
+                }
+            };
+            derived.area = geometry.wall_area_m2();
+            derived.internal_area = geometry.internal_area_m2();
+            derived.second_moment = geometry.second_moment_m4();
+            derived.torsion_constant = geometry.polar_moment_m4();
+            derived.section_modulus = geometry.section_modulus_m3();
+            exact_sections.insert(pipe.id.clone(), geometry);
+        }
         let Some(y_reference) = pipe.y_reference else {
             diagnostics.push(diag(
                 &format!("diagnostic:pipe-orientation:{}", stable_suffix(&pipe.id)),
@@ -3461,7 +4453,11 @@ fn build_model(
         };
         let section = match StraightPipeSectionProperties::new(
             material.elastic_modulus.value,
-            material.shear_modulus.value,
+            material
+                .shear_modulus
+                .as_ref()
+                .expect("validated material G")
+                .value,
             derived.area,
             derived.second_moment,
             derived.second_moment,
@@ -3582,6 +4578,7 @@ fn build_model(
         .collect::<Vec<_>>();
 
     Some(BuiltModel {
+        exact_sections,
         nodes,
         pipes,
         frame_elements,
@@ -3957,8 +4954,8 @@ fn build_curved_bend_macro_elements(
                 pipe_ref,
                 &format!(
                     "user-entered bend radius {} m cannot span the {} m chord; the arc included angle would reach or exceed pi",
-                    rounded_scalar(bend_radius),
-                    rounded_scalar(chord_length)
+                    scalar_string(bend_radius),
+                    scalar_string(chord_length)
                 ),
             ));
             continue;
@@ -3974,8 +4971,8 @@ fn build_curved_bend_macro_elements(
                     pipe_ref,
                     &format!(
                         "user-entered bend angle {} rad disagrees with the included angle {} rad implied by the user chord and bend radius; make the chord, radius, and angle arc-consistent",
-                        rounded_scalar(user_angle),
-                        rounded_scalar(implied_included_angle)
+                        scalar_string(user_angle),
+                        scalar_string(implied_included_angle)
                     ),
                 ));
                 continue;
@@ -4024,7 +5021,11 @@ fn build_curved_bend_macro_elements(
             nodes[to_index],
             center,
             material.elastic_modulus.value,
-            material.shear_modulus.value,
+            material
+                .shear_modulus
+                .as_ref()
+                .expect("validated material G")
+                .value,
             section.area,
             section.second_moment,
             section.torsion_constant,
@@ -4316,6 +5317,7 @@ fn normalize_model_units(
     diagnostics: &mut Vec<Diagnostic>,
 ) {
     normalize_node_coordinates(model, diagnostics);
+    pressure_runtime::normalize_region_units(model, diagnostics);
     for material in materials {
         normalize_quantity(
             &mut material.elastic_modulus,
@@ -4327,16 +5329,18 @@ fn normalize_model_units(
             vec![material.id.clone(), "elastic_modulus".to_string()],
             diagnostics,
         );
-        normalize_quantity(
-            &mut material.shear_modulus,
-            Dimension::Stress,
-            &format!(
-                "diagnostic:unit-conversion:material:{}:shear-modulus",
-                stable_suffix(&material.id)
-            ),
-            vec![material.id.clone(), "shear_modulus".to_string()],
-            diagnostics,
-        );
+        if let Some(shear_modulus) = &mut material.shear_modulus {
+            normalize_quantity(
+                shear_modulus,
+                Dimension::Stress,
+                &format!(
+                    "diagnostic:unit-conversion:material:{}:shear-modulus",
+                    stable_suffix(&material.id)
+                ),
+                vec![material.id.clone(), "shear_modulus".to_string()],
+                diagnostics,
+            );
+        }
         if let Some(coefficient) = &mut material.thermal_expansion_coefficient {
             normalize_quantity(
                 coefficient,
@@ -5895,6 +6899,9 @@ fn materials_for_modulus_basis(
     load_case: &PreviewLoadCase,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Option<(Vec<MaterialInput>, String)> {
+    if pressure_runtime::is_exact(model) {
+        return pressure_material::resolve_case(model, materials, load_case, diagnostics);
+    }
     let load_case_id = &load_case.id;
     let used_material_ids = model
         .pipe_segments
@@ -6196,7 +7203,9 @@ fn materials_for_modulus_basis(
         resolved.push(MaterialInput {
             id: material.id.clone(),
             elastic_modulus,
-            shear_modulus,
+            shear_modulus: Some(shear_modulus),
+            constitutive_basis: material.constitutive_basis.clone(),
+            poisson_ratio: material.poisson_ratio.clone(),
             thermal_expansion_coefficient,
             temperature_points: material.temperature_points.clone(),
             provenance: material.provenance.clone(),
@@ -6466,6 +7475,96 @@ fn straight_section_resultants(
         -section.bending_moment_y,
         -section.bending_moment_z,
     ])
+}
+
+fn exact_section_evidence(pipe_id: &str, g: pressure_exact::SourceAnnulus) -> serde_json::Value {
+    serde_json::json!({"pipe_id":pipe_id,"geometry_basis":"authored_normalized_od_wall_v1",
+        "outside_diameter_m":g.outside_diameter_m(),"effective_wall_thickness_m":g.effective_wall_thickness_m(),
+        "ri_m":g.inner_radius_m(),"ro_m":g.outer_radius_m(),"Ai_m2":g.internal_area_m2(),"As_m2":g.wall_area_m2(),
+        "I_m4":g.second_moment_m4(),"J_m4":g.polar_moment_m4(),"Z_m3":g.section_modulus_m3()})
+}
+
+fn exact_straight_summary_extrema(
+    pipe: &StraightPipeElement,
+    end_forces: &[f64],
+    loads: &[SpannedUniformLocalLoad],
+    section: &DerivedSection,
+    pressure_state: Option<&pressure_runtime::ExactPressurePipeState>,
+) -> Result<open_pipe_stress_stress_recovery::elastic_extrema::CertifiedStressMaximum, String> {
+    use open_pipe_stress_stress_recovery::elastic_extrema::{
+        bound_piecewise_elastic_maximum, QuadraticStressSpan,
+    };
+    let length = pipe.length().map_err(|e| e.to_string())?;
+    let mut boundaries = vec![0.0, 1.0];
+    for load in loads {
+        boundaries.extend([load.span.start_fraction, load.span.end_fraction]);
+    }
+    boundaries.sort_by(f64::total_cmp);
+    boundaries.dedup();
+    let mut spans = Vec::new();
+    for bounds in boundaries.windows(2) {
+        let (a, b) = (bounds[0], bounds[1]);
+        let h = (b - a) * length;
+        let r =
+            straight_section_resultants(pipe, end_forces, loads, a).map_err(|e| e.to_string())?;
+        let mut w = [0.0; 3];
+        for load in loads
+            .iter()
+            .filter(|l| l.span.start_fraction <= a && l.span.end_fraction >= b)
+        {
+            let axis = match load.direction {
+                LocalLoadDirection::X => 0,
+                LocalLoadDirection::Y => 1,
+                LocalLoadDirection::Z => 2,
+            };
+            w[axis] += load.force_per_length;
+        }
+        // Direct j-side statics: N'=-wx, My'=Vz, Mz'=-Vy; My''=-wz, Mz''=wy.
+        // Convert power coefficients on u in [0,1] to Bernstein controls.
+        let bernstein = |c0: f64, c1: f64, c2: f64| [c0, c0 + 0.5 * c1, c0 + c1 + c2];
+        // Pressure members arrive with mechanical/thermal actions. Form the
+        // constant membrane stress before rounding the pressure wall force;
+        // a subnormal force can still carry a normal representable stress.
+        // Uniform pressure is constant on the member, so the axial slope and
+        // the unchanged nonaxial section statics retain their original basis.
+        let axial = if let Some(state) = pressure_state {
+            state
+                .annulus
+                .recover_wall_effective_membrane(r[0], state.material, state.pressure)
+                .map_err(|e| format!("source pressure membrane is unrepresentable: {e:?}"))?
+                .2
+        } else {
+            r[0] / section.area
+        };
+        spans.push(QuadraticStressSpan {
+            start: a,
+            end: b,
+            axial: bernstein(axial, -w[0] * h / section.area, 0.0),
+            bending_y: bernstein(
+                r[4] / section.section_modulus,
+                r[2] * h / section.section_modulus,
+                -0.5 * w[2] * h * h / section.section_modulus,
+            ),
+            bending_z: bernstein(
+                r[5] / section.section_modulus,
+                -r[1] * h / section.section_modulus,
+                0.5 * w[1] * h * h / section.section_modulus,
+            ),
+        });
+    }
+    bound_piecewise_elastic_maximum(&spans).map_err(|e| format!("{e:?}"))
+}
+
+fn is_exact_pressure_result_kind(kind: &str) -> bool {
+    matches!(
+        kind,
+        "pipe_wall_endpoint_action_v2"
+            | "pipe_wall_axial_force_v2"
+            | "pipe_effective_axial_force_v2"
+            | "pipe_axial_membrane_stress_v2"
+            | "pipe_lame_radial_stress_v2"
+            | "pipe_lame_hoop_stress_v2"
+    )
 }
 
 fn straight_summary_extrema(
@@ -7264,7 +8363,7 @@ fn append_expansion_joint_pressure_thrust_results(
                 location: aggregate.input.pipe_id.clone(),
                 basis: format!(
                     "component_family=expansion_joint;pressure_thrust_generation=load_side_user_effective_area;effective_area={};source={};pressure_thrust={};solver_consumption={}",
-                    rounded_scalar(aggregate.input.effective_area),
+                    scalar_string(aggregate.input.effective_area),
                     aggregate.input.source_reference,
                     aggregate.input.pressure_thrust_reference,
                     aggregate.input.solver_consumption
@@ -7293,7 +8392,7 @@ fn append_expansion_joint_pressure_thrust_results(
             format!(
                 "expansion joint {} pressure thrust uses explicit effective area {} m^2 and pressure primitive(s) from load case {}; applied on load side along {}; no protected/default manufacturer value is supplied",
                 aggregate.input.component_id,
-                rounded_scalar(aggregate.input.effective_area),
+                scalar_string(aggregate.input.effective_area),
                 load_case.id,
                 aggregate.input.pipe_id
             ),
@@ -7609,6 +8708,195 @@ fn append_station_force_result(
     });
 }
 
+// New pressure rows preserve wall force, effective force and material stress as distinct quantities.
+fn append_signed_support_results(
+    results: &mut Vec<ResultItem>,
+    case: &PreviewLoadCase,
+    support: &PreviewSupport,
+    action: [f64; 6],
+) {
+    let mut append = |component: &str, kind: &str, value: f64, unit: &str| {
+        results.push(ResultItem {
+            id:format!("result:support-action:{}:{}:{}:{}:{}",case.id.len(),case.id,support.id.len(),support.id,component),
+            kind:kind.to_string(), value, unit:unit.to_string(), entity_ref:support.id.clone(),
+            basis_ref:Some(ResultBasisRef {ref_type:"load_case".to_string(),ref_id:case.id.clone()}),source_result_refs:Vec::new(),
+            metadata:Some(ResultMetadata {component:component.to_string(),coordinate_system:"global".to_string(),location:"node".to_string(),
+                basis:"recovered_from_assembled_support_law".to_string(),sign_convention:"support-on-pipe; positive global force and right-hand couple about attached node; force and moment norms remain separate".to_string()}),
+        });
+    };
+    for (slot, component) in ["Fx", "Fy", "Fz", "Mx", "My", "Mz"].into_iter().enumerate() {
+        append(
+            component,
+            "support_reaction_component_v2",
+            action[slot],
+            if slot < 3 { "N" } else { "N*m" },
+        );
+    }
+    append(
+        "force_magnitude",
+        "support_reaction_force_magnitude_v2",
+        action[0].hypot(action[1]).hypot(action[2]),
+        "N",
+    );
+    append(
+        "moment_magnitude",
+        "support_reaction_moment_magnitude_v2",
+        action[3].hypot(action[4]).hypot(action[5]),
+        "N*m",
+    );
+}
+
+#[allow(clippy::too_many_arguments)]
+fn append_exact_pressure_results(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    case: &PreviewLoadCase,
+    pipe_id: &str,
+    state: &pressure_runtime::ExactPressurePipeState,
+    actions: &[f64],
+    mechanical_actions: &[f64],
+    pipe: &StraightPipeElement,
+    loads: &[SpannedUniformLocalLoad],
+) {
+    let (Ok([inner, outer]), Ok(_caps)) = (
+        state.annulus.surface_stresses(state.pressure),
+        state.annulus.cap_pair(state.pressure),
+    ) else {
+        diagnostics.push(diag(
+            "diagnostic:exact-pressure:surface",
+            "EXACT_PRESSURE_RECOVERY_FAILED",
+            "blocking",
+            "pressure surface stress or cap load is not representable",
+            vec![case.id.clone(), pipe_id.to_string()],
+        ));
+        return;
+    };
+    results.retain(|r| {
+        r.entity_ref != pipe_id
+            || !matches!(
+                r.kind.as_str(),
+                "element_local_axial_force"
+                    | "element_local_axial_normal_stress"
+                    | "pipe_section_pressure_hoop_stress"
+                    | "pipe_section_pressure_longitudinal_stress"
+            )
+    });
+    let mut append =
+        |kind: &str, component: &str, location: &str, value: f64, stress: bool, sign: &str| {
+            results.push(ResultItem {
+                id: format!(
+                    "result:pressure-exact:{}:{}:{}:{}:{}:{}",
+                    case.id.len(),
+                    case.id,
+                    pipe_id.len(),
+                    pipe_id,
+                    location,
+                    component
+                ),
+                kind: kind.to_string(),
+                value,
+                unit: if stress { "Pa" } else { "N" }.to_string(),
+                entity_ref: pipe_id.to_string(),
+                basis_ref: Some(ResultBasisRef {
+                    ref_type: "load_case".to_string(),
+                    ref_id: case.id.clone(),
+                }),
+                source_result_refs: Vec::new(),
+                metadata: Some(ResultMetadata {
+                    component: component.to_string(),
+                    coordinate_system: if stress {
+                        "pipe_section"
+                    } else {
+                        "element_local"
+                    }
+                    .to_string(),
+                    location: location.to_string(),
+                    basis: if stress {
+                        "recovered_from_open_mechanics_stress_components"
+                    } else {
+                        "recovered_from_local_element_stiffness"
+                    }
+                    .to_string(),
+                    sign_convention: sign.to_string(),
+                }),
+            });
+        };
+    for (location, value) in [
+        ("end_i", actions[UX]),
+        ("end_j", actions[DOF_PER_NODE + UX]),
+    ] {
+        append("pipe_wall_endpoint_action_v2", "wall_axial_end_action", location, value, false, "node-on-element wall action, positive along authored local x toward end j; cap transfer is not subtracted from wall recovery");
+    }
+    for (location, fraction) in [
+        ("end_i", 0.0),
+        ("end_j", 1.0),
+        ("quarter_1", 0.25),
+        ("midspan", 0.5),
+        ("quarter_3", 0.75),
+    ] {
+        let mechanical =
+            match straight_section_resultants(pipe, mechanical_actions, loads, fraction) {
+                Ok(value) => value,
+                Err(error) => {
+                    diagnostics.push(diag(
+                        "diagnostic:exact-pressure:section",
+                        "EXACT_PRESSURE_RECOVERY_FAILED",
+                        "blocking",
+                        error.to_string(),
+                        vec![case.id.clone(), pipe_id.to_string()],
+                    ));
+                    return;
+                }
+            };
+        let (wall, effective, membrane) = match state.annulus.recover_wall_effective_membrane(
+            mechanical[0],
+            state.material,
+            state.pressure,
+        ) {
+            Ok(value) => value,
+            Err(error) => {
+                diagnostics.push(diag(
+                    "diagnostic:exact-pressure:section",
+                    "EXACT_PRESSURE_RECOVERY_FAILED",
+                    "blocking",
+                    format!("source pressure section recovery is unrepresentable: {error:?}"),
+                    vec![case.id.clone(), pipe_id.to_string()],
+                ));
+                return;
+            }
+        };
+        append(
+            "pipe_wall_axial_force_v2",
+            "wall_axial_force",
+            location,
+            wall,
+            false,
+            "tension-positive material wall section resultant Nw",
+        );
+        append(
+            "pipe_effective_axial_force_v2",
+            "effective_axial_force",
+            location,
+            effective,
+            false,
+            "effective wall-fluid resultant S=Nw-pAi; not material stress or a support reaction",
+        );
+        append("pipe_axial_membrane_stress_v2", "axial_membrane_stress", location, membrane, true, "tension-positive axial wall membrane stress Nw/As; no added longitudinal pressure scalar");
+        for (component, stress) in [
+            ("lame_inner_radial_stress", inner.radial_pa()),
+            ("lame_outer_radial_stress", outer.radial_pa()),
+        ] {
+            append("pipe_lame_radial_stress_v2",component,location,stress,true,"tension-positive radial stress at named surface, inner traction -p and zero external pressure increment");
+        }
+        for (component, stress) in [
+            ("lame_inner_hoop_stress", inner.hoop_pa()),
+            ("lame_outer_hoop_stress", outer.hoop_pa()),
+        ] {
+            append("pipe_lame_hoop_stress_v2",component,location,stress,true,"tension-positive circumferential stress at named surface for long straight annulus, zero external pressure increment");
+        }
+    }
+}
+
 fn recover_section_stress(
     resultants: &[f64; 6],
     section: &DerivedSection,
@@ -7669,6 +8957,7 @@ fn append_component_stress_multiplier_results(
     results: &mut Vec<ResultItem>,
     diagnostics: &mut Vec<Diagnostic>,
     model: &PreviewModel,
+    load_case_id: &str,
     pipe_id: &str,
     end_i_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
     end_j_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
@@ -7703,6 +8992,11 @@ fn append_component_stress_multiplier_results(
                 results,
                 diagnostics,
                 component,
+                load_case_id,
+                model
+                    .load_cases
+                    .first()
+                    .is_some_and(|case| case.id == load_case_id),
                 pipe_id,
                 location,
                 base_value_mpa,
@@ -7835,6 +9129,8 @@ fn append_component_stress_multiplier_result(
     results: &mut Vec<ResultItem>,
     diagnostics: &mut Vec<Diagnostic>,
     component: &PreviewComponent,
+    load_case_id: &str,
+    is_default_case: bool,
     pipe_id: &str,
     location: &str,
     base_value_mpa: f64,
@@ -7859,8 +9155,8 @@ fn append_component_stress_multiplier_result(
         "component_family={};component_side={};user_entered_sif={};user_entered_flexibility={};source={};solver_consumption={}",
         modifier.family,
         modifier.side,
-        rounded_scalar(modifier.sif),
-        rounded_scalar(modifier.flexibility),
+        scalar_string(modifier.sif),
+        scalar_string(modifier.flexibility),
         modifier.source_reference,
         modifier.solver_consumption
     );
@@ -7894,9 +9190,9 @@ fn append_component_stress_multiplier_result(
             modifier.family,
             component.id,
             modifier.side,
-            rounded_scalar(modifier.sif),
+            scalar_string(modifier.sif),
             pipe_id,
-            rounded_scalar(modifier.flexibility),
+            scalar_string(modifier.flexibility),
             modifier.solver_consumption
         )
     } else {
@@ -7905,16 +9201,16 @@ fn append_component_stress_multiplier_result(
             modifier.family,
             component.id,
             modifier.side,
-            rounded_scalar(modifier.sif),
-            rounded_scalar(modifier.flexibility),
+            scalar_string(modifier.sif),
+            scalar_string(modifier.flexibility),
             pipe_id,
             modifier.solver_consumption
         )
     };
     diagnostics.push(diag(
         &format!(
-            "diagnostic:component-stress-multiplier:{}:{}:{}",
-            component_suffix, pipe_suffix, endpoint
+            "diagnostic:component-stress-multiplier:{}",
+            exact_source_identity(&[load_case_id, &component.id, pipe_id, location])
         ),
         "COMPONENT_STRESS_MULTIPLIER_APPLIED",
         "info",
@@ -7922,8 +9218,13 @@ fn append_component_stress_multiplier_result(
         vec![
             component.id.clone(),
             pipe_id.to_string(),
-            result_id,
+            if is_default_case {
+                result_id
+            } else {
+                qualified_load_case_result_id(load_case_id, &result_id)
+            },
             modifier.source_reference.to_string(),
+            load_case_id.to_string(),
         ],
     ));
 }
@@ -8053,10 +9354,10 @@ fn append_curved_bend_macro_element_results(
                 location: element.pipe_id.clone(),
                 basis: format!(
                     "component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free_expansion_identity;distributed_load_treatment=arc_consistent_fixed_end_integration;pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load;recovery=end_forces_from_assembled_stiffness_in_chord_frame;interior_stations=arc_section_equilibrium_stations",
-                    rounded_scalar(element.flexibility_factor),
-                    rounded_scalar(element.bend_radius),
-                    rounded_scalar(element.included_angle),
-                    rounded_scalar(element.arc_length),
+                    scalar_string(element.flexibility_factor),
+                    scalar_string(element.bend_radius),
+                    scalar_string(element.included_angle),
+                    scalar_string(element.arc_length),
                     element.source_reference,
                     DEC_070_CURVED_BEND_SOLVER_CONSUMPTION
                 ),
@@ -8551,9 +9852,9 @@ fn append_constant_effort_support_results(
                     "warning",
                     format!(
                         "computed displacement magnitude {} m at node {} along {acting_dof} exceeds the user-entered hanger.{field_label} value {} m in load case {}; this compares user-entered values only and introduces no software threshold, tolerance, or acceptance criterion",
-                        round6(computed.abs()),
+                        computed.abs(),
                         support.node,
-                        round6(limit.value),
+                        limit.value,
                         load_case.id
                     ),
                     vec![
@@ -8567,13 +9868,9 @@ fn append_constant_effort_support_results(
     }
 }
 
-fn rounded_scalar(value: f64) -> String {
-    let rounded = round6(value);
-    if (rounded.fract()).abs() < 1.0e-9 {
-        format!("{rounded:.0}")
-    } else {
-        format!("{rounded}")
-    }
+// Machine-consumed basis strings use the same finite round-trip decimal contract.
+fn scalar_string(value: f64) -> String {
+    optional_f64(Some(value))
 }
 
 fn append_endpoint_stress_results(
@@ -9379,7 +10676,16 @@ fn result_tail(base_id: &str) -> &str {
 
 fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> MechanicsEnvelope {
     MechanicsEnvelope {
-        schema_version: "0.1.0".to_string(),
+        // An admitted exact namespace with blocked inputs has no recovered
+        // physical evidence. Retain the empty namespace for truthful inspection;
+        // this does not invent case/material/region evidence or solved results.
+        contract_evidence: pressure_runtime::is_exact(&model)
+            .then(|| serde_json::json!({"pressure": [], "connector": [], "exact_cases": []})),
+        schema_version: MECHANICS_SCHEMA_VERSION.to_string(),
+        producer: mechanics_producer_for_model(&model),
+        numerical_quality: assessed_numerical_quality(&model, &diagnostics),
+        source_block_recovery: None,
+        formulation_basis: formulation_basis_for_model(&model),
         document_kind: "openpipestress.product_preview.mechanics_result".to_string(),
         run_id: "run:preview-linear-static-blocked".to_string(),
         model_ref: model.project.id,
@@ -9756,6 +11062,8 @@ fn stable_suffix(id: &str) -> String {
     id.replace(':', "-")
 }
 
+// Historical quantization, retained only to demonstrate the superseded carrier loss.
+#[cfg(test)]
 fn round6(value: f64) -> f64 {
     let scaled = value * 1_000_000.0;
     let rounded = if value.is_finite() && !scaled.is_finite() {
@@ -9842,6 +11150,1312 @@ mod nonlinear_context_passthrough_tests {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    // Analytic seed policy: relative 1e-9, no publication-rounding allowance.
+    macro_rules! analytic_close {
+        ($actual:expr, $expected:expr $(, $context:expr)? $(,)?) => {{
+            let actual: f64 = $actual;
+            let expected: f64 = $expected;
+            assert!(actual.is_finite() && expected.is_finite());
+            assert!(
+                (actual - expected).abs() <= 1.0e-9 * expected.abs(),
+                "actual={actual:.17e}, expected={expected:.17e}"
+            );
+        }};
+    }
+
+    /// Numerical admissibility of the Coulomb force relation in N for these
+    /// nonzero SI fixtures, using the existing analytic 1e-9 relative criterion.
+    /// This is not an active-set tolerance or a new nonlinear acceptance tier.
+    fn assert_coulomb_force_balance_n(actual_n: f64, signed_mu_normal_n: f64) {
+        assert_ne!(signed_mu_normal_n, 0.0);
+        assert_eq!(
+            actual_n.is_sign_negative(),
+            signed_mu_normal_n.is_sign_negative()
+        );
+        analytic_close!(actual_n, signed_mu_normal_n);
+    }
+
+    fn precision_request(length: f64, torque: f64) -> LinearStaticPreviewRequest {
+        // Reuse authored shape/provenance only; independent annulus/TL/GJ is below.
+        let mut input = dec092_temperature_g_request();
+        input.model.schema_version = "0.2.0".to_string();
+        input.model.nodes[1].position.x = length;
+        input.model.pipe_segments[0].section.outside_diameter.value = 0.20;
+        input.model.load_cases.truncate(1);
+        input.model.load_cases[0].modulus_basis_ref = None;
+        input.model.load_cases[0].primitive_loads[0].magnitude.value = torque;
+        input.model.combinations.clear();
+        input
+    }
+
+    #[test]
+    fn integrity_oblique_torsion_requires_actual_rotational_ground_in_both_modes() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            for torque in [0.0, 1.0] {
+                for rotation in [None, Some("RZ"), Some("RX")] {
+                    let mut input = precision_request(2.0, torque);
+                    input.model.nodes[1].position.y = 2.0;
+                    input.model.supports.truncate(1);
+                    input.model.supports[0].family = Some("anchor".into());
+                    input.model.supports[0].restraints =
+                        vec!["UX".into(), "UY".into(), "UZ".into()];
+                    if let Some(rotation) = rotation {
+                        input.model.supports[0].restraints.push(rotation.into());
+                    }
+                    let mut tip = input.model.supports[0].clone();
+                    tip.id = "support:integrity-tip-translations".into();
+                    tip.node = input.model.nodes[1].id.clone();
+                    tip.restraints = vec!["UX".into(), "UY".into(), "UZ".into()];
+                    input.model.supports.push(tip);
+                    let output = run_linear_static_preview_with_mode(input, mode);
+                    let case = &output.numerical_quality.cases[0];
+                    if rotation == Some("RX") {
+                        assert_eq!(
+                            output.status.mechanics, "MECHANICS_SOLVED",
+                            "{:?}",
+                            output.diagnostics
+                        );
+                        assert!(matches!(
+                            case.solve_quality,
+                            NumericalQualityStatus::ChecksPassed
+                                | NumericalQualityStatus::Sensitive
+                        ));
+                    } else {
+                        assert_ne!(output.status.mechanics, "MECHANICS_SOLVED");
+                        assert_eq!(
+                            case.structural_status,
+                            StructuralStatus::PhysicalMechanismWitnessed,
+                            "{:?}",
+                            output.diagnostics
+                        );
+                        assert_eq!(case.solve_quality, NumericalQualityStatus::Failed);
+                    }
+                    assert_eq!(case.evidence_refs.len(), 1);
+                    assert!(output
+                        .diagnostics
+                        .iter()
+                        .any(|d| d.id == case.evidence_refs[0]));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn integrity_disconnected_body_is_not_restrained_by_another_bodys_anchor() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            let mut input = precision_request(2.0, 0.0);
+            let mut a = input.model.nodes[0].clone();
+            let mut b = input.model.nodes[1].clone();
+            a.id = "node:integrity-disconnected-a".into();
+            b.id = "node:integrity-disconnected-b".into();
+            a.position.y = 5.0;
+            b.position.y = 5.0;
+            let mut pipe = input.model.pipe_segments[0].clone();
+            pipe.id = "pipe:integrity-disconnected".into();
+            pipe.from = a.id.clone();
+            pipe.to = b.id.clone();
+            input.model.nodes.extend([a, b]);
+            input.model.pipe_segments.push(pipe);
+            let output = run_linear_static_preview_with_mode(input, mode);
+            assert_ne!(output.status.mechanics, "MECHANICS_SOLVED");
+            assert_eq!(
+                output.numerical_quality.cases[0].structural_status,
+                StructuralStatus::PhysicalMechanismWitnessed,
+                "{:?}",
+                output.diagnostics
+            );
+        }
+    }
+
+    #[test]
+    fn integrity_exact_case_ids_do_not_alias_passing_and_unassessed_cases() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            let mut input = precision_request(2.0, 1.0);
+            input.model.load_cases[0].id = "load:a-b".into();
+            let mut second = input.model.load_cases[0].clone();
+            second.id = "load-a:b".into();
+            for load in &mut second.primitive_loads {
+                load.id.push_str(":second");
+            }
+            second.modulus_basis_ref = Some("temperature-point:intentionally-missing".into());
+            input.model.load_cases.push(second);
+            let output = run_linear_static_preview_with_mode(input, mode);
+            assert_ne!(output.status.mechanics, "MECHANICS_SOLVED");
+            let first = &output.numerical_quality.cases[0];
+            let second = &output.numerical_quality.cases[1];
+            assert_eq!(first.basis_ref.ref_id, "load:a-b");
+            assert_eq!(
+                first.solve_quality,
+                NumericalQualityStatus::ChecksPassed,
+                "{:?}",
+                output.diagnostics
+            );
+            assert_eq!(second.basis_ref.ref_id, "load-a:b");
+            assert_eq!(
+                second.solve_quality,
+                NumericalQualityStatus::NotAssessed,
+                "{:?}",
+                output.diagnostics
+            );
+            assert!(second.evidence_refs.is_empty());
+            assert_ne!(
+                integrity_diagnostic_id(&first.basis_ref.ref_id),
+                integrity_diagnostic_id(&second.basis_ref.ref_id)
+            );
+            assert_eq!(
+                output.numerical_quality.status,
+                NumericalQualityStatus::NotAssessed
+            );
+        }
+    }
+
+    #[test]
+    fn integrity_exact_case_ids_keep_actual_linear_passes_and_component_warnings_distinct() {
+        let mut input = mechanical_fixture_for_test(request(), "tests::integrity_exact_case_ids_keep_actual_linear_passes_and_component_warnings_distinct");
+        input.model.load_cases.truncate(2);
+        assert_eq!(input.model.load_cases.len(), 2);
+        input.model.load_cases[0].id = "load:a-b".into();
+        input.model.load_cases[1].id = "load-a:b".into();
+        input.model.combinations.clear();
+        // A new explicit linear-only companion; the retained nonlinear fixture
+        // remains separately checked against the adopted equilibrium successor.
+        input
+            .model
+            .supports
+            .retain(|support| support.nonlinear.is_none());
+        let output = run_linear_static_preview(input);
+        assert_eq!(
+            output.status.mechanics, "MECHANICS_SOLVED",
+            "{:?}",
+            output.diagnostics
+        );
+        let cases = &output.numerical_quality.cases;
+        assert_eq!(cases.len(), 2);
+        assert!(cases.iter().all(|case| matches!(
+            case.solve_quality,
+            NumericalQualityStatus::ChecksPassed | NumericalQualityStatus::Sensitive
+        )));
+        assert_ne!(cases[0].evidence_refs, cases[1].evidence_refs);
+        let warnings = output
+            .diagnostics
+            .iter()
+            .filter(|d| d.code == "COMPONENT_STRESS_MULTIPLIER_APPLIED")
+            .collect::<Vec<_>>();
+        assert!(!warnings.is_empty());
+        assert_eq!(
+            warnings.len(),
+            warnings.iter().map(|d| &d.id).collect::<HashSet<_>>().len()
+        );
+        for case in cases {
+            assert!(warnings
+                .iter()
+                .any(|warning| warning.affected_refs.contains(&case.basis_ref.ref_id)));
+        }
+        assert_ne!(
+            exact_source_identity(&["a:b", "c"]),
+            exact_source_identity(&["a", "b:c"])
+        );
+        assert_ne!(
+            exact_source_identity(&["é", ":"]),
+            exact_source_identity(&["é:", ""])
+        );
+    }
+
+    #[test]
+    fn integrity_multicase_evidence_and_component_diagnostics_have_unique_real_case_identity() {
+        let input = mechanical_fixture_for_test(request(), "tests::integrity_multicase_evidence_and_component_diagnostics_have_unique_real_case_identity");
+        let cases = input
+            .model
+            .load_cases
+            .iter()
+            .map(|c| c.id.clone())
+            .collect::<Vec<_>>();
+        let output = run_linear_static_preview(input);
+        assert_eq!(
+            output.status.mechanics, "MECHANICS_SOLVED",
+            "{:?}",
+            output.diagnostics
+        );
+        assert_eq!(output.numerical_quality.cases.len(), cases.len());
+        let diagnostics = output
+            .diagnostics
+            .iter()
+            .filter(|d| d.code == "COMPONENT_STRESS_MULTIPLIER_APPLIED")
+            .collect::<Vec<_>>();
+        assert!(!diagnostics.is_empty());
+        assert_eq!(
+            diagnostics
+                .iter()
+                .map(|d| &d.id)
+                .collect::<HashSet<_>>()
+                .len(),
+            diagnostics.len()
+        );
+        for case in cases {
+            assert!(diagnostics.iter().any(|d| d.affected_refs.contains(&case)));
+            let quality = output
+                .numerical_quality
+                .cases
+                .iter()
+                .find(|q| q.basis_ref.ref_id == case)
+                .unwrap();
+            assert_eq!(
+                quality.structural_status,
+                StructuralStatus::PassiveModelBasis,
+                "{:?}",
+                output.diagnostics
+            );
+            assert!(matches!(
+                quality.solve_quality,
+                NumericalQualityStatus::ChecksPassed | NumericalQualityStatus::Sensitive
+            ));
+            assert!(output
+                .diagnostics
+                .iter()
+                .any(|d| d.id == quality.evidence_refs[0]
+                    && d.message.contains(
+                        open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY
+                    )
+                    && d.message.contains("passed: true")));
+            assert_eq!(quality.evidence_refs.len(), 1);
+            assert!(output
+                .diagnostics
+                .iter()
+                .any(|d| d.id == quality.evidence_refs[0] && d.affected_refs.contains(&case)));
+        }
+    }
+
+    #[test]
+    fn precision_signed_subquantum_torsion_both_modes_matches_independent_annulus() {
+        // Reviewed N08/N09: J=0.000017195*pi m^4, G=80e9 Pa.
+        // No production section, stiffness or solver supplies the expected value.
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            for length in [2.0, 10.0] {
+                for torque in [-1.0, -0.1, 0.1, 1.0] {
+                    let output = run_linear_static_preview_with_mode(
+                        precision_request(length, torque),
+                        mode,
+                    );
+                    assert_eq!(output.status.mechanics, "MECHANICS_SOLVED");
+                    let actual = result_value(&output, "result:disp:node-N-DEC092-TIP:rx");
+                    let expected = torque * length / (80e9 * 0.000017195 * PI);
+                    assert_ne!(actual, 0.0);
+                    assert_eq!(actual.is_sign_negative(), torque.is_sign_negative());
+                    analytic_close!(actual, expected);
+                    let encoded = serde_json::to_string(&output).unwrap();
+                    let parsed: serde_json::Value = serde_json::from_str(&encoded).unwrap();
+                    let transported = find_result(&parsed, "result:disp:node-N-DEC092-TIP:rx")
+                        ["value"]
+                        .as_f64()
+                        .unwrap();
+                    assert_eq!(transported.to_bits(), actual.to_bits());
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn precision_n01_bending_and_summary_match_independent_eb_reference() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            let mut input = precision_request(2.0, 0.0);
+            let load = &mut input.model.load_cases[0].primitive_loads[0];
+            load.category = "concentrated_force".to_string();
+            load.direction = "UY".to_string();
+            load.magnitude = Quantity {
+                value: 1000.0,
+                unit: "N".to_string(),
+            };
+            load.dimension = "force".to_string();
+            let output = run_linear_static_preview_with_mode(input, mode);
+            assert_eq!(output.status.mechanics, "MECHANICS_SOLVED");
+            let uy = result_value(&output, "result:disp:node-N-DEC092-TIP:uy");
+            analytic_close!(uy, 8_000_000.0 / (5_158_500.0 * PI)); // mm
+            analytic_close!(
+                result_value(&output, "result:disp:node-N-DEC092-TIP:rz"),
+                2000.0 / (1_719_500.0 * PI)
+            );
+            let maximum = output.summary.max_displacement.as_ref().unwrap();
+            assert_eq!(maximum.value.to_bits(), uy.to_bits());
+            let parsed: serde_json::Value =
+                serde_json::from_str(&serde_json::to_string(&output).unwrap()).unwrap();
+            assert_eq!(
+                parsed["summary"]["max_displacement"]["value"]
+                    .as_f64()
+                    .unwrap()
+                    .to_bits(),
+                maximum.value.to_bits()
+            );
+        }
+    }
+
+    #[test]
+    fn precision_same_unit_raw_quantity_bits_and_numeric_strings_roundtrip() {
+        // Raw serde transport scope only. I-JSON derivative export has a separate
+        // unsafe-integer guard; these values do not assert universal exportability.
+        let quantum = (0.5e-6_f64).to_bits();
+        for bits in [
+            1,
+            0x000f_ffff_ffff_ffff,
+            0x0010_0000_0000_0000,
+            0x3fb9_9999_9999_999a,
+            0x3ff0_0000_0000_0001,
+            0x4340_0000_0000_0001,
+            0x7fef_ffff_ffff_ffff,
+            quantum - 1,
+            quantum,
+            quantum + 1,
+            (1e-12_f64).to_bits(),
+            (1e-6_f64).to_bits(),
+            (1e6_f64).to_bits(),
+        ] {
+            for sign in [0, 1_u64 << 63] {
+                let value = f64::from_bits(bits | sign);
+                let quantity = LocatedQuantity {
+                    value,
+                    unit: "rad".to_string(),
+                    location_ref: "node:test".to_string(),
+                    result_ref: "result:test".to_string(),
+                };
+                let row = ResultItem {
+                    id: "result:test".to_string(),
+                    kind: "global_nodal_rotation_x".to_string(),
+                    value,
+                    unit: "rad".to_string(),
+                    entity_ref: "node:test".to_string(),
+                    basis_ref: None,
+                    source_result_refs: vec![],
+                    metadata: None,
+                };
+                for encoded in [
+                    serde_json::to_string(&quantity).unwrap(),
+                    serde_json::to_string(&row).unwrap(),
+                ] {
+                    let parsed: serde_json::Value = serde_json::from_str(&encoded).unwrap();
+                    assert_eq!(parsed["value"].as_f64().unwrap().to_bits(), value.to_bits());
+                    assert_eq!(parsed["unit"], "rad");
+                }
+                for text in [optional_f64(Some(value)), scalar_string(value)] {
+                    assert_eq!(text.parse::<f64>().unwrap().to_bits(), value.to_bits());
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn precision_nonfinite_values_are_rejected_not_serialized_as_null() {
+        for value in [f64::NAN, f64::INFINITY, f64::NEG_INFINITY] {
+            assert!(require_finite_mechanics([value]).is_err());
+            assert_eq!(optional_f64(Some(value)), "not_observed");
+            let quantity = LocatedQuantity {
+                value,
+                unit: "rad".to_string(),
+                location_ref: "node:test".to_string(),
+                result_ref: "result:test".to_string(),
+            };
+            let row = ResultItem {
+                id: "result:test".to_string(),
+                kind: "global_nodal_rotation_x".to_string(),
+                value,
+                unit: "rad".to_string(),
+                entity_ref: "node:test".to_string(),
+                basis_ref: None,
+                source_result_refs: vec![],
+                metadata: None,
+            };
+            assert!(serde_json::to_string(&quantity).is_err());
+            assert!(serde_json::to_string(&row).is_err());
+        }
+        assert_eq!(optional_f64(None), "not_observed");
+    }
+
+    #[test]
+    fn precision_solved_and_blocked_headers_bind_actual_producer_without_assessment() {
+        let solved = run_linear_static_preview(precision_request(2.0, 1.0));
+        let mut input = precision_request(2.0, 1.0);
+        input.materials.clear();
+        let blocked = run_linear_static_preview(input);
+        assert_eq!(solved.status.mechanics, "MECHANICS_SOLVED");
+        assert_ne!(blocked.status.mechanics, "MECHANICS_SOLVED");
+        for output in [solved, blocked] {
+            let encoded = serde_json::to_value(&output).unwrap();
+            assert_eq!(encoded["schema_version"], "0.2.0");
+            assert_eq!(
+                encoded["producer"]["component_name"],
+                env!("CARGO_PKG_NAME")
+            );
+            assert_eq!(
+                encoded["producer"]["component_version"],
+                env!("CARGO_PKG_VERSION")
+            );
+            assert_eq!(env!("CARGO_PKG_VERSION"), "0.2.0");
+            assert_eq!(
+                encoded["producer"]["semantic_contract_id"],
+                "openpipestress.result_semantics/0.3.0/precision-1"
+            );
+            assert_eq!(
+                encoded["numerical_quality"]["value_representation"],
+                "finite_binary64"
+            );
+            assert_eq!(
+                encoded["numerical_quality"]["publication_quantization"],
+                "none"
+            );
+            assert_eq!(
+                encoded["numerical_quality"]["integrity_policy"],
+                "M03-INTEGRITY-v1"
+            );
+            assert!(!output.numerical_quality.cases.is_empty());
+            if output.status.mechanics == "MECHANICS_SOLVED" {
+                assert!(matches!(
+                    output.numerical_quality.status,
+                    NumericalQualityStatus::ChecksPassed | NumericalQualityStatus::Sensitive
+                ));
+            } else {
+                assert_ne!(
+                    output.numerical_quality.status,
+                    NumericalQualityStatus::ChecksPassed
+                );
+            }
+            assert_eq!(
+                encoded["formulation_basis"]["profile_id"],
+                "product_preview_mechanics_v1"
+            );
+            assert!(output
+                .formulation_basis
+                .limitations
+                .iter()
+                .any(|s| s.contains("Pressure")));
+            assert!(output
+                .formulation_basis
+                .limitations
+                .iter()
+                .any(|s| s.contains("Component")));
+            assert!(output
+                .formulation_basis
+                .limitations
+                .iter()
+                .any(|s| s.contains("stress")));
+            assert!(output
+                .formulation_basis
+                .limitations
+                .iter()
+                .any(|s| s.contains("Support")));
+        }
+    }
+
+    #[test]
+    fn historical_round6_demonstrates_subquantum_information_loss() {
+        for value in [-4.63e-7, -4.63e-8, 4.63e-8, 4.63e-7] {
+            assert_ne!(value, 0.0);
+            assert_eq!(round6(value), 0.0);
+        }
+    }
+
+    // Each call names an individually reviewed nonpressure purpose. The bundled request() stays unchanged.
+    fn mechanical_fixture_for_test(
+        mut input: LinearStaticPreviewRequest,
+        purpose: &str,
+    ) -> LinearStaticPreviewRequest {
+        assert!(matches!(purpose,
+            "tests::audit_retained_spring_fixture_uses_selected_node_state"
+            | "tests::authored_coordinate_units_preserve_preview_results_and_source"
+            | "tests::bend_component_user_multipliers_emit_stress_review_rows"
+            | "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows"
+            | "tests::combination_stress_summary_rows_are_skipped_with_diagnostics"
+            | "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence"
+            | "tests::curved_bend_macro_element_emits_arc_interior_station_results"
+            | "tests::dense_scrutiny_mode_keeps_sparse_parity_row"
+            | "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows"
+            | "tests::f3_canonical_spring_retains_elastic_stiffness"
+            | "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations"
+            | "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads"
+            | "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported"
+            | "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged"
+            | "tests::mill_tolerance_units_are_normalized_at_preview_boundary"
+            | "tests::missing_load_input_blocks_with_diagnostic"
+            | "tests::missing_material_blocks_with_diagnostic"
+            | "tests::missing_or_invalid_project_length_units_block_preview"
+            | "tests::missing_pipe_orientation_blocks_with_diagnostic"
+            | "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path"
+            | "tests::operation_authored_primitive_categories_map_to_preview_mechanics"
+            | "tests::range_combination_records_each_operand_modulus_basis"
+            | "tests::range_envelope_combination_selects_each_shipped_mode_deterministically"
+            | "tests::shared_section_blank_reference_identity_blocks_common_entry"
+            | "tests::shared_section_equivalent_but_different_cache_representation_is_stale"
+            | "tests::shared_section_local_mill_tolerance_must_leave_positive_wall"
+            | "tests::shared_section_reference_failures_are_explicit"
+            | "tests::shared_section_stale_cache_blocks_common_solver_entry"
+            | "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults"
+            | "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism"
+            | "tests::under_restrained_model_reports_solver_diagnostic"
+            | "tests::valid_invented_model_exposes_element_force_components"
+            | "tests::valid_invented_model_exposes_explicit_load_combination_results"
+            | "tests::valid_invented_model_exposes_global_displacement_components"
+            | "tests::valid_invented_model_solves_deterministically"
+            | "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics"
+            | "tests::mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure"
+            | "tests::valid_invented_model_exposes_endpoint_stress_components_without_pressure"
+            | "tests::current_composite_derived_normal_friction_and_reversal"
+            | "tests::integrity_exact_case_ids_keep_actual_linear_passes_and_component_warnings_distinct"
+            | "tests::integrity_multicase_evidence_and_component_diagnostics_have_unique_real_case_identity"
+        ), "unreviewed pressure-free fixture purpose: {purpose}");
+        let mut changed = 0;
+        for case in &mut input.model.load_cases {
+            for load in &mut case.primitive_loads {
+                if matches!(
+                    (case.id.as_str(), load.id.as_str()),
+                    ("load:L-100", "load:L-100-P" | "load:L-100-P-EJ")
+                        | ("load:L-200", "load:L-200-P" | "load:L-200-P-EJ")
+                ) {
+                    assert_eq!(load.category, "pressure");
+                    assert_eq!(load.dimension, "pressure");
+                    load.magnitude.value = 0.0;
+                    changed += 1;
+                }
+            }
+        }
+        assert!(
+            changed > 0 && changed <= 4,
+            "expected named inherited fixture pressures for {purpose}"
+        );
+        input
+    }
+
+    fn mechanical_stress_fixture_for_test(
+        input: LinearStaticPreviewRequest,
+        purpose: &str,
+    ) -> LinearStaticPreviewRequest {
+        assert_eq!(
+            purpose,
+            "tests::valid_invented_model_exposes_endpoint_stress_components_without_pressure"
+        );
+        let mut input = mechanical_fixture_for_test(input, purpose);
+        for case in &mut input.model.load_cases {
+            case.primitive_loads.retain(|load| {
+                !matches!(
+                    load.id.as_str(),
+                    "load:L-100-P" | "load:L-100-P-EJ" | "load:L-200-P" | "load:L-200-P-EJ"
+                )
+            });
+        }
+        input
+    }
+
+    fn historical_pressure_preview(input: LinearStaticPreviewRequest) -> MechanicsEnvelope {
+        historical_pressure_preview_with_mode(input, PreviewSolverMode::default())
+    }
+
+    fn historical_pressure_preview_with_mode(
+        input: LinearStaticPreviewRequest,
+        mode: PreviewSolverMode,
+    ) -> MechanicsEnvelope {
+        crate::historical_pressure_reference::run(input, mode)
+    }
+
+    // Independent Decimal 30-DOF strain-energy/reference branch enumeration froze both
+    // cases and reversal before product execution. Original historical constants remain
+    // in their original test; this current companion tests the explicit pressure-free premise.
+    #[test]
+    fn current_composite_derived_normal_friction_and_reversal() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            for reversal in ["original", "reverse_z", "reverse_all"] {
+                let mut input = mechanical_fixture_for_test(
+                    request(),
+                    "tests::current_composite_derived_normal_friction_and_reversal",
+                );
+                input.model.supports.retain(|support| {
+                    support.stiffness.is_none()
+                        && support.family.as_deref() != Some("variable_spring_hanger")
+                });
+                // Also freeze the old distributed-load assembly as explicit qL/2
+                // nodal inputs. This is an explicit nodal-load premise, not
+                // the current distributed-load formulation (tested independently).
+                for case in &mut input.model.load_cases {
+                    let mut old_nodal_loads = Vec::new();
+                    for load in &case.primitive_loads {
+                        if load.dimension != "force_per_length" {
+                            old_nodal_loads.push(load.clone());
+                            continue;
+                        }
+                        let LoadTargetInput::Element { pipe } = &load.target else {
+                            unreachable!()
+                        };
+                        let pipe = input
+                            .model
+                            .pipe_segments
+                            .iter()
+                            .find(|p| &p.id == pipe)
+                            .unwrap();
+                        let i = input
+                            .model
+                            .nodes
+                            .iter()
+                            .find(|n| n.id == pipe.from)
+                            .unwrap()
+                            .position;
+                        let j = input
+                            .model
+                            .nodes
+                            .iter()
+                            .find(|n| n.id == pipe.to)
+                            .unwrap()
+                            .position;
+                        let length =
+                            ((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2))
+                                .sqrt();
+                        for (end, node) in [("i", &pipe.from), ("j", &pipe.to)] {
+                            let mut nodal = load.clone();
+                            nodal.id = format!("{}:historical-nodal-{end}", load.id);
+                            nodal.target = LoadTargetInput::Node { node: node.clone() };
+                            nodal.dimension = "force".to_string();
+                            nodal.category = "occasional".to_string();
+                            nodal.magnitude = Quantity {
+                                value: load.magnitude.value * length / 2.0,
+                                unit: "N".to_string(),
+                            };
+                            old_nodal_loads.push(nodal);
+                        }
+                    }
+                    case.primitive_loads = old_nodal_loads;
+                }
+
+                if reversal != "original" {
+                    for case in &mut input.model.load_cases {
+                        for load in &mut case.primitive_loads {
+                            if reversal == "reverse_all"
+                                || matches!(
+                                    load.id.as_str(),
+                                    "load:L-100-Z:historical-nodal-i"
+                                        | "load:L-100-Z:historical-nodal-j"
+                                        | "load:L-200-Z:historical-nodal-i"
+                                        | "load:L-200-Z:historical-nodal-j"
+                                )
+                            {
+                                load.magnitude.value = -load.magnitude.value;
+                            }
+                        }
+                    }
+                }
+                let result = run_linear_static_preview_with_mode(input, mode);
+                assert_eq!(
+                    result.status.mechanics, "MECHANICS_SOLVED",
+                    "{:?}",
+                    result.diagnostics
+                );
+                assert!(!result.accepted_model_state_mutated);
+                let sign = if reversal == "original" { 1.0 } else { -1.0 };
+                // Independent equilibrium expectations, not fitted product outputs.
+                for (
+                    case,
+                    prefix,
+                    forward_normal_n,
+                    forward_slip_mm,
+                    applied_y_n,
+                    reverse_all_slip_mm,
+                    reverse_all_stop_mm,
+                ) in [
+                    (
+                        "load:L-100",
+                        "result:",
+                        48.95271889097364,
+                        -5.469174519535312,
+                        350.0,
+                        5.392795815727053,
+                        -0.3150817339455187,
+                    ),
+                    (
+                        "load:L-200",
+                        "result:loadcase:load-L-200:",
+                        24.47635944548682,
+                        -2.734587259767656,
+                        125.0,
+                        2.709083407550966,
+                        -0.10520992865888537,
+                    ),
+                ] {
+                    let released = reversal == "reverse_all";
+                    let normal_n = if released {
+                        applied_y_n
+                    } else {
+                        forward_normal_n
+                    };
+                    let expected_slip = if released {
+                        reverse_all_slip_mm
+                    } else {
+                        sign * forward_slip_mm
+                    };
+                    let value = |tail: &str| {
+                        result_value(&result, &format!("{prefix}nonlinear-support:{tail}"))
+                    };
+                    assert_eq!(value("iteration-count"), 2.0);
+                    assert_eq!(value("converged-flag"), 1.0);
+                    assert_eq!(value("final-residual-count"), 0.0);
+                    assert_eq!(
+                        value("support-NL-140:state-code"),
+                        if released { 0.0 } else { 1.0 }
+                    );
+                    if released {
+                        analytic_close!(value("support-NL-140:uy-displacement"), reverse_all_stop_mm);
+                    } else {
+                        assert_eq!(value("support-NL-140:uy-displacement"), 0.0);
+                    }
+                    // Signed normal-source reaction is -sign*N. Global Y equilibrium:
+                    // source reaction + one-way stop reaction + applied Y = 0.
+                    if released {
+                        // Zero analytical reaction uses the authored Y-force scale
+                        // at the same 1e-9 criterion, with no display-quantum allowance.
+                        assert!(value("support-NL-140:uy-reaction").abs() <= 1e-9 * applied_y_n);
+                    } else {
+                        analytic_close!(value("support-NL-140:uy-reaction"), sign * normal_n - applied_y_n);
+                    }
+                    assert_eq!(value("support-NL-130-FRIC:state-code"), 3.0);
+                    let slip = value("support-NL-130-FRIC:uz-displacement");
+                    let friction = value("support-NL-130-FRIC:uz-reaction");
+                    analytic_close!(slip, expected_slip);
+                    analytic_close!(friction, sign * 0.01 * normal_n);
+                    assert!(friction * slip < 0.0);
+                    let normal_id = format!(
+                        "{prefix}nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
+                    );
+                    let normal = result
+                        .results
+                        .iter()
+                        .find(|row| row.id == normal_id)
+                        .unwrap();
+                    assert_eq!(
+                        normal.kind,
+                        "nonlinear_support_friction_normal_reaction_derived"
+                    );
+                    analytic_close!(normal.value, normal_n);
+                    assert_eq!(normal.unit, "N");
+                    // This source support restrains UY only; its magnitude establishes
+                    // the current normal linkage but does not publish the signed source UY.
+                    assert_eq!(
+                        normal.value,
+                        result_value(&result, &format!("{prefix}reaction:support-S-130"))
+                    );
+                    assert_eq!(normal.basis_ref.as_ref().unwrap().ref_id, case);
+                    let metadata = normal.metadata.as_ref().unwrap();
+                    assert!(metadata.basis.contains("derived_support_reaction"));
+                    assert!(metadata.basis.contains("source_ref=support:S-130"));
+                    assert!(metadata.basis.contains("source_dof=uy"));
+                }
+                assert!(!result
+                    .diagnostics
+                    .iter()
+                    .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+                        || d.code == "NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+            }
+        }
+    }
+
+    #[test]
+    fn private_historical_pressure_scope_restores_public_refusal_and_rejects_exact() {
+        fn refused(output: &MechanicsEnvelope) {
+            assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
+            assert!(output.results.is_empty());
+            assert!(output
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"));
+        }
+        refused(&run_linear_static_preview(request()));
+        assert_eq!(
+            historical_pressure_preview(request()).status.mechanics,
+            "MECHANICS_SOLVED"
+        );
+        refused(&run_linear_static_preview(request()));
+        let mut exact_namespace = request();
+        exact_namespace.model.pressure_contract = Some(PressureContractInput {
+            version: Some("2.0.0".into()),
+            mode: Some("exact_straight_pressure_v2".into()),
+        });
+        assert!(std::panic::catch_unwind(|| historical_pressure_preview(exact_namespace)).is_err());
+        refused(&run_linear_static_preview(request()));
+    }
+
+    #[test]
+    fn private_historical_scope_restores_after_unwind_and_is_thread_local() {
+        assert!(!crate::historical_pressure_reference::active());
+        let outcome = std::panic::catch_unwind(|| {
+            crate::historical_pressure_reference::with_scope(|| {
+                assert!(crate::historical_pressure_reference::active());
+                std::thread::spawn(|| assert!(!crate::historical_pressure_reference::active()))
+                    .join()
+                    .unwrap();
+                panic!("intentional restoration witness");
+            })
+        });
+        assert!(outcome.is_err());
+        assert!(!crate::historical_pressure_reference::active());
+    }
+
+    // Current arc/chord integration control: tip force plus uniform weight, no pressure input.
+    #[test]
+    fn endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_without_pressure() {
+        let mut request = curved_bend_span_request();
+        request.model.load_cases[0]
+            .primitive_loads
+            .push(curved_bend_uniform_weight_load());
+        let derived = derive_pipe_section(
+            &request.model.pipe_segments[0].section,
+            "pipe:P-100",
+            &mut Vec::new(),
+        )
+        .unwrap();
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+
+        let row_ids = [
+            "result:force:pipe-P-100:axial",
+            "result:force:pipe-P-100:shear-y",
+            "result:force:pipe-P-100:shear-z",
+            "result:moment:pipe-P-100:torsion",
+            "result:moment:pipe-P-100:bending-y",
+            "result:moment:pipe-P-100:bending-z",
+        ];
+        let mut corrected = vec![0.0; ELEMENT_DOF];
+        for (slot, row_id) in row_ids.iter().enumerate() {
+            corrected[slot] = result_value(&result, row_id);
+            corrected[DOF_PER_NODE + slot] = result_value(&result, &format!("{row_id}:end-j"));
+        }
+        let material = &invented_materials()[0];
+        let pipe_section = StraightPipeSectionProperties::new(
+            material.elastic_modulus.value,
+            material
+                .shear_modulus
+                .as_ref()
+                .expect("validated material G")
+                .value,
+            derived.area,
+            derived.second_moment,
+            derived.second_moment,
+            derived.torsion_constant,
+            None,
+        )
+        .unwrap();
+        let pipe = StraightPipeElement::new(
+            "pipe:P-100",
+            FrameNode::new(0, [0.0, 0.0, 0.0]).unwrap(),
+            FrameNode::new(1, [CURVED_BEND_TEST_CHORD_M, 0.0, 0.0]).unwrap(),
+            pipe_section,
+            [0.0, 1.0, 0.0],
+        )
+        .unwrap();
+        let build = curved_bend_direct_build();
+        let intensity = [0.0, 0.0, -190.0];
+        let pressure = 0.0;
+        let pressure_thrust = pressure * derived.internal_area;
+        let node_j_force: [f64; DOF_PER_NODE] = corrected[DOF_PER_NODE..]
+            .try_into()
+            .expect("six j-end action slots");
+
+        // The public endpoint rows stay the chord-frame node-on-element
+        // actions. Reconstruct that independent direct solve before testing
+        // the separate arc section-cut resultants consumed by stress.
+        let uniform_equivalent = build
+            .macro_element
+            .consistent_uniform_nodal_loads(intensity)
+            .unwrap();
+        let radial_equivalent = build
+            .macro_element
+            .consistent_radial_pressure_nodal_loads(pressure_thrust)
+            .unwrap();
+        let [tangent_i, tangent_j] = build.macro_element.end_tangents().unwrap();
+        let mut applied = [0.0; ELEMENT_DOF];
+        for slot in 0..ELEMENT_DOF {
+            applied[slot] = uniform_equivalent[slot] + radial_equivalent[slot];
+        }
+        for axis in 0..3 {
+            applied[axis] -= pressure_thrust * tangent_i[axis];
+            applied[DOF_PER_NODE + axis] += pressure_thrust * tangent_j[axis];
+        }
+        applied[DOF_PER_NODE + UY] += 1000.0;
+        let displacements = curved_bend_direct_solution(&applied);
+        let stiffness = build.macro_element.global_stiffness().unwrap();
+        let mut expected_raw = [0.0; ELEMENT_DOF];
+        for row in 0..ELEMENT_DOF {
+            for col in 0..ELEMENT_DOF {
+                expected_raw[row] += stiffness[row][col] * displacements[col];
+            }
+            expected_raw[row] -= uniform_equivalent[row] + radial_equivalent[row];
+            assert!(
+                (corrected[row] - round6(expected_raw[row])).abs() <= 1.1e-6,
+                "raw chord-frame action slot {row}: {} != {}",
+                corrected[row],
+                round6(expected_raw[row])
+            );
+        }
+        for row_id in &row_ids {
+            for (id, location) in [
+                ((*row_id).to_string(), "end_i"),
+                (format!("{row_id}:end-j"), "end_j"),
+            ] {
+                let metadata = result
+                    .results
+                    .iter()
+                    .find(|row| row.id == id)
+                    .and_then(|row| row.metadata.as_ref())
+                    .unwrap();
+                assert_eq!(metadata.location, location);
+                assert_eq!(metadata.coordinate_system, "element_local");
+                assert_eq!(metadata.basis, SECTION_RESULTANT_BASIS);
+                assert!(metadata.sign_convention.contains("force vector"));
+            }
+        }
+
+        for (fraction, location) in [(0.0, "end-i"), (1.0, "end-j")] {
+            let actual = curved_bend_section_resultants(
+                &build,
+                &pipe,
+                &corrected,
+                intensity,
+                pressure_thrust,
+                fraction,
+            )
+            .unwrap();
+            let expected = build
+                .macro_element
+                .arc_section_resultants_with_radial_pressure(
+                    fraction,
+                    node_j_force,
+                    intensity,
+                    pressure_thrust,
+                )
+                .unwrap();
+            for slot in 0..6 {
+                assert!(
+                    (actual[slot] - expected[slot]).abs() <= 1.0e-9 * expected[slot].abs().max(1.0),
+                    "{location} resultant slot {slot}: {} != {}",
+                    actual[slot],
+                    expected[slot]
+                );
+            }
+            let recovered = recover_section_stress(&actual, &derived, None);
+            let expected_stresses = [
+                ("axial-normal", recovered.components.axial_normal.unwrap()),
+                (
+                    "bending-normal-y",
+                    recovered.components.bending_normal_y.unwrap(),
+                ),
+                (
+                    "bending-normal-z",
+                    recovered.components.bending_normal_z.unwrap(),
+                ),
+                (
+                    "torsional-shear",
+                    recovered.components.torsional_shear.unwrap(),
+                ),
+            ];
+            for (tail, expected_pa) in expected_stresses {
+                p5_close(
+                    result_value(
+                        &result,
+                        &format!("result:stress:pipe-P-100:{location}:{tail}"),
+                    ),
+                    expected_pa / 1.0e6,
+                );
+            }
+            let metadata = result
+                .results
+                .iter()
+                .find(|row| row.id == format!("result:stress:pipe-P-100:{location}:axial-normal"))
+                .and_then(|row| row.metadata.as_ref())
+                .unwrap();
+            assert_eq!(metadata.coordinate_system, "element_local");
+            assert_eq!(metadata.basis, SECTION_RESULTANT_BASIS);
+            assert_eq!(
+                metadata.sign_convention,
+                CURVED_BEND_SECTION_SIGN_CONVENTION
+            );
+        }
+
+        for (fraction, station) in [(0.25, "quarter-1"), (0.5, "midspan"), (0.75, "quarter-3")] {
+            let expected = build
+                .macro_element
+                .arc_section_resultants_with_radial_pressure(
+                    fraction,
+                    node_j_force,
+                    intensity,
+                    pressure_thrust,
+                )
+                .unwrap();
+            for (slot, (family, tail)) in [
+                ("force", "axial"),
+                ("force", "shear-y"),
+                ("force", "shear-z"),
+                ("moment", "torsion"),
+                ("moment", "bending-y"),
+                ("moment", "bending-z"),
+            ]
+            .into_iter()
+            .enumerate()
+            {
+                let actual = result_value(
+                    &result,
+                    &format!("result:{family}:pipe-P-100:{station}:{tail}"),
+                );
+                assert!(
+                    (actual - round6(expected[slot])).abs() <= 1.1e-6,
+                    "{station} resultant slot {slot}: {actual} != {}",
+                    round6(expected[slot])
+                );
+            }
+            let metadata = result
+                .results
+                .iter()
+                .find(|row| row.id == format!("result:force:pipe-P-100:{station}:axial"))
+                .and_then(|row| row.metadata.as_ref())
+                .unwrap();
+            assert_eq!(metadata.coordinate_system, "element_local");
+            assert_eq!(metadata.basis, SECTION_RESULTANT_BASIS);
+            assert_eq!(
+                metadata.sign_convention,
+                CURVED_BEND_SECTION_SIGN_CONVENTION
+            );
+            let stress_metadata = result
+                .results
+                .iter()
+                .find(|row| row.id == format!("result:stress:pipe-P-100:{station}:axial-normal"))
+                .and_then(|row| row.metadata.as_ref())
+                .unwrap();
+            assert_eq!(stress_metadata.coordinate_system, "element_local");
+            assert_eq!(stress_metadata.basis, SECTION_RESULTANT_BASIS);
+            assert_eq!(
+                stress_metadata.sign_convention,
+                CURVED_BEND_SECTION_SIGN_CONVENTION
+            );
+        }
+    }
+
+    #[test]
+    fn mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure() {
+        let baseline = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure",
+        ));
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure",
+        );
+        request.materials[0].elastic_modulus = Quantity {
+            value: 200_000.0,
+            unit: "MPa".to_string(),
+        };
+        request.materials[0].shear_modulus = Some(Quantity {
+            value: 77_000.0,
+            unit: "MPa".to_string(),
+        });
+        for pipe in &mut request.model.pipe_segments {
+            pipe.section.outside_diameter = Quantity {
+                value: 168.0,
+                unit: "mm".to_string(),
+            };
+            pipe.section.wall_thickness = Quantity {
+                value: 7.0,
+                unit: "mm".to_string(),
+            };
+        }
+
+        let result = run_linear_static_preview(request);
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(result
+            .diagnostics
+            .iter()
+            .all(|item| item.code != "UNIT_INPUT_INVALID"));
+        assert_eq!(result.results.len(), baseline.results.len());
+        assert_eq!(
+            result
+                .summary
+                .max_displacement
+                .as_ref()
+                .map(|item| item.value),
+            baseline
+                .summary
+                .max_displacement
+                .as_ref()
+                .map(|item| item.value)
+        );
+        assert_eq!(
+            result
+                .summary
+                .max_open_formula_stress
+                .as_ref()
+                .map(|item| item.value),
+            baseline
+                .summary
+                .max_open_formula_stress
+                .as_ref()
+                .map(|item| item.value)
+        );
+    }
+
+    #[test]
+    fn valid_invented_model_exposes_endpoint_stress_components_without_pressure() {
+        let result = run_linear_static_preview(mechanical_stress_fixture_for_test(
+            request(),
+            "tests::valid_invented_model_exposes_endpoint_stress_components_without_pressure",
+        ));
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+
+        assert!(result_ids.contains("result:stress:pipe-P-120"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:end-i:axial-normal"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:end-i:torsional-shear"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:end-j:axial-normal"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:end-j:torsional-shear"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-1:axial-normal"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-1:bending-normal-y"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-1:bending-normal-z"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-1:torsional-shear"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:midspan:axial-normal"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:midspan:bending-normal-y"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:midspan:bending-normal-z"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:midspan:torsional-shear"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-3:axial-normal"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-3:bending-normal-y"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-3:bending-normal-z"));
+        assert!(result_ids.contains("result:stress:pipe-P-120:quarter-3:torsional-shear"));
+        assert!(!result_ids.contains("result:stress:pipe-P-120:midspan:shear-y"));
+        assert!(!result_ids.contains("result:stress:pipe-P-120:quarter-1:shear-y"));
+        assert!(result.results.iter().any(|item| {
+            item.id == "result:stress:pipe-P-120:end-j:torsional-shear"
+                && item.kind == "element_local_torsional_shear_stress"
+                && item.unit == "MPa"
+                && item
+                    .metadata
+                    .as_ref()
+                    .map(|metadata| {
+                        metadata.component == "torsional_shear_stress"
+                            && metadata.coordinate_system == "element_local"
+                            && metadata.location == "end_j"
+                            && metadata.basis == "recovered_from_local_element_stiffness"
+                    })
+                    .unwrap_or(false)
+        }));
+
+        assert!(result.results.iter().any(|item| {
+            item.id == "result:stress:pipe-P-120:midspan:torsional-shear"
+                && item.kind == "element_local_torsional_shear_stress"
+                && item.unit == "MPa"
+                && item
+                    .metadata
+                    .as_ref()
+                    .map(|metadata| {
+                        metadata.component == "torsional_shear_stress"
+                            && metadata.coordinate_system == "element_local"
+                            && metadata.location == "midspan"
+                            && metadata.basis == "recovered_from_open_mechanics_stress_components"
+                    })
+                    .unwrap_or(false)
+        }));
+        assert!(result.results.iter().any(|item| {
+            item.id == "result:stress:pipe-P-120:quarter-1:torsional-shear"
+                && item.kind == "element_local_torsional_shear_stress"
+                && item.unit == "MPa"
+                && item
+                    .metadata
+                    .as_ref()
+                    .map(|metadata| {
+                        metadata.component == "torsional_shear_stress"
+                            && metadata.coordinate_system == "element_local"
+                            && metadata.location == "quarter_1"
+                            && metadata.basis == "recovered_from_open_mechanics_stress_components"
+                    })
+                    .unwrap_or(false)
+        }));
+        assert!(!result
+            .diagnostics
+            .iter()
+            .any(|item| item.code == "PRESSURE_LOAD_NOT_APPLIED_TO_FRAME_VECTOR"));
+    }
+
+    #[test]
+    fn nonlinear_support_current_pressure_free_law_in_both_modes() {
+        for mode in [
+            PreviewSolverMode::SparseInteractive,
+            PreviewSolverMode::DenseScrutiny,
+        ] {
+            let result =
+                run_linear_static_preview_with_mode(friction_sliding_preview_request(), mode);
+            let diagnostic_codes = result
+                .diagnostics
+                .iter()
+                .map(|item| item.code.as_str())
+                .collect::<HashSet<_>>();
+
+            assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:iteration-count"),
+                2.0
+            );
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:final-residual-count"),
+                0.0
+            );
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:converged-flag"),
+                1.0
+            );
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-FRIC-SLIDE-110:state-code"
+                ),
+                3.0
+            );
+            assert!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-FRIC-SLIDE-110:ux-displacement"
+                ) > 0.0
+            );
+            // DEC-067: the sliding support reports the bounded -mu*N tangential
+            // reaction opposing motion (0.3 * 10 N explicit normal evidence)
+            // instead of a fully released zero reaction.
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-FRIC-SLIDE-110:ux-reaction"
+                ),
+                -3.0
+            );
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-FRIC-SLIDE-110:friction-normal-reaction"
+                ),
+                10.0
+            );
+            assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+            assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+        }
+    }
 
     fn rigid_preview_support(family: &str, restraints: &[&str]) -> PreviewSupport {
         PreviewSupport {
@@ -9946,7 +12560,10 @@ mod tests {
 
     #[test]
     fn f3_missing_and_null_family_preserve_existing_inference_and_payloads() {
-        let baseline = run_linear_static_preview(request());
+        let baseline = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+        ));
         for null in [false, true] {
             let mut raw: serde_json::Value = serde_json::from_str(include_str!(
                 "../../../fixtures/product_preview/invented_preview_model.json"
@@ -9974,10 +12591,13 @@ mod tests {
                 rigid_linear_support_from_preview(support, 0, dofs).family,
                 SupportFamily::Anchor
             );
-            let result = run_linear_static_preview(LinearStaticPreviewRequest {
-                model,
-                materials: invented_materials(),
-            });
+            let result = run_linear_static_preview(mechanical_fixture_for_test(
+                LinearStaticPreviewRequest {
+                    model,
+                    materials: invented_materials(),
+                },
+                "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+            ));
             assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
             assert_eq!(
                 serde_json::to_value(&result.results).unwrap(),
@@ -9988,7 +12608,10 @@ mod tests {
 
     #[test]
     fn f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+        );
         let support = &mut request.model.supports[0];
         support.family = Some("guide".to_string());
         let dofs = support
@@ -10022,7 +12645,10 @@ mod tests {
 
     #[test]
     fn f3_canonical_spring_retains_elastic_stiffness() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::f3_canonical_spring_retains_elastic_stiffness",
+        );
         let support = request
             .model
             .supports
@@ -10060,7 +12686,10 @@ mod tests {
         for behavior in [
             "one_way", "one-way", "oneway", "lift_off", "lift-off", "liftoff",
         ] {
-            let mut request = request();
+            let mut request = mechanical_fixture_for_test(
+                request(),
+                "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+            );
             let hanger = request
                 .model
                 .supports
@@ -10336,7 +12965,10 @@ mod tests {
 
     #[test]
     fn shared_section_stale_cache_blocks_common_solver_entry() {
-        let mut input = shared_section_request();
+        let mut input = mechanical_fixture_for_test(
+            shared_section_request(),
+            "tests::shared_section_stale_cache_blocks_common_solver_entry",
+        );
         input.model.pipe_segments[0].section.outside_diameter.value *= 1.1;
         let output = run_linear_static_preview(input);
         assert!(output
@@ -10347,7 +12979,10 @@ mod tests {
 
     #[test]
     fn shared_section_equivalent_but_different_cache_representation_is_stale() {
-        let mut input = shared_section_request();
+        let mut input = mechanical_fixture_for_test(
+            shared_section_request(),
+            "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+        );
         let pipe = &mut input.model.pipe_segments[0];
         assert_eq!(pipe.section.outside_diameter.unit, "m");
         pipe.section.outside_diameter.value *= 1000.0;
@@ -10362,7 +12997,10 @@ mod tests {
     #[test]
     fn shared_section_blank_reference_identity_blocks_common_entry() {
         for blank in ["", " ", "\t\n"] {
-            let mut input = shared_section_request();
+            let mut input = mechanical_fixture_for_test(
+                shared_section_request(),
+                "tests::shared_section_blank_reference_identity_blocks_common_entry",
+            );
             input.model.pipe_segments[0].section_ref = Some(blank.into());
             input.model.sections[0].id = blank.into();
             let output = run_linear_static_preview(input);
@@ -10372,7 +13010,10 @@ mod tests {
                 .any(|d| d.code == "SECTION_REFERENCE_INVALID" && d.severity == "blocking"));
         }
         // Nonblank references remain exact; whitespace is never silently removed.
-        let mut input = shared_section_request();
+        let mut input = mechanical_fixture_for_test(
+            shared_section_request(),
+            "tests::shared_section_blank_reference_identity_blocks_common_entry",
+        );
         input.model.pipe_segments[0].section_ref = Some(" section:test ".into());
         let output = run_linear_static_preview(input);
         assert!(output
@@ -10391,7 +13032,10 @@ mod tests {
             "absent_dimension",
             "invalid_dimension",
         ] {
-            let mut input = shared_section_request();
+            let mut input = mechanical_fixture_for_test(
+                shared_section_request(),
+                "tests::shared_section_reference_failures_are_explicit",
+            );
             match case {
                 "missing" => input.model.sections.clear(),
                 "duplicate" => input.model.sections.push(input.model.sections[0].clone()),
@@ -10427,7 +13071,10 @@ mod tests {
 
     #[test]
     fn shared_section_local_mill_tolerance_must_leave_positive_wall() {
-        let mut input = shared_section_request();
+        let mut input = mechanical_fixture_for_test(
+            shared_section_request(),
+            "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+        );
         let wall = input.model.pipe_segments[0].section.wall_thickness.clone();
         input.model.pipe_segments[0].section.mill_tolerance = Some(wall);
         let output = run_linear_static_preview(input);
@@ -10462,15 +13109,17 @@ mod tests {
 
     fn invented_materials() -> Vec<MaterialInput> {
         vec![MaterialInput {
+            constitutive_basis: None,
+            poisson_ratio: None,
             id: "material:invented-carbon-steel".to_string(),
             elastic_modulus: Quantity {
                 value: 200_000_000_000.0,
                 unit: "Pa".to_string(),
             },
-            shear_modulus: Quantity {
+            shear_modulus: Some(Quantity {
                 value: 77_000_000_000.0,
                 unit: "Pa".to_string(),
-            },
+            }),
             thermal_expansion_coefficient: Some(Quantity {
                 value: 0.000012,
                 unit: "1/degC".to_string(),
@@ -10614,7 +13263,10 @@ mod tests {
 
     #[test]
     fn valid_invented_model_solves_deterministically() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::valid_invented_model_solves_deterministically",
+        ));
         let result_ids = result
             .results
             .iter()
@@ -10646,7 +13298,10 @@ mod tests {
         assert!(metadata.basis.contains("solver_mode=sparse_interactive"));
         assert!(metadata
             .basis
-            .contains("solution_basis=sparse_profile_direct_primary"));
+            .contains("solution_basis=sparse_structural_integrity_primary"));
+        assert!(metadata
+            .basis
+            .contains("profile_pivot_residual_observation_basis=legacy_unscaled_DEC050_DEC053"));
         assert!(metadata
             .basis
             .contains("default_sparse_promotion=interactive_default"));
@@ -10655,8 +13310,13 @@ mod tests {
 
     #[test]
     fn dense_scrutiny_mode_keeps_sparse_parity_row() {
-        let result =
-            run_linear_static_preview_with_mode(request(), PreviewSolverMode::DenseScrutiny);
+        let result = run_linear_static_preview_with_mode(
+            mechanical_fixture_for_test(
+                request(),
+                "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+            ),
+            PreviewSolverMode::DenseScrutiny,
+        );
         let sparse_evidence = result
             .results
             .iter()
@@ -10689,8 +13349,9 @@ mod tests {
         assert!(metadata.basis.contains("sparse_interactive_default=true"));
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn valid_invented_model_exposes_nonlinear_support_loop_evidence() {
+    fn valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise() {
         for mode in [
             PreviewSolverMode::DenseScrutiny,
             PreviewSolverMode::SparseInteractive,
@@ -10753,7 +13414,7 @@ mod tests {
                 }
                 case.primitive_loads = old_nodal_loads;
             }
-            let result = run_linear_static_preview_with_mode(input, mode);
+            let result = historical_pressure_preview_with_mode(input, mode);
             let result_ids = result
                 .results
                 .iter()
@@ -10852,9 +13513,12 @@ mod tests {
                 normal_evidence.kind,
                 "nonlinear_support_friction_normal_reaction_derived"
             );
-            assert_eq!(friction_reaction, 0.489527);
-            assert_eq!(normal_evidence.value, 48.952719);
-            assert_eq!(friction_reaction, round6(0.01 * normal_evidence.value));
+            // Historical carrier regression only: these constants recorded six-decimal values.
+            assert_eq!(round6(friction_reaction), 0.489527);
+            assert_eq!(round6(normal_evidence.value), 48.952719);
+            // SI force-balance admissibility, not bit identity between separately
+            // recovered force components; preserves the analytic 1e-9 criterion.
+            assert_coulomb_force_balance_n(friction_reaction, 0.01 * normal_evidence.value);
             let normal_metadata = normal_evidence.metadata.as_ref().unwrap();
             assert!(normal_metadata.basis.contains("derived_support_reaction"));
             assert!(normal_metadata.basis.contains("source_ref=support:S-130"));
@@ -11099,6 +13763,63 @@ mod tests {
     }
 
     #[test]
+    fn successor_mixed_product_evaluates_actual_final_rows_in_both_modes() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            let output =
+                run_linear_static_preview_with_mode(mixed_nonlinear_preview_request(), mode);
+            assert_eq!(
+                output.status.mechanics, "MECHANICS_SOLVED",
+                "{:?}",
+                output.diagnostics
+            );
+            assert_eq!(
+                output.numerical_quality.status,
+                NumericalQualityStatus::Unresolved
+            );
+            assert_eq!(
+                output.numerical_quality.cases[0].solve_quality,
+                NumericalQualityStatus::Unresolved
+            );
+            let evidence = output
+                .diagnostics
+                .iter()
+                .find(|d| d.id == output.numerical_quality.cases[0].evidence_refs[0])
+                .unwrap();
+            assert_eq!(
+                evidence.code,
+                "NUMERICAL_INTEGRITY_RECOVERY_BASIS_UNQUALIFIED"
+            );
+            assert_eq!(
+                evidence.id,
+                integrity_diagnostic_id("load:L-MIXED-NONLINEAR")
+            );
+            assert!(evidence
+                .message
+                .contains(open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY));
+            assert!(evidence.message.contains("normalized_evaluation_allowance"));
+            assert!(evidence.message.contains("observed_governing_work_dof"));
+            assert!(evidence
+                .message
+                .contains("separate zero count/cap/contact/sliding checks passed"));
+            for metric in ["force", "moment", "work"] {
+                let id = format!("result:nonlinear-support:free-dof-{metric}-residual");
+                let row = output.results.iter().find(|row| row.id == id).unwrap();
+                assert!(row.value.is_finite());
+                let basis = &row.metadata.as_ref().unwrap().basis;
+                assert!(basis.contains("observed_compliance=true"));
+                assert!(basis
+                    .contains(open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY));
+                assert!(
+                    !basis.contains("threshold_policy_ref=DEC-046-CV-B-product-preview-free-dof")
+                );
+            }
+        }
+    }
+
+    #[test]
     fn mixed_nonlinear_preview_bundle_converges_and_emits_each_support_state() {
         let result = run_linear_static_preview(mixed_nonlinear_preview_request());
         let result_ids = result
@@ -11113,6 +13834,13 @@ mod tests {
             .collect::<HashSet<_>>();
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert_eq!(
+            result.numerical_quality.status,
+            NumericalQualityStatus::Unresolved
+        );
+        assert!(result.diagnostics.iter().any(|d| d.code
+            == "NUMERICAL_INTEGRITY_RECOVERY_BASIS_UNQUALIFIED"
+            && d.id == integrity_diagnostic_id("load:L-MIXED-NONLINEAR")));
         assert!(
             result_ids.contains("result:nonlinear-support:support-NL-MIX-ONEWAY-110:state-code")
         );
@@ -11200,12 +13928,12 @@ mod tests {
         // DEC-067: the sliding support carries the bounded -mu*N tangential
         // reaction opposing motion (0.3 * 10 N normal evidence), not a full
         // DOF release with zero reaction.
-        assert_eq!(
+        assert_coulomb_force_balance_n(
             result_value(
                 &result,
-                "result:nonlinear-support:support-NL-MIX-FRIC-110:uz-reaction"
+                "result:nonlinear-support:support-NL-MIX-FRIC-110:uz-reaction",
             ),
-            -3.0
+            -0.3 * 10.0,
         );
         let max_translation_delta =
             result_value(&result, "result:nonlinear-support:max-translation-delta");
@@ -11239,17 +13967,14 @@ mod tests {
                 <= DEC_046_PRODUCT_PREVIEW_MOMENT_REACTION_DELTA_ABSOLUTE_LIMIT_N_M,
             "max moment reaction delta {max_moment_reaction_delta}"
         );
-        assert_eq!(
-            result_value(&result, "result:nonlinear-support:free-dof-force-residual"),
-            0.0
+        assert!(
+            result_value(&result, "result:nonlinear-support:free-dof-force-residual").is_finite()
         );
-        assert_eq!(
-            result_value(&result, "result:nonlinear-support:free-dof-moment-residual"),
-            0.0
+        assert!(
+            result_value(&result, "result:nonlinear-support:free-dof-moment-residual").is_finite()
         );
-        assert_eq!(
-            result_value(&result, "result:nonlinear-support:free-dof-work-residual"),
-            0.0
+        assert!(
+            result_value(&result, "result:nonlinear-support:free-dof-work-residual").is_finite()
         );
         let translation_delta = result
             .results
@@ -11287,7 +14012,11 @@ mod tests {
             .expect("work residual row exists");
         for residual in [force_residual, moment_residual] {
             let basis = &residual.metadata.as_ref().unwrap().basis;
-            assert!(basis.contains(DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF));
+            assert!(
+                basis.contains(open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY)
+            );
+            assert!(basis.contains("observed_compliance=true"));
+            assert!(basis.contains("target=64*gamma(actual_row_operation_count)"));
             assert!(basis.contains("threshold_policy_status=accepted"));
             assert!(basis.contains("residual_basis=free_dof_force_moment_equilibrium"));
             assert!(!basis.contains("threshold=TBD"));
@@ -11297,8 +14026,10 @@ mod tests {
         assert!(work_basis.contains(DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF));
         assert!(work_basis.contains("threshold_policy_status=accepted"));
         assert!(work_basis.contains("residual_basis=free_dof_work_residual"));
-        assert!(work_basis.contains("general_energy_threshold_policy_status=accepted"));
-        assert!(work_basis.contains("general_energy_threshold=0 N*m"));
+        assert!(work_basis
+            .contains(open_pipe_stress_nonlinear_integration::product_equilibrium::POLICY));
+        assert!(work_basis.contains("observed_compliance=true"));
+        assert!(work_basis.contains("general_energy_alias=residual_work_not_total_energy_balance"));
         assert!(!work_basis.contains("observed_residual_only"));
         let iteration_count = result
             .results
@@ -11614,10 +14345,10 @@ mod tests {
         let result =
             run_linear_static_preview_with_mode(input, PreviewSolverMode::SparseInteractive);
         assert_ne!(result.status.mechanics, "MECHANICS_SOLVED");
-        assert!(result
-            .diagnostics
-            .iter()
-            .any(|d| d.severity == "blocking" && d.message.contains("singular")));
+        assert!(result.diagnostics.iter().any(|d| d.severity == "blocking"
+            && d.code == "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM"
+            && d.id == integrity_diagnostic_id("load:L-GAP")
+            && d.affected_refs.iter().any(|r| r == "load:L-GAP")));
         assert!(
             !result
                 .diagnostics
@@ -11663,10 +14394,14 @@ mod tests {
                 let reversed = run_linear_static_preview_with_mode(input, mode);
                 assert_ne!(reversed.status.mechanics, "MECHANICS_SOLVED");
                 assert!(reversed.results.is_empty());
-                assert!(reversed
+                assert!(!reversed
                     .diagnostics
                     .iter()
-                    .any(|d| d.severity == "blocking" && d.message.contains("singular")));
+                    .any(|d| d.code == "SPARSE_INTERACTIVE_DENSE_FALLBACK"));
+                assert!(reversed.diagnostics.iter().any(|d| d.severity == "blocking"
+                    && d.code == "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM"
+                    && d.id == integrity_diagnostic_id("load:L-GAP")
+                    && d.affected_refs.iter().any(|r| r == "load:L-GAP")));
             }
         }
     }
@@ -11790,6 +14525,81 @@ mod tests {
             100_000.0,
             "combination:C-GAP",
         )
+    }
+
+    #[test]
+    fn unit_contract_rotational_gap_cannot_consume_a_length_as_an_angle() {
+        // The current product gap contract is length-based. Rotational gap
+        // capability needs an explicit angular contract; neither metre input
+        // nor a rejected angular input may silently become an angular stop.
+        let mut missing_blocks = Vec::new();
+        for mode in [
+            PreviewSolverMode::SparseInteractive,
+            PreviewSolverMode::DenseScrutiny,
+        ] {
+            for (dof, component) in [
+                ("rotation_x", "rx"),
+                ("RX", "rx"),
+                ("rotation_y", "ry"),
+                ("RY", "ry"),
+                ("rotation_z", "rz"),
+                ("RZ", "rz"),
+            ] {
+                for (value, unit) in [(0.05, "mm"), (0.00005, "m"), (0.00005, "rad")] {
+                    let mut input = gap_closure_preview_request();
+                    let nonlinear = input.model.supports[1].nonlinear.as_mut().unwrap();
+                    nonlinear.dof = dof.into();
+                    nonlinear.gap = Some(Quantity {
+                        value,
+                        unit: unit.into(),
+                    });
+                    let load = &mut input.model.load_cases[0].primitive_loads[0];
+                    load.category = "concentrated_moment".into();
+                    load.direction = dof.into();
+                    load.dimension = "moment".into();
+                    load.magnitude = Quantity {
+                        value: 250.0,
+                        unit: "N*m".into(),
+                    };
+                    let output = run_linear_static_preview_with_mode(input, mode);
+                    let rotation_id = format!("result:disp:node-N-110:{component}");
+                    let observed_rotation = output
+                        .results
+                        .iter()
+                        .find(|row| row.id == rotation_id)
+                        .map(|row| (row.value, row.unit.as_str()));
+                    let codes = output
+                        .diagnostics
+                        .iter()
+                        .map(|d| d.code.as_str())
+                        .collect::<Vec<_>>();
+                    println!("rotational-gap unit contract: mode={mode:?}, dof={dof}, gap={value} {unit}, mechanics={}, rotation={observed_rotation:?}, diagnostics={codes:?}", output.status.mechanics);
+                    // rotation_* is an authored moment-load spelling, not a
+                    // supported nonlinear-support DOF token in this contract.
+                    let required_code = if dof.starts_with("rotation_") {
+                        if unit == "rad" {
+                            "UNIT_CONVERSION_UNAVAILABLE"
+                        } else {
+                            "NONLINEAR_SUPPORT_DOF_INVALID"
+                        }
+                    } else {
+                        "NONLINEAR_ROTATIONAL_GAP_UNSUPPORTED"
+                    };
+                    let blocked = output
+                        .diagnostics
+                        .iter()
+                        .any(|d| d.code == required_code && d.severity == "blocking");
+                    if !blocked || output.status.mechanics == "MECHANICS_SOLVED" {
+                        missing_blocks.push(format!("{mode:?}/{dof}/{unit}"));
+                    }
+                    assert!(!output.accepted_model_state_mutated);
+                }
+            }
+        }
+        assert!(
+            missing_blocks.is_empty(),
+            "rotational gap contract was not explicitly blocked: {missing_blocks:?}"
+        );
     }
 
     #[test]
@@ -11924,7 +14734,10 @@ mod tests {
             PrimitiveLoadCategory::Weight
         );
 
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+        );
         request.model.load_cases.truncate(1);
         request.model.combinations.clear();
         let primitive = request.model.load_cases[0]
@@ -11959,7 +14772,10 @@ mod tests {
             .iter()
             .any(|reference| reference == "load:L-100-Y"));
 
-        let native = run_linear_static_preview(self::request());
+        let native = run_linear_static_preview(mechanical_fixture_for_test(
+            self::request(),
+            "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+        ));
         assert_eq!(native.status.mechanics, "MECHANICS_SOLVED");
         assert!(
             native
@@ -11972,7 +14788,10 @@ mod tests {
 
     #[test]
     fn valid_invented_model_exposes_element_force_components() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::valid_invented_model_exposes_element_force_components",
+        ));
         let result_ids = result
             .results
             .iter()
@@ -12088,7 +14907,10 @@ mod tests {
 
     #[test]
     fn valid_invented_model_exposes_global_displacement_components() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::valid_invented_model_exposes_global_displacement_components",
+        ));
         let result_ids = result
             .results
             .iter()
@@ -12149,7 +14971,7 @@ mod tests {
         }));
 
         // Translation components reassemble the published magnitude row within
-        // round6 tolerance.
+        // the existing magnitude comparison tolerance.
         let ux = result_value(&result, "result:disp:node-N-140:ux");
         let uy = result_value(&result, "result:disp:node-N-140:uy");
         let uz = result_value(&result, "result:disp:node-N-140:uz");
@@ -12165,7 +14987,7 @@ mod tests {
             .iter()
             .find(|item| item.id == "result:combination:combination-C-OPER-ALT:disp:node-N-140:uy")
             .expect("combination displacement component row should be emitted");
-        assert_eq!(combined_uy.value, round6(default_uy + 0.5 * alternate_uy));
+        assert_eq!(combined_uy.value, default_uy + 0.5 * alternate_uy);
         assert_eq!(
             combined_uy
                 .metadata
@@ -12282,9 +15104,10 @@ mod tests {
         assert_eq!(first, second);
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn valid_invented_model_exposes_endpoint_stress_components() {
-        let result = run_linear_static_preview(request());
+    fn valid_invented_model_exposes_endpoint_stress_components_historical_pressure_premise() {
+        let result = historical_pressure_preview(request());
         let result_ids = result
             .results
             .iter()
@@ -12385,7 +15208,10 @@ mod tests {
 
     #[test]
     fn bend_component_user_multipliers_emit_stress_review_rows() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::bend_component_user_multipliers_emit_stress_review_rows",
+        ));
         let default_row_id = "result:stress:component-C-110:pipe-P-100:end-j:user-multiplier";
         let combination_row_id =
             "result:combination:combination-C-OPER-ALT:stress:component-C-110:pipe-P-100:end-j:user-multiplier";
@@ -12454,7 +15280,10 @@ mod tests {
 
     #[test]
     fn branch_component_user_multipliers_emit_side_specific_stress_review_rows() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+        ));
         let branch_row_id = "result:stress:component-C-120:pipe-P-110:end-j:user-multiplier";
         let header_row_id = "result:stress:component-C-120:pipe-P-120:end-i:user-multiplier";
         let combination_row_id =
@@ -12518,7 +15347,10 @@ mod tests {
 
     #[test]
     fn expansion_joint_user_stiffness_emits_macro_element_review_rows() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+        ));
         let axial = result
             .results
             .iter()
@@ -12579,9 +15411,11 @@ mod tests {
         );
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence() {
-        let result = run_linear_static_preview(request());
+    fn expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise(
+    ) {
+        let result = historical_pressure_preview(request());
         let default_row = result
             .results
             .iter()
@@ -12658,7 +15492,10 @@ mod tests {
 
     #[test]
     fn spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+        ));
         let variable_stiffness = result
             .results
             .iter()
@@ -13187,7 +16024,7 @@ mod tests {
         // Consuming constant-effort support in a model whose solve also runs
         // the nonlinear active-set loop: both consume the same assembled
         // force vector.
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(request(), "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence");
         request
             .model
             .supports
@@ -13213,7 +16050,7 @@ mod tests {
         // A constant-effort support carrying a nonlinear field keeps the
         // existing nonlinear-path handling: it is neither classified for
         // constant-force consumption nor warned about.
-        let mut precedence_request = super::tests::request();
+        let mut precedence_request = mechanical_fixture_for_test(super::tests::request(), "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence");
         let nonlinear_template = precedence_request
             .model
             .supports
@@ -13243,7 +16080,10 @@ mod tests {
 
     #[test]
     fn models_without_constant_effort_supports_are_untouched_by_the_consumption_path() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+        );
         request
             .model
             .supports
@@ -13264,7 +16104,10 @@ mod tests {
 
     #[test]
     fn valid_invented_model_exposes_explicit_load_combination_results() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::valid_invented_model_exposes_explicit_load_combination_results",
+        ));
         let combination_id = "result:combination:combination-C-OPER-ALT:force:pipe-P-120:axial";
         let alternate_load_case_id = "result:loadcase:load-L-200:force:pipe-P-120:axial";
         let quarter_combination_id =
@@ -13345,7 +16188,10 @@ mod tests {
 
     #[test]
     fn combination_stress_summary_rows_are_skipped_with_diagnostics() {
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+        ));
 
         assert!(!result
             .results
@@ -13387,9 +16233,9 @@ mod tests {
             .unwrap();
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
-        assert!((axial_i.value - round6(expected_force)).abs() < 1.0e-6);
-        assert!((axial_j.value + round6(expected_force)).abs() < 1.0e-6);
-        assert!((stress_i.value + round6(expected_force / area / 1_000_000.0)).abs() < 1.0e-6);
+        assert!((axial_i.value - expected_force).abs() < 1.0e-6);
+        assert!((axial_j.value + expected_force).abs() < 1.0e-6);
+        assert!((stress_i.value + expected_force / area / 1_000_000.0).abs() < 1.0e-6);
     }
 
     fn mill_tolerance_section(mill_tolerance: Option<f64>) -> PipeSectionInput {
@@ -13481,14 +16327,20 @@ mod tests {
 
     #[test]
     fn mill_tolerance_units_are_normalized_at_preview_boundary() {
-        let mut base = request();
+        let mut base = mechanical_fixture_for_test(
+            request(),
+            "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+        );
         for pipe in &mut base.model.pipe_segments {
             pipe.section.mill_tolerance = Some(Quantity {
                 value: 0.00125,
                 unit: "m".to_string(),
             });
         }
-        let mut millimeters = request();
+        let mut millimeters = mechanical_fixture_for_test(
+            request(),
+            "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+        );
         for pipe in &mut millimeters.model.pipe_segments {
             pipe.section.mill_tolerance = Some(Quantity {
                 value: 1.25,
@@ -14191,6 +17043,7 @@ mod tests {
     fn hot_basis_material() -> MaterialInput {
         let mut material = invented_materials().remove(0);
         material.temperature_points = vec![MaterialTemperaturePointInput {
+            poisson_ratio: None,
             id: "temperature-point:hot".to_string(),
             temperature: Some(Quantity {
                 value: 533.15,
@@ -14217,6 +17070,7 @@ mod tests {
         let mut material = invented_materials().remove(0);
         material.temperature_points = vec![
             MaterialTemperaturePointInput {
+                poisson_ratio: None,
                 id: "temperature-point:cold".to_string(),
                 temperature: Some(Quantity {
                     value: 300.0,
@@ -14237,6 +17091,7 @@ mod tests {
                 provenance: Some("invented_cold_user_input".to_string()),
             },
             MaterialTemperaturePointInput {
+                poisson_ratio: None,
                 id: "temperature-point:hot".to_string(),
                 temperature: Some(Quantity {
                     value: 500.0,
@@ -14299,7 +17154,7 @@ mod tests {
             .iter()
             .find(|item| item.id == "result:force:pipe-P-100:axial")
             .unwrap();
-        assert!((axial.value - round6(expected_force)).abs() < 1.0e-6);
+        assert!((axial.value - expected_force).abs() < 1.0e-6);
 
         let record = result
             .results
@@ -14339,7 +17194,7 @@ mod tests {
             .iter()
             .find(|item| item.id == "result:force:pipe-P-100:axial")
             .unwrap();
-        assert!((axial.value - round6(expected_force)).abs() < 1.0e-6);
+        assert!((axial.value - expected_force).abs() < 1.0e-6);
 
         let record = result
             .results
@@ -14363,23 +17218,23 @@ mod tests {
         let result = run_linear_static_preview(dec092_temperature_g_request());
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
-        assert_eq!(
+        analytic_close!(
             result_value(&result, "result:disp:node-N-DEC092-TIP:rx"),
-            round6(dec092_tip_rotation(50.0e9))
+            dec092_tip_rotation(50.0e9)
         );
-        assert_eq!(
+        analytic_close!(
             result_value(
                 &result,
                 "result:loadcase:load-L-DEC092-INTERPOLATED:disp:node-N-DEC092-TIP:rx"
             ),
-            round6(dec092_tip_rotation(47.5e9))
+            dec092_tip_rotation(47.5e9)
         );
-        assert_eq!(
+        analytic_close!(
             result_value(
                 &result,
                 "result:loadcase:load-L-DEC092-BASE:disp:node-N-DEC092-TIP:rx"
             ),
-            round6(dec092_tip_rotation(80.0e9))
+            dec092_tip_rotation(80.0e9)
         );
 
         let exact_record = result
@@ -14441,7 +17296,11 @@ mod tests {
         let baseline = run_linear_static_preview(dec092_temperature_g_request());
 
         let mut changed_base = dec092_temperature_g_request();
-        changed_base.materials[0].shear_modulus.value = 20_000.0;
+        changed_base.materials[0]
+            .shear_modulus
+            .as_mut()
+            .unwrap()
+            .value = 20_000.0;
         let changed_base = run_linear_static_preview(changed_base);
         assert_eq!(changed_base.status.mechanics, "MECHANICS_SOLVED");
         for id in [
@@ -14454,12 +17313,12 @@ mod tests {
                 "selected basis result {id} must not consume base G"
             );
         }
-        assert_eq!(
+        analytic_close!(
             result_value(
                 &changed_base,
                 "result:loadcase:load-L-DEC092-BASE:disp:node-N-DEC092-TIP:rx"
             ),
-            round6(dec092_tip_rotation(20.0e9)),
+            dec092_tip_rotation(20.0e9),
             "no-basis load case must continue to consume explicit base G"
         );
 
@@ -14471,9 +17330,9 @@ mod tests {
             .value = 25_000.0;
         let changed_exact = run_linear_static_preview(changed_exact);
         assert_eq!(changed_exact.status.mechanics, "MECHANICS_SOLVED");
-        assert_eq!(
+        analytic_close!(
             result_value(&changed_exact, "result:disp:node-N-DEC092-TIP:rx"),
-            round6(dec092_tip_rotation(25.0e9))
+            dec092_tip_rotation(25.0e9)
         );
         assert_ne!(
             result_value(&changed_exact, "result:disp:node-N-DEC092-TIP:rx"),
@@ -14574,6 +17433,7 @@ mod tests {
         adjacent.materials[0]
             .temperature_points
             .push(MaterialTemperaturePointInput {
+                poisson_ratio: None,
                 id: "temperature-point:middle".to_string(),
                 temperature: Some(Quantity {
                     value: 400.0,
@@ -14595,12 +17455,12 @@ mod tests {
             });
         let result = run_linear_static_preview(adjacent);
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
-        assert_eq!(
+        analytic_close!(
             result_value(
                 &result,
                 "result:loadcase:load-L-DEC092-INTERPOLATED:disp:node-N-DEC092-TIP:rx"
             ),
-            round6(dec092_tip_rotation(85.0e9))
+            dec092_tip_rotation(85.0e9)
         );
         let basis = &result
             .results
@@ -14699,7 +17559,7 @@ mod tests {
             .iter()
             .find(|item| item.id == "result:force:pipe-P-100:axial")
             .unwrap();
-        assert!((axial.value - round6(expected_force)).abs() < 1.0e-6);
+        assert!((axial.value - expected_force).abs() < 1.0e-6);
         assert!(!result
             .results
             .iter()
@@ -14746,7 +17606,10 @@ mod tests {
 
     #[test]
     fn range_combination_records_each_operand_modulus_basis() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::range_combination_records_each_operand_modulus_basis",
+        );
         request.materials = vec![hot_basis_material()];
         request.model.load_cases[1].modulus_basis_ref = Some("temperature-point:hot".to_string());
         request.model.combinations = vec![range_combination(
@@ -14813,8 +17676,10 @@ mod tests {
         assert_eq!(global_axial, legacy_axial);
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows() {
+    fn pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows_historical_pressure_premise(
+    ) {
         let request = fixed_fixed_pressure_request("global_z");
         let section = derive_pipe_section(
             &request.model.pipe_segments[0].section,
@@ -14823,7 +17688,7 @@ mod tests {
         )
         .unwrap();
         let expected_force = 1_000_000.0 * section.internal_area;
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
         let result_ids = result
             .results
             .iter()
@@ -14846,11 +17711,9 @@ mod tests {
             .unwrap();
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
-        assert!((axial_i.value - round6(expected_force)).abs() < 1.0e-6);
-        assert!((axial_j.value + round6(expected_force)).abs() < 1.0e-6);
-        assert!(
-            (stress_i.value + round6(expected_force / section.area / 1_000_000.0)).abs() < 1.0e-6
-        );
+        assert!((axial_i.value - expected_force).abs() < 1.0e-6);
+        assert!((axial_j.value + expected_force).abs() < 1.0e-6);
+        assert!((stress_i.value + expected_force / section.area / 1_000_000.0).abs() < 1.0e-6);
         assert!(result_ids.contains("result:stress:pipe-P-100:end-i:pressure-hoop"));
         assert!(!result_ids.contains("result:stress:pipe-P-100:end-i:pressure-longitudinal"));
         assert!(result_ids.contains("result:stress:pipe-P-100"));
@@ -14860,10 +17723,12 @@ mod tests {
             .any(|item| item.code == "PRESSURE_LOAD_NOT_APPLIED_TO_FRAME_VECTOR"));
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn pressure_load_direction_does_not_change_thrust_magnitude_or_sign() {
-        let global = run_linear_static_preview(fixed_fixed_pressure_request("global_z"));
-        let legacy = run_linear_static_preview(fixed_fixed_pressure_request("RZ"));
+    fn pressure_load_direction_does_not_change_thrust_magnitude_or_sign_historical_pressure_premise(
+    ) {
+        let global = historical_pressure_preview(fixed_fixed_pressure_request("global_z"));
+        let legacy = historical_pressure_preview(fixed_fixed_pressure_request("RZ"));
         let global_axial = global
             .results
             .iter()
@@ -14897,9 +17762,11 @@ mod tests {
         assert!(result.results.is_empty());
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn generated_result_surface_matches_fallback_fixture_force_metadata() {
-        let generated = serde_json::to_value(run_linear_static_preview(request())).unwrap();
+    fn generated_result_metadata_and_historical_quantization_match_legacy_fixture_historical_pressure_premise(
+    ) {
+        let generated = serde_json::to_value(historical_pressure_preview(request())).unwrap();
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
             "../../../fixtures/product_preview/invented_mechanics_result.json"
         ))
@@ -14948,7 +17815,11 @@ mod tests {
         let fixture_disp_uy = find_result(&fixture, "result:disp:node-N-140:uy");
         assert_eq!(generated_disp_uy["kind"], fixture_disp_uy["kind"]);
         assert_eq!(generated_disp_uy["unit"], fixture_disp_uy["unit"]);
-        assert_eq!(generated_disp_uy["value"], fixture_disp_uy["value"]);
+        // This is explicitly a legacy carrier check, not a current physics oracle.
+        assert_eq!(
+            round6(generated_disp_uy["value"].as_f64().unwrap()),
+            fixture_disp_uy["value"].as_f64().unwrap()
+        );
         assert_eq!(generated_disp_uy["metadata"], fixture_disp_uy["metadata"]);
         assert_eq!(fixture_disp_uy["metadata"]["coordinate_system"], "global");
         let fixture_disp_rz = find_result(&fixture, "result:disp:node-N-140:rz");
@@ -14958,7 +17829,10 @@ mod tests {
 
     #[test]
     fn missing_material_blocks_with_diagnostic() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::missing_material_blocks_with_diagnostic",
+        );
         request.materials.clear();
         request.model.materials.clear();
 
@@ -14974,7 +17848,10 @@ mod tests {
 
     #[test]
     fn missing_load_input_blocks_with_diagnostic() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::missing_load_input_blocks_with_diagnostic",
+        );
         request.model.load_cases[0].primitive_loads[0]
             .magnitude
             .value = f64::NAN;
@@ -15007,7 +17884,10 @@ mod tests {
 
     #[test]
     fn missing_pipe_orientation_blocks_with_diagnostic() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::missing_pipe_orientation_blocks_with_diagnostic",
+        );
         request.model.pipe_segments[0].y_reference = None;
 
         let result = run_linear_static_preview(request);
@@ -15132,7 +18012,10 @@ mod tests {
 
     #[test]
     fn subtraction_combination_subtracts_solved_rows_with_signed_determinism() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+        );
         request.model.combinations = vec![
             subtraction_combination("combination:C-SUB", "load:L-100", "load:L-200"),
             subtraction_combination("combination:C-SUB-REV", "load:L-200", "load:L-100"),
@@ -15186,7 +18069,10 @@ mod tests {
 
     #[test]
     fn range_envelope_combination_selects_each_shipped_mode_deterministically() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+        );
         request.model.combinations = vec![
             range_combination("combination:C-MIN", &["load:L-100", "load:L-200"], "min"),
             range_combination("combination:C-MAX", &["load:L-100", "load:L-200"], "max"),
@@ -15846,11 +18732,19 @@ mod tests {
             PreviewSolverMode::default(),
             PreviewSolverMode::DenseScrutiny,
         ] {
-            let baseline =
-                run_linear_static_preview_with_mode(authored_coordinate_request("m"), mode);
+            let baseline = run_linear_static_preview_with_mode(
+                mechanical_fixture_for_test(
+                    authored_coordinate_request("m"),
+                    "tests::authored_coordinate_units_preserve_preview_results_and_source",
+                ),
+                mode,
+            );
             assert_eq!(baseline.status.mechanics, "MECHANICS_SOLVED");
             for unit in ["m", "mm", "in"] {
-                let input = authored_coordinate_request(unit);
+                let input = mechanical_fixture_for_test(
+                    authored_coordinate_request(unit),
+                    "tests::authored_coordinate_units_preserve_preview_results_and_source",
+                );
                 let source_before = format!("{input:?}");
                 let result = run_linear_static_preview_with_mode(input.clone(), mode);
                 assert_eq!(format!("{input:?}"), source_before);
@@ -15929,7 +18823,10 @@ mod tests {
                 serde_json::json!({"length": 1000}),
                 serde_json::json!("mm"),
             ] {
-                let mut input = request();
+                let mut input = mechanical_fixture_for_test(
+                    request(),
+                    "tests::missing_or_invalid_project_length_units_block_preview",
+                );
                 input.model.project.units = units;
                 let result = run_linear_static_preview_with_mode(input, mode);
                 assert_eq!(result.status.mechanics, "MODEL_INCOMPLETE");
@@ -15947,10 +18844,13 @@ mod tests {
             .unwrap();
             wire["project"].as_object_mut().unwrap().remove("units");
             let result = run_linear_static_preview_with_mode(
-                LinearStaticPreviewRequest {
-                    model: serde_json::from_value(wire).unwrap(),
-                    materials: Vec::new(),
-                },
+                mechanical_fixture_for_test(
+                    LinearStaticPreviewRequest {
+                        model: serde_json::from_value(wire).unwrap(),
+                        materials: Vec::new(),
+                    },
+                    "tests::missing_or_invalid_project_length_units_block_preview",
+                ),
                 mode,
             );
             assert_eq!(result.status.mechanics, "MODEL_INCOMPLETE");
@@ -15962,18 +18862,19 @@ mod tests {
         }
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn mixed_units_are_normalized_at_preview_mechanics_boundary() {
-        let baseline = run_linear_static_preview(request());
+    fn mixed_units_are_normalized_at_preview_mechanics_boundary_historical_pressure_premise() {
+        let baseline = historical_pressure_preview(request());
         let mut request = request();
         request.materials[0].elastic_modulus = Quantity {
             value: 200_000.0,
             unit: "MPa".to_string(),
         };
-        request.materials[0].shear_modulus = Quantity {
+        request.materials[0].shear_modulus = Some(Quantity {
             value: 77_000.0,
             unit: "MPa".to_string(),
-        };
+        });
         for pipe in &mut request.model.pipe_segments {
             pipe.section.outside_diameter = Quantity {
                 value: 168.0,
@@ -15995,7 +18896,7 @@ mod tests {
             load.magnitude.unit = "kPa".to_string();
         }
 
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
         assert!(result
@@ -16071,7 +18972,13 @@ mod tests {
             PreviewSolverMode::DenseScrutiny,
             PreviewSolverMode::SparseInteractive,
         ] {
-            let result = run_linear_static_preview_with_mode(request(), mode);
+            let result = run_linear_static_preview_with_mode(
+                mechanical_fixture_for_test(
+                    request(),
+                    "tests::audit_retained_spring_fixture_uses_selected_node_state",
+                ),
+                mode,
+            );
             assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
             for (node, support, dof) in [("N-140", "NL-140", "uy"), ("N-130", "NL-130-FRIC", "uz")]
             {
@@ -16225,13 +19132,21 @@ mod tests {
                     }
                     mode_rows.push(values);
                 }
-                assert_eq!(mode_rows[0], mode_rows[1]);
+                // Different factorization paths recover the same nonzero MPa
+                // stresses under the existing relative 1e-9 numerical criterion.
+                // This is cross-mode parity, not a repeat-determinism assertion.
+                assert_eq!(mode_rows[0].len(), mode_rows[1].len());
+                for (dense_mpa, sparse_mpa) in mode_rows[0].iter().zip(&mode_rows[1]) {
+                    analytic_close!(*sparse_mpa, *dense_mpa);
+                }
             }
         }
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations() {
+    fn endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations_historical_pressure_premise(
+    ) {
         for (kind, mut fixed) in [
             ("thermal", fixed_fixed_thermal_request("global_x")),
             ("pressure", fixed_fixed_pressure_request("global_x")),
@@ -16244,7 +19159,12 @@ mod tests {
                     PreviewSolverMode::DenseScrutiny,
                     PreviewSolverMode::SparseInteractive,
                 ] {
-                    let result = run_linear_static_preview_with_mode(fixed.clone(), mode);
+                    let result = if kind == "pressure" {
+                        historical_pressure_preview_with_mode(fixed.clone(), mode)
+                    } else {
+                        // The pressure-free thermal premise remains a current public check.
+                        run_linear_static_preview_with_mode(fixed.clone(), mode)
+                    };
                     assert_eq!(
                         result.status.mechanics, "MECHANICS_SOLVED",
                         "{kind} free={free}: {:?}",
@@ -16317,8 +19237,10 @@ mod tests {
         }
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves() {
+    fn endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves_historical_pressure_premise(
+    ) {
         let request =
             endpoint_section_cut_pressure_request(&[("load:L-PRESSURE", "pressure", 1_000_000.0)]);
         let section = derive_pipe_section(
@@ -16328,17 +19250,17 @@ mod tests {
         )
         .unwrap();
         let thrust = 1_000_000.0 * section.internal_area;
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
         p5_close(
             result_value(&result, "result:force:pipe-P-100:axial"),
-            round6(thrust),
+            thrust,
         );
         p5_close(
             result_value(&result, "result:force:pipe-P-100:axial:end-j"),
-            -round6(thrust),
+            -thrust,
         );
-        let expected_axial = -round6(thrust / section.area / 1.0e6);
+        let expected_axial = -thrust / section.area / 1.0e6;
         for location in ["end-i", "end-j", "quarter-1", "midspan", "quarter-3"] {
             p5_close(
                 result_value(
@@ -16348,21 +19270,22 @@ mod tests {
                 expected_axial,
             );
         }
-        let expected_hoop =
-            round6(1_000_000.0 * section.membrane_radius / section.wall_thickness / 1.0e6);
+        let expected_hoop = 1_000_000.0 * section.membrane_radius / section.wall_thickness / 1.0e6;
         p5_close(
             result_value(&result, "result:stress:pipe-P-100:end-i:pressure-hoop"),
             expected_hoop,
         );
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress() {
-        let split = run_linear_static_preview(endpoint_section_cut_pressure_request(&[
+    fn endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress_historical_pressure_premise(
+    ) {
+        let split = historical_pressure_preview(endpoint_section_cut_pressure_request(&[
             ("load:L-P-400", "pressure", 400_000.0),
             ("load:L-P-900", "pressure", 900_000.0),
         ]));
-        let summed = run_linear_static_preview(endpoint_section_cut_pressure_request(&[(
+        let summed = historical_pressure_preview(endpoint_section_cut_pressure_request(&[(
             "load:L-P-1300",
             "pressure",
             1_300_000.0,
@@ -16402,7 +19325,27 @@ mod tests {
                 ]),
                 mode,
             );
-            assert_eq!(genuine.status.mechanics, "MECHANICS_SOLVED");
+            assert_eq!(genuine.status.mechanics, "MODEL_INCOMPLETE");
+            assert!(genuine.results.is_empty());
+            assert!(genuine
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"));
+            let hydrotest_only = run_linear_static_preview_with_mode(
+                endpoint_section_cut_pressure_request(&[(
+                    "load:L-HYDRO-1100",
+                    "hydrotest",
+                    1_100_000.0,
+                )]),
+                mode,
+            );
+            assert_eq!(hydrotest_only.status.mechanics, "MODEL_INCOMPLETE");
+            assert!(hydrotest_only.results.is_empty());
+            assert!(hydrotest_only
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "HYDROTEST_PRESSURE_UNSUPPORTED"
+                    && d.affected_refs.contains(&"load:L-HYDRO-1100".to_string())));
             assert_eq!(mixed.status.mechanics, "MODEL_INCOMPLETE");
             assert!(mixed.results.is_empty());
             assert!(mixed
@@ -16736,7 +19679,13 @@ mod tests {
             }) {
                 p5_close(result_value(&split, &row.id), row.value);
             }
-            let output = run_linear_static_preview_with_mode(request(), mode);
+            let output = run_linear_static_preview_with_mode(
+                mechanical_fixture_for_test(
+                    request(),
+                    "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+                ),
+                mode,
+            );
             let by_id = output
                 .results
                 .iter()
@@ -16889,7 +19838,9 @@ mod tests {
                 );
                 // Independent global equilibrium: the sole Y ground spring
                 // carries the full 350 N, regardless of the beam's flexibility.
-                assert_eq!(
+                // Compare the independently balanced force in N using the
+                // analytic seed criterion; publication no longer quantizes it.
+                analytic_close!(
                     result_value(&output, "result:reaction:support-spring-UY"),
                     350.0
                 );
@@ -16929,16 +19880,26 @@ mod tests {
             let output = run_linear_static_preview_with_mode(input, mode);
             assert_ne!(output.status.mechanics, "MECHANICS_SOLVED");
             assert!(output.results.is_empty());
+            assert!(!output
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "SPARSE_INTERACTIVE_DENSE_FALLBACK"));
             assert!(output
                 .diagnostics
                 .iter()
-                .any(|d| d.code == "SOLVER_SYSTEM_BLOCKED"));
+                .any(|d| d.code == "NUMERICAL_INTEGRITY_UNRESOLVED"
+                    && d.severity == "blocking"
+                    && d.id == integrity_diagnostic_id("load:L-FRICTION")
+                    && d.affected_refs.iter().any(|r| r == "load:L-FRICTION")));
         }
     }
 
     #[test]
     fn under_restrained_model_reports_solver_diagnostic() {
-        let mut request = request();
+        let mut request = mechanical_fixture_for_test(
+            request(),
+            "tests::under_restrained_model_reports_solver_diagnostic",
+        );
         request.model.supports.truncate(1);
         request.model.supports[0].restraints = vec!["UZ".to_string()];
 
@@ -17085,7 +20046,11 @@ mod tests {
             node_j,
             center,
             material.elastic_modulus.value,
-            material.shear_modulus.value,
+            material
+                .shear_modulus
+                .as_ref()
+                .expect("validated material G")
+                .value,
             area,
             second_moment,
             2.0 * second_moment,
@@ -17143,9 +20108,9 @@ mod tests {
         let expected_tip = curved_bend_direct_tip_displacements(UY, 1000.0);
         let uy_mm = result_value(&result, "result:disp:node-N-110:uy");
         assert!(
-            (uy_mm - round6(expected_tip[UY] * 1000.0)).abs() <= 1.0e-6,
+            (uy_mm - expected_tip[UY] * 1000.0).abs() <= 1.0e-6,
             "assembled arc tip displacement {uy_mm} mm must match the direct macro-element solve {} mm",
-            round6(expected_tip[UY] * 1000.0)
+            expected_tip[UY] * 1000.0
         );
         // The straight chord of the same span is much stiffer; if the chord
         // element were (also) assembled the tip displacement would shrink.
@@ -17203,7 +20168,8 @@ mod tests {
             "result:disp:node-N-110:uz",
             "result:force:pipe-P-100:midspan:shear-z",
         ] {
-            assert_eq!(result_value(&sparse, row), result_value(&dense, row));
+            // Full-precision lane comparison under the existing DEC-053 relative criterion.
+            analytic_close!(result_value(&sparse, row), result_value(&dense, row));
         }
     }
 
@@ -17369,7 +20335,7 @@ mod tests {
         for (row_id, slot) in midspan_rows {
             let value = result_value(&result, row_id);
             assert!(
-                (value - round6(expected[slot])).abs() <= 1.0e-3,
+                (value - expected[slot]).abs() <= 1.0e-3,
                 "midspan station row {row_id} value {value} must match the direct arc segment equilibrium {}",
                 expected[slot]
             );
@@ -17388,7 +20354,10 @@ mod tests {
         );
         // Straight spans use the canonical stiffness-recovery category with
         // detailed section-equilibrium semantics in the sign convention.
-        let straight = run_linear_static_preview(request());
+        let straight = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+        ));
         let straight_row = straight
             .results
             .iter()
@@ -17524,7 +20493,7 @@ mod tests {
         for (row_id, dof) in rows {
             let end_i = result_value(&result, row_id);
             assert!(
-                (end_i - round6(expected_forces[dof])).abs() <= 1.0e-3,
+                (end_i - expected_forces[dof]).abs() <= 1.0e-3,
                 "end-i row {row_id} value {end_i} must match the direct oracle {}",
                 expected_forces[dof]
             );
@@ -17543,7 +20512,7 @@ mod tests {
         // The solved tip displacement matches the direct consistent-load solve.
         let uz_mm = result_value(&result, "result:disp:node-N-110:uz");
         assert!(
-            (uz_mm - round6(displacements[DOF_PER_NODE + UZ] * 1000.0)).abs() <= 1.0e-6,
+            (uz_mm - displacements[DOF_PER_NODE + UZ] * 1000.0).abs() <= 1.0e-6,
             "tip displacement {uz_mm} mm must match the direct consistent-load solve"
         );
     }
@@ -17708,7 +20677,7 @@ mod tests {
         );
         let expected_tip = curved_bend_direct_tip_displacements(UY, 1000.0);
         assert!(
-            (nonlinear_uy_mm - round6(expected_tip[UY] * 1000.0)).abs() <= 1.0e-6,
+            (nonlinear_uy_mm - expected_tip[UY] * 1000.0).abs() <= 1.0e-6,
             "nonlinear loop tip displacement {nonlinear_uy_mm} mm must match the direct macro-element solve"
         );
     }
@@ -17752,8 +20721,10 @@ mod tests {
         }
     }
 
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants() {
+    fn endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_historical_pressure_premise(
+    ) {
         let mut request = curved_bend_span_request();
         request.model.load_cases[0]
             .primitive_loads
@@ -17767,7 +20738,7 @@ mod tests {
             &mut Vec::new(),
         )
         .unwrap();
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
 
         let row_ids = [
@@ -17786,7 +20757,11 @@ mod tests {
         let material = &invented_materials()[0];
         let pipe_section = StraightPipeSectionProperties::new(
             material.elastic_modulus.value,
-            material.shear_modulus.value,
+            material
+                .shear_modulus
+                .as_ref()
+                .expect("validated material G")
+                .value,
             derived.area,
             derived.second_moment,
             derived.second_moment,
@@ -17840,10 +20815,10 @@ mod tests {
             }
             expected_raw[row] -= uniform_equivalent[row] + radial_equivalent[row];
             assert!(
-                (corrected[row] - round6(expected_raw[row])).abs() <= 1.1e-6,
+                (corrected[row] - expected_raw[row]).abs() <= 1.1e-6,
                 "raw chord-frame action slot {row}: {} != {}",
                 corrected[row],
-                round6(expected_raw[row])
+                expected_raw[row]
             );
         }
         for row_id in &row_ids {
@@ -17956,9 +20931,9 @@ mod tests {
                     &format!("result:{family}:pipe-P-100:{station}:{tail}"),
                 );
                 assert!(
-                    (actual - round6(expected[slot])).abs() <= 1.1e-6,
+                    (actual - expected[slot]).abs() <= 1.1e-6,
                     "{station} resultant slot {slot}: {actual} != {}",
-                    round6(expected[slot])
+                    expected[slot]
                 );
             }
             let metadata = result
@@ -18097,8 +21072,10 @@ mod tests {
     // displacement matches the closed-form membrane stretch, all within the
     // recorded DEC-026 analytic tier. The `include_pressure_longitudinal`
     // gating semantics are preserved on the macro span.
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state() {
+    fn endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state_historical_pressure_premise(
+    ) {
         let mut request = curved_bend_span_request();
         request.model.load_cases[0].primitive_loads = vec![curved_bend_pressure_load()];
         let section = derive_pipe_section(
@@ -18108,7 +21085,7 @@ mod tests {
         )
         .unwrap();
         let thrust = 2.0e6 * section.internal_area;
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
 
         // Membrane end forces: -pA t_i at end i and +pA t_j at end j. The
@@ -18140,7 +21117,7 @@ mod tests {
         for (row_id, expected) in force_rows {
             let value = result_value(&result, row_id);
             assert!(
-                (value - round6(expected)).abs() <= 1.0e-9 * thrust.max(1.0),
+                (value - expected).abs() <= 1.0e-9 * thrust.max(1.0),
                 "end-force row {row_id} value {value} must match the membrane cap force {expected}"
             );
         }
@@ -18150,7 +21127,7 @@ mod tests {
         for station in ["quarter-1", "midspan", "quarter-3"] {
             let axial = result_value(&result, &format!("result:force:pipe-P-100:{station}:axial"));
             assert!(
-                (axial - round6(thrust)).abs() <= 1.0e-9 * thrust,
+                (axial - thrust).abs() <= 1.0e-9 * thrust,
                 "station {station} axial {axial} must equal the wall tension {thrust}"
             );
             for row_id in [
@@ -18170,13 +21147,13 @@ mod tests {
                 &result,
                 &format!("result:stress:pipe-P-100:{station}:axial-normal"),
             );
-            let expected_stress = round6(thrust / section.area / 1_000_000.0);
+            let expected_stress = thrust / section.area / 1_000_000.0;
             assert!(
                 (station_stress - expected_stress).abs() <= 1.0e-6,
                 "station {station} axial stress {station_stress} must equal pA / A_s = {expected_stress}"
             );
         }
-        let expected_stress = round6(thrust / section.area / 1_000_000.0);
+        let expected_stress = thrust / section.area / 1_000_000.0;
         for location in ["end-i", "end-j"] {
             let row_id = format!("result:stress:pipe-P-100:{location}:axial-normal");
             p5_close(result_value(&result, &row_id), expected_stress);
@@ -18199,7 +21176,7 @@ mod tests {
         // same complete load system agree with the assembled solve.
         let material = &invented_materials()[0];
         let stretch = thrust / (material.elastic_modulus.value * section.area);
-        let expected_ux_mm = round6(stretch * CURVED_BEND_TEST_CHORD_M * 1000.0);
+        let expected_ux_mm = stretch * CURVED_BEND_TEST_CHORD_M * 1000.0;
         let ux_mm = result_value(&result, "result:disp:node-N-110:ux");
         let uy_mm = result_value(&result, "result:disp:node-N-110:uy");
         assert!(
@@ -18220,7 +21197,7 @@ mod tests {
         }
         let oracle = curved_bend_direct_solution(&complete);
         assert!(
-            (ux_mm - round6(oracle[DOF_PER_NODE + UX] * 1000.0)).abs() <= 1.0e-6,
+            (ux_mm - oracle[DOF_PER_NODE + UX] * 1000.0).abs() <= 1.0e-6,
             "assembled tip displacement must match the direct oracle under the complete system"
         );
 
@@ -18244,8 +21221,10 @@ mod tests {
     // pressure system included) reaches the active-set loop, so the
     // released nonlinear solve reproduces the linear macro-span solve of
     // the identical pressurized model exactly.
+    // Retained historical pressure premise; this private test route cannot qualify Current.
     #[test]
-    fn curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector() {
+    fn curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector_historical_pressure_premise(
+    ) {
         let mut request = curved_bend_span_request();
         request.model.load_cases[0]
             .primitive_loads
@@ -18269,7 +21248,7 @@ mod tests {
             });
             support
         });
-        let result = run_linear_static_preview(request);
+        let result = historical_pressure_preview(request);
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
         assert!(result
@@ -18311,7 +21290,7 @@ mod tests {
         complete[DOF_PER_NODE + UY] += 1000.0;
         let oracle = curved_bend_direct_solution(&complete);
         assert!(
-            (linear_uy_mm - round6(oracle[DOF_PER_NODE + UY] * 1000.0)).abs() <= 1.0e-6,
+            (linear_uy_mm - oracle[DOF_PER_NODE + UY] * 1000.0).abs() <= 1.0e-6,
             "pressurized macro-span solve must match the direct oracle"
         );
     }
@@ -18321,7 +21300,10 @@ mod tests {
         // The invented fixture bend stays on mechanics_geometry_only: the
         // straight chord is assembled, the multiplier stays sif * flexibility,
         // and the DEC-045 provenance wording is untouched.
-        let result = run_linear_static_preview(request());
+        let result = run_linear_static_preview(mechanical_fixture_for_test(
+            request(),
+            "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+        ));
 
         assert!(result
             .results

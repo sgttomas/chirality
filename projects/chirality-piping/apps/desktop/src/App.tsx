@@ -1,3 +1,4 @@
+import { reportPackageUnavailableReason } from "./features/report/reportPackageRequest";
 import { CompactSelectScope } from "./features/workspace/CompactSelect";
 import { HangerSelectionPanel } from "./features/hanger-selection";
 import { SelfWeightPlanPanel } from "./features/self-weight-authoring";
@@ -194,6 +195,7 @@ function AppSession() {
     reportPackageRedaction,
     reportPackageRoute,
     handleRun,
+    handleInspectBundledReference,
     handleCancelRun,
     handleRuleCheckAggregate,
     handleProposal,
@@ -201,6 +203,7 @@ function AppSession() {
     handleSelectDiagnostic,
     handleSaveReportPackage
   } = session.results;
+  const reportPackageUnavailable = reportPackageUnavailableReason(currentSolvedResult);
   const {
     editorIntents,
     retainedReviewContext,
@@ -327,7 +330,7 @@ function AppSession() {
           issuesOpen={issuesDrawerOpen}
           openMenu={openMenu}
           projectBusy={projectBusy}
-          reportPackageReady={Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
+          reportPackageReady={!reportPackageUnavailable && Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
           running={running}
           treeCollapsed={treeCollapsed}
           armedCreationTool={armedCreationTool}
@@ -335,7 +338,7 @@ function AppSession() {
           stageViewMemory={stageViewMemory}
           pageOpen={shell.page !== null}
           tableDrawer={tableDrawer}
-          run={runPresenceFromCells({ result, historicalRun, solveJob })}
+          run={runPresenceFromCells({ result, historicalRun, solveJob, hasQualifiedCurrentResult: currentSolvedResult !== null })}
           theme={uiPreferences.theme}
           density={uiPreferences.density}
           onCommand={runMenuCommand}
@@ -351,7 +354,7 @@ function AppSession() {
               stage: shell.stage,
               pageOpen: shell.page !== null,
               stageViewMemory,
-              run: runPresenceFromCells({ result, historicalRun, solveJob }),
+              run: runPresenceFromCells({ result, historicalRun, solveJob, hasQualifiedCurrentResult: currentSolvedResult !== null }),
               theme: uiPreferences.theme,
               density: uiPreferences.density,
               onCommand: runMenuCommand
@@ -593,6 +596,9 @@ function AppSession() {
               <DormantSection active={activeSection === "loads"} guardGeneration={requestEpoch} sessionGeneration={projectSessionGeneration}>
               <LoadCaseManagerPanel
                 model={model}
+                queuedIntents={editorIntents}
+                operationBusy={operationBusy}
+                getPreparationEpoch={getPreparationEpoch}
                 onQueueIntent={handleQueueEditorIntent}
                 onSelect={handleSelectEntity}
                 selection={selection}
@@ -608,6 +614,9 @@ function AppSession() {
               {activeSection === "results" || activatedExpensiveSections.has("results") ? (
               <DormantSection active={activeSection === "results"} sessionGeneration={projectSessionGeneration}>
               <Fragment key={`results:${dormantOutputBasis}`}>
+              <button type="button" onClick={() => void handleInspectBundledReference()}>
+                Inspect bundled reference
+              </button>
               {historicalRun ? <HistoricalRunPanel key={historicalRun.runId} context={historicalRun} /> : <ResultsPanel
                 result={result}
                 knowledge={knowledge}
@@ -673,8 +682,9 @@ function AppSession() {
                 packageRedaction={reportPackageRedaction}
                 packageRoute={reportPackageRoute}
                 onPackagePrivateIntentChange={setReportPackagePrivateIntent}
-                onSaveReportPackage={() => void handleSaveReportPackage()}
+                onSaveReportPackage={reportPackageUnavailable ? undefined : () => void handleSaveReportPackage()}
               />
+              {reportPackageUnavailable ? <p role="status" data-testid="report-package-source-unavailable">{reportPackageUnavailable}</p> : null}
               <ReportPanel
                 model={model}
                 knowledge={knowledge}
@@ -889,6 +899,9 @@ function AppSession() {
                 onRun={handleRun}
                 onSolverModeChange={setSolverMode}
               />
+              <button type="button" onClick={() => void handleInspectBundledReference()}>
+                Inspect bundled reference
+              </button>
               <RuleCheckPanel model={model} result={currentSolvedResult} />
               <RuleCheckRunPanel
                 basis={ruleCheckRunBasis}

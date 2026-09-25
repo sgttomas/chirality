@@ -1,6 +1,10 @@
+import { retainedPhysicsSourceInvocation } from "../features/results/physicsSourceRecovery";
+import { retainedSourceBlockInvocation } from "../features/results/sourceBlockRecovery";
+import { sourceContract, numericalResultStanding } from "../features/results/numericalResultQuality";
 import { invoke } from "@tauri-apps/api/core";
 import type { MechanicsResult, PreviewModel } from "../types";
 import type { RulePackDocument } from "./rulePackService";
+import { hasNativeMechanicsInvocation, runPreviewMechanics } from "./previewService";
 
 // Rule-check runner seam (Phase C4, TP-C4-CHECKGUI-001). Running a rule pack's
 // checks against a solved model routes through the desktop (Tauri)
@@ -106,14 +110,19 @@ export async function runRuleChecks(args: {
   projectId?: string | null;
 }): Promise<RuleCheckRunRoute> {
   if (!isTauriRuntime()) return unavailable();
-  // Prefer an already-solved envelope (so the backend does not re-solve); fall
-  // back to the model so the backend solves it. Empty binding arrays are
+  // Supply the model even with a solved envelope so the backend can verify
+  // complete requested-case coverage without inferring requests from results. Empty binding arrays are
   // omitted so the backend treats those inputs as unsupplied (never a silent
   // pass). `projectId` scopes the private-library lookup for
   // `private_library_value` inputs (resolved backend-side from the local store).
-  const invokeArgs: Record<string, unknown> = { rulePackDocument: args.rulePackDocument };
-  if (args.solvedEnvelope) invokeArgs.solvedEnvelope = args.solvedEnvelope;
-  else if (args.model) invokeArgs.model = args.model;
+  if (!args.model) throw new Error("RULE_NUMERICAL_CASE_COVERAGE_UNAVAILABLE: supply the actual current model.");
+  const source = args.solvedEnvelope ?? await runPreviewMechanics(args.model);
+  if (!hasNativeMechanicsInvocation(source, args.model)) throw new Error("RULE_NATIVE_INVOCATION_REQUIRED: reference or saved data is not a fresh supported solve.");
+  if (["source_blocks", "physics_source"].includes(sourceContract(source)) && !numericalResultStanding(source, args.model).eligible) throw new Error("SOURCE_BLOCKS_RULE_INPUT_UNQUALIFIED");
+  const invokeArgs: Record<string, unknown> = { rulePackDocument: args.rulePackDocument, solvedEnvelope: source };
+  if (sourceContract(source) === "source_blocks") invokeArgs.sourceBlockInvocation = retainedSourceBlockInvocation(source, args.model);
+  if (sourceContract(source) === "physics_source") invokeArgs.sourceBlockInvocation = retainedPhysicsSourceInvocation(source, args.model);
+  if (args.model) invokeArgs.model = args.model;
   if (args.solverResultBindings && args.solverResultBindings.length > 0) {
     invokeArgs.solverResultBindings = args.solverResultBindings;
   }

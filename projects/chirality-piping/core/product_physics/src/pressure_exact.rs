@@ -1,10 +1,13 @@
-//! Dormant exact-annulus pressure mechanics.
+//! Exact-annulus pressure scalar mechanics.
 //!
 //! This private module contains only validated scalar mechanics and local
-//! element pairs. It does not infer pressure-region topology or participate in
-//! product-preview assembly, solve, recovery, or result serialization.
+//! element pairs. The pressure runtime composes these with explicit region
+//! topology, assembly, wall-force recovery and profile-qualified publication.
 
 use std::f64::consts::PI;
+
+mod source_geometry;
+pub(crate) use source_geometry::SourceAnnulus;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub(super) struct Scaled {
