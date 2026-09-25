@@ -37,8 +37,8 @@ rulings.
 | SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
 | SCA005-A2-SOW033 | 1 (amendment 2) | Add to intake: Seq 79 SOW-033 `ObjectiveIDs` to `OBJ-003` (DEL-07-01 unchanged at `OBJ-003`); no IN scope item remains without an objective after application | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/DECISION.md` |
 | SCA005-D90-NOTE | 2 (preparation note) | Carry into checkpoint-2 preparation: DEL-04-01 and the PRD §8 refresh are not rebuilt around verify-before-rely; PEC-K-03, §8, §9, §12 and `projects/pec/AGENTS.md` reliance text is amended by a later PEC scope change after checkpoint 2 is accepted (D-PEC-90 R-A). Checkpoint 2 still quotes the in-force PRD v2.2 (including PEC-K-03 verify-before-rely) where it quotes at all; the note means do not design around verify-before-rely, not diverge from the in-force text. Adds no scope and changes no accepted selection | `DIRECTED BY OWNER` | Owner act 2026-09-25 (verbatim below); `../../_Coordination/_DECISIONS/D-PEC-90_RULING_2026-09-25.md` |
-| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2): `Amendment_Preview.md` `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4`; `Propagation_Plan.md` `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350`; `Amendment_Actions_CP2.csv` `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987`; `Supersession_Delta.csv` `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06`; PRD candidate `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`; postimages listed in §"SCA005-CP2 — package prepared" below | `PREPARED / AWAITING_OWNER` | SCA005-CP1 acceptance 2026-09-24 and the owner's 2026-09-25 direction "Proceed towards checkpoint 2 as indicated." (preparation only); acceptance is a later owner act |
-| SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
+| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2): `Amendment_Preview.md` `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4`; `Propagation_Plan.md` `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350`; `Amendment_Actions_CP2.csv` `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987`; `Supersession_Delta.csv` `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06`; PRD candidate `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`; postimages listed in §"SCA005-CP2 — package prepared" below | `ACCEPTED` — Q-CP2-A accept; Q-CP2-1 (a); Q-CP2-2 (a); Q-CP2-3 (a); Q-CP2-4 (a) with Lane A4 deferred | Owner act 2026-09-25 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/DECISION.md`; register row `D-PEC-92` |
+| SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP2 acceptance 2026-09-25; acceptance itself is a later owner act |
 
 ## SCA005-G1 — owner direction of record (verbatim)
 
@@ -131,3 +131,11 @@ Prepared 2026-09-25 by WORKING_ITEMS node B2 of HELP_HUMAN run `HELP-HUMAN-PEC-2
 | `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` |
 
 Independent verification: `B2_VERIFIER_VERDICT_01.md` (`434958b94d3a7559a86c977623224bb3a66f2b0026558e6adccacb0e0c063b60`); `B2_VERIFIER_VERDICT_02.md` (`e514d2aa2ce429a9450e92621e1a0f658c5d991122199e0bc4dff2185d2f906a`) in the run's `returns/` folder.
+
+## SCA005-CP2 — owner acceptance of record (verbatim)
+
+Owner, 2026-09-25, on the checkpoint-2 package published in PR #908:
+
+> CP2: accept; Q1 a; Q2 a; Q3 a; Q4 a with A4 deferred.
+
+Interpretation, accepted hashes and the bounds of Q-CP2-4 (a) with A4 deferred are in `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/`; the amendment-qualified pointer is `../SCA-005_GROUP-2_AUTHORIZED.md`.
