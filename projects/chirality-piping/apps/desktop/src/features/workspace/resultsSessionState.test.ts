@@ -1,6 +1,13 @@
-import { PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../results/numericalResultQuality";
 import { act, renderHook } from "@testing-library/react";
-import { expect, it } from "vitest";
+import { expect, it, vi, afterEach } from "vitest";
+import { invoke } from '@tauri-apps/api/core';
+import modelFixture from '../../../../../fixtures/product_preview/invented_preview_model.json';
+import producerFixture from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
+import {runPreviewMechanics,buildAnalysisRunPreview} from '../../services/previewService';
+import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
+import type {PreviewModel} from '../../types';
+vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
+afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
 import { useResultsSessionState } from "./resultsSessionState";
 import type { MechanicsResult } from "../../types";
 it("keeps solved historical and unassessed carriers out of Current without changing stored evidence", () => {
@@ -17,11 +24,14 @@ it("keeps solved historical and unassessed carriers out of Current without chang
  expect(result.current.currentSolvedResult).toBeNull();
 });
 
-it("requires joined precision analysis and manifest identities before publishing Current", () => {
+it("requires actual invocation plus joined precision analysis and manifest identities before publishing Current", async () => {
  const {result} = renderHook(() => useResultsSessionState());
- const source: MechanicsResult = {schema_version:"0.2.0",document_kind:"MechanicsResult",run_id:"r",model_ref:"m",summary:{},status:{mechanics:"MECHANICS_SOLVED",rule_check:"RULE_INPUTS_INCOMPLETE",professional_acceptance:"NOT_PROVIDED"},results:[],diagnostics:[{id:"gate",code:"GATE",severity:"info",message:"test"}],producer:{component_name:"open_pipe_stress_product_physics",component_version:"0.2.0",semantic_contract_id:PRECISION_CONTRACT_ID},formulation_basis:{profile_id:"product_preview_mechanics_v1",limitations:["bounded preview"]},numerical_quality:{value_representation:"finite_binary64",publication_quantization:"none",integrity_policy:"M03-INTEGRITY-v1",status:"checks_passed",cases:[{basis_ref:{ref_type:"load_case",ref_id:"load"},structural_status:"passive_model_basis",solve_quality:"checks_passed",model_matrix_fidelity:"represented_equations_retained",accuracy_evidence:"not_claimed",evidence_refs:["gate"]}]}};
- const manifest = {manifest_ref:{ref:"manifest"},manifest_sha256:"hash",manifest:{model_basis:{model_ref:"m",model_payload:{load_cases:[{id:"load"}]}},solver_basis:{solver_name:source.producer!.component_name,solver_version:"0.2.0",solver_build_ref:"build"}}};
- const analysis = {schema_version:"0.3.0",analysis_run:{run_id:"r",solver_version:{solver_name:source.producer!.component_name,solver_version:"0.2.0",build_ref:{ref:"build"}},reproducibility:{input_manifest_refs:[{ref:"manifest"}],input_manifest_hashes:[{value:"hash"}],semantic_contract:{id:PRECISION_CONTRACT_ID,sha256:PRECISION_CONTRACT_SHA256}}}};
+ const model=structuredClone(modelFixture) as PreviewModel;
+ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
+ vi.mocked(invoke).mockResolvedValueOnce(structuredClone(producerFixture));
+ const source=await runPreviewMechanics(model);
+ const manifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:source.producer!.component_name,solver_version:source.producer!.component_version,solver_build_ref:'mocked-native-build',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+ const analysis=await buildAnalysisRunPreview(source,{inputManifest:manifest});
  act(()=>{result.current.setResult(source);result.current.setInputManifest(manifest as never);});
  expect(result.current.currentSolvedResult).toBeNull();
  act(()=>result.current.setAnalysisRun(analysis as never));
@@ -31,7 +41,9 @@ it("requires joined precision analysis and manifest identities before publishing
  sensitive.numerical_quality!.cases[0].solve_quality = "sensitive";
  sensitive.numerical_quality!.cases[0].accuracy_evidence = "reference_verified";
  const before = JSON.stringify(sensitive);
- act(()=>result.current.setResult(sensitive));
+ vi.mocked(invoke).mockResolvedValueOnce(sensitive);
+ const sensitiveResponse=await runPreviewMechanics(model);
+ act(()=>result.current.setResult(sensitiveResponse));
  expect(result.current.result).toBe(sensitive);
  expect(result.current.currentSolvedResult).toBeNull();
  expect(result.current.currentSolvedResultRef.current).toBeNull();

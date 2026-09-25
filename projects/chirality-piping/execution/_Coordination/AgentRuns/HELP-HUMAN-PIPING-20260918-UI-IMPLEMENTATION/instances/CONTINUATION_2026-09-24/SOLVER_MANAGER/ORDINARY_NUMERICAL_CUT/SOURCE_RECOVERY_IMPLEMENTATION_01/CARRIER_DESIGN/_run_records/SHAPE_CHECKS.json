@@ -1,0 +1,49 @@
+{
+  "scope": "Local checker for exactly the used JSON-Schema keyword subset; not an installed JSON-Schema implementation, semantic proof validator, producer/hash check or product execution.",
+  "valid_example_shape": true,
+  "affine_projection_count": 48,
+  "shape_mutations": [
+    {
+      "name": "extra body key",
+      "shape_rejected": true,
+      "reason": "$.body exact keys"
+    },
+    {
+      "name": "missing mode",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0] exact keys"
+    },
+    {
+      "name": "wrong selected method",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0].selected_method anyOf"
+    },
+    {
+      "name": "looser criterion",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0].projections[0].relative_limit const"
+    },
+    {
+      "name": "nonfinite projection",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0].projections[0].value type"
+    },
+    {
+      "name": "unsafe integer reservation",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0].work.charged range"
+    },
+    {
+      "name": "unrecognized force-only component",
+      "shape_rejected": true,
+      "reason": "$.body.cases[0].supports[0].components[3].component enum"
+    },
+    {
+      "name": "ordinary boolean success token",
+      "shape_rejected": true,
+      "reason": "$.body.cases[1].ordinary_attempt.outcome enum"
+    }
+  ],
+  "deliberate_all_zero_hash_placeholders": true,
+  "real_qualification_expected": "reject until actual publication/invocation/source provenance and complete required rows exist"
+}

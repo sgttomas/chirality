@@ -1,0 +1,19 @@
+{
+  "source": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+  "sha256": "966a02bdc3f6b41b800597cd76916cf6a094817581b9924443330af497f3b2aa",
+  "checks": [
+    {
+      "command": "rustfmt --edition 2021 projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "status": "passed parser/formatting only"
+    },
+    {
+      "command": "rustfmt --edition 2021 --check projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "status": "passed parser/formatting only"
+    }
+  ],
+  "cargo": "not run; parent coordinated lane",
+  "tests": "five authored in-module tests; not run",
+  "source_write_scope": [
+    "projects/chirality-piping/core/product_physics/src/source_recovery.rs"
+  ]
+}

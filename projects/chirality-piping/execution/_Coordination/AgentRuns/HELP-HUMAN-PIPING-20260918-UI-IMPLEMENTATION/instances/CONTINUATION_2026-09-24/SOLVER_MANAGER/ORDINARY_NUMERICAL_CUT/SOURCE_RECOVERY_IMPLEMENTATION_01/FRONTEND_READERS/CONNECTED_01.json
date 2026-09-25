@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--workspace",
+    "apps/desktop",
+    "--",
+    "src/features/results/sourceBlockRecovery.test.ts",
+    "src/features/results/numericalResultQuality.test.ts",
+    "src/services/analysisRunCompatibility.test.ts",
+    "src/features/result-export/resultExportAdapter.test.ts",
+    "src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+    "src/services/previewService.test.ts",
+    "src/features/workspace/resultsSessionState.test.ts",
+    "src/services/ruleCheckService.test.ts",
+    "src/features/report/reportPackageRequest.test.ts",
+    "--maxWorkers=1"
+  ],
+  "started": "2026-09-25T05:43:38.793364+00:00",
+  "exit_code": 1
+}

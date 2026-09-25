@@ -1,0 +1,216 @@
+[
+  {
+    "manifest": "core/product_physics/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "core/product_physics/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "before_sha256": "39843130aa97195bf011fc6abf728c56f1f57c8af2164549d7e03352a9a0b6c7",
+    "after_sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": [
+      [
+        "block-buffer",
+        "0.10.4",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "cfg-if",
+        "1.0.5",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "cpufeatures",
+        "0.2.17",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "crypto-common",
+        "0.1.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "digest",
+        "0.10.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "generic-array",
+        "0.14.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "libc",
+        "0.2.189",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "ryu",
+        "1.0.23",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "sha2",
+        "0.10.9",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "typenum",
+        "1.20.1",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "version_check",
+        "0.9.5",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ]
+    ]
+  },
+  {
+    "manifest": "core/runner/headless/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "core/runner/headless/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "before_sha256": "9ded0fc4d057dc01549cbf924b17fc5485e2b482ed5cf82f4dc303d82dff7da4",
+    "after_sha256": "eccfcaf65bb1c5ddcfed7bcdb14d3f9de5280c9849e7ef263a45798396444066",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": []
+  },
+  {
+    "manifest": "validation/benchmarks/numerical_integrity/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "validation/benchmarks/numerical_integrity/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "before_sha256": "4e1e251620fde4e2168b7323389f8516f527c45c48391a07fc624955684cc29c",
+    "after_sha256": "3a166fecf8e3cf13f9504d87ec384cb6d61ac19e7e5e69e0c8af24c4b3eb5aa2",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": [
+      [
+        "block-buffer",
+        "0.10.4",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "cfg-if",
+        "1.0.5",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "cpufeatures",
+        "0.2.17",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "crypto-common",
+        "0.1.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "digest",
+        "0.10.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "generic-array",
+        "0.14.7",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "libc",
+        "0.2.189",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "ryu",
+        "1.0.23",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "sha2",
+        "0.10.9",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "typenum",
+        "1.20.1",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "version_check",
+        "0.9.5",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ]
+    ]
+  },
+  {
+    "manifest": "validation/benchmarks/physics_audit_regression/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "before_sha256": "2eadf853203e982b77048683e102366ba9b58cda1eb659f276e4c6de2caacc71",
+    "after_sha256": "a58cb13e716c4312a9cf30439fe88d2c1fa43f08af2352b53003bd330a7fc48d",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": []
+  },
+  {
+    "manifest": "core/loads/self_weight_wasm/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "core/loads/self_weight_wasm/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "before_sha256": "a5be934e8ca1db4655e5139f6b5b0bb66e8673911ec2a0a1d4d1b1474b7e3ece",
+    "after_sha256": "808e70985eac9ed9370e7da5a10506d385967795aee9fa2834ec430671563e0e",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": []
+  },
+  {
+    "manifest": "apps/desktop/src-tauri/Cargo.toml",
+    "command": [
+      "cargo",
+      "metadata",
+      "--offline",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      "apps/desktop/src-tauri/Cargo.toml"
+    ],
+    "exit_code": 101,
+    "before_sha256": "be0edb2bfc9e3c97cc0a85df4bcf63ee276785be22f689657a2d3730bd551b49",
+    "after_sha256": "59bbaa294ad9bbd7a4698822a1afcadfa45e271174cd72559b0d885cb3095b81",
+    "existing_registry_package_changes": [],
+    "added_registry_packages": []
+  }
+]

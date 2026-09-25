@@ -1,0 +1,45 @@
+{
+  "executor": "/root/numerical_resume",
+  "source_executor": "/root/numerical_resume/source_product_adapter",
+  "source": [
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e"
+    }
+  ],
+  "source_ready_manifest_sha256": "483d67d3a0eb772eab792d6c6f384f1919af4bf72c3f573af3269d476254c542",
+  "logs": [
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_rust_01.log",
+      "sha256": "f14d1ec54cba0e59e5d9b301abd9019d75ff2cd7bebf2c58eeaa2fe94730caab"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_python_01.log",
+      "sha256": "4687aea719a08a1f4ccdcc99e7fc0b55d1a31e3ec9c2bdf8868ff9d2ba761858"
+    }
+  ],
+  "rust_command": "CARGO_TARGET_DIR=/private/tmp/piping-source-recovery-export-target cargo test --offline --locked -j2 --manifest-path core/reporting/result_export/Cargo.toml --lib --test source_blocks",
+  "rust_exit": 0,
+  "rust_passes": {
+    "library": 18,
+    "integration": 10
+  },
+  "python_command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OPENPIPESTRESS_CHECKED_JSON_BIN=/private/tmp/piping-numerical-corrections-canonical-resume-target/debug/openpipestress_jcs_ijson /private/tmp/chirality-piping-dec025-venv/bin/python -m pytest -q tests/test_source_blocks_validation.py",
+  "python_log_is_actual": "see retained output; no prior norm run is substituted",
+  "qualification": "Actual received-packet validation, not fresh producer/native witness; current producer witness is separately retained.",
+  "python_exit": 0,
+  "python_passes": 18,
+  "python_subtests": 26
+}

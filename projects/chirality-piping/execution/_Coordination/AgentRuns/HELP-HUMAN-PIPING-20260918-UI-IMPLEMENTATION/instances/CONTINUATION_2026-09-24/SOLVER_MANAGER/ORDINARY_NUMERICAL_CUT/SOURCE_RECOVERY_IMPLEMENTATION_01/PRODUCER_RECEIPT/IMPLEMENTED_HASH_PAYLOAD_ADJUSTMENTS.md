@@ -1,0 +1,20 @@
+# Private payload implementation adjustment
+
+The domain wrapper and five scope names, invocation, publication and receipt wire scopes are unchanged. Normalized source now follows HASH_PAYLOADS.md's payload_version, invocation_sha256, case_id, source_identity, actual material_basis_record, dof_map, stiffness_aggregate_bits, force_aggregate_bits, ordered owner Ref stiffness/force terms, owned prescribed map, full frames/springs/supported_loads and actual observed_family_ids. The actual resolved material basis record comes from rebuilding the captured request through existing normalization/selection, not an invented record label.
+
+Two private source fields and one private plan field are intentionally adjusted for coherent implementation review. They do not change the public receipt schema or introduce an import/replay store:
+
+1. Each frame adds `recovery_section:{section_modulus_bits,torsion_radius_bits}`. These are actual existing built section operands needed by the enabled checked stress recipes. They cannot honestly point to a field absent from the normalized source. Other section terms remain in formation_inputs.
+2. Normalized source adds `lowered_recovery_operands:[{functional_index,offset_bits:Bits[][],terms:[{dof,product_bits:Bits[][]}]}]`. These come directly from the same private retained descriptors after source-owned expected-invocation replay. They include the actual lowered signed/conversion atoms (for example the current spring descriptor contains the atom -k, and mm coefficients already contain 1000). They are represented recovery-source recipes, not primitive material facts, expansion results or projected values. Every plan source operand points into this table and is checked to resolve to exactly the same Bits. Ownership is warranted by the adapter replay and typed expected descriptor/row coverage, never by the pointer or digest alone.
+3. Each plan function has `result_ids:string[]` in place of the proposed singular `result_id`. Internal endpoint-section and per-spring functionals have an empty array, not a fabricated publication identity. Public projections still have exactly one actual result_id under the unchanged wire schema. The plan includes every retained functional; public projection count is intentionally smaller than source.functional_count. Final-unit factor is the method constant 1 because the actual private descriptor already includes its final-unit conversion atoms; applying 1000 again would be false.
+
+The plan otherwise follows `payload_version,normalized_source_sha256,functions,derived_recipes,observation_result_ids`; typed owner/quantity/component/frame/location/unit/convention and exact lowered product/offset operations are explicit. Reserved generic DeclaredAffine product rows cannot mint a physical projection; supports use the parent's typed SupportAction key.
+
+Implemented recipe parameter registry (closed constructor, exact source-pointer equality checked):
+
+- translation_norm_scaled_v1 and support_force_norm_scaled_v1: no parameters; exactly their three ordered actual component refs feed ordered max-scaled divide/square/sum/sqrt/multiply; zero yields positive zero, nonzero output must be normal and finite. Component projection error plus a conservative 64 machine-epsilon arithmetic allowance must remain within 1e-9.
+- straight_open_stress_v1: axial has area; bending_y/z have section_modulus; torsion has torsion_radius then torsion_constant. Each uses the corresponding same member frame source path, plus method constant pa_per_mpa=1e6. No arbitrary parameter name or unknown recipe is accepted.
+- reviewed_stress_summary_v1: method constant pa_per_mpa=1e6; twenty actual same-case stress component refs bind the five Pa-derived sections and the existing abs/add/max/divide order.
+- section_property_from_source_v1 remains unimplemented/unqualified.
+
+This adjustment is for fresh coherent implementation review, not a new design acceptance or registration claim. Private payload commitments remain authenticated producer commitments; readers do not pretend to reconstruct hidden arithmetic from hashes.

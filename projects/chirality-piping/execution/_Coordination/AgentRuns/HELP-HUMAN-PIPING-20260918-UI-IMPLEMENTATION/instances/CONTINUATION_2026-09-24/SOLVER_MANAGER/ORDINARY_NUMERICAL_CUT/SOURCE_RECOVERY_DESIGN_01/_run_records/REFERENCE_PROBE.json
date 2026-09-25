@@ -1,0 +1,59 @@
+{
+  "scope": "independent elementary design arithmetic; no implementation qualification",
+  "checks_passed": 5,
+  "records": [
+    {
+      "case": "N05-source-arithmetic",
+      "a_hex": "0x1.07c49b6ac7e26p+21",
+      "exact_root": "0.00009999999999999999730008248062691779860445667867350323229615931896417867",
+      "exact_twist": "4.627942515030392930349131085161750744673567969308985456317766301260223E-15",
+      "projected_root": 9.999999999999999e-05,
+      "projected_tip": 0.00010000000000462794,
+      "direct_functional_torque": 1e-08,
+      "torque_reconstructed_from_projected_u": 1.0000003377912085e-08,
+      "reconstructed_torque_relative_error": "3.377912085045671935887446452645451769251764235358930281422609742668956E-7",
+      "spring_action": -1e-08,
+      "free_equilibrium_reaction": "exact zero",
+      "source_basis": "N05 diagnosis inferred f64 a reused as declared illustrative coefficient; no full N06 source capture",
+      "not_a_product_execution": true
+    },
+    {
+      "case": "N06-source-arithmetic",
+      "a_hex": "0x1.07c49b6ac7e26p+21",
+      "exact_root": "0.00009999999999999999992111390947789881787216340765026143457980235764412283",
+      "exact_twist": "4.627942515030392736786480818027639897080246412687546395558230152162179E-23",
+      "projected_root": 0.0001,
+      "projected_tip": 0.0001,
+      "direct_functional_torque": 1e-16,
+      "torque_reconstructed_from_projected_u": 0.0,
+      "reconstructed_torque_relative_error": "-1",
+      "spring_action": -1e-16,
+      "free_equilibrium_reaction": "exact zero",
+      "source_basis": "N05 diagnosis inferred f64 a reused as declared illustrative coefficient; no full N06 source capture",
+      "not_a_product_execution": true
+    },
+    {
+      "case": "prescribed-load-subtraction",
+      "u": [
+        "1/8",
+        "349175/630928",
+        "39744/39433"
+      ],
+      "constraint_reaction": "-3784947/630928",
+      "member_end_j": "3154019/630928",
+      "member_after_fixed_end_subtraction": "20816277/4416496"
+    },
+    {
+      "case": "cross-block-and-all-fixed",
+      "q": "107/18",
+      "all_fixed_q": "874/231"
+    },
+    {
+      "case": "eligibility",
+      "tiny_coupling_block_orders": [
+        3
+      ],
+      "signed_permutation_passed": true
+    }
+  ]
+}

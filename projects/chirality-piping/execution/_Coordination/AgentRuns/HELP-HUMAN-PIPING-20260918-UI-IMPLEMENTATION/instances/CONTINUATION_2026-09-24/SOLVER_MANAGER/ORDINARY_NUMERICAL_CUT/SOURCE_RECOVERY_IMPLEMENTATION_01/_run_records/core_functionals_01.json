@@ -1,0 +1,24 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-j2",
+    "--manifest-path",
+    "core/solver/frame_kernel/Cargo.toml",
+    "structural::exact_boundary::functionals"
+  ],
+  "exit_code": 101,
+  "started_unix": 1790307814.755765,
+  "ended_unix": 1790307815.833917,
+  "inputs": {
+    "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+    "projects/chirality-piping/core/solver/frame_kernel/Cargo.lock": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs": "a889df0fe6ad56a6660029ba755aa4182a044365c25e1ff94623d05a9943c0d7",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs": "02b93bef5a54253f434d4a9aa2a089bc19e5b1a6d9171fc9ef1e4a7fe0c0989a",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs": "15deb7c4d3e5683fec0339e42903cdf91fc28130321d23de9598cc489f1a0ff0"
+  },
+  "inputs_unchanged": true,
+  "log_sha256": "177c05245d710dbe11ff8548319face1960f6a3aad49a75a9a1f15d0c993fc5b"
+}

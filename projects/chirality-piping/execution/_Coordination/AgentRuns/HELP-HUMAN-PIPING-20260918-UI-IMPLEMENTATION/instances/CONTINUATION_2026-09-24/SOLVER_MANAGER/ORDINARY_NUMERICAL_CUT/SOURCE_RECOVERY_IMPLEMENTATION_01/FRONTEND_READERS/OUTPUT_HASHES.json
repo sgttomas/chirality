@@ -1,0 +1,30 @@
+[
+  {
+    "path": "RETURN.md",
+    "sha256": "37e6103f1db9727626a0232db5810c05e4c319bc16e2225aaeb8c87cd6bbdcde"
+  },
+  {
+    "path": "API_HANDOFF.md",
+    "sha256": "7688a9800fbac46a66d0652451a5f1d9990068579db6d12192730db9b2420f61"
+  },
+  {
+    "path": "FINAL_SOURCE.json",
+    "sha256": "c2ea5e30da76ed3936691187076fb84db976faaed2673eef98b304888ce83573"
+  },
+  {
+    "path": "FINAL_SOURCE.patch",
+    "sha256": "b613e8236ee8f0ce8eb4e8a5a7886eb478f42abbd4c537b9be9fb9e6d9b0c81f"
+  },
+  {
+    "path": "TYPECHECK_10.json",
+    "sha256": "dbe2e047fda42e5f14b709bf8e093b042154cdec4975d54d3b6f5e1af15db025"
+  },
+  {
+    "path": "CONNECTED_04.json",
+    "sha256": "ef339bc97da48f2f44b19b7b260d638133664c3234e53fe141fd26e86be8f55e"
+  },
+  {
+    "path": "PANEL_FINAL_02.json",
+    "sha256": "04706e47baca89b48b5e415ac624cfd57d25f6e86630f686ac7e35f76d91d4d0"
+  }
+]

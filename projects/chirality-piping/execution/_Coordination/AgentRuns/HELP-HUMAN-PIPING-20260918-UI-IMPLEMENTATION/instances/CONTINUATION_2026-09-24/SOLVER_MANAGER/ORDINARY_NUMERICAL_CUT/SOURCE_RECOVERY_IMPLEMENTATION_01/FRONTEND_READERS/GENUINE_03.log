@@ -1,0 +1,50 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/results/sourceBlockRecovery.test.ts (28 tests | 3 failed) 669ms
+     × rejects rehashed case_limit claims 13ms
+     × rejects rehashed invocation_limit claims 10ms
+     × rejects rehashed balanced_invocation_overflow claims 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > source-block work and derived range policy mutations > rejects rehashed case_limit claims
+AssertionError: expected [Function] to throw error including 'SOURCE_BLOCKS_WORK' but got 'SOURCE_BLOCKS_RECEIPT_SHAPE'
+
+Expected: "SOURCE_BLOCKS_WORK"
+Received: "SOURCE_BLOCKS_RECEIPT_SHAPE"
+
+ ❯ src/features/results/sourceBlockRecovery.test.ts:193:101
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > source-block work and derived range policy mutations > rejects rehashed invocation_limit claims
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > source-block work and derived range policy mutations > rejects rehashed balanced_invocation_overflow claims
+AssertionError: expected [Function] to throw error including 'SOURCE_BLOCKS_INVOCATION_WORK' but got 'SOURCE_BLOCKS_RECEIPT_SHAPE'
+
+Expected: "SOURCE_BLOCKS_INVOCATION_WORK"
+Received: "SOURCE_BLOCKS_RECEIPT_SHAPE"
+
+ ❯ src/features/results/sourceBlockRecovery.test.ts:193:101
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 25 passed (28)
+   Start at  23:42:35
+   Duration  1.39s (transform 213ms, setup 87ms, import 251ms, tests 669ms, environment 290ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/sourceBlockRecovery.test.ts --maxWorkers=1

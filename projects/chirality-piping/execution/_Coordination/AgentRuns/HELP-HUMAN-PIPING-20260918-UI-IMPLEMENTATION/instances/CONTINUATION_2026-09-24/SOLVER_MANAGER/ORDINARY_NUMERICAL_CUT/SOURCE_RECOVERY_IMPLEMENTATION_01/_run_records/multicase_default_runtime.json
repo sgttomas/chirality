@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/private/tmp/piping-source-recovery-product-target/debug/deps/open_pipe_stress_product_physics-a3d9ca59088db1a5",
+    "source_budget_tests::real_multicase_run_debits_one_invocation_and_keeps_actual_maximum",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "binary_sha256": "6bbae8e4fc6607402f6fe4f82131ed8c0cdd365acc32af59a1a8423a5341bc96",
+  "exit_code": 0,
+  "wall_seconds": 0.33698716700000003,
+  "user_seconds": 0.26311,
+  "system_seconds": 0.009876,
+  "maximum_rss_bytes": 15351808,
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "measurement_scope": "compiled debug library test: two genuine source-selected cases in each of dense and sparse modes; no compilation included; one process, not production performance claim",
+  "limits": {
+    "per_case": 4000000,
+    "invocation": 64000000
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "exact_delta_backcheck": "Removing only the retained Arc token, two pointer-identity checks and new regression block reproduces both initial source hashes exactly. Other source files unchanged.",
+  "files": [
+    {
+      "category": "source",
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "initial_sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe"
+    },
+    {
+      "category": "source",
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "initial_sha256": "194de55c182448c9f8d1814cdbc1eb68045a16de531fdb17da61e2f8d4aa1e94"
+    },
+    {
+      "category": "source",
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "initial_sha256": "98547916b3a9f9587d79baa5a476902a5603792332fcdf257ace54ffff035493"
+    },
+    {
+      "category": "source",
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "initial_sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e"
+    },
+    {
+      "category": "instruction",
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "initial_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "category": "instruction",
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "initial_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "category": "instruction",
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "initial_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "category": "instruction",
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "initial_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "category": "instruction",
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "initial_sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    }
+  ]
+}

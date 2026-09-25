@@ -1,0 +1,51 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/results/sourceBlockRecovery.test.ts (12 tests | 6 failed) 333ms
+     × 'n05-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence 10ms
+     × 'n05-sparse_interactive' validates its exact request and preserves ordinary attempt evidence 6ms
+     × 'n06-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence 5ms
+     × 'n06-sparse_interactive' validates its exact request and preserves ordinary attempt evidence 6ms
+     × 'multicase-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence 10ms
+     × 'multicase-sparse_interactive' validates its exact request and preserves ordinary attempt evidence 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'n05-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'n05-sparse_interactive' validates its exact request and preserves ordinary attempt evidence
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'n06-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'n06-sparse_interactive' validates its exact request and preserves ordinary attempt evidence
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'multicase-dense_scrutiny' validates its exact request and preserves ordinary attempt evidence
+ FAIL  src/features/results/sourceBlockRecovery.test.ts > received genuine source-block producer fixtures > 'multicase-sparse_interactive' validates its exact request and preserves ordinary attempt evidence
+Error: SOURCE_BLOCKS_STRESS_VALUE
+ ❯ fail src/features/results/sourceBlockRecovery.ts:16:82
+     14| // callers must still authenticate the actual model, producer/build an…
+     15| const validated = new WeakMap<MechanicsResult, Validated>();
+     16| const fail = (condition: unknown, code: string): void => { if (!condit…
+       |                                                                                  ^
+     17| const unique = (values: unknown[]) => new Set(values).size === values.…
+     18| const same = (a: unknown, b: unknown) => checkedJsonText(a) === checke…
+ ❯ stress src/features/results/sourceBlockRecovery.ts:254:5
+ ❯ checkDerivedRows src/features/results/sourceBlockRecovery.ts:269:67
+ ❯ validateSourceBlockRecovery src/features/results/sourceBlockRecovery.ts:147:90
+ ❯ src/features/results/sourceBlockRecovery.test.ts:115:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 6 passed (12)
+   Start at  23:35:45
+   Duration  739ms (transform 101ms, setup 62ms, import 93ms, tests 333ms, environment 172ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/sourceBlockRecovery.test.ts --maxWorkers=1

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "-b",
+    "apps/desktop/tsconfig.json",
+    "--pretty",
+    "false"
+  ],
+  "started": "2026-09-25T05:50:48.433678+00:00",
+  "purpose": "native gate compatibility; source-block real positives held until scaled-norm fixture regeneration",
+  "exit_code": 1
+}

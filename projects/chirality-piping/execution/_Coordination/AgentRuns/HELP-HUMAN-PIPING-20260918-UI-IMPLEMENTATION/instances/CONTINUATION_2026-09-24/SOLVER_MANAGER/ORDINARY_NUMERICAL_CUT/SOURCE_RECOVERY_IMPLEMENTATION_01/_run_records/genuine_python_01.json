@@ -1,0 +1,38 @@
+[
+  {
+    "file": "multicase-dense_scrutiny.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  },
+  {
+    "file": "multicase-sparse_interactive.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  },
+  {
+    "file": "n05-dense_scrutiny.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  },
+  {
+    "file": "n05-sparse_interactive.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  },
+  {
+    "file": "n06-dense_scrutiny.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  },
+  {
+    "file": "n06-sparse_interactive.raw.json",
+    "validated": true,
+    "standing": "numerically_eligible",
+    "analysis_schema": "0.3.0"
+  }
+]

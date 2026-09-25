@@ -1,0 +1,16 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/frame_kernel)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.53s
+     Running unittests src/lib.rs (/private/tmp/piping-source-recovery-frame-target/debug/deps/open_pipe_stress_frame_kernel-df02854d48d3f9db)
+
+running 8 tests
+test structural::exact_boundary::functionals::tests::coefficient_product_recipe_is_not_a_rounded_coefficient ... ok
+test structural::exact_boundary::functionals::tests::plan_binding_and_typed_identity_and_metering_cannot_be_bypassed ... ok
+test structural::exact_boundary::functionals::tests::exact_zero_and_nonzero_unprojectable_are_distinct ... ok
+test structural::exact_boundary::functionals::tests::all_fixed_and_mixed_partition_include_affine_offsets ... ok
+test structural::exact_boundary::functionals::tests::tiny_twist_recovers_signed_member_and_spring_actions_before_projection ... ok
+test structural::exact_boundary::functionals::tests::generic_coupled_and_multiple_independent_blocks_have_rational_oracles ... ok
+test structural::exact_boundary::functionals::tests::retention_replays_expected_plan_and_rejects_corruption_order_and_source_changes ... ok
+test structural::exact_boundary::functionals::tests::denied_reservations_long_ids_range_failures_and_retries_keep_the_ledger ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 77 filtered out; finished in 0.00s
+

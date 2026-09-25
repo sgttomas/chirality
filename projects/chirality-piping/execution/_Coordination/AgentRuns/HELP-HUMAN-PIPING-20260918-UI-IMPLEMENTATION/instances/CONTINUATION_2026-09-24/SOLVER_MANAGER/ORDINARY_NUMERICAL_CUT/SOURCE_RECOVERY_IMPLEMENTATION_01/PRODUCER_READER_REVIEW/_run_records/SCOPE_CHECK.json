@@ -1,0 +1,34 @@
+{
+  "allowed": [
+    "projects/chirality-piping/core/product_physics/src",
+    "projects/chirality-piping/core/product_physics/tests",
+    "projects/chirality-piping/core/reporting/result_export/src",
+    "projects/chirality-piping/core/reporting/result_export/tests",
+    "projects/chirality-piping/core/analysis_runs",
+    "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+    "projects/chirality-piping/fixtures/results",
+    "projects/chirality-piping/tests/test_source_blocks_validation.py"
+  ],
+  "paths": [
+    "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+    "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+    "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+    "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+    "projects/chirality-piping/core/product_physics/src/lib.rs",
+    "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+    "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+    "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+    "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+    "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+    "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+    "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+    "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+    "projects/chirality-piping/core/analysis_runs/compatibility.py",
+    "projects/chirality-piping/tests/test_source_blocks_validation.py",
+    "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": [],
+  "scope_note": "Explicit parent-supplied review paths only; no Git/change discovery executed. This does not claim complete repository diff coverage."
+}

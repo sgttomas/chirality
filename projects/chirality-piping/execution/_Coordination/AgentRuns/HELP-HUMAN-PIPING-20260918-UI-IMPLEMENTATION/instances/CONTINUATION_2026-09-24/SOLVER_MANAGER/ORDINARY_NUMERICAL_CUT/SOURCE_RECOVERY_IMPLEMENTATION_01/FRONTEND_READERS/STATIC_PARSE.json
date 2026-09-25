@@ -1,0 +1,67 @@
+{
+  "method": "TypeScript createSourceFile syntax parsing only; no emit, module checking, suite or build",
+  "node": "v24.18.0",
+  "typescript": "5.9.3",
+  "results": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "errors": []
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "errors": []
+    }
+  ]
+}

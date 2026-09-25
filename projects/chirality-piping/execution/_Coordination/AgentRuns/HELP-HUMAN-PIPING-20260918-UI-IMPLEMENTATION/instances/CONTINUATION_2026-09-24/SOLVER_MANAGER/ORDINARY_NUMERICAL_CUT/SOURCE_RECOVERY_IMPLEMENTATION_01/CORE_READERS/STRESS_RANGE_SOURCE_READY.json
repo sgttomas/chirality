@@ -1,0 +1,82 @@
+{
+  "executor": "/root/numerical_resume/source_product_adapter",
+  "parent": "/root/numerical_resume",
+  "role": "TASK",
+  "mechanism": "delegated-harness-native",
+  "delegation": "none",
+  "status": "source ready; runtime lane not yet released",
+  "selection": "Conservative current source-block carrier normal-range admission, unchanged stress recipe arithmetic/IDs and protected1e-9. p1/history untouched.",
+  "private_boundary": "Producer must check actual T*radius, Pa quotient and preconversion subtotal; these operands are not on the receipt wire. Readers check only observable MPa/action/Pa-roundtrip/summary bindings and retained projection bounds. Authenticated origin remains independently required.",
+  "review_basis": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/STRESS_SUBNORMAL_SCALAR.json",
+    "sha256": "7e8675d39ecc242b6d63089b203c2ea208a601bc23adf97276a5603b71bcde1c"
+  },
+  "instructions": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    }
+  ],
+  "source": [
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e"
+    }
+  ],
+  "checks": [
+    "Rust rustfmt parser/format passed",
+    "Python AST passed",
+    "No runtime tests or source fixture writes in this follow-up so far"
+  ],
+  "received_pre_repair_inputs": [
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/CAPTURE.json",
+      "sha256": "2e90f53900bfa030fab85955fef0f9398a57b1e859ce87acff61468d9b994b5a"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413"
+    }
+  ],
+  "runtime": "Pending parent-coordinated slot after physics/TS reader queue; no prior test pass is reused for these source changes."
+}

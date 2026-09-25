@@ -1,0 +1,636 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx (11 tests | 1 failed) 8402ms
+   × binds precision v3 metadata and preserves shared f64 bits in CSV and JSON 12ms
+ ❯ src/features/result-export/resultExportAdapter.test.ts (25 tests | 9 failed) 2468ms
+     × binds current payload/carrier and preserves old hashes and observed declarations 202ms
+     × dimension-absent received carrier remains distinct from authentic producer 305ms
+     × dispatches raw 0.2 basis, discrete and diagnostic semantics without legacy enrichment 151ms
+     × admits the four accepted explicit legacy dimensions without replacing them with interpreted target dimensions 152ms
+     × rejects missing proof, same-id changed model, stale run, changed value and mixed/null/empty/wrong dimensions 196ms
+     × rejects a rehashed 0.2 known explicit carrier dimension contradiction without mutating evidence 246ms
+   × rejects ghost references, orphan witnesses and semantic tampering despite recomputed derivative digest 162ms
+   × preserves every shared nonzero f64 vector through canonical hash and derivative JSON 153ms
+   × rejects rehashed Current analysis diagnostics and claimed basis using independent model evidence 223ms
+ ❯ src/features/report/reportPackageRequest.test.ts (16 tests | 15 failed) 122ms
+     × maps the actual manifest, source dimensions, private copies, and DEL-08-06 records without mutating sources 4ms
+     × blocks a same-ID model whose canonical payload differs from the verified manifest 1ms
+     × accepts canonically equal model payloads with reordered object keys 1ms
+     × blocks every non-null rule-check aggregate before assembly 1ms
+     × maps family from exact kind and source dimension without reading deceptive unit text 1ms
+     × blocks a source dimension that contradicts exact result kind semantics 1ms
+     × blocks missing or mismatched manifest evidence and malformed SHA-256 before assembly 1ms
+     × rejects future analysis versions and missing current received-result hashes 1ms
+     × discloses an unregistered source row without inferring force from N 1ms
+     × rejects recorded solver_name that differs from the verified manifest 1ms
+     × rejects recorded solver_version that differs from the verified manifest 1ms
+     × rejects recorded build_ref that differs from the verified manifest 1ms
+     × rejects a hash-valid manifest and coherent record with the wrong producer solver_name 1ms
+     × rejects a hash-valid manifest and coherent record with the wrong producer solver_version 1ms
+     × preserves a consistent recorded build reference without inventing one from producer version 1ms
+ ❯ src/services/previewService.test.ts (32 tests | 13 failed) 191ms
+     × returns the actual bundled producer result when no model payload is supplied 4ms
+     × keeps the genuine fixture result for the unchanged bundled model 8ms
+     × returns genuine sparse_interactive fixture bytes and preserves producer quality 1ms
+     × returns genuine dense_scrutiny fixture bytes and preserves producer quality 1ms
+     × defaults to exact sparse fixture and returns independent copies 0ms
+     × compares model content canonically rather than object key insertion order 1ms
+     × binds the exact manifest independently from the result envelope and declares stiffness dimensions 0ms
+     × blocks manifest evidence for a different model 0ms
+     × blocks transformed manifest evidence until its ref and hash are recomputed 0ms
+     × blocks wrong-prefix and wrong-model manifest refs with a valid digest 0ms
+     × blocks a unit that contradicts the exact kind semantics 0ms
+     × blocks an explicit dimension that contradicts exact result kind semantics 0ms
+     × uses browser job designation only when the host is absent 1ms
+ ❯ src/features/workspace/resultsSessionState.test.ts (2 tests | 1 failed) 14ms
+   × requires joined precision analysis and manifest identities before publishing Current 5ms
+ ❯ src/services/ruleCheckService.test.ts (10 tests | 1 failed) 8ms
+     × forwards non-empty bindings and retains both solved envelope and model coverage basis 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 40 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > returns the actual bundled producer result when no model payload is supplied
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:100:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/40]⎯
+
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > keeps the genuine fixture result for the unchanged bundled model
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:109:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/40]⎯
+
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > returns genuine sparse_interactive fixture bytes and preserves producer quality
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > returns genuine dense_scrutiny fixture bytes and preserves producer quality
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:226:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/40]⎯
+
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > defaults to exact sparse fixture and returns independent copies
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:243:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/40]⎯
+
+ FAIL  src/services/previewService.test.ts > previewService browser fixture execution boundary > compares model content canonically rather than object key insertion order
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:253:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > binds the exact manifest independently from the result envelope and declares stiffness dimensions
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:384:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks manifest evidence for a different model
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:424:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks transformed manifest evidence until its ref and hash are recomputed
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:435:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks wrong-prefix and wrong-model manifest refs with a valid digest
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:445:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks a unit that contradicts the exact kind semantics
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:460:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/40]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks an explicit dimension that contradicts exact result kind semantics
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:472:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/40]⎯
+
+ FAIL  src/services/previewService.test.ts > native mechanics failure boundary > uses browser job designation only when the host is absent
+AssertionError: promise rejected "Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SO…" instead of resolving
+ ❯ src/services/previewService.test.ts:531:44
+    529|
+    530|   it("uses browser job designation only when the host is absent", asyn…
+    531|     await expect(startPreviewMechanicsJob()).resolves.toEqual({ mode: …
+       |                                            ^
+    532|     expect(invokeMock).not.toHaveBeenCalled();
+    533|   });
+
+Caused by: Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ Module.startPreviewMechanicsJob src/services/previewService.ts:147:11
+ ❯ src/services/previewService.test.ts:531:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/40]⎯
+
+ FAIL  src/services/ruleCheckService.test.ts > runRuleChecks > forwards non-empty bindings and retains both solved envelope and model coverage basis
+Error: NATIVE_RULE_INPUT_UNVERIFIED
+ ❯ Module.runRuleChecks src/services/ruleCheckService.ts:112:99
+
+ ❯ src/services/ruleCheckService.test.ts:194:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > maps the actual manifest, source dimensions, private copies, and DEL-08-06 records without mutating sources
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:116:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > blocks a same-ID model whose canonical payload differs from the verified manifest
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:217:59
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > accepts canonically equal model payloads with reordered object keys
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:239:59
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > blocks every non-null rule-check aggregate before assembly
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:262:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > maps family from exact kind and source dimension without reading deceptive unit text
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:282:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > blocks a source dimension that contradicts exact result kind semantics
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:296:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > blocks missing or mismatched manifest evidence and malformed SHA-256 before assembly
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:324:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects future analysis versions and missing current received-result hashes
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:388:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > discloses an unregistered source row without inferring force from N
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:404:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects recorded solver_name that differs from the verified manifest
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects recorded solver_version that differs from the verified manifest
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects recorded build_ref that differs from the verified manifest
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:417:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects a hash-valid manifest and coherent record with the wrong producer solver_name
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > rejects a hash-valid manifest and coherent record with the wrong producer solver_version
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:427:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/40]⎯
+
+ FAIL  src/features/report/reportPackageRequest.test.ts > report-package current-session request > preserves a consistent recorded build reference without inventing one from producer version
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:626:9
+    624|     );
+    625|   }
+    626|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    627| }
+    628|
+ ❯ runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ currentSession src/features/report/reportPackageRequest.test.ts:14:18
+ ❯ src/features/report/reportPackageRequest.test.ts:451:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > binds current payload/carrier and preserves old hashes and observed declarations
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:66:68
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > dimension-absent received carrier remains distinct from authentic producer
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:72:310
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > dispatches raw 0.2 basis, discrete and diagnostic semantics without legacy enrichment
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:77:166
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > admits the four accepted explicit legacy dimensions without replacing them with interpreted target dimensions
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:86:481
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > rejects missing proof, same-id changed model, stale run, changed value and mixed/null/empty/wrong dimensions
+AssertionError: expected [Function] to throw error including 'RUN_BINDING' but got 'CURRENT_NATIVE_INVOCATION_UNAVAILABLE'
+
+Expected: "RUN_BINDING"
+Received: "CURRENT_NATIVE_INVOCATION_UNAVAILABLE"
+
+ ❯ src/features/result-export/resultExportAdapter.test.ts:94:110
+     92|   const args=await current();await expect(buildCurrentResultExport({..…
+     93|   const changed=structuredClone(args);(changed.model as any).unknown_a…
+     94|   const stale=structuredClone(args);stale.result.run_id+='stale';await…
+       |                                                                                                              ^
+     95|   const value=structuredClone(args);value.result.results[0].value+=1;a…
+     96|   for(const dimension of [null,'',7,'wrong']){const bad=structuredClon…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > synthetic consumer Current derivative export (not producer qualification) > rejects a rehashed 0.2 known explicit carrier dimension contradiction without mutating evidence
+AssertionError: expected [Function] to throw error including 'CURRENT_CARRIER_DIMENSION_CONTRADICTI…' but got 'CURRENT_NATIVE_INVOCATION_UNAVAILABLE'
+
+Expected: "CURRENT_CARRIER_DIMENSION_CONTRADICTION"
+Received: "CURRENT_NATIVE_INVOCATION_UNAVAILABLE"
+
+ ❯ src/features/result-export/resultExportAdapter.test.ts:100:324
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > rejects ghost references, orphan witnesses and semantic tampering despite recomputed derivative digest
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:167:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > preserves every shared nonzero f64 vector through canonical hash and derivative JSON
+Error: CURRENT_NATIVE_INVOCATION_UNAVAILABLE
+ ❯ buildCurrentResultExport src/features/result-export/resultExportAdapter.ts:164:75
+    162|   requireEqual(run.reproducibility.semantic_contract,currentSemanticCo…
+    163|   const solver=inputManifest.manifest.solver_basis;
+    164|   if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))th…
+       |                                                                           ^
+    165|   if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches…
+    166|   if(solver.solver_name!==result.producer!.component_name||solver.solv…
+ ❯ src/features/result-export/resultExportAdapter.test.ts:177:51
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/40]⎯
+
+ FAIL  src/features/result-export/resultExportAdapter.test.ts > rejects rehashed Current analysis diagnostics and claimed basis using independent model evidence
+AssertionError: expected [Function] to throw error including 'ANALYSIS_SOURCE_' but got 'CURRENT_NATIVE_INVOCATION_UNAVAILABLE'
+
+Expected: "ANALYSIS_SOURCE_"
+Received: "CURRENT_NATIVE_INVOCATION_UNAVAILABLE"
+
+ ❯ src/features/result-export/resultExportAdapter.test.ts:194:45
+    192|   bad.analysisRun.analysis_run.hashes.find(h=>h.payload_scope==='analy…
+    193|   expect(await verifyAnalysisRunRecord(bad.analysisRun)).toBe('match');
+    194|   await expect(buildCurrentResultExport(bad)).rejects.toThrow('ANALYSI…
+       |                                             ^
+    195|  }
+    196| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/40]⎯
+
+ FAIL  src/features/stress-neutral/StressNeutralExportPanel.test.tsx > binds precision v3 metadata and preserves shared f64 bits in CSV and JSON
+Error: SN-NATIVE-INVOCATION-UNAVAILABLE
+ ❯ Module.buildStressNeutralExportPacket src/features/stress-neutral/StressNeutralExportPanel.tsx:445:70
+    443|   let sourceCarrierChecksum;
+    444|   if (precision) {
+    445|     if (!hasNativeMechanicsInvocation(args.result,args.model)) throw n…
+       |                                                                      ^
+    446|     if (!numericalResultStanding(args.result, args.model).eligible) th…
+    447|     if (args.analysisRun.schema_version !== "0.3.0" || args.analysisRu…
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx:120:51
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/40]⎯
+
+ FAIL  src/features/workspace/resultsSessionState.test.ts > requires joined precision analysis and manifest identities before publishing Current
+AssertionError: expected null to be { schema_version: '0.2.0', …(10) } // Object.is equality
+
+- Expected:
+{
+  "diagnostics": [
+    {
+      "code": "GATE",
+      "id": "gate",
+      "message": "test",
+      "severity": "info",
+    },
+  ],
+  "document_kind": "MechanicsResult",
+  "formulation_basis": {
+    "limitations": [
+      "bounded preview",
+    ],
+    "profile_id": "product_preview_mechanics_v1",
+  },
+  "model_ref": "m",
+  "numerical_quality": {
+    "cases": [
+      {
+        "accuracy_evidence": "not_claimed",
+        "basis_ref": {
+          "ref_id": "load",
+          "ref_type": "load_case",
+        },
+        "evidence_refs": [
+          "gate",
+        ],
+        "model_matrix_fidelity": "represented_equations_retained",
+        "solve_quality": "checks_passed",
+        "structural_status": "passive_model_basis",
+      },
+    ],
+    "integrity_policy": "M03-INTEGRITY-v1",
+    "publication_quantization": "none",
+    "status": "checks_passed",
+    "value_representation": "finite_binary64",
+  },
+  "producer": {
+    "component_name": "open_pipe_stress_product_physics",
+    "component_version": "0.2.0",
+    "semantic_contract_id": "openpipestress.result_semantics/0.3.0/precision-1",
+  },
+  "results": [],
+  "run_id": "r",
+  "schema_version": "0.2.0",
+  "status": {
+    "mechanics": "MECHANICS_SOLVED",
+    "professional_acceptance": "NOT_PROVIDED",
+    "rule_check": "RULE_INPUTS_INCOMPLETE",
+  },
+  "summary": {},
+}
+
++ Received:
+null
+
+ ❯ src/features/workspace/resultsSessionState.test.ts:28:45
+     26|  expect(result.current.currentSolvedResult).toBeNull();
+     27|  act(()=>result.current.setAnalysisRun(analysis as never));
+     28|  expect(result.current.currentSolvedResult).toBe(source);
+       |                                             ^
+     29|  const sensitive = structuredClone(source);
+     30|  sensitive.numerical_quality!.status = "sensitive";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/40]⎯
+
+
+ Test Files  6 failed | 3 passed (9)
+      Tests  40 failed | 116 passed (156)
+   Start at  23:43:39
+   Duration  15.08s (transform 399ms, setup 282ms, import 682ms, tests 11.90s, environment 1.54s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/sourceBlockRecovery.test.ts src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1

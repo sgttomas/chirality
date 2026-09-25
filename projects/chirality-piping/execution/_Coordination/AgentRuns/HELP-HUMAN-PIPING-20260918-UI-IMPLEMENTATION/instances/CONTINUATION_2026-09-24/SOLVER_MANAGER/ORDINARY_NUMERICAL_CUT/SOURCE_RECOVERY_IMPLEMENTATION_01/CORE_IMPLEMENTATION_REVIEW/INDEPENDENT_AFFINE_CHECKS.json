@@ -1,0 +1,48 @@
+{
+  "method": "Python Fraction direct substitution and equilibrium, independent of production code; not a Rust execution claim",
+  "cases": [
+    {
+      "oracle": "two-coordinate spring/torsion exact source",
+      "T": "1",
+      "a": "1152921504606846976",
+      "k": "1",
+      "root": "1",
+      "tip": "1152921504606846977/1152921504606846976",
+      "member_i_j_spring_free_equilibrium": [
+        "-1",
+        "1",
+        "-1",
+        "0"
+      ],
+      "projected_displacement_difference": 0.0
+    },
+    {
+      "oracle": "two-coordinate spring/torsion exact source",
+      "T": "-3",
+      "a": "1152921504606846976",
+      "k": "1",
+      "root": "-3",
+      "tip": "-3458764513820540931/1152921504606846976",
+      "member_i_j_spring_free_equilibrium": [
+        "3",
+        "-3",
+        "3",
+        "0"
+      ],
+      "projected_displacement_difference": 0.0
+    },
+    {
+      "oracle": "coupled block[[4,1],[1,3]],f=[1,2],q=2u0+3u1",
+      "q": "23/11"
+    },
+    {
+      "oracle": "mixed prescribedu1=2,4u0+u1=9,q=5+2u0-3u1",
+      "q": "5/2",
+      "prescribed_reaction": "31/4"
+    },
+    {
+      "oracle": "exact coefficientproduct(1+e)(1-e)-1,e=2^-52",
+      "value": "-1/20282409603651670423947251286016"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/frame_kernel)
+error: could not compile `open_pipe_stress_frame_kernel` (lib) due to 3 previous errors

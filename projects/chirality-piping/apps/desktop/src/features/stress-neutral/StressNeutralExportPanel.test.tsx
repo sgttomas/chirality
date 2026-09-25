@@ -1,3 +1,5 @@
+import precisionLiveSource from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
+import {invoke} from '@tauri-apps/api/core';
 import { buildAnalysisRunV02, modelLoadBasisRefs, analysisRecordProjection, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
 import transport from "../../../../../fixtures/results/precision_transport_v0_3.json";
 import { PRECISION_CONTRACT_ID } from "../results/numericalResultQuality";
@@ -9,14 +11,22 @@ import path from 'node:path';
 import modelJson from '../../../../../fixtures/product_preview/invented_preview_model.json';
 import resultJson from '../../../../../fixtures/product_preview/invented_mechanics_result.json';
 import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
-import {buildAnalysisRunPreview,bindSourceResultDimensions} from '../../services/previewService';
+import {buildAnalysisRunPreview,bindSourceResultDimensions,runPreviewMechanics,hasNativeMechanicsInvocation} from '../../services/previewService';
 import {buildStressNeutralExportPacket,validateStressNeutralExportPacket,precisionStressRow} from './StressNeutralExportPanel';
 import {StressNeutralExportPanel} from './StressNeutralExportPanel';
 import {canonicalSha256HexCheckedV1,canonicalJsonCheckedV1} from '../../services/hashService';
 import type {PreviewModel,MechanicsResult} from '../../types';
 import {isNativeResultSaveRuntime,saveNativeResultJson} from '../result-export/nativeResultSave';
+vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
+afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.mocked(invoke).mockReset();});
 vi.mock('../result-export/nativeResultSave',()=>({isNativeResultSaveRuntime:vi.fn(()=>false),saveNativeResultJson:vi.fn()}));
 afterEach(()=>{vi.mocked(isNativeResultSaveRuntime).mockReturnValue(false);vi.mocked(saveNativeResultJson).mockReset();});
+// A simulated IPC delivery tests the live publication boundary; it does not
+// turn these captured legacy rows into a new native physics witness.
+async function deliverNative(source: MechanicsResult, model: PreviewModel) {
+ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
+ vi.mocked(invoke).mockResolvedValueOnce(source);expect(await runPreviewMechanics(model)).toBe(source);
+}
 it('retains every native-shaped source row and hash while deriving 828 semantic witnesses and two diagnostic-work withholdings',async()=>{
  const model=modelJson as PreviewModel,result=structuredClone(resultJson) as unknown as MechanicsResult;
  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
@@ -85,8 +95,9 @@ it('rejects duplicate missing path checksum metadata member divergence and packa
 });
 
 it('does not publish a delayed packet after its source result is replaced',async()=>{
- const model=modelJson as PreviewModel,first=bindSourceResultDimensions(structuredClone(resultJson) as unknown as MechanicsResult);const second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
- const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunV02(first,inputManifest),secondRun=await buildAnalysisRunV02(second,inputManifest);
+ const model=modelJson as PreviewModel,first=structuredClone(precisionLiveSource) as unknown as MechanicsResult;const second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
+ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunPreview(first,{inputManifest}),secondRun=await buildAnalysisRunPreview(second,{inputManifest});
+ await deliverNative(first,model);await deliverNative(second,model);
  const original=crypto.subtle.digest.bind(crypto.subtle);let release!:()=>void;const gate=new Promise<void>(resolve=>{release=resolve;});let calls=0;
  vi.spyOn(crypto.subtle,'digest').mockImplementation(async (algorithm:any,data:any)=>{calls+=1;if(calls===1)await gate;return original(algorithm,data);});
  const view=render(<StressNeutralExportPanel model={model} result={first} analysisRun={firstRun}/>);await waitFor(()=>expect(calls).toBe(1));view.rerender(<StressNeutralExportPanel model={model} result={second} analysisRun={secondRun}/>);
@@ -95,8 +106,9 @@ it('does not publish a delayed packet after its source result is replaced',async
 
 it('saves native stress JSON only after validation and intent and invalidates a pending source generation',async()=>{
  vi.mocked(isNativeResultSaveRuntime).mockReturnValue(true);
- const model=modelJson as PreviewModel,first=bindSourceResultDimensions(structuredClone(resultJson) as unknown as MechanicsResult),second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
- const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunV02(first,inputManifest),secondRun=await buildAnalysisRunV02(second,inputManifest);
+ const model=modelJson as PreviewModel,first=structuredClone(precisionLiveSource) as unknown as MechanicsResult,second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
+ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunPreview(first,{inputManifest}),secondRun=await buildAnalysisRunPreview(second,{inputManifest});
+ await deliverNative(first,model);await deliverNative(second,model);
  let finishOld!:(value:any)=>void;vi.mocked(saveNativeResultJson).mockImplementationOnce(()=>new Promise(resolve=>{finishOld=resolve;}));
  const view=render(<StressNeutralExportPanel model={model} result={first} analysisRun={firstRun}/>);
  const firstButton=await screen.findByRole('button',{name:/Package JSON/},{timeout:10_000});expect(firstButton).toBeDisabled();expect(saveNativeResultJson).not.toHaveBeenCalled();
@@ -117,6 +129,8 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  result.numerical_quality={value_representation:'finite_binary64',publication_quantization:'none',integrity_policy:'M03-INTEGRITY-v1',status:'checks_passed',cases:model.load_cases.map(c=>({basis_ref:{ref_type:'load_case',ref_id:c.id},structural_status:'passive_model_basis',solve_quality:'checks_passed',model_matrix_fidelity:'represented_equations_retained',accuracy_evidence:'not_claimed',evidence_refs:['gate:test']}))};
  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer.component_name,solver_version:'0.2.0',solver_build_ref:'test',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
+ // Simulated IPC validates consumer transport; it is not a native physics witness.
+ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});vi.mocked(invoke).mockResolvedValueOnce(result);await runPreviewMechanics(model);
  const before=JSON.stringify(result),packet=await buildStressNeutralExportPacket({model,result,analysisRun}),decoded=JSON.parse(JSON.stringify(packet));
  expect(packet.schema_version).toBe('0.3.0');expect(packet.export_profile.profile_id).toBe('ops.stress_neutral.v3');
  expect(packet.producer).toEqual(result.producer);expect(packet.numerical_quality).toEqual(result.numerical_quality);expect(packet.formulation_basis).toEqual(result.formulation_basis);
@@ -231,6 +245,8 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  // Case/punctuation IDs collide under filename sanitizing but never under .3 indexed map/witness IDs.
  const collisions=structuredClone(result);collisions.results=collisions.results.slice(0,4);collisions.results.forEach((row,i)=>row.id=['ROW:A','row:a','row/a','row?a'][i]);
  const collisionAnalysis=await buildAnalysisRunPreview(collisions,{inputManifest});
+ // Independent simulated response for this synthetic identifier-collision control.
+ vi.mocked(invoke).mockResolvedValueOnce(collisions);await runPreviewMechanics(model);
  const collisionPacket=await buildStressNeutralExportPacket({model,result:collisions,analysisRun:collisionAnalysis});
  expect(new Set(collisionPacket.unit_preservation_witnesses.map((w:any)=>w.witness_id)).size).toBe(4);
  expect(new Set(collisionPacket.stable_id_map.map((m:any)=>m.export_ref.ref)).size).toBe(4);
@@ -243,6 +259,8 @@ it('binds precision v3 metadata and preserves shared f64 bits in CSV and JSON',a
  const withheldSource=structuredClone(result);
  withheldSource.results=[{id:'unknown:interop',entity_ref:'node:interop',kind:'unknown_quantity',value:1,unit:'mm'}];
  const withheldAnalysis=await buildAnalysisRunPreview(withheldSource,{inputManifest});
+ // This separate simulated response tests unknown-row disclosure, not physics.
+ vi.mocked(invoke).mockResolvedValueOnce(withheldSource);await runPreviewMechanics(model);
  const withheldPacket=await buildStressNeutralExportPacket({model,result:withheldSource,analysisRun:withheldAnalysis});
  withheldPacket.provenance=structuredClone(imported.provenance);
  withheldPacket.result_rows[0].provenance=structuredClone(imported.provenance);
@@ -303,3 +321,32 @@ it('refuses precision header presence on rehashed legacy packets without alterin
  expect(JSON.stringify(base)).toBe(original);
  await expect(validateStressNeutralExportPacket(base)).resolves.toBeUndefined();
 });
+
+it('pure reference construction does not make either live download route available',async()=>{
+ const model=structuredClone(modelJson) as PreviewModel,result=structuredClone(resultJson) as MechanicsResult;
+ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'reference',solver_version:'1',solver_build_ref:'reference',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+ const analysisRun=await buildAnalysisRunV02(result,inputManifest);
+ expect((await buildStressNeutralExportPacket({model,result,analysisRun})).schema_version).toBe('0.2.0');
+ expect(hasNativeMechanicsInvocation(result,model)).toBe(false);
+ const view=render(<StressNeutralExportPanel model={model} result={result} analysisRun={analysisRun}/>);
+ expect(view.queryByTestId('stress-neutral-export-link')).toBeNull();expect(view.queryByTestId('stress-neutral-csv-link')).toBeNull();view.unmount();
+});
+it.each(['json','csv'] as const)('rechecks source and analysis contents when activating %s',async route=>{
+ for(const change of ['source','analysis'] as const){
+  const model=structuredClone(modelJson) as PreviewModel,result=structuredClone(precisionLiveSource) as unknown as MechanicsResult;
+  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});await deliverNative(result,model);
+  vi.mocked(isNativeResultSaveRuntime).mockReturnValue(route==='json');vi.mocked(saveNativeResultJson).mockClear();
+  const view=render(<StressNeutralExportPanel model={model} result={result} analysisRun={analysisRun}/>);
+  const id=route==='json'?'stress-neutral-export-link':'stress-neutral-csv-link';
+  if(route==='json'){await view.findByTestId(`${id}-local-private-intent`,{}, {timeout:10000});fireEvent.click(view.getByTestId(`${id}-local-private-intent`));}
+  const link=await waitFor(()=>{const element=view.getByTestId(id);expect(element.tagName).toBe(route==='json'?'BUTTON':'SPAN');if(route==='json')expect(element).toBeEnabled();else expect(element).toHaveAttribute('aria-disabled','true');return element;});
+  // The existing downstream CSV privacy policy withholds its anchor for this
+  // source. This checks that withheld control, not an enabled CSV download.
+  // Same object identity and no parent render: the activation guard must read
+  // current content, including analysis-only revisions unrelated to raw source.
+  if(change==='source')result.results[0].value+=1;else analysisRun.analysis_run.run_name+=' changed without rehash';
+  expect(fireEvent.click(link)).toBe(false);expect(saveNativeResultJson).not.toHaveBeenCalled();
+  expect(view.queryByTestId(id)).toBeNull();view.unmount();
+ }
+},30000);

@@ -2,7 +2,11 @@ import transport from "../../../../../fixtures/results/precision_transport_v0_3.
 import { PRECISION_CONTRACT_ID } from "../results/numericalResultQuality";
 import {mkdirSync,writeFileSync} from "node:fs";
 import path from "node:path";
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi,afterEach} from 'vitest';
+import {invoke} from '@tauri-apps/api/core';
+import {runPreviewMechanics} from '../../services/previewService';
+vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
+afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
 import modelJson from '../../../../../fixtures/product_preview/invented_preview_model.json';
 import resultJson from '../../../../../fixtures/product_preview/invented_mechanics_result.json';
 import metadataFixtures from '../../../../../fixtures/results/invented/result_export_v0_2.json';
@@ -16,6 +20,14 @@ import {analysisRecordProjection,verifyAnalysisRunRecord} from '../../services/a
 async function legacyDigest(value:unknown){
  const sort=(item:any):any=>Array.isArray(item)?item.map(sort):item&&typeof item==='object'?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b)).map(([key,child])=>[key,sort(child)])):item;
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(sort(value))));return [...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+}
+// Consumer-only transport harness: this mocks the native IPC response, not
+// its private provenance query/registrar. It does not prove producer physics.
+async function exportFromMockedNative(args: Parameters<typeof buildCurrentResultExport>[0]) {
+ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
+ vi.mocked(invoke).mockResolvedValueOnce(args.result);
+ const received=await runPreviewMechanics(args.model,(args.inputManifest?.manifest.solver_basis.solver_mode ?? 'sparse_interactive') as 'sparse_interactive'|'dense_scrutiny');
+ return buildCurrentResultExport({...args,result:received});
 }
 // Synthetic consumer admission mock only: these copied rows and passing gate
 // labels are neither a new browser demo nor producer/numerical qualification.
@@ -63,18 +75,18 @@ async function rehashV02ResultClaims(args:Awaited<ReturnType<typeof current>>){
 }
 describe('synthetic consumer Current derivative export (not producer qualification)',()=>{
  it('binds current payload/carrier and preserves old hashes and observed declarations',async()=>{
-  const args=await current(),before=JSON.stringify(args);const doc=await buildCurrentResultExport(args);expect(doc.schema_version).toBe('0.3.0');if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-enriched.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-enriched.received.json'),JSON.stringify(args.result,null,2));writeFileSync(path.join(dir,'current-enriched.model.json'),JSON.stringify(args.model,null,2));writeFileSync(path.join(dir,'current-enriched.analysis-run.json'),JSON.stringify(args.analysisRun,null,2));}expect(doc.result_envelope.row_accounting).toHaveLength(args.result.results.length);expect(JSON.stringify(args)).toBe(before);
+  const args=await current(),before=JSON.stringify(args);const doc=await exportFromMockedNative(args);expect(doc.schema_version).toBe('0.3.0');if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-enriched.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-enriched.received.json'),JSON.stringify(args.result,null,2));writeFileSync(path.join(dir,'current-enriched.model.json'),JSON.stringify(args.model,null,2));writeFileSync(path.join(dir,'current-enriched.analysis-run.json'),JSON.stringify(args.analysisRun,null,2));}expect(doc.result_envelope.row_accounting).toHaveLength(args.result.results.length);expect(JSON.stringify(args)).toBe(before);
   expect(doc.result_envelope.reproducibility.raw_source_hashes).toEqual([]);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].original_producer_checksum).toBeNull();
   const payload=structuredClone(doc);delete payload.result_envelope.reproducibility.derivative_hash;expect(doc.result_envelope.reproducibility.derivative_hash.value).toBe(await resultDigest(payload));
   for(const a of doc.result_envelope.row_accounting){const row=args.result.results[a.source_row_index];expect(a.received_carrier_row_checksum.value).toBe(await resultDigest(row));const ann=doc.result_envelope.source_annotations[a.source_row_index];expect(ann.observed_carrier_dimension).toEqual({present:true,value:row.dimension});}
  });
  it('dimension-absent received carrier remains distinct from authentic producer',async()=>{
-  const args=await current();args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await buildCurrentResultExport(args);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].origin_class).toBe('received_current_dimension_absent');expect(doc.result_envelope.reproducibility.source_origin_bindings[0].authentic_producer_available).toBe(false);
+  const args=await current();args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await exportFromMockedNative(args);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].origin_class).toBe('received_current_dimension_absent');expect(doc.result_envelope.reproducibility.source_origin_bindings[0].authentic_producer_available).toBe(false);
   if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-absent.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-absent.received.json'),JSON.stringify(args.result,null,2));}
  });
  it('dispatches raw 0.2 basis, discrete and diagnostic semantics without legacy enrichment',async()=>{
   const args=await current(),kinds=['modulus_basis_record','linear_solver_mode_basis','nonlinear_support_free_dof_work_residual'];args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.result.results=kinds.map(kind=>structuredClone(metadataFixtures.fixtures.find(f=>f.input_row.kind===kind)!.input_row)) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result);
-  expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await buildCurrentResultExport(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.row_accounting).toHaveLength(3);expect(doc.result_envelope.row_accounting.map((row:any)=>row.source_result_id)).toEqual(args.result.results.map(row=>row.id));expect(doc.result_envelope.row_accounting.every((row:any)=>row.disposition==='disclosed')).toBe(true);expect(doc.result_envelope.unit_preservation_witnesses).toHaveLength(0);
+  expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await exportFromMockedNative(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.row_accounting).toHaveLength(3);expect(doc.result_envelope.row_accounting.map((row:any)=>row.source_result_id)).toEqual(args.result.results.map(row=>row.id));expect(doc.result_envelope.row_accounting.every((row:any)=>row.disposition==='disclosed')).toBe(true);expect(doc.result_envelope.unit_preservation_witnesses).toHaveLength(0);
   const received=args.analysisRun.analysis_run.hashes.find(hash=>hash.payload_scope==='received_result')!;expect(received.value).toBe(await resultDigest(args.result));for(const [index,row] of args.result.results.entries()){expect(args.analysisRun.analysis_run.result_refs.find(item=>item.result_ref.ref===row.id)!.hash_refs[0].value).toBe(await resultDigest(row));expect(doc.result_envelope.source_annotations[index].observed_carrier_dimension).toEqual({present:false,value:null});}
  });
  it('admits the four accepted explicit legacy dimensions without replacing them with interpreted target dimensions',async()=>{
@@ -83,28 +95,28 @@ describe('synthetic consumer Current derivative export (not producer qualificati
    {kind:'nonlinear_support_final_displacement',unit:'rad',component:'nonlinear_support_final_displacement',dimension:'length'},
    {kind:'nonlinear_support_final_reaction',unit:'N*m',component:'nonlinear_support_final_reaction',dimension:'force'},
    {kind:'spring_hanger_user_input_review',unit:'N*m/rad',component:'variable_spring_hanger_stiffness',dimension:'linear_stiffness'},
-  ];args.result.results=accepted.map(item=>{const fixture=metadataFixtures.fixtures.find(candidate=>candidate.input_row.kind===item.kind&&candidate.input_row.unit===item.unit&&candidate.input_row.metadata?.component===item.component)!;return {...structuredClone(fixture.input_row),dimension:item.dimension};}) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result),doc=await buildCurrentResultExport(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.observed_carrier_dimension.value)).toEqual(accepted.map(item=>item.dimension));expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.derivative_target_dimension)).toEqual([null,'angle','moment','rotational_stiffness']);
+  ];args.result.results=accepted.map(item=>{const fixture=metadataFixtures.fixtures.find(candidate=>candidate.input_row.kind===item.kind&&candidate.input_row.unit===item.unit&&candidate.input_row.metadata?.component===item.component)!;return {...structuredClone(fixture.input_row),dimension:item.dimension};}) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result),doc=await exportFromMockedNative(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.observed_carrier_dimension.value)).toEqual(accepted.map(item=>item.dimension));expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.derivative_target_dimension)).toEqual([null,'angle','moment','rotational_stiffness']);
  });
  it('preserves established 0.1 legacy enrichment and hash verification',async()=>{
-  const args=await legacyCurrent();args.result.schema_version='0.1.0';delete args.result.producer;delete args.result.numerical_quality;delete args.result.formulation_basis;const before=JSON.stringify(args),claims=JSON.stringify(args.analysisRun.analysis_run.hashes);await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');expect(JSON.stringify(args)).toBe(before);expect(JSON.stringify(args.analysisRun.analysis_run.hashes)).toBe(claims);
+  const args=await legacyCurrent();args.result.schema_version='0.1.0';delete args.result.producer;delete args.result.numerical_quality;delete args.result.formulation_basis;const before=JSON.stringify(args),claims=JSON.stringify(args.analysisRun.analysis_run.hashes);await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');expect(JSON.stringify(args)).toBe(before);expect(JSON.stringify(args.analysisRun.analysis_run.hashes)).toBe(claims);
  });
  it('rejects missing proof, same-id changed model, stale run, changed value and mixed/null/empty/wrong dimensions',async()=>{
-  const args=await current();await expect(buildCurrentResultExport({...args,inputManifest:null})).rejects.toThrow('UNAVAILABLE');
-  const changed=structuredClone(args);(changed.model as any).unknown_authored_metadata='same-id-substitution';await expect(buildCurrentResultExport(changed)).rejects.toThrow('MODEL_PAYLOAD_MISMATCH');
-  const stale=structuredClone(args);stale.result.run_id+='stale';await expect(buildCurrentResultExport(stale)).rejects.toThrow('RUN_BINDING');
-  const value=structuredClone(args);value.result.results[0].value+=1;await expect(buildCurrentResultExport(value)).rejects.toThrow('RESULT_BINDING');
-  for(const dimension of [null,'',7,'wrong']){const bad=structuredClone(args);(bad.result.results[0] as any).dimension=dimension;await expect(buildCurrentResultExport(bad)).rejects.toThrow();}
-  const mixed=structuredClone(args);delete mixed.result.results[0].dimension;await expect(buildCurrentResultExport(mixed)).rejects.toThrow('MIXED');
+  const args=await current();await expect(exportFromMockedNative({...args,inputManifest:null})).rejects.toThrow('UNAVAILABLE');
+  const changed=structuredClone(args);(changed.model as any).unknown_authored_metadata='same-id-substitution';await expect(exportFromMockedNative(changed)).rejects.toThrow('MODEL_PAYLOAD_MISMATCH');
+  const stale=structuredClone(args);stale.result.run_id+='stale';await expect(exportFromMockedNative(stale)).rejects.toThrow('RUN_BINDING');
+  const value=structuredClone(args);value.result.results[0].value+=1;await expect(exportFromMockedNative(value)).rejects.toThrow('RESULT_BINDING');
+  for(const dimension of [null,'',7,'wrong']){const bad=structuredClone(args);(bad.result.results[0] as any).dimension=dimension;await expect(exportFromMockedNative(bad)).rejects.toThrow();}
+  const mixed=structuredClone(args);delete mixed.result.results[0].dimension;await expect(exportFromMockedNative(mixed)).rejects.toThrow('MIXED');
  });
  it('rejects a rehashed 0.2 known explicit carrier dimension contradiction without mutating evidence',async()=>{
-  const args=await current(),row=args.result.results.find(item=>item.kind==='displacement_magnitude')!;(row as any).dimension='stress';await rehashV02ResultClaims(args);expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');const before=JSON.stringify(args.result);await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_CARRIER_DIMENSION_CONTRADICTION');expect(JSON.stringify(args.result)).toBe(before);
+  const args=await current(),row=args.result.results.find(item=>item.kind==='displacement_magnitude')!;(row as any).dimension='stress';await rehashV02ResultClaims(args);expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');const before=JSON.stringify(args.result);await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_CARRIER_DIMENSION_CONTRADICTION');expect(JSON.stringify(args.result)).toBe(before);
  });
  it('rejects checksum scope/type/algorithm/canonicalization/ref tampering',async()=>{
   const args=await current();const edits:Array<(a:typeof args)=>void>=[a=>{(a.analysisRun.analysis_run.hashes[0] as any).algorithm='TBD'},a=>{a.analysisRun.analysis_run.hashes[0].payload_ref.object_type='Wrong'},a=>{a.analysisRun.analysis_run.hashes[1].canonicalization='wrong'},a=>{a.analysisRun.analysis_run.result_refs[0].hash_refs[0].payload_scope='wrong'},a=>{a.analysisRun.analysis_run.result_refs[0].hash_refs[0].payload_ref.ref='wrong'},a=>{(a.analysisRun.analysis_run.reproducibility.input_manifest_hashes[0] as any).payload_scope='wrong'},a=>{a.analysisRun.analysis_run.reproducibility.input_manifest_refs[0].object_type='Wrong'}];
-  for(const edit of edits){const bad=structuredClone(args);edit(bad);await expect(buildCurrentResultExport(bad)).rejects.toThrow();}
+  for(const edit of edits){const bad=structuredClone(args);edit(bad);await expect(exportFromMockedNative(bad)).rejects.toThrow();}
  });
  it('rejects unknown analysis versions and strict known semantic contradictions',async()=>{
-  const args=await current();(args.analysisRun as any).schema_version='0.4.0';await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_ANALYSIS_VERSION_UNSUPPORTED');
+  const args=await current();(args.analysisRun as any).schema_version='0.4.0';await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_ANALYSIS_VERSION_UNSUPPORTED');
   for(const kind of ['modulus_basis_record','linear_solver_mode_basis','nonlinear_support_free_dof_work_residual']){const fixture=metadataFixtures.fixtures.find(f=>f.input_row.kind===kind)!;for(const [field,replacement] of [['unit',fixture.negative_unit.replacement],['component',fixture.negative_component!.replacement]] as const){const row=structuredClone(fixture.input_row) as any;if(field==='unit')row.unit=replacement;else row.metadata.component=replacement;await expect(projection(row)).rejects.toThrow('CONTRADICTION');}}
  });
 });
@@ -164,7 +176,7 @@ describe('portable independent projection fixtures and strict serializer',()=>{
 });
 
 it('rejects ghost references, orphan witnesses and semantic tampering despite recomputed derivative digest',async()=>{
- const args=await current(),doc=await buildCurrentResultExport(args);
+ const args=await current(),doc=await exportFromMockedNative(args);
  for(const path of [['row_accounting',0,'target_ref','ref_id'],['row_accounting',0,'received_carrier_row_checksum','payload_scope'],['source_annotations',0,'source_origin_ref','ref_id'],['unit_preservation_witnesses',0,'source_quantity','unit'],['unit_preservation_witnesses',0,'target_row_checksum','algorithm'],['result_sets',0,'values',0,'dimension']]){
   const bad=structuredClone(doc);let value:any=bad.result_envelope;for(const key of path.slice(0,-1))value=value[key];value[path[path.length-1]]='tampered';delete bad.result_envelope.reproducibility.derivative_hash;const digest=await resultDigest(bad);bad.result_envelope.reproducibility.derivative_hash={algorithm:'sha256',canonicalization:'openpipestress_jcs_ijson_v1',payload_scope:'derivative_document_excludes_own_hash',payload_ref:ref('derivative_document',bad.result_envelope.envelope_id),value:digest};await expect(validateResultDocument(bad,args.result)).rejects.toThrow();
  }
@@ -174,7 +186,7 @@ it('preserves every shared nonzero f64 vector through canonical hash and derivat
  const bits=(value:number)=>{const bytes=new DataView(new ArrayBuffer(8));bytes.setFloat64(0,value,false);return bytes.getBigUint64(0,false).toString(16).padStart(16,'0');};
  const args=await current();args.result.results=transport.vectors.map(v=>({id:v.id,kind:'global_nodal_rotation_x',value:JSON.parse(v.decimal),unit:'rad',entity_ref:'node:transport'}));
  args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});
- const before=await resultDigest(args.result),doc=await buildCurrentResultExport(args),decoded=JSON.parse(await canonicalJsonString(doc));
+ const before=await resultDigest(args.result),doc=await exportFromMockedNative(args),decoded=JSON.parse(await canonicalJsonString(doc));
  expect(await resultDigest(JSON.parse(await canonicalJsonString(args.result)))).toBe(before);
  for(const vector of transport.vectors){const row=decoded.result_envelope.result_sets[0].values.find((r:any)=>r.result_id===vector.id);expect(bits(row.magnitude)).toBe(vector.bits_hex);expect(row.unit).toBe('rad');}
  expect(decoded.result_envelope.producer).toEqual(args.result.producer);expect(decoded.result_envelope.numerical_quality).toEqual(args.result.numerical_quality);expect(decoded.result_envelope.formulation_basis).toEqual(args.result.formulation_basis);
@@ -191,6 +203,6 @@ it('rejects rehashed Current analysis diagnostics and claimed basis using indepe
   const bad=structuredClone(args);mutate(bad.analysisRun.analysis_run);
   bad.analysisRun.analysis_run.hashes.find(h=>h.payload_scope==='analysis_run_record')!.value=await canonicalSha256HexCheckedV1(analysisRecordProjection(bad.analysisRun));
   expect(await verifyAnalysisRunRecord(bad.analysisRun)).toBe('match');
-  await expect(buildCurrentResultExport(bad)).rejects.toThrow('ANALYSIS_SOURCE_');
+  await expect(exportFromMockedNative(bad)).rejects.toThrow('ANALYSIS_SOURCE_');
  }
 });

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-j2",
+    "--manifest-path",
+    "core/solver/frame_kernel/Cargo.toml",
+    "structural::exact_boundary::functionals"
+  ],
+  "exit_code": 0,
+  "started_unix": 1790308098.669465,
+  "ended_unix": 1790308100.709423,
+  "log_sha256": "a531b3d67b27654a3a17c89017525aa13376a231f62ef77c0544ce5fa59fddb1"
+}

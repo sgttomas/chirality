@@ -1,0 +1,137 @@
+{
+  "model": {
+    "analysis_status": {
+      "mechanics": "ready_for_preview_diagnostics",
+      "professional_acceptance": "not_provided",
+      "rule_check": "not_performed_user_rule_inputs_missing"
+    },
+    "combinations": [],
+    "document_kind": "openpipestress.product_preview.model",
+    "load_cases": [
+      {
+        "id": "case",
+        "kind": "primitive_user_load",
+        "label": "Stress subnormal source review",
+        "primitive_loads": [
+          {
+            "category": "concentrated_force",
+            "dimension": "force",
+            "direction": "global_x",
+            "id": "review:tiny-axial",
+            "magnitude": {
+              "value": 1e-306,
+              "unit": "N"
+            },
+            "provenance": "independent_review_synthetic_range_counterexample",
+            "target": {
+              "node": "tip",
+              "type": "node"
+            }
+          }
+        ],
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data"
+      }
+    ],
+    "materials": [
+      {
+        "elastic_modulus": {
+          "unit": "Pa",
+          "value": 1e-06
+        },
+        "id": "material",
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data",
+        "shear_modulus": {
+          "unit": "Pa",
+          "value": 1e-05
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "id": "root",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data"
+      },
+      {
+        "id": "tip",
+        "position": {
+          "x": 2.0,
+          "y": 0,
+          "z": 0
+        },
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data"
+      }
+    ],
+    "pipe_segments": [
+      {
+        "from": "root",
+        "id": "pipe",
+        "material": "material",
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data",
+        "section": {
+          "outside_diameter": {
+            "unit": "m",
+            "value": 2000.0
+          },
+          "wall_thickness": {
+            "unit": "m",
+            "value": 100.0
+          }
+        },
+        "to": "tip",
+        "y_reference": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      }
+    ],
+    "project": {
+      "id": "review:stress-subnormal",
+      "units": {
+        "angle": "rad",
+        "force": "N",
+        "length": "m",
+        "pressure": "Pa",
+        "stress": "Pa",
+        "temperature": "degC"
+      }
+    },
+    "schema_version": "0.1.0",
+    "supports": [
+      {
+        "family": "anchor",
+        "id": "anchor",
+        "node": "root",
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data",
+        "restraints": [
+          "UX",
+          "UY",
+          "UZ",
+          "RY",
+          "RZ"
+        ]
+      },
+      {
+        "family": "spring",
+        "id": "soft",
+        "node": "root",
+        "provenance": "original_analytical_fixture_numerical_integrity_v1_no_external_project_data",
+        "restraints": [
+          "RX"
+        ],
+        "stiffness": {
+          "dof": "RX",
+          "value": {
+            "unit": "N*m/rad",
+            "value": 0.0001
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_03.log",
+    "sha256": "c1ffdda83f0c906db12b98b5bd333007f4f7c15f45de297cc63654ea9579d548",
+    "tail": "test tests::zero_pivot_singular_system_is_detected ... ok\ntest tests::user_stiffness_element_participates_in_global_solve ... ok\ntest tests::zero_prescribed_displacements_match_legacy_reduction ... ok\ntest structural::exact_boundary::tests::independent_27_neighbor_controls_both_senses_and_all_seeds ... ok\ntest structural::tests::np_b_banded_family_does_not_require_comparison_inverse_certificate ... ok\n\ntest result: ok. 85 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s\n",
+    "execution_owner": "parent lane; not reviewer execution"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_library_05.log",
+    "sha256": "04f5fc8c6fb57e99c1acd01302c09586b6b095d38eca736e6ea7d2a8344b9860",
+    "tail": "test tests::valid_invented_model_exposes_nonlinear_support_loop_evidence ... ok\nMULTICASE_SOURCE_WORK {\"cases\":2,\"charged\":6906170,\"failed_charged\":0,\"invocation_limit\":64000000,\"mode\":\"dense_scrutiny\",\"per_case_limit\":4000000}\ntest tests::authored_coordinate_units_preserve_preview_results_and_source ... ok\nMULTICASE_SOURCE_WORK {\"cases\":2,\"charged\":6900470,\"failed_charged\":0,\"invocation_limit\":64000000,\"mode\":\"sparse_interactive\",\"per_case_limit\":4000000}\ntest source_budget_tests::real_multicase_run_debits_one_invocation_and_keeps_actual_maximum ... ok\n\ntest result: ok. 209 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s\n",
+    "execution_owner": "parent lane; not reviewer execution"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_07.log",
+    "sha256": "a2d3612d9339402dc234753d79323513c5a9fe08b68111fd40b82b555ede572b",
+    "tail": "\nrunning 3 tests\ntest actual_source_recovery_scaled_norms_admit_tiny_actions_and_keep_large_json_boundary ... ok\ntest complete_ui_requests_are_authored_before_the_real_source_invocation ... ok\ntest retained_source_rotation_member_torque_and_device_action_reach_public_rows ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s\n",
+    "execution_owner": "parent lane; not reviewer execution"
+  }
+]

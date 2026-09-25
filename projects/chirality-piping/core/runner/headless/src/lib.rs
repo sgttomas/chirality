@@ -12,7 +12,7 @@ pub mod result_envelope_binding;
 
 use open_pipe_stress_canonical_json::canonical_json;
 use open_pipe_stress_product_physics::{
-    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope, PreviewSolverMode,
+    run_linear_static_preview_with_mode, run_linear_static_preview_value_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope, PreviewSolverMode,
 };
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -711,6 +711,7 @@ pub struct QualifiedPreviewEvidence {
     pub(crate) runner_digest: String,
     pub(crate) request_digest: String,
     pub(crate) run_id: String,
+    pub(crate) solver_mode: PreviewSolverMode,
 }
 
 /// Parse the exact retained solve payload once and solve that same typed input.
@@ -724,14 +725,17 @@ pub fn run_preview_model_value_with_mode(request:RunnerRequest,solve_payload:Val
 fn run_preview_model_value_mode(request: RunnerRequest, solve_payload: Value, aggregate: Option<&str>, mode:PreviewSolverMode) -> Result<PreviewRunnerOutput, String> {
     let typed: LinearStaticPreviewRequest = serde_json::from_value(solve_payload.clone()).map_err(|e|format!("SOLVE_PAYLOAD_INVALID: {e}"))?;
     let retained_request=request.clone();
-    let mut output=run_preview_in_memory_mode(request,typed,aggregate,mode);
+    let actual = if validate_request(&request).has_blocking_diagnostics() { None } else {
+        Some(run_linear_static_preview_value_with_mode(solve_payload.clone(), mode)?)
+    };
+    let mut output=run_preview_in_memory_mode(request,typed,aggregate,mode,actual);
     let qualified=|| -> Result<QualifiedPreviewEvidence,String> {
         use open_pipe_stress_result_export::derivative::{digest,guard_json};
         guard_json(&solve_payload)?;
         let mechanics=output.mechanics_envelope.as_ref().ok_or("SOURCE_UNAVAILABLE")?;
         if mechanics.status.mechanics!="MECHANICS_SOLVED" {return Err("SOURCE_NOT_SOLVED".into());}
         if solve_payload["model"]["project"]["id"]!=mechanics.model_ref {return Err("SOURCE_MODEL_IDENTITY_MISMATCH".into());}
-        Ok(QualifiedPreviewEvidence {solve_payload_digest:digest(&solve_payload)?,solve_payload,mechanics_digest:digest(&serde_json::to_value(mechanics).map_err(|e|e.to_string())?)?,runner_digest:digest(&serde_json::to_value(&output.runner_result).map_err(|e|e.to_string())?)?,request_digest:digest(&serde_json::to_value(&retained_request).map_err(|e|e.to_string())?)?,run_id:output.runner_result.run_id.clone()})
+        Ok(QualifiedPreviewEvidence {solve_payload_digest:digest(&solve_payload)?,solve_payload,mechanics_digest:digest(&serde_json::to_value(mechanics).map_err(|e|e.to_string())?)?,runner_digest:digest(&serde_json::to_value(&output.runner_result).map_err(|e|e.to_string())?)?,request_digest:digest(&serde_json::to_value(&retained_request).map_err(|e|e.to_string())?)?,run_id:output.runner_result.run_id.clone(),solver_mode:mode})
     }();
     match qualified {
         Ok(evidence)=>match result_envelope_binding::build_result_export_document_with_evidence(&retained_request,&output.runner_result,output.mechanics_envelope.as_ref().unwrap(),&evidence){
@@ -776,8 +780,8 @@ pub fn run_preview_in_memory(
 ///
 /// - `None`: no rule checks ran — the solve envelope keeps its conservative
 ///   `RULE_INPUTS_INCOMPLETE` and the analysis status is unchanged.
-/// - a recognized status: written into the carried `MechanicsEnvelope`'s
-///   `rule_check` (before its checksum binds) and reflected in `analysis_status`.
+/// - a recognized status: carried only by the runner/derived `analysis_status`;
+///   the received `MechanicsEnvelope` and its checksum remain unchanged.
 /// - any other non-`None` string: a blocking diagnostic
 ///   (`HEADLESS_RUNNER_RULE_CHECK_STATUS_INVALID`), never silently dropped; the
 ///   envelope is left at `RULE_INPUTS_INCOMPLETE` (conservative — no false pass).
@@ -786,9 +790,9 @@ pub fn run_preview_in_memory_with_rule_check(
     preview_request: LinearStaticPreviewRequest,
     rule_check_aggregate: Option<&str>,
 ) -> PreviewRunnerOutput {
-    run_preview_in_memory_mode(request,preview_request,rule_check_aggregate,PreviewSolverMode::SparseInteractive)
+    run_preview_in_memory_mode(request,preview_request,rule_check_aggregate,PreviewSolverMode::SparseInteractive,None)
 }
-fn run_preview_in_memory_mode(request:RunnerRequest,preview_request:LinearStaticPreviewRequest,rule_check_aggregate:Option<&str>,mode:PreviewSolverMode)->PreviewRunnerOutput {
+fn run_preview_in_memory_mode(request:RunnerRequest,preview_request:LinearStaticPreviewRequest,rule_check_aggregate:Option<&str>,mode:PreviewSolverMode,actual:Option<MechanicsEnvelope>)->PreviewRunnerOutput {
     let request_validation = validate_request(&request);
     let run_id = format!("run:headless-preview:{}", request.request_id);
 
@@ -837,15 +841,14 @@ fn run_preview_in_memory_mode(request:RunnerRequest,preview_request:LinearStatic
         };
     }
 
-    let mut mechanics = run_linear_static_preview_with_mode(preview_request,mode);
+    let mechanics = actual.unwrap_or_else(|| run_linear_static_preview_with_mode(preview_request,mode));
     let mut diagnostics: Vec<Diagnostic> = Vec::new();
-    // Drive the optional rule-check aggregate into the solve envelope before its
-    // checksum binds, so the envelope and the runner analysis_status honestly
-    // carry the rule-check outcome rather than the solve-only default. An
-    // unrecognized aggregate is a blocking diagnostic, not a silent coercion.
+    // Rule checks revise derived analysis, never the producer result. Preserve
+    // raw source and its checksum across revisions; invalid aggregates block.
+    let mut effective_rule_status = analysis_status_for_rule_check(&mechanics.status.rule_check);
     if let Some(aggregate) = rule_check_aggregate {
-        if analysis_status_for_rule_check(aggregate).is_some() {
-            mechanics.status.rule_check = aggregate.to_string();
+        if let Some(status) = analysis_status_for_rule_check(aggregate) {
+            effective_rule_status = Some(status);
         } else {
             diagnostics.push(Diagnostic::runner_blocking(
                 "HEADLESS_RUNNER_RULE_CHECK_STATUS_INVALID",
@@ -865,9 +868,8 @@ fn run_preview_in_memory_mode(request:RunnerRequest,preview_request:LinearStatic
     } else {
         analysis_status.push(AnalysisStatus::ModelIncomplete);
     }
-    // Single source of truth: derive the rule-check analysis status from the
-    // (possibly aggregate-driven) solve envelope.
-    if let Some(status) = analysis_status_for_rule_check(&mechanics.status.rule_check) {
+    // Only derived analysis reflects the optional rule-check aggregate.
+    if let Some(status) = effective_rule_status {
         analysis_status.push(status);
     }
 
@@ -1361,7 +1363,7 @@ mod tests {
     }
 
     #[test]
-    fn preview_bridge_drives_user_rule_failed_into_envelope_and_analysis_status() {
+    fn preview_bridge_preserves_producer_and_drives_user_rule_failed_into_analysis_status() {
         let output = run_preview_in_memory_with_rule_check(
             request(),
             preview_request(),
@@ -1371,10 +1373,9 @@ mod tests {
             .mechanics_envelope
             .as_ref()
             .expect("valid request should produce mechanics envelope");
-        // Driven into the solve envelope (before its checksum binds)...
-        assert_eq!(mechanics.status.rule_check, "USER_RULE_FAILED");
-        // ...and reflected in the runner analysis_status, replacing the
-        // solve-only RULE_INPUTS_INCOMPLETE default.
+        // The producer remains the solve-only source; the runner carries the
+        // separate rule revision.
+        assert_eq!(mechanics.status.rule_check, "RULE_INPUTS_INCOMPLETE");
         assert!(output
             .runner_result
             .analysis_status
@@ -1398,7 +1399,7 @@ mod tests {
             Some("USER_RULE_CHECKED"),
         );
         let mechanics = output.mechanics_envelope.as_ref().expect("envelope");
-        assert_eq!(mechanics.status.rule_check, "USER_RULE_CHECKED");
+        assert_eq!(mechanics.status.rule_check, "RULE_INPUTS_INCOMPLETE");
         assert!(output
             .runner_result
             .analysis_status

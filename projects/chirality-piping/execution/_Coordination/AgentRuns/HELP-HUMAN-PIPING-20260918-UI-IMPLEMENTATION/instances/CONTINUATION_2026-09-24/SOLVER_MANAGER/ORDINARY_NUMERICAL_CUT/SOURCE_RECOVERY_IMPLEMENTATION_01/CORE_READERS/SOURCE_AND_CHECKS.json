@@ -1,0 +1,120 @@
+{
+  "executor": "/root/numerical_resume/source_product_adapter",
+  "parent": "/root/numerical_resume",
+  "role": "TASK",
+  "mechanism": "delegated-harness-native",
+  "checkout": "parent-assigned /private/tmp/piping-source-recovery-20260924",
+  "basis": "selected SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN plus original Value invocation clarification",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/API_HANDOFF.md",
+      "sha256": "6f5dfeffba9a350d137e826b6900bd6c79f82ff1ab872f984ddf36cb49d7a7fd"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/CONTRACT.md",
+      "sha256": "5155d8fa0a14afe660f48d8f299bb6791b4a0d8661c39eb5d346f19737a45fca"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/source_block_receipt.schema.json",
+      "sha256": "e3e59d0bfb7f4969fa3fbaabb6012103ac827af03644d4906b69010c17f6347d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/support_semantic_rows.json",
+      "sha256": "3875517696243941c71920c2b960d36630aef11adfaaa101e3a70c5dfedf4461"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/physics_interface_schema.md",
+      "sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "23909cca3152ce8ba4dcb83d909fddcb7edc17a2be933a92b7af5173711fc22a"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/lib.rs",
+      "sha256": "7c1aa49652c3d8d2b1a6cee88947c52d7cb413a75b2b689a6ffaba55965f57a3"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "321496288e9b45e219cc2102b510d1735c73e1b0a9587786c8f79bd1a287487d"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/fixtures/source_blocks_statement_control.json",
+      "sha256": "860bf559cb4736d1771f5a952cbf1ce3020148f45f1196bf8642e0907495b34e"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/__init__.py",
+      "sha256": "aa1fbd8152bfc53ff556dfc65661806a727c782943ec1d909d7a345c9164908d"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "4b624e6b877e02070adaac8db4cd89a7239e8c7780c8c57c21ec7338b64c360d"
+    },
+    {
+      "path": "projects/chirality-piping/core/handoff/stress_neutral/package_v0_3.py",
+      "sha256": "f24e9de39553add1298276ed1f1057befe77b0144474cb357518d4b2639434b0"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "6e1d5484ccd65ee6fb98c4ed0bd2cdc8fa55f46364adf6d02cac69e39cef6e0d"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/analysis_run.v0.3.schema.json",
+      "sha256": "7e2963bf145da610da5a954898909d7947492b4eeebb8421ea4e4a48c7326350"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/results.v0.3.schema.yaml",
+      "sha256": "9f07ef071df2bad43efc442169253b27e49b3cd0e739303a0a3bbd6e4e45c399"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json",
+      "sha256": "a85608777e6b746559eea5ade471f367ff8fdbabcf57061d08b610b4bf0d9db1"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "206a41e359d6cebb61fd7570de6af8ae34cceded8cefaccc87947dcbf1ea8898"
+    }
+  ],
+  "verification": {
+    "rustfmt": "format/parser check passed for modified Rust implementation/tests; not compile",
+    "python_ast": "passed all five Python files",
+    "schema_local_refs": "all local $defs references resolve in three 0.3 union schemas",
+    "p1_table_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e (unchanged)",
+    "source_blocks_table_sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+    "runtime": "No Cargo/npm/test/native/browser/Git execution in this assignment. Tests authored, not run."
+  }
+}

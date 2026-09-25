@@ -1,0 +1,61 @@
+{
+  "captured_utc": "2026-09-25T03:28:19.052034+00:00",
+  "outputs": [
+    {
+      "review_relative_path": "RETURN.md",
+      "sha256": "8d940b75b55db794d7dedd977caf692236378422838cb7b0516024193c3164e6",
+      "bytes": 13691
+    },
+    {
+      "review_relative_path": "_run_records/AUTHOR_PROBE_REPLAY.json",
+      "sha256": "a69aa4ca28dd8976c1995bfa0d63689af3d87b2728c723aa2f4ecf2a2c55ae39",
+      "bytes": 2280
+    },
+    {
+      "review_relative_path": "_run_records/AUTHOR_PROBE_REPLAY.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "review_relative_path": "_run_records/EXECUTION.json",
+      "sha256": "f26df525699c704646f4cb58ceb2af5788eea49223c08980595fd0ee7d1d560e",
+      "bytes": 2817
+    },
+    {
+      "review_relative_path": "_run_records/INDEPENDENT_CHECKS.json",
+      "sha256": "8b2afc0341c5c518a9bb14abca91ae28f6b03eaa14e7f7f35712baa2a1ddf3cb",
+      "bytes": 1985
+    },
+    {
+      "review_relative_path": "_run_records/INDEPENDENT_CHECKS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "review_relative_path": "_run_records/INPUT_MANIFEST.json",
+      "sha256": "45663a1d84cd2b81687a8b9d4f1de0d61c3537832e2b656ac6e6c81feea214cf",
+      "bytes": 17472
+    },
+    {
+      "review_relative_path": "_run_records/INPUT_RECHECK.json",
+      "sha256": "8c67d9defe3427acaf39f177bfcb32be3555f033a7ef3d5607ad7cf1e7303856",
+      "bytes": 8210
+    },
+    {
+      "review_relative_path": "_run_records/PROVENANCE.json",
+      "sha256": "dc8314d4898a4177f2fbe8d732d645038a5dac6f4b17573941af33de070e12a0",
+      "bytes": 3311
+    },
+    {
+      "review_relative_path": "_run_records/SOURCE_CHECK.json",
+      "sha256": "81676ead1ea328e16ff64d84c4e1b361562aa3277690c5988e29b13ded0f9d6e",
+      "bytes": 7710
+    },
+    {
+      "review_relative_path": "_run_records/independent_check.py",
+      "sha256": "fdae313f135e3ec1fedc76a391f07e1b34303dd8124c4fe8a3029a4cda130483",
+      "bytes": 10479
+    }
+  ],
+  "self_excluded": true
+}

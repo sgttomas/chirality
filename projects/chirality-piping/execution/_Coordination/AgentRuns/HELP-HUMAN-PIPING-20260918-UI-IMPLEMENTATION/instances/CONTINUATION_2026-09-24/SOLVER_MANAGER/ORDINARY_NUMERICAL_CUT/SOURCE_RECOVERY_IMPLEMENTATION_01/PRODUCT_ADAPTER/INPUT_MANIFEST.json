@@ -1,0 +1,40 @@
+{
+  "executor": "/root/numerical_resume/source_product_adapter",
+  "parent": "/root/numerical_resume",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK",
+  "checkout": "parent supplied /private/tmp/piping-source-recovery-20260924",
+  "base": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/BRIEF.md",
+      "sha256": "98c8fc74633beaf2e7e356a64a7863cc64cb0d9bcdca5751537e26e50838e08d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+      "sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/RETURN.md",
+      "sha256": "8d940b75b55db794d7dedd977caf692236378422838cb7b0516024193c3164e6"
+    }
+  ],
+  "scope": "Only new core/product_physics/src/source_recovery.rs and this evidence directory",
+  "limits": "No delegation, Cargo/npm/native/browser/heavy execution or Git mutations. Initial read-only git status was inadvertently run with instruction reads; no further Git operations."
+}

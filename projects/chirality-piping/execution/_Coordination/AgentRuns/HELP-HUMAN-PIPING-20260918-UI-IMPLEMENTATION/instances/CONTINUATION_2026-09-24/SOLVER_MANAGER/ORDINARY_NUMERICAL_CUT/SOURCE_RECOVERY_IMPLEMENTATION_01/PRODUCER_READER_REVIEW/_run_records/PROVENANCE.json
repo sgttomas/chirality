@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-25T06:11:52.023762+00:00",
+  "task": "/root/numerical_resume/source_recovery_design_review",
+  "actual_parent": "/root/numerical_resume",
+  "role": "TASK Type 2",
+  "mechanism": "delegated-harness-native",
+  "descendants": [],
+  "model": "No runtime model identity queried; no model/OS diversity claim",
+  "checkout": "/private/tmp/piping-source-recovery-20260924",
+  "base_parent_supplied": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "write_boundary": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW",
+  "enforcement": "Host grants broader /private/tmp writes; evidence-only scope enforced by instructions. No source or other worktree mutation.",
+  "full_instructions": [
+    "AGENTS.md",
+    "agents/AGENT_TASK.md",
+    "projects/chirality-piping/AGENTS.md",
+    "projects/chirality-piping/loop/LOOP_INIT.md"
+  ],
+  "skill": ".agents/skills/software-code-review/SKILL.md",
+  "other_full_roles": [],
+  "workflow": null,
+  "brief": "Independent connected producer/carrier and Rust/Python reader review; excludes frontend/headless/native active lanes and new re-review of cleared exact-boundary/adapter internals. Actual raw invocation, private finalization, replay/current binding, complete typed rows/cases/recipes, signs/units, one 4M case/64M invocation budget, negative zero, p1 compatibility, scaled norms and error composition. No Git/source/fulltrees/graphs/heavy tests.",
+  "parent_steering": "Parent raised possible derived stress range gap during review. Reviewer independently constructed source-conforming request and Fraction oracle. Parent will execute actual producer witness and owns repair. Reader standing cannot reconstruct private section operands from digests; authentic producer/build/current invocation remains a separate prerequisite.",
+  "disposition": "Held for PR-01; no other actionable finding in bounded initial review. Narrow repaired producer/reader delta and actual witness require backcheck.",
+  "scientific_basis": "Direct elementary norm/error derivation and rational source-scalar stress check; no new external literature claim or fresh web retrieval",
+  "tools": "Read-only rg/cat/sed/nl; lightweight Python hash/JSON/Decimal/Fraction and actual scalar _derived predicate; explicit-path scope validation; apply_patch only own evidence. No Cargo/npm/Git/build/native/browser/fullsuite or fresh product execution.",
+  "observed_gap_not_claimed": "Stress counterexample has not yet been run by reviewer through actual producer; reads of received artifacts are not native witnesses; earlier positive suite logs do not cover this new range control."
+}

@@ -1,3 +1,4 @@
+import sourceBlocksContract from '../../../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json';
 import contract from '../../../../../fixtures/results/semantic_contract_v0_2.json';
 import precisionContract from '../../../../../fixtures/results/semantic_contract_v0_3_precision_1.json';
 import { sourceContract } from './numericalResultQuality';
@@ -8,6 +9,7 @@ export { contract as resultSemanticContract };
 export function semanticContractForSource(source?: MechanicsResult) {
   if (!source || sourceContract(source) === 'legacy') return contract;
   if (sourceContract(source) === 'precision') return precisionContract;
+  if (sourceContract(source) === 'source_blocks') return sourceBlocksContract;
   throw new Error('SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED');
 }
 export function resultSemantics(row: SourceRow, source?: MechanicsResult): SemanticSignature | null {

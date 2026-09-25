@@ -1,0 +1,91 @@
+{
+  "description": "Actual source-blocks Value-aware producer output captured by maintained product tests; invented analytical validation inputs, not external project or material library data.",
+  "method_policy": {
+    "case_limit": 4000000,
+    "invocation_limit": 64000000
+  },
+  "commands": [
+    "cargo test --offline --locked -j2 --manifest-path core/product_physics/Cargo.toml --lib source_",
+    "cargo test --offline --locked -j2 --manifest-path core/product_physics/Cargo.toml --test source_block_recovery"
+  ],
+  "pairs": [
+    {
+      "name": "multicase-dense_scrutiny.raw",
+      "rows": 160,
+      "status": "qualified",
+      "case_count": 2,
+      "invocation_work": {
+        "charged": 6906170,
+        "limit": 64000000,
+        "publication_charged": 257548
+      },
+      "request_sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "raw_sha256": "6ff4c1b451b0463de81fbb618ab861b286ced7b1ccabdfc3d31cef8ddf208dc9"
+    },
+    {
+      "name": "multicase-sparse_interactive.raw",
+      "rows": 158,
+      "status": "qualified",
+      "case_count": 2,
+      "invocation_work": {
+        "charged": 6900470,
+        "limit": 64000000,
+        "publication_charged": 255480
+      },
+      "request_sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "raw_sha256": "4bde092017e090445b83a55e1f9810bacfbdbf7a9944417ffa18357bcff5aaab"
+    },
+    {
+      "name": "n05-dense_scrutiny.raw",
+      "rows": 80,
+      "status": "qualified",
+      "case_count": 1,
+      "invocation_work": {
+        "charged": 3353511,
+        "limit": 64000000,
+        "publication_charged": 128116
+      },
+      "request_sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "raw_sha256": "00f41c9a71ade7b79a8b2670c68f02914abdff3cf432cebdd3f5dd188c28d353"
+    },
+    {
+      "name": "n05-sparse_interactive.raw",
+      "rows": 79,
+      "status": "qualified",
+      "case_count": 1,
+      "invocation_work": {
+        "charged": 3350601,
+        "limit": 64000000,
+        "publication_charged": 126992
+      },
+      "request_sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "raw_sha256": "013534c06e952c8b4fac3f2230ceb8711f57f585c57d466bf8c11ce07a90aa1d"
+    },
+    {
+      "name": "n06-dense_scrutiny.raw",
+      "rows": 79,
+      "status": "qualified",
+      "case_count": 1,
+      "invocation_work": {
+        "charged": 3008768,
+        "limit": 64000000,
+        "publication_charged": 26348
+      },
+      "request_sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "raw_sha256": "719258cb531156ef2b2a7179024f7f0f0a30de9f80458c90990f0135f462a999"
+    },
+    {
+      "name": "n06-sparse_interactive.raw",
+      "rows": 79,
+      "status": "qualified",
+      "case_count": 1,
+      "invocation_work": {
+        "charged": 3008816,
+        "limit": 64000000,
+        "publication_charged": 26396
+      },
+      "request_sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "raw_sha256": "0c5a3917ceaf7ff4539da0f5f448f26d14ada0cb7113b578281d3b12589c52ae"
+    }
+  ]
+}

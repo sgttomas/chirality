@@ -1,4 +1,5 @@
-import { sourceContract } from "../results/numericalResultQuality";
+import { hasNativeMechanicsInvocation } from "../../services/previewService";
+import { hasCurrentSourceContract } from "../results/numericalResultQuality";
 import { analysisResultHashScope } from "../results/analysisResultHashScope";
 import type {
   AnalysisRunEnvelope,
@@ -94,7 +95,7 @@ function reportSolverIdentity(result: MechanicsResult, analysisRun: AnalysisRunE
       recordedSolver.build_ref?.ref !== manifestSolver.solver_build_ref))) {
     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: analysis record and verified manifest differ.");
   }
-  if (precision && (sourceContract(result) !== "precision" ||
+  if (precision && (!hasCurrentSourceContract(result) ||
     result.producer!.component_name !== manifestSolver.solver_name ||
     result.producer!.component_version !== manifestSolver.solver_version)) {
     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: recorded identity differs from the received producer.");
@@ -128,7 +129,7 @@ export async function buildReportPackageRequest({
   if (resultHashScope === null) {
     throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
   }
-  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "precision") {
+  if (analysisRun.schema_version === "0.3.0" && !hasCurrentSourceContract(result)) {
     throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
   }
   await verifyCurrentSessionInputManifest(inputManifest);
@@ -325,6 +326,7 @@ export async function buildReportPackageRequest({
     professional_boundary: PROFESSIONAL_BOUNDARY
   };
 
+  if (analysisRun.schema_version === "0.3.0" && !hasNativeMechanicsInvocation(result,model,inputManifest.manifest.solver_basis.solver_mode)) throw new Error("REPORT-PACKAGE-NATIVE-INVOCATION-UNAVAILABLE");
   return {
     package_id: `desktop-report-${safeId(result.run_id)}`,
     export_profile_id: "desktop_local_private_report_package_1",

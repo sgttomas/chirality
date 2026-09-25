@@ -1,0 +1,263 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx (14 tests | 1 failed) 24748ms
+   × rechecks source and analysis contents when activating csv 10264ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/stress-neutral/StressNeutralExportPanel.test.tsx > rechecks source and analysis contents when activating csv
+TestingLibraryElementError: Unable to find an element by: [data-testid="stress-neutral-csv-link-local-private-intent"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Stress-neutral CSV JSON export"[39m
+      [33mclass[39m=[32m"panel stress-neutral-export-panel"[39m
+      [33mdata-testid[39m=[32m"stress-neutral-panel"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"panel-title"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"lucide lucide-file-json"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"16"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"16"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M14 2v4a2 2 0 0 0 2 2h4"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [0mStress-neutral CSV/JSON[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"report-actions"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"controlled-export-control"[39m
+          [33mdata-local-first-blocked[39m=[32m"true"[39m
+          [33mdata-local-first-reason[39m=[32m"LOCAL_PRIVATE_INTENT_REQUIRED"[39m
+          [33mdata-route-id[39m=[32m"DOTH-FORMAT-003"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [36m<input[39m
+              [33mdata-testid[39m=[32m"stress-neutral-export-link-local-private-intent"[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [0mInclude known private values in this local export[0m
+          [36m</label>[39m
+          [36m<span[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-summary"[39m
+          [36m>[39m
+            [0mdecisions=[0m
+            [0m21228[0m
+            [0m; findings=[0m
+            [0m21220[0m
+            [0m; blocked=[0m
+            [0mtrue[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-canonical-block-reason"[39m
+          [36m>[39m
+            [0mLOCAL_PRIVATE_INTENT_REQUIRED[0m
+          [36m</span>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"controlled-export-details"[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-details"[39m
+          [36m>[39m
+            [36m<summary[39m
+              [33mtabindex[39m=[32m"0"[39m
+            [36m>[39m
+              [0mDetails[0m
+            [36m</summary>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"controlled-export-technical-details"[39m
+            [36m>[39m
+              [36m<pre[39m
+                [33maria-label[39m=[32m"stress-neutral-export-link redaction decisions"[39m
+                [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-decisions"[39m
+              [36m>[39m
+                [0mpath=$.__route_key__schema_version; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__deliverable_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__package_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__scope_items[0]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__scope_items[1]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[0]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[1]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[2]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__export_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__package_status; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__schema_conformant; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__validation_ready; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_result_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_result_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_run_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_run_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_model_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_model_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__algorithm; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__canonicalization; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_scope; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__value; classification=private_project_data; action=block_export; reason=LOCAL_PRIVATE_INTENT_REQUIRED
+path=$.__route_key__received_source_checksums[1].__route_key__algorithm; classif...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Stress-neutral CSV JSON export"[39m
+      [33mclass[39m=[32m"panel stress-neutral-export-panel"[39m
+      [33mdata-testid[39m=[32m"stress-neutral-panel"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"panel-title"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"lucide lucide-file-json"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"16"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"16"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M14 2v4a2 2 0 0 0 2 2h4"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [0mStress-neutral CSV/JSON[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"report-actions"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"controlled-export-control"[39m
+          [33mdata-local-first-blocked[39m=[32m"true"[39m
+          [33mdata-local-first-reason[39m=[32m"LOCAL_PRIVATE_INTENT_REQUIRED"[39m
+          [33mdata-route-id[39m=[32m"DOTH-FORMAT-003"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [36m<input[39m
+              [33mdata-testid[39m=[32m"stress-neutral-export-link-local-private-intent"[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [0mInclude known private values in this local export[0m
+          [36m</label>[39m
+          [36m<span[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-summary"[39m
+          [36m>[39m
+            [0mdecisions=[0m
+            [0m21228[0m
+            [0m; findings=[0m
+            [0m21220[0m
+            [0m; blocked=[0m
+            [0mtrue[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-canonical-block-reason"[39m
+          [36m>[39m
+            [0mLOCAL_PRIVATE_INTENT_REQUIRED[0m
+          [36m</span>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"controlled-export-details"[39m
+            [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-details"[39m
+          [36m>[39m
+            [36m<summary[39m
+              [33mtabindex[39m=[32m"0"[39m
+            [36m>[39m
+              [0mDetails[0m
+            [36m</summary>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"controlled-export-technical-details"[39m
+            [36m>[39m
+              [36m<pre[39m
+                [33maria-label[39m=[32m"stress-neutral-export-link redaction decisions"[39m
+                [33mdata-testid[39m=[32m"stress-neutral-export-link-redaction-decisions"[39m
+              [36m>[39m
+                [0mpath=$.__route_key__schema_version; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__deliverable_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__package_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__scope_items[0]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__scope_items[1]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[0]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[1]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__objectives[2]; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__export_id; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__package_status; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__schema_conformant; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__validation_ready; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_result_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_result_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_run_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_run_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_model_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__source_model_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__algorithm; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__canonicalization; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_ref.__route_key__object_type; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_ref.__route_key__ref; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__payload_scope; classification=unknown; action=warning_only; reason=REDISTRIBUTION_STATUS_UNKNOWN
+path=$.__route_key__received_source_checksums[0].__route_key__value; classification=private_project_data; action=block_export; reason=LOCAL_PRIVATE_INTENT_REQUIRED
+path=$.__route_key__received_source_checksums[1].__route_key__algorithm; classif...
+ ❯ waitForWrapper ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx:342:14
+    340|   const view=render(<StressNeutralExportPanel model={model} result={re…
+    341|   const id=route==='json'?'stress-neutral-export-link':'stress-neutral…
+    342|   await view.findByTestId(`${id}-local-private-intent`,{}, {timeout:10…
+       |              ^
+    343|   const link=await waitFor(()=>{const element=view.getByTestId(id);exp…
+    344|   // Same object identity and no parent render: the activation guard m…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  1 failed | 172 passed (173)
+   Start at  00:53:34
+   Duration  43.80s (transform 585ms, setup 337ms, import 1.06s, tests 39.84s, environment 1.82s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/sourceBlockRecovery.test.ts src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1

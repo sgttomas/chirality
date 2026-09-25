@@ -1,3 +1,6 @@
+import { hasNativeMechanicsInvocation } from "./previewService";
+import { retainedSourceBlockInvocation } from "../features/results/sourceBlockRecovery";
+import { sourceContract, numericalResultStanding } from "../features/results/numericalResultQuality";
 import { invoke } from "@tauri-apps/api/core";
 import type { MechanicsResult, PreviewModel } from "../types";
 import type { RulePackDocument } from "./rulePackService";
@@ -106,6 +109,8 @@ export async function runRuleChecks(args: {
   projectId?: string | null;
 }): Promise<RuleCheckRunRoute> {
   if (!isTauriRuntime()) return unavailable();
+  if (args.solvedEnvelope && !hasNativeMechanicsInvocation(args.solvedEnvelope,args.model)) throw new Error("NATIVE_RULE_INPUT_UNVERIFIED");
+  if (args.solvedEnvelope && sourceContract(args.solvedEnvelope) === "source_blocks" && !numericalResultStanding(args.solvedEnvelope, args.model).eligible) throw new Error("SOURCE_BLOCKS_RULE_INPUT_UNQUALIFIED");
   // Supply the model even with a solved envelope so the backend can verify
   // complete requested-case coverage without inferring requests from results. Empty binding arrays are
   // omitted so the backend treats those inputs as unsupplied (never a silent
@@ -114,6 +119,7 @@ export async function runRuleChecks(args: {
   const invokeArgs: Record<string, unknown> = { rulePackDocument: args.rulePackDocument };
   if (args.solvedEnvelope) invokeArgs.solvedEnvelope = args.solvedEnvelope;
   if (args.model) invokeArgs.model = args.model;
+  if (args.solvedEnvelope && args.model && sourceContract(args.solvedEnvelope) === "source_blocks") invokeArgs.sourceBlockInvocation = retainedSourceBlockInvocation(args.solvedEnvelope, args.model);
   if (args.solverResultBindings && args.solverResultBindings.length > 0) {
     invokeArgs.solverResultBindings = args.solverResultBindings;
   }

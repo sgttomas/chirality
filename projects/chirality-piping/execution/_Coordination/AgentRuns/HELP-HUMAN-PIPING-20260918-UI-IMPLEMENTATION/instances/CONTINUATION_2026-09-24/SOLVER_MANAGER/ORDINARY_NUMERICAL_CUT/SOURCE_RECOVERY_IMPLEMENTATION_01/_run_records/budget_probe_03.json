@@ -1,0 +1,12 @@
+{
+  "purpose": "Temporary work-reservation measurement, not candidate qualification",
+  "temporary_limit": 8000000,
+  "before_source_sha256": "5977890fd7f19016974fea10510bf6f5029c2fa11574c8fb7241f9f063be2fef",
+  "trial_source_sha256": "fbd65d184edddcd68a8b47f0306efeec738d619e58d3cac5a48ef7a3b4272d46",
+  "build_exit_code": 0,
+  "executable_sha256": "76caf26fa13d80af4285d28f5f41bdbcd07428c5cb299dd6986b3c5889f1b9d1",
+  "runtime_exit_code": 0,
+  "supervisor_wall_seconds": 1.645893375,
+  "runtime_log_sha256": "53fc36ba67a1b39101f9d6a3ed0db2f1e08f07b923e3df43b178201c7ea52109",
+  "source_restored": true
+}

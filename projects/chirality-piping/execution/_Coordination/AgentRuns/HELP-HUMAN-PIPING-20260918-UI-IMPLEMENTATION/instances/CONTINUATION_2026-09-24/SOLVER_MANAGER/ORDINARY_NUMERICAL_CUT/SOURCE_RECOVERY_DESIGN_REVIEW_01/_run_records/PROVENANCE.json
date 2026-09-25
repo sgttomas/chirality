@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-09-25T03:28:19.048284+00:00",
+  "task": "/root/numerical_resume/source_recovery_design_review",
+  "role": "TASK Type 2",
+  "actual_parent": "/root/numerical_resume",
+  "parent_role": "WORKING_ITEMS",
+  "commissioning_root": "/root",
+  "mechanism": "delegated-harness-native descendant",
+  "author_reviewed": "/root/numerical_resume/source_recovery_design",
+  "independence": "Reviewer did not author or implement the design. No production source recovery exists in the reviewed scope. Same host/model lineage is not model or OS diversity.",
+  "descendants": [],
+  "model": "No independent runtime model identity queried; no diversity claim",
+  "checkout": "/private/tmp/piping-numerical-corrections-20260924",
+  "base_identity": "Author manifest supplies f702b439536c6e76af8e1c81ee536d5685e87907; no independent Git verification",
+  "current_parent_update": "Parent reports contained ordinary freeze05, 112 files, locally committed 0a438a68672269e5750900792c9565ae9e5555b0 during review; design/review directories excluded and source recovery not implemented. This does not change frozen design SHA.",
+  "write_boundary": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01",
+  "actual_enforcement": "Host grants broader /private/tmp writes; this evidence-only scope is instruction-enforced. No production/other checkout writes.",
+  "full_instructions_loaded": [
+    "AGENTS.md",
+    "agents/AGENT_TASK.md",
+    "projects/chirality-piping/AGENTS.md",
+    "projects/chirality-piping/loop/LOOP_INIT.md"
+  ],
+  "other_full_roles_loaded": [],
+  "selected_skills": [],
+  "selected_workflow": null,
+  "brief": "Fresh independent mathematical/source-applicability and implementation-boundary review of exact connected free blocks <=2 and source-preserving affine functionals before final projection. Check prescribed DOFs, offsets, cross-block combination, spring device versus ideal reaction, all member/station terms, source transform closure, positivity/budgets, N06 without ordinary success, conservative unsupported families, minimum coherent implementation and truthful metadata. No production edits/Git/delegation/heavy tests. ROOT owns carrier semantics; unchanged 1e-9 and no fixture exceptions or mandatory inverse certificate. Write only SOURCE_RECOVERY_DESIGN_REVIEW_01.",
+  "primary_source_use": "Reused existing qualified primary-source review records; no fresh retrieval or new software-version/currentness claim. Direct algebra and independent Hermite-energy rational derivation supply this review new mathematical checks.",
+  "larger_successor": "/private/tmp/piping-numerical-integrity-20260924 was not accessed",
+  "disposition": "No blocking design finding; ready for ROOT selection of bounded implementation. Source/runtime/engineering qualification outstanding.",
+  "early_return_messages": [
+    "No substantive mathematical/source-boundary defect found during initial review; prior helper results cannot qualify new product path.",
+    "Independent 600 generic affine checks, 12-DOF/30-station/spring and signed-transform checks passed; N05/N06 source arithmetic reproduced; no blocking design finding."
+  ]
+}

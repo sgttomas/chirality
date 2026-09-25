@@ -1,0 +1,125 @@
+{
+  "captured_utc": "2026-09-25T03:28:18.666765+00:00",
+  "design_matches_parent_freeze": true,
+  "read_inputs_overlapping_author_manifest": [
+    {
+      "repository_path": "AGENTS.md",
+      "current_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "author_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/AGENTS.md",
+      "current_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "author_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "current_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "author_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "current_sha256": "6801610d0bb515eab33603163423812b81bf94946d8c23b99c127b655d996a7f",
+      "author_sha256": "6801610d0bb515eab33603163423812b81bf94946d8c23b99c127b655d996a7f",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter.rs",
+      "current_sha256": "f7600925cd44169ce6d04a03ae5c0e622a8f27aabee831377d297dce68ec51aa",
+      "author_sha256": "f7600925cd44169ce6d04a03ae5c0e622a8f27aabee831377d297dce68ec51aa",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/solver/straight_pipe/src/lib.rs",
+      "current_sha256": "22c7231bf3c53c67bfcb8de702dda318f8731d784d37b8373362089bbcc57c09",
+      "author_sha256": "22c7231bf3c53c67bfcb8de702dda318f8731d784d37b8373362089bbcc57c09",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "current_sha256": "3671265eca3f9b0ca1793bf020cb2e768834a25e8c2827d73251a674271140c6",
+      "author_sha256": "3671265eca3f9b0ca1793bf020cb2e768834a25e8c2827d73251a674271140c6",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/REFERENCE_REVIEW/RETURN.md",
+      "current_sha256": "b08827847a3d675effa6b36dadd6e65c75049e21f71a103cebe3bb1171c6144c",
+      "author_sha256": "b08827847a3d675effa6b36dadd6e65c75049e21f71a103cebe3bb1171c6144c",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/REFERENCE_REVIEW/_run_records/DERIVATIONS.md",
+      "current_sha256": "3ed2ff0042c626206d8825ef4d42b14b3012b712ccff81a58bc9ebb35d72d283",
+      "author_sha256": "3ed2ff0042c626206d8825ef4d42b14b3012b712ccff81a58bc9ebb35d72d283",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/STRICT_GAP_IMPLEMENTATION/KERNEL_REVIEW/RETURN.md",
+      "current_sha256": "19a574fd693c56e02f977146d386ddcd370d9bbd6512ca891bdb02d6dd7676c4",
+      "author_sha256": "19a574fd693c56e02f977146d386ddcd370d9bbd6512ca891bdb02d6dd7676c4",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/STRICT_GAP_IMPLEMENTATION/PROJECTION_REVIEW/RETURN.md",
+      "current_sha256": "d63aba0f925e035585ee15b5dac0050fac61b3d8f870187bc5dfe52fa0de2b51",
+      "author_sha256": "d63aba0f925e035585ee15b5dac0050fac61b3d8f870187bc5dfe52fa0de2b51",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/STRICT_GAP_IMPLEMENTATION/RETENTION_REVIEW/RETURN.md",
+      "current_sha256": "83a0b37692ebaec452e7b76affd8b76d04edd02ff79a239d14920594e2bda29e",
+      "author_sha256": "83a0b37692ebaec452e7b76affd8b76d04edd02ff79a239d14920594e2bda29e",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/STRICT_GAP_IMPLEMENTATION/RETENTION_REVIEW/REPAIR_02_BACKCHECK/RETURN.md",
+      "current_sha256": "ae786a3d802703e57a81e303ba89e1c403cf11eff7107e168d2307b9aa2e4183",
+      "author_sha256": "ae786a3d802703e57a81e303ba89e1c403cf11eff7107e168d2307b9aa2e4183",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/NUMERICAL_INTEGRITY/STRICT_GAP_IMPLEMENTATION/RETENTION_REVIEW/RUNTIME_BACKCHECK/RETURN.md",
+      "current_sha256": "06a6639c9f0a72c6ed14369f99ba4af54e4b946ab99eb59febd6c22e9ee5497a",
+      "author_sha256": "06a6639c9f0a72c6ed14369f99ba4af54e4b946ab99eb59febd6c22e9ee5497a",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/N05_ADMISSION_OBSERVATION/RECOVERY_DIAGNOSIS/RETURN.md",
+      "current_sha256": "1d91d2a9f7db19eed44bc50122127bc78254e05485bb2e0a2721277ddce3fca1",
+      "author_sha256": "1d91d2a9f7db19eed44bc50122127bc78254e05485bb2e0a2721277ddce3fca1",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/NUMERICAL_REFERENCE.md",
+      "current_sha256": "67c8aac5798e9663528bea94b58d6d8f2eb8308f94b7ebb78aa22dca4b8f94ca",
+      "author_sha256": "67c8aac5798e9663528bea94b58d6d8f2eb8308f94b7ebb78aa22dca4b8f94ca",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/NUMERICAL_POLICY_REVIEW/RETURN.md",
+      "current_sha256": "c83877d55ddb23c634112551fb3319f3f39080b2839c285a81f32296177a9216",
+      "author_sha256": "c83877d55ddb23c634112551fb3319f3f39080b2839c285a81f32296177a9216",
+      "match": true
+    }
+  ],
+  "all_overlap_unchanged": true,
+  "prior_exact_helper_ret01_sources": [
+    {
+      "repository_path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "reviewed_sha256": "6801610d0bb515eab33603163423812b81bf94946d8c23b99c127b655d996a7f",
+      "actual_sha256": "6801610d0bb515eab33603163423812b81bf94946d8c23b99c127b655d996a7f",
+      "match": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter.rs",
+      "reviewed_sha256": "f7600925cd44169ce6d04a03ae5c0e622a8f27aabee831377d297dce68ec51aa",
+      "actual_sha256": "f7600925cd44169ce6d04a03ae5c0e622a8f27aabee831377d297dce68ec51aa",
+      "match": true
+    }
+  ],
+  "git_used": false,
+  "not_claimed": "whole candidate/source-tree validation or runtime validity"
+}

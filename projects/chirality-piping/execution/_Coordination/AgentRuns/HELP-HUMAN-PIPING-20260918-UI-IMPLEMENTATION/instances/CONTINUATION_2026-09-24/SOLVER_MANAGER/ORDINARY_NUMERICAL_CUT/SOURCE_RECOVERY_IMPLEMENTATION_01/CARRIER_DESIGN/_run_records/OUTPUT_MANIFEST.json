@@ -1,0 +1,85 @@
+{
+  "path_base": "CARRIER_DESIGN",
+  "files": [
+    {
+      "path": "API_HANDOFF.md",
+      "sha256": "6f5dfeffba9a350d137e826b6900bd6c79f82ff1ab872f984ddf36cb49d7a7fd",
+      "bytes": 5793
+    },
+    {
+      "path": "CONTRACT.md",
+      "sha256": "5155d8fa0a14afe660f48d8f299bb6791b4a0d8661c39eb5d346f19737a45fca",
+      "bytes": 26864
+    },
+    {
+      "path": "EXAMPLES.json",
+      "sha256": "4e0639e4944946f21ca018336b35b9aa3ddae06be51883962a308eff9dc2b3b0",
+      "bytes": 77853
+    },
+    {
+      "path": "HASH_PAYLOADS.md",
+      "sha256": "23f937bd5a651543977614337cc7bfc3e3f831feb4f531d068a21cdaaf531663",
+      "bytes": 7877
+    },
+    {
+      "path": "INTEGRATION_MAP.md",
+      "sha256": "1071ea4bb10a55faf506d50cf2234808d2348b15624fd04eae8bb65328fadf77",
+      "bytes": 11840
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "01995e31d30f575f08a0a0b90f3e68d91a0b5e75111e15309675e8b205e23f64",
+      "bytes": 3707
+    },
+    {
+      "path": "_run_records/INPUT_MANIFEST.json",
+      "sha256": "748f424eeaeeec2357d6b84aac7cfbf216c396a3e9cecda60bd5a53917430bf8",
+      "bytes": 11010
+    },
+    {
+      "path": "_run_records/INPUT_RECHECK.json",
+      "sha256": "db562a9d69ab53df71b7ae1bc709306d7ad49467cdef947c6076e9524be9c5fc",
+      "bytes": 8034
+    },
+    {
+      "path": "_run_records/PROVENANCE.json",
+      "sha256": "1fd4ced31c8f114977fb1097601a2b4a7bfa004920ae6a40cea77d228512ca47",
+      "bytes": 5573
+    },
+    {
+      "path": "_run_records/SHAPE_CHECKS.json",
+      "sha256": "efc05267aa7a8c535f4f15906f9e2398d41d8c6faeb2fa114639f1849ada21bc",
+      "bytes": 1582
+    },
+    {
+      "path": "_run_records/examples_and_shape_check.py",
+      "sha256": "b9dc42cd6eefb124ba1a048adb1a5351fd45e9804884088cc732d23921cdcc43",
+      "bytes": 9599
+    },
+    {
+      "path": "_run_records/generate_schema.py",
+      "sha256": "672b537ba58ded277421a3678e397d3d6412a873c609b799bf904e84c3ed2052",
+      "bytes": 5792
+    },
+    {
+      "path": "_run_records/physics_interface_origin.json",
+      "sha256": "8846e0b19b5b40944a504d932e7a9a166354b143af0fb3dc41eeb9806ba4a38a",
+      "bytes": 444
+    },
+    {
+      "path": "_run_records/physics_interface_schema.md",
+      "sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62",
+      "bytes": 8670
+    },
+    {
+      "path": "source_block_receipt.schema.json",
+      "sha256": "e3e59d0bfb7f4969fa3fbaabb6012103ac827af03644d4906b69010c17f6347d",
+      "bytes": 16837
+    },
+    {
+      "path": "support_semantic_rows.json",
+      "sha256": "3875517696243941c71920c2b960d36630aef11adfaaa101e3a70c5dfedf4461",
+      "bytes": 3699
+    }
+  ]
+}

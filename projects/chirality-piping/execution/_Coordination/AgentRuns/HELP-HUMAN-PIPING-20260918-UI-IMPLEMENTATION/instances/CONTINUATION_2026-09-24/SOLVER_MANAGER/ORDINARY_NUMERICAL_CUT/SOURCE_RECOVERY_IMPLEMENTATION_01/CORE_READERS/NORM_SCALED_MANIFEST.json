@@ -1,0 +1,140 @@
+{
+  "executor": "/root/numerical_resume/source_product_adapter",
+  "parent": "/root/numerical_resume",
+  "role": "TASK",
+  "mechanism": "delegated-harness-native",
+  "descendants": [],
+  "source_root": "/private/tmp/piping-source-recovery-20260924",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/RETURN.md",
+      "sha256": "6e74b74d4b5f8c5f24c6f5ff98a9d03dd566c0ad991c2b28a9b0d59fd1fda22f"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "sha256": "7345cbcade5777b4e4ffc190dff1d4f4231fcf3340f30bca342c1c95c19558b4"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "b12e2f130ef99c8d1f2d677089eb19faba3a9081f51643db7f65efeb962e60bd"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "c802debf0f8954c330b70898b88bdd062fb962fac337a25a966d4ba388373008"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "0eba94538f78a91ab244f5de61f6b4861e77cc2bf24b827d0f3aa7a9af36720a"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "0775bc279827e20c815440219c8315101cd6a5218febfac7862f93b9b8766154"
+    }
+  ],
+  "steering": {
+    "superseded_before_runtime": "unscaled normal-square gate",
+    "final_recipes": [
+      "translation_norm_scaled_v1",
+      "support_force_norm_scaled_v1"
+    ],
+    "accuracy": "r=max three qualified input projection relative bounds; b=64*epsilon; require r <= (1e-9-b)/(1+b)",
+    "parent_work_policy": "4M/case and64M/invocation; includes reserved failure work and publication charges"
+  },
+  "checks": {
+    "rust": "15 library +8 source_blocks integration passed",
+    "python_initial": "12 passed,1 test-loader KeyError for obsolete generation.pairs; before positive artifact loop",
+    "python_recheck": "13 passed",
+    "logs": [
+      "NORM_SCALED_RUST.log",
+      "NORM_SCALED_PYTHON.log",
+      "NORM_SCALED_PYTHON_RECHECK.log"
+    ],
+    "scope": "received real producer artifacts; no fresh producer/native witness",
+    "execution": "explicit parent lane; Rust then Python sequential; lane released after recheck"
+  },
+  "environment": {
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "python": "Python 3.13.14",
+    "checked_json_authority": {
+      "path": "/private/tmp/piping-numerical-corrections-canonical-resume-target/debug/openpipestress_jcs_ijson",
+      "sha256": "bc1343ef45704c0ec65c1c7ac244c50e349af49de3a9b850dc11578bb2fc6c54"
+    },
+    "cargo_target": "/private/tmp/piping-source-recovery-export-target",
+    "python_bytecode_writes": "PYTHONDONTWRITEBYTECODE=1"
+  },
+  "evidence_note": "Initial manifest-generation command found no pyvenv.cfg; no evidence/source output was written by that failed command. Actual interpreter version was captured directly instead."
+}

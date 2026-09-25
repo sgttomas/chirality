@@ -1,0 +1,84 @@
+{
+  "scope": "Actual retained received packets and scalar reader guards only; no fresh solve/native/source-authentication claim",
+  "packet_results": [
+    {
+      "path": "fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "claimed_status": "qualified",
+      "reader_refusal": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "claimed_status": "qualified",
+      "reader_refusal": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "with_context": true,
+      "without_context": false,
+      "bytes_unchanged": true
+    },
+    {
+      "path": "fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "with_context": true,
+      "without_context": false,
+      "bytes_unchanged": true
+    }
+  ],
+  "scalar_results": [
+    {
+      "name": "exact_zero",
+      "result": "accepted"
+    },
+    {
+      "name": "negative_zero",
+      "result": "accepted"
+    },
+    {
+      "name": "normal_boundary",
+      "result": "accepted"
+    },
+    {
+      "name": "below_normal_boundary",
+      "result": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE"
+    },
+    {
+      "name": "nonzero_erased",
+      "result": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE"
+    },
+    {
+      "name": "zero_invented",
+      "result": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE"
+    },
+    {
+      "name": "endpoint_sign",
+      "result": "accepted"
+    },
+    {
+      "name": "wrong_endpoint_sign",
+      "result": "SOURCE_BLOCKS_STRESS_ACTION_SIGN"
+    },
+    {
+      "name": "observed_pa_overflow",
+      "result": "SOURCE_BLOCKS_STRESS_PA_OBSERVATION_RANGE"
+    },
+    {
+      "name": "nonfinite_output",
+      "result": "SOURCE_BLOCKS_STRESS_OUTPUT_RANGE"
+    }
+  ],
+  "composition": {
+    "arithmetic_bound": 2.842170943040401e-14,
+    "input_limit": 9.999715782905413e-10,
+    "composed_as_float": 1e-09,
+    "exact_composed_minus_binary64_limit": 8.996565689505981e-26
+  },
+  "p1_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+  "source_table_sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+  "unchanged_p1_rows": true
+}

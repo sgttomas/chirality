@@ -1,0 +1,144 @@
+{
+  "executor": "/root/physics_resume/joined_consumer_review",
+  "original_actual_parent": "/root/physics_resume",
+  "assigner": "/root",
+  "coordination_manager": "/root/numerical_resume",
+  "role": "TASK Type2",
+  "mechanism": "delegated-harness-native",
+  "delegation": "none",
+  "source": [
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd",
+      "actual_sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9",
+      "actual_sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978",
+      "actual_sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e",
+      "actual_sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e",
+      "matches": true
+    }
+  ],
+  "all_source_hashes_match": true,
+  "actual_final_logs": [
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_rust_01.log",
+      "sha256": "f14d1ec54cba0e59e5d9b301abd9019d75ff2cd7bebf2c58eeaa2fe94730caab",
+      "matches": true
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_python_01.log",
+      "sha256": "4687aea719a08a1f4ccdcc99e7fc0b55d1a31e3ec9c2bdf8868ff9d2ba761858",
+      "matches": true
+    }
+  ],
+  "received_negative_fixture_hashes": [
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/CAPTURE.json",
+      "sha256": "2e90f53900bfa030fab85955fef0f9398a57b1e859ce87acff61468d9b994b5a",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "matches": true
+    }
+  ],
+  "instruction_origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "reading": "bytes verified identical to previously read instruction basis"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "reading": "full body read here"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "reading": "bytes verified identical to previously read instruction basis"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "reading": "bytes verified identical to previously read instruction basis"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "reading": "full body read here"
+    }
+  ],
+  "review_basis": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/STRESS_RANGE_SOURCE_READY.json",
+      "sha256": "483d67d3a0eb772eab792d6c6f384f1919af4bf72c3f573af3269d476254c542"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/STRESS_GUARD_CHECKS.json",
+      "sha256": "aebe2d3920a57d27aebca067f3d92e318d94b47a9bc59a5d2d5c10793c06ae26"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/FINDINGS.md",
+      "sha256": "97f72c92ff47f33c6b63f76ec88e4df6840d62ba1c80c2e01b2ec4c36cf5dd77"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/RETURN.md",
+      "sha256": "386494f8f58233b1e5e94a104ea0cbd8a0e53ef5f263c6d48138b2db4c550f21"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md",
+      "sha256": "eadf7a8a8bf7c3fd7ef72863abc3cc316b0776f269bbdff8ad9be3cce48fca48"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_MANIFEST.json",
+      "sha256": "454d675ba3b785617f3d65c408ae20b5df2a14f35ccb015f04f390fe7aaaffdd"
+    }
+  ],
+  "checked_json_executable": {
+    "path": "/private/tmp/piping-numerical-corrections-canonical-resume-target/debug/openpipestress_jcs_ijson",
+    "sha256": "bc1343ef45704c0ec65c1c7ac244c50e349af49de3a9b850dc11578bb2fc6c54"
+  },
+  "execution": {
+    "command": "OPENPIPESTRESS_CHECKED_JSON_BIN=/private/tmp/piping-numerical-corrections-canonical-resume-target/debug/openpipestress_jcs_ijson /private/tmp/chirality-piping-dec025-venv/bin/python -B check_reader_stress.py",
+    "exit_code": 0,
+    "script_sha256": "1d6f3ed3ded09c13c07d6b808cda9f17014d404a88161ee66e7dbbbbae8eab4e",
+    "output_sha256": "7a06cc9c8d5549a713cb731aee11ff5d1b74e257485e11766cf45ef1ec7c9249"
+  },
+  "report_sha256": "18a98dffc26f5dd1f351a328e79cb7b107fbe102a07b7bbfdbb76402a493c6a0"
+}

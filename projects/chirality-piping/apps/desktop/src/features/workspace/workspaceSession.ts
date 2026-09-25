@@ -1,4 +1,4 @@
-import { sourceContract } from "../results/numericalResultQuality";
+import { hasCurrentSourceContract } from "../results/numericalResultQuality";
 import type React from "react";
 import { isTauriRuntime, syncNativeShellState } from "../../services/nativeMenu";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -22,7 +22,6 @@ import {
   loadDesignKnowledge,
   loadPreviewModel,
   loadSampleProposal,
-  runPreviewMechanics,
   startPreviewMechanicsJob
 } from "../../services/previewService";
 import {
@@ -730,6 +729,7 @@ export function useWorkspaceSession() {
         }
         return;
       }
+      if (startReceipt.mode !== "backend_job") throw new Error("BROWSER_REFERENCE_RECEIPT_NOT_A_CURRENT_SOLVE");
       startedJob = startSolveJob(solveModel, startReceipt);
       const cancellationRequested =
         solveRunGate.current.isCancellationRequested(runGeneration) ||
@@ -775,10 +775,9 @@ export function useWorkspaceSession() {
         }
         output = terminal.result;
       } else {
-        output = await runPreviewMechanics(solveModel, solverMode);
-        if (solveRunGate.current.isCancellationRequested(runGeneration)) return;
+        throw new Error("BROWSER_REFERENCE_RECEIPT_NOT_A_CURRENT_SOLVE");
       }
-      if (sourceContract(output) !== "precision" || !output.producer) {
+      if (!hasCurrentSourceContract(output) || !output.producer) {
         throw new Error("SOLVE-PRODUCER-CONTRACT-UNSUPPORTED: a fresh result requires the recognized precision producer; historical carriers remain available through saved-run inspection.");
       }
       const manifest = await buildCurrentSessionInputManifest({

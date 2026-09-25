@@ -1,0 +1,11 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "-b",
+    "apps/desktop/tsconfig.json",
+    "--pretty",
+    "false"
+  ],
+  "started": "2026-09-25T05:43:33.482205+00:00",
+  "exit_code": 0
+}

@@ -1,0 +1,23 @@
+
+running 1 test
+test retained_source_rotation_member_torque_and_device_action_reach_public_rows ... SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"dense_scrutiny","rotated":false,"sign":1.0,"work":{"charged":3353511,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"sparse_interactive","rotated":false,"sign":1.0,"work":{"charged":3350601,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"dense_scrutiny","rotated":true,"sign":1.0,"work":{"charged":3353487,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"sparse_interactive","rotated":true,"sign":1.0,"work":{"charged":3350553,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"dense_scrutiny","rotated":false,"sign":-1.0,"work":{"charged":3353574,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"sparse_interactive","rotated":false,"sign":-1.0,"work":{"charged":3350808,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"dense_scrutiny","rotated":true,"sign":-1.0,"work":{"charged":3353550,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N05","mode":"sparse_interactive","rotated":true,"sign":-1.0,"work":{"charged":3350760,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"dense_scrutiny","rotated":false,"sign":1.0,"work":{"charged":3008768,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"sparse_interactive","rotated":false,"sign":1.0,"work":{"charged":3008816,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"dense_scrutiny","rotated":true,"sign":1.0,"work":{"charged":3008720,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"sparse_interactive","rotated":true,"sign":1.0,"work":{"charged":3008768,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"dense_scrutiny","rotated":false,"sign":-1.0,"work":{"charged":3008927,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"sparse_interactive","rotated":false,"sign":-1.0,"work":{"charged":3008975,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"dense_scrutiny","rotated":true,"sign":-1.0,"work":{"charged":3008879,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+SOURCE_BLOCK_BUDGET_OBSERVATION {"case":"N06","mode":"sparse_interactive","rotated":true,"sign":-1.0,"work":{"charged":3008927,"limit":8000000,"rejected_reservation":{"amount":0,"kind":"finite"},"reserved_unobserved_failure":0}}
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.08s
+
+RUNTIME_RESOURCE {"exit_code": 0, "wall_seconds": 1.6143779169999999, "user_seconds": 1.075496, "system_seconds": 0.011387999999999999, "max_rss_host_units": 15237120}

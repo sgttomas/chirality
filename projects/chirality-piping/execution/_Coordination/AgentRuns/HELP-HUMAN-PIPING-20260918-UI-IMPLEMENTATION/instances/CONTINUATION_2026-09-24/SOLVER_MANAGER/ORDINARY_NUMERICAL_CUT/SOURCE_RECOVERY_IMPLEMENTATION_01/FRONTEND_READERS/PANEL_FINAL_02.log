@@ -1,0 +1,13 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/stress-neutral/StressNeutralExportPanel.test.tsx --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  01:00:40
+   Duration  18.42s (transform 196ms, setup 89ms, import 279ms, tests 17.57s, environment 297ms)
+

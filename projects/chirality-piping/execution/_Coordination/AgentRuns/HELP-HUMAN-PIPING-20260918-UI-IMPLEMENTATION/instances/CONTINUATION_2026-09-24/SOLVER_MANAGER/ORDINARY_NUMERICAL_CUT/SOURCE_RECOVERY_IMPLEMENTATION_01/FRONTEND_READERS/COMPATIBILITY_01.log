@@ -1,0 +1,154 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx (11 tests | 1 failed) 8763ms
+   × binds precision v3 metadata and preserves shared f64 bits in CSV and JSON 276ms
+ ❯ src/services/previewService.test.ts (32 tests | 7 failed) 533ms
+     × binds the exact manifest independently from the result envelope and declares stiffness dimensions 3ms
+     × blocks manifest evidence for a different model 0ms
+     × blocks transformed manifest evidence until its ref and hash are recomputed 0ms
+     × blocks wrong-prefix and wrong-model manifest refs with a valid digest 0ms
+     × blocks a unit that contradicts the exact kind semantics 0ms
+     × blocks an explicit dimension that contradicts exact result kind semantics 0ms
+     × uses browser job designation only when the host is absent 1ms
+ ❯ src/services/ruleCheckService.test.ts (10 tests | 1 failed) 8ms
+     × forwards non-empty bindings and retains both solved envelope and model coverage basis 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > binds the exact manifest independently from the result envelope and declares stiffness dimensions
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:387:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks manifest evidence for a different model
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:427:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks transformed manifest evidence until its ref and hash are recomputed
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:438:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks wrong-prefix and wrong-model manifest refs with a valid digest
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:448:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks a unit that contradicts the exact kind semantics
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:463:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/services/previewService.test.ts > analysis-run input-manifest and source-dimension binding > blocks an explicit dimension that contradicts exact result kind semantics
+Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ runBrowserPreviewMechanics src/services/previewService.ts:631:9
+    629|     );
+    630|   }
+    631|   throw new Error("BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled resu…
+       |         ^
+    632| }
+    633|
+ ❯ Module.runPreviewMechanics src/services/previewService.ts:53:9
+ ❯ src/services/previewService.test.ts:475:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/services/previewService.test.ts > native mechanics failure boundary > uses browser job designation only when the host is absent
+AssertionError: promise rejected "Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SO…" instead of resolving
+ ❯ src/services/previewService.test.ts:534:44
+    532|
+    533|   it("uses browser job designation only when the host is absent", asyn…
+    534|     await expect(startPreviewMechanicsJob()).resolves.toEqual({ mode: …
+       |                                            ^
+    535|     expect(invokeMock).not.toHaveBeenCalled();
+    536|   });
+
+Caused by: Error: BROWSER_REFERENCE_ONLY_NO_FRESH_SOLVE: bundled results are reference evidence; use the native backend for a current solve.
+ ❯ Module.startPreviewMechanicsJob src/services/previewService.ts:152:11
+ ❯ src/services/previewService.test.ts:534:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/services/ruleCheckService.test.ts > runRuleChecks > forwards non-empty bindings and retains both solved envelope and model coverage basis
+Error: NATIVE_RULE_INPUT_UNVERIFIED
+ ❯ Module.runRuleChecks src/services/ruleCheckService.ts:112:99
+
+ ❯ src/services/ruleCheckService.test.ts:194:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  src/features/stress-neutral/StressNeutralExportPanel.test.tsx > binds precision v3 metadata and preserves shared f64 bits in CSV and JSON
+AssertionError: expected [Function] to throw error including 'SN-PRECISION-ROW-VALUE-INVALID' but got 'SN-NATIVE-INVOCATION-UNAVAILABLE'
+
+Expected: "SN-PRECISION-ROW-VALUE-INVALID"
+Received: "SN-NATIVE-INVOCATION-UNAVAILABLE"
+
+ ❯ src/features/stress-neutral/StressNeutralExportPanel.test.tsx:165:105
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  3 failed | 5 passed (8)
+      Tests  9 failed | 119 passed (128)
+   Start at  23:50:54
+   Duration  22.71s (transform 312ms, setup 265ms, import 532ms, tests 19.90s, environment 1.41s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1

@@ -1,0 +1,34 @@
+{
+  "state": "frozen bounded implementation/check return; independent review and combined physics-source native candidate remain",
+  "executor": "/root/root_solver_checkpoint_review",
+  "actual_parent": "/root",
+  "coordinating_manager": "/root/numerical_resume",
+  "paths": [
+    "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+    "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+    "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+    "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+    "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+    "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts",
+    "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+    "projects/chirality-piping/apps/desktop/src/types.ts"
+  ],
+  "pending": [
+    "fresh complete-diff independent review",
+    "reviewed combined physics-source-1 contract/native integration owned by managers",
+    "ROOT actual native/CI/clean sweep gates"
+  ]
+}

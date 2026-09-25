@@ -1,5 +1,5 @@
 //! Observation only: this executable does not manufacture analytical expectations.
-use open_pipe_stress_product_physics::{run_linear_static_preview_with_mode,LinearStaticPreviewRequest,PreviewSolverMode};
+use open_pipe_stress_product_physics::{run_linear_static_preview_value_with_mode,PreviewSolverMode};
 use serde_json::{json,Value};
 fn model(id:&str,l:f64,torque:f64)->Value {
  json!({"schema_version":"0.1.0","document_kind":"openpipestress.product_preview.model","analysis_status":{"mechanics":"ready_for_preview_diagnostics","rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},"project":{"id":format!("reference:{id}"),"units":{"length":"m","force":"N","angle":"rad","pressure":"Pa","temperature":"degC","stress":"Pa"}},
@@ -44,8 +44,8 @@ fn main(){
  let mut pipe=m["pipe_segments"][0].clone();pipe["id"]=json!("free-pipe");pipe["from"]=json!("free-root");pipe["to"]=json!("free-tip");m["pipe_segments"].as_array_mut().unwrap().push(pipe);
  m["load_cases"][0]["primitive_loads"][0]=json!({"id":"force","category":"concentrated_force","target":{"type":"node","node":"tip"},"direction":"global_y","magnitude":{"value":1000,"unit":"N"},"dimension":"force"});cases.push(("N04",m));
  for (id,mut m) in cases {add_original_provenance(&mut m);for mode in [PreviewSolverMode::DenseScrutiny,PreviewSolverMode::SparseInteractive] {
-  let request=serde_json::from_value::<LinearStaticPreviewRequest>(json!({"model":m,"materials":[]}));
-  match request {Ok(r)=>println!("{}",json!({"case":id,"mode":mode.as_str(),"input":m,"observed":run_linear_static_preview_with_mode(r,mode)})),Err(e)=>println!("{}",json!({"case":id,"input":m,"dto_error":e.to_string()}))}
+  let request=json!({"model":m,"materials":[]});
+  match run_linear_static_preview_value_with_mode(request,mode) {Ok(result)=>println!("{}",json!({"case":id,"mode":mode.as_str(),"input":m,"observed":result})),Err(e)=>println!("{}",json!({"case":id,"mode":mode.as_str(),"input":m,"producer_error":e}))}
  }}
  let references:Value=serde_json::from_str(include_str!("../fixtures.json")).unwrap();
  for row in references["NP"]["A"].as_array().unwrap() {

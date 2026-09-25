@@ -1,0 +1,4 @@
+apps/desktop/src/features/results/sourceBlockRecovery.ts(152,152): error TS18048: 'row.metadata' is possibly 'undefined'.
+apps/desktop/src/features/results/sourceBlockRecovery.ts(152,199): error TS18048: 'row.metadata' is possibly 'undefined'.
+apps/desktop/src/features/results/sourceBlockRecovery.ts(152,235): error TS18048: 'row.metadata' is possibly 'undefined'.
+apps/desktop/src/features/results/sourceBlockRecovery.ts(152,300): error TS18048: 'row.metadata' is possibly 'undefined'.

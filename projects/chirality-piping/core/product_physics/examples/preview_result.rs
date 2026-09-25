@@ -1,5 +1,5 @@
 use open_pipe_stress_product_physics::{
-    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, PreviewModel,
+    run_linear_static_preview_value_with_mode,
     PreviewSolverMode,
 };
 
@@ -16,17 +16,13 @@ fn main() {
             std::process::exit(2);
         }
     };
-    let model: PreviewModel = serde_json::from_str(include_str!(
+    let model: serde_json::Value = serde_json::from_str(include_str!(
         "../../../fixtures/product_preview/invented_preview_model.json"
     ))
     .expect("invented preview model fixture should parse");
-    let result = run_linear_static_preview_with_mode(
-        LinearStaticPreviewRequest {
-            model,
-            materials: vec![],
-        },
-        mode,
-    );
+    let result = run_linear_static_preview_value_with_mode(
+        serde_json::json!({"model":model,"materials":[]}), mode,
+    ).expect("actual Value-aware preview producer should complete");
     println!(
         "{}",
         serde_json::to_string_pretty(&result).expect("result should serialize")

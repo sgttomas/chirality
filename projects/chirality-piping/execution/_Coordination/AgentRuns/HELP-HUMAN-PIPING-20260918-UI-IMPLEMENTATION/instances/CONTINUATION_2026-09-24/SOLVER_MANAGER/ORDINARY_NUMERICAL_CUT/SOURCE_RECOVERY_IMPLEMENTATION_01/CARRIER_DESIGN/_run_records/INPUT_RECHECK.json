@@ -1,0 +1,149 @@
+{
+  "all_unchanged": true,
+  "files": [
+    {
+      "repository_path": "AGENTS.md",
+      "initial_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "final_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/AGENTS.md",
+      "initial_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "final_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "initial_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "final_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "unchanged": true
+    },
+    {
+      "repository_path": "agents/AGENT_HELPS_HUMANS.md",
+      "initial_sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "final_sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "initial_sha256": "3671265eca3f9b0ca1793bf020cb2e768834a25e8c2827d73251a674271140c6",
+      "final_sha256": "3671265eca3f9b0ca1793bf020cb2e768834a25e8c2827d73251a674271140c6",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "initial_sha256": "de0eb846405aad395c2eb2676473a81b68274ee2427f7d3336a52356cb64f08a",
+      "final_sha256": "de0eb846405aad395c2eb2676473a81b68274ee2427f7d3336a52356cb64f08a",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "initial_sha256": "fbdf506e05a5e881798346e164e2c8a5705958e2b45d2dbb8b8fb3dcd5a9209b",
+      "final_sha256": "fbdf506e05a5e881798346e164e2c8a5705958e2b45d2dbb8b8fb3dcd5a9209b",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs",
+      "initial_sha256": "21b5ce6d58a614107e9beb34879458a452a77904c19a8400ae74f7f06d9a7d75",
+      "final_sha256": "21b5ce6d58a614107e9beb34879458a452a77904c19a8400ae74f7f06d9a7d75",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "initial_sha256": "dfda14ed91a310b50308a7ebe1fe56f791cf14c097d98ab2882bf2162e0459e7",
+      "final_sha256": "dfda14ed91a310b50308a7ebe1fe56f791cf14c097d98ab2882bf2162e0459e7",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/core/handoff/stress_neutral/package_v0_3.py",
+      "initial_sha256": "d2248bc6c9a82a9c76ad2df1783c1412970c3b242340844964235ea154831683",
+      "final_sha256": "d2248bc6c9a82a9c76ad2df1783c1412970c3b242340844964235ea154831683",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "initial_sha256": "2bb4b372826b90b188da0b91673e22250896986b6bd5b50c918f8c4ae376c16e",
+      "final_sha256": "2bb4b372826b90b188da0b91673e22250896986b6bd5b50c918f8c4ae376c16e",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "initial_sha256": "744484fdcd9ee326493a2dae1e6dc9019a4f9b702214bb9908905d659b429351",
+      "final_sha256": "744484fdcd9ee326493a2dae1e6dc9019a4f9b702214bb9908905d659b429351",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "initial_sha256": "742d66ed8c969a7ef9290c7a0a24005ffc19342d20cfea4f7886147508a0b9f4",
+      "final_sha256": "742d66ed8c969a7ef9290c7a0a24005ffc19342d20cfea4f7886147508a0b9f4",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "initial_sha256": "15c0211f6e87d62437324c90235ef3baf9f4be24264f64f6fc6ee41935964edf",
+      "final_sha256": "15c0211f6e87d62437324c90235ef3baf9f4be24264f64f6fc6ee41935964edf",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "initial_sha256": "c92030018f057c8e826d0486db33a5c78246114d220fa0a062d87a3e21a94ac8",
+      "final_sha256": "c92030018f057c8e826d0486db33a5c78246114d220fa0a062d87a3e21a94ac8",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "initial_sha256": "b6f07e602fdac816d0c473676ef206dc9adea92f30ec518da19cae0877829e40",
+      "final_sha256": "b6f07e602fdac816d0c473676ef206dc9adea92f30ec518da19cae0877829e40",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "initial_sha256": "64e5dedd41eefe17bdd0bd092d88d95978af960821f0da60f9fa85fb2daca4ef",
+      "final_sha256": "64e5dedd41eefe17bdd0bd092d88d95978af960821f0da60f9fa85fb2daca4ef",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "initial_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+      "final_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/schemas/results.v0.3.schema.yaml",
+      "initial_sha256": "6c7ea9eb8b695475d9efa62f1c5cf517ec961db11b1959466191f852eae84fda",
+      "final_sha256": "6c7ea9eb8b695475d9efa62f1c5cf517ec961db11b1959466191f852eae84fda",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/schemas/analysis_run.v0.3.schema.json",
+      "initial_sha256": "d95083745fffd97daffb08cbfae3f7f12e969440d474e4668eba717aceb240c5",
+      "final_sha256": "d95083745fffd97daffb08cbfae3f7f12e969440d474e4668eba717aceb240c5",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json",
+      "initial_sha256": "88647b3499e56530f8628e071686b86f2beacf005f8a351a5981593f1aa7e50f",
+      "final_sha256": "88647b3499e56530f8628e071686b86f2beacf005f8a351a5981593f1aa7e50f",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+      "initial_sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+      "final_sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/physics_interface_schema.md",
+      "initial_sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62",
+      "final_sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62",
+      "unchanged": true
+    },
+    {
+      "repository_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RAW02_INTERFACE_ALIGNMENT.md",
+      "initial_sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+      "final_sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+      "unchanged": true
+    }
+  ]
+}

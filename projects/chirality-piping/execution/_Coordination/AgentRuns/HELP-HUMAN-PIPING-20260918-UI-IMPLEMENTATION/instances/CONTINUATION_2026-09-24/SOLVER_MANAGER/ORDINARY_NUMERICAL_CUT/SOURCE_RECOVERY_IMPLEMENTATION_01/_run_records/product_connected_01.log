@@ -1,0 +1,46 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/frame_kernel)
+   Compiling version_check v0.9.5
+   Compiling proc-macro2 v1.0.106
+   Compiling open_pipe_stress_linear_supports v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/linear_supports)
+   Compiling generic-array v0.14.7
+   Compiling quote v1.0.45
+   Compiling unicode-ident v1.0.24
+   Compiling open_pipe_stress_primitive_loads v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/loads/primitive_loads)
+   Compiling serde_core v1.0.228
+   Compiling typenum v1.20.1
+   Compiling zmij v1.0.21
+   Compiling libc v0.2.189
+   Compiling syn v2.0.117
+   Compiling open_pipe_stress_sparse_direct v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/sparse_direct)
+   Compiling serde_json v1.0.149
+   Compiling serde v1.0.228
+   Compiling open_pipe_stress_solver_diagnostics v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/diagnostics)
+   Compiling serde_derive v1.0.228
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling memchr v2.8.0
+   Compiling itoa v1.0.18
+   Compiling digest v0.10.7
+   Compiling cpufeatures v0.2.17
+   Compiling open_pipe_stress_nonlinear_supports v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/nonlinear_supports)
+   Compiling open_pipe_stress_curved_bend v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/curved_bend)
+   Compiling open_pipe_stress_straight_pipe v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/straight_pipe)
+   Compiling cfg-if v1.0.5
+   Compiling ryu v1.0.23
+   Compiling open_pipe_stress_canonical_json v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/serialization/canonical_json)
+   Compiling open_pipe_stress_stress_recovery v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/loads/stress_recovery)
+   Compiling sha2 v0.10.9
+   Compiling open_pipe_stress_nonlinear_integration v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/solver/nonlinear_integration)
+   Compiling open_pipe_stress_load_case_algebra v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/loads/load_case_algebra)
+   Compiling open_pipe_stress_units v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/units)
+   Compiling open_pipe_stress_product_physics v0.2.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics)
+error: no rules expected `[`
+   --> src/source_receipt/source.rs:274:334
+    |
+274 | ...component":["UX","UY","UZ","RX","RY","RZ"][c],"displacement_unit":if c<3{"m"}else{"rad"},"action_unit":if c<3{"N"}else{"N*m"}}))...
+    |                                              ^ no rules expected this token in macro call
+    |
+    = note: while trying to match end of macro
+
+error: could not compile `open_pipe_stress_product_physics` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

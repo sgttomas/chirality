@@ -1,0 +1,149 @@
+{
+  "status": "frozen implementation return; independent review and combined native qualification pending",
+  "actual_parent": "/root",
+  "executor": "/root/root_solver_checkpoint_review",
+  "coordinating_manager": "/root/numerical_resume",
+  "base_checkpoint": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "base_provenance": "Read-only ordinary checkpoint checkout supplied by parent; exact applicable files verified against its FINAL_SOURCE_FREEZE_05. No Git command used for this diff. Parent owns Git object/combined-candidate verification.",
+  "base_freeze_sha256": "888c8081df6951b4b46c3ce9c17ea946e6f45c7d3f94bae2f8ba0ab5ad09c405",
+  "source_patch": "FINAL_SOURCE.patch",
+  "source_patch_sha256": "b613e8236ee8f0ce8eb4e8a5a7886eb478f42abbd4c537b9be9fb9e6d9b0c81f",
+  "path_base": "repository_root",
+  "source_files": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "base_sha256": "ec2abbffeb468615592f5a28d4de01a61759847b5538a78b24b693612445b08a",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "fd5e3a8eda947e3516f8d495c54dee8c030f56cc7eb8cdb4490dfb5107786c65"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "base_sha256": "298c3c82dec6a7d3a996aa3ca22bbaa71e2398565e7faf9eceb40507f5ac4a97",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "base_sha256": "c578188d59d457bd31a5f169ebcec39acc530841bace94df0824415cf0b41d94",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+      "base_sha256": "295d36eb807265b427205ddfaa8c5de73cfa42ba3781aa6c77c6c46f14c777af",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "a90d9090563f79ea1c01cc9e9fb50afe7999e3d4a7a0e1034d9d491df7cd9535"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "base_sha256": "15c0211f6e87d62437324c90235ef3baf9f4be24264f64f6fc6ee41935964edf",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "6f2c1c8eb07b0e32774f30fe0259965dc54f997c7625dfda68e7310abb0e092d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "base_sha256": "47b7e0f617d6d4e3b2f97d7b82d3caeed55c64de8689882c504222cc13d2fde9",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "f9b337df8e23347492e2ca4e60c76b719b3a63e2215ba80aadec74a9d03486e4"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "base_sha256": "2bb4b372826b90b188da0b91673e22250896986b6bd5b50c918f8c4ae376c16e",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "4b90c7f0e36b2d710a19cd33736db5af87d72a8db0d232c498cbfafb7b5298bf"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "base_sha256": "744484fdcd9ee326493a2dae1e6dc9019a4f9b702214bb9908905d659b429351",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "8241d1863cc284a1de47ab514f6f6c6f2051b3b7c139ac7c752b59772b55522e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "base_sha256": null,
+      "base_matches_ordinary_freeze": null,
+      "sha256": "d6e5d4aec29734223e9a33438948b393f67eaaa08a848ff9ba8cffbb1add3f50"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "base_sha256": null,
+      "base_matches_ordinary_freeze": null,
+      "sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+      "base_sha256": "c2890e7e0607aeb9558ec9ac72dad0a460a6675907d6bdea4fe276fa1b3eb7c6",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "8c89254241a99b774883c3378bc34adfba0719c6243da95793854222b203a16e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "base_sha256": "b6f07e602fdac816d0c473676ef206dc9adea92f30ec518da19cae0877829e40",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "bd04405c055c7d82e6fa67291e4c398919ff09d39f9dc9b1b6d4944b88837171"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts",
+      "base_sha256": "61c05a41824f23ffb097aabf6f7b1adecd1c97656f87e7fc998358b6d783101f",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "620030747b15cecfafa99184f65e2f7fe4409b272b65499e384a0956b9c52d72"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "base_sha256": "c92030018f057c8e826d0486db33a5c78246114d220fa0a062d87a3e21a94ac8",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "17b0b321f86ec656b44707b808cc87e486fcc9a33e0a7d27dbb6b69175115dff"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "base_sha256": "6a113eeaef876c6d7f3d0968b63a7a97da7fd7e4c42cfae00c871f3f058bf674",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "base_sha256": "742d66ed8c969a7ef9290c7a0a24005ffc19342d20cfea4f7886147508a0b9f4",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "46b1b4bae3b5f8a7bd821517c06cce70ed662cd58c7572b03280b54986cd7f73"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+      "base_sha256": "b038e31b2797ed14f6dd34743408bde9a8bea4e9561b81d529a1e99041092fe0",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "106e1b65fa560aef314018e1a994f9f5fd874ef4a1b0b12691a80234fe426928"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "base_sha256": "74b79d41ec53ac8fc5ce267340c404b3ff90f744e3dd24d1236bbf02774f8fdb",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts",
+      "base_sha256": "c8390d5be9a2e02f2bae7fb6a83f6a6eb70cfafbfdb0448babeb80eb1d004f07",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "e3632db248c3445661aa5c2788ea6384419fd34d3e29ab25902dc3ecc3faba3e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "base_sha256": "98155f7143932269f877688198733d6bdb85dbb5672b07d862a93c2f9e499531",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "e587b9fbc31db00ecc5dde22318fe181ce972740b85d4a2ce7019589c1cf0da1"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "base_sha256": "25a3b2aa687bd8984cc053f6306e57c546c3adb6efbe8576140cae3f06e8bce1",
+      "base_matches_ordinary_freeze": true,
+      "sha256": "c48a1256263c5d58c98af57cf0d309ea51226ea1659b59a99d1bb0c6b9eb2820"
+    }
+  ],
+  "final_typecheck": "TYPECHECK_10.json",
+  "final_typecheck_covers_every_final_path": true,
+  "broad_run": "CONNECTED_04.json",
+  "broad_result": "172 passed / 1 failed of173",
+  "later_changed_paths": [
+    "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx"
+  ],
+  "repair_run": "PANEL_FINAL_02.json",
+  "repair_result": "14/14 passed, overlapping broad suite; do not sum as distinct tests"
+}

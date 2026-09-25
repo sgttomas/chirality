@@ -1,0 +1,6 @@
+{
+  "source": "/private/tmp/piping-engine-integration-20260925/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/PHYSICS_READER_JOIN/RULE_SOURCE_IMMUTABILITY/HEADLESS_DELTA.patch",
+  "sha256": "e978e646e6da18e5644ddaa21bb281b745663aef7e5689679bf58f05eb62d99f",
+  "actual_provider": "/root/physics_resume/physics_reader_join",
+  "integration": "Reused method-agnostic effective_rule_status and immutable producer behavior. No physics model/table changes or incidental fixture pressure changes copied. Existing p1 and new source-block actual solve controls cover three rule statuses and both modes."
+}

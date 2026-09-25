@@ -1654,3 +1654,4 @@ mod tests {
 
 pub mod semantic_contract;
 pub mod derivative;
+pub mod source_blocks;

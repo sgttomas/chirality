@@ -1,9 +1,10 @@
-import { sourceContract, numericalResultStanding, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../results/numericalResultQuality";
+import { hasNativeMechanicsInvocation } from "../../services/previewService";
+import { sourceContract, numericalResultStanding, currentSemanticContract, hasCurrentSourceContract } from "../results/numericalResultQuality";
 import { verifyAnalysisRunRecord, validateAnalysisRunV03, analysisRowSemantics, sourceBasisReference, modelLoadBasisRefs } from "../../services/analysisRunCompatibility";
 import { semanticFamily, semanticDimension, semanticCategory, resultSemantics } from "../results/resultSemantics";
 import { Download, FileJson } from "lucide-react";
 import { useEffect, useState } from "react";
-import { canonicalSha256HexCheckedV1, canonicalJsonCheckedV1 } from "../../services/hashService";
+import { canonicalSha256HexCheckedV1, canonicalJsonCheckedV1, checkedJsonText } from "../../services/hashService";
 import type { AnalysisRunEnvelope, MechanicsResult, PreviewModel, ResultBasisRef, ObjectRef } from "../../types";
 import { buildExportUnitSystemDisclosure, unitDisclosureSummary } from "../exportUnitDisclosure";
 
@@ -70,6 +71,13 @@ type StressNeutralUnitPreservationWitness = {
   provenance: ReturnType<typeof previewProvenance>;
 };
 
+function liveStressBinding(model: PreviewModel, result: MechanicsResult | null, analysisRun: AnalysisRunEnvelope | null): string | null {
+  try {
+    if (!result || !analysisRun || !hasCurrentSourceContract(result) || !hasNativeMechanicsInvocation(result,model) || !numericalResultStanding(result,model).eligible) return null;
+    return checkedJsonText({model,result,analysisRun});
+  } catch { return null; }
+}
+
 export function StressNeutralExportPanel({
   model,
   result,
@@ -81,17 +89,23 @@ export function StressNeutralExportPanel({
 }) {
   const [packet, setPacket] = useState<Awaited<ReturnType<typeof buildStressNeutralExportPacket>> | null>(null);
   const [binding, setBinding] = useState<[PreviewModel, MechanicsResult, AnalysisRunEnvelope] | null>(null);
+  const [publicationFingerprint, setPublicationFingerprint] = useState<string | null>(null);
+  const currentFingerprint = liveStressBinding(model,result,analysisRun);
   const currentPacket = binding?.[0] === model && binding?.[1] === result && binding?.[2] === analysisRun
+    && currentFingerprint !== null && currentFingerprint === publicationFingerprint
     ? packet
     : null;
   useEffect(() => {
     let current = true;
     setPacket(null);
     setBinding(null);
-    if (result && analysisRun) buildStressNeutralExportPacket({ model, result, analysisRun }).then((built) => {
-      if (current) {
+    setPublicationFingerprint(null);
+    const capturedFingerprint=liveStressBinding(model,result,analysisRun);
+    if (result && analysisRun && capturedFingerprint !== null) buildStressNeutralExportPacket({ model, result, analysisRun }).then((built) => {
+      if (current && liveStressBinding(model,result,analysisRun) === capturedFingerprint) {
         setPacket(built);
         setBinding([model, result, analysisRun]);
+        setPublicationFingerprint(capturedFingerprint);
       }
     }).catch(() => { if (current) { setPacket(null); setBinding(null); } });
     return () => { current = false; };
@@ -108,7 +122,13 @@ export function StressNeutralExportPanel({
       </div>
       {currentPacket ? (
         <>
-          <div className="report-actions">
+          <div className="report-actions" onClickCapture={(event)=>{
+            // Recheck at both JSON/native-save and CSV activation, including an
+            // in-place source/analysis mutation that did not cause a render.
+            if (liveStressBinding(model,result,analysisRun) !== publicationFingerprint) {
+              event.preventDefault();event.stopPropagation();setPacket(null);setBinding(null);setPublicationFingerprint(null);
+            }
+          }}>
         <ControlledExportLink
               className="report-export-link"
               data-testid="stress-neutral-export-link"
@@ -209,7 +229,7 @@ function buildStressNeutralExportPacketV01({
   const resultRows = result.results
     .slice()
     .sort((left, right) => left.id.localeCompare(right.id))
-    .map((item) => sourceContract(result) === "precision" ? precisionStressRow(item, result) : stressNeutralRow(item, run.run_id, result));
+    .map((item) => hasCurrentSourceContract(result) ? precisionStressRow(item, result) : stressNeutralRow(item, run.run_id, result));
   const csvText = renderCsv(resultRows);
   const unitPreservationWitnesses = stressNeutralUnitPreservationWitnesses(resultRows, result.results);
   const unitSystemDisclosure = buildExportUnitSystemDisclosure({
@@ -222,9 +242,9 @@ function buildStressNeutralExportPacketV01({
     sourceLocation: "apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx"
   });
   const stableIdMap = resultRows.map((row, index) => ({
-    map_id: `stress-neutral-map:${sourceContract(result) === "precision" ? index : safeFileToken(row.result_id)}`,
+    map_id: `stress-neutral-map:${hasCurrentSourceContract(result) ? index : safeFileToken(row.result_id)}`,
     canonical_ref: row.canonical_ref,
-    export_ref: reference("StressNeutralResultRow", `stress-neutral-row:${sourceContract(result) === "precision" ? index : safeFileToken(row.result_id)}`),
+    export_ref: reference("StressNeutralResultRow", `stress-neutral-row:${hasCurrentSourceContract(result) ? index : safeFileToken(row.result_id)}`),
     mapping_status: "mapped",
     loss_category: "exported",
     row_index: index,
@@ -404,7 +424,7 @@ const WITHHOLDING_CODES: Record<Exclude<StrictWitnessDisposition, "eligible">, s
 
 function strictWitnessDisposition(source: MechanicsResult["results"][number], carrier: MechanicsResult): { disposition: StrictWitnessDisposition; dimension: string | null } {
   try {
-    const semantic = sourceContract(carrier) === "precision" ? analysisRowSemantics(source, carrier).semantic : resultSemantics(source, carrier);
+    const semantic = hasCurrentSourceContract(carrier) ? analysisRowSemantics(source, carrier).semantic : resultSemantics(source, carrier);
     if (!semantic) return { disposition: "unknown_semantic", dimension: null };
     if (semantic.category === "diagnostic_work") return { disposition: "diagnostic_work", dimension: semantic.derivative_target_dimension };
     if (semantic.component !== null && (!source.metadata || typeof source.metadata.component !== "string" || source.metadata.component.length === 0)) {
@@ -435,7 +455,8 @@ function strictWithholdingDiagnostic(disposition: Exclude<StrictWitnessDispositi
 export async function buildStressNeutralExportPacket(args: { model: PreviewModel; result: MechanicsResult; analysisRun: AnalysisRunEnvelope }) {
   const route = sourceContract(args.result);
   if (route === "unsupported") throw new Error("SN-SOURCE-CONTRACT-UNSUPPORTED");
-  const precision = route === "precision";
+  const precision = route !== "legacy";
+  const semantics = precision ? currentSemanticContract(args.result) : null;
   const version = precision ? "0.3.0" : STRESS_NEUTRAL_EXPORT_VERSION;
   const profile = precision ? "ops.stress_neutral.v3" : STRESS_NEUTRAL_EXPORT_PROFILE;
   let sourceCarrierChecksum;
@@ -445,8 +466,8 @@ export async function buildStressNeutralExportPacket(args: { model: PreviewModel
       || args.analysisRun.analysis_run.solver_version?.solver_name !== args.result.producer!.component_name
       || args.analysisRun.analysis_run.solver_version?.solver_version !== args.result.producer!.component_version
       || !args.analysisRun.analysis_run.solver_version?.build_ref.ref
-      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.id !== PRECISION_CONTRACT_ID
-      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.sha256 !== PRECISION_CONTRACT_SHA256
+      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.id !== semantics?.id
+      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.sha256 !== semantics?.sha256
       || await verifyAnalysisRunRecord(args.analysisRun) !== "match") throw new Error("SN-ANALYSIS-SOURCE-BINDING-MISMATCH");
     const hashes = args.analysisRun.analysis_run.hashes.filter(h => h.payload_scope === "received_result");
     if (hashes.length !== 1 || hashes[0].algorithm !== "sha256" || hashes[0].canonicalization !== "openpipestress_jcs_ijson_v1"
@@ -488,7 +509,7 @@ export async function buildStressNeutralExportPacket(args: { model: PreviewModel
     ...aggregateWithholdingDiagnostic
   ];
   const blockingCount = diagnostics.filter((item) => item.severity === "blocking").length;
-  const semanticContractRef = reference("ExternalReference", precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json");
+  const semanticContractRef = reference("ExternalReference", route === "source_blocks" ? "fixtures/results/semantic_contract_v0_3_source_blocks_1.json" : precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json");
   const decisionBasisRefs = [...structuredClone(legacy.unit_system_disclosure.decision_basis_refs), semanticContractRef, legacy.source_run_ref];
   const packet: any = {
     schema_version: version,
@@ -524,10 +545,11 @@ export async function buildStressNeutralExportPacket(args: { model: PreviewModel
       software_creates_professional_reliance_record: false
     },
   };
+  if (route === "source_blocks") packet.source_block_recovery = structuredClone(args.result.source_block_recovery);
   if (precision) Object.assign(packet, {
     producer: structuredClone(args.result.producer), numerical_quality: structuredClone(args.result.numerical_quality), formulation_basis: structuredClone(args.result.formulation_basis),
-    semantic_contract: { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 },
-    semantic_contract_ref: { ref_type: "semantic_contract", ref_id: PRECISION_CONTRACT_ID }, source_carrier_checksum: sourceCarrierChecksum
+    semantic_contract: semantics,
+    semantic_contract_ref: { ref_type: "semantic_contract", ref_id: semantics!.id }, source_carrier_checksum: sourceCarrierChecksum
   });
   const payloads: Record<string, unknown> = {
     "stress_neutral_results.csv": packet.csv_text, "result_rows.json": packet.result_rows, "unit_system_disclosure.json": packet.unit_system_disclosure,
@@ -551,16 +573,19 @@ export async function buildStressNeutralExportPacket(args: { model: PreviewModel
 
 export async function validateStressNeutralExportPacket(packet: any, source?: MechanicsResult, analysisRun?: AnalysisRunEnvelope, expectedBasisRefs?: ObjectRef[]): Promise<void> {
   const precision = packet.schema_version === "0.3.0";
-  if (packet.schema_version === "0.2.0" && ["producer", "numerical_quality", "formulation_basis", "semantic_contract_ref", "semantic_contract", "source_carrier_checksum"].some(key => Object.hasOwn(packet, key))) {
+  if (packet.schema_version === "0.2.0" && ["producer", "numerical_quality", "formulation_basis", "semantic_contract_ref", "semantic_contract", "source_carrier_checksum", "source_block_recovery"].some(key => Object.hasOwn(packet, key))) {
     throw new Error("SN-LEGACY-PRECISION-METADATA-FORBIDDEN");
   }
   if (precision && analysisRun !== undefined && source === undefined) throw new Error("SN-PRECISION-ANALYSIS-SOURCE-REQUIRED");
   if (source !== undefined) {
-    if (!precision || sourceContract(source) !== "precision") throw new Error("SN-PRECISION-SOURCE-BINDING-REQUIRED");
+    if (!precision || !hasCurrentSourceContract(source)) throw new Error("SN-PRECISION-SOURCE-BINDING-REQUIRED");
     for (const value of [source.run_id, source.model_ref, ...source.results.map(r => r.id)]) if (typeof value !== "string" || !value) throw new Error("ANALYSIS_SOURCE_REFERENCE_INVALID");
     if (analysisRun !== undefined) await validateAnalysisRunV03(analysisRun, source, expectedBasisRefs);
     const same = async (a: unknown, b: unknown) => a !== undefined && b !== undefined && await canonicalSha256HexCheckedV1(a) === await canonicalSha256HexCheckedV1(b);
     for (const key of ["producer", "numerical_quality", "formulation_basis"] as const) if (!await same(packet[key], source[key])) throw new Error("SN-PRECISION-SOURCE-METADATA-MISMATCH");
+    if (sourceContract(source) === "source_blocks") {
+      if (!await same(packet.source_block_recovery, source.source_block_recovery)) throw new Error("SN-SOURCE-RECOVERY-MISMATCH");
+    } else if (Object.hasOwn(packet, "source_block_recovery")) throw new Error("SN-SOURCE-RECOVERY-CONTRADICTION");
     const received = { algorithm: "sha256", canonicalization: "openpipestress_jcs_ijson_v1", payload_scope: "received_result", payload_ref: reference("ResultEnvelope", `result-envelope:${source.run_id}`), value: await canonicalSha256HexCheckedV1(source) };
     if (!await same(packet.source_model_ref, reference("Model", source.model_ref)) || !await same(packet.source_run_ref, reference("AnalysisRun", source.run_id)) || !await same(packet.source_result_ref, received.payload_ref) || !await same(packet.source_carrier_checksum, received) || !await same(packet.received_source_checksums?.filter((h: any) => h.payload_scope === "received_result"), [received])) throw new Error("SN-PRECISION-SOURCE-IDENTITY-MISMATCH");
     const rawById = new Map(source.results.map(row => [row.id, row]));
@@ -591,11 +616,12 @@ export async function validateStressNeutralExportPacket(packet: any, source?: Me
   }
   const version = precision ? "0.3.0" : STRESS_NEUTRAL_EXPORT_VERSION;
   const profile = precision ? "ops.stress_neutral.v3" : STRESS_NEUTRAL_EXPORT_PROFILE;
-  const semanticPath = precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json";
+  const header = { schema_version: "0.2.0", producer: packet.producer, numerical_quality: packet.numerical_quality, formulation_basis: packet.formulation_basis, ...(Object.hasOwn(packet,"source_block_recovery") ? {source_block_recovery:packet.source_block_recovery} : {}) } as MechanicsResult;
+  const semanticPath = sourceContract(header) === "source_blocks" ? "fixtures/results/semantic_contract_v0_3_source_blocks_1.json" : precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json";
   if (precision) {
-    if (sourceContract({ schema_version: "0.2.0", producer: packet.producer, numerical_quality: packet.numerical_quality, formulation_basis: packet.formulation_basis } as MechanicsResult) !== "precision"
-      || packet.semantic_contract?.id !== PRECISION_CONTRACT_ID || packet.semantic_contract?.sha256 !== PRECISION_CONTRACT_SHA256
-      || packet.semantic_contract_ref?.ref_type !== "semantic_contract" || packet.semantic_contract_ref?.ref_id !== PRECISION_CONTRACT_ID) throw new Error("SN-PRECISION-CONTRACT-MISMATCH");
+    const semantics = hasCurrentSourceContract(header) ? currentSemanticContract(header) : null;
+    if (!semantics || packet.semantic_contract?.id !== semantics.id || packet.semantic_contract?.sha256 !== semantics.sha256
+      || packet.semantic_contract_ref?.ref_type !== "semantic_contract" || packet.semantic_contract_ref?.ref_id !== semantics.id) throw new Error("SN-PRECISION-CONTRACT-MISMATCH");
     const claim = packet.source_carrier_checksum;
     if (!claim || claim.algorithm !== "sha256" || claim.canonicalization !== "openpipestress_jcs_ijson_v1" || claim.payload_scope !== "received_result"
       || JSON.stringify(claim.payload_ref) !== JSON.stringify(packet.source_result_ref)

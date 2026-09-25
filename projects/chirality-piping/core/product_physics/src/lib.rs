@@ -6,6 +6,10 @@
 //! professional acceptance.
 
 pub mod self_weight;
+mod source_recovery;
+mod source_receipt;
+#[cfg(test)]
+mod source_budget_tests;
 
 use open_pipe_stress_curved_bend::CurvedBendMacroElement;
 use open_pipe_stress_frame_kernel::structural::{SolveQuality, StructuralError, StructuralReport};
@@ -647,6 +651,8 @@ pub struct MechanicsEnvelope {
     pub schema_version: String,
     pub producer: MechanicsProducer,
     pub numerical_quality: NumericalQuality,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_block_recovery: Option<serde_json::Value>,
     pub formulation_basis: FormulationBasis,
     pub document_kind: String,
     pub run_id: String,
@@ -661,6 +667,44 @@ pub struct MechanicsEnvelope {
 
 /// Prospective source semantics; historical raw 0.1 carriers retain their identity.
 pub const MECHANICS_SCHEMA_VERSION: &str = "0.2.0";
+// Initial source-method work-reservation policy; generic/strict-gap defaults are separate.
+const SOURCE_BLOCKS_WORK_LIMIT: usize = 4_000_000;
+const SOURCE_BLOCKS_INVOCATION_WORK_LIMIT: usize = 64_000_000;
+#[derive(Debug)]
+struct SourceRecoveryBudget {
+    per_case_limit: usize,
+    invocation_limit: usize,
+    charged: usize,
+    failed_charged: usize,
+    publication_charged: usize,
+    rejected: usize,
+    attempts: usize,
+}
+impl Default for SourceRecoveryBudget {
+    fn default() -> Self { Self { per_case_limit: SOURCE_BLOCKS_WORK_LIMIT, invocation_limit: SOURCE_BLOCKS_INVOCATION_WORK_LIMIT, charged: 0, failed_charged: 0, publication_charged: 0, rejected: 0, attempts: 0 } }
+}
+impl SourceRecoveryBudget {
+    fn case_limit(&self) -> usize { self.per_case_limit.min(self.invocation_limit.saturating_sub(self.charged)) }
+    fn reserve_publication(&mut self, amount: usize) -> Result<(), open_pipe_stress_frame_kernel::structural::exact_boundary::WorkReport> {
+        if amount > self.invocation_limit.saturating_sub(self.charged) {
+            self.rejected = self.rejected.saturating_add(amount);
+            return Err(open_pipe_stress_frame_kernel::structural::exact_boundary::WorkReport { charged: self.charged, rejected: amount, limit: self.invocation_limit });
+        }
+        self.charged += amount;
+        self.publication_charged += amount;
+        Ok(())
+    }
+    fn debit(&mut self, charged: usize, failed: bool) {
+        // Every fresh attempt was allocated at most this remaining amount;
+        // failure never resets or refunds executed reservations.
+        assert!(charged <= self.invocation_limit.saturating_sub(self.charged));
+        self.charged += charged;
+        if failed { self.failed_charged += charged; }
+    }
+}
+
+pub const SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID: &str =
+    "openpipestress.result_semantics/0.3.0/source-blocks-1";
 pub const PRECISION_SEMANTIC_CONTRACT_ID: &str =
     "openpipestress.result_semantics/0.3.0/precision-1";
 
@@ -1027,8 +1071,10 @@ struct BuiltModel {
     sections: HashMap<String, DerivedSection>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 struct LoadCaseSolve {
+    source_case: Option<source_receipt::FinalizedSourceBlockCase>,
+    source_selected: bool,
     load_case_id: String,
     results: Vec<ResultItem>,
     max_displacement: Option<LocatedQuantity>,
@@ -1114,6 +1160,38 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
 pub fn run_linear_static_preview_with_mode(
     request: LinearStaticPreviewRequest,
     solver_mode: PreviewSolverMode,
+) -> MechanicsEnvelope {
+    // This historical typed entry has no original request-Value custody.
+    run_linear_static_preview_captured(request, solver_mode, None, &mut SourceRecoveryBudget::default())
+}
+
+/// Capture the exact actual request before parsing. This is the source-block
+/// method's invocation boundary; typed reserialization cannot substitute for it.
+pub fn run_linear_static_preview_value_with_mode(
+    actual_request: serde_json::Value,
+    solver_mode: PreviewSolverMode,
+) -> Result<MechanicsEnvelope, String> {
+    if !matches!(actual_request.pointer("/model/schema_version").and_then(serde_json::Value::as_str), Some("0.1.0" | "0.2.0"))
+        || actual_request.pointer("/model/pressure_contract").is_some()
+    {
+        return Err("SOURCE_MODEL_PROFILE_UNSUPPORTED_BY_THIS_ENGINE".into());
+    }
+    let (request, capture) = source_receipt::CapturedInvocation::parse(actual_request, solver_mode)
+        .map_err(|error| error.0)?;
+    let result = run_linear_static_preview_captured(request, solver_mode, Some(&capture), &mut SourceRecoveryBudget::default());
+    if result.producer.semantic_contract_id == SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID
+        && result.source_block_recovery.is_none()
+    {
+        return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
+    }
+    Ok(result)
+}
+
+fn run_linear_static_preview_captured(
+    request: LinearStaticPreviewRequest,
+    solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
 ) -> MechanicsEnvelope {
     let mut model = request.model;
     let mut materials = if request.materials.is_empty() {
@@ -1264,6 +1342,8 @@ pub fn run_linear_static_preview_with_mode(
                 load_case,
                 basis_record.as_deref(),
                 solver_mode,
+                capture,
+                source_budget,
                 &mut diagnostics,
             ) {
                 Ok(solve) => load_case_solves.push(solve),
@@ -1329,6 +1409,8 @@ pub fn run_linear_static_preview_with_mode(
             load_case,
             basis_record.as_deref(),
             solver_mode,
+            capture,
+            source_budget,
             &mut diagnostics,
         ) {
             Ok(solve) => load_case_solves.push(solve),
@@ -1339,13 +1421,25 @@ pub fn run_linear_static_preview_with_mode(
         }
     }
     let built = &basis_solve_states[0].2;
+    let source_selected = load_case_solves.iter().any(|solve| solve.source_selected);
+    let source_cases: Vec<_> = load_case_solves.iter_mut().filter_map(|solve| solve.source_case.take()).collect();
 
-    let max_displacement = load_case_solves
-        .first()
-        .and_then(|solve| solve.max_displacement.clone());
-    let max_stress = load_case_solves
-        .first()
-        .and_then(|solve| solve.max_stress.clone());
+    let select_source_maximum = |stress: bool| {
+        let mut selected: Option<LocatedQuantity> = None;
+        for (index, solve) in load_case_solves.iter().enumerate() {
+            let value = if stress { &solve.max_stress } else { &solve.max_displacement };
+            if let Some(value) = value {
+                if selected.as_ref().is_none_or(|current| value.value > current.value) {
+                    let mut value = value.clone();
+                    if index != 0 { value.result_ref = qualified_load_case_result_id(&solve.load_case_id, &value.result_ref); }
+                    selected = Some(value);
+                }
+            }
+        }
+        selected
+    };
+    let max_displacement = if source_selected { select_source_maximum(false) } else { load_case_solves.first().and_then(|solve| solve.max_displacement.clone()) };
+    let max_stress = if source_selected { select_source_maximum(true) } else { load_case_solves.first().and_then(|solve| solve.max_stress.clone()) };
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
@@ -1439,10 +1533,11 @@ pub fn run_linear_static_preview_with_mode(
         return solver_blocked(model, diagnostics, error);
     }
     // Publish finite computed binary64 quantities without an absolute decimal quantum.
-    MechanicsEnvelope {
+    let mut envelope = MechanicsEnvelope {
         schema_version: MECHANICS_SCHEMA_VERSION.to_string(),
         producer: mechanics_producer(),
         numerical_quality: assessed_numerical_quality(&model, &diagnostics),
+        source_block_recovery: None,
         formulation_basis: preview_formulation_basis(),
         document_kind: "openpipestress.product_preview.mechanics_result".to_string(),
         run_id: "run:preview-linear-static-001".to_string(),
@@ -1468,7 +1563,17 @@ pub fn run_linear_static_preview_with_mode(
         diagnostics,
         professional_boundary: professional_boundary(),
         accepted_model_state_mutated: false,
+    };
+    if source_selected {
+        envelope.producer.semantic_contract_id = SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID.into();
+        if let Some(capture) = capture {
+            match source_receipt::FinalizedSourceBlockReceipt::finalize(capture, &envelope, source_cases, source_budget) {
+                Ok(receipt) => envelope.source_block_recovery = Some(receipt.into_wire()),
+                Err(error) => envelope.diagnostics.push(diag("diagnostic:source-recovery:publication", "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED", "blocking", format!("{}; actual_finalization_work={:?}", error.0, error.1), vec![])),
+            }
+        }
     }
+    envelope
 }
 
 fn require_finite_mechanics(values: impl IntoIterator<Item = f64>) -> Result<(), FrameKernelError> {
@@ -1493,6 +1598,8 @@ fn solve_load_case(
     load_case: &PreviewLoadCase,
     modulus_basis_record: Option<&str>,
     solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<LoadCaseSolve, FrameKernelError> {
     let loads = build_load_case_primitive_loads(model, load_case, diagnostics);
@@ -1508,6 +1615,8 @@ fn solve_load_case(
     }
     if has_blocking(diagnostics) {
         return Ok(LoadCaseSolve {
+            source_case: None,
+            source_selected: false,
             load_case_id: load_case.id.clone(),
             results: Vec::new(),
             max_displacement: None,
@@ -1602,10 +1711,52 @@ fn solve_load_case(
         load_case,
         &mut preliminary_diagnostics,
     );
+    let ordinary_attempt = match &attempted_linear {
+        Ok(solve) => source_receipt::OrdinaryAttempt::passed(solver_mode, &solve.structural_report, integrity_diagnostic_id(&load_case.id)),
+        Err(error) => source_receipt::OrdinaryAttempt::rejected(solver_mode, error, integrity_diagnostic_id(&load_case.id)),
+    };
+    let prescribed: Vec<_> = restrained_dofs.iter().map(|&dof| (dof, 0.0)).collect();
+    let recovery_input = || source_recovery::Input {
+        model, built, stiffness, force: &force, free: &reduced.free_dofs,
+        prescribed: &prescribed, spring_entries, load_case, load_application: &load_application,
+        thermal_loads: &thermal_loads, pressure_thrust_loads: &pressure_thrust_loads,
+    };
+    let needs_source_recovery = match &attempted_linear {
+        Ok(solve) => solve.structural_report.quality == SolveQuality::Sensitive,
+        Err(_) => true,
+    };
+    let mut selected_source = None;
+    let mut source_failure = None;
+    if capture.is_some() && built.nonlinear_supports.is_empty() && model.combinations.is_empty() && needs_source_recovery {
+        source_budget.attempts += 1;
+        match source_recovery::solve(recovery_input(), open_pipe_stress_frame_kernel::structural::exact_boundary::Limits { operations: source_budget.case_limit(), ..Default::default() }) {
+            Ok(recovery) => selected_source = Some(recovery),
+            Err(failure) => {
+                source_budget.debit(failure.work.charged, true);
+                diagnostics.push(diag(
+                    &format!("diagnostic:source-recovery:{}", load_case.id),
+                    "SOURCE_BLOCK_RECOVERY_UNAVAILABLE", "info",
+                    format!("The bounded retained-source method did not produce a selected response: {failure:?}"),
+                    vec![load_case.id.clone()],
+                ));
+                source_failure = Some(failure);
+            }
+        }
+    }
     let linear_solve = match attempted_linear {
         Ok(solve) => {
             diagnostics.extend(preliminary_diagnostics);
             Some(solve)
+        }
+        Err(error) if selected_source.is_some() => {
+            // Preserve the rejected ordinary attempt as evidence. It is not the
+            // selected solve and is not relabelled as a successful factorization.
+            append_integrity_failure(diagnostics, &load_case.id, &error, model);
+            if let Some(record) = diagnostics.last_mut() {
+                record.severity = "info".into();
+                record.message = format!("Rejected ordinary attempt; a separate retained-source response is selected. {}", record.message);
+            }
+            None
         }
         Err(error)
             if open_pipe_stress_nonlinear_integration::structural_adapter::permits_contact_seed_trial(&error, built.user_stiffness_elements.is_empty() && built.curved_bend_elements.is_empty()) && eligible_contact_dofs(
@@ -1624,6 +1775,8 @@ fn solve_load_case(
         Err(error) => {
             append_integrity_failure(diagnostics, &load_case.id, &error, model);
             return Ok(LoadCaseSolve {
+            source_case: None,
+            source_selected: false,
                 load_case_id: load_case.id.clone(),
                 results: Vec::new(),
                 max_displacement: None,
@@ -1642,7 +1795,9 @@ fn solve_load_case(
         for (index, dof) in reduced.free_dofs.iter().enumerate() {
             displacements[*dof] = linear_solve.solution[index];
         }
-        append_linear_solver_mode_evidence(&mut results, &load_case.id, solver_mode, linear_solve);
+        if selected_source.is_none() {
+            append_linear_solver_mode_evidence(&mut results, &load_case.id, solver_mode, linear_solve);
+        }
         if solver_mode == PreviewSolverMode::DenseScrutiny {
             // Protected DEC050/053 comparison retains the legacy unscaled LU
             // reference. This observation never selects a published solution.
@@ -1659,6 +1814,15 @@ fn solve_load_case(
                 );
             }
         }
+    }
+    if let Some(recovery) = &selected_source {
+        displacements.copy_from_slice(recovery.displacements());
+        diagnostics.push(diag(
+            &format!("diagnostic:source-recovery:{}:selected", load_case.id),
+            "SOURCE_BLOCK_RECOVERY_SELECTED", "info",
+            format!("requested_mode={}; selected_method=retained_source_blocks_exact_v1; complete source-bound displacement/member/station/device projections precede binary64 publication; ordinary-attempt evidence remains separate; {:?}", solver_mode.as_str(), recovery.summary()),
+            vec![load_case.id.clone()],
+        ));
     }
     let selected_nonlinear = append_nonlinear_support_loop_results(
         &mut results,
@@ -1683,6 +1847,8 @@ fn solve_load_case(
                     vec![load_case.id.clone()],
                 ));
                 return Ok(LoadCaseSolve {
+            source_case: None,
+            source_selected: false,
                     load_case_id: load_case.id.clone(),
                     results: Vec::new(),
                     max_displacement: None,
@@ -1752,15 +1918,18 @@ fn solve_load_case(
     let mut max_displacement = None;
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
-        let magnitude = displacement_magnitude(&displacements, node_index);
+        let magnitude_mm = selected_source.as_ref().map(|recovery| {
+            let values = &recovery.published_nodal_components()[node_index * DOF_PER_NODE..];
+            source_receipt::scaled_norm([values[0], values[1], values[2]])
+        }).unwrap_or_else(|| displacement_magnitude(&displacements, node_index) * 1000.0);
         let result_id = format!("result:disp:{}", stable_suffix(&node.id));
         if max_displacement
             .as_ref()
-            .map(|q: &LocatedQuantity| magnitude * 1000.0 > q.value)
+            .map(|q: &LocatedQuantity| magnitude_mm > q.value)
             .unwrap_or(true)
         {
             max_displacement = Some(LocatedQuantity {
-                value: magnitude * 1000.0,
+                value: magnitude_mm,
                 unit: "mm".to_string(),
                 location_ref: node.id.clone(),
                 result_ref: result_id.clone(),
@@ -1769,7 +1938,7 @@ fn solve_load_case(
         results.push(ResultItem {
             id: result_id,
             kind: "displacement_magnitude".to_string(),
-            value: magnitude * 1000.0,
+            value: magnitude_mm,
             unit: "mm".to_string(),
             entity_ref: node.id.clone(),
             basis_ref: None,
@@ -1779,17 +1948,23 @@ fn solve_load_case(
     }
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
+        let first = results.len();
         append_node_displacement_component_results(
             &mut results,
             &node.id,
             &displacements,
             node_index,
         );
+        if let Some(recovery) = &selected_source {
+            for (component, row) in results[first..].iter_mut().enumerate() {
+                row.value = recovery.published_nodal_components()[node_index * DOF_PER_NODE + component];
+            }
+        }
     }
 
-    let reactions = selected_nonlinear
+    let reactions = selected_source.as_ref().map(|recovery| recovery.reactions().to_vec()).or_else(|| selected_nonlinear
         .as_ref()
-        .map(|solve| solve.reactions.clone())
+        .map(|solve| solve.reactions.clone()))
         .unwrap_or_else(|| {
             multiply_matrix_vector(stiffness, &displacements)
                 .into_iter()
@@ -1833,8 +2008,25 @@ fn solve_load_case(
                     vector[slot] = reactions[index * DOF_PER_NODE + slot];
                 }
             }
+            if let Some(action) = selected_source.as_ref().and_then(|recovery| recovery.support_actions().iter().find(|action| action.support_id == support.id)) {
+                vector.copy_from_slice(&action.values[..3]);
+                for (component, name) in ["Fx", "Fy", "Fz", "Mx", "My", "Mz"].iter().enumerate() {
+                    results.push(ResultItem {
+                        id: format!("result:support-component-v2:{}:{name}", exact_source_identity(&[&load_case.id, &support.id])),
+                        kind: "support_reaction_component_v2".into(),
+                        value: action.values[component],
+                        unit: if component < 3 { "N" } else { "N*m" }.into(),
+                        entity_ref: support.id.clone(), basis_ref: None, source_result_refs: Vec::new(),
+                        metadata: Some(ResultMetadata {
+                            basis: "recovered_from_assembled_support_law".into(), component: (*name).into(),
+                            coordinate_system: "global".into(), location: "node".into(),
+                            sign_convention: "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node".into(),
+                        }),
+                    });
+                }
+            }
             require_finite_mechanics(vector)?;
-            let magnitude = vector[0].hypot(vector[1]).hypot(vector[2]);
+            let magnitude = if selected_source.is_some() { source_receipt::scaled_norm(vector) } else { vector[0].hypot(vector[1]).hypot(vector[2]) };
             support_force_vectors.insert(support.id.clone(), vector);
             results.push(ResultItem {
                 id: format!("result:reaction:{}", stable_suffix(&support.id)),
@@ -1886,7 +2078,10 @@ fn solve_load_case(
         } else {
             Vec::new()
         };
-        let corrected_local_forces = if let Some(bend) = macro_bend {
+        let recovered_member = selected_source.as_ref().and_then(|recovery| recovery.members().get(pipe_index));
+        let corrected_local_forces = if let Some(member) = recovered_member {
+            member.end_forces.to_vec()
+        } else if let Some(bend) = macro_bend {
             // Macro-span end forces come from the assembled arc stiffness
             // (K_macro * d minus the exact free-expansion thermal part and
             // minus the arc-consistent distributed equivalent loads),
@@ -1952,7 +2147,10 @@ fn solve_load_case(
         append_element_force_results(&mut results, &pipe.element_id, &corrected_local_forces);
         // Raw end rows remain node-on-element actions. Stress recovery and
         // station rows consume the common j-side section-cut convention.
-        let station_resultants = if let Some(bend) = macro_bend {
+        let station_resultants = if let Some(member) = recovered_member {
+            [("quarter_1", 1usize), ("midspan", 2), ("quarter_3", 3)].into_iter()
+                .map(|(location, index)| StationResultants { location, resultants: member.sections[index] }).collect::<Vec<_>>()
+        } else if let Some(bend) = macro_bend {
             match curved_bend_station_resultants(
                 bend,
                 pipe,
@@ -2008,7 +2206,11 @@ fn solve_load_case(
             }
             stations
         };
-        let endpoint_resultants = if let Some(bend) = macro_bend {
+        let endpoint_resultants = if let Some(member) = recovered_member {
+            // Checked derived stress uses the actual published primary actions.
+            // Unary sign conversion does not reconstruct a tiny twist from u.
+            [std::array::from_fn(|i| -member.end_forces[i]), std::array::from_fn(|i| member.end_forces[6 + i])]
+        } else if let Some(bend) = macro_bend {
             let evaluate = |fraction| {
                 curved_bend_section_resultants(
                     bend,
@@ -2223,7 +2425,7 @@ fn solve_load_case(
                 summary_values.push(value);
             }
         }
-        if macro_bend.is_none() {
+        if macro_bend.is_none() && recovered_member.is_none() {
             match straight_summary_extrema(
                 pipe,
                 &corrected_local_forces,
@@ -2281,7 +2483,39 @@ fn solve_load_case(
     }
 
     require_finite_mechanics(results.iter().map(|row| row.value))?;
+    let source_selected = selected_source.is_some();
+    let source_case = if let Some(capture) = capture {
+        let qualified = qualify_source_case_rows(model, &load_case.id, &results);
+        let finalized = if let Some(selected) = selected_source.take() {
+            match source_row_bindings(&selected, &qualified) {
+                Ok(bindings) => source_receipt::FinalizedSourceBlockCase::exact(capture, recovery_input(), selected, ordinary_attempt, &qualified, &bindings),
+                Err(message) => Err(source_receipt::ReceiptError(message, Some(selected.summary().work))),
+            }
+        } else if let Some(failure) = &source_failure {
+            source_receipt::FinalizedSourceBlockCase::failed(capture, &load_case.id, ordinary_attempt, failure, &format!("diagnostic:source-recovery:{}", load_case.id), &qualified)
+        } else {
+            source_receipt::FinalizedSourceBlockCase::ordinary(capture, &load_case.id, ordinary_attempt, &qualified)
+        };
+        match finalized {
+            Ok(case) => {
+                if source_selected { source_budget.debit(case.charged_work(), false); }
+                if source_selected && !case.is_qualified() {
+                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:derived-unqualified", load_case.id), "SOURCE_RECOVERY_DERIVED_UNQUALIFIED", "warning", "Primary source projections are retained, but an unsupported derived row withholds whole-envelope numerical use", vec![load_case.id.clone()]));
+                }
+                Some(case)
+            }
+            Err(error) => {
+                if source_selected {
+                    if let Some(work) = error.1 { source_budget.debit(work.charged, true); }
+                    diagnostics.push(diag(&format!("diagnostic:source-recovery:{}:finalization", load_case.id), "SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED", "blocking", format!("{}; actual_finalization_work={:?}", error.0, error.1), vec![load_case.id.clone()]));
+                }
+                None
+            }
+        }
+    } else { None };
     Ok(LoadCaseSolve {
+        source_case,
+        source_selected,
         load_case_id: load_case.id.clone(),
         results,
         max_displacement,
@@ -2290,6 +2524,46 @@ fn solve_load_case(
         component_pressure_thrust_load_count,
         support_force_vectors,
     })
+}
+
+fn qualify_source_case_rows(model: &PreviewModel, case_id: &str, rows: &[ResultItem]) -> Vec<ResultItem> {
+    let is_default = model.load_cases.first().is_some_and(|case| case.id == case_id);
+    let ids: HashMap<_, _> = rows.iter().map(|row| (row.id.clone(), if is_default { row.id.clone() } else { qualified_load_case_result_id(case_id, &row.id) })).collect();
+    rows.iter().cloned().map(|mut row| {
+        row.id = ids[&row.id].clone();
+        row.basis_ref = Some(ResultBasisRef { ref_type: "load_case".into(), ref_id: case_id.into() });
+        for reference in &mut row.source_result_refs {
+            if let Some(qualified) = ids.get(reference) { *reference = qualified.clone(); }
+        }
+        row
+    }).collect()
+}
+
+fn source_row_bindings(
+    selected: &source_recovery::SelectedSourceRecovery,
+    rows: &[ResultItem],
+) -> Result<Vec<source_receipt::FunctionalRowBinding>, String> {
+    use open_pipe_stress_frame_kernel::structural::exact_boundary::functionals::{FunctionalQuantity, MemberEnd};
+    let force_kinds = ["element_local_axial_force", "element_local_shear_force_y", "element_local_shear_force_z", "element_local_torsional_moment", "element_local_bending_moment_y", "element_local_bending_moment_z"];
+    let node_kinds = ["global_nodal_displacement_x", "global_nodal_displacement_y", "global_nodal_displacement_z", "global_nodal_rotation_x", "global_nodal_rotation_y", "global_nodal_rotation_z"];
+    let mut bindings = Vec::new();
+    for (index, descriptor) in selected.retained().descriptors().iter().enumerate() {
+        let (entity, kind, location, component) = match &descriptor.key.quantity {
+            FunctionalQuantity::NodeDisplacement { node, dof } => (node.as_str(), node_kinds[dof % 6], "node", None),
+            FunctionalQuantity::MemberEnd { member, end, row } => (member.as_str(), force_kinds[*row as usize], if *end == MemberEnd::I { "end_i" } else { "end_j" }, None),
+            FunctionalQuantity::MemberSection { member, station_bits, component } => {
+                let station = f64::from_bits(*station_bits);
+                let location = if station == 0.25 { "quarter_1" } else if station == 0.5 { "midspan" } else if station == 0.75 { "quarter_3" } else { continue };
+                (member.as_str(), force_kinds[*component as usize], location, None)
+            }
+            FunctionalQuantity::SupportAction { support, component, .. } => (support.as_str(), "support_reaction_component_v2", "node", Some(["Fx", "Fy", "Fz", "Mx", "My", "Mz"][*component as usize])),
+            _ => continue,
+        };
+        let matched: Vec<_> = rows.iter().filter(|row| row.entity_ref == entity && row.kind == kind && row.metadata.as_ref().is_some_and(|metadata| metadata.location == location && component.map_or(true, |name| metadata.component == name))).collect();
+        if matched.len() != 1 { return Err(format!("source functional row binding is not unique: {entity}/{kind}/{location}")); }
+        bindings.push(source_receipt::FunctionalRowBinding { functional_index: index, result_id: matched[0].id.clone() });
+    }
+    Ok(bindings)
 }
 
 #[derive(Debug, Default)]
@@ -9716,6 +9990,7 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
         schema_version: MECHANICS_SCHEMA_VERSION.to_string(),
         producer: mechanics_producer(),
         numerical_quality: assessed_numerical_quality(&model, &diagnostics),
+        source_block_recovery: None,
         formulation_basis: preview_formulation_basis(),
         document_kind: "openpipestress.product_preview.mechanics_result".to_string(),
         run_id: "run:preview-linear-static-blocked".to_string(),

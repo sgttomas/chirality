@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--workspace",
+    "apps/desktop",
+    "--",
+    "src/features/results/sourceBlockRecovery.test.ts",
+    "--maxWorkers=1"
+  ],
+  "started": "2026-09-25T05:36:35.582707+00:00",
+  "purpose": "raw fixture text preserves native signed zero; unchanged producer fixtures and criterion",
+  "exit_code": 0
+}

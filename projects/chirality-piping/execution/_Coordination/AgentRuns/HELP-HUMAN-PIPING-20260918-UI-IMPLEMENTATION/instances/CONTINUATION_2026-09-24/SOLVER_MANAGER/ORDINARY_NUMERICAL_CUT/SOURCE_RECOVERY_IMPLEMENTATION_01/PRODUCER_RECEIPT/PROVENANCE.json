@@ -1,0 +1,25 @@
+{
+  "time_utc": "2026-09-25T04:08:56.538038+00:00",
+  "role": "TASK",
+  "executor": "/root/numerical_resume/n05_admission",
+  "parent": "/root/numerical_resume",
+  "mechanism": "delegated-harness-native",
+  "descendants": [],
+  "checkout": "/private/tmp/piping-source-recovery-20260924",
+  "code_write_scope": "projects/chirality-piping/core/product_physics/src/source_receipt.rs and source_receipt/",
+  "evidence_write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT",
+  "source_selection": "ROOT-selected concrete carrier/design via parent brief; no independent acceptance claimed",
+  "selected_skill": null,
+  "selected_workflow": null,
+  "runtime_limits": "No Git/Cargo/npm/native/browser executed by this child. Parent owns build/test lane and facade/adapter/core integration. Host permits broader tmp writes; brief enforces disjoint file scope.",
+  "checks_to_date": [
+    "rustfmt parse/write passed",
+    "initial rustfmt --check exposed formatting-only SupportAction edits; formatted afterward"
+  ],
+  "checks_pending": [
+    "parent-coordinated Rust typecheck and five focused tests",
+    "full connected runtime/consumer evidence",
+    "fresh coherent independent review"
+  ],
+  "scope_departure": "One transient helper fragment was inadvertently written at /private/tmp/source_receipt_failure_fragment.txt during source-file rewrite. It was immediately moved to the authorized evidence directory and removed after use. No primary, corrections, originalNUM, or other project files were changed."
+}

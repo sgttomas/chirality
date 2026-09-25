@@ -1,0 +1,42 @@
+[
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/BRIEF.md",
+    "sha256": "762917457580da5f9fbbee795ee8f5fc543ca173efe7310866eb16a0ba3a873d",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/AFFINE_CORE/RETURN.md",
+    "sha256": "644f9b51091129c57338a6f438c03087834ca5e759102bc79dac58f687a80a00",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCT_ADAPTER/RETURN.md",
+    "sha256": "d25f6e17d09476b189ea845a54977d5629d42c7f5612ea3693f5fd55dc7b24cf",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+    "sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+    "sha256": "bb3923fbc75ee4810ece2aba11e332f69b3e95a4f9637adee3313573ad10f85a",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter.rs",
+    "sha256": "f7600925cd44169ce6d04a03ae5c0e622a8f27aabee831377d297dce68ec51aa",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+    "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  },
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+    "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+    "usage": "read-only dependency or bounded basis; not expanded implementation review scope"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "-b",
+    "apps/desktop/tsconfig.json",
+    "--pretty",
+    "false"
+  ],
+  "cwd": "projects/chirality-piping",
+  "started": "2026-09-25T04:29:35.924722+00:00",
+  "source_before": {
+    "projects/chirality-piping/apps/desktop/src/types.ts": "c48a1256263c5d58c98af57cf0d309ea51226ea1659b59a99d1bb0c6b9eb2820",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts": "64739ee9f0450339f94802caa01206ef4862f0eec64bbb6777806dcdc7ac7303",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts": "49f94d8f85b5c2804024b98c648add6e111744fd851155cb246d2fd02e14e2da",
+    "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts": "4b90c7f0e36b2d710a19cd33736db5af87d72a8db0d232c498cbfafb7b5298bf",
+    "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts": "8241d1863cc284a1de47ab514f6f6c6f2051b3b7c139ac7c752b59772b55522e",
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts": "2fac5faff9f807c4292bcde6e46d1c09c6e4a2f07947518ad572a046e9586ef1",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts": "f3dae33969e7ce8aa99eb9b82b1645333fa31b48ec535cc423412a2eee29d2d2",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts": "5f34cf3127307bedcaa725ffc1ae55329c3f0a121bd5775f95e406b1d11b6a7c",
+    "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts": "46b1b4bae3b5f8a7bd821517c06cce70ed662cd58c7572b03280b54986cd7f73",
+    "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts": "73983f4ee8244829bbd9d09fa798eefc15bd4c998aac004fc9ad4d70248dd248",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts": "a78448d08d570bfc2b45280e0b93480314461fcbdaf30619baf8c0b0c8971b58",
+    "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts": "c6071b20238ab14170c4077cf40bf4f483fef752f98cc00d2832f4fe9a320b3a",
+    "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx": "4b000adf13886cc008e6825ab6ec5639c768095583603193e5e1388a5bd90d7d",
+    "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx": "ba2aa4c0ca656bae6411ac517a371f5a74a54ace97e4e4cc2859b3b8b61d852c",
+    "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx": "fd5e3a8eda947e3516f8d495c54dee8c030f56cc7eb8cdb4490dfb5107786c65"
+  },
+  "exit_code": 1,
+  "finished": "2026-09-25T04:29:41.322768+00:00",
+  "source_unchanged": true
+}

@@ -1,21 +1,24 @@
+import { SOURCE_BLOCKS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_SHA256, sourceBlockReceiptShape, sourceBlockStanding } from "./sourceBlockRecovery";
 import type { MechanicsResult, PreviewModel } from "../../types";
 export const PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1";
 export const PRECISION_CONTRACT_SHA256 = "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e";
-export type SourceContract = "legacy" | "precision" | "unsupported";
+export type SourceContract = "legacy" | "precision" | "source_blocks" | "unsupported";
 function keys(value: unknown, expected: string[]): boolean {
   return !!value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === expected.length && expected.every(k => Object.hasOwn(value, k));
 }
 const statuses = ["not_assessed", "checks_passed", "sensitive", "unresolved", "failed"];
 /** Dispatch is explicit. A header never authenticates its claimed producer. */
 export function sourceContract(source: MechanicsResult): SourceContract {
-  if (source.schema_version === "0.1.0") return ["producer", "numerical_quality", "formulation_basis"].some(key => Object.hasOwn(source, key)) ? "unsupported" : "legacy";
+  if (source.schema_version === "0.1.0") return ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(source, key)) ? "unsupported" : "legacy";
   const p = source.producer, q = source.numerical_quality, f = source.formulation_basis;
+  const blocks = p?.semantic_contract_id === SOURCE_BLOCKS_CONTRACT_ID;
+  if (blocks ? !sourceBlockReceiptShape(source.source_block_recovery) : Object.hasOwn(source, "source_block_recovery")) return "unsupported";
   return source.schema_version === "0.2.0"
     && keys(p, ["component_name", "component_version", "semantic_contract_id"])
     && keys(q, ["value_representation", "publication_quantization", "integrity_policy", "status", "cases"])
     && keys(f, ["profile_id", "limitations"])
     && p?.component_name === "open_pipe_stress_product_physics"
-    && p.component_version === "0.2.0" && p.semantic_contract_id === PRECISION_CONTRACT_ID
+    && p.component_version === "0.2.0" && (p.semantic_contract_id === PRECISION_CONTRACT_ID || blocks)
     && q?.value_representation === "finite_binary64" && q.publication_quantization === "none"
     && q.integrity_policy === "M03-INTEGRITY-v1" && Array.isArray(q.cases)
     && statuses.includes(q.status)
@@ -27,13 +30,14 @@ export function sourceContract(source: MechanicsResult): SourceContract {
       && Array.isArray(c.evidence_refs) && c.evidence_refs.every(r => typeof r === "string" && !!r))
     && f?.profile_id === "product_preview_mechanics_v1" && Array.isArray(f.limitations)
     && f.limitations.length > 0 && f.limitations.every(x => typeof x === "string" && x.length > 0)
-    ? "precision" : "unsupported";
+    ? (blocks ? "source_blocks" : "precision") : "unsupported";
 }
 export function numericalResultStanding(source: MechanicsResult, model?: Pick<PreviewModel, "load_cases"> | null) {
   const contract = sourceContract(source);
   const findings: string[] = [];
   if (contract === "legacy") findings.push("LEGACY_ABSOLUTE_ROUNDING_INTEGRITY_NOT_ASSESSED");
   else if (contract === "unsupported") findings.push("SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED");
+  else if (contract === "source_blocks") findings.push(...sourceBlockStanding(source, model).findings);
   else {
     const q = source.numerical_quality!;
     // Sensitive backward-error evidence does not establish source-answer accuracy.
@@ -58,4 +62,15 @@ export function numericalResultStanding(source: MechanicsResult, model?: Pick<Pr
   }
   if (source.status.mechanics !== "MECHANICS_SOLVED") findings.push("MECHANICS_NOT_SOLVED");
   return { contract, status: findings.length ? "needs_recompute" as const : "integrity_checked" as const, eligible: findings.length === 0, findings };
+}
+
+/** Contract dispatch only; this never substitutes for numerical standing. */
+export function currentSemanticContract(source: MechanicsResult) {
+  const route = sourceContract(source);
+  if (route === "source_blocks") return { id: SOURCE_BLOCKS_CONTRACT_ID, sha256: SOURCE_BLOCKS_CONTRACT_SHA256 };
+  if (route === "precision") return { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 };
+  throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+}
+export function hasCurrentSourceContract(source: MechanicsResult): boolean {
+  return ["precision", "source_blocks"].includes(sourceContract(source));
 }

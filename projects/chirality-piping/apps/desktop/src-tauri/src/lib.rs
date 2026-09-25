@@ -9,9 +9,7 @@ use model_document_migration::{
 };
 use open_pipe_stress_library_import_document as library_import_document;
 use open_pipe_stress_operation_applier::{apply_operation, validate_operation};
-use open_pipe_stress_product_physics::{
-    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, PreviewSolverMode,
-};
+use open_pipe_stress_product_physics::PreviewSolverMode;
 use open_pipe_stress_rule_check_runner as rule_check_runner;
 use open_pipe_stress_rule_pack_document as rule_pack_document;
 use open_pipe_stress_units::{catalog_definitions, UnitDefinition};
@@ -1528,16 +1526,9 @@ fn solve_preview_mechanics_with_mode(
     model_payload: Value,
     solver_mode: PreviewSolverMode,
 ) -> Result<Value, String> {
-    let model: open_pipe_stress_product_physics::PreviewModel =
-        serde_json::from_value(model_payload).map_err(|error| error.to_string())?;
-    serde_json::to_value(run_linear_static_preview_with_mode(
-        LinearStaticPreviewRequest {
-            model,
-            materials: vec![],
-        },
-        solver_mode,
-    ))
-    .map_err(|error| error.to_string())
+    let request = json!({"model":model_payload,"materials":[]});
+    serde_json::to_value(open_pipe_stress_product_physics::run_linear_static_preview_value_with_mode(request, solver_mode)?)
+        .map_err(|error| error.to_string())
 }
 
 fn resolve_solve_model_payload(model: Option<Value>) -> Result<Value, String> {
@@ -2721,15 +2712,19 @@ fn run_rule_checks(
     solver_result_bindings: Option<Value>,
     supplied_value_bindings: Option<Value>,
     project_id: Option<String>,
+    source_block_invocation: Option<Value>,
 ) -> Result<Value, String> {
     let supplied_model = model.as_ref().ok_or(
         "RULE_NUMERICAL_CASE_COVERAGE_UNAVAILABLE: supply the current model with explicit load cases and recompute mechanics",
     )?;
-    let envelope = match solved_envelope {
-        Some(value) => value,
-        None => run_preview_mechanics(Some(supplied_model.clone()))?,
+    let (envelope, invocation) = match solved_envelope {
+        Some(value) => (value, source_block_invocation),
+        None => (
+            run_preview_mechanics(Some(supplied_model.clone()))?,
+            Some(json!({"request":{"model":supplied_model,"materials":[]},"solver_mode":PreviewSolverMode::default().as_str()})),
+        ),
     };
-    qualify_rule_mechanics(supplied_model, &envelope)?;
+    qualify_rule_mechanics_with_context(supplied_model, &envelope, invocation.as_ref())?;
     let solved_envelope = Some(envelope);
     // Resolve `private_library_value` inputs from the local private-library
     // store (C3 rule-pack <-> library reference wiring). Library values are read
@@ -2762,6 +2757,12 @@ fn run_rule_checks(
 /// Numerical interpretation only: input/build/authentic-source authorization remains
 /// with the current-source caller. Never derive coverage from result rows.
 fn qualify_rule_mechanics(model: &Value, envelope: &Value) -> Result<(), String> {
+    qualify_rule_mechanics_with_context(model, envelope, None)
+}
+fn qualify_rule_mechanics_with_context(model: &Value, envelope: &Value, invocation: Option<&Value>) -> Result<(), String> {
+    if let Some(context) = invocation {
+        if context.pointer("/request/model") != Some(model) { return Err("RULE_NUMERICAL_INVOCATION_MODEL_MISMATCH".into()); }
+    }
     if envelope.pointer("/status/mechanics").and_then(Value::as_str) != Some("MECHANICS_SOLVED") {
         return Err("RULE_MECHANICS_NOT_SOLVED: solve the current model before binding solver results".into());
     }
@@ -2783,10 +2784,10 @@ fn qualify_rule_mechanics(model: &Value, envelope: &Value) -> Result<(), String>
         }
         refs.push(json!({"ref_type":"load_case", "ref_id":id}));
     }
-    match open_pipe_stress_result_export::semantic_contract::numerical_use_standing(envelope, &refs) {
+    match open_pipe_stress_result_export::semantic_contract::numerical_use_standing_with_context(envelope, &refs, invocation) {
         "numerically_eligible" => Ok(()),
         "unsupported" => Err("RULE_NUMERICAL_SOURCE_UNSUPPORTED: recompute with a supported producer and semantic contract".into()),
-        _ => Err("RULE_NUMERICAL_NEEDS_RECOMPUTE: complete passing or sensitive numerical evidence is required for every current load case".into()),
+        _ => Err("RULE_NUMERICAL_NEEDS_RECOMPUTE: complete passing or source-qualified numerical evidence is required for every current load case".into()),
     }
 }
 
@@ -4984,6 +4985,29 @@ mod tests {
         let output = precision_transport(&historical_model, &historical);
         assert_eq!(output, historical);
         assert!(qualify_rule_mechanics(&historical_model, &output).unwrap_err().contains("NEEDS_RECOMPUTE"));
+    }
+
+    #[test]
+    fn source_blocks_native_actual_invocation_store_and_rule_context() {
+        let request: Value = serde_json::from_str(include_str!("../../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json")).unwrap();
+        let model = &request["model"];
+        for mode in [PreviewSolverMode::DenseScrutiny, PreviewSolverMode::SparseInteractive] {
+            let solved = solve_preview_mechanics_with_mode(model.clone(), mode).unwrap();
+            assert_eq!(solved["producer"]["semantic_contract_id"], "openpipestress.result_semantics/0.3.0/source-blocks-1");
+            assert_eq!(solved["source_block_recovery"]["body"]["status"], "qualified");
+            let invocation = json!({"request":request,"solver_mode":mode.as_str()});
+            qualify_rule_mechanics_with_context(model, &solved, Some(&invocation)).unwrap();
+            let retained = precision_transport(model, &solved);
+            assert_eq!(retained, solved);
+            // Persistence retains inspectable source, not an invocation token.
+            assert!(qualify_rule_mechanics(model, &retained).is_err());
+            qualify_rule_mechanics_with_context(model, &retained, Some(&invocation)).unwrap();
+            let mut changed = invocation.clone();
+            changed["solver_mode"] = json!(if mode == PreviewSolverMode::DenseScrutiny {"sparse_interactive"} else {"dense_scrutiny"});
+            assert!(qualify_rule_mechanics_with_context(model, &retained, Some(&changed)).is_err());
+            changed = invocation.clone(); changed["request"]["model"]["project"]["description"] = json!("changed after actual native solve");
+            assert!(qualify_rule_mechanics_with_context(model, &retained, Some(&changed)).is_err());
+        }
     }
 
     #[test]

@@ -250,7 +250,8 @@ pub fn build_result_export_document_with_evidence(request: &RunnerRequest, runne
             case["id"].as_str().filter(|id| !id.is_empty())
                 .map(|id| reference("load_case", id)).ok_or("REQUESTED_NUMERICAL_BASIS_UNAVAILABLE")
         }).collect::<Result<_, _>>()?;
-        if export::semantic_contract::numerical_use_standing(&source, &requested) != "numerically_eligible" {
+        let invocation = serde_json::json!({"request":evidence.solve_payload,"solver_mode":evidence.solver_mode.as_str()});
+        if export::semantic_contract::numerical_use_standing_with_context(&source, &requested, Some(&invocation)) != "numerically_eligible" {
             return Err("CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE".into());
         }
         let payload_ref=reference("attested_headless_producer",envelope_id);
@@ -491,17 +492,87 @@ mod tests {
    }
  }
  #[test]
- fn sensitive_actual_source_cannot_mint_qualified_canonical_export() {
+ fn ordinary_sensitive_source_cannot_mint_qualified_canonical_export() {
    let model: Value = serde_json::from_str(include_str!("../../../../fixtures/product_preview/numerical_sensitive_torsion_model.json")).unwrap();
    for mode in [open_pipe_stress_product_physics::PreviewSolverMode::DenseScrutiny, open_pipe_stress_product_physics::PreviewSolverMode::SparseInteractive] {
-     let output = crate::run_preview_model_value_with_mode(request(), serde_json::json!({"model": model, "materials": []}), mode).unwrap();
+     let typed: LinearStaticPreviewRequest = serde_json::from_value(serde_json::json!({"model": model, "materials": []})).unwrap();
+     let ordinary = open_pipe_stress_product_physics::run_linear_static_preview_with_mode(typed, mode);
+     let raw_value = serde_json::to_value(&ordinary).unwrap();
+     assert_eq!(ordinary.numerical_quality.status, open_pipe_stress_product_physics::NumericalQualityStatus::Sensitive);
+     assert!(ordinary.source_block_recovery.is_none());
+     assert_ne!(export::semantic_contract::numerical_use_standing(&raw_value, &[]), "numerically_eligible");
+     let typed: LinearStaticPreviewRequest = serde_json::from_value(serde_json::json!({"model": model, "materials": []})).unwrap();
+     let output = run_preview_in_memory(request(), typed);
      let raw = output.mechanics_envelope.as_ref().unwrap();
      assert_eq!(raw.status.mechanics, "MECHANICS_SOLVED");
      assert_eq!(raw.numerical_quality.status, open_pipe_stress_product_physics::NumericalQualityStatus::Sensitive);
      assert!(!raw.results.is_empty());
      assert!(output.result_envelope_document.is_none());
      assert!(output.qualified_preview_evidence.is_none());
-     assert!(output.canonical_export_unavailability.as_deref().unwrap().contains("CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE"));
+     assert_eq!(output.canonical_export_unavailability.as_deref(), Some("EXACT_SOLVED_MODEL_EVIDENCE_UNAVAILABLE"));
+   }
+ }
+ #[test]
+ fn actual_source_blocks_keep_ordinary_failure_and_qualify_separate_method() {
+   for stem in ["n05", "n06", "multicase"] {
+     for mode in [open_pipe_stress_product_physics::PreviewSolverMode::DenseScrutiny, open_pipe_stress_product_physics::PreviewSolverMode::SparseInteractive] {
+       let name = format!("{stem}-{}", mode.as_str());
+       let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+         .join("../../../fixtures/product_preview/source_blocks/ui").join(format!("{name}.request.json"));
+       let input: Value = serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap();
+       let output = crate::run_preview_model_value_with_mode(request(), input.clone(), mode).unwrap();
+       let raw = output.mechanics_envelope.as_ref().unwrap();
+       assert_eq!(raw.producer.semantic_contract_id, open_pipe_stress_product_physics::SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID);
+       assert_ne!(raw.numerical_quality.status, open_pipe_stress_product_physics::NumericalQualityStatus::ChecksPassed);
+       assert_eq!(raw.source_block_recovery.as_ref().unwrap()["body"]["status"], "qualified");
+       let doc = output.result_envelope_document.as_ref().unwrap_or_else(|| panic!("{name}: {:?}", output.canonical_export_unavailability));
+       let proof = output.qualified_preview_evidence.as_ref().unwrap();
+       assert_eq!(proof.solve_payload, input);
+       assert_eq!(proof.solver_mode, mode);
+       let raw_value = serde_json::to_value(raw).unwrap();
+       export::derivative::validate_document(doc, &raw_value).unwrap();
+       assert_eq!(doc, &build_result_export_document_with_evidence(&request(), &output.runner_result, raw, proof).unwrap());
+       let mut wrong_mode = proof.clone();
+       wrong_mode.solver_mode = if mode == open_pipe_stress_product_physics::PreviewSolverMode::DenseScrutiny { open_pipe_stress_product_physics::PreviewSolverMode::SparseInteractive } else { open_pipe_stress_product_physics::PreviewSolverMode::DenseScrutiny };
+       assert!(build_result_export_document_with_evidence(&request(), &output.runner_result, raw, &wrong_mode).is_err());
+       let mut changed = proof.clone(); changed.solve_payload["model"]["project"]["description"] = "changed after solve".into();
+       assert!(build_result_export_document_with_evidence(&request(), &output.runner_result, raw, &changed).is_err());
+       assert!(build_result_export_document(&request(), &output.runner_result, raw).is_err());
+     }
+   }
+ }
+ #[test]
+ fn source_block_and_p1_rule_revisions_preserve_actual_producer_carrier() {
+   use open_pipe_stress_product_physics::PreviewSolverMode;
+   use export::derivative::digest;
+   let exact: Value = serde_json::from_str(include_str!("../../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json")).unwrap();
+   let mut ordinary = exact.clone();
+   // This control needs a well-conditioned ordinary input, authored before
+   // solving; it does not alter the preserved N05 analytical fixture.
+   ordinary["model"]["supports"][1]["stiffness"]["value"]["value"] = serde_json::json!(1e6);
+   ordinary["model"]["project"]["description"] = "Invented well-conditioned rule/source immutability control".into();
+   for (input, contract) in [(exact, "openpipestress.result_semantics/0.3.0/source-blocks-1"), (ordinary, "openpipestress.result_semantics/0.3.0/precision-1")] {
+     for mode in [PreviewSolverMode::DenseScrutiny, PreviewSolverMode::SparseInteractive] {
+       let baseline = crate::run_preview_model_value_mode(request(), input.clone(), None, mode).unwrap();
+       let raw = serde_json::to_value(baseline.mechanics_envelope.as_ref().unwrap()).unwrap();
+       assert_eq!(raw["producer"]["semantic_contract_id"], contract);
+       let source_digest = digest(&raw).unwrap();
+       let checksum = baseline.runner_result.checksums.iter().find(|c| c.payload_ref.ref_type == "result_envelope").unwrap();
+       for (aggregate, status) in [("RULE_INPUTS_INCOMPLETE", crate::AnalysisStatus::RuleInputsIncomplete), ("USER_RULE_CHECKED", crate::AnalysisStatus::UserRuleChecked), ("USER_RULE_FAILED", crate::AnalysisStatus::UserRuleFailed)] {
+         let revised = crate::run_preview_model_value_mode(request(), input.clone(), Some(aggregate), mode).unwrap();
+         let revised_raw = serde_json::to_value(revised.mechanics_envelope.as_ref().unwrap()).unwrap();
+         assert_eq!(revised_raw, raw);
+         assert_eq!(digest(&revised_raw).unwrap(), source_digest);
+         assert_eq!(revised.runner_result.checksums.iter().find(|c| c.payload_ref.ref_type == "result_envelope").unwrap(), checksum);
+         assert!(revised.runner_result.analysis_status.contains(&status));
+         let doc = revised.result_envelope_document.as_ref().unwrap_or_else(|| panic!("{contract}: {:?}", revised.canonical_export_unavailability));
+         export::derivative::validate_document(doc, &raw).unwrap();
+         assert!(doc["result_envelope"]["analysis_status"].as_array().unwrap().contains(&serde_json::json!(aggregate)));
+         let proof = revised.qualified_preview_evidence.as_ref().unwrap();
+         assert_eq!(proof.mechanics_digest, source_digest);
+         if aggregate != "RULE_INPUTS_INCOMPLETE" { assert_ne!(proof.runner_digest, baseline.qualified_preview_evidence.as_ref().unwrap().runner_digest); }
+       }
+     }
    }
  }
  #[test]fn typed_legacy_caller_has_explicit_canonical_unavailability_without_raw_changes(){

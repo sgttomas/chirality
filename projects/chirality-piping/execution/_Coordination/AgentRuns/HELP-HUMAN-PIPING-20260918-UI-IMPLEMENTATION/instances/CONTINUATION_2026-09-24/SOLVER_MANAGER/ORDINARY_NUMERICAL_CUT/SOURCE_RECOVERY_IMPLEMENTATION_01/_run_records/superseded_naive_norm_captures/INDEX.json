@@ -1,0 +1,105 @@
+{
+  "reason": "Actual pre-scaled-recipe captures retained; prior observations remain historical. No source tree copied. Request bytes unchanged and hashes retained.",
+  "files": [
+    {
+      "path": "multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b"
+    },
+    {
+      "path": "n06-sparse_interactive.raw.json",
+      "sha256": "0c5a3917ceaf7ff4539da0f5f448f26d14ada0cb7113b578281d3b12589c52ae"
+    },
+    {
+      "path": "multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b"
+    },
+    {
+      "path": "n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779"
+    },
+    {
+      "path": "n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1"
+    },
+    {
+      "path": "n05-dense_scrutiny.raw.json",
+      "sha256": "00f41c9a71ade7b79a8b2670c68f02914abdff3cf432cebdd3f5dd188c28d353"
+    },
+    {
+      "path": "n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1"
+    },
+    {
+      "path": "n05-sparse_interactive.raw.json",
+      "sha256": "013534c06e952c8b4fac3f2230ceb8711f57f585c57d466bf8c11ce07a90aa1d"
+    },
+    {
+      "path": "generation.json",
+      "sha256": "f2c499fcbc48f7d4263b918f39bb73812acc29e8e6f17c74131a55d0a1d2ac72"
+    },
+    {
+      "path": "n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779"
+    },
+    {
+      "path": "n06-dense_scrutiny.raw.json",
+      "sha256": "719258cb531156ef2b2a7179024f7f0f0a30de9f80458c90990f0135f462a999"
+    },
+    {
+      "path": "multicase-dense_scrutiny.raw.json",
+      "sha256": "6ff4c1b451b0463de81fbb618ab861b286ced7b1ccabdfc3d31cef8ddf208dc9"
+    },
+    {
+      "path": "multicase-sparse_interactive.raw.json",
+      "sha256": "4bde092017e090445b83a55e1f9810bacfbdbf7a9944417ffa18357bcff5aaab"
+    },
+    {
+      "path": "ui/multicase-dense_scrutiny.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6"
+    },
+    {
+      "path": "ui/n06-sparse_interactive.raw.json",
+      "sha256": "e281d513716e87a787788f1755810c49b02e9b3e5c2570aced8419d8475b7f4e"
+    },
+    {
+      "path": "ui/multicase-sparse_interactive.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6"
+    },
+    {
+      "path": "ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c"
+    },
+    {
+      "path": "ui/n06-dense_scrutiny.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd"
+    },
+    {
+      "path": "ui/n05-dense_scrutiny.raw.json",
+      "sha256": "51bcbe58abc602a84c3e136130686687e8b3248555ff09b0fb53fb9fd39cebe2"
+    },
+    {
+      "path": "ui/n06-sparse_interactive.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd"
+    },
+    {
+      "path": "ui/n05-sparse_interactive.raw.json",
+      "sha256": "5bfe5c30406f21f961253e803d39cbc297c7ef171a6fc9576581b883e12b1420"
+    },
+    {
+      "path": "ui/n05-sparse_interactive.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c"
+    },
+    {
+      "path": "ui/n06-dense_scrutiny.raw.json",
+      "sha256": "ecc04722e2be9394fdd86017cf7f1fdb1495961d5a0cac74e4e8a81759737b05"
+    },
+    {
+      "path": "ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "a268192a01fa68bf05956d672ff88ddf784588466a0f06e47784d5db756b9359"
+    },
+    {
+      "path": "ui/multicase-sparse_interactive.raw.json",
+      "sha256": "57df68e90eaffa8c3febb0670fd30def87606e9f119299f2c93e89e1213e30b0"
+    }
+  ]
+}

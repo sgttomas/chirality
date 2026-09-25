@@ -1,0 +1,35 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling typenum v1.20.1
+   Compiling serde_core v1.0.229
+   Compiling libc v0.2.189
+   Compiling zmij v1.0.23
+   Compiling syn v3.0.6
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling serde_derive v1.0.229
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling digest v0.10.7
+   Compiling cpufeatures v0.2.17
+   Compiling ryu v1.0.23
+   Compiling cfg-if v1.0.5
+   Compiling open_pipe_stress_canonical_json v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/serialization/canonical_json)
+   Compiling sha2 v0.10.9
+   Compiling open_pipe_stress_result_export v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.16s
+     Running tests/source_blocks.rs (/private/tmp/piping-source-recovery-export-target/debug/deps/source_blocks-4e5a552659e7fbbe)
+
+running 4 tests
+test additive_signatures_leave_precision_table_unchanged ... ok
+test receipt_presence_never_downgrades_to_precision_or_legacy ... ok
+test independent_actual_context_is_required_and_bound ... ok
+test rehashed_projection_work_and_attribution_mutations_reject ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+

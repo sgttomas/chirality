@@ -1,0 +1,13 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  23:36:35
+   Duration  872ms (transform 161ms, setup 67ms, import 192ms, tests 367ms, environment 173ms)
+

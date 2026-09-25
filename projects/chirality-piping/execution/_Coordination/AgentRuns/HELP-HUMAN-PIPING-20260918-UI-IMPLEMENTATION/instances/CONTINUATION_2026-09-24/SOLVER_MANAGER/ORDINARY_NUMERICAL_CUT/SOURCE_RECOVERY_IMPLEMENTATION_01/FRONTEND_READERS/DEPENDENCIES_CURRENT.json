@@ -1,0 +1,41 @@
+{
+  "scope": "current dependency snapshot after TYPECHECK_03/FOCUSED_02; not an invented before-run snapshot",
+  "files": [
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "6e1d5484ccd65ee6fb98c4ed0bd2cdc8fa55f46364adf6d02cac69e39cef6e0d"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/hashService.ts",
+      "sha256": "0f1d342d60501b212c3a307b96ba1dfa625fcc1845cc33b47e54dd58341cf7e1"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/wasmEngine/loadWasmEngine.ts",
+      "sha256": "fbd8f9b474484086395b6b7fd09de0ef3bc265736f58c2b1104781785a6e5073"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts",
+      "sha256": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js",
+      "sha256": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm",
+      "sha256": "a2e9bcf16011ff6ab3421d48d0b534303a55d397f7e061a136566e683bf49fe4"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts",
+      "sha256": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16"
+    }
+  ]
+}

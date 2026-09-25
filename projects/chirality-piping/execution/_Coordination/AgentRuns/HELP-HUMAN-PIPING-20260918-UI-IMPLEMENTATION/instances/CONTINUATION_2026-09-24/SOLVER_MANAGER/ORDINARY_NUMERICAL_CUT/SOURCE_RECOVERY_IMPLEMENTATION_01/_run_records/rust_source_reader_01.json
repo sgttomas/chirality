@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-j2",
+    "--manifest-path",
+    "core/reporting/result_export/Cargo.toml",
+    "--test",
+    "source_blocks"
+  ],
+  "exit_code": 0,
+  "started_unix": 1790312264.280368,
+  "ended_unix": 1790312272.00844,
+  "log_sha256": "7d620d0e2f0d265173f1acb4a389695b31706a2bd6f89aa76bc4d275180dad16"
+}

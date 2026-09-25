@@ -1,5 +1,5 @@
 import { semanticContractForSource } from "../features/results/resultSemantics";
-import { sourceContract, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../features/results/numericalResultQuality";
+import { sourceContract, hasCurrentSourceContract, currentSemanticContract } from "../features/results/numericalResultQuality";
 import type { AnalysisRunEnvelope, CanonicalResultDimension, MechanicsResult, ObjectRef, PreviewModel } from "../types";
 import { canonicalSha256HexCheckedV1, checkedJsonText } from "./hashService";
 
@@ -65,20 +65,20 @@ export function analysisRecordProjection(record: AnalysisRunEnvelope): AnalysisR
 
 /** Explicit historical builder; never a fallback for precision admission. */
 export async function buildAnalysisRunV02(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs: ObjectRef[] = []): Promise<AnalysisRunEnvelope> {
-  if (!["0.1.0", "0.2.0"].includes(result.schema_version) || ["producer", "numerical_quality", "formulation_basis"].some(key => Object.hasOwn(result, key))) throw new Error("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
+  if (!["0.1.0", "0.2.0"].includes(result.schema_version) || ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(result, key))) throw new Error("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
   return buildAnalysisRecord(result, inputManifest, "legacy", ruleCheckStatus, loadBasisRefs);
 }
 export async function buildAnalysisRunV03(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
-  if (sourceContract(result) !== "precision") throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
-  return buildAnalysisRecord(result, inputManifest, "precision", ruleCheckStatus, loadBasisRefs);
+  if (!hasCurrentSourceContract(result)) throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+  return buildAnalysisRecord(result, inputManifest, sourceContract(result) as "precision" | "source_blocks", ruleCheckStatus, loadBasisRefs);
 }
-async function buildAnalysisRecord(result: MechanicsResult, inputManifest: ManifestEvidence, route: "legacy" | "precision", ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
-  if (route === "precision") { validateSourceRuleStatus(result); expectedLoadBasis(result, loadBasisRefs); }
+async function buildAnalysisRecord(result: MechanicsResult, inputManifest: ManifestEvidence, route: "legacy" | "precision" | "source_blocks", ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
+  if (route !== "legacy") { validateSourceRuleStatus(result); expectedLoadBasis(result, loadBasisRefs); }
   if (inputManifest.manifest.model_basis.model_ref !== result.model_ref) throw new Error("ANALYSIS-RUN-INPUT-MANIFEST-MODEL-MISMATCH");
-  const semanticBinding = route === "precision" ? { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 } : { id: "openpipestress_result_semantics_v0_2", sha256: SEMANTIC_CONTRACT_SHA256 };
+  const semanticBinding = route !== "legacy" ? currentSemanticContract(result) : { id: "openpipestress_result_semantics_v0_2", sha256: SEMANTIC_CONTRACT_SHA256 };
   const rawResult = structuredClone(result);
   const resultRefs = await Promise.all(rawResult.results.map(async (row, sourceRowIndex) => {
-    const { semantic, findings } = analysisRowSemantics(row, route === "precision" ? result : undefined);
+    const { semantic, findings } = analysisRowSemantics(row, route !== "legacy" ? result : undefined);
     return {
       result_ref: { object_type: "Result" as const, ref: row.id }, source_row_index: sourceRowIndex,
       category: semantic?.category ?? "unknown", source_dimension: (semantic?.source_physical_semantic_dimension ?? null) as CanonicalResultDimension | null,
@@ -91,14 +91,14 @@ async function buildAnalysisRecord(result: MechanicsResult, inputManifest: Manif
       provenance,
     };
   }));
-  const effectiveRule = ruleCheckStatus ?? rawResult.status.rule_check ?? (route === "precision" ? "RULE_INPUTS_INCOMPLETE" : undefined);
-  if (route === "precision" && !RULE_STATUSES.includes(effectiveRule!)) throw new Error("ANALYSIS_RULE_STATUS_INVALID");
-  const effectiveLoadBasisRefs = route === "precision" ? expectedLoadBasis(result, loadBasisRefs) : loadBasisRefs?.length ? loadBasisRefs : Array.from(new Map(rawResult.results.flatMap((row) => row.basis_ref ? [[`${row.basis_ref.ref_type}:${row.basis_ref.ref_id}`, { object_type: row.basis_ref.ref_type === "combination" ? "Combination" : "LoadCase", ref: row.basis_ref.ref_id } as ObjectRef]] : [])).values());
+  const effectiveRule = ruleCheckStatus ?? rawResult.status.rule_check ?? (route !== "legacy" ? "RULE_INPUTS_INCOMPLETE" : undefined);
+  if (route !== "legacy" && !RULE_STATUSES.includes(effectiveRule!)) throw new Error("ANALYSIS_RULE_STATUS_INVALID");
+  const effectiveLoadBasisRefs = route !== "legacy" ? expectedLoadBasis(result, loadBasisRefs) : loadBasisRefs?.length ? loadBasisRefs : Array.from(new Map(rawResult.results.flatMap((row) => row.basis_ref ? [[`${row.basis_ref.ref_type}:${row.basis_ref.ref_id}`, { object_type: row.basis_ref.ref_type === "combination" ? "Combination" : "LoadCase", ref: row.basis_ref.ref_id } as ObjectRef]] : [])).values());
   const statuses = Array.from(new Set(["HUMAN_REVIEW_REQUIRED", rawResult.status.mechanics, effectiveRule].filter(Boolean))).sort();
   const runRef = { object_type: "AnalysisRun", ref: rawResult.run_id } as ObjectRef;
   const record: AnalysisRunEnvelope = {
-    schema_version: route === "precision" ? ANALYSIS_RUN_V03 : ANALYSIS_RUN_V02, deliverable_id: "DEL-14-02", package_id: "PKG-14", scope_item: "SOW-072", objectives: ["OBJ-016"],
-    run_contract_status: { record_contract: route === "precision" ? "strict_analysis_run_v0_3" : "strict_analysis_run_v0_2", result_binding: "received_mechanics_result", external_validation_boundary: "reference_only_not_determined_by_software" },
+    schema_version: route !== "legacy" ? ANALYSIS_RUN_V03 : ANALYSIS_RUN_V02, deliverable_id: "DEL-14-02", package_id: "PKG-14", scope_item: "SOW-072", objectives: ["OBJ-016"],
+    run_contract_status: { record_contract: route !== "legacy" ? "strict_analysis_run_v0_3" : "strict_analysis_run_v0_2", result_binding: "received_mechanics_result", external_validation_boundary: "reference_only_not_determined_by_software" },
     analysis_run: {
       run_id: rawResult.run_id, run_name: `${rawResult.run_id} analysis record`, run_kind: "mechanics_solve", created_at: null, model_state_ref: { object_type: "ModelState", ref: `state:${rawResult.model_ref}:preview` },
       solver_version: { solver_name: inputManifest.manifest.solver_basis.solver_name, solver_version: inputManifest.manifest.solver_basis.solver_version, build_ref: { object_type: "ExternalReference", ref: inputManifest.manifest.solver_basis.solver_build_ref } },
@@ -119,7 +119,7 @@ async function buildAnalysisRecord(result: MechanicsResult, inputManifest: Manif
     },
   };
   record.analysis_run.hashes.unshift({ algorithm: "sha256", canonicalization: CHECKED_PROFILE_V1, payload_ref: runRef, payload_scope: "analysis_run_record", value: await canonicalSha256HexCheckedV1(analysisRecordProjection(record)) });
-  if (route === "precision") await validateAnalysisRunV03(record, result, loadBasisRefs);
+  if (route !== "legacy") await validateAnalysisRunV03(record, result, loadBasisRefs);
   return record;
 }
 
@@ -140,7 +140,7 @@ export async function validateAnalysisRunV03(record: AnalysisRunEnvelope, source
     const order = (v: any): any => Array.isArray(v) ? v.map(order) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map(k => [k, order(v[k])])) : v;
     return JSON.stringify(order(JSON.parse(checkedJsonText(a)))) === JSON.stringify(order(JSON.parse(checkedJsonText(b))));
   };
-  if (sourceContract(source) !== "precision" || record.schema_version !== ANALYSIS_RUN_V03 || record.run_contract_status.record_contract !== "strict_analysis_run_v0_3") throw new Error("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH");
+  if (!hasCurrentSourceContract(source) || record.schema_version !== ANALYSIS_RUN_V03 || record.run_contract_status.record_contract !== "strict_analysis_run_v0_3") throw new Error("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH");
   validateSourceRuleStatus(source);
   const run = record.analysis_run;
   if (!same(run.diagnostics, source.diagnostics.map(source_annotation => ({ source_annotation })))) throw new Error("ANALYSIS_SOURCE_DIAGNOSTICS_MISMATCH");
@@ -151,7 +151,7 @@ export async function validateAnalysisRunV03(record: AnalysisRunEnvelope, source
   if (run.solver_version?.solver_name !== source.producer!.component_name || run.solver_version?.solver_version !== source.producer!.component_version) throw new Error("ANALYSIS_SOURCE_PRODUCER_MISMATCH");
   if (run.run_id !== source.run_id) throw new Error("ANALYSIS_SOURCE_RUN_MISMATCH");
   if (!same(run.model_state_ref, {object_type:"ModelState",ref:`state:${source.model_ref}:preview`})) throw new Error("ANALYSIS_SOURCE_MODEL_STATE_MISMATCH");
-  const contract = {id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256};
+  const contract = currentSemanticContract(source);
   if (!same(run.reproducibility.semantic_contract, contract)) throw new Error("ANALYSIS_SEMANTIC_CONTRACT_MISMATCH");
   const checksum = async (scope: string, ref: ObjectRef, value: unknown) => ({algorithm: "sha256", canonicalization: CHECKED_PROFILE_V1, payload_ref: ref, payload_scope: scope, value: await canonicalSha256HexCheckedV1(value)});
   if (!same(run.hashes.filter(h => h.payload_scope === "received_result"), [await checksum("received_result", {object_type:"ResultEnvelope",ref:`result-envelope:${source.run_id}`}, source)])) throw new Error("ANALYSIS_RECEIVED_SOURCE_MISMATCH");

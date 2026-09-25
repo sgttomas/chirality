@@ -1,0 +1,13 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts src/features/results/numericalResultQuality.test.ts src/services/analysisRunCompatibility.test.ts src/features/result-export/resultExportAdapter.test.ts src/features/stress-neutral/StressNeutralExportPanel.test.tsx src/services/previewService.test.ts src/features/workspace/resultsSessionState.test.ts src/services/ruleCheckService.test.ts src/features/report/reportPackageRequest.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+
+ Test Files  9 passed (9)
+      Tests  134 passed (134)
+   Start at  22:30:12
+   Duration  22.00s (transform 313ms, setup 310ms, import 527ms, tests 18.78s, environment 1.69s)
+

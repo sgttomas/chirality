@@ -19,7 +19,7 @@ from .package import build_stress_neutral_export_package, canonical_csv
 from core.analysis_runs.compatibility import (
     _source_contract, _semantic, validate_analysis_run_v0_3, PRECISION_CONTRACT_ID,
     PRECISION_CONTRACT_SHA256, _source_basis_reference, _source_reference_text,
-    _validate_source_reference_fields,
+    _validate_source_reference_fields, SOURCE_BLOCKS_CONTRACT_ID,
 )
 
 VERSION = "0.3.0"
@@ -186,6 +186,10 @@ def package_projection(package: Mapping[str, Any]) -> dict[str, Any]:
 def source_row_projection_v0_3(source: Mapping[str, Any], row: Mapping[str, Any]) -> dict[str, Any]:
     """Source-qualified physical identity; never infer meaning from unit alone."""
     _, _, table = _source_contract(source)
+    return _source_row_projection(source, row, table)
+
+
+def _source_row_projection(source: Mapping[str, Any], row: Mapping[str, Any], table: Path) -> dict[str, Any]:
     semantic, _ = _semantic(row, table)
     family = (semantic.get("family") or "other") if semantic and semantic.get("category") == "physical_quantity" else "other"
     dimension = semantic.get("derivative_target_dimension") if semantic else None
@@ -198,6 +202,8 @@ def source_row_projection_v0_3(source: Mapping[str, Any], row: Mapping[str, Any]
     if not isinstance(entity, str) or not entity:
         raise ValueError("SN-PRECISION-ROW-ENTITY-MISSING")
     entity_type = {"pipe": "PipeElement", "node": "Node", "support": "Support", "component": "Component", "material": "Material"}.get(entity.split(":", 1)[0] if ":" in entity else "", "CanonicalObject")
+    if row.get("kind") == "support_reaction_component_v2":
+        entity_type = "Support"
     metadata = row.get("metadata") if isinstance(row.get("metadata"), Mapping) else {}
     location = metadata.get("location")
     if location is not None and (not isinstance(location, str) or not location):
@@ -217,7 +223,8 @@ def _validate_source_rows(source: Mapping[str, Any], rows: list[Mapping[str, Any
     raw = source.get("results", [])
     if len(rows) != len(raw) or len({row.get("id") for row in raw}) != len(raw) or len({row.get("result_id") for row in rows}) != len(rows):
         raise ValueError("SN-PRECISION-ROW-SOURCE-MISMATCH")
-    expected = {row.get("id"): source_row_projection_v0_3(source, row) for row in raw}
+    _, _, table = _source_contract(source)
+    expected = {row.get("id"): _source_row_projection(source, row, table) for row in raw}
     for row in rows:
         projection = expected.get(row.get("result_id"))
         if projection is None or any(key not in row or row[key] != value for key, value in projection.items()):
@@ -251,6 +258,8 @@ def _validate_stable_id_map(entries: Any, rows: list[Mapping[str, Any]]) -> None
 
 def build_stress_neutral_export_package_v0_3(*, source_envelope: Mapping[str, Any], analysis_record: Mapping[str, Any], expected_basis_refs: list[Mapping[str, str]] | None = None, **source: Any) -> dict[str, Any]:
     validate_analysis_run_v0_3(analysis_record, source_envelope, expected_basis_refs=expected_basis_refs)
+    contract_id, contract_hash, contract_path = _source_contract(source_envelope)
+    semantic_contract_ref = {"object_type":"ExternalReference", "ref":f"fixtures/results/{contract_path.name}"}
     received = [item for item in analysis_record["analysis_run"]["hashes"] if item.get("payload_scope") == "received_result"]
     if len(received) != 1 or received[0] not in source.get("source_hashes", []) or source.get("source_result_ref") != received[0]["payload_ref"] or source.get("source_run_ref") != {"object_type":"AnalysisRun", "ref":source_envelope["run_id"]} or source.get("source_model_ref", {}).get("ref") != source_envelope["model_ref"]:
         raise ValueError("SN-PRECISION-SOURCE-BINDING-MISMATCH")
@@ -266,9 +275,9 @@ def build_stress_neutral_export_package_v0_3(*, source_envelope: Mapping[str, An
     witnesses, witness_findings = _witnesses(legacy["result_rows"], legacy["provenance"], source_envelope)
     diagnostics = [deepcopy(item) for item in legacy["diagnostics"] if item.get("code") not in {"SN-DECLARED-DIMENSION-WITNESS-UNAVAILABLE", "SN-UNIT-DIMENSION-MISSING"}] + witness_findings
     blocking_count = sum(item.get("severity") == "blocking" for item in diagnostics)
-    decision_basis_refs = deepcopy(legacy["unit_system_disclosure"]["decision_basis_refs"]) + [deepcopy(SEMANTIC_CONTRACT_REF), deepcopy(legacy["source_run_ref"])]
+    decision_basis_refs = deepcopy(legacy["unit_system_disclosure"]["decision_basis_refs"]) + [deepcopy(semantic_contract_ref), deepcopy(legacy["source_run_ref"])]
     boundary_notes = list(legacy["manifest"]["boundary_notes"]) + ["Result-row dimensions and witness eligibility are interpreted from the accepted semantic contract and bound analysis run; received numerical values, units, rows and source hashes remain unchanged."]
-    export_profile = {**legacy["export_profile"], "profile_id": EXPORT_PROFILE, "profile_version": VERSION, "boundary_notes": boundary_notes, "source_basis_refs": deepcopy(legacy["export_profile"]["source_basis_refs"]) + [deepcopy(SEMANTIC_CONTRACT_REF), deepcopy(legacy["source_run_ref"])]}
+    export_profile = {**legacy["export_profile"], "profile_id": EXPORT_PROFILE, "profile_version": VERSION, "boundary_notes": boundary_notes, "source_basis_refs": deepcopy(legacy["export_profile"]["source_basis_refs"]) + [deepcopy(semantic_contract_ref), deepcopy(legacy["source_run_ref"])]}
     validation_report = {"validation_status": "blocked" if blocking_count else "passed", "checks": [{"check_id": "stress-neutral-boundary-diagnostics", "check_status": "blocking" if blocking_count else "passed", "diagnostic_count": len(diagnostics), "blocking_count": blocking_count, "provenance": deepcopy(legacy["provenance"])}], "human_review_required": True, "provenance": deepcopy(legacy["provenance"])}
     loss_report = deepcopy(legacy["loss_report"])
     withholding_count = len(witness_findings) - (1 if witness_findings else 0)
@@ -288,8 +297,11 @@ def build_stress_neutral_export_package_v0_3(*, source_envelope: Mapping[str, An
     }
     for key in ("producer", "numerical_quality", "formulation_basis"):
         package[key] = deepcopy(source_envelope[key])
-    package["semantic_contract_ref"] = {"ref_type":"semantic_contract", "ref_id":PRECISION_CONTRACT_ID}
-    package["semantic_contract"] = {"id":PRECISION_CONTRACT_ID, "sha256":PRECISION_CONTRACT_SHA256}
+    package["semantic_contract_ref"] = {"ref_type":"semantic_contract", "ref_id":contract_id}
+    package["semantic_contract"] = {"id":contract_id, "sha256":contract_hash}
+    if contract_id == SOURCE_BLOCKS_CONTRACT_ID:
+        package["source_block_recovery"] = deepcopy(source_envelope["source_block_recovery"])
+        package["source_annotations"] = _source_block_annotations(source_envelope)
     package["source_carrier_checksum"] = deepcopy(received[0])
     payloads = {"stress_neutral_results.csv": package["csv_text"], "result_rows.json": package["result_rows"], "unit_system_disclosure.json": package["unit_system_disclosure"], "unit_preservation_witnesses.json": package["unit_preservation_witnesses"], "stable_id_map.json": package["stable_id_map"], "loss_report.json": package["loss_report"], "validation_report.json": package["validation_report"], "diagnostics.json": package["diagnostics"]}
     checksums = []
@@ -386,14 +398,40 @@ def validate_stress_neutral_export_package_v0_3(package: Mapping[str, Any], *, s
     Neither mode authenticates a producer or qualifies Current numerical use.
     """
     metadata_source = {"schema_version":"0.2.0", **{key: package.get(key) for key in ("producer", "numerical_quality", "formulation_basis")}}
-    _source_contract(metadata_source)
-    if package.get("semantic_contract") != {"id":PRECISION_CONTRACT_ID, "sha256":PRECISION_CONTRACT_SHA256} or package.get("semantic_contract_ref") != {"ref_type":"semantic_contract", "ref_id":PRECISION_CONTRACT_ID}:
+    if "source_block_recovery" in package:
+        metadata_source["source_block_recovery"] = package["source_block_recovery"]
+    contract_id, contract_hash, contract_path = _source_contract(metadata_source, check_receipt=False)
+    semantic_contract_ref = {"object_type":"ExternalReference", "ref":f"fixtures/results/{contract_path.name}"}
+    if package.get("semantic_contract") != {"id":contract_id, "sha256":contract_hash} or package.get("semantic_contract_ref") != {"ref_type":"semantic_contract", "ref_id":contract_id}:
         raise ValueError("SN-PRECISION-SEMANTIC-CONTRACT-MISMATCH")
+    if contract_id == SOURCE_BLOCKS_CONTRACT_ID:
+        annotations = package.get("source_annotations")
+        rows_by_id = {row.get("result_id"):row for row in package.get("result_rows", [])}
+        if not isinstance(annotations, list) or len(annotations) != len(rows_by_id):
+            raise ValueError("SN-SOURCE-BLOCK-ANNOTATION-COVERAGE")
+        seen_annotations = set()
+        for index, annotation in enumerate(annotations):
+            if not isinstance(annotation, Mapping) or set(annotation) != {"result_id","source_row_index","kind","unit","entity_ref","basis_ref","metadata","source_row_sha256"}:
+                raise ValueError("SN-SOURCE-BLOCK-ANNOTATION-SHAPE")
+            row = rows_by_id.get(annotation.get("result_id"))
+            if row is None or annotation.get("result_id") in seen_annotations or annotation.get("source_row_index") != index or annotation.get("unit") != row.get("unit") or annotation.get("entity_ref") != row.get("component_ref", {}).get("ref") or not isinstance(annotation.get("source_row_sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", annotation["source_row_sha256"]):
+                raise ValueError("SN-SOURCE-BLOCK-ANNOTATION-BINDING")
+            seen_annotations.add(annotation["result_id"])
+            semantic, _ = _semantic({"kind":annotation["kind"],"unit":annotation["unit"],"metadata":annotation["metadata"]}, contract_path)
+            if semantic is not None and semantic.get("derivative_target_dimension") not in {None, row.get("dimension")}:
+                raise ValueError("SN-SOURCE-BLOCK-ANNOTATION-SEMANTICS")
+    elif "source_annotations" in package:
+        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
     carrier = package.get("source_carrier_checksum", {})
     if carrier not in package.get("received_source_checksums", []) or carrier.get("payload_ref") != package.get("source_result_ref") or carrier.get("payload_scope") != "received_result" or carrier.get("algorithm") != "sha256" or carrier.get("canonicalization") != PROFILE:
         raise ValueError("SN-PRECISION-CARRIER-BINDING-MISMATCH")
     if source_envelope is not None:
         _source_contract(source_envelope)
+        if contract_id == SOURCE_BLOCKS_CONTRACT_ID:
+            if package.get("source_block_recovery") != source_envelope.get("source_block_recovery") or package.get("source_annotations") != _source_block_annotations(source_envelope):
+                raise ValueError("SN-SOURCE-BLOCK-RECEIPT-BINDING-MISMATCH")
+        elif "source_annotations" in package or "source_block_recovery" in package:
+            raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
         _validate_source_reference_fields(source_envelope)
         if any(package.get(key) != source_envelope.get(key) for key in ("producer", "numerical_quality", "formulation_basis")) or carrier.get("value") != canonical_sha256_checked_v1(source_envelope):
             raise ValueError("SN-PRECISION-SOURCE-BINDING-MISMATCH")
@@ -519,7 +557,7 @@ def validate_stress_neutral_export_package_v0_3(package: Mapping[str, Any], *, s
         categorized[result_id] = category
     if set(categorized) & seen_witnesses or len(categorized) + len(seen_witnesses) != len(rows) or any(row_id not in categorized and row_id not in seen_witnesses for row_id in row_ids):
         raise ValueError("SN-WITNESS-CATEGORY-ACCOUNTING-MISMATCH")
-    if SEMANTIC_CONTRACT_REF not in package.get("export_profile", {}).get("source_basis_refs", []) or SEMANTIC_CONTRACT_REF not in package.get("unit_system_disclosure", {}).get("decision_basis_refs", []):
+    if semantic_contract_ref not in package.get("export_profile", {}).get("source_basis_refs", []) or semantic_contract_ref not in package.get("unit_system_disclosure", {}).get("decision_basis_refs", []):
         raise ValueError("SN-SEMANTIC-CONTRACT-BINDING-MISSING")
     blocking_diagnostics = sum(item.get("severity") == "blocking" for item in package.get("diagnostics", []))
     checks = package.get("validation_report", {}).get("checks", [])
@@ -536,3 +574,10 @@ def validate_stress_neutral_export_package_v0_3(package: Mapping[str, Any], *, s
     expected_package = canonical_sha256_checked_v1(package_projection(package))
     if package_checksum.get("value") != expected_package:
         raise ValueError("SN-PACKAGE-CHECKSUM-MISMATCH")
+
+
+def _source_block_annotations(source: Mapping[str, Any]) -> list[dict[str, Any]]:
+    return [{"result_id":row["id"], "source_row_index":index, "kind":row["kind"],
+        "unit":row["unit"], "entity_ref":row["entity_ref"], "basis_ref":deepcopy(row.get("basis_ref")),
+        "metadata":deepcopy(row.get("metadata")), "source_row_sha256":canonical_sha256_checked_v1(row)}
+        for index,row in enumerate(source["results"])]

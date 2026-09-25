@@ -1,0 +1,18 @@
+{
+  "command": [
+    "cargo",
+    "metadata",
+    "--offline",
+    "--format-version",
+    "1",
+    "--filter-platform",
+    "aarch64-apple-darwin",
+    "--manifest-path",
+    "apps/desktop/src-tauri/Cargo.toml"
+  ],
+  "host": "aarch64-apple-darwin",
+  "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: aarch64-apple-darwin\nrelease: 1.97.1\nLLVM version: 22.1.6\n",
+  "exit_code": 0,
+  "stdout_sha256": "6605fa6ba7faaf137fcd9dd6927065a817c263aab46bde03a6d2603c094de725",
+  "scope": "actual host metadata after preserved all-target offline Android-cache failure"
+}

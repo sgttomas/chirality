@@ -13,6 +13,8 @@ afterEach(() => {
 });
 import type { MechanicsResult, PreviewModel } from "../types";
 import {
+  loadBundledMechanicsReference,
+  hasNativeMechanicsInvocation,
   appliedRuleCheckStatus,
   bindSourceResultDimensions,
   buildAnalysisRunPreview,
@@ -96,17 +98,17 @@ function hashByScope(
 }
 
 describe("previewService browser fixture execution boundary", () => {
-  it("returns the actual bundled producer result when no model payload is supplied", async () => {
-    const result = await runPreviewMechanics();
+  it("reads the bundled producer result as reference evidence", async () => {
+    const result = (await loadBundledMechanicsReference()).source;
 
     expect(result.status.mechanics).toBe(sparseMechanicsFixture.status.mechanics);
     expect(result.model_ref).toBe("project:invented-loop-01");
     expect(result.results.length).toBe(sparseMechanicsFixture.results.length);
   });
 
-  it("keeps the genuine fixture result for the unchanged bundled model", async () => {
+  it("keeps genuine fixture reference bytes separate from live provenance", async () => {
     const model = await loadPreviewModel();
-    const result = await runPreviewMechanics(model);
+    const result = (await loadBundledMechanicsReference()).source;
 
     expect(result.status.mechanics).toBe(sparseMechanicsFixture.status.mechanics);
     expect(result.model_ref).toBe("project:invented-loop-01");
@@ -221,11 +223,12 @@ describe("previewService browser fixture execution boundary", () => {
   it.each([
     ["sparse_interactive", sparseMechanicsFixture],
     ["dense_scrutiny", denseMechanicsFixture],
-  ] as const)("returns genuine %s fixture bytes and preserves producer quality", async (mode, fixture) => {
+  ] as const)("reads genuine %s reference bytes and preserves producer quality", async (mode, fixture) => {
     const model = await loadPreviewModel();
-    const result = await runPreviewMechanics(model, mode);
+    const result = (await loadBundledMechanicsReference(mode)).source;
     expect(result).toEqual(fixture);
     expect(sourceContract(result)).toBe("precision");
+    expect(hasNativeMechanicsInvocation(result,model)).toBe(false);
     expect(result.numerical_quality).toEqual(fixture.numerical_quality);
     const current = numericalResultStanding(result, model);
     if (!["checks_passed", "sensitive"].includes(fixture.numerical_quality.status)) {
@@ -239,18 +242,18 @@ describe("previewService browser fixture execution boundary", () => {
     expect(result).toEqual(fixture);
   });
 
-  it("defaults to exact sparse fixture and returns independent copies", async () => {
-    const first = await runPreviewMechanics();
+  it("reference loading defaults to sparse and returns independent copies", async () => {
+    const first = (await loadBundledMechanicsReference()).source;
     expect(first).toEqual(sparseMechanicsFixture);
     first.diagnostics.push({ id: "caller-mutation", code: "CALLER_MUTATION", severity: "info", message: "test mutation" });
-    expect(await runPreviewMechanics()).toEqual(sparseMechanicsFixture);
-    expect(await runPreviewMechanics(null, "dense_scrutiny")).toEqual(denseMechanicsFixture);
+    expect((await loadBundledMechanicsReference()).source).toEqual(sparseMechanicsFixture);
+    expect((await loadBundledMechanicsReference("dense_scrutiny")).source).toEqual(denseMechanicsFixture);
   });
 
   it("compares model content canonically rather than object key insertion order", async () => {
     const model = await loadPreviewModel();
     const reordered = Object.fromEntries(Object.entries(model).reverse()) as PreviewModel;
-    expect(await runPreviewMechanics(reordered)).toEqual(sparseMechanicsFixture);
+    await expect(runPreviewMechanics(reordered)).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY");
     const edited = cloneModel(model);
     edited.nodes[0].position.y += 0.5;
     await expect(runPreviewMechanics(edited, "dense_scrutiny")).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL");
@@ -527,8 +530,8 @@ describe("native mechanics failure boundary", () => {
     expect(invokeMock).toHaveBeenCalledTimes(1);
   });
 
-  it("uses browser job designation only when the host is absent", async () => {
-    await expect(startPreviewMechanicsJob()).resolves.toEqual({ mode: "browser_fixture_no_backend_job" });
+  it("refuses a fresh browser job and keeps references separate", async () => {
+    await expect(startPreviewMechanicsJob()).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY");
     expect(invokeMock).not.toHaveBeenCalled();
   });
 });
@@ -541,7 +544,7 @@ it("does not enrich precision or unsupported raw0.2 carriers while reading histo
 });
 
 async function precisionFixtureSource(): Promise<MechanicsResult> {
- return runPreviewMechanics();
+ return (await loadBundledMechanicsReference()).source;
 }
 it("Current analysis composition refuses legacy and unknown raw without a historical fallback",async()=>{
  const legacy=structuredClone(historicalMechanicsFixture) as MechanicsResult, before=JSON.stringify(legacy);

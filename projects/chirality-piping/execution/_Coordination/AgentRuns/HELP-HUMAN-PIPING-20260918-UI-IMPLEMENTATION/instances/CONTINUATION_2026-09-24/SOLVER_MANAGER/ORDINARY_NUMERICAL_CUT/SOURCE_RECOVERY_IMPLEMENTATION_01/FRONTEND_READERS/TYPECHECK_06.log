@@ -1,0 +1,1 @@
+apps/desktop/src/features/results/sourceBlockRecovery.ts(266,87): error TS2339: Property 'projections' does not exist on type 'number'.

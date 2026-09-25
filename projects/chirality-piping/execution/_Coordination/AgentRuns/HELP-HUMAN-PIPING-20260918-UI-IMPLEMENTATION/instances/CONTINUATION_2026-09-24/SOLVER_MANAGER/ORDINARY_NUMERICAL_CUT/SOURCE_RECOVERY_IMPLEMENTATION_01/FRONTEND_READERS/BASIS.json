@@ -1,0 +1,50 @@
+{
+  "executor": "/root/root_solver_checkpoint_review",
+  "actual_parent": "/root",
+  "coordinating_manager": "/root/numerical_resume",
+  "role": "TASK Type 2",
+  "mechanism": "Root followup_task to existing harness-native executor; no new child or descendants",
+  "base": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "paths": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_EXECUTOR_BRIEF.md",
+      "sha256": "b85840a74e999676924f3547b117c5398bba13a01615a18020fe33415404d6b7"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/CONTRACT.md",
+      "sha256": "5155d8fa0a14afe660f48d8f299bb6791b4a0d8661c39eb5d346f19737a45fca"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/API_HANDOFF.md",
+      "sha256": "6f5dfeffba9a350d137e826b6900bd6c79f82ff1ab872f984ddf36cb49d7a7fd"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/HASH_PAYLOADS.md",
+      "sha256": "23f937bd5a651543977614337cc7bfc3e3f831feb4f531d068a21cdaaf531663"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/INTEGRATION_MAP.md",
+      "sha256": "1071ea4bb10a55faf506d50cf2234808d2348b15624fd04eae8bb65328fadf77"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/source_block_receipt.schema.json",
+      "sha256": "e3e59d0bfb7f4969fa3fbaabb6012103ac827af03644d4906b69010c17f6347d"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "witness": "source-conforming proposed product input; scalar arithmetic executed, no producer run by reviewer",
+  "area": 596902.6041820607,
+  "axial_stiffness": 0.2984513020910303,
+  "torsional_stiffness": 2700984.283923825,
+  "axial_displacement": 3.350630380882007e-306,
+  "mm_displacement": 3.3506303808820075e-303,
+  "stress_pa": 1.67531519044e-312,
+  "stress_mpa": 1.675317e-318,
+  "pa_relative_error": 6.645747163531762e-13,
+  "mpa_relative_error": 1.2694501754466802e-06,
+  "mpa_fails_unchanged_1e-9": true,
+  "same_source_expected": "exact ratio of actual represented F and area; no pi/source-formation error included"
+}

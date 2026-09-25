@@ -1,0 +1,16 @@
+{
+  "allowed": [
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary",
+    "projects/chirality-piping/core/product_physics/src/source_recovery.rs"
+  ],
+  "paths": [
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+    "projects/chirality-piping/core/product_physics/src/source_recovery.rs"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

@@ -1,0 +1,82 @@
+{
+  "created_utc": "2026-09-25T03:18:57.298078+00:00",
+  "task": "/root/numerical_resume/source_recovery_design",
+  "role": "HELPS_HUMANS",
+  "commissioning_root": "/root",
+  "actual_parent": "/root/numerical_resume",
+  "parent_role": "WORKING_ITEMS",
+  "mechanism": "delegated-harness-native child",
+  "descendants": [],
+  "model": "No independent runtime model identifier queried; no model diversity claim",
+  "checkout": "/private/tmp/piping-numerical-corrections-20260924",
+  "parent_supplied_base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "git_independently_verified": false,
+  "current_contained_candidate": "Parent latest update: freeze05, contained 112-file candidate; only stress legacy guard/tests versus freeze04. DESIGN remains immutable and contains earlier freeze04 observation. No independent Git examination.",
+  "write_boundary": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01",
+  "read_only_larger_successor": "/private/tmp/piping-numerical-integrity-20260924 (not accessed)",
+  "instructions_read": [
+    {
+      "repository_path": "AGENTS.md",
+      "actual_origin": "/private/tmp/piping-numerical-corrections-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "full instruction body"
+    },
+    {
+      "repository_path": "projects/chirality-piping/AGENTS.md",
+      "actual_origin": "/private/tmp/piping-numerical-corrections-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "full instruction body"
+    },
+    {
+      "repository_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "actual_origin": "/private/tmp/piping-numerical-corrections-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "read_scope": "full instruction body"
+    },
+    {
+      "repository_path": "agents/AGENT_HELPS_HUMANS.md",
+      "actual_origin": "/private/tmp/piping-numerical-corrections-20260924/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "full instruction body"
+    }
+  ],
+  "other_full_role_instructions_intentionally_loaded": [],
+  "selected_skill": null,
+  "selected_workflow": null,
+  "supplied_context": "Root AGENTS and bounded parent brief inherited; Root/Piping/LOOP_INIT and full HELPS_HUMANS explicitly read from assigned corrections checkout. ROOT commission through parent supplied in launch, not inferred from generic task permission.",
+  "enforcement_limits": "Host permits broader /private/tmp writes; evidence-only disjoint scope enforced by instructions and this author. No delegation, Git, production/source changes, heavy/build/native/browser activity.",
+  "commands": [
+    {
+      "kind": "read-only",
+      "details": "pwd, rg file/text discovery, cat and sed source/evidence reads, lightweight Python file/hash reads. One lookup used an absent pipe_element path and returned exit 2; corrected to straight_pipe via rg. No production execution."
+    },
+    {
+      "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/reference_probe.py > projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/REFERENCE_PROBE.json",
+      "exit_code": 0,
+      "runtime": "Python 3.9.6",
+      "checks_passed": 5,
+      "scope": "Elementary exact rational design arithmetic only; two earlier runs before final raw-evidence relocation also exited 0. Metadata then clarified that N06 reuses N05 coefficient illustratively, not as a captured N06 matrix."
+    },
+    {
+      "kind": "evidence-write",
+      "details": "Created only task-owned design/return, raw source manifest, Fraction probe and JSON results/provenance; moved own initial raw files into _run_records at parent request."
+    }
+  ],
+  "primary_source_basis": "Reused locally retained qualified primary-source reviews and their applicability statements; no fresh web retrieval or new software-version claim. New functional derivation is direct algebra, tested by Fraction substitution and separate Gauss elimination.",
+  "not_claimed": [
+    "Independent review of this design",
+    "New Rust implementation or test pass",
+    "Actual new-method product solve in either mode",
+    "Current/export/native qualification",
+    "Primitive physical exactness",
+    "No-contact tranche completion of nonlinear programme"
+  ],
+  "parent_steering_preserved": [
+    "No production source change; contained candidate remains parent-owned",
+    "Portable live documents; local paths confined to raw provenance",
+    "Complete source and precise before-projection recovery",
+    "No fixture exemption, tolerance relaxation, gap epsilon or mandatoryinverse certificate",
+    "ROOT owns combined carrier semantic allocation"
+  ],
+  "independent_review": "Parent has launched fresh TASK /root/numerical_resume/source_recovery_design_review into separate SOURCE_RECOVERY_DESIGN_REVIEW_01; no review result yet claimed here."
+}

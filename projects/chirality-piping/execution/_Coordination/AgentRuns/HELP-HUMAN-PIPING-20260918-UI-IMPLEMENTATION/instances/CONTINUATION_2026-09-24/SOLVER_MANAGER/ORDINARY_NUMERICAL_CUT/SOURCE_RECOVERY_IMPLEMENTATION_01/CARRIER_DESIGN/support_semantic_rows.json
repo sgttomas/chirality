@@ -1,0 +1,103 @@
+{
+  "semantic_contract_id": "openpipestress.result_semantics/0.3.0/source-blocks-1",
+  "base_semantic_contract_id": "openpipestress.result_semantics/0.3.0/precision-1",
+  "base_contract_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+  "additive_rows": [
+    {
+      "signature_id": "source-blocks-support-Fx",
+      "kind": "support_reaction_component_v2",
+      "unit": "N",
+      "component": "Fx",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "source-blocks-support-Fy",
+      "kind": "support_reaction_component_v2",
+      "unit": "N",
+      "component": "Fy",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "source-blocks-support-Fz",
+      "kind": "support_reaction_component_v2",
+      "unit": "N",
+      "component": "Fz",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "source-blocks-support-Mx",
+      "kind": "support_reaction_component_v2",
+      "unit": "N*m",
+      "component": "Mx",
+      "source_physical_semantic_dimension": "moment",
+      "derivative_target_dimension": "moment",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "source-blocks-support-My",
+      "kind": "support_reaction_component_v2",
+      "unit": "N*m",
+      "component": "My",
+      "source_physical_semantic_dimension": "moment",
+      "derivative_target_dimension": "moment",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "source-blocks-support-Mz",
+      "kind": "support_reaction_component_v2",
+      "unit": "N*m",
+      "component": "Mz",
+      "source_physical_semantic_dimension": "moment",
+      "derivative_target_dimension": "moment",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "not_admitted_to_legacy_constructor",
+      "governing_ratio_eligible": false
+    }
+  ],
+  "additional_metadata_components": [
+    "Fx",
+    "Fy",
+    "Fz",
+    "Mx",
+    "My",
+    "Mz"
+  ],
+  "additional_metadata_basis": [
+    "recovered_from_assembled_support_law"
+  ],
+  "not_a_frozen_full_table": true
+}

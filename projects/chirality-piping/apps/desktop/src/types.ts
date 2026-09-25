@@ -300,6 +300,8 @@ export type NumericalQuality = {
   }>;
 };
 export type MechanicsResult = {
+  /** Preserved producer receipt. Eligibility requires independently captured invocation. */
+  source_block_recovery?: unknown;
   producer?: { component_name: string; component_version: string; semantic_contract_id: string };
   numerical_quality?: NumericalQuality;
   formulation_basis?: { profile_id: string; limitations: string[] };

@@ -1,0 +1,2285 @@
+{
+  "purpose": "Illustrative wire shapes only. All zero digests are deliberate placeholders and MUST fail real hash/authentication validation. Values/charges/source counts are illustrative, not production observations. This is not a complete MechanicsEnvelope and does not demonstrate required derived-row completion.",
+  "source_block_recovery": {
+    "body": {
+      "receipt_version": "1.0.0",
+      "policy": "SOURCE-BLOCKS-1",
+      "status": "partial",
+      "invocation": {
+        "algorithm": "sha256",
+        "canonicalization": "openpipestress_jcs_ijson_v1",
+        "payload_scope": "source_blocks_invocation_v1",
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "publication_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "cases": [
+        {
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case:illustration"
+          },
+          "outcome": "qualified",
+          "requested_mode": "sparse_interactive",
+          "selected_method": "retained_source_blocks_exact_v1",
+          "ordinary_attempt": {
+            "requested_mode": "sparse_interactive",
+            "outcome": "rejected",
+            "structural_report_diagnostic_ref": null,
+            "failure": {
+              "stage": "assembly",
+              "diagnostic_ref": "diagnostic:ordinary:assembly-loss"
+            },
+            "quality_case_index": 0
+          },
+          "source": {
+            "level": "complete_identified_represented_contributions",
+            "normalized_source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "functional_plan_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "dof_count": 12,
+            "stiffness_term_count": 145,
+            "force_term_count": 1,
+            "functional_count": 48,
+            "free_dofs": [
+              3,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "prescribed_dofs": [
+              0,
+              1,
+              2,
+              4,
+              5
+            ],
+            "free_blocks": [
+              [
+                3,
+                9
+              ],
+              [
+                6
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                8,
+                10
+              ]
+            ],
+            "member_ids": [
+              "pipe:illustration"
+            ],
+            "support_ids": [
+              "support:root"
+            ]
+          },
+          "projections": [
+            {
+              "projection_id": "projection:0",
+              "functional_id": "functional:0",
+              "result_id": "node:root:nodal_displacement_x",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:1",
+              "functional_id": "functional:1",
+              "result_id": "node:root:nodal_displacement_y",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:2",
+              "functional_id": "functional:2",
+              "result_id": "node:root:nodal_displacement_z",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:3",
+              "functional_id": "functional:3",
+              "result_id": "node:root:nodal_rotation_x",
+              "quantity": "nodal_rotation",
+              "value": 0.0001,
+              "value_bits": "3f1a36e2eb1c432d",
+              "unit": "rad",
+              "interval": [
+                9.999999999999991e-05,
+                0.0001000000000000001
+              ],
+              "absolute_error_bound": 1e-19,
+              "relative_error_bound": 1e-15,
+              "relative_limit": 1e-09,
+              "basis": "outward_interval"
+            },
+            {
+              "projection_id": "projection:4",
+              "functional_id": "functional:4",
+              "result_id": "node:root:nodal_rotation_y",
+              "quantity": "nodal_rotation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "rad",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:5",
+              "functional_id": "functional:5",
+              "result_id": "node:root:nodal_rotation_z",
+              "quantity": "nodal_rotation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "rad",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:6",
+              "functional_id": "functional:6",
+              "result_id": "node:tip:nodal_displacement_x",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:7",
+              "functional_id": "functional:7",
+              "result_id": "node:tip:nodal_displacement_y",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:8",
+              "functional_id": "functional:8",
+              "result_id": "node:tip:nodal_displacement_z",
+              "quantity": "nodal_translation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "mm",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:9",
+              "functional_id": "functional:9",
+              "result_id": "node:tip:nodal_rotation_x",
+              "quantity": "nodal_rotation",
+              "value": 0.0001,
+              "value_bits": "3f1a36e2eb1c432d",
+              "unit": "rad",
+              "interval": [
+                9.999999999999991e-05,
+                0.0001000000000000001
+              ],
+              "absolute_error_bound": 1e-19,
+              "relative_error_bound": 1e-15,
+              "relative_limit": 1e-09,
+              "basis": "outward_interval"
+            },
+            {
+              "projection_id": "projection:10",
+              "functional_id": "functional:10",
+              "result_id": "node:tip:nodal_rotation_y",
+              "quantity": "nodal_rotation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "rad",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:11",
+              "functional_id": "functional:11",
+              "result_id": "node:tip:nodal_rotation_z",
+              "quantity": "nodal_rotation",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "rad",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:12",
+              "functional_id": "functional:12",
+              "result_id": "pipe:illustration:end_i:axial_force",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:13",
+              "functional_id": "functional:13",
+              "result_id": "pipe:illustration:end_i:shear_force_y",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:14",
+              "functional_id": "functional:14",
+              "result_id": "pipe:illustration:end_i:shear_force_z",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:15",
+              "functional_id": "functional:15",
+              "result_id": "pipe:illustration:end_i:torsional_moment",
+              "quantity": "member_end_action",
+              "value": -1e-16,
+              "value_bits": "bc9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                -1e-16,
+                -1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:16",
+              "functional_id": "functional:16",
+              "result_id": "pipe:illustration:end_i:bending_moment_y",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:17",
+              "functional_id": "functional:17",
+              "result_id": "pipe:illustration:end_i:bending_moment_z",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:18",
+              "functional_id": "functional:18",
+              "result_id": "pipe:illustration:end_j:axial_force",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:19",
+              "functional_id": "functional:19",
+              "result_id": "pipe:illustration:end_j:shear_force_y",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:20",
+              "functional_id": "functional:20",
+              "result_id": "pipe:illustration:end_j:shear_force_z",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:21",
+              "functional_id": "functional:21",
+              "result_id": "pipe:illustration:end_j:torsional_moment",
+              "quantity": "member_end_action",
+              "value": 1e-16,
+              "value_bits": "3c9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                1e-16,
+                1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:22",
+              "functional_id": "functional:22",
+              "result_id": "pipe:illustration:end_j:bending_moment_y",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:23",
+              "functional_id": "functional:23",
+              "result_id": "pipe:illustration:end_j:bending_moment_z",
+              "quantity": "member_end_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:24",
+              "functional_id": "functional:24",
+              "result_id": "pipe:illustration:quarter_1:axial_force",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:25",
+              "functional_id": "functional:25",
+              "result_id": "pipe:illustration:quarter_1:shear_force_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:26",
+              "functional_id": "functional:26",
+              "result_id": "pipe:illustration:quarter_1:shear_force_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:27",
+              "functional_id": "functional:27",
+              "result_id": "pipe:illustration:quarter_1:torsional_moment",
+              "quantity": "member_station_action",
+              "value": 1e-16,
+              "value_bits": "3c9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                1e-16,
+                1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:28",
+              "functional_id": "functional:28",
+              "result_id": "pipe:illustration:quarter_1:bending_moment_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:29",
+              "functional_id": "functional:29",
+              "result_id": "pipe:illustration:quarter_1:bending_moment_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:30",
+              "functional_id": "functional:30",
+              "result_id": "pipe:illustration:midspan:axial_force",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:31",
+              "functional_id": "functional:31",
+              "result_id": "pipe:illustration:midspan:shear_force_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:32",
+              "functional_id": "functional:32",
+              "result_id": "pipe:illustration:midspan:shear_force_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:33",
+              "functional_id": "functional:33",
+              "result_id": "pipe:illustration:midspan:torsional_moment",
+              "quantity": "member_station_action",
+              "value": 1e-16,
+              "value_bits": "3c9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                1e-16,
+                1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:34",
+              "functional_id": "functional:34",
+              "result_id": "pipe:illustration:midspan:bending_moment_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:35",
+              "functional_id": "functional:35",
+              "result_id": "pipe:illustration:midspan:bending_moment_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:36",
+              "functional_id": "functional:36",
+              "result_id": "pipe:illustration:quarter_3:axial_force",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:37",
+              "functional_id": "functional:37",
+              "result_id": "pipe:illustration:quarter_3:shear_force_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:38",
+              "functional_id": "functional:38",
+              "result_id": "pipe:illustration:quarter_3:shear_force_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:39",
+              "functional_id": "functional:39",
+              "result_id": "pipe:illustration:quarter_3:torsional_moment",
+              "quantity": "member_station_action",
+              "value": 1e-16,
+              "value_bits": "3c9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                1e-16,
+                1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:40",
+              "functional_id": "functional:40",
+              "result_id": "pipe:illustration:quarter_3:bending_moment_y",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:41",
+              "functional_id": "functional:41",
+              "result_id": "pipe:illustration:quarter_3:bending_moment_z",
+              "quantity": "member_station_action",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:42",
+              "functional_id": "functional:42",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fx",
+              "quantity": "support_action_component",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:43",
+              "functional_id": "functional:43",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fy",
+              "quantity": "support_action_component",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:44",
+              "functional_id": "functional:44",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fz",
+              "quantity": "support_action_component",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:45",
+              "functional_id": "functional:45",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mx",
+              "quantity": "support_action_component",
+              "value": -1e-16,
+              "value_bits": "bc9cd2b297d889bc",
+              "unit": "N*m",
+              "interval": [
+                -1e-16,
+                -1e-16
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_identity"
+            },
+            {
+              "projection_id": "projection:46",
+              "functional_id": "functional:46",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:My",
+              "quantity": "support_action_component",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            },
+            {
+              "projection_id": "projection:47",
+              "functional_id": "functional:47",
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mz",
+              "quantity": "support_action_component",
+              "value": 0.0,
+              "value_bits": "0000000000000000",
+              "unit": "N*m",
+              "interval": [
+                0.0,
+                0.0
+              ],
+              "absolute_error_bound": 0.0,
+              "relative_error_bound": 0,
+              "relative_limit": 1e-09,
+              "basis": "exact_zero"
+            }
+          ],
+          "rows": [
+            {
+              "result_id": "node:root:nodal_displacement_x",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:0",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:root:nodal_displacement_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:1",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:root:nodal_displacement_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:2",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:root:nodal_rotation_x",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:3",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:root:nodal_rotation_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:4",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:root:nodal_rotation_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:5",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_displacement_x",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:6",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_displacement_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:7",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_displacement_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:8",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_rotation_x",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:9",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_rotation_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:10",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "node:tip:nodal_rotation_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:11",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:axial_force",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:12",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:shear_force_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:13",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:shear_force_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:14",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:torsional_moment",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:15",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:bending_moment_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:16",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_i:bending_moment_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:17",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:axial_force",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:18",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:shear_force_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:19",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:shear_force_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:20",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:torsional_moment",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:21",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:bending_moment_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:22",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:end_j:bending_moment_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:23",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:axial_force",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:24",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:shear_force_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:25",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:shear_force_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:26",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:torsional_moment",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:27",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:bending_moment_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:28",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_1:bending_moment_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:29",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:axial_force",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:30",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:shear_force_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:31",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:shear_force_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:32",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:torsional_moment",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:33",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:bending_moment_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:34",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:midspan:bending_moment_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:35",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:axial_force",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:36",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:shear_force_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:37",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:shear_force_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:38",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:torsional_moment",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:39",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:bending_moment_y",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:40",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "pipe:illustration:quarter_3:bending_moment_z",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:41",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fx",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:42",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fy",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:43",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fz",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:44",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mx",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:45",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:My",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:46",
+              "recipe_id": null,
+              "input_result_ids": []
+            },
+            {
+              "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mz",
+              "treatment": "qualified_projection",
+              "projection_id": "projection:47",
+              "recipe_id": null,
+              "input_result_ids": []
+            }
+          ],
+          "supports": [
+            {
+              "support_id": "support:root",
+              "node_id": "node:root",
+              "attribution": "unique_source_owned",
+              "components": [
+                {
+                  "component": "Fx",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fx",
+                  "functional_id": "functional:42",
+                  "action_terms": [
+                    {
+                      "kind": "ideal_constraint",
+                      "source_id": "support:root",
+                      "global_dof": 0
+                    }
+                  ]
+                },
+                {
+                  "component": "Fy",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fy",
+                  "functional_id": "functional:43",
+                  "action_terms": [
+                    {
+                      "kind": "ideal_constraint",
+                      "source_id": "support:root",
+                      "global_dof": 1
+                    }
+                  ]
+                },
+                {
+                  "component": "Fz",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:Fz",
+                  "functional_id": "functional:44",
+                  "action_terms": [
+                    {
+                      "kind": "ideal_constraint",
+                      "source_id": "support:root",
+                      "global_dof": 2
+                    }
+                  ]
+                },
+                {
+                  "component": "Mx",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mx",
+                  "functional_id": "functional:45",
+                  "action_terms": [
+                    {
+                      "kind": "ground_spring",
+                      "source_id": "spring:root:RX",
+                      "global_dof": 3
+                    }
+                  ]
+                },
+                {
+                  "component": "My",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:My",
+                  "functional_id": "functional:46",
+                  "action_terms": [
+                    {
+                      "kind": "ideal_constraint",
+                      "source_id": "support:root",
+                      "global_dof": 4
+                    }
+                  ]
+                },
+                {
+                  "component": "Mz",
+                  "result_id": "result:support-component-v2:17:case:illustration12:support:root:Mz",
+                  "functional_id": "functional:47",
+                  "action_terms": [
+                    {
+                      "kind": "ideal_constraint",
+                      "source_id": "support:root",
+                      "global_dof": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "failure": null,
+          "work": {
+            "limit": 2000000,
+            "charged": 1000,
+            "rejected_reservation": {
+              "kind": "finite",
+              "amount": 0
+            },
+            "reserved_unobserved_failure": 0
+          }
+        },
+        {
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case:ordinary"
+          },
+          "outcome": "qualified",
+          "requested_mode": "sparse_interactive",
+          "selected_method": "ordinary_sparse_structural_v1",
+          "ordinary_attempt": {
+            "requested_mode": "sparse_interactive",
+            "outcome": "checks_passed",
+            "structural_report_diagnostic_ref": "diagnostic:ordinary:passed",
+            "failure": null,
+            "quality_case_index": 1
+          },
+          "source": null,
+          "projections": [],
+          "rows": [
+            {
+              "result_id": "result:ordinary:example",
+              "treatment": "ordinary_checked",
+              "projection_id": null,
+              "recipe_id": null,
+              "input_result_ids": []
+            }
+          ],
+          "supports": [],
+          "failure": null,
+          "work": {
+            "limit": 2000000,
+            "charged": 1000,
+            "rejected_reservation": {
+              "kind": "finite",
+              "amount": 0
+            },
+            "reserved_unobserved_failure": 0
+          }
+        },
+        {
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case:coupled"
+          },
+          "outcome": "unsupported",
+          "requested_mode": "sparse_interactive",
+          "selected_method": null,
+          "ordinary_attempt": {
+            "requested_mode": "sparse_interactive",
+            "outcome": "sensitive",
+            "structural_report_diagnostic_ref": "diagnostic:ordinary:sensitive",
+            "failure": null,
+            "quality_case_index": 2
+          },
+          "source": null,
+          "projections": [],
+          "rows": [],
+          "supports": [],
+          "failure": {
+            "stage": "eligibility",
+            "code": "unsupported_block",
+            "diagnostic_ref": "diagnostic:source-blocks:block-6",
+            "block_order": 6
+          },
+          "work": {
+            "limit": 2000000,
+            "charged": 1000,
+            "rejected_reservation": {
+              "kind": "finite",
+              "amount": 0
+            },
+            "reserved_unobserved_failure": 0
+          }
+        }
+      ],
+      "envelope_observation_result_ids": []
+    },
+    "receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "illustrative_affine_rows": [
+    {
+      "id": "node:root:nodal_displacement_x",
+      "kind": "global_nodal_displacement_x",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_x",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:root:nodal_displacement_y",
+      "kind": "global_nodal_displacement_y",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_y",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:root:nodal_displacement_z",
+      "kind": "global_nodal_displacement_z",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_z",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:root:nodal_rotation_x",
+      "kind": "global_nodal_rotation_x",
+      "value": 0.0001,
+      "unit": "rad",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_x",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:root:nodal_rotation_y",
+      "kind": "global_nodal_rotation_y",
+      "value": 0.0,
+      "unit": "rad",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_y",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:root:nodal_rotation_z",
+      "kind": "global_nodal_rotation_z",
+      "value": 0.0,
+      "unit": "rad",
+      "entity_ref": "node:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_z",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_displacement_x",
+      "kind": "global_nodal_displacement_x",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_x",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_displacement_y",
+      "kind": "global_nodal_displacement_y",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_y",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_displacement_z",
+      "kind": "global_nodal_displacement_z",
+      "value": 0.0,
+      "unit": "mm",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_displacement_z",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_rotation_x",
+      "kind": "global_nodal_rotation_x",
+      "value": 0.0001,
+      "unit": "rad",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_x",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_rotation_y",
+      "kind": "global_nodal_rotation_y",
+      "value": 0.0,
+      "unit": "rad",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_y",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "node:tip:nodal_rotation_z",
+      "kind": "global_nodal_rotation_z",
+      "value": 0.0,
+      "unit": "rad",
+      "entity_ref": "node:tip",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "nodal_rotation_z",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "solved_from_global_linear_system",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:axial_force",
+      "kind": "element_local_axial_force",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "axial_force",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:shear_force_y",
+      "kind": "element_local_shear_force_y",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_y",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:shear_force_z",
+      "kind": "element_local_shear_force_z",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_z",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:torsional_moment",
+      "kind": "element_local_torsional_moment",
+      "value": -1e-16,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "torsional_moment",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:bending_moment_y",
+      "kind": "element_local_bending_moment_y",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_y",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_i:bending_moment_z",
+      "kind": "element_local_bending_moment_z",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_z",
+        "coordinate_system": "element_local",
+        "location": "end_i",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:axial_force",
+      "kind": "element_local_axial_force",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "axial_force",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:shear_force_y",
+      "kind": "element_local_shear_force_y",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_y",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:shear_force_z",
+      "kind": "element_local_shear_force_z",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_z",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:torsional_moment",
+      "kind": "element_local_torsional_moment",
+      "value": 1e-16,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "torsional_moment",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:bending_moment_y",
+      "kind": "element_local_bending_moment_y",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_y",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:end_j:bending_moment_z",
+      "kind": "element_local_bending_moment_z",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_z",
+        "coordinate_system": "element_local",
+        "location": "end_j",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:axial_force",
+      "kind": "element_local_axial_force",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "axial_force",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:shear_force_y",
+      "kind": "element_local_shear_force_y",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_y",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:shear_force_z",
+      "kind": "element_local_shear_force_z",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_z",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:torsional_moment",
+      "kind": "element_local_torsional_moment",
+      "value": 1e-16,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "torsional_moment",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:bending_moment_y",
+      "kind": "element_local_bending_moment_y",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_y",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_1:bending_moment_z",
+      "kind": "element_local_bending_moment_z",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_z",
+        "coordinate_system": "element_local",
+        "location": "quarter_1",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:axial_force",
+      "kind": "element_local_axial_force",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "axial_force",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:shear_force_y",
+      "kind": "element_local_shear_force_y",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_y",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:shear_force_z",
+      "kind": "element_local_shear_force_z",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_z",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:torsional_moment",
+      "kind": "element_local_torsional_moment",
+      "value": 1e-16,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "torsional_moment",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:bending_moment_y",
+      "kind": "element_local_bending_moment_y",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_y",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:midspan:bending_moment_z",
+      "kind": "element_local_bending_moment_z",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_z",
+        "coordinate_system": "element_local",
+        "location": "midspan",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:axial_force",
+      "kind": "element_local_axial_force",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "axial_force",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:shear_force_y",
+      "kind": "element_local_shear_force_y",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_y",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:shear_force_z",
+      "kind": "element_local_shear_force_z",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "shear_force_z",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:torsional_moment",
+      "kind": "element_local_torsional_moment",
+      "value": 1e-16,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "torsional_moment",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:bending_moment_y",
+      "kind": "element_local_bending_moment_y",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_y",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "pipe:illustration:quarter_3:bending_moment_z",
+      "kind": "element_local_bending_moment_z",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "pipe:illustration",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "bending_moment_z",
+        "coordinate_system": "element_local",
+        "location": "quarter_3",
+        "basis": "recovered_from_local_element_stiffness",
+        "sign_convention": "illustrative_existing_source_sign_convention"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:Fx",
+      "kind": "support_reaction_component_v2",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "Fx",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:Fy",
+      "kind": "support_reaction_component_v2",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "Fy",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:Fz",
+      "kind": "support_reaction_component_v2",
+      "value": 0.0,
+      "unit": "N",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "Fz",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:Mx",
+      "kind": "support_reaction_component_v2",
+      "value": -1e-16,
+      "unit": "N*m",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "Mx",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:My",
+      "kind": "support_reaction_component_v2",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "My",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    },
+    {
+      "id": "result:support-component-v2:17:case:illustration12:support:root:Mz",
+      "kind": "support_reaction_component_v2",
+      "value": 0.0,
+      "unit": "N*m",
+      "entity_ref": "support:root",
+      "basis_ref": {
+        "ref_type": "load_case",
+        "ref_id": "case:illustration"
+      },
+      "metadata": {
+        "component": "Mz",
+        "coordinate_system": "global",
+        "location": "node",
+        "basis": "recovered_from_assembled_support_law",
+        "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+      }
+    }
+  ],
+  "invocation_payload_shape": {
+    "request": {
+      "model": {
+        "illustrative": true
+      },
+      "materials": [],
+      "unknown_preserved_key": "preserved before parse"
+    },
+    "solver_mode": "sparse_interactive"
+  },
+  "ordinary_quality_note": "The exact-selected case retains ordinary quality unresolved/assembly_loss_detected; no successful ordinary report is invented."
+}

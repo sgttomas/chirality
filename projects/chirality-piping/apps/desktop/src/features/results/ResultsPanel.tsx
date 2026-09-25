@@ -96,7 +96,7 @@ export function ResultsPanel({
       <div className="panel-title">Results</div>
       {result ? (
         <>
-          <p data-testid="numerical-result-standing">{sourceContract(result) === "legacy" ? "Historical precision: absolute rounding; integrity not assessed. Needs recompute." : sourceContract(result) === "unsupported" ? "Unsupported numerical contract; historical values only. Needs recompute." : `Numerical integrity: ${result.numerical_quality!.status}. ${result.formulation_basis!.limitations.join(" ")} Numerical checks do not establish engineering correctness.`}</p>
+          <p data-testid="numerical-result-standing">{sourceContract(result) === "legacy" ? "Historical precision: absolute rounding; integrity not assessed. Needs recompute." : sourceContract(result) === "unsupported" ? "Unsupported numerical contract; historical values only. Needs recompute." : sourceContract(result) === "source_blocks" ? `Ordinary solve: ${result.numerical_quality!.status}. Producer recovery receipt: ${(result.source_block_recovery as {body:{status:string}}).body.status}. Current use is checked separately against the actual invocation and complete result evidence. Numerical checks do not establish engineering correctness.` : `Numerical integrity: ${result.numerical_quality!.status}. ${result.formulation_basis!.limitations.join(" ")} Numerical checks do not establish engineering correctness.`}</p>
           <ResultControls
             familyCounts={familyCounts}
             familyFilter={familyFilter}

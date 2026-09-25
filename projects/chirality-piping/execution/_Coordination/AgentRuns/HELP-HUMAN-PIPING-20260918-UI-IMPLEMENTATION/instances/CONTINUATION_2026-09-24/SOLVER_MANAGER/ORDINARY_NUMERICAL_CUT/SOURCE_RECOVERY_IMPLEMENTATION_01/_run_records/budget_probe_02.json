@@ -1,0 +1,13 @@
+{
+  "purpose": "Temporary operational-reservation measurement after removing duplicate arithmetic replay; not default-candidate qualification",
+  "generic_limits_default_unchanged": 2000000,
+  "temporary_source_method_limit": 8000000,
+  "before_source_sha256": "a18385dae7236821e9981d6fd811bda8c5afe588472b14897110939873ff0c6e",
+  "trial_source_sha256": "8feb63dfa3551484de2d1ca21449c338abc034e1b6ae19c365f43009517ef07d",
+  "build_exit_code": 0,
+  "executable_sha256": "aa80afe61b76380974b91e1c59320b6b1598f03b68de99212567e544d0697afa",
+  "runtime_exit_code": 1,
+  "runtime_wall_seconds": 0.6641409397125244,
+  "runtime_log_sha256": "84eb1a54d417a381310f5e6c37f7a7129abb942cbba05cf1bc2968a517bbec94",
+  "source_restored": true
+}

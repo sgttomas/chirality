@@ -1,0 +1,39 @@
+Command: cargo test --offline --locked --jobs 2 --manifest-path projects/chirality-piping/core/reporting/result_export/Cargo.toml --lib --test source_blocks
+Target: /private/tmp/piping-source-recovery-export-target
+   Compiling open_pipe_stress_result_export v0.1.0 (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.08s
+     Running unittests src/lib.rs (/private/tmp/piping-source-recovery-export-target/debug/deps/open_pipe_stress_result_export-95630a5a8af69a9a)
+
+running 15 tests
+test tests::stiffness_dimensions_serialize_as_explicit_contract_identifiers ... ok
+test tests::result_values_sort_deterministically_for_regression_comparison ... ok
+test tests::human_review_required_status_is_mandatory ... ok
+test tests::rule_pack_payload_must_remain_redacted ... ok
+test tests::load_vector_and_station_resultant_set_types_are_governed_vocabulary ... ok
+test tests::valid_envelope_has_no_blocking_diagnostics ... ok
+test tests::unsupported_result_set_type_is_blocking ... ok
+test tests::professional_boundary_violation_is_blocking ... ok
+test tests::local_force_and_moment_metadata_is_mandatory ... ok
+test tests::missing_units_and_dimensions_are_blocking ... ok
+test tests::protected_rule_pack_reference_blocks_export ... ok
+test tests::tp_section_021_fixture_serializes_section_property_evidence ... ok
+test tests::tp_phys_015_fixture_serializes_to_schema_wrapper ... ok
+test source_blocks::norm_tests::scaled_norm_accepts_small_normal_values_and_harmless_normalized_underflow ... ok
+test source_blocks::norm_tests::scaled_norm_rejects_subnormal_output_overflow_and_one_ulp_value_changes ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/source_blocks.rs (/private/tmp/piping-source-recovery-export-target/debug/deps/source_blocks-4e5a552659e7fbbe)
+
+running 8 tests
+test additive_signatures_leave_precision_table_unchanged ... ok
+test receipt_presence_never_downgrades_to_precision_or_legacy ... ok
+test reserved_unobserved_failure_is_debited_in_the_invocation_ledger ... ok
+test norm_inputs_and_fixed_arithmetic_bound_share_the_protected_criterion ... ok
+test independent_actual_context_is_required_and_bound ... ok
+test rehashed_projection_work_and_attribution_mutations_reject ... ok
+test received_invocation_work_aggregates_all_cases_and_rejects_rehashed_tampering ... ok
+test received_real_producer_artifacts_qualify_only_against_actual_invocation ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.27s
+

@@ -1,0 +1,18 @@
+[
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+    "sha256": "5e44809ceaeef8a71124bc8ff19aed46ba96254012b38fd7c5771837567a2ba9"
+  },
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+    "sha256": "6213ed0c72aa65c975e5b994dea5ad56e00c1459c0ed569661b65ddab599ebae"
+  },
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+    "sha256": "faff7cb626de15db8682a3e0dddf9c9c86878de38e9df492b865e85f97698399"
+  },
+  {
+    "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+    "sha256": "2b9526f010d0da9cd316b998cb7c3c9ecdee8e756090b245df2acc35ecc38d07"
+  }
+]

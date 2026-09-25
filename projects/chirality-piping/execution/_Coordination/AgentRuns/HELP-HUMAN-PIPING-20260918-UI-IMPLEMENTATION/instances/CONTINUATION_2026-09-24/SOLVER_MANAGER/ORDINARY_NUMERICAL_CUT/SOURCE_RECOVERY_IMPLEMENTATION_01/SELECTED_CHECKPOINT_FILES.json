@@ -1,0 +1,1815 @@
+{
+  "checkpoint_basis": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "root": "/private/tmp/piping-source-recovery-20260924",
+  "source_count": 91,
+  "evidence_count": 249,
+  "control_count": 2,
+  "selected_count": 342,
+  "source": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "sha256": "59bbaa294ad9bbd7a4698822a1afcadfa45e271174cd72559b0d885cb3095b81",
+      "bytes": 122941,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "sha256": "1d6325ddac0a55a4f5793769aeeb3a9d5c93f0edc43e744fee62d1609ee94ec5",
+      "bytes": 327756,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "sha256": "fd5e3a8eda947e3516f8d495c54dee8c030f56cc7eb8cdb4490dfb5107786c65",
+      "bytes": 7524,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec",
+      "bytes": 23987,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558",
+      "bytes": 17448,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+      "sha256": "a90d9090563f79ea1c01cc9e9fb50afe7999e3d4a7a0e1034d9d491df7cd9535",
+      "bytes": 26242,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "sha256": "6f2c1c8eb07b0e32774f30fe0259965dc54f997c7625dfda68e7310abb0e092d",
+      "bytes": 33194,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "sha256": "f9b337df8e23347492e2ca4e60c76b719b3a63e2215ba80aadec74a9d03486e4",
+      "bytes": 22501,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "sha256": "4b90c7f0e36b2d710a19cd33736db5af87d72a8db0d232c498cbfafb7b5298bf",
+      "bytes": 6591,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "sha256": "8241d1863cc284a1de47ab514f6f6c6f2051b3b7c139ac7c752b59772b55522e",
+      "bytes": 3250,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "sha256": "d6e5d4aec29734223e9a33438948b393f67eaaa08a848ff9ba8cffbb1add3f50",
+      "bytes": 32474,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d",
+      "bytes": 34190,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+      "sha256": "8c89254241a99b774883c3378bc34adfba0719c6243da95793854222b203a16e",
+      "bytes": 44977,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "sha256": "bd04405c055c7d82e6fa67291e4c398919ff09d39f9dc9b1b6d4944b88837171",
+      "bytes": 65608,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts",
+      "sha256": "620030747b15cecfafa99184f65e2f7fe4409b272b65499e384a0956b9c52d72",
+      "bytes": 3784,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "sha256": "17b0b321f86ec656b44707b808cc87e486fcc9a33e0a7d27dbb6b69175115dff",
+      "bytes": 7850,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6",
+      "bytes": 119250,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "sha256": "46b1b4bae3b5f8a7bd821517c06cce70ed662cd58c7572b03280b54986cd7f73",
+      "bytes": 17395,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+      "sha256": "106e1b65fa560aef314018e1a994f9f5fd874ef4a1b0b12691a80234fe426928",
+      "bytes": 24462,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4",
+      "bytes": 34158,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts",
+      "sha256": "e3632db248c3445661aa5c2788ea6384419fd34d3e29ab25902dc3ecc3faba3e",
+      "bytes": 8921,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "sha256": "e587b9fbc31db00ecc5dde22318fe181ce972740b85d4a2ce7019589c1cf0da1",
+      "bytes": 11404,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "sha256": "c48a1256263c5d58c98af57cf0d309ea51226ea1659b59a99d1bb0c6b9eb2820",
+      "bytes": 29565,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/__init__.py",
+      "sha256": "aa1fbd8152bfc53ff556dfc65661806a727c782943ec1d909d7a345c9164908d",
+      "bytes": 811,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "bytes": 29752,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978",
+      "bytes": 36633,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/handoff/stress_neutral/package_v0_3.py",
+      "sha256": "f24e9de39553add1298276ed1f1057befe77b0144474cb357518d4b2639434b0",
+      "bytes": 44004,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock",
+      "sha256": "808e70985eac9ed9370e7da5a10506d385967795aee9fa2834ec430671563e0e",
+      "bytes": 9638,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.lock",
+      "sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+      "bytes": 7473,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256": "2c037f109240275806d424aba371553575dec20a8b786d3ff29ecac875fe7326",
+      "bytes": 1275,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/examples/preview_result.rs",
+      "sha256": "70f992d3d6eb2915ccf76a72e481da2a59ce175ee391428782c3fb1d2900909b",
+      "bytes": 1137,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "bytes": 794764,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "bytes": 5079,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "bytes": 30651,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "sha256": "2af23fd77b2c99c8efced4f00ce893da589654be37f96a9e3a7ffc7fa26d7f1f",
+      "bytes": 26472,
+      "review_coverage": "PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "bytes": 18299,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "bytes": 7107,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "bytes": 52997,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "sha256": "bb51842ea877b959d3d7ada18385b2593d42955cb78b80e528f40ebe45d90780",
+      "bytes": 14097,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "bytes": 29843,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/lib.rs",
+      "sha256": "7c1aa49652c3d8d2b1a6cee88947c52d7cb413a75b2b689a6ffaba55965f57a3",
+      "bytes": 65891,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "bytes": 12352,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd",
+      "bytes": 62433,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/fixtures/source_blocks_statement_control.json",
+      "sha256": "e84f479e23ef84d7df26e0f874a268a35e0bc326dc4ea63c329561f4fc4f53c4",
+      "bytes": 102243,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9",
+      "bytes": 18005,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/Cargo.lock",
+      "sha256": "eccfcaf65bb1c5ddcfed7bcdb14d3f9de5280c9849e7ef263a45798396444066",
+      "bytes": 10267,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/lib.rs",
+      "sha256": "633d0236e4a09e610fe3d142ff03bef210a349e51172e3def74cf2c13a725423",
+      "bytes": 57785,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs",
+      "sha256": "42c28a7b43430eaa9a323c0bd3d7d8533b84d0aa137cadc8180d121544505728",
+      "bytes": 33837,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "bytes": 97588,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "bytes": 39085,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "bytes": 19020,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "sha256": "7345cbcade5777b4e4ffc190dff1d4f4231fcf3340f30bca342c1c95c19558b4",
+      "bytes": 3985,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c",
+      "bytes": 278695,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f",
+      "bytes": 275442,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "bytes": 138009,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f",
+      "bytes": 136414,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2",
+      "bytes": 128703,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "bytes": 128715,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/CAPTURE.json",
+      "sha256": "2e90f53900bfa030fab85955fef0f9398a57b1e859ce87acff61468d9b994b5a",
+      "bytes": 1296,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "bytes": 3782,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "bytes": 132883,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "bytes": 131459,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "6569258bc3e672a734cbea996e50a41e2d7da301a87a0c197a14b13b83eb5869",
+      "bytes": 278695,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "0fb36f522ee4899b0ed00d743df2a57a6d704fbc6285d519413658d2ac52b54d",
+      "bytes": 275442,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8",
+      "bytes": 138009,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "sha256": "74ee74036d2ef2713c240ce58c45133fcaba92593634f1d7d45abf1634087f03",
+      "bytes": 136414,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "7edb11b9c4fee9cdb1e697e9509d99e37323dc85d72f5ca9981bcc6d4ac9b63a",
+      "bytes": 128703,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "sha256": "4e222ae5a6d8678c504afcb218bec54f9d0fc2b65491a245e2c66ac19ec7fa12",
+      "bytes": 128715,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "bytes": 41938,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/analysis_run.v0.3.schema.json",
+      "sha256": "7e2963bf145da610da5a954898909d7947492b4eeebb8421ea4e4a48c7326350",
+      "bytes": 35186,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/schemas/results.v0.3.schema.yaml",
+      "sha256": "9f07ef071df2bad43efc442169253b27e49b3cd0e739303a0a3bbd6e4e45c399",
+      "bytes": 64770,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "bytes": 18116,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json",
+      "sha256": "a85608777e6b746559eea5ade471f367ff8fdbabcf57061d08b610b4bf0d9db1",
+      "bytes": 75876,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e",
+      "bytes": 23902,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/Cargo.lock",
+      "sha256": "3a166fecf8e3cf13f9504d87ec384cb6d61ac19e7e5e69e0c8af24c4b3eb5aa2",
+      "bytes": 7687,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/src/main.rs",
+      "sha256": "ce21e46dde817057ec286ff07618c2d0767dfc20dfa71d58db8d408347e617e5",
+      "bytes": 5948,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock",
+      "sha256": "a58cb13e716c4312a9cf30439fe88d2c1fa43f08af2352b53003bd330a7fc48d",
+      "bytes": 7854,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+      "sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+      "bytes": 29573
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/RETURN.md",
+      "sha256": "430301d5a08b8300bc3181018d298f847ae9a6cebf134e93e0f12facc7a4c144",
+      "bytes": 3777
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/INPUT_MANIFEST.json",
+      "sha256": "1e6ea8ceadc627640fb6a7b5b9de9da4c4446c5f3a7902a8a5e5b52fcbf86894",
+      "bytes": 15978
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/INPUT_RECHECK.json",
+      "sha256": "83c34fda8c02bf034b4d7b6b364aa8083ddf425964f3854925fce097cd2c5b21",
+      "bytes": 10411
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/OUTPUT_MANIFEST.json",
+      "sha256": "c76c629ca2a95d23e6ef445050b47ad1018d122c6e8c0540649f071938a58da8",
+      "bytes": 1185
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/PROVENANCE.json",
+      "sha256": "5f219339be3769b2971a48cffc93f9fe7e89bde148b3ed688f7328fa38ee0bbf",
+      "bytes": 5558
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/REFERENCE_PROBE.json",
+      "sha256": "a69aa4ca28dd8976c1995bfa0d63689af3d87b2728c723aa2f4ecf2a2c55ae39",
+      "bytes": 2280
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/_run_records/reference_probe.py",
+      "sha256": "3eb99ffb954cbc56798996a2937b8930ea7f4f6be55edb6f51f81d688520e82d",
+      "bytes": 5142
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/RETURN.md",
+      "sha256": "8d940b75b55db794d7dedd977caf692236378422838cb7b0516024193c3164e6",
+      "bytes": 13691
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/AUTHOR_PROBE_REPLAY.json",
+      "sha256": "a69aa4ca28dd8976c1995bfa0d63689af3d87b2728c723aa2f4ecf2a2c55ae39",
+      "bytes": 2280
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/AUTHOR_PROBE_REPLAY.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/EXECUTION.json",
+      "sha256": "f26df525699c704646f4cb58ceb2af5788eea49223c08980595fd0ee7d1d560e",
+      "bytes": 2817
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/INDEPENDENT_CHECKS.json",
+      "sha256": "8b2afc0341c5c518a9bb14abca91ae28f6b03eaa14e7f7f35712baa2a1ddf3cb",
+      "bytes": 1985
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/INDEPENDENT_CHECKS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/INPUT_MANIFEST.json",
+      "sha256": "45663a1d84cd2b81687a8b9d4f1de0d61c3537832e2b656ac6e6c81feea214cf",
+      "bytes": 17472
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/INPUT_RECHECK.json",
+      "sha256": "8c67d9defe3427acaf39f177bfcb32be3555f033a7ef3d5607ad7cf1e7303856",
+      "bytes": 8210
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/OUTPUT_MANIFEST.json",
+      "sha256": "1e50a9639046c3ab9cefcb97de910fa2317e4abca1e9b61ded93278eae2eda84",
+      "bytes": 2099
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/PROVENANCE.json",
+      "sha256": "dc8314d4898a4177f2fbe8d732d645038a5dac6f4b17573941af33de070e12a0",
+      "bytes": 3311
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/SOURCE_CHECK.json",
+      "sha256": "81676ead1ea328e16ff64d84c4e1b361562aa3277690c5988e29b13ded0f9d6e",
+      "bytes": 7710
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/_run_records/independent_check.py",
+      "sha256": "fdae313f135e3ec1fedc76a391f07e1b34303dd8124c4fe8a3029a4cda130483",
+      "bytes": 10479
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/AFFINE_CORE/PROVENANCE.json",
+      "sha256": "1ba59e314fc0aa5f3a69479b593a3916f003c818ff424f85a24c335fd804e7d6",
+      "bytes": 6920
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/AFFINE_CORE/RETURN.md",
+      "sha256": "644f9b51091129c57338a6f438c03087834ca5e759102bc79dac58f687a80a00",
+      "bytes": 6613
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/BRIEF.md",
+      "sha256": "762917457580da5f9fbbee795ee8f5fc543ca173efe7310866eb16a0ba3a873d",
+      "bytes": 5130
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/API_HANDOFF.md",
+      "sha256": "6f5dfeffba9a350d137e826b6900bd6c79f82ff1ab872f984ddf36cb49d7a7fd",
+      "bytes": 5793
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/CONTRACT.md",
+      "sha256": "5155d8fa0a14afe660f48d8f299bb6791b4a0d8661c39eb5d346f19737a45fca",
+      "bytes": 26864
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/EXAMPLES.json",
+      "sha256": "4e0639e4944946f21ca018336b35b9aa3ddae06be51883962a308eff9dc2b3b0",
+      "bytes": 77853
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/HASH_PAYLOADS.md",
+      "sha256": "23f937bd5a651543977614337cc7bfc3e3f831feb4f531d068a21cdaaf531663",
+      "bytes": 7877
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/INTEGRATION_MAP.md",
+      "sha256": "1071ea4bb10a55faf506d50cf2234808d2348b15624fd04eae8bb65328fadf77",
+      "bytes": 11840
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/RETURN.md",
+      "sha256": "01995e31d30f575f08a0a0b90f3e68d91a0b5e75111e15309675e8b205e23f64",
+      "bytes": 3707
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/INPUT_MANIFEST.json",
+      "sha256": "748f424eeaeeec2357d6b84aac7cfbf216c396a3e9cecda60bd5a53917430bf8",
+      "bytes": 11010
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/INPUT_RECHECK.json",
+      "sha256": "db562a9d69ab53df71b7ae1bc709306d7ad49467cdef947c6076e9524be9c5fc",
+      "bytes": 8034
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/OUTPUT_MANIFEST.json",
+      "sha256": "e0b1a2a85b23c377c1777128cb972a0abbd0f45f1e662d5e8f0506e7e9faa3c2",
+      "bytes": 2630
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/PROVENANCE.json",
+      "sha256": "1fd4ced31c8f114977fb1097601a2b4a7bfa004920ae6a40cea77d228512ca47",
+      "bytes": 5573
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/SHAPE_CHECKS.json",
+      "sha256": "efc05267aa7a8c535f4f15906f9e2398d41d8c6faeb2fa114639f1849ada21bc",
+      "bytes": 1582
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/examples_and_shape_check.py",
+      "sha256": "b9dc42cd6eefb124ba1a048adb1a5351fd45e9804884088cc732d23921cdcc43",
+      "bytes": 9599
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/generate_schema.py",
+      "sha256": "672b537ba58ded277421a3678e397d3d6412a873c609b799bf904e84c3ed2052",
+      "bytes": 5792
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/physics_interface_origin.json",
+      "sha256": "8846e0b19b5b40944a504d932e7a9a166354b143af0fb3dc41eeb9806ba4a38a",
+      "bytes": 444
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/physics_interface_schema.md",
+      "sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62",
+      "bytes": 8670
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/source_block_receipt.schema.json",
+      "sha256": "e3e59d0bfb7f4969fa3fbaabb6012103ac827af03644d4906b69010c17f6347d",
+      "bytes": 16837
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/support_semantic_rows.json",
+      "sha256": "3875517696243941c71920c2b960d36630aef11adfaaa101e3a70c5dfedf4461",
+      "bytes": 3699
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/DEPENDENCY_READSET.json",
+      "sha256": "02cf9600e16f16e6ddb354fd50095ace227b195671e7d67e0751a28bb1acc94e",
+      "bytes": 2796
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/FINAL_HASHES.json",
+      "sha256": "e247d293453915ff3517db75cfcae78f4d0542f6e0b3618d4654b461424d1de3",
+      "bytes": 2848
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/INDEPENDENT_AFFINE_CHECKS.json",
+      "sha256": "42b6404c719bb0cd5c27eda4fc89c2d72da8248d7363e38cdd0dfc651c0d44e8",
+      "bytes": 1245
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/INITIAL_BASIS.json",
+      "sha256": "07470daf284e95a91c9f7762cb8420fa04c6d3024074fd01756a4269e215c3c4",
+      "bytes": 2367
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RETURN.md",
+      "sha256": "5e0894663aa43601d2fc9757219b2acc76bb2b07492fc5866a15da751e8ccc56",
+      "bytes": 8605
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RUNTIME_EVIDENCE.json",
+      "sha256": "9f9283d5993d6f8d722923961d6343db6647445d568313b26947fd0b61c95312",
+      "bytes": 2889
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/SCOPE_CHECK.json",
+      "sha256": "ef523b0546b6df69bbc9d32957f4c980969ea09630269f8075003223d1a6b910",
+      "bytes": 756
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/CHECKED_BASIS.json",
+      "sha256": "50969c051317440dddda7921a06340bd3eba3dfac0df8c81c0833b0b62404ebd",
+      "bytes": 7833
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/INDEPENDENT_PROBES.json",
+      "sha256": "7a06cc9c8d5549a713cb731aee11ff5d1b74e257485e11766cf45ef1ec7c9249",
+      "bytes": 2693
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md",
+      "sha256": "18a98dffc26f5dd1f351a328e79cb7b107fbe102a07b7bbfdbb76402a493c6a0",
+      "bytes": 5423
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/check_reader_stress.py",
+      "sha256": "1d6f3ed3ded09c13c07d6b808cda9f17014d404a88161ee66e7dbbbbae8eab4e",
+      "bytes": 5035
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_MANIFEST.json",
+      "sha256": "454d675ba3b785617f3d65c408ae20b5df2a14f35ccb015f04f390fe7aaaffdd",
+      "bytes": 6664
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_PYTHON.log",
+      "sha256": "88091574691656b625f3fd9a50d8f8a11b2fe6eaa362a98282e77ddc68239d22",
+      "bytes": 3485
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_PYTHON_RECHECK.log",
+      "sha256": "02637bbb013ad248c72428f2ac9202e7413f7ebccca20a61b2b3675af4b5d4e2",
+      "bytes": 2726
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_RETURN.md",
+      "sha256": "febaa33ea6beca8ea20b7c7f6176eb8d5c4ebbdb2c8ab07eb47f9f94279a50d6",
+      "bytes": 3648
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/NORM_SCALED_RUST.log",
+      "sha256": "a1cdb8e6e3d340ccabf75604c5b545bdf9b8ed7a995acb31f632c17f67b7ed7a",
+      "bytes": 2652
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/RETURN.md",
+      "sha256": "6e74b74d4b5f8c5f24c6f5ff98a9d03dd566c0ad991c2b28a9b0d59fd1fda22f",
+      "bytes": 5260
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/SOURCE_AND_CHECKS.json",
+      "sha256": "1dae35618e9103c10fbefc6beef958238a18938a1a4104ceafaabdadb6617d68",
+      "bytes": 6314
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/STRESS_RANGE_RETURN.md",
+      "sha256": "c684b57f267a6f902c42f740b4eba8ea652c91bf9dbbf4561bc47a8e3bc7c7af",
+      "bytes": 3186
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/STRESS_RANGE_SOURCE_READY.json",
+      "sha256": "483d67d3a0eb772eab792d6c6f384f1919af4bf72c3f573af3269d476254c542",
+      "bytes": 4116
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CURRENT_STATE.md",
+      "sha256": "0e642a9ce5687aad65777c08467d55235be2d50a92eb19dfc320ca2d9e1ab2ef",
+      "bytes": 6244
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FINAL_SOURCE_FREEZE.json",
+      "sha256": "8564a52e7772d5f1abc4ce9062cd04b0e5395a759513d18c5a763f5575592c8a",
+      "bytes": 32838
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_EXECUTOR_BRIEF.md",
+      "sha256": "b85840a74e999676924f3547b117c5398bba13a01615a18020fe33415404d6b7",
+      "bytes": 8260
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/API_HANDOFF.md",
+      "sha256": "7688a9800fbac46a66d0652451a5f1d9990068579db6d12192730db9b2420f61",
+      "bytes": 4722
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/BASIS.json",
+      "sha256": "367d89ded0b0342792ec0ace3807323a0365f0a59a987524d80dc662fc05f2cc",
+      "bytes": 3039
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/COMPATIBILITY_01.json",
+      "sha256": "d32cc8fbbde4c817dfff42d0040e3f70f8ab172b2bea00a7fa415d007d9cf783",
+      "bytes": 743
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/COMPATIBILITY_01.log",
+      "sha256": "b6fa110ca8e71e81cec547038a5d36c9ec17e31f69bfea5178c8558374ee3b66",
+      "bytes": 8773
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_01.json",
+      "sha256": "7f5c4928eeebe68f417c2e44a404942a718ccadcd8444aa721a5b8b2a8dab70a",
+      "bytes": 684
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_01.log",
+      "sha256": "06402845098cb31300ca76853244a0a85322dcb4432a4648a65de5941f21fd4a",
+      "bytes": 36748
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_02.json",
+      "sha256": "a78d65a18da091691c6ca2f18a9af3dc3efbf94ae090fd0c9044a935d265c47d",
+      "bytes": 8752
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_02.log",
+      "sha256": "66858c18de70660c158ccb877576dc0920b7947f4783d952baa0525ca4cc20b7",
+      "bytes": 2333
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_03.json",
+      "sha256": "aeeb05885b1887d4ba0e769b5259f44ea9eca89b01158b45a7c1f92fd5d74c5b",
+      "bytes": 11223
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_03.log",
+      "sha256": "3c99431869e6be8d05e2db976d3030966c4f2bc645cef3e168fb9dcecaa7c5d2",
+      "bytes": 2333
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_04.json",
+      "sha256": "ef339bc97da48f2f44b19b7b260d638133664c3234e53fe141fd26e86be8f55e",
+      "bytes": 11171
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CONNECTED_04.log",
+      "sha256": "2b64c95617bd40d5e2d3c55fce5962c056c0ed5397a9d5d1312f3c3a406eaeb4",
+      "bytes": 17127
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/CURRENT_WORK.json",
+      "sha256": "892bff58c22cb11c3ba2c40a4853594c40f26cdeca5f17cfbcdb529b4c716cc3",
+      "bytes": 2359
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/DEPENDENCIES_CURRENT.json",
+      "sha256": "79cdf29c5405408fcca813a8cc7d1946cee09034ea59c19bf7459529043cd1c1",
+      "bytes": 1933
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FINAL_SOURCE.json",
+      "sha256": "c2ea5e30da76ed3936691187076fb84db976faaed2673eef98b304888ce83573",
+      "bytes": 8050
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FINAL_SOURCE.patch",
+      "sha256": "b613e8236ee8f0ce8eb4e8a5a7886eb478f42abbd4c537b9be9fb9e6d9b0c81f",
+      "bytes": 193906
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FOCUSED_01.json",
+      "sha256": "0ac54e57f17c17a16cf906aca29ac028c4f3fc652b12846569e2d75cbf955dec",
+      "bytes": 3155
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FOCUSED_01.log",
+      "sha256": "234e8fee0daa4673473b3bb51253a285339b5ed8999aa81727feaf0524084b4e",
+      "bytes": 783
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FOCUSED_02.json",
+      "sha256": "ff3f72d1630f06b14818a87479db7f75a52ab7f59251d73d675ce38038515988",
+      "bytes": 2826
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/FOCUSED_02.log",
+      "sha256": "2b559a4abcd30c05c531c67755814b0ef38ce29bd619899dc92eb4b5acb44f48",
+      "bytes": 385
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_01.json",
+      "sha256": "b080305e528058780db8a1740c3e926d2ab83cb3729ab794811a7bb3d5436b59",
+      "bytes": 5097
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_01.log",
+      "sha256": "f1a048db2d859c20de162cb9cee764f38813c914c934c65a8bb38f0c96ec81e2",
+      "bytes": 3778
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_02.json",
+      "sha256": "115dcb09dedef37e8d2941e905e7858723323ea9dcc4ebeada7bd4a80217ce24",
+      "bytes": 344
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_02.log",
+      "sha256": "9ee38d25bcabef52c8f7c6781054955a1bbef61a0ab41f7e3f081d4bc795e23b",
+      "bytes": 389
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_03.json",
+      "sha256": "6fad31b41b13be04785235d8850e8bf224a40a1b350ab8a0aa512232067cc2a1",
+      "bytes": 5040
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_03.log",
+      "sha256": "73d444095d621f5433b89a80da81c1cee8185e2a3dc9ae95d3ea39fb70196b62",
+      "bytes": 2324
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_DIAGNOSIS_01.log",
+      "sha256": "14a126d3145b2100377968108c8544cd8f8ecedd6b62e3967d33781880c18d81",
+      "bytes": 3777
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/GENUINE_DIAGNOSIS_02.log",
+      "sha256": "961deda0a0804c82b3e51f96fff8c34db72d0bdd09656ad41b39d8364212d4c9",
+      "bytes": 4885
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/NATIVE_HOOK_ADOPTION.json",
+      "sha256": "c035d8c6cdeb19e9f9573b7db7ea4c62c4f23f74b5891aa04cef3b398f81be19",
+      "bytes": 561
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/OUTPUT_HASHES.json",
+      "sha256": "f60d1f6549b7bf71d3f9bfa83146b3eba542af32f98cdd2f5270bfd1c9f6118a",
+      "bytes": 856
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/PANEL_FINAL_01.json",
+      "sha256": "31314fb2b9546b27def77aa7b47abfca043ef7d81ebaef65d765e223407d92e0",
+      "bytes": 3718
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/PANEL_FINAL_01.log",
+      "sha256": "c5ea56eb34143f223c1b8f6fb5a105ba3d03511032b5e7154aed6d56efb39039",
+      "bytes": 9590
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/PANEL_FINAL_02.json",
+      "sha256": "04706e47baca89b48b5e415ac624cfd57d25f6e86630f686ac7e35f76d91d4d0",
+      "bytes": 3804
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/PANEL_FINAL_02.log",
+      "sha256": "87dad67d22d6d64c8b3ed01b60b7d3bb842d99c01628c0390960ccc4b2061170",
+      "bytes": 404
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/RESUME_STATE.json",
+      "sha256": "8ce3b3ec7856962422eabb50d7ccb8c1a1ce680ef82849eeafe4f95bb7fa8cf4",
+      "bytes": 5247
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/RETURN.md",
+      "sha256": "37e6103f1db9727626a0232db5810c05e4c319bc16e2225aaeb8c87cd6bbdcde",
+      "bytes": 6883
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/SOURCE_CHECKPOINT.json",
+      "sha256": "381c9d7c596da9b409d6560d18eaf2337e57a76a7280d758d64237ff98d8ddca",
+      "bytes": 3059
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/STATIC_PARSE.json",
+      "sha256": "9453ea584f1c43be157a9664adc2a5b142bf6d67d2e087bee0ef22d9c0c6be61",
+      "bytes": 2114
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_01.json",
+      "sha256": "b703358913f0d4e6219163ecefee6d9c5838dc032a00c55caf85bcd31236ae16",
+      "bytes": 2664
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_01.log",
+      "sha256": "74cb04bccc5243dab7ea4af2915024cc790131e734e9de5a73977c80dcad2f3f",
+      "bytes": 488
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_02.json",
+      "sha256": "9514a3e2c124494598284dd95ceaf53a17cfa3a062cab1f0477ef33e6ab95774",
+      "bytes": 2664
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_02.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_03.json",
+      "sha256": "77b1066955e502f1af4a138924f42f702dc0f1e4e39aa2ecc07db5e7df213e77",
+      "bytes": 2780
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_03.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_04.json",
+      "sha256": "10f7ecbe0a82aa3eff37da152aae16872760f14c253d578af2f067be432b10e8",
+      "bytes": 4994
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_04.log",
+      "sha256": "01c166c9044d93cb021489476dda90cdd068f7f64e7cab91eb7736ace7e91aa4",
+      "bytes": 2839
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_05.json",
+      "sha256": "fb77f5314a2a29a5bf7e0b56f9e5c00625f7e06dfdb35e47ec94745c81cdd6bb",
+      "bytes": 193
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_05.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_06.json",
+      "sha256": "f48b4cc119e7ab55c3210ae6aae1d12b5b14b687c6c31bd5de000bd93e8dd7e7",
+      "bytes": 308
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_06.log",
+      "sha256": "78103787f79e03be53ce9e7d312e8c2ebf06d51e503c5e7c882fb02beadcd9b3",
+      "bytes": 136
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_07.json",
+      "sha256": "9154581cf28366017b7fe3f2958d6a2e68228fb039f43b198722a562a4dec9d6",
+      "bytes": 8261
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_07.log",
+      "sha256": "54b22b8cd721be3f9dcafe6e0fde606f4bcf0671feeae8bf9a7282e9ae3e3e74",
+      "bytes": 844
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_08.json",
+      "sha256": "4ce076c9238b9482bc72fee9dc845d37c584872324519bda42aeffbf3961be3b",
+      "bytes": 10732
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_08.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_09.json",
+      "sha256": "93dc2ee73f03dc4c496e94a82ad28b7252df3036b3e2bad4333930ca16577487",
+      "bytes": 10680
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_09.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_10.json",
+      "sha256": "dbe2e047fda42e5f14b709bf8e093b042154cdec4975d54d3b6f5e1af15db025",
+      "bytes": 3745
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/TYPECHECK_10.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/_run_records/RETURN_PRIOR.md",
+      "sha256": "8f2b3478ac0a5a98fd8e8a422d6b79ccf770d1c16c5d180490fb4506adda8734",
+      "bytes": 8538
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/INTEGRATION_HANDOFF.md",
+      "sha256": "15afd47530034b4a8163c5c2202e441c8415005da36f5b1874b4553a1cd68120",
+      "bytes": 12033
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/ORIGINS.json",
+      "sha256": "de888032598ce3c11f93b47ce23f940f1314facb249132e22f6e175322047b8f",
+      "bytes": 2690
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md",
+      "sha256": "eadf7a8a8bf7c3fd7ef72863abc3cc316b0776f269bbdff8ad9be3cce48fca48",
+      "bytes": 5661
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/FINDINGS.md",
+      "sha256": "97f72c92ff47f33c6b63f76ec88e4df6840d62ba1c80c2e01b2ec4c36cf5dd77",
+      "bytes": 4503
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/RETURN.md",
+      "sha256": "386494f8f58233b1e5e94a104ea0cbd8a0e53ef5f263c6d48138b2db4c550f21",
+      "bytes": 10080
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/BACKCHECK_PRODUCER.json",
+      "sha256": "3e0e9913031a03b906da5e41df3b9ec1fd3dc4db3b50a52854e8bff86e0687c1",
+      "bytes": 3293
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/BACKCHECK_PRODUCER.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/BACKCHECK_PRODUCER_MANIFEST.json",
+      "sha256": "ecd2bcd6552b1c3a5d7e26a4bff66fdb82e63b4851021034e000a8e03e204853",
+      "bytes": 766
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/BACKCHECK_PRODUCER_PROVENANCE.json",
+      "sha256": "fe59feac523a1e1aed7bfe0f822d92f2aab3dabc202124c57f5a5613c897c919",
+      "bytes": 12843
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/EXECUTION_PARTIAL.json",
+      "sha256": "e1051bd978cbb3226aa7c79af209b75c159d2343410b134f4683578e4c71cbfa",
+      "bytes": 1857
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/FINAL_BASIS.json",
+      "sha256": "5a48e2a1b312663b11aad207b5c5da77a5daad225747f39470a0bbcb33dccb37",
+      "bytes": 45236
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/INDEPENDENT_CHECKS.json",
+      "sha256": "a9eafd3c1ba1442b19e5c35ab00abac5caba2de534938ef79524bdc72b46d7b5",
+      "bytes": 4494
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/INDEPENDENT_CHECKS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/INITIAL_BASIS.json",
+      "sha256": "c7703bfa14253812e9448f6885a04e7da48aba21711ac301309873c0027fe45a",
+      "bytes": 6403
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/NORM_DERIVATION.md",
+      "sha256": "fa8f13713d428d3de4992e6938c830790e52e8dd4e4c5a889cb5b4b7d0209bc0",
+      "bytes": 2071
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/OUTPUT_MANIFEST.json",
+      "sha256": "a8fee871ffe51e5293a8d6a0480cadf50d0905677054dab5c5bec5e866a42774",
+      "bytes": 2912
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/PROVENANCE.json",
+      "sha256": "012529beb4d030bd03d4dfe9264ff91206414bc58d808f0a8181db7560210330",
+      "bytes": 2796
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/RUNTIME_EVIDENCE.json",
+      "sha256": "5d24d369bf48d1a2369cadc1e1f848f8c5c3a743a767b4890b21a599f88357ef",
+      "bytes": 11324
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/SCOPE_CHECK.json",
+      "sha256": "5dd862ed403584229a7ff60ef16d24388fc6876d95195ac61cf7f3dc7103ef9e",
+      "bytes": 2045
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/STRESS_REFERENCE.json",
+      "sha256": "34122b6cf8c793c1aa392be02576d85830986e9e7ded48a920f20e736f2f368a",
+      "bytes": 2020
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/STRESS_REFERENCE.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/STRESS_SUBNORMAL_REQUEST.json",
+      "sha256": "313ea27d895b6f90782c7438e8b54aa62741538f99328a969625e79e527f22e5",
+      "bytes": 3411
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/STRESS_SUBNORMAL_SCALAR.json",
+      "sha256": "7e8675d39ecc242b6d63089b203c2ea208a601bc23adf97276a5603b71bcde1c",
+      "bytes": 634
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/backcheck_producer.py",
+      "sha256": "90ec70a529652acdc25ce3a303423275cd2d2689fdf85143fb53285964fcf6d1",
+      "bytes": 6274
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/independent_checks.py",
+      "sha256": "95166a3e7702db06df3065da577d9e8950719e800561844770d11b1059b72de2",
+      "bytes": 5802
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/stress_reference.py",
+      "sha256": "56e98cf814b46c23d9d3f9e61d86a36c9ba3d98ea5cb6094efa302681e42a2e0",
+      "bytes": 2279
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/CANDIDATE.diff",
+      "sha256": "b658f00e5c4563cb47bda595326a07aaa4aee68647a4a77e030c70daf8e6a3df",
+      "bytes": 81030
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/IMPLEMENTED_HASH_PAYLOAD_ADJUSTMENTS.md",
+      "sha256": "f4087c31fe3d9455312ca0d043b99465321ccc4e188b4ada7a683fdf3815da96",
+      "bytes": 4102
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/INPUT_MANIFEST.json",
+      "sha256": "4c2357b7139c45dd9826041e0ac09d7caed6290f947a13467e35c89383399a77",
+      "bytes": 5562
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/PROVENANCE.json",
+      "sha256": "20de6ab94eb9043389411dfaded4a550e54e1513820c035ccecb68b7293da41e",
+      "bytes": 1698
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/RETURN.md",
+      "sha256": "d18b517f4639de51cad2c06ce55553137df5f80a9cb000d4438aac3e397864c7",
+      "bytes": 8250
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/SOURCE_FREEZE.json",
+      "sha256": "545e5703ea8fa48664b16c51767a819d453f8337b80bb9ba694be1a9084afa19",
+      "bytes": 717
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCT_ADAPTER/INPUT_MANIFEST.json",
+      "sha256": "92baf4ef31cd806f007c5171f995fe60c880fd005457650b500402bcd5beb373",
+      "bytes": 2156
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCT_ADAPTER/RETURN.md",
+      "sha256": "d25f6e17d09476b189ea845a54977d5629d42c7f5612ea3693f5fd55dc7b24cf",
+      "bytes": 5453
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCT_ADAPTER/SOURCE_AND_CHECKS.json",
+      "sha256": "fa6eaf09be1d928e50baccebf2c88a1f00cce09ea54f995dfa9c356871d48ba7",
+      "bytes": 749
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/REVIEWED_SUBSET.json",
+      "sha256": "0b8c8d84431a94ccc401afad1e7d569858de55ca8c44667e7b294ad1ad47a71d",
+      "bytes": 24040
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/REVIEWED_SUBSET.patch",
+      "sha256": "6fb6509fd9509001ea2f526e66ff7cef20f668e1f408bc2b4e58192f6fa028d5",
+      "bytes": 525044
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/SUBSET_SUPPORT.patch",
+      "sha256": "21226f53058afc085d8ba612b8570b4534af12abde6fbfbf97d13a355c7b30dc",
+      "bytes": 2711643
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/WORKING_ITEMS_RETURN.md",
+      "sha256": "8be7463f3c72260e0bfb47a8b5da0aa457fd5c1303d09d942515a732d497d9f3",
+      "bytes": 4347
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/STRESS_GUARD_CHECKS.json",
+      "sha256": "aebe2d3920a57d27aebca067f3d92e318d94b47a9bc59a5d2d5c10793c06ae26",
+      "bytes": 2532
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/apps_desktop_src-tauri.metadata.stderr",
+      "sha256": "fe2d5f3d142849a0eb5705a2487144689b35db00d71610dbeb4f88d1fcfad59b",
+      "bytes": 139
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_01.json",
+      "sha256": "84c11e69fbc4f2622e087306f867ea2c250b19c933f39dacd6dcebcfb63a0024",
+      "bytes": 459
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_01_build.log",
+      "sha256": "e5507d9cad8ae6c9987cb0e8605b9d76e6c989a392b5ab80dac095907c9eb6ae",
+      "bytes": 236
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_02.json",
+      "sha256": "107f929439420d541425514e40148b32bab3b7d4aecc0f5da633368218a6fee9",
+      "bytes": 729
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_02_build.jsonl",
+      "sha256": "2c01490086d380a29c1ba54fdce2c4787eb08ed7c99bf1218a19d474d5a5752f",
+      "bytes": 64337
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_02_build.stderr",
+      "sha256": "5d2e4820ac0a64c8277f54892ee48753193778a116a209b485bc586617d41baa",
+      "bytes": 1910
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_02_runtime.log",
+      "sha256": "84eb1a54d417a381310f5e6c37f7a7129abb942cbba05cf1bc2968a517bbec94",
+      "bytes": 11965
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_03.json",
+      "sha256": "7ede4e598afa34494c263d695858a8437dc21ec80fba22087116baac8091e8b6",
+      "bytes": 606
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_03_build.jsonl",
+      "sha256": "d4d23432724fd6de6d6cb3bf805cf1de92dbe5d437a5ed11f22df5416fcbb15f",
+      "bytes": 64326
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_03_build.stderr",
+      "sha256": "dceccd7dd95c55c0302cc1574dd2cea93dda27796455603a1d3d3c3a9d3996a4",
+      "bytes": 220
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/budget_probe_03_runtime.log",
+      "sha256": "53fc36ba67a1b39101f9d6a3ed0db2f1e08f07b923e3df43b178201c7ea52109",
+      "bytes": 3999
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/coherent_core_checks.json",
+      "sha256": "ec1def668e35eb1a7a9e501bb77a63d3f231a1272efd0cdc60e69a0990574bca",
+      "bytes": 4489
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_01.json",
+      "sha256": "cc98168ca723be49813792575704d52b9f1dfab47a436d20390a86c2ebc6eeec",
+      "bytes": 1207
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_01.log",
+      "sha256": "177c05245d710dbe11ff8548319face1960f6a3aad49a75a9a1f15d0c993fc5b",
+      "bytes": 641
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_02.json",
+      "sha256": "f912372e1e1af5e1e4a974105361cdaa37c45dfac621766b691cacaac42b76ef",
+      "bytes": 378
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_02.log",
+      "sha256": "a531b3d67b27654a3a17c89017525aa13376a231f62ef77c0544ce5fa59fddb1",
+      "bytes": 1474
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_03.log",
+      "sha256": "c1ffdda83f0c906db12b98b5bd333007f4f7c15f45de297cc63654ea9579d548",
+      "bytes": 7805
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_loads_self_weight_wasm.metadata.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_product_physics.metadata.stderr",
+      "sha256": "b0ba76ab4e45bcf48822180d40423bbd3f93de728a0785cc2e5e27318d86a0fe",
+      "bytes": 546
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_runner_headless.metadata.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/frontend_runtime_reuse.json",
+      "sha256": "675c3e796229b5c2f65ac9c259f39ada898769fd94a61215b4cdddfea5a7e154",
+      "bytes": 5434
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/genuine_python_01.json",
+      "sha256": "d0681343dd3fa25cf9986ee62f9b4aa39fb2a99e055d0735b5d7dbcf34dfcd50",
+      "bytes": 903
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/headless_complete_03.log",
+      "sha256": "92a620666944e498512cd3cda050ef4e8bfec4af092e17d0ed61a1cd7010ef82",
+      "bytes": 12039
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/headless_immutability_reuse.json",
+      "sha256": "83e4624ced262c37cdc9ddea0fa822d48a80adb15908b90da09afecd0ea213d1",
+      "bytes": 708
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/headless_source_binding_01.log",
+      "sha256": "c7d17545a7ea45662606e5d03731df8769bebcbaf5ecd5360f52ef7cf9921a3c",
+      "bytes": 11617
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/headless_source_binding_02.log",
+      "sha256": "7f913432ecb8933fa712a85de09902eb2fe34b33980fb885d83960ab1642f1fc",
+      "bytes": 6680
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/lock_reconciliation.json",
+      "sha256": "c9c317781e1518f2dbb7e6a7a873c1413d8253bd32344f8846581b4efc4c56c9",
+      "bytes": 5831
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/measure_source_budget.py",
+      "sha256": "22c87a7db025a63963417dc79f4790e1b661fd4c75da3ac85fed632967f3fbe3",
+      "bytes": 3841
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/multicase_default_runtime.json",
+      "sha256": "45c736ec93f2897185c4cd26e9ced28d66d8f13ca49f49e146ec2526c96052b7",
+      "bytes": 839
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/multicase_default_runtime.log",
+      "sha256": "ee264a1161bdabafdf9e2b93ba24b39a6b957678f6bfcacb2bcdeea71293052f",
+      "bytes": 513
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/native_host_metadata.json",
+      "sha256": "5b1274012a13855a1e2d8988b3a798f55e6b9e1cf693bf3e4850e387cd8f895c",
+      "bytes": 663
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/native_host_metadata.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/product_connected_01.json",
+      "sha256": "64a41e995e856ed5f7332dd8519361917353705138a06b3fceca5386f6d24753",
+      "bytes": 371
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/product_connected_01.log",
+      "sha256": "a793f2cd3dfa59e2527aec7401f3f353e8ab75acdc9c081834262e9fa17cdc8a",
+      "bytes": 3304
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/product_connected_02.json",
+      "sha256": "54452c57b0db686804455ef796a48dcd60824b5a2614850a5d0d0f38072cd49e",
+      "bytes": 372
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/product_connected_02.log",
+      "sha256": "f5b5551ade8c30efa1fad88b3efcb8857ec7bb2e281c09ec29e11022deb6accf",
+      "bytes": 16696
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/python_source_reader_01.json",
+      "sha256": "1151436bbeab2571442d986b82b503fb4b692243f3c64ce08b945fbe81161a26",
+      "bytes": 336
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/python_source_reader_01.log",
+      "sha256": "534a94bec2efbfbd911786d81886694e4b446360cc44b27e3f32d785e6082575",
+      "bytes": 106
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/rust_source_reader_01.json",
+      "sha256": "bae1005f70b5f650315074715b5f6ad5a896424107adb4d2cc28506fbee0ff7e",
+      "bytes": 369
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/rust_source_reader_01.log",
+      "sha256": "7d620d0e2f0d265173f1acb4a389695b31706a2bd6f89aa76bc4d275180dad16",
+      "bytes": 1552
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_library_05.log",
+      "sha256": "04f5fc8c6fb57e99c1acd01302c09586b6b095d38eca736e6ea7d2a8344b9860",
+      "bytes": 28165
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_library_06.log",
+      "sha256": "7827f49bbe52fed82f7e89f97ca3130ab61becf61128e4a7941458a2cf551d83",
+      "bytes": 21703
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_03.json",
+      "sha256": "a74a42dbd371865ba9a2dc8fa8436bf722b19380aaa3a30c33a9b116fb8e25e3",
+      "bytes": 371
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_03.log",
+      "sha256": "8f807fa08bc1c1756c51991c53e7847d906e4ced17360e0d61c51ff6bbc04025",
+      "bytes": 4704
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_04.log",
+      "sha256": "49a52d9c0624734c64ff128777c17e575df3683ea08b7eea0f21d97436e1edf8",
+      "bytes": 19376
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_05.log",
+      "sha256": "a3fae8e6ba1ca561bf99095efe6870c52a2c0de9c8d3fad10f9e50ca2c63b1b4",
+      "bytes": 4859
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_06.log",
+      "sha256": "04bd24dbefe5fbe14ec6c4a066e15d9907f0232b61106c7220193fcdc7217ec3",
+      "bytes": 5443
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_07.log",
+      "sha256": "a2d3612d9339402dc234753d79323513c5a9fe08b68111fd40b82b555ede572b",
+      "bytes": 6527
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_public_08.log",
+      "sha256": "7aa2445e03eafb6dad25df1ab9f0765df7208b0b0b9e4bc98ebd518b27cebdd1",
+      "bytes": 4908
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_01.json",
+      "sha256": "c62cd98f608f809bab87ec46053b23119ae12c4fa7974340eca40b2817befa2e",
+      "bytes": 442
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_01.log",
+      "sha256": "529eba3ef6f9879dc55aae5533c73451dd9fac73570dab03240ed41051b7313f",
+      "bytes": 6393
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_02.json",
+      "sha256": "a589557a672972ca0b5f39cf50e129b9f5018d67b2d2fabd2de8eee595b6c709",
+      "bytes": 358
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_02.log",
+      "sha256": "e8a96c6370444703e8ae4b723ded7a3c1aaec528728dca7bf76aa780926e033e",
+      "bytes": 5986
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_03.json",
+      "sha256": "fbf752353542b679b7b7f1520892df04bc939cbb6dd5c99f9a4e06c3536f6ad3",
+      "bytes": 356
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_03.log",
+      "sha256": "fcbafd21cd834c5b86c5a38d4c42e3945509f7a952b72bba1fb87f677db028fd",
+      "bytes": 5406
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/source_product_unit_04.log",
+      "sha256": "cf7af7f43cd760bea7dc6ae03ecc75c48a4da028c36d08c914ce5dbad3df393f",
+      "bytes": 5662
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_python_01.log",
+      "sha256": "4687aea719a08a1f4ccdcc99e7fc0b55d1a31e3ec9c2bdf8868ff9d2ba761858",
+      "bytes": 93
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_guard_rust_01.log",
+      "sha256": "f14d1ec54cba0e59e5d9b301abd9019d75ff2cd7bebf2c58eeaa2fe94730caab",
+      "bytes": 2886
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_after/dense_scrutiny.raw.json",
+      "sha256": "186b9a267c0301882e79ffdd7b9566d34677ff50cef11823205d5b84860504ae",
+      "bytes": 13687
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_after/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_after/sparse_interactive.raw.json",
+      "sha256": "b4590b4c7074202d61305fd2b43a70ce55e4464fadbf0646df363be12c133143",
+      "bytes": 13687
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_after/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before/dense_scrutiny.raw.json",
+      "sha256": "f577d856ec67fb1c02240e469bbb6a0a04c2fbed5237e660db4b680834b73073",
+      "bytes": 59127
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before/dense_scrutiny.request.json",
+      "sha256": "11db17b600c16e4073579c98bfde56f9d93d3a14df32ea5195085905814b5706",
+      "bytes": 3430
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before.log",
+      "sha256": "272d8bf7370dd44c44c1670d7ad2f67eba4798bfcb3baf4abcac68cd2470a256",
+      "bytes": 5098
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "bytes": 3782
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "bytes": 132883
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "bytes": 131459
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before.log",
+      "sha256": "bc822b9c9d1db787b7aaa5bbf3da4c9ae764823fa64393c98efe8957fb6892da",
+      "bytes": 5127
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/INDEX.json",
+      "sha256": "d4ded8e50fdd211d5e9f6089ca4cfa60a8c0244208739b165e3653755e81d6a9",
+      "bytes": 3878
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/generation.json",
+      "sha256": "f2c499fcbc48f7d4263b918f39bb73812acc29e8e6f17c74131a55d0a1d2ac72",
+      "bytes": 3150
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/multicase-dense_scrutiny.raw.json",
+      "sha256": "6ff4c1b451b0463de81fbb618ab861b286ced7b1ccabdfc3d31cef8ddf208dc9",
+      "bytes": 278639
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/multicase-sparse_interactive.raw.json",
+      "sha256": "4bde092017e090445b83a55e1f9810bacfbdbf7a9944417ffa18357bcff5aaab",
+      "bytes": 275386
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/n05-dense_scrutiny.raw.json",
+      "sha256": "00f41c9a71ade7b79a8b2670c68f02914abdff3cf432cebdd3f5dd188c28d353",
+      "bytes": 137981
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/n05-sparse_interactive.raw.json",
+      "sha256": "013534c06e952c8b4fac3f2230ceb8711f57f585c57d466bf8c11ce07a90aa1d",
+      "bytes": 136386
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/n06-dense_scrutiny.raw.json",
+      "sha256": "719258cb531156ef2b2a7179024f7f0f0a30de9f80458c90990f0135f462a999",
+      "bytes": 128675
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/n06-sparse_interactive.raw.json",
+      "sha256": "0c5a3917ceaf7ff4539da0f5f448f26d14ada0cb7113b578281d3b12589c52ae",
+      "bytes": 128687
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "a268192a01fa68bf05956d672ff88ddf784588466a0f06e47784d5db756b9359",
+      "bytes": 278639
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "57df68e90eaffa8c3febb0670fd30def87606e9f119299f2c93e89e1213e30b0",
+      "bytes": 275386
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "51bcbe58abc602a84c3e136130686687e8b3248555ff09b0fb53fb9fd39cebe2",
+      "bytes": 137981
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/n05-sparse_interactive.raw.json",
+      "sha256": "5bfe5c30406f21f961253e803d39cbc297c7ef171a6fc9576581b883e12b1420",
+      "bytes": 136386
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "ecc04722e2be9394fdd86017cf7f1fdb1495961d5a0cac74e4e8a81759737b05",
+      "bytes": 128675
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/superseded_naive_norm_captures/ui/n06-sparse_interactive.raw.json",
+      "sha256": "e281d513716e87a787788f1755810c49b02e9b3e5c2570aced8419d8475b7f4e",
+      "bytes": 128687
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/validation_benchmarks_numerical_integrity.metadata.stderr",
+      "sha256": "b0ba76ab4e45bcf48822180d40423bbd3f93de728a0785cc2e5e27318d86a0fe",
+      "bytes": 546
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/validation_benchmarks_physics_audit_regression.metadata.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "controls_without_self_hash": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/SELECTED_CHECKPOINT_FILES.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/SELECTED_CHECKPOINT_FILES.paths"
+  ],
+  "exclusions": [
+    "FRONTEND_READERS/INDEPENDENT_REVIEW (active independent review; add only after separate final return)",
+    "all ignored targets/node_modules/generated runtime caches",
+    "original preserved NUM/p2 trees and primary/physics/scientific checkouts"
+  ],
+  "source_bytes": 5439654,
+  "evidence_bytes": 7392291,
+  "selection_limit": "Recoverable unmerged implementation checkpoint, not merge/native/whole-review readiness."
+}

@@ -155,7 +155,7 @@ function comparisonDimension(delta: ComparisonDelta, result: MechanicsResult | n
   if (!result) return "unknown";
   const contract = sourceContract(result);
   if (contract === "legacy") return right.dimension ?? "unknown";
-  if (contract !== "precision") return "unknown";
+  if (contract !== "precision" && contract !== "source_blocks") return "unknown";
   const rightDimension = semanticDimension(right, result);
   const leftDimension = left ? semanticDimension(left, result) : null;
   if (!left || !rightDimension || leftDimension !== rightDimension) return "unknown";

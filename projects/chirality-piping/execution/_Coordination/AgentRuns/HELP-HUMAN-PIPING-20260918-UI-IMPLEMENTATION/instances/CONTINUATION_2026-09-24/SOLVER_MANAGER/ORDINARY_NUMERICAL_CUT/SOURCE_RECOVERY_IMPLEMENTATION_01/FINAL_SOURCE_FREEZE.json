@@ -1,0 +1,600 @@
+{
+  "sealed_at_utc": "2026-09-25T07:13:37.897914+00:00",
+  "branch": "codex/piping-source-recovery-20260924",
+  "base": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "state": "unmerged implementation checkpoint; selected independent review only, final combined review/native/CI still required",
+  "source_count": 91,
+  "source_files": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "sha256": "59bbaa294ad9bbd7a4698822a1afcadfa45e271174cd72559b0d885cb3095b81",
+      "bytes": 122941,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "sha256": "1d6325ddac0a55a4f5793769aeeb3a9d5c93f0edc43e744fee62d1609ee94ec5",
+      "bytes": 327756,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "sha256": "fd5e3a8eda947e3516f8d495c54dee8c030f56cc7eb8cdb4490dfb5107786c65",
+      "bytes": 7524,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec",
+      "bytes": 23987,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558",
+      "bytes": 17448,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+      "sha256": "a90d9090563f79ea1c01cc9e9fb50afe7999e3d4a7a0e1034d9d491df7cd9535",
+      "bytes": 26242,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "sha256": "6f2c1c8eb07b0e32774f30fe0259965dc54f997c7625dfda68e7310abb0e092d",
+      "bytes": 33194,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "sha256": "f9b337df8e23347492e2ca4e60c76b719b3a63e2215ba80aadec74a9d03486e4",
+      "bytes": 22501,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "sha256": "4b90c7f0e36b2d710a19cd33736db5af87d72a8db0d232c498cbfafb7b5298bf",
+      "bytes": 6591,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "sha256": "8241d1863cc284a1de47ab514f6f6c6f2051b3b7c139ac7c752b59772b55522e",
+      "bytes": 3250,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "sha256": "d6e5d4aec29734223e9a33438948b393f67eaaa08a848ff9ba8cffbb1add3f50",
+      "bytes": 32474,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d",
+      "bytes": 34190,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+      "sha256": "8c89254241a99b774883c3378bc34adfba0719c6243da95793854222b203a16e",
+      "bytes": 44977,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "sha256": "bd04405c055c7d82e6fa67291e4c398919ff09d39f9dc9b1b6d4944b88837171",
+      "bytes": 65608,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts",
+      "sha256": "620030747b15cecfafa99184f65e2f7fe4409b272b65499e384a0956b9c52d72",
+      "bytes": 3784,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "sha256": "17b0b321f86ec656b44707b808cc87e486fcc9a33e0a7d27dbb6b69175115dff",
+      "bytes": 7850,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6",
+      "bytes": 119250,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "sha256": "46b1b4bae3b5f8a7bd821517c06cce70ed662cd58c7572b03280b54986cd7f73",
+      "bytes": 17395,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+      "sha256": "106e1b65fa560aef314018e1a994f9f5fd874ef4a1b0b12691a80234fe426928",
+      "bytes": 24462,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4",
+      "bytes": 34158,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts",
+      "sha256": "e3632db248c3445661aa5c2788ea6384419fd34d3e29ab25902dc3ecc3faba3e",
+      "bytes": 8921,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "sha256": "e587b9fbc31db00ecc5dde22318fe181ce972740b85d4a2ce7019589c1cf0da1",
+      "bytes": 11404,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "sha256": "c48a1256263c5d58c98af57cf0d309ea51226ea1659b59a99d1bb0c6b9eb2820",
+      "bytes": 29565,
+      "review_coverage": "Frontend implementation/test return frozen; independent frontend review active and excluded until final return."
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/__init__.py",
+      "sha256": "aa1fbd8152bfc53ff556dfc65661806a727c782943ec1d909d7a345c9164908d",
+      "bytes": 811,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "bytes": 29752,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978",
+      "bytes": 36633,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/handoff/stress_neutral/package_v0_3.py",
+      "sha256": "f24e9de39553add1298276ed1f1057befe77b0144474cb357518d4b2639434b0",
+      "bytes": 44004,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock",
+      "sha256": "808e70985eac9ed9370e7da5a10506d385967795aee9fa2834ec430671563e0e",
+      "bytes": 9638,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.lock",
+      "sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+      "bytes": 7473,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256": "2c037f109240275806d424aba371553575dec20a8b786d3ff29ecac875fe7326",
+      "bytes": 1275,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/examples/preview_result.rs",
+      "sha256": "70f992d3d6eb2915ccf76a72e481da2a59ce175ee391428782c3fb1d2900909b",
+      "bytes": 1137,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "bytes": 794764,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "bytes": 5079,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "bytes": 30651,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "sha256": "2af23fd77b2c99c8efced4f00ce893da589654be37f96a9e3a7ffc7fa26d7f1f",
+      "bytes": 26472,
+      "review_coverage": "PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "bytes": 18299,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "bytes": 7107,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "bytes": 52997,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "sha256": "bb51842ea877b959d3d7ada18385b2593d42955cb78b80e528f40ebe45d90780",
+      "bytes": 14097,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "bytes": 29843,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/lib.rs",
+      "sha256": "7c1aa49652c3d8d2b1a6cee88947c52d7cb413a75b2b689a6ffaba55965f57a3",
+      "bytes": 65891,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "bytes": 12352,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd",
+      "bytes": 62433,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/fixtures/source_blocks_statement_control.json",
+      "sha256": "e84f479e23ef84d7df26e0f874a268a35e0bc326dc4ea63c329561f4fc4f53c4",
+      "bytes": 102243,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9",
+      "bytes": 18005,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/Cargo.lock",
+      "sha256": "eccfcaf65bb1c5ddcfed7bcdb14d3f9de5280c9849e7ef263a45798396444066",
+      "bytes": 10267,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/lib.rs",
+      "sha256": "633d0236e4a09e610fe3d142ff03bef210a349e51172e3def74cf2c13a725423",
+      "bytes": 57785,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs",
+      "sha256": "42c28a7b43430eaa9a323c0bd3d7d8533b84d0aa137cadc8180d121544505728",
+      "bytes": 33837,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "bytes": 97588,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "bytes": 39085,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "bytes": 19020,
+      "review_coverage": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "sha256": "7345cbcade5777b4e4ffc190dff1d4f4231fcf3340f30bca342c1c95c19558b4",
+      "bytes": 3985,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c",
+      "bytes": 278695,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f",
+      "bytes": 275442,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "bytes": 138009,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f",
+      "bytes": 136414,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2",
+      "bytes": 128703,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "bytes": 128715,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/CAPTURE.json",
+      "sha256": "2e90f53900bfa030fab85955fef0f9398a57b1e859ce87acff61468d9b994b5a",
+      "bytes": 1296,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "bytes": 3782,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "bytes": 132883,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "bytes": 131459,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "6569258bc3e672a734cbea996e50a41e2d7da301a87a0c197a14b13b83eb5869",
+      "bytes": 278695,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "0fb36f522ee4899b0ed00d743df2a57a6d704fbc6285d519413658d2ac52b54d",
+      "bytes": 275442,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8",
+      "bytes": 138009,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "sha256": "74ee74036d2ef2713c240ce58c45133fcaba92593634f1d7d45abf1634087f03",
+      "bytes": 136414,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "7edb11b9c4fee9cdb1e697e9509d99e37323dc85d72f5ca9981bcc6d4ac9b63a",
+      "bytes": 128703,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "sha256": "4e222ae5a6d8678c504afcb218bec54f9d0fc2b65491a245e2c66ac19ec7fa12",
+      "bytes": 128715,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "bytes": 41938,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/analysis_run.v0.3.schema.json",
+      "sha256": "7e2963bf145da610da5a954898909d7947492b4eeebb8421ea4e4a48c7326350",
+      "bytes": 35186,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/schemas/results.v0.3.schema.yaml",
+      "sha256": "9f07ef071df2bad43efc442169253b27e49b3cd0e739303a0a3bbd6e4e45c399",
+      "bytes": 64770,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "bytes": 18116,
+      "review_coverage": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json",
+      "sha256": "a85608777e6b746559eea5ade471f367ff8fdbabcf57061d08b610b4bf0d9db1",
+      "bytes": 75876,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e",
+      "bytes": 23902,
+      "review_coverage": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/Cargo.lock",
+      "sha256": "3a166fecf8e3cf13f9504d87ec384cb6d61ac19e7e5e69e0c8af24c4b3eb5aa2",
+      "bytes": 7687,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/src/main.rs",
+      "sha256": "ce21e46dde817057ec286ff07618c2d0767dfc20dfa71d58db8d408347e617e5",
+      "bytes": 5948,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock",
+      "sha256": "a58cb13e716c4312a9cf30439fe88d2c1fa43f08af2352b53003bd330a7fc48d",
+      "bytes": 7854,
+      "review_coverage": "Joined-candidate integration review required; no independent whole-tranche clearance claimed."
+    }
+  ],
+  "checks": [
+    {
+      "scope": "frame library",
+      "passes": 85,
+      "log": "_run_records/core_functionals_03.log",
+      "sha256": "c1ffdda83f0c906db12b98b5bd333007f4f7c15f45de297cc63654ea9579d548"
+    },
+    {
+      "scope": "product library",
+      "passes": 209,
+      "log": "_run_records/source_product_library_06.log",
+      "sha256": "7827f49bbe52fed82f7e89f97ca3130ab61becf61128e4a7941458a2cf551d83"
+    },
+    {
+      "scope": "public source groups",
+      "passes": 4,
+      "log": "_run_records/source_product_public_08.log",
+      "sha256": "7aa2445e03eafb6dad25df1ab9f0765df7208b0b0b9e4bc98ebd518b27cebdd1"
+    },
+    {
+      "scope": "Rust reader lib+integration",
+      "passes": 28,
+      "log": "_run_records/stress_guard_rust_01.log",
+      "sha256": "f14d1ec54cba0e59e5d9b301abd9019d75ff2cd7bebf2c58eeaa2fe94730caab"
+    },
+    {
+      "scope": "Python reader tests",
+      "passes": 18,
+      "log": "_run_records/stress_guard_python_01.log",
+      "sha256": "4687aea719a08a1f4ccdcc99e7fc0b55d1a31e3ec9c2bdf8868ff9d2ba761858"
+    },
+    {
+      "scope": "headless lib+bins",
+      "passes": 52,
+      "log": "_run_records/headless_complete_03.log",
+      "sha256": "92a620666944e498512cd3cda050ef4e8bfec4af092e17d0ed61a1cd7010ef82"
+    }
+  ],
+  "frontend_return": {
+    "path": "FRONTEND_READERS/FINAL_SOURCE.json",
+    "sha256": "c2ea5e30da76ed3936691187076fb84db976faaed2673eef98b304888ce83573",
+    "note": "Typecheck final21; broad172/173 plus repaired panel14/14,173distinct across runs."
+  },
+  "native": "prepared source/test only; joined ROOT qualification pending",
+  "earlier_ordinary_checkpoint_preserved": "0a438a68672269e5750900792c9565ae9e5555b0"
+}

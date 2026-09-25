@@ -1,0 +1,63 @@
+{
+  "scope": "independent rational design verification; no implementation or physical qualification",
+  "groups_passed": 6,
+  "records": [
+    {
+      "group": "generic partitions, prescribed couplings, offsets and cross-block ratios",
+      "systems": 120,
+      "functional_comparisons": 600
+    },
+    {
+      "group": "12-DOF energy-derived beam with uniform/thermal affine source",
+      "free_block_orders": [
+        2,
+        1,
+        2,
+        2
+      ],
+      "nonzero_end_components": 12,
+      "section_comparisons": 30,
+      "spring_device_actions": [
+        "3587/49152",
+        "1789/49152",
+        "75/1024"
+      ],
+      "root_rx_equilibrium_reaction": "0",
+      "prescribed_ux_ideal_reaction": "-907/1024",
+      "scope": "algebraic full-load witness; minimum product adapter may explicitly decline non-nodal families"
+    },
+    {
+      "group": "proper signed rotations and index permutation source closure",
+      "orientations": 2,
+      "end_functionals_checked": 24
+    },
+    {
+      "group": "N05",
+      "a_hex": "0x1.07c49b6ac7e26p+21",
+      "source_determinant_positive": true,
+      "stored_determinant_zero": false,
+      "direct_member_torque": 1e-08,
+      "direct_spring_action": -1e-08,
+      "projected_u_torque": 1.0000003377912085e-08,
+      "relative_error_after_projecting_u": 3.377912085045672e-07,
+      "product_execution": false,
+      "N06_actual_coefficient_capture": false
+    },
+    {
+      "group": "N06-scale illustration",
+      "a_hex": "0x1.07c49b6ac7e26p+21",
+      "source_determinant_positive": true,
+      "stored_determinant_zero": true,
+      "direct_member_torque": 1e-16,
+      "direct_spring_action": -1e-16,
+      "projected_u_torque": 0.0,
+      "relative_error_after_projecting_u": -1.0,
+      "product_execution": false,
+      "N06_actual_coefficient_capture": false
+    },
+    {
+      "group": "fully prescribed, tiny connected 3-block, zero/negative minors",
+      "conservative_rejections": 3
+    }
+  ]
+}

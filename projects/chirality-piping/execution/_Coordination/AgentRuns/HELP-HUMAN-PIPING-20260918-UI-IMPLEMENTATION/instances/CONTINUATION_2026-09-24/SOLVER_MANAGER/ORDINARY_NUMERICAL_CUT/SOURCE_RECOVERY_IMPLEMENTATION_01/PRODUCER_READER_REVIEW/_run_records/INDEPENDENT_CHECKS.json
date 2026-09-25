@@ -1,0 +1,108 @@
+{
+  "scope": "bounded independent Decimal/rational accounting/static checks and actual Python recipe only; no solver/build/native/full validator execution",
+  "norm_cases": 408,
+  "accepted_normal_or_zero": 357,
+  "range_rejections": 51,
+  "max_observed_relative_error_against_150_digit_decimal": "2.56421083895346049982523222269391668896028081914551490011376345042443402358370979863361428091242528936237663875864668939317205863271998866312649187689E-16",
+  "one_ulp_mutations_rejected": 357,
+  "small_ledger_checks": 72,
+  "p1_60_signatures_and_hash_unchanged": true,
+  "received_artifacts": [
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c",
+      "norm_rows": 8,
+      "case_count": 2,
+      "invocation_charged": 6906170,
+      "negative_zero_rows": 5
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f",
+      "norm_rows": 8,
+      "case_count": 2,
+      "invocation_charged": 6900470,
+      "negative_zero_rows": 5
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3353511,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3350601,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3008768,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3008816,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "6569258bc3e672a734cbea996e50a41e2d7da301a87a0c197a14b13b83eb5869",
+      "norm_rows": 8,
+      "case_count": 2,
+      "invocation_charged": 6940682,
+      "negative_zero_rows": 5
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "0fb36f522ee4899b0ed00d743df2a57a6d704fbc6285d519413658d2ac52b54d",
+      "norm_rows": 8,
+      "case_count": 2,
+      "invocation_charged": 6934982,
+      "negative_zero_rows": 5
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3370647,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "sha256": "74ee74036d2ef2713c240ce58c45133fcaba92593634f1d7d45abf1634087f03",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3367737,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "7edb11b9c4fee9cdb1e697e9509d99e37323dc85d72f5ca9981bcc6d4ac9b63a",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3025904,
+      "negative_zero_rows": 3
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "sha256": "4e222ae5a6d8678c504afcb218bec54f9d0fc2b65491a245e2c66ac19ec7fa12",
+      "norm_rows": 4,
+      "case_count": 1,
+      "invocation_charged": 3025952,
+      "negative_zero_rows": 3
+    }
+  ]
+}

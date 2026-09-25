@@ -1,0 +1,1922 @@
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/source_receipt.rs
+@@ -0,0 +1,755 @@
++//! Private producer finalization for the selected bounded source method.
++//! Digests bind custody; they do not replace the retained arithmetic proof.
++use super::source_recovery::{self, SelectedSourceRecovery};
++use super::*;
++use open_pipe_stress_canonical_json::canonical_json_checked_v1_text;
++use open_pipe_stress_frame_kernel::structural::{
++    exact_boundary as exact, StructuralError, StructuralReport,
++};
++use serde_json::{json, Value};
++use sha2::{Digest, Sha256};
++use std::collections::{BTreeMap, BTreeSet};
++mod rows;
++mod source;
++
++pub(super) const SEMANTIC_ID: &str = "openpipestress.result_semantics/0.3.0/source-blocks-1";
++const CRITERION: f64 = 1e-9;
++const MAX_ITEMS: usize = 16_384;
++#[derive(Debug, Clone, PartialEq, Eq)]
++pub(super) struct ReceiptError(pub String, pub Option<exact::WorkReport>);
++fn bad(message: impl Into<String>) -> ReceiptError {
++    ReceiptError(message.into(), None)
++}
++fn checked(value: &Value) -> Result<String, ReceiptError> {
++    let text = serde_json::to_string(value).map_err(|e| bad(e.to_string()))?;
++    canonical_json_checked_v1_text(&text).map_err(bad)
++}
++fn hash(domain: &'static str, payload: &Value) -> Result<String, ReceiptError> {
++    let text = checked(&json!({"domain":domain,"payload":payload}))?;
++    Ok(format!("{:x}", Sha256::digest(text.as_bytes())))
++}
++fn bits(value: f64) -> String {
++    format!("{:016x}", value.to_bits())
++}
++fn same(a: f64, b: f64) -> bool {
++    a.to_bits() == b.to_bits()
++}
++fn serialized<T: Serialize>(v: &T) -> Result<Value, ReceiptError> {
++    serde_json::to_value(v).map_err(|e| bad(e.to_string()))
++}
++
++/// Captures the actual raw request before parsing. No parsed/hash constructor.
++#[derive(Debug)]
++pub(super) struct CapturedInvocation {
++    raw: Value,
++    mode: PreviewSolverMode,
++    digest: String,
++    encoded_len: usize,
++}
++impl CapturedInvocation {
++    pub(super) fn parse(
++        raw: Value,
++        mode: PreviewSolverMode,
++    ) -> Result<(LinearStaticPreviewRequest, Self), ReceiptError> {
++        let encoded_len = checked(&raw)?.len();
++        let digest = hash(
++            "source_blocks_invocation_v1",
++            &json!({"request":&raw,"solver_mode":mode.as_str()}),
++        )?;
++        let parsed =
++            serde_json::from_value(raw.clone()).map_err(|e| bad(format!("request: {e}")))?;
++        Ok((
++            parsed,
++            Self {
++                raw,
++                mode,
++                digest,
++                encoded_len,
++            },
++        ))
++    }
++    pub(super) fn mode(&self) -> PreviewSolverMode {
++        self.mode
++    }
++    fn requested(&self) -> Result<LinearStaticPreviewRequest, ReceiptError> {
++        serde_json::from_value(self.raw.clone()).map_err(|e| bad(e.to_string()))
++    }
++    /// Reconstruct only the actual product normalization/material selection. Raw
++    /// custody/hashing remains the preparse Value, never these typed objects.
++    fn check_input(
++        &self,
++        input: &source_recovery::Input<'_>,
++        selected: &mut SelectedSourceRecovery,
++    ) -> Result<Option<String>, ReceiptError> {
++        let request = self.requested()?;
++        let mut model = request.model;
++        let mut materials = if request.materials.is_empty() {
++            model.materials.clone()
++        } else {
++            request.materials
++        };
++        let mut diagnostics = Vec::new();
++        resolve_shared_sections(&mut model, &mut diagnostics);
++        normalize_model_units(&mut model, &mut materials, &mut diagnostics);
++        if has_blocking(&diagnostics) || model.project.id != input.model.project.id {
++            return Err(bad("invocation normalized model mismatch"));
++        }
++        let case = model
++            .load_cases
++            .iter()
++            .find(|c| c.id == input.load_case.id)
++            .ok_or_else(|| bad("invocation case missing"))?;
++
++        let mut material_basis_record = None;
++        if modulus_basis_key(case, &mut diagnostics).is_some() {
++            let (resolved, record) =
++                materials_for_modulus_basis(&model, &materials, case, &mut diagnostics)
++                    .ok_or_else(|| bad("invocation material selection"))?;
++            materials = resolved;
++            material_basis_record = Some(record);
++        }
++        let built = build_model(&model, &materials, &mut diagnostics)
++            .ok_or_else(|| bad("invocation build unavailable"))?;
++        if has_blocking(&diagnostics) {
++            return Err(bad("invocation actual built source unavailable"));
++        }
++        let boundary = prepare_boundary(built.nodes.len(), &built.supports);
++        let mut stiffness = assemble_global_stiffness_with_user_elements(
++            built.nodes.len(),
++            &built.frame_elements,
++            &built.user_stiffness_elements,
++        )
++        .map_err(|e| bad(e.to_string()))?;
++        add_curved_bend_stiffness_contributions(&mut stiffness, &built.curved_bend_elements);
++        for spring in &boundary.springs {
++            let dof = spring.node_dof.global_index();
++            stiffness[dof][dof] += spring.stiffness.value;
++        }
++        let loads = build_load_case_primitive_loads(&model, case, &mut diagnostics);
++        let application = prepare_loads(built.nodes.len(), built.pipes.len(), &loads);
++        let force = application.global_load_vector(built.nodes.len());
++        let prescribed: Vec<_> = boundary
++            .restrained_dofs
++            .iter()
++            .map(|&d| {
++                (
++                    d,
++                    boundary
++                        .imposed_displacements
++                        .iter()
++                        .find(|p| p.node_dof.global_index() == d)
++                        .map(|p| p.displacement.value)
++                        .unwrap_or(0.0),
++                )
++            })
++            .collect();
++        let free: Vec<_> = (0..force.len())
++            .filter(|d| !boundary.restrained_dofs.contains(d))
++            .collect();
++        // The selected minimum rejects every non-nodal producer in prepare_sources;
++        // no unsupported source is omitted into an apparently empty witness.
++        if has_blocking(&diagnostics) {
++            return Err(bad("captured load preparation"));
++        }
++        selected
++            .replay_against(source_recovery::Input {
++                model: &model,
++                built: &built,
++                stiffness: &stiffness,
++                force: &force,
++                free: &free,
++                prescribed: &prescribed,
++                spring_entries: &boundary.springs,
++                load_case: case,
++                load_application: &application,
++                thermal_loads: &[],
++                pressure_thrust_loads: &[],
++            })
++            .map_err(|e| bad(format!("captured source replay: {e:?}")))?;
++        Ok(material_basis_record)
++    }
++}
++
++fn finalization_size(
++    capture: &CapturedInvocation,
++    selected: &SelectedSourceRecovery,
++    rows: &[ResultItem],
++) -> usize {
++    let response = selected.retained().response();
++    let source = response.source_system();
++    let mut n = response
++        .source_identity()
++        .len()
++        .saturating_mul(12)
++        .saturating_add(
++            source
++                .stiffness
++                .len()
++                .saturating_mul(source.stiffness.len())
++                .saturating_mul(32),
++        );
++    // Raw Value has already passed checked parsing; count encoded custody bytes,
++    // then debit the existing attempt before normalization/rebuild/hash copies.
++    n = n.saturating_add(capture.encoded_len.saturating_mul(12));
++    for d in selected.retained().descriptors() {
++        n = n
++            .saturating_add(d.key.case_id.len().saturating_mul(12))
++            .saturating_add(
++                d.offset
++                    .iter()
++                    .map(|p| p.len().saturating_mul(48))
++                    .sum::<usize>(),
++            );
++        for t in &d.terms {
++            n = n.saturating_add(48).saturating_add(
++                t.products
++                    .iter()
++                    .map(|p| p.len().saturating_mul(48))
++                    .sum::<usize>(),
++            );
++        }
++    }
++    for r in rows {
++        n = n
++            .saturating_add(r.id.len())
++            .saturating_add(r.kind.len())
++            .saturating_add(r.entity_ref.len())
++            .saturating_add(r.unit.len());
++        if let Some(m) = &r.metadata {
++            n = n
++                .saturating_add(m.component.len())
++                .saturating_add(m.coordinate_system.len())
++                .saturating_add(m.location.len())
++                .saturating_add(m.basis.len())
++                .saturating_add(m.sign_convention.len());
++        }
++    }
++    n.saturating_mul(2)
++}
++
++#[derive(Debug, Clone)]
++pub(super) struct OrdinaryAttempt {
++    mode: PreviewSolverMode,
++    outcome: &'static str,
++    report: Option<String>,
++    failure: Option<(&'static str, String)>,
++    expected_code: &'static str,
++}
++impl OrdinaryAttempt {
++    pub(super) fn passed(
++        mode: PreviewSolverMode,
++        report: &StructuralReport,
++        diagnostic_ref: String,
++    ) -> Self {
++        let sensitive =
++            report.quality == open_pipe_stress_frame_kernel::structural::SolveQuality::Sensitive;
++        Self {
++            mode,
++            outcome: if sensitive {
++                "sensitive"
++            } else {
++                "checks_passed"
++            },
++            report: Some(diagnostic_ref),
++            failure: None,
++            expected_code: if sensitive {
++                "NUMERICAL_INTEGRITY_SENSITIVE"
++            } else {
++                "NUMERICAL_INTEGRITY_CHECKS_PASSED"
++            },
++        }
++    }
++    pub(super) fn rejected(
++        mode: PreviewSolverMode,
++        error: &StructuralError,
++        diagnostic_ref: String,
++    ) -> Self {
++        let (stage, code) = match error {
++            StructuralError::Mechanism { .. } => {
++                ("geometry", "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM")
++            }
++            StructuralError::NegativeEnergy { .. } => {
++                ("factorization", "NUMERICAL_INTEGRITY_NEGATIVE_ENERGY")
++            }
++            StructuralError::Asymmetric { .. } | StructuralError::InvalidInput(_) => {
++                ("input", "NUMERICAL_INTEGRITY_FAILED")
++            }
++            StructuralError::Range(_) => ("range", "NUMERICAL_INTEGRITY_UNRESOLVED"),
++            StructuralError::NumericallyUnresolved { reason, .. }
++                if reason.contains("assembly") || reason.contains("contribution") =>
++            {
++                ("assembly", "NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED")
++            }
++            StructuralError::NumericallyUnresolved { reason, .. }
++                if reason.contains("condition") =>
++            {
++                ("condition", "NUMERICAL_INTEGRITY_UNRESOLVED")
++            }
++            StructuralError::NumericallyUnresolved { reason, .. }
++                if reason.contains("residual") =>
++            {
++                ("residual", "NUMERICAL_INTEGRITY_UNRESOLVED")
++            }
++            _ => ("factorization", "NUMERICAL_INTEGRITY_UNRESOLVED"),
++        };
++        Self {
++            mode,
++            outcome: "rejected",
++            report: None,
++            failure: Some((stage, diagnostic_ref)),
++            expected_code: code,
++        }
++    }
++    pub(super) fn not_attempted(mode: PreviewSolverMode) -> Self {
++        Self {
++            mode,
++            outcome: "not_attempted",
++            report: None,
++            failure: None,
++            expected_code: "",
++        }
++    }
++    fn wire(&self, index: usize, case: &str, envelope: &Value) -> Result<Value, ReceiptError> {
++        let q = envelope["numerical_quality"]["cases"]
++            .as_array()
++            .and_then(|a| a.get(index))
++            .ok_or_else(|| bad("ordinary quality case missing"))?;
++        if q["basis_ref"] != json!({"ref_type":"load_case","ref_id":case}) {
++            return Err(bad("ordinary quality case binding"));
++        }
++        let quality = q["solve_quality"].as_str().unwrap_or("");
++        if !match self.outcome {
++            "not_attempted" => quality == "not_assessed",
++            "checks_passed" => quality == "checks_passed",
++            "sensitive" => quality == "sensitive",
++            "rejected" => matches!(quality, "failed" | "unresolved"),
++            _ => false,
++        } {
++            return Err(bad("ordinary outcome changed"));
++        }
++        if let Some(reference) = self
++            .report
++            .as_ref()
++            .or_else(|| self.failure.as_ref().map(|p| &p.1))
++        {
++            let matching: Vec<_> = envelope["diagnostics"]
++                .as_array()
++                .ok_or_else(|| bad("diagnostics"))?
++                .iter()
++                .filter(|d| d["id"] == *reference)
++                .collect();
++            if matching.len() != 1 || matching[0]["code"] != self.expected_code {
++                return Err(bad("ordinary diagnostic binding"));
++            }
++        }
++        Ok(
++            json!({"requested_mode":self.mode.as_str(),"outcome":self.outcome,"structural_report_diagnostic_ref":self.report,"failure":self.failure.as_ref().map(|(s,d)|json!({"stage":s,"diagnostic_ref":d})),"quality_case_index":index}),
++        )
++    }
++}
++
++#[derive(Debug, Clone)]
++pub(super) struct FunctionalRowBinding {
++    pub functional_index: usize,
++    pub result_id: String,
++}
++#[derive(Debug, Clone, Serialize)]
++struct Projection {
++    projection_id: String,
++    functional_id: String,
++    result_id: String,
++    quantity: &'static str,
++    value: f64,
++    value_bits: String,
++    unit: &'static str,
++    interval: [f64; 2],
++    absolute_error_bound: f64,
++    relative_error_bound: f64,
++    relative_limit: f64,
++    basis: &'static str,
++}
++#[derive(Debug, Clone, Serialize)]
++struct RowTreatment {
++    result_id: String,
++    treatment: &'static str,
++    projection_id: Option<String>,
++    recipe_id: Option<&'static str>,
++    input_result_ids: Vec<String>,
++}
++#[derive(Debug)]
++pub(super) struct FinalizedSourceBlockCase {
++    invocation: String,
++    case_id: String,
++    ordinary: OrdinaryAttempt,
++    source: Option<Value>,
++    projections: Vec<Projection>,
++    rows: Vec<RowTreatment>,
++    supports: Value,
++    failure: Option<Value>,
++    work: Value,
++    actual_rows: Value,
++    qualified: bool,
++    exact: bool,
++    // Own the live-created companion until publication finalization completes.
++    _selected: Option<SelectedSourceRecovery>,
++}
++impl FinalizedSourceBlockCase {
++    pub(super) fn is_qualified(&self) -> bool {
++        self.qualified
++    }
++
++    pub(super) fn exact(
++        capture: &CapturedInvocation,
++        input: source_recovery::Input<'_>,
++        mut selected: SelectedSourceRecovery,
++        ordinary: OrdinaryAttempt,
++        rows: &[ResultItem],
++        bindings: &[FunctionalRowBinding],
++    ) -> Result<Self, ReceiptError> {
++        if ordinary.mode != capture.mode {
++            return Err(bad("requested mode mismatch"));
++        }
++        let checked_case = (|| {
++            selected
++                .charge_finalization(
++                    1024usize
++                        .saturating_add(rows.len().saturating_mul(32))
++                        .saturating_add(selected.retained().descriptors().len().saturating_mul(32)),
++                )
++                .map_err(|e| bad(format!("finalization reservation: {e:?}")))?;
++            let reservation = finalization_size(capture, &selected, rows);
++            selected
++                .charge_finalization(reservation)
++                .map_err(|e| bad(format!("finalization reservation: {e:?}")))?;
++            let material_basis_record = capture.check_input(&input, &mut selected)?;
++            selected
++                .replay_against(source_recovery::Input {
++                    model: input.model,
++                    built: input.built,
++                    stiffness: input.stiffness,
++                    force: input.force,
++                    free: input.free,
++                    prescribed: input.prescribed,
++                    spring_entries: input.spring_entries,
++                    load_case: input.load_case,
++                    load_application: input.load_application,
++                    thermal_loads: input.thermal_loads,
++                    pressure_thrust_loads: input.pressure_thrust_loads,
++                })
++                .map_err(|e| bad(format!("current source replay: {e:?}")))?;
++            let case_id = input.load_case.id.clone();
++            let ledger = rows::bind(&input, &selected, rows, bindings)?;
++            let source = source::commitment(
++                &input,
++                &selected,
++                bindings,
++                &capture.digest,
++                material_basis_record.as_deref(),
++                &ledger.rows,
++                rows,
++            )?;
++            let qualified = ledger.rows.iter().all(|r| {
++                r.treatment != "inspection_only"
++                    || rows
++                        .iter()
++                        .find(|v| v.id == r.result_id)
++                        .is_some_and(rows::observation)
++            });
++            Ok::<_, ReceiptError>((case_id, ledger, source, qualified, serialized(&rows)?))
++        })();
++        let (case_id, ledger, source, qualified, actual_rows) = checked_case.map_err(|mut e| {
++            e.1 = Some(selected.summary().work);
++            e
++        })?;
++        let work = work_wire(selected.summary().work)?;
++        Ok(Self {
++            invocation: capture.digest.clone(),
++            case_id,
++            ordinary,
++            source: Some(source),
++            projections: ledger.projections,
++            rows: ledger.rows,
++            supports: ledger.supports,
++            failure: None,
++            work,
++            actual_rows,
++            qualified,
++            exact: true,
++            _selected: Some(selected),
++        })
++    }
++    pub(super) fn ordinary(
++        capture: &CapturedInvocation,
++        case_id: &str,
++        ordinary: OrdinaryAttempt,
++        rows: &[ResultItem],
++    ) -> Result<Self, ReceiptError> {
++        if ordinary.mode != capture.mode || ordinary.outcome != "checks_passed" {
++            return Err(bad("ordinary selection not p1 checks-passed"));
++        }
++        validate_case_rows(case_id, rows)?;
++        Ok(Self {
++            invocation: capture.digest.clone(),
++            case_id: case_id.into(),
++            ordinary,
++            source: None,
++            projections: vec![],
++            rows: rows
++                .iter()
++                .map(|r| RowTreatment {
++                    result_id: r.id.clone(),
++                    treatment: "ordinary_checked",
++                    projection_id: None,
++                    recipe_id: None,
++                    input_result_ids: vec![],
++                })
++                .collect(),
++            supports: json!([]),
++            failure: None,
++            work: work_wire(exact::WorkReport {
++                charged: 0,
++                rejected: 0,
++                limit: 0,
++            })?,
++            actual_rows: serialized(&rows)?,
++            qualified: true,
++            exact: false,
++            _selected: None,
++        })
++    }
++    pub(super) fn failed(
++        capture: &CapturedInvocation,
++        case_id: &str,
++        ordinary: OrdinaryAttempt,
++        failure: &source_recovery::RecoveryFailure,
++        diagnostic_ref: &str,
++        rows: &[ResultItem],
++    ) -> Result<Self, ReceiptError> {
++        validate_case_rows(case_id, rows)?;
++        let (stage, code, block) = source::failure_fields(failure);
++        Ok(Self {
++            invocation: capture.digest.clone(),
++            case_id: case_id.into(),
++            ordinary,
++            source: None,
++            projections: vec![],
++            rows: rows
++                .iter()
++                .map(|r| RowTreatment {
++                    result_id: r.id.clone(),
++                    treatment: "inspection_only",
++                    projection_id: None,
++                    recipe_id: None,
++                    input_result_ids: vec![],
++                })
++                .collect(),
++            supports: json!([]),
++            failure: Some(
++                json!({"stage":stage,"code":code,"diagnostic_ref":diagnostic_ref,"block_order":block}),
++            ),
++            work: work_wire(failure.work)?,
++            actual_rows: serialized(&rows)?,
++            qualified: false,
++            exact: false,
++            _selected: None,
++        })
++    }
++}
++fn validate_case_rows(case: &str, rows: &[ResultItem]) -> Result<(), ReceiptError> {
++    let mut ids = BTreeSet::new();
++    if rows.len() > MAX_ITEMS {
++        return Err(bad("row budget"));
++    }
++    for r in rows {
++        if r.id.is_empty()
++            || !ids.insert(&r.id)
++            || !r.value.is_finite()
++            || r.basis_ref.as_ref()
++                != Some(&ResultBasisRef {
++                    ref_type: "load_case".into(),
++                    ref_id: case.into(),
++                })
++        {
++            return Err(bad("invalid/duplicate/misowned case row"));
++        }
++    }
++    Ok(())
++}
++fn work_wire(work: exact::WorkReport) -> Result<Value, ReceiptError> {
++    const MAX: u64 = 9_007_199_254_740_991;
++    if work.charged > work.limit || (work.limit as u64) > MAX {
++        return Err(bad("invalid work accounting"));
++    }
++    Ok(
++        json!({"limit":work.limit,"charged":work.charged,"reserved_unobserved_failure":0,"rejected_reservation":if work.rejected == usize::MAX || (work.rejected as u64)>MAX{json!({"kind":"overflow","amount":null})}else{json!({"kind":"finite","amount":work.rejected})}}),
++    )
++}
++
++#[derive(Debug, Serialize)]
++pub(super) struct FinalizedSourceBlockReceipt {
++    body: Value,
++    receipt_sha256: String,
++}
++impl FinalizedSourceBlockReceipt {
++    pub(super) fn finalize(
++        capture: &CapturedInvocation,
++        envelope: &MechanicsEnvelope,
++        mut cases: Vec<FinalizedSourceBlockCase>,
++    ) -> Result<Self, ReceiptError> {
++        if envelope.results.len() > MAX_ITEMS || envelope.diagnostics.len() > MAX_ITEMS {
++            return Err(bad("publication inventory budget"));
++        }
++        if let Some(case) = cases.iter_mut().find(|c| c._selected.is_some()) {
++            let selected = case._selected.as_mut().unwrap();
++            selected
++                .charge_finalization(
++                    1024usize
++                        .saturating_add(envelope.results.len().saturating_mul(32))
++                        .saturating_add(envelope.diagnostics.len().saturating_mul(32)),
++                )
++                .map_err(|e| {
++                    ReceiptError(format!("publication reservation: {e:?}"), Some(e.work))
++                })?;
++            let size = envelope.diagnostics.iter().fold(0usize, |n, d| {
++                n.saturating_add(d.id.len())
++                    .saturating_add(d.code.len())
++                    .saturating_add(d.message.len())
++                    .saturating_add(d.affected_refs.iter().map(String::len).sum::<usize>())
++            });
++            selected
++                .charge_finalization(size.saturating_mul(12))
++                .map_err(|e| {
++                    ReceiptError(format!("publication reservation: {e:?}"), Some(e.work))
++                })?;
++            case.work = work_wire(selected.summary().work)?;
++        }
++        let publication = serialized(envelope)?;
++        if publication.get("source_block_recovery").is_some()
++            || envelope.producer.semantic_contract_id != SEMANTIC_ID
++        {
++            return Err(bad(
++                "publication must have source identity and omit receipt",
++            ));
++        }
++        let request = capture.requested()?;
++        if request.model.project.id != envelope.model_ref
++            || cases.is_empty()
++            || cases.len() != request.model.load_cases.len()
++        {
++            return Err(bad("invocation case coverage"));
++        }
++        if serialized(&assessed_numerical_quality(
++            &request.model,
++            &envelope.diagnostics,
++        ))? != serialized(&envelope.numerical_quality)?
++        {
++            return Err(bad(
++                "ordinary numerical summary no longer matches actual diagnostics",
++            ));
++        }
++        let mut ids = BTreeSet::new();
++        for r in &envelope.results {
++            if !ids.insert(r.id.as_str()) {
++                return Err(bad("duplicate result id"));
++            }
++        }
++        for d in &envelope.diagnostics {
++            if !ids.insert(d.id.as_str()) {
++                return Err(bad("result/diagnostic collision"));
++            }
++        }
++        let mut wire = Vec::new();
++        let mut accounted = BTreeSet::new();
++        let mut qualified = 0;
++        for (index, (case, requested)) in cases.iter().zip(&request.model.load_cases).enumerate() {
++            if case.case_id != requested.id
++                || case.invocation != capture.digest
++                || case.ordinary.mode != capture.mode
++            {
++                return Err(bad("invocation/case order mismatch"));
++            }
++            let actual: Vec<_> = envelope
++                .results
++                .iter()
++                .filter(|r| {
++                    r.basis_ref
++                        .as_ref()
++                        .is_some_and(|b| b.ref_type == "load_case" && b.ref_id == case.case_id)
++                })
++                .cloned()
++                .collect();
++            if serialized(&actual)? != case.actual_rows {
++                return Err(bad("final row bytes changed"));
++            }
++            for r in &case.rows {
++                if !accounted.insert(r.result_id.clone()) {
++                    return Err(bad("row accounted twice"));
++                }
++            }
++            let ordinary = case.ordinary.wire(index, &case.case_id, &publication)?;
++            let q = &publication["numerical_quality"]["cases"][index];
++            if case.qualified
++                && !case.exact
++                && (q["structural_status"] != "passive_model_basis"
++                    || q["model_matrix_fidelity"] != "represented_equations_retained"
++                    || !matches!(
++                        q["accuracy_evidence"].as_str(),
++                        Some("not_claimed" | "reference_verified")
++                    ))
++            {
++                return Err(bad("ordinary p1 qualification"));
++            }
++            let eligible = case.qualified && request.model.combinations.is_empty();
++            if eligible {
++                qualified += 1;
++            }
++            let mut failure = case.failure.clone();
++            if !eligible && failure.is_none() {
++                let diagnostic = envelope
++                    .diagnostics
++                    .iter()
++                    .find(|d| {
++                        d.code == "SOURCE_RECOVERY_DERIVED_UNQUALIFIED"
++                            && d.affected_refs.contains(&case.case_id)
++                    })
++                    .ok_or_else(|| bad("unqualified derived case needs actual diagnostic"))?;
++                failure = Some(
++                    json!({"stage":"derived_rows","code":"unsupported_derived_quantity","diagnostic_ref":diagnostic.id,"block_order":null}),
++                );
++            }
++            if let Some(f) = &failure {
++                if !envelope
++                    .diagnostics
++                    .iter()
++                    .any(|d| Some(d.id.as_str()) == f["diagnostic_ref"].as_str())
++                {
++                    return Err(bad("source failure diagnostic missing"));
++                }
++            }
++            wire.push(json!({"basis_ref":{"ref_type":"load_case","ref_id":case.case_id},"outcome":if eligible{"qualified"}else if failure.as_ref().is_some_and(|f|matches!(f["code"].as_str(),Some("unsupported_family"|"unsupported_block"|"unsupported_source_closure"|"unsupported_derived_quantity"|"support_attribution_ambiguous"))){"unsupported"}else{"failed"},"requested_mode":capture.mode.as_str(),"selected_method":if eligible{Some(if case.exact{"retained_source_blocks_exact_v1"}else if capture.mode==PreviewSolverMode::DenseScrutiny{"ordinary_dense_structural_v1"}else{"ordinary_sparse_structural_v1"})}else{None},"ordinary_attempt":ordinary,"source":case.source,"projections":case.projections,"rows":case.rows,"supports":case.supports,"failure":failure,"work":case.work}));
++        }
++        let mut observations = Vec::new();
++        for r in &envelope.results {
++            if !accounted.contains(&r.id) {
++                if rows::observation(r) {
++                    observations.push(r.id.clone());
++                } else {
++                    return Err(bad("unaccounted physical result"));
++                }
++            }
++        }
++        rows::validate_summary(envelope)?;
++        let body = json!({"receipt_version":"1.0.0","policy":"SOURCE-BLOCKS-1","status":if qualified==cases.len(){"qualified"}else if qualified>0{"partial"}else{"unavailable"},"invocation":{"algorithm":"sha256","canonicalization":"openpipestress_jcs_ijson_v1","payload_scope":"source_blocks_invocation_v1","value":capture.digest},"publication_sha256":hash("source_blocks_publication_v1",&publication)?,"cases":wire,"envelope_observation_result_ids":observations});
++        let receipt_sha256 = hash("source_blocks_receipt_v1", &body)?;
++        Ok(Self {
++            body,
++            receipt_sha256,
++        })
++    }
++    pub(super) fn into_wire(self) -> Value {
++        json!({"body":self.body,"receipt_sha256":self.receipt_sha256})
++    }
++}
++
++#[cfg(test)]
++mod tests;
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs
+@@ -0,0 +1,661 @@
++use super::*;
++use exact::functionals::{FunctionalQuantity, FunctionalUnit, MemberEnd};
++const SECTION_SIGN:&str="positive value follows the j-side section action in the element-local frame (x toward end j); section equilibrium from stiffness-recovered end actions with consistent distributed-load fixed-end correction";
++const SUPPORT_SIGN: &str =
++    "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node";
++const COMPONENTS: [&str; 6] = ["Fx", "Fy", "Fz", "Mx", "My", "Mz"];
++pub(super) struct Ledger {
++    pub projections: Vec<Projection>,
++    pub rows: Vec<RowTreatment>,
++    pub supports: Value,
++}
++fn qualify(input: &source_recovery::Input<'_>, mut row: ResultItem) -> ResultItem {
++    if input
++        .model
++        .load_cases
++        .first()
++        .is_some_and(|c| c.id != input.load_case.id)
++    {
++        row.id = qualified_load_case_result_id(&input.load_case.id, &row.id);
++    }
++    row.basis_ref = Some(ResultBasisRef {
++        ref_type: "load_case".into(),
++        ref_id: input.load_case.id.clone(),
++    });
++    row
++}
++fn support_id(case: &str, support: &str, component: &str) -> String {
++    format!(
++        "result:support-component-v2:{}:{case}{}:{support}:{component}",
++        case.len(),
++        support.len()
++    )
++}
++fn unit(u: FunctionalUnit) -> Result<&'static str, ReceiptError> {
++    Ok(match u {
++        FunctionalUnit::Millimetre => "mm",
++        FunctionalUnit::Metre => "m",
++        FunctionalUnit::Radian => "rad",
++        FunctionalUnit::Newton => "N",
++        FunctionalUnit::NewtonMetre => "N*m",
++        _ => return Err(bad("unsupported projection unit")),
++    })
++}
++pub(super) fn finite_norm(values: [f64; 3]) -> Result<f64, ReceiptError> {
++    let squared = values[0] * values[0] + values[1] * values[1] + values[2] * values[2];
++    let value = squared.sqrt();
++    if !squared.is_finite()
++        || !value.is_finite()
++        || values.iter().any(|x| *x != 0.0 && x * x == 0.0)
++    {
++        return Err(bad("derived norm range"));
++    }
++    Ok(value)
++}
++pub(super) fn expected_primary(
++    input: &source_recovery::Input<'_>,
++    selected: &SelectedSourceRecovery,
++) -> Result<BTreeMap<usize, ResultItem>, ReceiptError> {
++    let mut expected = BTreeMap::new();
++    for (node_index, node) in input.model.nodes.iter().enumerate() {
++        let mut rows = Vec::new();
++        append_node_displacement_component_results(
++            &mut rows,
++            &node.id,
++            selected.displacements(),
++            node_index,
++        );
++        for (component, mut row) in rows.into_iter().enumerate() {
++            let index = node_index * 6 + component;
++            row.value = selected.published_nodal_components()[index];
++            expected.insert(
++                selected.published_nodal_functional_indices()[index],
++                qualify(input, row),
++            );
++        }
++    }
++    for member in selected.members() {
++        let mut end = Vec::new();
++        append_element_force_results(&mut end, &member.member_id, &member.end_forces);
++        // append emits i,j pairs for each of six components.
++        for (i, row) in end.into_iter().enumerate() {
++            let component = i / 2;
++            let slot = component + (i % 2) * 6;
++            expected.insert(member.end_functional_indices[slot], qualify(input, row));
++        }
++        for (station, location) in [(1, "quarter_1"), (2, "midspan"), (3, "quarter_3")] {
++            let mut rows = Vec::new();
++            append_station_force_results(
++                &mut rows,
++                &member.member_id,
++                location,
++                &member.sections[station],
++                SECTION_RESULTANT_BASIS,
++                SECTION_SIGN,
++                "element_local",
++            );
++            for (c, row) in rows.into_iter().enumerate() {
++                expected.insert(
++                    member.section_functional_indices[station][c],
++                    qualify(input, row),
++                );
++            }
++        }
++    }
++    for support in selected.support_actions() {
++        for c in 0..6 {
++            let row = ResultItem {
++                id: support_id(&input.load_case.id, &support.support_id, COMPONENTS[c]),
++                kind: "support_reaction_component_v2".into(),
++                value: support.values[c],
++                unit: if c < 3 { "N" } else { "N*m" }.into(),
++                entity_ref: support.support_id.clone(),
++                basis_ref: None,
++                source_result_refs: vec![],
++                metadata: Some(ResultMetadata {
++                    component: COMPONENTS[c].into(),
++                    coordinate_system: "global".into(),
++                    location: "node".into(),
++                    basis: "recovered_from_assembled_support_law".into(),
++                    sign_convention: SUPPORT_SIGN.into(),
++                }),
++            };
++            expected.insert(support.functional_indices[c], qualify(input, row));
++        }
++    }
++    Ok(expected)
++}
++fn descriptor_matches(
++    index: usize,
++    row: &ResultItem,
++    selected: &SelectedSourceRecovery,
++) -> Result<&'static str, ReceiptError> {
++    let d = selected
++        .retained()
++        .descriptors()
++        .get(index)
++        .ok_or_else(|| bad("functional index"))?;
++    if unit(d.key.unit)? != row.unit {
++        return Err(bad("functional final unit"));
++    }
++    let metadata = row
++        .metadata
++        .as_ref()
++        .ok_or_else(|| bad("projection metadata"))?;
++    let quantity = match &d.key.quantity {
++        FunctionalQuantity::NodeDisplacement { node, dof } => {
++            if node != &row.entity_ref
++                || metadata.coordinate_system != "global"
++                || metadata.location != "node"
++            {
++                return Err(bad("nodal functional identity"));
++            }
++            if dof % 6 < 3 {
++                "nodal_translation"
++            } else {
++                "nodal_rotation"
++            }
++        }
++        FunctionalQuantity::MemberEnd {
++            member,
++            end,
++            row: r,
++        } => {
++            if member != &row.entity_ref
++                || metadata.location
++                    != match end {
++                        MemberEnd::I => "end_i",
++                        MemberEnd::J => "end_j",
++                    }
++                || *r >= 6
++            {
++                return Err(bad("member end identity"));
++            }
++            "member_end_action"
++        }
++        FunctionalQuantity::MemberSection {
++            member,
++            station_bits,
++            component,
++        } => {
++            let station = f64::from_bits(*station_bits);
++            let location = if station == 0.25 {
++                "quarter_1"
++            } else if station == 0.5 {
++                "midspan"
++            } else if station == 0.75 {
++                "quarter_3"
++            } else {
++                return Err(bad("unpublished endpoint section mapping"));
++            };
++            if member != &row.entity_ref || metadata.location != location || *component >= 6 {
++                return Err(bad("section identity"));
++            }
++            "member_station_action"
++        }
++        FunctionalQuantity::SupportAction {
++            support,
++            node,
++            component,
++        } => {
++            let c = *component as usize;
++            if c >= 6
++                || support != &row.entity_ref
++                || metadata.component != COMPONENTS[c]
++                || row.kind != "support_reaction_component_v2"
++                || !selected.support_actions().iter().any(|s| {
++                    s.support_id == *support
++                        && s.node_index == *node
++                        && s.functional_indices[c] == index
++                })
++                || d.key.convention != exact::functionals::FunctionalConvention::SupportOnStructure
++            {
++                return Err(bad("typed support functional identity"));
++            }
++            "support_action_component"
++        }
++        _ => return Err(bad("unallocated public functional")),
++    };
++    Ok(quantity)
++}
++fn projected(
++    index: usize,
++    row: &ResultItem,
++    selected: &SelectedSourceRecovery,
++) -> Result<Projection, ReceiptError> {
++    let quantity = descriptor_matches(index, row, selected)?;
++    let p = selected
++        .retained()
++        .projections()
++        .iter()
++        .find(|p| p.index() == index)
++        .ok_or_else(|| bad("missing retained projection"))?;
++    let interval = p.interval();
++    let absolute = p.absolute_error_bound();
++    let relative = p.relative_error_bound();
++    if !same(p.value(), row.value)
++        || !same(p.relative_limit(), CRITERION)
++        || [p.value(), interval[0], interval[1], absolute, relative]
++            .iter()
++            .any(|v| !v.is_finite())
++        || interval[0] > p.value()
++        || p.value() > interval[1]
++        || absolute < 0.0
++        || relative < 0.0
++        || relative > CRITERION
++        || p.value() != 0.0 && interval[0] <= 0.0 && interval[1] >= 0.0
++    {
++        return Err(bad("projection binding/bounds"));
++    }
++    let basis = match p.basis() {
++        exact::ProjectionBasis::ExactZero => "exact_zero",
++        exact::ProjectionBasis::ExactIdentity => "exact_identity",
++        exact::ProjectionBasis::OutwardInterval => "outward_interval",
++    };
++    if basis != "outward_interval"
++        && (absolute != 0.0
++            || relative != 0.0
++            || !same(interval[0], p.value())
++            || !same(interval[1], p.value()))
++    {
++        return Err(bad("exact projection claim"));
++    }
++    let id = source::functional_id(&selected.retained().descriptors()[index].key.case_id, index);
++    Ok(Projection {
++        projection_id: format!("projection:{id}"),
++        functional_id: id,
++        result_id: row.id.clone(),
++        quantity,
++        value: p.value(),
++        value_bits: bits(p.value()),
++        unit: unit(selected.retained().descriptors()[index].key.unit)?,
++        interval,
++        absolute_error_bound: absolute,
++        relative_error_bound: relative,
++        relative_limit: CRITERION,
++        basis,
++    })
++}
++fn compare(actual: &ResultItem, expected: &ResultItem) -> Result<(), ReceiptError> {
++    if !same(actual.value, expected.value) || serialized(actual)? != serialized(expected)? {
++        return Err(bad(format!("row semantic/value mismatch: {}", actual.id)));
++    }
++    Ok(())
++}
++fn bare(id: String, kind: &str, value: f64, unit: &str, entity: &str) -> ResultItem {
++    ResultItem {
++        id,
++        kind: kind.into(),
++        value,
++        unit: unit.into(),
++        entity_ref: entity.into(),
++        basis_ref: None,
++        source_result_refs: vec![],
++        metadata: None,
++    }
++}
++pub(super) struct Derived {
++    pub(super) row: ResultItem,
++    recipe: &'static str,
++    inputs: Vec<String>,
++}
++pub(super) fn derived(
++    input: &source_recovery::Input<'_>,
++    selected: &SelectedSourceRecovery,
++    primary: &BTreeMap<usize, ResultItem>,
++) -> Result<Vec<Derived>, ReceiptError> {
++    let mut out = Vec::new();
++    for (i, node) in input.model.nodes.iter().enumerate() {
++        let values = std::array::from_fn(|c| selected.published_nodal_components()[i * 6 + c]);
++        let ids = (0..3)
++            .map(|c| {
++                primary[&selected.published_nodal_functional_indices()[i * 6 + c]]
++                    .id
++                    .clone()
++            })
++            .collect();
++        out.push(Derived {
++            row: qualify(
++                input,
++                bare(
++                    format!("result:disp:{}", stable_suffix(&node.id)),
++                    "displacement_magnitude",
++                    finite_norm(values)?,
++                    "mm",
++                    &node.id,
++                ),
++            ),
++            recipe: "translation_norm_v1",
++            inputs: ids,
++        });
++    }
++    for s in selected.support_actions() {
++        let ids = (0..3)
++            .map(|c| primary[&s.functional_indices[c]].id.clone())
++            .collect();
++        out.push(Derived {
++            row: qualify(
++                input,
++                bare(
++                    format!("result:reaction:{}", stable_suffix(&s.support_id)),
++                    "reaction_resultant",
++                    finite_norm([s.values[0], s.values[1], s.values[2]])?,
++                    "N",
++                    &s.support_id,
++                ),
++            ),
++            recipe: "support_force_norm_v1",
++            inputs: ids,
++        });
++    }
++    for m in selected.members() {
++        let section = input
++            .built
++            .sections
++            .get(&m.member_id)
++            .ok_or_else(|| bad("derived section source"))?;
++        let mut summary = 0.0_f64;
++        let mut stress_ids = Vec::new();
++        for (s, location) in [
++            (0, "end_i"),
++            (1, "quarter_1"),
++            (2, "midspan"),
++            (3, "quarter_3"),
++            (4, "end_j"),
++        ] {
++            let actions: [f64; 6] = std::array::from_fn(|component| {
++                if s == 0 {
++                    -primary[&m.end_functional_indices[component]].value
++                } else if s == 4 {
++                    primary[&m.end_functional_indices[6 + component]].value
++                } else {
++                    primary[&m.section_functional_indices[s][component]].value
++                }
++            });
++            let stress = recover_section_stress(&actions, section, None);
++            if !stress.findings.is_empty() {
++                return Err(bad("straight stress source unavailable"));
++            }
++            let c = &stress.components;
++            if [
++                c.axial_normal,
++                c.bending_normal_y,
++                c.bending_normal_z,
++                c.torsional_shear,
++            ]
++            .iter()
++            .any(|v| v.is_none_or(|v| !v.is_finite()))
++            {
++                return Err(bad("straight stress finite check"));
++            }
++            let local = open_formula_summary_mpa(&stress, false)
++                .ok_or_else(|| bad("summary unavailable"))?;
++            if !local.is_finite() {
++                return Err(bad("summary range"));
++            }
++            summary = summary.max(local);
++            let mut generated = Vec::new();
++            if s == 0 || s == 4 {
++                append_endpoint_stress_results(
++                    &mut generated,
++                    &m.member_id,
++                    location,
++                    c,
++                    false,
++                    false,
++                    STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION,
++                );
++            } else {
++                append_station_stress_results(
++                    &mut generated,
++                    &m.member_id,
++                    location,
++                    c,
++                    false,
++                    false,
++                    "recovered_from_open_mechanics_stress_components",
++                    None,
++                );
++            }
++            for row in generated {
++                let component = match row.kind.as_str() {
++                    "element_local_axial_normal_stress" => 0,
++                    "element_local_bending_normal_stress_y" => 4,
++                    "element_local_bending_normal_stress_z" => 5,
++                    "element_local_torsional_shear_stress" => 3,
++                    _ => return Err(bad("stress recipe component")),
++                };
++                let function = if s == 0 {
++                    m.end_functional_indices[component]
++                } else if s == 4 {
++                    m.end_functional_indices[6 + component]
++                } else {
++                    m.section_functional_indices[s][component]
++                };
++                let row = qualify(input, row);
++                stress_ids.push(row.id.clone());
++                out.push(Derived {
++                    row,
++                    recipe: "straight_open_stress_v1",
++                    inputs: vec![primary[&function].id.clone()],
++                });
++            }
++        }
++        // No distributed/thermal/pressure terms enter this selected source. Its
++        // normal components are affine along a straight span: sum of absolute
++        // affine components is convex, hence its maximum is at an endpoint.
++        // Evaluated five points remain checked binary64 recipes, no exact-max claim.
++        out.push(Derived {
++            row: qualify(
++                input,
++                bare(
++                    format!("result:stress:{}", stable_suffix(&m.member_id)),
++                    "open_formula_stress_summary",
++                    summary,
++                    "MPa",
++                    &m.member_id,
++                ),
++            ),
++            recipe: "reviewed_stress_summary_v1",
++            inputs: stress_ids,
++        });
++    }
++    Ok(out)
++}
++pub(super) fn bind(
++    input: &source_recovery::Input<'_>,
++    selected: &SelectedSourceRecovery,
++    rows: &[ResultItem],
++    bindings: &[FunctionalRowBinding],
++) -> Result<Ledger, ReceiptError> {
++    validate_case_rows(&input.load_case.id, rows)?;
++    let primary = expected_primary(input, selected)?;
++    if primary.len() != bindings.len() {
++        return Err(bad("complete public functional binding count"));
++    }
++    let actual: BTreeMap<_, _> = rows.iter().map(|r| (r.id.as_str(), r)).collect();
++    let mut by_index = BTreeMap::new();
++    let mut used = BTreeSet::new();
++    let mut projections = Vec::new();
++    let mut ledger = BTreeMap::new();
++    for binding in bindings {
++        if by_index
++            .insert(binding.functional_index, binding.result_id.clone())
++            .is_some()
++            || !used.insert(binding.result_id.clone())
++        {
++            return Err(bad("ambiguous functional mapping"));
++        }
++        let expected = primary
++            .get(&binding.functional_index)
++            .ok_or_else(|| bad("unexpected public functional"))?;
++        if binding.result_id != expected.id {
++            return Err(bad("functional result ID mapping"));
++        }
++        let row = *actual
++            .get(binding.result_id.as_str())
++            .ok_or_else(|| bad("mapped row missing"))?;
++        compare(row, expected)?;
++        let projection = projected(binding.functional_index, row, selected)?;
++        ledger.insert(
++            row.id.clone(),
++            RowTreatment {
++                result_id: row.id.clone(),
++                treatment: "qualified_projection",
++                projection_id: Some(projection.projection_id.clone()),
++                recipe_id: None,
++                input_result_ids: vec![],
++            },
++        );
++        projections.push(projection);
++    }
++    for d in derived(input, selected, &primary)? {
++        let row = *actual
++            .get(d.row.id.as_str())
++            .ok_or_else(|| bad(format!("required derived row missing: {}", d.row.id)))?;
++        compare(row, &d.row)?;
++        if d.inputs.iter().any(|id| !actual.contains_key(id.as_str())) {
++            return Err(bad("derived input reference missing"));
++        }
++        ledger.insert(
++            row.id.clone(),
++            RowTreatment {
++                result_id: row.id.clone(),
++                treatment: "checked_derived",
++                projection_id: None,
++                recipe_id: Some(d.recipe),
++                input_result_ids: d.inputs,
++            },
++        );
++    }
++    for r in rows {
++        ledger.entry(r.id.clone()).or_insert_with(|| RowTreatment {
++            result_id: r.id.clone(),
++            treatment: if observation(r) {
++                "checked_derived"
++            } else {
++                "inspection_only"
++            },
++            projection_id: None,
++            recipe_id: None,
++            input_result_ids: r.source_result_refs.clone(),
++        });
++    }
++    // Observation rows are explicitly inspection-only; they do not acquire a
++    // fake derived recipe. Final qualification excludes them from physical use.
++    for r in rows {
++        if observation(r) {
++            let l = ledger.get_mut(&r.id).unwrap();
++            l.treatment = "inspection_only";
++        }
++    }
++    let mut supports = Vec::new();
++    for s in selected.support_actions() {
++        let owned = input
++            .built
++            .supports
++            .iter()
++            .find(|x| x.support_id == s.support_id)
++            .ok_or_else(|| bad("support ownership"))?;
++        let mut components = Vec::new();
++        for c in 0..6 {
++            let dof = s.node_index * 6 + c;
++            let mut terms = Vec::new();
++            if owned.family != SupportFamily::Spring
++                && owned.restrained_dofs.iter().any(|d| dof_index(*d) == c)
++            {
++                terms.push(
++                    json!({"kind":"ideal_constraint","source_id":s.support_id,"global_dof":dof}),
++                );
++            }
++            for spring in input
++                .spring_entries
++                .iter()
++                .filter(|x| x.support_id == s.support_id && x.node_dof.global_index() == dof)
++            {
++                terms.push(
++                    json!({"kind":"ground_spring","source_id":spring.support_id,"global_dof":dof}),
++                );
++            }
++            if terms.is_empty() {
++                terms.push(
++                    json!({"kind":"structural_zero","source_id":s.support_id,"global_dof":dof}),
++                );
++            }
++            components.push(json!({"component":COMPONENTS[c],"result_id":by_index[&s.functional_indices[c]],"functional_id":source::functional_id(&input.load_case.id,s.functional_indices[c]),"action_terms":terms}));
++        }
++        supports.push(json!({"support_id":s.support_id,"node_id":input.model.nodes[s.node_index].id,"attribution":"unique_source_owned","components":components}));
++    }
++    Ok(Ledger {
++        projections,
++        rows: rows.iter().map(|r| ledger.remove(&r.id).unwrap()).collect(),
++        supports: json!(supports),
++    })
++}
++pub(super) fn observation(row: &ResultItem) -> bool {
++    let Some(m) = &row.metadata else {
++        return false;
++    };
++    if !row.value.is_finite() {
++        return false;
++    }
++    match row.kind.as_str() {
++        "linear_solver_mode_basis" => {
++            row.unit == "mode_code"
++                && row.entity_ref == "solver:linear_static_preview"
++                && m.component == "linear_solver_mode"
++                && m.coordinate_system == "reduced_system"
++                && matches!(row.value, 1.0 | 2.0 | 3.0)
++        }
++        "sparse_live_path_dense_parity_relative_delta" => {
++            row.unit == "unitless"
++                && row.entity_ref == "solver:sparse_direct"
++                && m.component == "sparse_live_path"
++                && m.coordinate_system == "reduced_system"
++                && row.value >= 0.0
++        }
++        "modulus_basis_record" | "combination_modulus_basis_record" => {
++            row.unit == "record"
++                && row.value == 1.0
++                && m.component == "material_modulus_basis"
++                && m.coordinate_system == "not_applicable"
++        }
++        _ => false,
++    }
++}
++
++pub(super) fn validate_summary(envelope: &MechanicsEnvelope) -> Result<(), ReceiptError> {
++    for (headline, kind) in [
++        (&envelope.summary.max_displacement, "displacement_magnitude"),
++        (
++            &envelope.summary.max_open_formula_stress,
++            "open_formula_stress_summary",
++        ),
++    ] {
++        if let Some(h) = headline {
++            let row = envelope
++                .results
++                .iter()
++                .find(|r| r.id == h.result_ref)
++                .ok_or_else(|| bad("summary missing row"))?;
++            if row.kind != kind
++                || row.entity_ref != h.location_ref
++                || row.unit != h.unit
++                || !same(row.value, h.value)
++            {
++                return Err(bad("summary binding"));
++            }
++            // Existing headline is first requested case's maximum.
++            if envelope
++                .results
++                .iter()
++                .any(|r| r.kind == kind && r.basis_ref == row.basis_ref && r.value > h.value)
++            {
++                return Err(bad("summary is not actual maximum"));
++            }
++        } else if envelope.results.iter().any(|r| r.kind == kind) {
++            return Err(bad("required summary missing"));
++        }
++    }
++    Ok(())
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/source_receipt/source.rs
+@@ -0,0 +1,328 @@
++use super::*;
++use exact::functionals::{
++    AttemptStage, FunctionalDescriptor, FunctionalQuantity, FunctionalUnit, MemberEnd,
++};
++fn matrix(m: &[Vec<f64>]) -> Value {
++    json!(m
++        .iter()
++        .map(|r| r.iter().copied().map(bits).collect::<Vec<_>>())
++        .collect::<Vec<_>>())
++}
++fn matrix12(m: &Matrix12) -> Value {
++    json!(m
++        .iter()
++        .map(|r| r.iter().copied().map(bits).collect::<Vec<_>>())
++        .collect::<Vec<_>>())
++}
++fn products(p: &[Vec<f64>]) -> Value {
++    json!(p
++        .iter()
++        .map(|r| r.iter().copied().map(bits).collect::<Vec<_>>())
++        .collect::<Vec<_>>())
++}
++fn owner(kind: &str, id: &str) -> Value {
++    json!({"kind":kind,"id":id})
++}
++pub(super) fn functional_id(case: &str, index: usize) -> String {
++    format!("source-functional:{}:{case}:{index}", case.len())
++}
++fn unit(u: FunctionalUnit) -> Result<&'static str, ReceiptError> {
++    Ok(match u {
++        FunctionalUnit::Newton => "N",
++        FunctionalUnit::NewtonMetre => "N*m",
++        FunctionalUnit::Metre => "m",
++        FunctionalUnit::Millimetre => "mm",
++        FunctionalUnit::Radian => "rad",
++        _ => return Err(bad("unallocated functional unit")),
++    })
++}
++fn source_operand(payload: &Value, path: String, expected: f64) -> Result<Value, ReceiptError> {
++    let expected = bits(expected);
++    if payload.pointer(&path).and_then(Value::as_str) != Some(expected.as_str()) {
++        return Err(bad("plan operand does not resolve to same captured bits"));
++    }
++    Ok(json!({"kind":"source","source_path":path,"bits":expected}))
++}
++fn lowered_products(payload: &Value, path: &str, p: &[Vec<f64>]) -> Result<Value, ReceiptError> {
++    let mut out = Vec::new();
++    for (i, product) in p.iter().enumerate() {
++        let mut factors = Vec::new();
++        for (j, v) in product.iter().enumerate() {
++            factors.push(source_operand(payload, format!("{path}/{i}/{j}"), *v)?);
++        }
++        out.push(json!({"factors":factors}));
++    }
++    Ok(json!(out))
++}
++fn function(
++    payload: &Value,
++    input: &source_recovery::Input<'_>,
++    d: &FunctionalDescriptor,
++    index: usize,
++    bindings: &[FunctionalRowBinding],
++) -> Result<Value, ReceiptError> {
++    const ACTIONS: [&str; 6] = [
++        "axial_force",
++        "shear_force_y",
++        "shear_force_z",
++        "torsional_moment",
++        "bending_moment_y",
++        "bending_moment_z",
++    ];
++    let (owned, quantity, component, frame, location) = match &d.key.quantity {
++        FunctionalQuantity::NodeDisplacement { node, dof } => (
++            owner("node", node),
++            if dof % 6 < 3 {
++                "nodal_translation"
++            } else {
++                "nodal_rotation"
++            },
++            ["UX", "UY", "UZ", "RX", "RY", "RZ"][dof % 6].to_string(),
++            "global",
++            "node".to_string(),
++        ),
++        FunctionalQuantity::MemberEnd { member, end, row } => (
++            owner("frame", member),
++            "member_end_action",
++            ACTIONS[*row as usize].to_string(),
++            "element_local",
++            if *end == MemberEnd::I {
++                "end_i"
++            } else {
++                "end_j"
++            }
++            .to_string(),
++        ),
++        FunctionalQuantity::MemberSection {
++            member,
++            station_bits,
++            component,
++        } => {
++            let station = f64::from_bits(*station_bits);
++            let location = match station {
++                0. => "end_i",
++                0.25 => "quarter_1",
++                0.5 => "midspan",
++                0.75 => "quarter_3",
++                1. => "end_j",
++                _ => return Err(bad("plan station")),
++            };
++            (
++                owner("frame", member),
++                "member_station_action",
++                ACTIONS[*component as usize].to_string(),
++                "element_local",
++                location.to_string(),
++            )
++        }
++        FunctionalQuantity::GroundSpring { support, dof } => (
++            owner("spring", support),
++            "support_action_component",
++            ["Fx", "Fy", "Fz", "Mx", "My", "Mz"][dof % 6].to_string(),
++            "global",
++            "node".into(),
++        ),
++        FunctionalQuantity::SupportAction {
++            support, component, ..
++        } => (
++            owner("support", support),
++            "support_action_component",
++            ["Fx", "Fy", "Fz", "Mx", "My", "Mz"][*component as usize].to_string(),
++            "global",
++            "node".into(),
++        ),
++        FunctionalQuantity::SourceReaction { dof } => (
++            owner("node", &input.model.nodes[dof / 6].id),
++            "constraint_reaction",
++            ["Fx", "Fy", "Fz", "Mx", "My", "Mz"][dof % 6].to_string(),
++            "global",
++            "node".into(),
++        ),
++        FunctionalQuantity::DeclaredAffine { .. } => {
++            return Err(bad("untyped product plan function"))
++        }
++    };
++    let mut terms = Vec::new();
++    for (i, t) in d.terms.iter().enumerate() {
++        terms.push(json!({"dof":t.dof,"coefficient_terms":lowered_products(payload,&format!("/lowered_recovery_operands/{index}/terms/{i}/product_bits"),&t.products)?}));
++    }
++    Ok(
++        json!({"functional_id":functional_id(&d.key.case_id,index),"result_ids":bindings.iter().filter(|b|b.functional_index==index).map(|b|&b.result_id).collect::<Vec<_>>(),"owner":owned,"quantity":quantity,"component":component,"coordinate_system":frame,"location":location,"unit":unit(d.key.unit)?,"sign_convention":match d.key.convention{exact::functionals::FunctionalConvention::NodeOnElement=>"node_on_element_local_end",exact::functionals::FunctionalConvention::SectionLocal=>"j_side_section_local",exact::functionals::FunctionalConvention::SpringOnStructure=>"spring_on_structure",exact::functionals::FunctionalConvention::SupportOnStructure=>"support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node",exact::functionals::FunctionalConvention::SourceEquilibrium=>"source_equilibrium",exact::functionals::FunctionalConvention::DeclaredAffine=>"declared_global_nodal_component"},"displacement_terms":terms,"offset_terms":lowered_products(payload,&format!("/lowered_recovery_operands/{index}/offset_bits"),&d.offset)?,"final_unit_factor":{"kind":"method_constant","bits":bits(1.)},"projection_relative_limit_bits":bits(CRITERION)}),
++    )
++}
++fn recipes(
++    payload: &Value,
++    input: &source_recovery::Input<'_>,
++    ledger: &[RowTreatment],
++    actual: &[ResultItem],
++) -> Result<Value, ReceiptError> {
++    let mut recipes = Vec::new();
++    for treatment in ledger.iter().filter(|r| r.treatment == "checked_derived") {
++        let row = actual
++            .iter()
++            .find(|r| r.id == treatment.result_id)
++            .ok_or_else(|| bad("recipe row missing"))?;
++        let recipe = treatment
++            .recipe_id
++            .ok_or_else(|| bad("recipe registration missing"))?;
++        let mut parameters = Vec::new();
++        match recipe{
++            "translation_norm_v1"|"support_force_norm_v1"=>{},
++            "straight_open_stress_v1"=>{
++                let i=input.built.pipes.iter().position(|p|p.element_id==row.entity_ref).ok_or_else(||bad("recipe member"))?;
++                let section=input.built.sections.get(&row.entity_ref).ok_or_else(||bad("recipe section"))?;
++                let operands:Vec<(&str,String,f64)>=match row.kind.as_str(){"element_local_axial_normal_stress"=>vec![("area",format!("/frames/{i}/formation_inputs/area_bits"),section.area)],"element_local_bending_normal_stress_y"|"element_local_bending_normal_stress_z"=>vec![("section_modulus",format!("/frames/{i}/recovery_section/section_modulus_bits"),section.section_modulus)],"element_local_torsional_shear_stress"=>vec![("torsion_radius",format!("/frames/{i}/recovery_section/torsion_radius_bits"),section.torsion_radius),("torsion_constant",format!("/frames/{i}/formation_inputs/torsion_constant_bits"),section.torsion_constant)],_=>return Err(bad("recipe signature"))};
++                for (name,path,v) in operands{parameters.push(json!({"name":name,"operand":source_operand(payload,path,v)?}));}
++                parameters.push(json!({"name":"pa_per_mpa","operand":{"kind":"method_constant","bits":bits(1_000_000.)}}));
++            },
++            "reviewed_stress_summary_v1"=>parameters.push(json!({"name":"pa_per_mpa","operand":{"kind":"method_constant","bits":bits(1_000_000.)}})),
++            _=>return Err(bad("unimplemented recipe")),
++        }
++        recipes.push(json!({"result_id":row.id,"recipe_id":recipe,"input_result_ids":treatment.input_result_ids,"parameters":parameters}));
++    }
++    Ok(json!(recipes))
++}
++pub(super) fn commitment(
++    input: &source_recovery::Input<'_>,
++    selected: &SelectedSourceRecovery,
++    bindings: &[FunctionalRowBinding],
++    invocation: &str,
++    material_basis_record: Option<&str>,
++    ledger: &[RowTreatment],
++    actual: &[ResultItem],
++) -> Result<Value, ReceiptError> {
++    let retained = selected.retained();
++    let response = retained.response();
++    let system = response.source_system();
++    let terms = system
++        .contributions
++        .ok_or_else(|| bad("missing complete stiffness source"))?;
++    let exact::ForceBasis::IdentifiedContributions(forces) = response.force_basis() else {
++        return Err(bad("identified forces required"));
++    };
++    if terms.len() != input.built.frame_elements.len() * 144 + input.spring_entries.len() {
++        return Err(bad("stiffness ownership inventory"));
++    }
++    let mut stiffness = Vec::new();
++    let mut cursor = 0;
++    let mut frames = Vec::new();
++    for (frame, pipe) in input.built.frame_elements.iter().zip(&input.built.pipes) {
++        let map = element_dof_map(frame.node_i.index, frame.node_j.index);
++        let global = frame.global_stiffness().map_err(|e| bad(e.to_string()))?;
++        let local = frame.local_stiffness().map_err(|e| bad(e.to_string()))?;
++        let transform = frame
++            .orientation()
++            .map_err(|e| bad(e.to_string()))?
++            .transformation_matrix();
++        for i in 0..12 {
++            for j in 0..12 {
++                let term = &terms[cursor];
++                if term.row != map[i] || term.col != map[j] || !same(term.value, global[i][j]) {
++                    return Err(bad("member stiffness owner mismatch"));
++                }
++                stiffness.push(json!({"owner":owner("frame",&pipe.element_id),"row":term.row,"col":term.col,"value_bits":bits(term.value)}));
++                cursor += 1;
++            }
++        }
++        let section = input
++            .built
++            .sections
++            .get(&pipe.element_id)
++            .ok_or_else(|| bad("section source"))?;
++        frames.push(json!({"element_id":pipe.element_id,"node_i_id":input.model.nodes[frame.node_i.index].id,"node_j_id":input.model.nodes[frame.node_j.index].id,"scatter":map,"formation_inputs":{"coordinates_bits":[frame.node_i.coordinates.map(bits),frame.node_j.coordinates.map(bits)],"young_modulus_bits":bits(frame.section.elastic_modulus),"shear_modulus_bits":bits(frame.section.shear_modulus),"area_bits":bits(frame.section.area),"iy_bits":bits(frame.section.second_moment_y),"iz_bits":bits(frame.section.second_moment_z),"torsion_constant_bits":bits(frame.section.torsion_constant),"length_bits":bits(frame.length().map_err(|e|bad(e.to_string()))?)},"local_matrix_bits":matrix12(&local),"transform_bits":matrix12(&transform),"global_matrix_bits":matrix12(&global),"recovery_section":{"section_modulus_bits":bits(section.section_modulus),"torsion_radius_bits":bits(section.torsion_radius)}}));
++    }
++    let mut springs = Vec::new();
++    for s in input.spring_entries {
++        let t = &terms[cursor];
++        let dof = s.node_dof.global_index();
++        if t.row != dof || t.col != dof || !same(t.value, s.stiffness.value) {
++            return Err(bad("spring source owner mismatch"));
++        }
++        stiffness.push(json!({"owner":owner("spring",&s.support_id),"row":dof,"col":dof,"value_bits":bits(t.value)}));
++        springs.push(json!({"spring_id":s.support_id,"support_id":s.support_id,"node_id":input.model.nodes[s.node_dof.node_index].id,"dof":dof,"stiffness_bits":bits(s.stiffness.value),"ground_movement_bits":bits(0.0)}));
++        cursor += 1;
++    }
++    let mut prescribed = Vec::new();
++    for (dof, value) in system.prescribed {
++        let owners: Vec<_> = input
++            .built
++            .supports
++            .iter()
++            .filter(|s| {
++                s.family != SupportFamily::Spring
++                    && s.node_index == dof / 6
++                    && s.restrained_dofs.iter().any(|d| dof_index(*d) == dof % 6)
++            })
++            .collect();
++        if owners.len() != 1 {
++            return Err(bad("prescribed support attribution"));
++        }
++        prescribed
++            .push(json!({"dof":dof,"value_bits":bits(*value),"support_id":owners[0].support_id}));
++    }
++    let mut supported_loads = Vec::new();
++    for f in forces {
++        let primitive = input
++            .load_case
++            .primitive_loads
++            .iter()
++            .position(|p| p.id == f.source)
++            .ok_or_else(|| bad("force primitive owner"))?;
++        supported_loads.push(json!({"load_id":f.source,"node_id":input.model.nodes[f.dof/6].id,"dof":f.dof,"value_bits":bits(f.value),"source_primitive_index":primitive}));
++    }
++    let lowered:Vec<_>=retained.descriptors().iter().enumerate().map(|(i,d)|json!({"functional_index":i,"offset_bits":products(&d.offset),"terms":d.terms.iter().map(|t|json!({"dof":t.dof,"product_bits":products(&t.products)})).collect::<Vec<_>>()})).collect();
++    let payload = json!({"payload_version":"1.0.0","invocation_sha256":invocation,"case_id":input.load_case.id,"source_identity":response.source_identity(),"material_basis_record":material_basis_record,"dof_map":input.model.nodes.iter().flat_map(|n|(0..6).map(move |c|json!({"node_id":n.id,"component":["UX","UY","UZ","RX","RY","RZ"][c],"displacement_unit":if c<3{"m"}else{"rad"},"action_unit":if c<3{"N"}else{"N*m"}}))).collect::<Vec<_>>(),"stiffness_aggregate_bits":matrix(system.stiffness),"force_aggregate_bits":system.force.iter().copied().map(bits).collect::<Vec<_>>(),"stiffness_terms":stiffness,"force_terms":forces.iter().map(|f|json!({"owner":owner("load",&f.source),"dof":f.dof,"value_bits":bits(f.value)})).collect::<Vec<_>>(),"free_dofs":system.free_dofs,"prescribed":prescribed,"frames":frames,"springs":springs,"supported_loads":supported_loads,"observed_family_ids":{"frames":input.built.pipes.iter().map(|p|&p.element_id).collect::<Vec<_>>(),"supports":input.built.supports.iter().map(|s|&s.support_id).collect::<Vec<_>>(),"loads":input.load_case.primitive_loads.iter().map(|p|&p.id).collect::<Vec<_>>(),"modifiers":input.model.components.iter().map(|c|&c.id).collect::<Vec<_>>(),"nonlinear_supports":input.model.supports.iter().filter(|s|s.nonlinear.is_some()).map(|s|&s.id).collect::<Vec<_>>(),"user_elements":[],"curved_elements":[],"combinations":input.model.combinations.iter().map(|c|&c.id).collect::<Vec<_>>()},"lowered_recovery_operands":lowered});
++    let normalized = hash("source_blocks_normalized_source_v1", &payload)?;
++    let functions: Vec<_> = retained
++        .descriptors()
++        .iter()
++        .enumerate()
++        .map(|(i, d)| function(&payload, input, d, i, bindings))
++        .collect::<Result<_, _>>()?;
++    let plan = json!({"payload_version":"1.0.0","normalized_source_sha256":normalized,"functions":functions,"derived_recipes":recipes(&payload,input,ledger,actual)?,"observation_result_ids":actual.iter().filter(|r|rows::observation(r)).map(|r|&r.id).collect::<Vec<_>>()});
++    let plan_hash = hash("source_blocks_functional_plan_v1", &plan)?;
++    let blocks: Vec<_> = response
++        .block_witnesses()
++        .iter()
++        .map(|b| b.dofs().to_vec())
++        .collect();
++    let all: BTreeSet<_> = system.free_dofs.iter().copied().collect();
++    let flat: Vec<_> = blocks.iter().flatten().copied().collect();
++    if system.force.len() > 256
++        || terms.len() + forces.len() > 16_384
++        || blocks.iter().any(|b| b.is_empty() || b.len() > 2)
++        || flat.len() != all.len()
++        || flat.iter().copied().collect::<BTreeSet<_>>() != all
++    {
++        return Err(bad("source block coverage"));
++    }
++    Ok(
++        json!({"level":"complete_identified_represented_contributions","normalized_source_sha256":normalized,"functional_plan_sha256":plan_hash,"dof_count":system.force.len(),"stiffness_term_count":terms.len(),"force_term_count":forces.len(),"functional_count":retained.descriptors().len(),"free_dofs":system.free_dofs,"prescribed_dofs":system.prescribed.iter().map(|x|x.0).collect::<Vec<_>>(),"free_blocks":blocks,"member_ids":selected.members().iter().map(|m|&m.member_id).collect::<Vec<_>>(),"support_ids":selected.support_actions().iter().map(|s|&s.support_id).collect::<Vec<_>>() }),
++    )
++}
++pub(super) fn failure_fields(
++    f: &source_recovery::RecoveryFailure,
++) -> (&'static str, &'static str, Option<usize>) {
++    use source_recovery::RecoveryError as R;
++    let stage = match f.helper_stage {
++        AttemptStage::SourceClosure => "source_validation",
++        AttemptStage::Preparation => "source_validation",
++        AttemptStage::Solve => "exact_solve",
++        AttemptStage::Plan | AttemptStage::Evaluation => "functional_evaluation",
++        AttemptStage::Projection => "projection",
++        AttemptStage::Retention | AttemptStage::Replay => "finalization",
++    };
++    let (code, block) = match &f.error {
++        R::Unsupported(s) if s.contains("coincident") => ("support_attribution_ambiguous", None),
++        R::Unsupported(s) if s.contains("transform") => ("unsupported_source_closure", None),
++        R::Unsupported(_) => ("unsupported_family", None),
++        R::SourceMismatch(_) => ("source_mismatch", None),
++        R::Exact(exact::Error::UnsupportedBlock { order }) => ("unsupported_block", Some(*order)),
++        R::Exact(exact::Error::NotPositiveDefinite) => ("not_positive_definite", None),
++        R::Exact(exact::Error::Budget) => ("budget", None),
++        R::Exact(exact::Error::ProjectionUnresolved(_)) => ("projection_unresolved", None),
++        R::Exact(exact::Error::Arithmetic(_)) => ("arithmetic_range", None),
++        _ => ("invalid_source", None),
++    };
++    (stage, code, block)
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs
+@@ -0,0 +1,166 @@
++use super::*;
++use open_pipe_stress_primitive_loads::LoadApplication;
++fn raw() -> Value {
++    json!({"model":serde_json::from_str::<Value>(include_str!("../../../../fixtures/product_preview/numerical_sensitive_torsion_model.json")).unwrap()})
++}
++struct Fixture {
++    model: PreviewModel,
++    built: BuiltModel,
++    k: Vec<Vec<f64>>,
++    f: Vec<f64>,
++    free: Vec<usize>,
++    prescribed: Vec<(usize, f64)>,
++    springs: Vec<SpringEntry>,
++    loads: LoadApplication,
++}
++impl Fixture {
++    fn new(mut model: PreviewModel) -> Self {
++        let mut diagnostics = vec![];
++        let mut materials = model.materials.clone();
++        resolve_shared_sections(&mut model, &mut diagnostics);
++        normalize_model_units(&mut model, &mut materials, &mut diagnostics);
++        let built = build_model(&model, &materials, &mut diagnostics).unwrap();
++        let boundary = prepare_boundary(built.nodes.len(), &built.supports);
++        let mut k = assemble_global_stiffness_with_user_elements(
++            built.nodes.len(),
++            &built.frame_elements,
++            &[],
++        )
++        .unwrap();
++        for s in &boundary.springs {
++            let d = s.node_dof.global_index();
++            k[d][d] += s.stiffness.value;
++        }
++        let primitive =
++            build_load_case_primitive_loads(&model, &model.load_cases[0], &mut diagnostics);
++        let loads = prepare_loads(built.nodes.len(), built.pipes.len(), &primitive);
++        let f = loads.global_load_vector(built.nodes.len());
++        let prescribed = boundary.restrained_dofs.iter().map(|d| (*d, 0.0)).collect();
++        let free = (0..f.len())
++            .filter(|d| !boundary.restrained_dofs.contains(d))
++            .collect();
++        Self {
++            model,
++            built,
++            k,
++            f,
++            free,
++            prescribed,
++            springs: boundary.springs,
++            loads,
++        }
++    }
++    fn input(&self) -> source_recovery::Input<'_> {
++        source_recovery::Input {
++            model: &self.model,
++            built: &self.built,
++            stiffness: &self.k,
++            force: &self.f,
++            free: &self.free,
++            prescribed: &self.prescribed,
++            spring_entries: &self.springs,
++            load_case: &self.model.load_cases[0],
++            load_application: &self.loads,
++            thermal_loads: &[],
++            pressure_thrust_loads: &[],
++        }
++    }
++}
++#[test]
++fn captured_invocation_keeps_unknown_absence_material_and_actual_mode() {
++    let original = raw();
++    let (_, a) =
++        CapturedInvocation::parse(original.clone(), PreviewSolverMode::DenseScrutiny).unwrap();
++    let mut changed = original.clone();
++    changed["unknown_preparse_marker"] = json!({"b":2,"a":1});
++    let (_, b) =
++        CapturedInvocation::parse(changed.clone(), PreviewSolverMode::DenseScrutiny).unwrap();
++    assert_ne!(a.digest, b.digest);
++    assert_eq!(b.raw, changed);
++    let mut explicit = original.clone();
++    explicit["materials"] = json!([]);
++    let (_, c) = CapturedInvocation::parse(explicit, PreviewSolverMode::DenseScrutiny).unwrap();
++    assert_ne!(a.digest, c.digest);
++    let (_, d) = CapturedInvocation::parse(original, PreviewSolverMode::SparseInteractive).unwrap();
++    assert_ne!(a.digest, d.digest);
++    let mut unsafe_integer = raw();
++    unsafe_integer["unknown_preparse_marker"] = json!(9_007_199_254_740_992_u64);
++    assert!(CapturedInvocation::parse(unsafe_integer, PreviewSolverMode::DenseScrutiny).is_err());
++}
++#[test]
++fn selected_projection_mapping_rejects_value_unit_entity_missing_duplicate() {
++    let (request, _) = CapturedInvocation::parse(raw(), PreviewSolverMode::DenseScrutiny).unwrap();
++    let f = Fixture::new(request.model);
++    let selected = source_recovery::solve(f.input(), exact::Limits::default()).unwrap();
++    let expected = rows::expected_primary(&f.input(), &selected).unwrap();
++    let bindings: Vec<_> = expected
++        .iter()
++        .map(|(i, r)| FunctionalRowBinding {
++            functional_index: *i,
++            result_id: r.id.clone(),
++        })
++        .collect();
++    let mut actual: Vec<_> = expected.values().cloned().collect();
++    actual.extend(
++        rows::derived(&f.input(), &selected, &expected)
++            .unwrap()
++            .into_iter()
++            .map(|d| d.row),
++    );
++    assert!(rows::bind(&f.input(), &selected, &actual, &bindings).is_ok());
++    for mutation in 0..4 {
++        let mut bad_rows = actual.clone();
++        match mutation {
++            0 => bad_rows[0].value = f64::from_bits(bad_rows[0].value.to_bits() ^ 1),
++            1 => bad_rows[0].unit = "invalid".into(),
++            2 => bad_rows[0].entity_ref = "other entity".into(),
++            _ => {
++                bad_rows.remove(0);
++            }
++        }
++        assert!(rows::bind(&f.input(), &selected, &bad_rows, &bindings).is_err());
++    }
++    let mut duplicate = bindings.clone();
++    duplicate[1].functional_index = duplicate[0].functional_index;
++    assert!(rows::bind(&f.input(), &selected, &actual, &duplicate).is_err());
++}
++#[test]
++fn actual_capture_replay_rejects_changed_material_or_load_source() {
++    let original = raw();
++    let (request, capture) =
++        CapturedInvocation::parse(original.clone(), PreviewSolverMode::DenseScrutiny).unwrap();
++    let f = Fixture::new(request.model);
++    let mut selected = source_recovery::solve(f.input(), exact::Limits::default()).unwrap();
++    assert!(capture.check_input(&f.input(), &mut selected).is_ok());
++    let mut changed = original;
++    changed["model"]["materials"][0]["shear_modulus"]["value"] = json!(81e9);
++    let (_, other) = CapturedInvocation::parse(changed, PreviewSolverMode::DenseScrutiny).unwrap();
++    let mut selected = source_recovery::solve(f.input(), exact::Limits::default()).unwrap();
++    assert!(other.check_input(&f.input(), &mut selected).is_err());
++}
++#[test]
++fn checked_norm_does_not_hide_overflow_or_underflow() {
++    assert!(rows::finite_norm([1e308, 0., 0.]).is_err());
++    assert!(rows::finite_norm([f64::from_bits(1), 0., 0.]).is_err());
++    assert_eq!(rows::finite_norm([3., 4., 0.]).unwrap(), 5.);
++}
++#[test]
++fn receipt_domain_hashes_are_acyclic_and_distinct() {
++    let value = json!({"v":-0.0,"bits":bits(-0.0)});
++    assert_ne!(
++        hash("source_blocks_publication_v1", &value).unwrap(),
++        hash("source_blocks_receipt_v1", &value).unwrap()
++    );
++    assert_ne!(
++        hash(
++            "source_blocks_invocation_v1",
++            &json!({"request":value,"solver_mode":"dense_scrutiny"})
++        )
++        .unwrap(),
++        hash(
++            "source_blocks_invocation_v1",
++            &json!({"request":value,"solver_mode":"sparse_interactive"})
++        )
++        .unwrap()
++    );
++}

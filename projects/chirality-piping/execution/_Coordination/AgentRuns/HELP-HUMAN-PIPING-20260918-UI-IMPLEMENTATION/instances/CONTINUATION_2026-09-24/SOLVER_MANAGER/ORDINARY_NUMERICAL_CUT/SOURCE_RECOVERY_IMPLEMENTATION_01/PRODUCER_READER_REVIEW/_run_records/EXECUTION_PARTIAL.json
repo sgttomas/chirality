@@ -1,0 +1,39 @@
+{
+  "time": "2026-09-25T06:08:21.646896+00:00",
+  "runtime": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+  "runs": [
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/independent_checks.py"
+      ],
+      "exit_code": 0,
+      "stdout": "INDEPENDENT_CHECKS.json",
+      "stderr": "INDEPENDENT_CHECKS.stderr"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/_run_records/stress_reference.py"
+      ],
+      "exit_code": 0,
+      "stdout": "STRESS_REFERENCE.json",
+      "stderr": "STRESS_REFERENCE.stderr"
+    }
+  ],
+  "prior_development_failure": "independent_checks initially located nearest Piping AGENTS rather than Root and failed import; corrected root discovery to require agents/AGENT_TASK.md. No numerical failure hidden.",
+  "read_discovery_errors": [
+    "Nonexistent Python test under core/analysis_runs/tests; resolved under project tests.",
+    "A shell glob for absent core/stress paths failed before any command executed; rg --files located core/loads/stress_recovery.",
+    "One absent source_product_public_07.json read; actual evidence is .log and coherent_core_checks.json."
+  ],
+  "not_executed": [
+    "Cargo",
+    "npm",
+    "Git",
+    "production solve",
+    "full suite",
+    "native",
+    "browser"
+  ]
+}

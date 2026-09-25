@@ -1,3 +1,7 @@
+import sourceFixture from '../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
+import modelFixture from '../../../../fixtures/product_preview/invented_preview_model.json';
+import {runPreviewMechanics} from './previewService';
+import type {PreviewModel} from '../types';
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { invoke } from "@tauri-apps/api/core";
 import {
@@ -191,16 +195,20 @@ describe("runRuleChecks", () => {
     });
     (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
 
+    // Genuine received producer bytes through simulated IPC, not a native witness.
+    const model=structuredClone(modelFixture) as PreviewModel;
+    invokeMock.mockResolvedValueOnce(structuredClone(sourceFixture));
+    const solvedEnvelope=await runPreviewMechanics(model);
     await runRuleChecks({
       rulePackDocument: { metadata: { rule_pack_id: "x" } },
-      model: { project: { id: "p" } } as never,
-      solvedEnvelope: { run_id: "run:1", results: [] } as never,
+      model,
+      solvedEnvelope,
       solverResultBindings: [{ input_id: "actual", result_id: "result:stress:demo" }],
       suppliedValueBindings: [{ ref_id: "limit", value: 100, unit: "demo_unit", dimension: "stress" }],
       projectId: "project:lib"
     });
 
-    const [, args] = invokeMock.mock.calls[0];
+    const [, args] = invokeMock.mock.calls.find(call=>call[0]==="run_rule_checks")!;
     const typed = args as Record<string, unknown>;
     expect(typed).toHaveProperty("solvedEnvelope");
     expect(typed).toHaveProperty("model");

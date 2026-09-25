@@ -1,0 +1,120 @@
+{
+  "time": "2026-09-25T05:57:36.846957+00:00",
+  "base_supplied_by_parent": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "bytes": 1303
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "bytes": 8475
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "bytes": 30651
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "bytes": 18299
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9",
+      "bytes": 24729
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "bytes": 7107
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "bytes": 794764
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "bytes": 18116
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "bytes": 41938
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+      "bytes": 38455
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "b12e2f130ef99c8d1f2d677089eb19faba3a9081f51643db7f65efeb962e60bd",
+      "bytes": 53060
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "bytes": 12352
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "bytes": 29843
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "c802debf0f8954c330b70898b88bdd062fb962fac337a25a966d4ba388373008",
+      "bytes": 13877
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "0eba94538f78a91ab244f5de61f6b4861e77cc2bf24b827d0f3aa7a9af36720a",
+      "bytes": 32281
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "bytes": 29752
+    }
+  ]
+}

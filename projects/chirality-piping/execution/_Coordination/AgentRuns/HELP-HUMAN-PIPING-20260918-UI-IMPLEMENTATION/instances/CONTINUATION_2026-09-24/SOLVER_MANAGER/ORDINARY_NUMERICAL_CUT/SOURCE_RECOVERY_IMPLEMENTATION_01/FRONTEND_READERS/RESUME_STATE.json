@@ -1,0 +1,104 @@
+{
+  "executor": "/root/root_solver_checkpoint_review",
+  "actual_parent": "/root",
+  "coordinating_manager": "/root/numerical_resume",
+  "latest_executed": {
+    "TYPECHECK_07": "one test-only missing LocalProjectEnvelope metadata; repaired but not rerun",
+    "CONNECTED_02": "164 passed / 1 failed of165; all six genuine full-UI lifecycle tests passed; remaining synthetic second-source registration repaired but not rerun"
+  },
+  "subsequent_unexecuted_changes": [
+    "deeply frozen validated-receipt cache",
+    "128epsilon stress bound and normal-range stress-carrier guards",
+    "three stress mutations and isolated norm64epsilon mutation",
+    "test-only metadata/second simulated IPC setup repairs"
+  ],
+  "input_policy": "4M per case with charged+reserved_unobserved_failure; invocation_work exact cases+publication sum <=64M",
+  "norm_policy": "ordered max scaling with new scaled_v1 IDs,64epsilon recipe allowance, nonzero subnormal output withheld",
+  "stress_policy": "128epsilon case reserve; finite normal nonzero torsion product, Pa and MPa; exact logical zero; selected normal-stress summary Pa/MPa range",
+  "paths": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "sha256": "fd5e3a8eda947e3516f8d495c54dee8c030f56cc7eb8cdb4490dfb5107786c65"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+      "sha256": "a90d9090563f79ea1c01cc9e9fb50afe7999e3d4a7a0e1034d9d491df7cd9535"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "sha256": "c57d68778ac3b97f89d2bf74547cd1b91b5c858605ee002339fae94f7a715f51"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "sha256": "4b000adf13886cc008e6825ab6ec5639c768095583603193e5e1388a5bd90d7d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts",
+      "sha256": "4b90c7f0e36b2d710a19cd33736db5af87d72a8db0d232c498cbfafb7b5298bf"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts",
+      "sha256": "8241d1863cc284a1de47ab514f6f6c6f2051b3b7c139ac7c752b59772b55522e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "sha256": "b8b4e68d532f4fdeafdacefff5a9bd3fb4c12c3fbf432a43da5a859b8ed359dc"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+      "sha256": "d6b9950d6ad952e3ca83345962df51dfa3a8c07df6fd3cb0f84ec52233b355ec"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "sha256": "526501290ff646992afd1c08c881f043f6559a4df5f55b7dca31f000d121716e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts",
+      "sha256": "620030747b15cecfafa99184f65e2f7fe4409b272b65499e384a0956b9c52d72"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "sha256": "17b0b321f86ec656b44707b808cc87e486fcc9a33e0a7d27dbb6b69175115dff"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts",
+      "sha256": "46b1b4bae3b5f8a7bd821517c06cce70ed662cd58c7572b03280b54986cd7f73"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+      "sha256": "106e1b65fa560aef314018e1a994f9f5fd874ef4a1b0b12691a80234fe426928"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts",
+      "sha256": "e3632db248c3445661aa5c2788ea6384419fd34d3e29ab25902dc3ecc3faba3e"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "sha256": "e587b9fbc31db00ecc5dde22318fe181ce972740b85d4a2ce7019589c1cf0da1"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "sha256": "c48a1256263c5d58c98af57cf0d309ea51226ea1659b59a99d1bb0c6b9eb2820"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "executor": "/root/numerical_resume/affine_functionals",
+  "actual_parent": "/root/numerical_resume",
+  "root": "/root",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK Type 2",
+  "delegation": "none",
+  "checkout": "/private/tmp/piping-source-recovery-20260924",
+  "branch_supplied_by_parent": "codex/piping-source-recovery-20260924",
+  "base_supplied_by_parent": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "instruction_selection": "Root AGENTS + full TASK + Piping AGENTS + LOOP_INIT, direct bounded implementation brief; no other full role/skill/workflow selected",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/BRIEF.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/BRIEF.md",
+      "sha256": "98c8fc74633beaf2e7e356a64a7863cc64cb0d9bcdca5751537e26e50838e08d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_01/DESIGN.md",
+      "sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/RETURN.md",
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_DESIGN_REVIEW_01/RETURN.md",
+      "sha256": "8d940b75b55db794d7dedd977caf692236378422838cb7b0516024193c3164e6"
+    }
+  ],
+  "write_scope": [
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+    "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/AFFINE_CORE"
+  ],
+  "execution_limits": "No child Git, Cargo/npm/native/browser/full-suite execution. Parent authorized rustfmt on only the three owned Rust files. Parent ran focused offline/locked/jobs2 tests in the ROOT-scheduled lane. No ordinary/corrections/original numerical or other-project writes.",
+  "independent_fraction_oracle_sanity": {
+    "generic_2x2": {
+      "u": [
+        "1/11",
+        "7/11"
+      ],
+      "functional": "23/11"
+    },
+    "mixed": {
+      "u0": "7/4",
+      "functional": "5/2"
+    },
+    "multiple_blocks": {
+      "functional": "4"
+    },
+    "coefficient_recipe": {
+      "value": "-1/20282409603651670423947251286016"
+    },
+    "tiny_twist": {
+      "torques": [
+        "1",
+        "-3"
+      ],
+      "root": "T",
+      "tip": "T + T/2^60",
+      "end_i": "-T",
+      "end_j": "T",
+      "spring": "-T",
+      "float_rotations_equal": true
+    }
+  },
+  "child_tools": "read-only shell, bounded Python source writes/bookkeeping/Fraction checks; authorized rustfmt only; no child Cargo, Git, npm, native/browser or full-suite calls",
+  "source_outputs": [
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "sha256": "28cf0b7839f1b81e61377e7fabdb42f5f96956b69849701de62097a52da39e80"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "sha256": "511bfb50673ea252eaf0007bed5f4ae2ecf561fd93d2c6772b793c627a8faead"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "sha256": "98547916b3a9f9587d79baa5a476902a5603792332fcdf257ace54ffff035493"
+    }
+  ],
+  "verification": {
+    "executor": "/root/numerical_resume",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "-j2",
+      "--manifest-path",
+      "core/solver/frame_kernel/Cargo.toml",
+      "structural::exact_boundary::functionals"
+    ],
+    "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+    "target_dir": "/private/tmp/piping-source-recovery-frame-target",
+    "exit_code": 0,
+    "result": "8 passed; 77 filtered out",
+    "raw_log": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_02.log",
+    "raw_log_sha256": "a531b3d67b27654a3a17c89017525aa13376a231f62ef77c0544ce5fa59fddb1",
+    "prior_failure": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/core_functionals_01.log",
+    "prior_failure_cause": "Duplicate Debug derive on ProjectionData; compilation failed before tests; corrected before successful rerun.",
+    "source_stability": "No child source edits after formatted static-ready notification and throughout successful parent rerun."
+  }
+}

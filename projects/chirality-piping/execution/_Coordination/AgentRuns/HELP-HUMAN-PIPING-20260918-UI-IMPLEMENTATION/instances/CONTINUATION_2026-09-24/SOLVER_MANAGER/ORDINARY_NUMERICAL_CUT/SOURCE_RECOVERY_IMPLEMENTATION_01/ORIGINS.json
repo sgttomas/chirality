@@ -1,0 +1,73 @@
+{
+  "parent": "/root",
+  "agent": "/root/numerical_resume",
+  "role": "WORKING_ITEMS",
+  "mechanism": "delegated-harness-native",
+  "base_commit": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "branch": "codex/piping-source-recovery-20260924",
+  "design_sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+  "independent_design_review_sha256": "8d940b75b55db794d7dedd977caf692236378422838cb7b0516024193c3164e6",
+  "source_scope": "bounded exact affine-functional core and no-contact straight-frame/ground-spring/nodal-load product adapter; ROOT coordinates combined semantics; no code rule or library seeding",
+  "source_ownership": {
+    "manager": "product facade/adapter and integration",
+    "planned_task": "exact_boundary functional helper and focused tests only"
+  },
+  "instructions": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    }
+  ],
+  "executors": [
+    {
+      "agent": "/root/numerical_resume/affine_functionals",
+      "actual_parent": "/root/numerical_resume",
+      "role": "TASK",
+      "completed_scope": "exact functional helper; ownership returned"
+    },
+    {
+      "agent": "/root/numerical_resume/source_product_adapter",
+      "actual_parent": "/root/numerical_resume",
+      "role": "TASK",
+      "completed_scopes": [
+        "private product adapter",
+        "core Rust/Python/schema/table readers"
+      ],
+      "ownership": "returned"
+    },
+    {
+      "agent": "/root/numerical_resume/n05_admission",
+      "actual_parent": "/root/numerical_resume",
+      "role": "TASK",
+      "completed_scope": "private source receipt producer; ownership returned"
+    },
+    {
+      "agent": "/root/root_solver_checkpoint_review",
+      "actual_parent": "/root",
+      "role": "TASK",
+      "coordination": "/root/numerical_resume",
+      "scope": "listed frontend reader files",
+      "acknowledged_execution": true
+    }
+  ]
+}

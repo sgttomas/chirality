@@ -1,0 +1,9 @@
+{
+  "purpose": "Bounded temporary operational-reservation measurement; not candidate qualification or accepted budget change",
+  "generic_limits_default_unchanged": 2000000,
+  "temporary_source_method_limit": 8000000,
+  "before_source_sha256": "a18385dae7236821e9981d6fd811bda8c5afe588472b14897110939873ff0c6e",
+  "trial_source_sha256": "8feb63dfa3551484de2d1ca21449c338abc034e1b6ae19c365f43009517ef07d",
+  "build_exit_code": 101,
+  "source_restored": true
+}

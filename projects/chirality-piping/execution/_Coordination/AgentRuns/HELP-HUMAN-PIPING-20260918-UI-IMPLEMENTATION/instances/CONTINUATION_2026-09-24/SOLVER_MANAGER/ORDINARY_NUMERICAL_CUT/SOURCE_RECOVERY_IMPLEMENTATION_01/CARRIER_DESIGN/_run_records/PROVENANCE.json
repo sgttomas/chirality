@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-09-25T03:54:40.281192+00:00",
+  "task": "/root/numerical_resume/source_recovery_design",
+  "role": "HELPS_HUMANS",
+  "actual_parent": "/root/numerical_resume",
+  "commissioning_root": "/root",
+  "mechanism": "delegated-harness-native continuation of commissioned design partner",
+  "descendants": [],
+  "model": "No independent runtime model identifier queried; no diversity claim",
+  "checkout": "/private/tmp/piping-source-recovery-20260924",
+  "branch_and_base": "Parent-supplied codex/piping-source-recovery-20260924 at 0a438a68672269e5750900792c9565ae9e5555b0; no Git verification per brief",
+  "write_boundary": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN",
+  "instructions": [
+    {
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/AGENTS.md",
+      "repository_path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "Previously read full instruction; bytes hashed at new base",
+      "same_as_prior_explicit_full_read": true
+    },
+    {
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/AGENTS.md",
+      "repository_path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "Previously read full instruction; bytes hashed at new base",
+      "same_as_prior_explicit_full_read": true
+    },
+    {
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "repository_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "read_scope": "Previously read full instruction; bytes hashed at new base",
+      "same_as_prior_explicit_full_read": true
+    },
+    {
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/agents/AGENT_HELPS_HUMANS.md",
+      "repository_path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "Previously read full instruction; bytes hashed at new base",
+      "same_as_prior_explicit_full_read": true
+    }
+  ],
+  "skills_selected": [],
+  "workflows_selected": [],
+  "other_full_role_bodies_loaded": [],
+  "scope_enforcement": "Evidence-only ownership enforced by brief; host permits wider /private/tmp access. No production edits, Git, heavy/build/native/browser or delegation. Original/corrections worktrees not modified.",
+  "parent_contributions": [
+    {
+      "path": "_run_records/physics_interface_schema.md",
+      "sha256": "4da9cc53f515342a3043d32de7e83dfc4005a6bf06e51070dda0aed848974b62",
+      "origin_record": "_run_records/physics_interface_origin.json",
+      "author": "Parent materialized exact af412 physics interface; this child only read it"
+    }
+  ],
+  "source_update": "All 24 initial readset hashes remained unchanged. Shared workers own subsequent implementation; this is a design-source snapshot, not a final integrated product freeze.",
+  "commands": [
+    {
+      "command": "rg/cat/sed and lightweight Python reads/hashes",
+      "purpose": "Find and inspect actual source/schema/consumer/physics contract seams",
+      "notes": "Some exploratory absent-path/glob probes produced no matches/errors; corrected through rg-discovered paths. No shell mutation outside owned evidence."
+    },
+    {
+      "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/generate_schema.py",
+      "exit_code": 0,
+      "purpose": "Generate proposed schema and six-row additive semantic fragment; repeated only after proposal changes."
+    },
+    {
+      "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/_run_records/examples_and_shape_check.py",
+      "exit_code": 0,
+      "runtime": "Python 3.9.6",
+      "purpose": "Generate explicitly illustrative examples; validate exact used schema keyword subset and reject eight shape mutations. No installed jsonschema library was available; no full-library or semantic/product validation claimed."
+    }
+  ],
+  "actual_design_updates_from_parent": [
+    "Use actual physics support row source rather than guessed contract; exact source hashes verified",
+    "Use additive source_block_recovery raw field; keep p1/table/history unchanged",
+    "Retain truthful ordinary q even when N06 exact path qualifies",
+    "Support explicit mixed ordinary/exact cases without p1 reinterpretation",
+    "Capture complete actual raw request Value before parsing; preserve typed entry ordinary behavior",
+    "ROOT owns shared physics-1/parser/table fan-in"
+  ],
+  "new_web_retrieval": false,
+  "not_claimed": [
+    "Actual source-block product solve",
+    "New schema consumer implementation",
+    "Real source/receipt hash vector qualification",
+    "Independent review of this carrier proposal",
+    "Native/history/canonical/stress-neutral round-trip pass",
+    "Persistent exact ratio replay"
+  ]
+}

@@ -1,0 +1,417 @@
+{
+  "sealed_at_utc": "2026-09-25T06:59:32.397484+00:00",
+  "root": "/private/tmp/piping-source-recovery-20260924",
+  "branch": "codex/piping-source-recovery-20260924",
+  "base": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "purpose": "ROOT-selected stable reviewed implementation subset for physics_resume fan-in while frontend/native boundary completes. Not whole-tranche review or native/CI qualification. No source copies: Git base plus exact diff.",
+  "source_owner": "/root/numerical_resume",
+  "joined_facade_owner": "/root/physics_resume",
+  "reviewed_source_count": 18,
+  "reviewed_source": [
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "bytes": 29752,
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "bytes": 36633,
+      "sha256": "87b3953fdcfe484e48530b522c8117a0ea72f0fca5aac524d2cdd79b62af2978",
+      "review": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "bytes": 794764,
+      "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "bytes": 30651,
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "bytes": 26472,
+      "sha256": "2af23fd77b2c99c8efced4f00ce893da589654be37f96a9e3a7ffc7fa26d7f1f",
+      "review": "PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "bytes": 18299,
+      "sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "bytes": 7107,
+      "sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "bytes": 52997,
+      "sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "review": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "bytes": 29843,
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "bytes": 12352,
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "bytes": 62433,
+      "sha256": "29c1fa01117200240bf7eedf4a7e6409328317c6eb5f31721cff9391f3cbcddd",
+      "review": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "bytes": 18005,
+      "sha256": "837a496c4390e8beecdc6648a81c60303cd38fbd190e102dc66dbef5d4ab8ef9",
+      "review": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "bytes": 97588,
+      "sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "review": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "bytes": 39085,
+      "sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "review": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "bytes": 19020,
+      "sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "review": "CORE_IMPLEMENTATION_REVIEW/RETURN.md"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "bytes": 41938,
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "bytes": 18116,
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "review": "PRODUCER_READER_REVIEW/RETURN.md, with PR-01 follow-up where applicable"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "bytes": 23902,
+      "sha256": "9d9bf808b12d7ea0c79ff096f9db62cd4d2066c9946ee72593918ebf7dddd76e",
+      "review": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md"
+    }
+  ],
+  "supporting_file_count": 38,
+  "supporting_files": [
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/__init__.py",
+      "sha256": "aa1fbd8152bfc53ff556dfc65661806a727c782943ec1d909d7a345c9164908d",
+      "bytes": 811,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.lock",
+      "sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+      "bytes": 7473,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256": "2c037f109240275806d424aba371553575dec20a8b786d3ff29ecac875fe7326",
+      "bytes": 1275,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "bytes": 5079,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "sha256": "bb51842ea877b959d3d7ada18385b2593d42955cb78b80e528f40ebe45d90780",
+      "bytes": 14097,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/lib.rs",
+      "sha256": "7c1aa49652c3d8d2b1a6cee88947c52d7cb413a75b2b689a6ffaba55965f57a3",
+      "bytes": 65891,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/fixtures/source_blocks_statement_control.json",
+      "sha256": "e84f479e23ef84d7df26e0f874a268a35e0bc326dc4ea63c329561f4fc4f53c4",
+      "bytes": 102243,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "sha256": "7345cbcade5777b4e4ffc190dff1d4f4231fcf3340f30bca342c1c95c19558b4",
+      "bytes": 3985,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c",
+      "bytes": 278695,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f",
+      "bytes": 275442,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "bytes": 4633,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "bytes": 138009,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f",
+      "bytes": 136414,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "bytes": 3551,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2",
+      "bytes": 128703,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "bytes": 128715,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "bytes": 3551,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/CAPTURE.json",
+      "sha256": "2e90f53900bfa030fab85955fef0f9398a57b1e859ce87acff61468d9b994b5a",
+      "bytes": 1296,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "bytes": 3782,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "bytes": 132883,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "bytes": 131459,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "bytes": 3453,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "6569258bc3e672a734cbea996e50a41e2d7da301a87a0c197a14b13b83eb5869",
+      "bytes": 278695,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "0fb36f522ee4899b0ed00d743df2a57a6d704fbc6285d519413658d2ac52b54d",
+      "bytes": 275442,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "bytes": 5503,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8",
+      "bytes": 138009,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "sha256": "74ee74036d2ef2713c240ce58c45133fcaba92593634f1d7d45abf1634087f03",
+      "bytes": 136414,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "bytes": 4406,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "7edb11b9c4fee9cdb1e697e9509d99e37323dc85d72f5ca9981bcc6d4ac9b63a",
+      "bytes": 128703,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "sha256": "4e222ae5a6d8678c504afcb218bec54f9d0fc2b65491a245e2c66ac19ec7fa12",
+      "bytes": 128715,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "bytes": 4406,
+      "coverage": "Tested supporting wiring/manifest/fixtures; not broadened into independently reviewed implementation scope. Joined owner integrates and reviews affected wiring."
+    }
+  ],
+  "patches": [
+    {
+      "path": "REVIEWED_SUBSET.patch",
+      "sha256": "6fb6509fd9509001ea2f526e66ff7cef20f668e1f408bc2b4e58192f6fa028d5",
+      "bytes": 525044
+    },
+    {
+      "path": "SUBSET_SUPPORT.patch",
+      "sha256": "21226f53058afc085d8ba612b8570b4534af12abde6fbfbf97d13a355c7b30dc",
+      "bytes": 2711643
+    }
+  ],
+  "review_and_test_bindings": [
+    {
+      "path": "CORE_IMPLEMENTATION_REVIEW/RETURN.md",
+      "sha256": "5e0894663aa43601d2fc9757219b2acc76bb2b07492fc5866a15da751e8ccc56"
+    },
+    {
+      "path": "CORE_IMPLEMENTATION_REVIEW/FINAL_HASHES.json",
+      "sha256": "e247d293453915ff3517db75cfcae78f4d0542f6e0b3618d4654b461424d1de3"
+    },
+    {
+      "path": "PRODUCER_READER_REVIEW/RETURN.md",
+      "sha256": "386494f8f58233b1e5e94a104ea0cbd8a0e53ef5f263c6d48138b2db4c550f21"
+    },
+    {
+      "path": "PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md",
+      "sha256": "eadf7a8a8bf7c3fd7ef72863abc3cc316b0776f269bbdff8ad9be3cce48fca48"
+    },
+    {
+      "path": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/RETURN.md",
+      "sha256": "18a98dffc26f5dd1f351a328e79cb7b107fbe102a07b7bbfdbb76402a493c6a0"
+    },
+    {
+      "path": "CORE_READERS/INDEPENDENT_STRESS_BACKCHECK/CHECKED_BASIS.json",
+      "sha256": "50969c051317440dddda7921a06340bd3eba3dfac0df8c81c0833b0b62404ebd"
+    },
+    {
+      "path": "_run_records/STRESS_GUARD_CHECKS.json",
+      "sha256": "aebe2d3920a57d27aebca067f3d92e318d94b47a9bc59a5d2d5c10793c06ae26"
+    },
+    {
+      "path": "_run_records/source_product_public_08.log",
+      "sha256": "7aa2445e03eafb6dad25df1ab9f0765df7208b0b0b9e4bc98ebd518b27cebdd1"
+    },
+    {
+      "path": "_run_records/source_product_library_06.log",
+      "sha256": "7827f49bbe52fed82f7e89f97ca3130ab61becf61128e4a7941458a2cf551d83"
+    },
+    {
+      "path": "_run_records/core_functionals_03.log",
+      "sha256": "c1ffdda83f0c906db12b98b5bd333007f4f7c15f45de297cc63654ea9579d548"
+    },
+    {
+      "path": "INTEGRATION_HANDOFF.md",
+      "sha256": "15afd47530034b4a8163c5c2202e441c8415005da36f5b1874b4553a1cd68120"
+    }
+  ],
+  "explicit_exclusions": [
+    "all desktop frontend/sourceBlockRecovery/native files",
+    "headless changes (tested52, independent integration review still required)",
+    "other Python transport/schema wiring not in reviewed list",
+    "benchmark/example and other manifest-lock updates",
+    "native/CI/composite qualification"
+  ],
+  "status": "sealed; future corrections require explicit delta/handoff, not silently changed source"
+}

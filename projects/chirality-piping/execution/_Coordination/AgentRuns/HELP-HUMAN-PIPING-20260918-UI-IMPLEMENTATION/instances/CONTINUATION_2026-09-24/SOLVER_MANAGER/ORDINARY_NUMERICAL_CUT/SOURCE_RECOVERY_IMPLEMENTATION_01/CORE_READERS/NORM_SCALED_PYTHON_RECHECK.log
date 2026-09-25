@@ -1,0 +1,21 @@
+Command: /private/tmp/chirality-piping-dec025-venv/bin/python -m unittest discover -s tests -p test_source_blocks_validation.py -v
+Working directory: /private/tmp/piping-source-recovery-20260924/projects/chirality-piping
+Checked JSON authority: /private/tmp/piping-numerical-corrections-canonical-resume-target/debug/openpipestress_jcs_ijson
+test_received_real_artifacts_qualify_only_with_matching_invocation (test_source_blocks_validation.ReceivedSourceBlockArtifacts.test_received_real_artifacts_qualify_only_with_matching_invocation) ... ok
+test_received_work_ledgers_and_rehashed_tamper_controls (test_source_blocks_validation.ReceivedSourceBlockArtifacts.test_received_work_ledgers_and_rehashed_tamper_controls) ... ok
+test_reserved_failure_work_is_included_in_invocation_sum (test_source_blocks_validation.ReceivedSourceBlockArtifacts.test_reserved_failure_work_is_included_in_invocation_sum) ... ok
+test_input_projection_and_recipe_error_share_the_protected_limit (test_source_blocks_validation.ScaledNormRecipe.test_input_projection_and_recipe_error_share_the_protected_limit) ... ok
+test_normal_output_and_small_normalized_underflows_are_supported (test_source_blocks_validation.ScaledNormRecipe.test_normal_output_and_small_normalized_underflows_are_supported) ... ok
+test_range_bit_identity_and_order_are_enforced (test_source_blocks_validation.ScaledNormRecipe.test_range_bit_identity_and_order_are_enforced) ... ok
+test_every_falsy_receipt_presence_blocks_p1_and_legacy_downgrade (test_source_blocks_validation.SourceBlockStatements.test_every_falsy_receipt_presence_blocks_p1_and_legacy_downgrade) ... ok
+test_mixed_ordinary_case_uses_unchanged_p1_predicates (test_source_blocks_validation.SourceBlockStatements.test_mixed_ordinary_case_uses_unchanged_p1_predicates) ... ok
+test_pinned_additive_table_preserves_immutable_p1_rows (test_source_blocks_validation.SourceBlockStatements.test_pinned_additive_table_preserves_immutable_p1_rows) ... ok
+test_recorded_unsupported_case_is_inspectable_and_unqualified (test_source_blocks_validation.SourceBlockStatements.test_recorded_unsupported_case_is_inspectable_and_unqualified) ... ok
+test_rehashed_invalid_claims_do_not_pass (test_source_blocks_validation.SourceBlockStatements.test_rehashed_invalid_claims_do_not_pass) ... ok
+test_shape_rejects_closed_unknown_and_nonnumeric_types (test_source_blocks_validation.SourceBlockStatements.test_shape_rejects_closed_unknown_and_nonnumeric_types) ... ok
+test_valid_statements_need_independent_actual_context (test_source_blocks_validation.SourceBlockStatements.test_valid_statements_need_independent_actual_context) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 4.315s
+
+OK

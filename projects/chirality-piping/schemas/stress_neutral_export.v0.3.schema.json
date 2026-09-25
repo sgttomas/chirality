@@ -225,7 +225,10 @@
           "const": "0.2.0"
         },
         "semantic_contract_id": {
-          "const": "openpipestress.result_semantics/0.3.0/precision-1"
+          "enum": [
+            "openpipestress.result_semantics/0.3.0/precision-1",
+            "openpipestress.result_semantics/0.3.0/source-blocks-1"
+          ]
         }
       }
     },
@@ -367,7 +370,10 @@
           "const": "semantic_contract"
         },
         "ref_id": {
-          "const": "openpipestress.result_semantics/0.3.0/precision-1"
+          "enum": [
+            "openpipestress.result_semantics/0.3.0/precision-1",
+            "openpipestress.result_semantics/0.3.0/source-blocks-1"
+          ]
         }
       }
     },
@@ -380,15 +386,107 @@
       ],
       "properties": {
         "id": {
-          "const": "openpipestress.result_semantics/0.3.0/precision-1"
+          "enum": [
+            "openpipestress.result_semantics/0.3.0/precision-1",
+            "openpipestress.result_semantics/0.3.0/source-blocks-1"
+          ]
         },
         "sha256": {
-          "const": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e"
+          "enum": [
+            "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+            "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"
+          ]
         }
-      }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "id": {
+                  "const": "openpipestress.result_semantics/0.3.0/precision-1"
+                },
+                "sha256": {
+                  "const": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e"
+                }
+              }
+            },
+            {
+              "properties": {
+                "id": {
+                  "const": "openpipestress.result_semantics/0.3.0/source-blocks-1"
+                },
+                "sha256": {
+                  "const": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f"
+                }
+              }
+            }
+          ]
+        }
+      ]
     },
     "source_carrier_checksum": {
       "$ref": "#/$defs/ReceivedChecksum"
+    },
+    "source_block_recovery": {
+      "$ref": "#/$defs/source_block_recovery"
+    },
+    "source_annotations": {
+      "type": "array",
+      "maxItems": 16384,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "result_id",
+          "source_row_index",
+          "kind",
+          "unit",
+          "entity_ref",
+          "basis_ref",
+          "metadata",
+          "source_row_sha256"
+        ],
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_row_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 16383
+          },
+          "basis_ref": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "metadata": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "source_row_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
     }
   },
   "$defs": {
@@ -1789,6 +1887,841 @@
           "minLength": 1
         }
       }
+    },
+    "source_block_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref_type",
+        "ref_id"
+      ],
+      "properties": {
+        "ref_type": {
+          "const": "load_case"
+        },
+        "ref_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source_block_work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "limit",
+        "charged",
+        "rejected_reservation",
+        "reserved_unobserved_failure"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "charged": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "rejected_reservation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "amount"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "finite",
+                "overflow"
+              ]
+            },
+            "amount": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "reserved_unobserved_failure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "source_block_failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "code",
+        "diagnostic_ref",
+        "block_order"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "eligibility",
+            "source_capture",
+            "source_validation",
+            "exact_solve",
+            "functional_evaluation",
+            "projection",
+            "derived_rows",
+            "finalization"
+          ]
+        },
+        "code": {
+          "enum": [
+            "unsupported_family",
+            "unsupported_block",
+            "unsupported_source_closure",
+            "unsupported_derived_quantity",
+            "support_attribution_ambiguous",
+            "invalid_source",
+            "source_mismatch",
+            "not_positive_definite",
+            "arithmetic_range",
+            "budget",
+            "projection_unresolved",
+            "coverage_incomplete",
+            "invocation_mismatch"
+          ]
+        },
+        "diagnostic_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "block_order": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "source_block_ordinary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requested_mode",
+        "outcome",
+        "structural_report_diagnostic_ref",
+        "failure",
+        "quality_case_index"
+      ],
+      "properties": {
+        "requested_mode": {
+          "enum": [
+            "dense_scrutiny",
+            "sparse_interactive"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "not_attempted",
+            "checks_passed",
+            "sensitive",
+            "rejected"
+          ]
+        },
+        "structural_report_diagnostic_ref": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "failure": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "stage",
+                "diagnostic_ref"
+              ],
+              "properties": {
+                "stage": {
+                  "enum": [
+                    "assembly",
+                    "geometry",
+                    "factorization",
+                    "condition",
+                    "residual",
+                    "range",
+                    "input"
+                  ]
+                },
+                "diagnostic_ref": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "quality_case_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "source_block_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "normalized_source_sha256",
+        "functional_plan_sha256",
+        "dof_count",
+        "stiffness_term_count",
+        "force_term_count",
+        "functional_count",
+        "free_dofs",
+        "prescribed_dofs",
+        "free_blocks",
+        "member_ids",
+        "support_ids"
+      ],
+      "properties": {
+        "level": {
+          "const": "complete_identified_represented_contributions"
+        },
+        "normalized_source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "functional_plan_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "dof_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "stiffness_term_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "force_term_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "functional_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "free_dofs": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "prescribed_dofs": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "free_blocks": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "member_ids": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "support_ids": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "source_block_projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projection_id",
+        "functional_id",
+        "result_id",
+        "quantity",
+        "value",
+        "value_bits",
+        "unit",
+        "interval",
+        "absolute_error_bound",
+        "relative_error_bound",
+        "relative_limit",
+        "basis"
+      ],
+      "properties": {
+        "projection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "functional_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quantity": {
+          "enum": [
+            "nodal_translation",
+            "nodal_rotation",
+            "member_end_action",
+            "member_station_action",
+            "support_action_component",
+            "constraint_reaction"
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "value_bits": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "unit": {
+          "enum": [
+            "m",
+            "mm",
+            "rad",
+            "N",
+            "N*m"
+          ]
+        },
+        "interval": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
+        },
+        "absolute_error_bound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "relative_error_bound": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1e-09
+        },
+        "relative_limit": {
+          "const": 1e-09
+        },
+        "basis": {
+          "enum": [
+            "exact_zero",
+            "exact_identity",
+            "outward_interval"
+          ]
+        }
+      }
+    },
+    "source_block_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "result_id",
+        "treatment",
+        "projection_id",
+        "recipe_id",
+        "input_result_ids"
+      ],
+      "properties": {
+        "result_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "treatment": {
+          "enum": [
+            "qualified_projection",
+            "checked_derived",
+            "ordinary_checked",
+            "inspection_only"
+          ]
+        },
+        "projection_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recipe_id": {
+          "anyOf": [
+            {
+              "enum": [
+                "translation_norm_v1",
+                "support_force_norm_v1",
+                "straight_open_stress_v1",
+                "reviewed_stress_summary_v1",
+                "section_property_from_source_v1"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_result_ids": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "source_block_support_component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component",
+        "result_id",
+        "functional_id",
+        "action_terms"
+      ],
+      "properties": {
+        "component": {
+          "enum": [
+            "Fx",
+            "Fy",
+            "Fz",
+            "Mx",
+            "My",
+            "Mz"
+          ]
+        },
+        "result_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "functional_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_terms": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source_id",
+              "global_dof"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "ideal_constraint",
+                  "ground_spring",
+                  "structural_zero"
+                ]
+              },
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "global_dof": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            }
+          }
+        }
+      }
+    },
+    "source_block_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "support_id",
+        "node_id",
+        "attribution",
+        "components"
+      ],
+      "properties": {
+        "support_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "node_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribution": {
+          "const": "unique_source_owned"
+        },
+        "components": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/source_block_support_component"
+          }
+        }
+      }
+    },
+    "source_block_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "basis_ref",
+        "outcome",
+        "requested_mode",
+        "selected_method",
+        "ordinary_attempt",
+        "source",
+        "projections",
+        "rows",
+        "supports",
+        "failure",
+        "work"
+      ],
+      "properties": {
+        "basis_ref": {
+          "$ref": "#/$defs/source_block_basis"
+        },
+        "outcome": {
+          "enum": [
+            "qualified",
+            "unsupported",
+            "failed"
+          ]
+        },
+        "requested_mode": {
+          "enum": [
+            "dense_scrutiny",
+            "sparse_interactive"
+          ]
+        },
+        "selected_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "retained_source_blocks_exact_v1",
+                "ordinary_dense_structural_v1",
+                "ordinary_sparse_structural_v1"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinary_attempt": {
+          "$ref": "#/$defs/source_block_ordinary"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/source_block_source"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "projections": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "$ref": "#/$defs/source_block_projection"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "$ref": "#/$defs/source_block_row"
+          }
+        },
+        "supports": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "$ref": "#/$defs/source_block_support"
+          }
+        },
+        "failure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/source_block_failure"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "work": {
+          "$ref": "#/$defs/source_block_work"
+        }
+      }
+    },
+    "source_block_invocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "payload_scope",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "canonicalization": {
+          "const": "openpipestress_jcs_ijson_v1"
+        },
+        "payload_scope": {
+          "const": "source_blocks_invocation_v1"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "source_block_receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_version",
+        "policy",
+        "status",
+        "invocation",
+        "publication_sha256",
+        "cases",
+        "envelope_observation_result_ids"
+      ],
+      "properties": {
+        "receipt_version": {
+          "const": "1.0.0"
+        },
+        "policy": {
+          "const": "SOURCE-BLOCKS-1"
+        },
+        "status": {
+          "enum": [
+            "qualified",
+            "partial",
+            "unavailable"
+          ]
+        },
+        "invocation": {
+          "$ref": "#/$defs/source_block_invocation"
+        },
+        "publication_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "cases": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "$ref": "#/$defs/source_block_case"
+          }
+        },
+        "envelope_observation_result_ids": {
+          "type": "array",
+          "maxItems": 16384,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "source_block_recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/source_block_receipt_body"
+        },
+        "receipt_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "producer": {
+            "properties": {
+              "semantic_contract_id": {
+                "const": "openpipestress.result_semantics/0.3.0/source-blocks-1"
+              }
+            },
+            "required": [
+              "semantic_contract_id"
+            ]
+          }
+        },
+        "required": [
+          "producer"
+        ]
+      },
+      "then": {
+        "required": [
+          "source_block_recovery"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "source_block_recovery"
+          ]
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "producer": {
+              "properties": {
+                "semantic_contract_id": {
+                  "const": "openpipestress.result_semantics/0.3.0/precision-1"
+                }
+              }
+            },
+            "semantic_contract_ref": {
+              "properties": {
+                "ref_id": {
+                  "const": "openpipestress.result_semantics/0.3.0/precision-1"
+                }
+              }
+            },
+            "semantic_contract": {
+              "properties": {
+                "id": {
+                  "const": "openpipestress.result_semantics/0.3.0/precision-1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "producer": {
+              "properties": {
+                "semantic_contract_id": {
+                  "const": "openpipestress.result_semantics/0.3.0/source-blocks-1"
+                }
+              }
+            },
+            "semantic_contract_ref": {
+              "properties": {
+                "ref_id": {
+                  "const": "openpipestress.result_semantics/0.3.0/source-blocks-1"
+                }
+              }
+            },
+            "semantic_contract": {
+              "properties": {
+                "id": {
+                  "const": "openpipestress.result_semantics/0.3.0/source-blocks-1"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "if": {
+        "required": [
+          "source_block_recovery"
+        ]
+      },
+      "then": {
+        "required": [
+          "source_annotations"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "source_annotations"
+          ]
+        }
+      }
+    }
+  ],
+  "description": "Precision-1 and distinct source-blocks-1 transport union. Executable source validation and independent current-invocation binding govern numerical standing."
 }

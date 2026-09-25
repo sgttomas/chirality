@@ -1,0 +1,8 @@
+{
+  "source_checkout": "/private/tmp/piping-engine-integration-20260925",
+  "source_path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+  "source_sha256": "4e33adc32359fc52c98eef153d3ce72930907023e6ae93f558b2209cbf519e76",
+  "adopted_scope": "runPreviewMechanics through cancelPreviewMechanicsJob; BundledMechanicsReference/reference loader/browser diagnostic",
+  "composition": "sourceBlockRecovery validation inserted before generic native registration; no physics1 acceptance or other source copied",
+  "actual_parent": "/root"
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-j2",
+    "--manifest-path",
+    "core/product_physics/Cargo.toml",
+    "--lib",
+    "source_"
+  ],
+  "exit_code": 101,
+  "started_unix": 1790314186.7441752,
+  "ended_unix": 1790314190.883436,
+  "log_sha256": "e8a96c6370444703e8ae4b723ded7a3c1aaec528728dca7bf76aa780926e033e"
+}

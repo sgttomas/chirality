@@ -1,0 +1,40 @@
+{
+  "path_base": "SOURCE_RECOVERY_DESIGN_01",
+  "files": [
+    {
+      "path": "DESIGN.md",
+      "sha256": "a925f8a8c8f58cf6186504910f99b3b43e23a4eced10c019470e9d918c7613df",
+      "bytes": 29573
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "430301d5a08b8300bc3181018d298f847ae9a6cebf134e93e0f12facc7a4c144",
+      "bytes": 3777
+    },
+    {
+      "path": "_run_records/INPUT_MANIFEST.json",
+      "sha256": "1e6ea8ceadc627640fb6a7b5b9de9da4c4446c5f3a7902a8a5e5b52fcbf86894",
+      "bytes": 15978
+    },
+    {
+      "path": "_run_records/INPUT_RECHECK.json",
+      "sha256": "83c34fda8c02bf034b4d7b6b364aa8083ddf425964f3854925fce097cd2c5b21",
+      "bytes": 10411
+    },
+    {
+      "path": "_run_records/PROVENANCE.json",
+      "sha256": "5f219339be3769b2971a48cffc93f9fe7e89bde148b3ed688f7328fa38ee0bbf",
+      "bytes": 5558
+    },
+    {
+      "path": "_run_records/REFERENCE_PROBE.json",
+      "sha256": "a69aa4ca28dd8976c1995bfa0d63689af3d87b2728c723aa2f4ecf2a2c55ae39",
+      "bytes": 2280
+    },
+    {
+      "path": "_run_records/reference_probe.py",
+      "sha256": "3eb99ffb954cbc56798996a2937b8930ea7f4f6be55edb6f51f81d688520e82d",
+      "bytes": 5142
+    }
+  ]
+}

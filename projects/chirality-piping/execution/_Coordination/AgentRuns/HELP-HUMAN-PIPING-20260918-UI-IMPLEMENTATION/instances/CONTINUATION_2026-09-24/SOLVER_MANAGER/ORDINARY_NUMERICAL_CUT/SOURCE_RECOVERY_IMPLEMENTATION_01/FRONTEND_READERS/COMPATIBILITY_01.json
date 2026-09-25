@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--workspace",
+    "apps/desktop",
+    "--",
+    "src/features/results/numericalResultQuality.test.ts",
+    "src/services/analysisRunCompatibility.test.ts",
+    "src/features/result-export/resultExportAdapter.test.ts",
+    "src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+    "src/services/previewService.test.ts",
+    "src/features/workspace/resultsSessionState.test.ts",
+    "src/services/ruleCheckService.test.ts",
+    "src/features/report/reportPackageRequest.test.ts",
+    "--maxWorkers=1"
+  ],
+  "started": "2026-09-25T05:50:53.750195+00:00",
+  "purpose": "native gate compatibility; source-block real positives held until scaled-norm fixture regeneration",
+  "exit_code": 1
+}

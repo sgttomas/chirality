@@ -1,0 +1,91 @@
+{
+  "time": "2026-09-25T06:12:21.885444+00:00",
+  "files": [
+    {
+      "path": "FINDINGS.md",
+      "sha256": "97f72c92ff47f33c6b63f76ec88e4df6840d62ba1c80c2e01b2ec4c36cf5dd77",
+      "bytes": 4503
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "386494f8f58233b1e5e94a104ea0cbd8a0e53ef5f263c6d48138b2db4c550f21",
+      "bytes": 10080
+    },
+    {
+      "path": "_run_records/EXECUTION_PARTIAL.json",
+      "sha256": "e1051bd978cbb3226aa7c79af209b75c159d2343410b134f4683578e4c71cbfa",
+      "bytes": 1857
+    },
+    {
+      "path": "_run_records/FINAL_BASIS.json",
+      "sha256": "5a48e2a1b312663b11aad207b5c5da77a5daad225747f39470a0bbcb33dccb37",
+      "bytes": 45236
+    },
+    {
+      "path": "_run_records/INDEPENDENT_CHECKS.json",
+      "sha256": "a9eafd3c1ba1442b19e5c35ab00abac5caba2de534938ef79524bdc72b46d7b5",
+      "bytes": 4494
+    },
+    {
+      "path": "_run_records/INDEPENDENT_CHECKS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "_run_records/INITIAL_BASIS.json",
+      "sha256": "c7703bfa14253812e9448f6885a04e7da48aba21711ac301309873c0027fe45a",
+      "bytes": 6403
+    },
+    {
+      "path": "_run_records/NORM_DERIVATION.md",
+      "sha256": "fa8f13713d428d3de4992e6938c830790e52e8dd4e4c5a889cb5b4b7d0209bc0",
+      "bytes": 2071
+    },
+    {
+      "path": "_run_records/PROVENANCE.json",
+      "sha256": "012529beb4d030bd03d4dfe9264ff91206414bc58d808f0a8181db7560210330",
+      "bytes": 2796
+    },
+    {
+      "path": "_run_records/RUNTIME_EVIDENCE.json",
+      "sha256": "5d24d369bf48d1a2369cadc1e1f848f8c5c3a743a767b4890b21a599f88357ef",
+      "bytes": 11324
+    },
+    {
+      "path": "_run_records/SCOPE_CHECK.json",
+      "sha256": "5dd862ed403584229a7ff60ef16d24388fc6876d95195ac61cf7f3dc7103ef9e",
+      "bytes": 2045
+    },
+    {
+      "path": "_run_records/STRESS_REFERENCE.json",
+      "sha256": "34122b6cf8c793c1aa392be02576d85830986e9e7ded48a920f20e736f2f368a",
+      "bytes": 2020
+    },
+    {
+      "path": "_run_records/STRESS_REFERENCE.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "_run_records/STRESS_SUBNORMAL_REQUEST.json",
+      "sha256": "313ea27d895b6f90782c7438e8b54aa62741538f99328a969625e79e527f22e5",
+      "bytes": 3411
+    },
+    {
+      "path": "_run_records/STRESS_SUBNORMAL_SCALAR.json",
+      "sha256": "7e8675d39ecc242b6d63089b203c2ea208a601bc23adf97276a5603b71bcde1c",
+      "bytes": 634
+    },
+    {
+      "path": "_run_records/independent_checks.py",
+      "sha256": "95166a3e7702db06df3065da577d9e8950719e800561844770d11b1059b72de2",
+      "bytes": 5802
+    },
+    {
+      "path": "_run_records/stress_reference.py",
+      "sha256": "56e98cf814b46c23d9d3f9e61d86a36c9ba3d98ea5cb6094efa302681e42a2e0",
+      "bytes": 2279
+    }
+  ],
+  "self_excluded": true
+}

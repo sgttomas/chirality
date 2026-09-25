@@ -1,4 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { invoke } from '@tauri-apps/api/core';
+import sparseProducer from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
+vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
+afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
+import { describe, expect, it, vi, afterEach } from "vitest";
 import { buildAnalysisRunPreview, buildPreviewComparison, loadPreviewModel, runPreviewMechanics } from "../../services/previewService";
 import { canonicalSha256Hex, canonicalSha256HexCheckedV1 } from "../../services/hashService";
 import { buildCurrentSessionInputManifest } from "../../services/inputManifestService";
@@ -9,8 +13,21 @@ import {resultSemantics} from "../results/resultSemantics";
 import { buildReportPackageRequest } from "./reportPackageRequest";
 import componentProvenanceProjection from "../../../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
 
+// Isolated report-consumer tests simulate the source IPC response; the real
+// native producer and its numerical correctness are not executed here.
+async function reportFromMockedNative(args: Parameters<typeof buildReportPackageRequest>[0]) {
+  if (args.analysisRun.schema_version === '0.3.0') {
+    Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
+    vi.mocked(invoke).mockResolvedValueOnce(args.result);
+    const result=await runPreviewMechanics(args.model,(args.inputManifest?.manifest?.solver_basis?.solver_mode ?? 'sparse_interactive') as 'sparse_interactive'|'dense_scrutiny');
+    return buildReportPackageRequest({...args,result});
+  }
+  return buildReportPackageRequest(args);
+}
 async function currentSession() {
   const model = await loadPreviewModel();
+  Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
+  vi.mocked(invoke).mockResolvedValueOnce(structuredClone(sparseProducer));
   const result = await runPreviewMechanics(model);
   const inputManifest = await buildCurrentSessionInputManifest({
     model,
@@ -69,7 +86,7 @@ describe("report-package current-session request", () => {
       provenance: ""
     });
 
-    const request = await buildReportPackageRequest({
+    const request = await reportFromMockedNative({
       model,
       result,
       analysisRun,
@@ -119,7 +136,7 @@ describe("report-package current-session request", () => {
     const resultSnapshot = structuredClone(result);
     const runSnapshot = structuredClone(analysisRun);
 
-    const request = await buildReportPackageRequest({
+    const request = await reportFromMockedNative({
       model,
       result,
       analysisRun,
@@ -223,7 +240,7 @@ describe("report-package current-session request", () => {
       await canonicalSha256Hex(inputManifest.manifest.model_basis.model_payload)
     );
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model: changedModel,
         result,
         analysisRun,
@@ -245,7 +262,7 @@ describe("report-package current-session request", () => {
 
     expect(JSON.stringify(reorderedModel)).not.toBe(JSON.stringify(model));
     expect(await canonicalSha256Hex(reorderedModel)).toBe(canonicalModelHash);
-    const request = await buildReportPackageRequest({
+    const request = await reportFromMockedNative({
       model: reorderedModel,
       result,
       analysisRun,
@@ -266,7 +283,7 @@ describe("report-package current-session request", () => {
     });
 
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model,
         result,
         analysisRun,
@@ -307,7 +324,7 @@ describe("report-package current-session request", () => {
     target!.source_dimension = "stress";
 
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model,
         result,
         analysisRun: mismatched,
@@ -326,7 +343,7 @@ describe("report-package current-session request", () => {
     missing.analysis_run.reproducibility.input_manifest_refs = [];
     missing.analysis_run.reproducibility.input_manifest_hashes = [];
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model,
         result,
         analysisRun: missing,
@@ -340,7 +357,7 @@ describe("report-package current-session request", () => {
     const malformed = structuredClone(analysisRun);
     malformed.analysis_run.hashes[0].value = "A".repeat(64);
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model,
         result,
         analysisRun: malformed,
@@ -354,7 +371,7 @@ describe("report-package current-session request", () => {
     const mismatched = structuredClone(inputManifest);
     mismatched.manifest.model_basis.model_ref = "project:different";
     await expect(
-      buildReportPackageRequest({
+      reportFromMockedNative({
         model,
         result,
         analysisRun,
@@ -372,7 +389,7 @@ describe("report-package current-session request", () => {
       const wrongIdentity = structuredClone(inputManifest);
       wrongIdentity.manifest_ref.ref = ref;
       await expect(
-        buildReportPackageRequest({
+        reportFromMockedNative({
           model,
           result,
           analysisRun,
@@ -388,15 +405,15 @@ describe("report-package current-session request", () => {
     const session = await currentSession();
     const future = structuredClone(session.analysisRun);
     future.schema_version = "0.4.0";
-    await expect(buildReportPackageRequest({ ...session, analysisRun: future, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+    await expect(reportFromMockedNative({ ...session, analysisRun: future, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
       .rejects.toThrow("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
     const futureSource = structuredClone(session.result);
     futureSource.schema_version = "0.4.0";
-    await expect(buildReportPackageRequest({ ...session, result: futureSource, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+    await expect(reportFromMockedNative({ ...session, result: futureSource, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
       .rejects.toThrow("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
     const missing = structuredClone(session.analysisRun);
     missing.analysis_run.hashes = missing.analysis_run.hashes.filter(hash => hash.payload_scope !== "received_result");
-    await expect(buildReportPackageRequest({ ...session, analysisRun: missing, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+    await expect(reportFromMockedNative({ ...session, analysisRun: missing, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
       .rejects.toThrow("REPORT-PACKAGE-HASH-BINDING-INCOMPLETE");
   });
 
@@ -407,7 +424,7 @@ describe("report-package current-session request", () => {
     annotated.results.push({ id: unknownId, entity_ref: model.project.id, kind: "unregistered_source_kind", value: 1, unit: "N" });
     const analysisRun = await buildAnalysisRunPreview(annotated, { inputManifest });
     const before = JSON.stringify(annotated);
-    const request = await buildReportPackageRequest({ model, result: annotated, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
+    const request = await reportFromMockedNative({ model, result: annotated, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
     expect(request.result_envelopes[0].result_sets.flatMap(set => set.values).some(value => value.result_id === unknownId)).toBe(false);
     expect(JSON.stringify(request.result_envelopes[0].diagnostics)).toContain(unknownId);
     expect(JSON.stringify(annotated)).toBe(before);
@@ -419,7 +436,7 @@ describe("report-package current-session request", () => {
     const solver = analysisRun.analysis_run.solver_version!;
     if (field === "build_ref") solver.build_ref.ref = "build:conflicting-record";
     else solver[field] = "conflicting-record";
-    await expect(buildReportPackageRequest({ ...session, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+    await expect(reportFromMockedNative({ ...session, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
       .rejects.toThrow("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH");
   });
 
@@ -442,7 +459,7 @@ describe("report-package current-session request", () => {
     expect(await verifyAnalysisRunRecord(analysisRun)).toBe("match");
     expect(run.hashes.find(hash => hash.payload_scope === "received_result"))
       .toEqual(session.analysisRun.analysis_run.hashes.find(hash => hash.payload_scope === "received_result"));
-    await expect(buildReportPackageRequest({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+    await expect(reportFromMockedNative({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
       .rejects.toThrow("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH");
     expect(JSON.stringify(session.result)).toBe(receivedSourceBefore);
   });
@@ -452,7 +469,7 @@ describe("report-package current-session request", () => {
     const recordedBuild = "build:captured-current-product-physics";
     const inputManifest = await buildCurrentSessionInputManifest({ model: session.model, solver: { ...session.inputManifest.manifest.solver_basis, solver_build_ref: recordedBuild }, active_rule_packs: [], external_assets: [] });
     const analysisRun = await buildAnalysisRunPreview(session.result, { inputManifest });
-    const request = await buildReportPackageRequest({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
+    const request = await reportFromMockedNative({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
     expect(request.result_envelopes[0].solver_build_ref).toBe(recordedBuild);
     expect(request.audit_manifest.solver_version.solver_build_ref).toBe(recordedBuild);
     expect(request.audit_manifest.solver_version.solver_version).toBe(session.result.producer!.component_version);

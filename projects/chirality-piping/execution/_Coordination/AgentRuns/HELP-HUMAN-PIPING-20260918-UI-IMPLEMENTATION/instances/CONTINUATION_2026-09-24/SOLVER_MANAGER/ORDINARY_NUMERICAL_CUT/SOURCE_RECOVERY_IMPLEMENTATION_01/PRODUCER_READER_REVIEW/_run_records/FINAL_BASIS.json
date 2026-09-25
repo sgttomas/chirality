@@ -1,0 +1,604 @@
+{
+  "time": "2026-09-25T06:11:51.984458+00:00",
+  "base_supplied_by_parent": "0a438a68672269e5750900792c9565ae9e5555b0",
+  "git_used": false,
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "initial_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "initial_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "initial_sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "initial_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "initial_sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "initial_sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "initial_sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9",
+      "initial_sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "initial_sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "initial_sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/schemas/source_block_recovery.schema.json",
+      "sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "initial_sha256": "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+      "sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "initial_sha256": "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_precision_1.json",
+      "sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+      "initial_sha256": "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+      "sha256": "b12e2f130ef99c8d1f2d677089eb19faba3a9081f51643db7f65efeb962e60bd",
+      "initial_sha256": "b12e2f130ef99c8d1f2d677089eb19faba3a9081f51643db7f65efeb962e60bd",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs",
+      "sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "initial_sha256": "65f342f48e932b17cb4fc574aff8fd8337180458c2ffb083083540d0614893bf",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/src/derivative.rs",
+      "sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "initial_sha256": "cec4569254968f42e41e90f2b403f5ebb2bd96f46d666018dd139b954d6717d4",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/reporting/result_export/tests/source_blocks.rs",
+      "sha256": "c802debf0f8954c330b70898b88bdd062fb962fac337a25a966d4ba388373008",
+      "initial_sha256": "c802debf0f8954c330b70898b88bdd062fb962fac337a25a966d4ba388373008",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/analysis_runs/source_blocks.py",
+      "sha256": "0eba94538f78a91ab244f5de61f6b4861e77cc2bf24b827d0f3aa7a9af36720a",
+      "initial_sha256": "0eba94538f78a91ab244f5de61f6b4861e77cc2bf24b827d0f3aa7a9af36720a",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/analysis_runs/compatibility.py",
+      "sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "initial_sha256": "d255c9896f6912b0e542d52389d02834953eca27112f5b7690e4ef83c5d6dc86",
+      "unchanged_since_initial": true,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/tests/test_source_blocks_validation.py",
+      "sha256": "0775bc279827e20c815440219c8315101cd6a5218febfac7862f93b9b8766154",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "sha256": "14019a65103d1ae250bd24a2e902706783b204fad02a5ef2447d4a08fcf2ffec",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "tools/software_workflow/validate_change_scope.py",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RETURN.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RETURN.md",
+      "sha256": "5e0894663aa43601d2fc9757219b2acc76bb2b07492fc5866a15da751e8ccc56",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RUNTIME_EVIDENCE.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_IMPLEMENTATION_REVIEW/RUNTIME_EVIDENCE.json",
+      "sha256": "9f9283d5993d6f8d722923961d6343db6647445d568313b26947fd0b61c95312",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/RETURN.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CORE_READERS/RETURN.md",
+      "sha256": "6e74b74d4b5f8c5f24c6f5ff98a9d03dd566c0ad991c2b28a9b0d59fd1fda22f",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/RETURN.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/RETURN.md",
+      "sha256": "d18b517f4639de51cad2c06ce55553137df5f80a9cb000d4438aac3e397864c7",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/IMPLEMENTED_HASH_PAYLOAD_ADJUSTMENTS.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_RECEIPT/IMPLEMENTED_HASH_PAYLOAD_ADJUSTMENTS.md",
+      "sha256": "f4087c31fe3d9455312ca0d043b99465321ccc4e188b4ada7a683fdf3815da96",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/CONTRACT.md",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/CARRIER_DESIGN/CONTRACT.md",
+      "sha256": "5155d8fa0a14afe660f48d8f299bb6791b4a0d8661c39eb5d346f19737a45fca",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/coherent_core_checks.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/coherent_core_checks.json",
+      "sha256": "ec1def668e35eb1a7a9e501bb77a63d3f231a1272efd0cdc60e69a0990574bca",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+      "sha256": "7345cbcade5777b4e4ffc190dff1d4f4231fcf3340f30bca342c1c95c19558b4",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+      "sha256": "a1daf3769c6b89da332010cf16fdfa5ff7ba6ceb4cd128bca87804a17682f08c",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+      "sha256": "d161ce88737229c99ea698f50355c9c0e5242482291e828301a7595b7663080f",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+      "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+      "sha256": "c9cdf497bf2e867914f17f9f0adf8ca0bcb4c4c7f8bb6cc218ec6c9d1187e02a",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+      "sha256": "90baefacf40111b85812a2fa8a32c6c9811254ed3c05497494e06f5d6583153f",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+      "sha256": "23d206976986084ec4e6b29cae1576965932b845594effc1a173578eb07d1779",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+      "sha256": "e1fb2ea557b47b09638cfdbc9ee19c22a07f4fc274a62d6f7202130cb5ff81c2",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+      "sha256": "9a9e24817eeddcf59bdc9b914647b5d16710f03326662495363e5d3e3be736c6",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+      "sha256": "5a95c2cc5602361dea1e41fd40886ee5c651553a1fb12ba2bc33e335d25b02d1",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+      "sha256": "6569258bc3e672a734cbea996e50a41e2d7da301a87a0c197a14b13b83eb5869",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+      "sha256": "0fb36f522ee4899b0ed00d743df2a57a6d704fbc6285d519413658d2ac52b54d",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+      "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+      "sha256": "74ee74036d2ef2713c240ce58c45133fcaba92593634f1d7d45abf1634087f03",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+      "sha256": "7edb11b9c4fee9cdb1e697e9509d99e37323dc85d72f5ca9981bcc6d4ac9b63a",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+      "sha256": "4e222ae5a6d8678c504afcb218bec54f9d0fc2b65491a245e2c66ac19ec7fa12",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    },
+    {
+      "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+      "sha256": "39b9a33b5826feea1ac99f01255e9ac2496eab4f262461e2cd23a3b09a6ff2bd",
+      "initial_sha256": null,
+      "unchanged_since_initial": null,
+      "read_scope": "full dedicated producer/reader module, selected source-related callsites/interfaces/test/evidence content, or fixture/hash verification; not a full repository diff"
+    }
+  ],
+  "parent_coherent_source_comparison": [
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.lock",
+      "observed_sha256": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "recorded_sha256": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "observed_sha256": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+      "recorded_sha256": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+      "observed_sha256": "03f82e343c7aee8f9f38d4b983091d0b71faebb904fb4dc7b59692a0c9cc4ad9",
+      "recorded_sha256": "03f82e343c7aee8f9f38d4b983091d0b71faebb904fb4dc7b59692a0c9cc4ad9",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "observed_sha256": "091d4069852c6033da38074af297c5eaa5a9469510c00d577f222e077aec2c15",
+      "recorded_sha256": "091d4069852c6033da38074af297c5eaa5a9469510c00d577f222e077aec2c15",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "observed_sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "recorded_sha256": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "observed_sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "recorded_sha256": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "observed_sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "recorded_sha256": "d7688faa2fba9897c74385fa677040669f66b620b63006159290b051641b1fbe",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "observed_sha256": "bb3923fbc75ee4810ece2aba11e332f69b3e95a4f9637adee3313573ad10f85a",
+      "recorded_sha256": "bb3923fbc75ee4810ece2aba11e332f69b3e95a4f9637adee3313573ad10f85a",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.lock",
+      "observed_sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+      "recorded_sha256": "d27bebd89ef0f1cb05851b66ceea0120deae4c9ade3b8e43e243170c1282c127",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "observed_sha256": "2c037f109240275806d424aba371553575dec20a8b786d3ff29ecac875fe7326",
+      "recorded_sha256": "2c037f109240275806d424aba371553575dec20a8b786d3ff29ecac875fe7326",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/examples/preview_result.rs",
+      "observed_sha256": "70f992d3d6eb2915ccf76a72e481da2a59ce175ee391428782c3fb1d2900909b",
+      "recorded_sha256": "70f992d3d6eb2915ccf76a72e481da2a59ce175ee391428782c3fb1d2900909b",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "observed_sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "recorded_sha256": "71d1f8b19c4190ef216743b7f80a3a2f4b466010b3521a360a5a5f71efec2739",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "observed_sha256": "baa83a5a62ea34d0677a5c5c5d6cd2fd2f977b6b62a5e2d4ddd06fa18951abc0",
+      "recorded_sha256": "baa83a5a62ea34d0677a5c5c5d6cd2fd2f977b6b62a5e2d4ddd06fa18951abc0",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/self_weight.rs",
+      "observed_sha256": "23429a54f0f611b0a920364bb7734bf9c44a6e675b985fb43426c2b33fe00144",
+      "recorded_sha256": "23429a54f0f611b0a920364bb7734bf9c44a6e675b985fb43426c2b33fe00144",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_budget_tests.rs",
+      "observed_sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "recorded_sha256": "60153bd048a99807336fb53d932841224bd116eccd1d7d655baa66f29d467f18",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+      "observed_sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9",
+      "recorded_sha256": "bc89b3df80838e0b7690b2a4d9ab47225c2d8745858b95d61bab11a33c7c8ba9",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/source.rs",
+      "observed_sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "recorded_sha256": "fbf55187c1274a03b7b5b571c6777b36b3825297b6168141511ab3395314b924",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+      "observed_sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "recorded_sha256": "c9b4e9abb51865735070e13149f4630219785eb0d040e76669f6a0e8212814a0",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "observed_sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "recorded_sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+      "observed_sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "recorded_sha256": "73ba4ff9832d35644beb3f0a97e4defcf958f3ac3c1b4008a015ec9916770a1e",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "observed_sha256": "d146409ae7dcc8ae0f1e6bb05446b9dd91efd318465d12ce9883109b47214616",
+      "recorded_sha256": "d146409ae7dcc8ae0f1e6bb05446b9dd91efd318465d12ce9883109b47214616",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/represented_gap_publication.rs",
+      "observed_sha256": "1c33c4f0604b3eb0e31e689f3f965e65fd5d832377737f366b1b25e038fc1b78",
+      "recorded_sha256": "1c33c4f0604b3eb0e31e689f3f965e65fd5d832377737f366b1b25e038fc1b78",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/source_block_recovery.rs",
+      "observed_sha256": "14019a65103d1ae250bd24a2e902706783b204fad02a5ef2447d4a08fcf2ffec",
+      "recorded_sha256": "921ea7d93f218cbbdf1135336769a816dc36a25845c977ce72664b23f0c22cb2",
+      "matches": false
+    }
+  ],
+  "changed_initial_paths": []
+}
