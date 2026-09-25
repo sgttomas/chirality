@@ -15,3 +15,7 @@ Non-blocking findings and HELP_HUMAN disposition (repaired in the next commit):
 | 3 | Register state `SLICE MERGED` departs from the D-PEC-87 precedent | Repaired: state restored to `RULED A / EFFECTIVE ON MERGE`; the merge fact stays in the record cell |
 | 4 | Receipt 186 Checks named validators without outcomes | Repaired: outcomes stated |
 | 5 | "go ahead with the slice" may date from 2026-09-24 local time | Repaired: continuation heading reads 2026-09-24/25 |
+
+## Final-head confirmation of `cb78547e3e1d01f96e2a69ad59d68aa0d9fb41ae`
+
+Same reviewer, re-reviewing the repair commit `eed1bfceb..cb78547e3`. **Verdict: PASS, no blocking findings.** Each repair matches its finding and source (`projects/pec/AGENTS.md:39-42`, `docs/PRD.md` PEC-K-03 and §8); the brief hash recomputes to `911f3be3…0c2`; register state matches the D-PEC-87 precedent; Receipt 186 outcomes confirmed; this transcription fairly represents the verdict. Receipts validator VALID, exit 0; decomposition `--strict` exit 0; `git diff --check` exit 0; scope limited to the closeout write set; no new overclaim. This section is added append-only after that head; no other byte changes.
