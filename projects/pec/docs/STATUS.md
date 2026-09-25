@@ -150,8 +150,10 @@ Current owner gates (2026-09-24; none is accepted or inferred here):
 
 - **D-PEC-87 ruling:** C-A (recommended) / C-B / amend / defer for the
   DEL-01-03 store/guard correction slice, with the separately rulable
-  lifecycle clauses L-1 (three REM rows) and L-2 (acceptance route). This
-  disposes of the DEL-01-03 obligations O-1-1..O-3-14 per the triage.
+  lifecycle clauses L-1 (three REM rows) and L-2 (acceptance route). A C-A or
+  C-B ruling with L-1/L-2 would dispose of the 13 repair and 4 owner-only
+  obligations; the 15 class-A/B items rest on the triage
+  (`OBLIGATION_TRIAGE_DEL-01-03.md`), which is not itself a ruling.
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
