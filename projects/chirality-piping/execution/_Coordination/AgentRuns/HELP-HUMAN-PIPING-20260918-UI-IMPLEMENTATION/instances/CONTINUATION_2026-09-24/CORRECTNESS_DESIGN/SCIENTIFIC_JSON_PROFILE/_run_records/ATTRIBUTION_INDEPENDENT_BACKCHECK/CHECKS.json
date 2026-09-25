@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "scope": "Final three-file attribution + prospective parser-limit wording only; prior six-file independent review preserved.",
+  "packet": [
+    {
+      "file": "DESIGN.md",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/DESIGN.md",
+      "prior_reviewed_sha256": "239927496c8f40c47551f623b64c7b2cee90fb31036e5f923d9a79116ae50f78",
+      "final_sha256": "af4a63c68dc82b0db0492cbd4cc1971bf025c009f359afd9744f2c405aa65c86",
+      "changed": true
+    },
+    {
+      "file": "REFERENCES.md",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/REFERENCES.md",
+      "prior_reviewed_sha256": "ff39e75cb20ef8ef0bc0dd29f4fc228696b3138e8d8cfa93bfaa3cd31442005b",
+      "final_sha256": "ff39e75cb20ef8ef0bc0dd29f4fc228696b3138e8d8cfa93bfaa3cd31442005b",
+      "changed": false
+    },
+    {
+      "file": "CASES.md",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/CASES.md",
+      "prior_reviewed_sha256": "d91f74aaf99e353158bc2e91d50b0150d32717ca8d485438312e2c33397a67ca",
+      "final_sha256": "d91f74aaf99e353158bc2e91d50b0150d32717ca8d485438312e2c33397a67ca",
+      "changed": false
+    },
+    {
+      "file": "probe_numeric_domains.py",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/probe_numeric_domains.py",
+      "prior_reviewed_sha256": "f8f9bb432e20e292a270fa147a2fc30249377a759845d236c8fa02f479d323fd",
+      "final_sha256": "f8f9bb432e20e292a270fa147a2fc30249377a759845d236c8fa02f479d323fd",
+      "changed": false
+    },
+    {
+      "file": "BASIS.json",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/BASIS.json",
+      "prior_reviewed_sha256": "618a201cbba3372ffae598e34da00e8fc640cb71438af9b376e4a213561b15ca",
+      "final_sha256": "330170c4a19345e3649fc9f7dfcfe5444d626ff0ed9c5dad1388157a672917d2",
+      "changed": true
+    },
+    {
+      "file": "RETURN.md",
+      "actual_origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/RETURN.md",
+      "prior_reviewed_sha256": "573d82fa99f861191029d040bef1e0eb9b4424b5bccfe7e451da3e7fcfd69adf",
+      "final_sha256": "8857337d078dbc273b7395642b6976355ca59552ca5353036583911462551d94",
+      "changed": true
+    }
+  ],
+  "added_basis_sources": [
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/PRODUCER_READER_REVIEW/BACKCHECK_PRODUCER.md",
+      "sha256": "eadf7a8a8bf7c3fd7ef72863abc3cc316b0776f269bbdff8ad9be3cce48fca48",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before/dense_scrutiny.raw.json",
+      "sha256": "f577d856ec67fb1c02240e469bbb6a0a04c2fbed5237e660db4b680834b73073",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/ORACLE.json",
+      "sha256": "84d14e2a957aba55f35594eed040af301e7c1352c3ea589451a5e87f3ee4260b",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.raw.json",
+      "sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.request.json",
+      "sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "matches_basis": true
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.raw.json",
+      "sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "matches_basis": true
+    }
+  ],
+  "scalar_reference_record": {
+    "origin": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/_run_records/INDEPENDENT_REVIEW/PYTHON_REFERENCE.json",
+    "sha256": "14318e3ba15ff858299be3ffb4bd9425745fd25716089a3618d61417d6418281",
+    "recorded_values": {
+      "force_bits": "0066789e3750f791",
+      "area_bits": "4122374d355759df",
+      "pa_bits": "0000004ef331b289",
+      "mpa_bits": "0000000000052c90",
+      "pa_repr": "1.67531519044e-312",
+      "mpa_repr": "1.675317e-318",
+      "pa_relative_error": "6.6457471635317615755690755791837455974755465285385779355616945951184834067865416E-13",
+      "mpa_relative_error": "0.0000012694501754466800745967848962581174189654038629326537411130285631880823862017335",
+      "criterion": "1e-9",
+      "pa_exact_ratio": "6325070415853457/3775451002857837954231674063414658782829648264716766723072657585478057787030161501558909324539420854697838648187188591753021143215616821490373971254847321533804836860971183651308926239922728025552958966342337088887655231499999581562406766828459255333309820463741329018038108983386658129594031610519721018713765741995669283930112"
+    },
+    "classification": "previously independently evaluated scalar represented-operand arithmetic; not rerun and not production execution"
+  },
+  "initial_probe": {
+    "request": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before/dense_scrutiny.request.json",
+    "request_sha256": "11db17b600c16e4073579c98bfde56f9d93d3a14df32ea5195085905814b5706",
+    "raw": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_before/dense_scrutiny.raw.json",
+    "raw_sha256": "f577d856ec67fb1c02240e469bbb6a0a04c2fbed5237e660db4b680834b73073",
+    "producer_semantic_id": "openpipestress.result_semantics/0.3.0/precision-1",
+    "ordinary_quality": "sensitive",
+    "source_receipt_present": false,
+    "actual_refusal": {
+      "id": "diagnostic:source-recovery:case",
+      "code": "SOURCE_BLOCK_RECOVERY_UNAVAILABLE",
+      "severity": "info",
+      "message": "The bounded retained-source method did not produce a selected response: RecoveryFailure { stage: \"exact source solve\", helper_stage: Solve, error: Exact(Arithmetic(Range(\"exact radix loses represented bits\"))), work: WorkReport { charged: 109841, rejected: 0, limit: 4000000 } }",
+      "source": "core/product_physics",
+      "affected_refs": [
+        "case"
+      ]
+    }
+  },
+  "scaled_pre_repair_producer_records": [
+    {
+      "mode": "dense_scrutiny",
+      "actual_request": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.request.json",
+      "request_sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "actual_raw": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/dense_scrutiny.raw.json",
+      "raw_sha256": "85124a39b1920e3254f791ac28b2aeb3abafba42845bf82abe3346f0920ab877",
+      "producer_semantic_id": "openpipestress.result_semantics/0.3.0/source-blocks-1",
+      "receipt_status": "qualified",
+      "case_outcome": "qualified",
+      "samples_match_owning_oracle": true,
+      "sample_count": 6,
+      "recorded_oracle_error": 1.2694501751682153e-06,
+      "oracle_basis": "Fraction.from_float(F)/Fraction.from_float(A)/1000000; A is independent replay of represented selected annulus formula, not exact primitive pi"
+    },
+    {
+      "mode": "sparse_interactive",
+      "actual_request": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.request.json",
+      "request_sha256": "dcf0a626355add1d26146026c8a46e3843acae459def146901188e90f49f2413",
+      "actual_raw": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/_run_records/stress_range_scaled_before/sparse_interactive.raw.json",
+      "raw_sha256": "e14b0f257f45efc6ec5824527bbc2a60118d2026a72a36c261e42f73ccef5a04",
+      "producer_semantic_id": "openpipestress.result_semantics/0.3.0/source-blocks-1",
+      "receipt_status": "qualified",
+      "case_outcome": "qualified",
+      "samples_match_owning_oracle": true,
+      "sample_count": 6,
+      "recorded_oracle_error": 1.2694501751682153e-06,
+      "oracle_basis": "Fraction.from_float(F)/Fraction.from_float(A)/1000000; A is independent replay of represented selected annulus formula, not exact primitive pi"
+    }
+  ],
+  "parser_wording": {
+    "cli_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/core/serialization/canonical_json/src/bin/openpipestress_jcs_ijson.rs",
+    "cli_sha256": "0a1b2cd84de09c2c83e9af987f1f291b12b977c9111af732dc53df966ebfd45c",
+    "source_observation": "Whole current checked CLI file read: stdin read_to_string has no explicit request-byte or token-count cap. This is not a claim that serde has no implementation nesting limit.",
+    "prospective_new_profile_limits_explicit": true,
+    "inherited_generic_v1_request_token_limit_claim": false
+  },
+  "new_arithmetic_or_product_runs": false
+}

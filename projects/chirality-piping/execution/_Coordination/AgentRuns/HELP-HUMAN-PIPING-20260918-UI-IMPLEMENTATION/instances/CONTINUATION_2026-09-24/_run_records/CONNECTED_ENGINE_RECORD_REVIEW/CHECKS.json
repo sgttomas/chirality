@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "head": "479dc1fcc119f33fc5f43c9443e768df43f416bd",
+  "graph_added_lines": 7,
+  "graph_removed_lines": 0,
+  "selected_plan_sha256": "8446a526b43f863bc5aab963ee3c292bbda98f59392596bb1591cff685b38c5b",
+  "selection_basis_sha256": "8446a526b43f863bc5aab963ee3c292bbda98f59392596bb1591cff685b38c5b",
+  "actual_supplied_working_source": "/private/tmp/piping-engine-integration-20260925/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/SOURCE_BLOCK_JOIN_PLAN.md",
+  "actual_supplied_source_hash": "2481106bc6512c520416c532a6202d3151118b2609cf902c4bdf06463273cef8",
+  "selected_matches_actual_supplied_source": false,
+  "selection_source_is_working_file": true,
+  "scientific_packet_matches_final_combined_prior_reviews": true,
+  "local_links_checked": 35,
+  "local_links_all_resolve": true,
+  "target_file_count": 39,
+  "scope": "Records-only checkpoint; no product/source qualification or new execution.",
+  "final_graph_sha256": "3b2c908fdccab7fe2a33deefe215bf7ff973fd26b558cc8057debec4fe86f480",
+  "final_reader_wording_delta": "Only source-recovery bullet changed: narrow Rust/Python independent backcheck complete; frontend/whole-freeze work remains pending; checked against actual independent return.",
+  "working_plan_custody_note": "The selected copy matches the supplied selection basis. The live working origin later changed; its per-member/scaled-norm/tie/NUM-reconciliation clarifications are preserved in LATER_WORKING_PLAN.diff and are not substituted for the selected snapshot."
+}

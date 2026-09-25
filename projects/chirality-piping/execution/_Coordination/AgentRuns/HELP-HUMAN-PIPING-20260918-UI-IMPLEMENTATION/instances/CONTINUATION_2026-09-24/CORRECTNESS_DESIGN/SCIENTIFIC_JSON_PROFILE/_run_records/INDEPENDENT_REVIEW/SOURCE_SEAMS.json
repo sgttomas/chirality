@@ -1,0 +1,31 @@
+{
+  "utc": "2026-09-25T06:13:16.311614+00:00",
+  "scope": "bounded read-only source seam inspection, not full source review or product execution",
+  "sources": [
+    {
+      "path": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/serialization/canonical_json/src/lib.rs",
+      "sha256": "0236e76eeed2949d95d2826c0c20f68232e6bb4a5ceb983744e8db78628a3573",
+      "bytes": 17468
+    },
+    {
+      "path": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/serialization/canonical_json/src/bin/openpipestress_jcs_ijson.rs",
+      "sha256": "0a1b2cd84de09c2c83e9af987f1f291b12b977c9111af732dc53df966ebfd45c",
+      "bytes": 1950
+    },
+    {
+      "path": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/serialization/canonical_json/adapter.py",
+      "sha256": "f6c92a186b65f1ae1990194098f668566b190a7ac77376b3fcf792d0711335df",
+      "bytes": 4235
+    },
+    {
+      "path": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+      "sha256": "41bed9b5969bc4ff7c39fffa2db9a3ce7c48d5fb900c4451749aff7b54cd3f11",
+      "bytes": 30651
+    },
+    {
+      "path": "SOURCE_RECOVERY_WIP/projects/chirality-piping/apps/desktop/src/services/hashService.ts",
+      "sha256": "0f1d342d60501b212c3a307b96ba1dfa625fcc1845cc33b47e54dd58341cf7e1",
+      "bytes": 7029
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "status": "PASS",
+  "claim": "Independent binary64/domain examples only; canonical spellings and cross-language implementation parity are not executed here",
+  "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "real_admissions": [
+    {
+      "token": "1e160",
+      "real_bits": "6126c2d4256ffcc3",
+      "actual_binary64_hex": "0x1.6c2d4256ffcc3p+531",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "100000000000000000000",
+      "real_bits": "4415af1d78b58c40",
+      "actual_binary64_hex": "0x1.5af1d78b58c40p+66",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "unsafe_exact_integer"
+      }
+    },
+    {
+      "token": "1e20",
+      "real_bits": "4415af1d78b58c40",
+      "actual_binary64_hex": "0x1.5af1d78b58c40p+66",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "1.0e20",
+      "real_bits": "4415af1d78b58c40",
+      "actual_binary64_hex": "0x1.5af1d78b58c40p+66",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "9007199254740991",
+      "real_bits": "433fffffffffffff",
+      "actual_binary64_hex": "0x1.fffffffffffffp+52",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "accept",
+        "value": 9007199254740991
+      }
+    },
+    {
+      "token": "9007199254740992",
+      "real_bits": "4340000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+53",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "unsafe_exact_integer"
+      }
+    },
+    {
+      "token": "9007199254740993",
+      "real_bits": "4340000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+53",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "unsafe_exact_integer"
+      }
+    },
+    {
+      "token": "9007199254740993.0",
+      "real_bits": "4340000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+53",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "9.007199254740993e15",
+      "real_bits": "4340000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+53",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "18446744073709551615",
+      "real_bits": "43f0000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+64",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "unsafe_exact_integer"
+      }
+    },
+    {
+      "token": "1",
+      "real_bits": "3ff0000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+0",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "accept",
+        "value": 1
+      }
+    },
+    {
+      "token": "1.0",
+      "real_bits": "3ff0000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+0",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "1e0",
+      "real_bits": "3ff0000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+0",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "1.0000000000000000001",
+      "real_bits": "3ff0000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p+0",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "0.1",
+      "real_bits": "3fb999999999999a",
+      "actual_binary64_hex": "0x1.999999999999ap-4",
+      "real_integral_valued": false,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "5e-324",
+      "real_bits": "0000000000000001",
+      "actual_binary64_hex": "0x0.0000000000001p-1022",
+      "real_integral_valued": false,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "1.7976931348623157e308",
+      "real_bits": "7fefffffffffffff",
+      "actual_binary64_hex": "0x1.fffffffffffffp+1023",
+      "real_integral_valued": true,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    },
+    {
+      "token": "2.2250738585072014e-308",
+      "real_bits": "0010000000000000",
+      "actual_binary64_hex": "0x1.0000000000000p-1022",
+      "real_integral_valued": false,
+      "exact_integer": {
+        "status": "reject",
+        "reason": "integer_token_required"
+      }
+    }
+  ],
+  "real_rejections": [
+    {
+      "token": "-0",
+      "reason": "negative_zero"
+    },
+    {
+      "token": "-0.0",
+      "reason": "negative_zero"
+    },
+    {
+      "token": "-0e3",
+      "reason": "negative_zero"
+    },
+    {
+      "token": "1e-324",
+      "reason": "nonzero_underflow"
+    },
+    {
+      "token": "-1e-324",
+      "reason": "nonzero_underflow"
+    },
+    {
+      "token": "1e309",
+      "reason": "overflow"
+    },
+    {
+      "token": "1.7976931348623159e308",
+      "reason": "overflow"
+    },
+    {
+      "token": "NaN",
+      "reason": "syntax"
+    },
+    {
+      "token": "Infinity",
+      "reason": "syntax"
+    }
+  ],
+  "midpoint": {
+    "token": "1.00000000000000011102230246251565404236316680908203125",
+    "bits": "3ff0000000000000",
+    "above_token": "1.00000000000000011102230246251565404236316680908203126",
+    "above_bits": "3ff0000000000001"
+  },
+  "additional_checks": [
+    "exact count lexical/range rejection",
+    "0.1 not exact decimal",
+    "decoded duplicate key rejection",
+    "Unicode scalar/noncharacter controls",
+    "UTF16 supplementary key ordering",
+    "no Unicode normalization"
+  ],
+  "stress_unit_precision": {
+    "force_bits": "0066789e3750f791",
+    "area_bits": "4122374d355759df",
+    "pa": "1.67531519044e-312",
+    "pa_bits": "0000004ef331b289",
+    "mpa": "1.675317e-318",
+    "mpa_bits": "0000000000052c90",
+    "pa_relative_error": "6.6457471635317615755690755791837455974755465285385779355616945951184834067865416E-13",
+    "mpa_relative_error": "0.0000012694501754466800745967848962581174189654038629326537411130285631880823862017335",
+    "unchanged_relative_criterion": "1e-9",
+    "claim": "Independent represented-input arithmetic, not observed production execution"
+  },
+  "signed_zero": {
+    "positive_bits": "0000000000000000",
+    "negative_bits": "8000000000000000",
+    "new_input_negative_zero": "rejected; old serializer is not exercised"
+  }
+}

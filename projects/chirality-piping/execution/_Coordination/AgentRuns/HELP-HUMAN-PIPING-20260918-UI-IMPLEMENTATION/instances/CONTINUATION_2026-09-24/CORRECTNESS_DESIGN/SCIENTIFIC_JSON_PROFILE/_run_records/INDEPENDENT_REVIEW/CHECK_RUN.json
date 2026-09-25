@@ -1,0 +1,25 @@
+{
+  "utc": "2026-09-25T06:15:10.526394+00:00",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "runs": [
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python",
+        "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/_run_records/INDEPENDENT_REVIEW/reference_probe.py"
+      ],
+      "exit_status": 0,
+      "stdout": "{\"status\": \"PASS\", \"ordinary_tokens\": 24, \"midpoint_cases\": 5, \"product_execution\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/SCIENTIFIC_JSON_PROFILE/_run_records/INDEPENDENT_REVIEW/reference_probe.mjs"
+      ],
+      "exit_status": 0,
+      "stdout": "{\"status\":\"PASS\",\"parsed_tokens\":29,\"appendix_b_finite_vectors\":24,\"product_execution\":false}\n",
+      "stderr": ""
+    }
+  ],
+  "product_execution": false
+}

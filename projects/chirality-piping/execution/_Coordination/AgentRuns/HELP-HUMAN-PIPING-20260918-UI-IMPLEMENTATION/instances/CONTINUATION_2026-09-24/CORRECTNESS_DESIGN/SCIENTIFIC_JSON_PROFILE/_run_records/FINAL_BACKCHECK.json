@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "file": "DESIGN.md",
+      "sha256": "af4a63c68dc82b0db0492cbd4cc1971bf025c009f359afd9744f2c405aa65c86",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    },
+    {
+      "file": "REFERENCES.md",
+      "sha256": "ff39e75cb20ef8ef0bc0dd29f4fc228696b3138e8d8cfa93bfaa3cd31442005b",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "CASES.md",
+      "sha256": "d91f74aaf99e353158bc2e91d50b0150d32717ca8d485438312e2c33397a67ca",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "probe_numeric_domains.py",
+      "sha256": "f8f9bb432e20e292a270fa147a2fc30249377a759845d236c8fa02f479d323fd",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "BASIS.json",
+      "sha256": "330170c4a19345e3649fc9f7dfcfe5444d626ff0ed9c5dad1388157a672917d2",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    },
+    {
+      "file": "RETURN.md",
+      "sha256": "8857337d078dbc273b7395642b6976355ca59552ca5353036583911462551d94",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    }
+  ],
+  "local_links": "PASS",
+  "independent_review_complete_for_final_delta": true,
+  "no_numeric_or_literature_rerun": true
+}

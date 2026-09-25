@@ -1,0 +1,55 @@
+{
+  "status": "design handoff ready; reviewed final bytes verified",
+  "files": [
+    {
+      "file": "DESIGN.md",
+      "sha256": "af4a63c68dc82b0db0492cbd4cc1971bf025c009f359afd9744f2c405aa65c86",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    },
+    {
+      "file": "REFERENCES.md",
+      "sha256": "ff39e75cb20ef8ef0bc0dd29f4fc228696b3138e8d8cfa93bfaa3cd31442005b",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "CASES.md",
+      "sha256": "d91f74aaf99e353158bc2e91d50b0150d32717ca8d485438312e2c33397a67ca",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "probe_numeric_domains.py",
+      "sha256": "f8f9bb432e20e292a270fa147a2fc30249377a759845d236c8fa02f479d323fd",
+      "review_basis": "unchanged prior whole design review"
+    },
+    {
+      "file": "BASIS.json",
+      "sha256": "330170c4a19345e3649fc9f7dfcfe5444d626ff0ed9c5dad1388157a672917d2",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    },
+    {
+      "file": "RETURN.md",
+      "sha256": "8857337d078dbc273b7395642b6976355ca59552ca5353036583911462551d94",
+      "review_basis": "prior whole design review plus narrow attribution/parser-limit backcheck"
+    }
+  ],
+  "review_chain": [
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "3cea6933f7db7487d40c2af9073219c20cbd28a7af71798b16d27751bc2d515f"
+    },
+    {
+      "path": "_run_records/ATTRIBUTION_INDEPENDENT_BACKCHECK/RETURN.md",
+      "sha256": "132ef8ee5d97bacc04276d031ead488bb744d6fa2af42308dc8450b25d1b2da8"
+    },
+    {
+      "path": "_run_records/ATTRIBUTION_INDEPENDENT_BACKCHECK/FINAL_CHECKED_HASHES.json",
+      "sha256": "98b0e199d0bc9237324adc910bd5266bdaed9cc66bfa5272d473490a618fa87b"
+    }
+  ],
+  "limits": [
+    "Design/reference qualification only; no product implementation or source-method qualification",
+    "Attribution reviewer authored earlier producer receipt code; independence applies only to this packet records/wording delta",
+    "Earlier host-refused review attempts and intermediate manifests retained; final binding supersedes their pending execution status",
+    "Standalone transport foundation and eventual producer/SI carrier adoption are separate implementation stages"
+  ]
+}

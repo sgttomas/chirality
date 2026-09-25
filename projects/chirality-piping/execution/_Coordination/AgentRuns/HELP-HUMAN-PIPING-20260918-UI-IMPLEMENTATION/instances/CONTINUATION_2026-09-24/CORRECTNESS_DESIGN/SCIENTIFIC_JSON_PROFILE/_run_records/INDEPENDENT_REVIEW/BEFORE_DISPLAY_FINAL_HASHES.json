@@ -1,0 +1,37 @@
+{
+  "utc": "2026-09-25T06:16:15.508386+00:00",
+  "status": "CLEAR_AFTER_CUSTODY_CLARIFICATION",
+  "claim": "Final prospective design bytes only, not product qualification",
+  "files": [
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/DESIGN.md",
+      "sha256": "b8486e00af632b5133cbbbaf42a9c8147d7477981f605d307e5dd39e7af9c132",
+      "bytes": 19120
+    },
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/REFERENCES.md",
+      "sha256": "ff39e75cb20ef8ef0bc0dd29f4fc228696b3138e8d8cfa93bfaa3cd31442005b",
+      "bytes": 3384
+    },
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/CASES.md",
+      "sha256": "d91f74aaf99e353158bc2e91d50b0150d32717ca8d485438312e2c33397a67ca",
+      "bytes": 5686
+    },
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/probe_numeric_domains.py",
+      "sha256": "f8f9bb432e20e292a270fa147a2fc30249377a759845d236c8fa02f479d323fd",
+      "bytes": 5820
+    },
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/BASIS.json",
+      "sha256": "83d128772fea10419fe80c8d098bd8dd35e84cf8760a5f4183b9c6d57db9670e",
+      "bytes": 10184
+    },
+    {
+      "path": "SCIENTIFIC_JSON_PROFILE/RETURN.md",
+      "sha256": "16c17f6811afaf854c80256826fee92d4641ceb9e5c8dbce4666c58bae48b0be",
+      "bytes": 3356
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "scope": "Read existing evidence only; no new solver/arithmetic run",
+  "initial": {
+    "file": "stress_range_before/dense_scrutiny.raw.json",
+    "source_refusal": [
+      {
+        "code": "SOURCE_BLOCK_RECOVERY_UNAVAILABLE",
+        "message": "The bounded retained-source method did not produce a selected response: RecoveryFailure { stage: \"exact source solve\", helper_stage: Solve, error: Exact(Arithmetic(Range(\"exact radix loses represented bits\"))), work: WorkReport { charged: 109841, rejected: 0, limit: 4000000 } }"
+      }
+    ],
+    "qualified_leaf_paths": []
+  },
+  "scaled": [
+    {
+      "raw": "dense_scrutiny.raw.json",
+      "request": "dense_scrutiny.request.json",
+      "raw_hash_matches_owning_oracle": true,
+      "request_hash_matches_owning_oracle": true,
+      "qualification_fields": [
+        {
+          "path": "/source_block_recovery/body/cases/0/outcome",
+          "value": "qualified"
+        },
+        {
+          "path": "/source_block_recovery/body/status",
+          "value": "qualified"
+        }
+      ],
+      "observed_stress_rows": [
+        {
+          "id": "result:stress:pipe:end-i:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:end-j:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:quarter-1:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:midspan:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:quarter-3:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        }
+      ],
+      "owning_oracle_relative_error": 1.2694501751682153e-06
+    },
+    {
+      "raw": "sparse_interactive.raw.json",
+      "request": "sparse_interactive.request.json",
+      "raw_hash_matches_owning_oracle": true,
+      "request_hash_matches_owning_oracle": true,
+      "qualification_fields": [
+        {
+          "path": "/source_block_recovery/body/cases/0/outcome",
+          "value": "qualified"
+        },
+        {
+          "path": "/source_block_recovery/body/status",
+          "value": "qualified"
+        }
+      ],
+      "observed_stress_rows": [
+        {
+          "id": "result:stress:pipe:end-i:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:end-j:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:quarter-1:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:midspan:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe:quarter-3:axial-normal",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        },
+        {
+          "id": "result:stress:pipe",
+          "value": 1.675317e-318,
+          "unit": "MPa"
+        }
+      ],
+      "owning_oracle_relative_error": 1.2694501751682153e-06
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "actual_reviewed_hashes": [
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/DESIGN.md",
+      "matches": true
+    },
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/REFERENCES.md",
+      "matches": true
+    },
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/CASES.md",
+      "matches": true
+    },
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/probe_numeric_domains.py",
+      "matches": true
+    },
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/BASIS.json",
+      "matches": true
+    },
+    {
+      "file": "SCIENTIFIC_JSON_PROFILE/RETURN.md",
+      "matches": true
+    }
+  ],
+  "local_links": "PASS",
+  "includes": "ROOT display-chain addition and AnalysisRun binding distinction",
+  "scope": "Design/evidence only; no product or current-method qualification"
+}
