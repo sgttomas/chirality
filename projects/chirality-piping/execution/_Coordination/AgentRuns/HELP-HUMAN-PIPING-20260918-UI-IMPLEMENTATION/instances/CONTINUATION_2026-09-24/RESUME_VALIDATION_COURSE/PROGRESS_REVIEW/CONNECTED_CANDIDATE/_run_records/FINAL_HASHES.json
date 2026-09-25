@@ -1,0 +1,36 @@
+{
+  "status": "CLEAR",
+  "checked_at_utc": "2026-09-25T12:59:07.826577+00:00",
+  "graph_sha256": "b0dda7eec9f9883a7385eda82281d8e59a3135391fff7ae566437f44490f89d6",
+  "primary_head": "a26fe2f171881c9b284f14d840cbc29bc3828dde",
+  "reviewer": "/root/numerical_resume/n05_admission",
+  "original_parent": "/root/numerical_resume",
+  "cross_manager_assignment": "/root",
+  "outputs": [
+    {
+      "path": "RETURN.md",
+      "sha256": "a98e4d19866b834f176ba8a443868dc241a6c07bad7fc959d27d38764c1c7c46",
+      "bytes": 2715
+    },
+    {
+      "path": "_run_records/CHECKED_BASIS.json",
+      "sha256": "b5bf37d4267157c3ccda71b1278ca5ce9d85e84227dfa3ecd71f78f3941f5575",
+      "bytes": 6197
+    },
+    {
+      "path": "_run_records/REVIEWED_DELTA.patch",
+      "sha256": "ba511b186bd4ac94fd865c5bdfca6f7164156cdb7f822ed30aebd234b6328863",
+      "bytes": 24614
+    },
+    {
+      "path": "_run_records/practitioner.log",
+      "sha256": "9c7a71a30f0ad734d6437503b1a07fb94598f6a7f8fbd6c90df4f1b32ddf46a5",
+      "bytes": 1898
+    },
+    {
+      "path": "_run_records/verify_graph.py",
+      "sha256": "fe8c763c609148ad6f31fdd7241620adc813aa1694a8667ef8643da0106ab719",
+      "bytes": 6399
+    }
+  ]
+}

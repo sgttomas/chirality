@@ -1,0 +1,136 @@
+{
+  "status": "CLEAR graph current-state checkpoint",
+  "checked_at_utc": "2026-09-25T12:58:09.742752+00:00",
+  "reviewer": "/root/numerical_resume/n05_admission",
+  "original_parent": "/root/numerical_resume",
+  "cross_manager_assignment": "/root",
+  "role": "TASK",
+  "delegation": "none",
+  "primary_head": "a26fe2f171881c9b284f14d840cbc29bc3828dde",
+  "graph_sha256": "b0dda7eec9f9883a7385eda82281d8e59a3135391fff7ae566437f44490f89d6",
+  "base_graph_sha256": "56802d5e81bef077041435ceb0e09d008791e076cd944d02ab01c7fd4ddc1715",
+  "delta_sha256": "ba511b186bd4ac94fd865c5bdfca6f7164156cdb7f822ed30aebd234b6328863",
+  "changed_existing_rows": [
+    "COR-NUMERICS",
+    "COR-PRESSURE",
+    "COR-RESULTS",
+    "VP-HARNESS",
+    "VP-ORACLES",
+    "VP-STATIC"
+  ],
+  "commit_bindings": {
+    "c278f64ba122eb8b848b9f14e58a0e533e94439a": {
+      "parents": [
+        "8b982aa7ce64afe37e6067d1038d92608f4aaf3f",
+        "26b9904a1e8d2b997315165572d732ce4320df3b"
+      ],
+      "subject": "Join reviewed validation and native qualification evidence"
+    },
+    "1792774a2c5b77612e666332151f10f4b14dbc2c": {
+      "parents": [
+        "22452ecd148e86486fe36a36e34a184c9a5a5943"
+      ],
+      "subject": "Integrate coherent source-recovery and pressure result paths"
+    },
+    "8b982aa7ce64afe37e6067d1038d92608f4aaf3f": {
+      "parents": [
+        "1792774a2c5b77612e666332151f10f4b14dbc2c",
+        "aa312755e671b0fc7d598314d591c552749aaea6"
+      ],
+      "subject": "Merge current main into joined solver candidate"
+    },
+    "26b9904a1e8d2b997315165572d732ce4320df3b": {
+      "parents": [
+        "74bd1bac253a9d58bac095efd8b8b888a3d351cd"
+      ],
+      "subject": "Add reviewed physics validation adapter and first real comparisons"
+    }
+  },
+  "local_fetched_remote_refs": {
+    "piping-engine-integration-20260925": "1792774a2c5b77612e666332151f10f4b14dbc2c",
+    "piping-validation-foundation-20260925": "26b9904a1e8d2b997315165572d732ce4320df3b"
+  },
+  "new_link_bindings": [
+    {
+      "url": "https://github.com/sgttomas/chirality/blob/c278f64ba122eb8b848b9f14e58a0e533e94439a/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/ROOT_VALIDATION_UNION/BASIS.json",
+      "sha256": "0f86cb73638cc95f1fce23b752947f3e2faefae240ba40cd522a56f76f49950d",
+      "local_pinned_object_exists": true
+    },
+    {
+      "url": "https://github.com/sgttomas/chirality/blob/c278f64ba122eb8b848b9f14e58a0e533e94439a/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/JOINED_ENGINE_NATIVE/RETURN.md",
+      "sha256": "f7649169ed49d01612c5e822586e1094891d0f62c16c291983ef5c623aa1472d",
+      "local_pinned_object_exists": true
+    },
+    {
+      "url": "https://github.com/sgttomas/chirality/blob/c278f64ba122eb8b848b9f14e58a0e533e94439a/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_FOUNDATION/ORDINARY_PHYSICS_ADAPTER/RETURN.md",
+      "sha256": "e793c86b4d139ecd1fa412dc8b476f075d14fd43d36b393f28113649dc81ef9c",
+      "local_pinned_object_exists": true
+    }
+  ],
+  "native_observations": {
+    "primary": 348,
+    "repeated": 129,
+    "total": 477,
+    "distinct_test_claim": false
+  },
+  "validation_observations": {
+    "case_mode_executions": 4,
+    "scalar_obligations": 292,
+    "structural_obligations": 40,
+    "section_subchecks_nested": 36
+  },
+  "practitioner": {
+    "passed": 378,
+    "failed": 1,
+    "failed_case": "test_live_gen8_semantic_portability_invariants",
+    "affected_record_paths": 168,
+    "finding_paths_unique": true
+  },
+  "scoped_path_check": "PASS",
+  "frozen_source_comparison": {
+    "native_inputs_unchanged": 1092,
+    "validation_inputs_unchanged": 26
+  },
+  "qualification_inputs": [
+    {
+      "origin": "/private/tmp/piping-joined-qualification-20260925/practitioner.log",
+      "sha256": "9c7a71a30f0ad734d6437503b1a07fb94598f6a7f8fbd6c90df4f1b32ddf46a5",
+      "bytes": 1898
+    },
+    {
+      "origin": "/private/tmp/piping-joined-qualification-20260925/portability-findings.json",
+      "sha256": "e9c6b51703be09dfc62e39053afc05ddf3585b11b0cb3c571e7fddae58a988f1",
+      "bytes": 133872
+    },
+    {
+      "origin": "/private/tmp/piping-joined-qualification-20260925/scope.log",
+      "sha256": "5bff0ce97ad3510aebc15000536619829aa736f6115bd6a396a8c802675b9df7",
+      "bytes": 689754
+    }
+  ],
+  "integration_review": {
+    "origin": "/private/tmp/piping-engine-integration-20260925/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/ROOT_VALIDATION_UNION/INDEPENDENT_REVIEW/RETURN.md",
+    "sha256": "dd3b113ec84749bc5989296b97d26ddf4fc039875d9c6391d49c548226ad5b19",
+    "bytes": 4858
+  },
+  "boundaries": "4of38 unchanged; no fullQ1/current-head qualification/merge/release closure; one closeout and owner boundaries preserved. Root/manager relocation ownership is coordination, not completed repair verification.",
+  "notes": "Working-tree validation RETURN has moved during portability work; all new graph URLs use immutable c278 objects and resolve there. This is expected relocation, not a broken pinned link. No network check or gate rerun performed.",
+  "instruction_origins": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    }
+  ]
+}
