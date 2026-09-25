@@ -92,12 +92,12 @@ as exact `str` values; see the exact-type rule under Boundary and residuals.
 | PEC-K-10 class | Admitted runtime domain | Decision and source |
 |---|---|---|
 | `PATH` | `RepositoryPath`: an exact `str` value (a `str` subclass is rejected); non-empty, normalized POSIX, repository-relative, no traversal; single-line, with no C0 control (U+0000–U+001F, including NUL, TAB, LF, and CR), DEL (U+007F), C1 control (U+0080–U+009F, including NEL), LINE SEPARATOR (U+2028), PARAGRAPH SEPARATOR (U+2029), or backslash; strict UTF-8 (a lone surrogate is rejected); at most 4,096 UTF-8 bytes in total and at most 255 UTF-8 bytes per `/` segment. Spaces and all other printable characters are admitted. | Admitted for source locators and PRD §7.2 dirty path names. Raw strings are rejected. The same validator governs field `PATH` values (located `INVALID_VALUE`) and every record `source_path` (located `SOURCE_CITATION`). The D-PEC-87 survey of the 93,447 paths tracked at `bc6d3459b` found no control character, a longest path of 388 bytes, and a longest segment of 118 bytes. Because the value must be an exact `str`, the characters checked are the characters persisted. The syntax rule cannot tell a single-line prose-like string with spaces from a filename; see Boundary and residuals. |
-| `COUNT` | Exact nonnegative `int`; booleans and `int` subclasses are rejected | Admitted for PRD §7.2 ahead/behind, dirty counts, heartbeat age/TTL counts, and record-tier counts. |
+| `COUNT` | Exact `int` from 0 to `2**53 - 1` (9,007,199,254,740,991) inclusive; booleans, `int` subclasses, negative values, and larger values are rejected | Admitted for PRD §7.2 ahead/behind, dirty counts, heartbeat age/TTL counts, and record-tier counts. No accepted source states a magnitude. The bound (D-PEC-91) is the largest integer an IEEE-754 double represents exactly, so an admitted count stays exact in SQLite and for any consumer that parses JSON numbers as doubles. At 16 digits it is far below the smallest nonzero interpreter integer-to-string limit (640 digits; 0 disables the limit), so admission never depends on `sys.set_int_max_str_digits`. The store persists the decimal text in the `TEXT` `value` column. |
 | `SHA` | `ShaDigest` with enum algorithm `sha1`/40 lowercase hex or `sha256`/64 lowercase hex as an exact `str` | Admitted for Git refs and examined-through/source identities in PRD §7.1/§7.2. |
 | `STATE` | `KnownState`: `OPEN`, `INITIALIZED`, `SEMANTIC_READY`, `IN_PROGRESS`, `CHECKING`, or `ISSUED` | Admitted only for the accepted deliverable lifecycle vocabulary. Other gate, decision, run, session, or prose-derived states are rejected as located `CON-001` limitations. |
 | `HASH` | `ContentHash` with enum algorithm `blake2b-256` and exactly 64 lowercase hex characters as an exact `str` | Admitted as a finite integrity-hash representation under PEC-K-10. |
 
-Unknown field classes, mismatched types, negative counts, booleans, malformed
+Unknown field classes, mismatched types, negative counts, counts above `2**53 - 1`, booleans, malformed
 paths, non-finite digest formats, raw prose, and raw strings masquerading as
 typed values are rejected. Admission revalidates every inner path, algorithm,
 digest, and state attribute; even a preconstructed or forged frozen wrapper
@@ -131,14 +131,14 @@ through CON-001 or scope change; it cannot install a permissive policy.
 | Requirement | Verification | Executing test evidence |
 |---|---|---|
 | REQ-001 | VER-001 | `test_ver_001_database_journal_and_temp_artifacts_are_ignored` uses an isolated temporary Git checkout, `git check-ignore`, and `git status`. |
-| REQ-002 | VER-002 | `test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation` covers first creation, restart, open reset, open delete, closed delete, empty recreation, external deletion of `.pec-v2/` while a handle is open, a deliberately corrupted scratch database whose `read_all()` raises the port-level `StoreDataError` before `reset()` recreates an empty store, and `close()` from a non-owning thread, a regular file at `.pec-v2`, and an undeletable sidecar, each raising the port-level error with the engine or OS error as its cause. |
+| REQ-002 | VER-002 | `test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation` covers first creation, restart, open reset, open delete, closed delete, empty recreation, external deletion of `.pec-v2/` while a handle is open, a deliberately corrupted scratch database whose `read_all()` raises the port-level `StoreDataError` before `reset()` recreates an empty store, and `close()` from a non-owning thread, a regular file at `.pec-v2`, a read-only checkout, and an undeletable sidecar, each raising the port-level error with the engine or OS error as its cause. The read-only case asserts a `PermissionError` cause and is skipped where the host does not enforce directory permissions (for example, when run as root). |
 | REQ-003 | VER-003 | `test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface` inspects the port signatures, asserts over the adapter's syntax tree that `_insert_guarded()` has one call site in `admit_batch()` after the guard call, that no other SQL call carries DML, and that DDL occurs only in `_create_schema()`, and checks that both store errors are defined in the port and re-exported unchanged by the adapter. |
 | REQ-004 | VER-004 | `test_ver_004_admission_and_readback_preserve_all_five_typed_classes`, `test_ver_004_content_diff_prose_unknown_classes_and_misleading_keys_are_rejected_atomically`, and the forged-wrapper regression check valid readback, prohibited fixtures (including a multi-line value in a forged `RepositoryPath`), a batch of `str`-subclass, method-overriding, length-lying, lying-tuple and spoofed inputs, and empty rejected results. After each rejection batch they open a separate raw SQLite connection, dump `sqlite_master` and every table, scan the raw bytes of the database and any `-journal`, `-wal`, or `-shm` file, and find no fixture string. |
-| REQ-005 | VER-005 | `test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution` checks each of the nine guard codes at its record and field location, `<input:N>` locations for inputs without a usable record ID, `<field:N>` for invalid field names, with no invalid identifier echoed, independent rejected counts, in-batch and cross-batch duplicate preservation, and readback. |
+| REQ-005 | VER-005 | `test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution` checks each of the nine guard codes at its record and field location, `<input:N>` locations for inputs without a usable record ID, `<field:N>` for invalid field names, with no invalid identifier echoed, a COUNT above the domain located as `INVALID_VALUE` while a co-batched valid record is admitted, independent rejected counts, in-batch and cross-batch duplicate preservation, and readback. |
 | REQ-006 | VER-006 | `test_ver_006_reconciler_presence_and_event_stand_ins_share_the_same_boundary` sends one shared fixture corpus (the VER-004 fixtures plus the multi-line PATH fixture, covering STATE, PATH, and an unknown class) through three test-local shapes and asserts identical `(field, code, constraint)` results per fixture and empty readback. |
 | REQ-007, REQ-008 | VER-007 | `test_ver_007_runtime_imports_are_stdlib_or_pec_and_make_no_network_call` plus the VER-003 signature inspection, which the test map tags `VER-003` and `VER-007`, check dependencies, locality, and isolation. |
-| REQ-009 | VER-008 | `test_ver_008_policy_is_fixed_finite_and_domain_checked` and `test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing` check enum closure, inner attributes, types, formats, the PATH character and byte bounds for both field values and source paths, the exact-type rule for caller strings and the fields container, locked by a syntax-tree check that the guard has no `isinstance` check against `str`, `int` or `tuple`, and the absence of policy injection; this document records PRD §7.1/§7.2 decisions. |
-| REQ-010 | VER-009 | `test_ver_009_loaded_suite_has_exact_execution_mapping` requires the explicit test-ID map to equal the loaded storage suite and to cover exactly VER-001..009; `VERIFICATION_EXECUTION_REMEDIATION.json` records each actual verbose-run identity and PASS result against that map. |
+| REQ-009 | VER-008 | `test_ver_008_policy_is_fixed_finite_and_domain_checked` and `test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing` check enum closure, inner attributes, types, formats, the PATH character and byte bounds for both field values and source paths, the exact-type rule for caller strings and the fields container, locked by a syntax-tree check that the guard has no `isinstance` check against `str`, `int` or `tuple`, the COUNT boundary (`2**53 - 1` admitted; `2**53`, `2**63`, `10**639`, and `10**5000` rejected) under the default, smallest (640), and unlimited (0) interpreter digit limits, and the absence of policy injection; this document records PRD §7.1/§7.2 decisions. |
+| REQ-010 | VER-009 | `test_ver_009_loaded_suite_has_exact_execution_mapping` requires the explicit test-ID map to equal the loaded storage suite and to cover exactly VER-001..009; each slice records its verbose storage-suite run, with every test identity and result, under `projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/`. The D-PEC-85 record `P1_STORE_GUARD_01/children/AUTHOR/VERIFICATION_EXECUTION_REMEDIATION.json` there is historical: it predates the current map, which tags the VER-003 test `VER-003` and `VER-007`. |
 
 ## Boundary and residuals
 
@@ -151,8 +151,8 @@ their own integration and evidence that they use this boundary.
 
 The PATH bound is syntactic. Under the exact-type rule the characters it
 checks are the characters persisted, so multi-line file bodies, diff hunks,
-and oversized text cannot travel as a path. It does not close the prose-like
-residual below.
+and oversized text cannot travel verbatim as a path. It does not close the prose-like
+residual or the deliberate-encoding residual below.
 
 **Exact-type rule (D-PEC-89; closes the `str`-subclass channel present since
 D-PEC-85).** Before D-PEC-89 the guard checked the characters of a supplied
@@ -171,7 +171,7 @@ an exact `str` the guard checked, and the store persists exactly those
 strings.
 
 **Returned failures are content-minimal.** An `AdmissionFailure` carries only
-a validated identifier, a positional placeholder (`<input:N>`, `<field:N>`,
+a validated identifier, a positional placeholder (`<unknown>` for a record that `guard()` cannot name, which the store relocates to `<input:N>`; `<input:N>`, `<field:N>`,
 `<record>`, `<record_id>`, `<source_path>`, or `<source_sha>`), and fixed
 code, message, and constraint literals. Consumers (DEL-03-01, DEL-06-02, and
 the API) may log or return failures without carrying caller text. Their own
@@ -181,8 +181,8 @@ raw inputs remain theirs to keep out of logs.
 does not defend against code in the same process that changes the interpreter
 or the store's collaborators: registering a global `sqlite3` adapter
 (`sqlite3.register_adapter`), replacing or patching the guard, adapter, or
-`sqlite3` objects, mutating string memory through `ctypes`, or writing the
-database file directly. No in-process guard can reach such code. PEC-K-02 is
+`sqlite3` objects, calling the adapter's private members (such as `_insert_guarded()`) directly, mutating string memory through `ctypes`, or writing the
+database file directly. Interpreter-wide settings belong to the same class; the COUNT bound keeps admission independent of `sys.set_int_max_str_digits`. No in-process guard can reach such code. PEC-K-02 is
 the backstop: the store is rebuildable, safe to delete, and never authority.
 
 **Prose-like single-line paths.** A single-line, prose-like string with spaces
@@ -199,6 +199,8 @@ Closing that residual needs a check this policy-free guard cannot make:
   non-UTF-8 bytes that Python decodes to a lone surrogate, is rejected as a
   located `INVALID_VALUE`. Such a caller should count that rejection rather
   than drop it.
+
+**Deliberately encoded content.** The guard checks syntax and type, not meaning. A caller that deliberately encodes file or diff content can still store it losslessly in admitted classes: as integers in `COUNT` fields (at most `2**53 - 1` each), as base64 or hex text in `PATH` values (single-line, at most 4,096 UTF-8 bytes each), and as hex in record IDs and field names (at most 128 characters each). These bounds limit each value, not the total: a record may carry any number of fields and a batch any number of records. No policy-free syntactic check can tell an encoded payload from a legitimate count, path, or identifier. As for prose-like paths, the closing checks belong to the callers that know what they observed: a count is one the caller computed from its source, a path exists at the cited SHA or in the observed worktree status, and an identifier is the caller's own entity key (DEL-01-01, DEL-03-01, DEL-06-02, and the PKG-02 scanners). The guard sets no per-record field-count bound (D-PEC-91). Such a bound would not close this channel, because content can be split across records, and no accepted source yet fixes the field inventory of any entity. PEC-K-02 remains the backstop.
 
 Store-local deletion and recreation do not run or satisfy DEL-10-02's system
 kill test. This work records no kill/parity result, full DEL-01-03 acceptance,

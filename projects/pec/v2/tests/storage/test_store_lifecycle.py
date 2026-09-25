@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ast
 import inspect
+import os
 import re
 import shutil
 import sqlite3
@@ -197,6 +198,20 @@ class StoreLifecycleTests(ScratchCheckoutTest):
         self.assertIs(type(blocked.exception), port_module.StoreConfigurationError)
         self.assertIsInstance(blocked.exception.__cause__, OSError)
         store_directory.unlink()
+
+        # A read-only checkout fails construction with the port-level error (D-PEC-91 R16).
+        # Where the host does not enforce directory permissions (for example, as root), this block does not run.
+        checkout_mode = self.checkout.stat().st_mode & 0o7777
+        self.checkout.chmod(0o555)
+        try:
+            if not os.access(self.checkout, os.W_OK):
+                with self.assertRaises(StoreConfigurationError) as read_only:
+                    SqliteMetadataStore(self.checkout)
+                self.assertIs(type(read_only.exception), port_module.StoreConfigurationError)
+                self.assertIsInstance(read_only.exception.__cause__, PermissionError)
+                self.assertFalse(store_directory.exists())
+        finally:
+            self.checkout.chmod(checkout_mode)
 
         # An undeletable sidecar fails delete() with the port-level error; reset() recovers.
         obstructed = SqliteMetadataStore(self.checkout)

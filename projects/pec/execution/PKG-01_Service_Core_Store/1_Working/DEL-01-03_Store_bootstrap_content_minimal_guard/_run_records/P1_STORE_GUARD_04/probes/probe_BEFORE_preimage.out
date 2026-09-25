@@ -1,0 +1,67 @@
+probe_d91: v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a4acca0ffd3953d47/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7; sqlite 3.50.4
+default int max str digits 4300; smallest nonzero 640
+== limit default (sys.get_int_max_str_digits() = 4300)
+  guard  COUNT 2**53 - 1  -> ADMITTED rendered '9007199254740991'
+  batch  (good, 2**53 - 1 ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740991'"), ('good', "rendered '1'")]
+  guard  COUNT 2**53      -> ADMITTED rendered '9007199254740992'
+  batch  (good, 2**53     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740992'"), ('good', "rendered '1'")]
+  guard  COUNT 2**63      -> ADMITTED rendered '9223372036854775808'
+  batch  (good, 2**63     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9223372036854775808'"), ('good', "rendered '1'")]
+  guard  COUNT 2**64      -> ADMITTED rendered '18446744073709551616'
+  batch  (good, 2**64     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '18446744073709551616'"), ('good', "rendered '1'")]
+  guard  COUNT 10**639    -> ADMITTED rendered 640-char text
+  batch  (good, 10**639   ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', 'rendered 640-char text'), ('good', "rendered '1'")]
+  guard  COUNT 10**4300   -> RAISES ValueError
+  batch  (good, 10**4300  ) -> RAISES ValueError; persisted=[]
+  guard  COUNT 10**5000   -> RAISES ValueError
+  batch  (good, 10**5000  ) -> RAISES ValueError; persisted=[]
+  guard  COUNT -1         -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, -1        ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT True       -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, True      ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT SubInt(5)  -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, SubInt(5) ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+== limit 640 (sys.get_int_max_str_digits() = 640)
+  guard  COUNT 2**53 - 1  -> ADMITTED rendered '9007199254740991'
+  batch  (good, 2**53 - 1 ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740991'"), ('good', "rendered '1'")]
+  guard  COUNT 2**53      -> ADMITTED rendered '9007199254740992'
+  batch  (good, 2**53     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740992'"), ('good', "rendered '1'")]
+  guard  COUNT 2**63      -> ADMITTED rendered '9223372036854775808'
+  batch  (good, 2**63     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9223372036854775808'"), ('good', "rendered '1'")]
+  guard  COUNT 2**64      -> ADMITTED rendered '18446744073709551616'
+  batch  (good, 2**64     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '18446744073709551616'"), ('good', "rendered '1'")]
+  guard  COUNT 10**639    -> ADMITTED rendered 640-char text
+  batch  (good, 10**639   ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', 'rendered 640-char text'), ('good', "rendered '1'")]
+  guard  COUNT 10**4300   -> RAISES ValueError
+  batch  (good, 10**4300  ) -> RAISES ValueError; persisted=[]
+  guard  COUNT 10**5000   -> RAISES ValueError
+  batch  (good, 10**5000  ) -> RAISES ValueError; persisted=[]
+  guard  COUNT -1         -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, -1        ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT True       -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, True      ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT SubInt(5)  -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, SubInt(5) ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+== limit 0 (sys.get_int_max_str_digits() = 0)
+  guard  COUNT 2**53 - 1  -> ADMITTED rendered '9007199254740991'
+  batch  (good, 2**53 - 1 ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740991'"), ('good', "rendered '1'")]
+  guard  COUNT 2**53      -> ADMITTED rendered '9007199254740992'
+  batch  (good, 2**53     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9007199254740992'"), ('good', "rendered '1'")]
+  guard  COUNT 2**63      -> ADMITTED rendered '9223372036854775808'
+  batch  (good, 2**63     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '9223372036854775808'"), ('good', "rendered '1'")]
+  guard  COUNT 2**64      -> ADMITTED rendered '18446744073709551616'
+  batch  (good, 2**64     ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', "rendered '18446744073709551616'"), ('good', "rendered '1'")]
+  guard  COUNT 10**639    -> ADMITTED rendered 640-char text
+  batch  (good, 10**639   ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', 'rendered 640-char text'), ('good', "rendered '1'")]
+  guard  COUNT 10**4300   -> ADMITTED rendered 4301-char text
+  batch  (good, 10**4300  ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', 'rendered 4301-char text'), ('good', "rendered '1'")]
+  guard  COUNT 10**5000   -> ADMITTED rendered 5001-char text
+  batch  (good, 10**5000  ) -> (attempted, accepted, rejected)=(2, 2, 0) failures=[]; persisted=[('big', 'rendered 5001-char text'), ('good', "rendered '1'")]
+  guard  COUNT -1         -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, -1        ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT True       -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, True      ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+  guard  COUNT SubInt(5)  -> LOCATED [('r', 'items', 'INVALID_VALUE')]
+  batch  (good, SubInt(5) ) -> (attempted, accepted, rejected)=(2, 1, 1) failures=[('big', 'items', 'INVALID_VALUE')]; persisted=[('good', "rendered '1'")]
+probe_d91: done; temporary checkouts removed

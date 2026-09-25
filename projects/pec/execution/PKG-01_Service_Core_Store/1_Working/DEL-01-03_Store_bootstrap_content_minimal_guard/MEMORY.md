@@ -130,3 +130,30 @@ finding. Its notes: R12's permission-denied path is covered by probes
 only, and three precision points concern the proposal's own verbatim doc
 text. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No CHECKING,
 ISSUED or artifact acceptance. Record: `_run_records/P1_STORE_GUARD_03/RUN.md`.
+
+## 2026-09-25 — D-PEC-91 A-53 COUNT-domain slice (P1_STORE_GUARD_04)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-91 A-53 slice on the four granted
+paths, after checking the ruling on fetched `origin/main` `8b6553850`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R15–R17. R15
+admits a COUNT only as an exact `int` from 0 to `2**53 - 1`, the JSON
+safe-integer range (RFC 8259), comparing before any conversion. Anything
+outside it is a located `INVALID_VALUE`. This closes F-1: a COUNT such as
+`10**5000` no longer raises an unlocated `ValueError` out of `guard()` and
+`admit_batch()`, and admission no longer depends on
+`sys.set_int_max_str_digits`. R16 extends `test_ver_002` with the read-only
+checkout case (`PermissionError` cause); the block ran on this host (uid
+501). R17 applies doc edits D1–D10 with the A-53 values, including the
+deliberate-encoding residual and no per-record field-count bound. The suite
+stays at 13 tests with no new test ID.
+
+F-1 reproduced on the preimage at digit limits 4300 and 640 (raises) and 0
+(5,001-digit value persisted); on the postimage every over-domain value is
+located at every limit and the co-batched valid record is admitted. All
+seven D-PEC-91 mutations and all nine D-PEC-89 reversals are caught. All
+five registered checks exit 0. A fresh read-only verifier returned PASS in
+cycle 1 with no blocking finding; its note N-1 (doc line 122 "nonnegative
+counts" is broader than the bound, left byte-unchanged by the grant) is
+carried. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No
+CHECKING, ISSUED or artifact acceptance. Record:
+`_run_records/P1_STORE_GUARD_04/RUN.md`.
