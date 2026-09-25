@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance and after the `D-PEC-87` ruling (present-current lines only); earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance after the `D-PEC-87` ruling and after the TM-PEC-023/cmux acts (present-current lines only); earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -51,9 +51,13 @@ current basis after `SCA-004`. PROJECT_SETUP has completed the 64-context,
 64-reference, and DEL-01-06 SOW-077-anchor subset; its closure handoff is
 `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
 The nine TM-PEC-023 objective blanks are carried into SCA-005 intake as
-candidate MODIFY actions with no option selected (`D-PEC-86` §3 I-3; SCA-005
-Decision_Log row `SCA005-CP1-TM` `CONFIRMED`, carried with no option selected); row-by-row selection
-remains the owner's at checkpoint 2. Nothing in the PRD is an
+candidate MODIFY actions (`D-PEC-86` §3 I-3). The owner selected them on
+2026-09-24 (SCA-005 Decision_Log rows `SCA005-A1-TM` and `SCA005-A1-CMUX`;
+`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`):
+six rows map to objectives, rows 4, 6 and 7 are moot because their
+deliverables retire, and cmux (SOW-037, DEL-07-04) is added to the deferred,
+out-of-scope items. The objective fields stay unchanged until SCA-005
+applies. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
 **First store/guard slice:** `D-PEC-85` P-A (ruled 2026-09-08) produced the
@@ -119,7 +123,7 @@ On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepte
 register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`
 rows after the 2026-09-22 review (Receipt 178). The 2026-09-23 notice triage
 (`NOTICE_TRIAGE_2026-09-23.md`) added no rows. TM-PEC-022 stays `DEFERRED`;
-TM-PEC-023 stays `OPEN`, now folded into SCA-005 intake.
+TM-PEC-023 stays `OPEN` until the SCA-005 amendment applies; its selections are made.
 
 **Historical — superseding owner ruling, 2026-08-03 (state as of that
 date):** TM-PEC-023 now proceeds through a
@@ -158,8 +162,9 @@ Current owner gates (2026-09-24; none is accepted or inferred here):
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
-  including the seven live TM-PEC-023 row selections and the PRD v2.3
-  successor candidate; checkpoint 3 (audited poststate) follows.
+  and its amendment 1, carrying the owner-selected TM-PEC-023 values, the
+  cmux deferral and the PRD v2.3 successor candidate; checkpoint 3 (audited
+  poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.

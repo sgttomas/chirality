@@ -33,6 +33,8 @@ rulings.
 | SCA005-CP1-N | 1 | **Retain** IDs, names and paths of DEL-02-03/04/06/07; label drift recorded per MODIFY | `SELECTED VIA CP1-B` | Resolution note §A CP1-N: `ALLOW_RENUMBERING = false` |
 | SCA005-CP1-V | 1 | Strict, versioned registry schema v2 is **within D-PEC-78 O-A; no supersession** | `SELECTED VIA CP1-B` | Resolution note §A CP1-V: D-PEC-78 `PACKET.md` §4.2 (ruled option O-A) |
 | SCA005-CP1-O | 1 | Objectives for SOW-095/096 and DEL-02-08/09: **OBJ-001;OBJ-002** | `SELECTED VIA CP1-B` | Resolution note §A CP1-O: `Deliverables.csv` DEL-02-01..07 |
+| SCA005-A1-TM | 1 (amendment 1) | TM-PEC-023 selections: row 1 DEL-00-02 `OBJ-003`; row 2 DEL-03-05 `OBJ-001`; row 3 DEL-05-01 `OBJ-004`; row 5 DEL-07-03 `OBJ-003`; row 8 DEL-08-05 `OBJ-001;OBJ-003`; row 9 DEL-10-08 `OBJ-001` (supersedes DL-14's objective-free rationale); rows 4, 6, 7 moot (retired); no typed non-mapping, so the surface's mechanic and objective-side-table rulings are moot | `SELECTED BY OWNER` | Owner acts 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/DECISION.md` |
+| SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
 | SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, TM-PEC-023 row selections) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
 | SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
 
@@ -64,9 +66,22 @@ act are recorded in `../checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`
 (`DECISION.md`, `ACCEPTED_MANIFEST.csv`, `Handoff_State.md`). The acceptance
 authorizes checkpoint-2 preparation only.
 
+## SCA005-A1 — owner acts of record (verbatim)
+
+Owner, 2026-09-24, after HELP_HUMAN gave one read per TM-PEC-023 row:
+
+> Row 6 should not move with row 5 because row 6 is optional and I do not want it as an objective.  I don't need cmux compatibility anytime soon (no plans for it).  Besides that, I reviewed and accept your  read for each mapping.
+
+Owner, 2026-09-24, after HELP_HUMAN offered to mark cmux deferred and out of scope:
+
+> yes add cmux to what's been deferred and out of scope.
+
+HELP_HUMAN's per-row interpretation, the addendum actions and the boundary
+are in `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`. The accepted group-1 snapshot is unchanged.
+
 ## Non-decisions recorded for clarity
 
-- No TM-PEC-023 mapping or non-mapping disposition has been selected.
+- The TM-PEC-023 selections (SCA005-A1-TM) are recorded but not applied: every objective field stays byte-identical until checkpoint 2/3 application.
 - The D-PEC-79 postimage has not been applied and no PRD byte has changed.
 - D-PEC-87 is not ruled by this acceptance.
 - No decomposition, decomposition register, SOW, `_CONTEXT.md`, `_STATUS.md`,
