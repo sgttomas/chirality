@@ -74,8 +74,8 @@ equals the proposal table at `{D}` = 2026-09-25 (`checks/01_postimage_hashes.out
 | `_Evaluation/DecompCoverage/_LATEST.md` (conditional; moved after 0 BLOCKERs) | MODIFY | preimage `0084d218b6106482dbf3f73933d44de5ed43c15b8515b48c70b098c985df7432` → `2b43dc3bb34163ae51067f6176ebf235430b59aa668890c1e65d7cc9d3cf1450` |
 
 The 19 MODIFY preimages equal the proposal table at `04e04da00` (the same
-bytes as at `6dac281c6`; `checks/` preimage check and the generator's own
-READ lines). Aggregate over the 31 product paths in bytewise-sorted path
+bytes as at `6dac281c6`): the generator's fail-closed guard and READ lines,
+and `checks/00b_preimages_at_04e04da00.out` (31/31). Aggregate over the 31 product paths in bytewise-sorted path
 order: `c4525add6b621d16523ad7567410b96f1864683cf93fd0d03c3f43954a79727a`;
 newline-terminated path-list hash
 `1133e1ab0867f71f01346ed566cd8ede7fa2cff73ef79e4dbf87bc3bc8dcb9f1` — both

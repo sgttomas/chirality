@@ -56,10 +56,15 @@ not by editing the accepted SCA-005 snapshot:
 
 ## Execution disclosures
 
+- **Brief.** The C5 brief `C5_D93_PROJECT_SETUP_ACT.md` (HELP_HUMAN session
+  scratchpad, not in the repository), SHA-256
+  `89b6d2ad04bb0db060795f041d624b7fbd5850aa475f25c4abab463942b08666`.
 - **Generator executor.** The proposal's administrative grant describes "one
   bounded TASK author" running the generator. The C5 brief assigned the run
   to this WORKING_ITEMS manager and limited its children to the `audit-decomp`
-  TASK and the verifier, so the manager ran the generator. The history lines
+  TASK and the verifier (the HELP_HUMAN `RUN.md` C5 work graph plans no TASK
+  author), so the manager ran the generator. Verifier note N-1 classes this as
+  an acceptable, disclosed deviation; the bytes reproduce independently. The history lines
   of the two new `_STATUS.md` files read `TASK+preparation`, the actor string
   fixed in the ruled postimage bytes (ruling Q5); they were not changed.
 - **`--repo` argument.** Passed as the literal repository root because the
@@ -78,8 +83,23 @@ not by editing the accepted SCA-005 snapshot:
 
 ## Independent verification
 
-See `VERIFIER_VERDICT_NN.md` in this run root and
-`AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/C5_VERIFIER_VERDICT_NN.md`.
+- **Verdict 01 (reviewed `f64a9a7c0`): PASS WITH NOTES**, no blocking
+  finding (`VERIFIER_VERDICT_01.md`; also
+  `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/C5_VERIFIER_VERDICT_01.md`).
+  Same-day N2 reproduction on a fresh `git archive` export of `04e04da00`
+  at 2026-09-25 16:27:44 MDT: 31/31 product paths and the full `PKG-*` tree
+  byte-identical; generator report byte-identical.
+- **Repairs made after verdict 01 (run-root wording only; no product byte
+  changed):** N-2 — VALIDATION.md Whitespace row now quotes the proposal's
+  requirement and records the whole-diff result as a disclosed deviation;
+  the Containment row no longer implies the return files already existed.
+  N-3 — the pre-run preimage check is cited as the generator guard and READ
+  lines plus `checks/00b_preimages_at_04e04da00.out`, with the unsaved
+  terminal-only pre-run check disclosed. N-5 — the brief and its hash are
+  recorded above. N-1 is carried as a disclosure; N-4 concerns the ruled
+  proposal text (an abbreviated tool hash at its line 270) and is routed to
+  HELP_HUMAN, not repaired here.
+- Later verdicts, if any, follow as `VERIFIER_VERDICT_NN.md`.
 
 ## Not claimed
 

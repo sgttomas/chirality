@@ -18,7 +18,7 @@ bytes).
 | Reliance-hold preflight, `dispatch-for-production`, 34 targets (31 product paths, `DecompCoverage/_LATEST.md`, audit-folder stem, run-root stem) — before the generator and before the audit dispatch | 34/34 `ALLOW`, exit 0 (`checks/00_preflight_dispatch-for-production.out`); register `ACTIVE_RELIANCE_HOLDS.csv` `f877d931…41cbc` has a header and no rows; script `b1712e4b…cd0e` |
 | Reliance-hold preflight, `rely-for-production`, 34 targets (audit folder by its actual name) — before fan-in | 34/34 `ALLOW`, exit 0 (`checks/08_preflight_rely-for-production.out`) |
 | Generator copy hash | `cfae005258659c55915d0e9e2a8566399c3c84a95ede8e567205fecaea08d6c2` |
-| Preimages (19 MODIFY hashes; 12 CREATE targets absent) | 31/31 as tabled (manager check before the run; generator READ lines) |
+| Preimages (19 MODIFY hashes; 12 CREATE targets absent) | 31/31 as tabled. Evidence: the generator's fail-closed preimage guard and its READ lines (`gen_d93_report.tsv`), and `checks/00b_preimages_at_04e04da00.out` (31/31 against the base commit). The manager's pre-run working-tree check also returned 31/31 but printed to the terminal only; its output was not saved, and `00b` was added after verifier note N-3 |
 
 ## Finite verification (proposal table, option A)
 
@@ -34,8 +34,8 @@ bytes).
 | Minimum fileset | PASS × 2 | PASS × 2 (generator run and separate rerun) | `checks/05_fileset_*.out` |
 | Row conservation | each touched register's `DependencyID` set after ⊇ before; `ACTIVE` gains only the 8 added | holds for all 8; ACTIVE gained exactly the 8 added; 20 rows now `RETIRED`; 21 existing rows changed (20 retired + `DEP-03-01-007`), each only in the cells the proposal names | `checks/06_row_conservation_and_quotes.out` |
 | Quote currency (new rows) | every new or refreshed `EvidenceQuote` verbatim in its `EvidenceFile` | 5/5 EXECUTION quotes verbatim (`DEP-02-08-003`, `DEP-02-09-003`, `DEP-03-01-007`, `-015`, `-016`). The 4 new ANCHOR rows carry the D-PEC-62 locus-descriptor form (`PackageID PKG-02`, `DeliverableIDs include DEL-02-0x`), identical in form to every existing anchor row (for example `DEP-02-07-001/002`); they are not verbatim-quote rows and the generator does not assert them | same |
-| Whitespace | clean on the product paths | product paths: 0 notices. Whole diff: 109 `trailing whitespace` notices, all in raw tool outputs kept byte-exact in this run root (CR-at-EOL rows of the closure CSVs; empty fourth column of the generator's READ lines). `.gitattributes` states cosmetic whitespace does not gate CI | `checks/07_diff_check.out` |
-| Containment | exactly the 31 paths, the `COV_SCA005_POSTSETUP_*` folder, `DecompCoverage/_LATEST.md` and the run root | holds at the act commit and after the audit and pointer; the only further paths are the brief-authorized return files under `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/` | `git diff --name-status origin/main...HEAD` |
+| Whitespace | `git diff --check origin/main...HEAD` clean (proposal) | **Disclosed deviation.** Product paths: 0 notices. Whole diff: exit 2, 109 `trailing whitespace` notices, all in raw tool outputs kept byte-exact in this run root (82 in the CR-at-EOL rows of `closure/*.csv`; 27 in the empty fourth column of the generator's READ lines in `gen_d93_report.tsv`). They are not normalized because they are hashed evidence (`gen_d93_report.tsv` equals the verifier's independent rerun). `.gitattributes` states cosmetic whitespace does not gate CI | `checks/07_diff_check.out` |
+| Containment | exactly the 31 paths, the `COV_SCA005_POSTSETUP_*` folder, `DecompCoverage/_LATEST.md` and the run root | holds at `995af4f36` and at `f64a9a7c0` (84 paths). The manager then adds only the brief-authorized return files under `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/` (`C5_D93_PROJECT_SETUP_ACT.md`, `C5_VERIFIER_VERDICT_NN.md`) | `git diff --name-status origin/main...HEAD` |
 
 ## Re-audit and pointer
 

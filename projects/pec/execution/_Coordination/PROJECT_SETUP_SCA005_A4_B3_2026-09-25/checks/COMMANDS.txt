@@ -17,3 +17,4 @@ exit=0	07_diff_check	python3 probes/diffcheck.py <repo> probes/table.tsv (git di
 exit=0	08_preflight_rely-for-production	zsh probes/preflight.sh <repo> probes/table.tsv rely-for-production execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606 execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25 (before fan-in)
 exit=0	09_aggregate	python3 probes/aggregate.py <repo> probes/table.tsv
 exit=0	10_pointer	zsh tools/scaffolding/update_latest_pointer.sh projects/pec/execution/_Evaluation/DecompCoverage COV_SCA005_POSTSETUP_2026-09-25_1606 (after the re-audit reported 0 BLOCKERs)
+exit=0	00b_preimages_at_04e04da00	python3 probes/precheck_commit.py <repo> probes/table.tsv 04e04da00f620a1a5786ee744b167490cc90531c (post-hoc record added after verifier note N-3; the pre-run working-tree check printed to the terminal and was not saved)
