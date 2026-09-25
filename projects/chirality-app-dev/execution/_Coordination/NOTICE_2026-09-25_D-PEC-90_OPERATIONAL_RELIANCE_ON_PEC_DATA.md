@@ -16,12 +16,12 @@ records rest on the file-native record; deleting PEC still blocks nothing.
 The owner also stated that agents may eventually query PEC directly through
 tool calls.
 
-No PEC text changes yet. PEC will amend its PRD (PEC-K-03, §8, §9, §12) and
+No PEC text changes yet. PEC plans to amend its PRD (PEC-K-03, §8, §9, §12) and
 `projects/pec/AGENTS.md` in a scope change after PEC SCA-005 checkpoint 2
 is accepted; reliance begins only at a PEC release whose gates prove parity
 and coverage.
 
-For this loop: PEC-K-03 is the exact row adopted under `D-PEC-67` K03-A. A later PEC scope change will replace its verify-before-rely precondition with operational reliance within the declared pin, coverage and tier, and PRD §8 will allow agents to query PEC directly through tool calls. Consumer use stays consumer-owned (PEC-K-03, PEC-K-11): the App decides whether and when its harness consumes or exposes PEC.
+For this loop: PEC-K-03 is the exact row adopted under `D-PEC-67` K03-A. A later PEC scope change, which needs its own owner act, is planned to replace its verify-before-rely precondition with operational reliance within the declared pin, coverage and tier, and to let PRD §8 allow agents to query PEC directly through tool calls. Consumer use stays consumer-owned (PEC-K-03, PEC-K-11): the App decides whether and when its harness consumes or exposes PEC.
 
 This notice grants no authority in the receiving loop, creates no
 requirement there, and asks for no write. The receiving loop may adopt,

@@ -65,7 +65,8 @@ applied yet. See `docs/STATUS.md` for current gates.
 (2026-09-25): agents may act on PEC record-tier data as true as of the
 response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
-calls. The PRD v2.2 wording stands until a later scope change after SCA-005
+calls. Reliance begins at a PEC release whose gates prove parity and
+coverage, not now. The PRD v2.2 wording stands until a later scope change after SCA-005
 checkpoint 2 amends it.
 
 *Historical (2026-08-03; state as of that date):* superseding owner

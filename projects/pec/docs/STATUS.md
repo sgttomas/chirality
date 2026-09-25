@@ -195,7 +195,8 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   2026-09-25: agents may act on PEC record-tier data as true as of the
   response's examined-through commit, within stated bounds, and authority
   stays file-native; agents may eventually query PEC directly through tool
-  calls. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
+  calls. Reliance begins at a PEC release whose gates prove parity and
+  coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
   amended by a later PEC scope change after SCA-005 checkpoint 2 is accepted;
   until then the v2.2 wording stands. Checkpoint 2 carries a note so
   DEL-04-01 and the §8 refresh are not rebuilt around verify-before-rely.
