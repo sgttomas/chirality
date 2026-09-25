@@ -1,0 +1,41 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-REVERSE-ENGINEER-SUCCESSOR-20260925
+title: Develop successor product bases through software reverse engineering
+date: '2026-09-25'
+basis: 9ffc54afcaa287d1b5fdc57dcda2194f6f1e0abf
+instruction_surface_paths:
+  - workflows/reverse-engineer-software/WORKFLOW.md
+  - workflows/reverse-engineer-software/resources/successor-basis.md
+  - workflows/index.json
+  - docs/governance_harness/tranche_manifests/ROOT-REVERSE-ENGINEER-SUCCESSOR-20260925.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed the successor-project workflow draft and then instructed:
+    "commit and merge this to the workflows folder in the appropriate manner
+    (i.e. adding whatever else is necessary). But before you do, run over this
+    again yourself for the sake of consistency and any glaring errors you
+    notice." The direction, source basis, self-review, and scope are recorded
+    in execution/_Coordination/REVERSE_ENGINEER_SUCCESSOR_20260925.md.
+  authorized_by: Ryan Tufts
+  authorization_date: '2026-09-25'
+  integration_owner: HELPS_HUMANS /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-25_REVERSE_ENGINEER_SUCCESSOR.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-25_REVERSE_ENGINEER_SUCCESSOR.md
+  rationale: >-
+    App and Runtime consume or package the bundled method catalog and received
+    the original workflow notice. This amendment changes the same qualified
+    method's purpose and adds a resource. Each receiving loop retains its
+    selected version and adoption decision. No project instruction, product
+    contract, or existing run basis is repinned by this tranche. Piping is a
+    motivating example, not an adopting consumer in this amendment.
+scope_limits:
+  - Amend the existing bundled workflow and regenerate its descriptor; keep its identity and navigation placement.
+  - Add the contained successor-basis guide; retain the existing fictional worked example.
+  - Preserve docs/thesis and the management and agent manuals without edits.
+  - Record the integration basis and route App and Runtime notices.
+  - No successor project, new product PRD, decomposition, setup, or product release is executed here.

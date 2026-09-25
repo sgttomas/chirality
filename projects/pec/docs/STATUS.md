@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5; earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance, after the `D-PEC-87` ruling, and after the TM-PEC-023/cmux acts (present-current lines only), and maintained from then on under the standing clause `D-PEC-88`; earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -51,9 +51,16 @@ current basis after `SCA-004`. PROJECT_SETUP has completed the 64-context,
 64-reference, and DEL-01-06 SOW-077-anchor subset; its closure handoff is
 `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
 The nine TM-PEC-023 objective blanks are carried into SCA-005 intake as
-candidate MODIFY actions with no option selected (`D-PEC-86` §3 I-3; SCA-005
-Decision_Log row `SCA005-CP1-TM` `AWAITING_OWNER`); row-by-row selection
-remains the owner's at checkpoint 2. Nothing in the PRD is an
+candidate MODIFY actions (`D-PEC-86` §3 I-3). The owner selected them on
+2026-09-24 (SCA-005 Decision_Log rows `SCA005-A1-TM` and `SCA005-A1-CMUX`;
+`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`):
+six rows map to objectives, rows 4, 6 and 7 are moot because their
+deliverables retire, and cmux (SOW-037, DEL-07-04) is added to the deferred,
+out-of-scope items. SOW-033 is mapped to OBJ-003 by amendment 2
+(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`), so no
+in-scope item remains without an objective once SCA-005 applies. The objective fields and the SOW-037 / DEL-07-04 status
+change only when SCA-005 applies; today SOW-037 is still `IN` and DEL-07-04
+still `OPEN`. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
 **First store/guard slice:** `D-PEC-85` P-A (ruled 2026-09-08) produced the
@@ -63,12 +70,48 @@ acceptance, `CHECKING`, issuance, or release follows from that slice. Under
 `D-PEC-86` §3 I-4 its three read-only evidence inquiries DEL-01-03-REM-001..003
 produced reports under
 `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-00{1,2,3}/`,
-each with an independent verifier verdict of PASS. Obligations O-1-1..O-1-10,
-O-2-1..O-2-8 and O-3-1..O-3-14 await owner disposition, including O-2-2 (the
-guard does not bound path length or line structure, confirmed read-only by
-HELP_HUMAN) and its routing. No Remaining item is closed and DEL-01-03
-`_STATUS.md` is unchanged
+each with an independent verifier verdict of PASS
 (`execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/C1_DEL0103_INQUIRIES.md`).
+Their obligations O-1-1..O-1-10, O-2-1..O-2-8 and O-3-1..O-3-14, including
+O-2-2 (the guard does not bound path length or line structure), were triaged
+on 2026-09-24 and the owner ruled `D-PEC-87` the same day
+(`execution/_Coordination/_DECISIONS/D-PEC-87_RULING_2026-09-24.md`): C-A
+opens one correction slice on seven existing files (R1–R8, X-1); L-1a
+authorizes WORKING_ITEMS to tick the three REM rows, independently of the
+slice's completion; L-2a lands the corrected bytes and then reviews them. The owner reserves any CHECKING declaration for DEL-01-03 to
+their own initiative; it is not an owner gate agents raise, and it holds no
+other work. The C-A slice merged on 2026-09-24 (PR #893, `0517e0752`;
+evidence under DEL-01-03 `_run_records/P1_STORE_GUARD_02/`, independent
+verifier PASS after three cycles): O-2-2 is closed for exact-string paths
+and the three REM rows are ticked; DEL-01-03 stays `IN_PROGRESS`. The slice
+found one wider residual that R1 does not cover: a caller that passes a
+`str` subclass can still place arbitrary text in the store, a channel present
+since `D-PEC-85` and documented in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md`.
+Its closure, with three port-error gaps (two routed by the slice, one found
+in preparation) and the echo of invalid identifiers, was proposed as
+`D-PEC-89`, which the owner ruled A on 2026-09-24
+(`execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`). That
+slice merged on 2026-09-25 (PR #897, `e8562c068`; evidence under DEL-01-03
+`_run_records/P1_STORE_GUARD_03/`, independent verifier PASS in one cycle):
+the guard now accepts only exact `str`/`tuple` caller values, rejections name
+positions instead of echoing input, and the three port-error gaps are closed.
+The one case left open is outside the stated threat boundary. DEL-01-03 stays
+`IN_PROGRESS`. The L-2a review of the corrected bytes then ran (2026-09-25,
+`execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/L2A_REVIEW_DEL-01-03.md`)
+and found defects: a COUNT value longer than the interpreter's integer-string
+limit makes the guard raise an unlocated error and lose the batch (F-1,
+major), and the documentation does not state that deliberately encoded
+content can pass through admitted field classes (F-2, minor), with smaller
+items. The five registered checks pass. The owner ruled the repairs as
+`D-PEC-91` A-53 on 2026-09-25: COUNT accepts only an exact integer from 0 to
+`2**53 - 1` (the range JSON consumers read exactly), anything else becomes a
+located rejection, plus a read-only-checkout test and documentation of the
+encoding residual. That slice merged on 2026-09-25 (PR #903, `97344617f`;
+evidence under DEL-01-03 `_run_records/P1_STORE_GUARD_04/`, independent
+verifier PASS in one cycle). DEL-01-03 stays `IN_PROGRESS`. Carried residuals:
+one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broader than the new bound and needs a later
+granted edit; the read-only-checkout test runs only where directory
+permissions are enforced; hosted CI still runs no v2 Python check.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
@@ -91,24 +134,28 @@ the shared App/Piping development-loop file shapes and the A2 Runtime
 topology. Its checkpoint-group-1 package is
 `execution/_ScopeChange/SCA-005_2026-09-23_2139/`: `Impact_Assessment.md`
 SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`
-and 76 PROPOSED actions in `Amendment_Actions.csv`; every checkpoint-1 row
-in its `Decision_Log.md` is `AWAITING_OWNER`. The pre-change audit is
+and 76 PROPOSED actions in `Amendment_Actions.csv`. The owner accepted
+checkpoint group 1 on 2026-09-24 (verbatim in its `Decision_Log.md`; group-1
+snapshot `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
+as HELP_HUMAN had asked, which HELP_HUMAN records as selecting the
+resolution note's Section A options (interpretation in the group-1
+`DECISION.md`); checkpoint-2 preparation is authorized and not started. The pre-change audit is
 `execution/_Evaluation/DecompCoverage/COV_SCA005_PRECHANGE_2026-09-23_2139/`
 (`WARNINGS`: 0 blockers / 3 warnings). The design note
 `execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md`
-recommends feed model O-B2 with presence option P-β; that is a proposal, not
-a ruling. Owner checkpoints 1 (impact), 2 (exact amendment and propagation
-plan) and 3 (audited poststate) all remain; `_ScopeChange/_LATEST.md` still
+recommended feed model O-B2 with presence option P-β; both were selected at
+checkpoint 1. Owner checkpoints 2 (exact amendment and propagation
+plan) and 3 (audited poststate) remain; `_ScopeChange/_LATEST.md` still
 names SCA-004 until acceptance. The `D-PEC-79` postimage is an SCA-005 intake
 input (`SCA005-CP1-D79`), not applied.
 
-On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance and the TM-PEC-023 row selections (nine rows reduced to seven live choices). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
+On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance (given 2026-09-24) and the TM-PEC-023 row selections (nine rows reduced to seven live choices, still the owner's at checkpoint 2). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
 
 **Task Management** (`execution/_Coordination/_TaskManagement/`): the live
 register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`
 rows after the 2026-09-22 review (Receipt 178). The 2026-09-23 notice triage
 (`NOTICE_TRIAGE_2026-09-23.md`) added no rows. TM-PEC-022 stays `DEFERRED`;
-TM-PEC-023 stays `OPEN`, now folded into SCA-005 intake.
+TM-PEC-023 stays `OPEN` until the SCA-005 amendment applies; its selections are made.
 
 **Historical — superseding owner ruling, 2026-08-03 (state as of that
 date):** TM-PEC-023 now proceeds through a
@@ -142,22 +189,30 @@ P-A.
 
 ## What's next (owner gates, in order)
 
-Current owner gates (2026-09-23; none is accepted or inferred here):
+Current owner gates (2026-09-25; none is accepted or inferred here):
 
-- **SCA-005 checkpoint 1:** confirm or modify the 76-action change set and
-  accept `Impact_Assessment.md` at SHA-256
-  `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`,
-  together with the owner items `SCA005-CP1-Q1`..`Q10`, `-R`, `-D79`, `-TM`,
-  `-X`, `-N`, `-V` and `-O` in its `Decision_Log.md`; checkpoints 2 and 3
-  follow only after acceptance.
-- **DEL-01-03 obligations:** dispose of O-1-1..O-3-14 and each Remaining
-  item, and route O-2-2 (Task Management intake or a bounded repair packet).
+- **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
+  once prepared from the accepted group-1 snapshot
+  (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
+  and its amendments 1 and 2, carrying the owner-selected TM-PEC-023 values, the
+  cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate, and
+  carrying the `D-PEC-90` note; checkpoint 3 (audited
+  poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
 - **Later rulings:** live application of the `D-PEC-79` postimage (only via
   SCA-005 checkpoint 2 if accepted there) and PEC loop-method migration
   (`D-PEC-86` §3 I-7, after SCA-005 closes).
+- **Agent reliance on PEC data:** the owner ruled `D-PEC-90` R-A on
+  2026-09-25: agents may act on PEC record-tier data as true as of the
+  response's examined-through commit, within stated bounds, and authority
+  stays file-native; agents may eventually query PEC directly through tool
+  calls. Reliance begins at a PEC release whose gates prove parity and
+  coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
+  amended by a later PEC scope change after SCA-005 checkpoint 2 is accepted;
+  until then the v2.2 wording stands. Checkpoint 2 carries a note so
+  DEL-04-01 and the §8 refresh are not rebuilt around verify-before-rely.
 
 Gate lineage (historical record; the current gates are listed above):
 
@@ -260,7 +315,9 @@ canonical working package). Directed-bootstrap amendment `SCA-001` closed
 for scope change on 2026-08-03 with revision 1.4 as `current_basis` under
 D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. SCA-005 opened at Gate 1 on 2026-09-23 under
-`D-PEC-86`; its checkpoint-group-1 package awaits owner checkpoint 1.
+`D-PEC-86`; the owner accepted its checkpoint group 1 on 2026-09-24
+(`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`, amended additively the same day by
+`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); checkpoints 2 and 3 remain.
 `D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
@@ -268,7 +325,7 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-70` released the exceptional reliance hold. SCA-004 resolved OI-003
 in decomposition truth, the metadata subset is current, and DEL-01-06 RF-002
 is resolved by exact successor acceptance; the nine TM-PEC-023 objective
-blanks remain owner-gated, now as SCA-005 intake items. P1
+blanks now carry owner selections (SCA-005 amendment 1), applied only when SCA-005 applies. P1
 source work remains separately owner-gated and fenced by `F-PEC-1`.
 Loop instruction surface: `loop/LOOP_INIT.md` under `D-PEC-80`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact

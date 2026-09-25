@@ -10,6 +10,14 @@ from enum import Enum
 
 _IDENTIFIER = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$")
 _LOWER_HEX = re.compile(r"^[0-9a-f]+$")
+_PATH_FORBIDDEN = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029\\]")
+_MAX_PATH_BYTES = 4096
+_MAX_SEGMENT_BYTES = 255
+# Largest admitted COUNT: the JSON safe-integer range (RFC 8259: integers up to
+# 2**53 - 1 are interoperable, because JSON consumers may parse numbers as
+# doubles). At 16 decimal digits it is far below the interpreter's smallest
+# nonzero int-to-str limit (640 digits).
+_MAX_COUNT = 2**53 - 1
 
 
 class FieldClass(str, Enum):
@@ -138,8 +146,8 @@ class ContentMinimalGuard:
 
         failures: list[AdmissionFailure] = []
         candidate_record_id = getattr(candidate, "record_id", None)
-        record_id = candidate_record_id if isinstance(candidate_record_id, str) else "<unknown>"
-        if not isinstance(candidate_record_id, str) or not _IDENTIFIER.fullmatch(candidate_record_id):
+        record_id = candidate_record_id if _is_identifier(candidate_record_id) else "<unknown>"
+        if not _is_identifier(candidate_record_id):
             failures.append(
                 AdmissionFailure(record_id, "<record_id>", "INVALID_IDENTIFIER", "record id must be a bounded identifier")
             )
@@ -155,23 +163,22 @@ class ContentMinimalGuard:
                 AdmissionFailure(record_id, "<source_sha>", "SOURCE_CITATION", "source SHA must contain a valid explicit algorithm and digest")
             )
         candidate_fields = getattr(candidate, "fields", None)
-        if not isinstance(candidate_fields, tuple) or not candidate_fields:
+        if type(candidate_fields) is not tuple or not candidate_fields:
             failures.append(
                 AdmissionFailure(record_id, "<record>", "EMPTY_RECORD", "at least one guarded metadata field is required")
             )
 
         guarded_fields: list[GuardedField] = []
         names: set[str] = set()
-        if isinstance(candidate_fields, tuple):
+        if type(candidate_fields) is tuple:
             for index, field in enumerate(candidate_fields):
                 fallback = f"<field:{index}>"
                 if type(field) is not MetadataField:
                     failures.append(AdmissionFailure(record_id, fallback, "FIELD_TYPE", "expected MetadataField"))
                     continue
                 candidate_name = getattr(field, "name", None)
-                field_name = candidate_name if isinstance(candidate_name, str) else fallback
-                if not isinstance(candidate_name, str) or not _IDENTIFIER.fullmatch(candidate_name):
-                    failures.append(AdmissionFailure(record_id, field_name, "INVALID_FIELD_NAME", "field name must be a bounded identifier"))
+                if not _is_identifier(candidate_name):
+                    failures.append(AdmissionFailure(record_id, fallback, "INVALID_FIELD_NAME", "field name must be a bounded identifier"))
                     continue
                 if candidate_name in names:
                     failures.append(AdmissionFailure(record_id, candidate_name, "DUPLICATE_FIELD", "field name occurs more than once"))
@@ -206,7 +213,7 @@ class ContentMinimalGuard:
             return AdmissionFailure(record_id, field_name, "UNKNOWN_FIELD_CLASS", "field class is not one of the five PEC-K-10 classes")
         if field_class is FieldClass.PATH and (path := _validated_repository_path(value)) is not None:
             rendered = path
-        elif field_class is FieldClass.COUNT and type(value) is int and value >= 0:
+        elif field_class is FieldClass.COUNT and type(value) is int and 0 <= value <= _MAX_COUNT:
             rendered = str(value)
         elif field_class is FieldClass.SHA and (sha := _validated_sha(value)) is not None:
             rendered = f"{sha[0]}:{sha[1]}"
@@ -281,15 +288,29 @@ def _validated_state(value: object) -> str | None:
     return None
 
 
+def _is_identifier(value: object) -> bool:
+    return type(value) is str and _IDENTIFIER.fullmatch(value) is not None
+
+
 def _valid_hex(value: object, length: int) -> bool:
-    return isinstance(value, str) and len(value) == length and bool(_LOWER_HEX.fullmatch(value))
+    return type(value) is str and len(value) == length and bool(_LOWER_HEX.fullmatch(value))
 
 
 def _repository_path_problem(value: object) -> str | None:
-    if not isinstance(value, str) or not value:
-        return "path must be a non-empty string"
-    if "\\" in value or "\x00" in value:
-        return "path must use normalized POSIX syntax"
+    if type(value) is not str or not value:
+        return "path must be a non-empty exact str"
+    if _PATH_FORBIDDEN.search(value):
+        return "path must be single-line POSIX text without control characters or backslash"
+    # Unbound str methods: a forged str subclass cannot override the measurement.
+    try:
+        encoded = str.encode(value, "utf-8", "strict")
+    except UnicodeEncodeError:
+        return "path must be valid UTF-8 text"
+    segments = str.split(value, "/")
+    if len(encoded) > _MAX_PATH_BYTES or any(
+        len(str.encode(segment, "utf-8", "strict")) > _MAX_SEGMENT_BYTES for segment in segments
+    ):
+        return "path exceeds the finite path bound"
     parts = value.split("/")
     if value.startswith("/") or value != posixpath.normpath(value) or value == "." or ".." in parts:
         return "path must be normalized and repository-relative"

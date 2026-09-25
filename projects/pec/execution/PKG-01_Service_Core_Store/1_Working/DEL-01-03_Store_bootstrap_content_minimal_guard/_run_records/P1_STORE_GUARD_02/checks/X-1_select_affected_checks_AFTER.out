@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "harness-self-check",
+    "v2-api-contract",
+    "v2-core-posture",
+    "v2-loop-registry",
+    "v2-store-guard"
+  ],
+  "paths": [
+    "v2/src/pec_v2/core/__init__.py"
+  ],
+  "reasons": {
+    "v2-core-posture": [
+      "v2/src/pec_v2/core/__init__.py"
+    ],
+    "v2-loop-registry": [
+      "v2/src/pec_v2/core/__init__.py"
+    ],
+    "v2-store-guard": [
+      "v2/src/pec_v2/core/__init__.py"
+    ]
+  },
+  "schema": "chirality-affected-checks/v1"
+}
+exit=0

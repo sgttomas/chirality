@@ -2684,6 +2684,36 @@
     },
     {
       "kind": "workflow",
+      "name": "reverse-engineer-software",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Examine an existing software project, recover useful exemplars and lessons from its implementation and records, and develop a successor PRD and supporting documents with the human. Also supports a bounded reference account when that is the requested outcome.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "resources/successor-basis.md",
+        "resources/worked-example.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 8,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "review",
       "source": "bundled",
       "sourceRootId": "chirality-root",

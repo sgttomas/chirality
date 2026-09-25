@@ -21,6 +21,14 @@ class StoreClosedError(RuntimeError):
     """The requested capability requires an open store."""
 
 
+class StoreConfigurationError(RuntimeError):
+    """The store cannot be opened at its configured location and boundary."""
+
+
+class StoreDataError(RuntimeError):
+    """Stored bytes or the store engine failed to satisfy a store capability."""
+
+
 class MetadataStore(Protocol):
     """Consumer-facing capability for guarded generic metadata envelopes."""
 

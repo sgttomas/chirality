@@ -1,0 +1,12 @@
+mutate_d91: source v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a4acca0ffd3953d47/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7; uid 501
+host enforces directory permissions (0o555 dir not writable): True
+BASELINE exit=0 ran=13 failing=[]
+M1 upper bound removed (preimage `value >= 0`): exit=1 ran=13 failing=['test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M2 `0 <= value < _MAX_COUNT`: exit=1 ran=13 failing=['test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M3 `0 <= value <= _MAX_COUNT + 1`: exit=1 ran=13 failing=['test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M4 bound replaced by catching ValueError from str(): exit=1 ran=13 failing=['test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M5 str() evaluated before the bound: exit=1 ran=13 failing=['test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M6 bound widened to 10**4000: exit=1 ran=13 failing=['test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M7 R12 narrowed to `except FileExistsError`: exit=1 ran=13 failing=['test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation'] -> CAUGHT by all named tests
+RESULT PASS

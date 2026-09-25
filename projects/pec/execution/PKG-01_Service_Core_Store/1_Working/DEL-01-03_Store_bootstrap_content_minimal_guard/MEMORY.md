@@ -78,3 +78,82 @@ No store-local evidence is presented as DEL-10-02 kill-test evidence.
 No Remaining item is closed by this run. `_STATUS.md`, the checkboxes, the SOW,
 source, tests and `software-workflow.json` are unchanged. Disposition of each
 obligation and of each Remaining row stays with the owner.
+
+## 2026-09-24 — D-PEC-87 C-A correction slice (P1_STORE_GUARD_02)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-87 C-A slice on the seven granted
+paths, after checking the ruling on fetched `origin/main` `6b4a0f59d`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R1–R8 and X-1.
+R1 bounds the PATH domain: it rejects C0/C1 controls, DEL, U+2028/U+2029 and
+backslash, caps paths at 4,096 UTF-8 bytes and segments at 255, and rejects
+lone surrogates. R2 counts rejections independently and locates each one.
+R3 checks the write surface through the AST. R4 dumps raw residue. R5 runs
+one shared corpus through three shapes. R6 covers external deletion while
+open. R7 adds the VER-007 tag. R8 moves the error types to the port. X-1
+widens the `v2-store-guard` selector. The suite stays at 13 tests with no new
+test ID.
+
+A fresh read-only verifier returned FAIL in cycle 1 on a documentation
+overclaim (B-1). A `str` subclass can carry arbitrary text into the store
+through `__conform__`/`__format__`. The channel is guard-wide and has existed
+since D-PEC-85. The slice now documents it as a residual that R1 does not
+close. Cycles 2 and 3 passed. All five registered checks exit 0.
+
+Routed to HELP_HUMAN, not closed here: the exact-`str` code closure (with the
+method-override bypass and the in-process adapter threat boundary);
+`close()` and `reopen()` `mkdir` errors left outside R8; and consumers not
+logging echoed invalid identifiers. Under L-1a, REM-001..003 are ticked.
+DEL-01-03 remains IN_PROGRESS. No CHECKING, ISSUED or artifact acceptance.
+Record: `_run_records/P1_STORE_GUARD_02/RUN.md`.
+
+## 2026-09-25 — D-PEC-89 A exact-type closure slice (P1_STORE_GUARD_03)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-89 A slice on the five granted paths,
+after checking the ruling on fetched `origin/main` `9ffc54afc`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R9–R14. R9
+admits a caller string only when `type(value) is str` and the fields
+container only when `type(value) is tuple`, and rejects anything else with
+the existing located code. This closes the `str`-subclass content channel
+present since D-PEC-85, the method-override bypass of the path checks, the
+length-lying digest, the lying tuple, the never-equal field names and the
+spoofed `__class__` crash. R10 stops echoing invalid record IDs and field
+names; failures carry `<input:N>` or `<field:N>` instead. R11–R13 wrap
+`close()`, the `reopen()` directory creation and the `delete()` unlinks in
+port errors. R14 states the closure and the in-process threat boundary in
+`STORE_LIFECYCLE_AND_GUARD.md`. The suite stays at 13 tests with no new test
+ID; only the two `test_ver_005` tuples R10 names changed.
+
+The probe battery went from 28 of 33 open to 1 (C2-4, the stated boundary).
+All nine specified mutations are caught. All five registered checks exit 0.
+A fresh read-only verifier returned PASS in cycle 1 with no blocking
+finding. Its notes: R12's permission-denied path is covered by probes
+only, and three precision points concern the proposal's own verbatim doc
+text. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No CHECKING,
+ISSUED or artifact acceptance. Record: `_run_records/P1_STORE_GUARD_03/RUN.md`.
+
+## 2026-09-25 — D-PEC-91 A-53 COUNT-domain slice (P1_STORE_GUARD_04)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-91 A-53 slice on the four granted
+paths, after checking the ruling on fetched `origin/main` `8b6553850`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R15–R17. R15
+admits a COUNT only as an exact `int` from 0 to `2**53 - 1`, the JSON
+safe-integer range (RFC 8259), comparing before any conversion. Anything
+outside it is a located `INVALID_VALUE`. This closes F-1: a COUNT such as
+`10**5000` no longer raises an unlocated `ValueError` out of `guard()` and
+`admit_batch()`, and admission no longer depends on
+`sys.set_int_max_str_digits`. R16 extends `test_ver_002` with the read-only
+checkout case (`PermissionError` cause); the block ran on this host (uid
+501). R17 applies doc edits D1–D10 with the A-53 values, including the
+deliberate-encoding residual and no per-record field-count bound. The suite
+stays at 13 tests with no new test ID.
+
+F-1 reproduced on the preimage at digit limits 4300 and 640 (raises) and 0
+(5,001-digit value persisted); on the postimage every over-domain value is
+located at every limit and the co-batched valid record is admitted. All
+seven D-PEC-91 mutations and all nine D-PEC-89 reversals are caught. All
+five registered checks exit 0. A fresh read-only verifier returned PASS in
+cycle 1 with no blocking finding; its note N-1 (doc line 122 "nonnegative
+counts" is broader than the bound, left byte-unchanged by the grant) is
+carried. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No
+CHECKING, ISSUED or artifact acceptance. Record:
+`_run_records/P1_STORE_GUARD_04/RUN.md`.

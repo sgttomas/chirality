@@ -1,0 +1,17 @@
+# Return C3 — D-PEC-89 A exact-type closure slice (WORKING_ITEMS, `pec-manager`/opus; one TASK author and one fresh read-only verifier, both opus, high effort requested)
+
+HELP_HUMAN transcription of the manager's final return (agent `a18afc5a210fbbfb7`), condensed; the full evidence is in DEL-01-03 `_run_records/P1_STORE_GUARD_03/` (`RUN.md`, `PREIMAGE.md`, `AUTHOR_RETURN_01.md`, `VERIFIER_VERDICT_01.md`, `checks/`, `probes/`).
+
+Result: R9–R14 implemented as the proposal specifies; verifier PASS in one cycle with no blocking finding. PR #897 opened at head `d2bf8acd7c1435adae329fded67aa34219752620` (base `9ffc54afc`); the manager did not merge. HELP_HUMAN updated the base from `main` after PR #896 landed (head `cfb0dcceedb668acc1ef0c8908cb29f9a33ad3bf`; no `projects/pec/` byte differs from `d2bf8acd7`; the five product files at the head match the SHA-256 values the verifier recorded) and merged on green CI as `e8562c06894d5cc5325f1c203fbe491f46ad0fad`.
+
+- **Preconditions:** `origin/main` contained the ruling; all eight rollback-table paths matched their preimage hashes; the reliance-hold `dispatch-for-production` check returned ALLOW for the five opened paths, and `rely-for-production` returned ALLOW before fan-in.
+- **Repairs:** R9 exact `str`/`tuple` caller values; R10 positional placeholders; R11–R13 port-error wrapping for `close()`, the `reopen()` mkdir and the `delete()` unlink; R14 documentation verbatim from the proposal, C2-4 threat-boundary paragraph kept. The suite stays at 13 tests (existing tests extended in place; `TEST_TO_VERIFICATION` unchanged).
+- **Probes:** author battery 33 cases (28 open before, 1 after); verifier's independent battery 29 cases (29 open before, 1 after). The one remaining case in both is C2-4, outside the threat boundary by design. The seven required reproductions were open before and closed after.
+- **Checks (Python 3.13.7), all exit 0:** `v2-store-guard` 13 OK; `v2-core-posture` PASS; `v2-loop-registry` 12 OK; `v2-api-contract` 6 OK; `harness-self-check` counts unchanged from the D-PEC-87 baseline.
+- **Mutations:** M1–M9 each caught by the named tests (manager and verifier each ran them). Verifier extras X1–X4 caught; X5 (narrowing the R12 catch to `FileExistsError`) survives.
+- **Non-blocking notes:** N-1 the R12 permission-denied case is covered by probes, not a test (recorded as a residual; closing it would go beyond the proposal's proving test); N-2..N-4 precision points on the proposal's own R14 wording, for the specification's owner; N-5 stray ignored `__pycache__` removed; N-6 `RUN.md` log completed.
+- **Containment:** outside the run root, only the five granted paths and DEL-01-03 `MEMORY.md` changed; `_STATUS.md` unchanged; the three unopened paths unchanged; no `__pycache__` staged.
+- **Discrepancies recorded, not worked around:** the author's guard and adapter bytes equal the proposal's prototype hashes (the prototype sat in the shared scratchpad; the author says it did not read it; the verifier judged the bytes on their own); `origin/main` moved during the run (PR #896, no overlapping path); git identity auto-derived, first `RUN.md` misstated it and the second commit corrected it.
+- **Delegation:** author `afc0ef96373196efc` (`pec-task`), verifier `a5eefcc3795adc090` (`pec-reviewer`, no write tools); host reported `claude-opus-5-5` for both; both returns reached the manager directly.
+
+No CHECKING, ISSUED, artifact acceptance or release follows; DEL-01-03 stays `IN_PROGRESS`. Open for the owner, optional: whether N-1..N-4 warrant a later grant.

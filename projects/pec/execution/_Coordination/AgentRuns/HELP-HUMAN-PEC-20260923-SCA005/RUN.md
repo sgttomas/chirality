@@ -37,4 +37,84 @@ Dispatch note: the host's agent roster is fixed at session start, so the gitigno
 | H1 checkpoint-1 resolutions from the repository | HELP_HUMAN | merged PR #882 | `returns/CHECKPOINT1_RESOLUTION_NOTE.md` (moved from the snapshot after review); pointer lines in `Decision_Log.md`, `Handoff_State.md`, `docs/STATUS.md` | COMPLETE |
 | H2 DEL-01-03 obligations triage | TASK / general-purpose opus (high requested) | none | `returns/OBLIGATION_TRIAGE_DEL-01-03.md` | COMPLETE — 6 A / 9 B / 13 C (8 repairs) / 4 D (2 choices) |
 | H3 D-PEC-87 correction-packet proposal | same TASK, resumed | H2 | `_DECISIONS/D-PEC-87_del_01_03_store_guard_correction_proposal_2026-09-24.md` | COMPLETE — SHA-256 `ba3d3e64…` (after escape/fixture and triage-hash fixes); register row AWAITING_RULING |
-| G2 receipt 180, register row, PR, CI, merge | HELP_HUMAN | H3 | `loop/LOOP_RECEIPTS.md`, `_DECISIONS/_REGISTER.md` | PR #884; first independent review FAIL (3 MAJOR) → repaired; backcheck FAIL (2 stale-hash MAJOR) → repaired; second backcheck pending |
+| G2 receipt 180, register row, PR, CI, merge | HELP_HUMAN | H3 | `loop/LOOP_RECEIPTS.md`, `_DECISIONS/_REGISTER.md` | COMPLETE — PR #884 merged `f7e8b467cb2db244f11fe49cede636140031b387` after review PASS WITH MINOR (`returns/F2_REVIEW_PR884.md`) |
+
+## Continuation 2026-09-24 (owner: "I accept checkpoint 1 and the Impact Assessment. …")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G3 record checkpoint-1 acceptance | HELP_HUMAN | merged PR #884 | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/{DECISION.md,ACCEPTED_MANIFEST.csv,Handoff_State.md}` (new); `SCA-005_2026-09-23_2139/Decision_Log.md` rows + `Handoff_State.md` amendment; `_REGISTER.md` D-PEC-86 status; `docs/STATUS.md`, `README.md`; `loop/LOOP_RECEIPTS.md` Receipt 181 | COMPLETE — PR #888 head `0d7435ec4` merged as `3c3adae355739b2ad24acdb33d3b5422bb36db95`; cycle-2 review of `6edd921fd` PASS WITH MINOR, minors applied in `0d7435ec4`, cycle-3 confirmation of `0d7435ec4` PASS (`returns/F3_REVIEW_CP1_ACCEPTANCE.md`) |
+| G4 explain remaining owner decisions (D-PEC-87 C-A/C-B + L-1/L-2; seven TM-PEC-023 rows) | HELP_HUMAN | none | chat only | COMPLETE |
+| F3 independent review of the G3 candidate | TASK / host agent type `pec-reviewer` (read-only) | G3 | none (return transcribed to `returns/F3_REVIEW_CP1_ACCEPTANCE.md` by HELP_HUMAN) | cycle 1 FAIL (5 MAJOR: four record-currency, one substantive Seq 75/Q10 contradiction) → repaired; cycle 2 PASS WITH MINOR → minors applied; cycle 3 confirmation of `0d7435ec4` PASS (transcribed late, during G5); verdicts in `returns/F3_REVIEW_CP1_ACCEPTANCE.md` |
+| B2 checkpoint-2 package preparation | WORKING_ITEMS (`pec-manager`, scope-change) | G3 merged | `_ScopeChange/SCA-005_2026-09-23_2139/` checkpoint-2 artifacts | NOT_STARTED — next run; carries whichever TM-PEC-023 selections exist by then |
+
+
+Authority note for G3 (HELP_HUMAN): D-PEC-86 §4 names WORKING_ITEMS (scope-change) as owner of the `_ScopeChange` package and holds `checkpoint_snapshots/` "untouched until owner acceptance". The acceptance occurred 2026-09-24. HELP_HUMAN wrote the group-1 snapshot and the amendment-qualified pointer itself rather than dispatching a manager, because the act is a transcription of the owner's ruling (K-AUTH-1 places that duty on the role that received it) and the snapshot binds existing bytes only; no scope-change judgment was exercised. The second `docs/STATUS.md`/`README.md` refresh is the same present-current maintenance I-5 named, made necessary by the acceptance; it asserts no acceptance that did not occur. If the owner reads I-5 as a single refresh only, the STATUS/README hunks of PR #888 revert cleanly. Warrant for the pointer path: D-PEC-86 §3 I-1 opened SCA-005 under the scope-change workflow, whose method finalizes "the group-1 decision snapshot and pointer" after acceptance; §4's post-acceptance `checkpoint_snapshots/` clause is read to include that companion pointer. It is a new file and reverts cleanly; `_LATEST.md` is not touched.
+
+## Continuation 2026-09-24 (owner: "1. C-A. / 2. L-1a, L-2a but no need to ask me about declaring CHECKING status … / 3. … let's discuss 3 more.")
+
+HELP_HUMAN is served by `claude-opus-5-5` from this continuation (owner switched the session model); earlier nodes were served by `claude-fable-5-1`.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G5 record D-PEC-87 ruling | HELP_HUMAN | merged PR #888 | `_DECISIONS/D-PEC-87_RULING_2026-09-24.md` (new); `_REGISTER.md` D-PEC-87 row; `docs/STATUS.md`, `README.md` (present-current maintenance, not owner-approved); `loop/LOOP_RECEIPTS.md` Receipt 182; `returns/F3_…` cycle-3 transcription; `returns/F4_REVIEW_D87_RULING.md` | COMPLETE — PR #890 merged `6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6`; review cycle 1 FAIL (two record-accuracy MAJORs) → repaired; cycle 2 PASS; cycle 3 PASS WITH MINOR → transcription-only append (`returns/F4_REVIEW_D87_RULING.md`) |
+| C2 D-PEC-87 C-A correction slice | WORKING_ITEMS (`pec-manager`) → one TASK author (`pec-task`, software-bounded-implementation) → one fresh read-only verifier (`pec-reviewer`, software-code-review) | G5 merged and observed on `origin/main` | the seven granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_02/**`, `MEMORY.md`, and the single L-1a `_STATUS.md` edit (L-1a lets WORKING_ITEMS tick the REM rows independently of the slice's completion; bundling that edit into C2 is a work-organization choice) | COMPLETE — PR #893 merged `0517e0752f7f7a91d97798fb3319bfbc93721291` (base updated from `main` before merge; slice bytes verified unchanged by the update); verifier FAIL → PASS → PASS; child returns relayed verbatim by HELP_HUMAN because the host routes child notices to the dispatcher; records in DEL-01-03 `_run_records/P1_STORE_GUARD_02/` |
+| G6 TM-PEC-023 per-row context for the owner | HELP_HUMAN (+ read-only research) | none | chat | COMPLETE — owner accepted the per-row reads except row 6, and deferred cmux |
+| G7 record TM-PEC-023 selections and cmux deferral | HELP_HUMAN | G6; stacked on PR #890 | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/**` (new); `SCA-005_2026-09-23_2139/Decision_Log.md` rows + `Handoff_State.md` amendment; `SCA-005_GROUP-1_AUTHORIZED.md`; `docs/STATUS.md`, `README.md` (present-current maintenance); `briefs/C2_D87_CORRECTION_SLICE.md`; Receipt 183 | COMPLETE — PR #891 merged `06436ee575d1e8cd0a12449dd8af33769bae3e24`; review F5 cycles FAIL → PASS WITH MINOR → PASS |
+
+## Continuation 2026-09-24 (owner: "yes map SOW-033 to OBJ-003 and yes maintain the Status page and README.")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| H4 D-PEC-89 proposal (exact-type closure; port errors; echoes) | TASK (`pec-task`, `model: opus`), read-only, prototype in scratch only | C2 routed residuals | scratchpad draft, committed by HELP_HUMAN as `_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md` with one HELP_HUMAN provenance line (TASK draft SHA-256 `32fc241a92cbb209a11bfad64d7f76a33e40edf5ab699c7f382e19b01edd7d2f`, session scratchpad; probe outputs and prototype also scratchpad-only) | COMPLETE — recommends A; 33-case probe battery; ruled A (G9) |
+| G8 record SOW-033 mapping (amendment 2) and D-PEC-88; slice closeout receipt | HELP_HUMAN | PR #893 merged | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/**`; `Decision_Log.md`, package `Handoff_State.md`, `SCA-005_GROUP-1_AUTHORIZED.md`; `_DECISIONS/D-PEC-88_…`, `D-PEC-89_…`, `_REGISTER.md`; `docs/STATUS.md`, `README.md` (under D-PEC-88 on merge); Receipt 184 | COMPLETE — PR #894 merged `6af541bbe962af40e3c6b1e393d7ba60eecc69bc`; review F6 FAIL → PASS → PASS |
+| L2a post-slice REVIEW of DEL-01-03 corrected bytes | fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `claude-opus-5-5`); software-code-review plus the mechanical SOW checklist; not the Root `review` workflow (no human gates run, no `_REVIEW.md`) | C3 merged | read-only | COMPLETE — brief `briefs/L2A_DEL0103_REVIEW.md` (SHA-256 `bb205c9f416b250ebd583dee69a4dd9dcbf0f5929cd8369f8a4ce19b6f015298`); reviewed `088fb7868`; outcome DEFECTS_FOUND: F-1 MAJOR (COUNT beyond the interpreter's integer-string limit raises an unlocated `ValueError` and aborts the batch; reproduced by HELP_HUMAN), F-2 MINOR (deliberate-encoding residual undocumented), F-3..F-12 minor or info; five registered checks exit 0; return `returns/L2A_REVIEW_DEL-01-03.md`; repairs proposed as D-PEC-91 (H7); reported as an ordinary record, not an owner gate; no CHECKING prompt (owner-initiated only) |
+
+## Continuation 2026-09-24 (owner: "D-PEC-89: A.")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G9 record D-PEC-89 ruling | HELP_HUMAN | PR #894 merged | `_DECISIONS/D-PEC-89_RULING_2026-09-24.md` (new); `_REGISTER.md` D-PEC-89 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 185 | COMPLETE — PR #895 merged `9ffc54afcaa287d1b5fdc57dcda2194f6f1e0abf`; review transcribed in `returns/F7_REVIEW_D89_RULING.md` |
+| C3 D-PEC-89 A slice (R9–R14) | WORKING_ITEMS (`pec-manager`) → one TASK author (`pec-task`) → one fresh read-only verifier (`pec-reviewer`), all `model: opus` | G9 merged and observed on `origin/main` | the five granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_03/**`, `MEMORY.md` | COMPLETE — brief `briefs/C3_D89_EXACT_TYPE_SLICE.md` (SHA-256 `911f3be33c42e057a846ec705af0f07b2a3f77c09d84c8940db05116d93db0c2`, the bytes supplied in the dispatch message); PR #897 merged `e8562c06894d5cc5325f1c203fbe491f46ad0fad` (base updated from `main` after PR #896 landed; no `projects/pec/` byte changed by the update); verifier PASS in one cycle; both child returns reached the manager directly, so no relay was needed; return `returns/C3_D89_EXACT_TYPE_SLICE.md` |
+
+## Continuation 2026-09-24/25 (owner: "go ahead with the slice"; "keep an eye on PRs so you notice when the CI goes green (or red) and you can take your next action accordingly."; "I think the agent should actually rely upon this data.  I think that's the value and that's why you're building it carefully and programatically.")
+
+The first two directions started and carried C3 (above). HELP_HUMAN watched PEC PRs with a host poll loop and acted on each CI outcome: PR #897 went red on the stale-base planner check, the base was updated, and it merged green. The third is owner direction of product intent, recorded here as evidence, not as a ruling: it is in tension with PRD v2.2 PEC-K-03 (verify-before-rely) and §8, the PEC-K-02 gloss in `projects/pec/AGENTS.md`, and the Root `AGENTS.md` reliance sentence (PEC-K-02 itself bars only treating PEC output as authority), so it is routed to a proposal for the owner to rule.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G10 C3 closeout | HELP_HUMAN | C3 merged | this file; `briefs/C3_D89_EXACT_TYPE_SLICE.md`, `returns/C3_D89_EXACT_TYPE_SLICE.md` (new); `_REGISTER.md` D-PEC-89 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 186 | in progress — PR, independent review, CI, merge |
+| H5 D-PEC-90 proposal: agent reliance on PEC data | HELP_HUMAN drafts (TASK help optional) | G10 merged | `_DECISIONS/` proposal (new) | COMPLETE — draft SHA-256 `b04a8aa25c1d402fb03f6f15b6fb1eb27a0110e5cd3f3ded1db3717649a5e147`, ruled R-A (G11) before publication and published unchanged; it was to distinguish relying on PEC to act (the direction) from treating PEC output as authority (rulings, acceptance and lifecycle stay file-native); list the PRD, Root and App/runtime consumer text touched and the SCA-005 actions affected; options: fold into SCA-005 checkpoint 2 or a separate scope change after it |
+
+## Continuation 2026-09-25 (owner: "D-PEC-90: R-A."; "agents may eventually query PEC directly, yes.  Through tool calls.")
+
+The owner ruled on HELP_HUMAN's chat summary of the H5 draft; the draft is published unchanged as the instrument. The second line answers the proposal's question 2 and steers the later §8 amendment.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G11 record D-PEC-90 ruling | HELP_HUMAN | G10 merged | `_DECISIONS/D-PEC-90_*` (new, two files); `_REGISTER.md` D-PEC-90 row; SCA-005 `Decision_Log.md` row SCA005-D90-NOTE and `Handoff_State.md` sixth amendment; Root and App `NOTICE_2026-09-25_D-PEC-90_*` (new); `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 187 | COMPLETE — PR #899 merged `6add18573fd087574ad47c4e0e50ab7882038e39`; review transcribed in `returns/F9_REVIEW_D90_RULING.md` |
+| H6 D-PEC-90 reliance amendment (PRD K-03, §8 incl. direct query through tool calls, §9, §12; `projects/pec/AGENTS.md`; response-size budgets for agent consumers per the D-PEC-91 ruling's carry-forward note) | HELP_HUMAN prepares; scope-change method | SCA-005 checkpoint 2 accepted | a later PEC scope-change package | NOT_STARTED |
+
+## Continuation 2026-09-25 (L-2a outcome; D-PEC-91 preparation, HELP_HUMAN initiative)
+
+The L-2a review returned DEFECTS_FOUND. Under F-PEC-1 any repair to DEL-01-03 `v2/**` needs a new owner-ruled packet, so HELP_HUMAN had a TASK prepare one, as for D-PEC-89.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| H7 D-PEC-91 proposal (COUNT domain, encoding residual, L-2a repairs) | TASK (`pec-task`, `model: opus`; host-reported `claude-opus-5-5`), read-only, prototype in a temporary directory | L2a | scratchpad draft, published unchanged by HELP_HUMAN as `_DECISIONS/D-PEC-91_del_01_03_count_domain_encoding_residual_proposal_2026-09-25.md` | COMPLETE — brief `briefs/H7_D91_PROPOSAL.md` (SHA-256 `0bd7d1209613e82aada62aaeaa98e5d9d212dd9988161f28f2bce21de811baee`); draft SHA-256 `5c044b095621bfb098bb3d4e69d55b5a0594a3c73322d58b440a767e2d2413ec`; recommends A (R15 COUNT exact `int` in `0..2**63-1`, R16 read-only-checkout test, R17 documentation); prototype: five registered checks exit 0, F-1 closed at three interpreter digit limits, seven new mutations and the nine D-PEC-89 mutations caught; bulky exports deleted, probe and check outputs kept in the session scratchpad; the TASK disclosed briefly creating and deleting one stray scratch file outside its write boundary |
+| G12 publish L-2a outcome and D-PEC-91 proposal | HELP_HUMAN | G11 merged | `briefs/L2A_DEL0103_REVIEW.md`, `briefs/H7_D91_PROPOSAL.md`, `returns/L2A_REVIEW_DEL-01-03.md` (new); the D-PEC-91 proposal (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 188 | COMPLETE — PR #900 merged `eec2855d829d9cd3704892fc7d603562fbd39b88`; review transcribed in `returns/F10_REVIEW_L2A_D91.md` |
+| C4 D-PEC-91 slice | WORKING_ITEMS → TASK author → fresh verifier | G13 merged and observed on `origin/main` | the four granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_04/**`, `MEMORY.md` | COMPLETE — manager dispatched by HELP_HUMAN with host `subagent_type: pec-manager`, `model: opus`, `isolation: worktree`; brief `briefs/C4_D91_COUNT_DOMAIN_SLICE.md` (SHA-256 `51a5152699b465f35afa19099c866c6c6e2f2baa19d4bad71d27c9e5832ae497`); PR #903 merged `97344617f6603e4328f983b454be78f335a23e46`; verifier PASS in one cycle; R16's read-only block ran in all three runs (permissions enforced); HELP_HUMAN confirmed the product bytes at the PR head equal the verifier-reviewed candidate `d9dcb0126`, containment, the storage suite, and located rejection of `2**53` and `10**5000` at digit limits 4300, 640 and 0; return `returns/C4_D91_COUNT_DOMAIN_SLICE.md` |
+
+## Continuation 2026-09-25 (owner: "I agree with all your recommendations in those matters and rule accordingly.  Proceed.")
+
+Before ruling, the owner asked whether a bound above what JSON readers handle is acceptable ("we design for the limiting component"); HELP_HUMAN changed its recommendation from A to A-53 and kept the others. The ruling adopts A-53.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G13 record D-PEC-91 ruling | HELP_HUMAN | G12 merged | `_DECISIONS/D-PEC-91_RULING_2026-09-25.md` (new); `returns/F11_REVIEW_D91_RULING.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 189 | COMPLETE — PR #902 merged `8b6553850aa8a98cb44aed02e9fe91e23b1234bd`; review transcribed in `returns/F11_REVIEW_D91_RULING.md` |
+
+## Continuation 2026-09-25 (C4 closeout)
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G14 C4 closeout | HELP_HUMAN | C4 merged | this file; `briefs/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/F12_REVIEW_C4_CLOSEOUT.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 190 | in progress — PR, independent review, CI, merge |

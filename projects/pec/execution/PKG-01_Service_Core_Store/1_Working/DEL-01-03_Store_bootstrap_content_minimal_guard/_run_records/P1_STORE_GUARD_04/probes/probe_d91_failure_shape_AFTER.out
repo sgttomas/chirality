@@ -1,0 +1,4 @@
+probe_d91_failure_shape: v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a4acca0ffd3953d47/projects/pec/v2
+COUNT -1: accepted=False failures=[('r', 'n', 'INVALID_VALUE', 'value does not satisfy the runtime domain for count', None)]
+COUNT 2**53: accepted=False failures=[('r', 'n', 'INVALID_VALUE', 'value does not satisfy the runtime domain for count', None)]
+COUNT 10**5000: accepted=False failures=[('r', 'n', 'INVALID_VALUE', 'value does not satisfy the runtime domain for count', None)]

@@ -1,0 +1,6 @@
+r16_block_probe: source v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a4acca0ffd3953d47/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7; uid 501
+instrumented test_ver_002 run: exit=0; last line: OK
+  VER-002: every local lifecycle reaches a valid empty recreation. ... ok
+  Ran 1 test in 0.975s
+R16 read-only block executed (marker written): True

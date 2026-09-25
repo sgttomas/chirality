@@ -39,20 +39,36 @@ incomplete only for TM-PEC-023. Lifecycle census: 32 `OPEN` / 26
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
 promotion follows from either. The three DEL-01-03 read-only evidence
-inquiries are reported with obligations awaiting owner disposition; no
-Remaining item is closed. Build phases P1–P4 remain
+inquiries are reported, and the owner ruled `D-PEC-87` on 2026-09-24: one
+correction slice on seven existing files, the three inquiry rows to be
+ticked, and review of the corrected bytes. The slice merged on 2026-09-24
+(PR #893) and the three inquiry rows are ticked; a wider guard residual is
+ruled for closure as `D-PEC-89` A, whose slice merged on 2026-09-25 (PR #897);
+the L-2a review of the corrected bytes then found defects, whose repairs are
+ruled as `D-PEC-91` A-53, whose slice merged on 2026-09-25 (PR #903). Build phases P1–P4 remain
 separately owner-gated. `D-PEC-80` made `projects/pec/loop/` the loop home:
 follow `projects/pec/loop/LOOP_INIT.md` to discover
 work from deliverable `## Remaining` surfaces. Retired plans live in
 `projects/pec/plans/workplans/` as history only. PEC's adoption of the shared
 development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
 
-**SCA-005** (feed-model rebaseline) is open at Gate 1 under `D-PEC-86`. Its
+**SCA-005** (feed-model rebaseline) is open under `D-PEC-86`. Its
 checkpoint-group-1 package at `execution/_ScopeChange/SCA-005_2026-09-23_2139/`
-proposes 76 actions; `Impact_Assessment.md` SHA-256
-`0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` awaits the
-owner. Owner checkpoints 1–3 remain, and TM-PEC-023 is folded into its intake
-with no option selected. See `docs/STATUS.md` for current gates.
+proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
+`0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` on
+2026-09-24 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`). Owner
+checkpoints 2–3 remain. The owner selected the TM-PEC-023 objective values
+and deferred the cmux adapter out of scope on 2026-09-24
+(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
+applied yet. See `docs/STATUS.md` for current gates.
+
+**Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
+(2026-09-25): agents may act on PEC record-tier data as true as of the
+response's examined-through commit, within stated bounds, while authority
+stays file-native; agents may eventually query PEC directly through tool
+calls. Reliance begins at a PEC release whose gates prove parity and
+coverage, not now. The PRD v2.2 wording stands until a later scope change after SCA-005
+checkpoint 2 amends it.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
@@ -79,7 +95,7 @@ TM-PEC-023 moved into SCA-005 intake.
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.4 and authoritative companion registers |
-| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package (awaiting owner), and active scope-change pointer |
+| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package and its accepted group-1 snapshot under `checkpoint_snapshots/`, and active scope-change pointer |
 | `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
