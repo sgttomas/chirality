@@ -106,7 +106,12 @@ items. The five registered checks pass. The owner ruled the repairs as
 `D-PEC-91` A-53 on 2026-09-25: COUNT accepts only an exact integer from 0 to
 `2**53 - 1` (the range JSON consumers read exactly), anything else becomes a
 located rejection, plus a read-only-checkout test and documentation of the
-encoding residual. That slice is next.
+encoding residual. That slice merged on 2026-09-25 (PR #903, `97344617f`;
+evidence under DEL-01-03 `_run_records/P1_STORE_GUARD_04/`, independent
+verifier PASS in one cycle). DEL-01-03 stays `IN_PROGRESS`. Carried residuals:
+one doc sentence (line 122) is broader than the new bound and needs a later
+granted edit; the read-only-checkout test runs only where directory
+permissions are enforced; hosted CI still runs no v2 Python check.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
