@@ -1,8 +1,8 @@
 DeliverableID,PackageID,ContextEnvelope,Risk,RecommendedAction,Notes
 DEL-00-01,PKG-00,S,LOW,None,
-DEL-00-02,PKG-00,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,OI-009 keeps the contract home open; local schema + pinned mirror until ruled — a shared-runtime ruling moves the home under its own instrument (SOW-074)
+DEL-00-02,PKG-00,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,OI-009 keeps the contract home open; local schema + pinned mirror until ruled — a ruling for the shared Runtime contracts home (`projects/chirality-runtime/packages/contracts`) moves the home under its own instrument (SOW-074)
 DEL-00-03,PKG-00,M,LOW,None; single cohesive slice,M because the seed derives structure from an accepted basis (46 requirements / 64 deliverables) rather than inventing content; grows per phase under governed updates
-DEL-01-01,PKG-01,L,MEDIUM,Hold as L; split by per-loop grammar if any loop proves adversarial,L: 14 entity types and the schema every derivation package depends on; kept one cohesive DDL slice — split (core record entities vs lifecycle/dependency/run entities) only if implementation shows a natural seam
+DEL-01-01,PKG-01,L,MEDIUM,Hold as L; split core record entities from lifecycle/dependency/run/graph entities only if implementation shows a natural seam,L: 16 entity types (DL-14's 14 plus WorkGraph and WorkNode) and the schema every derivation package depends on; kept one cohesive DDL slice — split (core record entities vs lifecycle/dependency/run/graph entities) only if implementation shows a natural seam
 DEL-01-02,PKG-01,S,LOW,None,
 DEL-01-03,PKG-01,M,LOW,None; single cohesive slice,
 DEL-01-04,PKG-01,S,LOW,None,
@@ -10,11 +10,13 @@ DEL-01-05,PKG-01,S,LOW,None,
 DEL-01-06,PKG-01,S,LOW,None,
 DEL-02-01,PKG-02,M,LOW,None; single cohesive slice,
 DEL-02-02,PKG-02,M,LOW,None; single cohesive slice,
-DEL-02-03,PKG-02,L,MEDIUM,Hold as L; split by per-loop grammar if any loop proves adversarial,"L because grammar varies per loop and SOW-082 (OI-008) keeps the contract-adoption surface open; single domain, but multiple grammars within one parser. Split further only if a loop's grammar proves adversarial"
+DEL-02-03,PKG-02,L,MEDIUM,Hold as L; split the central-receipt grammar into its own deliverable if implementation demands it,"L because grammar varies: the receipt-contract-v2 family (App, Piping, PEC), the Root/Runtime/Bridge prose ledgers and the central `RECEIPT.md` grammar, with SOW-082 (OI-008) still open for the Root, Runtime and Bridge ledgers; single domain, but multiple grammars within one parser. Split line: the central-receipt grammar becomes its own deliverable if implementation demands a split"
 DEL-02-04,PKG-02,S,LOW,None,
 DEL-02-05,PKG-02,S,LOW,None,
-DEL-02-06,PKG-02,M,LOW,None; single cohesive slice,
+DEL-02-06,PKG-02,M,LOW,Hold as M; re-assess toward S when its Scope of Work is refreshed,M held under SCA-005: scope narrowed to `LOOP_INIT.md` identity plus the historical workplan grammar; may fall to S on re-assessment
 DEL-02-07,PKG-02,S,LOW,None,
+DEL-02-08,PKG-02,M,MEDIUM,Hold as M; split profile-driven discovery and PR-to-merge resolution from the grammar only if the fixture classes prove adversarial,"M: a new grammar plus profile-driven discovery, PR-to-merge-commit resolution inputs and three pinned fixture classes; kept one cohesive parser slice"
+DEL-02-09,PKG-02,S,LOW,None,
 DEL-03-01,PKG-03,M,LOW,None; single cohesive slice,
 DEL-03-02,PKG-03,M,LOW,None; single cohesive slice,
 DEL-03-03,PKG-03,M,LOW,None; single cohesive slice,
@@ -31,15 +33,15 @@ DEL-05-02,PKG-05,M,LOW,None; single cohesive slice,
 DEL-06-01,PKG-06,M,LOW,None; single cohesive slice,
 DEL-06-02,PKG-06,M,LOW,None; single cohesive slice,
 DEL-06-03,PKG-06,S,LOW,None,
-DEL-06-04,PKG-06,S,LOW,None,
+DEL-06-04,PKG-06,S,LOW,[RETIRED — SCA-005] None; row retained non-destructively,Retired under SCA-005 (R1 deferral); excluded from active envelope counts
 DEL-06-05,PKG-06,M,LOW,None; single cohesive slice,
 DEL-06-06,PKG-06,M,LOW,None; single cohesive slice,
 DEL-07-01,PKG-07,M,LOW,None; single cohesive slice,
-DEL-07-02,PKG-07,M,LOW,None; single cohesive slice,
+DEL-07-02,PKG-07,M,LOW,[RETIRED — SCA-005] None; row retained non-destructively,Retired under SCA-005 (R1 deferral); excluded from active envelope counts
 DEL-07-03,PKG-07,M,LOW,None; single cohesive slice,
-DEL-07-04,PKG-07,M,LOW,None; single cohesive slice,
-DEL-07-05,PKG-07,M,LOW,None; single cohesive slice,"M is provisional: the seam's artifact shape follows the D-PEC-56 concept, not a PEC-*-NNN requirement; re-envelope at WORKING_ITEMS activation if the shape proves larger"
-DEL-08-01,PKG-08,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,"OI-006 determines the token mechanism (PEC-local vs daemon registry); the socket+access-class core is stable either way, but the auth half may be reworked on ruling"
+DEL-07-04,PKG-07,M,LOW,[RETIRED — SCA-005] None; row retained non-destructively,Retired under SCA-005 (cmux deferral); excluded from active envelope counts
+DEL-07-05,PKG-07,M,LOW,[RETIRED — SCA-005] None; row retained non-destructively,"M is provisional: the seam's artifact shape follows the D-PEC-56 concept, not a PEC-*-NNN requirement; re-envelope at WORKING_ITEMS activation if the shape proves larger; Retired under SCA-005 (R1 deferral); excluded from active envelope counts"
+DEL-08-01,PKG-08,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,"OI-006 determines the PEC-local token mechanism (Runtime token registries are private to each application's Runtime instance, so no shared registry exists to reuse); the socket+access-class core is stable either way, but the auth half may be reworked on ruling"
 DEL-08-02,PKG-08,S,LOW,None,
 DEL-08-03,PKG-08,S,LOW,None,
 DEL-08-04,PKG-08,S,LOW,None,
