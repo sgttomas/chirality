@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5; earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance (present-current lines only); earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -52,7 +52,7 @@ current basis after `SCA-004`. PROJECT_SETUP has completed the 64-context,
 `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
 The nine TM-PEC-023 objective blanks are carried into SCA-005 intake as
 candidate MODIFY actions with no option selected (`D-PEC-86` §3 I-3; SCA-005
-Decision_Log row `SCA005-CP1-TM` `AWAITING_OWNER`); row-by-row selection
+Decision_Log row `SCA005-CP1-TM` `CONFIRMED`, carried with no option selected); row-by-row selection
 remains the owner's at checkpoint 2. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
@@ -94,8 +94,9 @@ SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`
 and 76 PROPOSED actions in `Amendment_Actions.csv`. The owner accepted
 checkpoint group 1 on 2026-09-24 (verbatim in its `Decision_Log.md`; group-1
 snapshot `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
-selecting the resolution note's Section A options; checkpoint-2 preparation
-is authorized and not started. The pre-change audit is
+as HELP_HUMAN had asked, which HELP_HUMAN records as selecting the
+resolution note's Section A options (interpretation in the group-1
+`DECISION.md`); checkpoint-2 preparation is authorized and not started. The pre-change audit is
 `execution/_Evaluation/DecompCoverage/COV_SCA005_PRECHANGE_2026-09-23_2139/`
 (`WARNINGS`: 0 blockers / 3 warnings). The design note
 `execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md`
@@ -145,16 +146,17 @@ P-A.
 
 ## What's next (owner gates, in order)
 
-Current owner gates (2026-09-23; none is accepted or inferred here):
+Current owner gates (2026-09-24; none is accepted or inferred here):
 
-- **SCA-005 checkpoint 1:** confirm or modify the 76-action change set and
-  accept `Impact_Assessment.md` at SHA-256
-  `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`,
-  together with the owner items `SCA005-CP1-Q1`..`Q10`, `-R`, `-D79`, `-TM`,
-  `-X`, `-N`, `-V` and `-O` in its `Decision_Log.md`; checkpoints 2 and 3
-  follow only after acceptance.
-- **DEL-01-03 obligations:** dispose of O-1-1..O-3-14 and each Remaining
-  item, and route O-2-2 (Task Management intake or a bounded repair packet).
+- **D-PEC-87 ruling:** C-A (recommended) / C-B / amend / defer for the
+  DEL-01-03 store/guard correction slice, with the separately rulable
+  lifecycle clauses L-1 (three REM rows) and L-2 (acceptance route). This
+  disposes of the DEL-01-03 obligations O-1-1..O-3-14 per the triage.
+- **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
+  once prepared from the accepted group-1 snapshot
+  (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
+  including the seven live TM-PEC-023 row selections and the PRD v2.3
+  successor candidate; checkpoint 3 (audited poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
@@ -263,7 +265,8 @@ canonical working package). Directed-bootstrap amendment `SCA-001` closed
 for scope change on 2026-08-03 with revision 1.4 as `current_basis` under
 D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. SCA-005 opened at Gate 1 on 2026-09-23 under
-`D-PEC-86`; its checkpoint-group-1 package awaits owner checkpoint 1.
+`D-PEC-86`; the owner accepted its checkpoint group 1 on 2026-09-24
+(`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`); checkpoints 2 and 3 remain.
 `D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.

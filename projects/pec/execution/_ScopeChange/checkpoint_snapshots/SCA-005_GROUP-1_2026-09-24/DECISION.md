@@ -24,9 +24,9 @@ and the TM-PEC-023 row selections to the owner.
 
 | Item | Effect of this acceptance |
 |---|---|
-| CP1-A | The parsed change set in `Amendment_Actions.csv` (SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions: 8 ADD / 65 MODIFY / 3 REMOVE) is confirmed as the intake. Under the Q9 resolution, Seq 72 (SOW-058 MODIFY) is dropped when the checkpoint-2 exact amendment is prepared; the snapshot CSV is not rewritten. |
+| CP1-A | The parsed change set in `Amendment_Actions.csv` (SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions: 8 ADD / 65 MODIFY / 3 REMOVE) is confirmed as the intake. Under the Q9 resolution, Seq 72 (SOW-058 MODIFY) is dropped when the checkpoint-2 exact amendment is prepared; under the Q10 (a) resolution, Seq 75 (PRD successor candidate) is narrowed: its "§12 P1 (Q10 c)" element is dropped and risk R-04's control becomes Q10 (a). The snapshot CSV is not rewritten. |
 | CP1-B | `Impact_Assessment.md` is accepted at SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`. |
-| Q1–Q10, CP1-R, CP1-D79, CP1-X, CP1-N, CP1-V, CP1-O | Selected as the note's Section A resolutions: O-B2; (b); P-β; R1; (a); (a); re-express with decisions open; (b); (a); no SOW-058 change and Seq 72 dropped; (a) with no PRD exit-test change; (b) one successor v2.3 candidate; ADD DEL-02-08/09 with central receipts in SOW-013/DEL-02-03; retain names and paths; within D-PEC-78 O-A with no supersession; OBJ-001;OBJ-002. Where a resolution differs from the design note or the manager (Q9, Q10), the note's cited source governs. |
+| Q1–Q10, CP1-R, CP1-D79, CP1-X, CP1-N, CP1-V, CP1-O | Selected as the note's Section A resolutions: Q1 O-B2; Q2 (b); Q3 P-β; CP1-R R1; Q4 (a); Q5 (a); Q6 re-express with decisions open; Q7 (b); Q8 (a); Q9 no SOW-058 change and Seq 72 dropped (the Impact Assessment's §12.4 option (b)); Q10 (a) with no PRD exit-test change; CP1-D79 (b) one successor v2.3 candidate; CP1-X ADD DEL-02-08/09 with central receipts in SOW-013/DEL-02-03; CP1-N retain names and paths; CP1-V within D-PEC-78 O-A with no supersession; CP1-O OBJ-001;OBJ-002. Where a resolution differs from the design note or the manager (Q9, Q10), the note's cited source governs. |
 | CP1-TM | Confirmed as carried: the nine TM-PEC-023 rows remain candidate MODIFYs with no option selected. Rows 4 and 7 (DEL-07-02, DEL-07-05) become moot under R1. The seven live rows are selected by the owner at checkpoint 2 through mechanic M1. |
 
 ## What this acceptance authorizes and does not authorize
@@ -36,8 +36,12 @@ amendment (preview and postimage), the propagation plan, the PRD v2.3
 successor candidate carrying the D-PEC-79 hunks, the `Supersession_Delta.csv`
 bindings, and recommended (not selected) TM-PEC-023 row dispositions.
 
-It applies no decomposition, register, PRD, SOW, `_CONTEXT.md`, `_STATUS.md`,
-pointer, `v2/**`, `software-workflow.json` or foreign change. It does not
+It applies no decomposition, decomposition-register, PRD, SOW, `_CONTEXT.md`,
+`_STATUS.md`, `v2/**`, `software-workflow.json` or foreign change, and it
+moves no active pointer: the amendment-qualified group-1 pointer
+`../../SCA-005_GROUP-1_AUTHORIZED.md` is written per the scope-change method
+("finalize the group-1 decision snapshot and pointer"), and `_LATEST.md` is
+not touched. It does not
 apply the D-PEC-79 postimage, select any TM-PEC-023 option, rule D-PEC-87,
 or lift the D-PEC-86 I-7 deferral of PEC's own loop-method migration. The
 exact candidate remains subject to checkpoint 2 and the audited poststate to

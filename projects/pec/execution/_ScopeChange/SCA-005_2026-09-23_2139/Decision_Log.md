@@ -15,7 +15,7 @@ rulings.
 | DecisionRef | Checkpoint | Decision | Status | Authority |
 |---|---|---|---|---|
 | SCA005-G1 | Gate 1 intake | Open SCA-005 (SOFTWARE variant) under `chirality-root:bundled:workflow:scope-change` to rebaseline PEC's feed model | `OPENED BY OWNER DIRECTION` | Owner direction, 2026-09-23 (verbatim below); recorded in D-PEC-86 §1 |
-| SCA005-CP1 | 1 | Confirm the parsed change set (`Amendment_Actions.csv`, SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions; Seq 72 dropped at checkpoint 2 under Q9) and accept `Impact_Assessment.md` at SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`, with the resolution note's Section A as the selected options | `ACCEPTED` | Owner act, 2026-09-24 (verbatim below); group-1 snapshot `../checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/` |
+| SCA005-CP1 | 1 | Confirm the parsed change set (`Amendment_Actions.csv`, SHA-256 `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2`, 76 PROPOSED actions; Seq 72 dropped at checkpoint 2 under Q9; Seq 75 narrowed under Q10 (a): its §12 P1 (Q10 c) element dropped, R-04 control becomes Q10 (a)) and accept `Impact_Assessment.md` at SHA-256 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf`, with the resolution note's Section A as the selected options (HELP_HUMAN's reading of the act, recorded as interpretation in the group-1 `DECISION.md`) | `ACCEPTED` | Owner act, 2026-09-24 (verbatim below); group-1 snapshot `../checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/` |
 | SCA005-CP1-Q1 | 1 | Feed model: **O-B2** (per-loop declared grammar in the PEC-owned registry) | `SELECTED VIA CP1-B` | Resolution note §A Q1: DEL-02-03 OUT-001; `adapter.yaml` header; D-PEC-78 O-A |
 | SCA005-CP1-Q2 | 1 | `adapter.yaml` / SOW-017 / DEL-02-07: **(b)** parity-peer input only, DEL-02-07 re-purposed | `SELECTED VIA CP1-B` | Resolution note §A Q2 |
 | SCA005-CP1-Q3 | 1 | Presence and streams under A2: **P-β** (deferred with the design note's three-part trigger) | `SELECTED VIA CP1-B` | Resolution note §A Q3 |
@@ -25,7 +25,7 @@ rulings.
 | SCA005-CP1-Q6 | 1 | A2 effects on PRD §16.2/16.6/16.8/16.9: **re-express as premise; each decision stays open** | `SELECTED VIA CP1-B` | Resolution note §A Q6: PRD §16 heading and closing line |
 | SCA005-CP1-Q7 | 1 | Ref scope for in-flight graphs: **(b)** integration ref default, local refs opt-in and labelled | `SELECTED VIA CP1-B` | Resolution note §A Q7 (agent method choice) |
 | SCA005-CP1-Q8 | 1 | PEC's own registry row: **(a)** declare `remaining-loop` now | `SELECTED VIA CP1-B` | Resolution note §A Q8: D-PEC-86 I-7; `loop/LOOP_INIT.md` §4 |
-| SCA005-CP1-Q9 | 1 | Step-0 baseline loops: **no change to SOW-058; Seq 72 dropped** (neither design-note (a) nor manager (c)) | `SELECTED VIA CP1-B` | Resolution note §A Q9: DEL-10-01 `STEP0_COST_BASELINE_METHOD.md` §§1–2; PRD §11 |
+| SCA005-CP1-Q9 | 1 | Step-0 baseline loops: **no change to SOW-058; Seq 72 dropped** (Impact Assessment §12.4 option (b); neither design-note (a) nor manager (c)) | `SELECTED VIA CP1-B` | Resolution note §A Q9: DEL-10-01 `STEP0_COST_BASELINE_METHOD.md` §§1–2; PRD §11 |
 | SCA005-CP1-Q10 | 1 | P1 parity comparable set: **(a)** self-check facts plus explained census absence; no PRD exit-test change | `SELECTED VIA CP1-B` | Resolution note §A Q10: PRD §12 P1 row; `harness.py` `OBSERVABLE_PROJECTS` |
 | SCA005-CP1-D79 | 1 | D-PEC-79 path: **(b)** carry the six hunks into one successor v2.3 candidate; adopted bytes preserved as historical exact input | `SELECTED VIA CP1-B` | Resolution note §A CP1-D79; D-PEC-79 handoff and ruling; exact gate at checkpoint 2/3 |
 | SCA005-CP1-TM | 1 | TM-PEC-023 nine rows carried as candidate MODIFYs, no option selected; Rows 4 and 7 (DEL-07-02, DEL-07-05) moot under R1; seven live rows selected by the owner at checkpoint 2 via mechanic M1 | `CONFIRMED` | Owner act 2026-09-24 (CP1); owner ruling 2026-08-03 reserves every selection |
@@ -69,8 +69,9 @@ authorizes checkpoint-2 preparation only.
 - No TM-PEC-023 mapping or non-mapping disposition has been selected.
 - The D-PEC-79 postimage has not been applied and no PRD byte has changed.
 - D-PEC-87 is not ruled by this acceptance.
-- No decomposition, register, pointer, SOW, `_CONTEXT.md`, `_STATUS.md`,
-  `v2/**` or foreign surface has changed; `Amendment_Actions.csv` and
+- No decomposition, decomposition register, SOW, `_CONTEXT.md`, `_STATUS.md`,
+  `v2/**` or foreign surface has changed; `_LATEST.md` still names SCA-004
+  (the amendment-qualified `../SCA-005_GROUP-1_AUTHORIZED.md` pointer is new); `Amendment_Actions.csv` and
   `Impact_Assessment.md` in this snapshot are byte-unchanged from the
   accepted hashes.
 

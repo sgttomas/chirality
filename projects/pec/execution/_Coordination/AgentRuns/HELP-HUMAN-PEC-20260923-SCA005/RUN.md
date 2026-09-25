@@ -39,10 +39,14 @@ Dispatch note: the host's agent roster is fixed at session start, so the gitigno
 | H3 D-PEC-87 correction-packet proposal | same TASK, resumed | H2 | `_DECISIONS/D-PEC-87_del_01_03_store_guard_correction_proposal_2026-09-24.md` | COMPLETE — SHA-256 `ba3d3e64…` (after escape/fixture and triage-hash fixes); register row AWAITING_RULING |
 | G2 receipt 180, register row, PR, CI, merge | HELP_HUMAN | H3 | `loop/LOOP_RECEIPTS.md`, `_DECISIONS/_REGISTER.md` | COMPLETE — PR #884 merged `f7e8b467cb2db244f11fe49cede636140031b387` after review PASS WITH MINOR (`returns/F2_REVIEW_PR884.md`) |
 
-## Continuation 2026-09-24 (owner: "I accept checkpoint 1 and the Impact Assessment.")
+## Continuation 2026-09-24 (owner: "I accept checkpoint 1 and the Impact Assessment. …")
 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
 | G3 record checkpoint-1 acceptance | HELP_HUMAN | merged PR #884 | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/{DECISION.md,ACCEPTED_MANIFEST.csv,Handoff_State.md}` (new); `SCA-005_2026-09-23_2139/Decision_Log.md` rows + `Handoff_State.md` amendment; `_REGISTER.md` D-PEC-86 status; `docs/STATUS.md`, `README.md`; `loop/LOOP_RECEIPTS.md` Receipt 181 | in progress — PR, independent review (`pec-reviewer`), CI, merge |
 | G4 explain remaining owner decisions (D-PEC-87 C-A/C-B + L-1/L-2; seven TM-PEC-023 rows) | HELP_HUMAN | none | chat only | in progress |
+| F3 independent review of the G3 candidate | TASK / host agent type `pec-reviewer` (read-only) | G3 | none (return transcribed to `returns/F3_REVIEW_CP1_ACCEPTANCE.md` by HELP_HUMAN) | cycle 1 FAIL (5 MAJOR, record findings) → repaired; backcheck pending |
 | B2 checkpoint-2 package preparation | WORKING_ITEMS (`pec-manager`, scope-change) | G3 merged | `_ScopeChange/SCA-005_2026-09-23_2139/` checkpoint-2 artifacts | NOT_STARTED — next run; carries whichever TM-PEC-023 selections exist by then |
+
+
+Authority note for G3 (HELP_HUMAN): D-PEC-86 §4 names WORKING_ITEMS (scope-change) as owner of the `_ScopeChange` package and holds `checkpoint_snapshots/` "untouched until owner acceptance". The acceptance occurred 2026-09-24. HELP_HUMAN wrote the group-1 snapshot and the amendment-qualified pointer itself rather than dispatching a manager, because the act is a transcription of the owner's ruling (K-AUTH-1 places that duty on the role that received it) and the snapshot binds existing bytes only; no scope-change judgment was exercised. The second `docs/STATUS.md`/`README.md` refresh is the same present-current maintenance I-5 named, made necessary by the acceptance; it asserts no acceptance that did not occur. If the owner reads I-5 as a single refresh only, the STATUS/README hunks of PR #888 revert cleanly.
