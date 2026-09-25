@@ -66,6 +66,13 @@ HELP_HUMAN is served by `claude-opus-5-5` from this continuation (owner switched
 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
-| H4 D-PEC-89 proposal (exact-type closure; port errors; echoes) | TASK (`pec-task`, `model: opus`), read-only, prototype in scratch only | C2 routed residuals | scratchpad draft, committed by HELP_HUMAN as `_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md` with one HELP_HUMAN provenance line (TASK draft SHA-256 `32fc241a92cbb209a11bfad64d7f76a33e40edf5ab699c7f382e19b01edd7d2f`, session scratchpad; probe outputs and prototype also scratchpad-only) | COMPLETE — recommends A; 33-case probe battery; AWAITING_RULING |
-| G8 record SOW-033 mapping (amendment 2) and D-PEC-88; slice closeout receipt | HELP_HUMAN | PR #893 merged | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/**`; `Decision_Log.md`, package `Handoff_State.md`, `SCA-005_GROUP-1_AUTHORIZED.md`; `_DECISIONS/D-PEC-88_…`, `D-PEC-89_…`, `_REGISTER.md`; `docs/STATUS.md`, `README.md` (under D-PEC-88 on merge); Receipt 184 | in progress — PR, independent review, CI, merge |
-| L2a post-slice REVIEW of DEL-01-03 corrected bytes | REVIEW (to dispatch) | D-PEC-89 disposed | read-only | NOT_STARTED — sequenced after D-PEC-89 so it reviews the resulting bytes |
+| H4 D-PEC-89 proposal (exact-type closure; port errors; echoes) | TASK (`pec-task`, `model: opus`), read-only, prototype in scratch only | C2 routed residuals | scratchpad draft, committed by HELP_HUMAN as `_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md` with one HELP_HUMAN provenance line (TASK draft SHA-256 `32fc241a92cbb209a11bfad64d7f76a33e40edf5ab699c7f382e19b01edd7d2f`, session scratchpad; probe outputs and prototype also scratchpad-only) | COMPLETE — recommends A; 33-case probe battery; ruled A (G9) |
+| G8 record SOW-033 mapping (amendment 2) and D-PEC-88; slice closeout receipt | HELP_HUMAN | PR #893 merged | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/**`; `Decision_Log.md`, package `Handoff_State.md`, `SCA-005_GROUP-1_AUTHORIZED.md`; `_DECISIONS/D-PEC-88_…`, `D-PEC-89_…`, `_REGISTER.md`; `docs/STATUS.md`, `README.md` (under D-PEC-88 on merge); Receipt 184 | COMPLETE — PR #894 merged `6af541bbe962af40e3c6b1e393d7ba60eecc69bc`; review F6 FAIL → PASS → PASS |
+| L2a post-slice REVIEW of DEL-01-03 corrected bytes | REVIEW (to dispatch) | C3 merged | read-only | NOT_STARTED — sequenced after D-PEC-89 so it reviews the resulting bytes |
+
+## Continuation 2026-09-24 (owner: "D-PEC-89: A.")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G9 record D-PEC-89 ruling | HELP_HUMAN | PR #894 merged | `_DECISIONS/D-PEC-89_RULING_2026-09-24.md` (new); `_REGISTER.md` D-PEC-89 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 185 | in progress — PR, independent review, CI, merge |
+| C3 D-PEC-89 A slice (R9–R14) | WORKING_ITEMS (`pec-manager`) → one TASK author (`pec-task`) → one fresh read-only verifier (`pec-reviewer`), all `model: opus` | G9 merged and observed on `origin/main` | the five granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_03/**`, `MEMORY.md` | NOT_STARTED |

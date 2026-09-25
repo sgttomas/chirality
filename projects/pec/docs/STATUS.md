@@ -88,9 +88,11 @@ found one wider residual that R1 does not cover: a caller that passes a
 `str` subclass can still place arbitrary text in the store, a channel present
 since `D-PEC-85` and documented in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md`.
 Its closure, with three port-error gaps (two routed by the slice, one found
-in preparation) and the echo of invalid identifiers, is proposed as
-`D-PEC-89` (awaiting the owner's ruling). HELP_HUMAN has sequenced the L-2a
-review after `D-PEC-89` is disposed of, a coordination choice rather than a
+in preparation) and the echo of invalid identifiers, was proposed as
+`D-PEC-89`, which the owner ruled A on 2026-09-24
+(`execution/_Coordination/_DECISIONS/D-PEC-89_RULING_2026-09-24.md`); its
+slice is next. HELP_HUMAN has sequenced the L-2a
+review after the `D-PEC-89` A slice lands, a coordination choice rather than a
 ruling, so that it reviews the resulting bytes.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
@@ -170,11 +172,6 @@ P-A.
 ## What's next (owner gates, in order)
 
 Current owner gates (2026-09-24; none is accepted or inferred here):
-
-- **D-PEC-89 ruling:** exact-type closure of the store guard's `str`-subclass
-  channel, completion of the port-error wrapping, and whether the store stops
-  echoing invalid identifiers (options A / A2 / B / amend / defer;
-  `execution/_Coordination/_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md`).
 
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
