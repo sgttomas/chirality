@@ -1,0 +1,126 @@
+{
+  "reviewer": "/root/m35_integration_review",
+  "parent": "/root",
+  "role": "TASK",
+  "time_utc": "2026-09-25T04:17:47.373907+00:00",
+  "base": "e604139a089d2cee3f56ad1da12652d9ec97ad6c",
+  "scope": [
+    "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/M35_3C17_QUALIFICATION/MERGED_STATE.json"
+  ],
+  "graph_before_sha256": "cd6da5e37e114e5e7ca4d442c0c8a4d9577a422989a0b1fb53450d4fe6c2b5dd",
+  "graph_after_sha256": "d65e71a087e59c8abe7e5eff000549640cdc00e992f7ec336ecf99ed591e9029",
+  "graph_diff_sha256": "d845c2db9f3149041f836578514cf4726d9f03352d23aeb7ce29ba7e61ef45d7",
+  "merged_state_sha256": "d6c24a76919b8782b4a94ba8401a9a6daa58a8c60f843efa4106097f0e4d7cee",
+  "merged_state": {
+    "headRefOid": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+    "mergeCommit": {
+      "oid": "7e7d37b5fdeac698b425446d01259dc6609c14e3"
+    },
+    "mergedAt": "2026-09-25T04:12:12Z",
+    "state": "MERGED",
+    "url": "https://github.com/sgttomas/chirality/pull/892"
+  },
+  "actual_merge_parents": [
+    "0517e0752f7f7a91d97798fb3319bfbc93721291",
+    "3c17e267dd06ee561e8dc9984f6623126095eec1"
+  ],
+  "commit_epoch_matches_merged_at": true,
+  "origin_main": "7e7d37b5fdeac698b425446d01259dc6609c14e3",
+  "checked_to_merged_other_paths": [
+    "projects/pec/README.md",
+    "projects/pec/docs/STATUS.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/AUTHOR_RETURN_01.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/AUTHOR_RETURN_02.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/AUTHOR_RETURN_03.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/PREIMAGE.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/RUN.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/VERIFIER_VERDICT_01.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/VERIFIER_VERDICT_02.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/VERIFIER_VERDICT_03.md",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/X-1_select_affected_checks_AFTER.out",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/X-1_select_affected_checks_BEFORE.out",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/harness-self-check.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/v2-api-contract.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/v2-core-posture.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/v2-loop-registry.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/v2-store-guard.json",
+    "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_02/checks/v2-store-guard_verbose.out",
+    "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/RUN.md",
+    "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/briefs/C2_D87_CORRECTION_SLICE.md",
+    "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F5_REVIEW_SCA005_AMENDMENT1.md",
+    "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md",
+    "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md",
+    "projects/pec/execution/_ScopeChange/SCA-005_GROUP-1_AUTHORIZED.md",
+    "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/ACCEPTED_MANIFEST.csv",
+    "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv",
+    "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/DECISION.md",
+    "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Handoff_State.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md",
+    "projects/pec/software-workflow.json",
+    "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+    "projects/pec/v2/src/pec_v2/adapters/storage/sqlite_store.py",
+    "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+    "projects/pec/v2/src/pec_v2/core/ports/store.py",
+    "projects/pec/v2/tests/storage/test_content_minimal_guard.py",
+    "projects/pec/v2/tests/storage/test_store_lifecycle.py"
+  ],
+  "checked_to_merged_piping_delta_empty": true,
+  "finding_rows": 38,
+  "previous_complete": [
+    "M04",
+    "M09",
+    "M24"
+  ],
+  "current_complete": [
+    "M04",
+    "M09",
+    "M24",
+    "M35"
+  ],
+  "remaining_original_groups": 34,
+  "only_table_state_change": "M35",
+  "historical_checkpoint_byte_identical": true,
+  "original_assessment_m35": "| M-35 Moments/self-weight | Confirmed moment direction mismatch; applied generated weight can become stale. | Unify typed force/moment axes through authoring/applier/solver; add dependency-aware stale detection/regeneration for applied self-weight while retaining existing plan hash/preview guards. |",
+  "qualified_before_actual_merge": true,
+  "broader_graph_complete": false,
+  "remote_dependency_checkpoints": "refs/remotes/origin/codex/piping-numerical-corrections-20260924 0a438a68672269e5750900792c9565ae9e5555b0\nrefs/remotes/origin/codex/piping-pressure-stress-20260924 af4120ba52b46922da8bae5a876033e53818adfa\n",
+  "current_primary_status_excluded_from_review": " M projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts\n M projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts\n M projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx\n M projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/INTEGRATED_PIPES/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/NATIVE_TOKEN_CASE/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R3/browser-artifacts/.playwright-artifacts-0/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/REJECTED_DRAFT_REPAIR/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/EXTENDED_METHOD_CONTRACT/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/M35_3C17_QUALIFICATION/MERGED_STATE.json\n",
+  "read_basis": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/ASSESSMENT.md",
+      "sha256": "c948cb13ac5d825b0d201074cad50e9b8f4d9de916bc246f574e8304121b72e6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/_run_records/loads/RETURN.md",
+      "sha256": "187c67f1267d036bf1f19bab60c271f2ba78234fa1b14c76875b0fb514afc07b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/M35_3C17_QUALIFICATION/RETURN.md",
+      "sha256": "c554f902ec464f027815409285794b9b9a2407cde6a3cdb28456169336f77ba0"
+    }
+  ],
+  "limits": "Complete scoped graph diff plus new merged-state JSON reviewed. Existing source/qualification reviews carried; no fresh source review, suites, native actions, remote calls, source/graph/Git edits, or delegation. Other live primary writes remain excluded."
+}
