@@ -139,13 +139,13 @@ checkpoint group 1 on 2026-09-24 (verbatim in its `Decision_Log.md`; group-1
 snapshot `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
 as HELP_HUMAN had asked, which HELP_HUMAN records as selecting the
 resolution note's Section A options (interpretation in the group-1
-`DECISION.md`); the checkpoint-2 package was prepared and independently verified on 2026-09-25 and awaits the owner (see What's next). The pre-change audit is
+`DECISION.md`); the owner accepted checkpoint 2 on 2026-09-25 (see What's next). The pre-change audit is
 `execution/_Evaluation/DecompCoverage/COV_SCA005_PRECHANGE_2026-09-23_2139/`
 (`WARNINGS`: 0 blockers / 3 warnings). The design note
 `execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md`
 recommended feed model O-B2 with presence option P-β; both were selected at
-checkpoint 1. Owner checkpoints 2 (exact amendment and propagation
-plan) and 3 (audited poststate) remain; `_ScopeChange/_LATEST.md` still
+checkpoint 1. The owner accepted checkpoint 2 (exact amendment and propagation
+plan) on 2026-09-25; checkpoint 3 (audited poststate) remains; `_ScopeChange/_LATEST.md` still
 names SCA-004 until acceptance. The `D-PEC-79` postimage is an SCA-005 intake
 input (`SCA005-CP1-D79`), not applied.
 
@@ -191,30 +191,30 @@ P-A.
 
 Current owner gates (2026-09-25; none is accepted or inferred here):
 
-- **SCA-005 checkpoint 2:** the package is prepared and independently
-  verified (2026-09-25) in `execution/_ScopeChange/SCA-005_2026-09-23_2139/`:
-  `Amendment_Preview.md`, `Propagation_Plan.md`, `Amendment_Actions_CP2.csv`
-  (79 actions), `Supersession_Delta.csv`, `PRD_V2_3_SUCCESSOR_DIFF.md` and the
-  `CP2_CANDIDATE/` postimages (decomposition revision 1.5 and the PRD v2.3
-  successor candidate). It carries the group-1 snapshot, amendments 1 and 2
-  and the `D-PEC-90` note. The owner's questions are at the end of
-  `Propagation_Plan.md` (Q-CP2-A, the whole package at its hashes; Q-CP2-1 to
-  Q-CP2-4). Nothing is applied; checkpoint 3 (audited poststate) follows.
+- **SCA-005 checkpoint 3:** the owner accepted checkpoint 2 on 2026-09-25
+  (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/`;
+  register row `D-PEC-92`): the exact amendment to decomposition revision 1.5,
+  the propagation plan and the PRD v2.3 successor candidate, with Lane A4 (the
+  new DEL-02-08/09 folders) deferred to PROJECT_SETUP under its own packet.
+  Checkpoint-3 preparation applies the accepted writes, audits the result and
+  brings the audited poststate to the owner; revision 1.4 and PRD v2.2 stay
+  current until then.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
-- **Later rulings:** live application of the `D-PEC-79` postimage (only via
-  SCA-005 checkpoint 2 if accepted there) and PEC loop-method migration
-  (`D-PEC-86` §3 I-7, after SCA-005 closes).
+- **Later rulings:** PEC loop-method migration (`D-PEC-86` §3 I-7, after
+  SCA-005 closes). The `D-PEC-79` hunks ride the accepted PRD v2.3 successor
+  and are applied in SCA-005 checkpoint-3 preparation.
 - **Agent reliance on PEC data:** the owner ruled `D-PEC-90` R-A on
   2026-09-25: agents may act on PEC record-tier data as true as of the
   response's examined-through commit, within stated bounds, and authority
   stays file-native; agents may eventually query PEC directly through tool
   calls. Reliance begins at a PEC release whose gates prove parity and
   coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
-  amended by a later PEC scope change after SCA-005 checkpoint 2 is accepted;
-  until then the v2.2 wording stands. Checkpoint 2 carries a note so
-  DEL-04-01 and the §8 refresh are not rebuilt around verify-before-rely.
+  amended by a later PEC scope change, which may be prepared now that SCA-005
+  checkpoint 2 is accepted; until then the existing wording stands (the v2.3
+  successor keeps it). Checkpoint 2 carried a note so DEL-04-01 and the §8
+  refresh are not rebuilt around verify-before-rely.
 
 Gate lineage (historical record; the current gates are listed above):
 
@@ -319,7 +319,7 @@ D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. SCA-005 opened at Gate 1 on 2026-09-23 under
 `D-PEC-86`; the owner accepted its checkpoint group 1 on 2026-09-24
 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`, amended additively the same day by
-`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); checkpoints 2 and 3 remain.
+`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-92`); checkpoint 3 remains.
 `D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
