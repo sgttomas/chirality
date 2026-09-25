@@ -1,0 +1,11 @@
+Resume as HELP_HUMAN for projects/chirality-piping, following current Root/project AGENTS.md, agents/AGENT_HELP_HUMAN.md and loop/LOOP_INIT.md. Solver correctness and the activated validation programme take priority; use expert judgment on sequencing. Users supply operational material/component libraries and code rules; do not populate them.
+
+Fetch codex/piping-pipes-20260924 and first read this project-relative handoff and the current work graph:
+execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SESSION_HANDOFF_2026-09-25/HANDOFF.md
+execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md
+
+Recover PR905 at e65001ad50072d3399bf204da02055b0f360353a and its pushed repair checkpoint codex/piping-engine-handoff-20260925 at 5b1ccd356c0d9656f7b9f42c6558f7a4c73f9295. PR905 is draft and failed, not merge-ready. Review the four repaired leaf lockfiles and native-input impact, diagnose the five captured browser failures, then complete actual-head CI, clean DEC-025 and final independent readiness before merging. Preserve completed native/static/reference/component reviews and merged gates; do not repeat them without a changed consequence.
+
+Continue the separate partial M10/M16/M29 load/reference-state undertaking from codex/piping-load-states-20260925 at f2112be747b7b37dc4b30e96eacbb75c75a82820. Use WORKING_ITEMS to integrate it and TASK for bounded work, with full supplied roles and explicit shared-file ownership. Private modules/fixtures are uncompiled/unreviewed WIP, not a completed capability; required source-recovery and connected authoring/readers remain. Use HELPS_HUMANS for design questions. Keep this new capability out of PR905.
+
+Only M04/M09/M24/M35 are closed:4 of 38. Preserve the broader graph, one final closeout/receipt, resolved C4 choices and already-authorized live tranche with actual-human witnesses still open. General UI/live work stays deferred behind solver needs. Coordinate any new Runtime/App configuration dependency with task 01a07cd1-86da-7d30-9b17-e2cbbad3f10a. Preserve the six dirty UI files and archived deferred WIP; do not mix them into the solver candidate. No old worker is still active; re-establish execution ownership and proceed with authorized work.

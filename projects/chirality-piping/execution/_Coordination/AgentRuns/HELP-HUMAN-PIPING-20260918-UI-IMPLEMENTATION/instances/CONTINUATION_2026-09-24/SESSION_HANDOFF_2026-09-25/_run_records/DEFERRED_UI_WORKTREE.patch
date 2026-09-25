@@ -1,0 +1,184 @@
+diff --git a/projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts b/projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts
+index 8fa1ecc921..1d61034d5f 100644
+--- a/projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts
++++ b/projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts
+@@ -25,14 +25,21 @@ test("B4 Pipes absent zero, entered unit, material ID and history use real opera
+   await info.attach("pipe-final-model-hash", { body: await currentModelHashThroughVisibleExport(page), contentType: "text/plain" });
+ });
+ 
+-test("B4 Pipes shared section effective-wall rejection preserves model and history", async ({ page, browser }, info) => {
++for (const reduction of [10, 100]) test(`B4 Pipes shared section effective-wall rejection ${reduction} preserves draft, model and history`, async ({ page, browser }, info) => {
+   await attachBrowserIdentity(browser, info); const { model } = await readFixture("precision-origin-base.model.json"); const pipe = model.pipe_segments[0];
+   model.sections = [...(model.sections ?? []), { id: "section:B4-pipe", name: "Invented section", section_type: "pipe", properties: { outside_diameter: { value: 100, unit: "mm" }, wall_thickness: { value: 10, unit: "mm" } }, provenance: "invented Pipe browser fixture" }];
+   pipe.section_ref = "section:B4-pipe"; pipe.section.outside_diameter = { value: 100, unit: "mm" }; pipe.section.wall_thickness = { value: 10, unit: "mm" }; pipe.section.mill_tolerance = { value: 0, unit: "mm" };
+   await openPipes(page, model); const table = page.getByTestId("pipe-engineering-table"), cell = table.getByTestId(`table-cell-${pipe.id}-mill-tolerance`);
+-  const before = await currentModelHashThroughVisibleExport(page); await cell.dblclick(); await table.getByRole("textbox").fill("10"); await table.getByRole("button", { name: "Apply", exact: true }).click();
+-  await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
++  const before = await currentModelHashThroughVisibleExport(page); await cell.dblclick(); await table.getByRole("textbox").fill(String(reduction)); await table.getByRole("button", { name: "Apply", exact: true }).click();
++  await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(table.getByRole("textbox")).toHaveValue(String(reduction)); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+   await table.getByRole("button", { name: "Cancel", exact: true }).click(); expect(await currentModelHashThroughVisibleExport(page)).toBe(before); await expect(cell).toHaveText("0");
++  // A new rejected attempt can be corrected in place; only the accepted retry enters history.
++  await cell.dblclick(); await table.getByRole("textbox").fill(String(reduction)); await table.getByRole("button", { name: "Apply", exact: true }).click();
++  await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(table.getByRole("textbox")).toHaveValue(String(reduction));
++  await table.getByRole("textbox").fill("1"); await table.getByRole("button", { name: "Apply", exact: true }).click(); await expect(cell).toHaveText("1");
++  await page.getByTestId("workspace-undo").click(); await expect(cell).toHaveText("0"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
++  expect(await currentModelHashThroughVisibleExport(page)).toBe(before);
++  await page.getByTestId("workspace-redo").click(); await expect(cell).toHaveText("1");
+ });
+ 
+ 
+@@ -58,7 +65,7 @@ for (const reduction of [10, 11]) test(`B4 Pipes unbound mill tolerance ${reduct
+   delete pipe.section_ref; pipe.section.outside_diameter = { value: 100, unit: "mm" }; pipe.section.wall_thickness = { value: 10, unit: "mm" }; pipe.section.mill_tolerance = { value: 0, unit: "mm" };
+   await openPipes(page, model); const before = await currentModelHashThroughVisibleExport(page); const table = page.getByTestId("pipe-engineering-table"), cell = table.getByTestId(`table-cell-${pipe.id}-mill-tolerance`);
+   await cell.dblclick(); await table.getByRole("textbox").fill(String(reduction)); await table.getByRole("button", { name: "Apply", exact: true }).click();
+-  await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
++  await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(table.getByRole("textbox")).toHaveValue(String(reduction)); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+   await table.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(cell).toHaveText("0"); expect(await currentModelHashThroughVisibleExport(page)).toBe(before);
+ });
+ 
+diff --git a/projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts b/projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts
+index d92c8b70dc..ef5573edf9 100644
+--- a/projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts
++++ b/projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts
+@@ -25,9 +25,10 @@ test("B4 Sections mixed-unit direct editing preserves no-op, rejection, shared-p
+   const od = table.getByTestId("table-cell-section:B4-0-outside"), wall = table.getByTestId("table-cell-section:B4-0-wall");
+   await od.dblclick(); const input = table.getByRole("textbox"); await input.fill("2.00"); await table.getByRole("button", { name: "Apply", exact: true }).click();
+   await expect(input).toHaveCount(0); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
++  const beforeRejection = await currentModelHashThroughVisibleExport(page);
+   await wall.dblclick(); await expect(input).toHaveAccessibleName("section:B4-0 Wall [mm]"); await input.fill("3"); await table.getByRole("button", { name: "Apply", exact: true }).click();
+-  await expect(input).toHaveValue("10"); await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+-  await table.getByRole("button", { name: "Cancel", exact: true }).click();
++  await expect(input).toHaveValue("3"); await expect(table.getByRole("alert")).toContainText("Engine rejected"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
++  await table.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(wall).toHaveText("10"); expect(await currentModelHashThroughVisibleExport(page)).toBe(beforeRejection);
+   await wall.dblclick(); await input.fill("12"); await table.getByRole("button", { name: "Apply", exact: true }).click(); await expect(wall).toHaveText("12");
+   await page.getByTestId("workspace-undo").click(); await expect(wall).toHaveText("10"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+   await page.getByTestId("workspace-redo").click(); await expect(wall).toHaveText("12");
+diff --git a/projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx b/projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx
+index 7065975de9..c5f889e4e2 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx
+@@ -498,6 +498,9 @@ export function LoadCaseManagerPanel({
+             <span>ID</span>
+             <input
+               aria-label="New load case id"
++              autoCapitalize="none"
++              autoCorrect="off"
++              spellCheck={false}
+               data-testid="load-manager-create-load-id"
+               onChange={(event) => updateLoadCaseDraft("id", event.target.value)}
+               value={loadCaseDraft.id}
+@@ -516,6 +519,9 @@ export function LoadCaseManagerPanel({
+             <span>Kind</span>
+             <input
+               aria-label="New load case kind"
++              autoCapitalize="none"
++              autoCorrect="off"
++              spellCheck={false}
+               data-testid="load-manager-create-load-kind"
+               onChange={(event) => updateLoadCaseDraft("kind", event.target.value)}
+               value={loadCaseDraft.kind}
+diff --git a/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx b/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx
+index a4381844aa..2c83382a57 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx
+@@ -25,12 +25,12 @@ describe("EngineeringTable interaction ownership", () => {
+     fireEvent.change(edit(), { target: { value: "99" } }); fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+     expect(cell()).toHaveTextContent("12.5"); expect(apply).toHaveBeenCalledTimes(1);
+   });
+-  it("keeps invalid text but reverts actual engine rejection with its diagnostic", async () => {
++  it("retains local-invalid and engine-rejected drafts with distinct diagnostics and canonical Cancel", async () => {
+     const apply = vi.fn(async () => ({ applied: false, rejected: true, messages: ["ZERO_LENGTH: Element has no length"] })); render(<Harness apply={apply} />);
+     const input = edit(); fireEvent.change(input, { target: { value: "not a length" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+     expect(input).toHaveValue("not a length"); expect(input).toHaveAttribute("aria-invalid", "true"); expect(apply).not.toHaveBeenCalled();
+     fireEvent.change(input, { target: { value: "3" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+-    await waitFor(() => expect(input).toHaveValue("0")); expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: ZERO_LENGTH: Element has no length");
++    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: ZERO_LENGTH: Element has no length")); expect(input).toHaveValue("3"); expect(input).toHaveAttribute("aria-invalid", "true"); expect(apply).toHaveBeenCalledTimes(1);
+     fireEvent.click(screen.getByRole("button", { name: "Cancel" })); expect(cell()).toHaveTextContent("0");
+   });
+   it("uses file order for Enter under view sort, view order for Tab/arrows, and leaves caret/text undo keys alone", async () => {
+@@ -74,6 +74,16 @@ describe("EngineeringTable interaction ownership", () => {
+     await act(async () => complete({ applied: true, messages: [] }));
+     expect(cell()).toHaveTextContent("6"); expect(cell(1, "y")).toHaveTextContent("0"); expect(outside).toHaveFocus();
+   });
++  it("retains an asynchronous rejected draft without taking external focus or changing canonical state", async () => {
++    let complete!: (result: TableApplyResult) => void;
++    const apply = vi.fn(() => new Promise<TableApplyResult>((resolve) => { complete = resolve; }));
++    render(<Harness apply={apply} />); const input = edit();
++    fireEvent.change(input, { target: { value: "100" } }); fireEvent.keyDown(input, { key: "Enter" });
++    const outside = screen.getByRole("button", { name: "Outside" }); act(() => outside.focus());
++    await act(async () => complete({ applied: false, rejected: true, messages: ["SECTION_INVALID"] }));
++    expect(input).toHaveValue("100"); expect(outside).toHaveFocus(); expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: SECTION_INVALID");
++    fireEvent.click(screen.getByRole("button", { name: "Cancel" })); expect(cell()).toHaveTextContent("0"); expect(apply).toHaveBeenCalledTimes(1);
++  });
+   it("refuses a before-value change without silently rebasing a draft", async () => {
+     const apply = vi.fn(async () => ({ applied: true, messages: [] }));
+     const initial = rows();
+@@ -162,7 +172,7 @@ describe("EngineeringTable interaction ownership", () => {
+     const input = edit(2, "z"); fireEvent.change(input, { target: { value: "invalid" } }); fireEvent.keyDown(input, { key: "Tab" });
+     expect(input).toHaveFocus(); expect(input).toHaveValue("invalid"); expect(apply).not.toHaveBeenCalled();
+     fireEvent.change(input, { target: { value: "3" } }); fireEvent.keyDown(input, { key: "Tab" });
+-    await waitFor(() => expect(input).toHaveValue("0")); expect(input).toHaveFocus(); expect(screen.getByRole("alert")).toHaveTextContent("BOUNDARY_REJECTION");
++    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("BOUNDARY_REJECTION")); expect(input).toHaveValue("3"); expect(input).toHaveFocus();
+   });
+   it("does not steal external focus when a pending boundary Apply completes", async () => {
+     let complete!: (result: TableApplyResult) => void; const apply = vi.fn(() => new Promise<TableApplyResult>((resolve) => { complete = resolve; }));
+@@ -309,7 +319,7 @@ it("keeps text rejection local and ignores a late text completion after same-ID
+   const view = render(<EngineeringTable {...props} />);
+   fireEvent.doubleClick(cell(0, "label")); fireEvent.change(screen.getByRole("textbox"), { target: { value: "Rejected" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+   await act(async () => complete({ applied: false, rejected: true, messages: ["TEXT_REJECTED"] }));
+-  expect(screen.getByRole("textbox")).toHaveValue("Original"); expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: TEXT_REJECTED");
++  expect(screen.getByRole("textbox")).toHaveValue("Rejected"); expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: TEXT_REJECTED");
+   fireEvent.change(screen.getByRole("textbox"), { target: { value: "Pending" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
+   view.rerender(<EngineeringTable {...props} generation="p:2" />);
+   fireEvent.doubleClick(cell(0, "label")); fireEvent.change(screen.getByRole("textbox"), { target: { value: "New draft" } });
+diff --git a/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx b/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx
+index 98240d31f1..5955dbe7f7 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx
+@@ -260,7 +260,7 @@ export function EngineeringTable(props: Props) {
+       return false;
+     }
+     if (result.rejected && !result.applied) {
+-      setEdit({ ...current, text: captured.before, pending: false, error: `Engine rejected: ${result.messages.join(" · ") || "The value was not accepted."}` });
++      setEdit({ ...current, pending: false, error: `Engine rejected: ${result.messages.join(" · ") || "The value was not accepted."}` });
+       return false;
+     }
+     setEdit(null);
+diff --git a/projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx b/projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx
+index 4a9379f07d..2773f500fd 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx
+@@ -274,6 +274,33 @@ describe("compact pan active material draft ownership", () => {
+ });
+ 
+ describe("Pipe optional quantities and material references", () => {
++  it.each(["cancel", "correct-and-retry"])("retains a rejected 100 mm Pipe draft through %s with the original canonical basis", async (recovery) => {
++    const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; pipe.section.mill_tolerance = { value: 0, unit: "mm" };
++    const before = structuredClone(model);
++    const apply = vi.fn(async (_intent: import("../../../types").EditorOperationIntent) => ({ applied: false, rejected: true, messages: ["OP-SECTION-BINDING-INVALID: Mill tolerance must be nonnegative and leave a positive effective wall"] }));
++    const props = { model, selection: { type: "pipe" as const, id: pipe.id }, onSelect: vi.fn(), onApplyCellIntent: apply };
++    const view = render(<ModelTree {...props} />);
++    fireEvent.click(screen.getByTestId("layout-mode-grid")); const table = screen.getByTestId("pipe-engineering-table");
++    const cell = () => screen.getByTestId(`table-cell-${pipe.id}-mill-tolerance`);
++    fireEvent.doubleClick(cell()); const input = table.querySelector("input")!;
++    fireEvent.change(input, { target: { value: "100" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
++    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Engine rejected: OP-SECTION-BINDING-INVALID"));
++    expect(input).toHaveValue("100"); expect(input).toHaveFocus(); expect(input).toHaveAttribute("aria-invalid", "true");
++    expect(model).toEqual(before); expect(apply).toHaveBeenCalledTimes(1);
++    expect(apply.mock.calls[0][0].change).toMatchObject({ before: "0", unit: "mm", after: '{"value":100,"unit":"mm"}' });
++    if (recovery === "cancel") {
++      fireEvent.click(screen.getByRole("button", { name: "Cancel" })); expect(cell()).toHaveTextContent("0"); expect(apply).toHaveBeenCalledTimes(1); expect(model).toEqual(before);
++    } else {
++      apply.mockResolvedValueOnce({ applied: true, rejected: false, messages: [] });
++      fireEvent.change(input, { target: { value: "1" } }); fireEvent.click(screen.getByRole("button", { name: "Apply" }));
++      await waitFor(() => expect(table.querySelector("input")).toBeNull());
++      expect(apply).toHaveBeenCalledTimes(2); expect(apply.mock.calls[1][0].change).toMatchObject({ before: "0", unit: "mm", after: '{"value":1,"unit":"mm"}' });
++      expect(apply.mock.calls[1][0].operation_id).not.toBe(apply.mock.calls[0][0].operation_id);
++      const accepted = structuredClone(model); accepted.pipe_segments[0].section.mill_tolerance = { value: 1, unit: "mm" };
++      view.rerender(<ModelTree {...props} model={accepted} />); expect(cell()).toHaveTextContent("1"); expect(screen.queryByRole("alert")).not.toBeInTheDocument();
++    }
++  });
++
+   it("does not dispatch equivalent explicit-unit edits, but rejects a different unit", async () => {
+     const model = structuredClone(await loadPreviewModel()); const pipe = model.pipe_segments[0]; pipe.section.mill_tolerance = { value: 0, unit: "mm" };
+     const apply = vi.fn(async (_intent: import("../../../types").EditorOperationIntent) => ({ applied: true, messages: [] }));

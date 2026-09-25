@@ -1,0 +1,33 @@
+{
+  "kind": "Current retained instruction/skill bytes for handoff reconstruction, not new authority",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    }
+  ],
+  "engine_handoff": "5b1ccd356c0d9656f7b9f42c6558f7a4c73f9295",
+  "load_state_wip": "f2112be747b7b37dc4b30e96eacbb75c75a82820",
+  "pr905_published": "e65001ad50072d3399bf204da02055b0f360353a",
+  "owner_steering": "Please prepare your work for hand over and give me the steering instructions for an agent in a different session.",
+  "active_agents_at_handoff": [
+    "/root"
+  ],
+  "owned_running_builds_or_sweeps": []
+}

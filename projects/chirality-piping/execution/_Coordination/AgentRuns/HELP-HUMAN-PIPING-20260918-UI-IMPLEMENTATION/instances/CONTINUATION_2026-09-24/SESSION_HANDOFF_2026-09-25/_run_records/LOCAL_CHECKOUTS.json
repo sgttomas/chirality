@@ -1,0 +1,12 @@
+{
+  "primary": "/Users/ryan/.codex/worktrees/6614/chirality",
+  "engine_handoff": "/private/tmp/piping-engine-integration-20260925",
+  "load_states": "/private/tmp/piping-load-states-20260925",
+  "preserved_validation": "/private/tmp/piping-validation-foundation-20260925",
+  "qualification_private": "/private/tmp/piping-joined-qualification-20260925",
+  "native_private": "/private/tmp/piping-native-engine-records-20260925",
+  "headless_build": "/private/tmp/piping-validation-headless-20260925",
+  "python": "/private/tmp/chirality-piping-dec025-venv/bin/python",
+  "node_bin": "/Users/ryan/.local/share/mise/installs/node/24/bin",
+  "note": "Actual local paths are optional recovery aids, not authoritative project anchors. Native model/store rows remain private; no global Cargo target. Root broad staging was auto-review-rejected, then an exact ownership-checked path list was approved; no approval block remains."
+}

@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "target": "../../../../../WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "../OWNER_PHYSICS_AUTHORITY_2026-09-25.md",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "_run_records/LOCAL_CHECKOUTS.json",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "https://github.com/sgttomas/chirality/blob/5b1ccd356c0d9656f7b9f42c6558f7a4c73f9295/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/CI_REPAIR/_run_records/readiness_precheck/RETURN.md",
+      "exists": true,
+      "kind": "git_blob"
+    },
+    {
+      "target": "https://github.com/sgttomas/chirality/blob/5b1ccd356c0d9656f7b9f42c6558f7a4c73f9295/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/ENGINE_INTEGRATION/CI_REPAIR/HANDOFF.md",
+      "exists": true,
+      "kind": "git_blob"
+    },
+    {
+      "target": "https://github.com/sgttomas/chirality/blob/5b1ccd356c0d9656f7b9f42c6558f7a4c73f9295/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/JOINED_ENGINE_NATIVE/RETURN.md",
+      "exists": true,
+      "kind": "git_blob"
+    },
+    {
+      "target": "../RESUME_VALIDATION_COURSE/NEXT_LOAD_STATE_ALLOCATION.md",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "../CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/RETURN.md",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "https://github.com/sgttomas/chirality/blob/f2112be747b7b37dc4b30e96eacbb75c75a82820/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LOAD_STATE_IMPLEMENTATION/HANDOFF.md",
+      "exists": true,
+      "kind": "git_blob"
+    },
+    {
+      "target": "_run_records/DEFERRED_UI_WORKTREE.patch",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "_run_records/DEFERRED_UNTRACKED_RECORDS.tar.gz",
+      "exists": true,
+      "kind": "local"
+    },
+    {
+      "target": "_run_records/DEFERRED_WORK_CUSTODY.json",
+      "exists": true,
+      "kind": "local"
+    }
+  ],
+  "kind": "Root mechanical recovery check; no independent acceptance claimed"
+}
