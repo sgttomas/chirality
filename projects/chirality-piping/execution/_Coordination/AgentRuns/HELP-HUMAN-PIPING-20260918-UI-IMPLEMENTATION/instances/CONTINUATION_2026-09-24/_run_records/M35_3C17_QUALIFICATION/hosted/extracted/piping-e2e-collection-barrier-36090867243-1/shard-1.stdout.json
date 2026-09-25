@@ -1,0 +1,841 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/playwright.config.ts",
+    "rootDir": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium-desktop",
+        "name": "chromium-desktop",
+        "testDir": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium-compact",
+        "name": "chromium-compact",
+        "testDir": "/home/runner/work/chirality/chirality/projects/chirality-piping/apps/desktop/e2e",
+        "testIgnore": [
+          "**/*-dist.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "url": "http://127.0.0.1:5174"
+    }
+  },
+  "suites": [
+    {
+      "title": "b4-table-editing.spec.ts",
+      "file": "b4-table-editing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "B4 node coordinates apply through one operation with keyboard, history and saved-state ownership",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-182dfe51bb974081b623",
+          "file": "b4-table-editing.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "B4 virtualized invalid editor survives scrolling and a filter threshold without changing the model",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-fc26df899fe5cd87a1ca",
+          "file": "b4-table-editing.spec.ts",
+          "line": 51,
+          "column": 1
+        },
+        {
+          "title": "B4 Both with Inspector keeps pointer horizontal scrolling inside the coordinate table",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-1b177527d98f01e25e08",
+          "file": "b4-table-editing.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "B4 short Grid keeps vertical chrome fixed and retains alternate review drafts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-5f0c592946b632478b31",
+          "file": "b4-table-editing.spec.ts",
+          "line": 176,
+          "column": 1
+        },
+        {
+          "title": "B4 virtual Grid confines body scrolling and boundary wheel without moving chrome",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-870c55da79cdd62fd0ba",
+          "file": "b4-table-editing.spec.ts",
+          "line": 209,
+          "column": 1
+        },
+        {
+          "title": "B4 text fields apply, recover filtered focus, preserve text Undo and retain review drafts through pointer Queue and Clear",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-d9984df6fb17067f919d",
+          "file": "b4-table-editing.spec.ts",
+          "line": 261,
+          "column": 1
+        },
+        {
+          "title": "B4 character-start direct label appends ordinary keys and preserves intentional selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-7ff76edbc4403b3c9b32",
+          "file": "b4-table-editing.spec.ts",
+          "line": 324,
+          "column": 5
+        },
+        {
+          "title": "B4 character-start direct x appends ordinary keys and preserves intentional selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-96d4f857d13136b7b809",
+          "file": "b4-table-editing.spec.ts",
+          "line": 324,
+          "column": 5
+        },
+        {
+          "title": "B4 character-start review label appends ordinary keys and preserves intentional selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-e97874733e5b59376b91",
+          "file": "b4-table-editing.spec.ts",
+          "line": 324,
+          "column": 5
+        },
+        {
+          "title": "B4 character-start review x appends ordinary keys and preserves intentional selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-9254ac5fe44ebc66f392",
+          "file": "b4-table-editing.spec.ts",
+          "line": 324,
+          "column": 5
+        },
+        {
+          "title": "B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-307e6d13fc6cb3c94cd8",
+          "file": "b4-table-editing.spec.ts",
+          "line": 363,
+          "column": 1
+        },
+        {
+          "title": "B4 Materials stable editor owns character starts, virtual scrolling, filtering and resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-cea3bf036e2324c23258",
+          "file": "b4-table-editing.spec.ts",
+          "line": 454,
+          "column": 1
+        },
+        {
+          "title": "B4 Materials Apply Tab keeps the first Shear character while another quantity reconverts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-c9621dfb135f955c3ac6",
+          "file": "b4-table-editing.spec.ts",
+          "line": 507,
+          "column": 1
+        },
+        {
+          "title": "B4 diagnostic Node sorted review preserves text Undo after an active row crosses downward",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-abe29db4511ce9db5302",
+          "file": "b4-table-editing.spec.ts",
+          "line": 554,
+          "column": 1
+        },
+        {
+          "title": "B4 Node review retained editor stays contained through hidden families and page resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-0503966d76473344cae1",
+          "file": "b4-table-editing.spec.ts",
+          "line": 618,
+          "column": 1
+        },
+        {
+          "title": "B4 compact drawer model comfortable 180 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-cba525da1dfd50e911d7",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer model comfortable 280 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-9d0c6c690741ad0d9143",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer model comfortable 500 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-196a033d899fca28b585",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both comfortable 180 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-67f76f582ac540fdeef2",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both comfortable 280 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-13d82a9b3b90f14a358e",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both comfortable 500 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-824bc929e43944c1aa0f",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer model compact 180 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-a08e3a71667b4ca411ee",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer model compact 280 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-2c27c08fac1b2b1a5a59",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer model compact 500 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-281c90c7a5b1f207bc75",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both compact 180 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-742fed140ddc12df1e2c",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both compact 280 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-021ec0a602805e9ab0ac",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 compact drawer both compact 500 @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-d8d771b77bd797224532",
+          "file": "b4-table-editing.spec.ts",
+          "line": 651,
+          "column": 3
+        },
+        {
+          "title": "B4 Details owns traversed Escape and preserves editor ownership in model @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-59ec4c2ea37e6799eeee",
+          "file": "b4-table-editing.spec.ts",
+          "line": 717,
+          "column": 3
+        },
+        {
+          "title": "B4 Details owns traversed Escape and preserves editor ownership in both @explicit-viewport",
+          "ok": true,
+          "tags": [
+            "explicit-viewport"
+          ],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-desktop",
+              "projectName": "chromium-desktop",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f49393ff246acadcad3-85dc5dd14b2e7556b380",
+          "file": "b4-table-editing.spec.ts",
+          "line": 717,
+          "column": 3
+        }
+      ],
+      "suites": [
+        {
+          "title": "classic scrollbar allocation",
+          "file": "b4-table-editing.spec.ts",
+          "line": 781,
+          "column": 13,
+          "specs": [
+            {
+              "title": "B4 classic scrollbar compact comfortable 1 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-ad61465630b4cd21b573",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            },
+            {
+              "title": "B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-f977442a8fa00e5fab40",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            },
+            {
+              "title": "B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-da2e05a8c80414a0568f",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            },
+            {
+              "title": "B4 classic scrollbar compact compact 1 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-60ca38cccaa5090efcd2",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            },
+            {
+              "title": "B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-d2e5ef5fe3a869c41f7d",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            },
+            {
+              "title": "B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport",
+              "ok": true,
+              "tags": [
+                "explicit-viewport"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6f49393ff246acadcad3-1670ff4f6ad8fc0b7c12",
+              "file": "b4-table-editing.spec.ts",
+              "line": 783,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-25T03:38:38.158Z",
+    "duration": 68.61599999999999,
+    "expected": 0,
+    "skipped": 35,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

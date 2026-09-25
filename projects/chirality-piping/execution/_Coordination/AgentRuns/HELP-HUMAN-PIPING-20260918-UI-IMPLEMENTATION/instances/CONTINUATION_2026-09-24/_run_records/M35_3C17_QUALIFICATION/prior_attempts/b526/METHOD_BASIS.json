@@ -1,0 +1,34 @@
+{
+  "reviewer": "/root/m35_integration_review",
+  "candidate": "b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d",
+  "pr": 892,
+  "run_id": 36089968220,
+  "method_sources": [
+    {
+      "name": "collect.py",
+      "method_origin": "/private/tmp/piping-hosted-binding-20260924/885-129/collect.py",
+      "method_origin_sha256": "60e3b4d39fedfef7cb6e023c4ab629afa238158e0e70ea640235f0e45ad7f60e",
+      "adapted_sha256": "f13e59169c3cb3cb038c165fe6fd62bdb14a1c3bb98f2f213023ff07d466851a"
+    },
+    {
+      "name": "verify-source.py",
+      "method_origin": "/private/tmp/piping-hosted-binding-20260924/885-129/verify-source.py",
+      "method_origin_sha256": "cc2288e45978844879d1c92006e1f73d5e2a334aaccaab5f19b05c11bc46c1d7",
+      "adapted_sha256": "f796d9dd73bab3ab96ff05f02870c990e398ef597cbb8e7b69bca561d66b169b"
+    },
+    {
+      "name": "verify-numerical.py",
+      "method_origin": "/private/tmp/piping-hosted-binding-20260924/885-129/verify-numerical.py",
+      "method_origin_sha256": "f27905d0502b79e979b9929dc81f82d9597d537dac96a3dd0abebe16e4d1179a",
+      "adapted_sha256": "0aacbffa52eef033b4881a4537a0fa9eff0aed82a5cf9eecebca11b081296f31"
+    }
+  ],
+  "adaptations": [
+    "Collector accepts explicit head/run/PR, preserves incomplete status, acquires only completed job logs, validates artifact and PR event bindings.",
+    "Source verifier derives registered inventory and profile list from exact candidate Git, hashes every source spec/config/selector/duration input, validates full partition union and actual successful job execution; binding emitted only for completed successful workflow.",
+    "Numerical verifier derives manifest inventory from candidate release-readiness roots, derives command/input counts dynamically and verifies every retained log and exact Git input hash."
+  ],
+  "not_reused": "No earlier PR885 result, test count or qualification is carried into PR892 evidence.",
+  "network_boundary": "Initial sandbox gh call could not connect; normal read-only elevated network request succeeded. One unquoted endpoint shell glob rejected; quoting repaired that command without rerun or source change.",
+  "governance_failure": "Actual b526 portability failure retained in governance-failed.log/governance-run.json. ROOT performs correction; this reviewer does not rerun CI."
+}

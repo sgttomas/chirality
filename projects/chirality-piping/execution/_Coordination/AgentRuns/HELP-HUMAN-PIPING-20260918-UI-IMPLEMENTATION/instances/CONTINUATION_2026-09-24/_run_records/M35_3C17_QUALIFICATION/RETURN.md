@@ -1,0 +1,14 @@
+# M35 candidate qualification
+
+The checked product candidate is `3c17e267dd06ee561e8dc9984f6623126095eec1`, PR892. Its independently reviewed source remains unchanged. This record preserves the candidate checks; it does not assert a future merge or complete the wider undertaking.
+
+- Actual-head hosted source run36090867243 covers495 identities:475 passed,20 explicit existing skips, no missing/duplicate/unexpected identities. All38 numerical crate graphs pass1141 tests, zero ignored. Governance and required aggregate checks pass. The binding, raw acquisition, archives, logs and independent verification are under `hosted/`.
+- Clean DEC-025 `SWEEP_20260925T035502Z_3c17e267dd06` passes all five surfaces: local Rust1141, Python1155 plus18 subtests, desktop1675 across104 files, the verified hosted browser binding, and production build. The original environment, commands and raw log are under `local/`. Python304 warnings, expected test-environment console output and the existing bundle-size warning remain visible; passing checks do not erase them.
+- Practitioner self-check exits0;379 harness tests and scoped tranche validation pass. The self-check retains its existing informational/review/warning observations with no BLOCK. These checks do not imply practitioner usability acceptance.
+- [Native verification](../M35_NATIVE/RETURN.md), committed with its independent review at `e350573450daa35f00f4a45cc6a1dab6b204b223`, covers the actual refresh, history, persistence and explicit-manual workflows. Its926 maintained inputs match this candidate. Full native-created models remain outside Git; agent-operated Apply is not a live-controller human witness.
+
+The earlier644 attempt failed coverage selection after main advanced; no product-test pass is inferred from it. The b526 attempt retained a successful numerical job, partial source execution and the governance failure caused by two copied records with machine-local paths. The evidence-only portability repair is independently checked and actual3c17 passes. `prior_attempts/` retains these outcomes; no source binding is emitted for the cancelled b526 run.
+
+`CUSTODY.json` binds the exact copied records. The sweep started clean and generated one untracked summary afterward. ROOT preserved its identical bytes in this packet before removing that generated working-copy output; the product candidate is clean again. No product change followed the checks. Final independent qualification review is retained under `review/`.
+
+The generated-load repair and the already merged PR886 moment-token repair cover the original M35 obligations. Broader M30 mass modelling, pressure/stress and numerical successor work, the separately discovered section-density authoring omission, general UI and live-control qualification remain on their existing graph paths. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).

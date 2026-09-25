@@ -1,0 +1,35 @@
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both compact 280 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Node review retained editor stays contained through hidden families and page resize
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both comfortable 280 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 node coordinates apply through one operation with keyboard, history and saved-state ownership
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model comfortable 500 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Both with Inspector keeps pointer horizontal scrolling inside the coordinate table
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model compact 500 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model compact 280 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Details owns traversed Escape and preserves editor ownership in model @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 short Grid keeps vertical chrome fixed and retains alternate review drafts
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact compact 1 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both comfortable 180 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both compact 180 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 character-start direct label appends ordinary keys and preserves intentional selection
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both comfortable 500 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Details owns traversed Escape and preserves editor ownership in both @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 virtual Grid confines body scrolling and boundary wheel without moving chrome
+[chromium-desktop] › b4-table-editing.spec.ts › B4 character-start review x appends ordinary keys and preserves intentional selection
+[chromium-desktop] › b4-table-editing.spec.ts › B4 character-start direct x appends ordinary keys and preserves intentional selection
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model comfortable 280 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model compact 180 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 diagnostic Node sorted review preserves text Undo after an active row crosses downward
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact comfortable 1 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Materials Apply Tab keeps the first Shear character while another quantity reconverts
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer model comfortable 180 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 Materials stable editor owns character starts, virtual scrolling, filtering and resize
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 compact drawer both compact 500 @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 text fields apply, recover filtered focus, preserve text Undo and retain review drafts through pointer Queue and Clear
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 character-start review label appends ordinary keys and preserves intentional selection
+[chromium-desktop] › b4-table-editing.spec.ts › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport
+[chromium-desktop] › b4-table-editing.spec.ts › B4 virtualized invalid editor survives scrolling and a filter threshold without changing the model

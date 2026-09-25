@@ -1,0 +1,242 @@
+﻿2026-09-25T03:34:13.5860579Z Current runner version: '2.337.0'
+2026-09-25T03:34:13.5884774Z ##[group]Runner Image Provisioner
+2026-09-25T03:34:13.5885622Z Hosted Compute Agent
+2026-09-25T03:34:13.5886150Z Version: 20260828.587
+2026-09-25T03:34:13.5886772Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-25T03:34:13.5887460Z Build Date: 2026-08-28T16:44:25Z
+2026-09-25T03:34:13.5888188Z Worker ID: {31083988-155d-41d1-8b85-a3650e9e98c5}
+2026-09-25T03:34:13.5888830Z Azure Region: westus3
+2026-09-25T03:34:13.5889345Z ##[endgroup]
+2026-09-25T03:34:13.5890669Z ##[group]Operating System
+2026-09-25T03:34:13.5891433Z Ubuntu
+2026-09-25T03:34:13.5891957Z 24.04.5
+2026-09-25T03:34:13.5892427Z LTS
+2026-09-25T03:34:13.5892886Z ##[endgroup]
+2026-09-25T03:34:13.5893388Z ##[group]Runner Image
+2026-09-25T03:34:13.5893951Z Image: ubuntu-24.04
+2026-09-25T03:34:13.5894447Z Version: 20260920.314.1
+2026-09-25T03:34:13.5895622Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-25T03:34:13.5897032Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-25T03:34:13.5897905Z ##[endgroup]
+2026-09-25T03:34:13.5898930Z ##[group]GITHUB_TOKEN Permissions
+2026-09-25T03:34:13.5900970Z Contents: read
+2026-09-25T03:34:13.5901504Z Metadata: read
+2026-09-25T03:34:13.5902102Z ##[endgroup]
+2026-09-25T03:34:13.5904148Z Secret source: Actions
+2026-09-25T03:34:13.5905057Z Cache mode: write
+2026-09-25T03:34:13.5905667Z Prepare workflow directory
+2026-09-25T03:34:13.6282264Z Prepare all required actions
+2026-09-25T03:34:13.6330757Z Getting action download info
+2026-09-25T03:34:13.9204058Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-25T03:34:14.0979292Z Complete job name: Desktop E2E (source mode)
+2026-09-25T03:34:14.1663802Z ##[group]Run actions/checkout@v4
+2026-09-25T03:34:14.1664701Z with:
+2026-09-25T03:34:14.1665373Z   ref: b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:34:14.1666021Z   repository: sgttomas/chirality
+2026-09-25T03:34:14.1669709Z   token: ***
+2026-09-25T03:34:14.1670210Z   ssh-strict: true
+2026-09-25T03:34:14.1670684Z   ssh-user: git
+2026-09-25T03:34:14.1671394Z   persist-credentials: true
+2026-09-25T03:34:14.1671916Z   clean: true
+2026-09-25T03:34:14.1672379Z   sparse-checkout-cone-mode: true
+2026-09-25T03:34:14.1672948Z   fetch-depth: 1
+2026-09-25T03:34:14.1673409Z   fetch-tags: false
+2026-09-25T03:34:14.1673899Z   show-progress: true
+2026-09-25T03:34:14.1674408Z   lfs: false
+2026-09-25T03:34:14.1674851Z   submodules: false
+2026-09-25T03:34:14.1675344Z   set-safe-directory: true
+2026-09-25T03:34:14.1675894Z   allow-unsafe-pr-checkout: false
+2026-09-25T03:34:14.1676846Z env:
+2026-09-25T03:34:14.1677339Z   CI: true
+2026-09-25T03:34:14.1677835Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:34:14.1678529Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:34:14.1679022Z ##[endgroup]
+2026-09-25T03:34:14.2770450Z Syncing repository: sgttomas/chirality
+2026-09-25T03:34:14.2772771Z ##[group]Getting Git version info
+2026-09-25T03:34:14.2773961Z Working directory is '/home/runner/work/chirality/chirality'
+2026-09-25T03:34:14.2774968Z [command]/usr/bin/git version
+2026-09-25T03:34:14.2775451Z git version 2.55.0
+2026-09-25T03:34:14.2776952Z ##[endgroup]
+2026-09-25T03:34:14.2781500Z Temporarily overriding HOME='/home/runner/work/_temp/bbf45021-9b55-463d-aace-cf82c0c12cc1' before making global git config changes
+2026-09-25T03:34:14.2782697Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:34:14.2783701Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:34:14.2804281Z Deleting the contents of '/home/runner/work/chirality/chirality'
+2026-09-25T03:34:14.2807807Z ##[group]Initializing the repository
+2026-09-25T03:34:14.2812677Z [command]/usr/bin/git init /home/runner/work/chirality/chirality
+2026-09-25T03:34:14.2896508Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-25T03:34:14.2898656Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-25T03:34:14.2900409Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-25T03:34:14.2902074Z hint: call:
+2026-09-25T03:34:14.2902929Z hint:
+2026-09-25T03:34:14.2903929Z hint: 	git config --global init.defaultBranch <name>
+2026-09-25T03:34:14.2905047Z hint:
+2026-09-25T03:34:14.2906108Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-25T03:34:14.2907754Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-25T03:34:14.2909132Z hint:
+2026-09-25T03:34:14.2909954Z hint: 	git branch -m <name>
+2026-09-25T03:34:14.2911017Z hint:
+2026-09-25T03:34:14.2912145Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-25T03:34:14.2913884Z Initialized empty Git repository in /home/runner/work/chirality/chirality/.git/
+2026-09-25T03:34:14.2916477Z [command]/usr/bin/git remote add origin https://github.com/sgttomas/chirality
+2026-09-25T03:34:14.2948559Z ##[endgroup]
+2026-09-25T03:34:14.2949867Z ##[group]Disabling automatic garbage collection
+2026-09-25T03:34:14.2953257Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-25T03:34:14.2977821Z ##[endgroup]
+2026-09-25T03:34:14.2978723Z ##[group]Setting up auth
+2026-09-25T03:34:14.2983461Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:34:14.3009407Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:34:14.3281506Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:34:14.3308078Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:34:14.3483666Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:34:14.3510112Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:34:14.3686000Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-25T03:34:14.3715182Z ##[endgroup]
+2026-09-25T03:34:14.3715910Z ##[group]Fetching the repository
+2026-09-25T03:34:14.3723624Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:34:42.1703739Z From https://github.com/sgttomas/chirality
+2026-09-25T03:34:42.1704839Z  * branch                b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d -> FETCH_HEAD
+2026-09-25T03:34:42.1707094Z ##[endgroup]
+2026-09-25T03:34:42.1707915Z ##[group]Determining the checkout info
+2026-09-25T03:34:42.1710161Z ##[endgroup]
+2026-09-25T03:34:42.1716082Z [command]/usr/bin/git sparse-checkout disable
+2026-09-25T03:34:42.1761017Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-25T03:34:42.1789237Z ##[group]Checking out the ref
+2026-09-25T03:34:42.1794151Z [command]/usr/bin/git checkout --progress --force b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:34:43.2961706Z Updating files:  24% (23054/94727)
+2026-09-25T03:34:43.3277950Z Updating files:  25% (23682/94727)
+2026-09-25T03:34:43.3591123Z Updating files:  26% (24630/94727)
+2026-09-25T03:34:43.3927671Z Updating files:  27% (25577/94727)
+2026-09-25T03:34:43.4235459Z Updating files:  28% (26524/94727)
+2026-09-25T03:34:43.4559514Z Updating files:  29% (27471/94727)
+2026-09-25T03:34:43.4878770Z Updating files:  30% (28419/94727)
+2026-09-25T03:34:43.5186389Z Updating files:  31% (29366/94727)
+2026-09-25T03:34:43.5569077Z Updating files:  32% (30313/94727)
+2026-09-25T03:34:43.5937748Z Updating files:  33% (31260/94727)
+2026-09-25T03:34:43.6285224Z Updating files:  34% (32208/94727)
+2026-09-25T03:34:43.6589831Z Updating files:  35% (33155/94727)
+2026-09-25T03:34:43.6937893Z Updating files:  36% (34102/94727)
+2026-09-25T03:34:43.7245771Z Updating files:  37% (35049/94727)
+2026-09-25T03:34:43.7676892Z Updating files:  38% (35997/94727)
+2026-09-25T03:34:43.8044573Z Updating files:  39% (36944/94727)
+2026-09-25T03:34:43.8566449Z Updating files:  40% (37891/94727)
+2026-09-25T03:34:43.9652977Z Updating files:  41% (38839/94727)
+2026-09-25T03:34:44.0128220Z Updating files:  42% (39786/94727)
+2026-09-25T03:34:44.0573823Z Updating files:  43% (40733/94727)
+2026-09-25T03:34:44.1052260Z Updating files:  44% (41680/94727)
+2026-09-25T03:34:44.1440754Z Updating files:  45% (42628/94727)
+2026-09-25T03:34:44.1679123Z Updating files:  46% (43575/94727)
+2026-09-25T03:34:44.2369255Z Updating files:  47% (44522/94727)
+2026-09-25T03:34:44.2760171Z Updating files:  48% (45469/94727)
+2026-09-25T03:34:44.4164864Z Updating files:  48% (45675/94727)
+2026-09-25T03:34:44.6814245Z Updating files:  49% (46417/94727)
+2026-09-25T03:34:44.7650803Z Updating files:  50% (47364/94727)
+2026-09-25T03:34:44.8208806Z Updating files:  51% (48311/94727)
+2026-09-25T03:34:44.9111553Z Updating files:  52% (49259/94727)
+2026-09-25T03:34:44.9543083Z Updating files:  53% (50206/94727)
+2026-09-25T03:34:44.9999426Z Updating files:  54% (51153/94727)
+2026-09-25T03:34:45.0868802Z Updating files:  55% (52100/94727)
+2026-09-25T03:34:45.1766579Z Updating files:  56% (53048/94727)
+2026-09-25T03:34:45.2418794Z Updating files:  57% (53995/94727)
+2026-09-25T03:34:45.2752078Z Updating files:  58% (54942/94727)
+2026-09-25T03:34:45.2886789Z Updating files:  58% (55639/94727)
+2026-09-25T03:34:45.4416643Z Updating files:  59% (55889/94727)
+2026-09-25T03:34:45.4860330Z Updating files:  60% (56837/94727)
+2026-09-25T03:34:45.5415561Z Updating files:  61% (57784/94727)
+2026-09-25T03:34:45.5830446Z Updating files:  62% (58731/94727)
+2026-09-25T03:34:45.6243398Z Updating files:  63% (59679/94727)
+2026-09-25T03:34:45.6666449Z Updating files:  64% (60626/94727)
+2026-09-25T03:34:45.7449518Z Updating files:  65% (61573/94727)
+2026-09-25T03:34:45.8277165Z Updating files:  66% (62520/94727)
+2026-09-25T03:34:45.8917624Z Updating files:  67% (63468/94727)
+2026-09-25T03:34:45.9583888Z Updating files:  68% (64415/94727)
+2026-09-25T03:34:46.0781196Z Updating files:  69% (65362/94727)
+2026-09-25T03:34:46.2699692Z Updating files:  70% (66309/94727)
+2026-09-25T03:34:46.2802008Z Updating files:  71% (67257/94727)
+2026-09-25T03:34:46.4659357Z Updating files:  71% (67330/94727)
+2026-09-25T03:34:47.2795832Z Updating files:  72% (68204/94727)
+2026-09-25T03:34:47.3106427Z Updating files:  72% (68934/94727)
+2026-09-25T03:34:47.6914709Z Updating files:  73% (69151/94727)
+2026-09-25T03:34:47.8682221Z Updating files:  74% (70098/94727)
+2026-09-25T03:34:48.0395312Z Updating files:  75% (71046/94727)
+2026-09-25T03:34:48.2757524Z Updating files:  76% (71993/94727)
+2026-09-25T03:34:48.3979685Z Updating files:  76% (72716/94727)
+2026-09-25T03:34:48.5537015Z Updating files:  77% (72940/94727)
+2026-09-25T03:34:48.8378929Z Updating files:  78% (73888/94727)
+2026-09-25T03:34:49.0580613Z Updating files:  79% (74835/94727)
+2026-09-25T03:34:49.1846834Z Updating files:  80% (75782/94727)
+2026-09-25T03:34:49.2765528Z Updating files:  81% (76729/94727)
+2026-09-25T03:34:49.3385452Z Updating files:  81% (77563/94727)
+2026-09-25T03:34:49.3993713Z Updating files:  82% (77677/94727)
+2026-09-25T03:34:49.4940605Z Updating files:  83% (78624/94727)
+2026-09-25T03:34:49.5738062Z Updating files:  84% (79571/94727)
+2026-09-25T03:34:49.7093492Z Updating files:  85% (80518/94727)
+2026-09-25T03:34:49.8614601Z Updating files:  86% (81466/94727)
+2026-09-25T03:34:50.0371048Z Updating files:  87% (82413/94727)
+2026-09-25T03:34:50.0999234Z Updating files:  88% (83360/94727)
+2026-09-25T03:34:50.1525249Z Updating files:  89% (84308/94727)
+2026-09-25T03:34:50.3560615Z Updating files:  90% (85255/94727)
+2026-09-25T03:34:50.3805091Z Updating files:  90% (85688/94727)
+2026-09-25T03:34:50.4581035Z Updating files:  91% (86202/94727)
+2026-09-25T03:34:50.4955990Z Updating files:  92% (87149/94727)
+2026-09-25T03:34:50.5318749Z Updating files:  93% (88097/94727)
+2026-09-25T03:34:50.5750330Z Updating files:  94% (89044/94727)
+2026-09-25T03:34:50.6232371Z Updating files:  95% (89991/94727)
+2026-09-25T03:34:50.7072937Z Updating files:  96% (90938/94727)
+2026-09-25T03:34:51.0024896Z Updating files:  97% (91886/94727)
+2026-09-25T03:34:51.0524718Z Updating files:  98% (92833/94727)
+2026-09-25T03:34:51.1072359Z Updating files:  99% (93780/94727)
+2026-09-25T03:34:51.1073233Z Updating files: 100% (94727/94727)
+2026-09-25T03:34:51.1073854Z Updating files: 100% (94727/94727), done.
+2026-09-25T03:34:51.2583742Z Note: switching to 'b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d'.
+2026-09-25T03:34:51.2585184Z 
+2026-09-25T03:34:51.2585932Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-25T03:34:51.2586938Z changes and commit them, and you can discard any commits you make in this
+2026-09-25T03:34:51.2587914Z state without impacting any branches by switching back to a branch.
+2026-09-25T03:34:51.2589585Z 
+2026-09-25T03:34:51.2590060Z If you want to create a new branch to retain commits you create, you may
+2026-09-25T03:34:51.2591265Z do so (now or later) by using -c with the switch command. Example:
+2026-09-25T03:34:51.2591845Z 
+2026-09-25T03:34:51.2592156Z   git switch -c <new-branch-name>
+2026-09-25T03:34:51.2592601Z 
+2026-09-25T03:34:51.2592905Z Or undo this operation with:
+2026-09-25T03:34:51.2593326Z 
+2026-09-25T03:34:51.2593604Z   git switch -
+2026-09-25T03:34:51.2593953Z 
+2026-09-25T03:34:51.2594454Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-25T03:34:51.2595125Z 
+2026-09-25T03:34:51.2595942Z HEAD is now at b526aeb23 Integrate current main for self-weight correction qualification
+2026-09-25T03:34:51.2716605Z ##[endgroup]
+2026-09-25T03:34:51.2771683Z [command]/usr/bin/git log -1 --format=%H
+2026-09-25T03:34:51.2781391Z b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:34:51.3555223Z ##[group]Run python3 projects/chirality-piping/tools/ci/e2e_plan.py aggregate --mode "$MODE" --selection "$SELECTION" --barrier "$BARRIER" --remainder "$REMAINDER" --numerical-required "$NUMERICAL_REQUIRED" --numerical "$NUMERICAL"
+2026-09-25T03:34:51.3556868Z [36;1mpython3 projects/chirality-piping/tools/ci/e2e_plan.py aggregate --mode "$MODE" --selection "$SELECTION" --barrier "$BARRIER" --remainder "$REMAINDER" --numerical-required "$NUMERICAL_REQUIRED" --numerical "$NUMERICAL"[0m
+2026-09-25T03:34:51.7760416Z shell: /usr/bin/bash -e {0}
+2026-09-25T03:34:51.7760704Z env:
+2026-09-25T03:34:51.7761187Z   CI: true
+2026-09-25T03:34:51.7761534Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:34:51.7761815Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:34:51.7762039Z   MODE: full
+2026-09-25T03:34:51.7762228Z   SELECTION: success
+2026-09-25T03:34:51.7762430Z   BARRIER: success
+2026-09-25T03:34:51.7762625Z   REMAINDER: cancelled
+2026-09-25T03:34:51.7762838Z   NUMERICAL_REQUIRED: true
+2026-09-25T03:34:51.7763179Z   NUMERICAL: success
+2026-09-25T03:34:51.7763382Z ##[endgroup]
+2026-09-25T03:34:51.8232719Z Required CI failed, cancelled, missing or invalid
+2026-09-25T03:34:51.8297789Z ##[error]Process completed with exit code 1.
+2026-09-25T03:34:51.8432509Z Post job cleanup.
+2026-09-25T03:34:51.9273893Z [command]/usr/bin/git version
+2026-09-25T03:34:51.9306351Z git version 2.55.0
+2026-09-25T03:34:51.9340582Z Temporarily overriding HOME='/home/runner/work/_temp/5ef71d0f-c340-494e-899c-06f46735ebb9' before making global git config changes
+2026-09-25T03:34:51.9342035Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:34:51.9346435Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:34:51.9378531Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:34:51.9405908Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:34:51.9705492Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:34:51.9726942Z http.https://github.com/.extraheader
+2026-09-25T03:34:51.9736077Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-25T03:34:51.9764268Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:34:52.0065536Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:34:52.0098865Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:34:52.0523529Z Cleaning up orphan processes
+2026-09-25T03:34:52.0778290Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

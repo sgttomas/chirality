@@ -1,0 +1,177 @@
+{
+  "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "count": 20,
+  "rows": [
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1063,
+      "title": "frozen actual product/profile inputs validate read-only when explicitly supplied",
+      "raw_log_line": "2026-09-25T03:44:15.1878108Z   -   51 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1063:1 \u203a frozen actual product/profile inputs validate read-only when explicitly supplied"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1130,
+      "title": "continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates",
+      "raw_log_line": "2026-09-25T03:44:16.5300556Z   -   54 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1130:1 \u203a continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1215,
+      "title": "captured scrollable inspector dimensions remain observations while true layout drift rejects",
+      "raw_log_line": "2026-09-25T03:44:16.5727675Z   -   57 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1215:1 \u203a captured scrollable inspector dimensions remain observations while true layout drift rejects"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: target-miss",
+      "raw_log_line": "2026-09-25T03:44:16.5807490Z   -   58 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: target-miss"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: invalid,valid",
+      "raw_log_line": "2026-09-25T03:44:16.5914905Z   -   59 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,valid"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid",
+      "raw_log_line": "2026-09-25T03:44:16.5975939Z   -   60 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: interrupted,valid",
+      "raw_log_line": "2026-09-25T03:44:16.6041107Z   -   61 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: interrupted,valid"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: empty-exit0,valid",
+      "raw_log_line": "2026-09-25T03:44:16.6101408Z   -   62 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: empty-exit0,valid"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: stale-success",
+      "raw_log_line": "2026-09-25T03:44:16.6167136Z   -   63 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: stale-success"
+    },
+    {
+      "stage": "shard-3",
+      "project": "chromium-desktop",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1333,
+      "title": "explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates",
+      "raw_log_line": "2026-09-25T03:44:16.6231650Z   -   64 [chromium-desktop] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1333:1 \u203a explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1063,
+      "title": "frozen actual product/profile inputs validate read-only when explicitly supplied",
+      "raw_log_line": "2026-09-25T03:49:56.7338618Z   -  117 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1063:1 \u203a frozen actual product/profile inputs validate read-only when explicitly supplied"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1130,
+      "title": "continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates",
+      "raw_log_line": "2026-09-25T03:49:58.0297447Z   -  120 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1130:1 \u203a continuation launcher consumes failed/interrupted slots and executes later sizes only after independent gates"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1215,
+      "title": "captured scrollable inspector dimensions remain observations while true layout drift rejects",
+      "raw_log_line": "2026-09-25T03:49:58.0597795Z   -  123 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1215:1 \u203a captured scrollable inspector dimensions remain observations while true layout drift rejects"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: target-miss",
+      "raw_log_line": "2026-09-25T03:49:58.0667969Z   -  124 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: target-miss"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: invalid,valid",
+      "raw_log_line": "2026-09-25T03:49:58.0736347Z   -  125 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,valid"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid",
+      "raw_log_line": "2026-09-25T03:49:58.0811946Z   -  126 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: invalid,invalid,invalid,invalid,invalid"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: interrupted,valid",
+      "raw_log_line": "2026-09-25T03:49:58.0876533Z   -  127 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: interrupted,valid"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: empty-exit0,valid",
+      "raw_log_line": "2026-09-25T03:49:58.0942842Z   -  128 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: empty-exit0,valid"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1246,
+      "title": "owner one-success transition preserves history and bounded dispatch: stale-success",
+      "raw_log_line": "2026-09-25T03:49:58.1011147Z   -  129 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1246:3 \u203a owner one-success transition preserves history and bounded dispatch: stale-success"
+    },
+    {
+      "stage": "shard-4",
+      "project": "chromium-compact",
+      "file": "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "line": 1333,
+      "title": "explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates",
+      "raw_log_line": "2026-09-25T03:49:58.1083358Z   -  130 [chromium-compact] \u203a e2e/ui-foundation/full-cohort-controller.spec.ts:1333:1 \u203a explicit internal120 transition changes only authorized profile bindings and retains legacy60 gates"
+    }
+  ],
+  "source_path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation/full-cohort-controller.spec.ts",
+  "source_sha256": "3d92c1d27380216bc8dbc2906778b31b0b098bc6a6bb24b954d0b8a07ed7b725",
+  "source_unchanged_from_pr_base": true,
+  "guards_read_at_lines": [
+    1064,
+    1134,
+    1217,
+    1247,
+    1334
+  ],
+  "reason": "Ten existing conditional external-input controller scenarios per viewport profile require explicitly supplied prepared inputs, frozen original return, or rejected snapshot. The source has explicit test.skip guards when those inputs are unavailable. These20 were not executed to pass and no corresponding controller/profile qualification is claimed."
+}

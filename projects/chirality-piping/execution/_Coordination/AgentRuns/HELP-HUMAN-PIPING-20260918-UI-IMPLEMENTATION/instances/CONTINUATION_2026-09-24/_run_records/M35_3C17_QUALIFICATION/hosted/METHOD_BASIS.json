@@ -1,0 +1,22 @@
+{
+  "method_origin": "/private/tmp/piping-m35-ci-b526-20260925",
+  "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "pr": 892,
+  "method_only": true,
+  "scripts": [
+    {
+      "name": "collect.py",
+      "sha256": "f13e59169c3cb3cb038c165fe6fd62bdb14a1c3bb98f2f213023ff07d466851a"
+    },
+    {
+      "name": "verify-source.py",
+      "sha256": "66fb803f90db507c1a05a5fc71fbdb024d265c03ccb7767037c2cc856bb5a4b1"
+    },
+    {
+      "name": "verify-numerical.py",
+      "sha256": "0aacbffa52eef033b4881a4537a0fa9eff0aed82a5cf9eecebca11b081296f31"
+    }
+  ],
+  "limits": "No prior candidate results or counts carried. Exact current candidate will be checked.",
+  "current_head_guard": "Source binding additionally requires PR metadata current head to equal the run candidate; superseded successful runs do not qualify current PR."
+}

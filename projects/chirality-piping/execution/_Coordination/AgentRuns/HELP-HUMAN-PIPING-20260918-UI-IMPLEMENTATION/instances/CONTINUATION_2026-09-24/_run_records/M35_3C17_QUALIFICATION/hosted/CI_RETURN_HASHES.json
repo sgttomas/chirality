@@ -1,0 +1,114 @@
+{
+  "reviewer": "/root/m35_integration_review",
+  "parent": "/root",
+  "role": "TASK",
+  "completed_at_utc": "2026-09-25T03:56:25.821591+00:00",
+  "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "pr": 892,
+  "pr_url": "https://github.com/sgttomas/chirality/pull/892",
+  "run_id": 36090867243,
+  "run_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243",
+  "run_attempt": 1,
+  "acquisition_entries_verified": 19,
+  "acquisition_bad_hashes": [],
+  "registered_source_files": 16,
+  "browser_discovered": 495,
+  "browser_passed": 475,
+  "browser_skipped": 20,
+  "browser_missing": 0,
+  "browser_duplicates": 0,
+  "browser_unexpected": 0,
+  "numerical_manifests": 38,
+  "numerical_passed": 1141,
+  "numerical_ignored": 0,
+  "numerical_inputs_hashed": 76,
+  "numerical_command_logs_hashed": 78,
+  "governance_run": 36090867082,
+  "governance_conclusion": "success",
+  "governance_log_sha256": "85e39289a48d8d5cda2a9d2b855991d48d08e6ddda24d799ed5be408d9b08eb5",
+  "pr_checks": [
+    {
+      "name": "Select App coverage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Select source coverage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "harness",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Select PEC coverage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "App instruction bundle",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED"
+    },
+    {
+      "name": "PEC workspace tests",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED"
+    },
+    {
+      "name": "Accessibility barrier and selected coverage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "App Runtime integration",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED"
+    },
+    {
+      "name": "Numerical cargo suite",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "pec",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Harness pre-merge",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Source remainder (1/4)",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Source remainder (2/4)",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Source remainder (3/4)",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Source remainder (4/4)",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    {
+      "name": "Desktop E2E (source mode)",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    }
+  ],
+  "source4_binding_sha256": "3ebf5ff7e0b114c0278ef7fc28b7daaa3f479c177f16fe06b0bcf47b74cbd5c8",
+  "candidate_status": "clean",
+  "limits": "Exact-head hosted CI evidence review only. DEC025/native/practitioner/engineering acceptance/release remain separately owned. Historical644selection failure and b526governance failure/cancelled source run remain preserved; neither is relabeled a pass."
+}

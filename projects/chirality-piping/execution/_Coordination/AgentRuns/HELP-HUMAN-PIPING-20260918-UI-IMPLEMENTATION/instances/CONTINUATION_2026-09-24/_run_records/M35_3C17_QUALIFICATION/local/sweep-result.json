@@ -1,0 +1,26 @@
+{
+  "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "initial_status": "",
+  "cwd": "/private/tmp/piping-generated-loads-20260924/projects/chirality-piping",
+  "command": [
+    "/private/tmp/chirality-piping-dec025-venv/bin/python",
+    "tools/release/run_evidence_sweep.py",
+    "--execute",
+    "--require-capability",
+    "host",
+    "--surface4-ci-binding",
+    "/private/tmp/piping-m35-ci-3c17-20260925/surface4-ci-binding.json"
+  ],
+  "environment": {
+    "PATH": "/private/tmp/chirality-piping-dec025-venv/bin:/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0CK25g0:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources",
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_NET_OFFLINE": "true",
+    "CARGO_TARGET_DIR": null,
+    "VITEST_MAX_WORKERS": "2"
+  },
+  "started_at": "2026-09-25T03:55:00.026046+00:00",
+  "binding_sha256": "3ebf5ff7e0b114c0278ef7fc28b7daaa3f479c177f16fe06b0bcf47b74cbd5c8",
+  "exit_code": 0,
+  "finished_at": "2026-09-25T04:02:20.232996+00:00",
+  "final_status": "?? projects/chirality-piping/validation/evidence/sweeps/SWEEP_20260925T035502Z_3c17e267dd06.json\n"
+}

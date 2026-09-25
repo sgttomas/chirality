@@ -1,0 +1,138 @@
+{
+  "reviewer": "/root/m35_integration_review",
+  "head": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "pr": 892,
+  "run_id": 36090867243,
+  "run_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243",
+  "run_attempt": 1,
+  "canonical_identity": [
+    "id",
+    "project",
+    "file",
+    "title_path"
+  ],
+  "candidate_inventory_files": 16,
+  "candidate_inventory": [
+    "e2e/b3-accessibility.spec.ts",
+    "e2e/b3a-session-status.spec.ts",
+    "e2e/b3b-project-persistence.spec.ts",
+    "e2e/b4-sections.spec.ts",
+    "e2e/b4-table-editing.spec.ts",
+    "e2e/c3-viewport-visibility.spec.ts",
+    "e2e/gui-workflow-validation.spec.ts",
+    "e2e/linear-authoring.spec.ts",
+    "e2e/r2-smoke.spec.ts",
+    "e2e/result-compatibility.spec.ts",
+    "e2e/ui-foundation.spec.ts",
+    "e2e/ui-foundation/causal-method-contract.spec.ts",
+    "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+    "e2e/ui-foundation/full-cohort-controller.spec.ts",
+    "e2e/ui-foundation/performance-targets.spec.ts",
+    "e2e/workspace-layout.spec.ts"
+  ],
+  "source_hashes_against_exact_git_verified": true,
+  "discovered": 495,
+  "union": 495,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "profiles": [
+    "chromium-desktop",
+    "chromium-compact"
+  ],
+  "passed": 475,
+  "skipped": 20,
+  "jobs": [
+    {
+      "stage": "barrier",
+      "job_id": 107933248530,
+      "job_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243/job/107933248530",
+      "step": {
+        "name": "Run accessibility first, then any reduced selection",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-09-25T03:38:34Z",
+        "completed_at": "2026-09-25T03:40:13Z"
+      },
+      "identities": 30,
+      "passed": 30,
+      "skipped": 0,
+      "collection": "extracted/piping-e2e-collection-barrier-36090867243-1/collection.json",
+      "collection_sha256": "855d5a9e3e3fb2e3a0e49eb41b2c8773331ed710c28524f75504b1d978d28d26"
+    },
+    {
+      "stage": "shard-1",
+      "job_id": 107934111951,
+      "job_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243/job/107934111951",
+      "step": {
+        "name": "Run isolated source remainder shard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-09-25T03:42:39Z",
+        "completed_at": "2026-09-25T03:46:46Z"
+      },
+      "identities": 35,
+      "passed": 35,
+      "skipped": 0,
+      "collection": "extracted/piping-e2e-collection-shard-1-36090867243-1/collection.json",
+      "collection_sha256": "1bfd5db519b23598ade0adf8bc88865ffbf4732023014cce4b0c23770ad90ec6"
+    },
+    {
+      "stage": "shard-2",
+      "job_id": 107934111987,
+      "job_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243/job/107934111987",
+      "step": {
+        "name": "Run isolated source remainder shard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-09-25T03:42:28Z",
+        "completed_at": "2026-09-25T03:49:49Z"
+      },
+      "identities": 99,
+      "passed": 99,
+      "skipped": 0,
+      "collection": "extracted/piping-e2e-collection-shard-2-36090867243-1/collection.json",
+      "collection_sha256": "04489756c6313319db82b73c2bf9f5d33b3339340e940a0d41819689c9466eb7"
+    },
+    {
+      "stage": "shard-3",
+      "job_id": 107934111930,
+      "job_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243/job/107934111930",
+      "step": {
+        "name": "Run isolated source remainder shard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-09-25T03:42:49Z",
+        "completed_at": "2026-09-25T03:51:18Z"
+      },
+      "identities": 118,
+      "passed": 108,
+      "skipped": 10,
+      "collection": "extracted/piping-e2e-collection-shard-3-36090867243-1/collection.json",
+      "collection_sha256": "f030ab9115fde0871d18bc3983981b575652e9bac9ccc2b6d7340263332494b1"
+    },
+    {
+      "stage": "shard-4",
+      "job_id": 107934111870,
+      "job_url": "https://github.com/sgttomas/chirality/actions/runs/36090867243/job/107934111870",
+      "step": {
+        "name": "Run isolated source remainder shard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-09-25T03:42:21Z",
+        "completed_at": "2026-09-25T03:52:03Z"
+      },
+      "identities": 213,
+      "passed": 203,
+      "skipped": 10,
+      "collection": "extracted/piping-e2e-collection-shard-4-36090867243-1/collection.json",
+      "collection_sha256": "2ee50e4ed2d9663973addb742778c6626553f4abbd46a8eec4d21d71fbbfaae0"
+    }
+  ],
+  "limitations": "Collection artifacts establish identities; successful hosted execution steps/raw logs establish execution. Skips are not passes. Separate governance/native/DEC025/acceptance gates are not cleared."
+}

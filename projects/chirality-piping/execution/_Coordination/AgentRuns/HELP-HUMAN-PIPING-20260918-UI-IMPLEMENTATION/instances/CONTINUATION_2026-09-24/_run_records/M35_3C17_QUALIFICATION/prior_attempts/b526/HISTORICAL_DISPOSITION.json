@@ -1,0 +1,55 @@
+{
+  "candidate": "b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d",
+  "piping_run_id": 36089968220,
+  "piping_status_at_acquisition": "completed",
+  "piping_conclusion_at_acquisition": "cancelled",
+  "jobs": [
+    {
+      "name": "Select source coverage",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Numerical cargo suite",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Accessibility barrier and selected coverage",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Source remainder (2/4)",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "name": "Source remainder (4/4)",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "name": "Source remainder (3/4)",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "name": "Source remainder (1/4)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Desktop E2E (source mode)",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "governance_run_id": 36089968217,
+  "governance_conclusion": "failure",
+  "numerical_job_verified": true,
+  "numerical_passes": 1141,
+  "source_binding_emitted": false,
+  "limit": "Superseded by reviewed documentation repair3c17. Three source shards cancelled. No complete-source/fullCI pass or binding.",
+  "failure_log_sha256": "92dee9b44adff8a34789e462c23f62cca2c53af79959a837565bb612eb965f95"
+}

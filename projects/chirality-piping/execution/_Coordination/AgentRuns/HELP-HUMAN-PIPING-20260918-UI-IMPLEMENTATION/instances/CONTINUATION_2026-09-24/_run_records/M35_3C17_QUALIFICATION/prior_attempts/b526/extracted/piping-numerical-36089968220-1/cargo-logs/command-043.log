@@ -1,0 +1,40 @@
+[1m[92m   Compiling[0m open_pipe_stress_stress_recovery v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/loads/stress_recovery)
+[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+[1m[92m     Running[0m unittests src/lib.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/open_pipe_stress_stress_recovery-919e8ac8338257bc)
+
+running 26 tests
+test tests::boundary_constructor_rejects_invalid_positive_values ... ok
+test tests::element_end_resultants_construct_force_resultants_for_stress_recovery ... ok
+test tests::element_end_resultants_reject_non_finite_inputs ... ok
+test tests::incomplete_status_blocks_mechanics_recovery ... ok
+test tests::missing_resultant_blocks_recovery ... ok
+test tests::non_finite_pressure_is_reported ... ok
+test tests::non_finite_recovered_values_are_reported ... ok
+test tests::non_positive_section_property_blocks_recovery ... ok
+test tests::recovers_axial_bending_torsion_and_pressure_components ... ok
+test tests::human_approval_status_is_not_accepted_as_software_output ... ok
+test tests::recovers_mechanics_stress_ranges_without_code_categories ... ok
+test tests::station_resultants_recover_station_stresses ... ok
+test tests::station_resultants_reject_nonfinite_and_invalid_station_inputs ... ok
+test tests::station_stress_sweep_preserves_order_and_station_identity ... ok
+test tests::station_stress_sweep_rejects_invalid_station_resultants ... ok
+test tests::stress_component_boundary_record_rejects_load_case_schema_binding ... ok
+test tests::stress_component_boundary_record_carries_result_schema_and_hash_metadata ... ok
+test tests::stress_range_blocks_asymmetric_optional_components ... ok
+test tests::stress_range_blocks_when_either_state_is_incomplete ... ok
+test tests::stress_range_modulus_basis_record_rejects_empty_labels ... ok
+test tests::stress_range_reports_non_finite_difference ... ok
+test tests::stress_range_with_modulus_basis_records_both_state_bases_verbatim ... ok
+test tests::stress_recovery_rejects_force_per_length_as_force_resultant_metadata ... ok
+test tests::stress_recovery_unit_metadata_blocks_missing_or_wrong_dimensions ... ok
+test tests::stress_recovery_with_unit_metadata_validates_boundary_before_recovery ... ok
+test tests::summarizes_extreme_normal_and_shear_without_allowables ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+[1m[92m   Doc-tests[0m open_pipe_stress_stress_recovery
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

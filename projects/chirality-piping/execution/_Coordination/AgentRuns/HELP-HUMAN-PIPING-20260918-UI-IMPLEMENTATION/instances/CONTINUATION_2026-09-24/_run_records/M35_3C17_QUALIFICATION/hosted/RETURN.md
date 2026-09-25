@@ -1,0 +1,15 @@
+# Actual-head PR892 CI evidence return
+
+**PASS for hosted CI evidence on `3c17e267dd06ee561e8dc9984f6623126095eec1`.** Piping run [36090867243](https://github.com/sgttomas/chirality/actions/runs/36090867243), attempt1, completed successfully. PR892, pushed branch and clean checkout all name that candidate. `surface4-ci-binding.json` is ready for ROOT's actual-candidate DEC-025 sweep.
+
+Independent identity and execution checks reconcile all 16 registered source spec files and all 495 canonical test identities across the accessibility barrier and four shard partitions: **475 passed, 20 skipped; zero missing, duplicate or unexpected identities**. Every retained source-spec/config/selector/duration hash matches the exact candidate Git object. Collection-only records establish identities; successful hosted execution steps and raw logs separately establish observed execution. The20 existing controller scenarios require explicitly supplied external inputs and were skipped in two profiles; they are not passes or controller/profile qualification. Their exact log rows and source guards are retained in `SKIPPED_EXECUTIONS.json`.
+
+The numerical job independently matches actual candidate discovery: **38 manifests,38 locked fetches,38 locked offline test commands,2 tool-version commands**. All76 manifest/lock hashes and78 command-output hashes match. Raw summaries report **1141 passed,0 ignored**. Counts were derived from this candidate and execution, not copied from the method's earlier PR.
+
+Actual-head governance run36090867082 also succeeded: its raw log reports898 tests and48 subtests passed. App/PEC selected aggregates succeeded; their unselected App instruction bundle, App Runtime integration and PEC workspace jobs remain explicitly SKIPPED in `PR_CHECKS.json`, not test passes.
+
+`ACQUISITION.json` binds the final API metadata, seven artifact archives and eight completed job logs; every acquisition hash was checked. `IDENTITY_EXECUTION_CHECK.json`, `NUMERICAL_EXECUTION_CHECK.json`, `CI_RETURN_HASHES.json`, and `SHA256SUMS` retain the full verification account. Reusable collector/verifier origins and actual adapted bytes are recorded in `METHOD_BASIS.json`.
+
+The prior644 PR-base selection failure remains in its original evidence directory. The superseded b526 governance failure and cancelled browser run remain separately retained; its completed numerical job is bounded historical evidence only. The reviewed documentation repairs and subsequent input-identity checks are in the separate `CURRENT_UNION` review packet. All23 reviewed source hashes and926 supplied native pre-build input hashes were unchanged through3c17; this is not a new native execution claim.
+
+Same independent TASK `/root/m35_integration_review`, parent `/root`, with no delegation. Only authorized temporary evidence directories were written. No candidate edits, Git/PR mutations, product tests/builds, native/browser operation or CI rerun occurred. ROOT owns clean DEC-025, native/practitioner evidence, merge and remaining acceptance boundaries; this return does not claim them completed or authorize release.

@@ -1,0 +1,856 @@
+﻿2026-09-25T03:21:29.0596397Z Current runner version: '2.337.0'
+2026-09-25T03:21:29.0616099Z ##[group]Runner Image Provisioner
+2026-09-25T03:21:29.0616791Z Hosted Compute Agent
+2026-09-25T03:21:29.0617334Z Version: 20260828.587
+2026-09-25T03:21:29.0617873Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-25T03:21:29.0618494Z Build Date: 2026-08-28T16:44:25Z
+2026-09-25T03:21:29.0619123Z Worker ID: {3275f696-5614-481c-9e76-a314b1aa7592}
+2026-09-25T03:21:29.0619701Z Azure Region: westcentralus
+2026-09-25T03:21:29.0620467Z ##[endgroup]
+2026-09-25T03:21:29.0621616Z ##[group]Operating System
+2026-09-25T03:21:29.0622161Z Ubuntu
+2026-09-25T03:21:29.0622657Z 24.04.5
+2026-09-25T03:21:29.0623083Z LTS
+2026-09-25T03:21:29.0623512Z ##[endgroup]
+2026-09-25T03:21:29.0624017Z ##[group]Runner Image
+2026-09-25T03:21:29.0624535Z Image: ubuntu-24.04
+2026-09-25T03:21:29.0625075Z Version: 20260920.314.1
+2026-09-25T03:21:29.0626056Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-25T03:21:29.0627313Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-25T03:21:29.0628156Z ##[endgroup]
+2026-09-25T03:21:29.0629063Z ##[group]GITHUB_TOKEN Permissions
+2026-09-25T03:21:29.0630809Z Contents: read
+2026-09-25T03:21:29.0631382Z Metadata: read
+2026-09-25T03:21:29.0631884Z ##[endgroup]
+2026-09-25T03:21:29.0633486Z Secret source: Actions
+2026-09-25T03:21:29.0634335Z Cache mode: write
+2026-09-25T03:21:29.0634868Z Prepare workflow directory
+2026-09-25T03:21:29.0940870Z Prepare all required actions
+2026-09-25T03:21:29.0978736Z Getting action download info
+2026-09-25T03:21:29.3862650Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-25T03:21:29.5576210Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-09-25T03:21:30.2154766Z Download action repository 'dtolnay/rust-toolchain@1.97.1' (SHA:4716b85f2fac3e324e64fa2810f6b5c3905760a5)
+2026-09-25T03:21:30.4101099Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-25T03:21:30.6710423Z Complete job name: Numerical cargo suite
+2026-09-25T03:21:30.7410866Z ##[group]Run actions/checkout@v4
+2026-09-25T03:21:30.7411983Z with:
+2026-09-25T03:21:30.7412747Z   ref: b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:21:30.7413701Z   fetch-depth: 0
+2026-09-25T03:21:30.7414430Z   filter: blob:none
+2026-09-25T03:21:30.7415172Z   repository: sgttomas/chirality
+2026-09-25T03:21:30.7421262Z   token: ***
+2026-09-25T03:21:30.7422010Z   ssh-strict: true
+2026-09-25T03:21:30.7422718Z   ssh-user: git
+2026-09-25T03:21:30.7423441Z   persist-credentials: true
+2026-09-25T03:21:30.7424239Z   clean: true
+2026-09-25T03:21:30.7424965Z   sparse-checkout-cone-mode: true
+2026-09-25T03:21:30.7425816Z   fetch-tags: false
+2026-09-25T03:21:30.7426525Z   show-progress: true
+2026-09-25T03:21:30.7427241Z   lfs: false
+2026-09-25T03:21:30.7427904Z   submodules: false
+2026-09-25T03:21:30.7428645Z   set-safe-directory: true
+2026-09-25T03:21:30.7429460Z   allow-unsafe-pr-checkout: false
+2026-09-25T03:21:30.7430693Z env:
+2026-09-25T03:21:30.7431337Z   CI: true
+2026-09-25T03:21:30.7432056Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:21:30.7432866Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:21:30.7433593Z ##[endgroup]
+2026-09-25T03:21:30.8239476Z Syncing repository: sgttomas/chirality
+2026-09-25T03:21:30.8242074Z ##[group]Getting Git version info
+2026-09-25T03:21:30.8243180Z Working directory is '/home/runner/work/chirality/chirality'
+2026-09-25T03:21:30.8244813Z [command]/usr/bin/git version
+2026-09-25T03:21:30.8276717Z git version 2.55.0
+2026-09-25T03:21:30.8292491Z ##[endgroup]
+2026-09-25T03:21:30.8303847Z Temporarily overriding HOME='/home/runner/work/_temp/23e47648-96b3-4cf0-acd4-7c4a76c60ddc' before making global git config changes
+2026-09-25T03:21:30.8307161Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:21:30.8310064Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:21:30.8345120Z Deleting the contents of '/home/runner/work/chirality/chirality'
+2026-09-25T03:21:30.8349193Z ##[group]Initializing the repository
+2026-09-25T03:21:30.8352762Z [command]/usr/bin/git init /home/runner/work/chirality/chirality
+2026-09-25T03:21:30.8425094Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-25T03:21:30.8427602Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-25T03:21:30.8429650Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-25T03:21:30.8431313Z hint: call:
+2026-09-25T03:21:30.8432228Z hint:
+2026-09-25T03:21:30.8433059Z hint: 	git config --global init.defaultBranch <name>
+2026-09-25T03:21:30.8434042Z hint:
+2026-09-25T03:21:30.8435384Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-25T03:21:30.8495245Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-25T03:21:30.8497030Z hint:
+2026-09-25T03:21:30.8497853Z hint: 	git branch -m <name>
+2026-09-25T03:21:30.8498632Z hint:
+2026-09-25T03:21:30.8499648Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-25T03:21:30.8501975Z Initialized empty Git repository in /home/runner/work/chirality/chirality/.git/
+2026-09-25T03:21:30.8505064Z [command]/usr/bin/git remote add origin https://github.com/sgttomas/chirality
+2026-09-25T03:21:30.8508308Z ##[endgroup]
+2026-09-25T03:21:30.8509657Z ##[group]Disabling automatic garbage collection
+2026-09-25T03:21:30.8510859Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-25T03:21:30.8513057Z ##[endgroup]
+2026-09-25T03:21:30.8514157Z ##[group]Setting up auth
+2026-09-25T03:21:30.8515264Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:21:30.8530848Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:21:30.8791359Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:21:30.8816051Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:21:30.8993018Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:21:30.9017319Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:21:30.9194429Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-25T03:21:30.9224442Z ##[endgroup]
+2026-09-25T03:21:30.9226233Z ##[group]Fetching the repository
+2026-09-25T03:21:30.9233520Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-09-25T03:21:32.6157847Z From https://github.com/sgttomas/chirality
+2026-09-25T03:21:32.6159280Z  * [new branch]          claude/app-concordance-d128-activation -> origin/claude/app-concordance-d128-activation
+2026-09-25T03:21:32.6160261Z  * [new branch]          claude/app-concordance-d128-r0 -> origin/claude/app-concordance-d128-r0
+2026-09-25T03:21:32.6161041Z  * [new branch]          claude/app-concordance-d128-r2 -> origin/claude/app-concordance-d128-r2
+2026-09-25T03:21:32.6161548Z  * [new branch]          claude/app-concordance-d128-r3 -> origin/claude/app-concordance-d128-r3
+2026-09-25T03:21:32.6162144Z  * [new branch]          claude/app-concordance-d128-r4-close -> origin/claude/app-concordance-d128-r4-close
+2026-09-25T03:21:32.6162718Z  * [new branch]          claude/app-dev-loop-init-generic -> origin/claude/app-dev-loop-init-generic
+2026-09-25T03:21:32.6163615Z  * [new branch]          claude/app-loop-handoff-hygiene -> origin/claude/app-loop-handoff-hygiene
+2026-09-25T03:21:32.6164194Z  * [new branch]          claude/app-owner-intent-of-record -> origin/claude/app-owner-intent-of-record
+2026-09-25T03:21:32.6164760Z  * [new branch]          claude/chirality-app-release-077eeb -> origin/claude/chirality-app-release-077eeb
+2026-09-25T03:21:32.6165383Z  * [new branch]          claude/chirality-codex-replatform-3999f1 -> origin/claude/chirality-codex-replatform-3999f1
+2026-09-25T03:21:32.6166078Z  * [new branch]          claude/chirality-piping-reconciliation-7f7e70 -> origin/claude/chirality-piping-reconciliation-7f7e70
+2026-09-25T03:21:32.6166751Z  * [new branch]          claude/chirality-piping-ui-design-a31fd2 -> origin/claude/chirality-piping-ui-design-a31fd2
+2026-09-25T03:21:32.6167376Z  * [new branch]          claude/chirality-ui-refinement-20260912 -> origin/claude/chirality-ui-refinement-20260912
+2026-09-25T03:21:32.6168050Z  * [new branch]          claude/chirality-v3-mvp-trial-ab05cb -> origin/claude/chirality-v3-mvp-trial-ab05cb
+2026-09-25T03:21:32.6168737Z  * [new branch]          claude/concordance-claim-granularity -> origin/claude/concordance-claim-granularity
+2026-09-25T03:21:32.6169378Z  * [new branch]          claude/dec046-translation-delta-unit-20260923 -> origin/claude/dec046-translation-delta-unit-20260923
+2026-09-25T03:21:32.6170191Z  * [new branch]          claude/dgov43-launch-prompt -> origin/claude/dgov43-launch-prompt
+2026-09-25T03:21:32.6171044Z  * [new branch]          claude/dgov43-launch-prompt-orientation -> origin/claude/dgov43-launch-prompt-orientation
+2026-09-25T03:21:32.6171991Z  * [new branch]          claude/dgov43-launch-prompt-pointer -> origin/claude/dgov43-launch-prompt-pointer
+2026-09-25T03:21:32.6172938Z  * [new branch]          claude/dgov43-post-merge-closeout -> origin/claude/dgov43-post-merge-closeout
+2026-09-25T03:21:32.6173894Z  * [new branch]          claude/loop-init-consolidation-d-app-112 -> origin/claude/loop-init-consolidation-d-app-112
+2026-09-25T03:21:32.6174899Z  * [new branch]          claude/loop-init-d-app-113-residuals -> origin/claude/loop-init-d-app-113-residuals
+2026-09-25T03:21:32.6176046Z  * [new branch]          claude/nonlinear-moment-unit-20260923 -> origin/claude/nonlinear-moment-unit-20260923
+2026-09-25T03:21:32.6176867Z  * [new branch]          claude/pec-d87-ruling   -> origin/claude/pec-d87-ruling
+2026-09-25T03:21:32.6177660Z  * [new branch]          claude/pec-project-assessment-6106d5 -> origin/claude/pec-project-assessment-6106d5
+2026-09-25T03:21:32.6178535Z  * [new branch]          claude/pec-sca005-cp1-acceptance -> origin/claude/pec-sca005-cp1-acceptance
+2026-09-25T03:21:32.6179411Z  * [new branch]          claude/pec-sca005-cp1-amendment1 -> origin/claude/pec-sca005-cp1-amendment1
+2026-09-25T03:21:32.6180598Z  * [new branch]          claude/piping-e2e-path-triggers -> origin/claude/piping-e2e-path-triggers
+2026-09-25T03:21:32.6181222Z  * [new branch]          claude/piping-recon-r0-20260921 -> origin/claude/piping-recon-r0-20260921
+2026-09-25T03:21:32.6181912Z  * [new branch]          claude/piping-recon-r2-w1-20260921 -> origin/claude/piping-recon-r2-w1-20260921
+2026-09-25T03:21:32.6182439Z  * [new branch]          claude/piping-recon-r3-20260922 -> origin/claude/piping-recon-r3-20260922
+2026-09-25T03:21:32.6182992Z  * [new branch]          claude/sca-app-010-dependency-closure -> origin/claude/sca-app-010-dependency-closure
+2026-09-25T03:21:32.6183701Z  * [new branch]          claude/sca-app-010-gate1-intake -> origin/claude/sca-app-010-gate1-intake
+2026-09-25T03:21:32.6184186Z  * [new branch]          claude/sca-app-010-pointer -> origin/claude/sca-app-010-pointer
+2026-09-25T03:21:32.6184708Z  * [new branch]          claude/sca-app-010-pointers-d-app-111 -> origin/claude/sca-app-010-pointers-d-app-111
+2026-09-25T03:21:32.6185217Z  * [new branch]          claude/sca-app-010-seating -> origin/claude/sca-app-010-seating
+2026-09-25T03:21:32.6185937Z  * [new branch]          claude/swbpipe-mit-licence-20260922 -> origin/claude/swbpipe-mit-licence-20260922
+2026-09-25T03:21:32.6187090Z  * [new branch]          claude/valmanual-record-reconcile-20260922 -> origin/claude/valmanual-record-reconcile-20260922
+2026-09-25T03:21:32.6187921Z  * [new branch]          codex/add-workflow-proposals-20260922 -> origin/codex/add-workflow-proposals-20260922
+2026-09-25T03:21:32.6188614Z  * [new branch]          codex/alignment-manual-and-agent-guide-20260922 -> origin/codex/alignment-manual-and-agent-guide-20260922
+2026-09-25T03:21:32.6189277Z  * [new branch]          codex/app-agent-card-presentation -> origin/codex/app-agent-card-presentation
+2026-09-25T03:21:32.6190126Z  * [new branch]          codex/app-dapp86-helper-parity-rerun-20260820 -> origin/codex/app-dapp86-helper-parity-rerun-20260820
+2026-09-25T03:21:32.6190831Z  * [new branch]          codex/app-electron-concordance-2026-09-03 -> origin/codex/app-electron-concordance-2026-09-03
+2026-09-25T03:21:32.6191593Z  * [new branch]          codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04 -> origin/codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04
+2026-09-25T03:21:32.6192406Z  * [new branch]          codex/app-loop-discovery-handoff-cleanup-20260903 -> origin/codex/app-loop-discovery-handoff-cleanup-20260903
+2026-09-25T03:21:32.6193087Z  * [new branch]          codex/app-loop-shell-20260905 -> origin/codex/app-loop-shell-20260905
+2026-09-25T03:21:32.6193581Z  * [new branch]          codex/app-loop-trial    -> origin/codex/app-loop-trial
+2026-09-25T03:21:32.6194067Z  * [new branch]          codex/app-loop-trial-closeout -> origin/codex/app-loop-trial-closeout
+2026-09-25T03:21:32.6194627Z  * [new branch]          codex/app-loop-workgraph-20260919 -> origin/codex/app-loop-workgraph-20260919
+2026-09-25T03:21:32.6195287Z  * [new branch]          codex/app-piping-central-loop-receipts -> origin/codex/app-piping-central-loop-receipts
+2026-09-25T03:21:32.6196447Z  * [new branch]          codex/app-reconciliation-closeout-20260922 -> origin/codex/app-reconciliation-closeout-20260922
+2026-09-25T03:21:32.6197198Z  * [new branch]          codex/app-remaining-exceptions -> origin/codex/app-remaining-exceptions
+2026-09-25T03:21:32.6198330Z  * [new branch]          codex/app-remaining-retire-final -> origin/codex/app-remaining-retire-final
+2026-09-25T03:21:32.6199321Z  * [new branch]          codex/app-remaining-retirement -> origin/codex/app-remaining-retirement
+2026-09-25T03:21:32.6200469Z  * [new branch]          codex/app-tm-g0-rulings-2026-09-03 -> origin/codex/app-tm-g0-rulings-2026-09-03
+2026-09-25T03:21:32.6201602Z  * [new branch]          codex/app-v3-nodeA-credential-ipc-2026-09-03 -> origin/codex/app-v3-nodeA-credential-ipc-2026-09-03
+2026-09-25T03:21:32.6202730Z  * [new branch]          codex/app-v3-nodeB-wp09-prep-2026-09-03 -> origin/codex/app-v3-nodeB-wp09-prep-2026-09-03
+2026-09-25T03:21:32.6203900Z  * [new branch]          codex/app-v3-nodeD-v2-session-access-2026-09-03 -> origin/codex/app-v3-nodeD-v2-session-access-2026-09-03
+2026-09-25T03:21:32.6205095Z  * [new branch]          codex/app-v3-nodeE-at053-evidence-2026-09-03 -> origin/codex/app-v3-nodeE-at053-evidence-2026-09-03
+2026-09-25T03:21:32.6206306Z  * [new branch]          codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03 -> origin/codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03
+2026-09-25T03:21:32.6207641Z  * [new branch]          codex/app-v3-nodeG-egress-probe-restriction-2026-09-03 -> origin/codex/app-v3-nodeG-egress-probe-restriction-2026-09-03
+2026-09-25T03:21:32.6208963Z  * [new branch]          codex/app-v3-nodeH-section8-preservation-2026-09-03 -> origin/codex/app-v3-nodeH-section8-preservation-2026-09-03
+2026-09-25T03:21:32.6210565Z  * [new branch]          codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03 -> origin/codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03
+2026-09-25T03:21:32.6211955Z  * [new branch]          codex/app-v3-nodeJ-section8-revision2-2026-09-03 -> origin/codex/app-v3-nodeJ-section8-revision2-2026-09-03
+2026-09-25T03:21:32.6213386Z  * [new branch]          codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03 -> origin/codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03
+2026-09-25T03:21:32.6214963Z  * [new branch]          codex/app-v3-nodeL-consent-fake-guards-2026-09-03 -> origin/codex/app-v3-nodeL-consent-fake-guards-2026-09-03
+2026-09-25T03:21:32.6216199Z  * [new branch]          codex/app-v3-nodeM-a15-owner-rulings-2026-09-04 -> origin/codex/app-v3-nodeM-a15-owner-rulings-2026-09-04
+2026-09-25T03:21:32.6217341Z  * [new branch]          codex/app-v3-nodeN-csp-nonce-2026-09-04 -> origin/codex/app-v3-nodeN-csp-nonce-2026-09-04
+2026-09-25T03:21:32.6218428Z  * [new branch]          codex/app-v3-nodeO-section8-rev3-2026-09-04 -> origin/codex/app-v3-nodeO-section8-rev3-2026-09-04
+2026-09-25T03:21:32.6219505Z  * [new branch]          codex/app-v3-pathway-seating-2026-09-03 -> origin/codex/app-v3-pathway-seating-2026-09-03
+2026-09-25T03:21:32.6220769Z  * [new branch]          codex/automatic-update-checks-20260913 -> origin/codex/automatic-update-checks-20260913
+2026-09-25T03:21:32.6221828Z  * [new branch]          codex/chirality-app-v3-release-plan-20260822 -> origin/codex/chirality-app-v3-release-plan-20260822
+2026-09-25T03:21:32.6222598Z  * [new branch]          codex/chirality-app-v3-release-plan-final-20260822 -> origin/codex/chirality-app-v3-release-plan-final-20260822
+2026-09-25T03:21:32.6223387Z  * [new branch]          codex/chirality-app-v3-release-plan-v2-20260822 -> origin/codex/chirality-app-v3-release-plan-v2-20260822
+2026-09-25T03:21:32.6224137Z  * [new branch]          codex/chirality-app-v3-release-plan-v3-20260822 -> origin/codex/chirality-app-v3-release-plan-v3-20260822
+2026-09-25T03:21:32.6224827Z  * [new branch]          codex/chirality-change-lessons-20260910 -> origin/codex/chirality-change-lessons-20260910
+2026-09-25T03:21:32.6225458Z  * [new branch]          codex/chirality-v3-adoption-20260909 -> origin/codex/chirality-v3-adoption-20260909
+2026-09-25T03:21:32.6226250Z  * [new branch]          codex/day1-maintenance  -> origin/codex/day1-maintenance
+2026-09-25T03:21:32.6227237Z  * [new branch]          codex/deferred-four-graphs-orientation-20260919 -> origin/codex/deferred-four-graphs-orientation-20260919
+2026-09-25T03:21:32.6228249Z  * [new branch]          codex/del0907-init-admission-2026-09-04 -> origin/codex/del0907-init-admission-2026-09-04
+2026-09-25T03:21:32.6228882Z  * [new branch]          codex/del0907-setup-followon-20260905 -> origin/codex/del0907-setup-followon-20260905
+2026-09-25T03:21:32.6229447Z  * [new branch]          codex/del0907-sow-init-20260904 -> origin/codex/del0907-sow-init-20260904
+2026-09-25T03:21:32.6230182Z  * [new branch]          codex/development-loop-integration -> origin/codex/development-loop-integration
+2026-09-25T03:21:32.6230763Z  * [new branch]          codex/domain-separation-20260820 -> origin/codex/domain-separation-20260820
+2026-09-25T03:21:32.6231335Z  * [new branch]          codex/evergreen-development-loops -> origin/codex/evergreen-development-loops
+2026-09-25T03:21:32.6231894Z  * [new branch]          codex/field-book-v1-20260923 -> origin/codex/field-book-v1-20260923
+2026-09-25T03:21:32.6232450Z  * [new branch]          codex/four-role-workflow-overhaul -> origin/codex/four-role-workflow-overhaul
+2026-09-25T03:21:32.6233057Z  * [new branch]          codex/graceful-source-closure-20260908 -> origin/codex/graceful-source-closure-20260908
+2026-09-25T03:21:32.6233630Z  * [new branch]          codex/local-work-graph-loops -> origin/codex/local-work-graph-loops
+2026-09-25T03:21:32.6234183Z  * [new branch]          codex/loop-clarifications-20260919 -> origin/codex/loop-clarifications-20260919
+2026-09-25T03:21:32.6234916Z  * [new branch]          codex/management-manual-authorship-frontmatter-20260922 -> origin/codex/management-manual-authorship-frontmatter-20260922
+2026-09-25T03:21:32.6235740Z  * [new branch]          codex/management-manual-publication-edit-20260922 -> origin/codex/management-manual-publication-edit-20260922
+2026-09-25T03:21:32.6236479Z  * [new branch]          codex/management-manual-v2-formats-20260922 -> origin/codex/management-manual-v2-formats-20260922
+2026-09-25T03:21:32.6237233Z  * [new branch]          codex/management-manual-v7-20260922 -> origin/codex/management-manual-v7-20260922
+2026-09-25T03:21:32.6237772Z  * [new branch]          codex/manual-theory-20260919 -> origin/codex/manual-theory-20260919
+2026-09-25T03:21:32.6238330Z  * [new branch]          codex/pec-d83-d84-activation-20260907 -> origin/codex/pec-d83-d84-activation-20260907
+2026-09-25T03:21:32.6238919Z  * [new branch]          codex/pec-d83-d84-execution-20260907 -> origin/codex/pec-d83-d84-execution-20260907
+2026-09-25T03:21:32.6239491Z  * [new branch]          codex/pec-d85-store-guard-20260908 -> origin/codex/pec-d85-store-guard-20260908
+2026-09-25T03:21:32.6240269Z  * [new branch]          codex/pec-d85-store-guard-production-20260908 -> origin/codex/pec-d85-store-guard-production-20260908
+2026-09-25T03:21:32.6240978Z  * [new branch]          codex/pec-loop-home-consolidation-20260905 -> origin/codex/pec-loop-home-consolidation-20260905
+2026-09-25T03:21:32.6241654Z  * [new branch]          codex/pec-remaining-calibration-20260905 -> origin/codex/pec-remaining-calibration-20260905
+2026-09-25T03:21:32.6242386Z  * [new branch]          codex/pec-remaining-corpus-20260905 -> origin/codex/pec-remaining-corpus-20260905
+2026-09-25T03:21:32.6243037Z  * [new branch]          codex/pec-remaining-reconciliation-20260905 -> origin/codex/pec-remaining-reconciliation-20260905
+2026-09-25T03:21:32.6243654Z  * [new branch]          codex/piping-c4-policy-20260924 -> origin/codex/piping-c4-policy-20260924
+2026-09-25T03:21:32.6244170Z  * [new branch]          codex/piping-dec025-baseline -> origin/codex/piping-dec025-baseline
+2026-09-25T03:21:32.6244735Z  * [new branch]          codex/piping-dec025-records-closeout -> origin/codex/piping-dec025-records-closeout
+2026-09-25T03:21:32.6245362Z  * [new branch]          codex/piping-first-correctness-20260924 -> origin/codex/piping-first-correctness-20260924
+2026-09-25T03:21:32.6246084Z  * [new branch]          codex/piping-generated-loads-20260924 -> origin/codex/piping-generated-loads-20260924
+2026-09-25T03:21:32.6246759Z  * [new branch]          codex/piping-linter-closeout -> origin/codex/piping-linter-closeout
+2026-09-25T03:21:32.6247394Z  * [new branch]          codex/piping-live-control-20260924 -> origin/codex/piping-live-control-20260924
+2026-09-25T03:21:32.6247919Z  * [new branch]          codex/piping-loop-trial -> origin/codex/piping-loop-trial
+2026-09-25T03:21:32.6248457Z  * [new branch]          codex/piping-loop-workgraph-20260919 -> origin/codex/piping-loop-workgraph-20260919
+2026-09-25T03:21:32.6249209Z  * [new branch]          codex/piping-modeling-workspace -> origin/codex/piping-modeling-workspace
+2026-09-25T03:21:32.6250301Z  * [new branch]          codex/piping-numerical-ci-20260924 -> origin/codex/piping-numerical-ci-20260924
+2026-09-25T03:21:32.6251367Z  * [new branch]          codex/piping-ownership-amendment-20260922 -> origin/codex/piping-ownership-amendment-20260922
+2026-09-25T03:21:32.6252335Z  * [new branch]          codex/piping-physics-audit -> origin/codex/piping-physics-audit
+2026-09-25T03:21:32.6253332Z  * [new branch]          codex/piping-physics-ui-execution-20260908 -> origin/codex/piping-physics-ui-execution-20260908
+2026-09-25T03:21:32.6254532Z  * [new branch]          codex/piping-physics-ui-implementation-20260908 -> origin/codex/piping-physics-ui-implementation-20260908
+2026-09-25T03:21:32.6255813Z  * [new branch]          codex/piping-physics-ui-preparation-20260907 -> origin/codex/piping-physics-ui-preparation-20260907
+2026-09-25T03:21:32.6257109Z  * [new branch]          codex/piping-picking-runtime-evidence-20260918 -> origin/codex/piping-picking-runtime-evidence-20260918
+2026-09-25T03:21:32.6258248Z  * [new branch]          codex/piping-picking-stability-20260918 -> origin/codex/piping-picking-stability-20260918
+2026-09-25T03:21:32.6259169Z  * [new branch]          codex/piping-pipes-20260924 -> origin/codex/piping-pipes-20260924
+2026-09-25T03:21:32.6260351Z  * [new branch]          codex/piping-product-20260820 -> origin/codex/piping-product-20260820
+2026-09-25T03:21:32.6261430Z  * [new branch]          codex/piping-remaining-retire-final -> origin/codex/piping-remaining-retire-final
+2026-09-25T03:21:32.6262053Z  * [new branch]          codex/piping-remaining-retirement -> origin/codex/piping-remaining-retirement
+2026-09-25T03:21:32.6262721Z  * [new branch]          codex/piping-remaining-retirement-followon -> origin/codex/piping-remaining-retirement-followon
+2026-09-25T03:21:32.6263417Z  * [new branch]          codex/piping-rendering-baseline-20260917 -> origin/codex/piping-rendering-baseline-20260917
+2026-09-25T03:21:32.6264168Z  * [new branch]          codex/piping-result-compatibility-pressure-20260914 -> origin/codex/piping-result-compatibility-pressure-20260914
+2026-09-25T03:21:32.6264931Z  * [new branch]          codex/piping-results-engineering-3d-20260913 -> origin/codex/piping-results-engineering-3d-20260913
+2026-09-25T03:21:32.6265840Z  * [new branch]          codex/piping-standing-loop-alignment-20260919 -> origin/codex/piping-standing-loop-alignment-20260919
+2026-09-25T03:21:32.6266917Z  * [new branch]          codex/piping-ui-foundation-20260915 -> origin/codex/piping-ui-foundation-20260915
+2026-09-25T03:21:32.6267669Z  * [new branch]          codex/piping-ui-resume-20260924 -> origin/codex/piping-ui-resume-20260924
+2026-09-25T03:21:32.6268220Z  * [new branch]          codex/piping-ui-toolkit-parity -> origin/codex/piping-ui-toolkit-parity
+2026-09-25T03:21:32.6268824Z  * [new branch]          codex/piping-viewport-routing-20260909 -> origin/codex/piping-viewport-routing-20260909
+2026-09-25T03:21:32.6269462Z  * [new branch]          codex/piping-workflow-contact-20260913 -> origin/codex/piping-workflow-contact-20260913
+2026-09-25T03:21:32.6270246Z  * [new branch]          codex/plans-four-graphs-20260919 -> origin/codex/plans-four-graphs-20260919
+2026-09-25T03:21:32.6270844Z  * [new branch]          codex/product-instructions-savepoint -> origin/codex/product-instructions-savepoint
+2026-09-25T03:21:32.6271394Z  * [new branch]          codex/public-export-ci  -> origin/codex/public-export-ci
+2026-09-25T03:21:32.6272114Z  * [new branch]          codex/r5-r6-cross-project-reconciliation -> origin/codex/r5-r6-cross-project-reconciliation
+2026-09-25T03:21:32.6272738Z  * [new branch]          codex/readme-human-agent-overview -> origin/codex/readme-human-agent-overview
+2026-09-25T03:21:32.6273398Z  * [new branch]          codex/reconciliation-decision-bundles-20260922 -> origin/codex/reconciliation-decision-bundles-20260922
+2026-09-25T03:21:32.6273974Z  * [new branch]          codex/release-3.0.1     -> origin/codex/release-3.0.1
+2026-09-25T03:21:32.6274474Z  * [new branch]          codex/remove-readme-domain-clone -> origin/codex/remove-readme-domain-clone
+2026-09-25T03:21:32.6275234Z  * [new branch]          codex/retire-harness-contract-facade-20260922 -> origin/codex/retire-harness-contract-facade-20260922
+2026-09-25T03:21:32.6275940Z  * [new branch]          codex/reverse-engineer-software-workflow -> origin/codex/reverse-engineer-software-workflow
+2026-09-25T03:21:32.6276883Z  * [new branch]          codex/root-d126-custody-application -> origin/codex/root-d126-custody-application
+2026-09-25T03:21:32.6277957Z  * [new branch]          codex/root-four-graph-orientation-20260919 -> origin/codex/root-four-graph-orientation-20260919
+2026-09-25T03:21:32.6278969Z  * [new branch]          codex/root-loop-consolidation -> origin/codex/root-loop-consolidation
+2026-09-25T03:21:32.6280056Z  * [new branch]          codex/root-r16-g05-spikes-2026-08-27 -> origin/codex/root-r16-g05-spikes-2026-08-27
+2026-09-25T03:21:32.6281024Z  * [new branch]          codex/root-r18-tm-root-122-2026-09-03 -> origin/codex/root-r18-tm-root-122-2026-09-03
+2026-09-25T03:21:32.6282144Z  * [new branch]          codex/root-runtime-revision-recognition-20260906 -> origin/codex/root-runtime-revision-recognition-20260906
+2026-09-25T03:21:32.6283461Z  * [new branch]          codex/root-runtime-stage2-adoption-20260907 -> origin/codex/root-runtime-stage2-adoption-20260907
+2026-09-25T03:21:32.6284732Z  * [new branch]          codex/runtime-app-sow-publication -> origin/codex/runtime-app-sow-publication
+2026-09-25T03:21:32.6285664Z  * [new branch]          codex/runtime-application-tools -> origin/codex/runtime-application-tools
+2026-09-25T03:21:32.6286558Z  * [new branch]          codex/runtime-consumer-readiness -> origin/codex/runtime-consumer-readiness
+2026-09-25T03:21:32.6287439Z  * [new branch]          codex/runtime-custody-amendment -> origin/codex/runtime-custody-amendment
+2026-09-25T03:21:32.6288557Z  * [new branch]          codex/runtime-effective-publication -> origin/codex/runtime-effective-publication
+2026-09-25T03:21:32.6289098Z  * [new branch]          codex/runtime-execution -> origin/codex/runtime-execution
+2026-09-25T03:21:32.6289619Z  * [new branch]          codex/runtime-gate5-confirmation -> origin/codex/runtime-gate5-confirmation
+2026-09-25T03:21:32.6290400Z  * [new branch]          codex/runtime-governance-propagation -> origin/codex/runtime-governance-propagation
+2026-09-25T03:21:32.6291036Z  * [new branch]          codex/runtime-hosted-status-hardening -> origin/codex/runtime-hosted-status-hardening
+2026-09-25T03:21:32.6291607Z  * [new branch]          codex/runtime-mcp-v2-evidence -> origin/codex/runtime-mcp-v2-evidence
+2026-09-25T03:21:32.6292185Z  * [new branch]          codex/runtime-packaging-integration -> origin/codex/runtime-packaging-integration
+2026-09-25T03:21:32.6292764Z  * [new branch]          codex/runtime-project-migration -> origin/codex/runtime-project-migration
+2026-09-25T03:21:32.6293496Z  * [new branch]          codex/runtime-project-migration-plan -> origin/codex/runtime-project-migration-plan
+2026-09-25T03:21:32.6294347Z  * [new branch]          codex/runtime-readiness -> origin/codex/runtime-readiness
+2026-09-25T03:21:32.6295207Z  * [new branch]          codex/runtime-stage2-sow-propagation -> origin/codex/runtime-stage2-sow-propagation
+2026-09-25T03:21:32.6296013Z  * [new branch]          codex/sca-app-009-gate5-actual-r4-2026-09-04 -> origin/codex/sca-app-009-gate5-actual-r4-2026-09-04
+2026-09-25T03:21:32.6296994Z  * [new branch]          codex/scoped-pr-ci      -> origin/codex/scoped-pr-ci
+2026-09-25T03:21:32.6297559Z  * [new branch]          codex/shell-redesign-convergence-20260906 -> origin/codex/shell-redesign-convergence-20260906
+2026-09-25T03:21:32.6298200Z  * [new branch]          codex/shell-redesign-resume-20260906 -> origin/codex/shell-redesign-resume-20260906
+2026-09-25T03:21:32.6298797Z  * [new branch]          codex/standing-merge-authority -> origin/codex/standing-merge-authority
+2026-09-25T03:21:32.6299311Z  * [new branch]          codex/swb-ui-contradictions -> origin/codex/swb-ui-contradictions
+2026-09-25T03:21:32.6299979Z  * [new branch]          codex/swb-ui-d71-d72-rulings -> origin/codex/swb-ui-d71-d72-rulings
+2026-09-25T03:21:32.6300637Z  * [new branch]          codex/swb-ui-design-handoff-reconciliation -> origin/codex/swb-ui-design-handoff-reconciliation
+2026-09-25T03:21:32.6301245Z  * [new branch]          codex/swb-ui-revision-pass -> origin/codex/swb-ui-revision-pass
+2026-09-25T03:21:32.6301802Z  * [new branch]          codex/swbpipe-a1-followups-20260918 -> origin/codex/swbpipe-a1-followups-20260918
+2026-09-25T03:21:32.6302443Z  * [new branch]          codex/swbpipe-a1-visible-rename-20260918 -> origin/codex/swbpipe-a1-visible-rename-20260918
+2026-09-25T03:21:32.6303048Z  * [new branch]          codex/swbpipe-b-canvas-20260918 -> origin/codex/swbpipe-b-canvas-20260918
+2026-09-25T03:21:32.6303574Z  * [new branch]          codex/swbpipe-b-shell-20260918 -> origin/codex/swbpipe-b-shell-20260918
+2026-09-25T03:21:32.6304101Z  * [new branch]          codex/swbpipe-b1-tokens-20260918 -> origin/codex/swbpipe-b1-tokens-20260918
+2026-09-25T03:21:32.6304604Z  * [new branch]          codex/swbpipe-b2f-20260919 -> origin/codex/swbpipe-b2f-20260919
+2026-09-25T03:21:32.6305061Z  * [new branch]          codex/swbpipe-b3-20260919 -> origin/codex/swbpipe-b3-20260919
+2026-09-25T03:21:32.6305655Z  * [new branch]          codex/swbpipe-b3a-i1-20260920 -> origin/codex/swbpipe-b3a-i1-20260920
+2026-09-25T03:21:32.6306191Z  * [new branch]          codex/swbpipe-b4-controls-20260920 -> origin/codex/swbpipe-b4-controls-20260920
+2026-09-25T03:21:32.6306850Z  * [new branch]          codex/swbpipe-b4-materials-integration-20260921 -> origin/codex/swbpipe-b4-materials-integration-20260921
+2026-09-25T03:21:32.6307553Z  * [new branch]          codex/swbpipe-b4-node-integration-20260920 -> origin/codex/swbpipe-b4-node-integration-20260920
+2026-09-25T03:21:32.6308248Z  * [new branch]          codex/swbpipe-b4-sections-integration-20260921 -> origin/codex/swbpipe-b4-sections-integration-20260921
+2026-09-25T03:21:32.6308848Z  * [new branch]          codex/swbpipe-c-pr1-20260919 -> origin/codex/swbpipe-c-pr1-20260919
+2026-09-25T03:21:32.6309314Z  * [new branch]          codex/swbpipe-c2-20260919 -> origin/codex/swbpipe-c2-20260919
+2026-09-25T03:21:32.6309978Z  * [new branch]          codex/swbpipe-ci-economy-20260920 -> origin/codex/swbpipe-ci-economy-20260920
+2026-09-25T03:21:32.6310567Z  * [new branch]          codex/swbpipe-continuation-20260919 -> origin/codex/swbpipe-continuation-20260919
+2026-09-25T03:21:32.6311231Z  * [new branch]          codex/swbpipe-control-first-handoff-20260919 -> origin/codex/swbpipe-control-first-handoff-20260919
+2026-09-25T03:21:32.6311892Z  * [new branch]          codex/swbpipe-design-system-v14-20260918 -> origin/codex/swbpipe-design-system-v14-20260918
+2026-09-25T03:21:32.6312563Z  * [new branch]          codex/swbpipe-handoff-selfsufficient-20260919 -> origin/codex/swbpipe-handoff-selfsufficient-20260919
+2026-09-25T03:21:32.6313165Z  * [new branch]          codex/swbpipe-intended-logo -> origin/codex/swbpipe-intended-logo
+2026-09-25T03:21:32.6313666Z  * [new branch]          codex/swbpipe-records-20260919 -> origin/codex/swbpipe-records-20260919
+2026-09-25T03:21:32.6314252Z  * [new branch]          codex/swbpipe-successor-prompt-2-20260919 -> origin/codex/swbpipe-successor-prompt-2-20260919
+2026-09-25T03:21:32.6315054Z  * [new branch]          codex/swbpipe-successor-prompt-20260919 -> origin/codex/swbpipe-successor-prompt-20260919
+2026-09-25T03:21:32.6315699Z  * [new branch]          codex/swbpipe-successor-prompt-3-20260919 -> origin/codex/swbpipe-successor-prompt-3-20260919
+2026-09-25T03:21:32.6316288Z  * [new branch]          codex/swbpipe-workgraph-20260919 -> origin/codex/swbpipe-workgraph-20260919
+2026-09-25T03:21:32.6316793Z  * [new branch]          codex/tm-register-audit -> origin/codex/tm-register-audit
+2026-09-25T03:21:32.6317362Z  * [new branch]          codex/ui-refinement-package-record-20260912 -> origin/codex/ui-refinement-package-record-20260912
+2026-09-25T03:21:32.6318067Z  * [new branch]          codex/ui-refinement-packaged-handoff-20260912 -> origin/codex/ui-refinement-packaged-handoff-20260912
+2026-09-25T03:21:32.6318767Z  * [new branch]          codex/user-journey-build-evidence-20260913 -> origin/codex/user-journey-build-evidence-20260913
+2026-09-25T03:21:32.6319375Z  * [new branch]          codex/user-journey-plan-20260912 -> origin/codex/user-journey-plan-20260912
+2026-09-25T03:21:32.6320217Z  * [new branch]          codex/user-journey-release-handoff-20260913 -> origin/codex/user-journey-release-handoff-20260913
+2026-09-25T03:21:32.6320888Z  * [new branch]          codex/v3-public-release-record-20260913 -> origin/codex/v3-public-release-record-20260913
+2026-09-25T03:21:32.6321510Z  * [new branch]          codex/v3-publication-complete-20260913 -> origin/codex/v3-publication-complete-20260913
+2026-09-25T03:21:32.6322085Z  * [new branch]          codex/v3-readme-release-refresh -> origin/codex/v3-readme-release-refresh
+2026-09-25T03:21:32.6322610Z  * [new branch]          codex/workgraphs-path-anchor -> origin/codex/workgraphs-path-anchor
+2026-09-25T03:21:32.6323113Z  * [new branch]          docs/readme-product-intent -> origin/docs/readme-product-intent
+2026-09-25T03:21:32.6323574Z  * [new branch]          docs/task-mgmt-addendum -> origin/docs/task-mgmt-addendum
+2026-09-25T03:21:32.6324161Z  * [new branch]          feat/daemon-handoff     -> origin/feat/daemon-handoff
+2026-09-25T03:21:32.6324589Z  * [new branch]          feat/daemon-service     -> origin/feat/daemon-service
+2026-09-25T03:21:32.6325104Z  * [new branch]          gov/agentsmd-simplification-20260802 -> origin/gov/agentsmd-simplification-20260802
+2026-09-25T03:21:32.6325663Z  * [new branch]          gov/appdev-maturity-survey -> origin/gov/appdev-maturity-survey
+2026-09-25T03:21:32.6326119Z  * [new branch]          gov/five-explorations   -> origin/gov/five-explorations
+2026-09-25T03:21:32.6326601Z  * [new branch]          gov/five-investigations-report -> origin/gov/five-investigations-report
+2026-09-25T03:21:32.6327111Z  * [new branch]          gov/manifest-gap-disclosure -> origin/gov/manifest-gap-disclosure
+2026-09-25T03:21:32.6327635Z  * [new branch]          gov/pi-agent2-capability-intent -> origin/gov/pi-agent2-capability-intent
+2026-09-25T03:21:32.6328156Z  * [new branch]          gov/piping-intent-record -> origin/gov/piping-intent-record
+2026-09-25T03:21:32.6328615Z  * [new branch]          gov/piping-solver-survey -> origin/gov/piping-solver-survey
+2026-09-25T03:21:32.6329052Z  * [new branch]          gov/stage-a-closure     -> origin/gov/stage-a-closure
+2026-09-25T03:21:32.6329530Z  * [new branch]          gov/stage-a-step0-sha-backfill -> origin/gov/stage-a-step0-sha-backfill
+2026-09-25T03:21:32.6330213Z  * [new branch]          gov/stage-a-step1-ktm-contract -> origin/gov/stage-a-step1-ktm-contract
+2026-09-25T03:21:32.6330754Z  * [new branch]          gov/stage-a-step23-register-seed -> origin/gov/stage-a-step23-register-seed
+2026-09-25T03:21:32.6331269Z  * [new branch]          gov/stage-a-step45-tm-agent -> origin/gov/stage-a-step45-tm-agent
+2026-09-25T03:21:32.6331737Z  * [new branch]          gov/stage-a-step6-triage -> origin/gov/stage-a-step6-triage
+2026-09-25T03:21:32.6332246Z  * [new branch]          gov/stage-a-step7-stageb-packets -> origin/gov/stage-a-step7-stageb-packets
+2026-09-25T03:21:32.6332766Z  * [new branch]          gov/stage-a-step8-taskmgmt -> origin/gov/stage-a-step8-taskmgmt
+2026-09-25T03:21:32.6333338Z  * [new branch]          gov/step1-evidence-landing -> origin/gov/step1-evidence-landing
+2026-09-25T03:21:32.6333830Z  * [new branch]          gov/step2-app-ratification -> origin/gov/step2-app-ratification
+2026-09-25T03:21:32.6334304Z  * [new branch]          gov/step2-pec-ratification -> origin/gov/step2-pec-ratification
+2026-09-25T03:21:32.6334798Z  * [new branch]          gov/step2-piping-ratification -> origin/gov/step2-piping-ratification
+2026-09-25T03:21:32.6335292Z  * [new branch]          gov/step2-root-disclosure -> origin/gov/step2-root-disclosure
+2026-09-25T03:21:32.6335753Z  * [new branch]          gov/step3-d8-candidates -> origin/gov/step3-d8-candidates
+2026-09-25T03:21:32.6336222Z  * [new branch]          gov/step4-operative-surfaces -> origin/gov/step4-operative-surfaces
+2026-09-25T03:21:32.6336709Z  * [new branch]          gov/step4-sca-application -> origin/gov/step4-sca-application
+2026-09-25T03:21:32.6337192Z  * [new branch]          gov/step4-sca-decomposition -> origin/gov/step4-sca-decomposition
+2026-09-25T03:21:32.6337652Z  * [new branch]          gov/step5-loop-slates   -> origin/gov/step5-loop-slates
+2026-09-25T03:21:32.6338089Z  * [new branch]          gov/step5-root-readiness -> origin/gov/step5-root-readiness
+2026-09-25T03:21:32.6338489Z  * [new branch]          main                    -> origin/main
+2026-09-25T03:21:32.6338973Z  * [new branch]          minder/root-r16-g05-spikes-2026-08-27 -> origin/minder/root-r16-g05-spikes-2026-08-27
+2026-09-25T03:21:32.6339625Z  * [new branch]          minder/root-r17-v3-pathway-adoption-2026-08-27 -> origin/minder/root-r17-v3-pathway-adoption-2026-08-27
+2026-09-25T03:21:32.6340345Z  * [new tag]             pre-bridge-session-2026-07-06 -> pre-bridge-session-2026-07-06
+2026-09-25T03:21:32.6341708Z [command]/usr/bin/git rev-parse --verify --quiet b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d^{object}
+2026-09-25T03:21:32.6342314Z b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:21:32.6343032Z ##[endgroup]
+2026-09-25T03:21:32.6343408Z ##[group]Determining the checkout info
+2026-09-25T03:21:32.6343800Z ##[endgroup]
+2026-09-25T03:21:32.6344061Z [command]/usr/bin/git sparse-checkout disable
+2026-09-25T03:21:32.6344725Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-25T03:21:32.6345512Z ##[group]Checking out the ref
+2026-09-25T03:21:32.6345911Z [command]/usr/bin/git checkout --progress --force b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:22:04.0687027Z Updating files:   0% (1/94727)
+2026-09-25T03:22:04.1246375Z Updating files:   1% (948/94727)
+2026-09-25T03:22:04.1681734Z Updating files:   2% (1895/94727)
+2026-09-25T03:22:04.2110751Z Updating files:   3% (2842/94727)
+2026-09-25T03:22:04.2548321Z Updating files:   4% (3790/94727)
+2026-09-25T03:22:04.2925424Z Updating files:   5% (4737/94727)
+2026-09-25T03:22:04.3370326Z Updating files:   6% (5684/94727)
+2026-09-25T03:22:04.4192794Z Updating files:   7% (6631/94727)
+2026-09-25T03:22:04.4610277Z Updating files:   8% (7579/94727)
+2026-09-25T03:22:04.5022223Z Updating files:   9% (8526/94727)
+2026-09-25T03:22:04.5449245Z Updating files:  10% (9473/94727)
+2026-09-25T03:22:04.5890081Z Updating files:  11% (10420/94727)
+2026-09-25T03:22:04.6294088Z Updating files:  12% (11368/94727)
+2026-09-25T03:22:04.6745389Z Updating files:  13% (12315/94727)
+2026-09-25T03:22:04.7092978Z Updating files:  14% (13262/94727)
+2026-09-25T03:22:04.7136194Z Updating files:  15% (14210/94727)
+2026-09-25T03:22:04.7463805Z Updating files:  15% (14334/94727)
+2026-09-25T03:22:04.7792190Z Updating files:  16% (15157/94727)
+2026-09-25T03:22:04.8167223Z Updating files:  17% (16104/94727)
+2026-09-25T03:22:04.8533030Z Updating files:  18% (17051/94727)
+2026-09-25T03:22:04.8906796Z Updating files:  19% (17999/94727)
+2026-09-25T03:22:04.9283190Z Updating files:  20% (18946/94727)
+2026-09-25T03:22:04.9643810Z Updating files:  21% (19893/94727)
+2026-09-25T03:22:05.0358300Z Updating files:  22% (20840/94727)
+2026-09-25T03:22:05.0768178Z Updating files:  23% (21788/94727)
+2026-09-25T03:22:05.1858628Z Updating files:  24% (22735/94727)
+2026-09-25T03:22:05.2229473Z Updating files:  25% (23682/94727)
+2026-09-25T03:22:05.2589580Z Updating files:  26% (24630/94727)
+2026-09-25T03:22:05.2972396Z Updating files:  27% (25577/94727)
+2026-09-25T03:22:05.3328713Z Updating files:  28% (26524/94727)
+2026-09-25T03:22:05.3710751Z Updating files:  29% (27471/94727)
+2026-09-25T03:22:05.4080312Z Updating files:  30% (28419/94727)
+2026-09-25T03:22:05.4442042Z Updating files:  31% (29366/94727)
+2026-09-25T03:22:05.4862827Z Updating files:  32% (30313/94727)
+2026-09-25T03:22:05.5268553Z Updating files:  33% (31260/94727)
+2026-09-25T03:22:05.5658455Z Updating files:  34% (32208/94727)
+2026-09-25T03:22:05.6014141Z Updating files:  35% (33155/94727)
+2026-09-25T03:22:05.6404737Z Updating files:  36% (34102/94727)
+2026-09-25T03:22:05.6766099Z Updating files:  37% (35049/94727)
+2026-09-25T03:22:05.7137408Z Updating files:  38% (35997/94727)
+2026-09-25T03:22:05.7222723Z Updating files:  38% (36743/94727)
+2026-09-25T03:22:05.7623720Z Updating files:  39% (36944/94727)
+2026-09-25T03:22:05.8173246Z Updating files:  40% (37891/94727)
+2026-09-25T03:22:05.9185979Z Updating files:  41% (38839/94727)
+2026-09-25T03:22:05.9686491Z Updating files:  42% (39786/94727)
+2026-09-25T03:22:06.0163474Z Updating files:  43% (40733/94727)
+2026-09-25T03:22:06.0663061Z Updating files:  44% (41680/94727)
+2026-09-25T03:22:06.1075720Z Updating files:  45% (42628/94727)
+2026-09-25T03:22:06.1374743Z Updating files:  46% (43575/94727)
+2026-09-25T03:22:06.2071662Z Updating files:  47% (44522/94727)
+2026-09-25T03:22:06.3622474Z Updating files:  48% (45469/94727)
+2026-09-25T03:22:06.5889591Z Updating files:  49% (46417/94727)
+2026-09-25T03:22:06.6701066Z Updating files:  50% (47364/94727)
+2026-09-25T03:22:06.7138695Z Updating files:  51% (48311/94727)
+2026-09-25T03:22:06.7270289Z Updating files:  51% (49074/94727)
+2026-09-25T03:22:07.1817547Z Updating files:  52% (49259/94727)
+2026-09-25T03:22:07.2281020Z Updating files:  53% (50206/94727)
+2026-09-25T03:22:07.2765673Z Updating files:  54% (51153/94727)
+2026-09-25T03:22:07.3605331Z Updating files:  55% (52100/94727)
+2026-09-25T03:22:07.4537915Z Updating files:  56% (53048/94727)
+2026-09-25T03:22:07.5185404Z Updating files:  57% (53995/94727)
+2026-09-25T03:22:07.5689614Z Updating files:  58% (54942/94727)
+2026-09-25T03:22:07.7067903Z Updating files:  59% (55889/94727)
+2026-09-25T03:22:07.7138111Z Updating files:  60% (56837/94727)
+2026-09-25T03:22:07.7536164Z Updating files:  60% (56931/94727)
+2026-09-25T03:22:07.8087857Z Updating files:  61% (57784/94727)
+2026-09-25T03:22:07.8528982Z Updating files:  62% (58731/94727)
+2026-09-25T03:22:07.8975506Z Updating files:  63% (59679/94727)
+2026-09-25T03:22:07.9438532Z Updating files:  64% (60626/94727)
+2026-09-25T03:22:08.0191395Z Updating files:  65% (61573/94727)
+2026-09-25T03:22:08.0975922Z Updating files:  66% (62520/94727)
+2026-09-25T03:22:08.1614005Z Updating files:  67% (63468/94727)
+2026-09-25T03:22:08.2263063Z Updating files:  68% (64415/94727)
+2026-09-25T03:22:08.3333431Z Updating files:  69% (65362/94727)
+2026-09-25T03:22:10.7965760Z Updating files:  70% (66309/94727)
+2026-09-25T03:22:10.8102844Z Updating files:  70% (67104/94727)
+2026-09-25T03:22:10.9757400Z Updating files:  71% (67257/94727)
+2026-09-25T03:22:11.4168626Z Updating files:  72% (68204/94727)
+2026-09-25T03:22:11.6053166Z Updating files:  73% (69151/94727)
+2026-09-25T03:22:11.7143750Z Updating files:  74% (70098/94727)
+2026-09-25T03:22:11.7524793Z Updating files:  74% (70674/94727)
+2026-09-25T03:22:11.8949899Z Updating files:  75% (71046/94727)
+2026-09-25T03:22:12.2480262Z Updating files:  76% (71993/94727)
+2026-09-25T03:22:12.3842865Z Updating files:  77% (72940/94727)
+2026-09-25T03:22:12.5933027Z Updating files:  78% (73888/94727)
+2026-09-25T03:22:12.7140769Z Updating files:  79% (74835/94727)
+2026-09-25T03:22:12.8148027Z Updating files:  79% (75388/94727)
+2026-09-25T03:22:13.1614863Z Updating files:  80% (75782/94727)
+2026-09-25T03:22:13.5192998Z Updating files:  81% (76729/94727)
+2026-09-25T03:22:13.5818401Z Updating files:  82% (77677/94727)
+2026-09-25T03:22:13.7121480Z Updating files:  83% (78624/94727)
+2026-09-25T03:22:13.7136141Z Updating files:  84% (79571/94727)
+2026-09-25T03:22:13.9105158Z Updating files:  84% (79610/94727)
+2026-09-25T03:22:14.4384197Z Updating files:  85% (80518/94727)
+2026-09-25T03:22:14.5987429Z Updating files:  86% (81466/94727)
+2026-09-25T03:22:14.7213404Z Updating files:  87% (82413/94727)
+2026-09-25T03:22:14.9554875Z Updating files:  87% (82598/94727)
+2026-09-25T03:22:15.1062362Z Updating files:  88% (83360/94727)
+2026-09-25T03:22:15.2106035Z Updating files:  89% (84308/94727)
+2026-09-25T03:22:15.4741457Z Updating files:  90% (85255/94727)
+2026-09-25T03:22:15.5486500Z Updating files:  91% (86202/94727)
+2026-09-25T03:22:15.5875426Z Updating files:  92% (87149/94727)
+2026-09-25T03:22:15.6300182Z Updating files:  93% (88097/94727)
+2026-09-25T03:22:15.6784160Z Updating files:  94% (89044/94727)
+2026-09-25T03:22:15.7136587Z Updating files:  95% (89991/94727)
+2026-09-25T03:22:15.7283133Z Updating files:  95% (90701/94727)
+2026-09-25T03:22:15.8067212Z Updating files:  96% (90938/94727)
+2026-09-25T03:22:16.3024697Z Updating files:  97% (91886/94727)
+2026-09-25T03:22:16.5541320Z Updating files:  98% (92833/94727)
+2026-09-25T03:22:16.6149028Z Updating files:  99% (93780/94727)
+2026-09-25T03:22:16.6149391Z Updating files: 100% (94727/94727)
+2026-09-25T03:22:16.6149713Z Updating files: 100% (94727/94727), done.
+2026-09-25T03:22:16.7376565Z Note: switching to 'b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d'.
+2026-09-25T03:22:16.7376953Z 
+2026-09-25T03:22:16.7377207Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-25T03:22:16.7377779Z changes and commit them, and you can discard any commits you make in this
+2026-09-25T03:22:16.7378341Z state without impacting any branches by switching back to a branch.
+2026-09-25T03:22:16.7378977Z 
+2026-09-25T03:22:16.7379196Z If you want to create a new branch to retain commits you create, you may
+2026-09-25T03:22:16.7379899Z do so (now or later) by using -c with the switch command. Example:
+2026-09-25T03:22:16.7380213Z 
+2026-09-25T03:22:16.7380338Z   git switch -c <new-branch-name>
+2026-09-25T03:22:16.7380552Z 
+2026-09-25T03:22:16.7380676Z Or undo this operation with:
+2026-09-25T03:22:16.7380863Z 
+2026-09-25T03:22:16.7380970Z   git switch -
+2026-09-25T03:22:16.7381112Z 
+2026-09-25T03:22:16.7381370Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-25T03:22:16.7381727Z 
+2026-09-25T03:22:16.7382029Z HEAD is now at b526aeb23 Integrate current main for self-weight correction qualification
+2026-09-25T03:22:16.7549330Z ##[endgroup]
+2026-09-25T03:22:16.7597113Z [command]/usr/bin/git log -1 --format=%H
+2026-09-25T03:22:16.7609567Z b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d
+2026-09-25T03:22:16.7816706Z ##[group]Run actions/download-artifact@v4
+2026-09-25T03:22:16.7816966Z with:
+2026-09-25T03:22:16.7817148Z   name: piping-e2e-selection
+2026-09-25T03:22:16.7817349Z   merge-multiple: false
+2026-09-25T03:22:16.7817540Z   repository: sgttomas/chirality
+2026-09-25T03:22:16.7817734Z   run-id: 36089968220
+2026-09-25T03:22:16.7817904Z env:
+2026-09-25T03:22:16.7818059Z   CI: true
+2026-09-25T03:22:16.7818224Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:16.7818422Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:16.7818598Z ##[endgroup]
+2026-09-25T03:22:16.9036901Z Downloading single artifact
+2026-09-25T03:22:16.9147527Z (node:2114) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-25T03:22:16.9148239Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-25T03:22:17.1023873Z Preparing to download the following artifacts:
+2026-09-25T03:22:17.1024801Z - piping-e2e-selection (ID: 10845336460, Size: 3767, Expected Digest: sha256:9997fd08aae36d28aea488a74d7e456fac8d1ab314ae975a420e3173aff1e617)
+2026-09-25T03:22:17.2933785Z Redirecting to blob download url: https://productionresultssa8.blob.core.windows.net/actions-results/c2d25e8e-8c1a-4879-8489-f3bf2c6f8de4/workflow-job-run-1d808c08-35ee-5276-8f77-763fcc04f770/artifacts/d76d2c5e34c0118cf5ea8156f64c32d87b2f27d3ec783b1db45e1fdb35b68e2a.zip
+2026-09-25T03:22:17.2935245Z Starting download of artifact to: /home/runner/work/chirality/chirality
+2026-09-25T03:22:17.4937686Z (node:2114) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-09-25T03:22:17.4984410Z SHA256 digest of downloaded artifact is 9997fd08aae36d28aea488a74d7e456fac8d1ab314ae975a420e3173aff1e617
+2026-09-25T03:22:17.4985108Z Artifact download completed successfully.
+2026-09-25T03:22:17.4985500Z Total of 1 artifact(s) downloaded
+2026-09-25T03:22:17.4989224Z Download artifact has finished successfully
+2026-09-25T03:22:17.5185547Z ##[group]Run dtolnay/rust-toolchain@1.97.1
+2026-09-25T03:22:17.5185794Z with:
+2026-09-25T03:22:17.5185968Z env:
+2026-09-25T03:22:17.5186127Z   CI: true
+2026-09-25T03:22:17.5186299Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.5186514Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.5186709Z ##[endgroup]
+2026-09-25T03:22:17.5235738Z ##[start-action display=Parse toolchain version;id=__dtolnay_rust-toolchain.parse]
+2026-09-25T03:22:17.5278080Z ##[group]Run if [[ -z $toolchain ]]; then
+2026-09-25T03:22:17.5278396Z [36;1mif [[ -z $toolchain ]]; then[0m
+2026-09-25T03:22:17.5278836Z [36;1m  # GitHub does not enforce `required: true` inputs itself. https://github.com/actions/runner/issues/1070[0m
+2026-09-25T03:22:17.5279297Z [36;1m  echo "'toolchain' is a required input" >&2[0m
+2026-09-25T03:22:17.5279546Z [36;1m  exit 1[0m
+2026-09-25T03:22:17.5280002Z [36;1melif [[ $toolchain =~ ^stable' '[0-9]+' '(year|month|week|day)s?' 'ago$ ]]; then[0m
+2026-09-25T03:22:17.5280374Z [36;1m  if [[ Linux == macOS ]]; then[0m
+2026-09-25T03:22:17.5280969Z [36;1m    echo "toolchain=1.$((($(date -v-$(sed 's/stable \([0-9]*\) \(.\).*/\1\2/' <<< $toolchain) +%s)/60/60/24-16569)/7/6))" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.5281367Z [36;1m  else[0m
+2026-09-25T03:22:17.5281702Z [36;1m    echo "toolchain=1.$((($(date --date "${toolchain#stable }" +%s)/60/60/24-16569)/7/6))" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.5282056Z [36;1m  fi[0m
+2026-09-25T03:22:17.5282302Z [36;1melif [[ $toolchain =~ ^stable' 'minus' '[0-9]+' 'releases?$ ]]; then[0m
+2026-09-25T03:22:17.5282723Z [36;1m  echo "toolchain=1.$((($(date +%s)/60/60/24-16569)/7/6-${toolchain//[^0-9]/}))" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.5283083Z [36;1melif [[ $toolchain =~ ^1\.[0-9]+$ ]]; then[0m
+2026-09-25T03:22:17.5283488Z [36;1m  echo "toolchain=1.$((i=${toolchain#1.}, c=($(date +%s)/60/60/24-16569)/7/6, i+9*i*(10*i<=c)+90*i*(100*i<=c)))" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.5283865Z [36;1melse[0m
+2026-09-25T03:22:17.5284083Z [36;1m  echo "toolchain=$toolchain" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.5284326Z [36;1mfi[0m
+2026-09-25T03:22:17.6466007Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:17.6466307Z env:
+2026-09-25T03:22:17.6466490Z   CI: true
+2026-09-25T03:22:17.6466667Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.6466878Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.6467067Z   toolchain: 1.97.1
+2026-09-25T03:22:17.6467244Z ##[endgroup]
+2026-09-25T03:22:17.7144604Z ##[end-action id=__dtolnay_rust-toolchain.parse;outcome=success;conclusion=success;duration_ms=190]
+2026-09-25T03:22:17.7149979Z ##[start-action display=Construct rustup command line;id=__dtolnay_rust-toolchain.flags]
+2026-09-25T03:22:17.7173321Z ##[group]Run echo "targets=$(for t in ${targets//,/ }; do echo -n ' --target' $t; done)" >> $GITHUB_OUTPUT
+2026-09-25T03:22:17.7173816Z [36;1mecho "targets=$(for t in ${targets//,/ }; do echo -n ' --target' $t; done)" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.7174326Z [36;1mecho "components=$(for c in ${components//,/ }; do echo -n ' --component' $c; done)" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.7174731Z [36;1mecho "downgrade=" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:17.7228091Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:17.7228361Z env:
+2026-09-25T03:22:17.7228529Z   CI: true
+2026-09-25T03:22:17.7228699Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.7228908Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.7229085Z   targets: 
+2026-09-25T03:22:17.7229242Z   components: 
+2026-09-25T03:22:17.7229414Z ##[endgroup]
+2026-09-25T03:22:17.7480986Z ##[end-action id=__dtolnay_rust-toolchain.flags;outcome=success;conclusion=success;duration_ms=33]
+2026-09-25T03:22:17.7482904Z ##[start-action display=Set $CARGO_HOME;id=__dtolnay_rust-toolchain.__run]
+2026-09-25T03:22:17.7498464Z ##[group]Run echo CARGO_HOME=${CARGO_HOME:-"$HOME/.cargo"} >> $GITHUB_ENV
+2026-09-25T03:22:17.7499019Z [36;1mecho CARGO_HOME=${CARGO_HOME:-"$HOME/.cargo"} >> $GITHUB_ENV[0m
+2026-09-25T03:22:17.7553273Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:17.7553561Z env:
+2026-09-25T03:22:17.7553718Z   CI: true
+2026-09-25T03:22:17.7553892Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.7554100Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.7554278Z ##[endgroup]
+2026-09-25T03:22:17.7838267Z ##[end-action id=__dtolnay_rust-toolchain.__run;outcome=success;conclusion=success;duration_ms=35]
+2026-09-25T03:22:17.7840365Z ##[start-action display=Install rustup if needed;id=__dtolnay_rust-toolchain.__run_2]
+2026-09-25T03:22:17.8312301Z ##[group]Run if ! command -v rustup &>/dev/null; then
+2026-09-25T03:22:17.8312627Z [36;1mif ! command -v rustup &>/dev/null; then[0m
+2026-09-25T03:22:17.8313223Z [36;1m  curl --proto '=https' --tlsv1.2 --retry 10 --retry-connrefused --location --silent --show-error --fail https://sh.rustup.rs | sh -s -- --default-toolchain none -y[0m
+2026-09-25T03:22:17.8313800Z [36;1m  echo "$CARGO_HOME/bin" >> $GITHUB_PATH[0m
+2026-09-25T03:22:17.8314046Z [36;1mfi[0m
+2026-09-25T03:22:17.8368336Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:17.8368607Z env:
+2026-09-25T03:22:17.8368768Z   CI: true
+2026-09-25T03:22:17.8368938Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.8369144Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.8369348Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:17.8369556Z ##[endgroup]
+2026-09-25T03:22:17.8801503Z ##[end-action id=__dtolnay_rust-toolchain.__run_2;outcome=success;conclusion=success;duration_ms=96]
+2026-09-25T03:22:17.8803594Z ##[start-action display=Install rustup if needed on windows;id=__dtolnay_rust-toolchain.__run_3]
+2026-09-25T03:22:17.8812410Z ##[end-action id=__dtolnay_rust-toolchain.__run_3;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-09-25T03:22:17.8824116Z ##[start-action display=rustup toolchain install 1.97.1;id=__dtolnay_rust-toolchain.__run_4]
+2026-09-25T03:22:17.8840994Z ##[group]Run rustup toolchain install 1.97.1 --profile minimal --no-self-update
+2026-09-25T03:22:17.8841452Z [36;1mrustup toolchain install 1.97.1 --profile minimal --no-self-update[0m
+2026-09-25T03:22:17.8899679Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:17.8900148Z env:
+2026-09-25T03:22:17.8900307Z   CI: true
+2026-09-25T03:22:17.8900478Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:17.8900693Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:17.8900898Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:17.8901114Z   RUSTUP_PERMIT_COPY_RENAME: 1
+2026-09-25T03:22:17.8901317Z ##[endgroup]
+2026-09-25T03:22:18.0488639Z info: syncing channel updates for 1.97.1-x86_64-unknown-linux-gnu
+2026-09-25T03:22:19.0583451Z info: latest update on 2026-07-16 for version 1.97.1 (8bab26f4f 2026-07-14)
+2026-09-25T03:22:19.0583826Z info: downloading 3 components
+2026-09-25T03:22:27.0740466Z 
+2026-09-25T03:22:27.0811296Z   1.97.1-x86_64-unknown-linux-gnu installed - rustc 1.97.1 (8bab26f4f 2026-07-14)
+2026-09-25T03:22:27.0811597Z 
+2026-09-25T03:22:27.0867663Z ##[end-action id=__dtolnay_rust-toolchain.__run_4;outcome=success;conclusion=success;duration_ms=9204]
+2026-09-25T03:22:27.0874711Z ##[start-action display=rustup default 1.97.1;id=__dtolnay_rust-toolchain.__run_5]
+2026-09-25T03:22:27.0914777Z ##[group]Run rustup default 1.97.1
+2026-09-25T03:22:27.0915157Z [36;1mrustup default 1.97.1[0m
+2026-09-25T03:22:27.0985129Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.0985557Z env:
+2026-09-25T03:22:27.0985805Z   CI: true
+2026-09-25T03:22:27.0986064Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.0986389Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.0986688Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.0987008Z ##[endgroup]
+2026-09-25T03:22:27.1206172Z info: using existing install for 1.97.1-x86_64-unknown-linux-gnu
+2026-09-25T03:22:27.1474612Z 
+2026-09-25T03:22:27.1479585Z info: default toolchain set to 1.97.1-x86_64-unknown-linux-gnu
+2026-09-25T03:22:27.1535164Z   1.97.1-x86_64-unknown-linux-gnu unchanged - rustc 1.97.1 (8bab26f4f 2026-07-14)
+2026-09-25T03:22:27.1535519Z 
+2026-09-25T03:22:27.1549354Z ##[end-action id=__dtolnay_rust-toolchain.__run_5;outcome=success;conclusion=success;duration_ms=67]
+2026-09-25T03:22:27.1551574Z ##[start-action display=Create cachekey;id=__dtolnay_rust-toolchain.rustc-version]
+2026-09-25T03:22:27.1567789Z ##[group]Run DATE=$(rustc +1.97.1 --version --verbose | sed -ne 's/^commit-date: \(20[0-9][0-9]\)-\([01][0-9]\)-\([0-3][0-9]\)$/\1\2\3/p')
+2026-09-25T03:22:27.1568401Z [36;1mDATE=$(rustc +1.97.1 --version --verbose | sed -ne 's/^commit-date: \(20[0-9][0-9]\)-\([01][0-9]\)-\([0-3][0-9]\)$/\1\2\3/p')[0m
+2026-09-25T03:22:27.1568876Z [36;1mHASH=$(rustc +1.97.1 --version --verbose | sed -ne 's/^commit-hash: //p')[0m
+2026-09-25T03:22:27.1569264Z [36;1mecho "cachekey=$(echo $DATE$HASH | head -c12)" >> $GITHUB_OUTPUT[0m
+2026-09-25T03:22:27.1621582Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.1621853Z env:
+2026-09-25T03:22:27.1622016Z   CI: true
+2026-09-25T03:22:27.1622203Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.1622558Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.1622757Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.1622967Z ##[endgroup]
+2026-09-25T03:22:27.2558499Z ##[end-action id=__dtolnay_rust-toolchain.rustc-version;outcome=success;conclusion=success;duration_ms=100]
+2026-09-25T03:22:27.2560812Z ##[start-action display=Disable incremental compilation;id=__dtolnay_rust-toolchain.__run_6]
+2026-09-25T03:22:27.2576599Z ##[group]Run if [ -z "${CARGO_INCREMENTAL+set}" ]; then
+2026-09-25T03:22:27.2576901Z [36;1mif [ -z "${CARGO_INCREMENTAL+set}" ]; then[0m
+2026-09-25T03:22:27.2577181Z [36;1m  echo CARGO_INCREMENTAL=0 >> $GITHUB_ENV[0m
+2026-09-25T03:22:27.2577410Z [36;1mfi[0m
+2026-09-25T03:22:27.2628720Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.2628993Z env:
+2026-09-25T03:22:27.2629166Z   CI: true
+2026-09-25T03:22:27.2629341Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.2629546Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.2629917Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.2630143Z ##[endgroup]
+2026-09-25T03:22:27.2700882Z ##[end-action id=__dtolnay_rust-toolchain.__run_6;outcome=success;conclusion=success;duration_ms=13]
+2026-09-25T03:22:27.2702594Z ##[start-action display=Enable colors in Cargo output;id=__dtolnay_rust-toolchain.__run_7]
+2026-09-25T03:22:27.2716787Z ##[group]Run if [ -z "${CARGO_TERM_COLOR+set}" ]; then
+2026-09-25T03:22:27.2717085Z [36;1mif [ -z "${CARGO_TERM_COLOR+set}" ]; then[0m
+2026-09-25T03:22:27.2717371Z [36;1m  echo CARGO_TERM_COLOR=always >> $GITHUB_ENV[0m
+2026-09-25T03:22:27.2717613Z [36;1mfi[0m
+2026-09-25T03:22:27.2762850Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.2763121Z env:
+2026-09-25T03:22:27.2763290Z   CI: true
+2026-09-25T03:22:27.2763467Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.2763688Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.2763882Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.2764096Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:22:27.2764289Z ##[endgroup]
+2026-09-25T03:22:27.2890114Z ##[end-action id=__dtolnay_rust-toolchain.__run_7;outcome=success;conclusion=success;duration_ms=18]
+2026-09-25T03:22:27.2891899Z ##[start-action display=Enable Cargo sparse registry;id=__dtolnay_rust-toolchain.__run_8]
+2026-09-25T03:22:27.2910763Z ##[group]Run # implemented in 1.66, stabilized in 1.68, made default in 1.70
+2026-09-25T03:22:27.2911167Z [36;1m# implemented in 1.66, stabilized in 1.68, made default in 1.70[0m
+2026-09-25T03:22:27.2911736Z [36;1mif [ -z "${CARGO_REGISTRIES_CRATES_IO_PROTOCOL+set}" -o -f "/home/runner/work/_temp"/.implicit_cargo_registries_crates_io_protocol ]; then[0m
+2026-09-25T03:22:27.2912298Z [36;1m  if rustc +1.97.1 --version --verbose | grep -q '^release: 1\.6[89]\.'; then[0m
+2026-09-25T03:22:27.2912744Z [36;1m    touch "/home/runner/work/_temp"/.implicit_cargo_registries_crates_io_protocol || true[0m
+2026-09-25T03:22:27.2913319Z [36;1m    echo CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse >> $GITHUB_ENV[0m
+2026-09-25T03:22:27.2913720Z [36;1m  elif rustc +1.97.1 --version --verbose | grep -q '^release: 1\.6[67]\.'; then[0m
+2026-09-25T03:22:27.2914165Z [36;1m    touch "/home/runner/work/_temp"/.implicit_cargo_registries_crates_io_protocol || true[0m
+2026-09-25T03:22:27.2914562Z [36;1m    echo CARGO_REGISTRIES_CRATES_IO_PROTOCOL=git >> $GITHUB_ENV[0m
+2026-09-25T03:22:27.2914850Z [36;1m  fi[0m
+2026-09-25T03:22:27.2915016Z [36;1mfi[0m
+2026-09-25T03:22:27.2963514Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.2963785Z env:
+2026-09-25T03:22:27.2963949Z   CI: true
+2026-09-25T03:22:27.2964122Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.2964333Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.2964524Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.2964727Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:22:27.2964916Z   CARGO_TERM_COLOR: always
+2026-09-25T03:22:27.2965101Z ##[endgroup]
+2026-09-25T03:22:27.3451737Z ##[end-action id=__dtolnay_rust-toolchain.__run_8;outcome=success;conclusion=success;duration_ms=55]
+2026-09-25T03:22:27.3454130Z ##[start-action display=Work around spurious network errors in curl 8.0;id=__dtolnay_rust-toolchain.__run_9]
+2026-09-25T03:22:27.3471347Z ##[group]Run # https://rust-lang.zulipchat.com/#narrow/stream/246057-t-cargo/topic/timeout.20investigation
+2026-09-25T03:22:27.3471947Z [36;1m# https://rust-lang.zulipchat.com/#narrow/stream/246057-t-cargo/topic/timeout.20investigation[0m
+2026-09-25T03:22:27.3472426Z [36;1mif rustc +1.97.1 --version --verbose | grep -q '^release: 1\.7[01]\.'; then[0m
+2026-09-25T03:22:27.3472783Z [36;1m  echo CARGO_HTTP_MULTIPLEXING=false >> $GITHUB_ENV[0m
+2026-09-25T03:22:27.3473049Z [36;1mfi[0m
+2026-09-25T03:22:27.3527019Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.3527299Z env:
+2026-09-25T03:22:27.3527465Z   CI: true
+2026-09-25T03:22:27.3527636Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.3527850Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.3528052Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.3528266Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:22:27.3528452Z   CARGO_TERM_COLOR: always
+2026-09-25T03:22:27.3528638Z ##[endgroup]
+2026-09-25T03:22:27.3811341Z ##[end-action id=__dtolnay_rust-toolchain.__run_9;outcome=success;conclusion=success;duration_ms=35]
+2026-09-25T03:22:27.3815415Z ##[start-action display=rustc +1.97.1 --version --verbose;id=__dtolnay_rust-toolchain.__run_10]
+2026-09-25T03:22:27.3836579Z ##[group]Run rustc +1.97.1 --version --verbose
+2026-09-25T03:22:27.3837030Z [36;1mrustc +1.97.1 --version --verbose[0m
+2026-09-25T03:22:27.3907230Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-25T03:22:27.3907633Z env:
+2026-09-25T03:22:27.3907870Z   CI: true
+2026-09-25T03:22:27.3908138Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.3908517Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.3908833Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.3909160Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:22:27.3909453Z   CARGO_TERM_COLOR: always
+2026-09-25T03:22:27.3909984Z ##[endgroup]
+2026-09-25T03:22:27.4176414Z rustc 1.97.1 (8bab26f4f 2026-07-14)
+2026-09-25T03:22:27.4176840Z binary: rustc
+2026-09-25T03:22:27.4177177Z commit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452
+2026-09-25T03:22:27.4177451Z commit-date: 2026-07-14
+2026-09-25T03:22:27.4177650Z host: x86_64-unknown-linux-gnu
+2026-09-25T03:22:27.4177848Z release: 1.97.1
+2026-09-25T03:22:27.4178223Z LLVM version: 22.1.6
+2026-09-25T03:22:27.4191568Z ##[end-action id=__dtolnay_rust-toolchain.__run_10;outcome=success;conclusion=success;duration_ms=37]
+2026-09-25T03:22:27.4236799Z ##[group]Run python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-e2e-plan.json --evidence-dir piping-numerical-evidence
+2026-09-25T03:22:27.4237546Z [36;1mpython3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-e2e-plan.json --evidence-dir piping-numerical-evidence[0m
+2026-09-25T03:22:27.4288452Z shell: /usr/bin/bash -e {0}
+2026-09-25T03:22:27.4288674Z env:
+2026-09-25T03:22:27.4288932Z   CI: true
+2026-09-25T03:22:27.4289288Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:22:27.4289508Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:22:27.4289707Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:22:27.4290103Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:22:27.4290289Z   CARGO_TERM_COLOR: always
+2026-09-25T03:22:27.4290481Z ##[endgroup]
+2026-09-25T03:22:27.5055984Z Running: rustc --version
+2026-09-25T03:22:27.5157391Z Running: cargo --version
+2026-09-25T03:22:27.5234389Z Running: cargo fetch --locked --manifest-path core/gui/viewport_editor/Cargo.toml
+2026-09-25T03:22:27.7464034Z Running: cargo fetch --locked --manifest-path core/library_import/library_import_document/Cargo.toml
+2026-09-25T03:22:28.5425251Z Running: cargo fetch --locked --manifest-path core/loads/load_case_algebra/Cargo.toml
+2026-09-25T03:22:28.5703722Z Running: cargo fetch --locked --manifest-path core/loads/primitive_loads/Cargo.toml
+2026-09-25T03:22:28.5971688Z Running: cargo fetch --locked --manifest-path core/loads/self_weight_wasm/Cargo.toml
+2026-09-25T03:22:29.3370463Z Running: cargo fetch --locked --manifest-path core/loads/stress_recovery/Cargo.toml
+2026-09-25T03:22:29.3647784Z Running: cargo fetch --locked --manifest-path core/loads/user_loads/Cargo.toml
+2026-09-25T03:22:29.3923989Z Running: cargo fetch --locked --manifest-path core/model_operations/operation_applier/Cargo.toml
+2026-09-25T03:22:29.7313799Z Running: cargo fetch --locked --manifest-path core/product_physics/Cargo.toml
+2026-09-25T03:22:29.9334188Z Running: cargo fetch --locked --manifest-path core/reporting/audit_manifest/Cargo.toml
+2026-09-25T03:22:29.9605981Z Running: cargo fetch --locked --manifest-path core/reporting/pdf_emitter/Cargo.toml
+2026-09-25T03:22:30.1733083Z Running: cargo fetch --locked --manifest-path core/reporting/protected_content_linter/Cargo.toml
+2026-09-25T03:22:30.2007604Z Running: cargo fetch --locked --manifest-path core/reporting/report_generator/Cargo.toml
+2026-09-25T03:22:30.4123044Z Running: cargo fetch --locked --manifest-path core/reporting/report_package/Cargo.toml
+2026-09-25T03:22:30.4483131Z Running: cargo fetch --locked --manifest-path core/reporting/report_renderer/Cargo.toml
+2026-09-25T03:22:30.4824287Z Running: cargo fetch --locked --manifest-path core/reporting/report_sections/Cargo.toml
+2026-09-25T03:22:30.5124531Z Running: cargo fetch --locked --manifest-path core/reporting/result_export/Cargo.toml
+2026-09-25T03:22:30.6507654Z Running: cargo fetch --locked --manifest-path core/rules/completeness_checker/Cargo.toml
+2026-09-25T03:22:30.6773261Z Running: cargo fetch --locked --manifest-path core/rules/expression_evaluator/Cargo.toml
+2026-09-25T03:22:30.7035328Z Running: cargo fetch --locked --manifest-path core/rules/rule_check_runner/Cargo.toml
+2026-09-25T03:22:30.7354222Z Running: cargo fetch --locked --manifest-path core/rules/rule_pack_document/Cargo.toml
+2026-09-25T03:22:30.7670565Z Running: cargo fetch --locked --manifest-path core/rules/rule_pack_lifecycle/Cargo.toml
+2026-09-25T03:22:30.7935784Z Running: cargo fetch --locked --manifest-path core/runner/headless/Cargo.toml
+2026-09-25T03:22:30.8325140Z Running: cargo fetch --locked --manifest-path core/serialization/canonical_json/Cargo.toml
+2026-09-25T03:22:30.8637367Z Running: cargo fetch --locked --manifest-path core/solver/curved_bend/Cargo.toml
+2026-09-25T03:22:30.8903447Z Running: cargo fetch --locked --manifest-path core/solver/diagnostics/Cargo.toml
+2026-09-25T03:22:30.9168392Z Running: cargo fetch --locked --manifest-path core/solver/frame_kernel/Cargo.toml
+2026-09-25T03:22:30.9426957Z Running: cargo fetch --locked --manifest-path core/solver/linear_supports/Cargo.toml
+2026-09-25T03:22:30.9692753Z Running: cargo fetch --locked --manifest-path core/solver/nonlinear_integration/Cargo.toml
+2026-09-25T03:22:30.9964836Z Running: cargo fetch --locked --manifest-path core/solver/nonlinear_supports/Cargo.toml
+2026-09-25T03:22:31.0239964Z Running: cargo fetch --locked --manifest-path core/solver/performance_harness/Cargo.toml
+2026-09-25T03:22:31.0515715Z Running: cargo fetch --locked --manifest-path core/solver/sparse_direct/Cargo.toml
+2026-09-25T03:22:31.0787843Z Running: cargo fetch --locked --manifest-path core/solver/straight_pipe/Cargo.toml
+2026-09-25T03:22:31.1054406Z Running: cargo fetch --locked --manifest-path core/units/Cargo.toml
+2026-09-25T03:22:31.1362044Z Running: cargo fetch --locked --manifest-path validation/benchmarks/mechanics/Cargo.toml
+2026-09-25T03:22:31.2866598Z Running: cargo fetch --locked --manifest-path validation/benchmarks/nonlinear/Cargo.toml
+2026-09-25T03:22:31.3147749Z Running: cargo fetch --locked --manifest-path validation/benchmarks/physics_audit_regression/Cargo.toml
+2026-09-25T03:22:31.3523876Z Running: cargo fetch --locked --manifest-path validation/benchmarks/stress/Cargo.toml
+2026-09-25T03:22:31.5068977Z Running: cargo test --offline --manifest-path core/gui/viewport_editor/Cargo.toml --locked
+2026-09-25T03:22:31.8757742Z Running: cargo test --offline --manifest-path core/library_import/library_import_document/Cargo.toml --locked
+2026-09-25T03:22:35.4214501Z Running: cargo test --offline --manifest-path core/loads/load_case_algebra/Cargo.toml --locked
+2026-09-25T03:22:36.1476182Z Running: cargo test --offline --manifest-path core/loads/primitive_loads/Cargo.toml --locked
+2026-09-25T03:22:36.7064871Z Running: cargo test --offline --manifest-path core/loads/self_weight_wasm/Cargo.toml --locked
+2026-09-25T03:22:44.7063047Z Running: cargo test --offline --manifest-path core/loads/stress_recovery/Cargo.toml --locked
+2026-09-25T03:22:44.9709384Z Running: cargo test --offline --manifest-path core/loads/user_loads/Cargo.toml --locked
+2026-09-25T03:22:45.2974960Z Running: cargo test --offline --manifest-path core/model_operations/operation_applier/Cargo.toml --locked
+2026-09-25T03:22:51.5606634Z Running: cargo test --offline --manifest-path core/product_physics/Cargo.toml --locked
+2026-09-25T03:22:56.7845322Z Running: cargo test --offline --manifest-path core/reporting/audit_manifest/Cargo.toml --locked
+2026-09-25T03:22:57.0724280Z Running: cargo test --offline --manifest-path core/reporting/pdf_emitter/Cargo.toml --locked
+2026-09-25T03:23:00.4640118Z Running: cargo test --offline --manifest-path core/reporting/protected_content_linter/Cargo.toml --locked
+2026-09-25T03:23:00.8706804Z Running: cargo test --offline --manifest-path core/reporting/report_generator/Cargo.toml --locked
+2026-09-25T03:23:01.2310375Z Running: cargo test --offline --manifest-path core/reporting/report_package/Cargo.toml --locked
+2026-09-25T03:23:03.7826465Z Running: cargo test --offline --manifest-path core/reporting/report_renderer/Cargo.toml --locked
+2026-09-25T03:23:04.9864760Z Running: cargo test --offline --manifest-path core/reporting/report_sections/Cargo.toml --locked
+2026-09-25T03:23:05.1956727Z Running: cargo test --offline --manifest-path core/reporting/result_export/Cargo.toml --locked
+2026-09-25T03:23:08.6300714Z Running: cargo test --offline --manifest-path core/rules/completeness_checker/Cargo.toml --locked
+2026-09-25T03:23:08.8674790Z Running: cargo test --offline --manifest-path core/rules/expression_evaluator/Cargo.toml --locked
+2026-09-25T03:23:09.3660824Z Running: cargo test --offline --manifest-path core/rules/rule_check_runner/Cargo.toml --locked
+2026-09-25T03:23:10.6910236Z Running: cargo test --offline --manifest-path core/rules/rule_pack_document/Cargo.toml --locked
+2026-09-25T03:23:11.1518753Z Running: cargo test --offline --manifest-path core/rules/rule_pack_lifecycle/Cargo.toml --locked
+2026-09-25T03:23:11.3523383Z Running: cargo test --offline --manifest-path core/runner/headless/Cargo.toml --locked
+2026-09-25T03:23:25.0923069Z Running: cargo test --offline --manifest-path core/serialization/canonical_json/Cargo.toml --locked
+2026-09-25T03:23:25.3559226Z Running: cargo test --offline --manifest-path core/solver/curved_bend/Cargo.toml --locked
+2026-09-25T03:23:25.6364469Z Running: cargo test --offline --manifest-path core/solver/diagnostics/Cargo.toml --locked
+2026-09-25T03:23:25.8468303Z Running: cargo test --offline --manifest-path core/solver/frame_kernel/Cargo.toml --locked
+2026-09-25T03:23:26.1538830Z Running: cargo test --offline --manifest-path core/solver/linear_supports/Cargo.toml --locked
+2026-09-25T03:23:26.3757521Z Running: cargo test --offline --manifest-path core/solver/nonlinear_integration/Cargo.toml --locked
+2026-09-25T03:23:27.1386070Z Running: cargo test --offline --manifest-path core/solver/nonlinear_supports/Cargo.toml --locked
+2026-09-25T03:23:27.4589627Z Running: cargo test --offline --manifest-path core/solver/performance_harness/Cargo.toml --locked
+2026-09-25T03:23:38.0199890Z Running: cargo test --offline --manifest-path core/solver/sparse_direct/Cargo.toml --locked
+2026-09-25T03:23:38.6136309Z Running: cargo test --offline --manifest-path core/solver/straight_pipe/Cargo.toml --locked
+2026-09-25T03:23:38.9085928Z Running: cargo test --offline --manifest-path core/units/Cargo.toml --locked
+2026-09-25T03:23:40.7122839Z Running: cargo test --offline --manifest-path validation/benchmarks/mechanics/Cargo.toml --locked
+2026-09-25T03:23:43.5807093Z Running: cargo test --offline --manifest-path validation/benchmarks/nonlinear/Cargo.toml --locked
+2026-09-25T03:23:44.0988306Z Running: cargo test --offline --manifest-path validation/benchmarks/physics_audit_regression/Cargo.toml --locked
+2026-09-25T03:23:46.2621074Z Running: cargo test --offline --manifest-path validation/benchmarks/stress/Cargo.toml --locked
+2026-09-25T03:23:47.7536006Z ##[group]Run actions/upload-artifact@v4
+2026-09-25T03:23:47.7536250Z with:
+2026-09-25T03:23:47.7536440Z   name: piping-numerical-36089968220-1
+2026-09-25T03:23:47.7536919Z   path: piping-numerical-evidence/numerical.json
+piping-numerical-evidence/*.log
+piping-numerical-evidence/cargo-logs/*.log
+
+2026-09-25T03:23:47.7537377Z   if-no-files-found: error
+2026-09-25T03:23:47.7537580Z   retention-days: 14
+2026-09-25T03:23:47.7537767Z   compression-level: 6
+2026-09-25T03:23:47.7537955Z   overwrite: false
+2026-09-25T03:23:47.7538138Z   include-hidden-files: false
+2026-09-25T03:23:47.7538335Z env:
+2026-09-25T03:23:47.7538490Z   CI: true
+2026-09-25T03:23:47.7538679Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:23:47.7538880Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:23:47.7539078Z   CARGO_HOME: /home/runner/.cargo
+2026-09-25T03:23:47.7539283Z   CARGO_INCREMENTAL: 0
+2026-09-25T03:23:47.7539467Z   CARGO_TERM_COLOR: always
+2026-09-25T03:23:47.7539654Z ##[endgroup]
+2026-09-25T03:23:47.8855015Z (node:7630) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-25T03:23:47.8855685Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-25T03:23:47.8970016Z With the provided path, there will be 79 files uploaded
+2026-09-25T03:23:47.8974430Z Artifact name is valid!
+2026-09-25T03:23:47.8974796Z Root directory input is valid!
+2026-09-25T03:23:48.2377418Z Beginning upload of artifact content to blob storage
+2026-09-25T03:23:48.3037223Z (node:7630) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-25T03:23:48.5887338Z Uploaded bytes 64964
+2026-09-25T03:23:48.6446676Z Finished uploading artifact content to blob storage!
+2026-09-25T03:23:48.6447291Z SHA256 digest of uploaded artifact zip is dc166db9dd994a906fce7f7174f111ad9b3a657e3226dafa22853e9d80ebbcbb
+2026-09-25T03:23:48.6448364Z Finalizing artifact upload
+2026-09-25T03:23:48.8855731Z Artifact piping-numerical-36089968220-1.zip successfully finalized. Artifact ID 10845301866
+2026-09-25T03:23:48.8856711Z Artifact piping-numerical-36089968220-1 has been successfully uploaded! Final size is 64964 bytes. Artifact ID is 10845301866
+2026-09-25T03:23:48.8861476Z Artifact download URL: https://github.com/sgttomas/chirality/actions/runs/36089968220/artifacts/10845301866
+2026-09-25T03:23:48.9014869Z Post job cleanup.
+2026-09-25T03:23:48.9671663Z [command]/usr/bin/git version
+2026-09-25T03:23:48.9701279Z git version 2.55.0
+2026-09-25T03:23:48.9728260Z Temporarily overriding HOME='/home/runner/work/_temp/6f2801b7-190f-4818-b42b-fe91096b2492' before making global git config changes
+2026-09-25T03:23:48.9728905Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:23:48.9731309Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:23:48.9760226Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:23:48.9786904Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:23:49.0052037Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:23:49.0076645Z http.https://github.com/.extraheader
+2026-09-25T03:23:49.0084832Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-25T03:23:49.0111646Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:23:49.0374492Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:23:49.0405126Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:23:49.0794164Z Cleaning up orphan processes
+2026-09-25T03:23:49.1073495Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

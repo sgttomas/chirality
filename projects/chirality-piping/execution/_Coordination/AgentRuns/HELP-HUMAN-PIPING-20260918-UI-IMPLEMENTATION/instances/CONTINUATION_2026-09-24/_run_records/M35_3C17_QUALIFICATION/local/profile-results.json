@@ -1,0 +1,47 @@
+[
+  {
+    "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "/private/tmp/piping-generated-loads-20260924",
+    "started": "2026-09-25T03:51:02.054782+00:00",
+    "log": "profile-0.log",
+    "exit_code": 0,
+    "finished": "2026-09-25T03:51:33.000183+00:00"
+  },
+  {
+    "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "cwd": "/private/tmp/piping-generated-loads-20260924",
+    "started": "2026-09-25T03:51:33.000587+00:00",
+    "log": "profile-1.log",
+    "exit_code": 0,
+    "finished": "2026-09-25T03:52:50.760100+00:00"
+  },
+  {
+    "candidate": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+    "argv": [
+      "/private/tmp/chirality-piping-dec025-venv/bin/python",
+      "tools/validation/validate_instruction_tranche_manifest.py",
+      "--base",
+      "origin/main",
+      "--head",
+      "HEAD",
+      "--added-manifests-only"
+    ],
+    "cwd": "/private/tmp/piping-generated-loads-20260924",
+    "started": "2026-09-25T03:52:50.760460+00:00",
+    "log": "profile-2.log",
+    "exit_code": 0,
+    "finished": "2026-09-25T03:52:51.087299+00:00"
+  }
+]

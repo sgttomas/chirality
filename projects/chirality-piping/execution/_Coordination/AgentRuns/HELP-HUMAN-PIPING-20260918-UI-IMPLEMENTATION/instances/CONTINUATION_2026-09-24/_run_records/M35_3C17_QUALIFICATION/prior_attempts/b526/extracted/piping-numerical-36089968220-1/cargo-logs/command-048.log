@@ -1,0 +1,37 @@
+[1m[92m   Compiling[0m quote v1.0.46
+[1m[92m   Compiling[0m open_pipe_stress_protected_content_linter v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/protected_content_linter)
+[1m[92m   Compiling[0m serde_json v1.0.150
+[1m[92m   Compiling[0m syn v2.0.118
+[1m[92m   Compiling[0m serde_derive v1.0.228
+[1m[92m   Compiling[0m serde v1.0.228
+[1m[92m   Compiling[0m open_pipe_stress_report_generator v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_generator)
+[1m[92m   Compiling[0m open_pipe_stress_report_sections v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_sections)
+[1m[92m   Compiling[0m open_pipe_stress_report_renderer v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_renderer)
+[1m[92m   Compiling[0m open_pipe_stress_pdf_emitter v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/pdf_emitter)
+[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 3.34s
+[1m[92m     Running[0m unittests src/lib.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/open_pipe_stress_pdf_emitter-351927c1b7b6e013)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+[1m[92m     Running[0m tests/emit.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/emit-68444b13ed7fdbbb)
+
+running 8 tests
+test incomplete_report_is_export_blocked ... ok
+test non_winansi_characters_degrade_deterministically ... ok
+test full_report_package_binds_html_and_pdf_hashes ... ok
+test fixture_report_emits_deterministic_hash_bound_pdf ... ok
+test pdf_and_html_emit_from_one_assembled_section_model ... ok
+test result_row_content_reaches_the_pdf_bytes ... ok
+test prohibited_professional_claim_blocks_pdf_export ... ok
+test pdf_hash_is_recorded_alongside_the_canonical_html_hash ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+[1m[92m   Doc-tests[0m open_pipe_stress_pdf_emitter
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

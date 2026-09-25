@@ -1,0 +1,3085 @@
+{
+  "status": "success",
+  "head": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+  "target_base": "6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6",
+  "plan": {
+    "version": 3,
+    "mode": "full",
+    "coverage_full": true,
+    "event": "pull_request",
+    "pr": "892",
+    "base": "6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6",
+    "target_base": "6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6",
+    "head": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+    "changed_paths": [
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/apps/desktop/src/features/self-weight-authoring/SelfWeightPlanPanel.tsx"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/apps/desktop/src/features/self-weight-authoring/SelfWeightRefresh.test.tsx"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/apps/desktop/src/services/operationBatchService.ts"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/apps/desktop/src/services/selfWeightPlanService.ts"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.toml"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/loads/self_weight_wasm/src/lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/core/loads/self_weight_wasm/tests/applied_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/core/loads/self_weight_wasm/tests/fixtures/applied_self_weight_v1.json"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/Cargo.toml"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/src/atomic_batch.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/src/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/core/model_operations/operation_applier/tests/generated_self_weight.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/product_physics/Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/product_physics/src/lib.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/product_physics/src/self_weight.rs"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/CHECK_MAP.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/HANDOFF_WHITELIST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/INTEGRATION_CONTRACT.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/LOCK_CLOSURE.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/NATIVE_WITNESS_HANDOFF.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/PORTABILITY_CHECK.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/PORTABILITY_CUSTODY.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/REFERENCE_BASIS.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_BASIS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_BRIEF.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/FINAL_RUNTIME_BACKCHECK.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/FINAL_RUNTIME_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/NATIVE_WITNESS_HANDOFF.original.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/POINTER_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/POINTER_BACKCHECK_HASHES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/PORTABILITY_REPAIR.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/REPAIR.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/INTEGRATION_REVIEW_RAW/integration-HASHES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/INTEGRATION_REVIEW_RAW/integration-RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/PORTABILITY_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/PORTABILITY_BACKCHECK_HASHES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/portability-repair-check.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-HASHES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-SHA256SUMS"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-verify.py"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/STABLE_MASS_SUCCESSOR.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/WASM_ARTIFACTS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/ACCEPTED_CONTEXT.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/APPLY.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/SOURCE_ODWALL_EXPECTATIONS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/SOURCE_REFERENCE_RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/annulus_geometry.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/area-helper.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/lib.rs.before"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/pressure_exact.rs.before"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/DEPENDENCY_COMPARISON.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/DEPENDENCY_LINKS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FINAL_REVIEW_FOLLOWUP_REFUSAL.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FINAL_TOOL_VERSIONS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FLOAT_ROUNDTRIP_HANDOFF.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/INTEGRATION_CONTRACT.before_authoritative.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/LEGACY_FIXTURE_ORIGIN.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/LOCK_AUDIT_INITIAL.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/MASS_CANCELLATION_ARITHMETIC.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PORTABILITY_BEFORE.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PORTABILITY_INITIAL.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/INTEGRATION_CONTRACT.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/canonical_json.Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/product_physics.Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/SCOPE_CHECK.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/WASM_TARGETS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/Cargo.after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/Cargo.before.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/NORMALIZATION.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applied_self_weight.baseline.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applier_targeted.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applier_targeted.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_applier_01.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_applier_01.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch_corrected.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch_corrected.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected_reconciled.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected_reconciled.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_facade.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_facade.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.Cargo.lock.before"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_artifacts/density_baseline.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_moment.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_moment.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_tsc.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_tsc.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_vitest.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_vitest.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm_final.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm_final.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_01.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_01.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_02.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_02.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_03.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_03.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/core_targeted_01.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/core_targeted_01.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/facade_targeted.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/facade_targeted.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_tsc.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_tsc.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_vitest.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_vitest.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/ordinary_batch.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/ordinary_batch.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_applier.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_applier.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_batch.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_batch.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_connected.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_connected.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_facade.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_facade.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/shared_area.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/shared_area.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_applier.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_applier.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_connected.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_connected.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_core.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_core.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_facade.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_facade.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/HOST_RESULT.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/RESOLVED_RESULT.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/RESULT.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.before.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_metadata.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.metadata.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_metadata.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.before.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_after.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_metadata.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.metadata.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_authoritative/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_authoritative/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_cargo_normalization/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_cargo_normalization/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_downstream_locks/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_downstream_locks/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_request_preservation/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_request_preservation/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_ts_narrowing/CANDIDATE.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_ts_narrowing/CANDIDATE_FILES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/Cargo.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/main.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/STABLE_COMPARISON.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.result.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.stderr.log"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/src/main.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_01/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_02/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_03/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/run_check.py"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/self_weight_wasm.before_authoritative.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/tsc_narrowing/REPAIR.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/tsc_narrowing/SelfWeightPlanPanel.before.tsx"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/00-AGENTS.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/01-AGENT_TASK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/02-AGENTS.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/03-LOOP_INIT.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/04-ROOT_BRIEF.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/05-INTEGRATION_CONTRACT.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/Cargo.lock"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/Cargo.toml"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/generated_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/supplied_basis.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/frozen_files.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/UI_TEST_PREP/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/UI_TEST_PREP/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/_run_records/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/AUTHORING.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/REFERENCE_CHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/RETURN.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/AUTHORITATIVE_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/DOWNSTREAM_LOCK_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/FINAL_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/FROZEN_CANDIDATE_REVIEW.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/LOCK_NORMALIZATION_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/MANUAL_PRESERVATION_PRECHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/PRIOR_ARITHMETIC_BACKCHECK.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/REFERENCE_ORIGINS.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/SEVEN_MASS_REFERENCES.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/UI_RUNTIME_TSC_BACKCHECK.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/scope_check.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/RETURN.pre_complete.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/scope_check.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/scope_check.stderr.txt"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/COMPARISON.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/DELIVERY.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/REFERENCE_CHECK.md.before_downstream"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/RETURN.md.before_downstream"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/scope_check.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/DELIVERY.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/REFERENCE_CHECK.md.before_final"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/RETURN.md.before_final"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/scope_check.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/initial_mass_helper.rs.txt"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/initial_self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/COMPARISON.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/DELIVERY.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/REFERENCE_CHECK.md.before_lock_update"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/RETURN.md.before_lock_update"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/INTEGRATION_CONTRACT.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/STABLE_MASS_SUCCESSOR.md"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/rich_authoring.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/self_weight.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/self_weight_wasm_lib.rs"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/reference_arithmetic.py"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/CANDIDATE.reviewed.patch"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/CANDIDATE_FILES.reviewed.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/MANIFEST.json"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/REFERENCE_CHECK.md.before_ts_update"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/RETURN.md.before_ts_update"
+      },
+      {
+        "status": "A",
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/scope_check.json"
+      },
+      {
+        "status": "M",
+        "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock"
+      }
+    ],
+    "projects": [
+      "chromium-desktop",
+      "chromium-compact"
+    ],
+    "inventory": [
+      "e2e/b3-accessibility.spec.ts",
+      "e2e/b3a-session-status.spec.ts",
+      "e2e/b3b-project-persistence.spec.ts",
+      "e2e/b4-sections.spec.ts",
+      "e2e/b4-table-editing.spec.ts",
+      "e2e/c3-viewport-visibility.spec.ts",
+      "e2e/gui-workflow-validation.spec.ts",
+      "e2e/linear-authoring.spec.ts",
+      "e2e/r2-smoke.spec.ts",
+      "e2e/result-compatibility.spec.ts",
+      "e2e/ui-foundation.spec.ts",
+      "e2e/ui-foundation/causal-method-contract.spec.ts",
+      "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+      "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "e2e/ui-foundation/performance-targets.spec.ts",
+      "e2e/workspace-layout.spec.ts"
+    ],
+    "selected_specs": [
+      "e2e/b3-accessibility.spec.ts",
+      "e2e/b3a-session-status.spec.ts",
+      "e2e/b3b-project-persistence.spec.ts",
+      "e2e/b4-sections.spec.ts",
+      "e2e/b4-table-editing.spec.ts",
+      "e2e/c3-viewport-visibility.spec.ts",
+      "e2e/gui-workflow-validation.spec.ts",
+      "e2e/linear-authoring.spec.ts",
+      "e2e/r2-smoke.spec.ts",
+      "e2e/result-compatibility.spec.ts",
+      "e2e/ui-foundation.spec.ts",
+      "e2e/ui-foundation/causal-method-contract.spec.ts",
+      "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+      "e2e/ui-foundation/full-cohort-controller.spec.ts",
+      "e2e/ui-foundation/performance-targets.spec.ts",
+      "e2e/workspace-layout.spec.ts"
+    ],
+    "selected_titles": {},
+    "numerical_required": true,
+    "appearance": false,
+    "ownership": {},
+    "reasons": [
+      "Full source coverage"
+    ],
+    "coverage_note": "Full deduplicated source coverage requires barrier and four exact partitions to succeed."
+  },
+  "commands": [
+    {
+      "argv": [
+        "rustc",
+        "--version"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "command-000.log",
+      "exit_code": 0,
+      "output_sha256": "4ad84f16acc2f3bdcfbc7b0788f1e74a4e649b962154a585b8f8d0b28eb0dd06"
+    },
+    {
+      "argv": [
+        "cargo",
+        "--version"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "command-001.log",
+      "exit_code": 0,
+      "output_sha256": "1aedaa9cce116919d39b1eb303a58865771582bc24fc259aa8e26cb212e0f59e"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/gui/viewport_editor/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-000.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/library_import/library_import_document/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-001.log",
+      "exit_code": 0,
+      "output_sha256": "c787f418affc05822ce21d649a709622a69d669c3308591481977782577ff5d2"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/loads/load_case_algebra/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-002.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/loads/primitive_loads/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-003.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/loads/self_weight_wasm/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-004.log",
+      "exit_code": 0,
+      "output_sha256": "7eef51d1d7c986e45762eb32dee4cdcc8333c9295d0bfd98d25121592259d1be"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/loads/stress_recovery/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-005.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/loads/user_loads/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-006.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/model_operations/operation_applier/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-007.log",
+      "exit_code": 0,
+      "output_sha256": "2f68098c970d7a697f001b02ba318a8184eac3d70395539f26a087d283858f12"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/product_physics/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-008.log",
+      "exit_code": 0,
+      "output_sha256": "60c7953d4e8260eaa15afe9fea2f4f806d631036db654f6314c36e688b758471"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/audit_manifest/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-009.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/pdf_emitter/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-010.log",
+      "exit_code": 0,
+      "output_sha256": "eba91c67f89666d4e18a97bc10f6dad80a7cb2f82d51810c05c47429a5f1574c"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/protected_content_linter/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-011.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/report_generator/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-012.log",
+      "exit_code": 0,
+      "output_sha256": "9b71f505530d1ed7e8b8274af7f2e7aca16fe9c3187e7be51c2cfa1e46370f9b"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/report_package/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-013.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/report_renderer/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-014.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/report_sections/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-015.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/reporting/result_export/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-016.log",
+      "exit_code": 0,
+      "output_sha256": "55431ecd8e61bd420087d3f92a2681fd4db9d4f28f89dda38be14149dcd4ad06"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/rules/completeness_checker/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-017.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/rules/expression_evaluator/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-018.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/rules/rule_check_runner/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-019.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/rules/rule_pack_document/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-020.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/rules/rule_pack_lifecycle/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-021.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/runner/headless/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-022.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/serialization/canonical_json/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-023.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/curved_bend/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-024.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/diagnostics/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-025.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/frame_kernel/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-026.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/linear_supports/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-027.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/nonlinear_integration/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-028.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/nonlinear_supports/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-029.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/performance_harness/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-030.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/sparse_direct/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-031.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/solver/straight_pipe/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-032.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "core/units/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-033.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "validation/benchmarks/mechanics/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-034.log",
+      "exit_code": 0,
+      "output_sha256": "3d6a1cc1b37b15a8940c90d1b8fe1be42ae39969dbda6e2b6984ceee281d789c"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "validation/benchmarks/nonlinear/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-035.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "validation/benchmarks/physics_audit_regression/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-036.log",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "fetch",
+        "--locked",
+        "--manifest-path",
+        "validation/benchmarks/stress/Cargo.toml"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-037.log",
+      "exit_code": 0,
+      "output_sha256": "6d4469c779213585491ddc5bebb3bb23e2897079877a98e8111dc2dd27577f8d"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/gui/viewport_editor/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-038.log",
+      "exit_code": 0,
+      "output_sha256": "35fc4826dd51f563a36c3d653ce4c257ea8a2f0d495144bbeb36c151a3b89fbd"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/library_import/library_import_document/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-039.log",
+      "exit_code": 0,
+      "output_sha256": "a16af99aa66a74e636e56ef73f563a11c2669e72ecbf52ecf3dc1b4f72ba1ebd"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/loads/load_case_algebra/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-040.log",
+      "exit_code": 0,
+      "output_sha256": "2c383bc27ae8cdfb3f638256b9e5be9f994939971d250c6000695130d78099fa"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/loads/primitive_loads/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-041.log",
+      "exit_code": 0,
+      "output_sha256": "d8584250ba4ce5b0ad7a2901f50c622f08d81d276b5bcd92ddf50bd0131c28d8"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/loads/self_weight_wasm/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-042.log",
+      "exit_code": 0,
+      "output_sha256": "3b7e8f005516268785f871c28c2ebc261351f7316187a9247c4d072efc07006e"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/loads/stress_recovery/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-043.log",
+      "exit_code": 0,
+      "output_sha256": "2cac494aca53fd120a6fdccbb197185be150817293d8ca1f531148ed63f97ce5"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/loads/user_loads/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-044.log",
+      "exit_code": 0,
+      "output_sha256": "354455204b24b7d5eb0a957acb7404d155dea58e739cbc085165f0ddc728c03d"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/model_operations/operation_applier/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-045.log",
+      "exit_code": 0,
+      "output_sha256": "b7e577d434a96568de15918d1df00301f8f4230e9fa94e2b0464bf92d9456e77"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/product_physics/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-046.log",
+      "exit_code": 0,
+      "output_sha256": "8013f05407246a368bb30cd657b30615658ad9721eccb84dc3c80ee2d2963b21"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/audit_manifest/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-047.log",
+      "exit_code": 0,
+      "output_sha256": "17650b55cf2487cfe649fd7aab05bcaf52eac4a4553a20d4402fab20358979ca"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/pdf_emitter/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-048.log",
+      "exit_code": 0,
+      "output_sha256": "6e3787ca60be7fcd4b54afd6689891369aeae2e0e558630632ddb61d95de3af1"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/protected_content_linter/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-049.log",
+      "exit_code": 0,
+      "output_sha256": "76499df4f4170b7d6324694490ea13f8ba2d4048213b19cfd01ed54dfd2e510d"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/report_generator/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-050.log",
+      "exit_code": 0,
+      "output_sha256": "8b27b77d598db40fd8c1bf7d2a165eed1ba95cf1db828dce32d81cd4316881f3"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/report_package/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-051.log",
+      "exit_code": 0,
+      "output_sha256": "bb5f4fb6aaa93b708cf7d38e4652e2c33eeab812d60faf9998a056e1b82c599b"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/report_renderer/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-052.log",
+      "exit_code": 0,
+      "output_sha256": "dafdd82ed6927564af86c916570ad605f61ecf829de6fa4ed7ba69e43ebf539c"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/report_sections/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-053.log",
+      "exit_code": 0,
+      "output_sha256": "3bcb2375fb7b4e31fb1d30ba592ae6e6615d31388aa5de73757718d85208e1bc"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/reporting/result_export/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-054.log",
+      "exit_code": 0,
+      "output_sha256": "76b64a83c6a0d2f3fcdaa4e9b73cd3b6458dae21ed924d18930bfe592889fe12"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/rules/completeness_checker/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-055.log",
+      "exit_code": 0,
+      "output_sha256": "ada5e6074b1f6ca027e366c1bff9f47dd8eac075a0c4a7d2a89c33de315fd410"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/rules/expression_evaluator/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-056.log",
+      "exit_code": 0,
+      "output_sha256": "7bd8db2180d59da1f72a8ee74445eee2410d9fee73f89b77611a72b804724beb"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/rules/rule_check_runner/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-057.log",
+      "exit_code": 0,
+      "output_sha256": "b118a8a0e8ec78dd5d852bea71ca4b735e715c9a3f8fdbb0d00a424d294d2c99"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/rules/rule_pack_document/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-058.log",
+      "exit_code": 0,
+      "output_sha256": "f3633a2db8f43dff69322a8b96845d2f2a8a7f7710ec401a2d52197516fa9dc0"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/rules/rule_pack_lifecycle/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-059.log",
+      "exit_code": 0,
+      "output_sha256": "2af81261686de34c2b4e43931e506ca54ce91e62eb3c79316dfc95f75924249b"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/runner/headless/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-060.log",
+      "exit_code": 0,
+      "output_sha256": "e3d5f909120cb11dfe486a201af0b7f26278c8249709d56aa025b2ef262843e9"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/serialization/canonical_json/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-061.log",
+      "exit_code": 0,
+      "output_sha256": "7e898d247901c128ec83a404ac45f4f35cdd6e4ddd6fb69287ef2ee8c7cf4925"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/curved_bend/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-062.log",
+      "exit_code": 0,
+      "output_sha256": "b900f79c791e91eb1f1dba7ffb6c1879d53cab9fbb159fc2e6ad50cf29e42b65"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/diagnostics/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-063.log",
+      "exit_code": 0,
+      "output_sha256": "550cec056f2617579b9124f550f8d7299b85ea6e52dc9950c148330123c4071b"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/frame_kernel/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-064.log",
+      "exit_code": 0,
+      "output_sha256": "378313e7352aad1b3f5f166466a0b40f7cee65a6680660058fd398087d88fa6c"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/linear_supports/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-065.log",
+      "exit_code": 0,
+      "output_sha256": "b442d72a16cd9cf8b967ba050b07e388ab51a0fc228bad13c35d668690a1e320"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/nonlinear_integration/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-066.log",
+      "exit_code": 0,
+      "output_sha256": "b0cbbc02005de430f0e2f9a265aa7729b0377028c83593b5c6e09aafbfd48620"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/nonlinear_supports/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-067.log",
+      "exit_code": 0,
+      "output_sha256": "e2c624da254ae5313cf18a2025139bb9ecbc72f69b24129303fbc97bb8fbde7a"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/performance_harness/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-068.log",
+      "exit_code": 0,
+      "output_sha256": "9ba4ae419d73e1bf1cee59b33fd7bf0f827b007511420a5d760846c4217a8e69"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/sparse_direct/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-069.log",
+      "exit_code": 0,
+      "output_sha256": "c5a067c960308865731ddd3a39bdc57191de84783de8b95c6e1f8bfec71833a9"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/solver/straight_pipe/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-070.log",
+      "exit_code": 0,
+      "output_sha256": "4b1fe349ff2c8ca5986a89574c17b41f551be0c85bd9ded8b93fdadd103ebd68"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "core/units/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-071.log",
+      "exit_code": 0,
+      "output_sha256": "99132dfc5a225bedaa7ace0525198e9c414caaa654abd828b4e4331401d51bbc"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "validation/benchmarks/mechanics/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-072.log",
+      "exit_code": 0,
+      "output_sha256": "a59207bbca42329c93ed606870cb2c5454dc1fc84bcf350f23aeef5783572cfd"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "validation/benchmarks/nonlinear/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-073.log",
+      "exit_code": 0,
+      "output_sha256": "9a32d5db51a1c873e1b230e2b988bc5ddf2b2bc1bcc7367d2feda87255a5733e"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "validation/benchmarks/physics_audit_regression/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-074.log",
+      "exit_code": 0,
+      "output_sha256": "0743c9c491468d9eea5214374fa7066b9bc7bb5afc046801e610d61f887a0db4"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--manifest-path",
+        "validation/benchmarks/stress/Cargo.toml",
+        "--locked"
+      ],
+      "cwd": "/home/runner/work/chirality/chirality/projects/chirality-piping",
+      "output": "cargo-logs/command-075.log",
+      "exit_code": 0,
+      "output_sha256": "65befe74b8d271b4513c33e61e1508a6126d9dd53a8e243945dfa391df5cd1aa"
+    }
+  ],
+  "manifests": [
+    "core/gui/viewport_editor/Cargo.toml",
+    "core/library_import/library_import_document/Cargo.toml",
+    "core/loads/load_case_algebra/Cargo.toml",
+    "core/loads/primitive_loads/Cargo.toml",
+    "core/loads/self_weight_wasm/Cargo.toml",
+    "core/loads/stress_recovery/Cargo.toml",
+    "core/loads/user_loads/Cargo.toml",
+    "core/model_operations/operation_applier/Cargo.toml",
+    "core/product_physics/Cargo.toml",
+    "core/reporting/audit_manifest/Cargo.toml",
+    "core/reporting/pdf_emitter/Cargo.toml",
+    "core/reporting/protected_content_linter/Cargo.toml",
+    "core/reporting/report_generator/Cargo.toml",
+    "core/reporting/report_package/Cargo.toml",
+    "core/reporting/report_renderer/Cargo.toml",
+    "core/reporting/report_sections/Cargo.toml",
+    "core/reporting/result_export/Cargo.toml",
+    "core/rules/completeness_checker/Cargo.toml",
+    "core/rules/expression_evaluator/Cargo.toml",
+    "core/rules/rule_check_runner/Cargo.toml",
+    "core/rules/rule_pack_document/Cargo.toml",
+    "core/rules/rule_pack_lifecycle/Cargo.toml",
+    "core/runner/headless/Cargo.toml",
+    "core/serialization/canonical_json/Cargo.toml",
+    "core/solver/curved_bend/Cargo.toml",
+    "core/solver/diagnostics/Cargo.toml",
+    "core/solver/frame_kernel/Cargo.toml",
+    "core/solver/linear_supports/Cargo.toml",
+    "core/solver/nonlinear_integration/Cargo.toml",
+    "core/solver/nonlinear_supports/Cargo.toml",
+    "core/solver/performance_harness/Cargo.toml",
+    "core/solver/sparse_direct/Cargo.toml",
+    "core/solver/straight_pipe/Cargo.toml",
+    "core/units/Cargo.toml",
+    "validation/benchmarks/mechanics/Cargo.toml",
+    "validation/benchmarks/nonlinear/Cargo.toml",
+    "validation/benchmarks/physics_audit_regression/Cargo.toml",
+    "validation/benchmarks/stress/Cargo.toml"
+  ],
+  "plan_validated": true,
+  "input_sha256": {
+    "core/gui/viewport_editor/Cargo.toml": "e84841c4b2dabcff0eb85b23a5b8d6db7986ca2399c22452cc49db77cb9d3a72",
+    "core/gui/viewport_editor/Cargo.lock": "d871a939c3dcc85917be768f3f64a22bb7f5e227fa4b0419ed3d98d0b4aa991c",
+    "core/library_import/library_import_document/Cargo.toml": "9b13bc06fc4a8b701e817239c53ea7ded3ed01ba238d9b4f5209d8a6ce52bc8c",
+    "core/library_import/library_import_document/Cargo.lock": "7917e4b0640898de17c923ce5280b24ab833ee9216f4c209a9255b2b41941b93",
+    "core/loads/load_case_algebra/Cargo.toml": "b675c2414a573332d33e9e29d5db907ec4582c75b1bd53ece52a6dda26f746da",
+    "core/loads/load_case_algebra/Cargo.lock": "abad8a64f1329cd12f3f89d2a99a3f720c570597f38860f1be28b3cbd126880e",
+    "core/loads/primitive_loads/Cargo.toml": "97959fbf7124f55b39ea51a33ae1da1f1abcc9fc1b969f7d42d9ea0fcab894a0",
+    "core/loads/primitive_loads/Cargo.lock": "4cc8edcfe1a36df477b0fcb9852ad63926bf75795e60615f1f820d5a7581a854",
+    "core/loads/self_weight_wasm/Cargo.toml": "9d6527f2f1ab3e303df12f6e03352e96fd39334bcf9b111230fe136a4cb9d391",
+    "core/loads/self_weight_wasm/Cargo.lock": "a16fbfab2ab2210bc6dbba238a7fa6f336af57abe2b6f700d7c5f3e0a08402b4",
+    "core/loads/stress_recovery/Cargo.toml": "d6eee12b661aa7723a5d87185029d5505c6a500cbc88bc479423247ce2da53f6",
+    "core/loads/stress_recovery/Cargo.lock": "9a3be2f4cf345dcd7622550c60c41b68a1d61bdf015c37c40463dcd702e1e170",
+    "core/loads/user_loads/Cargo.toml": "2bdadac76a6e8b8f9e9ba4808bd339c3f10e114f34b9a8573cb998a899f7b2b9",
+    "core/loads/user_loads/Cargo.lock": "7331cbd2e60f8f78c2e13c3e0cbccbde335802e1c51e6545cf99607bc4693dfe",
+    "core/model_operations/operation_applier/Cargo.toml": "cfa2c68fe4f25365bdec83be7471d8904c823120c90081ce1e8ada06eef60fb3",
+    "core/model_operations/operation_applier/Cargo.lock": "ea48467ce0f8da976e96303214cb0381ff5a8fb9091730d0ffe0a153b0f63ac3",
+    "core/product_physics/Cargo.toml": "35e36952c2e4d37d55992153d726a6cbb709402a3e0dcac08a4712b53288c1c5",
+    "core/product_physics/Cargo.lock": "36b1eb6477d894b642e615d49c77a7f2b4bc00ba5569ddc80fbc66593356b58a",
+    "core/reporting/audit_manifest/Cargo.toml": "3445e3291a48e01d9ebeaf3d07308b34c22a2ade3a808597cabd6788b33ce237",
+    "core/reporting/audit_manifest/Cargo.lock": "cf614e760a1b93f35ed11498048c9669205204468d6a5115b6f7ecdc3475c6f2",
+    "core/reporting/pdf_emitter/Cargo.toml": "5445c05eb50440e503ee19f750081bca8bf9f1d17a5085988bccad69a093cedf",
+    "core/reporting/pdf_emitter/Cargo.lock": "3561f4a7a568249c5e680d104e9a49f9ac6a1cd1b27b4e1798ee0402799e0038",
+    "core/reporting/protected_content_linter/Cargo.toml": "68e6e702c7f38a3844766b49a7b7f59efb997251c7e9364850689b68537b9ddd",
+    "core/reporting/protected_content_linter/Cargo.lock": "afeb72449b83edbad1673fccae3c838a011ef66237a4e7c5a442d9d7aa159fb9",
+    "core/reporting/report_generator/Cargo.toml": "8fbc574d818a9a459e5a914c37cc6861c0e4b389e179408738933ab6ac94414f",
+    "core/reporting/report_generator/Cargo.lock": "ad699ba4553e8a13a6240b8e9916f9d5266372a0448699b15c42f294d6b74e0f",
+    "core/reporting/report_package/Cargo.toml": "9a0be8e6ac326f7dd50471b10287aa82cd0b4a81aecf806f31a6f86134478c85",
+    "core/reporting/report_package/Cargo.lock": "946819d8c31b2227afa8e46ce552d3211483faea0c163becf41abc95b0e2836a",
+    "core/reporting/report_renderer/Cargo.toml": "2b11cc0e6f934d73f841ac7969b4cfe03184300ab955b19b2b496142b5aba9ed",
+    "core/reporting/report_renderer/Cargo.lock": "73aa0934be155ab49838a5cf85eb1397decccfded2bc2f9ef698f633b2c6cfd8",
+    "core/reporting/report_sections/Cargo.toml": "b2a20f3f4e5908f738a0feb09cf844522687d934830b18036ce941e059a7dca9",
+    "core/reporting/report_sections/Cargo.lock": "e50d6c2e7a3a7325e30c63d6167d6771a200589ec905b25faf5df0789b02c3c4",
+    "core/reporting/result_export/Cargo.toml": "1fcbed32019b21118382bb935fc8ae61fc876b1ee28063f9fcf36a05d6da9bd4",
+    "core/reporting/result_export/Cargo.lock": "963573b91a229f41472bbd3100e2cf48e5dad8a2b2009dc85017c41ef3bdb4f1",
+    "core/rules/completeness_checker/Cargo.toml": "3f3e2c40814d61aa058d20aafbe9195198d16e6d39868b409cbacd02813ca98d",
+    "core/rules/completeness_checker/Cargo.lock": "dff3336149333fa815d35e8f6b28b9b628c8eb5114504ccdd1787672133a2c34",
+    "core/rules/expression_evaluator/Cargo.toml": "b8e0d58e9eeff3161447c3f2b49e449a8ddc00ab1289f28127e9b388f0c66444",
+    "core/rules/expression_evaluator/Cargo.lock": "8c7978aa4f14c5a8c43443a900352c0016c4cd9bece8eb27c0a21bd7848d2cf9",
+    "core/rules/rule_check_runner/Cargo.toml": "2b6192fda5a5130ece476cdc7f7d4e62d0282281a6f9c5e37bd6634688f727f1",
+    "core/rules/rule_check_runner/Cargo.lock": "f2c88c161a6529ca4bef3f28916ff2354810f6cf1d613322bc308c6acb3aa13a",
+    "core/rules/rule_pack_document/Cargo.toml": "1750b0c7fead14062263ba3ee07890316064e239fd1e497c58aebb2e56152b26",
+    "core/rules/rule_pack_document/Cargo.lock": "08d421f4d82eab267177bc0c8f30f874a14b20ee4b610dd8e2c2e39a5384d61a",
+    "core/rules/rule_pack_lifecycle/Cargo.toml": "bb3ca5cfd2e37d864234ad56c41cceba05ec3baa9bd7036247203d46f432d0da",
+    "core/rules/rule_pack_lifecycle/Cargo.lock": "6f2dc15a4f90c373ae1d642364af4c6b8fe34cf03f870e206b363c921533425e",
+    "core/runner/headless/Cargo.toml": "8ca4a4c2955852edc4386212d1e3b2b0b7784af9b607417f03764c7011b98ef6",
+    "core/runner/headless/Cargo.lock": "661095df4a112a8884d8b39709eac134d8b95cdb5cb8d346f835c1851debe544",
+    "core/serialization/canonical_json/Cargo.toml": "531d6fcb62e47c3f4dfa5aae3c920255d40f2f1619036a001c1cb37e691c10f4",
+    "core/serialization/canonical_json/Cargo.lock": "dc4edf682da807a0240eb20770d8292380aeb9e181b184875ab0ed97d12db2e8",
+    "core/solver/curved_bend/Cargo.toml": "49e42be72ad63f6f7c215f2fb39592d4134f37533f876b5161591c9004f1f239",
+    "core/solver/curved_bend/Cargo.lock": "673aed6ccd24ed82f89b9f5fd949880eb800641f1975879685712af827620f9c",
+    "core/solver/diagnostics/Cargo.toml": "b97f1331ea132a493008eb94d985b6afd26c8ea13476e56c1fa2a098f34244b6",
+    "core/solver/diagnostics/Cargo.lock": "e80edc2f981aa904e2146072db14d31eed2680cf5975eea0ea3b8b5a4175ee64",
+    "core/solver/frame_kernel/Cargo.toml": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+    "core/solver/frame_kernel/Cargo.lock": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+    "core/solver/linear_supports/Cargo.toml": "db634677878b548ca51ad7b14d0532540b0471a439ac7e8d7e28a405b32e5b08",
+    "core/solver/linear_supports/Cargo.lock": "5792a728c5b0687e3306a96ace1bc79eac4d0b5be8294e40de34849921c64537",
+    "core/solver/nonlinear_integration/Cargo.toml": "6b6760eafdb97092345cb28aebac456cfccc9381542dcf0ec28bdcd3771587ea",
+    "core/solver/nonlinear_integration/Cargo.lock": "c52dbeacafd93946cd1121643d01d0774d3ec3f2dddb3604b7e02aae400a0f57",
+    "core/solver/nonlinear_supports/Cargo.toml": "328a321c2d77b620665f449dbdb58246953299cacffcaae25bb542e7339f3b64",
+    "core/solver/nonlinear_supports/Cargo.lock": "8bf2ad74a9b4d415e825c60fbc45bdb2b62b673fc2914e561ffa85c992bc2657",
+    "core/solver/performance_harness/Cargo.toml": "e0b4a13926a7fffdb45547b2b35e00b72ce2d24a038aa10d0662be16ab99bc0a",
+    "core/solver/performance_harness/Cargo.lock": "c191d3f5d2ca8cdc6c6237effbc18d5e477cf1362d79bf45c62821486f94ab8b",
+    "core/solver/sparse_direct/Cargo.toml": "3c80029904a6af6443cd5af5c7b8de98e1eaf6ba573a50408fce6ea63fc2192e",
+    "core/solver/sparse_direct/Cargo.lock": "86a316b6f076f21b01531b16c1336abeccfb484d8425ad44fc560831d1c34b36",
+    "core/solver/straight_pipe/Cargo.toml": "7aed2782a0421df01ca78d58c26c8648d179b871d5cdd2503b2e911bacd42ff4",
+    "core/solver/straight_pipe/Cargo.lock": "53c41652cf335be092d3eb651d25263a1e2bea87457e4206e0decc00e56e1d7c",
+    "core/units/Cargo.toml": "7216e6bddcdd99ed45d7ed9a8fc9471016a719bbc80d201d980eda69592220a7",
+    "core/units/Cargo.lock": "5b8d09c07fd129c0bd2fe10a1ec268b13ba0306ff8ae5a9e025cda7d4886556b",
+    "validation/benchmarks/mechanics/Cargo.toml": "42bca1c1366a1d46fad28d9882ec1568e3e3a8f76d6f8d82717c9d2761fd05d8",
+    "validation/benchmarks/mechanics/Cargo.lock": "feab70abe260c80cd1597b9592334a11e4ba421f5e27306efa3630dbe2428882",
+    "validation/benchmarks/nonlinear/Cargo.toml": "bccff437b53bd719dc254885e9d03e183aee713357a88dc391c8e024aa3eed26",
+    "validation/benchmarks/nonlinear/Cargo.lock": "5ee3e1f71a489cbc1c6ff3af0ba77253714d5132f925c716788fa57bf27546f7",
+    "validation/benchmarks/physics_audit_regression/Cargo.toml": "07cd2bff347cf20796eebab20e587b6b2d829dfda7e6319e3394613ee07e840c",
+    "validation/benchmarks/physics_audit_regression/Cargo.lock": "39d8ac762df47b736cc9159415a8003364e4b0d10bbaad5ed396c4091537524a",
+    "validation/benchmarks/stress/Cargo.toml": "c3a4d80356c1796a2d4b01404893125ff6919fa680c6a5c62fcb64b1e416fa8b",
+    "validation/benchmarks/stress/Cargo.lock": "f4b8438615cdc66a4f85e8ddefd2e48cb9bd6851a02b85fb4f242a5dd8ef70cc"
+  },
+  "planned_commands": [
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/gui/viewport_editor/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/library_import/library_import_document/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/loads/load_case_algebra/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/loads/primitive_loads/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/loads/self_weight_wasm/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/loads/stress_recovery/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/loads/user_loads/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/model_operations/operation_applier/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/product_physics/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/audit_manifest/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/pdf_emitter/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/protected_content_linter/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/report_generator/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/report_package/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/report_renderer/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/report_sections/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/reporting/result_export/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/rules/completeness_checker/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/rules/expression_evaluator/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/rules/rule_check_runner/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/rules/rule_pack_document/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/rules/rule_pack_lifecycle/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/runner/headless/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/serialization/canonical_json/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/curved_bend/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/diagnostics/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/frame_kernel/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/linear_supports/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/nonlinear_integration/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/nonlinear_supports/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/performance_harness/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/sparse_direct/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/solver/straight_pipe/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "core/units/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/mechanics/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/nonlinear/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "fetch",
+      "--locked",
+      "--manifest-path",
+      "validation/benchmarks/stress/Cargo.toml"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/gui/viewport_editor/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/library_import/library_import_document/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/loads/load_case_algebra/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/loads/primitive_loads/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/loads/self_weight_wasm/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/loads/stress_recovery/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/loads/user_loads/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/model_operations/operation_applier/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/product_physics/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/audit_manifest/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/pdf_emitter/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/protected_content_linter/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/report_generator/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/report_package/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/report_renderer/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/report_sections/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/reporting/result_export/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/rules/completeness_checker/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/rules/expression_evaluator/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/rules/rule_check_runner/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/rules/rule_pack_document/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/rules/rule_pack_lifecycle/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/runner/headless/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/serialization/canonical_json/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/curved_bend/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/diagnostics/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/frame_kernel/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/linear_supports/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/nonlinear_integration/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/nonlinear_supports/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/performance_harness/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/sparse_direct/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/solver/straight_pipe/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "core/units/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "validation/benchmarks/mechanics/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "validation/benchmarks/nonlinear/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "validation/benchmarks/physics_audit_regression/Cargo.toml",
+      "--locked"
+    ],
+    [
+      "cargo",
+      "test",
+      "--offline",
+      "--manifest-path",
+      "validation/benchmarks/stress/Cargo.toml",
+      "--locked"
+    ]
+  ],
+  "environment": {
+    "CARGO_TARGET_DIR": "/home/runner/work/chirality/chirality/piping-numerical-evidence/target",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+  },
+  "exit_code": 0
+}

@@ -1,0 +1,1953 @@
+﻿2026-09-25T03:34:57.9366623Z Current runner version: '2.337.0'
+2026-09-25T03:34:57.9387290Z ##[group]Runner Image Provisioner
+2026-09-25T03:34:57.9388253Z Hosted Compute Agent
+2026-09-25T03:34:57.9388765Z Version: 20260828.587
+2026-09-25T03:34:57.9389355Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-25T03:34:57.9389948Z Build Date: 2026-08-28T16:44:25Z
+2026-09-25T03:34:57.9390568Z Worker ID: {4f2a4f1b-ac52-4bec-8bfb-a6723ec167a2}
+2026-09-25T03:34:57.9391161Z Azure Region: westus3
+2026-09-25T03:34:57.9391659Z ##[endgroup]
+2026-09-25T03:34:57.9392808Z ##[group]Operating System
+2026-09-25T03:34:57.9393312Z Ubuntu
+2026-09-25T03:34:57.9393721Z 24.04.5
+2026-09-25T03:34:57.9394201Z LTS
+2026-09-25T03:34:57.9394653Z ##[endgroup]
+2026-09-25T03:34:57.9395131Z ##[group]Runner Image
+2026-09-25T03:34:57.9395670Z Image: ubuntu-24.04
+2026-09-25T03:34:57.9396123Z Version: 20260920.314.1
+2026-09-25T03:34:57.9397229Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-25T03:34:57.9398690Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-25T03:34:57.9399530Z ##[endgroup]
+2026-09-25T03:34:57.9400427Z ##[group]GITHUB_TOKEN Permissions
+2026-09-25T03:34:57.9401981Z Contents: read
+2026-09-25T03:34:57.9402458Z Metadata: read
+2026-09-25T03:34:57.9402998Z ##[endgroup]
+2026-09-25T03:34:57.9404642Z Secret source: Actions
+2026-09-25T03:34:57.9405480Z Cache mode: write
+2026-09-25T03:34:57.9406079Z Prepare workflow directory
+2026-09-25T03:34:57.9715611Z Prepare all required actions
+2026-09-25T03:34:57.9753782Z Getting action download info
+2026-09-25T03:34:58.2539833Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-25T03:34:58.4061086Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-25T03:34:58.6185849Z Complete job name: Select source coverage
+2026-09-25T03:34:58.6769504Z ##[group]Run actions/checkout@v4
+2026-09-25T03:34:58.6770189Z with:
+2026-09-25T03:34:58.6770577Z   ref: 3c17e267dd06ee561e8dc9984f6623126095eec1
+2026-09-25T03:34:58.6771047Z   fetch-depth: 0
+2026-09-25T03:34:58.6771402Z   filter: blob:none
+2026-09-25T03:34:58.6771775Z   repository: sgttomas/chirality
+2026-09-25T03:34:58.6774876Z   token: ***
+2026-09-25T03:34:58.6775234Z   ssh-strict: true
+2026-09-25T03:34:58.6775589Z   ssh-user: git
+2026-09-25T03:34:58.6775946Z   persist-credentials: true
+2026-09-25T03:34:58.6776331Z   clean: true
+2026-09-25T03:34:58.6776693Z   sparse-checkout-cone-mode: true
+2026-09-25T03:34:58.6777109Z   fetch-tags: false
+2026-09-25T03:34:58.6777470Z   show-progress: true
+2026-09-25T03:34:58.6777827Z   lfs: false
+2026-09-25T03:34:58.6778352Z   submodules: false
+2026-09-25T03:34:58.6778722Z   set-safe-directory: true
+2026-09-25T03:34:58.6779135Z   allow-unsafe-pr-checkout: false
+2026-09-25T03:34:58.6779701Z env:
+2026-09-25T03:34:58.6780020Z   CI: true
+2026-09-25T03:34:58.6780401Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:34:58.6780808Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:34:58.6781171Z ##[endgroup]
+2026-09-25T03:34:58.7552122Z Syncing repository: sgttomas/chirality
+2026-09-25T03:34:58.7553521Z ##[group]Getting Git version info
+2026-09-25T03:34:58.7554090Z Working directory is '/home/runner/work/chirality/chirality'
+2026-09-25T03:34:58.7554929Z [command]/usr/bin/git version
+2026-09-25T03:34:58.7623186Z git version 2.55.0
+2026-09-25T03:34:58.7637664Z ##[endgroup]
+2026-09-25T03:34:58.7648714Z Temporarily overriding HOME='/home/runner/work/_temp/bc71c656-5f19-43fd-a6e2-acc70e35ad16' before making global git config changes
+2026-09-25T03:34:58.7652574Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:34:58.7653635Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:34:58.7694100Z Deleting the contents of '/home/runner/work/chirality/chirality'
+2026-09-25T03:34:58.7697084Z ##[group]Initializing the repository
+2026-09-25T03:34:58.7700205Z [command]/usr/bin/git init /home/runner/work/chirality/chirality
+2026-09-25T03:34:58.7796572Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-25T03:34:58.7797623Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-25T03:34:58.7798861Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-25T03:34:58.7799480Z hint: call:
+2026-09-25T03:34:58.7799974Z hint:
+2026-09-25T03:34:58.7800640Z hint: 	git config --global init.defaultBranch <name>
+2026-09-25T03:34:58.7801417Z hint:
+2026-09-25T03:34:58.7802137Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-25T03:34:58.7803303Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-25T03:34:58.7804229Z hint:
+2026-09-25T03:34:58.7804748Z hint: 	git branch -m <name>
+2026-09-25T03:34:58.7805334Z hint:
+2026-09-25T03:34:58.7806134Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-25T03:34:58.7807435Z Initialized empty Git repository in /home/runner/work/chirality/chirality/.git/
+2026-09-25T03:34:58.7809172Z [command]/usr/bin/git remote add origin https://github.com/sgttomas/chirality
+2026-09-25T03:34:58.7856143Z ##[endgroup]
+2026-09-25T03:34:58.7857100Z ##[group]Disabling automatic garbage collection
+2026-09-25T03:34:58.7859814Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-25T03:34:58.7888817Z ##[endgroup]
+2026-09-25T03:34:58.7889408Z ##[group]Setting up auth
+2026-09-25T03:34:58.7890004Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:34:58.7913116Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:34:58.8212848Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:34:58.8236642Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:34:58.8415007Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:34:58.8438834Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:34:58.8616460Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-25T03:34:58.8645196Z ##[endgroup]
+2026-09-25T03:34:58.8645970Z ##[group]Fetching the repository
+2026-09-25T03:34:58.8652375Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-09-25T03:35:01.5223101Z From https://github.com/sgttomas/chirality
+2026-09-25T03:35:01.5224877Z  * [new branch]          claude/app-concordance-d128-activation -> origin/claude/app-concordance-d128-activation
+2026-09-25T03:35:01.5226269Z  * [new branch]          claude/app-concordance-d128-r0 -> origin/claude/app-concordance-d128-r0
+2026-09-25T03:35:01.5227311Z  * [new branch]          claude/app-concordance-d128-r2 -> origin/claude/app-concordance-d128-r2
+2026-09-25T03:35:01.5228724Z  * [new branch]          claude/app-concordance-d128-r3 -> origin/claude/app-concordance-d128-r3
+2026-09-25T03:35:01.5230463Z  * [new branch]          claude/app-concordance-d128-r4-close -> origin/claude/app-concordance-d128-r4-close
+2026-09-25T03:35:01.5232121Z  * [new branch]          claude/app-dev-loop-init-generic -> origin/claude/app-dev-loop-init-generic
+2026-09-25T03:35:01.5233793Z  * [new branch]          claude/app-loop-handoff-hygiene -> origin/claude/app-loop-handoff-hygiene
+2026-09-25T03:35:01.5235506Z  * [new branch]          claude/app-owner-intent-of-record -> origin/claude/app-owner-intent-of-record
+2026-09-25T03:35:01.5237291Z  * [new branch]          claude/chirality-app-release-077eeb -> origin/claude/chirality-app-release-077eeb
+2026-09-25T03:35:01.5239736Z  * [new branch]          claude/chirality-codex-replatform-3999f1 -> origin/claude/chirality-codex-replatform-3999f1
+2026-09-25T03:35:01.5241751Z  * [new branch]          claude/chirality-piping-reconciliation-7f7e70 -> origin/claude/chirality-piping-reconciliation-7f7e70
+2026-09-25T03:35:01.5243013Z  * [new branch]          claude/chirality-piping-ui-design-a31fd2 -> origin/claude/chirality-piping-ui-design-a31fd2
+2026-09-25T03:35:01.5244178Z  * [new branch]          claude/chirality-ui-refinement-20260912 -> origin/claude/chirality-ui-refinement-20260912
+2026-09-25T03:35:01.5245354Z  * [new branch]          claude/chirality-v3-mvp-trial-ab05cb -> origin/claude/chirality-v3-mvp-trial-ab05cb
+2026-09-25T03:35:01.5246588Z  * [new branch]          claude/concordance-claim-granularity -> origin/claude/concordance-claim-granularity
+2026-09-25T03:35:01.5248304Z  * [new branch]          claude/dec046-translation-delta-unit-20260923 -> origin/claude/dec046-translation-delta-unit-20260923
+2026-09-25T03:35:01.5250184Z  * [new branch]          claude/dgov43-launch-prompt -> origin/claude/dgov43-launch-prompt
+2026-09-25T03:35:01.5251455Z  * [new branch]          claude/dgov43-launch-prompt-orientation -> origin/claude/dgov43-launch-prompt-orientation
+2026-09-25T03:35:01.5252550Z  * [new branch]          claude/dgov43-launch-prompt-pointer -> origin/claude/dgov43-launch-prompt-pointer
+2026-09-25T03:35:01.5253552Z  * [new branch]          claude/dgov43-post-merge-closeout -> origin/claude/dgov43-post-merge-closeout
+2026-09-25T03:35:01.5254612Z  * [new branch]          claude/loop-init-consolidation-d-app-112 -> origin/claude/loop-init-consolidation-d-app-112
+2026-09-25T03:35:01.5255679Z  * [new branch]          claude/loop-init-d-app-113-residuals -> origin/claude/loop-init-d-app-113-residuals
+2026-09-25T03:35:01.5257004Z  * [new branch]          claude/nonlinear-moment-unit-20260923 -> origin/claude/nonlinear-moment-unit-20260923
+2026-09-25T03:35:01.5258125Z  * [new branch]          claude/pec-d87-ruling   -> origin/claude/pec-d87-ruling
+2026-09-25T03:35:01.5259018Z  * [new branch]          claude/pec-project-assessment-6106d5 -> origin/claude/pec-project-assessment-6106d5
+2026-09-25T03:35:01.5260004Z  * [new branch]          claude/pec-sca005-cp1-acceptance -> origin/claude/pec-sca005-cp1-acceptance
+2026-09-25T03:35:01.5260923Z  * [new branch]          claude/pec-sca005-cp1-amendment1 -> origin/claude/pec-sca005-cp1-amendment1
+2026-09-25T03:35:01.5261863Z  * [new branch]          claude/piping-e2e-path-triggers -> origin/claude/piping-e2e-path-triggers
+2026-09-25T03:35:01.5262878Z  * [new branch]          claude/piping-recon-r0-20260921 -> origin/claude/piping-recon-r0-20260921
+2026-09-25T03:35:01.5263956Z  * [new branch]          claude/piping-recon-r2-w1-20260921 -> origin/claude/piping-recon-r2-w1-20260921
+2026-09-25T03:35:01.5264891Z  * [new branch]          claude/piping-recon-r3-20260922 -> origin/claude/piping-recon-r3-20260922
+2026-09-25T03:35:01.5265961Z  * [new branch]          claude/sca-app-010-dependency-closure -> origin/claude/sca-app-010-dependency-closure
+2026-09-25T03:35:01.5267052Z  * [new branch]          claude/sca-app-010-gate1-intake -> origin/claude/sca-app-010-gate1-intake
+2026-09-25T03:35:01.5268094Z  * [new branch]          claude/sca-app-010-pointer -> origin/claude/sca-app-010-pointer
+2026-09-25T03:35:01.5269489Z  * [new branch]          claude/sca-app-010-pointers-d-app-111 -> origin/claude/sca-app-010-pointers-d-app-111
+2026-09-25T03:35:01.5270898Z  * [new branch]          claude/sca-app-010-seating -> origin/claude/sca-app-010-seating
+2026-09-25T03:35:01.5271985Z  * [new branch]          claude/swbpipe-mit-licence-20260922 -> origin/claude/swbpipe-mit-licence-20260922
+2026-09-25T03:35:01.5273092Z  * [new branch]          claude/valmanual-record-reconcile-20260922 -> origin/claude/valmanual-record-reconcile-20260922
+2026-09-25T03:35:01.5274376Z  * [new branch]          codex/add-workflow-proposals-20260922 -> origin/codex/add-workflow-proposals-20260922
+2026-09-25T03:35:01.5275837Z  * [new branch]          codex/alignment-manual-and-agent-guide-20260922 -> origin/codex/alignment-manual-and-agent-guide-20260922
+2026-09-25T03:35:01.5277159Z  * [new branch]          codex/app-agent-card-presentation -> origin/codex/app-agent-card-presentation
+2026-09-25T03:35:01.5279155Z  * [new branch]          codex/app-dapp86-helper-parity-rerun-20260820 -> origin/codex/app-dapp86-helper-parity-rerun-20260820
+2026-09-25T03:35:01.5280871Z  * [new branch]          codex/app-electron-concordance-2026-09-03 -> origin/codex/app-electron-concordance-2026-09-03
+2026-09-25T03:35:01.5282148Z  * [new branch]          codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04 -> origin/codex/app-hold-dapp104-del0907-bootstrap-r2-2026-09-04
+2026-09-25T03:35:01.5283506Z  * [new branch]          codex/app-loop-discovery-handoff-cleanup-20260903 -> origin/codex/app-loop-discovery-handoff-cleanup-20260903
+2026-09-25T03:35:01.5284898Z  * [new branch]          codex/app-loop-shell-20260905 -> origin/codex/app-loop-shell-20260905
+2026-09-25T03:35:01.5286324Z  * [new branch]          codex/app-loop-trial    -> origin/codex/app-loop-trial
+2026-09-25T03:35:01.5287773Z  * [new branch]          codex/app-loop-trial-closeout -> origin/codex/app-loop-trial-closeout
+2026-09-25T03:35:01.5289458Z  * [new branch]          codex/app-loop-workgraph-20260919 -> origin/codex/app-loop-workgraph-20260919
+2026-09-25T03:35:01.5291188Z  * [new branch]          codex/app-piping-central-loop-receipts -> origin/codex/app-piping-central-loop-receipts
+2026-09-25T03:35:01.5293358Z  * [new branch]          codex/app-reconciliation-closeout-20260922 -> origin/codex/app-reconciliation-closeout-20260922
+2026-09-25T03:35:01.5294742Z  * [new branch]          codex/app-remaining-exceptions -> origin/codex/app-remaining-exceptions
+2026-09-25T03:35:01.5296025Z  * [new branch]          codex/app-remaining-retire-final -> origin/codex/app-remaining-retire-final
+2026-09-25T03:35:01.5297000Z  * [new branch]          codex/app-remaining-retirement -> origin/codex/app-remaining-retirement
+2026-09-25T03:35:01.5299470Z  * [new branch]          codex/app-tm-g0-rulings-2026-09-03 -> origin/codex/app-tm-g0-rulings-2026-09-03
+2026-09-25T03:35:01.5301290Z  * [new branch]          codex/app-v3-nodeA-credential-ipc-2026-09-03 -> origin/codex/app-v3-nodeA-credential-ipc-2026-09-03
+2026-09-25T03:35:01.5302465Z  * [new branch]          codex/app-v3-nodeB-wp09-prep-2026-09-03 -> origin/codex/app-v3-nodeB-wp09-prep-2026-09-03
+2026-09-25T03:35:01.5303715Z  * [new branch]          codex/app-v3-nodeD-v2-session-access-2026-09-03 -> origin/codex/app-v3-nodeD-v2-session-access-2026-09-03
+2026-09-25T03:35:01.5304929Z  * [new branch]          codex/app-v3-nodeE-at053-evidence-2026-09-03 -> origin/codex/app-v3-nodeE-at053-evidence-2026-09-03
+2026-09-25T03:35:01.5306179Z  * [new branch]          codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03 -> origin/codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03
+2026-09-25T03:35:01.5307552Z  * [new branch]          codex/app-v3-nodeG-egress-probe-restriction-2026-09-03 -> origin/codex/app-v3-nodeG-egress-probe-restriction-2026-09-03
+2026-09-25T03:35:01.5309256Z  * [new branch]          codex/app-v3-nodeH-section8-preservation-2026-09-03 -> origin/codex/app-v3-nodeH-section8-preservation-2026-09-03
+2026-09-25T03:35:01.5310737Z  * [new branch]          codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03 -> origin/codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03
+2026-09-25T03:35:01.5312156Z  * [new branch]          codex/app-v3-nodeJ-section8-revision2-2026-09-03 -> origin/codex/app-v3-nodeJ-section8-revision2-2026-09-03
+2026-09-25T03:35:01.5313584Z  * [new branch]          codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03 -> origin/codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03
+2026-09-25T03:35:01.5315005Z  * [new branch]          codex/app-v3-nodeL-consent-fake-guards-2026-09-03 -> origin/codex/app-v3-nodeL-consent-fake-guards-2026-09-03
+2026-09-25T03:35:01.5316638Z  * [new branch]          codex/app-v3-nodeM-a15-owner-rulings-2026-09-04 -> origin/codex/app-v3-nodeM-a15-owner-rulings-2026-09-04
+2026-09-25T03:35:01.5317810Z  * [new branch]          codex/app-v3-nodeN-csp-nonce-2026-09-04 -> origin/codex/app-v3-nodeN-csp-nonce-2026-09-04
+2026-09-25T03:35:01.5319792Z  * [new branch]          codex/app-v3-nodeO-section8-rev3-2026-09-04 -> origin/codex/app-v3-nodeO-section8-rev3-2026-09-04
+2026-09-25T03:35:01.5321772Z  * [new branch]          codex/app-v3-pathway-seating-2026-09-03 -> origin/codex/app-v3-pathway-seating-2026-09-03
+2026-09-25T03:35:01.5323621Z  * [new branch]          codex/automatic-update-checks-20260913 -> origin/codex/automatic-update-checks-20260913
+2026-09-25T03:35:01.5324840Z  * [new branch]          codex/chirality-app-v3-release-plan-20260822 -> origin/codex/chirality-app-v3-release-plan-20260822
+2026-09-25T03:35:01.5326165Z  * [new branch]          codex/chirality-app-v3-release-plan-final-20260822 -> origin/codex/chirality-app-v3-release-plan-final-20260822
+2026-09-25T03:35:01.5327832Z  * [new branch]          codex/chirality-app-v3-release-plan-v2-20260822 -> origin/codex/chirality-app-v3-release-plan-v2-20260822
+2026-09-25T03:35:01.5329796Z  * [new branch]          codex/chirality-app-v3-release-plan-v3-20260822 -> origin/codex/chirality-app-v3-release-plan-v3-20260822
+2026-09-25T03:35:01.5331663Z  * [new branch]          codex/chirality-change-lessons-20260910 -> origin/codex/chirality-change-lessons-20260910
+2026-09-25T03:35:01.5332826Z  * [new branch]          codex/chirality-v3-adoption-20260909 -> origin/codex/chirality-v3-adoption-20260909
+2026-09-25T03:35:01.5333821Z  * [new branch]          codex/day1-maintenance  -> origin/codex/day1-maintenance
+2026-09-25T03:35:01.5335535Z  * [new branch]          codex/deferred-four-graphs-orientation-20260919 -> origin/codex/deferred-four-graphs-orientation-20260919
+2026-09-25T03:35:01.5336963Z  * [new branch]          codex/del0907-init-admission-2026-09-04 -> origin/codex/del0907-init-admission-2026-09-04
+2026-09-25T03:35:01.5338880Z  * [new branch]          codex/del0907-setup-followon-20260905 -> origin/codex/del0907-setup-followon-20260905
+2026-09-25T03:35:01.5340332Z  * [new branch]          codex/del0907-sow-init-20260904 -> origin/codex/del0907-sow-init-20260904
+2026-09-25T03:35:01.5341389Z  * [new branch]          codex/development-loop-integration -> origin/codex/development-loop-integration
+2026-09-25T03:35:01.5342402Z  * [new branch]          codex/domain-separation-20260820 -> origin/codex/domain-separation-20260820
+2026-09-25T03:35:01.5343399Z  * [new branch]          codex/evergreen-development-loops -> origin/codex/evergreen-development-loops
+2026-09-25T03:35:01.5344352Z  * [new branch]          codex/field-book-v1-20260923 -> origin/codex/field-book-v1-20260923
+2026-09-25T03:35:01.5345500Z  * [new branch]          codex/four-role-workflow-overhaul -> origin/codex/four-role-workflow-overhaul
+2026-09-25T03:35:01.5346542Z  * [new branch]          codex/graceful-source-closure-20260908 -> origin/codex/graceful-source-closure-20260908
+2026-09-25T03:35:01.5347528Z  * [new branch]          codex/local-work-graph-loops -> origin/codex/local-work-graph-loops
+2026-09-25T03:35:01.5348717Z  * [new branch]          codex/loop-clarifications-20260919 -> origin/codex/loop-clarifications-20260919
+2026-09-25T03:35:01.5349976Z  * [new branch]          codex/management-manual-authorship-frontmatter-20260922 -> origin/codex/management-manual-authorship-frontmatter-20260922
+2026-09-25T03:35:01.5351408Z  * [new branch]          codex/management-manual-publication-edit-20260922 -> origin/codex/management-manual-publication-edit-20260922
+2026-09-25T03:35:01.5352682Z  * [new branch]          codex/management-manual-v2-formats-20260922 -> origin/codex/management-manual-v2-formats-20260922
+2026-09-25T03:35:01.5353789Z  * [new branch]          codex/management-manual-v7-20260922 -> origin/codex/management-manual-v7-20260922
+2026-09-25T03:35:01.5354955Z  * [new branch]          codex/manual-theory-20260919 -> origin/codex/manual-theory-20260919
+2026-09-25T03:35:01.5356097Z  * [new branch]          codex/pec-d83-d84-activation-20260907 -> origin/codex/pec-d83-d84-activation-20260907
+2026-09-25T03:35:01.5357143Z  * [new branch]          codex/pec-d83-d84-execution-20260907 -> origin/codex/pec-d83-d84-execution-20260907
+2026-09-25T03:35:01.5358426Z  * [new branch]          codex/pec-d85-store-guard-20260908 -> origin/codex/pec-d85-store-guard-20260908
+2026-09-25T03:35:01.5359631Z  * [new branch]          codex/pec-d85-store-guard-production-20260908 -> origin/codex/pec-d85-store-guard-production-20260908
+2026-09-25T03:35:01.5360877Z  * [new branch]          codex/pec-loop-home-consolidation-20260905 -> origin/codex/pec-loop-home-consolidation-20260905
+2026-09-25T03:35:01.5362048Z  * [new branch]          codex/pec-remaining-calibration-20260905 -> origin/codex/pec-remaining-calibration-20260905
+2026-09-25T03:35:01.5363150Z  * [new branch]          codex/pec-remaining-corpus-20260905 -> origin/codex/pec-remaining-corpus-20260905
+2026-09-25T03:35:01.5364290Z  * [new branch]          codex/pec-remaining-reconciliation-20260905 -> origin/codex/pec-remaining-reconciliation-20260905
+2026-09-25T03:35:01.5365374Z  * [new branch]          codex/piping-c4-policy-20260924 -> origin/codex/piping-c4-policy-20260924
+2026-09-25T03:35:01.5366284Z  * [new branch]          codex/piping-dec025-baseline -> origin/codex/piping-dec025-baseline
+2026-09-25T03:35:01.5367778Z  * [new branch]          codex/piping-dec025-records-closeout -> origin/codex/piping-dec025-records-closeout
+2026-09-25T03:35:01.5369308Z  * [new branch]          codex/piping-first-correctness-20260924 -> origin/codex/piping-first-correctness-20260924
+2026-09-25T03:35:01.5370421Z  * [new branch]          codex/piping-generated-loads-20260924 -> origin/codex/piping-generated-loads-20260924
+2026-09-25T03:35:01.5372031Z  * [new branch]          codex/piping-linter-closeout -> origin/codex/piping-linter-closeout
+2026-09-25T03:35:01.5373263Z  * [new branch]          codex/piping-live-control-20260924 -> origin/codex/piping-live-control-20260924
+2026-09-25T03:35:01.5374170Z  * [new branch]          codex/piping-loop-trial -> origin/codex/piping-loop-trial
+2026-09-25T03:35:01.5375098Z  * [new branch]          codex/piping-loop-workgraph-20260919 -> origin/codex/piping-loop-workgraph-20260919
+2026-09-25T03:35:01.5376115Z  * [new branch]          codex/piping-modeling-workspace -> origin/codex/piping-modeling-workspace
+2026-09-25T03:35:01.5377288Z  * [new branch]          codex/piping-numerical-ci-20260924 -> origin/codex/piping-numerical-ci-20260924
+2026-09-25T03:35:01.5378492Z  * [new branch]          codex/piping-ownership-amendment-20260922 -> origin/codex/piping-ownership-amendment-20260922
+2026-09-25T03:35:01.5379515Z  * [new branch]          codex/piping-physics-audit -> origin/codex/piping-physics-audit
+2026-09-25T03:35:01.5380541Z  * [new branch]          codex/piping-physics-ui-execution-20260908 -> origin/codex/piping-physics-ui-execution-20260908
+2026-09-25T03:35:01.5381847Z  * [new branch]          codex/piping-physics-ui-implementation-20260908 -> origin/codex/piping-physics-ui-implementation-20260908
+2026-09-25T03:35:01.5383120Z  * [new branch]          codex/piping-physics-ui-preparation-20260907 -> origin/codex/piping-physics-ui-preparation-20260907
+2026-09-25T03:35:01.5384626Z  * [new branch]          codex/piping-picking-runtime-evidence-20260918 -> origin/codex/piping-picking-runtime-evidence-20260918
+2026-09-25T03:35:01.5386505Z  * [new branch]          codex/piping-picking-stability-20260918 -> origin/codex/piping-picking-stability-20260918
+2026-09-25T03:35:01.5387764Z  * [new branch]          codex/piping-pipes-20260924 -> origin/codex/piping-pipes-20260924
+2026-09-25T03:35:01.5388894Z  * [new branch]          codex/piping-product-20260820 -> origin/codex/piping-product-20260820
+2026-09-25T03:35:01.5389898Z  * [new branch]          codex/piping-remaining-retire-final -> origin/codex/piping-remaining-retire-final
+2026-09-25T03:35:01.5391124Z  * [new branch]          codex/piping-remaining-retirement -> origin/codex/piping-remaining-retirement
+2026-09-25T03:35:01.5392247Z  * [new branch]          codex/piping-remaining-retirement-followon -> origin/codex/piping-remaining-retirement-followon
+2026-09-25T03:35:01.5393426Z  * [new branch]          codex/piping-rendering-baseline-20260917 -> origin/codex/piping-rendering-baseline-20260917
+2026-09-25T03:35:01.5394704Z  * [new branch]          codex/piping-result-compatibility-pressure-20260914 -> origin/codex/piping-result-compatibility-pressure-20260914
+2026-09-25T03:35:01.5396025Z  * [new branch]          codex/piping-results-engineering-3d-20260913 -> origin/codex/piping-results-engineering-3d-20260913
+2026-09-25T03:35:01.5397258Z  * [new branch]          codex/piping-standing-loop-alignment-20260919 -> origin/codex/piping-standing-loop-alignment-20260919
+2026-09-25T03:35:01.5399255Z  * [new branch]          codex/piping-ui-foundation-20260915 -> origin/codex/piping-ui-foundation-20260915
+2026-09-25T03:35:01.5464301Z  * [new branch]          codex/piping-ui-resume-20260924 -> origin/codex/piping-ui-resume-20260924
+2026-09-25T03:35:01.5465525Z  * [new branch]          codex/piping-ui-toolkit-parity -> origin/codex/piping-ui-toolkit-parity
+2026-09-25T03:35:01.5466575Z  * [new branch]          codex/piping-viewport-routing-20260909 -> origin/codex/piping-viewport-routing-20260909
+2026-09-25T03:35:01.5467671Z  * [new branch]          codex/piping-workflow-contact-20260913 -> origin/codex/piping-workflow-contact-20260913
+2026-09-25T03:35:01.5468924Z  * [new branch]          codex/plans-four-graphs-20260919 -> origin/codex/plans-four-graphs-20260919
+2026-09-25T03:35:01.5469966Z  * [new branch]          codex/product-instructions-savepoint -> origin/codex/product-instructions-savepoint
+2026-09-25T03:35:01.5470892Z  * [new branch]          codex/public-export-ci  -> origin/codex/public-export-ci
+2026-09-25T03:35:01.5472261Z  * [new branch]          codex/r5-r6-cross-project-reconciliation -> origin/codex/r5-r6-cross-project-reconciliation
+2026-09-25T03:35:01.5473326Z  * [new branch]          codex/readme-human-agent-overview -> origin/codex/readme-human-agent-overview
+2026-09-25T03:35:01.5474448Z  * [new branch]          codex/reconciliation-decision-bundles-20260922 -> origin/codex/reconciliation-decision-bundles-20260922
+2026-09-25T03:35:01.5475451Z  * [new branch]          codex/release-3.0.1     -> origin/codex/release-3.0.1
+2026-09-25T03:35:01.5476319Z  * [new branch]          codex/remove-readme-domain-clone -> origin/codex/remove-readme-domain-clone
+2026-09-25T03:35:01.5477429Z  * [new branch]          codex/retire-harness-contract-facade-20260922 -> origin/codex/retire-harness-contract-facade-20260922
+2026-09-25T03:35:01.5478921Z  * [new branch]          codex/reverse-engineer-software-workflow -> origin/codex/reverse-engineer-software-workflow
+2026-09-25T03:35:01.5480071Z  * [new branch]          codex/root-d126-custody-application -> origin/codex/root-d126-custody-application
+2026-09-25T03:35:01.5481176Z  * [new branch]          codex/root-four-graph-orientation-20260919 -> origin/codex/root-four-graph-orientation-20260919
+2026-09-25T03:35:01.5482262Z  * [new branch]          codex/root-loop-consolidation -> origin/codex/root-loop-consolidation
+2026-09-25T03:35:01.5483264Z  * [new branch]          codex/root-r16-g05-spikes-2026-08-27 -> origin/codex/root-r16-g05-spikes-2026-08-27
+2026-09-25T03:35:01.5484274Z  * [new branch]          codex/root-r18-tm-root-122-2026-09-03 -> origin/codex/root-r18-tm-root-122-2026-09-03
+2026-09-25T03:35:01.5485498Z  * [new branch]          codex/root-runtime-revision-recognition-20260906 -> origin/codex/root-runtime-revision-recognition-20260906
+2026-09-25T03:35:01.5486762Z  * [new branch]          codex/root-runtime-stage2-adoption-20260907 -> origin/codex/root-runtime-stage2-adoption-20260907
+2026-09-25T03:35:01.5487870Z  * [new branch]          codex/runtime-app-sow-publication -> origin/codex/runtime-app-sow-publication
+2026-09-25T03:35:01.5488938Z  * [new branch]          codex/runtime-application-tools -> origin/codex/runtime-application-tools
+2026-09-25T03:35:01.5490072Z  * [new branch]          codex/runtime-consumer-readiness -> origin/codex/runtime-consumer-readiness
+2026-09-25T03:35:01.5491026Z  * [new branch]          codex/runtime-custody-amendment -> origin/codex/runtime-custody-amendment
+2026-09-25T03:35:01.5492036Z  * [new branch]          codex/runtime-effective-publication -> origin/codex/runtime-effective-publication
+2026-09-25T03:35:01.5492997Z  * [new branch]          codex/runtime-execution -> origin/codex/runtime-execution
+2026-09-25T03:35:01.5493885Z  * [new branch]          codex/runtime-gate5-confirmation -> origin/codex/runtime-gate5-confirmation
+2026-09-25T03:35:01.5494936Z  * [new branch]          codex/runtime-governance-propagation -> origin/codex/runtime-governance-propagation
+2026-09-25T03:35:01.5496023Z  * [new branch]          codex/runtime-hosted-status-hardening -> origin/codex/runtime-hosted-status-hardening
+2026-09-25T03:35:01.5497027Z  * [new branch]          codex/runtime-mcp-v2-evidence -> origin/codex/runtime-mcp-v2-evidence
+2026-09-25T03:35:01.5498160Z  * [new branch]          codex/runtime-packaging-integration -> origin/codex/runtime-packaging-integration
+2026-09-25T03:35:01.5499185Z  * [new branch]          codex/runtime-project-migration -> origin/codex/runtime-project-migration
+2026-09-25T03:35:01.5500199Z  * [new branch]          codex/runtime-project-migration-plan -> origin/codex/runtime-project-migration-plan
+2026-09-25T03:35:01.5501122Z  * [new branch]          codex/runtime-readiness -> origin/codex/runtime-readiness
+2026-09-25T03:35:01.5502041Z  * [new branch]          codex/runtime-stage2-sow-propagation -> origin/codex/runtime-stage2-sow-propagation
+2026-09-25T03:35:01.5503161Z  * [new branch]          codex/sca-app-009-gate5-actual-r4-2026-09-04 -> origin/codex/sca-app-009-gate5-actual-r4-2026-09-04
+2026-09-25T03:35:01.5504247Z  * [new branch]          codex/scoped-pr-ci      -> origin/codex/scoped-pr-ci
+2026-09-25T03:35:01.5505233Z  * [new branch]          codex/shell-redesign-convergence-20260906 -> origin/codex/shell-redesign-convergence-20260906
+2026-09-25T03:35:01.5506372Z  * [new branch]          codex/shell-redesign-resume-20260906 -> origin/codex/shell-redesign-resume-20260906
+2026-09-25T03:35:01.5507368Z  * [new branch]          codex/standing-merge-authority -> origin/codex/standing-merge-authority
+2026-09-25T03:35:01.5508474Z  * [new branch]          codex/swb-ui-contradictions -> origin/codex/swb-ui-contradictions
+2026-09-25T03:35:01.5509339Z  * [new branch]          codex/swb-ui-d71-d72-rulings -> origin/codex/swb-ui-d71-d72-rulings
+2026-09-25T03:35:01.5510378Z  * [new branch]          codex/swb-ui-design-handoff-reconciliation -> origin/codex/swb-ui-design-handoff-reconciliation
+2026-09-25T03:35:01.5511407Z  * [new branch]          codex/swb-ui-revision-pass -> origin/codex/swb-ui-revision-pass
+2026-09-25T03:35:01.5512376Z  * [new branch]          codex/swbpipe-a1-followups-20260918 -> origin/codex/swbpipe-a1-followups-20260918
+2026-09-25T03:35:01.5513483Z  * [new branch]          codex/swbpipe-a1-visible-rename-20260918 -> origin/codex/swbpipe-a1-visible-rename-20260918
+2026-09-25T03:35:01.5514524Z  * [new branch]          codex/swbpipe-b-canvas-20260918 -> origin/codex/swbpipe-b-canvas-20260918
+2026-09-25T03:35:01.5515488Z  * [new branch]          codex/swbpipe-b-shell-20260918 -> origin/codex/swbpipe-b-shell-20260918
+2026-09-25T03:35:01.5516439Z  * [new branch]          codex/swbpipe-b1-tokens-20260918 -> origin/codex/swbpipe-b1-tokens-20260918
+2026-09-25T03:35:01.5517348Z  * [new branch]          codex/swbpipe-b2f-20260919 -> origin/codex/swbpipe-b2f-20260919
+2026-09-25T03:35:01.5518403Z  * [new branch]          codex/swbpipe-b3-20260919 -> origin/codex/swbpipe-b3-20260919
+2026-09-25T03:35:01.5519262Z  * [new branch]          codex/swbpipe-b3a-i1-20260920 -> origin/codex/swbpipe-b3a-i1-20260920
+2026-09-25T03:35:01.5520242Z  * [new branch]          codex/swbpipe-b4-controls-20260920 -> origin/codex/swbpipe-b4-controls-20260920
+2026-09-25T03:35:01.5521529Z  * [new branch]          codex/swbpipe-b4-materials-integration-20260921 -> origin/codex/swbpipe-b4-materials-integration-20260921
+2026-09-25T03:35:01.5522783Z  * [new branch]          codex/swbpipe-b4-node-integration-20260920 -> origin/codex/swbpipe-b4-node-integration-20260920
+2026-09-25T03:35:01.5524007Z  * [new branch]          codex/swbpipe-b4-sections-integration-20260921 -> origin/codex/swbpipe-b4-sections-integration-20260921
+2026-09-25T03:35:01.5525579Z  * [new branch]          codex/swbpipe-c-pr1-20260919 -> origin/codex/swbpipe-c-pr1-20260919
+2026-09-25T03:35:01.5526685Z  * [new branch]          codex/swbpipe-c2-20260919 -> origin/codex/swbpipe-c2-20260919
+2026-09-25T03:35:01.5527629Z  * [new branch]          codex/swbpipe-ci-economy-20260920 -> origin/codex/swbpipe-ci-economy-20260920
+2026-09-25T03:35:01.5528821Z  * [new branch]          codex/swbpipe-continuation-20260919 -> origin/codex/swbpipe-continuation-20260919
+2026-09-25T03:35:01.5530003Z  * [new branch]          codex/swbpipe-control-first-handoff-20260919 -> origin/codex/swbpipe-control-first-handoff-20260919
+2026-09-25T03:35:01.5531214Z  * [new branch]          codex/swbpipe-design-system-v14-20260918 -> origin/codex/swbpipe-design-system-v14-20260918
+2026-09-25T03:35:01.5532452Z  * [new branch]          codex/swbpipe-handoff-selfsufficient-20260919 -> origin/codex/swbpipe-handoff-selfsufficient-20260919
+2026-09-25T03:35:01.5533531Z  * [new branch]          codex/swbpipe-intended-logo -> origin/codex/swbpipe-intended-logo
+2026-09-25T03:35:01.5534441Z  * [new branch]          codex/swbpipe-records-20260919 -> origin/codex/swbpipe-records-20260919
+2026-09-25T03:35:01.5535493Z  * [new branch]          codex/swbpipe-successor-prompt-2-20260919 -> origin/codex/swbpipe-successor-prompt-2-20260919
+2026-09-25T03:35:01.5536778Z  * [new branch]          codex/swbpipe-successor-prompt-20260919 -> origin/codex/swbpipe-successor-prompt-20260919
+2026-09-25T03:35:01.5538031Z  * [new branch]          codex/swbpipe-successor-prompt-3-20260919 -> origin/codex/swbpipe-successor-prompt-3-20260919
+2026-09-25T03:35:01.5539124Z  * [new branch]          codex/swbpipe-workgraph-20260919 -> origin/codex/swbpipe-workgraph-20260919
+2026-09-25T03:35:01.5540006Z  * [new branch]          codex/tm-register-audit -> origin/codex/tm-register-audit
+2026-09-25T03:35:01.5541004Z  * [new branch]          codex/ui-refinement-package-record-20260912 -> origin/codex/ui-refinement-package-record-20260912
+2026-09-25T03:35:01.5542235Z  * [new branch]          codex/ui-refinement-packaged-handoff-20260912 -> origin/codex/ui-refinement-packaged-handoff-20260912
+2026-09-25T03:35:01.5543457Z  * [new branch]          codex/user-journey-build-evidence-20260913 -> origin/codex/user-journey-build-evidence-20260913
+2026-09-25T03:35:01.5544534Z  * [new branch]          codex/user-journey-plan-20260912 -> origin/codex/user-journey-plan-20260912
+2026-09-25T03:35:01.5545625Z  * [new branch]          codex/user-journey-release-handoff-20260913 -> origin/codex/user-journey-release-handoff-20260913
+2026-09-25T03:35:01.5546796Z  * [new branch]          codex/v3-public-release-record-20260913 -> origin/codex/v3-public-release-record-20260913
+2026-09-25T03:35:01.5548071Z  * [new branch]          codex/v3-publication-complete-20260913 -> origin/codex/v3-publication-complete-20260913
+2026-09-25T03:35:01.5549149Z  * [new branch]          codex/v3-readme-release-refresh -> origin/codex/v3-readme-release-refresh
+2026-09-25T03:35:01.5550071Z  * [new branch]          codex/workgraphs-path-anchor -> origin/codex/workgraphs-path-anchor
+2026-09-25T03:35:01.5550946Z  * [new branch]          docs/readme-product-intent -> origin/docs/readme-product-intent
+2026-09-25T03:35:01.5551764Z  * [new branch]          docs/task-mgmt-addendum -> origin/docs/task-mgmt-addendum
+2026-09-25T03:35:01.5552524Z  * [new branch]          feat/daemon-handoff     -> origin/feat/daemon-handoff
+2026-09-25T03:35:01.5553259Z  * [new branch]          feat/daemon-service     -> origin/feat/daemon-service
+2026-09-25T03:35:01.5554351Z  * [new branch]          gov/agentsmd-simplification-20260802 -> origin/gov/agentsmd-simplification-20260802
+2026-09-25T03:35:01.5555319Z  * [new branch]          gov/appdev-maturity-survey -> origin/gov/appdev-maturity-survey
+2026-09-25T03:35:01.5556129Z  * [new branch]          gov/five-explorations   -> origin/gov/five-explorations
+2026-09-25T03:35:01.5557002Z  * [new branch]          gov/five-investigations-report -> origin/gov/five-investigations-report
+2026-09-25T03:35:01.5558163Z  * [new branch]          gov/manifest-gap-disclosure -> origin/gov/manifest-gap-disclosure
+2026-09-25T03:35:01.5559104Z  * [new branch]          gov/pi-agent2-capability-intent -> origin/gov/pi-agent2-capability-intent
+2026-09-25T03:35:01.5559986Z  * [new branch]          gov/piping-intent-record -> origin/gov/piping-intent-record
+2026-09-25T03:35:01.5560801Z  * [new branch]          gov/piping-solver-survey -> origin/gov/piping-solver-survey
+2026-09-25T03:35:01.5561580Z  * [new branch]          gov/stage-a-closure     -> origin/gov/stage-a-closure
+2026-09-25T03:35:01.5562423Z  * [new branch]          gov/stage-a-step0-sha-backfill -> origin/gov/stage-a-step0-sha-backfill
+2026-09-25T03:35:01.5563336Z  * [new branch]          gov/stage-a-step1-ktm-contract -> origin/gov/stage-a-step1-ktm-contract
+2026-09-25T03:35:01.5564285Z  * [new branch]          gov/stage-a-step23-register-seed -> origin/gov/stage-a-step23-register-seed
+2026-09-25T03:35:01.5565189Z  * [new branch]          gov/stage-a-step45-tm-agent -> origin/gov/stage-a-step45-tm-agent
+2026-09-25T03:35:01.5566007Z  * [new branch]          gov/stage-a-step6-triage -> origin/gov/stage-a-step6-triage
+2026-09-25T03:35:01.5566886Z  * [new branch]          gov/stage-a-step7-stageb-packets -> origin/gov/stage-a-step7-stageb-packets
+2026-09-25T03:35:01.5567789Z  * [new branch]          gov/stage-a-step8-taskmgmt -> origin/gov/stage-a-step8-taskmgmt
+2026-09-25T03:35:01.5569059Z  * [new branch]          gov/step1-evidence-landing -> origin/gov/step1-evidence-landing
+2026-09-25T03:35:01.5569913Z  * [new branch]          gov/step2-app-ratification -> origin/gov/step2-app-ratification
+2026-09-25T03:35:01.5570770Z  * [new branch]          gov/step2-pec-ratification -> origin/gov/step2-pec-ratification
+2026-09-25T03:35:01.5571640Z  * [new branch]          gov/step2-piping-ratification -> origin/gov/step2-piping-ratification
+2026-09-25T03:35:01.5572494Z  * [new branch]          gov/step2-root-disclosure -> origin/gov/step2-root-disclosure
+2026-09-25T03:35:01.5573281Z  * [new branch]          gov/step3-d8-candidates -> origin/gov/step3-d8-candidates
+2026-09-25T03:35:01.5574104Z  * [new branch]          gov/step4-operative-surfaces -> origin/gov/step4-operative-surfaces
+2026-09-25T03:35:01.5574951Z  * [new branch]          gov/step4-sca-application -> origin/gov/step4-sca-application
+2026-09-25T03:35:01.5575787Z  * [new branch]          gov/step4-sca-decomposition -> origin/gov/step4-sca-decomposition
+2026-09-25T03:35:01.5576590Z  * [new branch]          gov/step5-loop-slates   -> origin/gov/step5-loop-slates
+2026-09-25T03:35:01.5577369Z  * [new branch]          gov/step5-root-readiness -> origin/gov/step5-root-readiness
+2026-09-25T03:35:01.5578157Z  * [new branch]          main                    -> origin/main
+2026-09-25T03:35:01.5578988Z  * [new branch]          minder/root-r16-g05-spikes-2026-08-27 -> origin/minder/root-r16-g05-spikes-2026-08-27
+2026-09-25T03:35:01.5580122Z  * [new branch]          minder/root-r17-v3-pathway-adoption-2026-08-27 -> origin/minder/root-r17-v3-pathway-adoption-2026-08-27
+2026-09-25T03:35:01.5581127Z  * [new tag]             pre-bridge-session-2026-07-06 -> pre-bridge-session-2026-07-06
+2026-09-25T03:35:01.5582873Z [command]/usr/bin/git rev-parse --verify --quiet 3c17e267dd06ee561e8dc9984f6623126095eec1^{object}
+2026-09-25T03:35:01.5583637Z 3c17e267dd06ee561e8dc9984f6623126095eec1
+2026-09-25T03:35:01.5584972Z ##[endgroup]
+2026-09-25T03:35:01.5585609Z ##[group]Determining the checkout info
+2026-09-25T03:35:01.5586300Z ##[endgroup]
+2026-09-25T03:35:01.5586830Z [command]/usr/bin/git sparse-checkout disable
+2026-09-25T03:35:01.5588160Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-25T03:35:01.5589537Z ##[group]Checking out the ref
+2026-09-25T03:35:01.5590214Z [command]/usr/bin/git checkout --progress --force 3c17e267dd06ee561e8dc9984f6623126095eec1
+2026-09-25T03:35:31.1089861Z Updating files:   0% (1/94733)
+2026-09-25T03:35:31.1652067Z Updating files:   1% (948/94733)
+2026-09-25T03:35:31.2086279Z Updating files:   2% (1895/94733)
+2026-09-25T03:35:31.2522007Z Updating files:   3% (2842/94733)
+2026-09-25T03:35:31.2963819Z Updating files:   4% (3790/94733)
+2026-09-25T03:35:31.3339559Z Updating files:   5% (4737/94733)
+2026-09-25T03:35:31.3788955Z Updating files:   6% (5684/94733)
+2026-09-25T03:35:31.4578999Z Updating files:   7% (6632/94733)
+2026-09-25T03:35:31.5026099Z Updating files:   8% (7579/94733)
+2026-09-25T03:35:31.5447789Z Updating files:   9% (8526/94733)
+2026-09-25T03:35:31.5875282Z Updating files:  10% (9474/94733)
+2026-09-25T03:35:31.6324743Z Updating files:  11% (10421/94733)
+2026-09-25T03:35:31.6705198Z Updating files:  12% (11368/94733)
+2026-09-25T03:35:31.7157105Z Updating files:  13% (12316/94733)
+2026-09-25T03:35:31.7506257Z Updating files:  14% (13263/94733)
+2026-09-25T03:35:31.7881398Z Updating files:  15% (14210/94733)
+2026-09-25T03:35:31.8084293Z Updating files:  16% (15158/94733)
+2026-09-25T03:35:31.8214386Z Updating files:  16% (15749/94733)
+2026-09-25T03:35:31.8591337Z Updating files:  17% (16105/94733)
+2026-09-25T03:35:31.8957385Z Updating files:  18% (17052/94733)
+2026-09-25T03:35:31.9348962Z Updating files:  19% (18000/94733)
+2026-09-25T03:35:31.9734362Z Updating files:  20% (18947/94733)
+2026-09-25T03:35:32.0098406Z Updating files:  21% (19894/94733)
+2026-09-25T03:35:32.0816853Z Updating files:  22% (20842/94733)
+2026-09-25T03:35:32.1586200Z Updating files:  23% (21789/94733)
+2026-09-25T03:35:32.1939116Z Updating files:  24% (22736/94733)
+2026-09-25T03:35:32.2314200Z Updating files:  25% (23684/94733)
+2026-09-25T03:35:32.2678761Z Updating files:  26% (24631/94733)
+2026-09-25T03:35:32.3062738Z Updating files:  27% (25578/94733)
+2026-09-25T03:35:32.3422193Z Updating files:  28% (26526/94733)
+2026-09-25T03:35:32.3808291Z Updating files:  29% (27473/94733)
+2026-09-25T03:35:32.4182715Z Updating files:  30% (28420/94733)
+2026-09-25T03:35:32.4548587Z Updating files:  31% (29368/94733)
+2026-09-25T03:35:32.4984330Z Updating files:  32% (30315/94733)
+2026-09-25T03:35:32.5408700Z Updating files:  33% (31262/94733)
+2026-09-25T03:35:32.5803406Z Updating files:  34% (32210/94733)
+2026-09-25T03:35:32.6174172Z Updating files:  35% (33157/94733)
+2026-09-25T03:35:32.6567522Z Updating files:  36% (34104/94733)
+2026-09-25T03:35:32.6937438Z Updating files:  37% (35052/94733)
+2026-09-25T03:35:32.7399885Z Updating files:  38% (35999/94733)
+2026-09-25T03:35:32.7807035Z Updating files:  39% (36946/94733)
+2026-09-25T03:35:32.8084621Z Updating files:  40% (37894/94733)
+2026-09-25T03:35:32.8358871Z Updating files:  40% (38364/94733)
+2026-09-25T03:35:32.9385354Z Updating files:  41% (38841/94733)
+2026-09-25T03:35:32.9894376Z Updating files:  42% (39788/94733)
+2026-09-25T03:35:33.0381993Z Updating files:  43% (40736/94733)
+2026-09-25T03:35:33.0886243Z Updating files:  44% (41683/94733)
+2026-09-25T03:35:33.1304287Z Updating files:  45% (42630/94733)
+2026-09-25T03:35:33.1625163Z Updating files:  46% (43578/94733)
+2026-09-25T03:35:33.2330549Z Updating files:  47% (44525/94733)
+2026-09-25T03:35:33.3884256Z Updating files:  48% (45472/94733)
+2026-09-25T03:35:33.6168151Z Updating files:  49% (46420/94733)
+2026-09-25T03:35:33.6982364Z Updating files:  50% (47367/94733)
+2026-09-25T03:35:33.7561822Z Updating files:  51% (48314/94733)
+2026-09-25T03:35:33.8670683Z Updating files:  52% (49262/94733)
+2026-09-25T03:35:33.9136544Z Updating files:  52% (49516/94733)
+2026-09-25T03:35:33.9603753Z Updating files:  53% (50209/94733)
+2026-09-25T03:35:34.0103327Z Updating files:  54% (51156/94733)
+2026-09-25T03:35:34.0960906Z Updating files:  55% (52104/94733)
+2026-09-25T03:35:34.1924478Z Updating files:  56% (53051/94733)
+2026-09-25T03:35:34.2692983Z Updating files:  57% (53998/94733)
+2026-09-25T03:35:34.3288545Z Updating files:  58% (54946/94733)
+2026-09-25T03:35:34.4707327Z Updating files:  59% (55893/94733)
+2026-09-25T03:35:34.5182211Z Updating files:  60% (56840/94733)
+2026-09-25T03:35:34.5747195Z Updating files:  61% (57788/94733)
+2026-09-25T03:35:34.6194842Z Updating files:  62% (58735/94733)
+2026-09-25T03:35:34.6641573Z Updating files:  63% (59682/94733)
+2026-09-25T03:35:34.7111149Z Updating files:  64% (60630/94733)
+2026-09-25T03:35:34.7892129Z Updating files:  65% (61577/94733)
+2026-09-25T03:35:34.8083977Z Updating files:  66% (62524/94733)
+2026-09-25T03:35:34.8673480Z Updating files:  66% (62769/94733)
+2026-09-25T03:35:34.9317157Z Updating files:  67% (63472/94733)
+2026-09-25T03:35:34.9992594Z Updating files:  68% (64419/94733)
+2026-09-25T03:35:35.1094658Z Updating files:  69% (65366/94733)
+2026-09-25T03:35:35.2717835Z Updating files:  70% (66314/94733)
+2026-09-25T03:35:35.4378345Z Updating files:  71% (67261/94733)
+2026-09-25T03:35:36.3071851Z Updating files:  72% (68208/94733)
+2026-09-25T03:35:36.5477087Z Updating files:  72% (68305/94733)
+2026-09-25T03:35:36.7315944Z Updating files:  73% (69156/94733)
+2026-09-25T03:35:36.8150223Z Updating files:  74% (70103/94733)
+2026-09-25T03:35:36.8800515Z Updating files:  74% (70593/94733)
+2026-09-25T03:35:37.0290090Z Updating files:  75% (71050/94733)
+2026-09-25T03:35:37.3261395Z Updating files:  76% (71998/94733)
+2026-09-25T03:35:37.4650496Z Updating files:  77% (72945/94733)
+2026-09-25T03:35:38.5994774Z Updating files:  78% (73892/94733)
+2026-09-25T03:35:38.7954073Z Updating files:  78% (74342/94733)
+2026-09-25T03:35:38.8086289Z Updating files:  79% (74840/94733)
+2026-09-25T03:35:39.0712959Z Updating files:  79% (74990/94733)
+2026-09-25T03:35:39.4305915Z Updating files:  80% (75787/94733)
+2026-09-25T03:35:39.7429512Z Updating files:  81% (76734/94733)
+2026-09-25T03:35:39.8265831Z Updating files:  82% (77682/94733)
+2026-09-25T03:35:39.8735090Z Updating files:  82% (78240/94733)
+2026-09-25T03:35:40.0475107Z Updating files:  83% (78629/94733)
+2026-09-25T03:35:40.3195386Z Updating files:  84% (79576/94733)
+2026-09-25T03:35:40.8182706Z Updating files:  85% (80524/94733)
+2026-09-25T03:35:40.8939418Z Updating files:  85% (81370/94733)
+2026-09-25T03:35:41.0854831Z Updating files:  86% (81471/94733)
+2026-09-25T03:35:41.5155407Z Updating files:  87% (82418/94733)
+2026-09-25T03:35:41.6879915Z Updating files:  88% (83366/94733)
+2026-09-25T03:35:41.8071828Z Updating files:  89% (84313/94733)
+2026-09-25T03:35:41.8082641Z Updating files:  90% (85260/94733)
+2026-09-25T03:35:41.8628767Z Updating files:  90% (85297/94733)
+2026-09-25T03:35:41.9996517Z Updating files:  91% (86208/94733)
+2026-09-25T03:35:42.1843947Z Updating files:  92% (87155/94733)
+2026-09-25T03:35:42.2262017Z Updating files:  93% (88102/94733)
+2026-09-25T03:35:42.2740131Z Updating files:  94% (89050/94733)
+2026-09-25T03:35:42.3241408Z Updating files:  95% (89997/94733)
+2026-09-25T03:35:42.4261179Z Updating files:  96% (90944/94733)
+2026-09-25T03:35:42.8440066Z Updating files:  97% (91892/94733)
+2026-09-25T03:35:42.9596532Z Updating files:  97% (92741/94733)
+2026-09-25T03:35:43.2093031Z Updating files:  98% (92839/94733)
+2026-09-25T03:35:43.2836487Z Updating files:  99% (93786/94733)
+2026-09-25T03:35:43.2837101Z Updating files: 100% (94733/94733)
+2026-09-25T03:35:43.2837433Z Updating files: 100% (94733/94733), done.
+2026-09-25T03:35:43.5260739Z Note: switching to '3c17e267dd06ee561e8dc9984f6623126095eec1'.
+2026-09-25T03:35:43.5261082Z 
+2026-09-25T03:35:43.5261332Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-25T03:35:43.5261910Z changes and commit them, and you can discard any commits you make in this
+2026-09-25T03:35:43.5262588Z state without impacting any branches by switching back to a branch.
+2026-09-25T03:35:43.5262913Z 
+2026-09-25T03:35:43.5263163Z If you want to create a new branch to retain commits you create, you may
+2026-09-25T03:35:43.5263900Z do so (now or later) by using -c with the switch command. Example:
+2026-09-25T03:35:43.5264198Z 
+2026-09-25T03:35:43.5264323Z   git switch -c <new-branch-name>
+2026-09-25T03:35:43.5264536Z 
+2026-09-25T03:35:43.5264656Z Or undo this operation with:
+2026-09-25T03:35:43.5264847Z 
+2026-09-25T03:35:43.5264951Z   git switch -
+2026-09-25T03:35:43.5265089Z 
+2026-09-25T03:35:43.5265343Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-25T03:35:43.5265693Z 
+2026-09-25T03:35:43.5265946Z HEAD is now at 3c17e267d Retain portable self-weight integration review views
+2026-09-25T03:35:43.5445613Z ##[endgroup]
+2026-09-25T03:35:43.5486770Z [command]/usr/bin/git log -1 --format=%H
+2026-09-25T03:35:43.5506776Z 3c17e267dd06ee561e8dc9984f6623126095eec1
+2026-09-25T03:35:43.5689578Z ##[group]Run python3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v
+2026-09-25T03:35:43.5690190Z [36;1mpython3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v[0m
+2026-09-25T03:35:43.7820876Z shell: /usr/bin/bash -e {0}
+2026-09-25T03:35:43.7821116Z env:
+2026-09-25T03:35:43.7821302Z   CI: true
+2026-09-25T03:35:43.7821475Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:35:43.7821690Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:35:43.7821874Z ##[endgroup]
+2026-09-25T03:35:44.1519396Z test_bash_syntax_and_bounded_diagnostics (test_ci_apt_sources.UbuntuSourceTests.test_bash_syntax_and_bounded_diagnostics) ... ok
+2026-09-25T03:35:44.1522450Z test_both_playwright_cache_paths_remain_available (test_ci_apt_sources.UbuntuSourceTests.test_both_playwright_cache_paths_remain_available) ... ok
+2026-09-25T03:35:44.1553060Z test_rendered_sources_preserve_trust_and_request_by_hash (test_ci_apt_sources.UbuntuSourceTests.test_rendered_sources_preserve_trust_and_request_by_hash) ... ok
+2026-09-25T03:35:44.1653129Z test_balancing_is_deterministic_exact_and_keeps_serial_file (test_ci_e2e_plan.CollectionTests.test_balancing_is_deterministic_exact_and_keeps_serial_file) ... ok
+2026-09-25T03:35:44.1654858Z test_dedup_matrix_loss_and_override_are_refused (test_ci_e2e_plan.CollectionTests.test_dedup_matrix_loss_and_override_are_refused) ... ok
+2026-09-25T03:35:44.1655999Z test_empty_error_collection_refused (test_ci_e2e_plan.CollectionTests.test_empty_error_collection_refused) ... ok
+2026-09-25T03:35:44.1657730Z test_empty_missing_extra_or_duplicate_partition_fails (test_ci_e2e_plan.CollectionTests.test_empty_missing_extra_or_duplicate_partition_fails) ... ok
+2026-09-25T03:35:44.1659728Z test_exact_list_preserves_project_file_and_nested_titles (test_ci_e2e_plan.CollectionTests.test_exact_list_preserves_project_file_and_nested_titles) ... ok
+2026-09-25T03:35:44.1662831Z test_full_and_lean_preserve_explicit_selection (test_ci_e2e_plan.CollectionTests.test_full_and_lean_preserve_explicit_selection) ... ok
+2026-09-25T03:35:44.1664019Z test_json_reporter_tag_spelling_is_normalized (test_ci_e2e_plan.CollectionTests.test_json_reporter_tag_spelling_is_normalized) ... ok
+2026-09-25T03:35:44.1666939Z test_missing_duplicate_title_or_profile_fails (test_ci_e2e_plan.CollectionTests.test_missing_duplicate_title_or_profile_fails) ... ok
+2026-09-25T03:35:44.1682332Z test_new_unobserved_tests_remain_in_full_union (test_ci_e2e_plan.CollectionTests.test_new_unobserved_tests_remain_in_full_union) ... ok
+2026-09-25T03:35:44.1683337Z test_every_mode_fails_closed (test_ci_e2e_plan.GateTests.test_every_mode_fails_closed) ... ok
+2026-09-25T03:35:44.3331410Z test_actual_import_closure_includes_shared_instrument_consumers (test_ci_e2e_plan.PolicyTests.test_actual_import_closure_includes_shared_instrument_consumers) ... ok
+2026-09-25T03:35:44.4069026Z test_b3b_dedicated_spec_follows_product_only_persistence_change (test_ci_e2e_plan.PolicyTests.test_b3b_dedicated_spec_follows_product_only_persistence_change) ... ok
+2026-09-25T03:35:44.5671075Z test_b4_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_b4_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-25T03:35:44.6727536Z test_b4_dedicated_spec_follows_product_only_table_host_change (test_ci_e2e_plan.PolicyTests.test_b4_dedicated_spec_follows_product_only_table_host_change) ... ok
+2026-09-25T03:35:44.9801823Z test_c3_dedicated_spec_follows_product_only_authoring_change (test_ci_e2e_plan.PolicyTests.test_c3_dedicated_spec_follows_product_only_authoring_change) ... ok
+2026-09-25T03:35:45.2241807Z test_c3_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_c3_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-25T03:35:45.8041299Z test_closed_pr_exception_is_retired (test_ci_e2e_plan.PolicyTests.test_closed_pr_exception_is_retired) ... ok
+2026-09-25T03:35:46.1140322Z test_complete_pr_diff_prevents_last_commit_underselection (test_ci_e2e_plan.PolicyTests.test_complete_pr_diff_prevents_last_commit_underselection) ... ok
+2026-09-25T03:35:46.3171479Z test_host_event_cannot_be_relabelled (test_ci_e2e_plan.PolicyTests.test_host_event_cannot_be_relabelled) ... ok
+2026-09-25T03:35:47.0479865Z test_instruction_edits_cannot_mask_a_product_edit (test_ci_e2e_plan.PolicyTests.test_instruction_edits_cannot_mask_a_product_edit) ... ok
+2026-09-25T03:35:47.7508831Z test_known_unrelated_projects_and_records_are_explicit_na (test_ci_e2e_plan.PolicyTests.test_known_unrelated_projects_and_records_are_explicit_na) ... ok
+2026-09-25T03:35:48.3574665Z test_lean_and_affected_ownership (test_ci_e2e_plan.PolicyTests.test_lean_and_affected_ownership) ... ok
+2026-09-25T03:35:48.7176365Z test_malformed_and_stale_plan_are_refused (test_ci_e2e_plan.PolicyTests.test_malformed_and_stale_plan_are_refused) ... ok
+2026-09-25T03:35:49.1715080Z test_manual_event_cannot_drop_requested_target_or_change_head (test_ci_e2e_plan.PolicyTests.test_manual_event_cannot_drop_requested_target_or_change_head) ... ok
+2026-09-25T03:35:49.6788209Z test_manual_full_is_explicit_milestone (test_ci_e2e_plan.PolicyTests.test_manual_full_is_explicit_milestone) ... ok
+2026-09-25T03:35:50.1934927Z test_manual_retarget_proof_requires_integrated_explicit_target (test_ci_e2e_plan.PolicyTests.test_manual_retarget_proof_requires_integrated_explicit_target) ... ok
+2026-09-25T03:35:50.6345369Z test_numerical_policy_is_independent_and_whole_pr (test_ci_e2e_plan.PolicyTests.test_numerical_policy_is_independent_and_whole_pr) ... ok
+2026-09-25T03:35:51.0149156Z test_root_instruction_packages_and_project_agent_guidance_are_not_product_inputs (test_ci_e2e_plan.PolicyTests.test_root_instruction_packages_and_project_agent_guidance_are_not_product_inputs) ... ok
+2026-09-25T03:35:51.3982100Z test_sections_dedicated_spec_follows_product_only_layout_change (test_ci_e2e_plan.PolicyTests.test_sections_dedicated_spec_follows_product_only_layout_change) ... ok
+2026-09-25T03:35:51.4962390Z test_sections_dedicated_spec_follows_product_only_table_host_change (test_ci_e2e_plan.PolicyTests.test_sections_dedicated_spec_follows_product_only_table_host_change) ... ok
+2026-09-25T03:35:53.5903512Z test_shared_unknown_ci_dependencies_and_model_inputs_are_full (test_ci_e2e_plan.PolicyTests.test_shared_unknown_ci_dependencies_and_model_inputs_are_full) ... ok
+2026-09-25T03:35:53.7793175Z test_source_spec_only_and_deleted_renamed_fallback (test_ci_e2e_plan.PolicyTests.test_source_spec_only_and_deleted_renamed_fallback) ... ok
+2026-09-25T03:35:54.1915735Z test_stale_target_is_distinct_from_merge_base_and_blocks (test_ci_e2e_plan.PolicyTests.test_stale_target_is_distinct_from_merge_base_and_blocks) ... ok
+2026-09-25T03:35:54.3986370Z test_unavailable_target_blocks_even_na (test_ci_e2e_plan.PolicyTests.test_unavailable_target_blocks_even_na) ... ok
+2026-09-25T03:35:54.8792430Z test_unknown_instrument_and_fixture_inputs_are_full (test_ci_e2e_plan.PolicyTests.test_unknown_instrument_and_fixture_inputs_are_full) ... ok
+2026-09-25T03:35:54.8794897Z test_metadata_events_cannot_create_or_replace_validation_checks (test_ci_e2e_plan.WorkflowTriggerTests.test_metadata_events_cannot_create_or_replace_validation_checks) ... ok
+2026-09-25T03:35:54.8808341Z test_all_fetches_precede_tests (test_ci_numerical.NumericalTests.test_all_fetches_precede_tests) ... ok
+2026-09-25T03:35:54.8821173Z test_cargo_launch_exception_after_version_success_is_nonzero (test_ci_numerical.NumericalTests.test_cargo_launch_exception_after_version_success_is_nonzero) ... OSError: launch failed
+2026-09-25T03:35:54.8825338Z ok
+2026-09-25T03:35:54.9591117Z test_discovery_requires_nonempty_manifests_and_locks (test_ci_numerical.NumericalTests.test_discovery_requires_nonempty_manifests_and_locks) ... ok
+2026-09-25T03:35:54.9592318Z test_gate_requires_exact_numerical_state (test_ci_numerical.NumericalTests.test_gate_requires_exact_numerical_state) ... ok
+2026-09-25T03:35:54.9593818Z test_invalid_candidate_still_writes_failure_evidence (test_ci_numerical.NumericalTests.test_invalid_candidate_still_writes_failure_evidence) ... ValueError: wrong candidate
+2026-09-25T03:35:54.9594724Z ok
+2026-09-25T03:35:55.0436515Z test_real_rust_literal_includes_require_numerical (test_ci_numerical.NumericalTests.test_real_rust_literal_includes_require_numerical) ... ok
+2026-09-25T03:35:55.1472629Z test_real_rust_runtime_resource_literals_require_numerical (test_ci_numerical.NumericalTests.test_real_rust_runtime_resource_literals_require_numerical) ... ok
+2026-09-25T03:35:55.1475095Z Running: cargo test
+2026-09-25T03:35:55.1478092Z test_subprocess_failure_is_recorded_and_stops (test_ci_numerical.NumericalTests.test_subprocess_failure_is_recorded_and_stops) ... ok
+2026-09-25T03:35:55.1478711Z 
+2026-09-25T03:35:55.1478905Z ----------------------------------------------------------------------
+2026-09-25T03:35:55.1479325Z Ran 47 tests in 11.001s
+2026-09-25T03:35:55.1479476Z 
+2026-09-25T03:35:55.1479571Z OK
+2026-09-25T03:35:55.1644238Z ##[group]Run python3 projects/chirality-piping/tools/ci/e2e_plan.py plan --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR" --output piping-e2e-plan.json
+2026-09-25T03:35:55.1645102Z [36;1mpython3 projects/chirality-piping/tools/ci/e2e_plan.py plan --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR" --output piping-e2e-plan.json[0m
+2026-09-25T03:35:55.1705946Z shell: /usr/bin/bash -e {0}
+2026-09-25T03:35:55.1706241Z env:
+2026-09-25T03:35:55.1706426Z   CI: true
+2026-09-25T03:35:55.1706597Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:35:55.1706810Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:35:55.1706992Z   EVENT: pull_request
+2026-09-25T03:35:55.1707193Z   BASE: 6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6
+2026-09-25T03:35:55.1707443Z   HEAD: 3c17e267dd06ee561e8dc9984f6623126095eec1
+2026-09-25T03:35:55.1707665Z   PR: 892
+2026-09-25T03:35:55.1707824Z ##[endgroup]
+2026-09-25T03:35:55.2396489Z ## Piping source selection
+2026-09-25T03:35:55.2396808Z 
+2026-09-25T03:35:55.2397186Z Full deduplicated source coverage requires barrier and four exact partitions to succeed.
+2026-09-25T03:35:55.2397619Z 
+2026-09-25T03:35:55.2397755Z ```json
+2026-09-25T03:35:55.2398089Z {
+2026-09-25T03:35:55.2398310Z   "version": 3,
+2026-09-25T03:35:55.2398561Z   "mode": "full",
+2026-09-25T03:35:55.2398855Z   "coverage_full": true,
+2026-09-25T03:35:55.2399157Z   "event": "pull_request",
+2026-09-25T03:35:55.2399441Z   "pr": "892",
+2026-09-25T03:35:55.2399742Z   "base": "6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6",
+2026-09-25T03:35:55.2400177Z   "target_base": "6b4a0f59d292ed9f5f0ca222986ca95bc01bb0b6",
+2026-09-25T03:35:55.2400603Z   "head": "3c17e267dd06ee561e8dc9984f6623126095eec1",
+2026-09-25T03:35:55.2400959Z   "changed_paths": [
+2026-09-25T03:35:55.2401200Z     {
+2026-09-25T03:35:55.2401414Z       "status": "M",
+2026-09-25T03:35:55.2401808Z       "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock"
+2026-09-25T03:35:55.2402243Z     },
+2026-09-25T03:35:55.2402449Z     {
+2026-09-25T03:35:55.2402673Z       "status": "M",
+2026-09-25T03:35:55.2403265Z       "path": "projects/chirality-piping/apps/desktop/src/features/self-weight-authoring/SelfWeightPlanPanel.tsx"
+2026-09-25T03:35:55.2403673Z     },
+2026-09-25T03:35:55.2403817Z     {
+2026-09-25T03:35:55.2403967Z       "status": "A",
+2026-09-25T03:35:55.2404340Z       "path": "projects/chirality-piping/apps/desktop/src/features/self-weight-authoring/SelfWeightRefresh.test.tsx"
+2026-09-25T03:35:55.2404926Z     },
+2026-09-25T03:35:55.2405073Z     {
+2026-09-25T03:35:55.2405228Z       "status": "M",
+2026-09-25T03:35:55.2405531Z       "path": "projects/chirality-piping/apps/desktop/src/services/operationBatchService.ts"
+2026-09-25T03:35:55.2405861Z     },
+2026-09-25T03:35:55.2406012Z     {
+2026-09-25T03:35:55.2406157Z       "status": "M",
+2026-09-25T03:35:55.2406444Z       "path": "projects/chirality-piping/apps/desktop/src/services/selfWeightPlanService.ts"
+2026-09-25T03:35:55.2406768Z     },
+2026-09-25T03:35:55.2406908Z     {
+2026-09-25T03:35:55.2407059Z       "status": "M",
+2026-09-25T03:35:55.2407319Z       "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock"
+2026-09-25T03:35:55.2407609Z     },
+2026-09-25T03:35:55.2407748Z     {
+2026-09-25T03:35:55.2408075Z       "status": "M",
+2026-09-25T03:35:55.2408470Z       "path": "projects/chirality-piping/core/loads/self_weight_wasm/Cargo.toml"
+2026-09-25T03:35:55.2408939Z     },
+2026-09-25T03:35:55.2409155Z     {
+2026-09-25T03:35:55.2409372Z       "status": "M",
+2026-09-25T03:35:55.2409768Z       "path": "projects/chirality-piping/core/loads/self_weight_wasm/src/lib.rs"
+2026-09-25T03:35:55.2410231Z     },
+2026-09-25T03:35:55.2410443Z     {
+2026-09-25T03:35:55.2410656Z       "status": "A",
+2026-09-25T03:35:55.2411136Z       "path": "projects/chirality-piping/core/loads/self_weight_wasm/tests/applied_self_weight.rs"
+2026-09-25T03:35:55.2411665Z     },
+2026-09-25T03:35:55.2411880Z     {
+2026-09-25T03:35:55.2412100Z       "status": "A",
+2026-09-25T03:35:55.2412874Z       "path": "projects/chirality-piping/core/loads/self_weight_wasm/tests/fixtures/applied_self_weight_v1.json"
+2026-09-25T03:35:55.2413532Z     },
+2026-09-25T03:35:55.2413754Z     {
+2026-09-25T03:35:55.2413984Z       "status": "M",
+2026-09-25T03:35:55.2414474Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock"
+2026-09-25T03:35:55.2415020Z     },
+2026-09-25T03:35:55.2415239Z     {
+2026-09-25T03:35:55.2415466Z       "status": "M",
+2026-09-25T03:35:55.2415938Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/Cargo.toml"
+2026-09-25T03:35:55.2416475Z     },
+2026-09-25T03:35:55.2416697Z     {
+2026-09-25T03:35:55.2416927Z       "status": "M",
+2026-09-25T03:35:55.2417455Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/src/atomic_batch.rs"
+2026-09-25T03:35:55.2418226Z     },
+2026-09-25T03:35:55.2418445Z     {
+2026-09-25T03:35:55.2418675Z       "status": "M",
+2026-09-25T03:35:55.2419158Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs"
+2026-09-25T03:35:55.2419694Z     },
+2026-09-25T03:35:55.2419915Z     {
+2026-09-25T03:35:55.2420138Z       "status": "M",
+2026-09-25T03:35:55.2420652Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/src/rich_authoring.rs"
+2026-09-25T03:35:55.2421239Z     },
+2026-09-25T03:35:55.2421455Z     {
+2026-09-25T03:35:55.2421674Z       "status": "A",
+2026-09-25T03:35:55.2443250Z       "path": "projects/chirality-piping/core/model_operations/operation_applier/tests/generated_self_weight.rs"
+2026-09-25T03:35:55.2443781Z     },
+2026-09-25T03:35:55.2443942Z     {
+2026-09-25T03:35:55.2444096Z       "status": "M",
+2026-09-25T03:35:55.2444393Z       "path": "projects/chirality-piping/core/product_physics/Cargo.toml"
+2026-09-25T03:35:55.2444685Z     },
+2026-09-25T03:35:55.2444833Z     {
+2026-09-25T03:35:55.2444980Z       "status": "A",
+2026-09-25T03:35:55.2445254Z       "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs"
+2026-09-25T03:35:55.2445567Z     },
+2026-09-25T03:35:55.2445718Z     {
+2026-09-25T03:35:55.2445864Z       "status": "M",
+2026-09-25T03:35:55.2446101Z       "path": "projects/chirality-piping/core/product_physics/src/lib.rs"
+2026-09-25T03:35:55.2446385Z     },
+2026-09-25T03:35:55.2446527Z     {
+2026-09-25T03:35:55.2446671Z       "status": "M",
+2026-09-25T03:35:55.2447110Z       "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs"
+2026-09-25T03:35:55.2447410Z     },
+2026-09-25T03:35:55.2447549Z     {
+2026-09-25T03:35:55.2447687Z       "status": "M",
+2026-09-25T03:35:55.2448126Z       "path": "projects/chirality-piping/core/product_physics/src/self_weight.rs"
+2026-09-25T03:35:55.2448421Z     },
+2026-09-25T03:35:55.2448569Z     {
+2026-09-25T03:35:55.2448714Z       "status": "M",
+2026-09-25T03:35:55.2448996Z       "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml"
+2026-09-25T03:35:55.2449305Z     },
+2026-09-25T03:35:55.2449459Z     {
+2026-09-25T03:35:55.2449607Z       "status": "A",
+2026-09-25T03:35:55.2450201Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2450807Z     },
+2026-09-25T03:35:55.2450952Z     {
+2026-09-25T03:35:55.2451098Z       "status": "A",
+2026-09-25T03:35:55.2451671Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/CHECK_MAP.json"
+2026-09-25T03:35:55.2452259Z     },
+2026-09-25T03:35:55.2452395Z     {
+2026-09-25T03:35:55.2452537Z       "status": "A",
+2026-09-25T03:35:55.2453106Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/HANDOFF_WHITELIST.json"
+2026-09-25T03:35:55.2453699Z     },
+2026-09-25T03:35:55.2453835Z     {
+2026-09-25T03:35:55.2454102Z       "status": "A",
+2026-09-25T03:35:55.2454675Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/INTEGRATION_CONTRACT.md"
+2026-09-25T03:35:55.2455280Z     },
+2026-09-25T03:35:55.2455433Z     {
+2026-09-25T03:35:55.2455583Z       "status": "A",
+2026-09-25T03:35:55.2456144Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/LOCK_CLOSURE.json"
+2026-09-25T03:35:55.2456763Z     },
+2026-09-25T03:35:55.2456903Z     {
+2026-09-25T03:35:55.2457047Z       "status": "A",
+2026-09-25T03:35:55.2457632Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/NATIVE_WITNESS_HANDOFF.md"
+2026-09-25T03:35:55.2458406Z     },
+2026-09-25T03:35:55.2458555Z     {
+2026-09-25T03:35:55.2458708Z       "status": "A",
+2026-09-25T03:35:55.2459279Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/PORTABILITY_CHECK.json"
+2026-09-25T03:35:55.2459875Z     },
+2026-09-25T03:35:55.2460018Z     {
+2026-09-25T03:35:55.2460162Z       "status": "A",
+2026-09-25T03:35:55.2460748Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/PORTABILITY_CUSTODY.json"
+2026-09-25T03:35:55.2461357Z     },
+2026-09-25T03:35:55.2461493Z     {
+2026-09-25T03:35:55.2461637Z       "status": "A",
+2026-09-25T03:35:55.2462196Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/REFERENCE_BASIS.md"
+2026-09-25T03:35:55.2462781Z     },
+2026-09-25T03:35:55.2462917Z     {
+2026-09-25T03:35:55.2463058Z       "status": "A",
+2026-09-25T03:35:55.2463595Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/RETURN.md"
+2026-09-25T03:35:55.2464167Z     },
+2026-09-25T03:35:55.2464418Z     {
+2026-09-25T03:35:55.2464566Z       "status": "A",
+2026-09-25T03:35:55.2465129Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_BASIS.json"
+2026-09-25T03:35:55.2465717Z     },
+2026-09-25T03:35:55.2465852Z     {
+2026-09-25T03:35:55.2465986Z       "status": "A",
+2026-09-25T03:35:55.2466540Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_BRIEF.md"
+2026-09-25T03:35:55.2467119Z     },
+2026-09-25T03:35:55.2467260Z     {
+2026-09-25T03:35:55.2467402Z       "status": "A",
+2026-09-25T03:35:55.2468153Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/FINAL_RUNTIME_BACKCHECK.json"
+2026-09-25T03:35:55.2468833Z     },
+2026-09-25T03:35:55.2468974Z     {
+2026-09-25T03:35:55.2469119Z       "status": "A",
+2026-09-25T03:35:55.2469739Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/FINAL_RUNTIME_BACKCHECK.md"
+2026-09-25T03:35:55.2470384Z     },
+2026-09-25T03:35:55.2470520Z     {
+2026-09-25T03:35:55.2470655Z       "status": "A",
+2026-09-25T03:35:55.2471432Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/NATIVE_WITNESS_HANDOFF.original.md"
+2026-09-25T03:35:55.2472187Z     },
+2026-09-25T03:35:55.2472325Z     {
+2026-09-25T03:35:55.2472470Z       "status": "A",
+2026-09-25T03:35:55.2473109Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/POINTER_BACKCHECK.md"
+2026-09-25T03:35:55.2473790Z     },
+2026-09-25T03:35:55.2473926Z     {
+2026-09-25T03:35:55.2474066Z       "status": "A",
+2026-09-25T03:35:55.2474727Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/POINTER_BACKCHECK_HASHES.json"
+2026-09-25T03:35:55.2475424Z     },
+2026-09-25T03:35:55.2475566Z     {
+2026-09-25T03:35:55.2475706Z       "status": "A",
+2026-09-25T03:35:55.2476351Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/PORTABILITY_REPAIR.json"
+2026-09-25T03:35:55.2477032Z     },
+2026-09-25T03:35:55.2477170Z     {
+2026-09-25T03:35:55.2477310Z       "status": "A",
+2026-09-25T03:35:55.2478116Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/REPAIR.json"
+2026-09-25T03:35:55.2478776Z     },
+2026-09-25T03:35:55.2478914Z     {
+2026-09-25T03:35:55.2479062Z       "status": "A",
+2026-09-25T03:35:55.2479803Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/INTEGRATION_REVIEW_RAW/integration-HASHES.json"
+2026-09-25T03:35:55.2480582Z     },
+2026-09-25T03:35:55.2480731Z     {
+2026-09-25T03:35:55.2480874Z       "status": "A",
+2026-09-25T03:35:55.2481616Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/INTEGRATION_REVIEW_RAW/integration-RETURN.md"
+2026-09-25T03:35:55.2482508Z     },
+2026-09-25T03:35:55.2482649Z     {
+2026-09-25T03:35:55.2482799Z       "status": "A",
+2026-09-25T03:35:55.2483529Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/PORTABILITY_BACKCHECK.md"
+2026-09-25T03:35:55.2484318Z     },
+2026-09-25T03:35:55.2484456Z     {
+2026-09-25T03:35:55.2484595Z       "status": "A",
+2026-09-25T03:35:55.2485349Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/PORTABILITY_BACKCHECK_HASHES.json"
+2026-09-25T03:35:55.2486138Z     },
+2026-09-25T03:35:55.2486280Z     {
+2026-09-25T03:35:55.2486426Z       "status": "A",
+2026-09-25T03:35:55.2487173Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/_run_records/PORTABILITY_REVIEW/portability-repair-check.log"
+2026-09-25T03:35:55.2488086Z     },
+2026-09-25T03:35:55.2488228Z     {
+2026-09-25T03:35:55.2488370Z       "status": "A",
+2026-09-25T03:35:55.2489141Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-HASHES.json"
+2026-09-25T03:35:55.2489844Z     },
+2026-09-25T03:35:55.2489988Z     {
+2026-09-25T03:35:55.2490138Z       "status": "A",
+2026-09-25T03:35:55.2490791Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-RETURN.md"
+2026-09-25T03:35:55.2491474Z     },
+2026-09-25T03:35:55.2491613Z     {
+2026-09-25T03:35:55.2491755Z       "status": "A",
+2026-09-25T03:35:55.2492399Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-SHA256SUMS"
+2026-09-25T03:35:55.2493071Z     },
+2026-09-25T03:35:55.2493208Z     {
+2026-09-25T03:35:55.2493349Z       "status": "A",
+2026-09-25T03:35:55.2493991Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/ROOT_INTEGRATION/POINTER_REPAIR/integration-verify.py"
+2026-09-25T03:35:55.2494668Z     },
+2026-09-25T03:35:55.2494802Z     {
+2026-09-25T03:35:55.2494939Z       "status": "A",
+2026-09-25T03:35:55.2495515Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/STABLE_MASS_SUCCESSOR.md"
+2026-09-25T03:35:55.2496122Z     },
+2026-09-25T03:35:55.2496258Z     {
+2026-09-25T03:35:55.2496402Z       "status": "A",
+2026-09-25T03:35:55.2496961Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/WASM_ARTIFACTS.json"
+2026-09-25T03:35:55.2497559Z     },
+2026-09-25T03:35:55.2497694Z     {
+2026-09-25T03:35:55.2497833Z       "status": "A",
+2026-09-25T03:35:55.2498573Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/ACCEPTED_CONTEXT.json"
+2026-09-25T03:35:55.2499201Z     },
+2026-09-25T03:35:55.2499338Z     {
+2026-09-25T03:35:55.2499480Z       "status": "A",
+2026-09-25T03:35:55.2500099Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/APPLY.json"
+2026-09-25T03:35:55.2500867Z     },
+2026-09-25T03:35:55.2501006Z     {
+2026-09-25T03:35:55.2501145Z       "status": "A",
+2026-09-25T03:35:55.2501765Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/MANIFEST.json"
+2026-09-25T03:35:55.2502420Z     },
+2026-09-25T03:35:55.2502557Z     {
+2026-09-25T03:35:55.2502698Z       "status": "A",
+2026-09-25T03:35:55.2503369Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/SOURCE_ODWALL_EXPECTATIONS.json"
+2026-09-25T03:35:55.2504078Z     },
+2026-09-25T03:35:55.2504219Z     {
+2026-09-25T03:35:55.2504390Z       "status": "A",
+2026-09-25T03:35:55.2505134Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/SOURCE_REFERENCE_RETURN.md"
+2026-09-25T03:35:55.2505821Z     },
+2026-09-25T03:35:55.2505958Z     {
+2026-09-25T03:35:55.2506099Z       "status": "A",
+2026-09-25T03:35:55.2506838Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/annulus_geometry.rs"
+2026-09-25T03:35:55.2507516Z     },
+2026-09-25T03:35:55.2507661Z     {
+2026-09-25T03:35:55.2507800Z       "status": "A",
+2026-09-25T03:35:55.2508617Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/area-helper.patch"
+2026-09-25T03:35:55.2509290Z     },
+2026-09-25T03:35:55.2509432Z     {
+2026-09-25T03:35:55.2509571Z       "status": "A",
+2026-09-25T03:35:55.2510192Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/lib.rs.before"
+2026-09-25T03:35:55.2510847Z     },
+2026-09-25T03:35:55.2510998Z     {
+2026-09-25T03:35:55.2511147Z       "status": "A",
+2026-09-25T03:35:55.2511801Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/AREA_HELPER_HANDOFF/pressure_exact.rs.before"
+2026-09-25T03:35:55.2512478Z     },
+2026-09-25T03:35:55.2512616Z     {
+2026-09-25T03:35:55.2512753Z       "status": "A",
+2026-09-25T03:35:55.2513339Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/CANDIDATE.patch"
+2026-09-25T03:35:55.2513951Z     },
+2026-09-25T03:35:55.2514091Z     {
+2026-09-25T03:35:55.2514232Z       "status": "A",
+2026-09-25T03:35:55.2514847Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/DEPENDENCY_COMPARISON.json"
+2026-09-25T03:35:55.2515484Z     },
+2026-09-25T03:35:55.2515622Z     {
+2026-09-25T03:35:55.2515764Z       "status": "A",
+2026-09-25T03:35:55.2516356Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/DEPENDENCY_LINKS.json"
+2026-09-25T03:35:55.2516973Z     },
+2026-09-25T03:35:55.2517109Z     {
+2026-09-25T03:35:55.2517356Z       "status": "A",
+2026-09-25T03:35:55.2518249Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FINAL_REVIEW_FOLLOWUP_REFUSAL.json"
+2026-09-25T03:35:55.2518929Z     },
+2026-09-25T03:35:55.2519070Z     {
+2026-09-25T03:35:55.2519211Z       "status": "A",
+2026-09-25T03:35:55.2519813Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FINAL_TOOL_VERSIONS.json"
+2026-09-25T03:35:55.2520449Z     },
+2026-09-25T03:35:55.2520587Z     {
+2026-09-25T03:35:55.2520730Z       "status": "A",
+2026-09-25T03:35:55.2521343Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/FLOAT_ROUNDTRIP_HANDOFF.json"
+2026-09-25T03:35:55.2521992Z     },
+2026-09-25T03:35:55.2522129Z     {
+2026-09-25T03:35:55.2522267Z       "status": "A",
+2026-09-25T03:35:55.2522920Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/INTEGRATION_CONTRACT.before_authoritative.md"
+2026-09-25T03:35:55.2523597Z     },
+2026-09-25T03:35:55.2523733Z     {
+2026-09-25T03:35:55.2523873Z       "status": "A",
+2026-09-25T03:35:55.2524580Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/LEGACY_FIXTURE_ORIGIN.json"
+2026-09-25T03:35:55.2525235Z     },
+2026-09-25T03:35:55.2525372Z     {
+2026-09-25T03:35:55.2525508Z       "status": "A",
+2026-09-25T03:35:55.2526109Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/LOCK_AUDIT_INITIAL.json"
+2026-09-25T03:35:55.2526751Z     },
+2026-09-25T03:35:55.2526934Z     {
+2026-09-25T03:35:55.2527135Z       "status": "A",
+2026-09-25T03:35:55.2528136Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/MASS_CANCELLATION_ARITHMETIC.json"
+2026-09-25T03:35:55.2528798Z     },
+2026-09-25T03:35:55.2528934Z     {
+2026-09-25T03:35:55.2529073Z       "status": "A",
+2026-09-25T03:35:55.2529674Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PORTABILITY_BEFORE.json"
+2026-09-25T03:35:55.2530307Z     },
+2026-09-25T03:35:55.2530439Z     {
+2026-09-25T03:35:55.2530570Z       "status": "A",
+2026-09-25T03:35:55.2531158Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PORTABILITY_INITIAL.json"
+2026-09-25T03:35:55.2531912Z     },
+2026-09-25T03:35:55.2532043Z     {
+2026-09-25T03:35:55.2532173Z       "status": "A",
+2026-09-25T03:35:55.2532807Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/INTEGRATION_CONTRACT.md"
+2026-09-25T03:35:55.2533471Z     },
+2026-09-25T03:35:55.2533596Z     {
+2026-09-25T03:35:55.2533729Z       "status": "A",
+2026-09-25T03:35:55.2534412Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/canonical_json.Cargo.toml"
+2026-09-25T03:35:55.2535082Z     },
+2026-09-25T03:35:55.2535217Z     {
+2026-09-25T03:35:55.2535506Z       "status": "A",
+2026-09-25T03:35:55.2536168Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/PRE_STABLE_POLICY/product_physics.Cargo.toml"
+2026-09-25T03:35:55.2536853Z     },
+2026-09-25T03:35:55.2536992Z     {
+2026-09-25T03:35:55.2537133Z       "status": "A",
+2026-09-25T03:35:55.2537719Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/SCOPE_CHECK.json"
+2026-09-25T03:35:55.2538432Z     },
+2026-09-25T03:35:55.2538569Z     {
+2026-09-25T03:35:55.2538710Z       "status": "A",
+2026-09-25T03:35:55.2539295Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/WASM_TARGETS.json"
+2026-09-25T03:35:55.2539919Z     },
+2026-09-25T03:35:55.2540050Z     {
+2026-09-25T03:35:55.2540186Z       "status": "A",
+2026-09-25T03:35:55.2540821Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/Cargo.after.lock"
+2026-09-25T03:35:55.2541487Z     },
+2026-09-25T03:35:55.2541625Z     {
+2026-09-25T03:35:55.2541761Z       "status": "A",
+2026-09-25T03:35:55.2542497Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/Cargo.before.lock"
+2026-09-25T03:35:55.2543208Z     },
+2026-09-25T03:35:55.2543348Z     {
+2026-09-25T03:35:55.2543489Z       "status": "A",
+2026-09-25T03:35:55.2544141Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/cargo_normalization/NORMALIZATION.json"
+2026-09-25T03:35:55.2544847Z     },
+2026-09-25T03:35:55.2544990Z     {
+2026-09-25T03:35:55.2545135Z       "status": "A",
+2026-09-25T03:35:55.2545774Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applied_self_weight.baseline.rs"
+2026-09-25T03:35:55.2546439Z     },
+2026-09-25T03:35:55.2546573Z     {
+2026-09-25T03:35:55.2546707Z       "status": "A",
+2026-09-25T03:35:55.2547321Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applier_targeted.log"
+2026-09-25T03:35:55.2548076Z     },
+2026-09-25T03:35:55.2548208Z     {
+2026-09-25T03:35:55.2548347Z       "status": "A",
+2026-09-25T03:35:55.2548984Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/applier_targeted.result.json"
+2026-09-25T03:35:55.2549647Z     },
+2026-09-25T03:35:55.2549780Z     {
+2026-09-25T03:35:55.2549916Z       "status": "A",
+2026-09-25T03:35:55.2550536Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_applier_01.log"
+2026-09-25T03:35:55.2551192Z     },
+2026-09-25T03:35:55.2551327Z     {
+2026-09-25T03:35:55.2551469Z       "status": "A",
+2026-09-25T03:35:55.2552120Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_applier_01.result.json"
+2026-09-25T03:35:55.2552792Z     },
+2026-09-25T03:35:55.2553045Z     {
+2026-09-25T03:35:55.2553185Z       "status": "A",
+2026-09-25T03:35:55.2553800Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch.log"
+2026-09-25T03:35:55.2554445Z     },
+2026-09-25T03:35:55.2554582Z     {
+2026-09-25T03:35:55.2554726Z       "status": "A",
+2026-09-25T03:35:55.2555365Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch.result.json"
+2026-09-25T03:35:55.2556029Z     },
+2026-09-25T03:35:55.2556165Z     {
+2026-09-25T03:35:55.2556303Z       "status": "A",
+2026-09-25T03:35:55.2556935Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch_corrected.log"
+2026-09-25T03:35:55.2557613Z     },
+2026-09-25T03:35:55.2557748Z     {
+2026-09-25T03:35:55.2558036Z       "status": "A",
+2026-09-25T03:35:55.2558731Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_batch_corrected.result.json"
+2026-09-25T03:35:55.2559447Z     },
+2026-09-25T03:35:55.2559583Z     {
+2026-09-25T03:35:55.2559719Z       "status": "A",
+2026-09-25T03:35:55.2560447Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected.log"
+2026-09-25T03:35:55.2561112Z     },
+2026-09-25T03:35:55.2561250Z     {
+2026-09-25T03:35:55.2561396Z       "status": "A",
+2026-09-25T03:35:55.2562073Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected.result.json"
+2026-09-25T03:35:55.2562784Z     },
+2026-09-25T03:35:55.2562935Z     {
+2026-09-25T03:35:55.2563076Z       "status": "A",
+2026-09-25T03:35:55.2563735Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected_reconciled.log"
+2026-09-25T03:35:55.2564422Z     },
+2026-09-25T03:35:55.2564559Z     {
+2026-09-25T03:35:55.2564698Z       "status": "A",
+2026-09-25T03:35:55.2565374Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_connected_reconciled.result.json"
+2026-09-25T03:35:55.2566083Z     },
+2026-09-25T03:35:55.2566230Z     {
+2026-09-25T03:35:55.2566371Z       "status": "A",
+2026-09-25T03:35:55.2566990Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_facade.log"
+2026-09-25T03:35:55.2567641Z     },
+2026-09-25T03:35:55.2567779Z     {
+2026-09-25T03:35:55.2568002Z       "status": "A",
+2026-09-25T03:35:55.2568642Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/authoritative_facade.result.json"
+2026-09-25T03:35:55.2569310Z     },
+2026-09-25T03:35:55.2569448Z     {
+2026-09-25T03:35:55.2569595Z       "status": "A",
+2026-09-25T03:35:55.2570246Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.Cargo.lock.before"
+2026-09-25T03:35:55.2571011Z     },
+2026-09-25T03:35:55.2571151Z     {
+2026-09-25T03:35:55.2571293Z       "status": "A",
+2026-09-25T03:35:55.2571882Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.log"
+2026-09-25T03:35:55.2572507Z     },
+2026-09-25T03:35:55.2572646Z     {
+2026-09-25T03:35:55.2572789Z       "status": "A",
+2026-09-25T03:35:55.2573409Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline.result.json"
+2026-09-25T03:35:55.2574051Z     },
+2026-09-25T03:35:55.2574185Z     {
+2026-09-25T03:35:55.2574326Z       "status": "A",
+2026-09-25T03:35:55.2574981Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_artifacts/density_baseline.json"
+2026-09-25T03:35:55.2575683Z     },
+2026-09-25T03:35:55.2575836Z     {
+2026-09-25T03:35:55.2576191Z       "status": "A",
+2026-09-25T03:35:55.2577046Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_moment.log"
+2026-09-25T03:35:55.2577690Z     },
+2026-09-25T03:35:55.2577825Z     {
+2026-09-25T03:35:55.2578103Z       "status": "A",
+2026-09-25T03:35:55.2578843Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/baseline_moment.result.json"
+2026-09-25T03:35:55.2579511Z     },
+2026-09-25T03:35:55.2579643Z     {
+2026-09-25T03:35:55.2579779Z       "status": "A",
+2026-09-25T03:35:55.2580386Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_tsc.log"
+2026-09-25T03:35:55.2581023Z     },
+2026-09-25T03:35:55.2581157Z     {
+2026-09-25T03:35:55.2581294Z       "status": "A",
+2026-09-25T03:35:55.2581911Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_tsc.result.json"
+2026-09-25T03:35:55.2582561Z     },
+2026-09-25T03:35:55.2582698Z     {
+2026-09-25T03:35:55.2582834Z       "status": "A",
+2026-09-25T03:35:55.2583442Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_vitest.log"
+2026-09-25T03:35:55.2584088Z     },
+2026-09-25T03:35:55.2584224Z     {
+2026-09-25T03:35:55.2584359Z       "status": "A",
+2026-09-25T03:35:55.2584984Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_vitest.result.json"
+2026-09-25T03:35:55.2585644Z     },
+2026-09-25T03:35:55.2585776Z     {
+2026-09-25T03:35:55.2585913Z       "status": "A",
+2026-09-25T03:35:55.2586514Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm.log"
+2026-09-25T03:35:55.2587142Z     },
+2026-09-25T03:35:55.2587281Z     {
+2026-09-25T03:35:55.2587415Z       "status": "A",
+2026-09-25T03:35:55.2588205Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm.result.json"
+2026-09-25T03:35:55.2589010Z     },
+2026-09-25T03:35:55.2589148Z     {
+2026-09-25T03:35:55.2589286Z       "status": "A",
+2026-09-25T03:35:55.2589901Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm_final.log"
+2026-09-25T03:35:55.2590548Z     },
+2026-09-25T03:35:55.2590686Z     {
+2026-09-25T03:35:55.2590832Z       "status": "A",
+2026-09-25T03:35:55.2591469Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/candidate_wasm_final.result.json"
+2026-09-25T03:35:55.2592135Z     },
+2026-09-25T03:35:55.2592267Z     {
+2026-09-25T03:35:55.2592408Z       "status": "A",
+2026-09-25T03:35:55.2593002Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_01.log"
+2026-09-25T03:35:55.2593629Z     },
+2026-09-25T03:35:55.2593764Z     {
+2026-09-25T03:35:55.2593899Z       "status": "A",
+2026-09-25T03:35:55.2594512Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_01.result.json"
+2026-09-25T03:35:55.2595152Z     },
+2026-09-25T03:35:55.2595290Z     {
+2026-09-25T03:35:55.2595426Z       "status": "A",
+2026-09-25T03:35:55.2596117Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_02.log"
+2026-09-25T03:35:55.2596757Z     },
+2026-09-25T03:35:55.2596894Z     {
+2026-09-25T03:35:55.2597033Z       "status": "A",
+2026-09-25T03:35:55.2597655Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_02.result.json"
+2026-09-25T03:35:55.2598506Z     },
+2026-09-25T03:35:55.2598643Z     {
+2026-09-25T03:35:55.2598783Z       "status": "A",
+2026-09-25T03:35:55.2599404Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_03.log"
+2026-09-25T03:35:55.2600036Z     },
+2026-09-25T03:35:55.2600173Z     {
+2026-09-25T03:35:55.2600310Z       "status": "A",
+2026-09-25T03:35:55.2600925Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/connected_03.result.json"
+2026-09-25T03:35:55.2601576Z     },
+2026-09-25T03:35:55.2601713Z     {
+2026-09-25T03:35:55.2601854Z       "status": "A",
+2026-09-25T03:35:55.2602467Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/core_targeted_01.log"
+2026-09-25T03:35:55.2603110Z     },
+2026-09-25T03:35:55.2603243Z     {
+2026-09-25T03:35:55.2603382Z       "status": "A",
+2026-09-25T03:35:55.2604016Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/core_targeted_01.result.json"
+2026-09-25T03:35:55.2604685Z     },
+2026-09-25T03:35:55.2604824Z     {
+2026-09-25T03:35:55.2604964Z       "status": "A",
+2026-09-25T03:35:55.2605570Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/facade_targeted.log"
+2026-09-25T03:35:55.2606353Z     },
+2026-09-25T03:35:55.2606486Z     {
+2026-09-25T03:35:55.2606627Z       "status": "A",
+2026-09-25T03:35:55.2607250Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/facade_targeted.result.json"
+2026-09-25T03:35:55.2608121Z     },
+2026-09-25T03:35:55.2608264Z     {
+2026-09-25T03:35:55.2608406Z       "status": "A",
+2026-09-25T03:35:55.2609014Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_tsc.log"
+2026-09-25T03:35:55.2609641Z     },
+2026-09-25T03:35:55.2609778Z     {
+2026-09-25T03:35:55.2609915Z       "status": "A",
+2026-09-25T03:35:55.2610534Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_tsc.result.json"
+2026-09-25T03:35:55.2611187Z     },
+2026-09-25T03:35:55.2611327Z     {
+2026-09-25T03:35:55.2611473Z       "status": "A",
+2026-09-25T03:35:55.2612102Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_vitest.log"
+2026-09-25T03:35:55.2612751Z     },
+2026-09-25T03:35:55.2612884Z     {
+2026-09-25T03:35:55.2613026Z       "status": "A",
+2026-09-25T03:35:55.2613759Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/narrowed_vitest.result.json"
+2026-09-25T03:35:55.2614427Z     },
+2026-09-25T03:35:55.2614564Z     {
+2026-09-25T03:35:55.2614699Z       "status": "A",
+2026-09-25T03:35:55.2615316Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/ordinary_batch.log"
+2026-09-25T03:35:55.2615951Z     },
+2026-09-25T03:35:55.2616087Z     {
+2026-09-25T03:35:55.2616224Z       "status": "A",
+2026-09-25T03:35:55.2616841Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/ordinary_batch.result.json"
+2026-09-25T03:35:55.2617494Z     },
+2026-09-25T03:35:55.2617632Z     {
+2026-09-25T03:35:55.2617769Z       "status": "A",
+2026-09-25T03:35:55.2618551Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_applier.log"
+2026-09-25T03:35:55.2619200Z     },
+2026-09-25T03:35:55.2619337Z     {
+2026-09-25T03:35:55.2619482Z       "status": "A",
+2026-09-25T03:35:55.2620124Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_applier.result.json"
+2026-09-25T03:35:55.2620785Z     },
+2026-09-25T03:35:55.2620926Z     {
+2026-09-25T03:35:55.2621074Z       "status": "A",
+2026-09-25T03:35:55.2621687Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_batch.log"
+2026-09-25T03:35:55.2622326Z     },
+2026-09-25T03:35:55.2622463Z     {
+2026-09-25T03:35:55.2622605Z       "status": "A",
+2026-09-25T03:35:55.2623224Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_batch.result.json"
+2026-09-25T03:35:55.2623989Z     },
+2026-09-25T03:35:55.2624126Z     {
+2026-09-25T03:35:55.2624263Z       "status": "A",
+2026-09-25T03:35:55.2624877Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_connected.log"
+2026-09-25T03:35:55.2625526Z     },
+2026-09-25T03:35:55.2625662Z     {
+2026-09-25T03:35:55.2625801Z       "status": "A",
+2026-09-25T03:35:55.2626432Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_connected.result.json"
+2026-09-25T03:35:55.2627097Z     },
+2026-09-25T03:35:55.2627232Z     {
+2026-09-25T03:35:55.2627370Z       "status": "A",
+2026-09-25T03:35:55.2628158Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_facade.log"
+2026-09-25T03:35:55.2628797Z     },
+2026-09-25T03:35:55.2628944Z     {
+2026-09-25T03:35:55.2629087Z       "status": "A",
+2026-09-25T03:35:55.2629709Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/request_facade.result.json"
+2026-09-25T03:35:55.2630366Z     },
+2026-09-25T03:35:55.2630502Z     {
+2026-09-25T03:35:55.2630643Z       "status": "A",
+2026-09-25T03:35:55.2631343Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/shared_area.log"
+2026-09-25T03:35:55.2631982Z     },
+2026-09-25T03:35:55.2632124Z     {
+2026-09-25T03:35:55.2632275Z       "status": "A",
+2026-09-25T03:35:55.2632899Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/shared_area.result.json"
+2026-09-25T03:35:55.2633548Z     },
+2026-09-25T03:35:55.2633683Z     {
+2026-09-25T03:35:55.2633823Z       "status": "A",
+2026-09-25T03:35:55.2634427Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_applier.log"
+2026-09-25T03:35:55.2635060Z     },
+2026-09-25T03:35:55.2635208Z     {
+2026-09-25T03:35:55.2635347Z       "status": "A",
+2026-09-25T03:35:55.2635976Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_applier.result.json"
+2026-09-25T03:35:55.2636635Z     },
+2026-09-25T03:35:55.2636770Z     {
+2026-09-25T03:35:55.2636909Z       "status": "A",
+2026-09-25T03:35:55.2637515Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_connected.log"
+2026-09-25T03:35:55.2638336Z     },
+2026-09-25T03:35:55.2638476Z     {
+2026-09-25T03:35:55.2638622Z       "status": "A",
+2026-09-25T03:35:55.2639269Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_connected.result.json"
+2026-09-25T03:35:55.2639941Z     },
+2026-09-25T03:35:55.2640080Z     {
+2026-09-25T03:35:55.2640221Z       "status": "A",
+2026-09-25T03:35:55.2640819Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_core.log"
+2026-09-25T03:35:55.2641555Z     },
+2026-09-25T03:35:55.2641691Z     {
+2026-09-25T03:35:55.2641832Z       "status": "A",
+2026-09-25T03:35:55.2642443Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_core.result.json"
+2026-09-25T03:35:55.2643091Z     },
+2026-09-25T03:35:55.2643227Z     {
+2026-09-25T03:35:55.2643361Z       "status": "A",
+2026-09-25T03:35:55.2643961Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_facade.log"
+2026-09-25T03:35:55.2644616Z     },
+2026-09-25T03:35:55.2644753Z     {
+2026-09-25T03:35:55.2644893Z       "status": "A",
+2026-09-25T03:35:55.2645510Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/checks/stable_facade.result.json"
+2026-09-25T03:35:55.2646173Z     },
+2026-09-25T03:35:55.2646308Z     {
+2026-09-25T03:35:55.2646444Z       "status": "A",
+2026-09-25T03:35:55.2647084Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/HOST_RESULT.json"
+2026-09-25T03:35:55.2647757Z     },
+2026-09-25T03:35:55.2648038Z     {
+2026-09-25T03:35:55.2648184Z       "status": "A",
+2026-09-25T03:35:55.2648939Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/RESOLVED_RESULT.json"
+2026-09-25T03:35:55.2649632Z     },
+2026-09-25T03:35:55.2649777Z     {
+2026-09-25T03:35:55.2649920Z       "status": "A",
+2026-09-25T03:35:55.2650548Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/RESULT.json"
+2026-09-25T03:35:55.2651208Z     },
+2026-09-25T03:35:55.2651347Z     {
+2026-09-25T03:35:55.2651487Z       "status": "A",
+2026-09-25T03:35:55.2652122Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.after.lock"
+2026-09-25T03:35:55.2652798Z     },
+2026-09-25T03:35:55.2652933Z     {
+2026-09-25T03:35:55.2653079Z       "status": "A",
+2026-09-25T03:35:55.2653720Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.before.lock"
+2026-09-25T03:35:55.2654396Z     },
+2026-09-25T03:35:55.2654534Z     {
+2026-09-25T03:35:55.2654678Z       "status": "A",
+2026-09-25T03:35:55.2655327Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_after.lock"
+2026-09-25T03:35:55.2656014Z     },
+2026-09-25T03:35:55.2656157Z     {
+2026-09-25T03:35:55.2656293Z       "status": "A",
+2026-09-25T03:35:55.2656963Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_metadata.json"
+2026-09-25T03:35:55.2657651Z     },
+2026-09-25T03:35:55.2657787Z     {
+2026-09-25T03:35:55.2658073Z       "status": "A",
+2026-09-25T03:35:55.2658723Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.host_stderr.log"
+2026-09-25T03:35:55.2659515Z     },
+2026-09-25T03:35:55.2659651Z     {
+2026-09-25T03:35:55.2659793Z       "status": "A",
+2026-09-25T03:35:55.2660449Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.metadata.json"
+2026-09-25T03:35:55.2661133Z     },
+2026-09-25T03:35:55.2661270Z     {
+2026-09-25T03:35:55.2661411Z       "status": "A",
+2026-09-25T03:35:55.2662074Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_after.lock"
+2026-09-25T03:35:55.2662770Z     },
+2026-09-25T03:35:55.2662901Z     {
+2026-09-25T03:35:55.2663044Z       "status": "A",
+2026-09-25T03:35:55.2663720Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_metadata.json"
+2026-09-25T03:35:55.2664420Z     },
+2026-09-25T03:35:55.2664558Z     {
+2026-09-25T03:35:55.2664697Z       "status": "A",
+2026-09-25T03:35:55.2665479Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.resolved_stderr.log"
+2026-09-25T03:35:55.2666190Z     },
+2026-09-25T03:35:55.2666328Z     {
+2026-09-25T03:35:55.2666469Z       "status": "A",
+2026-09-25T03:35:55.2667113Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/native.stderr.log"
+2026-09-25T03:35:55.2667797Z     },
+2026-09-25T03:35:55.2668066Z     {
+2026-09-25T03:35:55.2668206Z       "status": "A",
+2026-09-25T03:35:55.2668866Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.after.lock"
+2026-09-25T03:35:55.2669556Z     },
+2026-09-25T03:35:55.2669694Z     {
+2026-09-25T03:35:55.2669832Z       "status": "A",
+2026-09-25T03:35:55.2670496Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.before.lock"
+2026-09-25T03:35:55.2671193Z     },
+2026-09-25T03:35:55.2671333Z     {
+2026-09-25T03:35:55.2671476Z       "status": "A",
+2026-09-25T03:35:55.2672146Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_after.lock"
+2026-09-25T03:35:55.2672848Z     },
+2026-09-25T03:35:55.2672984Z     {
+2026-09-25T03:35:55.2673122Z       "status": "A",
+2026-09-25T03:35:55.2673800Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_metadata.json"
+2026-09-25T03:35:55.2674516Z     },
+2026-09-25T03:35:55.2674656Z     {
+2026-09-25T03:35:55.2674796Z       "status": "A",
+2026-09-25T03:35:55.2675463Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.host_stderr.log"
+2026-09-25T03:35:55.2676278Z     },
+2026-09-25T03:35:55.2676417Z     {
+2026-09-25T03:35:55.2676553Z       "status": "A",
+2026-09-25T03:35:55.2677225Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.metadata.json"
+2026-09-25T03:35:55.2680869Z     },
+2026-09-25T03:35:55.2681077Z     {
+2026-09-25T03:35:55.2681285Z       "status": "A",
+2026-09-25T03:35:55.2682428Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/downstream_lock_closure/physics_audit.stderr.log"
+2026-09-25T03:35:55.2683127Z     },
+2026-09-25T03:35:55.2683268Z     {
+2026-09-25T03:35:55.2683413Z       "status": "A",
+2026-09-25T03:35:55.2684087Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_authoritative/CANDIDATE.patch"
+2026-09-25T03:35:55.2684775Z     },
+2026-09-25T03:35:55.2684918Z     {
+2026-09-25T03:35:55.2685056Z       "status": "A",
+2026-09-25T03:35:55.2685719Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_authoritative/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2686410Z     },
+2026-09-25T03:35:55.2686546Z     {
+2026-09-25T03:35:55.2686687Z       "status": "A",
+2026-09-25T03:35:55.2687455Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_cargo_normalization/CANDIDATE.patch"
+2026-09-25T03:35:55.2688348Z     },
+2026-09-25T03:35:55.2688487Z     {
+2026-09-25T03:35:55.2688642Z       "status": "A",
+2026-09-25T03:35:55.2689316Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_cargo_normalization/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2690049Z     },
+2026-09-25T03:35:55.2690188Z     {
+2026-09-25T03:35:55.2690328Z       "status": "A",
+2026-09-25T03:35:55.2690990Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_downstream_locks/CANDIDATE.patch"
+2026-09-25T03:35:55.2691676Z     },
+2026-09-25T03:35:55.2691814Z     {
+2026-09-25T03:35:55.2691965Z       "status": "A",
+2026-09-25T03:35:55.2692646Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_downstream_locks/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2693352Z     },
+2026-09-25T03:35:55.2693490Z     {
+2026-09-25T03:35:55.2693632Z       "status": "A",
+2026-09-25T03:35:55.2694291Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_request_preservation/CANDIDATE.patch"
+2026-09-25T03:35:55.2694977Z     },
+2026-09-25T03:35:55.2695113Z     {
+2026-09-25T03:35:55.2695254Z       "status": "A",
+2026-09-25T03:35:55.2695941Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_request_preservation/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2696654Z     },
+2026-09-25T03:35:55.2696793Z     {
+2026-09-25T03:35:55.2696933Z       "status": "A",
+2026-09-25T03:35:55.2697569Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_ts_narrowing/CANDIDATE.patch"
+2026-09-25T03:35:55.2698534Z     },
+2026-09-25T03:35:55.2698674Z     {
+2026-09-25T03:35:55.2698814Z       "status": "A",
+2026-09-25T03:35:55.2699577Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/freeze_before_ts_narrowing/CANDIDATE_FILES.json"
+2026-09-25T03:35:55.2700442Z     },
+2026-09-25T03:35:55.2700651Z     {
+2026-09-25T03:35:55.2701027Z       "status": "A",
+2026-09-25T03:35:55.2701790Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/Cargo.lock"
+2026-09-25T03:35:55.2702757Z     },
+2026-09-25T03:35:55.2703113Z     {
+2026-09-25T03:35:55.2703438Z       "status": "A",
+2026-09-25T03:35:55.2704187Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/Cargo.toml"
+2026-09-25T03:35:55.2704938Z     },
+2026-09-25T03:35:55.2705187Z     {
+2026-09-25T03:35:55.2705447Z       "status": "A",
+2026-09-25T03:35:55.2706370Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.json"
+2026-09-25T03:35:55.2707261Z     },
+2026-09-25T03:35:55.2707498Z     {
+2026-09-25T03:35:55.2707764Z       "status": "A",
+2026-09-25T03:35:55.2708727Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.result.json"
+2026-09-25T03:35:55.2709545Z     },
+2026-09-25T03:35:55.2709821Z     {
+2026-09-25T03:35:55.2755485Z       "status": "A",
+2026-09-25T03:35:55.2756629Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/before.stderr.log"
+2026-09-25T03:35:55.2757671Z     },
+2026-09-25T03:35:55.2757834Z     {
+2026-09-25T03:35:55.2758228Z       "status": "A",
+2026-09-25T03:35:55.2758889Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/PARITY_FAILURE/main.rs"
+2026-09-25T03:35:55.2759593Z     },
+2026-09-25T03:35:55.2759747Z     {
+2026-09-25T03:35:55.2759902Z       "status": "A",
+2026-09-25T03:35:55.2760548Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/STABLE_COMPARISON.json"
+2026-09-25T03:35:55.2761215Z     },
+2026-09-25T03:35:55.2761350Z     {
+2026-09-25T03:35:55.2761494Z       "status": "A",
+2026-09-25T03:35:55.2762108Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.json"
+2026-09-25T03:35:55.2762749Z     },
+2026-09-25T03:35:55.2762880Z     {
+2026-09-25T03:35:55.2763017Z       "status": "A",
+2026-09-25T03:35:55.2763653Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.result.json"
+2026-09-25T03:35:55.2764315Z     },
+2026-09-25T03:35:55.2764455Z     {
+2026-09-25T03:35:55.2764594Z       "status": "A",
+2026-09-25T03:35:55.2765407Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_stable.stderr.log"
+2026-09-25T03:35:55.2766065Z     },
+2026-09-25T03:35:55.2766201Z     {
+2026-09-25T03:35:55.2766368Z       "status": "A",
+2026-09-25T03:35:55.2767028Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.json"
+2026-09-25T03:35:55.2767697Z     },
+2026-09-25T03:35:55.2767843Z     {
+2026-09-25T03:35:55.2768181Z       "status": "A",
+2026-09-25T03:35:55.2768832Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.result.json"
+2026-09-25T03:35:55.2769508Z     },
+2026-09-25T03:35:55.2769644Z     {
+2026-09-25T03:35:55.2769784Z       "status": "A",
+2026-09-25T03:35:55.2770416Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/after_transport.stderr.log"
+2026-09-25T03:35:55.2771077Z     },
+2026-09-25T03:35:55.2771212Z     {
+2026-09-25T03:35:55.2771356Z       "status": "A",
+2026-09-25T03:35:55.2772059Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.json"
+2026-09-25T03:35:55.2772691Z     },
+2026-09-25T03:35:55.2772828Z     {
+2026-09-25T03:35:55.2772975Z       "status": "A",
+2026-09-25T03:35:55.2773594Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.result.json"
+2026-09-25T03:35:55.2774246Z     },
+2026-09-25T03:35:55.2774385Z     {
+2026-09-25T03:35:55.2774522Z       "status": "A",
+2026-09-25T03:35:55.2775141Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before.stderr.log"
+2026-09-25T03:35:55.2775776Z     },
+2026-09-25T03:35:55.2775913Z     {
+2026-09-25T03:35:55.2776051Z       "status": "A",
+2026-09-25T03:35:55.2776681Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.json"
+2026-09-25T03:35:55.2777329Z     },
+2026-09-25T03:35:55.2777464Z     {
+2026-09-25T03:35:55.2777601Z       "status": "A",
+2026-09-25T03:35:55.2778446Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.result.json"
+2026-09-25T03:35:55.2779122Z     },
+2026-09-25T03:35:55.2779262Z     {
+2026-09-25T03:35:55.2779403Z       "status": "A",
+2026-09-25T03:35:55.2780050Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/before_complete.stderr.log"
+2026-09-25T03:35:55.2780708Z     },
+2026-09-25T03:35:55.2780842Z     {
+2026-09-25T03:35:55.2780981Z       "status": "A",
+2026-09-25T03:35:55.2781580Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/mass_probe/src/main.rs"
+2026-09-25T03:35:55.2782210Z     },
+2026-09-25T03:35:55.2782341Z     {
+2026-09-25T03:35:55.2782590Z       "status": "A",
+2026-09-25T03:35:55.2783249Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/AUTHORING.json"
+2026-09-25T03:35:55.2783936Z     },
+2026-09-25T03:35:55.2784080Z     {
+2026-09-25T03:35:55.2784216Z       "status": "A",
+2026-09-25T03:35:55.2784933Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_01/AUTHORING.json"
+2026-09-25T03:35:55.2785675Z     },
+2026-09-25T03:35:55.2785809Z     {
+2026-09-25T03:35:55.2785945Z       "status": "A",
+2026-09-25T03:35:55.2786627Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_02/AUTHORING.json"
+2026-09-25T03:35:55.2787337Z     },
+2026-09-25T03:35:55.2787472Z     {
+2026-09-25T03:35:55.2787608Z       "status": "A",
+2026-09-25T03:35:55.2788436Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/portability/core_implementation/freeze_03/AUTHORING.json"
+2026-09-25T03:35:55.2789162Z     },
+2026-09-25T03:35:55.2789297Z     {
+2026-09-25T03:35:55.2789434Z       "status": "A",
+2026-09-25T03:35:55.2790110Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/run_check.py"
+2026-09-25T03:35:55.2790718Z     },
+2026-09-25T03:35:55.2790857Z     {
+2026-09-25T03:35:55.2791002Z       "status": "A",
+2026-09-25T03:35:55.2791692Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/self_weight_wasm.before_authoritative.lock"
+2026-09-25T03:35:55.2792404Z     },
+2026-09-25T03:35:55.2792547Z     {
+2026-09-25T03:35:55.2792690Z       "status": "A",
+2026-09-25T03:35:55.2793317Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/tsc_narrowing/REPAIR.json"
+2026-09-25T03:35:55.2793958Z     },
+2026-09-25T03:35:55.2794099Z     {
+2026-09-25T03:35:55.2794240Z       "status": "A",
+2026-09-25T03:35:55.2794896Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/_run_records/tsc_narrowing/SelfWeightPlanPanel.before.tsx"
+2026-09-25T03:35:55.2795590Z     },
+2026-09-25T03:35:55.2795725Z     {
+2026-09-25T03:35:55.2795870Z       "status": "A",
+2026-09-25T03:35:55.2796463Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/RETURN.md"
+2026-09-25T03:35:55.2797089Z     },
+2026-09-25T03:35:55.2797225Z     {
+2026-09-25T03:35:55.2797364Z       "status": "A",
+2026-09-25T03:35:55.2798146Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/00-AGENTS.md"
+2026-09-25T03:35:55.2798818Z     },
+2026-09-25T03:35:55.2798954Z     {
+2026-09-25T03:35:55.2799096Z       "status": "A",
+2026-09-25T03:35:55.2799744Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/01-AGENT_TASK.md"
+2026-09-25T03:35:55.2800550Z     },
+2026-09-25T03:35:55.2800695Z     {
+2026-09-25T03:35:55.2800836Z       "status": "A",
+2026-09-25T03:35:55.2801472Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/02-AGENTS.md"
+2026-09-25T03:35:55.2802131Z     },
+2026-09-25T03:35:55.2802266Z     {
+2026-09-25T03:35:55.2802406Z       "status": "A",
+2026-09-25T03:35:55.2803050Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/03-LOOP_INIT.md"
+2026-09-25T03:35:55.2803743Z     },
+2026-09-25T03:35:55.2803877Z     {
+2026-09-25T03:35:55.2804016Z       "status": "A",
+2026-09-25T03:35:55.2804666Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/04-ROOT_BRIEF.md"
+2026-09-25T03:35:55.2805340Z     },
+2026-09-25T03:35:55.2805475Z     {
+2026-09-25T03:35:55.2805616Z       "status": "A",
+2026-09-25T03:35:55.2806286Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/05-INTEGRATION_CONTRACT.md"
+2026-09-25T03:35:55.2806987Z     },
+2026-09-25T03:35:55.2807123Z     {
+2026-09-25T03:35:55.2807259Z       "status": "A",
+2026-09-25T03:35:55.2808262Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/Cargo.lock"
+2026-09-25T03:35:55.2809006Z     },
+2026-09-25T03:35:55.2809146Z     {
+2026-09-25T03:35:55.2809286Z       "status": "A",
+2026-09-25T03:35:55.2809986Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/Cargo.toml"
+2026-09-25T03:35:55.2810716Z     },
+2026-09-25T03:35:55.2810847Z     {
+2026-09-25T03:35:55.2810984Z       "status": "A",
+2026-09-25T03:35:55.2811682Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/RETURN.md"
+2026-09-25T03:35:55.2812407Z     },
+2026-09-25T03:35:55.2812545Z     {
+2026-09-25T03:35:55.2812682Z       "status": "A",
+2026-09-25T03:35:55.2813392Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/frozen_files.json"
+2026-09-25T03:35:55.2814144Z     },
+2026-09-25T03:35:55.2814276Z     {
+2026-09-25T03:35:55.2814412Z       "status": "A",
+2026-09-25T03:35:55.2815142Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/generated_self_weight.rs"
+2026-09-25T03:35:55.2815909Z     },
+2026-09-25T03:35:55.2816040Z     {
+2026-09-25T03:35:55.2816174Z       "status": "A",
+2026-09-25T03:35:55.2816885Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_authoritative_inspection/rich_authoring.rs"
+2026-09-25T03:35:55.2817631Z     },
+2026-09-25T03:35:55.2817760Z     {
+2026-09-25T03:35:55.2818198Z       "status": "A",
+2026-09-25T03:35:55.2818875Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/RETURN.md"
+2026-09-25T03:35:55.2819581Z     },
+2026-09-25T03:35:55.2819716Z     {
+2026-09-25T03:35:55.2819853Z       "status": "A",
+2026-09-25T03:35:55.2820547Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/frozen_files.json"
+2026-09-25T03:35:55.2821286Z     },
+2026-09-25T03:35:55.2821425Z     {
+2026-09-25T03:35:55.2821562Z       "status": "A",
+2026-09-25T03:35:55.2822285Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/generated_self_weight.rs"
+2026-09-25T03:35:55.2823040Z     },
+2026-09-25T03:35:55.2823182Z     {
+2026-09-25T03:35:55.2823326Z       "status": "A",
+2026-09-25T03:35:55.2824025Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_canonical_repair/rich_authoring.rs"
+2026-09-25T03:35:55.2824753Z     },
+2026-09-25T03:35:55.2824886Z     {
+2026-09-25T03:35:55.2825024Z       "status": "A",
+2026-09-25T03:35:55.2825859Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/RETURN.md"
+2026-09-25T03:35:55.2826589Z     },
+2026-09-25T03:35:55.2826721Z     {
+2026-09-25T03:35:55.2826856Z       "status": "A",
+2026-09-25T03:35:55.2827572Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/frozen_files.json"
+2026-09-25T03:35:55.2828452Z     },
+2026-09-25T03:35:55.2828588Z     {
+2026-09-25T03:35:55.2828726Z       "status": "A",
+2026-09-25T03:35:55.2829449Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/generated_self_weight.rs"
+2026-09-25T03:35:55.2830206Z     },
+2026-09-25T03:35:55.2830341Z     {
+2026-09-25T03:35:55.2830476Z       "status": "A",
+2026-09-25T03:35:55.2831182Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_gravity_preservation/rich_authoring.rs"
+2026-09-25T03:35:55.2831923Z     },
+2026-09-25T03:35:55.2832057Z     {
+2026-09-25T03:35:55.2832195Z       "status": "A",
+2026-09-25T03:35:55.2832875Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/RETURN.md"
+2026-09-25T03:35:55.2833587Z     },
+2026-09-25T03:35:55.2833722Z     {
+2026-09-25T03:35:55.2833861Z       "status": "A",
+2026-09-25T03:35:55.2834572Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/frozen_files.json"
+2026-09-25T03:35:55.2835306Z     },
+2026-09-25T03:35:55.2835438Z     {
+2026-09-25T03:35:55.2835575Z       "status": "A",
+2026-09-25T03:35:55.2836408Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/generated_self_weight.rs"
+2026-09-25T03:35:55.2837165Z     },
+2026-09-25T03:35:55.2837297Z     {
+2026-09-25T03:35:55.2837435Z       "status": "A",
+2026-09-25T03:35:55.2838311Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_mass_method_repair/rich_authoring.rs"
+2026-09-25T03:35:55.2839045Z     },
+2026-09-25T03:35:55.2839180Z     {
+2026-09-25T03:35:55.2839321Z       "status": "A",
+2026-09-25T03:35:55.2840031Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/RETURN.md"
+2026-09-25T03:35:55.2840777Z     },
+2026-09-25T03:35:55.2840911Z     {
+2026-09-25T03:35:55.2841047Z       "status": "A",
+2026-09-25T03:35:55.2841782Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/frozen_files.json"
+2026-09-25T03:35:55.2842549Z     },
+2026-09-25T03:35:55.2842681Z     {
+2026-09-25T03:35:55.2842820Z       "status": "A",
+2026-09-25T03:35:55.2843677Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/generated_self_weight.rs"
+2026-09-25T03:35:55.2844494Z     },
+2026-09-25T03:35:55.2844627Z     {
+2026-09-25T03:35:55.2844765Z       "status": "A",
+2026-09-25T03:35:55.2845500Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_request_provenance_preservation/rich_authoring.rs"
+2026-09-25T03:35:55.2846266Z     },
+2026-09-25T03:35:55.2846402Z     {
+2026-09-25T03:35:55.2846537Z       "status": "A",
+2026-09-25T03:35:55.2847206Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/RETURN.md"
+2026-09-25T03:35:55.2848044Z     },
+2026-09-25T03:35:55.2848193Z     {
+2026-09-25T03:35:55.2848335Z       "status": "A",
+2026-09-25T03:35:55.2849030Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/frozen_files.json"
+2026-09-25T03:35:55.2849766Z     },
+2026-09-25T03:35:55.2849904Z     {
+2026-09-25T03:35:55.2850047Z       "status": "A",
+2026-09-25T03:35:55.2850747Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/generated_self_weight.rs"
+2026-09-25T03:35:55.2851483Z     },
+2026-09-25T03:35:55.2851615Z     {
+2026-09-25T03:35:55.2851752Z       "status": "A",
+2026-09-25T03:35:55.2852442Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_review_repair/rich_authoring.rs"
+2026-09-25T03:35:55.2853167Z     },
+2026-09-25T03:35:55.2853298Z     {
+2026-09-25T03:35:55.2853434Z       "status": "A",
+2026-09-25T03:35:55.2854239Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/RETURN.md"
+2026-09-25T03:35:55.2854968Z     },
+2026-09-25T03:35:55.2855104Z     {
+2026-09-25T03:35:55.2855245Z       "status": "A",
+2026-09-25T03:35:55.2855962Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/frozen_files.json"
+2026-09-25T03:35:55.2856721Z     },
+2026-09-25T03:35:55.2856859Z     {
+2026-09-25T03:35:55.2856997Z       "status": "A",
+2026-09-25T03:35:55.2857727Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/generated_self_weight.rs"
+2026-09-25T03:35:55.2858713Z     },
+2026-09-25T03:35:55.2858847Z     {
+2026-09-25T03:35:55.2858983Z       "status": "A",
+2026-09-25T03:35:55.2859713Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/pre_whole_case_completeness/rich_authoring.rs"
+2026-09-25T03:35:55.2860472Z     },
+2026-09-25T03:35:55.2860604Z     {
+2026-09-25T03:35:55.2860739Z       "status": "A",
+2026-09-25T03:35:55.2861516Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/_run_records/supplied_basis.json"
+2026-09-25T03:35:55.2862205Z     },
+2026-09-25T03:35:55.2862346Z     {
+2026-09-25T03:35:55.2862486Z       "status": "A",
+2026-09-25T03:35:55.2863109Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/applier_implementation/frozen_files.json"
+2026-09-25T03:35:55.2863755Z     },
+2026-09-25T03:35:55.2863887Z     {
+2026-09-25T03:35:55.2864024Z       "status": "A",
+2026-09-25T03:35:55.2864578Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/RETURN.md"
+2026-09-25T03:35:55.2865167Z     },
+2026-09-25T03:35:55.2865299Z     {
+2026-09-25T03:35:55.2865436Z       "status": "A",
+2026-09-25T03:35:55.2866035Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/UI_TEST_PREP/AUTHORING.json"
+2026-09-25T03:35:55.2866669Z     },
+2026-09-25T03:35:55.2866806Z     {
+2026-09-25T03:35:55.2866944Z       "status": "A",
+2026-09-25T03:35:55.2867531Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/UI_TEST_PREP/RETURN.md"
+2026-09-25T03:35:55.2868247Z     },
+2026-09-25T03:35:55.2868383Z     {
+2026-09-25T03:35:55.2868519Z       "status": "A",
+2026-09-25T03:35:55.2869113Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/baseline/_run_records/AUTHORING.json"
+2026-09-25T03:35:55.2869744Z     },
+2026-09-25T03:35:55.2869880Z     {
+2026-09-25T03:35:55.2870019Z       "status": "A",
+2026-09-25T03:35:55.2870615Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/AUTHORING.json"
+2026-09-25T03:35:55.2871362Z     },
+2026-09-25T03:35:55.2871501Z     {
+2026-09-25T03:35:55.2871636Z       "status": "A",
+2026-09-25T03:35:55.2872218Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/RETURN.md"
+2026-09-25T03:35:55.2872828Z     },
+2026-09-25T03:35:55.2872961Z     {
+2026-09-25T03:35:55.2873100Z       "status": "A",
+2026-09-25T03:35:55.2873733Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/AUTHORING.json"
+2026-09-25T03:35:55.2874378Z     },
+2026-09-25T03:35:55.2874510Z     {
+2026-09-25T03:35:55.2874571Z       "status": "A",
+2026-09-25T03:35:55.2875089Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/RETURN.md"
+2026-09-25T03:35:55.2875153Z     },
+2026-09-25T03:35:55.2875211Z     {
+2026-09-25T03:35:55.2875277Z       "status": "A",
+2026-09-25T03:35:55.2875773Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/lib.rs"
+2026-09-25T03:35:55.2875837Z     },
+2026-09-25T03:35:55.2875895Z     {
+2026-09-25T03:35:55.2875963Z       "status": "A",
+2026-09-25T03:35:55.2876578Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_01/self_weight.rs"
+2026-09-25T03:35:55.2876638Z     },
+2026-09-25T03:35:55.2876702Z     {
+2026-09-25T03:35:55.2876764Z       "status": "A",
+2026-09-25T03:35:55.2877454Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/AUTHORING.json"
+2026-09-25T03:35:55.2878267Z     },
+2026-09-25T03:35:55.2878432Z     {
+2026-09-25T03:35:55.2878597Z       "status": "A",
+2026-09-25T03:35:55.2879235Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/RETURN.md"
+2026-09-25T03:35:55.2879885Z     },
+2026-09-25T03:35:55.2880020Z     {
+2026-09-25T03:35:55.2880160Z       "status": "A",
+2026-09-25T03:35:55.2880783Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/lib.rs"
+2026-09-25T03:35:55.2881422Z     },
+2026-09-25T03:35:55.2881566Z     {
+2026-09-25T03:35:55.2881709Z       "status": "A",
+2026-09-25T03:35:55.2882374Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_02/self_weight.rs"
+2026-09-25T03:35:55.2883112Z     },
+2026-09-25T03:35:55.2883251Z     {
+2026-09-25T03:35:55.2883391Z       "status": "A",
+2026-09-25T03:35:55.2884024Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/AUTHORING.json"
+2026-09-25T03:35:55.2884668Z     },
+2026-09-25T03:35:55.2884808Z     {
+2026-09-25T03:35:55.2884945Z       "status": "A",
+2026-09-25T03:35:55.2885551Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/RETURN.md"
+2026-09-25T03:35:55.2886181Z     },
+2026-09-25T03:35:55.2886436Z     {
+2026-09-25T03:35:55.2886575Z       "status": "A",
+2026-09-25T03:35:55.2887184Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/lib.rs"
+2026-09-25T03:35:55.2887814Z     },
+2026-09-25T03:35:55.2888130Z     {
+2026-09-25T03:35:55.2888270Z       "status": "A",
+2026-09-25T03:35:55.2888889Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/freeze_03/self_weight.rs"
+2026-09-25T03:35:55.2889535Z     },
+2026-09-25T03:35:55.2889671Z     {
+2026-09-25T03:35:55.2889812Z       "status": "A",
+2026-09-25T03:35:55.2890389Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/lib.rs"
+2026-09-25T03:35:55.2890999Z     },
+2026-09-25T03:35:55.2891132Z     {
+2026-09-25T03:35:55.2891268Z       "status": "A",
+2026-09-25T03:35:55.2891865Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/core_implementation/self_weight.rs"
+2026-09-25T03:35:55.2892496Z     },
+2026-09-25T03:35:55.2892627Z     {
+2026-09-25T03:35:55.2892765Z       "status": "A",
+2026-09-25T03:35:55.2893469Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/REFERENCE_CHECK.md"
+2026-09-25T03:35:55.2894077Z     },
+2026-09-25T03:35:55.2894211Z     {
+2026-09-25T03:35:55.2894347Z       "status": "A",
+2026-09-25T03:35:55.2894896Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/RETURN.md"
+2026-09-25T03:35:55.2895482Z     },
+2026-09-25T03:35:55.2895616Z     {
+2026-09-25T03:35:55.2895756Z       "status": "A",
+2026-09-25T03:35:55.2896380Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/AUTHORITATIVE_BACKCHECK.md"
+2026-09-25T03:35:55.2897050Z     },
+2026-09-25T03:35:55.2897184Z     {
+2026-09-25T03:35:55.2897323Z       "status": "A",
+2026-09-25T03:35:55.2898102Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/DOWNSTREAM_LOCK_BACKCHECK.md"
+2026-09-25T03:35:55.2898772Z     },
+2026-09-25T03:35:55.2898914Z     {
+2026-09-25T03:35:55.2899053Z       "status": "A",
+2026-09-25T03:35:55.2899654Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/FINAL_BACKCHECK.md"
+2026-09-25T03:35:55.2900295Z     },
+2026-09-25T03:35:55.2900430Z     {
+2026-09-25T03:35:55.2900568Z       "status": "A",
+2026-09-25T03:35:55.2901186Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/FROZEN_CANDIDATE_REVIEW.md"
+2026-09-25T03:35:55.2901833Z     },
+2026-09-25T03:35:55.2901967Z     {
+2026-09-25T03:35:55.2902101Z       "status": "A",
+2026-09-25T03:35:55.2902738Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/LOCK_NORMALIZATION_BACKCHECK.md"
+2026-09-25T03:35:55.2903414Z     },
+2026-09-25T03:35:55.2903546Z     {
+2026-09-25T03:35:55.2903685Z       "status": "A",
+2026-09-25T03:35:55.2904431Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/MANUAL_PRESERVATION_PRECHECK.md"
+2026-09-25T03:35:55.2905101Z     },
+2026-09-25T03:35:55.2905241Z     {
+2026-09-25T03:35:55.2905381Z       "status": "A",
+2026-09-25T03:35:55.2906011Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/PRIOR_ARITHMETIC_BACKCHECK.json"
+2026-09-25T03:35:55.2906678Z     },
+2026-09-25T03:35:55.2906822Z     {
+2026-09-25T03:35:55.2906957Z       "status": "A",
+2026-09-25T03:35:55.2907573Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/REFERENCE_ORIGINS.json"
+2026-09-25T03:35:55.2908310Z     },
+2026-09-25T03:35:55.2908445Z     {
+2026-09-25T03:35:55.2908583Z       "status": "A",
+2026-09-25T03:35:55.2909207Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/SEVEN_MASS_REFERENCES.json"
+2026-09-25T03:35:55.2909872Z     },
+2026-09-25T03:35:55.2910009Z     {
+2026-09-25T03:35:55.2910152Z       "status": "A",
+2026-09-25T03:35:55.2910870Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/UI_RUNTIME_TSC_BACKCHECK.md"
+2026-09-25T03:35:55.2911536Z     },
+2026-09-25T03:35:55.2911675Z     {
+2026-09-25T03:35:55.2911817Z       "status": "A",
+2026-09-25T03:35:55.2912501Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2913223Z     },
+2026-09-25T03:35:55.2913360Z     {
+2026-09-25T03:35:55.2913496Z       "status": "A",
+2026-09-25T03:35:55.2914191Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2914918Z     },
+2026-09-25T03:35:55.2915052Z     {
+2026-09-25T03:35:55.2915190Z       "status": "A",
+2026-09-25T03:35:55.2915847Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/MANIFEST.json"
+2026-09-25T03:35:55.2916530Z     },
+2026-09-25T03:35:55.2916663Z     {
+2026-09-25T03:35:55.2916804Z       "status": "A",
+2026-09-25T03:35:55.2917470Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/authoritative_backcheck/scope_check.json"
+2026-09-25T03:35:55.2918250Z     },
+2026-09-25T03:35:55.2918384Z     {
+2026-09-25T03:35:55.2918524Z       "status": "A",
+2026-09-25T03:35:55.2919185Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2919872Z     },
+2026-09-25T03:35:55.2920011Z     {
+2026-09-25T03:35:55.2920153Z       "status": "A",
+2026-09-25T03:35:55.2920826Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2921637Z     },
+2026-09-25T03:35:55.2921768Z     {
+2026-09-25T03:35:55.2921906Z       "status": "A",
+2026-09-25T03:35:55.2922537Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/MANIFEST.json"
+2026-09-25T03:35:55.2923197Z     },
+2026-09-25T03:35:55.2923330Z     {
+2026-09-25T03:35:55.2923473Z       "status": "A",
+2026-09-25T03:35:55.2924128Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/RETURN.pre_complete.md"
+2026-09-25T03:35:55.2924817Z     },
+2026-09-25T03:35:55.2924951Z     {
+2026-09-25T03:35:55.2925089Z       "status": "A",
+2026-09-25T03:35:55.2925725Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/scope_check.json"
+2026-09-25T03:35:55.2926392Z     },
+2026-09-25T03:35:55.2926524Z     {
+2026-09-25T03:35:55.2926660Z       "status": "A",
+2026-09-25T03:35:55.2927312Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/complete_review/scope_check.stderr.txt"
+2026-09-25T03:35:55.2928125Z     },
+2026-09-25T03:35:55.2928259Z     {
+2026-09-25T03:35:55.2928499Z       "status": "A",
+2026-09-25T03:35:55.2929189Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2929910Z     },
+2026-09-25T03:35:55.2930048Z     {
+2026-09-25T03:35:55.2930189Z       "status": "A",
+2026-09-25T03:35:55.2930889Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2931623Z     },
+2026-09-25T03:35:55.2931762Z     {
+2026-09-25T03:35:55.2931905Z       "status": "A",
+2026-09-25T03:35:55.2932577Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/COMPARISON.json"
+2026-09-25T03:35:55.2933278Z     },
+2026-09-25T03:35:55.2933416Z     {
+2026-09-25T03:35:55.2933555Z       "status": "A",
+2026-09-25T03:35:55.2934209Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/DELIVERY.json"
+2026-09-25T03:35:55.2934897Z     },
+2026-09-25T03:35:55.2935039Z     {
+2026-09-25T03:35:55.2935178Z       "status": "A",
+2026-09-25T03:35:55.2935892Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/REFERENCE_CHECK.md.before_downstream"
+2026-09-25T03:35:55.2936637Z     },
+2026-09-25T03:35:55.2936768Z     {
+2026-09-25T03:35:55.2936903Z       "status": "A",
+2026-09-25T03:35:55.2937590Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/RETURN.md.before_downstream"
+2026-09-25T03:35:55.2938417Z     },
+2026-09-25T03:35:55.2938561Z     {
+2026-09-25T03:35:55.2938700Z       "status": "A",
+2026-09-25T03:35:55.2939470Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/downstream_lock_backcheck/scope_check.json"
+2026-09-25T03:35:55.2940165Z     },
+2026-09-25T03:35:55.2940305Z     {
+2026-09-25T03:35:55.2940442Z       "status": "A",
+2026-09-25T03:35:55.2941099Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2941790Z     },
+2026-09-25T03:35:55.2941922Z     {
+2026-09-25T03:35:55.2942066Z       "status": "A",
+2026-09-25T03:35:55.2942732Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2943438Z     },
+2026-09-25T03:35:55.2943574Z     {
+2026-09-25T03:35:55.2943710Z       "status": "A",
+2026-09-25T03:35:55.2944347Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/DELIVERY.json"
+2026-09-25T03:35:55.2945040Z     },
+2026-09-25T03:35:55.2945178Z     {
+2026-09-25T03:35:55.2945325Z       "status": "A",
+2026-09-25T03:35:55.2946057Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/MANIFEST.json"
+2026-09-25T03:35:55.2946719Z     },
+2026-09-25T03:35:55.2946857Z     {
+2026-09-25T03:35:55.2946997Z       "status": "A",
+2026-09-25T03:35:55.2947671Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/REFERENCE_CHECK.md.before_final"
+2026-09-25T03:35:55.2948472Z     },
+2026-09-25T03:35:55.2948610Z     {
+2026-09-25T03:35:55.2948747Z       "status": "A",
+2026-09-25T03:35:55.2949408Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/RETURN.md.before_final"
+2026-09-25T03:35:55.2950095Z     },
+2026-09-25T03:35:55.2950230Z     {
+2026-09-25T03:35:55.2950372Z       "status": "A",
+2026-09-25T03:35:55.2951007Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/final_backcheck/scope_check.json"
+2026-09-25T03:35:55.2951669Z     },
+2026-09-25T03:35:55.2951805Z     {
+2026-09-25T03:35:55.2951940Z       "status": "A",
+2026-09-25T03:35:55.2952564Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/initial_mass_helper.rs.txt"
+2026-09-25T03:35:55.2953241Z     },
+2026-09-25T03:35:55.2953376Z     {
+2026-09-25T03:35:55.2953513Z       "status": "A",
+2026-09-25T03:35:55.2954148Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/initial_self_weight.rs"
+2026-09-25T03:35:55.2954801Z     },
+2026-09-25T03:35:55.2954935Z     {
+2026-09-25T03:35:55.2955073Z       "status": "A",
+2026-09-25T03:35:55.2955744Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2956577Z     },
+2026-09-25T03:35:55.2956716Z     {
+2026-09-25T03:35:55.2956857Z       "status": "A",
+2026-09-25T03:35:55.2957545Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2958345Z     },
+2026-09-25T03:35:55.2958484Z     {
+2026-09-25T03:35:55.2958624Z       "status": "A",
+2026-09-25T03:35:55.2959289Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/COMPARISON.json"
+2026-09-25T03:35:55.2959980Z     },
+2026-09-25T03:35:55.2960118Z     {
+2026-09-25T03:35:55.2960255Z       "status": "A",
+2026-09-25T03:35:55.2960896Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/DELIVERY.json"
+2026-09-25T03:35:55.2961570Z     },
+2026-09-25T03:35:55.2961703Z     {
+2026-09-25T03:35:55.2961840Z       "status": "A",
+2026-09-25T03:35:55.2962540Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/REFERENCE_CHECK.md.before_lock_update"
+2026-09-25T03:35:55.2963279Z     },
+2026-09-25T03:35:55.2963412Z     {
+2026-09-25T03:35:55.2963677Z       "status": "A",
+2026-09-25T03:35:55.2964362Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/lock_normalization/RETURN.md.before_lock_update"
+2026-09-25T03:35:55.2965076Z     },
+2026-09-25T03:35:55.2965371Z     {
+2026-09-25T03:35:55.2965512Z       "status": "A",
+2026-09-25T03:35:55.2966169Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/INTEGRATION_CONTRACT.md"
+2026-09-25T03:35:55.2966865Z     },
+2026-09-25T03:35:55.2966999Z     {
+2026-09-25T03:35:55.2967141Z       "status": "A",
+2026-09-25T03:35:55.2967780Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/MANIFEST.json"
+2026-09-25T03:35:55.2968526Z     },
+2026-09-25T03:35:55.2968661Z     {
+2026-09-25T03:35:55.2968797Z       "status": "A",
+2026-09-25T03:35:55.2969454Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/STABLE_MASS_SUCCESSOR.md"
+2026-09-25T03:35:55.2970150Z     },
+2026-09-25T03:35:55.2970292Z     {
+2026-09-25T03:35:55.2970433Z       "status": "A",
+2026-09-25T03:35:55.2971070Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/rich_authoring.rs"
+2026-09-25T03:35:55.2971743Z     },
+2026-09-25T03:35:55.2971879Z     {
+2026-09-25T03:35:55.2972009Z       "status": "A",
+2026-09-25T03:35:55.2972639Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/self_weight.rs"
+2026-09-25T03:35:55.2973301Z     },
+2026-09-25T03:35:55.2973437Z     {
+2026-09-25T03:35:55.2973584Z       "status": "A",
+2026-09-25T03:35:55.2974238Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/manual_precheck/self_weight_wasm_lib.rs"
+2026-09-25T03:35:55.2975042Z     },
+2026-09-25T03:35:55.2975185Z     {
+2026-09-25T03:35:55.2975324Z       "status": "A",
+2026-09-25T03:35:55.2975949Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/reference_arithmetic.py"
+2026-09-25T03:35:55.2976600Z     },
+2026-09-25T03:35:55.2976736Z     {
+2026-09-25T03:35:55.2976879Z       "status": "A",
+2026-09-25T03:35:55.2977575Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/CANDIDATE.reviewed.patch"
+2026-09-25T03:35:55.2978383Z     },
+2026-09-25T03:35:55.2978523Z     {
+2026-09-25T03:35:55.2978660Z       "status": "A",
+2026-09-25T03:35:55.2979355Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/CANDIDATE_FILES.reviewed.json"
+2026-09-25T03:35:55.2980078Z     },
+2026-09-25T03:35:55.2980212Z     {
+2026-09-25T03:35:55.2980348Z       "status": "A",
+2026-09-25T03:35:55.2981141Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/MANIFEST.json"
+2026-09-25T03:35:55.2981835Z     },
+2026-09-25T03:35:55.2981971Z     {
+2026-09-25T03:35:55.2982110Z       "status": "A",
+2026-09-25T03:35:55.2982820Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/REFERENCE_CHECK.md.before_ts_update"
+2026-09-25T03:35:55.2983561Z     },
+2026-09-25T03:35:55.2983694Z     {
+2026-09-25T03:35:55.2983831Z       "status": "A",
+2026-09-25T03:35:55.2984519Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/RETURN.md.before_ts_update"
+2026-09-25T03:35:55.2985233Z     },
+2026-09-25T03:35:55.2985374Z     {
+2026-09-25T03:35:55.2985512Z       "status": "A",
+2026-09-25T03:35:55.2986168Z       "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/GENERATED_LOADS_MANAGER/review/_run_records/tsc_narrowing_backcheck/scope_check.json"
+2026-09-25T03:35:55.2986851Z     },
+2026-09-25T03:35:55.2986985Z     {
+2026-09-25T03:35:55.2987128Z       "status": "M",
+2026-09-25T03:35:55.2987434Z       "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.lock"
+2026-09-25T03:35:55.2987787Z     }
+2026-09-25T03:35:55.2987998Z   ],
+2026-09-25T03:35:55.2988143Z   "projects": [
+2026-09-25T03:35:55.2988309Z     "chromium-desktop",
+2026-09-25T03:35:55.2988486Z     "chromium-compact"
+2026-09-25T03:35:55.2988646Z   ],
+2026-09-25T03:35:55.2988784Z   "inventory": [
+2026-09-25T03:35:55.2988957Z     "e2e/b3-accessibility.spec.ts",
+2026-09-25T03:35:55.2989172Z     "e2e/b3a-session-status.spec.ts",
+2026-09-25T03:35:55.2989400Z     "e2e/b3b-project-persistence.spec.ts",
+2026-09-25T03:35:55.2989626Z     "e2e/b4-sections.spec.ts",
+2026-09-25T03:35:55.2989833Z     "e2e/b4-table-editing.spec.ts",
+2026-09-25T03:35:55.2990044Z     "e2e/c3-viewport-visibility.spec.ts",
+2026-09-25T03:35:55.2990265Z     "e2e/gui-workflow-validation.spec.ts",
+2026-09-25T03:35:55.2990478Z     "e2e/linear-authoring.spec.ts",
+2026-09-25T03:35:55.2990813Z     "e2e/r2-smoke.spec.ts",
+2026-09-25T03:35:55.2991010Z     "e2e/result-compatibility.spec.ts",
+2026-09-25T03:35:55.2991227Z     "e2e/ui-foundation.spec.ts",
+2026-09-25T03:35:55.2991461Z     "e2e/ui-foundation/causal-method-contract.spec.ts",
+2026-09-25T03:35:55.2991733Z     "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+2026-09-25T03:35:55.2991999Z     "e2e/ui-foundation/full-cohort-controller.spec.ts",
+2026-09-25T03:35:55.2992268Z     "e2e/ui-foundation/performance-targets.spec.ts",
+2026-09-25T03:35:55.2992509Z     "e2e/workspace-layout.spec.ts"
+2026-09-25T03:35:55.2992700Z   ],
+2026-09-25T03:35:55.2992848Z   "selected_specs": [
+2026-09-25T03:35:55.2993028Z     "e2e/b3-accessibility.spec.ts",
+2026-09-25T03:35:55.2993242Z     "e2e/b3a-session-status.spec.ts",
+2026-09-25T03:35:55.2993461Z     "e2e/b3b-project-persistence.spec.ts",
+2026-09-25T03:35:55.2993678Z     "e2e/b4-sections.spec.ts",
+2026-09-25T03:35:55.2993872Z     "e2e/b4-table-editing.spec.ts",
+2026-09-25T03:35:55.2994082Z     "e2e/c3-viewport-visibility.spec.ts",
+2026-09-25T03:35:55.2994311Z     "e2e/gui-workflow-validation.spec.ts",
+2026-09-25T03:35:55.2994529Z     "e2e/linear-authoring.spec.ts",
+2026-09-25T03:35:55.2994725Z     "e2e/r2-smoke.spec.ts",
+2026-09-25T03:35:55.2994920Z     "e2e/result-compatibility.spec.ts",
+2026-09-25T03:35:55.2995130Z     "e2e/ui-foundation.spec.ts",
+2026-09-25T03:35:55.2995358Z     "e2e/ui-foundation/causal-method-contract.spec.ts",
+2026-09-25T03:35:55.2995622Z     "e2e/ui-foundation/fresh-demo-policy.spec.ts",
+2026-09-25T03:35:55.2995879Z     "e2e/ui-foundation/full-cohort-controller.spec.ts",
+2026-09-25T03:35:55.2996140Z     "e2e/ui-foundation/performance-targets.spec.ts",
+2026-09-25T03:35:55.2996473Z     "e2e/workspace-layout.spec.ts"
+2026-09-25T03:35:55.2996668Z   ],
+2026-09-25T03:35:55.2996816Z   "selected_titles": {},
+2026-09-25T03:35:55.2997004Z   "numerical_required": true,
+2026-09-25T03:35:55.2997198Z   "appearance": false,
+2026-09-25T03:35:55.2997375Z   "ownership": {},
+2026-09-25T03:35:55.2997536Z   "reasons": [
+2026-09-25T03:35:55.2997699Z     "Full source coverage"
+2026-09-25T03:35:55.2997872Z   ],
+2026-09-25T03:35:55.2998355Z   "coverage_note": "Full deduplicated source coverage requires barrier and four exact partitions to succeed."
+2026-09-25T03:35:55.2998729Z }
+2026-09-25T03:35:55.2998867Z ```
+2026-09-25T03:35:55.2998950Z 
+2026-09-25T03:35:55.4094747Z ##[group]Run actions/upload-artifact@v4
+2026-09-25T03:35:55.4094995Z with:
+2026-09-25T03:35:55.4095170Z   name: piping-e2e-selection
+2026-09-25T03:35:55.4095374Z   path: piping-e2e-plan.json
+2026-09-25T03:35:55.4095565Z   if-no-files-found: error
+2026-09-25T03:35:55.4095756Z   retention-days: 14
+2026-09-25T03:35:55.4095929Z   compression-level: 6
+2026-09-25T03:35:55.4096106Z   overwrite: false
+2026-09-25T03:35:55.4096279Z   include-hidden-files: false
+2026-09-25T03:35:55.4096475Z env:
+2026-09-25T03:35:55.4096620Z   CI: true
+2026-09-25T03:35:55.4096785Z   PLAYWRIGHT_HTML_OPEN: never
+2026-09-25T03:35:55.4096983Z   PLAYWRIGHT_WORKERS: 1
+2026-09-25T03:35:55.4097174Z ##[endgroup]
+2026-09-25T03:35:55.5387412Z (node:2709) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-25T03:35:55.5388561Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-25T03:35:55.5427608Z With the provided path, there will be 1 file uploaded
+2026-09-25T03:35:55.5431323Z Artifact name is valid!
+2026-09-25T03:35:55.5432083Z Root directory input is valid!
+2026-09-25T03:35:55.8681026Z Beginning upload of artifact content to blob storage
+2026-09-25T03:35:55.8825918Z (node:2709) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-25T03:35:56.0981736Z Uploaded bytes 3830
+2026-09-25T03:35:56.1586008Z Finished uploading artifact content to blob storage!
+2026-09-25T03:35:56.1587146Z SHA256 digest of uploaded artifact zip is 156013033ca642c2c89fbaf619c6dc97b16ceb64fcec1790a45cdc26b22a7565
+2026-09-25T03:35:56.1588706Z Finalizing artifact upload
+2026-09-25T03:35:56.4726557Z Artifact piping-e2e-selection.zip successfully finalized. Artifact ID 10845253483
+2026-09-25T03:35:56.4727686Z Artifact piping-e2e-selection has been successfully uploaded! Final size is 3830 bytes. Artifact ID is 10845253483
+2026-09-25T03:35:56.4735084Z Artifact download URL: https://github.com/sgttomas/chirality/actions/runs/36090867243/artifacts/10845253483
+2026-09-25T03:35:56.4964730Z Post job cleanup.
+2026-09-25T03:35:56.5762664Z [command]/usr/bin/git version
+2026-09-25T03:35:56.5814632Z git version 2.55.0
+2026-09-25T03:35:56.5864374Z Temporarily overriding HOME='/home/runner/work/_temp/82f44d80-4bc2-451b-852c-db766a821f82' before making global git config changes
+2026-09-25T03:35:56.5866138Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T03:35:56.5875158Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/chirality/chirality
+2026-09-25T03:35:56.6102266Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T03:35:56.6128791Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T03:35:56.6406800Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T03:35:56.6432656Z http.https://github.com/.extraheader
+2026-09-25T03:35:56.6440982Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-25T03:35:56.6504293Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T03:35:56.6781918Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T03:35:56.6814661Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T03:35:56.7352637Z Evaluate and set job outputs
+2026-09-25T03:35:56.7359835Z Set output 'mode'
+2026-09-25T03:35:56.7361249Z Set output 'numerical_required'
+2026-09-25T03:35:56.7362112Z Cleaning up orphan processes
+2026-09-25T03:35:56.7602220Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

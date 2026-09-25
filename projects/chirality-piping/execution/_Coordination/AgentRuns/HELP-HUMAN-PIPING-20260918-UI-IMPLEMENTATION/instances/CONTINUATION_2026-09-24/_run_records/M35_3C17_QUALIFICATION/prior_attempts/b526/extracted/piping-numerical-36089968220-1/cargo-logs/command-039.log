@@ -1,0 +1,50 @@
+[1m[92m   Compiling[0m proc-macro2 v1.0.106
+[1m[92m   Compiling[0m quote v1.0.45
+[1m[92m   Compiling[0m unicode-ident v1.0.24
+[1m[92m   Compiling[0m serde_core v1.0.228
+[1m[92m   Compiling[0m zmij v1.0.21
+[1m[92m   Compiling[0m serde v1.0.228
+[1m[92m   Compiling[0m serde_json v1.0.150
+[1m[92m   Compiling[0m itoa v1.0.18
+[1m[92m   Compiling[0m memchr v2.8.2
+[1m[92m   Compiling[0m syn v2.0.117
+[1m[92m   Compiling[0m serde_derive v1.0.228
+[1m[92m   Compiling[0m open_pipe_stress_library_import_document v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/library_import/library_import_document)
+[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 3.39s
+[1m[92m     Running[0m unittests src/lib.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/open_pipe_stress_library_import_document-348f7dc572b2f868)
+
+running 11 tests
+test tests::incomplete_provenance_lists_sorted_missing_fields ... ok
+test tests::item_level_status_overrides_provenance_status ... ok
+test tests::missing_library_metadata_and_records_block ... ok
+test tests::diagnostic_envelope_carries_pkg02_shape ... ok
+test tests::private_privacy_class_blocks_public_import_even_with_permissive_redistribution ... ok
+test tests::non_object_record_is_rejected ... ok
+test tests::nested_value_without_units_or_provenance_is_flagged ... ok
+test tests::private_only_is_blocked_for_public_visibility ... ok
+test tests::rejected_source_disposition_blocks_import ... ok
+test tests::token_parsers_reject_unsupported_inputs ... ok
+test tests::unaccepted_public_redistribution_is_flagged ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+[1m[92m     Running[0m tests/provenance_parity.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/provenance_parity-35c9b6b5798f083d)
+
+running 8 tests
+test missing_provenance_blocks_import_without_defaults ... ok
+test private_material_import_can_remain_local_with_tbd_rights ... ok
+test protected_suspected_metadata_quarantines_import ... ok
+test import_findings_map_to_pkg02_diagnostic_envelope ... ok
+test public_material_import_with_tbd_rights_is_rejected_for_review ... ok
+test public_component_import_requires_accepted_public_provenance ... ok
+test unit_metadata_is_preserved_for_imported_values ... ok
+test hanger_shared_cases_match_python_codes_paths_severities_and_outcomes ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+[1m[92m   Doc-tests[0m open_pipe_stress_library_import_document
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

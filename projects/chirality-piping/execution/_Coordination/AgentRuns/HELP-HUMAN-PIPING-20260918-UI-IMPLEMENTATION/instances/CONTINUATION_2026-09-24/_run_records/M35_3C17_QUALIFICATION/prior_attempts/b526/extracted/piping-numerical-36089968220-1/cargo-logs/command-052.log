@@ -1,0 +1,30 @@
+[1m[92m   Compiling[0m open_pipe_stress_report_generator v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_generator)
+[1m[92m   Compiling[0m open_pipe_stress_report_sections v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_sections)
+[1m[92m   Compiling[0m open_pipe_stress_report_renderer v0.1.0 (/home/runner/work/chirality/chirality/projects/chirality-piping/core/reporting/report_renderer)
+[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 1.15s
+[1m[92m     Running[0m unittests src/lib.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/open_pipe_stress_report_renderer-4aba759997a3f117)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+[1m[92m     Running[0m tests/render.rs (/home/runner/work/chirality/chirality/piping-numerical-evidence/target/debug/deps/render-c4b565f9fa07194b)
+
+running 8 tests
+test fixture_report_is_not_export_blocked ... ok
+test derived_print_view_names_canonical_hash_and_is_labeled ... ok
+test escaped_markup_cannot_inject_tags ... ok
+test fixture_report_renders_deterministic_single_file_html ... ok
+test template_surface_passes_protected_content_lint ... ok
+test prohibited_professional_claim_blocks_export ... ok
+test incomplete_report_is_export_blocked_with_visible_banner ... ok
+test renderable_input_round_trips_through_json ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+[1m[92m   Doc-tests[0m open_pipe_stress_report_renderer
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

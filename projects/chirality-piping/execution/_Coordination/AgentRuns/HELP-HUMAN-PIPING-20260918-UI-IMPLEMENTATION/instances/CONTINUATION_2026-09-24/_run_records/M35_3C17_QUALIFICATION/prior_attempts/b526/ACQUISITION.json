@@ -1,0 +1,109 @@
+{
+  "actor": "/root/m35_integration_review",
+  "parent": "/root",
+  "role": "TASK",
+  "time_utc": "2026-09-25T03:37:43.421595+00:00",
+  "run_id": 36089968220,
+  "expected_head": "b526aeb23c9f5bcc3cdb5c98efb449beb8e1339d",
+  "pr": 892,
+  "status": "completed",
+  "conclusion": "cancelled",
+  "requests": [
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36089968220",
+      "path": "run.json",
+      "sha256": "4104f0936c011e46ad5bc2bc9b4097e111fdabefa6c01bc4641f00e03b048b54"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36089968220/jobs?per_page=100",
+      "path": "jobs.json",
+      "sha256": "70aedac77a91739c6d6d9941078b06fc4bf803adf2c774b09a9e7aa25561b919"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/runs/36089968220/artifacts?per_page=100",
+      "path": "artifacts.json",
+      "sha256": "ba237724e3a35146c1e55143e06d887ea08f9944a30323864ccd1978aed28eab"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/pulls/892",
+      "path": "pr.json",
+      "sha256": "7b05d0ae0520ff6df745aae5229976d561234dcb370f6e772635a694faead938"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10846205017/zip",
+      "path": "piping-e2e-collection-shard-2-36089968220-1.zip",
+      "sha256": "943495ab1eac57d6e986a502b479a9047588945de5aabd2e6a374f62f1a36f5e"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10846080615/zip",
+      "path": "piping-e2e-collection-shard-4-36089968220-1.zip",
+      "sha256": "f20fce796f91aa00c6988755800001db00558d8f9f7844ddc6fce89237821091"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10845890673/zip",
+      "path": "piping-e2e-collection-shard-1-36089968220-1.zip",
+      "sha256": "606057d16b623dfa60ca4d15f4348688950f4a36776f611094d571553cde3de2"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10845510866/zip",
+      "path": "piping-e2e-collection-barrier-36089968220-1.zip",
+      "sha256": "f45c14b1dcd8cee2b8b35c98bbec58b11ef56a4ed58b8c5e12f6b3208b557a76"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10845492558/zip",
+      "path": "piping-e2e-collection-shard-3-36089968220-1.zip",
+      "sha256": "8ae9ae7f181339dddd2c05a2c56441856827b54e208186d2b3f4688dfb4df2bc"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10845336460/zip",
+      "path": "piping-e2e-selection.zip",
+      "sha256": "9997fd08aae36d28aea488a74d7e456fac8d1ab314ae975a420e3173aff1e617"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/artifacts/10845301866/zip",
+      "path": "piping-numerical-36089968220-1.zip",
+      "sha256": "dc166db9dd994a906fce7f7174f111ad9b3a657e3226dafa22853e9d80ebbcbb"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107930111294/logs",
+      "path": "job-107930111294.log",
+      "sha256": "2605ebc09cc79df97865af808349abf01d4b55a5881b23799bc5ee1484995544"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107930285136/logs",
+      "path": "job-107930285136.log",
+      "sha256": "39780831827241c41dacd8dc37289cc346fe728b86901afa59218d769f31322c"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107930285178/logs",
+      "path": "job-107930285178.log",
+      "sha256": "99cbf29e7dca7c615dc3147488c0bcbf58de815cede8b5c0ec47fb3dd6717b31"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107931118441/logs",
+      "path": "job-107931118441.log",
+      "sha256": "bcbdf8fc847841cfab8f4661812c033e38360bd4c71d1f42809cc08fcbabeba6"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107931118442/logs",
+      "path": "job-107931118442.log",
+      "sha256": "1736a96a31470555ef115d1c4c323e8ae3653caa2dd9300b1382b0071f6e6552"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107931118451/logs",
+      "path": "job-107931118451.log",
+      "sha256": "ee34f3606526b3cc19841bada3026af0b24695a4f5f0415c05bba02260dfd567"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107931118485/logs",
+      "path": "job-107931118485.log",
+      "sha256": "45e6c198cd6d4fd092a8303beb9feb2f8dec41aa4a8854628f4c97db468d7f07"
+    },
+    {
+      "endpoint": "repos/sgttomas/chirality/actions/jobs/107932880854/logs",
+      "path": "job-107932880854.log",
+      "sha256": "bbef3105e1333636f37f359ffc50e7800c0df42782bc7316ba2ffc263b9fb694"
+    }
+  ],
+  "limits": "Acquisition only; incomplete, cancelled, failed, or skipped execution is never promoted to PASS."
+}

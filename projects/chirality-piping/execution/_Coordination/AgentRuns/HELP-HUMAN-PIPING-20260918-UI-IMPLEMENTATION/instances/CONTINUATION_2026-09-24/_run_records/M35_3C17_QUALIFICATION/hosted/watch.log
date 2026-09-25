@@ -1,0 +1,1131 @@
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 9 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (1/4) (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 10 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (1/4) (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 11 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (1/4) (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 12 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (1/4) (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 13 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 14 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 15 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (2/4) (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 16 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+* Source remainder (3/4) (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (2/4) in 9m32s (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (2/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (2/4): .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 17 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Source remainder (4/4) (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  * Run isolated source remainder shard
+  * Retain candidate shard collection
+  * Upload failure artifacts
+  * Post Run ./.github/actions/setup-piping-e2e
+  * Post Run actions/checkout@v4
+✓ Source remainder (3/4) in 11m2s (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (2/4) in 9m32s (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (2/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (2/4): .github#1
+
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 18 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (4/4) in 11m46s (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (3/4) in 11m2s (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (2/4) in 9m32s (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+* Desktop E2E (source mode) (ID 107936490959)
+  ✓ Set up job
+  * Run actions/checkout@v4
+  * Require all planned coverage
+  * Post Run actions/checkout@v4
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (2/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (2/4): .github#1
+
+✓ codex/piping-generated-loads-20260924 Piping Desktop E2E sgttomas/chirality#892 · 36090867243
+Triggered via pull_request about 19 minutes ago
+
+JOBS
+✓ Select source coverage in 1m1s (ID 107933028027)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Test selection policy
+  ✓ Plan complete PR diff
+  ✓ Run actions/upload-artifact@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Accessibility barrier and selected coverage in 4m17s (ID 107933248530)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run accessibility first, then any reduced selection
+  ✓ Retain candidate collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Numerical cargo suite in 2m31s (ID 107933248584)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run dtolnay/rust-toolchain@1.97.1
+  ✓ Fetch locked dependencies and run offline numerical tests
+  ✓ Retain numerical candidate evidence
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (4/4) in 11m46s (ID 107934111870)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (3/4) in 11m2s (ID 107934111930)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (1/4) in 6m29s (ID 107934111951)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Source remainder (2/4) in 9m32s (ID 107934111987)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Run actions/download-artifact@v4
+  ✓ Run ./.github/actions/setup-piping-e2e
+  ✓ Run isolated source remainder shard
+  ✓ Retain candidate shard collection
+  - Upload failure artifacts
+  ✓ Post Run ./.github/actions/setup-piping-e2e
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+✓ Desktop E2E (source mode) in 42s (ID 107936490959)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Require all planned coverage
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Select source coverage: .github#5
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Select source coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Accessibility barrier and selected coverage: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Accessibility barrier and selected coverage: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Numerical cargo suite: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Numerical cargo suite: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (1/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (1/4): .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Source remainder (2/4): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Source remainder (2/4): .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Desktop E2E (source mode): .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Desktop E2E (source mode): .github#1
+
