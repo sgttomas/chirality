@@ -55,7 +55,7 @@ finalized (or dropped if the PRD successor lands first) at checkpoint 2.
 | `Impact_Assessment.md` | `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` |
 | `Amendment_Actions.csv` (PROPOSED) | `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2` |
 | `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
-| `Decision_Log.md` | `c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f` (after the checkpoint-3 package row, 2026-09-25; `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` after the checkpoint-2 acceptance, 2026-09-25; `7dcbc51dd30c66bb273e3528e8675e9adba317d974ec63a438ff816d15af371b` after the checkpoint-2 package row, 2026-09-25; `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
+| `Decision_Log.md` | `85676c5326da5446e62698c70760a2c55eea011bc4e2810727e3509f393f4d7b` (after the checkpoint-3 package row, 2026-09-25; `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` after the checkpoint-2 acceptance, 2026-09-25; `7dcbc51dd30c66bb273e3528e8675e9adba317d974ec63a438ff816d15af371b` after the checkpoint-2 package row, 2026-09-25; `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
 
 ## Pre-change audit snapshot hashes (written by the TASK child)
 
@@ -216,7 +216,7 @@ Live `_Decomposition/SOFTWARE_DECOMP.md` is revision 1.5 in pre-acceptance form 
 | Post-change audit | TASK audit-decomp | done: `COV_SCA005_POSTCHANGE_2026-09-25_1344` | `coverage_summary.json` `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` | re-audit after A4/B3 |
 | Pointers | SCOPE_CHANGE via HELP_HUMAN | unchanged | C1 | A6 after acceptance |
 | TM-PEC-023; README/STATUS; D-PEC-90 amendment; `projects/pec/AGENTS.md` L28/L170 | task-management; HELP_HUMAN; next scope change; instruction tranche | open | plan B8 | after checkpoint 3 |
-| Foreign notices (Root ×2; App and Piping `adapter.yaml`) | HELP_HUMAN | drafted in the B3 return; not written by B3 | — | HELP_HUMAN writes them |
+| Foreign notices (Root ×2; App and Piping `adapter.yaml`) | HELP_HUMAN | drafted in the B3 return; not written by B3 (outside its boundary) | — | HELP_HUMAN writes them in checkpoint-3 preparation, before or with the checkpoint-3 presentation (group-2 `DECISION.md` §Notices) |
 
 ### Active derivative-surface state
 
@@ -248,8 +248,8 @@ KTY remediation manifest and KTY metadata alignment: not applicable (SOFTWARE va
 | `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
 | `Post_Change_Coverage.json` | `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` |
 | `PRD_V2_3_SUCCESSOR_DIFF.md` | `153a4dedb4551102ffe20c26a4dd7d4d4dba9138b28ce47f2e0889925197eba2` |
-| `RUN_SUMMARY.md` | `89c1ed8c1660e5d0b7f962190e94a1660927146b8c7fbcf24c5492339144d984` |
-| `Decision_Log.md` | `c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f` |
+| `RUN_SUMMARY.md` | `e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a` |
+| `Decision_Log.md` | `85676c5326da5446e62698c70760a2c55eea011bc4e2810727e3509f393f4d7b` |
 | `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660` |
 | `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df` |
 | `CP2_CANDIDATE/_Decomposition/Deliverables.csv` | `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` |
@@ -257,7 +257,7 @@ KTY remediation manifest and KTY metadata alignment: not applicable (SOFTWARE va
 | `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` |
 | `CP2_CANDIDATE/docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` |
 
-Every checkpoint-1 and checkpoint-2 artifact above is byte-identical to its accepted hash; only `Decision_Log.md` and this file changed, additively, besides the three new A5 files.
+Every checkpoint-1 and checkpoint-2 artifact above is byte-identical to its accepted hash; besides the three new A5 files, only `Decision_Log.md` and this file changed: additive sections, with the front matter, this file's heading, the SCA005-CP3 row and the hash-table row updated in place (disclosed in the ninth amendment).
 
 ### State fields at checkpoint-3 preparation
 
@@ -278,10 +278,12 @@ Every checkpoint-1 and checkpoint-2 artifact above is byte-identical to its acce
 ### Remaining blockers and owner decisions
 
 1. Owner: Q-CP3-A (accept the audited poststate) and Q-CP3-1 (closure verdict), `RUN_SUMMARY.md` §"Checkpoint-3 owner question".
-2. On acceptance, HELP_HUMAN: record the act; A6 with the acceptance date (both `_LATEST.md` pointers; the decomposition's `status:`/`accepted:` lines and four date slots, slot hash rule); write the three foreign notices; refresh orientation surfaces.
+2. HELP_HUMAN, in checkpoint-3 preparation (group-2 `DECISION.md` §Notices), before or with presenting checkpoint 3: write the three foreign notices from the drafts in the B3 return (outside B3's write boundary; not written when B3 handed back), and commit brief `B3_SCA005_CHECKPOINT3.md` (`69c22967…11b17f`) to the run record's `briefs/`. On acceptance, HELP_HUMAN: record the act; A6 with the acceptance date (both `_LATEST.md` pointers; the decomposition's `status:`/`accepted:` lines and four date slots, slot hash rule); refresh orientation surfaces.
 3. On refusal: restore every Lane A path to its preimage, including the 22 A2 mirrors (COV-076); pointers stay on revision 1.4 / SCA-004 (`RUN_SUMMARY.md` §"Rollback on refusal").
 4. Evidence correction COV-072: B1 re-pins 42 `_CONTEXT.md`, not 40; the accepted plan's bytes are not edited.
 
 ### Next owning workflows
 
-HELP_HUMAN (owner checkpoint 3, then A6 and notices); PROJECT_SETUP under its own packet (A4 with B3; B1); dependency-extract (B3); WORKING_ITEMS with artifact gates (B4, B5); a later D-PEC source packet (B6); task-management (TM-PEC-023); the next PEC scope change (D-PEC-90 reliance text); `audit-decomp` re-run after A4/B3.
+HELP_HUMAN (foreign notices and the B3 brief now; owner checkpoint 3; then A6); PROJECT_SETUP under its own packet (A4 with B3; B1); dependency-extract (B3); WORKING_ITEMS with artifact gates (B4, B5); a later D-PEC source packet (B6); task-management (TM-PEC-023); the next PEC scope change (D-PEC-90 reliance text); `audit-decomp` re-run after A4/B3.
+
+Repair 2026-09-25 (WORKING_ITEMS B3, after verifier verdict 01, PASS WITH MINOR): `RUN_SUMMARY.md` now records the actual `git diff --check` result (CRLF in the accumulator output only), states where the B3 brief is held, places the foreign notices in checkpoint-3 preparation as group-2 `DECISION.md` §Notices says, describes the in-place edits, and closes out audit COV-075 and the deferred C4 isolated-node sub-expectation; this file's items above are aligned. Hashes: `RUN_SUMMARY.md` 89c1ed8c1660e5d0b7f962190e94a1660927146b8c7fbcf24c5492339144d984 → e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a; `Decision_Log.md` c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f → 85676c5326da5446e62698c70760a2c55eea011bc4e2810727e3509f393f4d7b (only the two `RUN_SUMMARY.md` hash citations changed). No Lane A byte changed.

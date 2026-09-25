@@ -26,7 +26,9 @@ recorded in `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/` with
 register row `D-PEC-92`, which opens PEC's write fence for Lane A except A4.
 Prepared by WORKING_ITEMS node B3 of HELP_HUMAN run
 `HELP-HUMAN-PEC-20260923-SCA005` (brief `B3_SCA005_CHECKPOINT3.md`, SHA-256
-`69c2296749cee727e1bd84b13f7a4ebcad93400f8ceb6267519e79601811b17f`) under
+`69c2296749cee727e1bd84b13f7a4ebcad93400f8ceb6267519e79601811b17f`; held by
+HELP_HUMAN, to be committed at the run record's `briefs/B3_SCA005_CHECKPOINT3.md`)
+under
 `chirality-root:bundled:workflow:scope-change` (`WORKFLOW.md`
 `58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90`, `contract.md`
 `4453a719f1588c4eba08bdb4a979140ff3541ed5a29f04477ea58a844f344d02`,
@@ -113,7 +115,7 @@ not performed**: no pointer moved.
 | `Supersession_Map.csv` | `4ca705ba090cafb9a74870a0095be490c1d507149767dac32ec52879c487240c` | `python3 tools/coordination/accumulate_supersession_map.py --prior-map …/SCA-004_2026-08-02_2325/Supersession_Map.csv --delta …/SCA-005_2026-09-23_2139/Supersession_Delta.csv --output-map …/SCA-005_2026-09-23_2139/Supersession_Map.csv`: exit 0, 29 rows, 0 findings (SCA-004 prior map is header-only, `9b62e987…fcb9`) |
 | `Post_Change_Coverage.json` | `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` | byte copy of the C4 audit `coverage_summary.json` (`cmp` identical) |
 | `RUN_SUMMARY.md` | this file | — |
-| `Decision_Log.md`, `Handoff_State.md` | recorded in `Handoff_State.md` | additive updates |
+| `Decision_Log.md`, `Handoff_State.md` | recorded in `Handoff_State.md` | additive sections, with the front matter, `Handoff_State.md` heading, the SCA005-CP3 row and the hash-table row updated in place (disclosed in the ninth amendment) |
 
 ## Validation (Lane C)
 
@@ -125,7 +127,12 @@ files); all 32 A1–A3 postimages equal their planned hashes (slot rule
 applied); no checkpoint-1/2 artifact in this folder, no `checkpoint_snapshots/**`
 file, no pointer, no other `_STATUS.md` or `_CONTEXT.md`, no SOW,
 `Dependencies.csv`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `v2/**` or foreign
-path changed; `git diff --check` clean. Final figures are in the B3 return.
+path changed. `git diff --check 2b0572fe0..HEAD` flags 30 lines, all in
+`Supersession_Map.csv`: the deterministic accumulator writes CRLF line endings
+(`csv.DictWriter` default); the file is byte-identical to a fresh accumulator
+run and A5 forbids hand-writing it (10 of 29 committed `Supersession_Map.csv`
+files in the repository are CRLF). No other path is flagged. Final figures
+are in the B3 return.
 
 **C2 structure.**
 `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict`:
@@ -175,14 +182,21 @@ SOW-095 and SOW-096 respectively — the rules hold.
   **COV-072 — DEFECT in the accepted plan's stated count** (below).
 - Retired-row representation: confirmed on the real files — no blocker and no
   warning (4 Check-6 and 4 Check-7 INFO only).
-- Pre/post: forward deliverable coverage 100 % → 96.97 % (2 undeclared-folder
-  units, A4); context fidelity 100 % both; unmapped IN rows / active
+- Pre/post: forward deliverable coverage 100 % → 96.97 % (2 declared units
+  without folders, A4); context fidelity 100 % both; unmapped IN rows / active
   deliverables 11 / 9 → 0 / 0; lifecycle 26 INITIALIZED / 28 OPEN / 4 CHECKING
   / 2 IN_PROGRESS / 4 RETIRED; 62 findings carried, 6 resolved, 4 changed, 16
   new (15 expected, 1 defect).
 - Audit containment verified by the manager: only the COV folder was added;
   its nine files hash as the child reported; `DecompCoverage/_LATEST.md`
   unchanged (`0084d218…7432`).
+- COV-075 (snapshot mid-A5; `Handoff_State.md` heading still
+  "Checkpoint-group-1") is superseded by this A5 completion; the immutable
+  audit keeps it as observed.
+- The plan's §C4 expectation of closure-tool isolated-node warnings for the
+  four retired deliverables cannot be observed before B3: their registers
+  still hold 18 ACTIVE rows (audit COV-080). That sub-expectation is deferred
+  with B3.
 
 **Evidence correction (COV-072), not a plan change.** `Propagation_Plan.md`
 (package-role table L45, B1 L802, derivative-status table L904) and brief B3
@@ -233,7 +247,7 @@ record and summarized in the B3 return.
 | B6 — registry source packet (`loops.schema.json` v2, feed profiles, `RegisteredLoop`) | later D-PEC packet | owner packet |
 | B7 — P1 fixture suites | DEL-02-08/09/03 SOWs | after A4 |
 | B8 — TM-PEC-023 `RESOLVED_BY_DECISION`; D-PEC-90 reliance amendment; README/STATUS refresh; `projects/pec/AGENTS.md` L28/L170 and Shared Runtime Boundary instruction tranche | task-management; next PEC scope change; HELP_HUMAN; instruction tranche | after checkpoint 3 |
-| Foreign notices (RETIRED method/tool mismatch and `LOOP_INIT` to Root; `adapter.yaml` to App and Piping) | HELP_HUMAN | checkpoint-3 preparation (drafts in the B3 return) |
+| Foreign notices (RETIRED method/tool mismatch and `LOOP_INIT` to Root; `adapter.yaml` to App and Piping) | HELP_HUMAN (outside B3's write boundary) | checkpoint-3 preparation, before or with the presentation of checkpoint 3 (group-2 `DECISION.md` §Notices); drafts in the B3 return; not written when B3 handed back — HELP_HUMAN states their status when it asks the owner |
 | Re-audit (`audit-decomp`) after A4 and B3 | TASK | after A4/B3 |
 
 ## Rollback on refusal
@@ -255,7 +269,7 @@ repaired only through a refreshed accepted plan.
 
 Modified: the 32 Lane A paths above; `_ScopeChange/SCA-005_2026-09-23_2139/`
 (`Supersession_Map.csv`, `Post_Change_Coverage.json`, `RUN_SUMMARY.md` new;
-`Decision_Log.md`, `Handoff_State.md` updated additively); new
+`Decision_Log.md`, `Handoff_State.md` updated as disclosed above); new
 `_Evaluation/DecompCoverage/COV_SCA005_POSTCHANGE_2026-09-25_1344/`; run-record
 returns `B3_SCA005_CHECKPOINT3.md` and `B3_VERIFIER_VERDICT_NN.md`. Branch
 `claude/pec-sca005-cp3-execution` under the owner's standing Git authorization
