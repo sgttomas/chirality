@@ -12,3 +12,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | NB-2 | "M2, M3 and M6 apply relative to that bound" misfits M6 (fixed `10**4000`) | Ruling reworded: M2 and M3 relative to the bound; M6 unchanged |
 | NB-3 | F11 must exist before merge; G13 locus omitted it | This file; G13 locus updated |
 | NB-4 | Response-size routing to H6 visible only in the ruling | H6 row now names response-size budgets |
+
+## Final-head confirmation of `3dedb4c52bfa09fef89b8e12b43fa71e9794ef3d`
+
+Same reviewer, re-reviewing the repair commit `ca85173ad..3dedb4c52`. **Verdict: PASS.** Each repair matches NB-1..NB-4 and stays within the four granted paths with Grant, Limits and administrative writes unchanged; proposal bytes unchanged (`5c044b09…13ec`); `LOOP_RECEIPTS.md` byte-identical to the reviewed head; this transcription is fair; receipts validator VALID, `git diff --check` clean, decomposition `--strict` exit 0; scope limited to the seven record files. This section is added append-only after that head; no other byte changes.
