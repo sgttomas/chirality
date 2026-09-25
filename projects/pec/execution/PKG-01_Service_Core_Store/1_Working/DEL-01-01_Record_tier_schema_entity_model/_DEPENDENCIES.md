@@ -23,7 +23,9 @@ Register storage is deliverable-local by owner ruling (no central register).
 - DEL-04-01 (Loop orientation return) — CONSUMES [E-P11]
 - DEL-05-01 (Gate precondition evaluators (Explain-shaped)) — CONSUMES [E-P12]
 - DEL-05-02 (Cross-loop decision slate) — CONSUMES [E-P13]
-- DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-P14]
+- ~~DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-P14]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-07-05 retired (A-36); register row `DEP-07-05-005` kept with `Status=RETIRED`
+- DEL-02-08 (Work-graph parser) — CONSUMES [E-P79]
+- DEL-02-09 (MEMORY run-index parser) — CONSUMES [E-P80]
 
 ## Non-gating constraints and register-wide rules
 

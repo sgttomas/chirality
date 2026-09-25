@@ -15,9 +15,9 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 - DEL-07-01 (Idempotent event ingest + durable message store) — CONSUMES [E-A01]
 - DEL-07-03 (Hooks CLI bridge) — CONSUMES [E-A02]
-- DEL-07-02 (Daemon SSE subscriber bridge) — CONSUMES [E-A03]
-- DEL-07-04 (cmux socket adapter (optional)) — CONSUMES [E-A04]
-- DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-N01]
+- ~~DEL-07-02 (Daemon SSE subscriber bridge) — CONSUMES [E-A03]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-07-02 retired (A-35); register row `DEP-07-02-003` kept with `Status=RETIRED`
+- ~~DEL-07-04 (cmux socket adapter (optional)) — CONSUMES [E-A04]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-07-04 retired (A-78); register row `DEP-07-04-003` kept with `Status=RETIRED`
+- ~~DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-N01]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-07-05 retired (A-36); register row `DEP-07-05-003` kept with `Status=RETIRED`
 
 ## Non-gating constraints and register-wide rules
 

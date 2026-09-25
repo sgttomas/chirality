@@ -1,0 +1,47 @@
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/Dependencies.csv
+  before=0 after=3 superset=True ACTIVE+=['DEP-02-08-001', 'DEP-02-08-002', 'DEP-02-08-003'] ACTIVE-=[]
+  quote DEP-02-08-001 (ANCHOR, D-PEC-62 locus-descriptor form 'PackageID PKG-02'; not a verbatim-quote row) in execution/_Decomposition/Deliverables.csv: NOT VERBATIM (expected for this form)
+  quote DEP-02-08-002 (ANCHOR, D-PEC-62 locus-descriptor form 'DeliverableIDs include DEL-02-08'; not a verbatim-quote row) in execution/_Decomposition/ScopeLedger.csv: NOT VERBATIM (expected for this form)
+  quote DEP-02-08-003 (EXECUTION) in execution/_Decomposition/Deliverables.csv: VERBATIM
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/Dependencies.csv
+  before=0 after=3 superset=True ACTIVE+=['DEP-02-09-001', 'DEP-02-09-002', 'DEP-02-09-003'] ACTIVE-=[]
+  quote DEP-02-09-001 (ANCHOR, D-PEC-62 locus-descriptor form 'PackageID PKG-02'; not a verbatim-quote row) in execution/_Decomposition/Deliverables.csv: NOT VERBATIM (expected for this form)
+  quote DEP-02-09-002 (ANCHOR, D-PEC-62 locus-descriptor form 'DeliverableIDs include DEL-02-09'; not a verbatim-quote row) in execution/_Decomposition/ScopeLedger.csv: NOT VERBATIM (expected for this form)
+  quote DEP-02-09-003 (EXECUTION) in execution/_Decomposition/Deliverables.csv: VERBATIM
+projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv
+  before=14 after=16 superset=True ACTIVE+=['DEP-03-01-015', 'DEP-03-01-016'] ACTIVE-=['DEP-03-01-014']
+  changed DEP-03-01-007: ['EvidenceFile', 'EvidenceQuote', 'LastSeen', 'Notes', 'SourceRef']
+  changed DEP-03-01-014: ['LastSeen', 'Notes', 'Status']
+  quote DEP-03-01-007 (EXECUTION) in docs/PRD.md: VERBATIM
+  quote DEP-03-01-015 (EXECUTION) in docs/PRD.md: VERBATIM
+  quote DEP-03-01-016 (EXECUTION) in docs/PRD.md: VERBATIM
+projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv
+  before=6 after=6 superset=True ACTIVE+=[] ACTIVE-=['DEP-06-04-001', 'DEP-06-04-002', 'DEP-06-04-003', 'DEP-06-04-004', 'DEP-06-04-005', 'DEP-06-04-006']
+  changed DEP-06-04-001: ['LastSeen', 'Notes', 'Status']
+  changed DEP-06-04-002: ['LastSeen', 'Notes', 'Status']
+  changed DEP-06-04-003: ['LastSeen', 'Notes', 'Status']
+  changed DEP-06-04-004: ['LastSeen', 'Notes', 'Status']
+  changed DEP-06-04-005: ['LastSeen', 'Notes', 'Status']
+  changed DEP-06-04-006: ['LastSeen', 'Notes', 'Status']
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv
+  before=4 after=4 superset=True ACTIVE+=[] ACTIVE-=['DEP-07-02-001', 'DEP-07-02-002', 'DEP-07-02-003', 'DEP-07-02-004']
+  changed DEP-07-02-001: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-02-002: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-02-003: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-02-004: ['LastSeen', 'Notes', 'Status']
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv
+  before=4 after=4 superset=True ACTIVE+=[] ACTIVE-=['DEP-07-04-001', 'DEP-07-04-002', 'DEP-07-04-003', 'DEP-07-04-004']
+  changed DEP-07-04-001: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-04-002: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-04-003: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-04-004: ['LastSeen', 'Notes', 'Status']
+projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv
+  before=4 after=4 superset=True ACTIVE+=[] ACTIVE-=['DEP-07-05-001', 'DEP-07-05-002', 'DEP-07-05-003', 'DEP-07-05-005']
+  changed DEP-07-05-001: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-05-002: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-05-003: ['LastSeen', 'Notes', 'Status']
+  changed DEP-07-05-005: ['LastSeen', 'Notes', 'Status']
+projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv
+  before=8 after=8 superset=True ACTIVE+=[] ACTIVE-=['DEP-09-05-005']
+  changed DEP-09-05-005: ['LastSeen', 'Notes', 'Status']
+TOTAL ACTIVE gained=8 RETIRED rows now=20 changed existing rows=21 ALL_OK(superset + EXECUTION quote currency)=True
