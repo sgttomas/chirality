@@ -141,8 +141,8 @@ class ContentMinimalGuard:
 
         failures: list[AdmissionFailure] = []
         candidate_record_id = getattr(candidate, "record_id", None)
-        record_id = candidate_record_id if isinstance(candidate_record_id, str) else "<unknown>"
-        if not isinstance(candidate_record_id, str) or not _IDENTIFIER.fullmatch(candidate_record_id):
+        record_id = candidate_record_id if _is_identifier(candidate_record_id) else "<unknown>"
+        if not _is_identifier(candidate_record_id):
             failures.append(
                 AdmissionFailure(record_id, "<record_id>", "INVALID_IDENTIFIER", "record id must be a bounded identifier")
             )
@@ -158,23 +158,22 @@ class ContentMinimalGuard:
                 AdmissionFailure(record_id, "<source_sha>", "SOURCE_CITATION", "source SHA must contain a valid explicit algorithm and digest")
             )
         candidate_fields = getattr(candidate, "fields", None)
-        if not isinstance(candidate_fields, tuple) or not candidate_fields:
+        if type(candidate_fields) is not tuple or not candidate_fields:
             failures.append(
                 AdmissionFailure(record_id, "<record>", "EMPTY_RECORD", "at least one guarded metadata field is required")
             )
 
         guarded_fields: list[GuardedField] = []
         names: set[str] = set()
-        if isinstance(candidate_fields, tuple):
+        if type(candidate_fields) is tuple:
             for index, field in enumerate(candidate_fields):
                 fallback = f"<field:{index}>"
                 if type(field) is not MetadataField:
                     failures.append(AdmissionFailure(record_id, fallback, "FIELD_TYPE", "expected MetadataField"))
                     continue
                 candidate_name = getattr(field, "name", None)
-                field_name = candidate_name if isinstance(candidate_name, str) else fallback
-                if not isinstance(candidate_name, str) or not _IDENTIFIER.fullmatch(candidate_name):
-                    failures.append(AdmissionFailure(record_id, field_name, "INVALID_FIELD_NAME", "field name must be a bounded identifier"))
+                if not _is_identifier(candidate_name):
+                    failures.append(AdmissionFailure(record_id, fallback, "INVALID_FIELD_NAME", "field name must be a bounded identifier"))
                     continue
                 if candidate_name in names:
                     failures.append(AdmissionFailure(record_id, candidate_name, "DUPLICATE_FIELD", "field name occurs more than once"))
@@ -284,13 +283,17 @@ def _validated_state(value: object) -> str | None:
     return None
 
 
+def _is_identifier(value: object) -> bool:
+    return type(value) is str and _IDENTIFIER.fullmatch(value) is not None
+
+
 def _valid_hex(value: object, length: int) -> bool:
-    return isinstance(value, str) and len(value) == length and bool(_LOWER_HEX.fullmatch(value))
+    return type(value) is str and len(value) == length and bool(_LOWER_HEX.fullmatch(value))
 
 
 def _repository_path_problem(value: object) -> str | None:
-    if not isinstance(value, str) or not value:
-        return "path must be a non-empty string"
+    if type(value) is not str or not value:
+        return "path must be a non-empty exact str"
     if _PATH_FORBIDDEN.search(value):
         return "path must be single-line POSIX text without control characters or backslash"
     # Unbound str methods: a forged str subclass cannot override the measurement.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import inspect
 import sqlite3
 import subprocess
@@ -47,6 +48,72 @@ def forged_path(value: object) -> RepositoryPath:
     path = object.__new__(RepositoryPath)
     object.__setattr__(path, "value", value)
     return path
+
+
+SUBCLASS_PAYLOAD = "SECRET FILE BODY\n+diff line two"
+
+
+class SubclassPayload(str):
+    """A str subclass whose adaptation and rendering hooks return other text."""
+
+    def __conform__(self, protocol: object) -> str:
+        return SUBCLASS_PAYLOAD
+
+    def __format__(self, format_spec: str) -> str:
+        return SUBCLASS_PAYLOAD
+
+    def __str__(self) -> str:
+        return SUBCLASS_PAYLOAD
+
+    def __repr__(self) -> str:
+        return SUBCLASS_PAYLOAD
+
+
+class MethodLiar(str):
+    """A str subclass overriding the methods the normalization checks call."""
+
+    __hash__ = str.__hash__
+
+    def startswith(self, *args: object, **kwargs: object) -> bool:  # type: ignore[override]
+        return False
+
+    def __ne__(self, other: object) -> bool:
+        return False
+
+    def split(self, *args: object, **kwargs: object) -> list[str]:  # type: ignore[override]
+        return ["liar"]
+
+
+class LengthLiar(str):
+    """A str subclass whose len() reports a digest length it does not have."""
+
+    def __len__(self) -> int:
+        return 40
+
+
+class LyingTuple(tuple):
+    """A tuple subclass that reports one item and iterates none."""
+
+    def __len__(self) -> int:
+        return 1
+
+    def __iter__(self):  # type: ignore[no-untyped-def]
+        return iter(())
+
+
+class ClassSpoof:
+    """A non-str object whose __class__ claims to be str."""
+
+    @property  # type: ignore[misc]
+    def __class__(self):  # type: ignore[no-untyped-def,override]
+        return str
+
+
+class ConformingInt(int):
+    """An int subclass whose adaptation hook returns text."""
+
+    def __conform__(self, protocol: object) -> str:
+        return SUBCLASS_PAYLOAD
 
 
 def rejection_corpus() -> tuple[tuple[str, tuple[MetadataField, ...]], ...]:
@@ -191,11 +258,11 @@ class ContentMinimalGuardTests(unittest.TestCase):
             [(item.record_id, item.field_name, item.code) for item in located.failures],
             [
                 ("<input:1>", "<record>", "RECORD_TYPE"),
-                ("bad id!", "<record_id>", "INVALID_IDENTIFIER"),
+                ("<input:2>", "<record_id>", "INVALID_IDENTIFIER"),
                 ("bad-source", "<source_path>", "SOURCE_CITATION"),
                 ("empty", "<record>", "EMPTY_RECORD"),
                 ("field-type", "<field:0>", "FIELD_TYPE"),
-                ("field-name", "bad name", "INVALID_FIELD_NAME"),
+                ("field-name", "<field:0>", "INVALID_FIELD_NAME"),
                 ("duplicate-field", "count", "DUPLICATE_FIELD"),
                 ("unknown-class", "value", "UNKNOWN_FIELD_CLASS"),
                 ("invalid-value", "count", "INVALID_VALUE"),
@@ -299,6 +366,7 @@ class ContentMinimalGuardTests(unittest.TestCase):
             MetadataField("raw_sha", FieldClass.SHA, "a" * 64),
             MetadataField("raw_hash", FieldClass.HASH, "b" * 64),
             MetadataField("raw_state", FieldClass.STATE, "IN_PROGRESS"),
+            MetadataField("conforming", FieldClass.COUNT, ConformingInt(3)),
         )
         for index, field in enumerate(invalid_values):
             with self.subTest(field=field.name):
@@ -370,6 +438,32 @@ class ContentMinimalGuardTests(unittest.TestCase):
             ShaDigest(ShaAlgorithm.SHA256, "A" * 64)
         with self.assertRaises(ValueError):
             ContentHash(HashAlgorithm.BLAKE2B_256, "a" * 63)
+        with self.assertRaises(ValueError):
+            RepositoryPath(SubclassPayload("docs/readme.md"))
+        with self.assertRaises(ValueError):
+            RepositoryPath(MethodLiar("../../etc/passwd"))
+        with self.assertRaises(ValueError):
+            ShaDigest(ShaAlgorithm.SHA1, SubclassPayload("b" * 40))
+        with self.assertRaises(ValueError):
+            ContentHash(HashAlgorithm.BLAKE2B_256, SubclassPayload("c" * 64))
+
+        guard_path = SRC_ROOT / "pec_v2" / "core" / "content_minimal_guard.py"
+        guard_tree = ast.parse(guard_path.read_text(encoding="utf-8"), filename=str(guard_path))
+        loose_type_checks = [
+            node.lineno
+            for node in ast.walk(guard_tree)
+            if isinstance(node, ast.Call)
+            and (
+                (isinstance(node.func, ast.Name) and node.func.id == "isinstance")
+                or (isinstance(node.func, ast.Attribute) and node.func.attr == "isinstance")
+            )
+            and (
+                len(node.args) < 2
+                or {"str", "int", "tuple"}
+                & {inner.id for inner in ast.walk(node.args[1]) if isinstance(inner, ast.Name)}
+            )
+        ]
+        self.assertEqual(loose_type_checks, [], "guard must use exact type checks for str, int, and tuple")
 
     def test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing(self) -> None:
         """VER-004/008: forged typed shells cannot bypass admission domains."""
@@ -447,6 +541,101 @@ class ContentMinimalGuardTests(unittest.TestCase):
         )
         self.assert_no_persisted_residue(
             (MULTILINE_PATH_FIXTURE, "line one", "+line two", "../escape", "../../prose", "PROSE")
+        )
+
+        # D-PEC-89 R9/R10: non-exact caller strings and containers, and invalid identifiers.
+        count = MetadataField("count", FieldClass.COUNT, 1)
+        valid_source = RepositoryPath("projects/pec/source.md")
+        exact_type_batch: tuple[object, ...] = (
+            MetadataRecord(cast(str, SubclassPayload("subclass-record-id")), valid_source, (count,)),
+            self.record("subclass-field-name", MetadataField(cast(str, SubclassPayload("count")), FieldClass.COUNT, 1)),
+            MetadataRecord(
+                "subclass-source-path",
+                cast(RepositoryPath, forged(RepositoryPath, value=SubclassPayload("docs/source.md"))),
+                (count,),
+            ),
+            MetadataRecord(
+                "subclass-source-sha",
+                valid_source,
+                (count,),
+                cast(ShaDigest, forged(ShaDigest, algorithm=ShaAlgorithm.SHA256, hex_digest=SubclassPayload("a" * 64))),
+            ),
+            self.record(
+                "subclass-path",
+                MetadataField("locator", FieldClass.PATH, cast(object, forged(RepositoryPath, value=SubclassPayload("docs/a.md")))),
+            ),
+            self.record(
+                "subclass-sha",
+                MetadataField(
+                    "commit",
+                    FieldClass.SHA,
+                    cast(object, forged(ShaDigest, algorithm=ShaAlgorithm.SHA1, hex_digest=SubclassPayload("b" * 40))),
+                ),
+            ),
+            self.record(
+                "subclass-hash",
+                MetadataField(
+                    "snapshot",
+                    FieldClass.HASH,
+                    cast(object, forged(ContentHash, algorithm=HashAlgorithm.BLAKE2B_256, hex_digest=SubclassPayload("c" * 64))),
+                ),
+            ),
+            self.record(
+                "liar-path",
+                MetadataField("locator", FieldClass.PATH, cast(object, forged(RepositoryPath, value=MethodLiar("../../etc/passwd")))),
+            ),
+            MetadataRecord(
+                "liar-source-path",
+                cast(RepositoryPath, forged(RepositoryPath, value=MethodLiar("../../etc/passwd"))),
+                (count,),
+            ),
+            self.record(
+                "length-liar",
+                MetadataField(
+                    "commit",
+                    FieldClass.SHA,
+                    cast(object, forged(ShaDigest, algorithm=ShaAlgorithm.SHA1, hex_digest=LengthLiar("d" * 400))),
+                ),
+            ),
+            MetadataRecord("lying-tuple", valid_source, cast(tuple[MetadataField, ...], LyingTuple((count,)))),
+            MetadataRecord(cast(str, ClassSpoof()), valid_source, (count,)),
+            MetadataRecord(SUBCLASS_PAYLOAD, valid_source, (count,)),
+            self.record("payload-field-name", MetadataField(SUBCLASS_PAYLOAD, FieldClass.COUNT, 1)),
+        )
+        exact = self.store.admit_batch(cast(tuple[MetadataRecord, ...], exact_type_batch))
+        self.assertEqual((exact.attempted, exact.accepted, exact.rejected), (14, 0, 14))
+        self.assertEqual(
+            [(failure.record_id, failure.field_name, failure.code) for failure in exact.failures],
+            [
+                ("<input:0>", "<record_id>", "INVALID_IDENTIFIER"),
+                ("subclass-field-name", "<field:0>", "INVALID_FIELD_NAME"),
+                ("subclass-source-path", "<source_path>", "SOURCE_CITATION"),
+                ("subclass-source-sha", "<source_sha>", "SOURCE_CITATION"),
+                ("subclass-path", "locator", "INVALID_VALUE"),
+                ("subclass-sha", "commit", "INVALID_VALUE"),
+                ("subclass-hash", "snapshot", "INVALID_VALUE"),
+                ("liar-path", "locator", "INVALID_VALUE"),
+                ("liar-source-path", "<source_path>", "SOURCE_CITATION"),
+                ("length-liar", "commit", "INVALID_VALUE"),
+                ("lying-tuple", "<record>", "EMPTY_RECORD"),
+                ("<input:11>", "<record_id>", "INVALID_IDENTIFIER"),
+                ("<input:12>", "<record_id>", "INVALID_IDENTIFIER"),
+                ("payload-field-name", "<field:0>", "INVALID_FIELD_NAME"),
+            ],
+        )
+        for failure in exact.failures:
+            for attribute in ("record_id", "field_name", "code", "message", "constraint"):
+                value = getattr(failure, attribute)
+                if attribute == "constraint" and value is None:
+                    continue
+                with self.subTest(failure=failure.code, attribute=attribute):
+                    self.assertIs(type(value), str)
+                    for rendering in (value, f"{value}", repr(value)):
+                        self.assertNotIn("SECRET FILE BODY", rendering)
+                        self.assertNotIn("+diff line two", rendering)
+        self.assertEqual(self.store.read_all(), ())
+        self.assert_no_persisted_residue(
+            (SUBCLASS_PAYLOAD, "SECRET FILE BODY", "+diff line two", "etc/passwd", "d" * 400)
         )
 
 
