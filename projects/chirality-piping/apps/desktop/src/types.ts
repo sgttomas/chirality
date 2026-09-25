@@ -102,7 +102,21 @@ export type EquivalentStaticGenerationInput = {
   provenance?: string;
 };
 
+export type PressureRegionInput = {
+  id: string;
+  member_pipe_ids: string[];
+  pressure_basis: string;
+  pressure: QuantityValue;
+  terminals: Array<{
+    node_ref: string;
+    closure_transfer: "transfers_to_wall" | "separately_supported_or_compensated";
+    provenance: string;
+  }>;
+  provenance: string;
+};
+
 export type PreviewModel = {
+  pressure_contract?: { version: string; mode: string };
   schema_version: string;
   document_kind: string;
   data_boundary: Record<string, string>;
@@ -121,13 +135,16 @@ export type PreviewModel = {
     id: string;
     label: string;
     elastic_modulus: { value: number; unit: string };
-    shear_modulus: { value: number; unit: string };
+    shear_modulus?: { value: number; unit: string };
+    constitutive_basis?: string;
+    poisson_ratio?: QuantityValue;
     thermal_expansion_coefficient?: { value: number; unit: string };
     temperature_points?: Array<{
       id: string;
       temperature?: QuantityValue;
       elastic_modulus?: QuantityValue;
       shear_modulus?: QuantityValue;
+      poisson_ratio?: QuantityValue;
       thermal_expansion_coefficient?: QuantityValue;
       provenance?: string;
     }>;
@@ -227,6 +244,7 @@ export type PreviewModel = {
     status: string;
     provenance: string;
     primitive_loads?: Array<Record<string, unknown>>;
+    pressure_regions?: PressureRegionInput[];
     /** Optional exact user-entered modulus basis (DEC-068 item 1). */
     modulus_basis_ref?: string;
     /** Optional DEC-077 solve temperature for bounded E/alpha interpolation. */
@@ -284,7 +302,28 @@ export type DesignKnowledge = {
   diagnostics: Diagnostic[];
 };
 
+export type NumericalQualityStatus = "not_assessed" | "checks_passed" | "sensitive" | "unresolved" | "failed";
+export type NumericalQuality = {
+  value_representation: "finite_binary64";
+  publication_quantization: "none";
+  integrity_policy: "M03-INTEGRITY-v1";
+  status: NumericalQualityStatus;
+  cases: Array<{
+    basis_ref: ResultBasisRef;
+    structural_status: "passive_model_basis" | "physical_mechanism_witnessed" | "negative_energy_witnessed" | "numerically_unresolved";
+    solve_quality: NumericalQualityStatus;
+    model_matrix_fidelity: "represented_equations_retained" | "assembly_loss_detected" | "assembly_uncertainty" | "not_assessed";
+    accuracy_evidence: "not_claimed" | "reference_verified" | "unresolved";
+    evidence_refs: string[];
+  }>;
+};
 export type MechanicsResult = {
+  contract_evidence?: Record<string, unknown>;
+  /** Preserved producer receipt; eligibility requires independently captured invocation. */
+  source_block_recovery?: unknown;
+  producer?: { component_name: string; component_version: string; semantic_contract_id: string };
+  numerical_quality?: NumericalQuality;
+  formulation_basis?: { profile_id: string; limitations: string[] };
   schema_version: string;
   document_kind: string;
   run_id: string;
@@ -433,6 +472,9 @@ export type AnalysisRunEnvelope = {
   objectives: string[];
   run_contract_status: Record<string, string>;
   analysis_run: {
+    /** Retained method evidence, never a live invocation credential. */
+    source_block_recovery?: unknown;
+    contract_evidence?: Record<string, unknown>;
     run_id: string;
     run_name: string;
     run_kind: string;
@@ -627,6 +669,7 @@ export type AgentProposal = {
 };
 
 export type EditorOperationObjectType =
+  | "Model"
   | "Material"
   | "Section"
   | "Node"

@@ -1,3 +1,6 @@
+import { loadPreviewModel, loadBundledMechanicsReference, hasNativeMechanicsInvocation } from "../../services/previewService";
+import { buildAnalysisRunV03, modelLoadBasisRefs } from "../../services/analysisRunCompatibility";
+import { canonicalSha256HexCheckedV1 } from "../../services/hashService";
 // Rider coverage for TP-SEAM-CORPUS-001 (operation-seam unification plan §3
 // T1 rider; assessment §5.3): when the mechanics result summary does not
 // carry location references, the Local FEA handoff package must emit an
@@ -8,7 +11,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import type { AnalysisRunEnvelope, MechanicsResult, PreviewModel } from "../../types";
-import { LocalFeaHandoffPanel } from "./LocalFeaHandoffPanel";
+import { LocalFeaHandoffPanel, buildLocalFeaHandoffPacket } from "./LocalFeaHandoffPanel";
 
 function inventedModel(): PreviewModel {
   return {
@@ -68,6 +71,7 @@ function inventedResult(
 
 function inventedAnalysisRun(): AnalysisRunEnvelope {
   return {
+    schema_version: "0.1.0",
     analysis_run: {
       run_id: "run:rider-test-001",
       run_name: "Invented rider run",
@@ -216,5 +220,38 @@ describe("LocalFeaHandoffPanel result-summary boundary hygiene", () => {
       expect(witness.target_quantity_policy).toBe("[REDACTED]");
       expect(witness.conversion_performed).toBe("[REDACTED]");
     }
+  });
+});
+
+// Pure received-hash inspection of preserved reference data. This constructs
+// an analysis record, never a native invocation or Current/qualified export.
+async function referencePrecisionAnalysis() {
+  const model = await loadPreviewModel(), reference = await loadBundledMechanicsReference();
+  const result = reference.source;
+  const manifest = {
+    model_basis: { model_ref: model.project.id, model_payload: model },
+    solver_basis: { solver_name: result.producer!.component_name, solver_version: result.producer!.component_version, solver_build_ref: "test:preserved-reference-not-native-invocation" },
+  };
+  const basis = { manifest, manifest_ref: { object_type: "InputManifest", ref: "test:reference-analysis-inputs" }, manifest_sha256: await canonicalSha256HexCheckedV1(manifest) };
+  const analysisRun = await buildAnalysisRunV03(result, basis, undefined, modelLoadBasisRefs(model));
+  const receivedHash = analysisRun.analysis_run.hashes.find(hash => hash.payload_scope === "received_result")!.value;
+  expect(reference.standing).toBe("reference_only");
+  expect(reference.provenance.current_use_eligible).toBe(false);
+  expect(hasNativeMechanicsInvocation(result, model)).toBe(false);
+  expect(analysisRun.schema_version).toBe("0.3.0");
+  return { model, result, analysisRun, receivedHash };
+}
+
+describe("Local FEA received-result hash binding", () => {
+  it("retains the reference received hash and discloses unsupported future versions", async () => {
+    const session = await referencePrecisionAnalysis();
+    const before = JSON.stringify(session);
+    const packet = buildLocalFeaHandoffPacket(session);
+    expect(packet.handoff_package.source_refs.result_hash.value).toBe(session.receivedHash);
+    expect(JSON.stringify(session)).toBe(before);
+    const future = structuredClone(session.analysisRun);
+    future.schema_version = "0.4.0";
+    const unsupported = buildLocalFeaHandoffPacket({ ...session, analysisRun: future });
+    expect(unsupported.handoff_package.source_refs.result_hash.value).toBe("TBD_analysis_record_version_unsupported");
   });
 });

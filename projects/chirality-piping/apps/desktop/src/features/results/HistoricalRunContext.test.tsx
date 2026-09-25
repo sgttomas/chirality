@@ -1,19 +1,24 @@
-import { describe, expect, it } from "vitest";
-import { buildHistoricalRunContext } from "./HistoricalRunContext";
-import { loadPreviewModel, runPreviewMechanics, buildAnalysisRunPreview, bindSourceResultDimensions } from "../../services/previewService";
+import { buildAnalysisRunV02 } from "../../services/analysisRunCompatibility";
+import { render, screen, cleanup } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
+import { buildHistoricalRunContext, buildBundledReferenceContext, HistoricalRunPanel } from "./HistoricalRunContext";
+import { bindSourceResultDimensions, loadBundledMechanicsReference, hasNativeMechanicsInvocation } from "../../services/previewService";
+import historicalModel from "../../../../../fixtures/product_preview/invented_preview_model.json";
+import historicalResult from "../../../../../fixtures/product_preview/invented_mechanics_result.json";
 import { canonicalSha256HexCheckedV1, computeModelHash, computeProjectEnvelopeHash } from "../../services/hashService";
 import { buildCurrentSessionInputManifest } from "../../services/inputManifestService";
-import type { LocalProjectEnvelope } from "../../types";
+import type { LocalProjectEnvelope, PreviewModel, MechanicsResult } from "../../types";
 import legacyPythonRecord from "../../../../../fixtures/analysis_runs/invented/legacy_python_v0_1.json";
 
 async function savedEnvelope(nativeRowsWithoutDimensions = false) {
-  const model = await loadPreviewModel();
-  const mechanics_result = structuredClone(await runPreviewMechanics(model));
+  // Historical tests bind immutable old fixtures, not the prospective Current demo route.
+  const model = structuredClone(historicalModel) as unknown as PreviewModel;
+  const mechanics_result = bindSourceResultDimensions(structuredClone(historicalResult) as unknown as MechanicsResult);
   if (nativeRowsWithoutDimensions) {
     for (const row of mechanics_result.results) delete row.dimension;
   }
   const inputManifest = await buildCurrentSessionInputManifest({ model, solver: { solver_name: "synthetic", solver_version: "1", solver_build_ref: "synthetic@1", solver_mode: "sparse_interactive", settings: {} }, active_rule_packs: [], external_assets: [] });
-  const analysis_run = await buildAnalysisRunPreview(mechanics_result, { inputManifest });
+  const analysis_run = await buildAnalysisRunV02(mechanics_result, inputManifest);
   const model_hash = await computeModelHash(model);
   const payload = { model, mechanics_result, analysis_run, model_hash, editor_intents: [], proposal: null, selected_review_target: null };
   const project_envelope_hash = await computeProjectEnvelopeHash(payload);
@@ -150,7 +155,7 @@ describe("transient HistoricalRunContext integrity", () => {
     const row = saved.mechanics_result!.results.find((item) => item.kind === "element_local_axial_force")!;
     row.dimension = "stress";
     const inputManifest = await buildCurrentSessionInputManifest({ model: saved.model, solver: { solver_name: "synthetic", solver_version: "1", solver_build_ref: "synthetic@1", solver_mode: "sparse_interactive", settings: {} }, active_rule_packs: [], external_assets: [] });
-    await expect(buildAnalysisRunPreview(saved.mechanics_result!, { inputManifest })).rejects.toThrow("ANALYSIS-RUN-RESULT-DIMENSION-MISMATCH");
+    await expect(buildAnalysisRunV02(saved.mechanics_result!, inputManifest)).rejects.toThrow("ANALYSIS-RUN-RESULT-DIMENSION-MISMATCH");
     const before = JSON.stringify(saved);
     const context = await buildHistoricalRunContext(saved);
     expect(context!.findings).toContain("HISTORICAL_RESULT_HASH_MISMATCH");
@@ -233,4 +238,53 @@ describe("transient HistoricalRunContext integrity", () => {
     expect((saved as unknown as { mechanics_result: unknown }).mechanics_result).toEqual(before);
   });
 
+});
+
+it("keeps unsupported raw0.2 readable history and unqualified without rewriting evidence", async () => {
+ const saved = await savedEnvelope();
+ saved.mechanics_result!.schema_version = "0.2.0";
+ const before = JSON.stringify(saved.mechanics_result);
+ const context = await buildHistoricalRunContext(saved);
+ expect(context?.mechanicsResult).not.toBeNull();
+ expect(context?.findings).toContain("SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED");
+ expect(JSON.stringify(saved.mechanics_result)).toBe(before);
+});
+
+it("retains contradictory null-header historical bytes and hash claims while withholding interpretation", async () => {
+  const saved = await savedEnvelope();
+  Object.assign(saved.mechanics_result!, { producer: null });
+  const before = JSON.stringify(saved);
+  const context = await buildHistoricalRunContext(saved);
+  expect(context?.mechanicsResult).not.toBeNull();
+  expect(context?.rawMechanicsResult).toEqual(saved.mechanics_result);
+  expect(context?.findings).toContain("SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED");
+  expect(JSON.stringify(saved)).toBe(before);
+});
+
+it("keeps the historical enriched and dimension-absent fixture variants distinct", async () => {
+  const enriched = await savedEnvelope(false);
+  const absent = await savedEnvelope(true);
+  expect(enriched.mechanics_result!.results.every(row => Object.hasOwn(row, "dimension"))).toBe(true);
+  expect(absent.mechanics_result!.results.every(row => !Object.hasOwn(row, "dimension"))).toBe(true);
+});
+
+
+afterEach(cleanup);
+describe("bundled reference inspection", () => {
+  it("retains source and original model without Current evidence or saved-history designation", async () => {
+    const reference = await loadBundledMechanicsReference();
+    const before = JSON.stringify(reference);
+    const context = buildBundledReferenceContext(reference);
+    expect(context.designation).toBe("bundled_reference");
+    expect(context.rawMechanicsResult).toBe(reference.source);
+    expect(context.referenceModel).toBe(reference.model);
+    expect(context.rawAnalysisRun).toBeNull();
+    expect(context.modelHash).toBeNull();
+    expect(context.envelopeHash).toBeNull();
+    expect(hasNativeMechanicsInvocation(reference.source, reference.model)).toBe(false);
+    render(<HistoricalRunPanel context={context} />);
+    expect(screen.getByRole("region", { name: "Bundled reference — not a solve for the current model" })).toBeInTheDocument();
+    expect(screen.queryByText("Historical saved run")).not.toBeInTheDocument();
+    expect(JSON.stringify(reference)).toBe(before);
+  });
 });

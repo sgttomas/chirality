@@ -1,3 +1,6 @@
+import { loadPreviewModel, loadBundledMechanicsReference, hasNativeMechanicsInvocation } from "../../services/previewService";
+import { buildAnalysisRunV03, modelLoadBasisRefs } from "../../services/analysisRunCompatibility";
+import { canonicalSha256HexCheckedV1 } from "../../services/hashService";
 // DEC-021 (A7) coverage: the rendered-report seam routes through the Tauri
 // renderer command only (no fallback renderer in browser preview), the
 // adapter composes the renderer input from session envelopes with explicit
@@ -519,5 +522,35 @@ describe("RenderedReportPanel", () => {
     });
     expect(screen.queryByTestId("rendered-report-route")).not.toBeInTheDocument();
     expect(invokeMock).not.toHaveBeenCalled();
+  });
+});
+
+// Pure received-hash inspection of preserved reference data. This constructs
+// an analysis record, never a native invocation or Current/qualified export.
+async function referencePrecisionAnalysis() {
+  const model = await loadPreviewModel(), reference = await loadBundledMechanicsReference();
+  const result = reference.source;
+  const manifest = {
+    model_basis: { model_ref: model.project.id, model_payload: model },
+    solver_basis: { solver_name: result.producer!.component_name, solver_version: result.producer!.component_version, solver_build_ref: "test:preserved-reference-not-native-invocation" },
+  };
+  const basis = { manifest, manifest_ref: { object_type: "InputManifest", ref: "test:reference-analysis-inputs" }, manifest_sha256: await canonicalSha256HexCheckedV1(manifest) };
+  const analysisRun = await buildAnalysisRunV03(result, basis, undefined, modelLoadBasisRefs(model));
+  const receivedHash = analysisRun.analysis_run.hashes.find(hash => hash.payload_scope === "received_result")!.value;
+  expect(reference.standing).toBe("reference_only");
+  expect(reference.provenance.current_use_eligible).toBe(false);
+  expect(hasNativeMechanicsInvocation(result, model)).toBe(false);
+  expect(analysisRun.schema_version).toBe("0.3.0");
+  return { model, result, analysisRun, receivedHash };
+}
+
+describe("renderer received-result hash binding", () => {
+  it("uses the reference received hash and rejects unknown analysis versions", async () => {
+    const session = await referencePrecisionAnalysis();
+    const input = await buildRenderableReportInput({ ...session, projectSummary: null });
+    expect(input.calculation_report.audit_manifest_refs[1].checksum.value).toBe(session.receivedHash);
+    const future = structuredClone(session.analysisRun);
+    future.schema_version = "0.4.0";
+    await expect(buildRenderableReportInput({ ...session, analysisRun: future, projectSummary: null })).rejects.toThrow("REPORT-ANALYSIS-VERSION-UNSUPPORTED");
   });
 });

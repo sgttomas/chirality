@@ -1,14 +1,18 @@
+import { numericalResultStanding } from "./numericalResultQuality";
 import { useState } from "react";
-import type { AnalysisRunEnvelope, LocalProjectEnvelope, MechanicsResult, ModelHashEvidence, ProjectEnvelopeHashEvidence } from "../../types";
+import type { AnalysisRunEnvelope, LocalProjectEnvelope, MechanicsResult, ModelHashEvidence, ProjectEnvelopeHashEvidence, PreviewModel } from "../../types";
 import { canonicalSha256HexCheckedV1, computeModelHash, computeProjectEnvelopeHash } from "../../services/hashService";
 import { verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
+import type { BundledMechanicsReference } from "../../services/previewService";
 import { bindSourceResultDimensions } from "../../services/previewService";
 import { ResultsPanel } from "./ResultsPanel";
 
 // Transient evidence only. Saved run references do not contain the historical
 // input-manifest payload, so reopening cannot establish a current solve basis.
 export type HistoricalRunContext = {
-  designation: "historical_saved_run";
+  designation: "historical_saved_run" | "bundled_reference";
+  referenceModel?: PreviewModel;
+  referenceProvenance?: BundledMechanicsReference["provenance"];
   rawMechanicsResult: unknown;
   rawAnalysisRun: unknown;
   mechanicsResult: MechanicsResult | null;
@@ -270,6 +274,7 @@ export async function buildHistoricalRunContext(opened: LocalProjectEnvelope): P
   const mechanicsResult = isRenderableMechanicsResult(rawMechanicsResult) ? rawMechanicsResult : null;
   const analysisRun = rawAnalysisRun as AnalysisRunEnvelope | null;
   const findings = ["HISTORICAL_INPUT_MANIFEST_MISSING"];
+  if (mechanicsResult) findings.push(...numericalResultStanding(mechanicsResult, opened.model).findings);
   if (hasReceivedMechanics && !mechanicsResult) findings.push("HISTORICAL_MECHANICS_EVIDENCE_MALFORMED");
   const record = analysisRun && typeof analysisRun === "object" && analysisRun.analysis_run && typeof analysisRun.analysis_run === "object" ? analysisRun.analysis_run : null;
   if (analysisRun && (!record || !Array.isArray(record.hashes) || !Array.isArray(record.result_refs) || typeof record.run_id !== "string" || typeof record.model_state_ref?.ref !== "string")) findings.push("HISTORICAL_ANALYSIS_EVIDENCE_INVALID");
@@ -290,18 +295,18 @@ export async function buildHistoricalRunContext(opened: LocalProjectEnvelope): P
     envelopePayloadHash = recomputedEnvelope?.value ?? null;
     if (opened.project_envelope_hash && (opened.project_envelope_hash.value !== recomputedEnvelope?.value || opened.project_envelope_hash.payload_ref !== opened.model.project.id)) findings.push("HISTORICAL_ENVELOPE_HASH_MISMATCH");
     if (evidenceResult) {
-      const receivedScope = analysisRun?.schema_version === "0.2.0" ? "received_result" : "result_envelope";
+      const receivedScope = ["0.2.0", "0.3.0"].includes(analysisRun?.schema_version ?? "") ? "received_result" : "result_envelope";
       const storedResultHash = Array.isArray(record?.hashes) ? record.hashes.find((hash) => hash && typeof hash === "object" && hash.payload_scope === receivedScope) : null;
       if (!storedResultHash) findings.push("HISTORICAL_RESULT_HASH_MISSING");
-      else if (analysisRun?.schema_version === "0.2.0" && ((typeof storedResultHash.value === "string" ? storedResultHash.value.replace(/^sha256:/, "") : null) !== await canonicalSha256HexCheckedV1(evidenceResult) || storedResultHash.payload_ref?.ref !== `result-envelope:${evidenceResult.run_id}`)) findings.push("HISTORICAL_RESULT_HASH_MISMATCH");
+      else if (["0.2.0", "0.3.0"].includes(analysisRun?.schema_version ?? "") && ((typeof storedResultHash.value === "string" ? storedResultHash.value.replace(/^sha256:/, "") : null) !== await canonicalSha256HexCheckedV1(evidenceResult) || storedResultHash.payload_ref?.ref !== `result-envelope:${evidenceResult.run_id}`)) findings.push("HISTORICAL_RESULT_HASH_MISMATCH");
       else if (analysisRun?.schema_version === "0.1.0") {
         legacyVerification = await verifyLegacyDesktopAnalysis(analysisRun, evidenceResult);
         if (legacyVerification.result === "mismatch") findings.push("HISTORICAL_RESULT_HASH_MISMATCH");
         if (legacyVerification.result === "unverifiable") findings.push("HISTORICAL_RESULT_HASH_UNVERIFIABLE_LEGACY_PREIMAGE");
       }
     }
-    if (analysisRun?.schema_version === "0.2.0") {
-      const verification = await verifyAnalysisRunRecord(analysisRun);
+    if (["0.2.0", "0.3.0"].includes(analysisRun?.schema_version ?? "")) {
+      const verification = await verifyAnalysisRunRecord(analysisRun!);
       if (verification === "mismatch") findings.push("HISTORICAL_ANALYSIS_HASH_MISMATCH");
       if (verification === "unverifiable") findings.push("HISTORICAL_ANALYSIS_HASH_UNVERIFIABLE");
     } else if (analysisRun?.schema_version === "0.1.0" && evidenceResult) {
@@ -315,12 +320,30 @@ export async function buildHistoricalRunContext(opened: LocalProjectEnvelope): P
   return { designation: "historical_saved_run", rawMechanicsResult, rawAnalysisRun, mechanicsResult, analysisRun, modelHash, envelopeHash: opened.project_envelope_hash ?? null, envelopePayloadHash, findings, runId: evidenceResult?.run_id ?? (typeof record?.run_id === "string" ? record.run_id : "unknown saved run") };
 }
 
+/** A bundled example has its own model context and no current run evidence. */
+export function buildBundledReferenceContext(reference: BundledMechanicsReference): HistoricalRunContext {
+  return {
+    designation: "bundled_reference", referenceModel: reference.model,
+    referenceProvenance: reference.provenance,
+    rawMechanicsResult: reference.source, mechanicsResult: reference.source,
+    rawAnalysisRun: null, analysisRun: null, modelHash: null,
+    envelopeHash: null, envelopePayloadHash: null,
+    findings: ["BUNDLED_REFERENCE_ONLY", "NO_CURRENT_MODEL_INVOCATION"],
+    runId: reference.source.run_id,
+  };
+}
+
 export function HistoricalRunPanel({ context }: { context: HistoricalRunContext }) {
   const [selectedResultId, setSelectedResultId] = useState<string | null>(null);
-  return <section className="panel" aria-label="Historical saved run" data-testid="historical-run-context">
-    <div className="panel-title">Historical saved run</div>
-    <p>Saved evidence for {context.runId}; mechanics={context.mechanicsResult?.status.mechanics ?? "missing"}. Run a fresh solve to establish current results.</p>
-    <p>Historical results cannot drive current overlays, rule checks, comparisons or report readiness.</p>
+  const isReference = context.designation === "bundled_reference";
+  const title = isReference ? "Bundled reference — not a solve for the current model" : "Historical saved run";
+  return <section className="panel" aria-label={title} data-testid="historical-run-context">
+    <div className="panel-title">{title}</div>
+    {isReference ? <>
+      <p>{context.referenceProvenance?.notice}</p>
+      <p>Reference model: {context.referenceModel?.project.id}; retained run: {context.runId}. The current model and its edit history are unchanged.</p>
+    </> : <p>Saved evidence for {context.runId}; mechanics={context.mechanicsResult?.status.mechanics ?? "missing"}. Run a fresh solve to establish current results.</p>}
+    <p>{isReference ? "Bundled reference" : "Historical"} results cannot drive current overlays, rule checks, comparisons or report readiness.</p>
     <ul>{context.findings.map((finding) => <li key={finding}>{finding}</li>)}</ul>
     <ResultsPanel result={context.mechanicsResult} knowledge={null} analysisRun={null} selectedResultId={selectedResultId} onSelectResult={setSelectedResultId} />
   </section>;

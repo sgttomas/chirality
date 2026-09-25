@@ -1,3 +1,6 @@
+import { sourceContract } from "../results/numericalResultQuality";
+import { hasNativeMechanicsInvocation } from "../../services/previewService";
+import { analysisResultHashScope } from "../results/analysisResultHashScope";
 import type {
   AnalysisRunEnvelope,
   LocalProjectSummary,
@@ -14,6 +17,15 @@ import { resultSemantics, completeSourceMetadata } from "../results/resultSemant
 
 import { buildRenderableReportInput } from "./renderableReportInput";
 import { buildStateComparisonHandoffSections } from "./stateComparisonHandoffSections";
+
+export const SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE = "REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable.";
+export function reportPackageUnavailableReason(result: MechanicsResult | null | undefined): string | null {
+  if (!result) return null;
+  const route = sourceContract(result);
+  if (route === "source_blocks" || route === "physics_source") return SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE;
+  if (route === "physics") return "REPORT-PACKAGE-PHYSICS-PROJECTION-UNAVAILABLE: this report transport does not preserve exact physical evidence; use canonical result export.";
+  return null;
+}
 
 const UNIT_SYSTEM_REF = "unit-system:dec-018-si-dual-display";
 const PROFESSIONAL_BOUNDARY = {
@@ -74,6 +86,124 @@ function requireSha256(label: string, value: string): void {
   }
 }
 
+// Called only after the manifest bytes and the run's manifest binding are checked.
+// Source producer identity and recorded build identity are different evidence.
+function reportSolverIdentity(result: MechanicsResult, analysisRun: AnalysisRunEnvelope, inputManifest: CurrentSessionInputManifestEvidence) {
+  const manifestSolver = inputManifest.manifest.solver_basis;
+  const recordedSolver = analysisRun.analysis_run.solver_version;
+  const precision = analysisRun.schema_version === "0.3.0";
+  if (!precision && (!(result.schema_version === "0.1.0" || result.schema_version === "0.2.0") ||
+    ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(result, key)))) {
+    throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+  }
+  // Legacy 0.1 records may lack a solver-version field; the verified manifest
+  // still supplies recorded identity. Strict records must carry both records.
+  if ((!recordedSolver && analysisRun.schema_version !== "0.1.0") ||
+    (recordedSolver && (recordedSolver.solver_name !== manifestSolver.solver_name ||
+      recordedSolver.solver_version !== manifestSolver.solver_version ||
+      recordedSolver.build_ref?.ref !== manifestSolver.solver_build_ref))) {
+    throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: analysis record and verified manifest differ.");
+  }
+  if (precision && (sourceContract(result) !== "precision" ||
+    result.producer!.component_name !== manifestSolver.solver_name ||
+    result.producer!.component_version !== manifestSolver.solver_version)) {
+    throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: recorded identity differs from the received producer.");
+  }
+  return {
+    solver_name: precision ? result.producer!.component_name : manifestSolver.solver_name,
+    solver_version: precision ? result.producer!.component_version : manifestSolver.solver_version,
+    solver_build_ref: manifestSolver.solver_build_ref
+  };
+}
+
+/** Pure received-data projection for inspection/compatibility. It returns no
+ * package, audit manifest, readiness or native provenance and cannot authorize
+ * current export. Historical numeric/metadata oracles remain inspectable here. */
+export function projectReceivedReportResults(
+  result: MechanicsResult,
+  analysisRun: AnalysisRunEnvelope,
+  provenance = {source_name:"Received result reference",source_location:"reference inspection",source_license:"not_asserted",contributor:"not_asserted",contributor_certification:"not_asserted",redistribution_status:"private_only",review_status:"pending"},
+) {
+  const scope = analysisResultHashScope(analysisRun.schema_version);
+  if (scope === null) throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
+  const strictAnalysis = scope === "received_result";
+  const run = analysisRun.analysis_run;
+  const resultDimensions = new Map(
+    run.result_refs.map((item) => [
+      item.result_ref.ref,
+      item.source_dimension
+    ])
+  );
+  const semanticDisclosures: Array<{id:string;reason:string}> = [];
+  const groupedResults = new Map<string, MechanicsResult["results"]>();
+  for (const item of result.results) {
+    const semantics = resultSemantics(item, analysisRun.schema_version === "0.3.0" ? result : undefined); // known unit/component contradictions fail closed
+    const declared = resultDimensions.get(item.id);
+    const expectedSourceDimension = strictAnalysis
+      ? semantics?.source_physical_semantic_dimension
+      : item.dimension;
+    if (!resultDimensions.has(item.id) || (expectedSourceDimension ?? null) !== (declared ?? null)) throw new Error(`REPORT-PACKAGE-SOURCE-DIMENSION-MISMATCH: ${item.id}`);
+    if (!semantics || semantics.category !== "physical_quantity") {
+      semanticDisclosures.push({id:item.id,reason:semantics?.category ?? "unsupported_source_kind"}); continue;
+    }
+    const requiredMetadata = ["force","moment","section_property"].includes(semantics.family ?? "");
+    if (requiredMetadata && !reportMetadata(item)) {
+      semanticDisclosures.push({id:item.id,reason:"legacy_report_metadata_unavailable"}); continue;
+    }
+    const basisKey = `${item.basis_ref?.ref_type ?? "analysis_run"}:${item.basis_ref?.ref_id ?? result.run_id}`;
+    groupedResults.set(basisKey, [...(groupedResults.get(basisKey) ?? []), item]);
+  }
+  const resultSets = Array.from(groupedResults.entries()).map(([basisKey, values], index) => {
+    const basis = values[0]?.basis_ref ?? { ref_type: "analysis_run", ref_id: result.run_id };
+    return {
+      set_id: `result-set:${result.run_id}:${index + 1}`,
+      set_type: "mechanics",
+      basis_ref: reference(basis.ref_type, basis.ref_id),
+      values: values.map((item) => {
+        const semantics = resultSemantics(item, analysisRun.schema_version === "0.3.0" ? result : undefined)!;
+        const sourceDimension = resultDimensions.get(item.id);
+        if (!sourceDimension) {
+          throw new Error(
+            `REPORT-PACKAGE-SOURCE-DIMENSION-MISSING: ${item.id} has no DEL-14-02 source declaration.`
+          );
+        }
+        const expectedSourceDimension = strictAnalysis
+          ? semantics?.source_physical_semantic_dimension
+          : item.dimension;
+        if (expectedSourceDimension && expectedSourceDimension !== sourceDimension) {
+          throw new Error(
+            `REPORT-PACKAGE-SOURCE-DIMENSION-MISMATCH: ${item.id} differs from its DEL-14-02 declaration.`
+          );
+        }
+        const family = semantics.family;
+        return {
+        result_id: item.id,
+        family,
+        object_ref: reference("model_entity", item.entity_ref),
+        basis_ref: reference(item.basis_ref?.ref_type ?? "analysis_run", item.basis_ref?.ref_id ?? result.run_id),
+        station_ref: null,
+        magnitude: item.value,
+        unit: item.unit,
+        dimension: semantics.derivative_target_dimension,
+        metadata: reportMetadata(item),
+        diagnostics: [],
+        trace_chain: (item.source_result_refs ?? []).map((source, traceIndex) => ({
+          trace_id: `trace:${item.id}:${traceIndex + 1}`,
+          trace_type: "source_result",
+          source_ref: reference("result", source),
+          target_ref: reference("result", item.id),
+          provenance,
+          diagnostics: []
+        })),
+        provenance
+        };
+      })
+    };
+  });
+
+  return { resultSets, semanticDisclosures };
+}
+
 export async function buildReportPackageRequest({
   model,
   result,
@@ -91,6 +221,19 @@ export async function buildReportPackageRequest({
   comparison: PreviewComparison | null;
   ruleCheckAggregate: string | null;
 }) {
+  const unavailable = reportPackageUnavailableReason(result);
+  if (unavailable) throw new Error(unavailable);
+  const resultHashScope = analysisResultHashScope(analysisRun.schema_version);
+  const strictAnalysis = resultHashScope === "received_result";
+  if (resultHashScope === null) {
+    throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
+  }
+  if (sourceContract(result) === "physics") {
+    throw new Error("REPORT-PACKAGE-PHYSICS-PROJECTION-UNAVAILABLE: this legacy report transport does not preserve the exact physical metadata/evidence; use canonical result export.");
+  }
+  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "precision") {
+    throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+  }
   await verifyCurrentSessionInputManifest(inputManifest);
   if (
     inputManifest.manifest.model_basis.model_ref !== model.project.id ||
@@ -123,7 +266,6 @@ export async function buildReportPackageRequest({
   const report = await buildRenderableReportInput({ model, result, analysisRun, projectSummary });
   const run = analysisRun.analysis_run;
   const runHash = run.hashes.find((item) => item.payload_scope === "analysis_run_record");
-  const resultHashScope = analysisRun.schema_version === "0.2.0" ? "received_result" : "result_envelope";
   const resultEnvelopeHash = run.hashes.find(
     (item) => item.payload_scope === resultHashScope
   );
@@ -173,88 +315,16 @@ export async function buildReportPackageRequest({
     );
   }
 
+  const solverIdentity = reportSolverIdentity(result, analysisRun, inputManifest);
   const provenance = privateProvenance(model);
-  const resultDimensions = new Map(
-    run.result_refs.map((item) => [
-      item.result_ref.ref,
-      item.source_dimension
-    ])
-  );
-  const semanticDisclosures: Array<{id:string;reason:string}> = [];
-  const groupedResults = new Map<string, MechanicsResult["results"]>();
-  for (const item of result.results) {
-    const semantics = resultSemantics(item); // known unit/component contradictions fail closed
-    const declared = resultDimensions.get(item.id);
-    const expectedSourceDimension = analysisRun.schema_version === "0.2.0"
-      ? semantics?.source_physical_semantic_dimension
-      : item.dimension;
-    if (!resultDimensions.has(item.id) || (expectedSourceDimension ?? null) !== (declared ?? null)) throw new Error(`REPORT-PACKAGE-SOURCE-DIMENSION-MISMATCH: ${item.id}`);
-    if (!semantics || semantics.category !== "physical_quantity") {
-      semanticDisclosures.push({id:item.id,reason:semantics?.category ?? "unsupported_source_kind"}); continue;
-    }
-    const requiredMetadata = ["force","moment","section_property"].includes(semantics.family ?? "");
-    if (requiredMetadata && !reportMetadata(item)) {
-      semanticDisclosures.push({id:item.id,reason:"legacy_report_metadata_unavailable"}); continue;
-    }
-    const basisKey = `${item.basis_ref?.ref_type ?? "analysis_run"}:${item.basis_ref?.ref_id ?? result.run_id}`;
-    groupedResults.set(basisKey, [...(groupedResults.get(basisKey) ?? []), item]);
-  }
-  const resultSets = Array.from(groupedResults.entries()).map(([basisKey, values], index) => {
-    const basis = values[0]?.basis_ref ?? { ref_type: "analysis_run", ref_id: result.run_id };
-    return {
-      set_id: `result-set:${result.run_id}:${index + 1}`,
-      set_type: "mechanics",
-      basis_ref: reference(basis.ref_type, basis.ref_id),
-      values: values.map((item) => {
-        const semantics = resultSemantics(item)!;
-        const sourceDimension = resultDimensions.get(item.id);
-        if (!sourceDimension) {
-          throw new Error(
-            `REPORT-PACKAGE-SOURCE-DIMENSION-MISSING: ${item.id} has no DEL-14-02 source declaration.`
-          );
-        }
-        const expectedSourceDimension = analysisRun.schema_version === "0.2.0"
-          ? semantics?.source_physical_semantic_dimension
-          : item.dimension;
-        if (expectedSourceDimension && expectedSourceDimension !== sourceDimension) {
-          throw new Error(
-            `REPORT-PACKAGE-SOURCE-DIMENSION-MISMATCH: ${item.id} differs from its DEL-14-02 declaration.`
-          );
-        }
-        const family = semantics.family;
-        return {
-        result_id: item.id,
-        family,
-        object_ref: reference("model_entity", item.entity_ref),
-        basis_ref: reference(item.basis_ref?.ref_type ?? "analysis_run", item.basis_ref?.ref_id ?? result.run_id),
-        station_ref: null,
-        magnitude: item.value,
-        unit: item.unit,
-        dimension: semantics.derivative_target_dimension,
-        metadata: reportMetadata(item),
-        diagnostics: [],
-        trace_chain: (item.source_result_refs ?? []).map((source, traceIndex) => ({
-          trace_id: `trace:${item.id}:${traceIndex + 1}`,
-          trace_type: "source_result",
-          source_ref: reference("result", source),
-          target_ref: reference("result", item.id),
-          provenance,
-          diagnostics: []
-        })),
-        provenance
-        };
-      })
-    };
-  });
+  const { resultSets, semanticDisclosures } = projectReceivedReportResults(result, analysisRun, provenance);
 
   const resultEnvelope = {
     envelope_id: `result-envelope:${result.run_id}`,
     schema_version: "1.0.0",
     model_ref: reference("model", result.model_ref),
     run_ref: reference("analysis_run", result.run_id),
-    solver_name: "open_pipe_stress_product_physics",
-    solver_version: "0.1.0",
-    solver_build_ref: "open_pipe_stress_product_physics@0.1.0",
+    ...solverIdentity,
     unit_system_ref: reference("unit_system", UNIT_SYSTEM_REF),
     load_basis_refs: run.load_basis_refs.map((item) => reference(item.object_type, item.ref)),
     result_sets: resultSets,
@@ -287,6 +357,9 @@ export async function buildReportPackageRequest({
     professional_boundary: PROFESSIONAL_BOUNDARY
   };
 
+  if (!hasNativeMechanicsInvocation(result, model, inputManifest.manifest.solver_basis.solver_mode)) {
+    throw new Error("REPORT-PACKAGE-NATIVE-INVOCATION-REQUIRED: reference/history data cannot produce a qualified current package.");
+  }
   return {
     package_id: `desktop-report-${safeId(result.run_id)}`,
     export_profile_id: "desktop_local_private_report_package_1",
@@ -309,11 +382,7 @@ export async function buildReportPackageRequest({
         payload_ref: inputManifestRef.ref,
         value: inputHash.value
       },
-      solver_version: {
-        solver_name: "open_pipe_stress_product_physics",
-        solver_version: "0.1.0",
-        solver_build_ref: "open_pipe_stress_product_physics@0.1.0"
-      },
+      solver_version: { ...solverIdentity },
       unit_system_ref: UNIT_SYSTEM_REF,
       rule_pack_refs: [],
       assets: [],
