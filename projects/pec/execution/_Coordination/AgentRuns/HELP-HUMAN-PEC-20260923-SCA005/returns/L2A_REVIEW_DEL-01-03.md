@@ -5,6 +5,7 @@ HELP_HUMAN filing of the reviewer's final report, verbatim below the rule. Brief
 HELP_HUMAN notes:
 - F-1 was independently reproduced by HELP_HUMAN at `088fb7868`: `ContentMinimalGuard().guard(...)` on a record with COUNT `10**5000` raised `ValueError: Exceeds the limit (4300 digits) for integer string conversion`.
 - F-7 correction: the statement that SCA-005 checkpoint 1 lacks owner acceptance is wrong. The owner accepted checkpoint 1 and the Impact Assessment on 2026-09-24 (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`). The `STALE_REVIEW_REQUIRED` classification of DEL-01-03 is therefore accepted evidence, not yet applied.
+- Two shortened hashes in the report body are wrong (found by the PR #900 review): `v2-api-contract.out` ends `…6371`, not `…2371`; `probe_life.out` ends `…f38b`, not `…8b97`. The body is kept verbatim; rely on these corrected values.
 - Per D-PEC-87 L-2a as amended, this outcome is reported in the ordinary record and is not an owner gate; CHECKING stays owner-initiated. Repairs are proposed as `D-PEC-91`.
 
 ---
