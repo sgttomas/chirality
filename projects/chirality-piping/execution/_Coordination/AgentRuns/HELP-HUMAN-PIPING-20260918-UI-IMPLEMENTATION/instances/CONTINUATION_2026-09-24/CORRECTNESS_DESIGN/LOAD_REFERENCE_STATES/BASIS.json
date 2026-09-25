@@ -1,0 +1,199 @@
+{
+  "role": "HELPS_HUMANS",
+  "agent": "/root/load_state_design",
+  "actual_parent": "/root",
+  "mechanism": "delegated-harness-native collaboration.spawn_agent",
+  "scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES",
+  "basis_revision_status": "Reviewed checkpoints reported by parent; consulted WIP captured separately. No Git mutation, product edit or product build performed.",
+  "instruction_origins": [
+    {
+      "origin": "REPO_ROOT/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "bytes": 2044,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "bytes": 8475,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_PHYSICS_AUTHORITY_2026-09-25.md",
+      "sha256": "7a84fec1aed4e9c2f945c2ad9a51dedeca7cf824ababf514212645a326a758fa",
+      "bytes": 4248,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RESULTS_AND_COMBINATIONS.md",
+      "sha256": "de2feae4829c9da9bca2d84442d740d1413e0bdde23538f8e26ec97ff49e3dd6",
+      "bytes": 12044,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_INTEGRATION.md",
+      "sha256": "b0ff7db5b24d146389a8c2a01ddee3160b3a3359b82f83be7eb3c78b6e112981",
+      "bytes": 11897,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RAW02_INTERFACE_ALIGNMENT.md",
+      "sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+      "bytes": 5388,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/NUMERICAL_REFERENCE.md",
+      "sha256": "67c8aac5798e9663528bea94b58d6d8f2eb8308f94b7ebb78aa22dca4b8f94ca",
+      "bytes": 48802,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/ASSESSMENT.md",
+      "sha256": "c948cb13ac5d825b0d201074cad50e9b8f4d9de916bc246f574e8304121b72e6",
+      "bytes": 15860,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/_run_records/loads/RETURN.md",
+      "sha256": "187c67f1267d036bf1f19bab60c271f2ba78234fa1b14c76875b0fb514afc07b",
+      "bytes": 23166,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/_run_records/supports/RETURN.md",
+      "sha256": "563bc348d7b56dca4b8e14e4eb42d2c0bb0d3f666afb4907cd76cc7a846824d3",
+      "bytes": 26182,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/_run_records/stress/RETURN.md",
+      "sha256": "3d6f40f5b9e2d0f5addc522922a3a59f53ff8862117e7c300c201231ada9c9fe",
+      "bytes": 25171,
+      "status": "consulted current instructions or historical design/assessment"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "5d437e259293f5b880291ad906f3a3647669f8c8c221c9e563ef2e1db1100e23",
+      "bytes": 853537,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "a379d5262cccf2263e201dc1f18ec3ca1d207fc0b63231cf00112d2a6c19559c",
+      "bytes": 82347,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "bytes": 9519,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/product_physics/src/self_weight.rs",
+      "sha256": "6caf38f71d5db7b1adafb7bf439d24f31df969cd3e41397c1a0a253d21279261",
+      "bytes": 67912,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/solver/linear_supports/src/lib.rs",
+      "sha256": "01ac02c48411813d57adf39b4dd97659f19941628002379890e792b2600e5934",
+      "bytes": 32573,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+      "sha256": "e1fe7eb0d4fd2ecd5e21b40f714d7115dfd90aa3bd6870c83615efe3a0386c05",
+      "bytes": 536025,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/apps/desktop/src/types.ts",
+      "sha256": "333a5cd0231bd2869823574a555153367b10e11c310bcd229b12043eec97e065",
+      "bytes": 30019,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "JOINED_WIP/projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx",
+      "sha256": "68b49ca96314cba671bf63be30142a0ef07ccf1cbf78604a1f1e46258a41110f",
+      "bytes": 109296,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+      "sha256": "03f82e343c7aee8f9f38d4b983091d0b71faebb904fb4dc7b59692a0c9cc4ad9",
+      "bytes": 63684,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "sha256": "bb3923fbc75ee4810ece2aba11e332f69b3e95a4f9637adee3313573ad10f85a",
+      "bytes": 61837,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "sha256": "3e8d4e8208c862cae6312a3cf2dd9f236815c24c053ab0f24372c54af8540437",
+      "bytes": 97660,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "sha256": "194de55c182448c9f8d1814cdbc1eb68045a16de531fdb17da61e2f8d4aa1e94",
+      "bytes": 38915,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "SOURCE_RECOVERY_WIP/projects/chirality-piping/core/solver/linear_supports/src/lib.rs",
+      "sha256": "01ac02c48411813d57adf39b4dd97659f19941628002379890e792b2600e5934",
+      "bytes": 32573,
+      "status": "moving working source read only; hash captures inspected content, not reviewed checkpoint"
+    },
+    {
+      "origin": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "d65e71a087e59c8abe7e5eff000549640cdc00e992f7ec336ecf99ed591e9029",
+      "bytes": 79046,
+      "status": "targeted M35 merged-record recovery only; no graph edits or repeated gates"
+    }
+  ],
+  "root_aliases": {
+    "REPO_ROOT": "resolved using git rev-parse --show-toplevel",
+    "JOINED_WIP": "parent-assigned joined engine temporary checkout",
+    "SOURCE_RECOVERY_WIP": "parent-assigned source-recovery temporary checkout"
+  },
+  "environment": {
+    "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "checks": [
+    {
+      "command": "python P/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "result": "PASS 11 independent analytical groups, including the root-origin hydrostatic load-path counterexample; not product execution"
+    }
+  ],
+  "reference_review_notes": [
+    "COMSOL6.4 freshness check supersedes initially consulted6.3 thermal page.",
+    "Primary Ansys2026R1 PIPE288 and Abaqus2025 distributed-load pages consulted after ROOT column counterexample.",
+    "Actual operating T and material-basis T separated after independent design review.",
+    "Locked-support total versus internal pin force attribution distinguished after independent design review."
+  ]
+}

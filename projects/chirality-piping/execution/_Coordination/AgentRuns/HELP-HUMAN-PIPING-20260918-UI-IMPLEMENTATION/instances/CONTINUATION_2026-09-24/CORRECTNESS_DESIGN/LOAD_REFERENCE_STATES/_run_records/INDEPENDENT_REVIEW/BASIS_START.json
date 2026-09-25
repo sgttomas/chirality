@@ -1,0 +1,55 @@
+{
+  "captured_utc": "2026-09-25T04:48:23.715284+00:00",
+  "agent": "/root/load_state_design/reference_review",
+  "parent": "/root/load_state_design",
+  "mechanism": "delegated-harness-native collaboration.spawn_agent",
+  "role": "TASK",
+  "purpose": "independent design/reference review, not production qualification",
+  "files": [
+    {
+      "path": "REPO_ROOT/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200
+    },
+    {
+      "path": "REPO_ROOT/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "bytes": 8475
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/DESIGN.md",
+      "sha256": "17097d599128ae5f4ee5e3b11d97f7d02d20820c90f4a61325bf92b01073cd0a",
+      "bytes": 31472
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/REFERENCES.md",
+      "sha256": "94ccf237520346b5f314edfa29b93ab791b44d27a1147a12a27a6e0e3fbd1fcf",
+      "bytes": 5950
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/VERIFICATION.md",
+      "sha256": "dbd9c61e53d8db49147533f0083cae1abf009b69b37010db87fc4050f9ed0d76",
+      "bytes": 8140
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "sha256": "2741029479b8c187f61fff7fd4912f3ad660f0388fd6bc245b4101e964e388c0",
+      "bytes": 3937
+    },
+    {
+      "path": "REPO_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/BASIS.json",
+      "sha256": "7dc3f9f37dd248059b07e55876e62ee799585984dc61c13eabaad2a686948e85",
+      "bytes": 10591
+    }
+  ]
+}

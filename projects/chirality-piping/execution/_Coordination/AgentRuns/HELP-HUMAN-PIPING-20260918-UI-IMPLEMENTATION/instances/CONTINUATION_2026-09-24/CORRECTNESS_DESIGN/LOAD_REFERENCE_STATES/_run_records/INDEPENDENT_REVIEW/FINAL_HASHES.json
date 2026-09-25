@@ -1,0 +1,42 @@
+{
+  "utc": "2026-09-25T04:56:19.239936+00:00",
+  "claim": "actual final reviewed design bytes including hydrostatic amendment; no product qualification",
+  "status": "CLEAR_AFTER_THREE_REPAIRS",
+  "files": [
+    {
+      "path": "LOAD_REFERENCE_STATES/DESIGN.md",
+      "sha256": "2839c65ae56c4ff4674da12848eda4b60f1385663b4c0b5e556099eae7fe4f64",
+      "bytes": 33029
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/INTERFACE.md",
+      "sha256": "18587811735a262187cf4a26bb934d6c3ef03ceb37c78228bb39b7f8afe073bf",
+      "bytes": 12508
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/REFERENCES.md",
+      "sha256": "ad3147c69a14ee16d5e4cbbcf8300b94dc092802dfb8b5775beb62e690a1b5fa",
+      "bytes": 6743
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/VERIFICATION.md",
+      "sha256": "061f1f8fa53d426e3af9db58bf684bdfca790b13f3df780935e9353d5402fc57",
+      "bytes": 8879
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "sha256": "dfc1e937c974a1cfed87aa26c95ba60d813330cbf24962a2418202313efca613",
+      "bytes": 5238
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/BASIS.json",
+      "sha256": "051abfe38568c11dfce9f1870228294dcb8bdfc9f5929ede27b4fa87ced960cd",
+      "bytes": 11451
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/HYDROSTATIC_CONTROL.md",
+      "sha256": "30041992674e22115722d688a2d8cb2b589febf20425a1bd56434c7fdf3486ef",
+      "bytes": 5185
+    }
+  ]
+}

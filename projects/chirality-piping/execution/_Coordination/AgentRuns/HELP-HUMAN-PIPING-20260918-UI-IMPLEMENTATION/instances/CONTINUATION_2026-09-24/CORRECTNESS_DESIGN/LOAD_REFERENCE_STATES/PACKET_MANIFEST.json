@@ -1,0 +1,105 @@
+{
+  "claim": "Recoverable design packet; no product qualification",
+  "files": [
+    {
+      "path": "BASIS.json",
+      "sha256": "051abfe38568c11dfce9f1870228294dcb8bdfc9f5929ede27b4fa87ced960cd",
+      "bytes": 11451
+    },
+    {
+      "path": "DESIGN.md",
+      "sha256": "2839c65ae56c4ff4674da12848eda4b60f1385663b4c0b5e556099eae7fe4f64",
+      "bytes": 33029
+    },
+    {
+      "path": "HYDROSTATIC_CONTROL.md",
+      "sha256": "30041992674e22115722d688a2d8cb2b589febf20425a1bd56434c7fdf3486ef",
+      "bytes": 5185
+    },
+    {
+      "path": "INTERFACE.md",
+      "sha256": "18587811735a262187cf4a26bb934d6c3ef03ceb37c78228bb39b7f8afe073bf",
+      "bytes": 12508
+    },
+    {
+      "path": "REFERENCES.md",
+      "sha256": "ad3147c69a14ee16d5e4cbbcf8300b94dc092802dfb8b5775beb62e690a1b5fa",
+      "bytes": 6743
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "49e8b8d12a1352c9d8ff182dce9c77f51bbea3dca03524ddcc489773e0b9f554",
+      "bytes": 4962
+    },
+    {
+      "path": "VERIFICATION.md",
+      "sha256": "061f1f8fa53d426e3af9db58bf684bdfca790b13f3df780935e9353d5402fc57",
+      "bytes": 8879
+    },
+    {
+      "path": "_run_records/DELEGATION.json",
+      "sha256": "23c65fcdacf43ce0534673a23e529c71acc40986bb6f997e6c83f0a2844de4c3",
+      "bytes": 1040
+    },
+    {
+      "path": "_run_records/FINAL_BACKCHECK.json",
+      "sha256": "e58b1b577a10dc6ceac2e0ff69143d07d5b8b01bc49462d9ffed0cc83bbb975e",
+      "bytes": 850
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/BASIS_START.json",
+      "sha256": "4546258d4704c660df939120bc4732c4c27285ba5eac26a6186bdd7114aa43b5",
+      "bytes": 2725
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/BEFORE_HYDROSTATIC_HASHES.json",
+      "sha256": "19345f74de78a16bb0c13a866d360d9edcaa2637644001b94cb487de47f1612d",
+      "bytes": 1205
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/CHECK_RUN.json",
+      "sha256": "c97a33e28f558a326703776b0c1a6d4a6475a9cdce4c0f080f9759ba6c5af99c",
+      "bytes": 374
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/FINAL_HASHES.json",
+      "sha256": "28caf8b8603e354179a7228192bb2da9ec1be02aba5caba2a681d87f5147a331",
+      "bytes": 1422
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/INTERFACE_INITIAL_HASH.json",
+      "sha256": "23bac3cd2ae4322f1406c846d72a30adc7818caacc6c2a96574a183fd2fd1aae",
+      "bytes": 276
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/NUMERICAL_REVIEW.json",
+      "sha256": "8edc8adbc4c02377ef1a499df3eaac2ad96d626639485c9f1407417e72c9bacc",
+      "bytes": 3225
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "a95beb3471441399969a291453044250e7165b04bda1e99856fb22c20c2fce56",
+      "bytes": 11274
+    },
+    {
+      "path": "_run_records/INDEPENDENT_REVIEW/independent_check.py",
+      "sha256": "95f96d496f0baca7bd38d99efc79da7684fc65fe3f6c181ecd4f3dc899edb177",
+      "bytes": 11471
+    },
+    {
+      "path": "_run_records/LOCAL_CHECKS.json",
+      "sha256": "018441a93c9a4e54383d960475c585667b4aaf6a94544671c8de638a85ba98d2",
+      "bytes": 1155
+    },
+    {
+      "path": "_run_records/analytical_examples.json",
+      "sha256": "237d74256c14e6de8f3c7ebec85db1214e64515e17ecb8969b63310582aaa8c7",
+      "bytes": 7906
+    },
+    {
+      "path": "verify_reference_states.py",
+      "sha256": "dfc1e937c974a1cfed87aa26c95ba60d813330cbf24962a2418202313efca613",
+      "bytes": 5238
+    }
+  ]
+}

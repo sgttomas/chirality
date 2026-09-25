@@ -1,0 +1,350 @@
+{
+  "status": "PASS",
+  "claim": "Independent proposed-contract calculations only; no product execution",
+  "groups": 11,
+  "examples": {
+    "prescribed_axial": {
+      "u_mid_m": {
+        "rational": "1/15000",
+        "decimal": "0.00006666666666666666666666666667"
+      },
+      "support_root_N": {
+        "rational": "20000/3",
+        "decimal": "6666.666666666666666666666667"
+      },
+      "support_end_N": {
+        "rational": "-20000/3",
+        "decimal": "-6666.666666666666666666666667"
+      },
+      "omitted_coupling_residual_N": {
+        "rational": "-20000",
+        "decimal": "-20000"
+      }
+    },
+    "prescribed_rotation": {
+      "reactions_Fy_Mz_Fy_Mz": [
+        {
+          "rational": "3",
+          "decimal": "3"
+        },
+        {
+          "rational": "4",
+          "decimal": "4"
+        },
+        {
+          "rational": "-3",
+          "decimal": "-3"
+        },
+        {
+          "rational": "2",
+          "decimal": "2"
+        }
+      ],
+      "rigid_free_tip_UY_m": {
+        "rational": "1/500",
+        "decimal": "0.002"
+      }
+    },
+    "per_element_shared_material": {
+      "u_m": {
+        "rational": "1/3000",
+        "decimal": "0.0003333333333333333333333333333"
+      },
+      "hot_force_N": {
+        "rational": "-200000/3",
+        "decimal": "-66666.66666666666666666666667"
+      },
+      "cold_force_N": {
+        "rational": "200000/3",
+        "decimal": "66666.66666666666666666666667"
+      }
+    },
+    "thermal_datum": {
+      "free_strain": {
+        "rational": "43/25009",
+        "decimal": "0.001719381022831780558998760446"
+      },
+      "wrong_endpoint_alpha_deltaT": {
+        "rational": "1/625",
+        "decimal": "0.0016"
+      },
+      "constant_alpha_interval": {
+        "rational": "1/1250",
+        "decimal": "0.0008"
+      }
+    },
+    "coefficient_definition": {
+      "datum_length_dilation": {
+        "rational": "3/2000",
+        "decimal": "0.0015"
+      },
+      "current_length_log_strain_decimal": "0.001501125562711000797073703202707797003597183630357865375423210978942",
+      "wrong_endpoint": {
+        "rational": "1/500",
+        "decimal": "0.002"
+      }
+    },
+    "cold_spring": {
+      "cold_tension_N": {
+        "rational": "40000",
+        "decimal": "40000"
+      },
+      "hot_strain": {
+        "rational": "3749/6250000",
+        "decimal": "0.00059984"
+      },
+      "hot_tension_N": {
+        "rational": "-89976",
+        "decimal": "-89976"
+      },
+      "released_cold_displacement_m": {
+        "rational": "-1/500",
+        "decimal": "-0.002"
+      },
+      "double_count_wrong_cold_N": {
+        "rational": "80000",
+        "decimal": "80000"
+      }
+    },
+    "hydrotest_symbolic_pi": {
+      "mass_per_length_kg_m_coefficient_of_pi": {
+        "rational": "387/50",
+        "decimal": "7.74"
+      },
+      "q_N_m_coefficient_of_pi": {
+        "rational": "-387/5",
+        "decimal": "-77.4"
+      },
+      "root_Fy_N_coefficient_of_pi": {
+        "rational": "774/5",
+        "decimal": "154.8"
+      },
+      "root_Mz_Nm_coefficient_of_pi": {
+        "rational": "774/5",
+        "decimal": "154.8"
+      },
+      "wall_N_coefficient_of_pi": {
+        "rational": "3200",
+        "decimal": "3200"
+      },
+      "changed_fluid_q_coefficient_of_pi": {
+        "rational": "-323/5",
+        "decimal": "-64.6"
+      }
+    },
+    "lock_replacement": {
+      "active_u_m": {
+        "rational": "-3/5",
+        "decimal": "-0.6"
+      },
+      "active_hanger_N": {
+        "rational": "400",
+        "decimal": "400"
+      },
+      "structure_support_N": {
+        "rational": "600",
+        "decimal": "600"
+      },
+      "locked_u_m": {
+        "rational": "0",
+        "decimal": "0"
+      },
+      "locked_total_support_reaction_N": {
+        "rational": "1000",
+        "decimal": "1000"
+      },
+      "pin_force_if_internal_spring_retains_preload_N": {
+        "rational": "900",
+        "decimal": "900"
+      }
+    },
+    "persistent_preload": {
+      "physical_combined_u_m": {
+        "rational": "-7/10",
+        "decimal": "-0.7"
+      },
+      "incorrect_sum_of_total_states_u_m": {
+        "rational": "-3/5",
+        "decimal": "-0.6"
+      }
+    },
+    "history_counterexample": {
+      "path": [
+        {
+          "g_m": {
+            "rational": "0",
+            "decimal": "0"
+          },
+          "force_N": {
+            "rational": "0",
+            "decimal": "0"
+          },
+          "slip_m": {
+            "rational": "0",
+            "decimal": "0"
+          }
+        },
+        {
+          "g_m": {
+            "rational": "3/1000",
+            "decimal": "0.003"
+          },
+          "force_N": {
+            "rational": "1",
+            "decimal": "1"
+          },
+          "slip_m": {
+            "rational": "1/500",
+            "decimal": "0.002"
+          }
+        },
+        {
+          "g_m": {
+            "rational": "0",
+            "decimal": "0"
+          },
+          "force_N": {
+            "rational": "-1",
+            "decimal": "-1"
+          },
+          "slip_m": {
+            "rational": "1/1000",
+            "decimal": "0.001"
+          }
+        }
+      ],
+      "virgin_final_force_N": {
+        "rational": "0",
+        "decimal": "0"
+      }
+    },
+    "hydrostatic_column": {
+      "z_m": [
+        {
+          "rational": "0",
+          "decimal": "0"
+        },
+        {
+          "rational": "5",
+          "decimal": "5"
+        },
+        {
+          "rational": "10",
+          "decimal": "10"
+        }
+      ],
+      "pressure_Pa": [
+        {
+          "rational": "300000",
+          "decimal": "300000"
+        },
+        {
+          "rational": "250000",
+          "decimal": "250000"
+        },
+        {
+          "rational": "200000",
+          "decimal": "200000"
+        }
+      ],
+      "wall_force_N": [
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        },
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        },
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        }
+      ],
+      "effective_force_N": [
+        {
+          "rational": "0",
+          "decimal": "0"
+        },
+        {
+          "rational": "500",
+          "decimal": "500"
+        },
+        {
+          "rational": "1000",
+          "decimal": "1000"
+        }
+      ],
+      "support_N": {
+        "rational": "1000",
+        "decimal": "1000"
+      },
+      "double_count_wall_N": [
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        },
+        {
+          "rational": "3500",
+          "decimal": "3500"
+        },
+        {
+          "rational": "4000",
+          "decimal": "4000"
+        }
+      ],
+      "double_count_support_N": {
+        "rational": "2000",
+        "decimal": "2000"
+      },
+      "uniform_pressure_wall_N": [
+        {
+          "rational": "2000",
+          "decimal": "2000"
+        },
+        {
+          "rational": "2500",
+          "decimal": "2500"
+        },
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        }
+      ],
+      "uniform_pressure_support_N": {
+        "rational": "1000",
+        "decimal": "1000"
+      },
+      "correct_extension_m": {
+        "rational": "3/40000",
+        "decimal": "0.000075"
+      },
+      "wrong_uniform_extension_m": {
+        "rational": "13/200000",
+        "decimal": "0.000065"
+      },
+      "uniform_average_wall_force_N": [
+        {
+          "rational": "2500",
+          "decimal": "2500"
+        },
+        {
+          "rational": "3000",
+          "decimal": "3000"
+        },
+        {
+          "rational": "3500",
+          "decimal": "3500"
+        }
+      ],
+      "uniform_average_pressure_Pa": {
+        "rational": "250000",
+        "decimal": "250000"
+      },
+      "uniform_average_extension_m": {
+        "rational": "3/40000",
+        "decimal": "0.000075"
+      }
+    }
+  }
+}

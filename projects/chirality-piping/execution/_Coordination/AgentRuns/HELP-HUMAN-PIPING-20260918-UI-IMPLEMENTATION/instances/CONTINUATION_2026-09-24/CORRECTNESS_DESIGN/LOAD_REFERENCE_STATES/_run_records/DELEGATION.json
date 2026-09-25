@@ -1,0 +1,23 @@
+{
+  "actual_parent": "/root/load_state_design",
+  "root": "/root",
+  "child": "/root/load_state_design/reference_review",
+  "mechanism": "collaboration.spawn_agent; delegated-harness-native",
+  "role": "TASK Type2; no delegation",
+  "launch_result": "created successfully",
+  "full_role_supplied_in_assignment": true,
+  "role_origin": "REPO_ROOT/agents/AGENT_TASK.md",
+  "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+  "objective": "Independent bounded physics/reference/implementability review of load/reference-state design and analytical examples",
+  "write_scope": "LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW",
+  "excluded": [
+    "product/source edits",
+    "Git mutations",
+    "Cargo/npm/build/native execution",
+    "graph/instruction/workflow edits",
+    "material/component library or code-rule population"
+  ],
+  "return_path": "LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/RETURN.md",
+  "limit": "At most one active TASK child; no delegation by TASK",
+  "refusals": []
+}

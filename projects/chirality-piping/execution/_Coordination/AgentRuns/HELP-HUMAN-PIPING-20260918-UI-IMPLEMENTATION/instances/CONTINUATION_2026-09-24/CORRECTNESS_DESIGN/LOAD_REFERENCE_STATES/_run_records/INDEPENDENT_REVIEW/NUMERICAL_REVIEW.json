@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "groups": 11,
+  "scope": "independent design calculations only",
+  "product_execution": false,
+  "results": {
+    "axial_boundary": {
+      "u": [
+        "1/10000",
+        "1/15000",
+        "0"
+      ],
+      "support_actions": [
+        "20000/3",
+        "0",
+        "-20000/3"
+      ]
+    },
+    "rotation": {
+      "cubic_coefficients": [
+        "0",
+        "1/1000",
+        "-1/1000",
+        "1/4000"
+      ],
+      "support_actions": [
+        "3",
+        "4",
+        "-3",
+        "2"
+      ],
+      "free_tip_m": "1/500"
+    },
+    "element_material_states": {
+      "u": "1/3000",
+      "cold_N": "200000/3",
+      "hot_N": "-200000/3"
+    },
+    "coefficient_datum": {
+      "engineering_strain": "43/25009"
+    },
+    "differential_meaning": {
+      "datum_length_strain": "3/2000",
+      "log_length_engineering_strain_decimal": "0.0015011255627110007970737032027077970035971836303578653754232109789418775969000"
+    },
+    "fit": {
+      "cold_N": "40000",
+      "hot_N": "-89976",
+      "released_u": "-1/500",
+      "different_natural_reference_cold_N": "200000000/4999"
+    },
+    "hydrotest": {
+      "q_over_pi": "-387/5",
+      "root_F_over_pi": "774/5",
+      "root_M_over_pi": "774/5",
+      "wall_pressure_N_over_pi": "3200",
+      "changed_q_over_pi": "-323/5"
+    },
+    "lock_attribution": {
+      "active_u": "-3/5",
+      "total_locked_action": "1000",
+      "retained_spring_if_modeled": "100",
+      "pin_if_modeled": "900",
+      "at_predecessor_pin_if_modeled": "0"
+    },
+    "source_participation": {
+      "physical_u": "-7/10",
+      "wrong_sum_u": "-3/5"
+    },
+    "history": [
+      {
+        "position": "0",
+        "slip": "0",
+        "force": "0"
+      },
+      {
+        "position": "3/1000",
+        "slip": "1/500",
+        "force": "1"
+      },
+      {
+        "position": "0",
+        "slip": "1/1000",
+        "force": "-1"
+      }
+    ],
+    "hydrostatic_wall_effective_distinction": {
+      "root_action_N": "1000",
+      "wrong_double_counted_root_N": "2000",
+      "true_wall_force_N": "2000",
+      "samples": [
+        {
+          "z": "0",
+          "pressure": "200000",
+          "effective_N": "0",
+          "wall_N": "2000",
+          "wrong_uniform_wall_N": "1000"
+        },
+        {
+          "z": "5",
+          "pressure": "150000",
+          "effective_N": "500",
+          "wall_N": "2000",
+          "wrong_uniform_wall_N": "1500"
+        },
+        {
+          "z": "10",
+          "pressure": "100000",
+          "effective_N": "1000",
+          "wall_N": "2000",
+          "wrong_uniform_wall_N": "2000"
+        }
+      ],
+      "average_pressure_counterexample": {
+        "top_pressure_Pa": "200000",
+        "average_pressure_Pa": "250000",
+        "true_station_wall_N": [
+          "3000",
+          "3000",
+          "3000"
+        ],
+        "wrong_average_pressure_station_wall_N": [
+          "2500",
+          "3000",
+          "3500"
+        ],
+        "true_extension_m": "3/40000",
+        "wrong_top_pressure_extension_m": "13/200000",
+        "coincident_average_pressure_extension_m": "3/40000"
+      }
+    }
+  },
+  "script_sha256": "95f96d496f0baca7bd38d99efc79da7684fc65fe3f6c181ecd4f3dc899edb177"
+}

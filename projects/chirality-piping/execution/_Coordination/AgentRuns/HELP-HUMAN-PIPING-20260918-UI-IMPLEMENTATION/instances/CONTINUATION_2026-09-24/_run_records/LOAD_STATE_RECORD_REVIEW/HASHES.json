@@ -1,0 +1,355 @@
+{
+  "reviewer": "/root/m35_integration_review",
+  "parent": "/root",
+  "role": "TASK",
+  "time_utc": "2026-09-25T05:32:37.299026+00:00",
+  "base": "7cf85889062b5629001204e248cfe4e09c9d0739",
+  "scope_count": 22,
+  "packet_files": 21,
+  "packet_manifest_entries": 20,
+  "manifest_sha256": "2c91d4e95c413df17d5da3ed302974015bba261237c0bf4a5f088d72c233813b",
+  "manifest_mismatches": [],
+  "final_review_files": [
+    "DESIGN.md",
+    "INTERFACE.md",
+    "REFERENCES.md",
+    "VERIFICATION.md",
+    "verify_reference_states.py",
+    "BASIS.json",
+    "HYDROSTATIC_CONTROL.md"
+  ],
+  "local_links_checked": [
+    {
+      "from": "DESIGN.md",
+      "link": "../../OWNER_PHYSICS_AUTHORITY_2026-09-25.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "../RESULTS_AND_COMBINATIONS.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "../PRESSURE_INTEGRATION.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "../RAW02_INTERFACE_ALIGNMENT.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "INTERFACE.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "REFERENCES.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "VERIFICATION.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "BASIS.json",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "REFERENCES.md",
+      "exists": true
+    },
+    {
+      "from": "DESIGN.md",
+      "link": "HYDROSTATIC_CONTROL.md",
+      "exists": true
+    },
+    {
+      "from": "INTERFACE.md",
+      "link": "DESIGN.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "DESIGN.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "INTERFACE.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "VERIFICATION.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "REFERENCES.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "BASIS.json",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "_run_records/INDEPENDENT_REVIEW/FINAL_HASHES.json",
+      "exists": true
+    },
+    {
+      "from": "RETURN.md",
+      "link": "HYDROSTATIC_CONTROL.md",
+      "exists": true
+    },
+    {
+      "from": "VERIFICATION.md",
+      "link": "HYDROSTATIC_CONTROL.md",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "FINAL_HASHES.json",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "BASIS_START.json",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "INTERFACE_INITIAL_HASH.json",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "BEFORE_HYDROSTATIC_HASHES.json",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "independent_check.py",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "NUMERICAL_REVIEW.json",
+      "exists": true
+    },
+    {
+      "from": "_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "link": "CHECK_RUN.json",
+      "exists": true
+    }
+  ],
+  "missing_local_links": [],
+  "author_analytical_groups_recorded": 11,
+  "reviewer_analytical_groups_recorded": 11,
+  "analytical_scripts_rerun_by_this_reviewer": false,
+  "script_imports": {
+    "verify_reference_states.py": [
+      "json",
+      "fractions",
+      "decimal",
+      "pathlib"
+    ],
+    "_run_records/INDEPENDENT_REVIEW/independent_check.py": [
+      "fractions",
+      "decimal",
+      "pathlib",
+      "hashlib",
+      "json"
+    ]
+  },
+  "delegation_record_sha256": "23c65fcdacf43ce0534673a23e529c71acc40986bb6f997e6c83f0a2844de4c3",
+  "hydrostatic_attribution": "ROOT contributed the counterexample; independent TASK reference_review checked it. Neither is vendor benchmark/runtime output.",
+  "changed_finding_states": [
+    "M10",
+    "M16",
+    "M21",
+    "M29"
+  ],
+  "closed_groups_unchanged": [
+    "M04",
+    "M09",
+    "M24",
+    "M35"
+  ],
+  "original_open_count": 34,
+  "graph_before_sha256": "d65e71a087e59c8abe7e5eff000549640cdc00e992f7ec336ecf99ed591e9029",
+  "graph_after_sha256": "f36005d4b6f7dff4bbe0b2b44415a9cdc04d1649efe310bfbd0758e9900b6aed",
+  "graph_diff_sha256": "941d20f2b6d023449d89d6d3717242d8ab61fe0dec4e843cb543a538549b68a9",
+  "no_full_model_json_matches": [],
+  "privacy_scope": "Packet contains invented analytical scalars/interfaces/reference discussion, not complete native/user models or populated material/component/code-rule datasets.",
+  "candidate_coverage": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/BASIS.json",
+      "sha256": "051abfe38568c11dfce9f1870228294dcb8bdfc9f5929ede27b4fa87ced960cd",
+      "bytes": 11451,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/DESIGN.md",
+      "sha256": "2839c65ae56c4ff4674da12848eda4b60f1385663b4c0b5e556099eae7fe4f64",
+      "bytes": 33029,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/HYDROSTATIC_CONTROL.md",
+      "sha256": "30041992674e22115722d688a2d8cb2b589febf20425a1bd56434c7fdf3486ef",
+      "bytes": 5185,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/INTERFACE.md",
+      "sha256": "18587811735a262187cf4a26bb934d6c3ef03ceb37c78228bb39b7f8afe073bf",
+      "bytes": 12508,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/PACKET_MANIFEST.json",
+      "sha256": "2c91d4e95c413df17d5da3ed302974015bba261237c0bf4a5f088d72c233813b",
+      "bytes": 3442,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/REFERENCES.md",
+      "sha256": "ad3147c69a14ee16d5e4cbbcf8300b94dc092802dfb8b5775beb62e690a1b5fa",
+      "bytes": 6743,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/RETURN.md",
+      "sha256": "49e8b8d12a1352c9d8ff182dce9c77f51bbea3dca03524ddcc489773e0b9f554",
+      "bytes": 4962,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/VERIFICATION.md",
+      "sha256": "061f1f8fa53d426e3af9db58bf684bdfca790b13f3df780935e9353d5402fc57",
+      "bytes": 8879,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/DELEGATION.json",
+      "sha256": "23c65fcdacf43ce0534673a23e529c71acc40986bb6f997e6c83f0a2844de4c3",
+      "bytes": 1040,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/FINAL_BACKCHECK.json",
+      "sha256": "e58b1b577a10dc6ceac2e0ff69143d07d5b8b01bc49462d9ffed0cc83bbb975e",
+      "bytes": 850,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/BASIS_START.json",
+      "sha256": "4546258d4704c660df939120bc4732c4c27285ba5eac26a6186bdd7114aa43b5",
+      "bytes": 2725,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/BEFORE_HYDROSTATIC_HASHES.json",
+      "sha256": "19345f74de78a16bb0c13a866d360d9edcaa2637644001b94cb487de47f1612d",
+      "bytes": 1205,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/CHECK_RUN.json",
+      "sha256": "c97a33e28f558a326703776b0c1a6d4a6475a9cdce4c0f080f9759ba6c5af99c",
+      "bytes": 374,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/FINAL_HASHES.json",
+      "sha256": "28caf8b8603e354179a7228192bb2da9ec1be02aba5caba2a681d87f5147a331",
+      "bytes": 1422,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/INTERFACE_INITIAL_HASH.json",
+      "sha256": "23bac3cd2ae4322f1406c846d72a30adc7818caacc6c2a96574a183fd2fd1aae",
+      "bytes": 276,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/NUMERICAL_REVIEW.json",
+      "sha256": "8edc8adbc4c02377ef1a499df3eaac2ad96d626639485c9f1407417e72c9bacc",
+      "bytes": 3225,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/RETURN.md",
+      "sha256": "a95beb3471441399969a291453044250e7165b04bda1e99856fb22c20c2fce56",
+      "bytes": 11274,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/INDEPENDENT_REVIEW/independent_check.py",
+      "sha256": "95f96d496f0baca7bd38d99efc79da7684fc65fe3f6c181ecd4f3dc899edb177",
+      "bytes": 11471,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/LOCAL_CHECKS.json",
+      "sha256": "018441a93c9a4e54383d960475c585667b4aaf6a94544671c8de638a85ba98d2",
+      "bytes": 1155,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/_run_records/analytical_examples.json",
+      "sha256": "237d74256c14e6de8f3c7ebec85db1214e64515e17ecb8969b63310582aaa8c7",
+      "bytes": 7906,
+      "coverage": "Records/content/provenance inspected; hash/link/count/execution-claim checks as applicable. Independent script imports and custody inspected without rerunning its arithmetic."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "sha256": "dfc1e937c974a1cfed87aa26c95ba60d813330cbf24962a2418202313efca613",
+      "bytes": 5238,
+      "coverage": "Exact final-seven technical review carried; source/status/provenance/limit sections and local links inspected for records review."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "f36005d4b6f7dff4bbe0b2b44415a9cdc04d1649efe310bfbd0758e9900b6aed",
+      "coverage": "Complete frozen diff and all changed state/count/link claims reviewed."
+    }
+  ],
+  "scope_validator_exit": 0,
+  "current_origin_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    }
+  ],
+  "unrelated_working_state_excluded": " M projects/chirality-piping/apps/desktop/e2e/b4-pipes.spec.ts\n M projects/chirality-piping/apps/desktop/e2e/b4-sections.spec.ts\n M projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.test.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/EngineeringTable.tsx\n M projects/chirality-piping/apps/desktop/src/features/workspace/table/ModelTree.table.test.tsx\n M projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/INTEGRATED_PIPES/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/NATIVE_TOKEN_CASE/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/PIPES/_run_records/FINAL_CHECKS_R3/browser-artifacts/.playwright-artifacts-0/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/B4_MANAGER/REJECTED_DRAFT_REPAIR/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/EXTENDED_METHOD_CONTRACT/\n?? projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/LOAD_REFERENCE_STATES/\n",
+  "limits": "Recoverable records checkpoint only. Prior technical review carried, no new literature review/analytical execution/source qualification. No source, graph, Git, native, runtime or heavy checks; no delegation. ROOT selection is existing authority, not a new human gate."
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "independent_final_hashes_match": [
+    {
+      "path": "LOAD_REFERENCE_STATES/DESIGN.md",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/INTERFACE.md",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/REFERENCES.md",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/VERIFICATION.md",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/BASIS.json",
+      "matches": true
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/HYDROSTATIC_CONTROL.md",
+      "matches": true
+    }
+  ],
+  "local_links": "PASS",
+  "analytical_groups": 11,
+  "limits": "Design-only verification; no production implementation, build or native qualification"
+}

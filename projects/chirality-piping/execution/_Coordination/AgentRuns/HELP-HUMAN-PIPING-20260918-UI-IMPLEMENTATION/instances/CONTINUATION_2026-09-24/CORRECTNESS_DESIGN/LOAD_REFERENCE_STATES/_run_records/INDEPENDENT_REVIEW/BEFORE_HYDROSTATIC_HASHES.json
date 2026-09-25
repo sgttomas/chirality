@@ -1,0 +1,37 @@
+{
+  "utc": "2026-09-25T04:52:53.084784+00:00",
+  "claim": "actual final reviewed design bytes; no product qualification",
+  "status": "CLEAR_AFTER_REPAIRS",
+  "files": [
+    {
+      "path": "LOAD_REFERENCE_STATES/DESIGN.md",
+      "sha256": "1778ed15f9b1d765142e0393b69e9a6a4ddd37e550434f76ef4530ceb43e391d",
+      "bytes": 32206
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/INTERFACE.md",
+      "sha256": "2d89fc66be399a5df90b0c54e09872467f49de020766ef69835753d8e3659391",
+      "bytes": 12155
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/REFERENCES.md",
+      "sha256": "94ccf237520346b5f314edfa29b93ab791b44d27a1147a12a27a6e0e3fbd1fcf",
+      "bytes": 5950
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/VERIFICATION.md",
+      "sha256": "dbd9c61e53d8db49147533f0083cae1abf009b69b37010db87fc4050f9ed0d76",
+      "bytes": 8140
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/verify_reference_states.py",
+      "sha256": "2741029479b8c187f61fff7fd4912f3ad660f0388fd6bc245b4101e964e388c0",
+      "bytes": 3937
+    },
+    {
+      "path": "LOAD_REFERENCE_STATES/BASIS.json",
+      "sha256": "b6adf93a05e26a5117b849881d0486b1f718b1191b06bd9862397e6cb1514955",
+      "bytes": 10952
+    }
+  ]
+}
