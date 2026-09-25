@@ -1,0 +1,5 @@
+Path,SHA256,Role,AcceptanceBoundary
+projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/Amendment_Actions_Addendum.csv,a0cfd46ee6e9e694abc52fbda8386dc6f417131ba710902526e62316e587e175,owner-directed addition to the accepted intake (Seq 79 SOW-033 ObjectiveIDs OBJ-003),Accepted as intake; exact postimage pending checkpoint 2
+projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/DECISION.md,4328633cf0d134b86b01ad8981a2fcb259acac828785d211bdee5f8aea8f3013,amendment 1 this amendment builds on,Unchanged and immutable
+projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv,c3b7b0840649816a125ede11d48d20f1661936e5aa7787ba622a0ba163f5c6ca,amendment 1 addendum,Unchanged and immutable
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Actions.csv,5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2,accepted parsed change set,Byte-unchanged

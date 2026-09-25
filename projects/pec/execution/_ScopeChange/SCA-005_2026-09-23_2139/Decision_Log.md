@@ -35,7 +35,8 @@ rulings.
 | SCA005-CP1-O | 1 | Objectives for SOW-095/096 and DEL-02-08/09: **OBJ-001;OBJ-002** | `SELECTED VIA CP1-B` | Resolution note §A CP1-O: `Deliverables.csv` DEL-02-01..07 |
 | SCA005-A1-TM | 1 (amendment 1) | TM-PEC-023 selections: row 1 DEL-00-02 `OBJ-003`; row 2 DEL-03-05 `OBJ-001`; row 3 DEL-05-01 `OBJ-004`; row 5 DEL-07-03 `OBJ-003`; row 8 DEL-08-05 `OBJ-001;OBJ-003`; row 9 DEL-10-08 `OBJ-001` (supersedes DL-14's objective-free rationale); rows 4, 6, 7 moot (retired); no typed non-mapping, so the surface's mechanic and objective-side-table rulings are moot | `SELECTED BY OWNER` | Owner acts 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/DECISION.md` |
 | SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
-| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendment 1) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
+| SCA005-A2-SOW033 | 1 (amendment 2) | Add to intake: Seq 79 SOW-033 `ObjectiveIDs` to `OBJ-003` (DEL-07-01 unchanged at `OBJ-003`); no IN scope item remains without an objective after application | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/DECISION.md` |
+| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
 | SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
 
 ## SCA005-G1 — owner direction of record (verbatim)
@@ -78,6 +79,14 @@ Owner, 2026-09-24, after HELP_HUMAN offered to mark cmux deferred and out of sco
 
 HELP_HUMAN's per-row interpretation, the addendum actions and the boundary
 are in `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`. The accepted group-1 snapshot is unchanged.
+
+## SCA005-A2 — owner act of record (verbatim)
+
+Owner, 2026-09-24, after HELP_HUMAN asked whether to map SOW-033 to OBJ-003 and whether to keep the Status page and README current:
+
+> yes map SOW-033 to OBJ-003 and yes maintain the Status page and README.
+
+The first clause is amendment 2 (`../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`); the second is `D-PEC-88` and does not concern SCA-005.
 
 ## Non-decisions recorded for clarity
 
