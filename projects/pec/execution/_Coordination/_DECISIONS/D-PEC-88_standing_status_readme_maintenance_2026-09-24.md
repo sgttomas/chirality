@@ -60,7 +60,8 @@ keep the files current "as a standing duty", and the answer was yes.
    (`D-PEC-86` §3 I-7).
 7. **Rollback.** Any single change reverts with its PR hunk. The clause itself
    ends on the owner's revocation, after which the files return to the
-   per-tranche rule.
+   §"Write Scopes And Fences" rules: a per-tranche clause for STATUS and an
+   owner-ruled packet for README.
 
 ## Effect on earlier edits (HELP_HUMAN interpretation)
 

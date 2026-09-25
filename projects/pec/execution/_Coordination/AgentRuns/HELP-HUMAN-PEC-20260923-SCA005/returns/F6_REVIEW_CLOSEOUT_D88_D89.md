@@ -22,6 +22,15 @@ Passed: owner quote byte-identical in all six carriers; amendment 2 carries only
 | NOTE | Receipt 184 Stale-Map-Delta omitted Seq 79 and the D-PEC-88 write basis | added |
 | NOTE | amendment-2 manifest binds amendment 1's DECISION and addendum only | none; follows amendment 1's practice, and git confirms the files unchanged |
 
-## Cycle 2 — backcheck
+## Cycle 2 — backcheck of `a1cc297c2e84328c54d70f84c3d8ff4c8e0a520f`
 
-Pending at the time of this transcription; appended below when returned.
+Verdict: **PASS** (two NOTE). All eleven cycle-1 findings repaired as dispositioned; the table above confirmed a faithful summary. D-PEC-88 clause 1 names HELP_HUMAN only and the register row is consistent; the legal-basis paragraph quotes `projects/pec/AGENTS.md` exactly; clauses 4 and 6 no longer pre-decide migration. Receipts validator exit 0; `--strict` registers exit 0; `git diff --check` exit 0; both amendment manifests 10/10; the changed hashes of amendment-2 `DECISION.md` and D-PEC-88 are quoted nowhere; no fence path touched.
+
+| Sev | Finding | Disposition (HELP_HUMAN, cycle-2 commit) |
+|---|---|---|
+| NOTE | D-PEC-88 clause 7 said both files return to "the per-tranche rule"; README returns to the owner-ruled-packet rule | reworded to name both rules |
+| NOTE | `RUN.md` L2a row still said "the closed guard" | now "the resulting bytes" |
+
+## Cycle 3 — final-candidate confirmation
+
+Requested for the head that carries this transcription; appended below when returned.
