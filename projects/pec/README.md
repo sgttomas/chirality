@@ -20,13 +20,15 @@ rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 
 ## State
 
-Early P1 implementation (present-current as of 2026-09-23, `D-PEC-86` §3
-I-5). Decomposition revision 1.5 is the accepted current basis after
+Early P1 implementation (present-current as of 2026-09-25, `D-PEC-86` §3
+I-5 and `D-PEC-88`). Decomposition revision 1.5 is the accepted current basis after
 `SCA-005` (owner checkpoint-3 acceptance 2026-09-25); before it, revision 1.4
 after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the
 owner-selected full DAG, scaffolded 11 packages / 64 deliverables, and completed
-the SCA-004 metadata-alignment subset: 64/64 context provenance blocks and
-64/64 reference packets are current, and DEL-01-06 carries the non-gating
+the SCA-004 metadata-alignment subset (all context provenance blocks and
+reference packets were current for revision 1.4; after SCA-005, 22 contexts
+name revision 1.5 and the other 42 contexts and all 64 references await
+re-pinning), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
 initialized. DEL-01-06 now has the accepted revision-1.4 production contract
 at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
@@ -125,7 +127,8 @@ content-minimal · mode-capable and never forced.
 Decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` (pivot:
 `D-PEC-57`; adoption: `D-PEC-58`; directed bootstrap: `D-PEC-61`; exact
 consumer rows: `D-PEC-67`; v2.2 concordance: `D-PEC-68`; loop-registry ruling:
-`D-PEC-78`; accepted decomposition successor: `SCA-004`; historical contract
+`D-PEC-78`; accepted decomposition successor: `SCA-005` (revision 1.5,
+checkpoint 2 `D-PEC-92`), after `SCA-004`; historical contract
 reconciliation and hold release: `D-PEC-69`/`D-PEC-70`; loop home: `D-PEC-80`;
 first store/guard slice: `D-PEC-85`; SCA-005 opening: `D-PEC-86`). Receipts:
 `projects/pec/loop/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.

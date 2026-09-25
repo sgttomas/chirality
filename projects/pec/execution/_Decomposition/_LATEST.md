@@ -46,7 +46,10 @@ exact amendment and propagation plan accepted the same day, register row
   `Handoff_State.md` and `RUN_SUMMARY.md`: DEL-02-08/09 preparation with
   the dependency rerun (PROJECT_SETUP, own packet), context and reference
   re-pinning, SOW currency, derivative-artifact review, the registry source
-  packet, fixtures, and the D-PEC-90 reliance amendment.
+  packet, fixtures, TM-PEC-023 disposition, the `projects/pec/AGENTS.md`
+  instruction tranche, the D-PEC-90 reliance amendment, a re-audit after the
+  DEL-02-08/09 preparation, and (under its own grant) moving the audit
+  folder's `_LATEST.md` to the SCA-005 audit.
 - **Authority fence:** no downstream repair, source, lifecycle beyond the
   four accepted retirements, artifact acceptance, release, professional
   reliance, or foreign-loop duty is implied by this pointer.
