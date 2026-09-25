@@ -1,0 +1,30 @@
+{
+  "utc": "2026-09-25T13:23:58.477087+00:00",
+  "targets_unchanged": true,
+  "checked_targets": [
+    {
+      "sha256": "afb0ae8a02a8b4010041bace997df66281c62536e672e857fdd9a03a3f0ace41",
+      "bytes": 116638,
+      "label": "WORK_GRAPH.md"
+    },
+    {
+      "sha256": "c8f36dd1b24678bda987d896044eed0fab1561146361a8fb0a78fc12886e5d96",
+      "bytes": 3056,
+      "label": "NEXT_LOAD_STATE_ALLOCATION.md"
+    }
+  ],
+  "review_files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "d7df9b2e58ff75096af0e6fee454df4976dd82faf3c9da20976cae53e922562b"
+    },
+    {
+      "path": "_run_records/CHECKED_BASIS.json",
+      "sha256": "8e1f046fac89f5e51ede432989498fd4c3a5d6136809fb54624f7f392628b9a3"
+    },
+    {
+      "path": "_run_records/graph.diff",
+      "sha256": "415a68b746822ac3f1e2e370ce3425fc439d3f2f5ace3c3d570ba2eb589c4035"
+    }
+  ]
+}
