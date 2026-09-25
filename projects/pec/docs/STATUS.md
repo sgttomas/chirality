@@ -191,13 +191,15 @@ P-A.
 
 Current owner gates (2026-09-25; none is accepted or inferred here):
 
-- **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
-  once prepared from the accepted group-1 snapshot
-  (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
-  and its amendments 1 and 2, carrying the owner-selected TM-PEC-023 values, the
-  cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate, and
-  carrying the `D-PEC-90` note; checkpoint 3 (audited
-  poststate) follows.
+- **SCA-005 checkpoint 2:** the package is prepared and independently
+  verified (2026-09-25) in `execution/_ScopeChange/SCA-005_2026-09-23_2139/`:
+  `Amendment_Preview.md`, `Propagation_Plan.md`, `Amendment_Actions_CP2.csv`
+  (79 actions), `Supersession_Delta.csv`, `PRD_V2_3_SUCCESSOR_DIFF.md` and the
+  `CP2_CANDIDATE/` postimages (decomposition revision 1.5 and the PRD v2.3
+  successor candidate). It carries the group-1 snapshot, amendments 1 and 2
+  and the `D-PEC-90` note. The owner's questions are at the end of
+  `Propagation_Plan.md` (Q-CP2-A, the whole package at its hashes; Q-CP2-1 to
+  Q-CP2-4). Nothing is applied; checkpoint 3 (audited poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.

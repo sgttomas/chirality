@@ -117,4 +117,12 @@ Before ruling, the owner asked whether a bound above what JSON readers handle is
 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
-| G14 C4 closeout | HELP_HUMAN | C4 merged | this file; `briefs/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/F12_REVIEW_C4_CLOSEOUT.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 190 | in progress — PR, independent review, CI, merge |
+| G14 C4 closeout | HELP_HUMAN | C4 merged | this file; `briefs/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/C4_D91_COUNT_DOMAIN_SLICE.md`, `returns/F12_REVIEW_C4_CLOSEOUT.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 190 | COMPLETE — PR #904 merged `aa312755e671b0fc7d598314d591c552749aaea6`; review transcribed in `returns/F12_REVIEW_C4_CLOSEOUT.md` |
+
+## Continuation 2026-09-25 (owner: "Proceed towards checkpoint 2 as indicated.")
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| B2 SCA-005 checkpoint-2 package | WORKING_ITEMS (`pec-manager`, `model: opus`, `isolation: worktree`) → TASK drafters T1 (PRD candidate), T2 (decomposition postimages), T3 and T4 (read-only investigation and `_CONTEXT.md`/`_STATUS.md` edit data, scratch only), all `pec-task`/opus → one fresh read-only verifier (`pec-reviewer`/opus), three cycles | group-1 snapshot and amendments 1 and 2; G14 merged | `_ScopeChange/SCA-005_2026-09-23_2139/` new CP2 files and `CP2_CANDIDATE/**`, additive `Decision_Log.md` and `Handoff_State.md`; `returns/B2_VERIFIER_VERDICT_0{1,2}.md` | COMPLETE — brief `briefs/B2_SCA005_CHECKPOINT2.md` (SHA-256 `75a8f596712e00926358aa721455a296e6370ee69dda4b8c2eb7c57324e48f11`); PR #908 opened at `c81945fe8`; verifier PASS WITH MINOR in cycles 1 and 2 (9 minors, then 1 minor and 4 nits, all repaired), cycle 3 confirmation with no minor (one cosmetic line-wrap nit left); HELP_HUMAN relayed the T1, T2 and verifier returns because the host routed them to the dispatcher, and filed the manager's return and verdict 03 after the manager handed back (`returns/B2_SCA005_CHECKPOINT2.md`, `returns/B2_VERIFIER_VERDICT_03.md`); T1/T2 relayed returns remain in the session scratchpad only |
+| G15 publish checkpoint-2 package | HELP_HUMAN | B2 | PR #908 branch: the B2 brief, return and verdict 03; this file; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 191 | in progress — base updated from `main` (no `projects/pec/` byte changed), independent review, CI, merge |
+| G16 record the owner's checkpoint-2 decision | HELP_HUMAN | G15 merged; owner act | group-2 decision snapshot and pointer; D-PEC register row per Q-CP2-4 | NOT_STARTED — awaiting the owner |
