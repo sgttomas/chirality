@@ -8,6 +8,7 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 
@@ -166,6 +167,49 @@ class StoreLifecycleTests(ScratchCheckoutTest):
         corrupted.reset()
         self.assertEqual(corrupted.read_all(), ())
         corrupted.close()
+
+        # close() from a non-owning thread raises the port-level error and keeps the handle.
+        threaded = SqliteMetadataStore(self.checkout)
+        raised_in_thread: list[BaseException] = []
+
+        def close_from_other_thread() -> None:
+            try:
+                threaded.close()
+            except BaseException as error:  # noqa: BLE001
+                raised_in_thread.append(error)
+
+        worker = threading.Thread(target=close_from_other_thread)
+        worker.start()
+        worker.join()
+        self.assertEqual([type(error) for error in raised_in_thread], [port_module.StoreDataError])
+        self.assertIsInstance(raised_in_thread[0].__cause__, sqlite3.Error)
+        self.assertEqual(threaded.read_all(), ())
+        threaded.close()
+        with self.assertRaises(StoreClosedError):
+            threaded.read_all()
+
+        # A regular file at the store directory fails construction with the port-level error.
+        store_directory = self.checkout / ".pec-v2"
+        shutil.rmtree(store_directory)
+        store_directory.write_bytes(b"not a directory")
+        with self.assertRaises(StoreConfigurationError) as blocked:
+            SqliteMetadataStore(self.checkout)
+        self.assertIs(type(blocked.exception), port_module.StoreConfigurationError)
+        self.assertIsInstance(blocked.exception.__cause__, OSError)
+        store_directory.unlink()
+
+        # An undeletable sidecar fails delete() with the port-level error; reset() recovers.
+        obstructed = SqliteMetadataStore(self.checkout)
+        journal = self.checkout / ".pec-v2" / "record_store.sqlite3-journal"
+        journal.mkdir()
+        with self.assertRaises(StoreDataError) as undeletable:
+            obstructed.delete()
+        self.assertIs(type(undeletable.exception), port_module.StoreDataError)
+        self.assertIsInstance(undeletable.exception.__cause__, OSError)
+        journal.rmdir()
+        obstructed.reset()
+        self.assertEqual(obstructed.read_all(), ())
+        obstructed.close()
 
     def test_ver_003_port_isolated_and_adapter_has_one_guarded_record_write_surface(self) -> None:
         """VER-003: consumer methods leak no engine/path and writes call one guard."""

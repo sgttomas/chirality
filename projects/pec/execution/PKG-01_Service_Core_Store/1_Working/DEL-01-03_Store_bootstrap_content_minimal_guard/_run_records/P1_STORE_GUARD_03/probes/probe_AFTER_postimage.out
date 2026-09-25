@@ -1,0 +1,36 @@
+probe_d89: v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a18afc5a210fbbfb7/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7
+E1-01  CLOSED PATH field, public RepositoryPath(Sneaky) :: constructor ValueError ('path must be a non-empty exact str')
+E1-02  CLOSED source_path, public RepositoryPath(Sneaky) :: constructor ValueError ('path must be a non-empty exact str')
+E1-03  CLOSED PATH field, forged shell with Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'locator'", "'INVALID_VALUE'")]
+E1-04  CLOSED source_path, forged shell with Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'<source_path>'", "'SOURCE_CITATION'")]
+E1-05  CLOSED record ID as Sneaky :: accepted=0 rejected=1 failures=[("'<input:0>'", "'<record_id>'", "'INVALID_IDENTIFIER'")]
+E1-06  CLOSED field name as Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'<field:0>'", "'INVALID_FIELD_NAME'")]
+E1-07  CLOSED source SHA digest, public ShaDigest(Sneaky) :: constructor ValueError ('SHA digest does not match its declared finit...)
+E1-08  CLOSED source SHA digest, forged shell with Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'<source_sha>'", "'SOURCE_CITATION'")]
+E1-09  CLOSED SHA field digest, public ShaDigest(Sneaky) :: constructor ValueError ('SHA digest does not match its declared finit...)
+E1-10  CLOSED SHA field digest, forged shell with Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'commit'", "'INVALID_VALUE'")]
+E1-11  CLOSED HASH field digest, public ContentHash(Sneaky) :: constructor ValueError ('hash digest does not match its declared fini...)
+E1-12  CLOSED HASH field digest, forged shell with Sneaky :: accepted=0 rejected=1 failures=[("'probe-1'", "'snapshot'", "'INVALID_VALUE'")]
+C2-2a  CLOSED public RepositoryPath(Liar('../../etc/passwd')) :: constructor ValueError ('path must be a non-empty exact str')
+C2-2b  CLOSED public RepositoryPath(Liar('/etc/passwd')) :: constructor ValueError ('path must be a non-empty exact str')
+C2-2c  CLOSED forged RepositoryPath(Liar('a/../../etc/passwd')) :: accepted=0 rejected=1 failures=[("'probe-1'", "'<source_path>'", "'SOURCE_CITATION'"), ("'probe-1'", "'locator'", "'INVALID_VALUE'")]
+LEN-1  CLOSED HexLen SHA1 digest (400 hex, len() says 40) :: accepted=0 rejected=1 failures=[("'probe-1'", "'commit'", "'INVALID_VALUE'")]
+CNT-1  CLOSED bool count :: accepted=0 rejected=1 failures=[("'probe-1'", "'items'", "'INVALID_VALUE'")]
+CNT-2  CLOSED int subclass count with __conform__ :: accepted=0 rejected=1 failures=[("'probe-1'", "'items'", "'INVALID_VALUE'")]
+ST-1   CLOSED forged KnownState member :: accepted=0 rejected=1 failures=[("'probe-1'", "'lifecycle'", "'INVALID_VALUE'")]
+ST-2   CLOSED Sneaky('IN_PROGRESS') as state :: accepted=0 rejected=1 failures=[("'probe-1'", "'lifecycle'", "'INVALID_VALUE'")]
+FC-1   CLOSED Sneaky('path') as field class :: accepted=0 rejected=1 failures=[("'probe-1'", "'locator'", "'UNKNOWN_FIELD_CLASS'")]
+TUP-1  CLOSED tuple subclass fields: len 1, iterates nothing :: accepted=0 rejected=1 failures=[("'probe-1'", "'<record>'", "'EMPTY_RECORD'")]
+DUP-1  CLOSED two field names as never-equal str subclass :: accepted=0 rejected=1 failures=[("'probe-1'", "'<field:0>'", "'INVALID_FIELD_NAME'"), ("'probe-1'", "'<field:1>'", "'INVALID_FIELD_NAME'")]
+SPF-1  CLOSED non-str record ID with __class__ -> str :: accepted=0 rejected=1 failures=[("'<input:0>'", "'<record_id>'", "'INVALID_IDENTIFIER'")]
+E3-1   CLOSED exact-str payload as record ID :: accepted=0 rejected=1 failures=[("'<input:0>'", "'<record_id>'", "'INVALID_IDENTIFIER'")]
+E3-2   CLOSED exact-str payload as field name :: accepted=0 rejected=1 failures=[("'probe-1'", "'<field:0>'", "'INVALID_FIELD_NAME'")]
+E3-3   CLOSED invalid Sneaky record ID :: accepted=0 rejected=1 failures=[("'<input:0>'", "'<record_id>'", "'INVALID_IDENTIFIER'")]
+E3-4   CLOSED invalid Sneaky field name :: accepted=0 rejected=1 failures=[("'probe-1'", "'<field:0>'", "'INVALID_FIELD_NAME'")]
+C2-4   OPEN   sqlite3.register_adapter(str) rewrites one exact path :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two'] [outside the threat boundary by design]
+E2-1   CLOSED close() from a non-owning thread :: raised pec_v2.core.ports.store.StoreDataError (cause ProgrammingError); handle kept=True; owner close ok; read_all after owner close -> StoreClosedError
+E2-2   CLOSED .pec-v2 is a regular file at construction :: raised pec_v2.core.ports.store.StoreConfigurationError (cause FileExistsError)
+E2-3   CLOSED reopen() in a read-only checkout :: raised pec_v2.core.ports.store.StoreConfigurationError (cause PermissionError); store closed
+E2-4   CLOSED delete() with a sidecar name that is a directory :: raised pec_v2.core.ports.store.StoreDataError (cause PermissionError); reset then read_all=()
+TOTAL OPEN 1 / 33: C2-4

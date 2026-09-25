@@ -1,0 +1,36 @@
+probe_d89: v2 tree /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/author/base/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7
+E1-01  OPEN   PATH field, public RepositoryPath(Sneaky) :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-02  OPEN   source_path, public RepositoryPath(Sneaky) :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-03  OPEN   PATH field, forged shell with Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-04  OPEN   source_path, forged shell with Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-05  OPEN   record ID as Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-06  OPEN   field name as Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-07  OPEN   source SHA digest, public ShaDigest(Sneaky) :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-08  OPEN   source SHA digest, forged shell with Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-09  OPEN   SHA field digest, public ShaDigest(Sneaky) :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-10  OPEN   SHA field digest, forged shell with Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-11  OPEN   HASH field digest, public ContentHash(Sneaky) :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+E1-12  OPEN   HASH field digest, forged shell with Sneaky :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two']
+C2-2a  OPEN   public RepositoryPath(Liar('../../etc/passwd')) :: accepted=1 rejected=0 failures=[] PERSISTED=['etc/passwd']
+C2-2b  OPEN   public RepositoryPath(Liar('/etc/passwd')) :: accepted=1 rejected=0 failures=[] PERSISTED=['etc/passwd']
+C2-2c  OPEN   forged RepositoryPath(Liar('a/../../etc/passwd')) :: accepted=1 rejected=0 failures=[] PERSISTED=['etc/passwd']
+LEN-1  OPEN   HexLen SHA1 digest (400 hex, len() says 40) :: accepted=1 rejected=0 failures=[]
+CNT-1  CLOSED bool count :: accepted=0 rejected=1 failures=[("'probe-1'", "'items'", "'INVALID_VALUE'")]
+CNT-2  CLOSED int subclass count with __conform__ :: accepted=0 rejected=1 failures=[("'probe-1'", "'items'", "'INVALID_VALUE'")]
+ST-1   CLOSED forged KnownState member :: accepted=0 rejected=1 failures=[("'probe-1'", "'lifecycle'", "'INVALID_VALUE'")]
+ST-2   CLOSED Sneaky('IN_PROGRESS') as state :: accepted=0 rejected=1 failures=[("'probe-1'", "'lifecycle'", "'INVALID_VALUE'")]
+FC-1   CLOSED Sneaky('path') as field class :: accepted=0 rejected=1 failures=[("'probe-1'", "'locator'", "'UNKNOWN_FIELD_CLASS'")]
+TUP-1  OPEN   tuple subclass fields: len 1, iterates nothing :: accepted=1 rejected=0 failures=[]
+DUP-1  OPEN   two field names as never-equal str subclass :: accepted=0 rejected=1 failures=[("'probe-1'", "'<record>'", "'DUPLICATE_RECORD'")]
+SPF-1  OPEN   non-str record ID with __class__ -> str :: TypeError escapes admit_batch
+E3-1   OPEN   exact-str payload as record ID :: accepted=0 rejected=1 failures=[("'SECRET FILE BODY\\n+diff line two'", "'<record_id>'", "'INVALID_IDENTIFIER'")] LEAKS=['failure[0].record_id echoes caller text']
+E3-2   OPEN   exact-str payload as field name :: accepted=0 rejected=1 failures=[("'probe-1'", "'SECRET FILE BODY\\n+diff line two'", "'INVALID_FIELD_NAME'")] LEAKS=['failure[0].field_name echoes caller text']
+E3-3   OPEN   invalid Sneaky record ID :: accepted=0 rejected=1 failures=[('<Sneaky>', "'<record_id>'", "'INVALID_IDENTIFIER'")] LEAKS=['failure[0].record_id is Sneaky']
+E3-4   OPEN   invalid Sneaky field name :: accepted=0 rejected=1 failures=[("'probe-1'", '<Sneaky>', "'INVALID_FIELD_NAME'")] LEAKS=['failure[0].field_name is Sneaky']
+C2-4   OPEN   sqlite3.register_adapter(str) rewrites one exact path :: accepted=1 rejected=0 failures=[] PERSISTED=['SECRET FILE BODY', '+diff line two'] [outside the threat boundary by design]
+E2-1   OPEN   close() from a non-owning thread :: raised sqlite3.ProgrammingError (cause None) RAW; handle kept=True; owner close ok; read_all after owner close -> StoreClosedError
+E2-2   OPEN   .pec-v2 is a regular file at construction :: raised builtins.FileExistsError (cause None) RAW
+E2-3   OPEN   reopen() in a read-only checkout :: raised builtins.PermissionError (cause None) RAW; store closed
+E2-4   OPEN   delete() with a sidecar name that is a directory :: raised builtins.PermissionError (cause None) RAW; reset then read_all=()
+TOTAL OPEN 28 / 33: E1-01, E1-02, E1-03, E1-04, E1-05, E1-06, E1-07, E1-08, E1-09, E1-10, E1-11, E1-12, C2-2a, C2-2b, C2-2c, LEN-1, TUP-1, DUP-1, SPF-1, E3-1, E3-2, E3-3, E3-4, C2-4, E2-1, E2-2, E2-3, E2-4

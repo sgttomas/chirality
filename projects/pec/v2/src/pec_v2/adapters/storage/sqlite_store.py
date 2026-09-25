@@ -140,14 +140,20 @@ class SqliteMetadataStore:
 
     def close(self) -> None:
         if self._connection is not None:
-            self._connection.close()
+            try:
+                self._connection.close()
+            except sqlite3.Error as error:
+                raise StoreDataError("metadata store could not be closed") from error
             self._connection = None
 
     def reopen(self) -> None:
         if self._connection is not None:
             return
         self._verify_ignore_rule()
-        self._database_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            self._database_path.parent.mkdir(parents=True, exist_ok=True)
+        except OSError as error:
+            raise StoreConfigurationError("metadata store directory could not be created") from error
         try:
             connection = sqlite3.connect(self._database_path)
         except sqlite3.Error as error:
@@ -166,15 +172,14 @@ class SqliteMetadataStore:
         self._connection = connection
 
     def delete(self) -> None:
-        try:
-            self.close()
-        except sqlite3.Error as error:
-            raise StoreDataError("metadata store could not be closed for deletion") from error
+        self.close()
         for suffix in _DATABASE_SUFFIXES:
             try:
                 Path(f"{self._database_path}{suffix}").unlink()
             except FileNotFoundError:
                 pass
+            except OSError as error:
+                raise StoreDataError("metadata store files could not be deleted") from error
 
     def reset(self) -> None:
         self.delete()

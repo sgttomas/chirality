@@ -1,0 +1,15 @@
+mutate_d89: source v2 tree /Users/ryan/ai-env/projects/chirality/.claude/worktrees/agent-a18afc5a210fbbfb7/projects/pec/v2
+interpreter /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 3.13.7
+BASELINE exit=0 ran=13 failing=[]
+M1 isinstance restored in _is_identifier: exit=1 ran=13 failing=['test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M2 isinstance restored in _valid_hex: exit=1 ran=13 failing=['test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M3 isinstance restored in the path check: exit=1 ran=13 failing=['test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M4 isinstance restored in the container check (both sites): exit=1 ran=13 failing=['test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> CAUGHT by all named tests
+M5 R10 record-ID echo restored: exit=1 ran=13 failing=['test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution', 'test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing'] -> CAUGHT by all named tests
+M6 R10 field-name echo restored: exit=1 ran=13 failing=['test_ver_005_rejections_are_located_and_accounting_has_no_silent_loss_or_substitution', 'test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing'] -> CAUGHT by all named tests
+M7 R11 removed (close() unwrapped): exit=1 ran=13 failing=['test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation'] -> CAUGHT by all named tests
+M8 R12 removed (mkdir unwrapped): exit=1 ran=13 failing=['test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation'] -> CAUGHT by all named tests
+M9 R13 removed (unlink OSError unwrapped): exit=1 ran=13 failing=['test_ver_002_creation_restart_closed_delete_open_reset_and_empty_recreation'] -> CAUGHT by all named tests
+M4a supplementary: container check first site only: exit=1 ran=13 failing=['test_ver_008_forged_wrappers_are_revalidated_and_rejected_without_crashing', 'test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> SUPPLEMENTARY
+M4b supplementary: container check loop site only: exit=1 ran=13 failing=['test_ver_008_policy_is_fixed_finite_and_domain_checked'] -> SUPPLEMENTARY
+RESULT PASS

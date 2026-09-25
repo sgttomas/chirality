@@ -105,3 +105,28 @@ method-override bypass and the in-process adapter threat boundary);
 logging echoed invalid identifiers. Under L-1a, REM-001..003 are ticked.
 DEL-01-03 remains IN_PROGRESS. No CHECKING, ISSUED or artifact acceptance.
 Record: `_run_records/P1_STORE_GUARD_02/RUN.md`.
+
+## 2026-09-25 — D-PEC-89 A exact-type closure slice (P1_STORE_GUARD_03)
+
+WORKING_ITEMS ran the owner-ruled D-PEC-89 A slice on the five granted paths,
+after checking the ruling on fetched `origin/main` `9ffc54afc`, fresh
+preimages and ALLOW reliance holds. One TASK author applied R9–R14. R9
+admits a caller string only when `type(value) is str` and the fields
+container only when `type(value) is tuple`, and rejects anything else with
+the existing located code. This closes the `str`-subclass content channel
+present since D-PEC-85, the method-override bypass of the path checks, the
+length-lying digest, the lying tuple, the never-equal field names and the
+spoofed `__class__` crash. R10 stops echoing invalid record IDs and field
+names; failures carry `<input:N>` or `<field:N>` instead. R11–R13 wrap
+`close()`, the `reopen()` directory creation and the `delete()` unlinks in
+port errors. R14 states the closure and the in-process threat boundary in
+`STORE_LIFECYCLE_AND_GUARD.md`. The suite stays at 13 tests with no new test
+ID; only the two `test_ver_005` tuples R10 names changed.
+
+The probe battery went from 28 of 33 open to 1 (C2-4, the stated boundary).
+All nine specified mutations are caught. All five registered checks exit 0.
+A fresh read-only verifier returned PASS in cycle 1 with no blocking
+finding. Its notes: R12's permission-denied path is covered by probes
+only, and three precision points concern the proposal's own verbatim doc
+text. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No CHECKING,
+ISSUED or artifact acceptance. Record: `_run_records/P1_STORE_GUARD_03/RUN.md`.
