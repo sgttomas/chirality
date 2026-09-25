@@ -44,7 +44,13 @@ context only and are not written (`RUN.md`, `VERIFIER_VERDICT_01..03.md`,
 Branch: `claude/pec-d89-exact-type-slice`, created from fresh `origin/main`
 `9ffc54afc` (upstream tracking unset so no push can target `main`).
 Interpreter: `/Library/Frameworks/Python.framework/Versions/3.13/bin/python3`,
-Python 3.13.7. Git identity (repository config): `Ryan C Tufts <ryan@chirality.ai>`.
+Python 3.13.7. Git identity: none is configured (`git config user.name` and
+`user.email` exit 1). Commits use git's auto-derived identity
+`Ryan Tufts <ryan@Ryans-MacBook-Air.local>`, the same one used by the
+repository's recent non-merge commits (for example `9ffc54afc^2`).
+Correction: the first commit of this record, `4b155c2e3`, wrongly
+named `Ryan C Tufts <ryan@chirality.ai>` here. That is the author of the
+GitHub merge commit `9ffc54afc`, which was misread as the configured identity.
 
 ## Work graph
 
