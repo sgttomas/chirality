@@ -1,0 +1,13 @@
+Path,SHA256,Role,AcceptanceBoundary
+projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md,dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660,"decomposition revision 1.5, accepted form (A6)",Accepted; equals the accepted candidate; front-matter and date slots at 2026-09-25
+projects/pec/execution/_Decomposition/ScopeLedger.csv,83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df,register,Accepted poststate
+projects/pec/execution/_Decomposition/Deliverables.csv,b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a,register,Accepted poststate
+projects/pec/execution/_Decomposition/ContextBudgetQA.csv,2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df,register,Accepted poststate
+projects/pec/execution/_Decomposition/Companion_Inventory.csv,7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8,register,Accepted poststate
+projects/pec/docs/PRD.md,fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32,PRD v2.3,Settled by this acceptance
+projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA005_POSTCHANGE_2026-09-25_1344/coverage_summary.json,912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb,post-change audit summary,BLOCKERS by the count rule; both blockers are the A4 deferral's expected consequence
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md,e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a,checkpoint-3 package and owner question,Context at presentation
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md,85676c5326da5446e62698c70760a2c55eea011bc4e2810727e3509f393f4d7b,decision log at presentation,Context; updated additively by this act
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md,8dd8b250ce375ebe27eb921d79be3d8175badf3a4f1f93a9964eb9d8587a8126,handoff state at presentation,Context; updated additively by this act
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Supersession_Map.csv,4ca705ba090cafb9a74870a0095be490c1d507149767dac32ec52879c487240c,cumulative supersession map (accumulator output),Accepted
+projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Post_Change_Coverage.json,912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb,copy of the audit summary,Accepted

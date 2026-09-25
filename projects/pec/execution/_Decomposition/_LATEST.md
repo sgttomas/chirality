@@ -1,41 +1,55 @@
 # Latest — revision pointer and handoff state
 
-Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.4**
-(**`current_basis`** — accepted 2026-08-03 as the SCA-004 successor under
-D-PEC-78 O-A and the owner's SCA-004 Gate 5 execution direction).
+Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.5**
+(**`current_basis`** — accepted 2026-09-25 as the SCA-005 successor under
+the owner's checkpoint-group-3 audited-poststate acceptance; group-2
+exact amendment and propagation plan accepted the same day, register row
+`D-PEC-92`).
 
 ## Handoff state
 
-- **Basis:** accepted PRD v2.2; D-PEC-60 SOFTWARE_DECOMP revision 1.0;
-  SCA-001 directed bootstrap; SCA-002 objective mapping; SCA-003 consumer
-  interface/ADR-014 concordance; SCA-004 loop-registry disposition.
-- **Package:** `SOFTWARE_DECOMP.md` revision 1.4 + `ScopeLedger.csv` (94 rows)
-  + `Deliverables.csv` (64 rows) + unchanged `ContextBudgetQA.csv` (64 rows)
-  + unchanged `Companion_Inventory.csv`.
+- **Basis:** accepted PRD v2.3 (adopted 2026-09-25 through SCA-005
+  checkpoint group 2); D-PEC-60 SOFTWARE_DECOMP revision 1.0; SCA-001
+  directed bootstrap; SCA-002 objective mapping; SCA-003 consumer
+  interface/ADR-014 concordance; SCA-004 loop-registry disposition; SCA-005
+  feed-model rebaseline.
+- **Package:** `SOFTWARE_DECOMP.md` revision 1.5 + `ScopeLedger.csv` +
+  `Deliverables.csv` + `ContextBudgetQA.csv` + `Companion_Inventory.csv`,
+  each equal to its accepted SCA-005 candidate.
 - **Basis integrity:** decomposition SHA-256
-  `7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81`;
+  `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660`;
   Scope Ledger SHA-256
-  `2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25`;
+  `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df`;
   Deliverables SHA-256
-  `49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72`.
-- **Semantic result:** SOW-077 is `IN` and maps reciprocally to
-  `PKG-01 → DEL-01-06 → OBJ-004`; SOW-094 carries the settled D-PEC-78
-  implementation basis; OI-003 is retained and resolved. Counts are 94 scope
-  items (`72 IN / 14 OUT / 8 TBD`), 11 packages, 64 deliverables, six
-  objectives, and 10 open / 3 resolved issues.
-- **Closure verdict:** `CLOSED_FOR_SCOPE_CHANGE_ONLY`.
+  `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a`;
+  `docs/PRD.md` SHA-256
+  `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`.
+- **Semantic result:** feed model O-B2 with presence P-β; 96 scope items
+  (`70 IN / 18 OUT / 8 TBD`), 11 packages, 66 deliverable rows (62 active,
+  4 retired: DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05), six objectives,
+  every IN item and active deliverable mapped to an objective; 10 open / 3
+  resolved issues.
+- **Closure verdict:** `CLOSED_FOR_SCOPE_CHANGE_ONLY` (owner Q-CP3-1 (a)).
 - **Audit:**
-  `_Evaluation/DecompCoverage/COV_SCA004_POSTCHANGE_2026-08-03_1442/`;
-  `WARNINGS`, 0 blockers / 1 unchanged unrelated DEL-08-02 warning / 69 info.
-- **Scope-change snapshot:**
-  `_ScopeChange/SCA-004_2026-08-02_2325/`.
+  `_Evaluation/DecompCoverage/COV_SCA005_POSTCHANGE_2026-09-25_1344/`;
+  `BLOCKERS` by the method's count rule (2 / 6 / 74). Both blockers are the
+  absent DEL-02-08/09 folders, an expected consequence of the owner's
+  deferral of Lane A4; excluding expected consequences, 0 blockers / 4
+  warnings. The audit folder's own `_LATEST.md` still names the SCA-004
+  audit; moving it was not part of this act.
+- **Scope-change snapshot:** `_ScopeChange/SCA-005_2026-09-23_2139/`.
 - **Derivative state:** `INCOMPLETE`; `DownstreamRerunState = FROZEN`;
-  `MetadataAlignmentState = NOT_STARTED`; `ReadyForNextPhase = NO`.
-- **Stale populations:** 63 context provenance blocks; 64 reference packets;
-  DEL-01-06 requirement anchor; four SOW contracts (DEL-01-06, DEL-02-07,
-  DEL-03-01, DEL-04-01); DEL-00-03 accepted SPEC; and four ordinary PEC
-  orientation/map surfaces. Exact owners and rerun obligations are in the
-  SCA-004 `Handoff_State.md`.
-- **Authority fence:** no downstream repair, source, lifecycle, artifact
-  acceptance, release, professional reliance, or foreign-loop duty is
-  implied by this pointer.
+  `MetadataAlignmentState = IN_PROGRESS`; `ReadyForNextPhase = NO`. The
+  SCA-004 downstream repairs closed on 2026-08-09
+  (`_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`).
+  Open SCA-005 work, each separately gated, is listed in the SCA-005
+  `Handoff_State.md` and `RUN_SUMMARY.md`: DEL-02-08/09 preparation with
+  the dependency rerun (PROJECT_SETUP, own packet), context and reference
+  re-pinning, SOW currency, derivative-artifact review, the registry source
+  packet, fixtures, TM-PEC-023 disposition, the `projects/pec/AGENTS.md`
+  instruction tranche, the D-PEC-90 reliance amendment, a re-audit after the
+  DEL-02-08/09 preparation, and (under its own grant) moving the audit
+  folder's `_LATEST.md` to the SCA-005 audit.
+- **Authority fence:** no downstream repair, source, lifecycle beyond the
+  four accepted retirements, artifact acceptance, release, professional
+  reliance, or foreign-loop duty is implied by this pointer.
