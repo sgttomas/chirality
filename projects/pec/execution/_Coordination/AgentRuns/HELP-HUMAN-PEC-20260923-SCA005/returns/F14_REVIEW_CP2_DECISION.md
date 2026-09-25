@@ -16,3 +16,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N2 | F14 must exist before merge | This file |
 | N3 | `Handoff_State.md` front matter still said checkpoint 1 awaiting owner | Front matter updated (`checkpoint_group: 3`, `status: checkpoint_2_accepted_checkpoint_3_preparation_authorized`) |
 | N4 | README line not wrapped | Rewrapped |
+
+## Re-review of `4a854f55b99ae45333538d15c7f7f9284ff7c527`
+
+Same reviewer, re-reviewing the repair commit `162d3ac40..4a854f55b`. **Verdict: PASS, nothing blocking.** B1, M1–M3 and N1–N4 repaired; the notice scope stays within the plan's §"Foreign-surface notices" (narrower, not wider) and the destination folders exist; the pre-B3 figures match `analyze_dep_closure.py` on the live registers (119 edges, 0 SCCs, isolated DEL-00-03 and DEL-01-05, `DEP-09-05-005` active); the slot statement matches `Amendment_Preview.md`; hash quotes consistent; no stale checkpoint-2 text; validators pass. Nits, carried rather than edited (HELP_HUMAN disposition): "three informational notices" means one notice to Root about RETIRED, one to Root about `LOOP_INIT`, and one App/Piping `adapter.yaml` notice filed in both loops' folders, which the checkpoint-3 brief states explicitly; the `Handoff_State.md` heading still reads "Checkpoint-group-1 Handoff State" and its eighth amendment does not mention the front-matter update, left for the checkpoint-3 snapshot completion (A5). This section is added append-only after that head; no other byte changes.
