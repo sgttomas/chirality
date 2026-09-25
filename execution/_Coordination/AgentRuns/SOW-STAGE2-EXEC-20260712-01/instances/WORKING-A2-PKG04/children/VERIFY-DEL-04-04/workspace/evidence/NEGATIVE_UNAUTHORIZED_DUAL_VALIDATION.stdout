@@ -1,9 +1,0 @@
-{
-  "format": "AMBIGUOUS",
-  "issues": [
-    "format state is AMBIGUOUS",
-    "dual production formats require an isolated conversion workspace and exact migration authority"
-  ],
-  "target": ".",
-  "valid": false
-}

@@ -1,1 +1,0 @@
-srw-------@ 1 ryan  staff  0 Jul 24 20:58 /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock

@@ -1,1 +1,0 @@
-Improve session Reveal and activity presentation in the desktop shell

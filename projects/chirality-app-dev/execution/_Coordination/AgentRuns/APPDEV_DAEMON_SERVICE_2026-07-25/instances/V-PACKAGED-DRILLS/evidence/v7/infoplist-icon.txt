@@ -1,2 +1,0 @@
-  "CFBundleIconFile" => "icon.icns"
-  "CFBundleIdentifier" => "com.chirality.app"

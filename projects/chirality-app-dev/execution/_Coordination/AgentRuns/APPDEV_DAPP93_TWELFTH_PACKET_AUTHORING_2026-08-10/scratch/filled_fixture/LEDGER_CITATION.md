@@ -1,1 +1,0 @@
-Harmless filled fixture citation.

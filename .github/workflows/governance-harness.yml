@@ -134,6 +134,17 @@ jobs:
             CONFLICT_BASE_REF=HEAD^
           fi
           python3 tools/validation/validate_conflict_markers.py --base "${CONFLICT_BASE_REF}" --head HEAD
+      # D-GOV-45: run records are history and are not otherwise tested; only
+      # the run records this change adds or modifies are scanned, for
+      # credentials (BLOCK) and oversized evidence (WARN). The repo is public.
+      - name: Run-record leak check (D-GOV-45; BLOCK fails the run)
+        env:
+          LEAK_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if ! git rev-parse --verify --quiet "${LEAK_BASE_REF}^{commit}" >/dev/null; then
+            LEAK_BASE_REF=HEAD^
+          fi
+          python3 tools/validation/validate_run_record_leaks.py --base "${LEAK_BASE_REF}" --head HEAD
       # The tools/ test estate. PRs run only the suites the change set
       # touches, selected deterministically by tools/run_affected_tests.py
       # from tools/tools-test-routing.json (live-tree gate suites —

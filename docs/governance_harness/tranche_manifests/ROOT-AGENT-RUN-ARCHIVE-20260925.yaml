@@ -1,0 +1,58 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-AGENT-RUN-ARCHIVE-20260925
+title: Archive closed agent run records; leak-only checks for new run records (D-GOV-45)
+date: 2026-09-25
+basis: 8007c59270bc83035eac8ec6eab65926cfe8668c
+instruction_surface_paths:
+  - .github/workflows/governance-harness.yml
+  - docs/CI_SELECTION.md
+  - docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/governance_harness/tranche_manifests/ROOT-AGENT-RUN-ARCHIVE-20260925.yaml
+  - tools/archive_agent_runs.py
+  - tools/agent_runs_archive_policy.json
+  - tools/practitioner_harness/agent_runs_archive.py
+  - tools/practitioner_harness/cmd_self_check.py
+  - tools/practitioner_harness/surface_roles.py
+  - tools/practitioner_harness/test_agent_runs_archive.py
+  - tools/validation/validate_run_record_leaks.py
+  - tools/validation/test_validate_run_record_leaks.py
+  - tools/validation/validate_conflict_markers.py
+  - tools/validation/test_validate_conflict_markers.py
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed in active chat, after the archive proposal: '1. 14 days.
+    2. Yes. 3. All five at once. 4. ok, proceed accordingly.' The choices were
+    the closed-run rule, archiving binaries in active runs, rollout across all
+    five execution roots, and drafting this decision record for owner
+    ratification. Earlier, the owner said: 'I don't need previous agent runs
+    tested in any manner whatsoever.' Recorded as D-GOV-45.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-25
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+  rationale: >-
+    Every project loop's run records are archived. Each notice lists what left
+    that project's tree, where the bytes are held, what was kept as live
+    governance state, and the new leak-only check for changed run records.
+    Deliverables and acceptance obligations are unchanged.
+candidate_paths:
+  - .github/workflows/governance-harness.yml
+  - docs/**
+  - tools/**
+  - execution/_Coordination/AgentRuns/**
+  - projects/*/execution/_Coordination/AgentRuns/**
+  - projects/*/execution/_Coordination/NOTICE_2026-09-25_AGENT_RUN_ARCHIVE.md
+scope_limits:
+  - Working-tree removal only; Git history and every commit SHA are unchanged, and the archive tag holds the exact bytes.
+  - Deliverable folders, _Reconciliation, _ScopeChange and decision records are untouched.
+  - Nine run folders holding live governance state are kept in place per the policy keep list.
+  - Merged only after the owner ratifies D-GOV-45 in chat.
