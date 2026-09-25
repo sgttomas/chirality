@@ -93,7 +93,7 @@ The owner ruled on HELP_HUMAN's chat summary of the H5 draft; the draft is publi
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
 | G11 record D-PEC-90 ruling | HELP_HUMAN | G10 merged | `_DECISIONS/D-PEC-90_*` (new, two files); `_REGISTER.md` D-PEC-90 row; SCA-005 `Decision_Log.md` row SCA005-D90-NOTE and `Handoff_State.md` sixth amendment; Root and App `NOTICE_2026-09-25_D-PEC-90_*` (new); `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 187 | COMPLETE — PR #899 merged `6add18573fd087574ad47c4e0e50ab7882038e39`; review transcribed in `returns/F9_REVIEW_D90_RULING.md` |
-| H6 D-PEC-90 reliance amendment (PRD K-03, §8 incl. direct query through tool calls, §9, §12; `projects/pec/AGENTS.md`) | HELP_HUMAN prepares; scope-change method | SCA-005 checkpoint 2 accepted | a later PEC scope-change package | NOT_STARTED |
+| H6 D-PEC-90 reliance amendment (PRD K-03, §8 incl. direct query through tool calls, §9, §12; `projects/pec/AGENTS.md`; response-size budgets for agent consumers per the D-PEC-91 ruling's carry-forward note) | HELP_HUMAN prepares; scope-change method | SCA-005 checkpoint 2 accepted | a later PEC scope-change package | NOT_STARTED |
 
 ## Continuation 2026-09-25 (L-2a outcome; D-PEC-91 preparation, HELP_HUMAN initiative)
 
@@ -111,4 +111,4 @@ Before ruling, the owner asked whether a bound above what JSON readers handle is
 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
-| G13 record D-PEC-91 ruling | HELP_HUMAN | G12 merged | `_DECISIONS/D-PEC-91_RULING_2026-09-25.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 189 | in progress — PR, independent review, CI, merge |
+| G13 record D-PEC-91 ruling | HELP_HUMAN | G12 merged | `_DECISIONS/D-PEC-91_RULING_2026-09-25.md` (new); `returns/F11_REVIEW_D91_RULING.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 189 | in progress — PR, independent review, CI, merge |
