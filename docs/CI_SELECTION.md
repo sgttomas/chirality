@@ -51,7 +51,9 @@ The governance harness remains on every PR. Its tools tests continue to use
 The always-run practitioner-harness suite is also the self-check gate: its live
 baseline module runs the self-check once and requires no BLOCK finding or
 identity refusal, and CI sets `CHIRALITY_REQUIRE_LIVE_TESTS=1` so those tests
-fail rather than skip.
+fail rather than skip. Its checkout omits binary run evidence (archives, images,
+databases) under `_Coordination/AgentRuns`, which no gate or test reads; governed
+binaries elsewhere are still checked out.
 Main pushes and manually requested governance runs retain the full tools estate.
 Existing stable check names and branch-protection configuration are unchanged.
 
