@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance after the `D-PEC-87` ruling and after the TM-PEC-023/cmux acts (present-current lines only); earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance, after the `D-PEC-87` ruling, and after the TM-PEC-023/cmux acts (present-current lines only); earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -56,8 +56,9 @@ candidate MODIFY actions (`D-PEC-86` §3 I-3). The owner selected them on
 `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`):
 six rows map to objectives, rows 4, 6 and 7 are moot because their
 deliverables retire, and cmux (SOW-037, DEL-07-04) is added to the deferred,
-out-of-scope items. The objective fields stay unchanged until SCA-005
-applies. Nothing in the PRD is an
+out-of-scope items. The objective fields and the SOW-037 / DEL-07-04 status
+change only when SCA-005 applies; today SOW-037 is still `IN` and DEL-07-04
+still `OPEN`. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
 **First store/guard slice:** `D-PEC-85` P-A (ruled 2026-09-08) produced the
@@ -274,7 +275,8 @@ for scope change on 2026-08-03 with revision 1.4 as `current_basis` under
 D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. SCA-005 opened at Gate 1 on 2026-09-23 under
 `D-PEC-86`; the owner accepted its checkpoint group 1 on 2026-09-24
-(`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`); checkpoints 2 and 3 remain.
+(`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`, amended additively the same day by
+`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); checkpoints 2 and 3 remain.
 `D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
@@ -282,7 +284,7 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-70` released the exceptional reliance hold. SCA-004 resolved OI-003
 in decomposition truth, the metadata subset is current, and DEL-01-06 RF-002
 is resolved by exact successor acceptance; the nine TM-PEC-023 objective
-blanks remain owner-gated, now as SCA-005 intake items. P1
+blanks now carry owner selections (SCA-005 amendment 1), applied only when SCA-005 applies. P1
 source work remains separately owner-gated and fenced by `F-PEC-1`.
 Loop instruction surface: `loop/LOOP_INIT.md` under `D-PEC-80`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact

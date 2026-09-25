@@ -12,7 +12,7 @@ Execute the owner-ruled D-PEC-87 correction slice (C-A) and the L-1a Remaining-r
 2. `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-87_RULING_2026-09-24.md` (the ruling) and the proposal it selects, `D-PEC-87_del_01_03_store_guard_correction_proposal_2026-09-24.md` at SHA-256 `ba3d3e64eab7c0488b7973a10e360479d9f34bb075113f821266aea4a4684569`. The proposal's per-repair table, exact R1 rule, finite verification, administrative grant, rollback and limits are your specification. Do not enlarge them.
 3. `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/OBLIGATION_TRIAGE_DEL-01-03.md` and the three inquiry reports under DEL-01-03 `_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-00{1,2,3}/REPORT.md`.
 4. D-PEC-85 closeout for context only: `projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/` (immutable).
-5. Methods: `.agents/skills/software-bounded-implementation/SKILL.md` for the author; `.agents/skills/software-code-review/SKILL.md` for the verifier.
+5. Methods: `chirality-root:bundled:workflow:software-bounded-implementation` (`workflows/software-bounded-implementation/WORKFLOW.md`) for the author (corrected after dispatch; the manager was notified); `.agents/skills/software-code-review/SKILL.md` for the verifier.
 
 ## Preconditions (stop and return if any fails)
 
