@@ -4,10 +4,15 @@ doc_kind: scope_change.handoff_state
 decomp_variant: SOFTWARE
 checkpoint_group: 3
 created: 2026-09-23
-status: checkpoint_2_accepted_checkpoint_3_preparation_authorized
+status: checkpoint_3_prepared_awaiting_owner
 ---
 
-# SCA-005 Checkpoint-group-1 Handoff State
+# SCA-005 Checkpoint-group-3 Handoff State
+
+This file accumulates the SCA-005 handoff state across all three checkpoint
+groups. The sections from §Position to the eighth amendment describe the
+checkpoint-1 and checkpoint-2 states as they were recorded; the current state
+is §"Checkpoint-group-3 handoff state" at the end.
 
 ## Position
 
@@ -50,7 +55,7 @@ finalized (or dropped if the PRD successor lands first) at checkpoint 2.
 | `Impact_Assessment.md` | `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` |
 | `Amendment_Actions.csv` (PROPOSED) | `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2` |
 | `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
-| `Decision_Log.md` | `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` (after the checkpoint-2 acceptance, 2026-09-25; `7dcbc51dd30c66bb273e3528e8675e9adba317d974ec63a438ff816d15af371b` after the checkpoint-2 package row, 2026-09-25; `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
+| `Decision_Log.md` | `c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f` (after the checkpoint-3 package row, 2026-09-25; `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` after the checkpoint-2 acceptance, 2026-09-25; `7dcbc51dd30c66bb273e3528e8675e9adba317d974ec63a438ff816d15af371b` after the checkpoint-2 package row, 2026-09-25; `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` after the D-PEC-90 note; after amendment 2 `6695e0344a247b3db9b22975781c8c3899b4873a9a396b9745aab4a0fcf50924`; after amendment 1 `321be32d0ca51377dc750938dfe9d9e66204d4da4a128af273c1804e682e96b4`; post-acceptance value `8508318a95c830a4cf8c7d665ab516f8ea376559e126c581fb8a9c5e6f6f7075`; pre-acceptance value `55551f5628608f1a6475f832b70721f7d055adb18ab0b55d80b7e7e3326b658f` is bound in the group-1 `ACCEPTED_MANIFEST.csv`) |
 
 ## Pre-change audit snapshot hashes (written by the TASK child)
 
@@ -173,3 +178,110 @@ Amendment 2026-09-25 (seventh, WORKING_ITEMS B2): the checkpoint-group-2 package
 Next owning actor: the owner (checkpoint-2 question set), then HELP_HUMAN (group-2 decision snapshot, D-PEC register row, receipt, STATUS/README), then WORKING_ITEMS for checkpoint-3 preparation from the accepted group-2 snapshot.
 
 Amendment 2026-09-25 (eighth, HELP_HUMAN): the owner accepted checkpoint group 2 (verbatim in `Decision_Log.md` §"SCA005-CP2 — owner acceptance of record"): Q-CP2-A accept, Q-CP2-1..3 (a), Q-CP2-4 (a) with Lane A4 deferred. The group-2 decision snapshot is `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/` (`DECISION.md`, `ACCEPTED_MANIFEST.csv`, `Handoff_State.md`) with the amendment-qualified pointer `../SCA-005_GROUP-2_AUTHORIZED.md`; register row `D-PEC-92` makes it the D-PEC packet opening Lane A except A4. `Decision_Log.md` now hashes `db1a3518bf1c70e9d69f522846ce303172d8698c42bba6999b58ab667d7a56ac` (SCA005-CP2 row `ACCEPTED`, SCA005-CP3 row `PREPARATION AUTHORIZED / NOT_STARTED`); the hash table above is updated in place. No checkpoint-2 artifact changed. Next owning actor: WORKING_ITEMS (scope-change) for checkpoint-3 preparation. State fields: `DecompositionTruthState` `INCOMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `FROZEN`; `MetadataAlignmentState` `NOT_STARTED`; `ReadyForNextPhase` `NO`.
+
+Amendment 2026-09-25 (ninth, WORKING_ITEMS B3): checkpoint-3 preparation executed under brief `B3_SCA005_CHECKPOINT3.md` (SHA-256 `69c2296749cee727e1bd84b13f7a4ebcad93400f8ceb6267519e79601811b17f`) and the accepted group-2 snapshot. The heading and front matter above now name checkpoint group 3; the earlier sections are unchanged records of their stages. `Decision_Log.md` row SCA005-CP3 moved to `PREPARED / AWAITING_OWNER` (hash table above updated in place, as the earlier amendments did).
+
+## Checkpoint-group-3 handoff state
+
+### Candidate and pointer posture
+
+| Field | Value |
+|---|---|
+| Candidate snapshot | `projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/` — complete, **not active** |
+| Pointer posture | `ACCEPTED_PREDECESSOR` |
+| Accepted predecessor snapshot | `_ScopeChange/SCA-004_2026-08-02_2325/` (`_ScopeChange/_LATEST.md` `721a14dc27b4b595be79f591f49b7374a121c52a77eb0451d32d9aa32a9e6280`, unchanged) |
+| Accepted group-2 decision snapshot | `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/` (with the group-1 snapshot and amendments 1 and 2); register row `D-PEC-92` |
+| Expected pre-acceptance pointer state | `_ScopeChange/_LATEST.md` names SCA-004; `_Decomposition/_LATEST.md` names revision 1.4 (`7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3`); both unchanged — confirmed |
+| Artifact completeness (C5) | all present — table below |
+
+### Authoritative truth changed in this run
+
+Live `_Decomposition/SOFTWARE_DECOMP.md` is revision 1.5 in pre-acceptance form (`37ea1084a8219943a69057be377646c69a609a76728241963045d7cfb015a6cc`; `status: candidate_pending_checkpoint_3`; accepted form `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660`); the four registers and `docs/PRD.md` v2.3 equal their accepted postimages; 22 `_CONTEXT.md` mirror the accepted rows; DEL-06-04, DEL-07-02, DEL-07-04 and DEL-07-05 `_STATUS.md` read `RETIRED`. Revision 1.4 remains the accepted basis until the owner's checkpoint-3 acceptance. Per-path pre/post hashes: `RUN_SUMMARY.md` §"Actions taken".
+
+### Derivative-package state
+
+| Package | Owner | Status | Evidence | Next required action |
+|---|---|---|---|---|
+| Decomposition + 4 registers | SCOPE_CHANGE | applied; `CURRENT` after checkpoint 3 | C1, C2, C3 | owner Q-CP3-A; A6 restores the two front-matter lines |
+| PRD v2.3 | owner-adopted (group 2) | applied | C1 | — |
+| 22 direct `_CONTEXT.md` | SCOPE_CHANGE | applied (provenance already reads revision 1.5 `current_basis`; audit COV-076) | C1 | restore on refusal |
+| 4 retired `_STATUS.md` | SCOPE_CHANGE | `RETIRED` | C1; audit Check 11 | — |
+| 42 other `_CONTEXT.md` (the plan says 40; audit COV-072, evidence correction), 64 `_REFERENCES.md` | PROJECT_SETUP | `STALE_REPIN_REQUIRED` | audit `context_provenance_revision` 1.5: 22 / 1.4: 42 | B1 |
+| DEL-02-08/09 folders | PROJECT_SETUP (own packet) | `NOT_CREATED` — A4 deferred | audit COV-001/002/070/071; DRB-008 ×2 | A4 with B3 |
+| Dependency registers and mirrors | dependency-extract / PROJECT_SETUP | `STALE_REBUILD_REQUIRED` (pre-B3: 119 edges, `DEP-09-05-005` present) | C2 | B3 |
+| 23 SOWs needing currency work + 5 housekeeping-only | WORKING_ITEMS + artifact gates | `STALE_REVIEW_REQUIRED` / `STALE_REBUILD_REQUIRED` | plan B4 | B4 |
+| DEL-00-01 ADRs, DEL-00-03 SPEC | owning workflows | `STALE_REVIEW_REQUIRED` | plan B5 | B5 |
+| Registry source | later D-PEC packet | `STALE_SOURCE_PACKET_REQUIRED` | plan B6 | B6 |
+| P1 fixture suites | DEL-02-08/09/03 SOWs | `NOT_STARTED` | plan B7 | B7 |
+| Post-change audit | TASK audit-decomp | done: `COV_SCA005_POSTCHANGE_2026-09-25_1344` | `coverage_summary.json` `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` | re-audit after A4/B3 |
+| Pointers | SCOPE_CHANGE via HELP_HUMAN | unchanged | C1 | A6 after acceptance |
+| TM-PEC-023; README/STATUS; D-PEC-90 amendment; `projects/pec/AGENTS.md` L28/L170 | task-management; HELP_HUMAN; next scope change; instruction tranche | open | plan B8 | after checkpoint 3 |
+| Foreign notices (Root ×2; App and Piping `adapter.yaml`) | HELP_HUMAN | drafted in the B3 return; not written by B3 | — | HELP_HUMAN writes them |
+
+### Active derivative-surface state
+
+| Surface | Classification | Status | Evidence |
+|---|---|---|---|
+| `SOFTWARE_DECOMP.md` | `DIRECT_EDIT` | applied (pre-acceptance form) | `37ea1084…a6cc` |
+| `ScopeLedger.csv`, `Deliverables.csv`, `ContextBudgetQA.csv`, `Companion_Inventory.csv` | `DIRECT_EDIT` | applied byte-for-byte | C1 |
+| `docs/PRD.md` | `DIRECT_EDIT` (owner-adopted bytes) | applied | `fff27a66…fdc32` |
+| 22 `_CONTEXT.md`, 4 `_STATUS.md` | `DIRECT_EDIT` | applied | C1 |
+| this snapshot | `RECOMPUTE` | complete | table below |
+| `COV_SCA005_POSTCHANGE_2026-09-25_1344/` | `RECOMPUTE` | written by TASK audit-decomp | 9 files |
+| `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` | `RECOMPUTE` after acceptance | unchanged | C1 |
+| all other `_STATUS.md` and `_CONTEXT.md`, SOWs, dependency registers, `_REFERENCES.md`, `v2/**` | `NO_CHANGE` | unchanged | C1 |
+
+KTY remediation manifest and KTY metadata alignment: not applicable (SOFTWARE variant).
+
+### Snapshot artifact hashes (C5)
+
+| File | SHA-256 |
+|---|---|
+| `Brief.md` | `aaf2821bb99deb4ff8b640f5e8584338ebd5fc2d95c5c00dd1e2bd136ac43d50` |
+| `Impact_Assessment.md` | `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` |
+| `Amendment_Preview.md` | `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4` |
+| `Propagation_Plan.md` | `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350` |
+| `Amendment_Actions.csv` | `5c4ae0532eb65ea83d0529a9f6395da392ae2bf5b254cfb6b2de49e4fbff2be2` |
+| `Amendment_Actions_CP2.csv` | `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987` |
+| `Supersession_Delta.csv` | `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06` |
+| `Supersession_Map.csv` | `4ca705ba090cafb9a74870a0095be490c1d507149767dac32ec52879c487240c` |
+| `Pre_Change_Coverage.json` | `61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f` |
+| `Post_Change_Coverage.json` | `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` |
+| `PRD_V2_3_SUCCESSOR_DIFF.md` | `153a4dedb4551102ffe20c26a4dd7d4d4dba9138b28ce47f2e0889925197eba2` |
+| `RUN_SUMMARY.md` | `89c1ed8c1660e5d0b7f962190e94a1660927146b8c7fbcf24c5492339144d984` |
+| `Decision_Log.md` | `c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f` |
+| `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660` |
+| `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df` |
+| `CP2_CANDIDATE/_Decomposition/Deliverables.csv` | `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` |
+| `CP2_CANDIDATE/_Decomposition/ContextBudgetQA.csv` | `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` |
+| `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` |
+| `CP2_CANDIDATE/docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` |
+
+Every checkpoint-1 and checkpoint-2 artifact above is byte-identical to its accepted hash; only `Decision_Log.md` and this file changed, additively, besides the three new A5 files.
+
+### State fields at checkpoint-3 preparation
+
+| Field | Value | Note |
+|---|---|---|
+| `DecompositionTruthState` | `COMPLETE` | revision 1.5 applied; front matter in pre-acceptance form |
+| `DerivativePackageState` | `INCOMPLETE` | Lane B open; A4 deferred |
+| `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant |
+| `DownstreamRerunState` | `FROZEN` | no Lane B item authorized |
+| `MetadataAlignmentState` | `IN_PROGRESS` | 22 mirrors + 4 retirements done; B1 (42 contexts, 64 references) open |
+| `AuditState` | `BLOCKED` | audit `BLOCKERS` / `FAIL` by the count rule (2 / 6 / 74); classification-adjusted reading beside it: both blockers EXPECTED_CONSEQUENCE of the A4 deferral, otherwise 0 blockers / 4 warnings (`WARN`) |
+| `ReadyForNextPhase` | `NO` | |
+
+### Closure verdict
+
+`OPEN_PENDING_DERIVATIVE_CLOSURE` until the owner acts. On acceptance the recommended verdict is `CLOSED_FOR_SCOPE_CHANGE_ONLY`, with A4 and every Lane B item recorded open (owner choice Q-CP3-1 in `RUN_SUMMARY.md`).
+
+### Remaining blockers and owner decisions
+
+1. Owner: Q-CP3-A (accept the audited poststate) and Q-CP3-1 (closure verdict), `RUN_SUMMARY.md` §"Checkpoint-3 owner question".
+2. On acceptance, HELP_HUMAN: record the act; A6 with the acceptance date (both `_LATEST.md` pointers; the decomposition's `status:`/`accepted:` lines and four date slots, slot hash rule); write the three foreign notices; refresh orientation surfaces.
+3. On refusal: restore every Lane A path to its preimage, including the 22 A2 mirrors (COV-076); pointers stay on revision 1.4 / SCA-004 (`RUN_SUMMARY.md` §"Rollback on refusal").
+4. Evidence correction COV-072: B1 re-pins 42 `_CONTEXT.md`, not 40; the accepted plan's bytes are not edited.
+
+### Next owning workflows
+
+HELP_HUMAN (owner checkpoint 3, then A6 and notices); PROJECT_SETUP under its own packet (A4 with B3; B1); dependency-extract (B3); WORKING_ITEMS with artifact gates (B4, B5); a later D-PEC source packet (B6); task-management (TM-PEC-023); the next PEC scope change (D-PEC-90 reliance text); `audit-decomp` re-run after A4/B3.

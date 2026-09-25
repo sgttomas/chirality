@@ -1,0 +1,147 @@
+{
+  "run_label": "SCA005_POSTCHANGE",
+  "snapshot_folder": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA005_POSTCHANGE_2026-09-25_1344/",
+  "timestamp": "2026-09-25T14:01:14-06:00",
+  "requested_by": "SCOPE_CHANGE (WORKING_ITEMS, SCA-005 checkpoint-3 preparation, Lane C4)",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "SCA-005 candidate revision 1.5 (expected revision 1.5; front matter status candidate_pending_checkpoint_3), applied under the owner's checkpoint-group-2 acceptance of 2026-09-25 (_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/DECISION.md, register row D-PEC-92) with Lane A4 deferred; candidate SCA snapshot projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/",
+  "expected_handoff_phase": "SCA-005 checkpoint-3 post-change validation before pointer movement",
+  "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.5 candidate_pending_checkpoint_3",
+  "decomposition_sha256": "37ea1084a8219943a69057be377646c69a609a76728241963045d7cfb015a6cc",
+  "accepted_cp2_postimage_sha256": "dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660",
+  "live_vs_cp2_postimage_diff": "front-matter lines 5 (status) and 8 (accepted) only",
+  "audited_commit": "5d2770350ceb3469182929bef5db516a1d2e5403 (Lane A1-A3 application; working tree clean at HEAD 7e8374ae2bc9cbd099e8ebfd3109751bef7c6b33 on re-verification)",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 11,
+    "deliverables": 66,
+    "deliverables_active": 62,
+    "deliverables_retired": 4,
+    "objectives": 6,
+    "scope_items": 96,
+    "ledger_rows": 96
+  },
+  "ledger_status": {
+    "IN": 70,
+    "OUT": 18,
+    "TBD": 8
+  },
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 66,
+  "production_units_found": 64,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 96.9697,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "context_fidelity_basis": "64/64 matched folders",
+  "artifact_presence_pct": 4.5455,
+  "artifact_presence_basis": "3 anticipated sets found / 66 declared production units (3/64 matched folders = 4.6875)",
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 4,
+  "active_deliverables_without_objective_mapping": 0,
+  "retired_deliverables_without_objective_mapping_by_design": 4,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "WARN",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 2,
+  "issues_warning": 6,
+  "issues_info": 74,
+  "issues_by_classification": {
+    "EXPECTED_CONSEQUENCE": {
+      "BLOCKER": 2,
+      "WARNING": 2,
+      "INFO": 15
+    },
+    "PRE-EXISTING": {
+      "BLOCKER": 0,
+      "WARNING": 3,
+      "INFO": 59
+    },
+    "DEFECT": {
+      "BLOCKER": 0,
+      "WARNING": 1,
+      "INFO": 0
+    }
+  },
+  "check_count": 12,
+  "check_verdicts": {
+    "1": "PASS",
+    "2": "BLOCKER",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "WARNING",
+    "7": "PASS",
+    "8": "WARNING",
+    "9": "SKIPPED",
+    "9b": "PASS",
+    "10": "WARNING",
+    "11": "PASS"
+  },
+  "lifecycle_distribution": {
+    "CHECKING": 4,
+    "INITIALIZED": 26,
+    "IN_PROGRESS": 2,
+    "OPEN": 28,
+    "RETIRED": 4
+  },
+  "contract_distribution": {
+    "SOW_V1": 32,
+    "NONE": 32,
+    "AMBIGUOUS_DUAL": 0
+  },
+  "context_provenance_revision": {
+    "1.5": 22,
+    "1.4": 42
+  },
+  "references_revision": {
+    "1.4": 64
+  },
+  "register_validator": {
+    "registers": 64,
+    "dependency_rows": 255,
+    "deliverables_declared": 66,
+    "errors": 0,
+    "warnings": 2,
+    "warning_codes": [
+      "DRB-008 DEL-02-08",
+      "DRB-008 DEL-02-09"
+    ],
+    "exit_strict": 1
+  },
+  "dependency_closure": {
+    "execution_edges": 119,
+    "graph_nodes": 64,
+    "scc_count": 0,
+    "bidirectional_pairs": 0,
+    "isolated": [
+      "DEL-00-03",
+      "DEL-01-05"
+    ],
+    "hubs": [
+      "DEL-03-01"
+    ],
+    "orphans": 0,
+    "retired_target_edges": [
+      "DEP-09-05-005"
+    ],
+    "state": "pre-B3"
+  },
+  "retired_row_representation": "NO_BLOCKER_NO_WARNING (INFO only: 4 Check-6, 4 Check-7)",
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "closure_readiness_note": "Method-literal verdict: the two BLOCKERs are Check-2 absences of the DEL-02-08/09 folders, EXPECTED_CONSEQUENCE of the owner's group-2 A4 deferral. Excluding expected consequences the run has 0 blockers, 4 warnings (3 PRE-EXISTING, 1 DEFECT) and would read WARN. Full decomposition-to-filesystem closure is not reachable before A4.",
+  "closure_readiness_excluding_expected_consequences": "WARN",
+  "prior_run_label": "COV_SCA005_PRECHANGE_2026-09-23_2139",
+  "prior_coverage_summary_sha256": "61163c96924e6dfb1f3fa6d1449b523c7280e808c92005cc77d64096858b5d9f",
+  "comparison_mode": "RUN (PrePost_Comparison.md)",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
