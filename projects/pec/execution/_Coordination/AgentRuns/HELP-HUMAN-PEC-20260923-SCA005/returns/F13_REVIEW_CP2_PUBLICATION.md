@@ -17,3 +17,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N4 | `Propagation_Plan.md` L636 cites L101 for an exit at L102 | Package text frozen; noted |
 | N5 | Verdict 03 headline "PASS WITH MINOR" with MINOR 0 | Filed verbatim; noted |
 | N6 | Q-CP2-1 option (a) writes a RETIRED value Root SPEC §3.2 limits to Root historical mode; the harness adapter would reject it if PEC adopts `_harness/adapter.yaml` (D-PEC-86 I-7) | Disclosed in the package; option (c) avoids it; put to the owner |
+
+## Final-head confirmation of `635ad1b92efe63392b996cf7ec97a6e04ac80427`
+
+Same reviewer, re-reviewing the repair commit `e301da130..635ad1b92`. **Verdict: PASS, no blocking findings.** M1, M2 and N1–N3 repairs match their findings; the filed return and verdict 03 bodies equal the extracted texts apart from one trailing newline; M3 is routed to the owner as recommended; no file under `_ScopeChange/` changed; Receipt 191 edited only within itself; this transcription is fair; receipts validator VALID, decomposition `--strict` exit 0 with 0 errors and 0 warnings, `git diff --check` clean. This section is added append-only after that head; no other byte changes.
