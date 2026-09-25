@@ -12,7 +12,8 @@ review, acceptance, native verification or release requirements.
 | App frontend, application configuration or public App export | Full App/Runtime pre-merge integration. |
 | Runtime source, tests, dependencies or configuration | Full App/Runtime integration and PEC workspace tests. |
 | PEC source, tests, fixtures or configuration | PEC workspace tests with its Runtime dependency. |
-| Piping source or tests | Existing Piping lean, affected, changed-spec or full selection. |
+| Piping desktop, core, fixtures, schemas, examples or Piping CI | Existing Piping lean, affected, changed-spec or full selection. |
+| Piping validation, Python tests or non-CI project tools | Piping numerical suite only; browser selector reports not applicable. |
 | Routing policy or unknown input | Full checks for the affected product consumers; unknown shared inputs select full product coverage. |
 
 Mixed PRs take the union of their required checks. Selectors inspect the complete
@@ -36,11 +37,21 @@ Full App coverage still includes its instruction-bundle check.
 
 Piping retains `projects/chirality-piping/tools/ci/e2e_plan.py` and its
 [source-coverage policy](../projects/chirality-piping/docs/CI_STRATEGY.md).
-Root agent/workflow packages and project AGENTS prose are classified as
-non-product inputs for that desktop suite.
+Piping is self-contained below its project directory: root directories other
+than its own workflow and setup action (execution records, root tools,
+instruction packages, exports) are non-inputs for both its desktop and
+numerical suites; root-level build files remain conservative inputs.
+Pull-request runs execute every desktop-profile identity and the compact
+profile only for layout/viewport specs; a manual full dispatch keeps both
+profiles in full. Piping jobs skip checking out
+`execution/` run evidence, which none of them read.
 
 The governance harness remains on every PR. Its tools tests continue to use
 `tools/tools-test-routing.json`; live-tree governance gates remain mandatory.
+The always-run practitioner-harness suite is also the self-check gate: its live
+baseline module runs the self-check once and requires no BLOCK finding or
+identity refusal, and CI sets `CHIRALITY_REQUIRE_LIVE_TESTS=1` so those tests
+fail rather than skip.
 Main pushes and manually requested governance runs retain the full tools estate.
 Existing stable check names and branch-protection configuration are unchanged.
 

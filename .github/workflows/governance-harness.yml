@@ -1,8 +1,9 @@
 # Phase 5 CI wrapper (plan v3 §Roadmap row 5; CI half re-ruled by owner
 # 2026-07-02 after Phases 3-4 landed — register item 10 addendum).
 #
-# Thin wrapper only: runs the practitioner-harness test suite and self-check.
-# Objective BLOCK findings exit nonzero per the D-GOV-02 contract and fail the
+# Thin wrapper only: runs the practitioner-harness test suite, whose live
+# baseline module runs the self-check once and asserts its exit-0 contract.
+# Objective BLOCK findings fail that test per the D-GOV-02 contract and fail the
 # run; REVIEW and below exit 0 and never gate (human judgment stays human).
 # This workflow adds no checks and holds no authority — authority stays in
 # authored files (D-GOV-01). The cache half of Phase 5 remains closed:
@@ -94,9 +95,14 @@ jobs:
       # estate, so the routing is an economy, never the authority: a
       # mis-routed rule is caught at merge, not silently skipped. Needs
       # only pytest/pyyaml/numpy; optional-dep suites skip cleanly.
-      - name: Tools test suite (routed on PRs; full on main pushes)
+      # practitioner_harness always runs, and its test_live_baseline module is
+      # the self-check gate: one live self-check whose report must carry no
+      # identity refusal and no BLOCK finding (the CLI's exit-0 contract).
+      # A separate `harness.py self-check` step repeated that ~30s scan.
+      - name: Tools test suite and self-check (routed on PRs; full on main pushes)
         env:
           ROUTING_BASE: ${{ github.event.pull_request.base.sha || '' }}
+          CHIRALITY_REQUIRE_LIVE_TESTS: "1"
         run: |
           if [ "${GITHUB_EVENT_NAME}" = "pull_request" ] \
             && git rev-parse --verify --quiet "${ROUTING_BASE}^{commit}" >/dev/null; then
@@ -104,8 +110,6 @@ jobs:
           else
             python3 -m pytest -q -n auto --dist loadscope tools/
           fi
-      - name: Self-check (BLOCK findings fail the run per D-GOV-02)
-        run: python3 tools/practitioner_harness/harness.py self-check
       # G0-G4 validator self-tests now run in the combined pytest step above;
       # each step below runs only the live gate itself, keeping per-gate
       # failure attribution (D-GOV-21 §5.3 step naming).
