@@ -24,11 +24,11 @@ Early P1 implementation (present-current as of 2026-09-25, `D-PEC-86` §3
 I-5 and `D-PEC-88`). Decomposition revision 1.5 is the accepted current basis after
 `SCA-005` (owner checkpoint-3 acceptance 2026-09-25); before it, revision 1.4
 after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the
-owner-selected full DAG, scaffolded 11 packages / 64 deliverables, and completed
-the SCA-004 metadata-alignment subset (all context provenance blocks and
-reference packets were current for revision 1.4; after SCA-005, 22 contexts
-name revision 1.5 and the other 42 contexts and all 64 references await
-re-pinning), and DEL-01-06 carries the non-gating
+owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
+`D-PEC-93` added DEL-02-08 and DEL-02-09), and completed the SCA-004
+metadata-alignment subset (all context provenance blocks and reference packets
+were current for revision 1.4; now 24 of 66 contexts name revision 1.5, and
+the other 42 contexts and 64 of 66 references await re-pinning), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
 initialized. DEL-01-06 now has the accepted revision-1.4 production contract
 at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
@@ -56,7 +56,8 @@ work from deliverable `## Remaining` surfaces. Retired plans live in
 `projects/pec/plans/workplans/` as history only. PEC's adoption of the shared
 development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
 
-**SCA-005** (feed-model rebaseline) is open under `D-PEC-86`. Its
+**SCA-005** (feed-model rebaseline, `D-PEC-86`) is closed for scope change
+only (below). Its
 checkpoint-group-1 package at `execution/_ScopeChange/SCA-005_2026-09-23_2139/`
 proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
 `0bcbe9bdced43fa887a859497b3edd197242a0eea8fa3a41fab7147b358239bf` on

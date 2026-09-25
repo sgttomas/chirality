@@ -203,14 +203,18 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   (`D-PEC-93` A, merged 2026-09-25 as PR #914: registers 0 errors / 0
   warnings, 111 dependency edges with no cycles; re-audit
   `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
-  0 blockers, now the audit pointer). The two `_LATEST.md` pointers and the
-  SCA-005 handoff still describe the pre-setup audit state; updating them
-  needs its own act. Open: context and reference re-pinning to
-  revision 1.5; SOW currency; DEL-00-01/00-03 derivative review; the loop
-  registry source packet; P1 fixtures; TM-PEC-023 disposition; the
-  `projects/pec/AGENTS.md` instruction tranche (it still names PRD v2.2); the
-  D-PEC-90 reliance amendment. List and owners:
-  `execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md`.
+  0 blockers, now named by `_Evaluation/DecompCoverage/_LATEST.md`).
+  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md`, the SCA-005
+  `Handoff_State.md` and `RUN_SUMMARY.md`, and `_COORDINATION.md` still
+  describe the pre-setup audit state (and `RUN_SUMMARY.md` still lists the
+  re-audit as open); updating them needs its own act. Open: context and
+  reference re-pinning to revision 1.5; the 19 stale dependency evidence
+  quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
+  DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
+  packet; P1 fixtures; TM-PEC-023 disposition; the `projects/pec/AGENTS.md`
+  instruction tranche (it still names PRD v2.2); the D-PEC-90 reliance
+  amendment. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
+  D-PEC-93 run root `HANDOFF_STATE.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
