@@ -18,6 +18,7 @@ instruction_surface_paths:
   - tools/validation/validate_run_record_leaks.py
   - tools/validation/test_validate_run_record_leaks.py
   - tools/validation/validate_conflict_markers.py
+  - tools/run_affected_tests.py
   - tools/validation/test_validate_conflict_markers.py
 m2_gate:
   authorization: >-
