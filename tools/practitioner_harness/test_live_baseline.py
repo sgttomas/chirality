@@ -31,11 +31,15 @@ import cmd_self_check
 
 LIVE_REPO = Path(__file__).resolve().parents[2]
 
+# governance-harness CI sets CHIRALITY_REQUIRE_LIVE_TESTS=1: these tests are
+# then the hosted self-check gate (no separate CLI step), so they must fail
+# rather than skip when the live roots are unexpectedly absent.
 live = pytest.mark.skipif(
+    os.environ.get("CHIRALITY_REQUIRE_LIVE_TESTS") != "1" and (
     os.environ.get("CHIRALITY_SKIP_LIVE_TESTS") == "1"
     or not (LIVE_REPO / "projects" / "chirality-piping" / "_harness" / "adapter.yaml").is_file()
     or not (LIVE_REPO / "projects" / "chirality-app-dev" / "_harness" / "adapter.yaml").is_file()
-    or not (LIVE_REPO / "_DomainEngines").is_dir(),
+    or not (LIVE_REPO / "_DomainEngines").is_dir()),
     reason="live pilot roots/manifests absent (or live tests disabled by env)",
 )
 
@@ -275,7 +279,10 @@ def test_live_gen9_registry_currency_zero_drift(live_self_check):
 
 @live
 def test_live_self_check_reports_root_ratified_governance_and_exits_clean(live_self_check):
-    report, _ = live_self_check
+    # Equivalent to `harness.py self-check` exiting 0: no identity refusal
+    # (exit 2) and no BLOCK finding (exit 1). This is the hosted gate.
+    report, refusal = live_self_check
+    assert refusal is None, refusal
     for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
         fact = _fact(report, f"root_governance.{name}")
         assert "RATIFIED" in fact.value
