@@ -2162,7 +2162,7 @@
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; reviewer dispatched with host `subagent_type: pec-reviewer`, `model: opus`; roles instruction-asserted.
   - Gate-Outcome: `EXECUTED` — SCA-005 checkpoint 3 accepted and closed for scope change only; no Lane B, A4, SOW, source, lifecycle beyond the accepted retirements, artifact-acceptance, release or reliance act.
 
-- **2026-09-25 — Receipt 195** (D-PEC-93 PROJECT_SETUP proposal for SCA-005 A4 and B3 published for an owner ruling).
+- **2026-09-25 — Receipt 195** (D-PEC-93 PROJECT_SETUP proposal for SCA-005 A4 and B3 published; owner ruled A).
   - Receipt-ID: `Receipt-195`
   - Examined-Through: `6dac281c679e779e9e8507add693554f102242d2`
   - Parent-Receipt: `Receipt-194`
@@ -2171,4 +2171,4 @@
   - Stale-Map-Delta: none; preparation was read-only over the base and no decomposition, register, `Dependencies.csv`, `_DEPENDENCIES.md`, `_CONTEXT.md`, `_STATUS.md`, SOW or PRD byte changed.
   - Checks: prototype results recorded in the proposal and evidence (strict registers 0 errors and 0 warnings; closure with no cycles or bidirectional pairs; deterministic rerun; reliance-hold ALLOW); for this publication, receipts validator VALID, exit 0; decomposition registers `--strict` unchanged on the live tree; `git diff --check` flags only verbatim tool-output evidence in the preparation folder (CRLF closure-tool CSVs and diffs of CRLF registers); independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F17_REVIEW_D93_PROPOSAL.md`.
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; preparer dispatched with host `subagent_type: pec-task`, `model: opus`; roles instruction-asserted.
-  - Gate-Outcome: `EXECUTED` — proposal published for an owner ruling; no product, lifecycle, artifact-acceptance, release or reliance act.
+  - Gate-Outcome: `EXECUTED` — proposal published and the owner's ruling “D-PEC-93: A.” recorded in `_DECISIONS/D-PEC-93_RULING_2026-09-25.md` in the same publication; the act starts only after this publication is observed on `origin/main`; no product, lifecycle, artifact-acceptance, release or reliance act.
