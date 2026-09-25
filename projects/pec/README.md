@@ -38,7 +38,7 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. Current SCA-004 derivative state is
 recorded in
 `execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`:
-incomplete only for TM-PEC-023. Lifecycle census (2026-09-25): 28 `OPEN` / 26
+incomplete only for TM-PEC-023. Lifecycle census (2026-09-25): 30 `OPEN` / 26
 `INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
@@ -71,7 +71,9 @@ DEL-02-08/09 folders deferred to PROJECT_SETUP. Checkpoint-3 preparation
 applied and audited those writes, and the owner accepted the audited poststate
 on 2026-09-25: SCA-005 is closed for scope change only
 (`checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`), with its downstream work
-separately gated. See `docs/STATUS.md` for current gates.
+separately gated. The deferred DEL-02-08/09 folders and the dependency rerun
+were then done under `D-PEC-93` (PR #914), and the re-audit found no blocker.
+See `docs/STATUS.md` for current gates.
 
 **Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
 (2026-09-25): agents may act on PEC record-tier data as true as of the

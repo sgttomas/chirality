@@ -116,12 +116,12 @@ one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broa
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
-**Lifecycle census** (recounted 2026-09-25 from the 64 deliverable
-`_STATUS.md` files, after SCA-005's accepted retirements were applied): 28
-`OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01, DEL-00-03, DEL-08-02,
-DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03, DEL-01-05) / 4 `RETIRED` (DEL-06-04,
-DEL-07-02, DEL-07-04, DEL-07-05). No deliverable is `ISSUED`. The two new
-deliverables DEL-02-08 and DEL-02-09 have register rows but no folders yet.
+**Lifecycle census** (recounted 2026-09-25 from the 66 deliverable
+`_STATUS.md` files, after SCA-005's retirements and the `D-PEC-93` setup of
+DEL-02-08 and DEL-02-09): 30 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING`
+(DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03,
+DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
+deliverable is `ISSUED`.
 
 **Loop:** `D-PEC-80` A–D (ruled 2026-09-05) made `projects/pec/loop/`
 (`LOOP_INIT.md`, `LOOP_RECEIPTS.md`) the loop home with a generic instruction
@@ -199,8 +199,13 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
 - **SCA-005 follow-on work (each separately gated):** SCA-005 closed for
   scope change only on 2026-09-25
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`).
-  Open: DEL-02-08/09 preparation with the dependency rerun and a re-audit
-  (ruled as `D-PEC-93` A on 2026-09-25; the act is next); context and reference re-pinning to
+  Done: DEL-02-08/09 preparation with the dependency rerun and a re-audit
+  (`D-PEC-93` A, merged 2026-09-25 as PR #914: registers 0 errors / 0
+  warnings, 111 dependency edges with no cycles; re-audit
+  `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
+  0 blockers, now the audit pointer). The two `_LATEST.md` pointers and the
+  SCA-005 handoff still describe the pre-setup audit state; updating them
+  needs its own act. Open: context and reference re-pinning to
   revision 1.5; SOW currency; DEL-00-01/00-03 derivative review; the loop
   registry source packet; P1 fixtures; TM-PEC-023 disposition; the
   `projects/pec/AGENTS.md` instruction tranche (it still names PRD v2.2); the
