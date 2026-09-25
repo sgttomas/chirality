@@ -14,3 +14,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N-4 | D3 says the read-only case "is skipped"; R16 is a conditional block that passes | Same; the slice brief will require recording whether the block ran |
 | N-5 | Python version wording at L173 redundant | Same |
 | N-6 | F10 must exist before merge | This file |
+
+## Final-head confirmation of `9630a320e28cbf6bdb8cea7f9f3efc6f4e93726e`
+
+Same reviewer, re-reviewing the repair commit `5069e885d..9630a320e`. **Verdict: PASS.** The corrected endings match the recomputed full hashes; the report body still hashes to `7207818a…4542`; the proposal still hashes to `5c044b09…13ec`; the commit touches only the return header line and this file; this transcription is fair; receipts validator VALID, decomposition `--strict` exit 0, `git diff --check` clean. This section is added append-only after that head; no other byte changes.
