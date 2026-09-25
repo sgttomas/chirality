@@ -87,10 +87,11 @@ and the three REM rows are ticked; DEL-01-03 stays `IN_PROGRESS`. The slice
 found one wider residual that R1 does not cover: a caller that passes a
 `str` subclass can still place arbitrary text in the store, a channel present
 since `D-PEC-85` and documented in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md`.
-Its closure, with two port-error gaps and the echo of invalid identifiers,
-is proposed as `D-PEC-89` (awaiting the owner's ruling). The L-2a review of
-the corrected bytes follows once `D-PEC-89` is disposed of, so that it reviews
-the closed guard.
+Its closure, with three port-error gaps (two routed by the slice, one found
+in preparation) and the echo of invalid identifiers, is proposed as
+`D-PEC-89` (awaiting the owner's ruling). HELP_HUMAN has sequenced the L-2a
+review after `D-PEC-89` is disposed of, a coordination choice rather than a
+ruling, so that it reviews the resulting bytes.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,

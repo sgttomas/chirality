@@ -13,8 +13,9 @@ remaining scope item without an objective after the TM-PEC-023 selections:
 SOW-033, idempotent append-only event ingest keyed on event id. Its
 deliverable DEL-07-01 already carries `OBJ-003` through SOW-039, so the union
 invariant holds either way. HELP_HUMAN asked whether to map SOW-033 to
-`OBJ-003`, matching the rule the owner applied to the TM-PEC-023 rows (map a
-scope item to the objective whose surface it directly makes possible).
+`OBJ-003`, matching the rule HELP_HUMAN explained and the owner accepted for the
+TM-PEC-023 rows (map a scope item to the objective whose surface it directly
+makes possible).
 
 ## The owner's act (verbatim)
 
