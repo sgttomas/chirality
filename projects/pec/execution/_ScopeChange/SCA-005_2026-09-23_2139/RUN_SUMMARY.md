@@ -334,3 +334,7 @@ Genuinely open choice:
 | # | Choice | Options | Recommendation |
 |---|---|---|---|
 | Q-CP3-1 | Closure verdict recorded on acceptance, given the audit's by-rule `BLOCKERS` come only from the deferred A4 folders | (a) `CLOSED_FOR_SCOPE_CHANGE_ONLY`, the plan's planned value and the SCA-004 precedent: the decomposition amendment is closed; A4, B1–B8 and a re-audit are recorded open in `Handoff_State.md`; (b) `OPEN_PENDING_DERIVATIVE_CLOSURE` until A4 and B3 land and a re-audit clears COV-001/002 (pointers still move on acceptance) | **(a)** — the blockers measure derivative scaffolding you deferred on purpose, not the amendment; (a) keeps them visible as open obligations without holding the scope change open |
+
+## Checkpoint-3 outcome (HELP_HUMAN, 2026-09-25)
+
+The owner accepted the audited poststate and chose closure verdict (a): "CP3: accept; Q1 a" (record `../checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`). A6 is performed; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`. The rows above that describe the pre-acceptance state are superseded by this section; the three informational notices were written in PR #911.
