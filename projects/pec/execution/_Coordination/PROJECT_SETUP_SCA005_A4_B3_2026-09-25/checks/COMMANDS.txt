@@ -13,3 +13,7 @@ exit=0	05_fileset_DEL-02-08	zsh tools/validation/check_min_viable_fileset.sh pro
 exit=0	05_fileset_DEL-02-09	zsh tools/validation/check_min_viable_fileset.sh projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser
 exit=0	06_row_conservation_and_quotes	python3 probes/rowcons.py <repo> probes/table.tsv 04e04da00f620a1a5786ee744b167490cc90531c (run from scratch copy; identical bytes in probes/)
 exit=0	00_preflight_dispatch-for-production	zsh probes/preflight.sh <repo> probes/table.tsv dispatch-for-production execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_ execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25 (run before the generator; 34 targets)
+exit=0	07_diff_check	python3 probes/diffcheck.py <repo> probes/table.tsv (git diff --check origin/main...HEAD at commit 995af4f36; product-only and whole diff)
+exit=0	08_preflight_rely-for-production	zsh probes/preflight.sh <repo> probes/table.tsv rely-for-production execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606 execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25 (before fan-in)
+exit=0	09_aggregate	python3 probes/aggregate.py <repo> probes/table.tsv
+exit=0	10_pointer	zsh tools/scaffolding/update_latest_pointer.sh projects/pec/execution/_Evaluation/DecompCoverage COV_SCA005_POSTSETUP_2026-09-25_1606 (after the re-audit reported 0 BLOCKERs)
