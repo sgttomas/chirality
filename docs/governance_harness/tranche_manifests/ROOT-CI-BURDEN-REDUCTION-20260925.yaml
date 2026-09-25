@@ -47,6 +47,6 @@ candidate_paths:
   - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_CI_BURDEN_REDUCTION.md
 scope_limits:
   - Hosted CI selection and checkout shape only; stable check names, aggregates and branch protection are unchanged.
-  - No product assertion, threshold, timeout or skip is changed; the Playwright configuration and local evidence sweeps keep both viewport profiles.
-  - Hosted compact-profile scope is a Piping-owned choice the receiving loop may adopt, amend or revert.
+  - No product assertion, threshold, timeout or skip is changed; the Playwright configuration, local evidence sweeps and manual full dispatch keep both viewport profiles, preserving the DEC-093 surface-4 CI binding path.
+  - Pull-request compact-profile scope is a Piping-owned choice the receiving loop may adopt, amend or revert.
   - Self-check still gates every PR and main push through the always-run practitioner_harness suite.

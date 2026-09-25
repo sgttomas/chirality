@@ -40,9 +40,10 @@ Piping retains `projects/chirality-piping/tools/ci/e2e_plan.py` and its
 Piping is self-contained below its project directory: root directories other
 than its own workflow and setup action (execution records, root tools,
 instruction packages, exports) are non-inputs for both its desktop and
-numerical suites; root-level build files remain conservative inputs. Hosted
-full source coverage runs every desktop-profile identity and runs the compact
-profile only for layout/viewport specs. Piping jobs skip checking out
+numerical suites; root-level build files remain conservative inputs.
+Pull-request runs execute every desktop-profile identity and the compact
+profile only for layout/viewport specs; a manual full dispatch keeps both
+profiles in full. Piping jobs skip checking out
 `execution/` run evidence, which none of them read.
 
 The governance harness remains on every PR. Its tools tests continue to use
