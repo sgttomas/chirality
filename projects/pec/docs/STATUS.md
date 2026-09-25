@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance (present-current lines only); earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance and after the `D-PEC-87` ruling (present-current lines only); earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -69,12 +69,13 @@ Their obligations O-1-1..O-1-10, O-2-1..O-2-8 and O-3-1..O-3-14, including
 O-2-2 (the guard does not bound path length or line structure), were triaged
 on 2026-09-24 and the owner ruled `D-PEC-87` the same day
 (`execution/_Coordination/_DECISIONS/D-PEC-87_RULING_2026-09-24.md`): C-A
-opens one correction slice on seven existing files (R1–R8, X-1); L-1a lets
-that slice tick the three REM rows; L-2a lands the corrected bytes and then
-reviews them. The owner reserves any CHECKING declaration for DEL-01-03 to
+opens one correction slice on seven existing files (R1–R8, X-1); L-1a
+authorizes WORKING_ITEMS to tick the three REM rows, independently of the
+slice's completion; L-2a lands the corrected bytes and then reviews them. The owner reserves any CHECKING declaration for DEL-01-03 to
 their own initiative; it is not an owner gate agents raise, and it holds no
 other work. Until the slice lands, O-2-2 remains a live defect in the merged
-primitive and the three REM rows remain unticked.
+primitive; the three REM rows remain unticked until the L-1a edit is
+published.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
