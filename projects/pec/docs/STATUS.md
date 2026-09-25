@@ -9,7 +9,7 @@ clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
 (`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
 prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`. Present-current prose
-refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance, after the `D-PEC-87` ruling, and after the TM-PEC-023/cmux acts (present-current lines only); earlier paragraphs that no
+refreshed 2026-09-23 under `D-PEC-86` §3 I-5 and again 2026-09-24 after the checkpoint-1 acceptance, after the `D-PEC-87` ruling, and after the TM-PEC-023/cmux acts (present-current lines only), and maintained from then on under the standing clause `D-PEC-88`; earlier paragraphs that no
 longer describe the current state are labelled historical, not deleted._
 
 ## Current state
@@ -56,7 +56,9 @@ candidate MODIFY actions (`D-PEC-86` §3 I-3). The owner selected them on
 `execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`):
 six rows map to objectives, rows 4, 6 and 7 are moot because their
 deliverables retire, and cmux (SOW-037, DEL-07-04) is added to the deferred,
-out-of-scope items. The objective fields and the SOW-037 / DEL-07-04 status
+out-of-scope items. SOW-033 is mapped to OBJ-003 by amendment 2
+(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`), so no
+in-scope item remains without an objective once SCA-005 applies. The objective fields and the SOW-037 / DEL-07-04 status
 change only when SCA-005 applies; today SOW-037 is still `IN` and DEL-07-04
 still `OPEN`. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
@@ -78,9 +80,17 @@ opens one correction slice on seven existing files (R1–R8, X-1); L-1a
 authorizes WORKING_ITEMS to tick the three REM rows, independently of the
 slice's completion; L-2a lands the corrected bytes and then reviews them. The owner reserves any CHECKING declaration for DEL-01-03 to
 their own initiative; it is not an owner gate agents raise, and it holds no
-other work. Until the slice lands, O-2-2 remains a live defect in the merged
-primitive; the three REM rows remain unticked until the L-1a edit is
-published.
+other work. The C-A slice merged on 2026-09-24 (PR #893, `0517e0752`;
+evidence under DEL-01-03 `_run_records/P1_STORE_GUARD_02/`, independent
+verifier PASS after three cycles): O-2-2 is closed for exact-string paths
+and the three REM rows are ticked; DEL-01-03 stays `IN_PROGRESS`. The slice
+found one wider residual that R1 does not cover: a caller that passes a
+`str` subclass can still place arbitrary text in the store, a channel present
+since `D-PEC-85` and documented in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md`.
+Its closure, with two port-error gaps and the echo of invalid identifiers,
+is proposed as `D-PEC-89` (awaiting the owner's ruling). The L-2a review of
+the corrected bytes follows once `D-PEC-89` is disposed of, so that it reviews
+the closed guard.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
@@ -160,11 +170,16 @@ P-A.
 
 Current owner gates (2026-09-24; none is accepted or inferred here):
 
+- **D-PEC-89 ruling:** exact-type closure of the store guard's `str`-subclass
+  channel, completion of the port-error wrapping, and whether the store stops
+  echoing invalid identifiers (options A / A2 / B / amend / defer;
+  `execution/_Coordination/_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md`).
+
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
-  and its amendment 1, carrying the owner-selected TM-PEC-023 values, the
-  cmux deferral and the PRD v2.3 successor candidate; checkpoint 3 (audited
+  and its amendments 1 and 2, carrying the owner-selected TM-PEC-023 values, the
+  cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate; checkpoint 3 (audited
   poststate) follows.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
