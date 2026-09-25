@@ -1,3 +1,6 @@
+/// <reference types="vite/client" />
+import sourceRequestText from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json?raw';
+import sourceRawText from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json?raw';
 import { invoke } from '@tauri-apps/api/core';
 import sparseProducer from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
 vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
@@ -10,7 +13,7 @@ import historicalResult from "../../../../../fixtures/product_preview/invented_m
 import { analysisRecordProjection, buildAnalysisRunV02, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
 import type { MechanicsResult, PreviewModel } from "../../types";
 import {resultSemantics} from "../results/resultSemantics";
-import { buildReportPackageRequest } from "./reportPackageRequest";
+import { buildReportPackageRequest, reportPackageUnavailableReason, SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE } from "./reportPackageRequest";
 import componentProvenanceProjection from "../../../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
 
 // Isolated report-consumer tests simulate the source IPC response; the real
@@ -475,4 +478,18 @@ describe("report-package current-session request", () => {
     expect(request.audit_manifest.solver_version.solver_version).toBe(session.result.producer!.component_version);
   });
 
+});
+
+it('FE01 refuses genuine source-block evidence at the unchanged report boundary while p1 stays supported',async()=>{
+ const request=JSON.parse(sourceRequestText),raw=JSON.parse(sourceRawText),model=request.model as PreviewModel;
+ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));
+ const result=await runPreviewMechanics(model,'dense_scrutiny');
+ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer!.component_name,solver_version:result.producer!.component_version,solver_build_ref:'FE01-genuine-pair-mocked-IPC',solver_mode:'dense_scrutiny',settings:{}},active_rule_packs:[],external_assets:[]});
+ const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
+ const before=structuredClone(result);
+ expect(reportPackageUnavailableReason(result)).toBe(SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE);
+ await expect(buildReportPackageRequest({model,result,analysisRun,inputManifest,projectSummary:null,comparison:null,ruleCheckAggregate:null})).rejects.toThrow('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE');
+ expect(result).toEqual(before);
+ expect(reportPackageUnavailableReason(sparseProducer as MechanicsResult)).toBeNull();
+ expect(reportPackageUnavailableReason(historicalResult as MechanicsResult)).toBeNull();
 });

@@ -1,0 +1,58 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {runPreviewMechanics,startPreviewMechanicsJob,pollPreviewMechanicsJob,hasNativeMechanicsInvocation,retainedNativeMechanicsInvocation,buildAnalysisRunPreview} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/previewService.ts";
+import {sourceBlockStanding,retainedSourceBlockInvocation,validateSourceBlockRecovery} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts";
+import {numericalResultStanding} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts";
+import {buildCurrentSessionInputManifest} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/inputManifestService.ts";
+import {buildCurrentResultExport} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts";
+import {runRuleChecks} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts";
+import {buildReportPackageRequest,reportPackageUnavailableReason} from "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts";
+const request=JSON.parse(readFileSync("/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",'utf8')),raw=JSON.parse(readFileSync("/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",'utf8'));
+const observed=[];
+globalThis.window={__TAURI_INTERNALS__:{}};
+let calls=[];
+const actualRequestEqual=(a,b)=>JSON.stringify({model:a.model,materials:a.materials})===JSON.stringify({model:b.model,materials:b.materials});
+async function receive(route='direct',negative=true){
+ const model=structuredClone(request.model);if(negative)model.nodes[0].position.x=-0;
+ calls=[];globalThis.__reviewInvoke=async(command,args)=>{calls.push([command,args]);if(command==='run_preview_mechanics_with_solver_mode')return structuredClone(raw);if(command==='start_preview_mechanics_job_with_solver_mode')return {job_id:'backcheck-job',backend_cancellation_token:'test-only',state:'queued',cancellation_scope:'job'};if(command==='poll_preview_mechanics_job')return {job_id:'backcheck-job',state:'completed',result:structuredClone(raw)};if(command==='run_rule_checks')return {aggregate_status:'RULE_INPUTS_INCOMPLETE',checks:[]};throw new Error('Unexpected IPC '+command);};
+ let source;if(route==='direct')source=await runPreviewMechanics(model,'dense_scrutiny');else{await startPreviewMechanicsJob(model,'dense_scrutiny');source=(await pollPreviewMechanicsJob('backcheck-job')).result;}
+ const sent=calls[0][1].model;
+ return {model,source,sent};
+}
+const check=(name,condition,detail={})=>{observed.push({name,pass:!!condition,...detail});if(!condition)throw new Error(name);};
+try{
+ for(const route of ['direct','job']){
+  const {model,source,sent}=await receive(route);const before=structuredClone(source);
+  check(route+':actual_input_unchanged',actualRequestEqual({model:sent,materials:[]},request)&&Object.is(model.nodes[0].position.x,-0)&&Object.is(sent.nodes[0].position.x,0));
+  check(route+':native_and_method',hasNativeMechanicsInvocation(source,model,'dense_scrutiny')&&numericalResultStanding(source,model).eligible&&sourceBlockStanding(source,sent).eligible);
+  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:source.producer.component_name,solver_version:source.producer.component_version,solver_build_ref:'independent-FE-backcheck-existing-pair-via-mocked-IPC',solver_mode:'dense_scrutiny',settings:{}},active_rule_packs:[],external_assets:[]});
+  const analysisRun=await buildAnalysisRunPreview(source,{inputManifest});
+  const canonical=await buildCurrentResultExport({model,result:source,analysisRun,inputManifest});
+  check(route+':canonical',canonical.schema_version==='0.3.0'&&JSON.stringify(canonical.result_envelope.source_block_recovery)===JSON.stringify(source.source_block_recovery));
+  await runRuleChecks({model,solvedEnvelope:source,rulePackDocument:{metadata:{rule_pack_id:'invented-review-control'}}});
+  const rule=calls.find(c=>c[0]==='run_rule_checks')[1];check(route+':rule_actual_invocation',actualRequestEqual(rule.sourceBlockInvocation.request,request)&&rule.sourceBlockInvocation.solver_mode==='dense_scrutiny');
+  check(route+':raw_unchanged',JSON.stringify(source)===JSON.stringify(before));
+  let refusal='';try{await buildReportPackageRequest({model,result:source,analysisRun,inputManifest,projectSummary:null,comparison:null,ruleCheckAggregate:null});}catch(e){refusal=String(e);}
+  check(route+':report_refusal',refusal.includes('"/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts"-PACKAGE-SOURCE-"/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts"-UNAVAILABLE')&&reportPackageUnavailableReason(source)?.includes('"/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts"-PACKAGE-SOURCE-"/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts"-UNAVAILABLE'),{refusal});
+  check(route+':clone_no_origin',!hasNativeMechanicsInvocation(structuredClone(source),model)&&!sourceBlockStanding(structuredClone(source),model).eligible);
+ }
+ for(const mutation of ['caller_zero','caller_value','dispatch_zero','source_zero']){
+  const {model,source,sent}=await receive();
+  if(mutation==='caller_zero')model.nodes[0].position.x=0;
+  if(mutation==='caller_value')model.nodes[0].position.x=0.25;
+  if(mutation==='dispatch_zero')sent.nodes[0].position.x=-0;
+  if(mutation==='source_zero'){const r=source.results.find(r=>Object.is(r.value,-0));if(!r)throw new Error('missing signed source control');r.value=0;}
+  check(mutation+':invalidated',!hasNativeMechanicsInvocation(source,model)&&!sourceBlockStanding(source,model).eligible&&retainedSourceBlockInvocation(source,model)===null&&retainedNativeMechanicsInvocation(source,model)===null);
+ }
+ {
+  const model=structuredClone(request.model);model.nodes[0].position.x=-0;let done;
+  globalThis.__reviewInvoke=()=>new Promise(r=>done=r);const pending=runPreviewMechanics(model,'dense_scrutiny');model.nodes[0].position.x=0;done(structuredClone(raw));const source=await pending;
+  check('pending_caller_mutation',!hasNativeMechanicsInvocation(source,model)&&!sourceBlockStanding(source,model).eligible);
+ }
+ {
+  const source=structuredClone(raw),caller=structuredClone(request.model);caller.nodes[0].position.x=-0;
+  await validateSourceBlockRecovery(source,{request:structuredClone(request),solver_mode:'dense_scrutiny'});
+  check('two_argument_stays_strict',!sourceBlockStanding(source,caller).eligible&&!hasNativeMechanicsInvocation(source,caller));
+  caller.nodes[0].position.x=1;let refused=false;try{await validateSourceBlockRecovery(structuredClone(raw),{request,solver_mode:'dense_scrutiny'},caller);}catch(e){refused=String(e).includes('CALLER_DISPATCH_NORMALIZATION_MISMATCH');}check('unobserved_alias_rejected',refused);
+ }
+ writeFileSync("/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/INDEPENDENT_BOUNDARY_CHECKS.json",JSON.stringify({status:'PASS',scope:'Existing genuine pairs; actual frontend functions, real existing Rust-WASM authority, native transport mocked. No solve/native/build.',observed},null,2)+'\n');console.log(JSON.stringify({status:'PASS',checks:observed.length},null,2));
+}catch(e){writeFileSync("/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/INDEPENDENT_BOUNDARY_CHECKS.json",JSON.stringify({status:'FAIL',error:String(e),observed},null,2)+'\n');console.error(e);process.exitCode=1;}

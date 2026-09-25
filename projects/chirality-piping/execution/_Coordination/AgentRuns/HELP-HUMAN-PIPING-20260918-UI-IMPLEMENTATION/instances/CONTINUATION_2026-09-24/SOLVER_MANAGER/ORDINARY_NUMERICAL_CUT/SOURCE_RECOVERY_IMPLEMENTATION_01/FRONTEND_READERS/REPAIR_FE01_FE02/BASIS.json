@@ -1,0 +1,95 @@
+{
+  "executor": "/root/root_solver_checkpoint_review",
+  "role": "TASK Type2",
+  "actual_parent": "/root",
+  "coordination": "physics_resume owns joined checkout; only reviewed frozen delta transferred",
+  "base": "45d412e5d10e52e80d14a88d5cbea82e2bee005a",
+  "scope": "FE01/FE02 only",
+  "source_write_paths": [
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+    "projects/chirality-piping/apps/desktop/src/App.tsx",
+    "projects/chirality-piping/apps/desktop/src/App.test.tsx"
+  ],
+  "evidence_write_root": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02",
+  "origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/FINDINGS.md",
+      "sha256": "7b840c7f0371aa5b19d26846853d3cfbc23d046f747f5c45c26d134e8bdaa19c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/signed_zero_entry.mjs",
+      "sha256": "5a627484f560533e4773659eff7a262d67b6c9d522b9542b2f6ab14ddd09632d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/DIRECT_NODE_RUN.json",
+      "sha256": "ad18f895251f72bac0460f026e55da1f82c21e8de937c7144aab165ce1a25c21"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/SIGNED_ZERO_NODE_OBSERVATIONS.json",
+      "sha256": "6d560b7f90d73733a74f6b202d2c141ff2cc3817a0fac5355eeb78d6384b4a82"
+    }
+  ],
+  "initial_source": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "sha256": "d6e5d4aec29734223e9a33438948b393f67eaaa08a848ff9ba8cffbb1add3f50"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.tsx",
+      "sha256": "ceb1ec1cc525478f32f50aba79d5a3d31df497b69d06dfd9efb097c49c8d291d"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.test.tsx",
+      "sha256": "5374f136a93132cfbcac349375293db3dc98e6bbb2160dd1e428de7843aebb5a"
+    }
+  ]
+}

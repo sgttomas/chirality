@@ -692,7 +692,9 @@ export function useWorkspaceSession() {
           "INPUT-MANIFEST-MODEL-INCOMPLETE: a current session model is required before solve."
         );
       }
-      const solveModel = clonePreviewModel(model);
+      // Keep the caller representation in the manifest (including -0). The
+      // native service separately captures the exact serialized dispatch.
+      const solveModel = structuredClone(model);
       const solveModelRevision = modelRevision.current;
       const solveModelHash = await computeModelHash(solveModel);
       if (
@@ -707,7 +709,9 @@ export function useWorkspaceSession() {
         setSolveJob(cancelledBeforeBackendStartSolveJob(solveModel));
         return;
       }
-      const startReceipt = await startPreviewMechanicsJob(solveModel, solverMode);
+      // The native boundary binds the live caller as well as its copied JSON
+      // request, so later in-place edits cannot reuse a solve registration.
+      const startReceipt = await startPreviewMechanicsJob(model, solverMode);
       const cancellationTombstone = solveCancellationTombstones.current.get(runGeneration);
       if (
         modelRevision.current !== solveModelRevision ||

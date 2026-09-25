@@ -1,0 +1,53 @@
+{
+  "base": "45d412e5d10e52e80d14a88d5cbea82e2bee005a",
+  "files": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "base_sha256": "158e60ef41fcdff0b4132bc5a77d3061e0096021bcf1cae9c9fc89dff04e1aa4",
+      "sha256": "82940ae3a37d241d9bb6d6ad4e959d7d10dcd09cb7e06a6001313bff079f97fd",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/previewService.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+      "base_sha256": "8d545f2b3f0f0a1b70f2c45080fb75701cb9285854b1ee8c6c7d85237b024e4d",
+      "sha256": "c22bc4b2d573686988d5c8f1eed9c5b9a1e9b8810764b986f99196bbcb36617f",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+      "base_sha256": "d6e5d4aec29734223e9a33438948b393f67eaaa08a848ff9ba8cffbb1add3f50",
+      "sha256": "ac338acbf79df3375bf2c2f81182e0b6d43d0f5f0c07de58a5d8904a135bbafd",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "base_sha256": "b74c597cd0e2127386b29c89b2d8e3026bf633ee61f55ff9c033ff004fae2558",
+      "sha256": "cc2b65d2f63eb92e0530a8297a926b190b307b5d794691ca04e5665e71e06db0",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+      "base_sha256": "b74d8f3712b8f6de5771843997322ed9b7696cede67dd3558b036dbb54ca84ec",
+      "sha256": "7727af07e093fd0bb05e24fddca2e55a6b5a08f9aa4621b30890fad001eaf44e",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "base_sha256": "f66d36da2b7514bffcba9f48330ddd605a210eb31556cb633e7e559930ee4cf6",
+      "sha256": "825425f95fddb613f23e57eee33f437861c2ae5e686175f9e9bda85215279798",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.tsx",
+      "base_sha256": "ceb1ec1cc525478f32f50aba79d5a3d31df497b69d06dfd9efb097c49c8d291d",
+      "sha256": "579a1f3cc21c8d9c95069a828390aa4ff65521960ab760344d4df6973d763377",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/App.tsx"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/App.test.tsx",
+      "base_sha256": "5374f136a93132cfbcac349375293db3dc98e6bbb2160dd1e428de7843aebb5a",
+      "sha256": "a363ba290d5ee074e3509a52cf55cde407fc16516a2cb0905214ceaa59196c5f",
+      "actual_origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/App.test.tsx"
+    }
+  ]
+}

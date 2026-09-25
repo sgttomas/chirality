@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "scope": "Existing genuine pairs; actual frontend functions, real existing Rust-WASM authority, native transport mocked. No solve/native/build.",
+  "observed": [
+    {
+      "name": "direct:actual_input_unchanged",
+      "pass": true
+    },
+    {
+      "name": "direct:native_and_method",
+      "pass": true
+    },
+    {
+      "name": "direct:canonical",
+      "pass": true
+    },
+    {
+      "name": "direct:rule_actual_invocation",
+      "pass": true
+    },
+    {
+      "name": "direct:raw_unchanged",
+      "pass": true
+    },
+    {
+      "name": "direct:report_refusal",
+      "pass": true,
+      "refusal": "Error: REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable."
+    },
+    {
+      "name": "direct:clone_no_origin",
+      "pass": true
+    },
+    {
+      "name": "job:actual_input_unchanged",
+      "pass": true
+    },
+    {
+      "name": "job:native_and_method",
+      "pass": true
+    },
+    {
+      "name": "job:canonical",
+      "pass": true
+    },
+    {
+      "name": "job:rule_actual_invocation",
+      "pass": true
+    },
+    {
+      "name": "job:raw_unchanged",
+      "pass": true
+    },
+    {
+      "name": "job:report_refusal",
+      "pass": true,
+      "refusal": "Error: REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable."
+    },
+    {
+      "name": "job:clone_no_origin",
+      "pass": true
+    },
+    {
+      "name": "caller_zero:invalidated",
+      "pass": true
+    },
+    {
+      "name": "caller_value:invalidated",
+      "pass": true
+    },
+    {
+      "name": "dispatch_zero:invalidated",
+      "pass": true
+    },
+    {
+      "name": "source_zero:invalidated",
+      "pass": true
+    },
+    {
+      "name": "pending_caller_mutation",
+      "pass": true
+    },
+    {
+      "name": "two_argument_stays_strict",
+      "pass": true
+    },
+    {
+      "name": "unobserved_alias_rejected",
+      "pass": true
+    }
+  ]
+}

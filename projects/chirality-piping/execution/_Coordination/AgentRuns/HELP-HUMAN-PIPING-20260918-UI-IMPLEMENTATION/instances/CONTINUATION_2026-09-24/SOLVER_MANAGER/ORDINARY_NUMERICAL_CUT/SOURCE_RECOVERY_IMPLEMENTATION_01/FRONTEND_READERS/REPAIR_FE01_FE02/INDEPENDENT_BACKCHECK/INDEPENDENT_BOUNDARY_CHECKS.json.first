@@ -1,0 +1,31 @@
+{
+  "status": "FAIL",
+  "error": "Error: direct:report_refusal",
+  "observed": [
+    {
+      "name": "direct:actual_input_unchanged",
+      "pass": true
+    },
+    {
+      "name": "direct:native_and_method",
+      "pass": true
+    },
+    {
+      "name": "direct:canonical",
+      "pass": true
+    },
+    {
+      "name": "direct:rule_actual_invocation",
+      "pass": true
+    },
+    {
+      "name": "direct:raw_unchanged",
+      "pass": true
+    },
+    {
+      "name": "direct:report_refusal",
+      "pass": false,
+      "refusal": "Error: REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable."
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { reportPackageUnavailableReason } from "./features/report/reportPackageRequest";
 import { CompactSelectScope } from "./features/workspace/CompactSelect";
 import { HangerSelectionPanel } from "./features/hanger-selection";
 import { SelfWeightPlanPanel } from "./features/self-weight-authoring";
@@ -201,6 +202,7 @@ function AppSession() {
     handleSelectDiagnostic,
     handleSaveReportPackage
   } = session.results;
+  const reportPackageUnavailable = reportPackageUnavailableReason(currentSolvedResult);
   const {
     editorIntents,
     retainedReviewContext,
@@ -327,7 +329,7 @@ function AppSession() {
           issuesOpen={issuesDrawerOpen}
           openMenu={openMenu}
           projectBusy={projectBusy}
-          reportPackageReady={Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
+          reportPackageReady={!reportPackageUnavailable && Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
           running={running}
           treeCollapsed={treeCollapsed}
           armedCreationTool={armedCreationTool}
@@ -673,8 +675,9 @@ function AppSession() {
                 packageRedaction={reportPackageRedaction}
                 packageRoute={reportPackageRoute}
                 onPackagePrivateIntentChange={setReportPackagePrivateIntent}
-                onSaveReportPackage={() => void handleSaveReportPackage()}
+                onSaveReportPackage={reportPackageUnavailable ? undefined : () => void handleSaveReportPackage()}
               />
+              {reportPackageUnavailable ? <p role="status" data-testid="report-package-source-unavailable">{reportPackageUnavailable}</p> : null}
               <ReportPanel
                 model={model}
                 knowledge={knowledge}

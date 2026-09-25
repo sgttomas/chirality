@@ -1,0 +1,6 @@
+{
+  "original_probe": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/signed_zero_entry.mjs",
+  "original_sha256": "5a627484f560533e4773659eff7a262d67b6c9d522b9542b2f6ab14ddd09632d",
+  "changes_for_replay": "Output paths move to this backcheck only; add assertion that report now refuses. Actual functions/fixtures/method probes unchanged.",
+  "additional_probe": "Independent direct/job canonical/rule caller/input/source mutation and two-argument controls; all in boundary_entry.mjs."
+}

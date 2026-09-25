@@ -1,0 +1,25 @@
+{
+  "allowed": [
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+    "projects/chirality-piping/apps/desktop/src/App.tsx",
+    "projects/chirality-piping/apps/desktop/src/App.test.tsx"
+  ],
+  "paths": [
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+    "projects/chirality-piping/apps/desktop/src/App.tsx",
+    "projects/chirality-piping/apps/desktop/src/App.test.tsx"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

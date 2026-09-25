@@ -9,7 +9,7 @@ export const SOURCE_BLOCKS_CONTRACT_SHA256 = '5f299065f15a157bbedf9467a598994ae6
 export type SourceBlockInvocation = Readonly<{ request: unknown; solver_mode: 'dense_scrutiny' | 'sparse_interactive' }>;
 type JsonObject = Record<string, any>;
 type Validation = { eligible: boolean; findings: string[] };
-type Validated = Validation & { sourceText: string; sourceZeroSigns: string; invocationText: string; invocationZeroSigns: string; invocation: SourceBlockInvocation };
+type Validated = Validation & { sourceText: string; sourceZeroSigns: string; invocationText: string; invocationZeroSigns: string; invocation: SourceBlockInvocation; callerModel?: PreviewModel; callerSnapshot?: PreviewModel };
 // A registration is private and grants only receipt consistency. Current-use
 // callers must still authenticate the actual model, producer/build and run.
 const validated = new WeakMap<MechanicsResult, Validated>();
@@ -64,13 +64,17 @@ const domainHash = (domain: string, payload: unknown) => canonicalSha256HexCheck
 
 /** Validate actual wire evidence; this does not replay hidden exact arithmetic.
  * Capture invocation independently at dispatch, never from the returned receipt. */
-export async function validateSourceBlockRecovery(source: MechanicsResult, invocation: SourceBlockInvocation): Promise<Validation> {
+export async function validateSourceBlockRecovery(source: MechanicsResult, invocation: SourceBlockInvocation, callerModel?: PreviewModel): Promise<Validation> {
   validated.delete(source);
   const sourceText = checkedJsonText(source), invocationText = checkedJsonText(invocation);
   // All awaits operate on snapshots. Neither a mutable caller nor a racing edit
   // can alter the bytes checked and then reuse the resulting registration.
   const raw = structuredClone(source);
   const sourceZeroSigns = negativeZeroPaths(source);
+  // Optional context comes from the native boundary before serialization. It
+  // adds an observed caller representation, never an inferred model from rows.
+  if (callerModel) checkedJsonText(callerModel);
+  const callerSnapshot = callerModel ? structuredClone(callerModel) : undefined;
   const captured = structuredClone(invocation);
   const invocationZeroSigns = negativeZeroPaths(invocation);
   fail(raw.schema_version === '0.2.0' && raw.producer?.semantic_contract_id === SOURCE_BLOCKS_CONTRACT_ID, 'CONTRACT');
@@ -81,6 +85,7 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
   const request = captured.request as JsonObject, model = request?.model as PreviewModel;
   fail(model && Array.isArray(model.load_cases) && Array.isArray(model.nodes) && model.nodes.length > 0 && Array.isArray(model.pipe_segments) && Array.isArray(model.supports), 'INVOCATION_MODEL_REQUIRED');
   fail(model.project?.id === raw.model_ref, 'MODEL_MISMATCH');
+  if (callerSnapshot) fail(sameModelData(JSON.parse(checkedJsonText(callerSnapshot)), model), 'CALLER_DISPATCH_NORMALIZATION_MISMATCH');
   for (const items of [model.nodes,model.pipe_segments,model.supports,model.load_cases]) fail(unique(items.map(x => x.id)) && items.every(x => typeof x.id === 'string' && x.id.length > 0), 'MODEL_IDENTITIES');
   fail(raw.results.every(row => Object.keys(row).every(k => ['id','kind','value','unit','dimension','entity_ref','basis_ref','source_result_refs','metadata'].includes(k)) && Number.isFinite(row.value) && typeof row.entity_ref === 'string' && row.entity_ref.length > 0), 'ROW_SHAPE');
   fail(raw.results.every(row => !Object.hasOwn(row,'dimension') || semantic(row)?.legacy_declared_dimension === row.dimension), 'ROW_DIMENSION');
@@ -188,15 +193,15 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
       if (body.status === 'qualified') fail(candidates.every(r => r.value <= summary.value), 'SUMMARY_MAXIMUM');
     }
   }
-  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
+  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns && (!callerModel || (!!checkedJsonText(callerModel) && sameModelData(callerModel,callerSnapshot))), 'CHANGED_DURING_VALIDATION');
   // Receipt fields are immutable producer evidence. Seal only after complete
   // validation and race checks; this avoids quadratic schema work when each
   // semantic-row lookup dispatches the same authenticated receipt.
   sealValidatedReceipt(source.source_block_recovery);
-  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
+  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns && (!callerModel || (!!checkedJsonText(callerModel) && sameModelData(callerModel,callerSnapshot))), 'CHANGED_DURING_VALIDATION');
   immutableReceiptShapes.add(source.source_block_recovery as object);
   const answer = { eligible: findings.length === 0, findings: [...new Set(findings)] };
-  validated.set(source, { ...answer, sourceText, sourceZeroSigns, invocationText, invocationZeroSigns, invocation });
+  validated.set(source, { ...answer, sourceText, sourceZeroSigns, invocationText, invocationZeroSigns, invocation, callerModel, callerSnapshot });
   return answer;
 }
 
@@ -204,7 +209,9 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
 export function sourceBlockStanding(source: MechanicsResult, model?: Pick<PreviewModel, 'load_cases'> | null): Validation {
   const token = validated.get(source);
   try {
-    if (!token || checkedJsonText(source) !== token.sourceText || negativeZeroPaths(source) !== token.sourceZeroSigns || checkedJsonText(token.invocation) !== token.invocationText || negativeZeroPaths(token.invocation) !== token.invocationZeroSigns || !model || !checkedJsonText(model) || !sameModelData(model,(token.invocation.request as {model:PreviewModel}).model)) return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED'] };
+    if (!token || checkedJsonText(source) !== token.sourceText || negativeZeroPaths(source) !== token.sourceZeroSigns || checkedJsonText(token.invocation) !== token.invocationText || negativeZeroPaths(token.invocation) !== token.invocationZeroSigns || !model || !checkedJsonText(model)
+      || (token.callerModel && (!checkedJsonText(token.callerModel) || !sameModelData(token.callerModel,token.callerSnapshot)))
+      || !(sameModelData(model,(token.invocation.request as {model:PreviewModel}).model) || (token.callerSnapshot && sameModelData(model,token.callerSnapshot)))) return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED'] };
     return { eligible: token.eligible, findings: [...token.findings] };
   } catch { return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_SOURCE_CHANGED'] }; }
 }

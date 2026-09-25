@@ -1,3 +1,6 @@
+/// <reference types="vite/client" />
+import feSourceRequestText from '../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json?raw';
+import feSourceRawText from '../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json?raw';
 import { solverDisplayWithToken } from "./features/workspace/statusLabels";
 import { statusChipInputsFromCells, statusChips, statusChipText } from "./features/workspace/shellLayout";
 import historicalMechanicsFixture from "../../../fixtures/product_preview/invented_mechanics_result.json";
@@ -18253,3 +18256,29 @@ function reviewValue(cell: string): string {
   if (!input) throw new Error(`Missing review cell ${cell}`);
   return input.value;
 }
+
+it('FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability',async()=>{
+ const storage=await (await import('./services/projectService')).getLocalStorageCapability();
+ const request=JSON.parse(feSourceRequestText),raw=JSON.parse(feSourceRawText),model=request.model as PreviewModel;model.nodes[0].position.x=-0;
+ (window as any).__TAURI_INTERNALS__={};
+ invokeMock.mockImplementation((command:string)=>{
+  if(command==='get_local_storage_capability')return Promise.resolve(storage);
+  if(command==='sync_native_shell_state')return Promise.resolve(null);
+  if(command==='load_preview_model')return Promise.resolve(model);
+  if(command==='start_preview_mechanics_job_with_solver_mode')return Promise.resolve({job_id:'fe-app',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
+  if(command==='poll_preview_mechanics_job')return Promise.resolve({job_id:'fe-app',state:'completed',result:structuredClone(raw),cancellation_requested:false,cancellation_status:'not_requested',cancellation_scope:'job',error_message:null});
+  return Promise.reject(new Error(`FE test unavailable command: ${command}`));
+ });
+ const view=render(<App/>);await screen.findByTestId('desktop-preview-shell');
+ act(()=>nativeMenuCommand('analyze.run'));
+ await waitFor(()=>expectStatusChip('status-pill-mechanics','MECHANICS_SOLVED','Solver · Mechanics solved'));
+ const report=openWorkspaceSection('report');
+ await waitFor(()=>expect(within(report).getByTestId('report-package-source-unavailable')).toHaveTextContent('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE'));
+ expect(within(report).queryByTestId('report-package-save')).not.toBeInTheDocument();
+ expect(Object.is(model.nodes[0].position.x,-0)).toBe(true);
+ const sent=invokeMock.mock.calls.find(call=>call[0]==='start_preview_mechanics_job_with_solver_mode')![1] as {model:PreviewModel};
+ expect(Object.is(sent.model.nodes[0].position.x,0)).toBe(true);
+ act(()=>nativeMenuCommand('file.save-report-package'));
+ await waitFor(()=>expect(within(report).getByTestId('report-package-save-status')).toHaveTextContent('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE'));
+ expect(invokeMock.mock.calls.some(call=>call[0]==='save_report_package')).toBe(false);view.unmount();
+},20000);

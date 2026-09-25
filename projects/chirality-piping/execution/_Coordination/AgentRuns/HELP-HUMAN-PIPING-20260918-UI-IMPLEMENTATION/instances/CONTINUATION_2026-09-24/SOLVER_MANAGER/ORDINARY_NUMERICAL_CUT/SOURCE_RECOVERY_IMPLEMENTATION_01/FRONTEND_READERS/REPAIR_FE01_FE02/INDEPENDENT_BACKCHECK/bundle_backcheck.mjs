@@ -1,0 +1,5 @@
+import {build} from 'esbuild';
+import {fileURLToPath} from 'node:url';
+await build({entryPoints:[fileURLToPath(new URL('./original_probe_replay.mjs',import.meta.url))],outfile:fileURLToPath(new URL('./original_probe_bundle.mjs',import.meta.url)),bundle:true,platform:'node',format:'esm',target:'node24',logLevel:'warning',plugins:[{name:'review-native-transport-only',setup(b){b.onResolve({filter:/^@tauri-apps\/api\/core$/},()=>({path:'native-transport',namespace:'review'}));b.onLoad({filter:/.*/,namespace:'review'},()=>({contents:'export const invoke = (...args) => globalThis.__reviewInvoke(...args);',loader:'js'}));}}]});
+
+await build({entryPoints:[fileURLToPath(new URL('./boundary_entry.mjs',import.meta.url))],outfile:fileURLToPath(new URL('./boundary_bundle.mjs',import.meta.url)),bundle:true,platform:'node',format:'esm',target:'node24',logLevel:'warning',plugins:[{name:'review-native-transport-only',setup(b){b.onResolve({filter:/^@tauri-apps\/api\/core$/},()=>({path:'native-transport',namespace:'review'}));b.onLoad({filter:/.*/,namespace:'review'},()=>({contents:'export const invoke = (...args) => globalThis.__reviewInvoke(...args);',loader:'js'}));}}]});

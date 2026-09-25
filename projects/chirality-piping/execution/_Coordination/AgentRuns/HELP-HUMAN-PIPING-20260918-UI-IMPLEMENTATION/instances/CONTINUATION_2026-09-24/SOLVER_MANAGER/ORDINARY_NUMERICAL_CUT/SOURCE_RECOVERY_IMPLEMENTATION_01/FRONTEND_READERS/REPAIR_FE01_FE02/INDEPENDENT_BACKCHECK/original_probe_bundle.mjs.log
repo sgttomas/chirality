@@ -1,0 +1,45 @@
+{
+  "scope": "Actual frontend functions bundled without behavioral substitution, real existing Rust-WASM hashing/units, unchanged genuine producer pair, only native invoke mocked; no new solve or native witness.",
+  "observed": [
+    {
+      "initialNegativeZero": false,
+      "callerStillNegativeZero": false,
+      "sentNegativeZero": false,
+      "actualRequestEqualsUnchangedProducerRequest": true,
+      "native": true,
+      "originalStanding": {
+        "contract": "source_blocks",
+        "status": "integrity_checked",
+        "eligible": true,
+        "findings": []
+      },
+      "capturedStanding": {
+        "eligible": true,
+        "findings": []
+      },
+      "manifestModelNegativeZero": false
+    },
+    {
+      "initialNegativeZero": true,
+      "callerStillNegativeZero": true,
+      "sentNegativeZero": false,
+      "actualRequestEqualsUnchangedProducerRequest": true,
+      "native": true,
+      "originalStanding": {
+        "contract": "source_blocks",
+        "status": "integrity_checked",
+        "eligible": true,
+        "findings": []
+      },
+      "capturedStanding": {
+        "eligible": true,
+        "findings": []
+      },
+      "manifestModelNegativeZero": true
+    }
+  ],
+  "reportObservation": {
+    "returned": false,
+    "error": "Error: REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable."
+  }
+}

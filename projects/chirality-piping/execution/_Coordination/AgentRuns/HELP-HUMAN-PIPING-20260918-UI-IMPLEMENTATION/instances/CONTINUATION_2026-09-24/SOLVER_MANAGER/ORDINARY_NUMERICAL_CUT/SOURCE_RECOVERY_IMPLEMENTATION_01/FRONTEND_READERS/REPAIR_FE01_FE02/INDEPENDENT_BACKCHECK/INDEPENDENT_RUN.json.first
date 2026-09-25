@@ -1,0 +1,58 @@
+{
+  "utc": "2026-09-25T08:27:19.762980+00:00",
+  "authorization": "Root explicitly authorized <=30s direct Node backcheck without further lane confirmation; existing WASM/mocked IPC only",
+  "runs": [
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/bundle_backcheck.mjs"
+      ],
+      "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+      "exit_code": 0,
+      "timeout": false,
+      "log": "bundle_backcheck.mjs.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/original_probe_bundle.mjs"
+      ],
+      "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+      "exit_code": 0,
+      "timeout": false,
+      "log": "original_probe_bundle.mjs.log",
+      "log_sha256": "3fafaaf713116e8650bed64b337cf73785301c35f9ee9c6d38a2df6fd4f970a2"
+    },
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/boundary_bundle.mjs"
+      ],
+      "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+      "exit_code": 1,
+      "timeout": false,
+      "log": "boundary_bundle.mjs.log",
+      "log_sha256": "96a66be0a9d6be8dbb50ae62d2fc583ca1f458cf6654b0f097790c91e0f53629"
+    }
+  ],
+  "wall_seconds": 0.67042875,
+  "source_unchanged": true,
+  "input_hashes": {
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts": "82940ae3a37d241d9bb6d6ad4e959d7d10dcd09cb7e06a6001313bff079f97fd",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts": "c22bc4b2d573686988d5c8f1eed9c5b9a1e9b8810764b986f99196bbcb36617f",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts": "ac338acbf79df3375bf2c2f81182e0b6d43d0f5f0c07de58a5d8904a135bbafd",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts": "cc2b65d2f63eb92e0530a8297a926b190b307b5d794691ca04e5665e71e06db0",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts": "7727af07e093fd0bb05e24fddca2e55a6b5a08f9aa4621b30890fad001eaf44e",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts": "825425f95fddb613f23e57eee33f437861c2ae5e686175f9e9bda85215279798",
+    "projects/chirality-piping/apps/desktop/src/App.tsx": "579a1f3cc21c8d9c95069a828390aa4ff65521960ab760344d4df6973d763377",
+    "projects/chirality-piping/apps/desktop/src/App.test.tsx": "a363ba290d5ee074e3509a52cf55cde407fc16516a2cb0905214ceaa59196c5f"
+  },
+  "scripts": {
+    "boundary_bundle.mjs": "0aa819092c1981658f6277b66e68dc289c0c25a1db3f8d4d72fec9fa1f41b6d5",
+    "boundary_entry.mjs": "05ef83f08f163cda42a55d07ec1bcf2c2ceda8503778b4ae820742a08c73fab8",
+    "bundle_backcheck.mjs": "ab6485d767838f0b8aaa5f16ac2a82164236776e9ab3726f93dfa42f9db9c898",
+    "original_probe_bundle.mjs": "6bd4e413b7a2ad594a9c19a3fa22b74dc27bf5cb2209b9b95662e15578d4293b",
+    "original_probe_replay.mjs": "ebb353a6e7565161d22a1e1be8debbcee104d45c45344cee1d6296eb06df0e7d"
+  }
+}

@@ -1,0 +1,387 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/App.test.tsx b/projects/chirality-piping/apps/desktop/src/App.test.tsx
+index ae6966c7fc..294e861640 100644
+--- a/projects/chirality-piping/apps/desktop/src/App.test.tsx
++++ b/projects/chirality-piping/apps/desktop/src/App.test.tsx
+@@ -1,3 +1,6 @@
++/// <reference types="vite/client" />
++import feSourceRequestText from '../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json?raw';
++import feSourceRawText from '../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json?raw';
+ import { solverDisplayWithToken } from "./features/workspace/statusLabels";
+ import { statusChipInputsFromCells, statusChips, statusChipText } from "./features/workspace/shellLayout";
+ import historicalMechanicsFixture from "../../../fixtures/product_preview/invented_mechanics_result.json";
+@@ -18253,3 +18256,29 @@ function reviewValue(cell: string): string {
+   if (!input) throw new Error(`Missing review cell ${cell}`);
+   return input.value;
+ }
++
++it('FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability',async()=>{
++ const storage=await (await import('./services/projectService')).getLocalStorageCapability();
++ const request=JSON.parse(feSourceRequestText),raw=JSON.parse(feSourceRawText),model=request.model as PreviewModel;model.nodes[0].position.x=-0;
++ (window as any).__TAURI_INTERNALS__={};
++ invokeMock.mockImplementation((command:string)=>{
++  if(command==='get_local_storage_capability')return Promise.resolve(storage);
++  if(command==='sync_native_shell_state')return Promise.resolve(null);
++  if(command==='load_preview_model')return Promise.resolve(model);
++  if(command==='start_preview_mechanics_job_with_solver_mode')return Promise.resolve({job_id:'fe-app',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
++  if(command==='poll_preview_mechanics_job')return Promise.resolve({job_id:'fe-app',state:'completed',result:structuredClone(raw),cancellation_requested:false,cancellation_status:'not_requested',cancellation_scope:'job',error_message:null});
++  return Promise.reject(new Error(`FE test unavailable command: ${command}`));
++ });
++ const view=render(<App/>);await screen.findByTestId('desktop-preview-shell');
++ act(()=>nativeMenuCommand('analyze.run'));
++ await waitFor(()=>expectStatusChip('status-pill-mechanics','MECHANICS_SOLVED','Solver · Mechanics solved'));
++ const report=openWorkspaceSection('report');
++ await waitFor(()=>expect(within(report).getByTestId('report-package-source-unavailable')).toHaveTextContent('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE'));
++ expect(within(report).queryByTestId('report-package-save')).not.toBeInTheDocument();
++ expect(Object.is(model.nodes[0].position.x,-0)).toBe(true);
++ const sent=invokeMock.mock.calls.find(call=>call[0]==='start_preview_mechanics_job_with_solver_mode')![1] as {model:PreviewModel};
++ expect(Object.is(sent.model.nodes[0].position.x,0)).toBe(true);
++ act(()=>nativeMenuCommand('file.save-report-package'));
++ await waitFor(()=>expect(within(report).getByTestId('report-package-save-status')).toHaveTextContent('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE'));
++ expect(invokeMock.mock.calls.some(call=>call[0]==='save_report_package')).toBe(false);view.unmount();
++},20000);
+diff --git a/projects/chirality-piping/apps/desktop/src/App.tsx b/projects/chirality-piping/apps/desktop/src/App.tsx
+index 5f0fd89187..f57a6453de 100644
+--- a/projects/chirality-piping/apps/desktop/src/App.tsx
++++ b/projects/chirality-piping/apps/desktop/src/App.tsx
+@@ -1,3 +1,4 @@
++import { reportPackageUnavailableReason } from "./features/report/reportPackageRequest";
+ import { CompactSelectScope } from "./features/workspace/CompactSelect";
+ import { HangerSelectionPanel } from "./features/hanger-selection";
+ import { SelfWeightPlanPanel } from "./features/self-weight-authoring";
+@@ -201,6 +202,7 @@ function AppSession() {
+     handleSelectDiagnostic,
+     handleSaveReportPackage
+   } = session.results;
++  const reportPackageUnavailable = reportPackageUnavailableReason(currentSolvedResult);
+   const {
+     editorIntents,
+     retainedReviewContext,
+@@ -327,7 +329,7 @@ function AppSession() {
+           issuesOpen={issuesDrawerOpen}
+           openMenu={openMenu}
+           projectBusy={projectBusy}
+-          reportPackageReady={Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
++          reportPackageReady={!reportPackageUnavailable && Boolean(currentSolvedResult && analysisRun && inputManifest) && !running && !reportPackageBusy}
+           running={running}
+           treeCollapsed={treeCollapsed}
+           armedCreationTool={armedCreationTool}
+@@ -673,8 +675,9 @@ function AppSession() {
+                 packageRedaction={reportPackageRedaction}
+                 packageRoute={reportPackageRoute}
+                 onPackagePrivateIntentChange={setReportPackagePrivateIntent}
+-                onSaveReportPackage={() => void handleSaveReportPackage()}
++                onSaveReportPackage={reportPackageUnavailable ? undefined : () => void handleSaveReportPackage()}
+               />
++              {reportPackageUnavailable ? <p role="status" data-testid="report-package-source-unavailable">{reportPackageUnavailable}</p> : null}
+               <ReportPanel
+                 model={model}
+                 knowledge={knowledge}
+diff --git a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts
+index 9652529d09..eccdf56766 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts
+@@ -1,3 +1,6 @@
++/// <reference types="vite/client" />
++import sourceRequestText from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json?raw';
++import sourceRawText from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json?raw';
+ import { invoke } from '@tauri-apps/api/core';
+ import sparseProducer from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
+ vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
+@@ -10,7 +13,7 @@ import historicalResult from "../../../../../fixtures/product_preview/invented_m
+ import { analysisRecordProjection, buildAnalysisRunV02, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
+ import type { MechanicsResult, PreviewModel } from "../../types";
+ import {resultSemantics} from "../results/resultSemantics";
+-import { buildReportPackageRequest } from "./reportPackageRequest";
++import { buildReportPackageRequest, reportPackageUnavailableReason, SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE } from "./reportPackageRequest";
+ import componentProvenanceProjection from "../../../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
+ 
+ // Isolated report-consumer tests simulate the source IPC response; the real
+@@ -476,3 +479,17 @@ describe("report-package current-session request", () => {
+   });
+ 
+ });
++
++it('FE01 refuses genuine source-block evidence at the unchanged report boundary while p1 stays supported',async()=>{
++ const request=JSON.parse(sourceRequestText),raw=JSON.parse(sourceRawText),model=request.model as PreviewModel;
++ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));
++ const result=await runPreviewMechanics(model,'dense_scrutiny');
++ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer!.component_name,solver_version:result.producer!.component_version,solver_build_ref:'FE01-genuine-pair-mocked-IPC',solver_mode:'dense_scrutiny',settings:{}},active_rule_packs:[],external_assets:[]});
++ const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
++ const before=structuredClone(result);
++ expect(reportPackageUnavailableReason(result)).toBe(SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE);
++ await expect(buildReportPackageRequest({model,result,analysisRun,inputManifest,projectSummary:null,comparison:null,ruleCheckAggregate:null})).rejects.toThrow('REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE');
++ expect(result).toEqual(before);
++ expect(reportPackageUnavailableReason(sparseProducer as MechanicsResult)).toBeNull();
++ expect(reportPackageUnavailableReason(historicalResult as MechanicsResult)).toBeNull();
++});
+diff --git a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts
+index 01ec4d9b0a..cd57d6cd00 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts
+@@ -1,5 +1,5 @@
+ import { hasNativeMechanicsInvocation } from "../../services/previewService";
+-import { hasCurrentSourceContract } from "../results/numericalResultQuality";
++import { sourceContract } from "../results/numericalResultQuality";
+ import { analysisResultHashScope } from "../results/analysisResultHashScope";
+ import type {
+   AnalysisRunEnvelope,
+@@ -18,6 +18,11 @@ import { resultSemantics, completeSourceMetadata } from "../results/resultSemant
+ import { buildRenderableReportInput } from "./renderableReportInput";
+ import { buildStateComparisonHandoffSections } from "./stateComparisonHandoffSections";
+ 
++export const SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE = "REPORT-PACKAGE-SOURCE-BLOCKS-UNAVAILABLE: This report package cannot preserve source-recovery evidence and signed support components. Use the supported result exports; report-package support for this method is unavailable.";
++export function reportPackageUnavailableReason(result: MechanicsResult | null | undefined): string | null {
++  return result && sourceContract(result) === "source_blocks" ? SOURCE_BLOCKS_REPORT_PACKAGE_UNAVAILABLE : null;
++}
++
+ const UNIT_SYSTEM_REF = "unit-system:dec-018-si-dual-display";
+ const PROFESSIONAL_BOUNDARY = {
+   human_review_required: true,
+@@ -84,7 +89,7 @@ function reportSolverIdentity(result: MechanicsResult, analysisRun: AnalysisRunE
+   const recordedSolver = analysisRun.analysis_run.solver_version;
+   const precision = analysisRun.schema_version === "0.3.0";
+   if (!precision && (!(result.schema_version === "0.1.0" || result.schema_version === "0.2.0") ||
+-    ["producer", "numerical_quality", "formulation_basis"].some(key => Object.hasOwn(result, key)))) {
++    ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(result, key)))) {
+     throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+   }
+   // Legacy 0.1 records may lack a solver-version field; the verified manifest
+@@ -95,7 +100,7 @@ function reportSolverIdentity(result: MechanicsResult, analysisRun: AnalysisRunE
+       recordedSolver.build_ref?.ref !== manifestSolver.solver_build_ref))) {
+     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: analysis record and verified manifest differ.");
+   }
+-  if (precision && (!hasCurrentSourceContract(result) ||
++  if (precision && (sourceContract(result) !== "precision" ||
+     result.producer!.component_name !== manifestSolver.solver_name ||
+     result.producer!.component_version !== manifestSolver.solver_version)) {
+     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: recorded identity differs from the received producer.");
+@@ -124,12 +129,14 @@ export async function buildReportPackageRequest({
+   comparison: PreviewComparison | null;
+   ruleCheckAggregate: string | null;
+ }) {
++  const unavailable = reportPackageUnavailableReason(result);
++  if (unavailable) throw new Error(unavailable);
+   const resultHashScope = analysisResultHashScope(analysisRun.schema_version);
+   const strictAnalysis = resultHashScope === "received_result";
+   if (resultHashScope === null) {
+     throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
+   }
+-  if (analysisRun.schema_version === "0.3.0" && !hasCurrentSourceContract(result)) {
++  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "precision") {
+     throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+   }
+   await verifyCurrentSessionInputManifest(inputManifest);
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts
+index dcbb6ec97c..a2386bad63 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts
+@@ -352,3 +352,55 @@ it.each(rejectedStressPairs)('refuses the genuine known-bad $mode MPa publicatio
+  nativeHost();vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const received=await runPreviewMechanics(request.model as PreviewModel,mode);
+  expect(received).toEqual(raw);expect(hasNativeMechanicsInvocation(received,request.model as PreviewModel)).toBe(false);
+ });
++
++describe('FE02 caller representation and serialized invocation binding',()=>{
++ it.each(['direct','job'] as const)('accepts initial negative zero through the %s native boundary without changing dispatch or source',async route=>{
++  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;
++  model.nodes[0].position.x=-0;
++  let source: MechanicsResult;
++  if(route==='direct'){
++   vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));source=await runPreviewMechanics(model,mode);
++  }else{
++   vi.mocked(invoke).mockResolvedValueOnce({job_id:'fe02',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
++   await startPreviewMechanicsJob(model,mode);vi.mocked(invoke).mockResolvedValueOnce({job_id:'fe02',state:'completed',result:structuredClone(raw)});
++   source=(await pollPreviewMechanicsJob('fe02')).result!;
++  }
++  const sent=(vi.mocked(invoke).mock.calls[0][1] as {model:PreviewModel}).model;
++  expect(Object.is(model.nodes[0].position.x,-0)).toBe(true);
++  expect(Object.is(sent.nodes[0].position.x,0)).toBe(true);
++  expect({model:sent,materials:[]}).toEqual(request);expect(source).toEqual(raw);
++  expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(true);
++  expect(numericalResultStanding(source,model).eligible).toBe(true);
++  expect(sourceBlockStanding(source,sent).eligible).toBe(true);
++  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:source.producer!.component_name,solver_version:source.producer!.component_version,solver_build_ref:'FE02-genuine-pair-mocked-IPC',solver_mode:mode,settings:{}},active_rule_packs:[],external_assets:[]});
++  expect(Object.is(inputManifest.manifest.model_basis.model_payload.nodes[0].position.x,-0)).toBe(true);
++  const analysisRun=await buildAnalysisRunPreview(source,{inputManifest});const hook=renderHook(()=>useResultsSessionState());
++  act(()=>{hook.result.current.setResult(source);hook.result.current.setInputManifest(inputManifest);hook.result.current.setAnalysisRun(analysisRun);});
++  expect(hook.result.current.currentSolvedResult).toBe(source);
++  await expect(buildCurrentResultExport({model,result:source,analysisRun,inputManifest})).resolves.toMatchObject({schema_version:'0.3.0'});
++  vi.mocked(invoke).mockResolvedValueOnce({aggregate_status:'RULE_INPUTS_INCOMPLETE',checks:[]});
++  await runRuleChecks({model,solvedEnvelope:source,rulePackDocument:{metadata:{rule_pack_id:'invented-test'}} as never});
++  const ruleArgs=vi.mocked(invoke).mock.calls.find(call=>call[0]==='run_rule_checks')![1] as any;
++  expect(ruleArgs.sourceBlockInvocation).toEqual({request,solver_mode:mode});hook.unmount();
++ });
++ it.each(['caller_zero','caller_value','dispatch_zero','source_zero'] as const)('rejects %s mutation after successful caller normalization',async change=>{
++  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;model.nodes[0].position.x=-0;
++  vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const source=await runPreviewMechanics(model,mode);
++  expect(numericalResultStanding(source,model).eligible).toBe(true);const sent=(vi.mocked(invoke).mock.calls[0][1] as {model:PreviewModel}).model;
++  if(change==='caller_zero')model.nodes[0].position.x=0;
++  if(change==='caller_value')model.nodes[0].position.x=0.125;
++  if(change==='dispatch_zero')sent.nodes[0].position.x=-0;
++  if(change==='source_zero'){const row=source.results.find(r=>Object.is(r.value,-0))!;expect(row).toBeDefined();row.value=0;}
++  expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(false);
++  expect(sourceBlockStanding(source,model).eligible).toBe(false);
++  expect(retainedSourceBlockInvocation(source,model)).toBeNull();
++ });
++ it('refuses a caller edited while IPC is pending and an unobserved caller alias',async()=>{
++  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;model.nodes[0].position.x=-0;
++  let resolve!: (value:MechanicsResult)=>void;vi.mocked(invoke).mockReturnValueOnce(new Promise<MechanicsResult>(r=>{resolve=r;}));
++  const pending=runPreviewMechanics(model,mode);model.nodes[0].position.x=0;resolve(structuredClone(raw));const source=await pending;
++  expect(hasNativeMechanicsInvocation(source,model)).toBe(false);expect(sourceBlockStanding(source,model).eligible).toBe(false);
++  const unsupported=structuredClone(request.model) as PreviewModel;unsupported.nodes[0].position.x=1;
++  await expect(validateSourceBlockRecovery(structuredClone(raw),{request,solver_mode:mode},unsupported)).rejects.toThrow('CALLER_DISPATCH_NORMALIZATION_MISMATCH');
++ });
++});
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts
+index 349e5b3701..e47a6fe425 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts
+@@ -9,7 +9,7 @@ export const SOURCE_BLOCKS_CONTRACT_SHA256 = '5f299065f15a157bbedf9467a598994ae6
+ export type SourceBlockInvocation = Readonly<{ request: unknown; solver_mode: 'dense_scrutiny' | 'sparse_interactive' }>;
+ type JsonObject = Record<string, any>;
+ type Validation = { eligible: boolean; findings: string[] };
+-type Validated = Validation & { sourceText: string; sourceZeroSigns: string; invocationText: string; invocationZeroSigns: string; invocation: SourceBlockInvocation };
++type Validated = Validation & { sourceText: string; sourceZeroSigns: string; invocationText: string; invocationZeroSigns: string; invocation: SourceBlockInvocation; callerModel?: PreviewModel; callerSnapshot?: PreviewModel };
+ // A registration is private and grants only receipt consistency. Current-use
+ // callers must still authenticate the actual model, producer/build and run.
+ const validated = new WeakMap<MechanicsResult, Validated>();
+@@ -64,13 +64,17 @@ const domainHash = (domain: string, payload: unknown) => canonicalSha256HexCheck
+ 
+ /** Validate actual wire evidence; this does not replay hidden exact arithmetic.
+  * Capture invocation independently at dispatch, never from the returned receipt. */
+-export async function validateSourceBlockRecovery(source: MechanicsResult, invocation: SourceBlockInvocation): Promise<Validation> {
++export async function validateSourceBlockRecovery(source: MechanicsResult, invocation: SourceBlockInvocation, callerModel?: PreviewModel): Promise<Validation> {
+   validated.delete(source);
+   const sourceText = checkedJsonText(source), invocationText = checkedJsonText(invocation);
+   // All awaits operate on snapshots. Neither a mutable caller nor a racing edit
+   // can alter the bytes checked and then reuse the resulting registration.
+   const raw = structuredClone(source);
+   const sourceZeroSigns = negativeZeroPaths(source);
++  // Optional context comes from the native boundary before serialization. It
++  // adds an observed caller representation, never an inferred model from rows.
++  if (callerModel) checkedJsonText(callerModel);
++  const callerSnapshot = callerModel ? structuredClone(callerModel) : undefined;
+   const captured = structuredClone(invocation);
+   const invocationZeroSigns = negativeZeroPaths(invocation);
+   fail(raw.schema_version === '0.2.0' && raw.producer?.semantic_contract_id === SOURCE_BLOCKS_CONTRACT_ID, 'CONTRACT');
+@@ -81,6 +85,7 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
+   const request = captured.request as JsonObject, model = request?.model as PreviewModel;
+   fail(model && Array.isArray(model.load_cases) && Array.isArray(model.nodes) && model.nodes.length > 0 && Array.isArray(model.pipe_segments) && Array.isArray(model.supports), 'INVOCATION_MODEL_REQUIRED');
+   fail(model.project?.id === raw.model_ref, 'MODEL_MISMATCH');
++  if (callerSnapshot) fail(sameModelData(JSON.parse(checkedJsonText(callerSnapshot)), model), 'CALLER_DISPATCH_NORMALIZATION_MISMATCH');
+   for (const items of [model.nodes,model.pipe_segments,model.supports,model.load_cases]) fail(unique(items.map(x => x.id)) && items.every(x => typeof x.id === 'string' && x.id.length > 0), 'MODEL_IDENTITIES');
+   fail(raw.results.every(row => Object.keys(row).every(k => ['id','kind','value','unit','dimension','entity_ref','basis_ref','source_result_refs','metadata'].includes(k)) && Number.isFinite(row.value) && typeof row.entity_ref === 'string' && row.entity_ref.length > 0), 'ROW_SHAPE');
+   fail(raw.results.every(row => !Object.hasOwn(row,'dimension') || semantic(row)?.legacy_declared_dimension === row.dimension), 'ROW_DIMENSION');
+@@ -188,15 +193,15 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
+       if (body.status === 'qualified') fail(candidates.every(r => r.value <= summary.value), 'SUMMARY_MAXIMUM');
+     }
+   }
+-  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
++  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns && (!callerModel || (!!checkedJsonText(callerModel) && sameModelData(callerModel,callerSnapshot))), 'CHANGED_DURING_VALIDATION');
+   // Receipt fields are immutable producer evidence. Seal only after complete
+   // validation and race checks; this avoids quadratic schema work when each
+   // semantic-row lookup dispatches the same authenticated receipt.
+   sealValidatedReceipt(source.source_block_recovery);
+-  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
++  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns && (!callerModel || (!!checkedJsonText(callerModel) && sameModelData(callerModel,callerSnapshot))), 'CHANGED_DURING_VALIDATION');
+   immutableReceiptShapes.add(source.source_block_recovery as object);
+   const answer = { eligible: findings.length === 0, findings: [...new Set(findings)] };
+-  validated.set(source, { ...answer, sourceText, sourceZeroSigns, invocationText, invocationZeroSigns, invocation });
++  validated.set(source, { ...answer, sourceText, sourceZeroSigns, invocationText, invocationZeroSigns, invocation, callerModel, callerSnapshot });
+   return answer;
+ }
+ 
+@@ -204,7 +209,9 @@ export async function validateSourceBlockRecovery(source: MechanicsResult, invoc
+ export function sourceBlockStanding(source: MechanicsResult, model?: Pick<PreviewModel, 'load_cases'> | null): Validation {
+   const token = validated.get(source);
+   try {
+-    if (!token || checkedJsonText(source) !== token.sourceText || negativeZeroPaths(source) !== token.sourceZeroSigns || checkedJsonText(token.invocation) !== token.invocationText || negativeZeroPaths(token.invocation) !== token.invocationZeroSigns || !model || !checkedJsonText(model) || !sameModelData(model,(token.invocation.request as {model:PreviewModel}).model)) return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED'] };
++    if (!token || checkedJsonText(source) !== token.sourceText || negativeZeroPaths(source) !== token.sourceZeroSigns || checkedJsonText(token.invocation) !== token.invocationText || negativeZeroPaths(token.invocation) !== token.invocationZeroSigns || !model || !checkedJsonText(model)
++      || (token.callerModel && (!checkedJsonText(token.callerModel) || !sameModelData(token.callerModel,token.callerSnapshot)))
++      || !(sameModelData(model,(token.invocation.request as {model:PreviewModel}).model) || (token.callerSnapshot && sameModelData(model,token.callerSnapshot)))) return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED'] };
+     return { eligible: token.eligible, findings: [...token.findings] };
+   } catch { return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_SOURCE_CHANGED'] }; }
+ }
+diff --git a/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts b/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts
+index 05b1602f3e..d2804002fb 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts
+@@ -692,7 +692,9 @@ export function useWorkspaceSession() {
+           "INPUT-MANIFEST-MODEL-INCOMPLETE: a current session model is required before solve."
+         );
+       }
+-      const solveModel = clonePreviewModel(model);
++      // Keep the caller representation in the manifest (including -0). The
++      // native service separately captures the exact serialized dispatch.
++      const solveModel = structuredClone(model);
+       const solveModelRevision = modelRevision.current;
+       const solveModelHash = await computeModelHash(solveModel);
+       if (
+@@ -707,7 +709,9 @@ export function useWorkspaceSession() {
+         setSolveJob(cancelledBeforeBackendStartSolveJob(solveModel));
+         return;
+       }
+-      const startReceipt = await startPreviewMechanicsJob(solveModel, solverMode);
++      // The native boundary binds the live caller as well as its copied JSON
++      // request, so later in-place edits cannot reuse a solve registration.
++      const startReceipt = await startPreviewMechanicsJob(model, solverMode);
+       const cancellationTombstone = solveCancellationTombstones.current.get(runGeneration);
+       if (
+         modelRevision.current !== solveModelRevision ||
+diff --git a/projects/chirality-piping/apps/desktop/src/services/previewService.ts b/projects/chirality-piping/apps/desktop/src/services/previewService.ts
+index ea31458935..dcdc3970ee 100644
+--- a/projects/chirality-piping/apps/desktop/src/services/previewService.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/previewService.ts
+@@ -66,7 +66,16 @@ export type NativeMechanicsInvocation = {
+   request: { model: PreviewModel; materials: [] };
+   solver_mode: PreviewSolverMode;
+ };
+-type CapturedNativeInvocation = { invocation: NativeMechanicsInvocation; fingerprint: string; invalidated: boolean; terminalClaimed: boolean };
++type CapturedNativeInvocation = {
++  invocation: NativeMechanicsInvocation;
++  fingerprint: string;
++  // Caller representation and the exact JSON payload sent to native are two
++  // separate facts. Preserve the original zero signs and detect later edits.
++  callerModel: PreviewModel;
++  callerFingerprint: string;
++  invalidated: boolean;
++  terminalClaimed: boolean;
++};
+ type NativeSourceRegistration = { capture: CapturedNativeInvocation; sourceFingerprint: string };
+ const nativeSourceInvocations = new WeakMap<MechanicsResult, NativeSourceRegistration>();
+ const jobInvocations = new Map<string, CapturedNativeInvocation>();
+@@ -92,20 +101,20 @@ function captureNativeInvocation(model: PreviewModel | null | undefined, solverM
+     // Mirror the native API's actual {model, materials:[]} request and send this
+     // captured JSON model, not a later caller mutation or a reconstructed result.
+     const invocation = JSON.parse(checkedJsonText({ request: { model, materials: [] }, solver_mode: solverMode })) as NativeMechanicsInvocation;
+-    return { invocation, fingerprint: nativeContentFingerprint(invocation), invalidated: false, terminalClaimed: false };
++    return { invocation, fingerprint: nativeContentFingerprint(invocation), callerModel: model, callerFingerprint: nativeContentFingerprint(model), invalidated: false, terminalClaimed: false };
+   } catch { return null; } // Raw native diagnostics remain available; no registration.
+ }
+ async function validateCapturedSource(source: MechanicsResult, capture: CapturedNativeInvocation | null): Promise<void> {
+   if (!capture || capture.invalidated) return;
+   try {
+-    if (source.model_ref !== capture.invocation.request.model.project.id || nativeContentFingerprint(capture.invocation) !== capture.fingerprint) return;
++    if (source.model_ref !== capture.invocation.request.model.project.id || nativeContentFingerprint(capture.invocation) !== capture.fingerprint || nativeContentFingerprint(capture.callerModel) !== capture.callerFingerprint) return;
+     const sourceFingerprint = nativeContentFingerprint(source);
+     // Registration is reachable only after actual direct IPC or a completed
+     // known job. Method-specific source-block validation composes here when its
+     // separately reviewed join is selected; none is inferred from these bytes.
+-    if (sourceContract(source) === "source_blocks") await validateSourceBlockRecovery(source, capture.invocation);
++    if (sourceContract(source) === "source_blocks") await validateSourceBlockRecovery(source, capture.invocation, capture.callerModel);
+     await canonicalSha256HexCheckedV1(source);
+-    if (capture.invalidated || nativeContentFingerprint(source) !== sourceFingerprint || nativeContentFingerprint(capture.invocation) !== capture.fingerprint) return;
++    if (capture.invalidated || nativeContentFingerprint(source) !== sourceFingerprint || nativeContentFingerprint(capture.invocation) !== capture.fingerprint || nativeContentFingerprint(capture.callerModel) !== capture.callerFingerprint) return;
+     nativeSourceInvocations.set(source, { capture, sourceFingerprint });
+   } catch { /* Preserve received source for inspection, without qualified standing. */ }
+ }
+@@ -124,7 +133,9 @@ export function hasNativeMechanicsInvocation(
+       && (solverMode === undefined || solverMode === invocation.solver_mode)
+       && nativeContentFingerprint(invocation) === registered.capture.fingerprint
+       && nativeContentFingerprint(source) === registered.sourceFingerprint
+-      && nativeContentFingerprint(JSON.parse(checkedJsonText(model))) === nativeContentFingerprint(invocation.request.model);
++      && nativeContentFingerprint(registered.capture.callerModel) === registered.capture.callerFingerprint
++      && (nativeContentFingerprint(model) === registered.capture.callerFingerprint
++        || nativeContentFingerprint(model) === nativeContentFingerprint(invocation.request.model));
+   } catch { return false; }
+ }
+ export function retainedNativeMechanicsInvocation(source: MechanicsResult, model: PreviewModel): NativeMechanicsInvocation | null {

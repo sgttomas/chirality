@@ -1,0 +1,49 @@
+{
+  "utc": "2026-09-25T08:28:05.471962+00:00",
+  "authorization": "Root bounded direct Node backcheck; no broad tests/build/native",
+  "original_probe_replay": {
+    "command": [
+      "node",
+      "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/original_probe_bundle.mjs"
+    ],
+    "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+    "exit_code": 0,
+    "timeout": false,
+    "log": "original_probe_bundle.mjs.log",
+    "log_sha256": "3fafaaf713116e8650bed64b337cf73785301c35f9ee9c6d38a2df6fd4f970a2"
+  },
+  "additional_runs": [
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/bundle_backcheck.mjs"
+      ],
+      "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+      "exit_code": 0,
+      "timeout": false,
+      "log": "bundle_backcheck.mjs.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK/boundary_bundle.mjs"
+      ],
+      "cwd": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping",
+      "exit_code": 0,
+      "timeout": false,
+      "log": "boundary_bundle.mjs.log",
+      "log_sha256": "5ee8e698c7d51bda6b160d031a0cd74135c03f2ccaab3503f7c38d0a773a87db"
+    }
+  ],
+  "wall_seconds": 0.589362792,
+  "source_unchanged": true,
+  "harness_correction": "First additional probe replaced placeholder REPORT and BLOCKS inside expected diagnostic text. Source returned correct explicit refusal. Fixed only that test expectation, retained initial harness/results with .first suffix; no source/input repair.",
+  "scripts": {
+    "boundary_bundle.mjs": "bb507f58dad27921ca768ec6036ccc08be1e802b4b7f1905045543de1b3718c5",
+    "boundary_entry.mjs": "09985231b4ea27329a1917599c19b1108e43a5e0a9879d38db9d0de50edca83e",
+    "bundle_backcheck.mjs": "ab6485d767838f0b8aaa5f16ac2a82164236776e9ab3726f93dfa42f9db9c898",
+    "original_probe_bundle.mjs": "6bd4e413b7a2ad594a9c19a3fa22b74dc27bf5cb2209b9b95662e15578d4293b",
+    "original_probe_replay.mjs": "ebb353a6e7565161d22a1e1be8debbcee104d45c45344cee1d6296eb06df0e7d"
+  }
+}

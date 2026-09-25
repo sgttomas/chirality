@@ -1,0 +1,118 @@
+{
+  "utc": "2026-09-25T08:29:27.042598+00:00",
+  "executor": "/root/numerical_resume/n05_admission",
+  "role": "TASK",
+  "actual_harness_parent": "/root/numerical_resume",
+  "assignment_authority": "/root",
+  "mechanism": "ROOT cross-manager followup to existing native child; original parentage preserved",
+  "descendants": [],
+  "independence": "Executor authored neither original frontend21 nor this8-path repair. Executor previously authored predecessor receipt producer and explicitly does not review that producer independently here.",
+  "selected_skill": ".agents/skills/software-code-review/SKILL.md",
+  "selected_workflow": null,
+  "scope": "FE01/FE02 repair delta and affected caller/test evidence, no broad implementation review repetition",
+  "write_scope": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/INDEPENDENT_BACKCHECK",
+  "runtime": "Root explicitly authorized timeout-bounded direct Node probe using current actual frontend modules, unchanged genuine pairs and existing source-checkout WASM; only IPC mocked. Original probe passed0;21additional checks passed0; no process remains.",
+  "communication_limit": "Attempted implementer coordination send failed with agent thread limit; reported toRoot before runtime and Root explicitly authorized probe.",
+  "not_executed": [
+    "source fixes",
+    "Git mutations",
+    "new product or solver run",
+    "native UI or save operation",
+    "heavy build or shared generated output",
+    "broad suite rerun"
+  ],
+  "inputs": [
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/FINAL_SOURCE.json",
+      "sha256": "1d3e067f9e2802a3f4e56d14670fb5e5f04b0e39d638ca950f4ad3e39be63ccd"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/REPAIR.patch",
+      "sha256": "47d50df8d0f63e9e98636e9dd1c95f8b325160ebc69f7de20df522669c557abf"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/RETURN.md",
+      "sha256": "060895044c89b348ae2d91b837f8ef30f0cccb883f506d790db815b50cb3cf59"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/API_HANDOFF.md",
+      "sha256": "714d84b30133b242bdd2f4035b68708eb2470a7ba996ea93892ae09b13b39d60"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/BASIS.json",
+      "sha256": "5694523cde83d0b60d182cb00ab862439f9607f7d4b70bfab2462118f6b44395"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/DIAGNOSIS.md",
+      "sha256": "92f90962a65a0eac2d1f9de7ac2bc31d54fe5673228a37d13e756033ea4910bd"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/FINDINGS.md",
+      "sha256": "7b840c7f0371aa5b19d26846853d3cfbc23d046f747f5c45c26d134e8bdaa19c"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/signed_zero_entry.mjs",
+      "sha256": "5a627484f560533e4773659eff7a262d67b6c9d522b9542b2f6ab14ddd09632d"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/SIGNED_ZERO_NODE_OBSERVATIONS.json",
+      "sha256": "6d560b7f90d73733a74f6b202d2c141ff2cc3817a0fac5355eeb78d6384b4a82"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/DIRECT_NODE_RUN.json",
+      "sha256": "ad18f895251f72bac0460f026e55da1f82c21e8de937c7144aab165ce1a25c21"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts",
+      "sha256": "17b0b321f86ec656b44707b808cc87e486fcc9a33e0a7d27dbb6b69175115dff"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts",
+      "sha256": "6f2c1c8eb07b0e32774f30fe0259965dc54f997c7625dfda68e7310abb0e092d"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts",
+      "sha256": "e587b9fbc31db00ecc5dde22318fe181ce972740b85d4a2ce7019589c1cf0da1"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/inputManifestService.ts",
+      "sha256": "7fee1a96e3fb66b6658d5562d9c50d2d26fe8a3eb5d0f0a2e4be459f30021cf3"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/hashService.ts",
+      "sha256": "0f1d342d60501b212c3a307b96ba1dfa625fcc1845cc33b47e54dd58341cf7e1"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+      "sha256": "abfa321ca270b0a2b5dd0670a686afd6dc55e229efb8a8da2fac1c6a93aba85c"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+      "sha256": "90a3d42ee65ecd2a2c907e26d15afd0a85d45e65e70f905f4c55fc01050fc4d8"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm",
+      "sha256": "a2e9bcf16011ff6ab3421d48d0b534303a55d397f7e061a136566e683bf49fe4"
+    },
+    {
+      "origin": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js",
+      "sha256": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595"
+    }
+  ]
+}

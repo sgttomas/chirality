@@ -352,3 +352,55 @@ it.each(rejectedStressPairs)('refuses the genuine known-bad $mode MPa publicatio
  nativeHost();vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const received=await runPreviewMechanics(request.model as PreviewModel,mode);
  expect(received).toEqual(raw);expect(hasNativeMechanicsInvocation(received,request.model as PreviewModel)).toBe(false);
 });
+
+describe('FE02 caller representation and serialized invocation binding',()=>{
+ it.each(['direct','job'] as const)('accepts initial negative zero through the %s native boundary without changing dispatch or source',async route=>{
+  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;
+  model.nodes[0].position.x=-0;
+  let source: MechanicsResult;
+  if(route==='direct'){
+   vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));source=await runPreviewMechanics(model,mode);
+  }else{
+   vi.mocked(invoke).mockResolvedValueOnce({job_id:'fe02',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
+   await startPreviewMechanicsJob(model,mode);vi.mocked(invoke).mockResolvedValueOnce({job_id:'fe02',state:'completed',result:structuredClone(raw)});
+   source=(await pollPreviewMechanicsJob('fe02')).result!;
+  }
+  const sent=(vi.mocked(invoke).mock.calls[0][1] as {model:PreviewModel}).model;
+  expect(Object.is(model.nodes[0].position.x,-0)).toBe(true);
+  expect(Object.is(sent.nodes[0].position.x,0)).toBe(true);
+  expect({model:sent,materials:[]}).toEqual(request);expect(source).toEqual(raw);
+  expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(true);
+  expect(numericalResultStanding(source,model).eligible).toBe(true);
+  expect(sourceBlockStanding(source,sent).eligible).toBe(true);
+  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:source.producer!.component_name,solver_version:source.producer!.component_version,solver_build_ref:'FE02-genuine-pair-mocked-IPC',solver_mode:mode,settings:{}},active_rule_packs:[],external_assets:[]});
+  expect(Object.is(inputManifest.manifest.model_basis.model_payload.nodes[0].position.x,-0)).toBe(true);
+  const analysisRun=await buildAnalysisRunPreview(source,{inputManifest});const hook=renderHook(()=>useResultsSessionState());
+  act(()=>{hook.result.current.setResult(source);hook.result.current.setInputManifest(inputManifest);hook.result.current.setAnalysisRun(analysisRun);});
+  expect(hook.result.current.currentSolvedResult).toBe(source);
+  await expect(buildCurrentResultExport({model,result:source,analysisRun,inputManifest})).resolves.toMatchObject({schema_version:'0.3.0'});
+  vi.mocked(invoke).mockResolvedValueOnce({aggregate_status:'RULE_INPUTS_INCOMPLETE',checks:[]});
+  await runRuleChecks({model,solvedEnvelope:source,rulePackDocument:{metadata:{rule_pack_id:'invented-test'}} as never});
+  const ruleArgs=vi.mocked(invoke).mock.calls.find(call=>call[0]==='run_rule_checks')![1] as any;
+  expect(ruleArgs.sourceBlockInvocation).toEqual({request,solver_mode:mode});hook.unmount();
+ });
+ it.each(['caller_zero','caller_value','dispatch_zero','source_zero'] as const)('rejects %s mutation after successful caller normalization',async change=>{
+  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;model.nodes[0].position.x=-0;
+  vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const source=await runPreviewMechanics(model,mode);
+  expect(numericalResultStanding(source,model).eligible).toBe(true);const sent=(vi.mocked(invoke).mock.calls[0][1] as {model:PreviewModel}).model;
+  if(change==='caller_zero')model.nodes[0].position.x=0;
+  if(change==='caller_value')model.nodes[0].position.x=0.125;
+  if(change==='dispatch_zero')sent.nodes[0].position.x=-0;
+  if(change==='source_zero'){const row=source.results.find(r=>Object.is(r.value,-0))!;expect(row).toBeDefined();row.value=0;}
+  expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(false);
+  expect(sourceBlockStanding(source,model).eligible).toBe(false);
+  expect(retainedSourceBlockInvocation(source,model)).toBeNull();
+ });
+ it('refuses a caller edited while IPC is pending and an unobserved caller alias',async()=>{
+  const {raw,request,mode}=uiPairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;model.nodes[0].position.x=-0;
+  let resolve!: (value:MechanicsResult)=>void;vi.mocked(invoke).mockReturnValueOnce(new Promise<MechanicsResult>(r=>{resolve=r;}));
+  const pending=runPreviewMechanics(model,mode);model.nodes[0].position.x=0;resolve(structuredClone(raw));const source=await pending;
+  expect(hasNativeMechanicsInvocation(source,model)).toBe(false);expect(sourceBlockStanding(source,model).eligible).toBe(false);
+  const unsupported=structuredClone(request.model) as PreviewModel;unsupported.nodes[0].position.x=1;
+  await expect(validateSourceBlockRecovery(structuredClone(raw),{request,solver_mode:mode},unsupported)).rejects.toThrow('CALLER_DISPATCH_NORMALIZATION_MISMATCH');
+ });
+});

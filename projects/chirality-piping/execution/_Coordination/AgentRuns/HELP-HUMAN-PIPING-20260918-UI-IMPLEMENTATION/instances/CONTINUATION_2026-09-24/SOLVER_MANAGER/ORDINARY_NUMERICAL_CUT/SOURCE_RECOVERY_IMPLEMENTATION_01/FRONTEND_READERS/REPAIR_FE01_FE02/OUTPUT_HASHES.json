@@ -1,0 +1,38 @@
+[
+  {
+    "path": "RETURN.md",
+    "sha256": "060895044c89b348ae2d91b837f8ef30f0cccb883f506d790db815b50cb3cf59"
+  },
+  {
+    "path": "API_HANDOFF.md",
+    "sha256": "714d84b30133b242bdd2f4035b68708eb2470a7ba996ea93892ae09b13b39d60"
+  },
+  {
+    "path": "FINAL_SOURCE.json",
+    "sha256": "1d3e067f9e2802a3f4e56d14670fb5e5f04b0e39d638ca950f4ad3e39be63ccd"
+  },
+  {
+    "path": "REPAIR.patch",
+    "sha256": "47d50df8d0f63e9e98636e9dd1c95f8b325160ebc69f7de20df522669c557abf"
+  },
+  {
+    "path": "BASIS.json",
+    "sha256": "5694523cde83d0b60d182cb00ab862439f9607f7d4b70bfab2462118f6b44395"
+  },
+  {
+    "path": "DIAGNOSIS.md",
+    "sha256": "92f90962a65a0eac2d1f9de7ac2bc31d54fe5673228a37d13e756033ea4910bd"
+  },
+  {
+    "path": "TYPECHECK_FINAL.json",
+    "sha256": "bc4eb7d5d1ce83c7dfc5d7033c00cc2a795275dedbdeee523eac5419377d5c0d"
+  },
+  {
+    "path": "AFFECTED_FINAL.json",
+    "sha256": "377fc755ff6e970f0b2c9308a0c67f921cdc953d87ab2c00d29ee97553e85cfc"
+  },
+  {
+    "path": "APP_FE_02.json",
+    "sha256": "ebd31eccf69678bb9cd4dda02961858824e7a250b5a71644f2cca9b4e5e7b39e"
+  }
+]

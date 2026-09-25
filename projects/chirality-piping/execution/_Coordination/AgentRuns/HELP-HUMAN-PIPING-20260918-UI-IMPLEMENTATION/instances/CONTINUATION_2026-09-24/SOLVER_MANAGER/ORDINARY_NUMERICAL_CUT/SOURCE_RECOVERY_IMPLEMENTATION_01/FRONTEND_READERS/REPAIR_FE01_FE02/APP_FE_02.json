@@ -1,0 +1,27 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--workspace",
+    "apps/desktop",
+    "--",
+    "src/App.test.tsx",
+    "-t",
+    "FE01 FE02",
+    "--maxWorkers=1"
+  ],
+  "started": "2026-09-25T08:19:48.451680+00:00",
+  "reason": "complete simulated native startup storage/shell mock; prior failure retained",
+  "input_hashes": {
+    "projects/chirality-piping/apps/desktop/src/services/previewService.ts": "82940ae3a37d241d9bb6d6ad4e959d7d10dcd09cb7e06a6001313bff079f97fd",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts": "c22bc4b2d573686988d5c8f1eed9c5b9a1e9b8810764b986f99196bbcb36617f",
+    "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts": "ac338acbf79df3375bf2c2f81182e0b6d43d0f5f0c07de58a5d8904a135bbafd",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts": "cc2b65d2f63eb92e0530a8297a926b190b307b5d794691ca04e5665e71e06db0",
+    "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts": "7727af07e093fd0bb05e24fddca2e55a6b5a08f9aa4621b30890fad001eaf44e",
+    "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts": "825425f95fddb613f23e57eee33f437861c2ae5e686175f9e9bda85215279798",
+    "projects/chirality-piping/apps/desktop/src/App.tsx": "579a1f3cc21c8d9c95069a828390aa4ff65521960ab760344d4df6973d763377",
+    "projects/chirality-piping/apps/desktop/src/App.test.tsx": "a363ba290d5ee074e3509a52cf55cde407fc16516a2cb0905214ceaa59196c5f"
+  },
+  "exit_code": 0,
+  "input_mismatches": []
+}

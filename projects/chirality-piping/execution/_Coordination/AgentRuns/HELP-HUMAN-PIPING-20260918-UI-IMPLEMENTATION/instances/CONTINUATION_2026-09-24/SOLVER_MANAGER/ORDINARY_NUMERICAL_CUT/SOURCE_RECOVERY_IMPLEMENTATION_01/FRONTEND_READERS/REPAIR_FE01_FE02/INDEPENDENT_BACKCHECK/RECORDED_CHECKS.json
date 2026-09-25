@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "record": "TYPECHECK_FINAL.json",
+      "record_sha256": "bc4eb7d5d1ce83c7dfc5d7033c00cc2a795275dedbdeee523eac5419377d5c0d",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record_has_log_hash": true,
+      "source_differences_from_final": [],
+      "exit_code": 0
+    },
+    {
+      "record": "AFFECTED_FINAL.json",
+      "record_sha256": "377fc755ff6e970f0b2c9308a0c67f921cdc953d87ab2c00d29ee97553e85cfc",
+      "log_sha256": "1bde9e4a5f75e29ebc9f50d0991ff4f73b8bdbe1e76696ce81ffd7f6bff752ec",
+      "record_has_log_hash": true,
+      "source_differences_from_final": [],
+      "exit_code": 0
+    },
+    {
+      "record": "APP_FE_02.json",
+      "record_sha256": "ebd31eccf69678bb9cd4dda02961858824e7a250b5a71644f2cca9b4e5e7b39e",
+      "log_sha256": "4c4ee8df55eef86104b3f1ee92ce0632d88b320635c31c7c6891138afd5b6228",
+      "record_has_log_hash": false,
+      "source_differences_from_final": [],
+      "exit_code": 0
+    },
+    {
+      "record": "FOCUSED_FE_01.json",
+      "record_sha256": "29050009f1d14b9e9f4627efa38bd187270f1c3d45d48f054bd4ce118499b759",
+      "log_sha256": "9baa64693a5cac56bfeeb8209f17219492162e3ce6a6fedf07bb3426c92e3ce9",
+      "record_has_log_hash": true,
+      "source_differences_from_final": [
+        "projects/chirality-piping/apps/desktop/src/App.test.tsx"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "interpretation": "Final tsc and98/98 affected tests cover frozen8paths. TargetedApp1passed;219filtered. First startup-mock failure preserved; changed App test mock only, no weakening of behavior assertions. No broad rerun, no native/solver proof."
+}

@@ -1,0 +1,100 @@
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/results/sourceBlockRecovery.test.ts src/features/report/reportPackageRequest.test.ts src/App.test.tsx -t FE01|FE02 --maxWorkers=1
+
+
+ RUN  v4.1.10 /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+
+stderr | src/App.test.tsx > FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability
+Native shell state sync failed Error: FE test unavailable command: sync_native_shell_state
+    at /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/App.test.tsx:18267:25
+    at Mock (file:///Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@vitest/spy/dist/index.js:332:34)
+    at syncNativeShellState (/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/services/nativeMenu.ts:56:9)
+    at /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts:2284:10
+    at Object.react_stack_bottom_frame (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29)
+    at commitHookPassiveMountEffects (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11)
+    at commitPassiveMountOnFiber (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:15484:13)
+    at recursivelyTraversePassiveMountEffects (/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:15439:11)
+
+ ❯ src/App.test.tsx (220 tests | 1 failed | 219 skipped) 1018ms
+   × FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability 1017ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.tsx > FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability
+TestingLibraryElementError: Unable to find an element by: [data-testid="desktop-preview-shell"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"loading-screen"[39m
+    [36m>[39m
+      [0mLoading local SWBPIPE preview fixture.[0m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"loading-screen"[39m
+    [36m>[39m
+      [0mLoading local SWBPIPE preview fixture.[0m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/App.test.tsx:18269:41
+    18267|   return Promise.reject(new Error(`FE test unavailable command: ${comm…
+    18268|  });
+    18269|  const view=render(<App/>);await screen.findByTestId('desktop-preview-…
+       |                                         ^
+    18270|  act(()=>nativeMenuCommand('analyze.run'));
+    18271|  await waitFor(()=>expectStatusChip('status-pill-mechanics','MECHANICS…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: FE test unavailable command: get_local_storage_capability
+ ❯ src/App.test.tsx:18267:25
+
+ ❯ Mock ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/@vitest/spy/dist/index.js:332:34
+ ❯ getLocalStorageCapability src/services/projectService.ts:447:10
+ ❯ src/features/workspace/workspaceSession.ts:497:61
+ ❯ Object.react_stack_bottom_frame ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20
+ ❯ runWithFiberInDEV ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ commitHookEffectListMount ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29
+ ❯ commitHookPassiveMountEffects ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11
+ ❯ commitPassiveMountOnFiber ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:15484:13
+ ❯ recursivelyTraversePassiveMountEffects ../../../../../../../Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:15439:11
+
+This error originated in "src/App.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "FE01 FE02 keeps a negative-zero caller Current and reports source-block report-package unavailability". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 8 passed | 277 skipped (286)
+     Errors  1 error
+   Start at  02:19:04
+   Duration  4.61s (transform 1.61s, setup 144ms, import 2.14s, tests 1.46s, environment 629ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-source-recovery-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/results/sourceBlockRecovery.test.ts src/features/report/reportPackageRequest.test.ts src/App.test.tsx -t 'FE01|FE02' --maxWorkers=1
