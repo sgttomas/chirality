@@ -13,13 +13,25 @@ Passed: both owner acts and the offer quote byte-identical in every carrier; eve
 | MAJOR | amendment `Handoff_State.md` | told checkpoint 2 to apply selections to Seq 63–67, which includes Seq 66 (row 4, moot), and was silent on Seq 66 and 69 | now Seq 63, 64, 65, 67, 70 and 71; Seq 66 and 69 disposed without mapping under R1; Seq 68 dropped |
 | MINOR | C2 brief | cited a non-existent `.agents/skills/software-bounded-implementation/SKILL.md` | corrected to the bundled workflow `workflows/software-bounded-implementation/WORKFLOW.md`; the running manager was sent the correction before this commit |
 | MINOR | `docs/STATUS.md`; group-1 pointer | wording read as if the cmux deferral were applied | STATUS now says SOW-037 is still `IN` and DEL-07-04 still `OPEN` until SCA-005 applies; pointer says "both as intake" and excludes applying Seq 77/78 |
-| MINOR | amendment `DECISION.md` | superseded accepted evidence only partly listed | new §"Impact delta against the accepted group-1 evidence" lists every item with its new value, including the SOW-033 scope-item residue and the runtime-surfaces bullet no accepted action covered |
+| MINOR | amendment `DECISION.md` | superseded accepted evidence only partly listed | new §"Impact delta against the accepted group-1 evidence" lists the affected items with their new values (completed in cycle 2 with the objective views, retired-set counts and action mix), including the SOW-033 scope-item residue and the runtime-surfaces bullet no accepted action covered |
 | NOTE | `docs/STATUS.md` header | lost separator | fixed |
 | NOTE | `Decision_Log.md` CP2 row; `docs/STATUS.md` lineage lines | stale "row selections" wording | updated |
 | NOTE | amendment `DECISION.md` row 1 | could cite the surface's note that `OBJ-003` alone was not offered | added |
 | NOTE | amendment `ACCEPTED_MANIFEST.csv` | only the group-1 `DECISION.md` bound | group-1 `ACCEPTED_MANIFEST.csv` and `Handoff_State.md` added |
 | NOTE | C2 brief | no enlargement | none needed |
 
-## Cycle 2 — backcheck
+## Cycle 2 — backcheck of `9d4d19205bfbbb5ab8fdb2d430af2b237c6d776f`
 
-Pending at the time of this transcription; appended below when returned.
+Verdict: **PASS WITH MINOR** (two MINOR, three NOTE). The cycle-1 MAJOR is fixed (Seq 63, 64, 65, 67, 70, 71; 66 and 69 under R1; 68 dropped) and every cycle-1 MINOR and NOTE is correctly dispositioned. Every impact-delta value checked against the Impact Assessment and live registers, including SOW-033's empty ObjectiveIDs with DEL-07-01 carrying `OBJ-003` through SOW-039. New manifest hashes correct; `Decision_Log.md` `321be32d…96b4` quoted consistently; immutable paths untouched; receipts validator and `--strict` registers exit 0; `git diff --check` exit 0.
+
+| Sev | Finding | Disposition (HELP_HUMAN, cycle-2 commit) |
+|---|---|---|
+| MINOR | the metric rows cited IA §6; the metrics table is IA §5 | corrected in all seven rows |
+| MINOR | the delta table still missed the objective views (Seq 60/62; OBJ-004 view), the retired-set counts and the action mix, so "lists every item" overstated | three rows added; the cycle-1 disposition above reworded |
+| NOTE | `RUN.md` C2 and G5 rows lagged | C2 now in progress (dispatched), G5 complete with the #890 merge |
+| NOTE | Receipt 183 named four manifest bindings; there are six | reworded |
+| NOTE | fourth package-handoff amendment omitted the CP2 row edit | added |
+
+## Cycle 3 — final-candidate confirmation
+
+Requested for the head that carries this transcription; appended below when returned.

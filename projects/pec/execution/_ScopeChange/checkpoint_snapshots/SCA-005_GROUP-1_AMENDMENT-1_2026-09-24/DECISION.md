@@ -97,17 +97,20 @@ new values:
 
 | Accepted statement | Accepted value | Value after amendment 1 |
 |---|---|---|
-| IA §6 IN / OUT / TBD after change | 71 / 17 / 8 | 70 / 18 / 8 (SOW-037 IN to OUT Deferred) |
-| IA §6 deliverable rows, active / RETIRED | 66 (63 / 3) | 66 (62 / 4) (DEL-07-04 retired) |
-| IA §6 PKG-02 / PKG-06 / PKG-07 assigned scope | 9 / 6 / 4 | 9 / 6 / 3 |
-| IA §6 IN rows without objective mapping | 9 before selection | 1 after selection: SOW-033, whose deliverable DEL-07-01 already carries `OBJ-003` through SOW-039, so the union invariant holds |
-| IA §6 active deliverables without SupportsObjectives | 7 before selection | 0 after selection |
-| IA §6 active context envelopes | S 28 / M 33 / L 2 | S 28 / M 32 / L 2 (DEL-07-04 was M) |
-| IA §6 execution edges before new edges | 110 | 108 (DEP-07-04-003/004 retire with DEL-07-04's register) |
+| IA §5 IN / OUT / TBD after change | 71 / 17 / 8 | 70 / 18 / 8 (SOW-037 IN to OUT Deferred) |
+| IA §5 deliverable rows, active / RETIRED | 66 (63 / 3) | 66 (62 / 4) (DEL-07-04 retired) |
+| IA §5 PKG-02 / PKG-06 / PKG-07 assigned scope | 9 / 6 / 4 | 9 / 6 / 3 |
+| IA §5 IN rows without objective mapping | 9 before selection | 1 after selection: SOW-033, whose deliverable DEL-07-01 already carries `OBJ-003` through SOW-039, so the union invariant holds |
+| IA §5 active deliverables without SupportsObjectives | 7 before selection | 0 after selection |
+| IA §5 active context envelopes | S 28 / M 33 / L 2 | S 28 / M 32 / L 2 (DEL-07-04 was M) |
+| IA §5 execution edges before new edges | 110 | 108 (DEP-07-04-003/004 retire with DEL-07-04's register) |
 | IA "PKG-07 keeps 3 active children" (two places) and Seq 35 "keeps 3 active children" | 3 | 2 (DEL-07-01, DEL-07-03) |
 | IA INV-020 row, PEC-STR-003 | "Daemon bridge deferred; hooks/cmux stay" | daemon and cmux bridges deferred; hooks CLI stays |
 | Seq 24, §1.2 streams bullet | daemon SSE bridge deferred | daemon SSE and cmux bridges deferred |
 | Seq 32 / 39 / 41, "hooks CLI and adapters" | adapters remain | the hooks CLI is the only remaining bridge; wording follows |
+| Seq 60 / Seq 62 objective views and IA "3 objective views" | OBJ-001 and OBJ-003 views list the pre-selection sets; OBJ-004 has no view action | the OBJ-001 view gains DEL-03-05, DEL-08-05, DEL-10-08; the OBJ-003 view gains DEL-00-02, DEL-07-03, DEL-08-05; the OBJ-004 view gains DEL-05-01 and needs its own view action |
+| Every IA count of the retired set (IA §1 summary, "SOW-029/035/087 leave IN", "3 retirement annotations", "three retired deliverables'", the §8.1 edge trace) | three scope items / three deliverables; 8 EXECUTION rows owned by retired registers, 119 − 8 − 1 = 110 | four scope items (adds SOW-037) / four deliverables (adds DEL-07-04); 10 EXECUTION rows, 119 − 10 − 1 = 108 |
+| Action mix | 8 ADD / 65 MODIFY / 3 REMOVE | 8 ADD / 64 MODIFY / 4 REMOVE (+Seq 77, +Seq 78, −Seq 68, −Seq 72) |
 | `SOFTWARE_DECOMP.md` runtime-surfaces bullet "external-process bridges (daemon SSE, cmux)" | no accepted action covers it | checkpoint 2 adds the wording change for both deferred bridges |
 
 The single SOW-033 residue is not a TM-PEC-023 row and is not selected here;
