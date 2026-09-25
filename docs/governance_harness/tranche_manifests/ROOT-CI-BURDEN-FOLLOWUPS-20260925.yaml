@@ -1,0 +1,52 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-CI-BURDEN-FOLLOWUPS-20260925
+title: Hosted CI burden follow-ups (shard fan-out, hint refresh, governance checkout)
+date: 2026-09-25
+basis: be2bfef82522b38c1a5490a136f2bd7e1ef72610
+instruction_surface_paths:
+  - .github/workflows/governance-harness.yml
+  - .github/workflows/piping-desktop-e2e.yml
+  - docs/CI_SELECTION.md
+  - docs/governance_harness/tranche_manifests/ROOT-CI-BURDEN-FOLLOWUPS-20260925.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed in active chat, after reviewing the proposed further
+    options for tranche ROOT-CI-BURDEN-REDUCTION-20260925: 'Then turn your
+    attention to the "Going further" items and approach each of them in turn,
+    taking the actions that seem best to achieve our aims, once you're
+    familiar.' On execution run records the owner added: 'The _Coordination
+    folder contains a lot of historical data that I don't want to get rid of
+    but it has no bearing on the functionality of anything ... as run evidence
+    it can be diminished in terms of testing.'
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-25
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_CI_BURDEN_FOLLOWUPS.md
+  rationale: >-
+    Piping owns the shard fan-out, duration hints and refresh tool. The
+    governance-harness checkout change is Root's own surface: binary run
+    evidence under _Coordination/AgentRuns is omitted, and with it absent the
+    live self-check report is byte-identical, gates G0-G4 pass and all 1,492
+    tools tests pass. No run record is deleted or moved.
+candidate_paths:
+  - .github/workflows/governance-harness.yml
+  - .github/workflows/piping-desktop-e2e.yml
+  - docs/CI_SELECTION.md
+  - docs/governance_harness/tranche_manifests/ROOT-CI-BURDEN-FOLLOWUPS-20260925.yaml
+  - projects/chirality-piping/tools/ci/e2e_plan.py
+  - projects/chirality-piping/tools/ci/e2e_duration_hints.json
+  - projects/chirality-piping/tools/ci/refresh_duration_hints.py
+  - projects/chirality-piping/tests/test_ci_e2e_plan.py
+  - projects/chirality-piping/tests/test_ci_numerical.py
+  - projects/chirality-piping/tests/test_ci_duration_hints.py
+  - projects/chirality-piping/docs/CI_STRATEGY.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_CI_BURDEN_FOLLOWUPS.md
+scope_limits:
+  - Hosted CI scheduling and checkout shape only; stable check names and branch protection are unchanged.
+  - No product assertion, threshold, timeout or skip is changed; full coverage remains every selected identity exactly once.
+  - No run record is deleted, moved or rewritten; only the governance-harness checkout omits AgentRuns binaries.

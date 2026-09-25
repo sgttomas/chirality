@@ -71,10 +71,11 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+  # Partial modes only: full runs balance accessibility into the four shards.
   barrier:
     name: Accessibility barrier and selected coverage
     needs: selection
-    if: needs.selection.outputs.mode != 'not-applicable'
+    if: needs.selection.outputs.mode != 'not-applicable' && needs.selection.outputs.mode != 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -118,7 +119,7 @@ jobs:
 
   remainder:
     name: Source remainder (${{ matrix.shard }}/4)
-    needs: [selection, barrier]
+    needs: selection
     if: needs.selection.outputs.mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 45

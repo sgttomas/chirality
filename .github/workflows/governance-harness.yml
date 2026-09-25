@@ -41,6 +41,29 @@ jobs:
           # historical file contents.
           fetch-depth: 0
           filter: blob:none
+          # Binary run evidence (traces, screenshots, archives, databases)
+          # under _Coordination/AgentRuns is ~1.1 GB of the ~3 GB tree and is
+          # read by no gate, self-check or tools test: with it absent the
+          # self-check report is byte-identical and every gate passes. Governed
+          # binaries elsewhere (e.g. _ScopeChange) stay; a future reader of an
+          # excluded file fails loudly as an absent file, never silently.
+          sparse-checkout: |
+            /*
+            !/execution/_Coordination/AgentRuns/**/*.zip
+            !/execution/_Coordination/AgentRuns/**/*.png
+            !/execution/_Coordination/AgentRuns/**/*.jpg
+            !/execution/_Coordination/AgentRuns/**/*.jpeg
+            !/execution/_Coordination/AgentRuns/**/*.gz
+            !/execution/_Coordination/AgentRuns/**/*.sqlite3
+            !/execution/_Coordination/AgentRuns/**/*.bin
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.zip
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.png
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.jpg
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.jpeg
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.gz
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.sqlite3
+            !/projects/*/execution/_Coordination/AgentRuns/**/*.bin
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -71,9 +94,32 @@ jobs:
           Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
           EOF
 
+      # apt-get update dominated this step (~20s). The zsh packages are cached
+      # per Ubuntu release and installed with dpkg; a miss or a dpkg failure
+      # falls back to the canonical-source apt install and refreshes the cache.
+      - name: Resolve Ubuntu release
+        id: ubuntu
+        run: echo "codename=$(. /etc/os-release && echo "${VERSION_CODENAME}")" >> "${GITHUB_OUTPUT}"
+      - name: Restore cached zsh packages
+        uses: actions/cache@v4
+        with:
+          path: ~/zsh-debs
+          key: zsh-debs-${{ runner.arch }}-${{ steps.ubuntu.outputs.codename }}-v1
       - name: Install zsh (write_status.sh guard is a zsh script)
         timeout-minutes: 3
-        run: command -v zsh >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq zsh; }
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v zsh >/dev/null && exit 0
+          if compgen -G "${HOME}/zsh-debs/*.deb" >/dev/null \
+            && sudo dpkg -i "${HOME}"/zsh-debs/*.deb >/dev/null; then
+            zsh --version
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq zsh
+          rm -rf "${HOME}/zsh-debs" && mkdir -p "${HOME}/zsh-debs"
+          (cd "${HOME}/zsh-debs" && apt-get download zsh zsh-common)
       - name: Four-role and workflow contracts
         run: |
           python3 tools/validation/validate_agent_instructions.py --json
