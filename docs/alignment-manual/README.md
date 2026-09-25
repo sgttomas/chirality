@@ -6,7 +6,7 @@ This directory contains a field book, a general project-management reference, an
 
 | Document | Use |
 | --- | --- |
-| [Project Management for Human–Agent Teams — Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v1.md) | Abbreviated human reference: eight sections following the work from intent to delivery, with a recurring execution loop and links to the full treatment. |
+| [Project Management for Human–Agent Teams — Field Book v2](Project_Management_for_Human_Agent_Teams_Field_Book_v2.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md) | Short human reference in plain language: ten sections following the work from intent to delivery, with the working loop, the roles, the records, and links to the full treatment. |
 | [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf) | General management practice from conception through delivery, written as a technical reference. |
 | [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
 
@@ -49,10 +49,10 @@ Render the field book with its reading label and source metadata at the end:
 
 ```sh
 /tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
-  --source docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.md \
-  --output docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html \
-  --basis-date 2026-09-23 \
-  --basis-revision 23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f \
+  --source docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.md \
+  --output docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html \
+  --basis-date 2026-09-25 \
+  --basis-revision e8562c06894d5cc5325f1c203fbe491f46ad0fad \
   --edition-label 'Field book' --metadata-at-end
 ```
 
@@ -68,6 +68,7 @@ Earlier files and review records remain available for repository continuity.
 
 | Document | Files |
 | --- | --- |
+| Project Management for Human–Agent Teams — Field Book v1 | [HTML](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v1.md) (rendered at basis `23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f`, 2026-09-23) |
 | Project Management for Human–Agent Teams — Consolidated v5 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v5.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf) · [Preparation evidence](../../plans/evidence/2026-09-22_manual_authorship_frontmatter/) |
 | Chirality Agent User Manual v2 | [HTML](CHIRALITY_AGENT_USER_MANUAL_v2.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v2.md) |
 | Project Management for Human–Agent Teams — Consolidated v4 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v4.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf) · [Publication evidence](../../plans/evidence/2026-09-22_manual_publication_edit/) |

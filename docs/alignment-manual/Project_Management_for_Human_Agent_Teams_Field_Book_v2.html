@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="50ce1b0deda528675d59e3cfcc2f4fdffe77e6e6156697fe08d45e1822c496c1">
+<meta name="source-basis-date" content="2026-09-25">
+<meta name="source-basis-revision" content="e8562c06894d5cc5325f1c203fbe491f46ad0fad">
+<title>Project Management for Human–Agent Teams · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Field book · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 10 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#1-what-the-method-rests-on">1. What the method rests on</a></li>
+<li><a href="#2-the-route">2. The route</a></li>
+<li><a href="#3-who-does-what">3. Who does what</a></li>
+<li><a href="#4-what-to-keep-on-record">4. What to keep on record</a></li>
+<li><a href="#5-agree-the-basis">5. Agree the basis</a></li>
+<li><a href="#6-divide-the-work-and-put-it-in-order">6. Divide the work and put it in order</a></li>
+<li><a href="#7-carry-a-piece-of-work-through">7. Carry a piece of work through</a></li>
+<li><a href="#8-test-the-product">8. Test the product</a></li>
+<li><a href="#9-when-something-goes-wrong">9. When something goes wrong</a></li>
+<li><a href="#10-deliver-and-hand-over">10. Deliver and hand over</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#1-what-the-method-rests-on">1. What the method rests on</a></li>
+<li><a href="#2-the-route">2. The route</a></li>
+<li><a href="#3-who-does-what">3. Who does what</a></li>
+<li><a href="#4-what-to-keep-on-record">4. What to keep on record</a></li>
+<li><a href="#5-agree-the-basis">5. Agree the basis</a></li>
+<li><a href="#6-divide-the-work-and-put-it-in-order">6. Divide the work and put it in order</a></li>
+<li><a href="#7-carry-a-piece-of-work-through">7. Carry a piece of work through</a></li>
+<li><a href="#8-test-the-product">8. Test the product</a></li>
+<li><a href="#9-when-something-goes-wrong">9. When something goes wrong</a></li>
+<li><a href="#10-deliver-and-hand-over">10. Deliver and hand over</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="project-management-for-humanagent-teams">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="project-management-for-humanagent-teams">Project Management for Human–Agent Teams</h1>
+<p>Field Book</p>
+<p>This is the short form of the manual. It follows a project from what someone wants to the thing delivered, and says at each step who does what and what to keep on record. Keep it beside the work as a checklist. The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md">full manual</a> explains the reasons, with examples, and the <a href="CHIRALITY_AGENT_USER_MANUAL_v3.md">Chirality Agent User Manual</a> shows how it is done in the Chirality repository.</p>
+<p>If you join a project already under way, find out where it actually stands before doing anything. The project's own instructions and decisions come first; this book does not replace them.</p>
+<h2 id="1-what-the-method-rests-on">1. What the method rests on</h2>
+<p><strong>People decide; agents do the work.</strong> A person sets the aim, makes the choices that matter, and decides what to rely on and what to deliver. Agents can do a great deal within that, but being able to do something is not permission to approve it.</p>
+<p><strong>Agents' work is checked before it is relied on</strong>, as you would check work from anyone else.</p>
+<p><strong>The record lets someone else pick the work up.</strong> Another person or agent should be able to see what was decided, what was made, what was checked, and what is left.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#h_preface">Manual, Preface</a>.</p>
+<h2 id="2-the-route">2. The route</h2>
+<pre><code class="language-text">What is wanted, and the limits on it
+        ↓
+An accepted basis: the requirements document
+        ↓
+The work divided into deliverables, each with a contract
+        ↓
+The order the deliverables depend on each other: the project graph
+        ↓
+A piece of work selected, with its own plan: the work graph
+        ↓
+Make → check → review → fix → merge      repeat while work remains
+        ↓
+Bring the records up to date with what was made
+        ↓
+Test the product in use; fix, and test again
+        ↓
+Deliver, and hand over responsibility
+</code></pre>
+<p>The route passes through six stages. A stage gate is where a person decides whether the work is ready to go on.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Ready to go on when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concept</td>
+<td>The aim, users, scope and limits are written down, and the basis is accepted.</td>
+</tr>
+<tr>
+<td>FEED (front-end engineering design)</td>
+<td>The work is divided into packages and deliverables, and the workspace is set up.</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>Each deliverable has a contract saying what it must produce and how it will be checked, and the dependencies form a first project graph.</td>
+</tr>
+<tr>
+<td>60%</td>
+<td>The design and interfaces are worked out, and no further change to how the work is divided is expected.</td>
+</tr>
+<tr>
+<td>90%</td>
+<td>The work is made, merged and recorded, and one identified version is ready to test in use.</td>
+</tr>
+<tr>
+<td>100%</td>
+<td>The people with authority have accepted it, and it has been delivered with its limits and with someone responsible for it.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The percentages mark positions, not effort. Parts of a project can be at different stages, and testing goes on throughout, not only at the end.</p>
+<p>At each gate, show the person deciding what is settled, what is not, what the next stage would rely on, and what you propose. They decide whether to go on, go on with conditions, change direction, or ask for more work.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_7">Manual §1.7</a>.</p>
+<h2 id="3-who-does-what">3. Who does what</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Chirality name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The person</td>
+<td></td>
+<td>Sets the aim and the limits; makes the decisions that matter; decides what to rely on and what to deliver.</td>
+</tr>
+<tr>
+<td>Alignment agent</td>
+<td>HELP_HUMAN</td>
+<td>Works with the person directly, keeps the work in line with what they want, and keeps it going from one session to the next.</td>
+</tr>
+<tr>
+<td>Design manager</td>
+<td>HELPS_HUMANS</td>
+<td>Works out the basis, the options and the interfaces with the person.</td>
+</tr>
+<tr>
+<td>Execution manager</td>
+<td>WORKING_ITEMS</td>
+<td>Plans a piece of work, hands out its parts, and checks and merges what comes back.</td>
+</tr>
+<tr>
+<td>Executor</td>
+<td>TASK</td>
+<td>Does one bounded job and reports the result, how it was checked, and what is unresolved. It does not hand work on.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use only the roles the job needs. On a small job, one agent can do several.</p>
+<p>Agents carry routine work forward on their own. When a decision belongs to the person, the agent brings it as a concrete choice: the options, the evidence, and what follows from each.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_8">Manual §§1.8, 4.3</a>.</p>
+<h2 id="4-what-to-keep-on-record">4. What to keep on record</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 3; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basis (PRD or DBM)</td>
+<td>What is wanted, the requirements and limits, what is excluded, and the open questions that have been accepted.</td>
+</tr>
+<tr>
+<td>Decomposition</td>
+<td>How the scope is split into packages and deliverables, and who is responsible for each.</td>
+</tr>
+<tr>
+<td>Deliverable contract</td>
+<td>What the deliverable must produce, how each part will be checked, and the evidence expected.</td>
+</tr>
+<tr>
+<td>Project graph</td>
+<td>What each deliverable needs from the others, and so the order of the work.</td>
+</tr>
+<tr>
+<td>Work graph</td>
+<td>The plan for the piece of work under way: its steps, who owns each, and where each stands.</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>What was checked, on which version, and what was seen.</td>
+</tr>
+<tr>
+<td>Decisions</td>
+<td>Who decided what, about what, and on what conditions.</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>One line for each run of work, pointing to the records above.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Keep four things apart: the project's stage, a deliverable's state, a job being finished, and something being accepted. Finishing a job accepts nothing.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_6">Manual §§1.6–1.9</a>.</p>
+<h2 id="5-agree-the-basis">5. Agree the basis</h2>
+<ol>
+<li>Write down what is wanted, who it is for, and what it has to do.</li>
+<li>Note the scope, the limits, the sources that govern it, its interfaces, and what is excluded.</li>
+<li>Look into anything uncertain that affects the next decision. Keep prototypes labelled as prototypes.</li>
+<li>Write the basis: a product requirements document (PRD), a design basis memorandum (DBM), or whatever the project uses.</li>
+<li>Check it. Does it cover everything? Is it consistent? Does each claim have a source? What is still open? Fix it and check again.</li>
+<li>Put it to the person for acceptance, and record what they decided and on what conditions.</li>
+</ol>
+<p>Keep what is required, what is assumed, and what is only proposed apart. Permission to proceed on an assumption does not make it true. Leave gaps visible rather than filling them with guesses. For each open question, note what it affects, who owns it, and whether it must be settled before the next stage.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2_1">Manual §§2.1–2.11</a>.</p>
+<h2 id="6-divide-the-work-and-put-it-in-order">6. Divide the work and put it in order</h2>
+<p><strong>Divide the scope.</strong> Give each part of the scope one home, in one package. Name each deliverable and draw its boundaries. Check that together the deliverables cover the whole scope, with nothing missing and nothing done twice.</p>
+<p><strong>Write each deliverable's contract.</strong> Say what it must produce, the requirements and interfaces it answers to, how each will be checked, and what evidence will show it. Keep the chain in view: output, requirement, check, evidence, decision.</p>
+<p><strong>List the dependencies.</strong> For each, say who supplies what, to whom, and when it is needed.</p>
+<p><strong>Break any loops.</strong> Where dependencies go round in a circle, treat the loop according to what it actually means:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 4; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Move</th>
+<th>When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Split</td>
+<td>The work needs different inputs at different times; divide it, keeping all of its scope.</td>
+</tr>
+<tr>
+<td>Reverse</td>
+<td>A contract between the two pieces can let the dependency run the other way.</td>
+</tr>
+<tr>
+<td>Merge</td>
+<td>The two pieces cannot be separated; make them one piece of work. The person decides.</td>
+</tr>
+<tr>
+<td>Cut</td>
+<td>The dependency is outside what the graph is for; set it aside and keep track of it. The person decides.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Draw the project graph (a directed acyclic graph, or DAG) before the 30% gate. It can include dependencies not yet met. A graph without loops can still be missing something, so check that every source was read.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_3_1">Manual §§3.1–3.12</a>.</p>
+<h2 id="7-carry-a-piece-of-work-through">7. Carry a piece of work through</h2>
+<p>Each piece of work gets one work graph, which carries it across sessions and agents. The project graph says what depends on what; the work graph plans the work now in hand.</p>
+<p><strong>1. Find out where things stand.</strong> Read the person's direction and the basis. Compare the work graph with the actual files, unmerged work, evidence and open decisions. Don't redo work that is already merged, and make sure anyone who worked on it before has stopped before you take over their files.</p>
+<p><strong>2. Plan the route.</strong> Say what finishing means. Give each step an output, what it needs first, an owner, the files it may change, and how it will be checked. Plan one update of the records at the end.</p>
+<p><strong>3. Brief each job.</strong> Give each executor a brief:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 5; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Brief</th>
+<th>Says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>What the job is for, and where it fits.</td>
+</tr>
+<tr>
+<td>Basis</td>
+<td>The sources, requirements and decisions it works from.</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>What it needs to know, and where to find it.</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>What it may do and use, and what is reserved for the person.</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>Exactly what it may change, and what it must not touch.</td>
+</tr>
+<tr>
+<td>Return</td>
+<td>What to hand back: the result, the checks, the evidence and the limits.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Give each shared file one owner, and let only that owner change it. Run only as many jobs at once as you can check and merge.</p>
+<p><strong>4. Make, check, review, fix, merge.</strong> Verification asks whether the work meets its requirements; validation asks whether it is fit for use. Test how the parts work together, not only each part alone. Have the work reviewed independently where that is required. Fix what the review finds, within the brief, and check again. Never weaken a test or a reference result to make the work pass. Merge into the actual current state, test the result, and repeat while work remains.</p>
+<p><strong>5. Bring the records up to date.</strong> Check both ways: every obligation has its output and evidence, and everything built answers to something in scope. Correct the records. If something required is missing, send it back to step 4. Add a line to memory.</p>
+<p><strong>6. Finish.</strong> Check that the finishing conditions are met. Record what was done, what is left, and where the rest has gone. In software, update the records before the final pull request, then review and merge it. Finishing a piece of work does not accept or release the product.</p>
+<p>Putting work off does not meet a requirement. If a real problem has nowhere to go, record it with an owner and a time to look at it again; the person decides what becomes of it.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_1">Manual §§4.1–4.11, 5.2–5.8</a>.</p>
+<h2 id="8-test-the-product">8. Test the product</h2>
+<p><strong>Freeze a version.</strong> Before formal testing, show that nothing required is left undone; an empty to-do list does not show it. Then hold the version fixed while it is tested, and record findings separately. A fix goes back through the work and produces a new version to test.</p>
+<p><strong>Test it in use.</strong> Define the task, the starting state, the version, the environment, what should happen, and what to keep. Follow a user's path from start to end, including saving, errors and recovery. An agent can run scenarios under the person's direction; bring in a practitioner where the question needs one. A simulated environment shows only what it actually exercised.</p>
+<p><strong>Fix defects one at a time.</strong> Keep the observation, reproduce it, find the cause, make a narrow fix, have it reviewed, and test again.</p>
+<p><strong>Ask for the decision.</strong> Present the exact version, what the evidence supports, what is still limited, and the decision you need.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_9">Manual §§5.9–5.14</a>.</p>
+<h2 id="9-when-something-goes-wrong">9. When something goes wrong</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 6; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Information is missing</td>
+<td>Mark the gap and what it affects, and give someone the job of finding out or deciding. Don't fill it with a guess.</td>
+</tr>
+<tr>
+<td>Sources disagree</td>
+<td>Set out the competing claims and propose a way through; the person with authority decides.</td>
+</tr>
+<tr>
+<td>Something needed isn't ready</td>
+<td>Hold the work that needs it; carry on with work that doesn't.</td>
+</tr>
+<tr>
+<td>The work fails its requirement</td>
+<td>Fix the work, not the requirement.</td>
+</tr>
+<tr>
+<td>Evidence is missing or out of date</td>
+<td>Check again on the current version, and qualify the old claims.</td>
+</tr>
+<tr>
+<td>A document is out of date</td>
+<td>Decide whether it states a commitment or only describes how something works, and correct it at that level.</td>
+</tr>
+<tr>
+<td>The scope or an agreed interface must change</td>
+<td>Prepare the change and its effects, get the decision, and carry it through everything affected.</td>
+</tr>
+<tr>
+<td>A session is cut off</td>
+<td>Record where things stand, what is running, who owns what, and the next step. Check that against the actual state before resuming.</td>
+</tr>
+<tr>
+<td>The project is cut back, paused or stopped</td>
+<td>Record what happened, what changed, and who is responsible for what remains.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Reopen only what the change affects, and keep the work that is still good.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_9">Manual §§1.9, 4.7, 5.10</a>.</p>
+<h2 id="10-deliver-and-hand-over">10. Deliver and hand over</h2>
+<ol>
+<li>Follow the organisation's delivery process, and find the person who can accept and release the result.</li>
+<li>Tie their decision to the exact product, version, scope, purpose and conditions.</li>
+<li>Prepare and check what the recipient will receive, including instructions and records.</li>
+<li>State the limits, the exclusions, and anything unresolved.</li>
+<li>Hand over support, operation, maintenance and future changes, and say where the records are.</li>
+<li>Record what was actually delivered, against what the project set out to do.</li>
+</ol>
+<p>A good handover says what the result is, what it rests on, what it may be used for, its limits, who is responsible for it now, and how to recover it.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_6">Manual chapter 6</a>.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>25 September 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>e8562c06894d5cc5325f1c203fbe491f46ad0fad</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Project_Management_for_Human_Agent_Teams_Field_Book_v2.md</a><br><code>50ce1b0deda528675d59e3cfcc2f4fdffe77e6e6156697fe08d45e1822c496c1</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

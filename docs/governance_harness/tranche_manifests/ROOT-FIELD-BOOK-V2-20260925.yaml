@@ -1,0 +1,30 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-FIELD-BOOK-V2-20260925
+title: Field book v2 in plain language
+date: 2026-09-25
+basis: e8562c06894d5cc5325f1c203fbe491f46ad0fad
+instruction_surface_paths:
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.md
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v2.html
+  - docs/alignment-manual/README.md
+  - docs/governance_harness/tranche_manifests/ROOT-FIELD-BOOK-V2-20260925.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts asks for the field book to be written better: "It's got the
+    right ideas but it's hard to parse. It's okay to lose details that's the
+    whole point of different levels of abstraction and different materials to
+    suit (i.e. the user manual, PM manual)." Scope: a v2 Markdown and HTML
+    edition in plain language, and catalog maintenance moving v1 to the
+    archive. v1 is preserved unchanged.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-25
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: false
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The field book abridges the explanatory management manual. It neither
+    amends an operating instruction nor adopts a method or project basis.
+    No pinned downstream contract, role, workflow or execution state changes.
