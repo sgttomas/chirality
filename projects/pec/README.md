@@ -12,7 +12,8 @@ deleting PEC degrades throughput, never correctness.
 
 Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.3, adopted
 2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance (`D-PEC-92`) and
-applied in checkpoint-3 preparation; it carries the `D-PEC-79` §16.3 hunks.
+applied in checkpoint-3 preparation (settled by the checkpoint-3 acceptance;
+a refusal would return it to v2.2); it carries the `D-PEC-79` §16.3 hunks.
 Earlier versions: v2.0 `D-PEC-58`, v2.1 `D-PEC-61`, exact consumer-interface
 rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 [`docs/STATUS.md`](docs/STATUS.md) first.**
@@ -36,8 +37,8 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. Current SCA-004 derivative state is
 recorded in
 `execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`:
-incomplete only for TM-PEC-023. Lifecycle census: 32 `OPEN` / 26
-`INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS`, none `ISSUED`. DEL-01-03 is
+incomplete only for TM-PEC-023. Lifecycle census (2026-09-25): 28 `OPEN` / 26
+`INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
 promotion follows from either. The three DEL-01-03 read-only evidence
@@ -62,12 +63,12 @@ proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
 checkpoint 2 on 2026-09-25; checkpoint 3 remains. The owner selected the
 TM-PEC-023 objective values
 and deferred the cmux adapter out of scope on 2026-09-24
-(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
-applied yet. The owner accepted checkpoint 2 on 2026-09-25 (exact amendment
-to revision 1.5, propagation plan and PRD v2.3 successor candidate; `D-PEC-92`),
-with the new DEL-02-08/09 folders deferred to PROJECT_SETUP; the writes will
-be applied and audited in checkpoint-3 preparation. See `docs/STATUS.md` for
-current gates.
+(`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`). The owner
+accepted checkpoint 2 on 2026-09-25 (exact amendment to revision 1.5,
+propagation plan and PRD v2.3 successor candidate; `D-PEC-92`), with the new
+DEL-02-08/09 folders deferred to PROJECT_SETUP. Checkpoint-3 preparation has
+applied those writes and audited them; the owner's checkpoint-3 acceptance is
+next. See `docs/STATUS.md` for current gates.
 
 **Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
 (2026-09-25): agents may act on PEC record-tier data as true as of the
@@ -103,7 +104,7 @@ TM-PEC-023 moved into SCA-005 intake.
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Software decomposition and authoritative companion registers: live files hold the revision 1.5 candidate awaiting checkpoint 3; revision 1.4 remains the accepted basis until then |
-| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 checkpoint-group-1 package and its accepted group-1 snapshot under `checkpoint_snapshots/`, and active scope-change pointer |
+| `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence, the SCA-005 package (checkpoint groups 1–3) with its accepted group-1 and group-2 snapshots under `checkpoint_snapshots/`, and the active scope-change pointer |
 | `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |

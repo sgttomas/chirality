@@ -9,9 +9,9 @@ DR-17, `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-S
 PEC observed that Root `execution/_Coordination/LOOP_INIT.md` L15 lists
 "relevant App and Piping `loop/LOOP_RECEIPTS.md`" among its handoff sources.
 Those ledgers are frozen (App at Receipt-264, Piping at Receipt-162, as of
-the survey); the App and Piping loops now write one central
-`execution/_Coordination/.../RECEIPT.md` per undertaking alongside their work
-graphs. PEC's accepted SCA-005 amendment (owner checkpoint-2 acceptance
+the survey); the App and Piping loops' `LOOP_INIT.md` §5 now prescribes one
+central `execution/_Coordination/.../RECEIPT.md` per undertaking alongside its
+work graph (at the survey, one such receipt existed, in Piping; App had none). PEC's accepted SCA-005 amendment (owner checkpoint-2 acceptance
 2026-09-25, register row `D-PEC-92`) treats those ledgers as historical
 grammar and reads central receipts and work graphs as current feeds.
 

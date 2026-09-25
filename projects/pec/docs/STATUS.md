@@ -22,7 +22,9 @@ that doesn't need to exist": no governed act may ever require it.
 **`docs/PRD.md` v2.3 is the product definition of record**, adopted
 2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance
 (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/`;
-`D-PEC-92`) and applied in checkpoint-3 preparation. It carries the
+`D-PEC-92`) and applied in checkpoint-3 preparation; like the revision 1.5
+candidate it is settled by the owner's checkpoint-3 acceptance, and a refusal
+would return live `docs/PRD.md` to v2.2. It carries the
 `D-PEC-79` §16.3 hunks. Earlier versions: v2.0 `D-PEC-58` (2026-07-24), v2.1
 `D-PEC-61`, exact PEC-K-03/-11 rows `D-PEC-67`, v2.2 `D-PEC-68`.
 `projects/pec/AGENTS.md` still names v2.2 until its separate instruction
@@ -115,10 +117,12 @@ one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broa
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
-**Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
-`_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
-DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03, DEL-01-05).
-No deliverable is `ISSUED`.
+**Lifecycle census** (recounted 2026-09-25 from the 64 deliverable
+`_STATUS.md` files, after SCA-005's accepted retirements were applied): 28
+`OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01, DEL-00-03, DEL-08-02,
+DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03, DEL-01-05) / 4 `RETIRED` (DEL-06-04,
+DEL-07-02, DEL-07-04, DEL-07-05). No deliverable is `ISSUED`. The two new
+deliverables DEL-02-08 and DEL-02-09 have register rows but no folders yet.
 
 **Loop:** `D-PEC-80` A–D (ruled 2026-09-05) made `projects/pec/loop/`
 (`LOOP_INIT.md`, `LOOP_RECEIPTS.md`) the loop home with a generic instruction
@@ -157,7 +161,7 @@ On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepte
 register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`
 rows after the 2026-09-22 review (Receipt 178). The 2026-09-23 notice triage
 (`NOTICE_TRIAGE_2026-09-23.md`) added no rows. TM-PEC-022 stays `DEFERRED`;
-TM-PEC-023 stays `OPEN` until the SCA-005 amendment applies; its selections are made.
+TM-PEC-023 stays `OPEN` until SCA-005 closes; its selections are made and applied in the live registers, pending the owner's checkpoint-3 acceptance.
 
 **Historical — superseding owner ruling, 2026-08-03 (state as of that
 date):** TM-PEC-023 now proceeds through a
