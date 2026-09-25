@@ -60,7 +60,10 @@ proposes 76 actions; the owner accepted `Impact_Assessment.md` SHA-256
 checkpoints 2–3 remain. The owner selected the TM-PEC-023 objective values
 and deferred the cmux adapter out of scope on 2026-09-24
 (`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); none is
-applied yet. See `docs/STATUS.md` for current gates.
+applied yet. The checkpoint-2 package (exact amendment, propagation plan and
+PRD v2.3 successor candidate) was prepared and independently verified on
+2026-09-25 and awaits the owner; nothing is applied. See `docs/STATUS.md` for
+current gates.
 
 **Agent reliance on PEC data** is PEC product direction under `D-PEC-90` R-A
 (2026-09-25): agents may act on PEC record-tier data as true as of the
