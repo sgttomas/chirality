@@ -1,0 +1,18 @@
+{
+  "base_head": "918b9f158d861e21ad6b0f4d6f25af2407328fd6",
+  "paths": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "92d6fb6c3d43ceed58140d82ea6644ebec2a3e0ae257242803b7c236d7c3f773"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RAW02_INTERFACE_ALIGNMENT.md",
+      "sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/_run_records/SOLVER_PRIORITY/ROOT_BASIS.json",
+      "sha256": "080b2bfcfaead8205bef044c14f1d9db05cd0fb2e2c219bcb03713a1f570209a"
+    }
+  ],
+  "review_scope": "Entire current graph diff from HEAD, new interface selection and basis record. No source implementation or acceptance claim."
+}
