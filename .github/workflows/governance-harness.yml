@@ -96,7 +96,9 @@ jobs:
 
       # apt-get update dominated this step (~20s). The zsh packages are cached
       # per Ubuntu release and installed with dpkg; a miss or a dpkg failure
-      # falls back to the canonical-source apt install and refreshes the cache.
+      # falls back to the canonical-source apt install. actions/cache never
+      # re-saves an exact key hit, so bump -v1 if a cached pair goes bad.
+      # Filling the cache is best-effort and can never fail the job.
       - name: Resolve Ubuntu release
         id: ubuntu
         run: echo "codename=$(. /etc/os-release && echo "${VERSION_CODENAME}")" >> "${GITHUB_OUTPUT}"
@@ -119,7 +121,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq zsh
           rm -rf "${HOME}/zsh-debs" && mkdir -p "${HOME}/zsh-debs"
-          (cd "${HOME}/zsh-debs" && apt-get download zsh zsh-common)
+          (cd "${HOME}/zsh-debs" && apt-get download zsh zsh-common) || rm -rf "${HOME}/zsh-debs"
       - name: Four-role and workflow contracts
         run: |
           python3 tools/validation/validate_agent_instructions.py --json
