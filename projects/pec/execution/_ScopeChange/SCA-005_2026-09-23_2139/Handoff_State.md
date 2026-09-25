@@ -2,9 +2,9 @@
 amendment_id: SCA-005
 doc_kind: scope_change.handoff_state
 decomp_variant: SOFTWARE
-checkpoint_group: 1
+checkpoint_group: 3
 created: 2026-09-23
-status: checkpoint_1_package_prepared_awaiting_owner
+status: checkpoint_2_accepted_checkpoint_3_preparation_authorized
 ---
 
 # SCA-005 Checkpoint-group-1 Handoff State

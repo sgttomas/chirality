@@ -319,7 +319,7 @@ D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. SCA-005 opened at Gate 1 on 2026-09-23 under
 `D-PEC-86`; the owner accepted its checkpoint group 1 on 2026-09-24
 (`checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`, amended additively the same day by
-`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); checkpoints 2 and 3 remain.
+`SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/`); the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-92`); checkpoint 3 remains.
 `D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
