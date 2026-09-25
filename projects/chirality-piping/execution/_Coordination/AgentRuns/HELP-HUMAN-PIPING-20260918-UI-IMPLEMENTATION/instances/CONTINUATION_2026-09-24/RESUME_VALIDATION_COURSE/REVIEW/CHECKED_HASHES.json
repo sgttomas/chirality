@@ -1,0 +1,104 @@
+{
+  "reviewer": "/root/physics_resume/joined_consumer_review",
+  "original_actual_parent": "/root/physics_resume",
+  "assigner": "/root",
+  "role": "TASK Type2",
+  "mechanism": "delegated-harness-native",
+  "base": "d90e4ee0e5abe7ace05dec4e856ca45051893915",
+  "files": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "4afaff2c43f4c076e0a16f58e9295b1a8bb495f73dd50abdd0757027093c582f",
+      "bytes": 102552
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/README.md",
+      "sha256": "7732cdb45e4f6bb8b902def68803934ca2ecf67693fd4d5abbf3bf2bc8501689",
+      "bytes": 6647
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/RESUME_VALIDATION_COURSE/OWNER_RESUMPTION.md",
+      "sha256": "afc74291e92fa6da33c5c0aeeb46edd8d4bcffb572412732979e3a225e86c0d8",
+      "bytes": 3959
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/RESUME_VALIDATION_COURSE/BASIS.json",
+      "sha256": "b8752b2a209e197d356c7eefe3947878f040b38601dd19e207c99b8bcfdac3de",
+      "bytes": 1687
+    }
+  ],
+  "diff_sha256": "14c7a22dd6b00af1257257de7e220e312e551b978202353397d9ab83f147f0a1",
+  "supplied_reference_preservation": [
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/piping_stress_solver_research_and_agent_plan.md",
+      "sha256": "7c1944fa56b1350008d553e6873ed019ab30b0de1cc3bda74d87796ce5d09774",
+      "unchanged_from_checkpoint": true,
+      "original_matches": true
+    },
+    {
+      "path": "projects/chirality-piping/docs/references/validation-programme/piping_solver_benchmark_research_and_agent_plan.md",
+      "sha256": "3c455c627dbbcd08717a1bfcff5d4951cbb0ea00e70e4e6e59daf2e519fa4d3e",
+      "unchanged_from_checkpoint": true,
+      "original_matches": true
+    }
+  ],
+  "reference_manifest_sha256": "671add72377452ac3e3e6f0aab8d315bab96579af62f685d60e3ea0fbb763409",
+  "root_supplied_basis_hashes_verified": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    }
+  ],
+  "reviewer_loaded_full_bodies": [
+    "agents/AGENT_TASK.md",
+    ".agents/skills/software-code-review/SKILL.md"
+  ],
+  "worker_records": [
+    {
+      "path": "/private/tmp/piping-validation-foundation-20260925/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/VALIDATION_FOUNDATION/BASIS.json",
+      "sha256": "eb07f43ece3edf8e4aafc4de6a88a5085d5ba9576af5b3cf097bdd181ee3eae7"
+    },
+    {
+      "path": "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/REPAIR_FE01_FE02/BASIS.json",
+      "sha256": "5694523cde83d0b60d182cb00ab862439f9607f7d4b70bfab2462118f6b44395"
+    }
+  ],
+  "dispatch_verification": "ROOT actual successful followup_task relay plus active collaboration.list_agents snapshot; no transcript invented",
+  "companion_verification": "ROOT durable relay of actual response, not independent runtime audit",
+  "currentmain_relevant_diff_empty": true,
+  "new_local_link_resolves": true,
+  "verdict": "clear for scoped records checkpoint",
+  "report_sha256": "fabb5e4ce81399c27a179e9746da32ba65e26a379cd22267048fdaff89aeeb49"
+}
