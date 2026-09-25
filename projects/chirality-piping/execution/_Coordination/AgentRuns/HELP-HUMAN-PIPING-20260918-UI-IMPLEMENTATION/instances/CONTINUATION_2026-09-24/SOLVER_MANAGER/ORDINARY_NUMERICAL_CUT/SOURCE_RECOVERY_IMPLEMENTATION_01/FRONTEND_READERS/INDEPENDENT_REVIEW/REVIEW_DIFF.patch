@@ -1,0 +1,2174 @@
+--- a/projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/comparison/ComparisonPanel.tsx
+@@ -155,7 +155,7 @@
+   if (!result) return "unknown";
+   const contract = sourceContract(result);
+   if (contract === "legacy") return right.dimension ?? "unknown";
+-  if (contract !== "precision") return "unknown";
++  if (contract !== "precision" && contract !== "source_blocks") return "unknown";
+   const rightDimension = semanticDimension(right, result);
+   const leftDimension = left ? semanticDimension(left, result) : null;
+   if (!left || !rightDimension || leftDimension !== rightDimension) return "unknown";
+--- a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts
+@@ -1,4 +1,8 @@
+-import { describe, expect, it } from "vitest";
++import { invoke } from '@tauri-apps/api/core';
++import sparseProducer from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
++vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
++afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
++import { describe, expect, it, vi, afterEach } from "vitest";
+ import { buildAnalysisRunPreview, buildPreviewComparison, loadPreviewModel, runPreviewMechanics } from "../../services/previewService";
+ import { canonicalSha256Hex, canonicalSha256HexCheckedV1 } from "../../services/hashService";
+ import { buildCurrentSessionInputManifest } from "../../services/inputManifestService";
+@@ -9,8 +13,21 @@
+ import { buildReportPackageRequest } from "./reportPackageRequest";
+ import componentProvenanceProjection from "../../../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
+ 
++// Isolated report-consumer tests simulate the source IPC response; the real
++// native producer and its numerical correctness are not executed here.
++async function reportFromMockedNative(args: Parameters<typeof buildReportPackageRequest>[0]) {
++  if (args.analysisRun.schema_version === '0.3.0') {
++    Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
++    vi.mocked(invoke).mockResolvedValueOnce(args.result);
++    const result=await runPreviewMechanics(args.model,(args.inputManifest?.manifest?.solver_basis?.solver_mode ?? 'sparse_interactive') as 'sparse_interactive'|'dense_scrutiny');
++    return buildReportPackageRequest({...args,result});
++  }
++  return buildReportPackageRequest(args);
++}
+ async function currentSession() {
+   const model = await loadPreviewModel();
++  Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
++  vi.mocked(invoke).mockResolvedValueOnce(structuredClone(sparseProducer));
+   const result = await runPreviewMechanics(model);
+   const inputManifest = await buildCurrentSessionInputManifest({
+     model,
+@@ -69,7 +86,7 @@
+       provenance: ""
+     });
+ 
+-    const request = await buildReportPackageRequest({
++    const request = await reportFromMockedNative({
+       model,
+       result,
+       analysisRun,
+@@ -119,7 +136,7 @@
+     const resultSnapshot = structuredClone(result);
+     const runSnapshot = structuredClone(analysisRun);
+ 
+-    const request = await buildReportPackageRequest({
++    const request = await reportFromMockedNative({
+       model,
+       result,
+       analysisRun,
+@@ -223,7 +240,7 @@
+       await canonicalSha256Hex(inputManifest.manifest.model_basis.model_payload)
+     );
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model: changedModel,
+         result,
+         analysisRun,
+@@ -245,7 +262,7 @@
+ 
+     expect(JSON.stringify(reorderedModel)).not.toBe(JSON.stringify(model));
+     expect(await canonicalSha256Hex(reorderedModel)).toBe(canonicalModelHash);
+-    const request = await buildReportPackageRequest({
++    const request = await reportFromMockedNative({
+       model: reorderedModel,
+       result,
+       analysisRun,
+@@ -266,7 +283,7 @@
+     });
+ 
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model,
+         result,
+         analysisRun,
+@@ -307,7 +324,7 @@
+     target!.source_dimension = "stress";
+ 
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model,
+         result,
+         analysisRun: mismatched,
+@@ -326,7 +343,7 @@
+     missing.analysis_run.reproducibility.input_manifest_refs = [];
+     missing.analysis_run.reproducibility.input_manifest_hashes = [];
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model,
+         result,
+         analysisRun: missing,
+@@ -340,7 +357,7 @@
+     const malformed = structuredClone(analysisRun);
+     malformed.analysis_run.hashes[0].value = "A".repeat(64);
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model,
+         result,
+         analysisRun: malformed,
+@@ -354,7 +371,7 @@
+     const mismatched = structuredClone(inputManifest);
+     mismatched.manifest.model_basis.model_ref = "project:different";
+     await expect(
+-      buildReportPackageRequest({
++      reportFromMockedNative({
+         model,
+         result,
+         analysisRun,
+@@ -372,7 +389,7 @@
+       const wrongIdentity = structuredClone(inputManifest);
+       wrongIdentity.manifest_ref.ref = ref;
+       await expect(
+-        buildReportPackageRequest({
++        reportFromMockedNative({
+           model,
+           result,
+           analysisRun,
+@@ -388,15 +405,15 @@
+     const session = await currentSession();
+     const future = structuredClone(session.analysisRun);
+     future.schema_version = "0.4.0";
+-    await expect(buildReportPackageRequest({ ...session, analysisRun: future, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
++    await expect(reportFromMockedNative({ ...session, analysisRun: future, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+       .rejects.toThrow("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
+     const futureSource = structuredClone(session.result);
+     futureSource.schema_version = "0.4.0";
+-    await expect(buildReportPackageRequest({ ...session, result: futureSource, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
++    await expect(reportFromMockedNative({ ...session, result: futureSource, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+       .rejects.toThrow("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+     const missing = structuredClone(session.analysisRun);
+     missing.analysis_run.hashes = missing.analysis_run.hashes.filter(hash => hash.payload_scope !== "received_result");
+-    await expect(buildReportPackageRequest({ ...session, analysisRun: missing, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
++    await expect(reportFromMockedNative({ ...session, analysisRun: missing, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+       .rejects.toThrow("REPORT-PACKAGE-HASH-BINDING-INCOMPLETE");
+   });
+ 
+@@ -407,7 +424,7 @@
+     annotated.results.push({ id: unknownId, entity_ref: model.project.id, kind: "unregistered_source_kind", value: 1, unit: "N" });
+     const analysisRun = await buildAnalysisRunPreview(annotated, { inputManifest });
+     const before = JSON.stringify(annotated);
+-    const request = await buildReportPackageRequest({ model, result: annotated, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
++    const request = await reportFromMockedNative({ model, result: annotated, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
+     expect(request.result_envelopes[0].result_sets.flatMap(set => set.values).some(value => value.result_id === unknownId)).toBe(false);
+     expect(JSON.stringify(request.result_envelopes[0].diagnostics)).toContain(unknownId);
+     expect(JSON.stringify(annotated)).toBe(before);
+@@ -419,7 +436,7 @@
+     const solver = analysisRun.analysis_run.solver_version!;
+     if (field === "build_ref") solver.build_ref.ref = "build:conflicting-record";
+     else solver[field] = "conflicting-record";
+-    await expect(buildReportPackageRequest({ ...session, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
++    await expect(reportFromMockedNative({ ...session, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+       .rejects.toThrow("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH");
+   });
+ 
+@@ -442,7 +459,7 @@
+     expect(await verifyAnalysisRunRecord(analysisRun)).toBe("match");
+     expect(run.hashes.find(hash => hash.payload_scope === "received_result"))
+       .toEqual(session.analysisRun.analysis_run.hashes.find(hash => hash.payload_scope === "received_result"));
+-    await expect(buildReportPackageRequest({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
++    await expect(reportFromMockedNative({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null }))
+       .rejects.toThrow("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH");
+     expect(JSON.stringify(session.result)).toBe(receivedSourceBefore);
+   });
+@@ -452,7 +469,7 @@
+     const recordedBuild = "build:captured-current-product-physics";
+     const inputManifest = await buildCurrentSessionInputManifest({ model: session.model, solver: { ...session.inputManifest.manifest.solver_basis, solver_build_ref: recordedBuild }, active_rule_packs: [], external_assets: [] });
+     const analysisRun = await buildAnalysisRunPreview(session.result, { inputManifest });
+-    const request = await buildReportPackageRequest({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
++    const request = await reportFromMockedNative({ ...session, inputManifest, analysisRun, projectSummary: null, comparison: null, ruleCheckAggregate: null });
+     expect(request.result_envelopes[0].solver_build_ref).toBe(recordedBuild);
+     expect(request.audit_manifest.solver_version.solver_build_ref).toBe(recordedBuild);
+     expect(request.audit_manifest.solver_version.solver_version).toBe(session.result.producer!.component_version);
+--- a/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts
+@@ -1,4 +1,5 @@
+-import { sourceContract } from "../results/numericalResultQuality";
++import { hasNativeMechanicsInvocation } from "../../services/previewService";
++import { hasCurrentSourceContract } from "../results/numericalResultQuality";
+ import { analysisResultHashScope } from "../results/analysisResultHashScope";
+ import type {
+   AnalysisRunEnvelope,
+@@ -94,7 +95,7 @@
+       recordedSolver.build_ref?.ref !== manifestSolver.solver_build_ref))) {
+     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: analysis record and verified manifest differ.");
+   }
+-  if (precision && (sourceContract(result) !== "precision" ||
++  if (precision && (!hasCurrentSourceContract(result) ||
+     result.producer!.component_name !== manifestSolver.solver_name ||
+     result.producer!.component_version !== manifestSolver.solver_version)) {
+     throw new Error("REPORT-PACKAGE-SOLVER-IDENTITY-MISMATCH: recorded identity differs from the received producer.");
+@@ -128,7 +129,7 @@
+   if (resultHashScope === null) {
+     throw new Error("REPORT-PACKAGE-ANALYSIS-VERSION-UNSUPPORTED");
+   }
+-  if (analysisRun.schema_version === "0.3.0" && sourceContract(result) !== "precision") {
++  if (analysisRun.schema_version === "0.3.0" && !hasCurrentSourceContract(result)) {
+     throw new Error("REPORT-PACKAGE-SOURCE-CONTRACT-MISMATCH");
+   }
+   await verifyCurrentSessionInputManifest(inputManifest);
+@@ -325,6 +326,7 @@
+     professional_boundary: PROFESSIONAL_BOUNDARY
+   };
+ 
++  if (analysisRun.schema_version === "0.3.0" && !hasNativeMechanicsInvocation(result,model,inputManifest.manifest.solver_basis.solver_mode)) throw new Error("REPORT-PACKAGE-NATIVE-INVOCATION-UNAVAILABLE");
+   return {
+     package_id: `desktop-report-${safeId(result.run_id)}`,
+     export_profile_id: "desktop_local_private_report_package_1",
+--- a/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts
+@@ -2,7 +2,11 @@
+ import { PRECISION_CONTRACT_ID } from "../results/numericalResultQuality";
+ import {mkdirSync,writeFileSync} from "node:fs";
+ import path from "node:path";
+-import {describe,it,expect} from 'vitest';
++import {describe,it,expect,vi,afterEach} from 'vitest';
++import {invoke} from '@tauri-apps/api/core';
++import {runPreviewMechanics} from '../../services/previewService';
++vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
++afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
+ import modelJson from '../../../../../fixtures/product_preview/invented_preview_model.json';
+ import resultJson from '../../../../../fixtures/product_preview/invented_mechanics_result.json';
+ import metadataFixtures from '../../../../../fixtures/results/invented/result_export_v0_2.json';
+@@ -17,6 +21,14 @@
+  const sort=(item:any):any=>Array.isArray(item)?item.map(sort):item&&typeof item==='object'?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b)).map(([key,child])=>[key,sort(child)])):item;
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(sort(value))));return [...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+ }
++// Consumer-only transport harness: this mocks the native IPC response, not
++// its private provenance query/registrar. It does not prove producer physics.
++async function exportFromMockedNative(args: Parameters<typeof buildCurrentResultExport>[0]) {
++ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
++ vi.mocked(invoke).mockResolvedValueOnce(args.result);
++ const received=await runPreviewMechanics(args.model,(args.inputManifest?.manifest.solver_basis.solver_mode ?? 'sparse_interactive') as 'sparse_interactive'|'dense_scrutiny');
++ return buildCurrentResultExport({...args,result:received});
++}
+ // Synthetic consumer admission mock only: these copied rows and passing gate
+ // labels are neither a new browser demo nor producer/numerical qualification.
+ function precision(result: MechanicsResult, model: PreviewModel): MechanicsResult {
+@@ -63,18 +75,18 @@
+ }
+ describe('synthetic consumer Current derivative export (not producer qualification)',()=>{
+  it('binds current payload/carrier and preserves old hashes and observed declarations',async()=>{
+-  const args=await current(),before=JSON.stringify(args);const doc=await buildCurrentResultExport(args);expect(doc.schema_version).toBe('0.3.0');if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-enriched.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-enriched.received.json'),JSON.stringify(args.result,null,2));writeFileSync(path.join(dir,'current-enriched.model.json'),JSON.stringify(args.model,null,2));writeFileSync(path.join(dir,'current-enriched.analysis-run.json'),JSON.stringify(args.analysisRun,null,2));}expect(doc.result_envelope.row_accounting).toHaveLength(args.result.results.length);expect(JSON.stringify(args)).toBe(before);
++  const args=await current(),before=JSON.stringify(args);const doc=await exportFromMockedNative(args);expect(doc.schema_version).toBe('0.3.0');if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-enriched.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-enriched.received.json'),JSON.stringify(args.result,null,2));writeFileSync(path.join(dir,'current-enriched.model.json'),JSON.stringify(args.model,null,2));writeFileSync(path.join(dir,'current-enriched.analysis-run.json'),JSON.stringify(args.analysisRun,null,2));}expect(doc.result_envelope.row_accounting).toHaveLength(args.result.results.length);expect(JSON.stringify(args)).toBe(before);
+   expect(doc.result_envelope.reproducibility.raw_source_hashes).toEqual([]);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].original_producer_checksum).toBeNull();
+   const payload=structuredClone(doc);delete payload.result_envelope.reproducibility.derivative_hash;expect(doc.result_envelope.reproducibility.derivative_hash.value).toBe(await resultDigest(payload));
+   for(const a of doc.result_envelope.row_accounting){const row=args.result.results[a.source_row_index];expect(a.received_carrier_row_checksum.value).toBe(await resultDigest(row));const ann=doc.result_envelope.source_annotations[a.source_row_index];expect(ann.observed_carrier_dimension).toEqual({present:true,value:row.dimension});}
+  });
+  it('dimension-absent received carrier remains distinct from authentic producer',async()=>{
+-  const args=await current();args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await buildCurrentResultExport(args);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].origin_class).toBe('received_current_dimension_absent');expect(doc.result_envelope.reproducibility.source_origin_bindings[0].authentic_producer_available).toBe(false);
++  const args=await current();args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await exportFromMockedNative(args);expect(doc.result_envelope.reproducibility.source_origin_bindings[0].origin_class).toBe('received_current_dimension_absent');expect(doc.result_envelope.reproducibility.source_origin_bindings[0].authentic_producer_available).toBe(false);
+   if(process.env.RESULTS_CONTRACT_OUTPUT_DIR){const dir=process.env.RESULTS_CONTRACT_OUTPUT_DIR;mkdirSync(dir,{recursive:true});writeFileSync(path.join(dir,'current-absent.document.json'),JSON.stringify(doc,null,2));writeFileSync(path.join(dir,'current-absent.received.json'),JSON.stringify(args.result,null,2));}
+  });
+  it('dispatches raw 0.2 basis, discrete and diagnostic semantics without legacy enrichment',async()=>{
+   const args=await current(),kinds=['modulus_basis_record','linear_solver_mode_basis','nonlinear_support_free_dof_work_residual'];args.result=precision(structuredClone(resultJson) as unknown as MechanicsResult,args.model);args.result.results=kinds.map(kind=>structuredClone(metadataFixtures.fixtures.find(f=>f.input_row.kind===kind)!.input_row)) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result);
+-  expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await buildCurrentResultExport(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.row_accounting).toHaveLength(3);expect(doc.result_envelope.row_accounting.map((row:any)=>row.source_result_id)).toEqual(args.result.results.map(row=>row.id));expect(doc.result_envelope.row_accounting.every((row:any)=>row.disposition==='disclosed')).toBe(true);expect(doc.result_envelope.unit_preservation_witnesses).toHaveLength(0);
++  expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');expect(args.result.results.every(row=>!Object.hasOwn(row,'dimension'))).toBe(true);const doc=await exportFromMockedNative(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.row_accounting).toHaveLength(3);expect(doc.result_envelope.row_accounting.map((row:any)=>row.source_result_id)).toEqual(args.result.results.map(row=>row.id));expect(doc.result_envelope.row_accounting.every((row:any)=>row.disposition==='disclosed')).toBe(true);expect(doc.result_envelope.unit_preservation_witnesses).toHaveLength(0);
+   const received=args.analysisRun.analysis_run.hashes.find(hash=>hash.payload_scope==='received_result')!;expect(received.value).toBe(await resultDigest(args.result));for(const [index,row] of args.result.results.entries()){expect(args.analysisRun.analysis_run.result_refs.find(item=>item.result_ref.ref===row.id)!.hash_refs[0].value).toBe(await resultDigest(row));expect(doc.result_envelope.source_annotations[index].observed_carrier_dimension).toEqual({present:false,value:null});}
+  });
+  it('admits the four accepted explicit legacy dimensions without replacing them with interpreted target dimensions',async()=>{
+@@ -83,28 +95,28 @@
+    {kind:'nonlinear_support_final_displacement',unit:'rad',component:'nonlinear_support_final_displacement',dimension:'length'},
+    {kind:'nonlinear_support_final_reaction',unit:'N*m',component:'nonlinear_support_final_reaction',dimension:'force'},
+    {kind:'spring_hanger_user_input_review',unit:'N*m/rad',component:'variable_spring_hanger_stiffness',dimension:'linear_stiffness'},
+-  ];args.result.results=accepted.map(item=>{const fixture=metadataFixtures.fixtures.find(candidate=>candidate.input_row.kind===item.kind&&candidate.input_row.unit===item.unit&&candidate.input_row.metadata?.component===item.component)!;return {...structuredClone(fixture.input_row),dimension:item.dimension};}) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result),doc=await buildCurrentResultExport(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.observed_carrier_dimension.value)).toEqual(accepted.map(item=>item.dimension));expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.derivative_target_dimension)).toEqual([null,'angle','moment','rotational_stiffness']);
++  ];args.result.results=accepted.map(item=>{const fixture=metadataFixtures.fixtures.find(candidate=>candidate.input_row.kind===item.kind&&candidate.input_row.unit===item.unit&&candidate.input_row.metadata?.component===item.component)!;return {...structuredClone(fixture.input_row),dimension:item.dimension};}) as MechanicsResult['results'];args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});const before=JSON.stringify(args.result),doc=await exportFromMockedNative(args);expect(JSON.stringify(args.result)).toBe(before);expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.observed_carrier_dimension.value)).toEqual(accepted.map(item=>item.dimension));expect(doc.result_envelope.source_annotations.map((annotation:any)=>annotation.derivative_target_dimension)).toEqual([null,'angle','moment','rotational_stiffness']);
+  });
+  it('preserves established 0.1 legacy enrichment and hash verification',async()=>{
+-  const args=await legacyCurrent();args.result.schema_version='0.1.0';delete args.result.producer;delete args.result.numerical_quality;delete args.result.formulation_basis;const before=JSON.stringify(args),claims=JSON.stringify(args.analysisRun.analysis_run.hashes);await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');expect(JSON.stringify(args)).toBe(before);expect(JSON.stringify(args.analysisRun.analysis_run.hashes)).toBe(claims);
++  const args=await legacyCurrent();args.result.schema_version='0.1.0';delete args.result.producer;delete args.result.numerical_quality;delete args.result.formulation_basis;const before=JSON.stringify(args),claims=JSON.stringify(args.analysisRun.analysis_run.hashes);await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');expect(JSON.stringify(args)).toBe(before);expect(JSON.stringify(args.analysisRun.analysis_run.hashes)).toBe(claims);
+  });
+  it('rejects missing proof, same-id changed model, stale run, changed value and mixed/null/empty/wrong dimensions',async()=>{
+-  const args=await current();await expect(buildCurrentResultExport({...args,inputManifest:null})).rejects.toThrow('UNAVAILABLE');
+-  const changed=structuredClone(args);(changed.model as any).unknown_authored_metadata='same-id-substitution';await expect(buildCurrentResultExport(changed)).rejects.toThrow('MODEL_PAYLOAD_MISMATCH');
+-  const stale=structuredClone(args);stale.result.run_id+='stale';await expect(buildCurrentResultExport(stale)).rejects.toThrow('RUN_BINDING');
+-  const value=structuredClone(args);value.result.results[0].value+=1;await expect(buildCurrentResultExport(value)).rejects.toThrow('RESULT_BINDING');
+-  for(const dimension of [null,'',7,'wrong']){const bad=structuredClone(args);(bad.result.results[0] as any).dimension=dimension;await expect(buildCurrentResultExport(bad)).rejects.toThrow();}
+-  const mixed=structuredClone(args);delete mixed.result.results[0].dimension;await expect(buildCurrentResultExport(mixed)).rejects.toThrow('MIXED');
++  const args=await current();await expect(exportFromMockedNative({...args,inputManifest:null})).rejects.toThrow('UNAVAILABLE');
++  const changed=structuredClone(args);(changed.model as any).unknown_authored_metadata='same-id-substitution';await expect(exportFromMockedNative(changed)).rejects.toThrow('MODEL_PAYLOAD_MISMATCH');
++  const stale=structuredClone(args);stale.result.run_id+='stale';await expect(exportFromMockedNative(stale)).rejects.toThrow('RUN_BINDING');
++  const value=structuredClone(args);value.result.results[0].value+=1;await expect(exportFromMockedNative(value)).rejects.toThrow('RESULT_BINDING');
++  for(const dimension of [null,'',7,'wrong']){const bad=structuredClone(args);(bad.result.results[0] as any).dimension=dimension;await expect(exportFromMockedNative(bad)).rejects.toThrow();}
++  const mixed=structuredClone(args);delete mixed.result.results[0].dimension;await expect(exportFromMockedNative(mixed)).rejects.toThrow('MIXED');
+  });
+  it('rejects a rehashed 0.2 known explicit carrier dimension contradiction without mutating evidence',async()=>{
+-  const args=await current(),row=args.result.results.find(item=>item.kind==='displacement_magnitude')!;(row as any).dimension='stress';await rehashV02ResultClaims(args);expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');const before=JSON.stringify(args.result);await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_CARRIER_DIMENSION_CONTRADICTION');expect(JSON.stringify(args.result)).toBe(before);
++  const args=await current(),row=args.result.results.find(item=>item.kind==='displacement_magnitude')!;(row as any).dimension='stress';await rehashV02ResultClaims(args);expect(await verifyAnalysisRunRecord(args.analysisRun)).toBe('match');const before=JSON.stringify(args.result);await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_CARRIER_DIMENSION_CONTRADICTION');expect(JSON.stringify(args.result)).toBe(before);
+  });
+  it('rejects checksum scope/type/algorithm/canonicalization/ref tampering',async()=>{
+   const args=await current();const edits:Array<(a:typeof args)=>void>=[a=>{(a.analysisRun.analysis_run.hashes[0] as any).algorithm='TBD'},a=>{a.analysisRun.analysis_run.hashes[0].payload_ref.object_type='Wrong'},a=>{a.analysisRun.analysis_run.hashes[1].canonicalization='wrong'},a=>{a.analysisRun.analysis_run.result_refs[0].hash_refs[0].payload_scope='wrong'},a=>{a.analysisRun.analysis_run.result_refs[0].hash_refs[0].payload_ref.ref='wrong'},a=>{(a.analysisRun.analysis_run.reproducibility.input_manifest_hashes[0] as any).payload_scope='wrong'},a=>{a.analysisRun.analysis_run.reproducibility.input_manifest_refs[0].object_type='Wrong'}];
+-  for(const edit of edits){const bad=structuredClone(args);edit(bad);await expect(buildCurrentResultExport(bad)).rejects.toThrow();}
++  for(const edit of edits){const bad=structuredClone(args);edit(bad);await expect(exportFromMockedNative(bad)).rejects.toThrow();}
+  });
+  it('rejects unknown analysis versions and strict known semantic contradictions',async()=>{
+-  const args=await current();(args.analysisRun as any).schema_version='0.4.0';await expect(buildCurrentResultExport(args)).rejects.toThrow('CURRENT_ANALYSIS_VERSION_UNSUPPORTED');
++  const args=await current();(args.analysisRun as any).schema_version='0.4.0';await expect(exportFromMockedNative(args)).rejects.toThrow('CURRENT_ANALYSIS_VERSION_UNSUPPORTED');
+   for(const kind of ['modulus_basis_record','linear_solver_mode_basis','nonlinear_support_free_dof_work_residual']){const fixture=metadataFixtures.fixtures.find(f=>f.input_row.kind===kind)!;for(const [field,replacement] of [['unit',fixture.negative_unit.replacement],['component',fixture.negative_component!.replacement]] as const){const row=structuredClone(fixture.input_row) as any;if(field==='unit')row.unit=replacement;else row.metadata.component=replacement;await expect(projection(row)).rejects.toThrow('CONTRADICTION');}}
+  });
+ });
+@@ -164,7 +176,7 @@
+ });
+ 
+ it('rejects ghost references, orphan witnesses and semantic tampering despite recomputed derivative digest',async()=>{
+- const args=await current(),doc=await buildCurrentResultExport(args);
++ const args=await current(),doc=await exportFromMockedNative(args);
+  for(const path of [['row_accounting',0,'target_ref','ref_id'],['row_accounting',0,'received_carrier_row_checksum','payload_scope'],['source_annotations',0,'source_origin_ref','ref_id'],['unit_preservation_witnesses',0,'source_quantity','unit'],['unit_preservation_witnesses',0,'target_row_checksum','algorithm'],['result_sets',0,'values',0,'dimension']]){
+   const bad=structuredClone(doc);let value:any=bad.result_envelope;for(const key of path.slice(0,-1))value=value[key];value[path[path.length-1]]='tampered';delete bad.result_envelope.reproducibility.derivative_hash;const digest=await resultDigest(bad);bad.result_envelope.reproducibility.derivative_hash={algorithm:'sha256',canonicalization:'openpipestress_jcs_ijson_v1',payload_scope:'derivative_document_excludes_own_hash',payload_ref:ref('derivative_document',bad.result_envelope.envelope_id),value:digest};await expect(validateResultDocument(bad,args.result)).rejects.toThrow();
+  }
+@@ -174,7 +186,7 @@
+  const bits=(value:number)=>{const bytes=new DataView(new ArrayBuffer(8));bytes.setFloat64(0,value,false);return bytes.getBigUint64(0,false).toString(16).padStart(16,'0');};
+  const args=await current();args.result.results=transport.vectors.map(v=>({id:v.id,kind:'global_nodal_rotation_x',value:JSON.parse(v.decimal),unit:'rad',entity_ref:'node:transport'}));
+  args.analysisRun=await buildAnalysisRunPreview(args.result,{inputManifest:args.inputManifest});
+- const before=await resultDigest(args.result),doc=await buildCurrentResultExport(args),decoded=JSON.parse(await canonicalJsonString(doc));
++ const before=await resultDigest(args.result),doc=await exportFromMockedNative(args),decoded=JSON.parse(await canonicalJsonString(doc));
+  expect(await resultDigest(JSON.parse(await canonicalJsonString(args.result)))).toBe(before);
+  for(const vector of transport.vectors){const row=decoded.result_envelope.result_sets[0].values.find((r:any)=>r.result_id===vector.id);expect(bits(row.magnitude)).toBe(vector.bits_hex);expect(row.unit).toBe('rad');}
+  expect(decoded.result_envelope.producer).toEqual(args.result.producer);expect(decoded.result_envelope.numerical_quality).toEqual(args.result.numerical_quality);expect(decoded.result_envelope.formulation_basis).toEqual(args.result.formulation_basis);
+@@ -191,6 +203,6 @@
+   const bad=structuredClone(args);mutate(bad.analysisRun.analysis_run);
+   bad.analysisRun.analysis_run.hashes.find(h=>h.payload_scope==='analysis_run_record')!.value=await canonicalSha256HexCheckedV1(analysisRecordProjection(bad.analysisRun));
+   expect(await verifyAnalysisRunRecord(bad.analysisRun)).toBe('match');
+-  await expect(buildCurrentResultExport(bad)).rejects.toThrow('ANALYSIS_SOURCE_');
++  await expect(exportFromMockedNative(bad)).rejects.toThrow('ANALYSIS_SOURCE_');
+  }
+ });
+--- a/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.ts
+@@ -1,8 +1,9 @@
+-import { sourceContract, numericalResultStanding, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from '../results/numericalResultQuality';
++import { sourceBlockModeMatches } from "../results/sourceBlockRecovery";
++import { sourceContract, numericalResultStanding, currentSemanticContract } from '../results/numericalResultQuality';
+ import type { AnalysisRunEnvelope, MechanicsResult, PreviewModel } from '../../types';
+-import { canonicalJsonString, canonicalSha256Hex, canonicalSha256HexCheckedV1 } from '../../services/hashService';
++import { canonicalJsonString, canonicalSha256Hex, canonicalSha256HexCheckedV1, checkedJsonText } from '../../services/hashService';
+ import { verifyAnalysisRunRecord, validateAnalysisRunV03, modelLoadBasisRefs } from '../../services/analysisRunCompatibility';
+-import { bindSourceResultDimensions } from '../../services/previewService';
++import { bindSourceResultDimensions, hasNativeMechanicsInvocation } from '../../services/previewService';
+ import { verifyCurrentSessionInputManifest, type CurrentSessionInputManifestEvidence } from '../../services/inputManifestService';
+ import { canonicalResultMetadata, completeSourceMetadata, resultSemantics } from '../results/resultSemantics';
+ // JSON assembly is independent of saved analysis/persistence types. Qualification
+@@ -34,7 +35,7 @@
+ // Match the Rust legacy derivative gate: presence is contradictory even when
+ // the field is null or falsy. Never silently strip a claimed precision field.
+ function rejectLegacyDerivativeMetadata(envelope: JsonObject): void {
+-  if (['producer', 'numerical_quality', 'formulation_basis', 'semantic_contract_ref'].some(key => Object.hasOwn(envelope, key))) {
++  if (['producer', 'numerical_quality', 'formulation_basis', 'semantic_contract_ref', 'source_block_recovery'].some(key => Object.hasOwn(envelope, key))) {
+     throw new Error('LEGACY_DERIVATIVE_METADATA_CONTRADICTION');
+   }
+ }
+@@ -47,10 +48,10 @@
+   if(model.project.id!==source.model_ref)throw new Error('SOURCE_MODEL_IDENTITY_MISMATCH');
+   if(origin.received_carrier_checksum.value!==await resultDigest(source))throw new Error('SOURCE_CARRIER_HASH_MISMATCH');
+   if(!origin.authentic_producer_available&&origin.original_producer_checksum!==null)throw new Error('UNAVAILABLE_PRODUCER_HASH');
+-  const route=sourceContract(source);if(route==='unsupported')throw new Error('SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED');const version=route==='precision'?'0.3.0':'0.2.0';
++  const route=sourceContract(source);if(route==='unsupported')throw new Error('SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED');const version=route!=='legacy'?'0.3.0':'0.2.0';
+   if(route==='legacy')rejectLegacyDerivativeMetadata(base.result_envelope);
+   const doc=structuredClone(base);doc.schema_version=version;const e=doc.result_envelope;
+-  if(route==='precision'){e.producer=structuredClone(source.producer);e.numerical_quality=structuredClone(source.numerical_quality);e.formulation_basis=structuredClone(source.formulation_basis);e.semantic_contract_ref=ref('semantic_contract',PRECISION_CONTRACT_ID);}
++  if(route!=='legacy'){e.producer=structuredClone(source.producer);e.numerical_quality=structuredClone(source.numerical_quality);e.formulation_basis=structuredClone(source.formulation_basis);e.semantic_contract_ref=ref('semantic_contract',currentSemanticContract(source).id);if(route==='source_blocks')e.source_block_recovery=structuredClone(source.source_block_recovery);else if(Object.hasOwn(e,'source_block_recovery'))throw new Error('SOURCE_RECOVERY_METADATA_CONTRADICTION');}
+   e.result_sets=[e.result_sets[0]];
+   e.schema_version=version;e.model_ref=ref('model_payload',source.model_ref);
+   const source_origin_ref=ref('source_origin_binding',origin.origin_id);
+@@ -100,8 +101,9 @@
+ /** Validates source accounting and scoped references; it does not authenticate
+  * the origin. Only the Current/source-solve entrypoints supply that evidence. */
+ export async function validateResultDocument(doc:JsonObject,source:MechanicsResult):Promise<void>{
+-  guardResultJson(doc);guardResultJson(source);const route=sourceContract(source);if(route==='unsupported')throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");if(route==='legacy')rejectLegacyDerivativeMetadata(doc.result_envelope);if(resultSchemaVersion(doc)!==(route==='precision'?"0.3.0":"0.2.0"))throw new Error("DERIVATIVE_VERSION_MISMATCH");
+-  if(route==='precision'){for(const key of ['producer','numerical_quality','formulation_basis'] as const)requireEqual(doc.result_envelope[key],source[key],'SOURCE_NUMERICAL_METADATA_MISMATCH');requireEqual(doc.result_envelope.semantic_contract_ref,ref('semantic_contract',PRECISION_CONTRACT_ID),'SEMANTIC_CONTRACT_MISMATCH');}
++  guardResultJson(doc);guardResultJson(source);const route=sourceContract(source);if(route==='unsupported')throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");if(route==='legacy')rejectLegacyDerivativeMetadata(doc.result_envelope);if(resultSchemaVersion(doc)!==(route!=='legacy'?"0.3.0":"0.2.0"))throw new Error("DERIVATIVE_VERSION_MISMATCH");
++  if(route!=='legacy'){for(const key of ['producer','numerical_quality','formulation_basis'] as const)requireEqual(doc.result_envelope[key],source[key],'SOURCE_NUMERICAL_METADATA_MISMATCH');requireEqual(doc.result_envelope.semantic_contract_ref,ref('semantic_contract',currentSemanticContract(source).id),'SEMANTIC_CONTRACT_MISMATCH');}
++  if(route==='source_blocks')requireEqual(doc.result_envelope.source_block_recovery,source.source_block_recovery,'SOURCE_RECOVERY_METADATA_MISMATCH');else if(Object.hasOwn(doc.result_envelope,'source_block_recovery'))throw new Error('SOURCE_RECOVERY_METADATA_CONTRADICTION');
+   const e=doc.result_envelope,accounts=e.row_accounting,annotations=e.source_annotations,witnesses=e.unit_preservation_witnesses;
+   if(!Array.isArray(accounts)||!Array.isArray(annotations)||accounts.length!==source.results.length||annotations.length!==source.results.length)throw new Error("ROW_ACCOUNTING_CARDINALITY");
+   if(!Array.isArray(e.result_sets)||!e.result_sets.every((set:any)=>Array.isArray(set.values))||!Array.isArray(e.review_evidence)||!Array.isArray(e.row_disclosures)||!Array.isArray(witnesses))throw new Error("TARGET_ARRAYS_INVALID");
+@@ -151,14 +153,17 @@
+ export async function buildCurrentResultExport({model,result,analysisRun,inputManifest}:{model:PreviewModel;result:MechanicsResult;analysisRun:AnalysisRunEnvelope;inputManifest:CurrentSessionInputManifestEvidence|null|undefined}):Promise<JsonObject>{
+   guardResultJson(model);guardResultJson(result);guardResultJson(analysisRun);
+   if(!numericalResultStanding(result,model).eligible)throw new Error('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');
+-  if(!inputManifest)throw new Error('CURRENT_INPUT_MANIFEST_UNAVAILABLE');guardResultJson(inputManifest);await verifyCurrentSessionInputManifest(inputManifest);
++  if(!inputManifest)throw new Error('CURRENT_INPUT_MANIFEST_UNAVAILABLE');guardResultJson(inputManifest);
++  const currentBindingText=checkedJsonText({model,result,analysisRun,inputManifest});
++  await verifyCurrentSessionInputManifest(inputManifest);
+   if(await canonicalJsonString(model)!==await canonicalJsonString(inputManifest.manifest.model_basis.model_payload)||result.model_ref!==model.project.id)throw new Error('CURRENT_MODEL_PAYLOAD_MISMATCH');
+   if(analysisRun.schema_version!=='0.3.0')throw new Error('CURRENT_ANALYSIS_VERSION_UNSUPPORTED');
+   const isV2=true; // Current precision records use the checked record/row binding path.
+   const proofChecksum=(h:any,scope:string,type:string,id:string,profile:string='rfc8785_jcs')=>h?.algorithm==='sha256'&&h.canonicalization===profile&&h.payload_scope===scope&&h.payload_ref?.object_type===type&&h.payload_ref.ref===id&&/^[0-9a-f]{64}$/.test(h.value);
+   const run=analysisRun.analysis_run;
+-  requireEqual(run.reproducibility.semantic_contract,{id:PRECISION_CONTRACT_ID,sha256:PRECISION_CONTRACT_SHA256},'CURRENT_SEMANTIC_CONTRACT_MISMATCH');
++  requireEqual(run.reproducibility.semantic_contract,currentSemanticContract(result),'CURRENT_SEMANTIC_CONTRACT_MISMATCH');
+   const solver=inputManifest.manifest.solver_basis;
++  if(sourceContract(result)==='source_blocks'&&!sourceBlockModeMatches(result,model,solver.solver_mode))throw new Error('CURRENT_SOURCE_INVOCATION_MODE_MISMATCH');
+   if(solver.solver_name!==result.producer!.component_name||solver.solver_version!==result.producer!.component_version)throw new Error('CURRENT_PRODUCER_BINDING_MISMATCH');
+   requireEqual(run.solver_version,{solver_name:solver.solver_name,solver_version:solver.solver_version,build_ref:{object_type:'ExternalReference',ref:solver.solver_build_ref}},'CURRENT_SOLVER_BINDING_MISMATCH');
+   const expectedState=`state:${result.model_ref}:preview`;
+@@ -187,6 +192,9 @@
+   const enriched=presence.every(Boolean),scope=enriched?'received_current_legacy_enriched_carrier':'received_current_dimension_absent_carrier';
+   const origin={origin_id:'source-origin:current-received',origin_class:enriched?'received_current_qualified_legacy_enriched':'received_current_dimension_absent',qualification_ref:ref('current_manifest',inputManifest.manifest_ref.ref),authentic_producer_available:false,received_carrier_checksum:await scopedChecksum(result,scope,ref('received_current_carrier',result.run_id)),original_producer_checksum:null,origin_limit:'Qualified Current received carrier; independent authentic original producer bytes unavailable; dimension absence is not producer attestation',actual_model_ref:ref('model_payload',model.project.id),mechanics_run_ref:ref('mechanics_run',result.run_id),request_model_ref:null,request_run_ref:null,request_alias_disclosure:null};
+   const provenance=derivativeProvenance,base={schema_version:'0.2.0',deliverable_id:'DEL-08-04',package_id:'PKG-08',scope_item:'SOW-046',objectives:['OBJ-007','OBJ-009'],export_format_status:{baseline_format:'schema_first_json_result_envelope',additional_formats:'TBD',public_transport_protocol:'TBD',local_fea_package_format:'TBD',external_adapter_formats:'TBD'},result_envelope:{schema_version:'0.2.0',envelope_id:`result-envelope:${result.run_id}`,model_ref:ref('model_payload',model.project.id),run_ref:ref('analysis_run',run.run_id),solver_version:{solver_name:inputManifest.manifest.solver_basis.solver_name,solver_version:inputManifest.manifest.solver_basis.solver_version,solver_build_ref:inputManifest.manifest.solver_basis.solver_build_ref},unit_system_ref:ref('unit_system',`${model.project.id}:units`),load_basis_refs:run.load_basis_refs.map(x=>ref(x.object_type,x.ref)),result_sets:[{set_id:`result-set:${result.run_id}:mechanics`,set_type:'mechanics',basis_ref:ref('analysis_run',run.run_id),values:[]}],diagnostics:result.diagnostics.map(x=>({code:x.code,class:'ASSUMPTION_WARNING',severity:x.severity==='error'?'blocking':x.severity,source:ref('source',x.source??'local_preview'),affected_object:ref('preview_entity',x.affected_refs?.[0]??result.model_ref),message:x.message,remediation:'Review source model and preview limitations.',provenance})),provenance,reproducibility:{model_hash:null,run_hashes:run.hashes.map(x=>({algorithm:x.algorithm,canonicalization:x.canonicalization,payload_ref:ref(x.payload_ref.object_type,x.payload_ref.ref),value:x.value})),audit_manifest_ref:ref('audit_manifest',inputManifest.manifest_ref.ref),deterministic_ordering:true},analysis_status:run.analysis_status,professional_boundary:run.professional_boundary,downstream_use:{review:true,regression_comparison:true,report_consumption:true,headless_automation:true,governed_downstream_tooling:true,additional_export_formats:'TBD'}}};
+-  return deriveResultDocument(base,model,result,origin);
++  if(!hasNativeMechanicsInvocation(result,model,solver.solver_mode))throw new Error('CURRENT_NATIVE_INVOCATION_UNAVAILABLE');
++  const document=await deriveResultDocument(base,model,result,origin);
++  if(checkedJsonText({model,result,analysisRun,inputManifest})!==currentBindingText || !hasNativeMechanicsInvocation(result,model,solver.solver_mode) || !numericalResultStanding(result,model).eligible)throw new Error('CURRENT_BINDING_CHANGED_DURING_EXPORT');
++  return document;
+ }
+ export function resultSchemaVersion(value:JsonObject):'0.1.0'|'0.2.0'|'0.3.0'{const v=value.schema_version;if((v!=='0.1.0'&&v!=='0.2.0'&&v!=='0.3.0')||value.result_envelope?.schema_version!==v)throw new Error('RESULT_VERSION_UNSUPPORTED_OR_MIXED');return v;}
+--- a/projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx
+@@ -96,7 +96,7 @@
+       <div className="panel-title">Results</div>
+       {result ? (
+         <>
+-          <p data-testid="numerical-result-standing">{sourceContract(result) === "legacy" ? "Historical precision: absolute rounding; integrity not assessed. Needs recompute." : sourceContract(result) === "unsupported" ? "Unsupported numerical contract; historical values only. Needs recompute." : `Numerical integrity: ${result.numerical_quality!.status}. ${result.formulation_basis!.limitations.join(" ")} Numerical checks do not establish engineering correctness.`}</p>
++          <p data-testid="numerical-result-standing">{sourceContract(result) === "legacy" ? "Historical precision: absolute rounding; integrity not assessed. Needs recompute." : sourceContract(result) === "unsupported" ? "Unsupported numerical contract; historical values only. Needs recompute." : sourceContract(result) === "source_blocks" ? `Ordinary solve: ${result.numerical_quality!.status}. Producer recovery receipt: ${(result.source_block_recovery as {body:{status:string}}).body.status}. Current use is checked separately against the actual invocation and complete result evidence. Numerical checks do not establish engineering correctness.` : `Numerical integrity: ${result.numerical_quality!.status}. ${result.formulation_basis!.limitations.join(" ")} Numerical checks do not establish engineering correctness.`}</p>
+           <ResultControls
+             familyCounts={familyCounts}
+             familyFilter={familyFilter}
+--- a/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts
+@@ -1,21 +1,24 @@
++import { SOURCE_BLOCKS_CONTRACT_ID, SOURCE_BLOCKS_CONTRACT_SHA256, sourceBlockReceiptShape, sourceBlockStanding } from "./sourceBlockRecovery";
+ import type { MechanicsResult, PreviewModel } from "../../types";
+ export const PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1";
+ export const PRECISION_CONTRACT_SHA256 = "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e";
+-export type SourceContract = "legacy" | "precision" | "unsupported";
++export type SourceContract = "legacy" | "precision" | "source_blocks" | "unsupported";
+ function keys(value: unknown, expected: string[]): boolean {
+   return !!value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === expected.length && expected.every(k => Object.hasOwn(value, k));
+ }
+ const statuses = ["not_assessed", "checks_passed", "sensitive", "unresolved", "failed"];
+ /** Dispatch is explicit. A header never authenticates its claimed producer. */
+ export function sourceContract(source: MechanicsResult): SourceContract {
+-  if (source.schema_version === "0.1.0") return ["producer", "numerical_quality", "formulation_basis"].some(key => Object.hasOwn(source, key)) ? "unsupported" : "legacy";
++  if (source.schema_version === "0.1.0") return ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(source, key)) ? "unsupported" : "legacy";
+   const p = source.producer, q = source.numerical_quality, f = source.formulation_basis;
++  const blocks = p?.semantic_contract_id === SOURCE_BLOCKS_CONTRACT_ID;
++  if (blocks ? !sourceBlockReceiptShape(source.source_block_recovery) : Object.hasOwn(source, "source_block_recovery")) return "unsupported";
+   return source.schema_version === "0.2.0"
+     && keys(p, ["component_name", "component_version", "semantic_contract_id"])
+     && keys(q, ["value_representation", "publication_quantization", "integrity_policy", "status", "cases"])
+     && keys(f, ["profile_id", "limitations"])
+     && p?.component_name === "open_pipe_stress_product_physics"
+-    && p.component_version === "0.2.0" && p.semantic_contract_id === PRECISION_CONTRACT_ID
++    && p.component_version === "0.2.0" && (p.semantic_contract_id === PRECISION_CONTRACT_ID || blocks)
+     && q?.value_representation === "finite_binary64" && q.publication_quantization === "none"
+     && q.integrity_policy === "M03-INTEGRITY-v1" && Array.isArray(q.cases)
+     && statuses.includes(q.status)
+@@ -27,13 +30,14 @@
+       && Array.isArray(c.evidence_refs) && c.evidence_refs.every(r => typeof r === "string" && !!r))
+     && f?.profile_id === "product_preview_mechanics_v1" && Array.isArray(f.limitations)
+     && f.limitations.length > 0 && f.limitations.every(x => typeof x === "string" && x.length > 0)
+-    ? "precision" : "unsupported";
++    ? (blocks ? "source_blocks" : "precision") : "unsupported";
+ }
+ export function numericalResultStanding(source: MechanicsResult, model?: Pick<PreviewModel, "load_cases"> | null) {
+   const contract = sourceContract(source);
+   const findings: string[] = [];
+   if (contract === "legacy") findings.push("LEGACY_ABSOLUTE_ROUNDING_INTEGRITY_NOT_ASSESSED");
+   else if (contract === "unsupported") findings.push("SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED");
++  else if (contract === "source_blocks") findings.push(...sourceBlockStanding(source, model).findings);
+   else {
+     const q = source.numerical_quality!;
+     // Sensitive backward-error evidence does not establish source-answer accuracy.
+@@ -59,3 +63,14 @@
+   if (source.status.mechanics !== "MECHANICS_SOLVED") findings.push("MECHANICS_NOT_SOLVED");
+   return { contract, status: findings.length ? "needs_recompute" as const : "integrity_checked" as const, eligible: findings.length === 0, findings };
+ }
++
++/** Contract dispatch only; this never substitutes for numerical standing. */
++export function currentSemanticContract(source: MechanicsResult) {
++  const route = sourceContract(source);
++  if (route === "source_blocks") return { id: SOURCE_BLOCKS_CONTRACT_ID, sha256: SOURCE_BLOCKS_CONTRACT_SHA256 };
++  if (route === "precision") return { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 };
++  throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
++}
++export function hasCurrentSourceContract(source: MechanicsResult): boolean {
++  return ["precision", "source_blocks"].includes(sourceContract(source));
++}
+--- a/projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/resultSemantics.ts
+@@ -1,3 +1,4 @@
++import sourceBlocksContract from '../../../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json';
+ import contract from '../../../../../fixtures/results/semantic_contract_v0_2.json';
+ import precisionContract from '../../../../../fixtures/results/semantic_contract_v0_3_precision_1.json';
+ import { sourceContract } from './numericalResultQuality';
+@@ -8,6 +9,7 @@
+ export function semanticContractForSource(source?: MechanicsResult) {
+   if (!source || sourceContract(source) === 'legacy') return contract;
+   if (sourceContract(source) === 'precision') return precisionContract;
++  if (sourceContract(source) === 'source_blocks') return sourceBlocksContract;
+   throw new Error('SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED');
+ }
+ export function resultSemantics(row: SourceRow, source?: MechanicsResult): SemanticSignature | null {
+--- /dev/null
++++ b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts
+@@ -0,0 +1,354 @@
++/// <reference types="vite/client" />
++import rejectedRaw0Text from '../../../../../fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json?raw';
++import rejectedRequest0Text from '../../../../../fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json?raw';
++import rejectedRaw1Text from '../../../../../fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json?raw';
++import rejectedRequest1Text from '../../../../../fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json?raw';
++import uiRaw0Text from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json?raw';
++import uiRequest0Text from '../../../../../fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json?raw';
++import uiRaw1Text from '../../../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json?raw';
++import uiRequest1Text from '../../../../../fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json?raw';
++import uiRaw2Text from '../../../../../fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json?raw';
++import uiRequest2Text from '../../../../../fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json?raw';
++import uiRaw3Text from '../../../../../fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json?raw';
++import uiRequest3Text from '../../../../../fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json?raw';
++import uiRaw4Text from '../../../../../fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json?raw';
++import uiRequest4Text from '../../../../../fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json?raw';
++import uiRaw5Text from '../../../../../fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json?raw';
++import uiRequest5Text from '../../../../../fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json?raw';
++import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
++import {buildAnalysisRunPreview} from '../../services/previewService';
++import {validateAnalysisRunV03,modelLoadBasisRefs} from '../../services/analysisRunCompatibility';
++import {buildCurrentResultExport,validateResultDocument} from '../result-export/resultExportAdapter';
++import {buildStressNeutralExportPacket,validateStressNeutralExportPacket} from '../stress-neutral/StressNeutralExportPanel';
++import {buildHistoricalRunContext} from './HistoricalRunContext';
++import {useResultsSessionState} from '../workspace/resultsSessionState';
++import {act,renderHook,render} from '@testing-library/react';
++import {createElement} from 'react';
++import {ResultsPanel} from './ResultsPanel';
++import {runRuleChecks} from '../../services/ruleCheckService';
++import type {LocalProjectEnvelope} from '../../types';
++import raw0Text from '../../../../../fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json?raw';
++const raw0 = JSON.parse(raw0Text);
++import request0Text from '../../../../../fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json?raw';
++const request0 = JSON.parse(request0Text);
++import raw1Text from '../../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json?raw';
++const raw1 = JSON.parse(raw1Text);
++import request1Text from '../../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json?raw';
++const request1 = JSON.parse(request1Text);
++import raw2Text from '../../../../../fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json?raw';
++const raw2 = JSON.parse(raw2Text);
++import request2Text from '../../../../../fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json?raw';
++const request2 = JSON.parse(request2Text);
++import raw3Text from '../../../../../fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json?raw';
++const raw3 = JSON.parse(raw3Text);
++import request3Text from '../../../../../fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json?raw';
++const request3 = JSON.parse(request3Text);
++import raw4Text from '../../../../../fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json?raw';
++const raw4 = JSON.parse(raw4Text);
++import request4Text from '../../../../../fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json?raw';
++const request4 = JSON.parse(request4Text);
++import raw5Text from '../../../../../fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json?raw';
++const raw5 = JSON.parse(raw5Text);
++import request5Text from '../../../../../fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json?raw';
++const request5 = JSON.parse(request5Text);
++import { describe, it, expect, vi, afterEach } from 'vitest';
++import { invoke } from '@tauri-apps/api/core';
++import { runPreviewMechanics, startPreviewMechanicsJob, pollPreviewMechanicsJob, cancelPreviewMechanicsJob, hasNativeMechanicsInvocation, retainedNativeMechanicsInvocation, loadBundledMechanicsReference } from '../../services/previewService';
++vi.mock('@tauri-apps/api/core', () => ({invoke:vi.fn()}));
++afterEach(() => { delete (window as any).__TAURI_INTERNALS__; vi.resetAllMocks(); });
++import precisionFixture from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
++import modelFixture from '../../../../../fixtures/product_preview/invented_preview_model.json';
++import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
++import { sourceContract, numericalResultStanding, PRECISION_CONTRACT_ID } from './numericalResultQuality';
++import { SOURCE_BLOCKS_CONTRACT_ID, sourceBlockReceiptShape, validateSourceBlockRecovery, sourceBlockStanding, retainedSourceBlockInvocation } from './sourceBlockRecovery';
++import type { MechanicsResult, PreviewModel } from '../../types';
++
++// Synthetic validator control, not a claimed product/source-recovery execution.
++// The underlying ordinary producer rows are genuine; the wrapper is deliberately
++// built here to probe structural/header/binding rejection independently of solve.
++async function ordinaryControl() {
++  const source = structuredClone(precisionFixture) as MechanicsResult;
++  const model = structuredClone(modelFixture) as PreviewModel;
++  model.combinations = [];
++  source.results = source.results.filter(r => r.basis_ref?.ref_type !== 'combination');
++  const invocation = {request:{model,materials:[]},solver_mode:'sparse_interactive' as const};
++  source.producer!.semantic_contract_id = SOURCE_BLOCKS_CONTRACT_ID;
++  const body = {
++    receipt_version:'1.0.0',policy:'SOURCE-BLOCKS-1',status:'qualified',invocation_work:{limit:64_000_000,charged:0,publication_charged:0},
++    invocation:{algorithm:'sha256',canonicalization:'openpipestress_jcs_ijson_v1',payload_scope:'source_blocks_invocation_v1',value:await canonicalSha256HexCheckedV1({domain:'source_blocks_invocation_v1',payload:invocation})},
++    publication_sha256:await canonicalSha256HexCheckedV1({domain:'source_blocks_publication_v1',payload:source}),
++    cases:model.load_cases.map((load,index) => ({
++      basis_ref:{ref_type:'load_case',ref_id:load.id},outcome:'qualified',requested_mode:'sparse_interactive',selected_method:'ordinary_sparse_structural_v1',
++      ordinary_attempt:{requested_mode:'sparse_interactive',outcome:'checks_passed',structural_report_diagnostic_ref:source.numerical_quality!.cases[index].evidence_refs.find(id=>source.diagnostics.some(d=>d.id===id)),failure:null,quality_case_index:index},
++      source:null,projections:[],rows:source.results.filter(r=>r.basis_ref?.ref_id===load.id).map(r=>({result_id:r.id,treatment:'ordinary_checked',projection_id:null,recipe_id:null,input_result_ids:[]})),supports:[],failure:null,
++      work:{limit:1000,charged:0,reserved_unobserved_failure:0,rejected_reservation:{kind:'finite',amount:0}}
++    })),envelope_observation_result_ids:source.results.filter(r=>!r.basis_ref).map(r=>r.id)
++  };
++  source.source_block_recovery = {body,receipt_sha256:await canonicalSha256HexCheckedV1({domain:'source_blocks_receipt_v1',payload:body})};
++  return {source,model,invocation};
++}
++async function rehash(source: MechanicsResult) {
++  const receipt = source.source_block_recovery as any, pub = {...source};delete pub.source_block_recovery;
++  receipt.body.publication_sha256 = await canonicalSha256HexCheckedV1({domain:'source_blocks_publication_v1',payload:pub});
++  receipt.receipt_sha256 = await canonicalSha256HexCheckedV1({domain:'source_blocks_receipt_v1',payload:receipt.body});
++}
++describe('source-blocks receipt boundary', () => {
++  it('rejects receipt presence on ordinary, legacy and unknown headers, including falsy values', () => {
++    for (const value of [null,false,0,{},'']) {
++      const source = structuredClone(precisionFixture) as MechanicsResult;source.source_block_recovery=value;
++      expect(sourceContract(source)).toBe('unsupported');
++      source.schema_version='0.1.0';delete source.producer;delete source.numerical_quality;delete source.formulation_basis;
++      expect(sourceContract(source)).toBe('unsupported');
++    }
++    const unknown=structuredClone(precisionFixture) as MechanicsResult;unknown.producer!.semantic_contract_id=SOURCE_BLOCKS_CONTRACT_ID+'/future';expect(sourceContract(unknown)).toBe('unsupported');
++  });
++  it('does not relabel an ordinary-only wrapper as a successful new method', async () => {
++    const {source,invocation}=await ordinaryControl();
++    await expect(validateSourceBlockRecovery(source,invocation)).rejects.toThrow('SOURCE_BLOCKS_NO_SOURCE_METHOD');
++  });
++  it('never grants standing from a receipt shape, public flag or cloned source', async () => {
++    const {source,model}=await ordinaryControl();expect(sourceContract(source)).toBe('source_blocks');
++    expect(sourceBlockReceiptShape(source.source_block_recovery)).toBe(true);
++    expect(numericalResultStanding(source,model).eligible).toBe(false);
++    (source as any).source_block_validated=true;
++    expect(sourceBlockStanding(source,model).eligible).toBe(false);
++    expect(retainedSourceBlockInvocation(source,model)).toBeNull();
++  });
++  it('binds the entire actual request, including unknown fields, absent materials and mode', async () => {
++    const {source,invocation}=await ordinaryControl();
++    for(const altered of [ {...invocation,solver_mode:'dense_scrutiny' as const}, {...invocation,request:{model:invocation.request.model}}, {...invocation,request:{...invocation.request,additional:'actual raw field'}} ]) {
++      await expect(validateSourceBlockRecovery(source,altered)).rejects.toThrow('SOURCE_BLOCKS_INVOCATION_HASH');
++    }
++  });
++  it('rejects rehashed case deletion, case-mode mismatch and unaccounted result deletion', async () => {
++    for(const [mutate,code] of [
++      [(s:any)=>s.source_block_recovery.body.cases.pop(),'CASE_COVERAGE'],
++      [(s:any)=>s.source_block_recovery.body.cases[0].requested_mode='dense_scrutiny','MODE_QUALITY_BINDING'],
++      [(s:any)=>s.source_block_recovery.body.cases[0].rows.pop(),'ROW_COVERAGE']
++    ] as const) {
++      const {source,invocation}=await ordinaryControl();mutate(source);await rehash(source);
++      await expect(validateSourceBlockRecovery(source,invocation)).rejects.toThrow(`SOURCE_BLOCKS_${code}`);
++    }
++  });
++  it('rejects changed publication, malformed nested fields and downgrade with recomputed hashes', async () => {
++    const {source,invocation}=await ordinaryControl();source.results[0].value+=1;
++    await expect(validateSourceBlockRecovery(source,invocation)).rejects.toThrow('SOURCE_BLOCKS_PUBLICATION_HASH');
++    const receipt=source.source_block_recovery as any;receipt.body.cases[0].work.extra='not in schema';
++    expect(sourceBlockReceiptShape(receipt)).toBe(false);
++    delete receipt.body.cases[0].work.extra;source.producer!.semantic_contract_id=PRECISION_CONTRACT_ID;await rehash(source);
++    expect(sourceContract(source)).toBe('unsupported');
++    await expect(validateSourceBlockRecovery(source,invocation)).rejects.toThrow('SOURCE_BLOCKS_CONTRACT');
++  });
++});
++
++const genuinePairs = [
++  {name:'n05-dense_scrutiny',raw:raw0,request:request0,mode:'dense_scrutiny' as const},
++  {name:'n05-sparse_interactive',raw:raw1,request:request1,mode:'sparse_interactive' as const},
++  {name:'n06-dense_scrutiny',raw:raw2,request:request2,mode:'dense_scrutiny' as const},
++  {name:'n06-sparse_interactive',raw:raw3,request:request3,mode:'sparse_interactive' as const},
++  {name:'multicase-dense_scrutiny',raw:raw4,request:request4,mode:'dense_scrutiny' as const},
++  {name:'multicase-sparse_interactive',raw:raw5,request:request5,mode:'sparse_interactive' as const}
++];
++
++// Captured from the actual Rust Value-aware producer; these checks consume
++// received artifacts. They are not new Rust solves or native UI witnesses.
++describe('received genuine source-block producer fixtures', () => {
++  it.each(genuinePairs)('$name validates its exact request and preserves ordinary attempt evidence', async ({raw,request,mode}) => {
++    const source=structuredClone(raw) as MechanicsResult;
++    const invocation={request:structuredClone(request),solver_mode:mode};
++    const before=structuredClone(source.numerical_quality);
++    expect(await validateSourceBlockRecovery(source,invocation)).toEqual({eligible:true,findings:[]});
++    expect(numericalResultStanding(source,invocation.request.model as PreviewModel).eligible).toBe(true);
++    expect(source.numerical_quality).toEqual(before);
++    const receipt=source.source_block_recovery as any;
++    expect(()=>{receipt.body.cases[0].projections[0].value=42;}).toThrow(TypeError);
++    expect(sourceBlockReceiptShape(receipt)).toBe(true);
++    expect(sourceBlockStanding(structuredClone(source),invocation.request.model as PreviewModel).eligible).toBe(false);
++  });
++});
++
++function nativeHost() { Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true}); }
++function ieeeBits(value:number) {const view=new DataView(new ArrayBuffer(8));view.setFloat64(0,value);return view.getBigUint64(0).toString(16).padStart(16,'0');}
++describe('actual invocation boundary using mocked IPC and genuine received fixtures', () => {
++  it.each(genuinePairs)('$name registers only the actual native response path',async ({raw,request,mode})=>{
++    nativeHost();const model=structuredClone(request.model) as PreviewModel;
++    vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));
++    const source=await runPreviewMechanics(model,mode);
++    expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(true);
++    expect(retainedNativeMechanicsInvocation(source,model)).toEqual({request,solver_mode:mode});
++    expect(numericalResultStanding(source,model).eligible).toBe(true);
++    expect(hasNativeMechanicsInvocation(structuredClone(source),model,mode)).toBe(false);
++    expect(hasNativeMechanicsInvocation(source,model,mode==='dense_scrutiny'?'sparse_interactive':'dense_scrutiny')).toBe(false);
++    source.status.rule_check='USER_RULE_CHECKED';
++    expect(hasNativeMechanicsInvocation(source,model,mode)).toBe(false);
++    expect(sourceBlockStanding(source,model).eligible).toBe(false);
++  });
++  it('known completed jobs may register; unknown, mismatched and failed jobs cannot',async ()=>{
++    const {raw,request,mode}=genuinePairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;
++    vi.mocked(invoke).mockResolvedValueOnce({job_id:'known',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
++    await startPreviewMechanicsJob(model,mode);
++    vi.mocked(invoke).mockResolvedValueOnce({job_id:'known',state:'completed',result:structuredClone(raw)});
++    const done=await pollPreviewMechanicsJob('known');expect(hasNativeMechanicsInvocation(done.result,model,mode)).toBe(true);
++    vi.mocked(invoke).mockResolvedValueOnce({job_id:'unknown',state:'completed',result:structuredClone(raw)});
++    const unknown=await pollPreviewMechanicsJob('unknown');expect(hasNativeMechanicsInvocation(unknown.result,model)).toBe(false);
++    vi.mocked(invoke).mockResolvedValueOnce({job_id:'other',state:'completed',result:structuredClone(raw)});
++    await expect(pollPreviewMechanicsJob('expected')).rejects.toThrow('SOLVE-JOB-IDENTITY-MISMATCH');
++    vi.mocked(invoke).mockResolvedValueOnce({job_id:'failed',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
++    await startPreviewMechanicsJob(model,mode);vi.mocked(invoke).mockResolvedValueOnce({job_id:'failed',state:'failed',result:structuredClone(raw)});
++    const failed=await pollPreviewMechanicsJob('failed');expect(hasNativeMechanicsInvocation(failed.result,model)).toBe(false);
++  });
++  it('browser references never establish fresh Current provenance',async ()=>{
++    const reference=await loadBundledMechanicsReference();expect(reference.standing).toBe('reference_only');
++    expect(hasNativeMechanicsInvocation(reference.source,modelFixture as PreviewModel)).toBe(false);
++    await expect(runPreviewMechanics(modelFixture as PreviewModel)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY');
++    await expect(startPreviewMechanicsJob(modelFixture as PreviewModel)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY');
++  });
++  it('invalidates method registration after actual context mutation or signed-zero mutation',async ()=>{
++    const {raw,request,mode}=genuinePairs[0];const source=structuredClone(raw) as MechanicsResult;const invocation={request:structuredClone(request),solver_mode:mode};
++    const model=structuredClone(invocation.request.model) as PreviewModel;
++    await validateSourceBlockRecovery(source,invocation);expect(sourceBlockStanding(source,model).eligible).toBe(true);
++    (invocation.request as any).changed_raw_field=true;expect(sourceBlockStanding(source,model).eligible).toBe(false);
++    delete (invocation.request as any).changed_raw_field;await validateSourceBlockRecovery(source,invocation);
++    const zero=source.results.find(r=>Object.is(r.value,-0))!;expect(zero).toBeDefined();zero.value=0;
++    expect(sourceBlockStanding(source,model).eligible).toBe(false);
++  });
++});
++
++describe('source-block work and derived range policy mutations',()=>{
++  it.each(['case_limit','case_sum','invocation_limit','balanced_invocation_overflow','unbalanced_publication'] as const)('rejects rehashed %s claims',async kind=>{
++    const {raw,request,mode}=genuinePairs[4];const source=structuredClone(raw) as MechanicsResult;const body=(source.source_block_recovery as any).body;
++    if(kind==='case_limit')body.cases[0].work.limit=4_000_001;
++    if(kind==='case_sum')body.cases[0].work.reserved_unobserved_failure=body.cases[0].work.limit;
++    if(kind==='invocation_limit')body.invocation_work.limit=64_000_001;
++    if(kind==='balanced_invocation_overflow'){body.invocation_work.charged=64_000_001;body.invocation_work.publication_charged=64_000_001-body.cases.reduce((n:number,c:any)=>n+c.work.charged+c.work.reserved_unobserved_failure,0);}
++    if(kind==='unbalanced_publication')body.invocation_work.publication_charged++;
++    await rehash(source);await expect(validateSourceBlockRecovery(source,{request,solver_mode:mode})).rejects.toThrow(['case_limit','invocation_limit','balanced_invocation_overflow'].includes(kind)?'SOURCE_BLOCKS_RECEIPT_SHAPE':kind==='case_sum'?'SOURCE_BLOCKS_WORK':'SOURCE_BLOCKS_INVOCATION_WORK');
++  });
++  it('counts reserved unobserved failure exactly once rather than requiring it below observed work',async()=>{
++    const {raw,request,mode}=genuinePairs[0];const source=structuredClone(raw) as MechanicsResult;const work=(source.source_block_recovery as any).body.cases[0].work;
++    work.reserved_unobserved_failure=work.charged;work.charged=0;await rehash(source);
++    expect((await validateSourceBlockRecovery(source,{request,solver_mode:mode})).eligible).toBe(true);
++    // This rehashed policy control is not a new producer execution/current source.
++    expect(hasNativeMechanicsInvocation(source,request.model as PreviewModel)).toBe(false);
++  });
++  it('rejects a nonzero subnormal output of the ordered scaled norm',async()=>{
++    const {raw,request,mode}=genuinePairs[0];const source=structuredClone(raw) as MechanicsResult;const receipt=(source.source_block_recovery as any).body.cases[0];
++    const treatment=receipt.rows.find((t:any)=>t.recipe_id==='translation_norm_scaled_v1');const row=source.results.find(r=>r.id===treatment.input_result_ids[0])!;row.value=2**-1030;
++    const p=receipt.projections.find((p:any)=>p.result_id===row.id);p.value=row.value;p.value_bits=ieeeBits(row.value);p.interval=[row.value,row.value];p.basis='exact_identity';
++    source.results.find(r=>r.id===treatment.result_id)!.value=Math.abs(row.value);
++    await rehash(source);await expect(validateSourceBlockRecovery(source,{request,solver_mode:mode})).rejects.toThrow('SOURCE_BLOCKS_NORM_VALUE');
++  });
++});
++
++const uiPairs=[{name:'n05-dense_scrutiny',raw:JSON.parse(uiRaw0Text),request:JSON.parse(uiRequest0Text),mode:'dense_scrutiny' as const},
++{name:'n05-sparse_interactive',raw:JSON.parse(uiRaw1Text),request:JSON.parse(uiRequest1Text),mode:'sparse_interactive' as const},
++{name:'n06-dense_scrutiny',raw:JSON.parse(uiRaw2Text),request:JSON.parse(uiRequest2Text),mode:'dense_scrutiny' as const},
++{name:'n06-sparse_interactive',raw:JSON.parse(uiRaw3Text),request:JSON.parse(uiRequest3Text),mode:'sparse_interactive' as const},
++{name:'multicase-dense_scrutiny',raw:JSON.parse(uiRaw4Text),request:JSON.parse(uiRequest4Text),mode:'dense_scrutiny' as const},
++{name:'multicase-sparse_interactive',raw:JSON.parse(uiRaw5Text),request:JSON.parse(uiRequest5Text),mode:'sparse_interactive' as const}];
++
++// These real producer outputs are replayed through mocked transport. This
++// exercises the actual frontend registrar and consumers, not a native UI run.
++describe('genuine full-UI source-block lifecycle through simulated native IPC',()=>{
++ it.each(uiPairs)('$name connects Current, exports, rule revision and saved history',async({raw,request,mode})=>{
++  nativeHost();const model=structuredClone(request.model) as PreviewModel;
++  vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const result=await runPreviewMechanics(model,mode);
++  expect(hasNativeMechanicsInvocation(result,model,mode)).toBe(true);
++  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer!.component_name,solver_version:result.producer!.component_version,solver_build_ref:'genuine-fixture-mocked-native-transport',solver_mode:mode,settings:{}},active_rule_packs:[],external_assets:[]});
++  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
++  await validateAnalysisRunV03(analysisRun,result,modelLoadBasisRefs(model));
++  const hook=renderHook(()=>useResultsSessionState());
++  act(()=>{hook.result.current.setResult(result);hook.result.current.setInputManifest(inputManifest);});expect(hook.result.current.currentSolvedResult).toBeNull();
++  act(()=>hook.result.current.setAnalysisRun(analysisRun));expect(hook.result.current.currentSolvedResult).toBe(result);
++  const panel=render(createElement(ResultsPanel,{result,knowledge:null,analysisRun,selectedResultId:null,onSelectResult:()=>{}}));
++  expect(panel.getByTestId('numerical-result-standing').textContent).toContain(`Ordinary solve: ${result.numerical_quality!.status}`);
++  expect(panel.getByTestId('numerical-result-standing').textContent).toContain('Producer recovery receipt: qualified');panel.unmount();
++  const before=structuredClone(result),beforeHash=await canonicalSha256HexCheckedV1(result);
++  const canonical=await buildCurrentResultExport({model,result,analysisRun,inputManifest});
++  expect(canonical.result_envelope.source_block_recovery).toEqual(result.source_block_recovery);
++  await validateResultDocument(canonical,result);
++  const stressNeutral=await buildStressNeutralExportPacket({model,result,analysisRun});
++  expect(stressNeutral.source_block_recovery).toEqual(result.source_block_recovery);
++  await validateStressNeutralExportPacket(stressNeutral,result,analysisRun,modelLoadBasisRefs(model));
++  const revision=await buildAnalysisRunPreview(result,{inputManifest,ruleCheckAggregate:'USER_RULE_CHECKED'});
++  expect(revision.analysis_run.analysis_status).toContain('USER_RULE_CHECKED');
++  expect(result.status.rule_check).toBe('RULE_INPUTS_INCOMPLETE');expect(result).toEqual(before);
++  expect(await canonicalSha256HexCheckedV1(result)).toBe(beforeHash);
++  expect(revision.analysis_run.hashes.find(h=>h.payload_scope==='received_result')?.value).toBe(analysisRun.analysis_run.hashes.find(h=>h.payload_scope==='received_result')?.value);
++  act(()=>hook.result.current.setAnalysisRun(revision));expect(hook.result.current.currentSolvedResult).toBe(result);
++  vi.mocked(invoke).mockResolvedValueOnce({aggregate_status:'RULE_INPUTS_INCOMPLETE',checks:[]});
++  await runRuleChecks({model,solvedEnvelope:result,rulePackDocument:{metadata:{rule_pack_id:'invented-test-only'}} as never});
++  const ruleCall=vi.mocked(invoke).mock.calls.find(call=>call[0]==='run_rule_checks')![1] as any;
++  expect(ruleCall.sourceBlockInvocation).toEqual({request,solver_mode:mode});
++  expect(result).toEqual(before);
++  // Simulate persisted transport with a fresh object; no private token survives.
++  const reopened: LocalProjectEnvelope=structuredClone({
++   model,mechanics_result:result,analysis_run:revision,model_hash:null,project_envelope_hash:null,editor_intents:[],proposal:null,selected_review_target:null,model_document_migration:null,model_migration_ledger:[],
++   summary:{project_id:model.project.id,project_name:model.project.name,database_path:'simulated-received-payload',storage_mode:'test_memory_replay',migration_status:'not_executed',migration_framework:'not_executed',store_schema_version:0,store_schema_target_version:0,migrations_applied_on_open:[],fts_indexed:false,copied_external_files:false,editor_intent_count:0,proposal_count:0,selected_review_target_count:0,selected_review_target_ref:'',persisted_mechanics_result_count:1,persisted_analysis_run_count:1,persisted_analysis_run_ref:revision.analysis_run.run_id,persisted_model_hash_count:0,persisted_model_hash_ref:'',persisted_project_envelope_hash_count:0,persisted_project_envelope_hash_ref:'',unit_round_trip_status:'not_executed',unit_round_trip_checked_ref_count:0,unit_round_trip_signature:'',message:'Simulated persisted transport; no storage operation performed.'}
++  });
++  const history=await buildHistoricalRunContext(reopened);
++  expect(history?.designation).toBe('historical_saved_run');expect(history?.rawMechanicsResult).toEqual(before);
++  expect(history?.findings).not.toContain('HISTORICAL_RESULT_HASH_MISMATCH');expect(history?.findings).toContain('SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED');
++  expect(hasNativeMechanicsInvocation(reopened.mechanics_result,model)).toBe(false);
++  await expect(buildCurrentResultExport({model,result:reopened.mechanics_result!,analysisRun:revision,inputManifest})).rejects.toThrow('CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE');
++  hook.unmount();
++ },30000);
++});
++
++it('accepted cancellation during async receipt validation prevents native registration',async()=>{
++ const {raw,request,mode}=genuinePairs[0];nativeHost();const model=structuredClone(request.model) as PreviewModel;
++ vi.mocked(invoke).mockResolvedValueOnce({job_id:'cancel-race',backend_cancellation_token:'token',state:'queued',cancellation_scope:'job'});
++ await startPreviewMechanicsJob(model,mode);
++ vi.mocked(invoke).mockResolvedValueOnce({job_id:'cancel-race',state:'completed',result:structuredClone(raw)}).mockResolvedValueOnce({job_id:'cancel-race',accepted:true});
++ const pending=pollPreviewMechanicsJob('cancel-race');await Promise.resolve();await cancelPreviewMechanicsJob('cancel-race','token');
++ const done=await pending;expect(hasNativeMechanicsInvocation(done.result,model,mode)).toBe(false);
++});
++
++function tinyNormControl() {
++ const pair=genuinePairs[0],source=structuredClone(pair.raw) as MechanicsResult,c=(source.source_block_recovery as any).body.cases[0];
++ const treatment=c.rows.find((t:any)=>t.recipe_id==='translation_norm_scaled_v1');
++ const row=source.results.find(r=>r.id===treatment.input_result_ids[0])!,p=c.projections.find((p:any)=>p.result_id===row.id);
++ row.value=2**-520;p.value=row.value;p.value_bits=ieeeBits(row.value);p.interval=[row.value,row.value];p.basis='exact_identity';
++ p.absolute_error_bound=0;p.relative_error_bound=0;
++ const norm=source.results.find(r=>r.id===treatment.result_id)!;norm.value=row.value;
++ source.summary.max_displacement={value:norm.value,unit:norm.unit,result_ref:norm.id,location_ref:norm.entity_ref};
++ return {pair,source,p,row};
++}
++it('ordered scaled norm retains a normal tiny result whose direct squares are subnormal',async()=>{
++ const {pair,source,row}=tinyNormControl();expect(row.value*row.value).toBeLessThan(2**-1022);await rehash(source);
++ expect((await validateSourceBlockRecovery(source,{request:pair.request,solver_mode:pair.mode})).eligible).toBe(true);
++ expect(hasNativeMechanicsInvocation(source,pair.request.model as PreviewModel)).toBe(false);
++});
++it('reserves the scaled recipe error allowance beyond its affine input bounds',async()=>{
++ const {pair,source,p,row}=tinyNormControl();p.basis='outward_interval';p.relative_error_bound=1e-9;p.absolute_error_bound=row.value*1e-9;p.interval=[row.value*(1-1e-9),row.value*(1+1e-9)];
++ // Isolate the norm budget in an explicitly inspection-only stress carrier;
++ // full stress qualification uses the separately stricter128ε case bound.
++ for(const t of (source.source_block_recovery as any).body.cases[0].rows) if(['straight_open_stress_v1','reviewed_stress_summary_v1'].includes(t.recipe_id)){t.treatment='inspection_only';t.recipe_id=null;}
++ await rehash(source);
++ await expect(validateSourceBlockRecovery(source,{request:pair.request,solver_mode:pair.mode})).rejects.toThrow('SOURCE_BLOCKS_NORM_ERROR_BOUND');
++});
++
++describe('conservative normal-range stress carrier admission',()=>{
++ it.each([['axial_force',1e-306,'STRESS_MPA_RANGE'],['torsional_moment',1e-307,'STRESS_TORSION_PRODUCT_RANGE']] as const)('withholds %s range loss after rehash',async(component,value,code)=>{
++  const pair=genuinePairs[0],source=structuredClone(pair.raw) as MechanicsResult,c=(source.source_block_recovery as any).body.cases[0];
++  const row=source.results.find(r=>r.metadata?.component===component&&r.metadata.location==='end_i')!;
++  row.value=value;const p=c.projections.find((p:any)=>p.result_id===row.id);Object.assign(p,{value,value_bits:ieeeBits(value),interval:[value,value],basis:'exact_identity',absolute_error_bound:0,relative_error_bound:0});
++  await rehash(source);await expect(validateSourceBlockRecovery(source,{request:pair.request,solver_mode:pair.mode})).rejects.toThrow(`SOURCE_BLOCKS_${code}`);
++ });
++ it('reserves128ε beyond every case projection before checking stress arithmetic',async()=>{
++  const pair=genuinePairs[0],source=structuredClone(pair.raw) as MechanicsResult,c=(source.source_block_recovery as any).body.cases[0],p=c.projections.find((p:any)=>p.value!==0);
++  const delta=Math.abs(p.value)*1e-9;Object.assign(p,{basis:'outward_interval',relative_error_bound:1e-9,absolute_error_bound:delta,interval:[p.value-delta,p.value+delta]});
++  await rehash(source);await expect(validateSourceBlockRecovery(source,{request:pair.request,solver_mode:pair.mode})).rejects.toThrow('SOURCE_BLOCKS_STRESS_ERROR_BOUND');
++ });
++});
++
++const rejectedStressPairs=[{mode:'dense_scrutiny' as const,raw:JSON.parse(rejectedRaw0Text),request:JSON.parse(rejectedRequest0Text)},
++{mode:'sparse_interactive' as const,raw:JSON.parse(rejectedRaw1Text),request:JSON.parse(rejectedRequest1Text)}];
++
++it.each(rejectedStressPairs)('refuses the genuine known-bad $mode MPa publication despite its qualified producer receipt',async({mode,raw,request})=>{
++ const source=structuredClone(raw) as MechanicsResult;expect((source.source_block_recovery as any).body.status).toBe('qualified');
++ await expect(validateSourceBlockRecovery(source,{request,solver_mode:mode})).rejects.toThrow('SOURCE_BLOCKS_STRESS_MPA_RANGE');
++ expect(numericalResultStanding(source,request.model as PreviewModel).eligible).toBe(false);
++ nativeHost();vi.mocked(invoke).mockResolvedValueOnce(structuredClone(raw));const received=await runPreviewMechanics(request.model as PreviewModel,mode);
++ expect(received).toEqual(raw);expect(hasNativeMechanicsInvocation(received,request.model as PreviewModel)).toBe(false);
++});
+--- /dev/null
++++ b/projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.ts
+@@ -0,0 +1,376 @@
++import receiptSchema from '../../../../../schemas/source_block_recovery.schema.json';
++import contract from '../../../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json';
++import { canonicalSha256HexCheckedV1, checkedJsonText } from '../../services/hashService';
++import { loadWasmEngine } from '../../services/wasmEngine/loadWasmEngine';
++import type { MechanicsResult, PreviewModel } from '../../types';
++
++export const SOURCE_BLOCKS_CONTRACT_ID = 'openpipestress.result_semantics/0.3.0/source-blocks-1';
++export const SOURCE_BLOCKS_CONTRACT_SHA256 = '5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f';
++export type SourceBlockInvocation = Readonly<{ request: unknown; solver_mode: 'dense_scrutiny' | 'sparse_interactive' }>;
++type JsonObject = Record<string, any>;
++type Validation = { eligible: boolean; findings: string[] };
++type Validated = Validation & { sourceText: string; sourceZeroSigns: string; invocationText: string; invocationZeroSigns: string; invocation: SourceBlockInvocation };
++// A registration is private and grants only receipt consistency. Current-use
++// callers must still authenticate the actual model, producer/build and run.
++const validated = new WeakMap<MechanicsResult, Validated>();
++// Only this validator adds receipts after recursively freezing their already
++// checked JSON graph. Mutable/untrusted identities never bypass shape checks.
++const immutableReceiptShapes = new WeakSet<object>();
++function sealValidatedReceipt(value: unknown, seen = new Set<object>()): void {
++  if (!value || typeof value !== 'object' || seen.has(value)) return;
++  seen.add(value);
++  for (const descriptor of Object.values(Object.getOwnPropertyDescriptors(value))) {
++    if (Object.hasOwn(descriptor,'value')) sealValidatedReceipt(descriptor.value, seen);
++  }
++  Object.freeze(value);
++}
++const fail = (condition: unknown, code: string): void => { if (!condition) throw new Error(`SOURCE_BLOCKS_${code}`); };
++const unique = (values: unknown[]) => new Set(values).size === values.length;
++const same = (a: unknown, b: unknown) => checkedJsonText(a) === checkedJsonText(b);
++
++/** Closed, bounded interpreter for this maintained schema's small keyword set. */
++function shape(value: any, rule: JsonObject, depth = 0): boolean {
++  if (depth > 40) return false;
++  if (rule.$ref) return shape(value, (receiptSchema.$defs as JsonObject)[rule.$ref.replace('#/$defs/', '')], depth + 1);
++  if (rule.anyOf && !rule.anyOf.some((r: JsonObject) => shape(value, r, depth + 1))) return false;
++  if (Object.hasOwn(rule, 'const') && value !== rule.const) return false;
++  if (rule.enum && !rule.enum.includes(value)) return false;
++  if (rule.type === 'null') return value === null;
++  if (rule.type === 'string' && (typeof value !== 'string' || (rule.minLength && value.length < rule.minLength) || (rule.pattern && !new RegExp(rule.pattern).test(value)))) return false;
++  if (rule.type === 'number' || rule.type === 'integer') {
++    if (typeof value !== 'number' || !Number.isFinite(value) || (rule.type === 'integer' && !Number.isSafeInteger(value))) return false;
++    if (rule.minimum !== undefined && value < rule.minimum || rule.maximum !== undefined && value > rule.maximum) return false;
++  }
++  if (rule.type === 'array') {
++    if (!Array.isArray(value) || value.length > (rule.maxItems ?? 16384) || value.length < (rule.minItems ?? 0)) return false;
++    if (!value.every(v => shape(v, rule.items, depth + 1))) return false;
++  }
++  if (rule.type === 'object') {
++    if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
++    if (rule.required?.some((key: string) => !Object.hasOwn(value, key))) return false;
++    if (rule.additionalProperties === false && Object.keys(value).some(key => !Object.hasOwn(rule.properties, key))) return false;
++    if (Object.entries(rule.properties).some(([key, r]) => Object.hasOwn(value, key) && !shape(value[key], r as JsonObject, depth + 1))) return false;
++  }
++  return true;
++}
++export function sourceBlockReceiptShape(value: unknown): boolean {
++  if (value && typeof value === 'object' && immutableReceiptShapes.has(value)) return true;
++  try { checkedJsonText(value); return shape(value, receiptSchema); } catch { return false; }
++}
++const bits = (value: number): string => { const b = new DataView(new ArrayBuffer(8)); b.setFloat64(0, value); return b.getBigUint64(0).toString(16).padStart(16, '0'); };
++const semantic = (r: MechanicsResult['results'][number]) => contract.rows.find(s => s.kind === r.kind && s.unit === r.unit && (s.component === null || s.component === r.metadata?.component));
++const physical = (r: MechanicsResult['results'][number]) => !semantic(r) || semantic(r)!.category === 'physical_quantity';
++const domainHash = (domain: string, payload: unknown) => canonicalSha256HexCheckedV1({ domain, payload });
++
++/** Validate actual wire evidence; this does not replay hidden exact arithmetic.
++ * Capture invocation independently at dispatch, never from the returned receipt. */
++export async function validateSourceBlockRecovery(source: MechanicsResult, invocation: SourceBlockInvocation): Promise<Validation> {
++  validated.delete(source);
++  const sourceText = checkedJsonText(source), invocationText = checkedJsonText(invocation);
++  // All awaits operate on snapshots. Neither a mutable caller nor a racing edit
++  // can alter the bytes checked and then reuse the resulting registration.
++  const raw = structuredClone(source);
++  const sourceZeroSigns = negativeZeroPaths(source);
++  const captured = structuredClone(invocation);
++  const invocationZeroSigns = negativeZeroPaths(invocation);
++  fail(raw.schema_version === '0.2.0' && raw.producer?.semantic_contract_id === SOURCE_BLOCKS_CONTRACT_ID, 'CONTRACT');
++  const allowed = ['schema_version','producer','numerical_quality','formulation_basis','document_kind','run_id','model_ref','status','summary','results','diagnostics','professional_boundary','accepted_model_state_mutated','source_block_recovery'];
++  fail(Object.keys(raw).every(k => allowed.includes(k)), 'ENVELOPE_FIELDS');
++  fail(sourceBlockReceiptShape(raw.source_block_recovery), 'RECEIPT_SHAPE');
++  const receipt = raw.source_block_recovery as JsonObject, body = receipt.body;
++  const request = captured.request as JsonObject, model = request?.model as PreviewModel;
++  fail(model && Array.isArray(model.load_cases) && Array.isArray(model.nodes) && model.nodes.length > 0 && Array.isArray(model.pipe_segments) && Array.isArray(model.supports), 'INVOCATION_MODEL_REQUIRED');
++  fail(model.project?.id === raw.model_ref, 'MODEL_MISMATCH');
++  for (const items of [model.nodes,model.pipe_segments,model.supports,model.load_cases]) fail(unique(items.map(x => x.id)) && items.every(x => typeof x.id === 'string' && x.id.length > 0), 'MODEL_IDENTITIES');
++  fail(raw.results.every(row => Object.keys(row).every(k => ['id','kind','value','unit','dimension','entity_ref','basis_ref','source_result_refs','metadata'].includes(k)) && Number.isFinite(row.value) && typeof row.entity_ref === 'string' && row.entity_ref.length > 0), 'ROW_SHAPE');
++  fail(raw.results.every(row => !Object.hasOwn(row,'dimension') || semantic(row)?.legacy_declared_dimension === row.dimension), 'ROW_DIMENSION');
++  fail(['dense_scrutiny','sparse_interactive'].includes(captured.solver_mode), 'MODE');
++  const withoutReceipt = { ...raw }; delete withoutReceipt.source_block_recovery;
++  fail(body.invocation.value === await domainHash('source_blocks_invocation_v1', captured), 'INVOCATION_HASH');
++  fail(body.publication_sha256 === await domainHash('source_blocks_publication_v1', withoutReceipt), 'PUBLICATION_HASH');
++  fail(receipt.receipt_sha256 === await domainHash('source_blocks_receipt_v1', body), 'RECEIPT_HASH');
++  const cases = body.cases as JsonObject[], requested = model.load_cases.map(c => c.id), q = raw.numerical_quality!;
++  fail(requested.length && unique(requested) && cases.length === requested.length && q?.cases.length === requested.length, 'CASE_COVERAGE');
++  const rowIds = raw.results.map(r => r.id), diagnosticIds = raw.diagnostics.map(d => d.id);
++  fail([...rowIds,...diagnosticIds].every(id => typeof id === 'string' && id.length > 0) && unique([...rowIds,...diagnosticIds]), 'EVIDENCE_IDS');
++  const byId = new Map(raw.results.map(r => [r.id, r])), accounted = new Set<string>();
++  const findings: string[] = [];
++  let chargedCases = 0;
++  const qualityOrder = ['checks_passed','sensitive','not_assessed','unresolved','failed'];
++  fail(q.status === qualityOrder[Math.max(...q.cases.map(c => qualityOrder.indexOf(c.solve_quality)))], 'ORDINARY_AGGREGATE');
++  const diagnosticById = new Map(raw.diagnostics.map(d => [d.id,d]));
++  const diag = (id: unknown) => typeof id === 'string' && diagnosticIds.includes(id);
++  const account = (id: string) => { fail(byId.has(id) && !accounted.has(id), 'ROW_COVERAGE'); accounted.add(id); return byId.get(id)!; };
++  for (const [index, c] of cases.entries()) {
++    fail(c.basis_ref.ref_id === requested[index] && q.cases[index].basis_ref.ref_type === 'load_case' && q.cases[index].basis_ref.ref_id === requested[index], 'CASE_ORDER');
++    const o = c.ordinary_attempt, qc = q.cases[index];
++    fail(c.requested_mode === captured.solver_mode && o.requested_mode === captured.solver_mode && o.quality_case_index === index, 'MODE_QUALITY_BINDING');
++    fail(o.structural_report_diagnostic_ref === null || diag(o.structural_report_diagnostic_ref), 'ORDINARY_REPORT');
++    if (o.outcome === 'not_attempted') fail(o.structural_report_diagnostic_ref === null && o.failure === null && qc.solve_quality === 'not_assessed', 'ORDINARY_NOT_ATTEMPTED');
++    if (o.outcome === 'checks_passed' || o.outcome === 'sensitive') fail(diag(o.structural_report_diagnostic_ref) && o.failure === null && qc.solve_quality === o.outcome && qc.evidence_refs.includes(o.structural_report_diagnostic_ref) && diagnosticById.get(o.structural_report_diagnostic_ref)?.code === (o.outcome === 'checks_passed' ? 'NUMERICAL_INTEGRITY_CHECKS_PASSED' : 'NUMERICAL_INTEGRITY_SENSITIVE'), 'ORDINARY_REPORT');
++    if (o.outcome === 'rejected') fail(o.failure && diag(o.failure.diagnostic_ref) && ['failed','unresolved'].includes(qc.solve_quality) && qc.evidence_refs.includes(o.failure.diagnostic_ref) && ['NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM','NUMERICAL_INTEGRITY_NEGATIVE_ENERGY','NUMERICAL_INTEGRITY_FAILED','NUMERICAL_INTEGRITY_UNRESOLVED','NUMERICAL_INTEGRITY_ASSEMBLY_UNRESOLVED'].includes(diagnosticById.get(o.failure.diagnostic_ref)!.code), 'ORDINARY_FAILURE');
++    const work = c.work;
++    const caseCharge = work.charged + work.reserved_unobserved_failure;
++    chargedCases += caseCharge;
++    fail(Number.isSafeInteger(caseCharge) && caseCharge <= work.limit && work.limit <= 4_000_000 && chargedCases <= 64_000_000 && (work.rejected_reservation.kind === 'overflow' ? work.rejected_reservation.amount === null : work.rejected_reservation.amount !== null), 'WORK');
++    const exact = c.selected_method === 'retained_source_blocks_exact_v1', ordinary = c.selected_method === `ordinary_${captured.solver_mode === 'dense_scrutiny' ? 'dense' : 'sparse'}_structural_v1`;
++    if (c.outcome === 'qualified') {
++      fail(c.failure === null && (exact || ordinary), 'SELECTED_METHOD');
++      if (ordinary) fail(c.source === null && !c.projections.length && !c.supports.length && o.outcome === 'checks_passed' && qc.structural_status === 'passive_model_basis' && qc.solve_quality === 'checks_passed' && qc.model_matrix_fidelity === 'represented_equations_retained' && ['not_claimed','reference_verified'].includes(qc.accuracy_evidence) && qc.evidence_refs.length && qc.evidence_refs.every(id => byId.has(id) || diag(id)), 'ORDINARY_NOT_QUALIFIED');
++      if (exact) fail(c.source !== null, 'SOURCE_REQUIRED');
++    } else {
++      fail(c.selected_method === null && c.failure && diag(c.failure.diagnostic_ref), 'FAILURE');
++      fail(c.failure.code === 'unsupported_block' ? c.source === null && c.failure.block_order > 2 : c.failure.block_order === null, 'FAILURE_BLOCK');
++      findings.push('SOURCE_BLOCKS_CASE_UNQUALIFIED');
++    }
++    if (c.source) {
++      const s = c.source, map = [...s.free_dofs,...s.prescribed_dofs], blockDofs = s.free_blocks.flat();
++      fail(s.dof_count === model.nodes.length * 6 && s.dof_count <= 256 && s.stiffness_term_count + s.force_term_count <= 16384 && s.functional_count >= c.projections.length && s.functional_count <= 16384, 'SOURCE_COUNTS');
++      fail(map.length === s.dof_count && unique(map) && map.every(n => n < s.dof_count) && unique(blockDofs) && blockDofs.length === s.free_dofs.length && blockDofs.every((n: number) => s.free_dofs.includes(n)), 'SOURCE_MAP');
++      fail(s.member_ids.length > 0 && unique(s.member_ids) && same(s.member_ids, model.pipe_segments.map(m => m.id)) && unique(s.support_ids) && same(s.support_ids, model.supports.map(s => s.id)), 'SOURCE_ENTITIES');
++    }
++    fail(unique(c.projections.map((p: JsonObject) => p.projection_id)) && unique(c.projections.map((p: JsonObject) => p.functional_id)) && unique(c.projections.map((p: JsonObject) => p.result_id)), 'PROJECTION_IDS');
++    const usedProjections = new Set<string>();
++    for (const treatment of c.rows as JsonObject[]) {
++      const row = account(treatment.result_id);
++      fail(row.basis_ref?.ref_type === 'load_case' && row.basis_ref.ref_id === requested[index], 'ROW_CASE');
++      fail(unique(treatment.input_result_ids) && treatment.input_result_ids.every((id: string) => byId.get(id)?.basis_ref?.ref_type === 'load_case' && byId.get(id)?.basis_ref?.ref_id === requested[index] && id !== row.id), 'ROW_INPUTS');
++      if (treatment.treatment === 'qualified_projection') {
++        const p = c.projections.find((p: JsonObject) => p.projection_id === treatment.projection_id);
++        fail(exact && p && p.result_id === row.id && !usedProjections.has(p.projection_id) && treatment.recipe_id === null && !treatment.input_result_ids.length, 'PROJECTION_BINDING');
++        usedProjections.add(p.projection_id);
++        fail(Object.is(p.value,row.value) && p.value_bits === bits(row.value) && p.unit === row.unit && semantic(row)?.category === 'physical_quantity', 'PROJECTION_VALUE');
++        validateProjectionSemantics(p, row, model);
++        fail(p.interval[0] <= p.value && p.value <= p.interval[1] && (p.value === 0 || p.interval[0] > 0 || p.interval[1] < 0), 'PROJECTION_INTERVAL');
++        fail(p.value !== 0 || p.basis !== 'outward_interval', 'ZERO_PROJECTION');
++        if (p.basis === 'exact_zero' || p.basis === 'exact_identity') fail(p.interval[0] === p.value && p.interval[1] === p.value && p.absolute_error_bound === 0 && p.relative_error_bound === 0 && (p.basis !== 'exact_zero' || p.value === 0), 'EXACT_PROJECTION');
++      } else if (treatment.treatment === 'ordinary_checked') {
++        fail(ordinary && c.outcome === 'qualified' && semantic(row) !== undefined && row.kind !== 'support_reaction_component_v2' && treatment.projection_id === null && treatment.recipe_id === null, 'ORDINARY_ROW');
++      } else if (treatment.treatment === 'checked_derived') {
++        fail(exact && treatment.projection_id === null && treatment.recipe_id !== null, 'DERIVED_ROW');
++        // Concrete recipe/dependency checks run after the complete row ledger.
++        // A recipe label alone never qualifies a value.
++      } else {
++        fail(treatment.projection_id === null && treatment.recipe_id === null, 'INSPECTION_ROW');
++        if (physical(row)) findings.push('SOURCE_BLOCKS_PHYSICAL_ROW_INSPECTION_ONLY');
++      }
++    }
++    fail(usedProjections.size === c.projections.length, 'UNACCOUNTED_PROJECTION');
++    if (exact && c.outcome === 'qualified') { checkExpectedPhysicalRows(c, model, byId); await checkDerivedRows(c, model, byId); }
++    if (exact && c.outcome === 'qualified') {
++      fail(c.supports.length === model.supports.length && unique(c.supports.map((s: JsonObject) => s.support_id)), 'SUPPORT_COVERAGE');
++      for (const support of c.supports as JsonObject[]) {
++        const authored = model.supports.find(s => s.id === support.support_id), nodeIndex = model.nodes.findIndex(n => n.id === support.node_id);
++        fail(authored?.node === support.node_id && nodeIndex >= 0 && unique(support.components.map((p: JsonObject) => p.component)), 'SUPPORT_IDENTITY');
++        for (const part of support.components as JsonObject[]) {
++          const offset = ['Fx','Fy','Fz','Mx','My','Mz'].indexOf(part.component), row = byId.get(part.result_id), p = c.projections.find((p: JsonObject) => p.result_id === part.result_id);
++          fail(row && row.metadata && row.kind === 'support_reaction_component_v2' && row.entity_ref === support.support_id && row.metadata?.component === part.component && row.metadata.coordinate_system === 'global' && row.metadata.location === 'node' && row.metadata.basis === 'recovered_from_assembled_support_law' && row.metadata.sign_convention === 'support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node' && row.unit === (offset < 3 ? 'N' : 'N*m') && p?.functional_id === part.functional_id && p.quantity === 'support_action_component', 'SUPPORT_COMPONENT');
++          fail(part.action_terms.length && part.action_terms.every((t: JsonObject) => t.global_dof === nodeIndex * 6 + offset && t.source_id === support.support_id), 'SUPPORT_OWNERSHIP');
++        }
++      }
++    } else fail(!c.supports.length, 'UNQUALIFIED_SUPPORT_CERTIFICATE');
++  }
++  for (const id of body.envelope_observation_result_ids) { const row = account(id); fail(!row.basis_ref && !physical(row), 'ENVELOPE_OBSERVATION'); }
++  fail(accounted.size === raw.results.length, 'ROW_COVERAGE');
++  const invocationWork = body.invocation_work;
++  fail(invocationWork.limit <= 64_000_000 && invocationWork.charged <= invocationWork.limit && chargedCases + invocationWork.publication_charged === invocationWork.charged, 'INVOCATION_WORK');
++  const count = cases.filter(c => c.outcome === 'qualified').length;
++  fail(body.status === (count === cases.length ? 'qualified' : count ? 'partial' : 'unavailable'), 'AGGREGATE');
++  if (body.status === 'qualified') fail(cases.some(c => c.selected_method === 'retained_source_blocks_exact_v1'), 'NO_SOURCE_METHOD');
++  if (body.status !== 'qualified' || model.combinations?.length) findings.push('SOURCE_BLOCKS_ENVELOPE_UNQUALIFIED');
++  if (raw.status.mechanics !== 'MECHANICS_SOLVED') findings.push('MECHANICS_NOT_SOLVED');
++  for (const [summary, kind] of [[raw.summary.max_displacement, 'displacement_magnitude'], [raw.summary.max_open_formula_stress, 'open_formula_stress_summary']] as const) {
++    const candidates = raw.results.filter(r => r.kind === kind);
++    if (body.status === 'qualified' && candidates.length) fail(summary, 'SUMMARY_REQUIRED');
++    if (summary) {
++      const row = byId.get(summary.result_ref);
++      fail(row && row.kind === kind && row.value === summary.value && row.unit === summary.unit && row.entity_ref === summary.location_ref, 'SUMMARY_BINDING');
++      if (body.status === 'qualified') fail(candidates.every(r => r.value <= summary.value), 'SUMMARY_MAXIMUM');
++    }
++  }
++  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
++  // Receipt fields are immutable producer evidence. Seal only after complete
++  // validation and race checks; this avoids quadratic schema work when each
++  // semantic-row lookup dispatches the same authenticated receipt.
++  sealValidatedReceipt(source.source_block_recovery);
++  fail(checkedJsonText(source) === sourceText && negativeZeroPaths(source) === sourceZeroSigns && checkedJsonText(invocation) === invocationText && negativeZeroPaths(invocation) === invocationZeroSigns, 'CHANGED_DURING_VALIDATION');
++  immutableReceiptShapes.add(source.source_block_recovery as object);
++  const answer = { eligible: findings.length === 0, findings: [...new Set(findings)] };
++  validated.set(source, { ...answer, sourceText, sourceZeroSigns, invocationText, invocationZeroSigns, invocation });
++  return answer;
++}
++
++/** No token is serialized or copied to a cloned/imported historical carrier. */
++export function sourceBlockStanding(source: MechanicsResult, model?: Pick<PreviewModel, 'load_cases'> | null): Validation {
++  const token = validated.get(source);
++  try {
++    if (!token || checkedJsonText(source) !== token.sourceText || negativeZeroPaths(source) !== token.sourceZeroSigns || checkedJsonText(token.invocation) !== token.invocationText || negativeZeroPaths(token.invocation) !== token.invocationZeroSigns || !model || !checkedJsonText(model) || !sameModelData(model,(token.invocation.request as {model:PreviewModel}).model)) return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED'] };
++    return { eligible: token.eligible, findings: [...token.findings] };
++  } catch { return { eligible: false, findings: ['SOURCE_BLOCKS_VALIDATED_SOURCE_CHANGED'] }; }
++}
++
++
++function validateProjectionSemantics(p: JsonObject, row: MechanicsResult['results'][number], model: PreviewModel) {
++  const m = row.metadata;
++  fail(m && ['component','coordinate_system','location','basis','sign_convention'].every(k => typeof (m as JsonObject)[k] === 'string' && (m as JsonObject)[k].length > 0), 'PROJECTION_METADATA');
++  const md = m!;
++  if (p.quantity === 'nodal_translation' || p.quantity === 'nodal_rotation') {
++    const rotation = p.quantity === 'nodal_rotation';
++    fail(model.nodes.some(n => n.id === row.entity_ref) && md.coordinate_system === 'global' && md.location === 'node'
++      && md.basis === 'solved_from_global_linear_system' && row.unit === (rotation ? 'rad' : 'mm')
++      && ['x','y','z'].some(axis => row.kind === `global_nodal_${rotation ? 'rotation' : 'displacement'}_${axis}` && md.component === `nodal_${rotation ? 'rotation' : 'displacement'}_${axis}`), 'NODAL_PROJECTION');
++  } else if (p.quantity === 'member_end_action' || p.quantity === 'member_station_action') {
++    const end = p.quantity === 'member_end_action';
++    const components = ['axial_force','shear_force_y','shear_force_z','torsional_moment','bending_moment_y','bending_moment_z'];
++    const component = components.indexOf(md.component);
++    fail(model.pipe_segments.some(m => m.id === row.entity_ref) && md.coordinate_system === 'element_local' && component >= 0
++      && row.kind === `element_local_${md.component}` && row.unit === (component < 3 ? 'N' : 'N*m')
++      && (end ? ['end_i','end_j'].includes(md.location) : ['quarter_1','midspan','quarter_3'].includes(md.location)), 'MEMBER_PROJECTION');
++  } else fail(p.quantity === 'support_action_component' && row.kind === 'support_reaction_component_v2', 'UNIMPLEMENTED_PROJECTION');
++}
++
++/** These finite binary64 recipes are separate from exact affine projection.
++ * Recompute from the authenticated invocation and same-case projected rows;
++ * neither a digest nor the name of a recipe establishes these relationships. */
++async function checkDerivedRows(c: JsonObject, model: PreviewModel, rows: Map<string, MechanicsResult['results'][number]>) {
++  const treatments = new Map<string, JsonObject>(c.rows.map((t: JsonObject) => [t.result_id, t]));
++  if ((c.rows as JsonObject[]).some(t => t.treatment === 'checked_derived' && ['straight_open_stress_v1','reviewed_stress_summary_v1'].includes(t.recipe_id))) {
++    const recipeBound = 128*Number.EPSILON;
++    fail(c.projections.length > 0 && Math.max(...c.projections.map((p: JsonObject) => p.relative_error_bound)) <= (1e-9-recipeBound)/(1+recipeBound), 'STRESS_ERROR_BOUND');
++  }
++  const stressPa = new Map<string, number>();
++  const sections = new Map<string, { area: number; z: number; j: number; r: number }>();
++  async function section(id: string) {
++    if (sections.has(id)) return sections.get(id)!;
++    const member = model.pipe_segments.find(m => m.id === id);
++    fail(member, 'DERIVED_MEMBER');
++    const input = member!.section as JsonObject;
++    const fields = ['outside_diameter','wall_thickness', ...(input.mill_tolerance ? ['mill_tolerance'] : [])];
++    const converted = JSON.parse((await loadWasmEngine()).convertDisplayQuantitiesJson(checkedJsonText({ items: fields.map(name => ({ id:name,value:input[name].value,from_unit:input[name].unit,to_unit:'m',dimension_id:'length' })) })));
++    fail(!converted.error && converted.items?.length === fields.length && converted.items.every((x: JsonObject, i: number) => x.id === fields[i] && x.status === 'converted' && x.unit === 'm' && Number.isFinite(x.value)), 'DERIVED_GEOMETRY_UNITS');
++    const D = converted.items[0].value, t = converted.items[1].value - (fields.length === 3 ? converted.items[2].value : 0), inner = D - 2*t;
++    fail(D > 0 && t > 0 && 2*t < D, 'DERIVED_GEOMETRY');
++    // Match this source method's selected section formation. Physics-1's
++    // authored-OD/effective-wall implementation is a separate reviewed join.
++    const D2 = D*D, inner2 = inner*inner;
++    const area = Math.PI*(D2-inner2)/4, I = Math.PI*(D2*D2-inner2*inner2)/64;
++    const result = { area, z:I/(D/2), j:2*I, r:D/2 };
++    fail(Object.values(result).every(v => Number.isFinite(v) && v > 0), 'DERIVED_GEOMETRY_RANGE');
++    sections.set(id,result); return result;
++  }
++  const projected = (id: string) => {
++    fail(treatments.get(id)?.treatment === 'qualified_projection', 'DERIVED_PROJECTED_INPUT');
++    const row = rows.get(id); fail(row, 'DERIVED_INPUT'); return row!;
++  };
++  async function stress(id: string): Promise<number> {
++    if (stressPa.has(id)) return stressPa.get(id)!;
++    const row = rows.get(id)!, treatment = treatments.get(id);
++    fail(row && treatment?.treatment === 'checked_derived' && treatment.recipe_id === 'straight_open_stress_v1' && treatment.input_result_ids.length === 1, 'STRESS_RECIPE');
++    const force = projected(treatment!.input_result_ids[0]), md = row.metadata;
++    const mapping: Record<string,string> = { axial_normal_stress:'axial_force', bending_normal_stress_y:'bending_moment_y', bending_normal_stress_z:'bending_moment_z', torsional_shear_stress:'torsional_moment' };
++    fail(md && Object.hasOwn(mapping,md.component) && row.kind === `element_local_${md.component}` && row.unit === 'MPa'
++      && force.entity_ref === row.entity_ref && force.metadata?.component === mapping[md.component] && force.metadata.location === md.location
++      && md.coordinate_system === 'element_local' && md.basis === (['end_i','end_j'].includes(md.location) ? 'recovered_from_local_element_stiffness' : 'recovered_from_open_mechanics_stress_components'), 'STRESS_INPUT_BINDING');
++    const sec = await section(row.entity_ref), action = force.value * (md!.location === 'end_i' ? -1 : 1);
++    const torsion = md!.component === 'torsional_shear_stress';
++    const numerator = torsion ? action*sec.r : action;
++    if (torsion) fail(action === 0 ? numerator === 0 : normalFinite(numerator), 'STRESS_TORSION_PRODUCT_RANGE');
++    const pa = numerator/(md!.component === 'axial_normal_stress' ? sec.area : torsion ? sec.j : sec.z);
++    const mpa = pa/1e6;
++    fail(action === 0 ? mpa === 0 : normalFinite(mpa), 'STRESS_MPA_RANGE');
++    fail(action === 0 ? pa === 0 : normalFinite(pa), 'STRESS_PA_RANGE');
++    fail(Object.is(row.value,mpa), `STRESS_VALUE:${row.id}:${bits(row.value)}:${bits(mpa)}`);
++    stressPa.set(id,pa);return pa;
++  }
++  for (const treatment of c.rows as JsonObject[]) {
++    if (treatment.treatment !== 'checked_derived') continue;
++    const row = rows.get(treatment.result_id)!;
++    if (treatment.recipe_id === 'translation_norm_scaled_v1' || treatment.recipe_id === 'support_force_norm_scaled_v1') {
++      const translation = treatment.recipe_id === 'translation_norm_scaled_v1', inputs = treatment.input_result_ids.map(projected);
++      const components = translation ? ['nodal_displacement_x','nodal_displacement_y','nodal_displacement_z'] : ['Fx','Fy','Fz'];
++      fail(inputs.length === 3 && inputs.every((x: MechanicsResult['results'][number], i: number) => x.entity_ref === row.entity_ref && x.metadata?.component === components[i]
++        && x.kind === (translation ? `global_${components[i]}` : 'support_reaction_component_v2') && x.unit === (translation ? 'mm' : 'N'))
++        && row.kind === (translation ? 'displacement_magnitude' : 'reaction_resultant') && row.unit === (translation ? 'mm' : 'N'), 'NORM_INPUT_BINDING');
++      const inputBound = Math.max(...treatment.input_result_ids.map((id: string) => c.projections.find((p: JsonObject) => p.result_id === id).relative_error_bound));
++      const recipeBound = 64*Number.EPSILON;
++      fail(inputBound <= (1e-9-recipeBound)/(1+recipeBound), 'NORM_ERROR_BOUND');
++      const v = inputs.map((r: MechanicsResult['results'][number]) => r.value);
++      fail(v.every(Number.isFinite), 'NORM_VALUE');
++      const m = Math.max(Math.abs(v[0]),Math.abs(v[1]),Math.abs(v[2]));
++      const nx = m === 0 ? 0 : v[0]/m, ny = m === 0 ? 0 : v[1]/m, nz = m === 0 ? 0 : v[2]/m;
++      const sum = (nx*nx+ny*ny)+nz*nz;
++      const value = m === 0 ? 0 : m*Math.sqrt(sum);
++      fail([m,nx,ny,nz,sum,value].every(Number.isFinite) && (m === 0 || value >= 2 ** -1022) && Object.is(row.value,value), 'NORM_VALUE');
++    } else if (treatment.recipe_id === 'straight_open_stress_v1') await stress(row.id);
++    else if (treatment.recipe_id === 'reviewed_stress_summary_v1') {
++      fail(row.kind === 'open_formula_stress_summary' && row.unit === 'MPa' && treatment.input_result_ids.length === 20, 'STRESS_SUMMARY_INPUTS');
++      const componentNames = ['axial_normal_stress','bending_normal_stress_y','bending_normal_stress_z','torsional_shear_stress'];
++      let expected = 0;
++      for (const location of ['end_i','quarter_1','midspan','quarter_3','end_j']) {
++        const values: number[] = [];
++        for (const component of componentNames) {
++          const matching = treatment.input_result_ids.filter((id: string) => { const input = rows.get(id);return input?.entity_ref === row.entity_ref && input.metadata?.location === location && input.metadata.component === component; });
++          fail(matching.length === 1, 'STRESS_SUMMARY_COVERAGE'); values.push(await stress(matching[0]));
++        }
++        const axial = values[0]+0, bending = Math.abs(values[1])+Math.abs(values[2]);
++        const positive = axial+bending, negative = axial-bending;
++        const maximumPa = Math.max(Math.abs(positive),Math.abs(negative)), maximumMpa = maximumPa/1e6;
++        const zero = values[0] === 0 && values[1] === 0 && values[2] === 0;
++        fail([axial,bending,positive,negative].every(Number.isFinite) && (zero ? maximumPa === 0 && maximumMpa === 0 : normalFinite(maximumPa) && normalFinite(maximumMpa)), 'STRESS_SUMMARY_RANGE');
++        expected = Math.max(expected, maximumMpa);
++      }
++      fail(Number.isFinite(expected) && Object.is(row.value,expected), 'STRESS_SUMMARY_VALUE');
++    } else fail(false, 'DERIVED_RECIPE_NOT_IMPLEMENTED');
++  }
++}
++
++/** Return a fresh copy only from a still-valid live registration. Serialized
++ * invocation is binding input for the backend, never a replacement for origin. */
++export function retainedSourceBlockInvocation(source: MechanicsResult, model: PreviewModel): SourceBlockInvocation | null {
++  if (!sourceBlockStanding(source,model).eligible) return null;
++  return structuredClone(validated.get(source)!.invocation);
++}
++
++function checkExpectedPhysicalRows(c: JsonObject, model: PreviewModel, byId: Map<string, MechanicsResult['results'][number]>) {
++  const actual = c.rows.map((t: JsonObject) => byId.get(t.result_id)!);
++  const required = (entity: string, kind: string, component?: string, location?: string) => fail(actual.filter((r: MechanicsResult['results'][number]) => r.entity_ref === entity && r.kind === kind && (component === undefined || r.metadata?.component === component) && (location === undefined || r.metadata?.location === location)).length === 1, 'REQUIRED_PHYSICAL_ROW_COVERAGE');
++  for (const node of model.nodes) {
++    for (const family of ['displacement','rotation']) for (const axis of ['x','y','z']) required(node.id, `global_nodal_${family}_${axis}`, `nodal_${family}_${axis}`, 'node');
++    required(node.id,'displacement_magnitude');
++  }
++  for (const member of model.pipe_segments) {
++    for (const location of ['end_i','quarter_1','midspan','quarter_3','end_j']) {
++      for (const component of ['axial_force','shear_force_y','shear_force_z','torsional_moment','bending_moment_y','bending_moment_z']) required(member.id,`element_local_${component}`,component,location);
++      for (const component of ['axial_normal_stress','bending_normal_stress_y','bending_normal_stress_z','torsional_shear_stress']) required(member.id,`element_local_${component}`,component,location);
++    }
++    required(member.id,'open_formula_stress_summary');
++  }
++  for (const support of model.supports) {
++    for (const component of ['Fx','Fy','Fz','Mx','My','Mz']) required(support.id,'support_reaction_component_v2',component,'node');
++    required(support.id,'reaction_resultant');
++  }
++}
++export function sourceBlockModeMatches(source: MechanicsResult, model: PreviewModel, solverMode: string): boolean {
++  const context = retainedSourceBlockInvocation(source, model);
++  return context !== null && context.solver_mode === solverMode;
++}
++
++// JCS intentionally serializes -0 as 0. Projection value_bits does not: retain
++// the signed-zero positions separately so the private registration cannot be
++// reused after a bit-changing mutation that leaves canonical JSON unchanged.
++function negativeZeroPaths(value: unknown): string {
++  const paths: string[] = [];
++  const visit = (item: unknown, path: string[]) => {
++    if (Object.is(item,-0)) paths.push(JSON.stringify(path));
++    else if (item && typeof item === 'object') for (const [key, child] of Object.entries(item)) visit(child,[...path,key]);
++  };
++  visit(value,[]); return JSON.stringify(paths);
++}
++
++function sameModelData(a: any, b: any): boolean {
++  if (Object.is(a,b)) return true;
++  if (!a || !b || typeof a !== 'object' || typeof b !== 'object' || Array.isArray(a)!==Array.isArray(b)) return false;
++  const keys=Object.keys(a);return keys.length===Object.keys(b).length && keys.every(k=>Object.hasOwn(b,k)&&sameModelData(a[k],b[k]));
++}
++
++function normalFinite(value: number): boolean { return Number.isFinite(value) && Math.abs(value) >= 2 ** -1022; }
+--- a/projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx
+@@ -1,3 +1,5 @@
++import precisionLiveSource from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
++import {invoke} from '@tauri-apps/api/core';
+ import { buildAnalysisRunV02, modelLoadBasisRefs, analysisRecordProjection, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
+ import transport from "../../../../../fixtures/results/precision_transport_v0_3.json";
+ import { PRECISION_CONTRACT_ID } from "../results/numericalResultQuality";
+@@ -9,14 +11,22 @@
+ import modelJson from '../../../../../fixtures/product_preview/invented_preview_model.json';
+ import resultJson from '../../../../../fixtures/product_preview/invented_mechanics_result.json';
+ import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
+-import {buildAnalysisRunPreview,bindSourceResultDimensions} from '../../services/previewService';
++import {buildAnalysisRunPreview,bindSourceResultDimensions,runPreviewMechanics,hasNativeMechanicsInvocation} from '../../services/previewService';
+ import {buildStressNeutralExportPacket,validateStressNeutralExportPacket,precisionStressRow} from './StressNeutralExportPanel';
+ import {StressNeutralExportPanel} from './StressNeutralExportPanel';
+ import {canonicalSha256HexCheckedV1,canonicalJsonCheckedV1} from '../../services/hashService';
+ import type {PreviewModel,MechanicsResult} from '../../types';
+ import {isNativeResultSaveRuntime,saveNativeResultJson} from '../result-export/nativeResultSave';
++vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
++afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.mocked(invoke).mockReset();});
+ vi.mock('../result-export/nativeResultSave',()=>({isNativeResultSaveRuntime:vi.fn(()=>false),saveNativeResultJson:vi.fn()}));
+ afterEach(()=>{vi.mocked(isNativeResultSaveRuntime).mockReturnValue(false);vi.mocked(saveNativeResultJson).mockReset();});
++// A simulated IPC delivery tests the live publication boundary; it does not
++// turn these captured legacy rows into a new native physics witness.
++async function deliverNative(source: MechanicsResult, model: PreviewModel) {
++ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
++ vi.mocked(invoke).mockResolvedValueOnce(source);expect(await runPreviewMechanics(model)).toBe(source);
++}
+ it('retains every native-shaped source row and hash while deriving 828 semantic witnesses and two diagnostic-work withholdings',async()=>{
+  const model=modelJson as PreviewModel,result=structuredClone(resultJson) as unknown as MechanicsResult;
+  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+@@ -85,8 +95,9 @@
+ });
+ 
+ it('does not publish a delayed packet after its source result is replaced',async()=>{
+- const model=modelJson as PreviewModel,first=bindSourceResultDimensions(structuredClone(resultJson) as unknown as MechanicsResult);const second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
+- const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunV02(first,inputManifest),secondRun=await buildAnalysisRunV02(second,inputManifest);
++ const model=modelJson as PreviewModel,first=structuredClone(precisionLiveSource) as unknown as MechanicsResult;const second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
++ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunPreview(first,{inputManifest}),secondRun=await buildAnalysisRunPreview(second,{inputManifest});
++ await deliverNative(first,model);await deliverNative(second,model);
+  const original=crypto.subtle.digest.bind(crypto.subtle);let release!:()=>void;const gate=new Promise<void>(resolve=>{release=resolve;});let calls=0;
+  vi.spyOn(crypto.subtle,'digest').mockImplementation(async (algorithm:any,data:any)=>{calls+=1;if(calls===1)await gate;return original(algorithm,data);});
+  const view=render(<StressNeutralExportPanel model={model} result={first} analysisRun={firstRun}/>);await waitFor(()=>expect(calls).toBe(1));view.rerender(<StressNeutralExportPanel model={model} result={second} analysisRun={secondRun}/>);
+@@ -95,8 +106,9 @@
+ 
+ it('saves native stress JSON only after validation and intent and invalidates a pending source generation',async()=>{
+  vi.mocked(isNativeResultSaveRuntime).mockReturnValue(true);
+- const model=modelJson as PreviewModel,first=bindSourceResultDimensions(structuredClone(resultJson) as unknown as MechanicsResult),second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
+- const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'fixture',solver_version:'1',solver_build_ref:'fixture',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunV02(first,inputManifest),secondRun=await buildAnalysisRunV02(second,inputManifest);
++ const model=modelJson as PreviewModel,first=structuredClone(precisionLiveSource) as unknown as MechanicsResult,second=structuredClone(first);second.run_id='run:replacement-stress-neutral';
++ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});const firstRun=await buildAnalysisRunPreview(first,{inputManifest}),secondRun=await buildAnalysisRunPreview(second,{inputManifest});
++ await deliverNative(first,model);await deliverNative(second,model);
+  let finishOld!:(value:any)=>void;vi.mocked(saveNativeResultJson).mockImplementationOnce(()=>new Promise(resolve=>{finishOld=resolve;}));
+  const view=render(<StressNeutralExportPanel model={model} result={first} analysisRun={firstRun}/>);
+  const firstButton=await screen.findByRole('button',{name:/Package JSON/},{timeout:10_000});expect(firstButton).toBeDisabled();expect(saveNativeResultJson).not.toHaveBeenCalled();
+@@ -117,6 +129,8 @@
+  result.numerical_quality={value_representation:'finite_binary64',publication_quantization:'none',integrity_policy:'M03-INTEGRITY-v1',status:'checks_passed',cases:model.load_cases.map(c=>({basis_ref:{ref_type:'load_case',ref_id:c.id},structural_status:'passive_model_basis',solve_quality:'checks_passed',model_matrix_fidelity:'represented_equations_retained',accuracy_evidence:'not_claimed',evidence_refs:['gate:test']}))};
+  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:result.producer.component_name,solver_version:'0.2.0',solver_build_ref:'test',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
+  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});
++ // Simulated IPC validates consumer transport; it is not a native physics witness.
++ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});vi.mocked(invoke).mockResolvedValueOnce(result);await runPreviewMechanics(model);
+  const before=JSON.stringify(result),packet=await buildStressNeutralExportPacket({model,result,analysisRun}),decoded=JSON.parse(JSON.stringify(packet));
+  expect(packet.schema_version).toBe('0.3.0');expect(packet.export_profile.profile_id).toBe('ops.stress_neutral.v3');
+  expect(packet.producer).toEqual(result.producer);expect(packet.numerical_quality).toEqual(result.numerical_quality);expect(packet.formulation_basis).toEqual(result.formulation_basis);
+@@ -231,6 +245,8 @@
+  // Case/punctuation IDs collide under filename sanitizing but never under .3 indexed map/witness IDs.
+  const collisions=structuredClone(result);collisions.results=collisions.results.slice(0,4);collisions.results.forEach((row,i)=>row.id=['ROW:A','row:a','row/a','row?a'][i]);
+  const collisionAnalysis=await buildAnalysisRunPreview(collisions,{inputManifest});
++ // Independent simulated response for this synthetic identifier-collision control.
++ vi.mocked(invoke).mockResolvedValueOnce(collisions);await runPreviewMechanics(model);
+  const collisionPacket=await buildStressNeutralExportPacket({model,result:collisions,analysisRun:collisionAnalysis});
+  expect(new Set(collisionPacket.unit_preservation_witnesses.map((w:any)=>w.witness_id)).size).toBe(4);
+  expect(new Set(collisionPacket.stable_id_map.map((m:any)=>m.export_ref.ref)).size).toBe(4);
+@@ -243,6 +259,8 @@
+  const withheldSource=structuredClone(result);
+  withheldSource.results=[{id:'unknown:interop',entity_ref:'node:interop',kind:'unknown_quantity',value:1,unit:'mm'}];
+  const withheldAnalysis=await buildAnalysisRunPreview(withheldSource,{inputManifest});
++ // This separate simulated response tests unknown-row disclosure, not physics.
++ vi.mocked(invoke).mockResolvedValueOnce(withheldSource);await runPreviewMechanics(model);
+  const withheldPacket=await buildStressNeutralExportPacket({model,result:withheldSource,analysisRun:withheldAnalysis});
+  withheldPacket.provenance=structuredClone(imported.provenance);
+  withheldPacket.result_rows[0].provenance=structuredClone(imported.provenance);
+@@ -303,3 +321,32 @@
+  expect(JSON.stringify(base)).toBe(original);
+  await expect(validateStressNeutralExportPacket(base)).resolves.toBeUndefined();
+ });
++
++it('pure reference construction does not make either live download route available',async()=>{
++ const model=structuredClone(modelJson) as PreviewModel,result=structuredClone(resultJson) as MechanicsResult;
++ const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'reference',solver_version:'1',solver_build_ref:'reference',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
++ const analysisRun=await buildAnalysisRunV02(result,inputManifest);
++ expect((await buildStressNeutralExportPacket({model,result,analysisRun})).schema_version).toBe('0.2.0');
++ expect(hasNativeMechanicsInvocation(result,model)).toBe(false);
++ const view=render(<StressNeutralExportPanel model={model} result={result} analysisRun={analysisRun}/>);
++ expect(view.queryByTestId('stress-neutral-export-link')).toBeNull();expect(view.queryByTestId('stress-neutral-csv-link')).toBeNull();view.unmount();
++});
++it.each(['json','csv'] as const)('rechecks source and analysis contents when activating %s',async route=>{
++ for(const change of ['source','analysis'] as const){
++  const model=structuredClone(modelJson) as PreviewModel,result=structuredClone(precisionLiveSource) as unknown as MechanicsResult;
++  const inputManifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:'open_pipe_stress_product_physics',solver_version:'0.2.0',solver_build_ref:'mocked-live-native',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
++  const analysisRun=await buildAnalysisRunPreview(result,{inputManifest});await deliverNative(result,model);
++  vi.mocked(isNativeResultSaveRuntime).mockReturnValue(route==='json');vi.mocked(saveNativeResultJson).mockClear();
++  const view=render(<StressNeutralExportPanel model={model} result={result} analysisRun={analysisRun}/>);
++  const id=route==='json'?'stress-neutral-export-link':'stress-neutral-csv-link';
++  if(route==='json'){await view.findByTestId(`${id}-local-private-intent`,{}, {timeout:10000});fireEvent.click(view.getByTestId(`${id}-local-private-intent`));}
++  const link=await waitFor(()=>{const element=view.getByTestId(id);expect(element.tagName).toBe(route==='json'?'BUTTON':'SPAN');if(route==='json')expect(element).toBeEnabled();else expect(element).toHaveAttribute('aria-disabled','true');return element;});
++  // The existing downstream CSV privacy policy withholds its anchor for this
++  // source. This checks that withheld control, not an enabled CSV download.
++  // Same object identity and no parent render: the activation guard must read
++  // current content, including analysis-only revisions unrelated to raw source.
++  if(change==='source')result.results[0].value+=1;else analysisRun.analysis_run.run_name+=' changed without rehash';
++  expect(fireEvent.click(link)).toBe(false);expect(saveNativeResultJson).not.toHaveBeenCalled();
++  expect(view.queryByTestId(id)).toBeNull();view.unmount();
++ }
++},30000);
+--- a/projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx
++++ b/projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx
+@@ -1,9 +1,10 @@
+-import { sourceContract, numericalResultStanding, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../results/numericalResultQuality";
++import { hasNativeMechanicsInvocation } from "../../services/previewService";
++import { sourceContract, numericalResultStanding, currentSemanticContract, hasCurrentSourceContract } from "../results/numericalResultQuality";
+ import { verifyAnalysisRunRecord, validateAnalysisRunV03, analysisRowSemantics, sourceBasisReference, modelLoadBasisRefs } from "../../services/analysisRunCompatibility";
+ import { semanticFamily, semanticDimension, semanticCategory, resultSemantics } from "../results/resultSemantics";
+ import { Download, FileJson } from "lucide-react";
+ import { useEffect, useState } from "react";
+-import { canonicalSha256HexCheckedV1, canonicalJsonCheckedV1 } from "../../services/hashService";
++import { canonicalSha256HexCheckedV1, canonicalJsonCheckedV1, checkedJsonText } from "../../services/hashService";
+ import type { AnalysisRunEnvelope, MechanicsResult, PreviewModel, ResultBasisRef, ObjectRef } from "../../types";
+ import { buildExportUnitSystemDisclosure, unitDisclosureSummary } from "../exportUnitDisclosure";
+ 
+@@ -70,6 +71,13 @@
+   provenance: ReturnType<typeof previewProvenance>;
+ };
+ 
++function liveStressBinding(model: PreviewModel, result: MechanicsResult | null, analysisRun: AnalysisRunEnvelope | null): string | null {
++  try {
++    if (!result || !analysisRun || !hasCurrentSourceContract(result) || !hasNativeMechanicsInvocation(result,model) || !numericalResultStanding(result,model).eligible) return null;
++    return checkedJsonText({model,result,analysisRun});
++  } catch { return null; }
++}
++
+ export function StressNeutralExportPanel({
+   model,
+   result,
+@@ -81,17 +89,23 @@
+ }) {
+   const [packet, setPacket] = useState<Awaited<ReturnType<typeof buildStressNeutralExportPacket>> | null>(null);
+   const [binding, setBinding] = useState<[PreviewModel, MechanicsResult, AnalysisRunEnvelope] | null>(null);
++  const [publicationFingerprint, setPublicationFingerprint] = useState<string | null>(null);
++  const currentFingerprint = liveStressBinding(model,result,analysisRun);
+   const currentPacket = binding?.[0] === model && binding?.[1] === result && binding?.[2] === analysisRun
++    && currentFingerprint !== null && currentFingerprint === publicationFingerprint
+     ? packet
+     : null;
+   useEffect(() => {
+     let current = true;
+     setPacket(null);
+     setBinding(null);
+-    if (result && analysisRun) buildStressNeutralExportPacket({ model, result, analysisRun }).then((built) => {
+-      if (current) {
++    setPublicationFingerprint(null);
++    const capturedFingerprint=liveStressBinding(model,result,analysisRun);
++    if (result && analysisRun && capturedFingerprint !== null) buildStressNeutralExportPacket({ model, result, analysisRun }).then((built) => {
++      if (current && liveStressBinding(model,result,analysisRun) === capturedFingerprint) {
+         setPacket(built);
+         setBinding([model, result, analysisRun]);
++        setPublicationFingerprint(capturedFingerprint);
+       }
+     }).catch(() => { if (current) { setPacket(null); setBinding(null); } });
+     return () => { current = false; };
+@@ -108,7 +122,13 @@
+       </div>
+       {currentPacket ? (
+         <>
+-          <div className="report-actions">
++          <div className="report-actions" onClickCapture={(event)=>{
++            // Recheck at both JSON/native-save and CSV activation, including an
++            // in-place source/analysis mutation that did not cause a render.
++            if (liveStressBinding(model,result,analysisRun) !== publicationFingerprint) {
++              event.preventDefault();event.stopPropagation();setPacket(null);setBinding(null);setPublicationFingerprint(null);
++            }
++          }}>
+         <ControlledExportLink
+               className="report-export-link"
+               data-testid="stress-neutral-export-link"
+@@ -209,7 +229,7 @@
+   const resultRows = result.results
+     .slice()
+     .sort((left, right) => left.id.localeCompare(right.id))
+-    .map((item) => sourceContract(result) === "precision" ? precisionStressRow(item, result) : stressNeutralRow(item, run.run_id, result));
++    .map((item) => hasCurrentSourceContract(result) ? precisionStressRow(item, result) : stressNeutralRow(item, run.run_id, result));
+   const csvText = renderCsv(resultRows);
+   const unitPreservationWitnesses = stressNeutralUnitPreservationWitnesses(resultRows, result.results);
+   const unitSystemDisclosure = buildExportUnitSystemDisclosure({
+@@ -222,9 +242,9 @@
+     sourceLocation: "apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx"
+   });
+   const stableIdMap = resultRows.map((row, index) => ({
+-    map_id: `stress-neutral-map:${sourceContract(result) === "precision" ? index : safeFileToken(row.result_id)}`,
++    map_id: `stress-neutral-map:${hasCurrentSourceContract(result) ? index : safeFileToken(row.result_id)}`,
+     canonical_ref: row.canonical_ref,
+-    export_ref: reference("StressNeutralResultRow", `stress-neutral-row:${sourceContract(result) === "precision" ? index : safeFileToken(row.result_id)}`),
++    export_ref: reference("StressNeutralResultRow", `stress-neutral-row:${hasCurrentSourceContract(result) ? index : safeFileToken(row.result_id)}`),
+     mapping_status: "mapped",
+     loss_category: "exported",
+     row_index: index,
+@@ -404,7 +424,7 @@
+ 
+ function strictWitnessDisposition(source: MechanicsResult["results"][number], carrier: MechanicsResult): { disposition: StrictWitnessDisposition; dimension: string | null } {
+   try {
+-    const semantic = sourceContract(carrier) === "precision" ? analysisRowSemantics(source, carrier).semantic : resultSemantics(source, carrier);
++    const semantic = hasCurrentSourceContract(carrier) ? analysisRowSemantics(source, carrier).semantic : resultSemantics(source, carrier);
+     if (!semantic) return { disposition: "unknown_semantic", dimension: null };
+     if (semantic.category === "diagnostic_work") return { disposition: "diagnostic_work", dimension: semantic.derivative_target_dimension };
+     if (semantic.component !== null && (!source.metadata || typeof source.metadata.component !== "string" || source.metadata.component.length === 0)) {
+@@ -435,7 +455,8 @@
+ export async function buildStressNeutralExportPacket(args: { model: PreviewModel; result: MechanicsResult; analysisRun: AnalysisRunEnvelope }) {
+   const route = sourceContract(args.result);
+   if (route === "unsupported") throw new Error("SN-SOURCE-CONTRACT-UNSUPPORTED");
+-  const precision = route === "precision";
++  const precision = route !== "legacy";
++  const semantics = precision ? currentSemanticContract(args.result) : null;
+   const version = precision ? "0.3.0" : STRESS_NEUTRAL_EXPORT_VERSION;
+   const profile = precision ? "ops.stress_neutral.v3" : STRESS_NEUTRAL_EXPORT_PROFILE;
+   let sourceCarrierChecksum;
+@@ -445,8 +466,8 @@
+       || args.analysisRun.analysis_run.solver_version?.solver_name !== args.result.producer!.component_name
+       || args.analysisRun.analysis_run.solver_version?.solver_version !== args.result.producer!.component_version
+       || !args.analysisRun.analysis_run.solver_version?.build_ref.ref
+-      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.id !== PRECISION_CONTRACT_ID
+-      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.sha256 !== PRECISION_CONTRACT_SHA256
++      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.id !== semantics?.id
++      || args.analysisRun.analysis_run.reproducibility.semantic_contract?.sha256 !== semantics?.sha256
+       || await verifyAnalysisRunRecord(args.analysisRun) !== "match") throw new Error("SN-ANALYSIS-SOURCE-BINDING-MISMATCH");
+     const hashes = args.analysisRun.analysis_run.hashes.filter(h => h.payload_scope === "received_result");
+     if (hashes.length !== 1 || hashes[0].algorithm !== "sha256" || hashes[0].canonicalization !== "openpipestress_jcs_ijson_v1"
+@@ -488,7 +509,7 @@
+     ...aggregateWithholdingDiagnostic
+   ];
+   const blockingCount = diagnostics.filter((item) => item.severity === "blocking").length;
+-  const semanticContractRef = reference("ExternalReference", precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json");
++  const semanticContractRef = reference("ExternalReference", route === "source_blocks" ? "fixtures/results/semantic_contract_v0_3_source_blocks_1.json" : precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json");
+   const decisionBasisRefs = [...structuredClone(legacy.unit_system_disclosure.decision_basis_refs), semanticContractRef, legacy.source_run_ref];
+   const packet: any = {
+     schema_version: version,
+@@ -524,10 +545,11 @@
+       software_creates_professional_reliance_record: false
+     },
+   };
++  if (route === "source_blocks") packet.source_block_recovery = structuredClone(args.result.source_block_recovery);
+   if (precision) Object.assign(packet, {
+     producer: structuredClone(args.result.producer), numerical_quality: structuredClone(args.result.numerical_quality), formulation_basis: structuredClone(args.result.formulation_basis),
+-    semantic_contract: { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 },
+-    semantic_contract_ref: { ref_type: "semantic_contract", ref_id: PRECISION_CONTRACT_ID }, source_carrier_checksum: sourceCarrierChecksum
++    semantic_contract: semantics,
++    semantic_contract_ref: { ref_type: "semantic_contract", ref_id: semantics!.id }, source_carrier_checksum: sourceCarrierChecksum
+   });
+   const payloads: Record<string, unknown> = {
+     "stress_neutral_results.csv": packet.csv_text, "result_rows.json": packet.result_rows, "unit_system_disclosure.json": packet.unit_system_disclosure,
+@@ -551,16 +573,19 @@
+ 
+ export async function validateStressNeutralExportPacket(packet: any, source?: MechanicsResult, analysisRun?: AnalysisRunEnvelope, expectedBasisRefs?: ObjectRef[]): Promise<void> {
+   const precision = packet.schema_version === "0.3.0";
+-  if (packet.schema_version === "0.2.0" && ["producer", "numerical_quality", "formulation_basis", "semantic_contract_ref", "semantic_contract", "source_carrier_checksum"].some(key => Object.hasOwn(packet, key))) {
++  if (packet.schema_version === "0.2.0" && ["producer", "numerical_quality", "formulation_basis", "semantic_contract_ref", "semantic_contract", "source_carrier_checksum", "source_block_recovery"].some(key => Object.hasOwn(packet, key))) {
+     throw new Error("SN-LEGACY-PRECISION-METADATA-FORBIDDEN");
+   }
+   if (precision && analysisRun !== undefined && source === undefined) throw new Error("SN-PRECISION-ANALYSIS-SOURCE-REQUIRED");
+   if (source !== undefined) {
+-    if (!precision || sourceContract(source) !== "precision") throw new Error("SN-PRECISION-SOURCE-BINDING-REQUIRED");
++    if (!precision || !hasCurrentSourceContract(source)) throw new Error("SN-PRECISION-SOURCE-BINDING-REQUIRED");
+     for (const value of [source.run_id, source.model_ref, ...source.results.map(r => r.id)]) if (typeof value !== "string" || !value) throw new Error("ANALYSIS_SOURCE_REFERENCE_INVALID");
+     if (analysisRun !== undefined) await validateAnalysisRunV03(analysisRun, source, expectedBasisRefs);
+     const same = async (a: unknown, b: unknown) => a !== undefined && b !== undefined && await canonicalSha256HexCheckedV1(a) === await canonicalSha256HexCheckedV1(b);
+     for (const key of ["producer", "numerical_quality", "formulation_basis"] as const) if (!await same(packet[key], source[key])) throw new Error("SN-PRECISION-SOURCE-METADATA-MISMATCH");
++    if (sourceContract(source) === "source_blocks") {
++      if (!await same(packet.source_block_recovery, source.source_block_recovery)) throw new Error("SN-SOURCE-RECOVERY-MISMATCH");
++    } else if (Object.hasOwn(packet, "source_block_recovery")) throw new Error("SN-SOURCE-RECOVERY-CONTRADICTION");
+     const received = { algorithm: "sha256", canonicalization: "openpipestress_jcs_ijson_v1", payload_scope: "received_result", payload_ref: reference("ResultEnvelope", `result-envelope:${source.run_id}`), value: await canonicalSha256HexCheckedV1(source) };
+     if (!await same(packet.source_model_ref, reference("Model", source.model_ref)) || !await same(packet.source_run_ref, reference("AnalysisRun", source.run_id)) || !await same(packet.source_result_ref, received.payload_ref) || !await same(packet.source_carrier_checksum, received) || !await same(packet.received_source_checksums?.filter((h: any) => h.payload_scope === "received_result"), [received])) throw new Error("SN-PRECISION-SOURCE-IDENTITY-MISMATCH");
+     const rawById = new Map(source.results.map(row => [row.id, row]));
+@@ -591,11 +616,12 @@
+   }
+   const version = precision ? "0.3.0" : STRESS_NEUTRAL_EXPORT_VERSION;
+   const profile = precision ? "ops.stress_neutral.v3" : STRESS_NEUTRAL_EXPORT_PROFILE;
+-  const semanticPath = precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json";
++  const header = { schema_version: "0.2.0", producer: packet.producer, numerical_quality: packet.numerical_quality, formulation_basis: packet.formulation_basis, ...(Object.hasOwn(packet,"source_block_recovery") ? {source_block_recovery:packet.source_block_recovery} : {}) } as MechanicsResult;
++  const semanticPath = sourceContract(header) === "source_blocks" ? "fixtures/results/semantic_contract_v0_3_source_blocks_1.json" : precision ? "fixtures/results/semantic_contract_v0_3_precision_1.json" : "fixtures/results/semantic_contract_v0_2.json";
+   if (precision) {
+-    if (sourceContract({ schema_version: "0.2.0", producer: packet.producer, numerical_quality: packet.numerical_quality, formulation_basis: packet.formulation_basis } as MechanicsResult) !== "precision"
+-      || packet.semantic_contract?.id !== PRECISION_CONTRACT_ID || packet.semantic_contract?.sha256 !== PRECISION_CONTRACT_SHA256
+-      || packet.semantic_contract_ref?.ref_type !== "semantic_contract" || packet.semantic_contract_ref?.ref_id !== PRECISION_CONTRACT_ID) throw new Error("SN-PRECISION-CONTRACT-MISMATCH");
++    const semantics = hasCurrentSourceContract(header) ? currentSemanticContract(header) : null;
++    if (!semantics || packet.semantic_contract?.id !== semantics.id || packet.semantic_contract?.sha256 !== semantics.sha256
++      || packet.semantic_contract_ref?.ref_type !== "semantic_contract" || packet.semantic_contract_ref?.ref_id !== semantics.id) throw new Error("SN-PRECISION-CONTRACT-MISMATCH");
+     const claim = packet.source_carrier_checksum;
+     if (!claim || claim.algorithm !== "sha256" || claim.canonicalization !== "openpipestress_jcs_ijson_v1" || claim.payload_scope !== "received_result"
+       || JSON.stringify(claim.payload_ref) !== JSON.stringify(packet.source_result_ref)
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.test.ts
+@@ -1,6 +1,13 @@
+-import { PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../results/numericalResultQuality";
+ import { act, renderHook } from "@testing-library/react";
+-import { expect, it } from "vitest";
++import { expect, it, vi, afterEach } from "vitest";
++import { invoke } from '@tauri-apps/api/core';
++import modelFixture from '../../../../../fixtures/product_preview/invented_preview_model.json';
++import producerFixture from '../../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
++import {runPreviewMechanics,buildAnalysisRunPreview} from '../../services/previewService';
++import {buildCurrentSessionInputManifest} from '../../services/inputManifestService';
++import type {PreviewModel} from '../../types';
++vi.mock('@tauri-apps/api/core',()=>({invoke:vi.fn()}));
++afterEach(()=>{delete (window as any).__TAURI_INTERNALS__;vi.resetAllMocks();});
+ import { useResultsSessionState } from "./resultsSessionState";
+ import type { MechanicsResult } from "../../types";
+ it("keeps solved historical and unassessed carriers out of Current without changing stored evidence", () => {
+@@ -17,11 +24,14 @@
+  expect(result.current.currentSolvedResult).toBeNull();
+ });
+ 
+-it("requires joined precision analysis and manifest identities before publishing Current", () => {
++it("requires actual invocation plus joined precision analysis and manifest identities before publishing Current", async () => {
+  const {result} = renderHook(() => useResultsSessionState());
+- const source: MechanicsResult = {schema_version:"0.2.0",document_kind:"MechanicsResult",run_id:"r",model_ref:"m",summary:{},status:{mechanics:"MECHANICS_SOLVED",rule_check:"RULE_INPUTS_INCOMPLETE",professional_acceptance:"NOT_PROVIDED"},results:[],diagnostics:[{id:"gate",code:"GATE",severity:"info",message:"test"}],producer:{component_name:"open_pipe_stress_product_physics",component_version:"0.2.0",semantic_contract_id:PRECISION_CONTRACT_ID},formulation_basis:{profile_id:"product_preview_mechanics_v1",limitations:["bounded preview"]},numerical_quality:{value_representation:"finite_binary64",publication_quantization:"none",integrity_policy:"M03-INTEGRITY-v1",status:"checks_passed",cases:[{basis_ref:{ref_type:"load_case",ref_id:"load"},structural_status:"passive_model_basis",solve_quality:"checks_passed",model_matrix_fidelity:"represented_equations_retained",accuracy_evidence:"not_claimed",evidence_refs:["gate"]}]}};
+- const manifest = {manifest_ref:{ref:"manifest"},manifest_sha256:"hash",manifest:{model_basis:{model_ref:"m",model_payload:{load_cases:[{id:"load"}]}},solver_basis:{solver_name:source.producer!.component_name,solver_version:"0.2.0",solver_build_ref:"build"}}};
+- const analysis = {schema_version:"0.3.0",analysis_run:{run_id:"r",solver_version:{solver_name:source.producer!.component_name,solver_version:"0.2.0",build_ref:{ref:"build"}},reproducibility:{input_manifest_refs:[{ref:"manifest"}],input_manifest_hashes:[{value:"hash"}],semantic_contract:{id:PRECISION_CONTRACT_ID,sha256:PRECISION_CONTRACT_SHA256}}}};
++ const model=structuredClone(modelFixture) as PreviewModel;
++ Object.defineProperty(window,'__TAURI_INTERNALS__',{value:{},configurable:true});
++ vi.mocked(invoke).mockResolvedValueOnce(structuredClone(producerFixture));
++ const source=await runPreviewMechanics(model);
++ const manifest=await buildCurrentSessionInputManifest({model,solver:{solver_name:source.producer!.component_name,solver_version:source.producer!.component_version,solver_build_ref:'mocked-native-build',solver_mode:'sparse_interactive',settings:{}},active_rule_packs:[],external_assets:[]});
++ const analysis=await buildAnalysisRunPreview(source,{inputManifest:manifest});
+  act(()=>{result.current.setResult(source);result.current.setInputManifest(manifest as never);});
+  expect(result.current.currentSolvedResult).toBeNull();
+  act(()=>result.current.setAnalysisRun(analysis as never));
+@@ -31,7 +41,9 @@
+  sensitive.numerical_quality!.cases[0].solve_quality = "sensitive";
+  sensitive.numerical_quality!.cases[0].accuracy_evidence = "reference_verified";
+  const before = JSON.stringify(sensitive);
+- act(()=>result.current.setResult(sensitive));
++ vi.mocked(invoke).mockResolvedValueOnce(sensitive);
++ const sensitiveResponse=await runPreviewMechanics(model);
++ act(()=>result.current.setResult(sensitiveResponse));
+  expect(result.current.result).toBe(sensitive);
+  expect(result.current.currentSolvedResult).toBeNull();
+  expect(result.current.currentSolvedResultRef.current).toBeNull();
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/resultsSessionState.ts
+@@ -1,7 +1,8 @@
+-import { numericalResultStanding, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../results/numericalResultQuality";
++import { sourceBlockModeMatches } from "../results/sourceBlockRecovery";
++import { numericalResultStanding, currentSemanticContract, hasCurrentSourceContract, sourceContract } from "../results/numericalResultQuality";
+ import { useMemo, useRef, useState } from "react";
+ import type { CurrentSessionInputManifestEvidence } from "../../services/inputManifestService";
+-import { buildPreviewComparison } from "../../services/previewService";
++import { buildPreviewComparison, hasNativeMechanicsInvocation } from "../../services/previewService";
+ import type { PreviewSolverMode } from "../../services/previewService";
+ import type { ReportPackageSaveRoute } from "../../services/reportPackageSaveService";
+ import type { RuleCheckStatus } from "../../services/ruleCheckService";
+@@ -47,6 +48,7 @@
+     useState<CurrentSessionInputManifestEvidence | null>(null);
+   const currentSolver = inputManifest?.manifest.solver_basis;
+   const currentRecord = analysisRun?.analysis_run;
++  const semantics = result && hasCurrentSourceContract(result) ? currentSemanticContract(result) : null;
+   const currentSolvedResult = result && analysisRun?.schema_version === "0.3.0"
+     && currentRecord?.run_id === result.run_id
+     && inputManifest?.manifest.model_basis.model_ref === result.model_ref
+@@ -54,13 +56,15 @@
+     && currentRecord.reproducibility.input_manifest_refs[0].ref === inputManifest?.manifest_ref.ref
+     && currentRecord.reproducibility.input_manifest_hashes.length === 1
+     && currentRecord.reproducibility.input_manifest_hashes[0].value === inputManifest?.manifest_sha256
+-    && currentRecord.reproducibility.semantic_contract?.id === PRECISION_CONTRACT_ID
+-    && currentRecord.reproducibility.semantic_contract?.sha256 === PRECISION_CONTRACT_SHA256
++    && currentRecord.reproducibility.semantic_contract?.id === semantics?.id
++    && currentRecord.reproducibility.semantic_contract?.sha256 === semantics?.sha256
+     && currentSolver?.solver_name === result.producer?.component_name
+     && currentSolver?.solver_version === result.producer?.component_version
+     && currentRecord.solver_version?.solver_name === currentSolver?.solver_name
+     && currentRecord.solver_version?.solver_version === currentSolver?.solver_version
+     && currentRecord.solver_version?.build_ref.ref === currentSolver?.solver_build_ref
++    && (sourceContract(result) !== "source_blocks" || (!!inputManifest && sourceBlockModeMatches(result, inputManifest.manifest.model_basis.model_payload, currentSolver!.solver_mode)))
++    && hasNativeMechanicsInvocation(result, inputManifest?.manifest.model_basis.model_payload, currentSolver?.solver_mode)
+     && numericalResultStanding(result, inputManifest?.manifest.model_basis.model_payload).eligible ? result : null;
+   // Worst-of rule-check aggregate from the GUI run panel, lifted so it can be
+   // recorded in the app-held analysis-run envelope (TP-C4-APPAGG-001).
+--- a/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts
+@@ -1,4 +1,4 @@
+-import { sourceContract } from "../results/numericalResultQuality";
++import { hasCurrentSourceContract } from "../results/numericalResultQuality";
+ import type React from "react";
+ import { isTauriRuntime, syncNativeShellState } from "../../services/nativeMenu";
+ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+@@ -22,7 +22,6 @@
+   loadDesignKnowledge,
+   loadPreviewModel,
+   loadSampleProposal,
+-  runPreviewMechanics,
+   startPreviewMechanicsJob
+ } from "../../services/previewService";
+ import {
+@@ -730,6 +729,7 @@
+         }
+         return;
+       }
++      if (startReceipt.mode !== "backend_job") throw new Error("BROWSER_REFERENCE_RECEIPT_NOT_A_CURRENT_SOLVE");
+       startedJob = startSolveJob(solveModel, startReceipt);
+       const cancellationRequested =
+         solveRunGate.current.isCancellationRequested(runGeneration) ||
+@@ -775,10 +775,9 @@
+         }
+         output = terminal.result;
+       } else {
+-        output = await runPreviewMechanics(solveModel, solverMode);
+-        if (solveRunGate.current.isCancellationRequested(runGeneration)) return;
+-      }
+-      if (sourceContract(output) !== "precision" || !output.producer) {
++        throw new Error("BROWSER_REFERENCE_RECEIPT_NOT_A_CURRENT_SOLVE");
++      }
++      if (!hasCurrentSourceContract(output) || !output.producer) {
+         throw new Error("SOLVE-PRODUCER-CONTRACT-UNSUPPORTED: a fresh result requires the recognized precision producer; historical carriers remain available through saved-run inspection.");
+       }
+       const manifest = await buildCurrentSessionInputManifest({
+--- a/projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/analysisRunCompatibility.ts
+@@ -1,5 +1,5 @@
+ import { semanticContractForSource } from "../features/results/resultSemantics";
+-import { sourceContract, PRECISION_CONTRACT_ID, PRECISION_CONTRACT_SHA256 } from "../features/results/numericalResultQuality";
++import { sourceContract, hasCurrentSourceContract, currentSemanticContract } from "../features/results/numericalResultQuality";
+ import type { AnalysisRunEnvelope, CanonicalResultDimension, MechanicsResult, ObjectRef, PreviewModel } from "../types";
+ import { canonicalSha256HexCheckedV1, checkedJsonText } from "./hashService";
+ 
+@@ -65,20 +65,20 @@
+ 
+ /** Explicit historical builder; never a fallback for precision admission. */
+ export async function buildAnalysisRunV02(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs: ObjectRef[] = []): Promise<AnalysisRunEnvelope> {
+-  if (!["0.1.0", "0.2.0"].includes(result.schema_version) || ["producer", "numerical_quality", "formulation_basis"].some(key => Object.hasOwn(result, key))) throw new Error("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
++  if (!["0.1.0", "0.2.0"].includes(result.schema_version) || ["producer", "numerical_quality", "formulation_basis", "source_block_recovery"].some(key => Object.hasOwn(result, key))) throw new Error("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
+   return buildAnalysisRecord(result, inputManifest, "legacy", ruleCheckStatus, loadBasisRefs);
+ }
+ export async function buildAnalysisRunV03(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
+-  if (sourceContract(result) !== "precision") throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+-  return buildAnalysisRecord(result, inputManifest, "precision", ruleCheckStatus, loadBasisRefs);
++  if (!hasCurrentSourceContract(result)) throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
++  return buildAnalysisRecord(result, inputManifest, sourceContract(result) as "precision" | "source_blocks", ruleCheckStatus, loadBasisRefs);
+ }
+-async function buildAnalysisRecord(result: MechanicsResult, inputManifest: ManifestEvidence, route: "legacy" | "precision", ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
+-  if (route === "precision") { validateSourceRuleStatus(result); expectedLoadBasis(result, loadBasisRefs); }
++async function buildAnalysisRecord(result: MechanicsResult, inputManifest: ManifestEvidence, route: "legacy" | "precision" | "source_blocks", ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {
++  if (route !== "legacy") { validateSourceRuleStatus(result); expectedLoadBasis(result, loadBasisRefs); }
+   if (inputManifest.manifest.model_basis.model_ref !== result.model_ref) throw new Error("ANALYSIS-RUN-INPUT-MANIFEST-MODEL-MISMATCH");
+-  const semanticBinding = route === "precision" ? { id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256 } : { id: "openpipestress_result_semantics_v0_2", sha256: SEMANTIC_CONTRACT_SHA256 };
++  const semanticBinding = route !== "legacy" ? currentSemanticContract(result) : { id: "openpipestress_result_semantics_v0_2", sha256: SEMANTIC_CONTRACT_SHA256 };
+   const rawResult = structuredClone(result);
+   const resultRefs = await Promise.all(rawResult.results.map(async (row, sourceRowIndex) => {
+-    const { semantic, findings } = analysisRowSemantics(row, route === "precision" ? result : undefined);
++    const { semantic, findings } = analysisRowSemantics(row, route !== "legacy" ? result : undefined);
+     return {
+       result_ref: { object_type: "Result" as const, ref: row.id }, source_row_index: sourceRowIndex,
+       category: semantic?.category ?? "unknown", source_dimension: (semantic?.source_physical_semantic_dimension ?? null) as CanonicalResultDimension | null,
+@@ -91,14 +91,14 @@
+       provenance,
+     };
+   }));
+-  const effectiveRule = ruleCheckStatus ?? rawResult.status.rule_check ?? (route === "precision" ? "RULE_INPUTS_INCOMPLETE" : undefined);
+-  if (route === "precision" && !RULE_STATUSES.includes(effectiveRule!)) throw new Error("ANALYSIS_RULE_STATUS_INVALID");
+-  const effectiveLoadBasisRefs = route === "precision" ? expectedLoadBasis(result, loadBasisRefs) : loadBasisRefs?.length ? loadBasisRefs : Array.from(new Map(rawResult.results.flatMap((row) => row.basis_ref ? [[`${row.basis_ref.ref_type}:${row.basis_ref.ref_id}`, { object_type: row.basis_ref.ref_type === "combination" ? "Combination" : "LoadCase", ref: row.basis_ref.ref_id } as ObjectRef]] : [])).values());
++  const effectiveRule = ruleCheckStatus ?? rawResult.status.rule_check ?? (route !== "legacy" ? "RULE_INPUTS_INCOMPLETE" : undefined);
++  if (route !== "legacy" && !RULE_STATUSES.includes(effectiveRule!)) throw new Error("ANALYSIS_RULE_STATUS_INVALID");
++  const effectiveLoadBasisRefs = route !== "legacy" ? expectedLoadBasis(result, loadBasisRefs) : loadBasisRefs?.length ? loadBasisRefs : Array.from(new Map(rawResult.results.flatMap((row) => row.basis_ref ? [[`${row.basis_ref.ref_type}:${row.basis_ref.ref_id}`, { object_type: row.basis_ref.ref_type === "combination" ? "Combination" : "LoadCase", ref: row.basis_ref.ref_id } as ObjectRef]] : [])).values());
+   const statuses = Array.from(new Set(["HUMAN_REVIEW_REQUIRED", rawResult.status.mechanics, effectiveRule].filter(Boolean))).sort();
+   const runRef = { object_type: "AnalysisRun", ref: rawResult.run_id } as ObjectRef;
+   const record: AnalysisRunEnvelope = {
+-    schema_version: route === "precision" ? ANALYSIS_RUN_V03 : ANALYSIS_RUN_V02, deliverable_id: "DEL-14-02", package_id: "PKG-14", scope_item: "SOW-072", objectives: ["OBJ-016"],
+-    run_contract_status: { record_contract: route === "precision" ? "strict_analysis_run_v0_3" : "strict_analysis_run_v0_2", result_binding: "received_mechanics_result", external_validation_boundary: "reference_only_not_determined_by_software" },
++    schema_version: route !== "legacy" ? ANALYSIS_RUN_V03 : ANALYSIS_RUN_V02, deliverable_id: "DEL-14-02", package_id: "PKG-14", scope_item: "SOW-072", objectives: ["OBJ-016"],
++    run_contract_status: { record_contract: route !== "legacy" ? "strict_analysis_run_v0_3" : "strict_analysis_run_v0_2", result_binding: "received_mechanics_result", external_validation_boundary: "reference_only_not_determined_by_software" },
+     analysis_run: {
+       run_id: rawResult.run_id, run_name: `${rawResult.run_id} analysis record`, run_kind: "mechanics_solve", created_at: null, model_state_ref: { object_type: "ModelState", ref: `state:${rawResult.model_ref}:preview` },
+       solver_version: { solver_name: inputManifest.manifest.solver_basis.solver_name, solver_version: inputManifest.manifest.solver_basis.solver_version, build_ref: { object_type: "ExternalReference", ref: inputManifest.manifest.solver_basis.solver_build_ref } },
+@@ -119,7 +119,7 @@
+     },
+   };
+   record.analysis_run.hashes.unshift({ algorithm: "sha256", canonicalization: CHECKED_PROFILE_V1, payload_ref: runRef, payload_scope: "analysis_run_record", value: await canonicalSha256HexCheckedV1(analysisRecordProjection(record)) });
+-  if (route === "precision") await validateAnalysisRunV03(record, result, loadBasisRefs);
++  if (route !== "legacy") await validateAnalysisRunV03(record, result, loadBasisRefs);
+   return record;
+ }
+ 
+@@ -140,7 +140,7 @@
+     const order = (v: any): any => Array.isArray(v) ? v.map(order) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map(k => [k, order(v[k])])) : v;
+     return JSON.stringify(order(JSON.parse(checkedJsonText(a)))) === JSON.stringify(order(JSON.parse(checkedJsonText(b))));
+   };
+-  if (sourceContract(source) !== "precision" || record.schema_version !== ANALYSIS_RUN_V03 || record.run_contract_status.record_contract !== "strict_analysis_run_v0_3") throw new Error("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH");
++  if (!hasCurrentSourceContract(source) || record.schema_version !== ANALYSIS_RUN_V03 || record.run_contract_status.record_contract !== "strict_analysis_run_v0_3") throw new Error("ANALYSIS_SOURCE_CONTRACT_VERSION_MISMATCH");
+   validateSourceRuleStatus(source);
+   const run = record.analysis_run;
+   if (!same(run.diagnostics, source.diagnostics.map(source_annotation => ({ source_annotation })))) throw new Error("ANALYSIS_SOURCE_DIAGNOSTICS_MISMATCH");
+@@ -151,7 +151,7 @@
+   if (run.solver_version?.solver_name !== source.producer!.component_name || run.solver_version?.solver_version !== source.producer!.component_version) throw new Error("ANALYSIS_SOURCE_PRODUCER_MISMATCH");
+   if (run.run_id !== source.run_id) throw new Error("ANALYSIS_SOURCE_RUN_MISMATCH");
+   if (!same(run.model_state_ref, {object_type:"ModelState",ref:`state:${source.model_ref}:preview`})) throw new Error("ANALYSIS_SOURCE_MODEL_STATE_MISMATCH");
+-  const contract = {id: PRECISION_CONTRACT_ID, sha256: PRECISION_CONTRACT_SHA256};
++  const contract = currentSemanticContract(source);
+   if (!same(run.reproducibility.semantic_contract, contract)) throw new Error("ANALYSIS_SEMANTIC_CONTRACT_MISMATCH");
+   const checksum = async (scope: string, ref: ObjectRef, value: unknown) => ({algorithm: "sha256", canonicalization: CHECKED_PROFILE_V1, payload_ref: ref, payload_scope: scope, value: await canonicalSha256HexCheckedV1(value)});
+   if (!same(run.hashes.filter(h => h.payload_scope === "received_result"), [await checksum("received_result", {object_type:"ResultEnvelope",ref:`result-envelope:${source.run_id}`}, source)])) throw new Error("ANALYSIS_RECEIVED_SOURCE_MISMATCH");
+--- a/projects/chirality-piping/apps/desktop/src/services/previewService.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/previewService.test.ts
+@@ -13,6 +13,8 @@
+ });
+ import type { MechanicsResult, PreviewModel } from "../types";
+ import {
++  loadBundledMechanicsReference,
++  hasNativeMechanicsInvocation,
+   appliedRuleCheckStatus,
+   bindSourceResultDimensions,
+   buildAnalysisRunPreview,
+@@ -96,17 +98,17 @@
+ }
+ 
+ describe("previewService browser fixture execution boundary", () => {
+-  it("returns the actual bundled producer result when no model payload is supplied", async () => {
+-    const result = await runPreviewMechanics();
++  it("reads the bundled producer result as reference evidence", async () => {
++    const result = (await loadBundledMechanicsReference()).source;
+ 
+     expect(result.status.mechanics).toBe(sparseMechanicsFixture.status.mechanics);
+     expect(result.model_ref).toBe("project:invented-loop-01");
+     expect(result.results.length).toBe(sparseMechanicsFixture.results.length);
+   });
+ 
+-  it("keeps the genuine fixture result for the unchanged bundled model", async () => {
++  it("keeps genuine fixture reference bytes separate from live provenance", async () => {
+     const model = await loadPreviewModel();
+-    const result = await runPreviewMechanics(model);
++    const result = (await loadBundledMechanicsReference()).source;
+ 
+     expect(result.status.mechanics).toBe(sparseMechanicsFixture.status.mechanics);
+     expect(result.model_ref).toBe("project:invented-loop-01");
+@@ -221,11 +223,12 @@
+   it.each([
+     ["sparse_interactive", sparseMechanicsFixture],
+     ["dense_scrutiny", denseMechanicsFixture],
+-  ] as const)("returns genuine %s fixture bytes and preserves producer quality", async (mode, fixture) => {
++  ] as const)("reads genuine %s reference bytes and preserves producer quality", async (mode, fixture) => {
+     const model = await loadPreviewModel();
+-    const result = await runPreviewMechanics(model, mode);
++    const result = (await loadBundledMechanicsReference(mode)).source;
+     expect(result).toEqual(fixture);
+     expect(sourceContract(result)).toBe("precision");
++    expect(hasNativeMechanicsInvocation(result,model)).toBe(false);
+     expect(result.numerical_quality).toEqual(fixture.numerical_quality);
+     const current = numericalResultStanding(result, model);
+     if (!["checks_passed", "sensitive"].includes(fixture.numerical_quality.status)) {
+@@ -239,18 +242,18 @@
+     expect(result).toEqual(fixture);
+   });
+ 
+-  it("defaults to exact sparse fixture and returns independent copies", async () => {
+-    const first = await runPreviewMechanics();
++  it("reference loading defaults to sparse and returns independent copies", async () => {
++    const first = (await loadBundledMechanicsReference()).source;
+     expect(first).toEqual(sparseMechanicsFixture);
+     first.diagnostics.push({ id: "caller-mutation", code: "CALLER_MUTATION", severity: "info", message: "test mutation" });
+-    expect(await runPreviewMechanics()).toEqual(sparseMechanicsFixture);
+-    expect(await runPreviewMechanics(null, "dense_scrutiny")).toEqual(denseMechanicsFixture);
++    expect((await loadBundledMechanicsReference()).source).toEqual(sparseMechanicsFixture);
++    expect((await loadBundledMechanicsReference("dense_scrutiny")).source).toEqual(denseMechanicsFixture);
+   });
+ 
+   it("compares model content canonically rather than object key insertion order", async () => {
+     const model = await loadPreviewModel();
+     const reordered = Object.fromEntries(Object.entries(model).reverse()) as PreviewModel;
+-    expect(await runPreviewMechanics(reordered)).toEqual(sparseMechanicsFixture);
++    await expect(runPreviewMechanics(reordered)).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY");
+     const edited = cloneModel(model);
+     edited.nodes[0].position.y += 0.5;
+     await expect(runPreviewMechanics(edited, "dense_scrutiny")).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL");
+@@ -527,8 +530,8 @@
+     expect(invokeMock).toHaveBeenCalledTimes(1);
+   });
+ 
+-  it("uses browser job designation only when the host is absent", async () => {
+-    await expect(startPreviewMechanicsJob()).resolves.toEqual({ mode: "browser_fixture_no_backend_job" });
++  it("refuses a fresh browser job and keeps references separate", async () => {
++    await expect(startPreviewMechanicsJob()).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY");
+     expect(invokeMock).not.toHaveBeenCalled();
+   });
+ });
+@@ -541,7 +544,7 @@
+ });
+ 
+ async function precisionFixtureSource(): Promise<MechanicsResult> {
+- return runPreviewMechanics();
++ return (await loadBundledMechanicsReference()).source;
+ }
+ it("Current analysis composition refuses legacy and unknown raw without a historical fallback",async()=>{
+  const legacy=structuredClone(historicalMechanicsFixture) as MechanicsResult, before=JSON.stringify(legacy);
+--- a/projects/chirality-piping/apps/desktop/src/services/previewService.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/previewService.ts
+@@ -1,4 +1,6 @@
+-import { sourceContract } from '../features/results/numericalResultQuality';
++import { validateSourceBlockRecovery } from "../features/results/sourceBlockRecovery";
++import { canonicalSha256HexCheckedV1, checkedJsonText } from "./hashService";
++import { sourceContract, hasCurrentSourceContract } from '../features/results/numericalResultQuality';
+ import { invoke } from "@tauri-apps/api/core";
+ import type {
+   AgentProposal,
+@@ -45,17 +47,90 @@
+   solverMode: PreviewSolverMode = "sparse_interactive",
+ ): Promise<MechanicsResult> {
+   assertPreviewSolverMode(solverMode);
+-  const result =
+-    typeof window === "undefined" || !("__TAURI_INTERNALS__" in window)
+-      ? await runBrowserPreviewMechanics(model, solverMode)
+-      : await invoke<MechanicsResult>(
+-          "run_preview_mechanics_with_solver_mode",
+-          model ? { model, solverMode } : { solverMode },
+-        );
+-  return bindSourceResultDimensions(result);
++  if (typeof window === "undefined" || !("__TAURI_INTERNALS__" in window)) {
++    throw await browserSolveUnavailable(model);
++  }
++  const capture = captureNativeInvocation(model, solverMode);
++  const result = await invoke<MechanicsResult>(
++    "run_preview_mechanics_with_solver_mode",
++    model ? { model: capture?.invocation.request.model ?? model, solverMode } : { solverMode },
++  );
++  await validateCapturedSource(result, capture);
++  return result; // Preserve received producer data; legacy projection is explicit.
++
+ }
+ 
+ export type PreviewSolverMode = "sparse_interactive" | "dense_scrutiny";
++
++export type NativeMechanicsInvocation = {
++  request: { model: PreviewModel; materials: [] };
++  solver_mode: PreviewSolverMode;
++};
++type CapturedNativeInvocation = { invocation: NativeMechanicsInvocation; fingerprint: string; invalidated: boolean; terminalClaimed: boolean };
++type NativeSourceRegistration = { capture: CapturedNativeInvocation; sourceFingerprint: string };
++const nativeSourceInvocations = new WeakMap<MechanicsResult, NativeSourceRegistration>();
++const jobInvocations = new Map<string, CapturedNativeInvocation>();
++
++// Private equality witness only, not another public hash/canonicalization profile.
++// The checked guard rejects lossy/non-JSON inputs, and the extra paths retain
++// negative-zero identity that JSON text alone deliberately normalizes.
++function nativeContentFingerprint(value: unknown): string {
++  const checked = checkedJsonText(value);
++  const negativeZeros: string[] = [];
++  const visit = (item: unknown, path: string) => {
++    if (typeof item === "number" && Object.is(item, -0)) negativeZeros.push(path);
++    else if (item && typeof item === "object") {
++      for (const [key, child] of Object.entries(item)) visit(child, `${path}/${key.replaceAll("~", "~0").replaceAll("/", "~1")}`);
++    }
++  };
++  visit(value, "");
++  return `${canonicalJson(JSON.parse(checked))}\nnegative_zero_paths=${JSON.stringify(negativeZeros.sort())}`;
++}
++function captureNativeInvocation(model: PreviewModel | null | undefined, solverMode: PreviewSolverMode): CapturedNativeInvocation | null {
++  if (!model || typeof window === "undefined" || !("__TAURI_INTERNALS__" in window)) return null;
++  try {
++    // Mirror the native API's actual {model, materials:[]} request and send this
++    // captured JSON model, not a later caller mutation or a reconstructed result.
++    const invocation = JSON.parse(checkedJsonText({ request: { model, materials: [] }, solver_mode: solverMode })) as NativeMechanicsInvocation;
++    return { invocation, fingerprint: nativeContentFingerprint(invocation), invalidated: false, terminalClaimed: false };
++  } catch { return null; } // Raw native diagnostics remain available; no registration.
++}
++async function validateCapturedSource(source: MechanicsResult, capture: CapturedNativeInvocation | null): Promise<void> {
++  if (!capture || capture.invalidated) return;
++  try {
++    if (source.model_ref !== capture.invocation.request.model.project.id || nativeContentFingerprint(capture.invocation) !== capture.fingerprint) return;
++    const sourceFingerprint = nativeContentFingerprint(source);
++    // Registration is reachable only after actual direct IPC or a completed
++    // known job. Method-specific source-block validation composes here when its
++    // separately reviewed join is selected; none is inferred from these bytes.
++    if (sourceContract(source) === "source_blocks") await validateSourceBlockRecovery(source, capture.invocation);
++    await canonicalSha256HexCheckedV1(source);
++    if (capture.invalidated || nativeContentFingerprint(source) !== sourceFingerprint || nativeContentFingerprint(capture.invocation) !== capture.fingerprint) return;
++    nativeSourceInvocations.set(source, { capture, sourceFingerprint });
++  } catch { /* Preserve received source for inspection, without qualified standing. */ }
++}
++/** Query only: headers, hashes, clones and saved records cannot mint registration. */
++export function hasNativeMechanicsInvocation(
++  source: MechanicsResult | null | undefined,
++  model: PreviewModel | null | undefined,
++  solverMode?: string,
++): boolean {
++  if (!source || !model) return false;
++  const registered = nativeSourceInvocations.get(source);
++  if (!registered) return false;
++  try {
++    const invocation = registered.capture.invocation;
++    return !registered.capture.invalidated
++      && (solverMode === undefined || solverMode === invocation.solver_mode)
++      && nativeContentFingerprint(invocation) === registered.capture.fingerprint
++      && nativeContentFingerprint(source) === registered.sourceFingerprint
++      && nativeContentFingerprint(JSON.parse(checkedJsonText(model))) === nativeContentFingerprint(invocation.request.model);
++  } catch { return false; }
++}
++export function retainedNativeMechanicsInvocation(source: MechanicsResult, model: PreviewModel): NativeMechanicsInvocation | null {
++  return hasNativeMechanicsInvocation(source, model)
++    ? structuredClone(nativeSourceInvocations.get(source)!.capture.invocation) : null;
++}
+ 
+ function assertPreviewSolverMode(value: unknown): asserts value is PreviewSolverMode {
+   if (value !== "sparse_interactive" && value !== "dense_scrutiny") {
+@@ -98,31 +173,57 @@
+ ): Promise<SolveJobStartReceipt> {
+   assertPreviewSolverMode(solverMode);
+   if (typeof window === "undefined" || !("__TAURI_INTERNALS__" in window)) {
+-    return { mode: "browser_fixture_no_backend_job" };
+-  }
++    throw await browserSolveUnavailable(model);
++  }
++  const capture = captureNativeInvocation(model, solverMode);
+   const receipt = await invoke<
+       Omit<Extract<SolveJobStartReceipt, { mode: "backend_job" }>, "mode">
+-    >("start_preview_mechanics_job_with_solver_mode", model ? { model, solverMode } : { solverMode });
++    >("start_preview_mechanics_job_with_solver_mode", model ? { model: capture?.invocation.request.model ?? model, solverMode } : { solverMode });
++  if (capture && typeof receipt.job_id === "string" && receipt.job_id) jobInvocations.set(receipt.job_id, capture);
+   return { mode: "backend_job", ...receipt };
+ }
+ 
+ export async function pollPreviewMechanicsJob(
+   jobId: string,
+ ): Promise<BackendSolveJobStatus> {
+-  return invoke<BackendSolveJobStatus>("poll_preview_mechanics_job", { jobId });
++  const status = await invoke<BackendSolveJobStatus>("poll_preview_mechanics_job", { jobId });
++  const capture = jobInvocations.get(jobId) ?? null;
++  if (status.job_id !== jobId) {
++    if (capture) capture.invalidated = true;
++    jobInvocations.delete(jobId);
++    throw new Error("SOLVE-JOB-IDENTITY-MISMATCH");
++  }
++  if (["completed", "cancelled", "failed"].includes(status.state)) {
++    if (capture && !capture.terminalClaimed) {
++      capture.terminalClaimed = true;
++      try {
++        if (status.state === "completed" && status.result) await validateCapturedSource(status.result, capture);
++        else capture.invalidated = true;
++      } finally {
++        if (jobInvocations.get(jobId) === capture) jobInvocations.delete(jobId);
++      }
++    }
++  }
++  return status;
+ }
+ 
+ export async function cancelPreviewMechanicsJob(
+   jobId: string,
+   cancellationToken: string,
+ ): Promise<BackendSolveJobCancellationReceipt> {
+-  return invoke<BackendSolveJobCancellationReceipt>(
++  const receipt = await invoke<BackendSolveJobCancellationReceipt>(
+     "cancel_preview_mechanics_job",
+     {
+       jobId,
+       cancellationToken,
+     },
+   );
++  if (receipt.accepted) {
++    const capture = jobInvocations.get(jobId);
++    if (capture) capture.invalidated = true;
++    jobInvocations.delete(jobId);
++  }
++  return receipt;
+ }
+ 
+ // The three frozen automatic rule-check statuses a GUI rule-check run may
+@@ -171,8 +272,7 @@
+ ): Promise<AnalysisRunEnvelope> {
+   await verifyCurrentSessionInputManifest(inputManifest);
+   const effective = appliedRuleCheckStatus(result.status.rule_check, ruleCheckAggregate);
+-  const route = sourceContract(result);
+-  if (route !== "precision") throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
++  if (!hasCurrentSourceContract(result)) throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
+   return buildAnalysisRunV03(result, inputManifest, effective, modelLoadBasisRefs(inputManifest.manifest.model_basis.model_payload));
+ }
+ 
+@@ -203,6 +303,11 @@
+     Partial<Pick<MechanicsResult["results"][number], "dimension">>,
+ ): CanonicalResultDimension {
+   const kind = item.kind;
++  if (kind === "support_reaction_component_v2") {
++    if (["Fx", "Fy", "Fz"].includes(item.metadata?.component ?? "")) return "force";
++    if (["Mx", "My", "Mz"].includes(item.metadata?.component ?? "")) return "moment";
++    throw new Error("SUPPORT_COMPONENT_UNSUPPORTED");
++  }
+   const component = item.metadata?.component;
+   if (kind === "component_user_stiffness_macro_element_review") {
+     if (
+@@ -553,19 +658,49 @@
+   return result;
+ }
+ 
+-async function runBrowserPreviewMechanics(
+-  model: PreviewModel | null | undefined,
+-  solverMode: PreviewSolverMode,
+-): Promise<MechanicsResult> {
+-  const fixtureModel = await loadModelFixture();
+-  if (model && canonicalJson(model) !== canonicalJson(fixtureModel)) {
+-    // Throw before any raw result/manifest/run builder. This is a backend
+-    // availability failure, not a fabricated producer invocation or raw envelope.
+-    throw new Error(
+-      "BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL: Browser fixture mode cannot solve an edited model; use the native backend for model-bound mechanics results.",
+-    );
+-  }
+-  return validateBrowserMechanicsFixture(await loadMechanicsFixture(solverMode), solverMode, fixtureModel);
++export type BundledMechanicsReference = {
++  standing: "reference_only";
++  source: MechanicsResult;
++  provenance: {
++    origin: "preserved_bundled_producer_record";
++    fixture_ref: string;
++    recorded_solver_mode: PreviewSolverMode;
++    fresh_invocation_performed: false;
++    current_use_eligible: false;
++    notice: string;
++  };
++};
++
++/** Explicit reference inspection, separate from the fresh solve/job APIs.
++ * Provenance stays outside the unchanged producer data. Reading this record
++ * does not mint a live solve invocation, Current, rule or export eligibility. */
++export async function loadBundledMechanicsReference(
++  solverMode: PreviewSolverMode = "sparse_interactive",
++): Promise<BundledMechanicsReference> {
++  assertPreviewSolverMode(solverMode);
++  const source = validateBrowserMechanicsFixture(await loadMechanicsFixture(solverMode), solverMode, await loadModelFixture());
++  return {
++    standing: "reference_only",
++    source,
++    provenance: {
++      origin: "preserved_bundled_producer_record",
++      fixture_ref: solverMode === "sparse_interactive"
++        ? "fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json"
++        : "fixtures/product_preview/invented_mechanics_result_precision_1_dense.json",
++      recorded_solver_mode: solverMode,
++      fresh_invocation_performed: false,
++      current_use_eligible: false,
++      notice: "Preserved reference data; no solve was performed. This record is unavailable for Current, rule checks or qualified export.",
++    },
++  };
++}
++
++export const BROWSER_REFERENCE_SOLVE_DIAGNOSTIC = "BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY: Browser mechanics requires a real solver backend. Bundled records are available only through reference inspection; use the native application to solve.";
++async function browserSolveUnavailable(model?: PreviewModel | null): Promise<Error> {
++  if (model && canonicalJson(model) !== canonicalJson(await loadModelFixture())) {
++    return new Error("BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL: Browser reference data cannot solve an edited model; use the native backend for model-bound mechanics results.");
++  }
++  return new Error(BROWSER_REFERENCE_SOLVE_DIAGNOSTIC);
+ }
+ 
+ async function loadAgentProposalFixture(): Promise<AgentProposal> {
+--- a/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.test.ts
+@@ -1,3 +1,7 @@
++import sourceFixture from '../../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json';
++import modelFixture from '../../../../fixtures/product_preview/invented_preview_model.json';
++import {runPreviewMechanics} from './previewService';
++import type {PreviewModel} from '../types';
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+ import { invoke } from "@tauri-apps/api/core";
+ import {
+@@ -191,16 +195,20 @@
+     });
+     (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
+ 
++    // Genuine received producer bytes through simulated IPC, not a native witness.
++    const model=structuredClone(modelFixture) as PreviewModel;
++    invokeMock.mockResolvedValueOnce(structuredClone(sourceFixture));
++    const solvedEnvelope=await runPreviewMechanics(model);
+     await runRuleChecks({
+       rulePackDocument: { metadata: { rule_pack_id: "x" } },
+-      model: { project: { id: "p" } } as never,
+-      solvedEnvelope: { run_id: "run:1", results: [] } as never,
++      model,
++      solvedEnvelope,
+       solverResultBindings: [{ input_id: "actual", result_id: "result:stress:demo" }],
+       suppliedValueBindings: [{ ref_id: "limit", value: 100, unit: "demo_unit", dimension: "stress" }],
+       projectId: "project:lib"
+     });
+ 
+-    const [, args] = invokeMock.mock.calls[0];
++    const [, args] = invokeMock.mock.calls.find(call=>call[0]==="run_rule_checks")!;
+     const typed = args as Record<string, unknown>;
+     expect(typed).toHaveProperty("solvedEnvelope");
+     expect(typed).toHaveProperty("model");
+--- a/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts
++++ b/projects/chirality-piping/apps/desktop/src/services/ruleCheckService.ts
+@@ -1,3 +1,6 @@
++import { hasNativeMechanicsInvocation } from "./previewService";
++import { retainedSourceBlockInvocation } from "../features/results/sourceBlockRecovery";
++import { sourceContract, numericalResultStanding } from "../features/results/numericalResultQuality";
+ import { invoke } from "@tauri-apps/api/core";
+ import type { MechanicsResult, PreviewModel } from "../types";
+ import type { RulePackDocument } from "./rulePackService";
+@@ -106,6 +109,8 @@
+   projectId?: string | null;
+ }): Promise<RuleCheckRunRoute> {
+   if (!isTauriRuntime()) return unavailable();
++  if (args.solvedEnvelope && !hasNativeMechanicsInvocation(args.solvedEnvelope,args.model)) throw new Error("NATIVE_RULE_INPUT_UNVERIFIED");
++  if (args.solvedEnvelope && sourceContract(args.solvedEnvelope) === "source_blocks" && !numericalResultStanding(args.solvedEnvelope, args.model).eligible) throw new Error("SOURCE_BLOCKS_RULE_INPUT_UNQUALIFIED");
+   // Supply the model even with a solved envelope so the backend can verify
+   // complete requested-case coverage without inferring requests from results. Empty binding arrays are
+   // omitted so the backend treats those inputs as unsupplied (never a silent
+@@ -114,6 +119,7 @@
+   const invokeArgs: Record<string, unknown> = { rulePackDocument: args.rulePackDocument };
+   if (args.solvedEnvelope) invokeArgs.solvedEnvelope = args.solvedEnvelope;
+   if (args.model) invokeArgs.model = args.model;
++  if (args.solvedEnvelope && args.model && sourceContract(args.solvedEnvelope) === "source_blocks") invokeArgs.sourceBlockInvocation = retainedSourceBlockInvocation(args.solvedEnvelope, args.model);
+   if (args.solverResultBindings && args.solverResultBindings.length > 0) {
+     invokeArgs.solverResultBindings = args.solverResultBindings;
+   }
+--- a/projects/chirality-piping/apps/desktop/src/types.ts
++++ b/projects/chirality-piping/apps/desktop/src/types.ts
+@@ -300,6 +300,8 @@
+   }>;
+ };
+ export type MechanicsResult = {
++  /** Preserved producer receipt. Eligibility requires independently captured invocation. */
++  source_block_recovery?: unknown;
+   producer?: { component_name: string; component_version: string; semantic_contract_id: string };
+   numerical_quality?: NumericalQuality;
+   formulation_basis?: { profile_id: string; limitations: string[] };

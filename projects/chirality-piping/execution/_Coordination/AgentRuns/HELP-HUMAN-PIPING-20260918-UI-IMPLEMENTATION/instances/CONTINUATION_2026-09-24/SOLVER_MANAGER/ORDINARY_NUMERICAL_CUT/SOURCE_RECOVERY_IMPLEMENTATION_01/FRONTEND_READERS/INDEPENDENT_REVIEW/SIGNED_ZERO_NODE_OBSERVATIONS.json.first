@@ -1,0 +1,525 @@
+{
+  "scope": "Actual frontend functions bundled without behavioral substitution, real existing Rust-WASM hashing/units, unchanged genuine producer pair, only native invoke mocked; no new solve or native witness.",
+  "observed": [
+    {
+      "initialNegativeZero": false,
+      "callerStillNegativeZero": false,
+      "sentNegativeZero": false,
+      "actualRequestEqualsUnchangedProducerRequest": false,
+      "native": true,
+      "originalStanding": {
+        "contract": "source_blocks",
+        "status": "integrity_checked",
+        "eligible": true,
+        "findings": []
+      },
+      "capturedStanding": {
+        "eligible": true,
+        "findings": []
+      },
+      "manifestModelNegativeZero": false
+    },
+    {
+      "initialNegativeZero": true,
+      "callerStillNegativeZero": true,
+      "sentNegativeZero": false,
+      "actualRequestEqualsUnchangedProducerRequest": false,
+      "native": true,
+      "originalStanding": {
+        "contract": "source_blocks",
+        "status": "needs_recompute",
+        "eligible": false,
+        "findings": [
+          "SOURCE_BLOCKS_VALIDATED_INVOCATION_REQUIRED"
+        ]
+      },
+      "capturedStanding": {
+        "eligible": true,
+        "findings": []
+      },
+      "manifestModelNegativeZero": true
+    }
+  ],
+  "reportObservation": {
+    "returned": true,
+    "rawSupportCount": 12,
+    "supports": [
+      {
+        "id": "result:support-component-v2:4:case6:anchor:Fx",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fx",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:Fx",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case6:anchor:Fy",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fy",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:Fy",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case6:anchor:Fz",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fz",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:Fz",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case6:anchor:Mx",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Mx",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:Mx",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case6:anchor:My",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "My",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:My",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case6:anchor:Mz",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Mz",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case6:anchor:Mz",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "anchor"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:Fx",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fx",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:Fx",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:Fy",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fy",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:Fy",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:Fz",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Fz",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:Fz",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N",
+          "dimension": "force",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:Mx",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Mx",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:Mx",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": -1e-8,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:My",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "My",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:My",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      },
+      {
+        "id": "result:support-component-v2:4:case18:independent-spring:Mz",
+        "rawMetadata": {
+          "basis": "recovered_from_assembled_support_law",
+          "component": "Mz",
+          "coordinate_system": "global",
+          "location": "node",
+          "sign_convention": "support_on_pipe_positive_global_force_right_hand_couple_at_attachment_node"
+        },
+        "exported": {
+          "result_id": "result:support-component-v2:4:case18:independent-spring:Mz",
+          "family": "reaction",
+          "object_ref": {
+            "ref_type": "model_entity",
+            "ref_id": "independent-spring"
+          },
+          "basis_ref": {
+            "ref_type": "load_case",
+            "ref_id": "case"
+          },
+          "station_ref": null,
+          "magnitude": 0,
+          "unit": "N*m",
+          "dimension": "moment",
+          "metadata": null,
+          "diagnostics": [],
+          "trace_chain": [],
+          "provenance": {
+            "source_name": "OpenPipeStress desktop session (Invented n05 source-recovery UI control)",
+            "source_location": "local desktop session",
+            "source_license": "user_supplied_or_private",
+            "contributor": "user_local_session",
+            "contributor_certification": "not_asserted",
+            "redistribution_status": "private_only",
+            "review_status": "pending"
+          }
+        }
+      }
+    ],
+    "envelopeKeys": [
+      "envelope_id",
+      "schema_version",
+      "model_ref",
+      "run_ref",
+      "solver_name",
+      "solver_version",
+      "solver_build_ref",
+      "unit_system_ref",
+      "load_basis_refs",
+      "result_sets",
+      "diagnostics",
+      "provenance",
+      "reproducibility",
+      "analysis_status",
+      "rule_pack_refs",
+      "professional_boundary"
+    ],
+    "hasSourceReceipt": false,
+    "hasSemanticIdentity": true
+  }
+}

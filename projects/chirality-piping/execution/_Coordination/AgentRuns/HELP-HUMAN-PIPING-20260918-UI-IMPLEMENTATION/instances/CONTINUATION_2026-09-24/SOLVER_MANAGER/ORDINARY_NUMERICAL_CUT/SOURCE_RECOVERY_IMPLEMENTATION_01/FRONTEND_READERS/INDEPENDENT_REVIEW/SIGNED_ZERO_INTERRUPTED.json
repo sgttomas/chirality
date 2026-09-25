@@ -1,0 +1,9 @@
+{
+  "command": "vitest run --config review.vitest.config.ts --configLoader native --maxWorkers=1",
+  "status": "interrupted before any testcase observation",
+  "exit_code": 130,
+  "source_changes": false,
+  "qualification_inference": "none",
+  "stderr_observation": "Parent Python subprocess.run interrupted with KeyboardInterrupt after runner did not return; stdout was buffered and no testcase output was available. Read-only ps attempt denied by sandbox; no escalation requested.",
+  "next": "Use a bounded direct Node bundle of actual frontend functions with only native transport mocked, if coordinated."
+}

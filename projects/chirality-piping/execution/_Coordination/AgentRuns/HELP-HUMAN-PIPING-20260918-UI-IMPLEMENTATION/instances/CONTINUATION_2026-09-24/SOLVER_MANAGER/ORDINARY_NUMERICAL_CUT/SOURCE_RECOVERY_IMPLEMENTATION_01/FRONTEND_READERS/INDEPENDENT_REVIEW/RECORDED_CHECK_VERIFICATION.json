@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "record": "CONNECTED_04.json",
+      "record_sha256": "ef339bc97da48f2f44b19b7b260d638133664c3234e53fe141fd26e86be8f55e",
+      "log_sha256": "2b64c95617bd40d5e2d3c55fce5962c056c0ed5397a9d5d1312f3c3a406eaeb4",
+      "actual_log_hash_matches": true,
+      "exit_code": 1,
+      "paths_differing_from_final": [
+        "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx"
+      ]
+    },
+    {
+      "record": "PANEL_FINAL_02.json",
+      "record_sha256": "04706e47baca89b48b5e415ac624cfd57d25f6e86630f686ac7e35f76d91d4d0",
+      "log_sha256": "87dad67d22d6d64c8b3ed01b60b7d3bb842d99c01628c0390960ccc4b2061170",
+      "actual_log_hash_matches": true,
+      "exit_code": 0,
+      "paths_differing_from_final": []
+    },
+    {
+      "record": "TYPECHECK_10.json",
+      "record_sha256": "dbe2e047fda42e5f14b709bf8e093b042154cdec4975d54d3b6f5e1af15db025",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_log_hash_matches": true,
+      "exit_code": 0,
+      "paths_differing_from_final": []
+    }
+  ],
+  "interpretation": "Broad172/173 failure retained; later14/14 panel run covers sole changed test setup; these overlap and are not summed. Final typecheck hashes cover all21 final paths. No suite rerun by reviewer."
+}

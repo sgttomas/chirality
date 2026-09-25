@@ -1,0 +1,34 @@
+{
+  "candidate": "ed688b13f633ce8aa6aeede784c3562511c20966",
+  "utc": "2026-09-25T07:35:35.296977+00:00",
+  "runs": [
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/bundle_probe.mjs"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "log": "bundle_probe.mjs.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "/private/tmp/piping-source-recovery-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_MANAGER/ORDINARY_NUMERICAL_CUT/SOURCE_RECOVERY_IMPLEMENTATION_01/FRONTEND_READERS/INDEPENDENT_REVIEW/signed_zero_bundle.mjs"
+      ],
+      "exit_code": 1,
+      "timeout": false,
+      "log": "signed_zero_bundle.mjs.log",
+      "log_sha256": "6d560b7f90d73733a74f6b202d2c141ff2cc3817a0fac5355eeb78d6384b4a82"
+    }
+  ],
+  "wall_seconds": 0.292474333,
+  "source_unchanged": true,
+  "harness_correction": "First run compared JSON object insertion order. Final equality keeps all request keys and compares identical model/material field values in one explicit order; no source, fixture or request fields changed. First result retained with .first suffix.",
+  "artifact_hashes": {
+    "bundle_probe.mjs": "afd26effe6c8bea8adee368313e4954db4a419ce271c0f2ffba6081f69323355",
+    "signed_zero_entry.mjs": "5a627484f560533e4773659eff7a262d67b6c9d522b9542b2f6ab14ddd09632d",
+    "signed_zero_bundle.mjs": "0efea016b1e9a6588297a05253296db2cc22b4e586c6e1629662b5a45b7b9965"
+  }
+}
