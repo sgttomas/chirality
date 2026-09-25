@@ -4,9 +4,9 @@ WORKING_ITEMS (Type 1), node B3 of HELP_HUMAN run `HELP-HUMAN-PEC-20260923-SCA00
 Brief `B3_SCA005_CHECKPOINT3.md`, SHA-256 `69c2296749cee727e1bd84b13f7a4ebcad93400f8ceb6267519e79601811b17f`. The brief is held by HELP_HUMAN and is not yet committed under `briefs/`.
 Branch `claude/pec-sca005-cp3-execution`, cut from `origin/main` `2b0572fe049c8ffaa02d61b7dbbc3ae41bc589f6`. Package revision `958a23385`; this return is committed on top of it. The PR is not merged.
 
-**Status:** checkpoint-3 package prepared and independently verified; it now awaits the owner.
+**Status:** checkpoint-3 package prepared and independently verified (verdict 01 PASS WITH MINOR, repaired; verdict 02 PASS); it now awaits the owner.
 - Verifier verdict 01 was PASS WITH MINOR, with no blocking finding. I repaired its three MINOR findings in `958a23385`.
-- The cycle-2 re-verification of those repairs had been requested but had not returned when the host required this handback. Verdict 02 is therefore **not** saved.
+- The cycle-2 re-verification of those repairs returned **PASS** and is saved as verdict 02. No finding remains in the package; the only residual item (R-1, committing the B3 brief) belongs to HELP_HUMAN.
 
 ## Instruction and authority sources (SHA-256)
 
@@ -124,7 +124,7 @@ The full set is in `RUN_SUMMARY.md` §"Checkpoint-3 owner question".
 | Cycle | Reviewed revision | Verdict | Result |
 |---|---|---|---|
 | 01 | `bbee14b03` | PASS WITH MINOR | See the findings below |
-| 02 | `958a23385` | not received | Requested; the host cut the run off before it returned |
+| 02 | `958a23385` | PASS | Saved as `returns/B3_VERIFIER_VERDICT_02.md`; residual R-1 is HELP_HUMAN's |
 
 Verdict 01 findings:
 - **MINOR-1:** the `git diff --check` wording. Repaired.
@@ -134,7 +134,7 @@ Verdict 01 findings:
 
 ## Unresolved (for HELP_HUMAN)
 
-1. Obtain or rerun the cycle-2 re-verification of `958a23385` and save it as `returns/B3_VERIFIER_VERDICT_02.md`. A fresh reviewer is acceptable.
+1. Nothing is blocking. Verdict 02 is PASS.
 2. Commit the B3 brief at `briefs/B3_SCA005_CHECKPOINT3.md` with SHA-256 `69c22967…11b17f` (MINOR-3).
 3. Write the three foreign notices below, before or with the checkpoint-3 presentation.
 4. Present checkpoint 3 to the owner. After acceptance, carry out A6 with the checkpoint-3 dates.
