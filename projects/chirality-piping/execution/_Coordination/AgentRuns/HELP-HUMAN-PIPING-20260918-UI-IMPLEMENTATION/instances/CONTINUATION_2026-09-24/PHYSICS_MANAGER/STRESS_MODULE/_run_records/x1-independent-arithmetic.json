@@ -1,0 +1,8 @@
+{
+  "method": "independent Python stdlib arithmetic of analytically derived X1; no product code",
+  "t_star": 0.5732233047033631,
+  "normal_mpa": 1.1340862821217075,
+  "closed_form_mpa": 1.1340862821217075,
+  "legacy_best_candidate_t": 0.625,
+  "legacy_best_new_objective_mpa": 1.1267347735824966
+}

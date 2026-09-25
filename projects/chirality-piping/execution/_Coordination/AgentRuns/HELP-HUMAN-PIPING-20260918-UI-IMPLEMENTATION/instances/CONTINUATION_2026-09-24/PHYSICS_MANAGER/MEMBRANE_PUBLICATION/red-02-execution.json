@@ -1,0 +1,36 @@
+{
+  "actor": "/root/physics_resume",
+  "actual_harness_parent": "/root",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/Cargo.toml",
+    "--offline",
+    "--locked",
+    "-j",
+    "2",
+    "--target-dir",
+    "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/target_product",
+    "--test",
+    "pressure_membrane_range",
+    "--",
+    "--test-threads=2",
+    "--nocapture"
+  ],
+  "cwd": "/private/tmp/piping-pressure-stress-20260924",
+  "started_utc": "2026-09-25T02:57:30.214131+00:00",
+  "versions": {
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+  },
+  "inputs": {
+    "projects/chirality-piping/core/product_physics/src/lib.rs": "322c7f8b9a4040d77c3ccc0a5ba336715b1575e87267cc5100ae8125588390f8",
+    "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_03/SOURCE_MANIFEST.json": "ed5dc0ef77c69c5ab9e9aefcd59128217d87330ca7e9c78069ca8f49f139430a"
+  },
+  "exit_code": 101,
+  "finished_utc": "2026-09-25T02:57:31.725828+00:00",
+  "all_inputs_unchanged": true,
+  "log_sha256": "618e937089db6aeadbca224dc0dbbb0916cca9e43b0c856bc62e6ea55cfd93c3"
+}

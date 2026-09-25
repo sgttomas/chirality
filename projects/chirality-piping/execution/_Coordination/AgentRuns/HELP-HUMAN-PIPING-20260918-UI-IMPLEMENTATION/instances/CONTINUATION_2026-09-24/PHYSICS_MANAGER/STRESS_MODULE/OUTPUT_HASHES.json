@@ -1,0 +1,34 @@
+[
+  {
+    "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+    "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/REFERENCE_DISPOSITION.md",
+    "sha256": "d32dbc30281208d6b5445bad9714162019419d3cff1999a5b5fb459516139c5e"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/RETURN.md",
+    "sha256": "19be50ecb0b793456aeacac59b87061e3be98f9b53ca7f1b24445336e4030797"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/BASIS.json",
+    "sha256": "6cbd01a527c9c567c6116239944e520887e730a1678559ba5120fc687d17e98f"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/execution.json",
+    "sha256": "dd9fc01e29f0db0a49bcbd93bcab153a053a8b841885bdefb8cd0f7031176b6d"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/rustc-test-build.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/rustc-test-run.log",
+    "sha256": "6e815f235fdefa855e3a77e05dd7d95d693ceb6c37cb8f034cca71df0d745f56"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/x1-independent-arithmetic.json",
+    "sha256": "44810c2b2d618a611421bfc8e3bdbffea526fe9886c2f92ef9f321251429e6a6"
+  }
+]

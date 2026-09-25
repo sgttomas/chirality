@@ -1,0 +1,581 @@
+--- a/projects/chirality-piping/core/product_physics/src/lib.rs
++++ b/projects/chirality-piping/core/product_physics/src/lib.rs
+@@ -1237,6 +1237,16 @@
+ }
+ 
+ fn maximum_across_cases(cases: &[LoadCaseSolve], stress: bool) -> Option<LocatedQuantity> {
++    // A headline covers the complete requested domain, never only available members.
++    if cases.iter().any(|case| {
++        if stress {
++            case.max_stress.is_none()
++        } else {
++            case.max_displacement.is_none()
++        }
++    }) {
++        return None;
++    }
+     cases
+         .iter()
+         .enumerate()
+@@ -1501,7 +1511,12 @@
+         let result_id = format!("result:disp:{}", stable_suffix(&node.id));
+         if max_displacement
+             .as_ref()
+-            .map(|q: &LocatedQuantity| magnitude * 1000.0 > q.value)
++            .map(|q: &LocatedQuantity| {
++                magnitude * 1000.0 > q.value
++                    || (pressure_runtime::is_exact(model)
++                        && magnitude * 1000.0 == q.value
++                        && node.id < q.location_ref)
++            })
+             .unwrap_or(true)
+         {
+             max_displacement = Some(LocatedQuantity {
+@@ -1609,6 +1624,7 @@
+ 
+     let mut max_stress = None;
+     let mut pipe_stress_extrema = Vec::new();
++    let mut unavailable_stress_maximum_members = Vec::new();
+     let mut component_stress_modifier_count = 0;
+     for (pipe_index, pipe) in built.pipes.iter().enumerate() {
+         let macro_bend = curved_bends_by_pipe.get(&pipe_index).copied();
+@@ -2002,15 +2018,39 @@
+             }
+         }
+         let summary_value = if pressure_runtime::is_exact(model) {
+-            match exact_straight_summary_extrema(pipe, &corrected_local_forces, &straight_loads, section) {
++            match exact_straight_summary_extrema(
++                pipe,
++                &corrected_local_forces,
++                &straight_loads,
++                section,
++            ) {
+                 Ok(maximum) => {
+-                    let value = maximum.value_lower + 0.5 * (maximum.value_upper - maximum.value_lower);
+-                    let result_id = format!("result:elastic-maximum:{}:{}:{}:{}",load_case.id.len(),load_case.id,pipe.element_id.len(),pipe.element_id);
++                    let value =
++                        maximum.value_lower + 0.5 * (maximum.value_upper - maximum.value_lower);
++                    let result_id = format!(
++                        "result:elastic-maximum:{}:{}:{}:{}",
++                        load_case.id.len(),
++                        load_case.id,
++                        pipe.element_id.len(),
++                        pipe.element_id
++                    );
+                     results.push(ResultItem { id:result_id.clone(),kind:"pipe_elastic_normal_stress_maximum_v2".to_string(),value,unit:"Pa".to_string(),entity_ref:pipe.element_id.clone(),basis_ref:None,source_result_refs:Vec::new(),metadata:Some(ResultMetadata {
+                         component:"maximum_absolute_normal_stress".to_string(),coordinate_system:"pipe_section".to_string(),location:"governing_station".to_string(),basis:"recovered_from_open_mechanics_stress_components".to_string(),
+                         sign_convention:"nonnegative circumferential maximum |Nw/As|+hypot(My,Mz)/Z; bounded over all straight statics intervals; torsional shear remains separate; no code stress or equivalent stress claim".to_string() }) });
+-                    if max_stress.as_ref().map(|q: &LocatedQuantity| value > q.value).unwrap_or(true) {
+-                        max_stress=Some(LocatedQuantity {value,unit:"Pa".to_string(),location_ref:pipe.element_id.clone(),result_ref:result_id.clone()});
++                    if max_stress
++                        .as_ref()
++                        .map(|q: &LocatedQuantity| {
++                            value > q.value
++                                || (value == q.value && pipe.element_id < q.location_ref)
++                        })
++                        .unwrap_or(true)
++                    {
++                        max_stress = Some(LocatedQuantity {
++                            value,
++                            unit: "Pa".to_string(),
++                            location_ref: pipe.element_id.clone(),
++                            result_ref: result_id.clone(),
++                        });
+                     }
+                     pipe_stress_extrema.push(serde_json::json!({"pipe_id":pipe.element_id,"result_id":result_id,
+                         "station_fraction":maximum.station,"span_index":maximum.span_index,"local_fraction":maximum.local_fraction,
+@@ -2018,8 +2058,11 @@
+                         "certified_gap_pa":maximum.certified_gap,"subdivisions":maximum.subdivisions,
+                         "approximation":"piecewise_quadratic_straight_section_statics","coefficient_basis":"j_side_section_equilibrium_binary64",
+                         "enclosure_scope":"supplied_binary64_polynomial_coefficients; solution and coefficient formation error are separate"}));
+-                },
+-                Err(error) => diagnostics.push(diag(&format!("diagnostic:exact-stress:{}:extrema",stable_suffix(&pipe.element_id)),"EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE","warning",format!("signed physical rows remain available; governing circular-normal-stress maximum is unavailable: {error}"),vec![load_case.id.clone(),pipe.element_id.clone()])),
++                }
++                Err(error) => {
++                    unavailable_stress_maximum_members.push(pipe.element_id.clone());
++                    diagnostics.push(diag(&format!("diagnostic:exact-stress:{}:extrema",stable_suffix(&pipe.element_id)),"EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE","warning",format!("signed physical rows remain available; governing circular-normal-stress maximum is unavailable: {error}"),vec![load_case.id.clone(),pipe.element_id.clone()]));
++                }
+             }
+             None
+         } else {
+@@ -2101,10 +2144,14 @@
+             p.evidence
+         })
+         .unwrap_or_default();
++    if pressure_runtime::is_exact(model) && !unavailable_stress_maximum_members.is_empty() {
++        max_stress = None;
++    }
+     let exact_case_evidence = pressure_runtime::is_exact(model).then(|| serde_json::json!({
+         "load_case_id":load_case.id,"profile_mode":"exact_straight_pressure_v2",
+         "material_basis":modulus_basis_record.unwrap_or("base_material_common_E_nu"),
+         "pipe_stress_extrema":pipe_stress_extrema,
++        "stress_maximum_coverage":{"complete":unavailable_stress_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_stress_maximum_members},
+         "pipe_materials":model.pipe_segments.iter().map(|pipe| {
+             let material=materials.iter().find(|m| m.id==pipe.material).expect("built exact member material is validated");
+             let thermal_consumed=load_case.primitive_loads.iter().any(|load| load.category=="thermal" && is_temperature_change_dimension(&load.dimension) && matches!(&load.target,LoadTargetInput::Element{pipe:target} if target==&pipe.id));
+--- a/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs
+@@ -838,7 +838,7 @@
+         .unwrap()
+         .push(json!({
+         "id":"load:torsion","category":"occasional",
+-        "target":{"type":"node","node":TIP},"direction":"global_x",
++        "target":{"type":"node","node":TIP},"direction":"rotation_x",
+         "magnitude":{"value":1.0,"unit":"N*m"},"dimension":"moment",
+         "provenance":"independent_circular_torsion_reference"}));
+ }
+--- a/projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs
+@@ -128,5 +128,15 @@
+             })
+             .unwrap();
+         close(torsion.value, torque * 0.06 / (2.0 * inertia) / 1e6, 0.0);
++        let reaction = output
++            .results
++            .iter()
++            .find(|r| {
++                r.kind == "support_reaction_component_v2"
++                    && r.entity_ref == "support:a"
++                    && r.metadata.as_ref().is_some_and(|m| m.component == "Mx")
++            })
++            .unwrap();
++        close(reaction.value, -torque, 0.0);
+     }
+ }
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
+@@ -0,0 +1,208 @@
++//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
++//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++use open_pipe_stress_product_physics::{
++    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, PreviewSolverMode,
++};
++use serde_json::{json, Value};
++use std::f64::consts::PI;
++
++fn fixture() -> Value {
++    json!({"model":{
++        "schema_version":"0.3.0","document_kind":"openpipestress.product_preview.model",
++        "pressure_contract":{"version":"2.0.0","mode":"exact_straight_pressure_v2"},
++        "project":{"id":"project:elastic-extrema","units":{"length":"m","force":"N","angle":"rad","pressure":"Pa","stress":"Pa","temperature":"degC"}},
++        "analysis_status":{"mechanics":"ready_for_preview_diagnostics","rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},
++        "nodes":[{"id":"node:a","position":{"x":0.0,"y":0.0,"z":0.0},"provenance":"independent_statics"},{"id":"node:b","position":{"x":1.0,"y":0.0,"z":0.0},"provenance":"independent_statics"}],
++        "pipe_segments":[{"id":"pipe:a-b","from":"node:a","to":"node:b","section":{"outside_diameter":{"value":0.12,"unit":"m"},"wall_thickness":{"value":0.01,"unit":"m"}},"material":"material:m","y_reference":{"x":0.0,"y":1.0,"z":0.0},"provenance":"independent_statics"}],
++        "supports":[{"id":"support:a","node":"node:a","family":"anchor","restraints":["UX","UY","UZ","RX","RY","RZ"],"provenance":"independent_statics"}],"components":[],
++        "materials":[{"id":"material:m","constitutive_basis":"homogeneous_isotropic_E_nu_v1","elastic_modulus":{"value":200e9,"unit":"Pa"},"poisson_ratio":{"value":0.3,"unit":"1"},"provenance":"synthetic_isotropic_annulus"}],
++        "load_cases":[{"id":"case:x1","pressure_regions":[],"primitive_loads":[],"provenance":"independent_statics"}],"combinations":[]},"materials":[]})
++}
++fn nodal(id: &str, direction: &str, value: f64, moment: bool) -> Value {
++    json!({"id":id,"category":if moment {"concentrated_moment"} else {"concentrated_force"},"target":{"type":"node","node":"node:b"},"direction":direction,"magnitude":{"value":value,"unit":if moment {"N*m"} else {"N"}},"dimension":if moment {"moment"} else {"force"},"provenance":"independent_statics"})
++}
++
++// Finite binary64 edge control, not a realistic material or engineering benchmark.
++// The two signed normal components are finite; their aggregate exceeds f64.
++fn coverage_wire(two_members: bool) -> Value {
++    let mut wire = fixture();
++    wire["model"]["materials"][0]["elastic_modulus"]["value"] = json!(1e306);
++    wire["model"]["load_cases"][0]["primitive_loads"] =
++        json!([nodal("load:small", "global_x", 1000.0, false)]);
++    let area = PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
++    let z = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0 / 0.06;
++    let mut force = nodal("load:large-force", "global_x", 0.7 * f64::MAX * area, false);
++    let mut moment = nodal("load:large-moment", "rotation_z", 0.7 * f64::MAX * z, true);
++    if two_members {
++        for (id, x) in [("node:c", 0.0), ("node:d", 1.0)] {
++            wire["model"]["nodes"].as_array_mut().unwrap().push(json!({"id":id,"position":{"x":x,"y":1.0,"z":0.0},"provenance":"finite_edge_control"}));
++        }
++        let mut pipe = wire["model"]["pipe_segments"][0].clone();
++        pipe["id"] = json!("pipe:c-d");
++        pipe["from"] = json!("node:c");
++        pipe["to"] = json!("node:d");
++        wire["model"]["pipe_segments"]
++            .as_array_mut()
++            .unwrap()
++            .push(pipe);
++        let mut support = wire["model"]["supports"][0].clone();
++        support["id"] = json!("support:c");
++        support["node"] = json!("node:c");
++        wire["model"]["supports"]
++            .as_array_mut()
++            .unwrap()
++            .push(support);
++        force["target"]["node"] = json!("node:d");
++        moment["target"]["node"] = json!("node:d");
++        let loads = wire["model"]["load_cases"][0]["primitive_loads"]
++            .as_array_mut()
++            .unwrap();
++        loads.push(force);
++        loads.push(moment);
++    } else {
++        let mut second = wire["model"]["load_cases"][0].clone();
++        second["id"] = json!("case:large");
++        second["primitive_loads"] = json!([force, moment]);
++        wire["model"]["load_cases"]
++            .as_array_mut()
++            .unwrap()
++            .push(second);
++    }
++    wire
++}
++fn check_incomplete_domain(wire: Value, mode: PreviewSolverMode) {
++    let request: LinearStaticPreviewRequest = serde_json::from_value(wire).unwrap();
++    let output = run_linear_static_preview_with_mode(request, mode);
++    assert_eq!(
++        output.status.mechanics, "MECHANICS_SOLVED",
++        "{:?}",
++        output.diagnostics
++    );
++    assert!(output.results.iter().all(|r| r.value.is_finite()));
++    assert!(output
++        .diagnostics
++        .iter()
++        .any(|d| d.code == "EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE"));
++    assert_eq!(
++        output
++            .results
++            .iter()
++            .filter(|r| r.kind == "pipe_elastic_normal_stress_maximum_v2")
++            .count(),
++        1,
++        "valid individual maximum must remain inspectable"
++    );
++    assert!(
++        output.summary.max_open_formula_stress.is_none(),
++        "incomplete domain must not publish an available-subset overall maximum"
++    );
++    let cases = output.contract_evidence.as_ref().unwrap()["exact_cases"]
++        .as_array()
++        .unwrap();
++    assert!(cases
++        .iter()
++        .any(|case| case["stress_maximum_coverage"]["complete"] == false));
++    for case in cases
++        .iter()
++        .filter(|case| case["stress_maximum_coverage"]["complete"] == false)
++    {
++        assert!(!case["stress_maximum_coverage"]["unavailable_pipe_ids"]
++            .as_array()
++            .unwrap()
++            .is_empty());
++    }
++}
++#[test]
++fn incomplete_case_domain_withholds_overall_maximum_in_both_case_orders() {
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        for reverse in [false, true] {
++            let mut wire = coverage_wire(false);
++            if reverse {
++                wire["model"]["load_cases"]
++                    .as_array_mut()
++                    .unwrap()
++                    .reverse();
++            }
++            check_incomplete_domain(wire, mode);
++        }
++    }
++}
++#[test]
++fn incomplete_member_domain_withholds_case_maximum_in_both_member_orders() {
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        for reverse in [false, true] {
++            let mut wire = coverage_wire(true);
++            if reverse {
++                wire["model"]["pipe_segments"]
++                    .as_array_mut()
++                    .unwrap()
++                    .reverse();
++            }
++            check_incomplete_domain(wire, mode);
++        }
++    }
++}
++
++#[test]
++fn exact_zero_displacement_ties_use_location_identity_not_node_order() {
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        for reverse in [false, true] {
++            let mut wire = fixture();
++            if reverse {
++                wire["model"]["nodes"].as_array_mut().unwrap().reverse();
++            }
++            let request: LinearStaticPreviewRequest = serde_json::from_value(wire).unwrap();
++            let output = run_linear_static_preview_with_mode(request, mode);
++            assert_eq!(output.status.mechanics, "MECHANICS_SOLVED");
++            assert_eq!(
++                output
++                    .summary
++                    .max_displacement
++                    .as_ref()
++                    .unwrap()
++                    .location_ref,
++                "node:a"
++            );
++        }
++    }
++}
++#[test]
++fn exact_zero_stress_ties_use_location_identity_not_member_order() {
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        for reverse in [false, true] {
++            let mut wire = coverage_wire(true);
++            wire["model"]["materials"][0]["elastic_modulus"]["value"] = json!(200e9);
++            wire["model"]["load_cases"][0]["primitive_loads"] = json!([]);
++            if reverse {
++                wire["model"]["pipe_segments"]
++                    .as_array_mut()
++                    .unwrap()
++                    .reverse();
++            }
++            let request: LinearStaticPreviewRequest = serde_json::from_value(wire).unwrap();
++            let output = run_linear_static_preview_with_mode(request, mode);
++            assert_eq!(output.status.mechanics, "MECHANICS_SOLVED");
++            assert_eq!(
++                output
++                    .summary
++                    .max_open_formula_stress
++                    .as_ref()
++                    .unwrap()
++                    .location_ref,
++                "pipe:a-b"
++            );
++        }
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs
+@@ -0,0 +1,223 @@
++//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
++//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++use open_pipe_stress_product_physics::{
++    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope,
++    PreviewSolverMode,
++};
++use serde_json::{json, Value};
++use std::f64::consts::PI;
++
++fn fixture() -> Value {
++    json!({"model":{
++        "schema_version":"0.3.0","document_kind":"openpipestress.product_preview.model",
++        "pressure_contract":{"version":"2.0.0","mode":"exact_straight_pressure_v2"},
++        "project":{"id":"project:elastic-extrema","units":{"length":"m","force":"N","angle":"rad","pressure":"Pa","stress":"Pa","temperature":"degC"}},
++        "analysis_status":{"mechanics":"ready_for_preview_diagnostics","rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},
++        "nodes":[{"id":"node:a","position":{"x":0.0,"y":0.0,"z":0.0},"provenance":"independent_statics"},{"id":"node:b","position":{"x":1.0,"y":0.0,"z":0.0},"provenance":"independent_statics"}],
++        "pipe_segments":[{"id":"pipe:a-b","from":"node:a","to":"node:b","section":{"outside_diameter":{"value":0.12,"unit":"m"},"wall_thickness":{"value":0.01,"unit":"m"}},"material":"material:m","y_reference":{"x":0.0,"y":1.0,"z":0.0},"provenance":"independent_statics"}],
++        "supports":[{"id":"support:a","node":"node:a","family":"anchor","restraints":["UX","UY","UZ","RX","RY","RZ"],"provenance":"independent_statics"}],"components":[],
++        "materials":[{"id":"material:m","constitutive_basis":"homogeneous_isotropic_E_nu_v1","elastic_modulus":{"value":200e9,"unit":"Pa"},"poisson_ratio":{"value":0.3,"unit":"1"},"provenance":"synthetic_isotropic_annulus"}],
++        "load_cases":[{"id":"case:x1","pressure_regions":[],"primitive_loads":[],"provenance":"independent_statics"}],"combinations":[]},"materials":[]})
++}
++fn nodal(id: &str, direction: &str, value: f64, moment: bool) -> Value {
++    json!({"id":id,"category":if moment {"concentrated_moment"} else {"concentrated_force"},"target":{"type":"node","node":"node:b"},"direction":direction,"magnitude":{"value":value,"unit":if moment {"N*m"} else {"N"}},"dimension":if moment {"moment"} else {"force"},"provenance":"independent_statics"})
++}
++fn solve(wire: Value, mode: PreviewSolverMode) -> MechanicsEnvelope {
++    let request: LinearStaticPreviewRequest = serde_json::from_value(wire).unwrap();
++    let output = run_linear_static_preview_with_mode(request, mode);
++    assert_eq!(
++        output.status.mechanics, "MECHANICS_SOLVED",
++        "{:?}",
++        output.diagnostics
++    );
++    assert!(!output
++        .diagnostics
++        .iter()
++        .any(|d| d.code == "EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE"));
++    output
++}
++fn close(a: f64, b: f64, scale: f64) {
++    assert!(
++        a.is_finite() && (a - b).abs() <= 1e-9 * b.abs().max(scale),
++        "{a:.17e} != {b:.17e}"
++    );
++}
++
++fn support_value(output: &MechanicsEnvelope, id: &str, component: &str) -> f64 {
++    let row = output
++        .results
++        .iter()
++        .find(|r| {
++            r.kind == "support_reaction_component_v2"
++                && r.entity_ref == id
++                && r.metadata
++                    .as_ref()
++                    .is_some_and(|m| m.component == component)
++        })
++        .unwrap();
++    let meta = row.metadata.as_ref().unwrap();
++    assert_eq!(meta.coordinate_system, "global");
++    assert_eq!(meta.location, "node");
++    assert_eq!(
++        row.unit,
++        if component.starts_with('F') {
++            "N"
++        } else {
++            "N*m"
++        }
++    );
++    row.value
++}
++fn rotate(v: [f64; 3]) -> [f64; 3] {
++    [
++        (2.0 * v[0] - 2.0 * v[1] + v[2]) / 3.0,
++        (v[0] + 2.0 * v[1] + 2.0 * v[2]) / 3.0,
++        (-2.0 * v[0] - v[1] + 2.0 * v[2]) / 3.0,
++    ]
++}
++#[test]
++fn six_nonzero_support_components_follow_global_force_and_moment_balance() {
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        for rotated in [false, true] {
++            let mut wire = fixture();
++            let map = |v| if rotated { rotate(v) } else { v };
++            let tip = map([1.0, 0.0, 0.0]);
++            let yref = map([0.0, 1.0, 0.0]);
++            wire["model"]["nodes"][1]["position"] = json!({"x":tip[0],"y":tip[1],"z":tip[2]});
++            wire["model"]["pipe_segments"][0]["y_reference"] =
++                json!({"x":yref[0],"y":yref[1],"z":yref[2]});
++            let force = map([1000.0, 2000.0, -3000.0]);
++            let moment = map([400.0, -500.0, 600.0]);
++            let mut loads = Vec::new();
++            for axis in 0..3 {
++                loads.push(nodal(
++                    &format!("load:f{axis}"),
++                    ["global_x", "global_y", "global_z"][axis],
++                    force[axis],
++                    false,
++                ));
++                loads.push(nodal(
++                    &format!("load:m{axis}"),
++                    ["rotation_x", "rotation_y", "rotation_z"][axis],
++                    moment[axis],
++                    true,
++                ));
++            }
++            wire["model"]["load_cases"][0]["primitive_loads"] = json!(loads);
++            let output = solve(wire, mode);
++            // Independent whole-body balance about root: Rf=-F, Rm=-(M+r×F).
++            let rf = map([-1000.0, -2000.0, 3000.0]);
++            let rm = map([-400.0, -2500.0, -2600.0]);
++            for axis in 0..3 {
++                close(
++                    support_value(&output, "support:a", ["Fx", "Fy", "Fz"][axis]),
++                    rf[axis],
++                    0.0,
++                );
++                close(
++                    support_value(&output, "support:a", ["Mx", "My", "Mz"][axis]),
++                    rm[axis],
++                    0.0,
++                );
++            }
++            for (kind, value, unit) in [
++                (
++                    "support_reaction_force_magnitude_v2",
++                    1000.0_f64.hypot(2000.0).hypot(3000.0),
++                    "N",
++                ),
++                (
++                    "support_reaction_moment_magnitude_v2",
++                    400.0_f64.hypot(2500.0).hypot(2600.0),
++                    "N*m",
++                ),
++            ] {
++                let row = output
++                    .results
++                    .iter()
++                    .find(|r| r.kind == kind && r.entity_ref == "support:a")
++                    .unwrap();
++                close(row.value, value, 0.0);
++                assert_eq!(row.unit, unit);
++            }
++        }
++    }
++}
++#[test]
++fn two_coincident_tip_springs_and_root_rigid_support_have_distinct_actions() {
++    let ea = 200e9 * PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
++    for mode in [
++        PreviewSolverMode::SparseInteractive,
++        PreviewSolverMode::DenseScrutiny,
++    ] {
++        let mut wire = fixture();
++        for (id, k) in [("support:s1", ea), ("support:s2", 2.0 * ea)] {
++            wire["model"]["supports"].as_array_mut().unwrap().push(json!({"id":id,"node":"node:b","family":"spring","restraints":["UX"],"stiffness":{"dof":"UX","value":{"value":k,"unit":"N/m"}},"provenance":"explicit_parallel_spring_reference"}));
++        }
++        wire["model"]["load_cases"][0]["primitive_loads"] =
++            json!([nodal("load:tip", "global_x", 1000.0, false)]);
++        let output = solve(wire, mode);
++        // u=F/(EA/L+k1+k2); each spring=-ki*u, root=-EA/L*u.
++        for (id, expected) in [
++            ("support:a", -250.0),
++            ("support:s1", -250.0),
++            ("support:s2", -500.0),
++        ] {
++            close(support_value(&output, id, "Fx"), expected, 0.0);
++            for component in ["Fy", "Fz", "Mx", "My", "Mz"] {
++                close(support_value(&output, id, component), 0.0, 1000.0);
++            }
++        }
++        let ux = output
++            .results
++            .iter()
++            .find(|r| {
++                r.entity_ref == "node:b"
++                    && r.metadata
++                        .as_ref()
++                        .is_some_and(|m| m.component == "nodal_displacement_x")
++            })
++            .unwrap();
++        close(ux.value, 1000.0 / (4.0 * ea) * 1000.0, 0.0);
++    }
++}
++#[test]
++fn duplicate_rigid_devices_cannot_each_publish_the_complete_nodal_reaction() {
++    let mut wire = fixture();
++    let mut duplicate = wire["model"]["supports"][0].clone();
++    duplicate["id"] = json!("support:duplicate");
++    wire["model"]["supports"]
++        .as_array_mut()
++        .unwrap()
++        .push(duplicate);
++    wire["model"]["load_cases"][0]["primitive_loads"] =
++        json!([nodal("load:tip", "global_x", 1000.0, false)]);
++    let output = run_linear_static_preview_with_mode(
++        serde_json::from_value(wire).unwrap(),
++        PreviewSolverMode::SparseInteractive,
++    );
++    assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
++    assert!(output.results.is_empty());
++    assert!(output
++        .diagnostics
++        .iter()
++        .any(|d| d.code == "SUPPORT_INPUT_INVALID"));
++}
++#[test]
++fn same_record_spring_cannot_silently_replace_an_extra_rigid_guide() {
++    let mut wire = fixture();
++    wire["model"]["supports"].as_array_mut().unwrap().push(json!({"id":"support:bad","node":"node:b","family":"spring","restraints":["UX","UY"],"stiffness":{"dof":"UX","value":{"value":1000.0,"unit":"N/m"}},"provenance":"ambiguous_support_control"}));
++    let output = run_linear_static_preview_with_mode(
++        serde_json::from_value(wire).unwrap(),
++        PreviewSolverMode::SparseInteractive,
++    );
++    assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
++    assert!(output.results.is_empty());
++    assert!(output
++        .diagnostics
++        .iter()
++        .any(|d| d.code == "SUPPORT_SPRING_AXIS_CONFLICT"));
++}

@@ -1,0 +1,22 @@
+--- a/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
++++ b/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
+@@ -1,5 +1,6 @@
+-//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
+-//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++//! Review-triggered public coverage and deterministic-tie controls.
++//! Authored by physics_manager after independent review identified the defects.
++//! The extreme finite material is a binary64 boundary control, not a physical benchmark.
+ use open_pipe_stress_product_physics::{
+     run_linear_static_preview_with_mode, LinearStaticPreviewRequest, PreviewSolverMode,
+ };
+--- a/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs
+@@ -1,5 +1,6 @@
+-//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
+-//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++//! Review-triggered public signed-reaction and spring-attribution controls.
++//! Authored by physics_manager; expectations follow whole-body equilibrium and
++//! the explicit spring laws, without calling a production reaction helper.
+ use open_pipe_stress_product_physics::{
+     run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope,
+     PreviewSolverMode,

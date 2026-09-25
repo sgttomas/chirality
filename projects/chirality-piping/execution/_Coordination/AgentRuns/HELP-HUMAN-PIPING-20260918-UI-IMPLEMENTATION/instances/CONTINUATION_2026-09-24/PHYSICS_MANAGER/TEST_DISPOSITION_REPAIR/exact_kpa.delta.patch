@@ -1,0 +1,24 @@
+--- a/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs
+@@ -481,7 +481,11 @@
+     let t = [1.0 / 3.0, 2.0 / 3.0, 2.0 / 3.0];
+     for mode in MODES {
+         for fixed in [false, true] {
+-            for millimetres in [false, true] {
++            for (millimetres, pressure_value, pressure_unit) in [
++                (false, 2.0e6, "Pa"),
++                (false, 2000.0, "kPa"),
++                (true, 2.0, "MPa"),
++            ] {
+                 let mut input = model(fixed, true, 0.0);
+                 let length_scale = if millimetres { 1000.0 } else { 1.0 };
+                 input["model"]["nodes"][1]["position"] = json!({"x":LENGTH*t[0]*length_scale,"y":LENGTH*t[1]*length_scale,"z":LENGTH*t[2]*length_scale});
+@@ -497,6 +501,8 @@
+                     input["model"]["load_cases"][0]["pressure_regions"][0]["pressure"] =
+                         json!({"value":2.0,"unit":"MPa"});
+                 }
++                input["model"]["load_cases"][0]["pressure_regions"][0]["pressure"] =
++                    json!({"value":pressure_value,"unit":pressure_unit});
+                 let result = solve(input, mode);
+                 solved(&result);
+                 let extension = if fixed { 0.0 } else { 3.0 / 55000.0 };

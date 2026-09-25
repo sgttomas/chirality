@@ -1,0 +1,7 @@
+# Owner steering relayed by ROOT after F04 closure
+
+At the current manager checkpoint, ROOT `/root` relayed the owner’s explicit direction: move on from earlier governance language restricting design of a complete competent piping stress solver’s physics, mechanics and numerical methods. ROOT and managers have delegated ordinary technical decisions; independently verified prospective correction of an inaccurate physical oracle does not require another owner formula approval. Preserve prior history and evidence, and never select expected results merely to match implementation.
+
+The owner retains the prohibition on entering material/component libraries and code rules: users supply those through the provided facilities. No proprietary or public real material/component dataset or code-prescription population is authorized. Geometric physics, constitutive algorithms and solution algorithms with explicit user inputs are allowed. Unsupported families remain unfinished solver work; a guard does not complete them.
+
+This manager received the steering through ROOT, not a separate direct owner conversation. It records current undertaking direction, not an edit to standing Root/project instructions. It does not expand this manager’s write ownership into NUM, UI, main, native resources or external Git; coordinate those connected owners. ROOT directs continued physics-1/NUM/interface planning and bounded implementation after the local core checkpoint. The next priority is connected engineering integration rather than additional isolated reference packets.

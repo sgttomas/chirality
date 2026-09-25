@@ -1,0 +1,11 @@
+--- before/pressure_runtime.rs
++++ after/pressure_runtime.rs
+@@ -838,7 +838,7 @@
+         .unwrap()
+         .push(json!({
+         "id":"load:torsion","category":"occasional",
+-        "target":{"type":"node","node":TIP},"direction":"global_x",
++        "target":{"type":"node","node":TIP},"direction":"rotation_x",
+         "magnitude":{"value":1.0,"unit":"N*m"},"dimension":"moment",
+         "provenance":"independent_circular_torsion_reference"}));
+ }

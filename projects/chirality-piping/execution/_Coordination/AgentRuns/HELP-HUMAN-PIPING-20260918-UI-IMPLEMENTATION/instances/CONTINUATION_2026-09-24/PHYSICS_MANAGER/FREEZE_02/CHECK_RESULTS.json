@@ -1,0 +1,33 @@
+{
+  "source_basis": "SOURCE_MANIFEST.json plus explicit comment-only TEST_HEADER_DELTA.json",
+  "tests": [
+    {
+      "name": "public product entrypoints",
+      "log": "../public-after-review-repair-01.log",
+      "result": "24/24 pass:pressure14,elastic2,coverage4,support4"
+    },
+    {
+      "name": "product library",
+      "log": "../product-lib-after-review-repair-01.log",
+      "result": "145/195 pass;50known legacy refusal fixture failures retained"
+    },
+    {
+      "name": "stress crate",
+      "log": "../stress-crate-01.log",
+      "result": "48/48 pass; stress source unchanged since check"
+    },
+    {
+      "name": "format",
+      "log": "../rustfmt-final-02.log",
+      "result": "pass on current12-file source including truthful test-header comments"
+    }
+  ],
+  "unavailable": [
+    "registered sweep",
+    "required CI",
+    "native/app/headless consumer witness",
+    "save/reopen/export/history qualification",
+    "joined NUM source/table integration"
+  ],
+  "merge_ready": false
+}

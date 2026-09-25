@@ -1,0 +1,12 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "exit_code": 0,
+  "rustc_version": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+  "source_test_unchanged_sha256": "6fff5e055fee05956b5f286c5859ffc4a2cc0d1cd064cd02bf65dbdb51c471ba",
+  "binary_sha256": "1345578c1c6ea5c1f8b592ad7b0782b18ef6c25792c006de6971eac342bcfa7e",
+  "raw_trace_sha256": "1bd7c6694eaa97b870b395dec2b3af875e139dcd9fb8854bf38d137f0a33d4b2",
+  "diagnostic_source_sha256": "306b66655fe31c3b4f45410ce2f4a5a6b3c9bb916d3ade658e829bc26e5034b5",
+  "compile_log_sha256": "9e249ebb2891cafd74f3e931d06f9779ba60886040cde36d5f49f5a1c5088854",
+  "binary_retention": "temporary built executable removed after recording identity; source/rlib identity/raw output/compile evidence retained",
+  "no_original_test_or_product_edit": true
+}

@@ -1,0 +1,39 @@
+{
+  "agent": "/root/c4_projection_design",
+  "role": "TASK",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "mechanism": "delegated-harness-native continuation with full intended TASK role reread",
+  "source_head": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "authority": "Subsequent physics_manager assignment explicitly activates new elastic_extrema.rs helper and assigned evidence only; no lib/facade writes. One-process standalone rustc lane approved. No delegation.",
+  "inputs": [
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md",
+      "sha256": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/STRESS_REFERENCE.md",
+      "sha256": "07700e0b8e383c62cc378b9bd30365d0d5ba2cd9071a450985214111903d3a1c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RESULTS_AND_COMBINATIONS.md",
+      "sha256": "de2feae4829c9da9bca2d84442d740d1413e0bdde23538f8e26ec97ff49e3dd6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_REFERENCE_DISPOSITION.md",
+      "sha256": "fc5be638e79e7ea862dff7129adfe806f2cf26342a7d8c2ee8c468bd1d1b2620"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/straight_pipe/src/lib.rs",
+      "sha256": "22c7231bf3c53c67bfcb8de702dda318f8731d784d37b8373362089bbcc57c09"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "4fa0ce3a36f2efff9903fb2b34598e53d2c7a5cebd37b159ebfd1df98749c8f9"
+    }
+  ]
+}

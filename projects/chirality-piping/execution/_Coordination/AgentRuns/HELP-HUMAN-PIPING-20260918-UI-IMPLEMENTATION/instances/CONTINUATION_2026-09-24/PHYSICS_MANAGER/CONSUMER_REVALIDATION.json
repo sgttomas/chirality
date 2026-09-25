@@ -1,0 +1,328 @@
+{
+  "basis": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "method": "re-resolved every former consumer path; hashed current bytes; inspected direct DTO, native migration and headless source names with rg; source hashes include current manager edits where applicable",
+  "entries": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "exists": true,
+      "sha256": "eef83bce34cd65bb1175c788c6cb9f1291e050db438c261c995d1b408a3ecd55",
+      "previous_group": "direct_pressure_connector_DTO_and_validation",
+      "owner": "PHYSICS"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "exists": true,
+      "sha256": "de71bd962f941aa796be5dc32cf1b6d8c52e8a45fee578ae0506f49ad11b49fa",
+      "previous_group": "direct_pressure_connector_DTO_and_validation",
+      "owner": "PHYSICS"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/types.ts",
+      "exists": true,
+      "sha256": "a2ccaf863646c48c3f1c3303ad31ae87132311c28f72b343824f47ac58a83314",
+      "previous_group": "direct_pressure_connector_DTO_and_validation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "exists": true,
+      "sha256": "6ea1c8f46a32edc2c5d69cb6f9a94ea64d53e18e3ede324ef5d4e8e9fd56c880",
+      "previous_group": "direct_pressure_connector_DTO_and_validation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/bin/openpipestress-runner.rs",
+      "exists": true,
+      "sha256": "f873b5b9ac6518e1361049d101a323fbc8a1e54b67017810f48d97a1ba9f33ee",
+      "previous_group": "direct_pressure_connector_DTO_and_validation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+      "exists": true,
+      "sha256": "d657e6507aa5d4ef80124e3f6d10bd5a8af8eae54fe21af787c92814c8b73fde",
+      "previous_group": "private_primitives_legacy_preservation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "exists": true,
+      "sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2",
+      "previous_group": "private_primitives_legacy_preservation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/model_document_migration.rs",
+      "exists": true,
+      "sha256": "d57887b73c465f000010faca99882772401e7e1fe7d02fd5a1e0f0d8581d9134",
+      "previous_group": "document_legacy_and_Current_Historical_boundary",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/native-package/NativePackagePanel.tsx",
+      "exists": true,
+      "sha256": "9e4461e96fec2383f873746c1797bd27306e7ddbe7362ae34e39266d4d3f4872",
+      "previous_group": "document_legacy_and_Current_Historical_boundary",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/project-storage/ProjectStorageAuditPanel.tsx",
+      "exists": true,
+      "sha256": "5f4ea50d86f1f2ee78f3b1b0cb31a5aff562f034324f6dae54bb6ac9396ff544",
+      "previous_group": "document_legacy_and_Current_Historical_boundary",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/solve/SolvePanel.tsx",
+      "exists": true,
+      "sha256": "e3aa7600d846e4ab5e8e3db78e5e24ad5bb292e4c708a62ebd0001be6467817d",
+      "previous_group": "document_legacy_and_Current_Historical_boundary",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/HistoricalRunContext.tsx",
+      "exists": true,
+      "sha256": "a433e7df1e8e942bd90eae12c478ac2143d9dd630409a0a37142858fa83d1dcd",
+      "previous_group": "document_legacy_and_Current_Historical_boundary",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-workspace/modelView.ts",
+      "exists": true,
+      "sha256": "bf02409037a67b6842e5ceef6fe38a132ac31c267524c5fd27ecb15b5534615e",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/PropertyInspector.tsx",
+      "exists": true,
+      "sha256": "3120f29cb431fe649189a41048b95923487ff6140878dcb22bbad6b23a2d3f89",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "exists": true,
+      "sha256": "e3c0e0363dfe81892de475e3b056c02018f1b7d20bbc4e3c203f68d50633b522",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/component-creation/componentIntent.ts",
+      "exists": true,
+      "sha256": "9fe80410d9694f843cd7276029f98ec094302b3bddc3fd2131935a16a046e3b7",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+      "exists": true,
+      "sha256": "ba0bffc40456311b4de2915eb287b046de9b2ff273c2261600254f2001c86853",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/geometry_operations.rs",
+      "exists": true,
+      "sha256": "cf787c0ae6d00c4179018f6ae47379ac34352c9de632a32e41543921b8da2bdf",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/operation_applier/src/rich_authoring.rs",
+      "exists": true,
+      "sha256": "4b86c259924ee4b8d083c371154a91b3649fc0a1765f2f113e31e2756224c282",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_operations/validation_preview/engine.py",
+      "exists": true,
+      "sha256": "11c2e7e0bcd046b795178efe7a4012687bdc45c4bb3c209599123d4ab3a3a897",
+      "previous_group": "authored_field_readers_and_typed_operation_owners",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+      "exists": true,
+      "sha256": "9047e26a578d92f5dc986e1018b7945649b1d9cda662b131e53c4ca633ae10d7",
+      "previous_group": "row_dimension_binding_and_persistence",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/analysis_runs/records.py",
+      "exists": true,
+      "sha256": "709f3a16f01b617084dd8d522081138826cae5d390fa0fc56dec23cb6c1a6bb0",
+      "previous_group": "row_dimension_binding_and_persistence",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs",
+      "exists": true,
+      "sha256": "6d741832aabe729a40cc9e28aaa9ce8627d5bba4f9ca903c3059438dc0dd7042",
+      "previous_group": "row_dimension_binding_and_persistence",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/reporting/result_export/src/lib.rs",
+      "exists": true,
+      "sha256": "853b7daf1af0c23c893ffe30a44e799344c2e1a71d9f04bc9b91fcc2c00664b2",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/results.schema.yaml",
+      "exists": true,
+      "sha256": "8c0a520a21acb439abcbb3c1c033e49efceb113405efc69f3f802542b06f0f01",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/result-export/ResultExportPanel.tsx",
+      "exists": true,
+      "sha256": "d38f1949b0014a4153d8311626330433a9c60a1488ae634800b2cc71918562b5",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.tsx",
+      "exists": true,
+      "sha256": "f4ebca0acb87a635b1927b768e40e82081110172db691ce766d5e5e0f9f97176",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/results/resultInterpretation.ts",
+      "exists": true,
+      "sha256": "e61c35ebf61f2114cf7c2fb5a89a5edcdc34c49794b72422b1221f788f3c5951",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "exists": true,
+      "sha256": "db1882e56dda3be622c696ac358bcc4e4d071f0baef2e461fb9e1361d1b16f74",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/headless-runner/HeadlessRunnerPanel.tsx",
+      "exists": true,
+      "sha256": "35f6e719aade8625af744e7aa7dd9bdd7d5b132b8d59c17828481b7d6f40ce35",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.ts",
+      "exists": true,
+      "sha256": "4ba14bba2f228399b4dd98fd3f158c4407a749a48a706e4860e0863d31173e7c",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/ReportPanel.tsx",
+      "exists": true,
+      "sha256": "2bdf35d76e0bf140d476b75f56cc5498dda75e400a5664f9ccfb19575b40f21d",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/report/renderableReportInput.ts",
+      "exists": true,
+      "sha256": "95fb228e3954bf4d0a1448048d782f12272bcf26e7b98d1bef66593be2a8ae9e",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/handoff/HandoffPanel.tsx",
+      "exists": true,
+      "sha256": "39890d77ad3c013c4388fe9192279b7771f97b16a10a602209ed8d4a483c3139",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/local-fea-handoff/LocalFeaHandoffPanel.tsx",
+      "exists": true,
+      "sha256": "2ed0ac4252eb0767469db4a95e461996bca94c835c1750fd719ad6fbfa77c9f6",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/run-audit/RunAuditPanel.tsx",
+      "exists": true,
+      "sha256": "bca2c513bb3c434ad93c4a53a1118fd51240c2fcdc092623064e69c438e9a455",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/display-units/index.tsx",
+      "exists": true,
+      "sha256": "4bbdc032a715c1744da13ef7ed2c10afaae0bc989cd3299554af02239b560aea",
+      "previous_group": "derivative_export_report_display_and_handoff",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/model.schema.yaml",
+      "exists": true,
+      "sha256": "a47b00e0f93c915da49657057261b6903ea1eb9f091adaf555cae312bbe01b6c",
+      "previous_group": "canonical_bridge_not_live_preview_activation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/material.schema.yaml",
+      "exists": true,
+      "sha256": "a948c66881823afb794525b63912a7822f358e61d048654fffcdbe68951af172",
+      "previous_group": "canonical_bridge_not_live_preview_activation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/component.schema.yaml",
+      "exists": true,
+      "sha256": "f50dde1bd22696c8b82a0ea0b4f870afd4bff0c8eaa722971fa9d7d4bcc9cef3",
+      "previous_group": "canonical_bridge_not_live_preview_activation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_transform/physical_to_analytical/contract.py",
+      "exists": true,
+      "sha256": "7dd1046344f66f4c06a3c9740162362cabf6db9959adbfa85469e1c1e70e2ac0",
+      "previous_group": "canonical_bridge_not_live_preview_activation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/model_transform/physical_to_analytical/_solver_boundary_adapter.py",
+      "exists": true,
+      "sha256": "3c9c53019b9e557576d80fb5f1178ce61104a49617bed5d9b942350f6841d990",
+      "previous_group": "canonical_bridge_not_live_preview_activation",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/core/units/src/lib.rs",
+      "exists": true,
+      "sha256": "b133ae071a28d0ba0e897ad3c50694cc108f956cd9ce32e1288d5a027bdc970c",
+      "previous_group": "scoped_parameter_units_and_deferred_canonical_analysis",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/units.schema.yaml",
+      "exists": true,
+      "sha256": "53233e2b586db0e63eb48c1d7c1a2f47e04a7c7de1fdb89f121a8eb8a96f32c4",
+      "previous_group": "scoped_parameter_units_and_deferred_canonical_analysis",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/schemas/analysis_run.schema.json",
+      "exists": true,
+      "sha256": "b787444e0a421c995fac4d393c16c28e4e3e84496196d5c2914a7bb082e43e86",
+      "previous_group": "scoped_parameter_units_and_deferred_canonical_analysis",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    },
+    {
+      "path": "projects/chirality-piping/docs/TYPES.md",
+      "exists": true,
+      "sha256": "28bc8b6a827b91a28c5e62f2c3b9d1807db136f4da6fb1222c8852176c903c7f",
+      "previous_group": "scoped_parameter_units_and_deferred_canonical_analysis",
+      "owner": "ROOT consumer fan-in required; not changed by this task"
+    }
+  ]
+}

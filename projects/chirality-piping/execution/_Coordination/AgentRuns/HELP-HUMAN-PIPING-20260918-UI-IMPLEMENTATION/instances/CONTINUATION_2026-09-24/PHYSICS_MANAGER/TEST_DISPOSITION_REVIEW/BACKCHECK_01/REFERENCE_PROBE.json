@@ -1,0 +1,91 @@
+{
+  "status": "PASS_MATHEMATICAL_STATIC_ONLY",
+  "original_fixture_transformation_matches_reference_exactly": true,
+  "manifest_artifact_hashes_match": true,
+  "stiffness_max_asymmetry": "0E-71",
+  "minimum_cholesky_pivots_inactive_active": [
+    "78796.89954406697169326382290297013815035797057970997534567285175363439344735",
+    "78878.12484588770386023100683539702737575963365856361583488829650872614375502"
+  ],
+  "cases": [
+    {
+      "case": "load:L-100",
+      "variant": "original",
+      "admissible_branches": 1,
+      "source_affine_feedback": "0.11724908015211187800453671488009412104108903083460066665421099720336378117195035",
+      "normal_N": "48.952718890973642272305426860355279767006370894793783385290525726499961585454217",
+      "stop_state": "active",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    },
+    {
+      "case": "load:L-100",
+      "variant": "reverse_z",
+      "admissible_branches": 1,
+      "source_affine_feedback": "0.11724908015211187800453671488009412104108903083460066665421099720336378117195035",
+      "normal_N": "48.952718890973642272305426860355279767006370894793783385290525726499961585454223",
+      "stop_state": "active",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    },
+    {
+      "case": "load:L-100",
+      "variant": "reverse_all",
+      "admissible_branches": 1,
+      "source_affine_feedback": "-2.0000000000000000000000000000000000000000000000000000000000000000000000000000000E-80",
+      "normal_N": "350.00000000000000000000000000000000000000000000000000000000000000000000000000002",
+      "stop_state": "inactive",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "original",
+      "admissible_branches": 1,
+      "source_affine_feedback": "0.11724908015211187800453671488009412104108903083460066665421099720336378117195035",
+      "normal_N": "24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+      "stop_state": "active",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "reverse_z",
+      "admissible_branches": 1,
+      "source_affine_feedback": "0.11724908015211187800453671488009412104108903083460066665421099720336378117195035",
+      "normal_N": "24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+      "stop_state": "active",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "reverse_all",
+      "admissible_branches": 1,
+      "source_affine_feedback": "-2.0000000000000000000000000000000000000000000000000000000000000000000000000000000E-80",
+      "normal_N": "124.99999999999999999999999999999999999999999999999999999999999999999999999999998",
+      "stop_state": "inactive",
+      "friction_state": "sliding",
+      "reference_rerun_matches": true,
+      "affine_coulomb_equation_checked": true,
+      "global_Y_balance_checked": true,
+      "all_test_frozen_round6_values_match": true
+    }
+  ],
+  "limits": "Reexecution of inspected independent mathematical reference plus separate Cholesky, fixture transformation, affine and equilibrium/rounding probes; no product execution or physical qualification beyond the reference assumptions."
+}

@@ -1,0 +1,39 @@
+{
+  "actor": "/root/physics_resume",
+  "actual_harness_parent": "/root",
+  "role": "WORKING_ITEMS Type1",
+  "mechanism": "delegated-harness-native collaboration",
+  "predecessor": "/root/physics_manager",
+  "resumption": "Usage-limit interruption; recovered existing stream, no surviving children assumed.",
+  "source_basis": "FREEZE_03 18dc3fea2b087f00aeecbb92c321ce42e0e23812b5c541921e813c034d7fd7fb",
+  "read_at_utc": "2026-09-25T02:56:49.314913+00:00",
+  "origins": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/chirality-change/SKILL.md": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    ".agents/skills/software-defect-diagnosis/SKILL.md": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+  },
+  "scope": "Existing pressure checkout source/evidence; no Git/PR/main/native/graph ownership expansion",
+  "historical_probe": "MEMBRANE_PUBLICATION/red-01.log: degenerate element length; not public membrane proof",
+  "recovered_manager_basis": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ROOT_BRIEF.md": {
+      "sha256": "176b566001c0614d024eae17b601e3b1bf451991a7b4b3c497ebd784bd753ccd",
+      "read_basis": "entire unchanged file"
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ROOT_BASIS.json": {
+      "sha256": "caea6a1ee32bdced133ced44fdd9766937106b4ddcdff0e276a5fa739018cb46",
+      "read_basis": "entire unchanged file"
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PLAN.md": {
+      "sha256": "2cf0038fa42014dab3101a77d6ca85584721bb38675170d9266eb8ee959c082e",
+      "read_basis": "preserved initial prefix before resumption execution-state heading"
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/RETURN.md": {
+      "sha256": "c6f5fde4daa992224d037ab082f69129a7f0d08366c1f437cb9a4f565a9f9d4a",
+      "read_basis": "preserved initial prefix before resumed PHYS-R4 heading"
+    }
+  }
+}

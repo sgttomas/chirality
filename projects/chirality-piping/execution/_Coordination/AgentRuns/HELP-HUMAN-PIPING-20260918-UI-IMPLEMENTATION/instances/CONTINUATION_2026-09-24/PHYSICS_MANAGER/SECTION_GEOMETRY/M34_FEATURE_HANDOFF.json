@@ -1,0 +1,21 @@
+{
+  "authority": "ROOT explicitly authorized same reviewed NUM M34 closure; exact hunk supplied by solver_manager",
+  "scope": "only serde_json feature lines in product_physics and canonical_json; no package/schema/producer version change",
+  "source_failure": "geometry bit trace showed 5e76 source JSON decoded one ULP away; original test and expected bits unchanged",
+  "manifests": [
+    {
+      "manifest": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "feature": "serde_json/float_roundtrip",
+      "metadata_locked_succeeded": true,
+      "lock_unchanged_from_base": true,
+      "lock_sha256": "36b1eb6477d894b642e615d49c77a7f2b4bc00ba5569ddc80fbc66593356b58a"
+    },
+    {
+      "manifest": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "feature": "serde_json/float_roundtrip",
+      "metadata_locked_succeeded": true,
+      "lock_unchanged_from_base": true,
+      "lock_sha256": "dc4edf682da807a0240eb20770d8292380aeb9e181b184875ab0ed97d12db2e8"
+    }
+  ]
+}

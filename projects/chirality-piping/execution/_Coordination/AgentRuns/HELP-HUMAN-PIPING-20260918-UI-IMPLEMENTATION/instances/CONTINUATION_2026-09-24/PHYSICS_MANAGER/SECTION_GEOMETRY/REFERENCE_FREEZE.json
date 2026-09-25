@@ -1,0 +1,18 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "role": "TASK Type 2",
+  "delegation": false,
+  "source_stage": "parent F02 frozen; no proposed geometry repair implementation read before freeze",
+  "instruction_basis": "ORACLE_BRIEF.md with fullTASK read; retained Root/Piping/LOOP and pressure original reference context from ASSEMBLY_ORACLE/FREEZE_MANIFEST.json",
+  "artifact_sha256": {
+    "ORACLE_BRIEF.md": "286984b50d16270b93b5ad8544ece740faee74fb91919e086b77b86fb6169724",
+    "REFERENCE_RETURN.md": "d88fcfb6584a51a7c92e4c4fb7eb887846e96c464561925e63afd5e74669dc9a",
+    "freeze_geometry_reference.py": "d53b5419c02033af3295e3f9b8325cb62d12acfa54d2f07945f49ae7248e1ae0",
+    "FROZEN_SECTION_EXPECTATIONS.json": "681f75cfb475f84dc56edeeae4d3683e379c6e74f49a3ef40dfe0a06640d0ace"
+  },
+  "calculation": "Independent Fraction/Machin Python only. An intentional beyond-range intermediate initially raised OverflowError while serializing a float; the reference writer now records exact decimal/rational plus null f64 for that field. No physical expected value or product source was changed.",
+  "reviewer_correspondence": "A separate reviewer corroborating value was supplied after this TASK independently computed the thin case in chat; that reviewer script/source was not imported or read to generate expectations.",
+  "limits": "Reference freeze only; not implementation/API/native qualification; represented radii accuracy distinct from original wall accuracy."
+}

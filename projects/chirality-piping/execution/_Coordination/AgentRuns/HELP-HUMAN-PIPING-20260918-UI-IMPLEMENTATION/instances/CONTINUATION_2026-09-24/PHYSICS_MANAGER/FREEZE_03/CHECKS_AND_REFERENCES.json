@@ -1,0 +1,48 @@
+{
+  "source_manifest": "SOURCE_MANIFEST.json",
+  "execution": "manager ran final combined tests with source held; oracle authors independently supplied frozen expectations",
+  "checks": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/public-final-source-02.log",
+      "sha256": "bbf3f7c6633ed11c527cd2679edbcd929d2c61f465ae41f48da9464ab4719b7d",
+      "outcome": "34/34 public tests pass"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/lib-final-source-02.log",
+      "sha256": "d3a9191c828173be45d730f4090e836cbd1011e190191977bcafff501425ce03",
+      "outcome": "156/206 pass; same50 legacy refusal fixture failures retained"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/canonical-final-01.log",
+      "sha256": "28908a78eb94de05f7591a6405921b34021494450196f97d2932c8da339ff7fa",
+      "outcome": "8 unit +2 integration tests pass;0 doc tests"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_SUM_REVIEW/RETURN.md",
+      "sha256": "08a23f649ce8f217c96f259dfb7551f26ade0a6966bffed428cbac71dc8141c0"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_REFERENCE_RETURN.md",
+      "sha256": "05ae78e734b65a7e3074b2b4538fcc01df9c1809c12183cf1b7377dfbe984841"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_ODWALL_EXPECTATIONS.json",
+      "sha256": "7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/M34_FEATURE_HANDOFF.json",
+      "sha256": "e37b06f8ec9f3d8dd1cc4ce5829e57e0c7d351f2d39165833ef480c6a013c086"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/PRESSURE_ASSEMBLY_SELECTION.md",
+      "sha256": "0c447cf12aa34f9e4d06ad70a566fad653ea6659ea563bea96ca726f7fa5098c"
+    }
+  ],
+  "additional_unchanged_source_check": "stress crate48/48 passed, stress source unchanged from FREEZE_02",
+  "limits": [
+    "50 legacy regression failures undisposed",
+    "source/NUM/physics-1 consumer union pending",
+    "no native/save/reopen/export witness",
+    "no registered sweep/CI/merge/release qualification"
+  ]
+}

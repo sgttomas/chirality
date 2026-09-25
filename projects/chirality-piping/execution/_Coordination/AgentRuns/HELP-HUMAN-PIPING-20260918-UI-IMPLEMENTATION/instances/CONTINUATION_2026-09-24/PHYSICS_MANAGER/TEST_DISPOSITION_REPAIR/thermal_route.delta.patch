@@ -1,0 +1,16 @@
+--- a/projects/chirality-piping/core/product_physics/src/lib.rs
++++ b/projects/chirality-piping/core/product_physics/src/lib.rs
+@@ -17366,7 +17366,12 @@
+                     PreviewSolverMode::DenseScrutiny,
+                     PreviewSolverMode::SparseInteractive,
+                 ] {
+-                    let result = historical_pressure_preview_with_mode(fixed.clone(), mode);
++                    let result = if kind == "pressure" {
++                        historical_pressure_preview_with_mode(fixed.clone(), mode)
++                    } else {
++                        // The pressure-free thermal premise remains a current public check.
++                        run_linear_static_preview_with_mode(fixed.clone(), mode)
++                    };
+                     assert_eq!(
+                         result.status.mechanics, "MECHANICS_SOLVED",
+                         "{kind} free={free}: {:?}",

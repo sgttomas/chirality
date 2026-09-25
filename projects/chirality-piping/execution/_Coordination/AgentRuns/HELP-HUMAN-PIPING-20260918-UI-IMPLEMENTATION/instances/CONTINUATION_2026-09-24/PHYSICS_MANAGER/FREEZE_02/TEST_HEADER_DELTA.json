@@ -1,0 +1,17 @@
+{
+  "reason": "independent reviewer identified inaccurate copied X1 attribution header in two new review-triggered tests; corrected to actual authorship and derivation",
+  "paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "before_sha256": "03c7b81c16804029948ea4d0db401ae8c430988c418c066f7cfecdaf58e781e4",
+      "after_sha256": "54c0999b5a90389c6d48507bf1ab246b6336de5d5f9e74d38d9518437f86a985",
+      "executable_change": false
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "before_sha256": "76d2763003c559897b41a31aeced36b70e9f2bd47a57c864d4549399e863b90f",
+      "after_sha256": "8d899b979187e44cc814bb6bdaa425768dd329978e0e62b549b2d415021998b3",
+      "executable_change": false
+    }
+  ]
+}

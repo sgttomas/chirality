@@ -1,0 +1,11 @@
+{
+  "status": "bounded_reference-to-proposed-snippet-check_only_not_software_review_or_product_execution",
+  "snippet_sha256": "da4401356a1e73c9ead6948651fbd41b386c6f7fa0b71022eeb47edb3b8c7369",
+  "findings": [
+    "Nodal reversal IDs, original/reverse_z values, slip/friction signs, active-stop reaction relation and both-case prefixes match frozen reference.",
+    "Add reverse_all state-change companion using frozen expectations to exercise changed normal magnitudes 350/125 N and released one-way stop.",
+    "Compare named S-130 resultant magnitude to derived normal evidence; source carries only UY.",
+    "Expected iteration count is independently predicted as 2 under read algorithm; existing snippet checks convergence/state count but not iteration count.",
+    "Reference does not qualify nonlinear combination equilibrium or authorize changes to applicable combination contract."
+  ]
+}

@@ -1,0 +1,2259 @@
+--- a/projects/chirality-piping/core/product_physics/src/lib.rs
++++ b/projects/chirality-piping/core/product_physics/src/lib.rs
+@@ -6,6 +6,8 @@
+ //! bundled examples remain invented. No standards criteria, allowables, SIF tables,
+ //! private datasets, or professional acceptance are bundled by this crate.
+ 
++mod annulus_geometry;
++mod pressure_sum;
+ pub mod self_weight;
+ 
+ use open_pipe_stress_curved_bend::CurvedBendMacroElement;
+@@ -60,6 +62,7 @@
+ mod validation;
+ use validation::validate_model_inputs;
+ 
++#[allow(dead_code)]
+ mod pressure_exact;
+ mod pressure_material;
+ mod pressure_runtime;
+@@ -747,6 +750,7 @@
+ 
+ #[derive(Debug)]
+ struct BuiltModel {
++    exact_sections: HashMap<String, pressure_exact::SourceAnnulus>,
+     nodes: Vec<FrameNode>,
+     pipes: Vec<StraightPipeElement>,
+     frame_elements: Vec<FrameElement>,
+@@ -1385,12 +1389,8 @@
+         &curved_bends_by_pipe,
+     );
+     if let Some(exact) = &exact_pressure {
+-        for ((total, eigen), cap) in force
+-            .iter_mut()
+-            .zip(&exact.eigenloads)
+-            .zip(&exact.cap_loads)
+-        {
+-            *total += eigen + cap;
++        for (total, pressure_rhs) in force.iter_mut().zip(&exact.assembled_loads) {
++            *total += pressure_rhs;
+         }
+     }
+     // DEC-049 constant-effort consumption enters here — the one assembled
+@@ -1653,6 +1653,7 @@
+         } else {
+             Vec::new()
+         };
++        let mut exact_mechanical_local_forces = None;
+         let corrected_local_forces = if let Some(bend) = macro_bend {
+             // Macro-span end forces come from the assembled arc stiffness
+             // (K_macro * d minus the exact free-expansion thermal part and
+@@ -1712,14 +1713,45 @@
+                 &mechanical,
+                 pipe_index,
+                 &thermal_loads,
+-                &pressure_thrust_loads,
++                if pressure_runtime::is_exact(model) {
++                    &[]
++                } else {
++                    &pressure_thrust_loads
++                },
+             );
+             if let Some(state) = exact_pressure
+                 .as_ref()
+                 .and_then(|case| case.pipe_states.get(&pipe_index))
+             {
+-                wall[UX] -= state.eigenload_pair[0];
+-                wall[DOF_PER_NODE + UX] -= state.eigenload_pair[1];
++                exact_mechanical_local_forces = Some(wall.clone());
++                let ends = (
++                    state.annulus.recover_wall_effective_membrane(
++                        -wall[UX],
++                        state.material,
++                        state.pressure,
++                    ),
++                    state.annulus.recover_wall_effective_membrane(
++                        wall[DOF_PER_NODE + UX],
++                        state.material,
++                        state.pressure,
++                    ),
++                );
++                match ends {
++                    (Ok(i), Ok(j)) => {
++                        wall[UX] = -i.0;
++                        wall[DOF_PER_NODE + UX] = j.0;
++                    }
++                    _ => {
++                        diagnostics.push(diag(
++                            "diagnostic:exact-pressure:wall-action",
++                            "EXACT_PRESSURE_RECOVERY_FAILED",
++                            "blocking",
++                            "source pressure wall action cannot be represented",
++                            vec![load_case.id.clone(), pipe.element_id.clone()],
++                        ));
++                        continue;
++                    }
++                }
+             }
+             wall
+         };
+@@ -2104,8 +2136,11 @@
+                 &pipe.element_id,
+                 state,
+                 &corrected_local_forces,
+-                &endpoint_resultants,
+-                &station_resultants,
++                exact_mechanical_local_forces
++                    .as_ref()
++                    .expect("exact region member retains mechanical/thermal recovery"),
++                pipe,
++                &straight_loads,
+             );
+         }
+         component_stress_modifier_count += append_component_stress_multiplier_results(
+@@ -2120,6 +2155,7 @@
+     }
+ 
+     require_finite_mechanics(results.iter().map(|row| row.value))?;
++    let pressure_assembly_evidence = exact_pressure.as_ref().map(|p| p.assembly_evidence.clone());
+     let pressure_evidence = exact_pressure
+         .map(|mut p| {
+             for evidence in &mut p.evidence {
+@@ -2150,6 +2186,8 @@
+     let exact_case_evidence = pressure_runtime::is_exact(model).then(|| serde_json::json!({
+         "load_case_id":load_case.id,"profile_mode":"exact_straight_pressure_v2",
+         "material_basis":modulus_basis_record.unwrap_or("base_material_common_E_nu"),
++        "pressure_rhs_assembly":pressure_assembly_evidence,
++        "pipe_sections":built.pipes.iter().map(|pipe| exact_section_evidence(&pipe.element_id,*built.exact_sections.get(&pipe.element_id).expect("every built exact member has source geometry"))).collect::<Vec<_>>(),
+         "pipe_stress_extrema":pipe_stress_extrema,
+         "stress_maximum_coverage":{"complete":unavailable_stress_maximum_members.is_empty(),"unavailable_pipe_ids":unavailable_stress_maximum_members},
+         "pipe_materials":model.pipe_segments.iter().map(|pipe| {
+@@ -3643,6 +3681,7 @@
+     let mut pipes = Vec::new();
+     let mut frame_elements = Vec::new();
+     let mut sections = HashMap::new();
++    let mut exact_sections = HashMap::new();
+     for pipe in &model.pipe_segments {
+         let Some(&from) = node_map.get(pipe.from.as_str()) else {
+             diagnostics.push(diag(
+@@ -3668,9 +3707,27 @@
+             diagnostics.push(diag(&format!("diagnostic:material:{}", stable_suffix(&pipe.material)), "MATERIAL_INPUT_MISSING", "blocking", "pipe material requires explicit elastic and shear modulus inputs; no defaults are applied", vec![pipe.id.clone(), pipe.material.clone()]));
+             continue;
+         };
+-        let Some(derived) = derive_pipe_section(&pipe.section, &pipe.id, diagnostics) else {
++        let Some(mut derived) = derive_pipe_section(&pipe.section, &pipe.id, diagnostics) else {
+             continue;
+         };
++        if pressure_runtime::is_exact(model) {
++            let geometry = match pressure_exact::SourceAnnulus::from_od_wall(
++                pipe.section.outside_diameter.value,
++                derived.wall_thickness,
++            ) {
++                Ok(geometry) => geometry,
++                Err(error) => {
++                    diagnostics.push(diag(&format!("diagnostic:exact-section:{}",stable_suffix(&pipe.id)),"EXACT_SECTION_GEOMETRY_UNREPRESENTABLE","blocking",format!("source OD/effective-wall annulus requires distinct positive represented radii and finite positive area/I/J/Z: {error:?}"),vec![pipe.id.clone()]));
++                    continue;
++                }
++            };
++            derived.area = geometry.wall_area_m2();
++            derived.internal_area = geometry.internal_area_m2();
++            derived.second_moment = geometry.second_moment_m4();
++            derived.torsion_constant = geometry.polar_moment_m4();
++            derived.section_modulus = geometry.section_modulus_m3();
++            exact_sections.insert(pipe.id.clone(), geometry);
++        }
+         let Some(y_reference) = pipe.y_reference else {
+             diagnostics.push(diag(
+                 &format!("diagnostic:pipe-orientation:{}", stable_suffix(&pipe.id)),
+@@ -3808,6 +3865,7 @@
+         .collect::<Vec<_>>();
+ 
+     Some(BuiltModel {
++        exact_sections,
+         nodes,
+         pipes,
+         frame_elements,
+@@ -6706,6 +6764,13 @@
+     ])
+ }
+ 
++fn exact_section_evidence(pipe_id: &str, g: pressure_exact::SourceAnnulus) -> serde_json::Value {
++    serde_json::json!({"pipe_id":pipe_id,"geometry_basis":"authored_normalized_od_wall_v1",
++        "outside_diameter_m":g.outside_diameter_m(),"effective_wall_thickness_m":g.effective_wall_thickness_m(),
++        "ri_m":g.inner_radius_m(),"ro_m":g.outer_radius_m(),"Ai_m2":g.internal_area_m2(),"As_m2":g.wall_area_m2(),
++        "I_m4":g.second_moment_m4(),"J_m4":g.polar_moment_m4(),"Z_m3":g.section_modulus_m3()})
++}
++
+ fn exact_straight_summary_extrema(
+     pipe: &StraightPipeElement,
+     end_forces: &[f64],
+@@ -7961,18 +8026,13 @@
+     pipe_id: &str,
+     state: &pressure_runtime::ExactPressurePipeState,
+     actions: &[f64],
+-    endpoints: &[[f64; 6]; 2],
+-    stations: &[StationResultants],
++    mechanical_actions: &[f64],
++    pipe: &StraightPipeElement,
++    loads: &[SpannedUniformLocalLoad],
+ ) {
+-    let surfaces = [
+-        state.annulus.inner_radius_m(),
+-        state.annulus.outer_radius_m(),
+-    ]
+-    .map(|r| pressure_exact::lame_at_radius(state.annulus, state.pressure, r));
+-    let (Ok(inner), Ok(outer), Ok(caps)) = (
+-        surfaces[0],
+-        surfaces[1],
+-        pressure_exact::cap_pair(state.annulus, state.pressure),
++    let (Ok([inner, outer]), Ok(_caps)) = (
++        state.annulus.surface_stresses(state.pressure),
++        state.annulus.cap_pair(state.pressure),
+     ) else {
+         diagnostics.push(diag(
+             "diagnostic:exact-pressure:surface",
+@@ -8039,11 +8099,44 @@
+     ] {
+         append("pipe_wall_endpoint_action_v2", "wall_axial_end_action", location, value, false, "node-on-element wall action, positive along authored local x toward end j; cap transfer is not subtracted from wall recovery");
+     }
+-    for (location, resultants) in [("end_i", &endpoints[0]), ("end_j", &endpoints[1])]
+-        .into_iter()
+-        .chain(stations.iter().map(|s| (s.location, &s.resultants)))
+-    {
+-        let wall = resultants[0];
++    for (location, fraction) in [
++        ("end_i", 0.0),
++        ("end_j", 1.0),
++        ("quarter_1", 0.25),
++        ("midspan", 0.5),
++        ("quarter_3", 0.75),
++    ] {
++        let mechanical =
++            match straight_section_resultants(pipe, mechanical_actions, loads, fraction) {
++                Ok(value) => value,
++                Err(error) => {
++                    diagnostics.push(diag(
++                        "diagnostic:exact-pressure:section",
++                        "EXACT_PRESSURE_RECOVERY_FAILED",
++                        "blocking",
++                        error.to_string(),
++                        vec![case.id.clone(), pipe_id.to_string()],
++                    ));
++                    return;
++                }
++            };
++        let (wall, effective, membrane) = match state.annulus.recover_wall_effective_membrane(
++            mechanical[0],
++            state.material,
++            state.pressure,
++        ) {
++            Ok(value) => value,
++            Err(error) => {
++                diagnostics.push(diag(
++                    "diagnostic:exact-pressure:section",
++                    "EXACT_PRESSURE_RECOVERY_FAILED",
++                    "blocking",
++                    format!("source pressure section recovery is unrepresentable: {error:?}"),
++                    vec![case.id.clone(), pipe_id.to_string()],
++                ));
++                return;
++            }
++        };
+         append(
+             "pipe_wall_axial_force_v2",
+             "wall_axial_force",
+@@ -8056,7 +8149,7 @@
+             "pipe_effective_axial_force_v2",
+             "effective_axial_force",
+             location,
+-            wall - caps[1],
++            effective,
+             false,
+             "effective wall-fluid resultant S=Nw-pAi; not material stress or a support reaction",
+         );
+--- a/projects/chirality-piping/core/product_physics/src/pressure_exact.rs
++++ b/projects/chirality-piping/core/product_physics/src/pressure_exact.rs
+@@ -6,14 +6,17 @@
+ 
+ use std::f64::consts::PI;
+ 
++mod source_geometry;
++pub(crate) use source_geometry::SourceAnnulus;
++
+ #[derive(Debug, Clone, Copy, PartialEq)]
+-struct Scaled {
++pub(super) struct Scaled {
+     mantissa: f64,
+     exponent: i32,
+ }
+ 
+ impl Scaled {
+-    fn from_f64(value: f64) -> Self {
++    pub(super) fn from_f64(value: f64) -> Self {
+         debug_assert!(value.is_finite());
+         if value == 0.0 {
+             return Self {
+@@ -60,7 +63,7 @@
+         }
+     }
+ 
+-    fn add(self, other: Self) -> Self {
++    pub(super) fn add(self, other: Self) -> Self {
+         if self.mantissa == 0.0 {
+             return other;
+         }
+@@ -74,11 +77,11 @@
+         Self::from_parts(left + right, exponent)
+     }
+ 
+-    fn sub(self, other: Self) -> Self {
++    pub(super) fn sub(self, other: Self) -> Self {
+         self.add(other.neg())
+     }
+ 
+-    fn mul(self, other: Self) -> Self {
++    pub(super) fn mul(self, other: Self) -> Self {
+         if self.mantissa == 0.0 || other.mantissa == 0.0 {
+             return Self::from_f64(self.mantissa * other.mantissa);
+         }
+@@ -88,7 +91,7 @@
+         )
+     }
+ 
+-    fn div(self, other: Self) -> Option<Self> {
++    pub(super) fn div(self, other: Self) -> Option<Self> {
+         if other.mantissa == 0.0 {
+             return None;
+         }
+@@ -119,7 +122,7 @@
+         )
+     }
+ 
+-    fn to_f64(self) -> f64 {
++    pub(super) fn to_f64(self) -> f64 {
+         if self.mantissa == 0.0 {
+             return self.mantissa;
+         }
+--- a/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
+@@ -4,10 +4,7 @@
+ //! mechanical loads remain owned by the caller. Terminal cap transfer is a
+ //! distinct applied-load ledger and must never be subtracted in wall recovery.
+ 
+-use super::pressure_exact::{
+-    cap_pair, eigenload_pair, lame_at_radius, ExactAnnulus, InternalDifferentialPressure,
+-    IsotropicENu,
+-};
++use super::pressure_exact::{InternalDifferentialPressure, IsotropicENu, SourceAnnulus};
+ use super::{
+     diag, has_blocking, is_constant_effort_support, is_temperature_change_dimension,
+     normalize_quantity, stable_suffix, BuiltModel, Diagnostic, LoadTargetInput, MaterialInput,
+@@ -57,13 +54,15 @@
+     pub pipe_states: BTreeMap<usize, ExactPressurePipeState>,
+     pub eigenloads: Vec<f64>,
+     pub cap_loads: Vec<f64>,
++    pub assembled_loads: Vec<f64>,
++    pub assembly_evidence: Value,
+     pub evidence: Vec<Value>,
+ }
+ 
+ #[derive(Debug, Clone)]
+ pub(crate) struct ExactPressurePipeState {
+     pub region_id: String,
+-    pub annulus: ExactAnnulus,
++    pub annulus: SourceAnnulus,
+     pub pressure: InternalDifferentialPressure,
+     pub material: IsotropicENu,
+     /// Pressure-only applied RHS pair in this pipe's authored local i/j frame.
+@@ -417,8 +416,13 @@
+         pipe_states: BTreeMap::new(),
+         eigenloads: vec![0.0; built.nodes.len() * DOF_PER_NODE],
+         cap_loads: vec![0.0; built.nodes.len() * DOF_PER_NODE],
++        assembled_loads: vec![0.0; built.nodes.len() * DOF_PER_NODE],
++        assembly_evidence: Value::Null,
+         evidence: Vec::new(),
+     };
++    let mut factor_groups = BTreeMap::new();
++    let mut cap_terms = vec![Vec::new(); output.cap_loads.len()];
++    let mut eigen_terms = vec![Vec::new(); output.eigenloads.len()];
+     let mut material_map = HashMap::new();
+     for material in materials {
+         if material_map
+@@ -471,7 +475,7 @@
+                 .pipe_segments
+                 .iter()
+                 .find(|p| p.id == pipe.element_id)?;
+-            let Some(section) = built.sections.get(&pipe.element_id) else {
++            let Some(_section) = built.sections.get(&pipe.element_id) else {
+                 problem(
+                     diagnostics,
+                     "PRESSURE_REGION_SECTION_MISSING",
+@@ -480,20 +484,14 @@
+                 );
+                 continue;
+             };
+-            let annulus = match ExactAnnulus::from_radii(
+-                section.torsion_radius - section.wall_thickness,
+-                section.torsion_radius,
+-            ) {
+-                Ok(value) => value,
+-                Err(error) => {
+-                    problem(
+-                        diagnostics,
+-                        "PRESSURE_REGION_GEOMETRY_INVALID",
+-                        &[&case.id, id, &pipe.element_id],
+-                        format!("exact annulus is invalid or not representable: {error:?}"),
+-                    );
+-                    continue;
+-                }
++            let Some(&annulus) = built.exact_sections.get(&pipe.element_id) else {
++                problem(
++                    diagnostics,
++                    "PRESSURE_REGION_SECTION_MISSING",
++                    &[&case.id, id, &pipe.element_id],
++                    "built exact source-annulus geometry is missing",
++                );
++                continue;
+             };
+             if let Some(reference) = first_bore {
+                 let scale = reference.abs().max(annulus.inner_radius_m().abs());
+@@ -556,11 +554,11 @@
+                     "thermal pressure-region composition requires finite alpha from the same selected material basis; absence is not zero");
+                 continue;
+             }
+-            let loads = eigenload_pair(annulus, material, pressure, 0.0)
+-                .and_then(|eigen| cap_pair(annulus, pressure).map(|caps| (eigen, caps)))
++            let loads = annulus
++                .eigenload_pair(material, pressure, 0.0)
++                .and_then(|eigen| annulus.cap_pair(pressure).map(|caps| (eigen, caps)))
+                 .and_then(|pairs| {
+-                    lame_at_radius(annulus, pressure, annulus.inner_radius_m())?;
+-                    lame_at_radius(annulus, pressure, annulus.outer_radius_m())?;
++                    annulus.surface_stresses(pressure)?;
+                     Ok(pairs)
+                 });
+             let (eigen, caps) = match loads {
+@@ -591,8 +589,9 @@
+                     continue;
+                 }
+             };
+-            geometry.push(json!({"pipe_id":pipe.element_id,"ri_m":annulus.inner_radius_m(),"ro_m":annulus.outer_radius_m(),
+-                "Ai_m2":annulus.internal_area_m2(),"As_m2":annulus.wall_area_m2(),"traversal_forward":step.forward}));
++            let mut member_geometry = super::exact_section_evidence(&pipe.element_id, annulus);
++            member_geometry["traversal_forward"] = json!(step.forward);
++            geometry.push(member_geometry);
+             material_evidence.push(json!({"pipe_id":pipe.element_id,"material_id":material_input.id,
+                 "E_pa":material.elastic_modulus_pa(),"nu":material.poisson_ratio(),"G_pa":material.shear_modulus_pa(),
+                 "constitutive_basis":MATERIAL_BASIS,"temperature_basis":temperature_basis(case),"provenance":material_input.provenance,
+@@ -634,7 +633,7 @@
+             let transfers = terminal.closure_transfer.as_deref() == Some("transfers_to_wall");
+             let transferred = if transfers { cap_global } else { [0.0; 3] };
+             for axis in 0..3 {
+-                output.cap_loads[node * DOF_PER_NODE + axis] += transferred[axis];
++                cap_terms[node * DOF_PER_NODE + axis].push(transferred[axis]);
+             }
+             terminal_evidence.push(
+                 json!({"node_ref":terminal.node_ref,"closure_transfer":terminal.closure_transfer,
+@@ -651,8 +650,35 @@
+                 .enumerate()
+             {
+                 for axis in 0..3 {
+-                    output.eigenloads[node * DOF_PER_NODE + axis] +=
+-                        direction[axis] * state.eigenload_pair[end];
++                    eigen_terms[node * DOF_PER_NODE + axis]
++                        .push(direction[axis] * state.eigenload_pair[end]);
++                    let sign = if end == 0 { 1.0 } else { -1.0 };
++                    add_factor_term(
++                        &mut factor_groups,
++                        node * DOF_PER_NODE + axis,
++                        &state,
++                        direction[axis],
++                        sign * 2.0 * state.material.poisson_ratio(),
++                        id,
++                        &pipe.element_id,
++                        "poisson_eigen",
++                    );
++                    let node_ref = &model.nodes[node].id;
++                    if terminals.iter().any(|terminal| {
++                        terminal.node_ref.as_ref() == Some(node_ref)
++                            && terminal.closure_transfer.as_deref() == Some("transfers_to_wall")
++                    }) {
++                        add_factor_term(
++                            &mut factor_groups,
++                            node * DOF_PER_NODE + axis,
++                            &state,
++                            direction[axis],
++                            -sign,
++                            id,
++                            &pipe.element_id,
++                            "terminal_cap",
++                        );
++                    }
+                 }
+             }
+             if output.pipe_states.insert(step.pipe_index, state).is_some() {
+@@ -671,6 +697,24 @@
+             "approximation":"long_straight_annulus_small_strain_v2","external_pressure_increment_pa":0.0,
+             "geometry_representation_guard":{"epsilon_multiplier":64,"meaning":"arithmetic_representation_only"}}));
+     }
++    for dof in 0..output.cap_loads.len() {
++        match (
++            crate::pressure_sum::exact_sum(cap_terms[dof].iter().copied()),
++            crate::pressure_sum::exact_sum(eigen_terms[dof].iter().copied()),
++        ) {
++            (Ok(cap), Ok(eigen)) => {
++                output.cap_loads[dof] = cap;
++                output.eigenloads[dof] = eigen;
++            }
++            _ => problem(
++                diagnostics,
++                "PRESSURE_LEDGER_SUM_UNREPRESENTABLE",
++                &[&case.id],
++                "rounded observational cap/eigen ledger sum is not representable",
++            ),
++        }
++    }
++    finish_source_groups(model, case, &mut output, factor_groups, diagnostics);
+     if output
+         .eigenloads
+         .iter()
+@@ -689,6 +733,149 @@
+     } else {
+         Some(output)
+     }
++}
++
++type FactorKey = (usize, u64, u64, u64, u64);
++struct FactorGroup {
++    geometry: SourceAnnulus,
++    pressure: InternalDifferentialPressure,
++    direction: f64,
++    terms: Vec<(f64, String, String, &'static str)>,
++}
++#[allow(clippy::too_many_arguments)]
++fn add_factor_term(
++    groups: &mut BTreeMap<FactorKey, FactorGroup>,
++    dof: usize,
++    state: &ExactPressurePipeState,
++    direction: f64,
++    coefficient: f64,
++    region: &str,
++    pipe: &str,
++    kind: &'static str,
++) {
++    if direction == 0.0 {
++        return;
++    } // Only a derived zero direction is omitted; source values remain in their ledgers.
++    let (hi, lo) = state.annulus.source_bore_key();
++    let magnitude = direction.abs();
++    let key = (
++        dof,
++        state.pressure.pressure_pa().to_bits(),
++        hi,
++        lo,
++        magnitude.to_bits(),
++    );
++    groups
++        .entry(key)
++        .or_insert_with(|| FactorGroup {
++            geometry: state.annulus,
++            pressure: state.pressure,
++            direction: magnitude,
++            terms: Vec::new(),
++        })
++        .terms
++        .push((
++            if direction.is_sign_negative() {
++                -coefficient
++            } else {
++                coefficient
++            },
++            region.to_string(),
++            pipe.to_string(),
++            kind,
++        ));
++}
++fn finish_source_groups(
++    model: &PreviewModel,
++    case: &PreviewLoadCase,
++    output: &mut ExactPressureCase,
++    groups: BTreeMap<FactorKey, FactorGroup>,
++    diagnostics: &mut Vec<Diagnostic>,
++) {
++    let mut by_dof = vec![Vec::new(); output.assembled_loads.len()];
++    let mut evidence = Vec::new();
++    for ((dof, pbits, hi, lo, _), group) in groups {
++        let coefficient =
++            match crate::pressure_sum::exact_sum(group.terms.iter().map(|term| term.0)) {
++                Ok(value) => value,
++                Err(error) => {
++                    problem(
++                        diagnostics,
++                        "PRESSURE_ASSEMBLY_COEFFICIENT_UNREPRESENTABLE",
++                        &[&case.id],
++                        format!("source coefficient sum cannot be represented: {error:?}"),
++                    );
++                    continue;
++                }
++            };
++        let value =
++            match group
++                .geometry
++                .pressure_group_value(group.pressure, coefficient, group.direction)
++            {
++                Ok(value) => value,
++                Err(error) => {
++                    problem(
++                        diagnostics,
++                        "PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE",
++                        &[&case.id],
++                        format!("source-group pressure load cannot be represented: {error:?}"),
++                    );
++                    continue;
++                }
++            };
++        by_dof[dof].push(value);
++        evidence.push(json!({"node_ref":model.nodes[dof/DOF_PER_NODE].id,"component":(["Fx","Fy","Fz"][dof%DOF_PER_NODE]),
++            "pressure_bits":format!("{pbits:016x}"),"source_inner_radius_hi_bits":format!("{hi:016x}"),"source_inner_radius_lo_bits":format!("{lo:016x}"),
++            "direction_component_magnitude":group.direction,"coefficient_sum":coefficient,"assembled_force_n":value,
++            "terms":group.terms.iter().map(|term|json!({"coefficient":term.0,"region_id":term.1,"pipe_id":term.2,"kind":term.3})).collect::<Vec<_>>()}));
++    }
++    for (dof, values) in by_dof.iter().enumerate() {
++        match crate::pressure_sum::exact_sum(values.iter().copied()) {
++            Ok(total) => output.assembled_loads[dof] = total,
++            Err(_) => problem(
++                diagnostics,
++                "PRESSURE_ASSEMBLY_SOURCE_UNREPRESENTABLE",
++                &[&case.id],
++                "pressure source group sum cannot be represented",
++            ),
++        }
++    }
++    let max_rhs = output
++        .assembled_loads
++        .iter()
++        .enumerate()
++        .filter(|(dof, _)| dof % DOF_PER_NODE < 3)
++        .fold(0.0_f64, |m, (_, v)| m.max(v.abs()));
++    // Normalize each positive magnitude first: an overflowing unnormalized sum
++    // must not manufacture a failure when the screening ratio is representable.
++    let mut maximum_ratio = 0.0_f64;
++    for values in &by_dof {
++        if max_rhs == 0.0 {
++            if values.iter().any(|v| *v != 0.0) {
++                maximum_ratio = f64::INFINITY;
++                break;
++            }
++        } else {
++            match crate::pressure_sum::exact_sum(values.iter().map(|v| v.abs() / max_rhs)) {
++                Ok(ratio) => maximum_ratio = maximum_ratio.max(ratio),
++                Err(_) => {
++                    maximum_ratio = f64::INFINITY;
++                    break;
++                }
++            }
++        }
++    }
++    let screen = 32.0 * f64::EPSILON * maximum_ratio;
++    if !screen.is_finite() || screen > 1e-9 {
++        problem(diagnostics,"PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED",&[&case.id],"different source factors strongly cancel beyond the bounded pressure-RHS screening domain; no source-accuracy or Current result is inferred from a small residual of rounded loads");
++    }
++    output.assembly_evidence = json!({"method":"source_factor_grouped_pressure_rhs_v1","load_case_id":case.id,
++        "node_order":model.nodes.iter().map(|node|&node.id).collect::<Vec<_>>(),"dof_order":["Fx","Fy","Fz","Mx","My","Mz"],
++        "assembled_pressure_rhs_global":output.assembled_loads,"groups":evidence,"rounded_cap_and_eigen_ledgers_are_observational":true,
++        "rounded_cap_rhs_global":output.cap_loads,"rounded_poisson_rhs_global":output.eigenloads,"dof_units":["N","N","N","N*m","N*m","N*m"],
++        "cancellation_screen":if screen.is_finite(){Some(screen)}else{None},"screen_limit":1e-9,"screen_roundoff_multiplier":32,
++        "screen_is_not_numerical_qualification":true});
+ }
+ 
+ fn temperature_basis(case: &PreviewLoadCase) -> Value {
+@@ -1265,3 +1452,37 @@
+         }
+     }
+ }
++
++#[cfg(test)]
++mod grouping_identity_tests {
++    use super::*;
++    #[test]
++    fn source_bore_identity_does_not_round_distinct_sources_to_match() {
++        let a = SourceAnnulus::from_od_wall(5.0 / 32.0, 1.0 / 64.0).unwrap();
++        let b = SourceAnnulus::from_od_wall(3.0 / 16.0, 1.0 / 32.0).unwrap();
++        assert_eq!(a.source_bore_key(), b.source_bore_key());
++        let wall = 1e-12_f64;
++        let c = SourceAnnulus::from_od_wall(0.12, wall).unwrap();
++        let d = SourceAnnulus::from_od_wall(0.12, f64::from_bits(wall.to_bits() + 1)).unwrap();
++        assert_eq!(c.inner_radius_m(), d.inner_radius_m());
++        assert_ne!(c.source_bore_key(), d.source_bore_key());
++    }
++    #[test]
++    fn either_derived_zero_direction_sign_contributes_no_force_group() {
++        let annulus = SourceAnnulus::from_od_wall(0.12, 0.01).unwrap();
++        let material = IsotropicENu::new(200e9, 0.3).unwrap();
++        let pressure = InternalDifferentialPressure::new(2e6).unwrap();
++        let state = ExactPressurePipeState {
++            region_id: "r".to_string(),
++            annulus,
++            material,
++            pressure,
++            eigenload_pair: annulus.eigenload_pair(material, pressure, 0.0).unwrap(),
++        };
++        let mut groups = BTreeMap::new();
++        for zero in [-0.0, 0.0] {
++            add_factor_term(&mut groups, 0, &state, zero, 1.0, "r", "p", "terminal_cap");
++        }
++        assert!(groups.is_empty());
++    }
++}
+--- a/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
++++ b/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
+@@ -1,5 +1,6 @@
+-//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
+-//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++//! Review-triggered public coverage and deterministic-tie controls.
++//! Authored by physics_manager after independent review identified the defects.
++//! The extreme finite material is a binary64 boundary control, not a physical benchmark.
+ use open_pipe_stress_product_physics::{
+     run_linear_static_preview_with_mode, LinearStaticPreviewRequest, PreviewSolverMode,
+ };
+--- a/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs
+@@ -1,5 +1,6 @@
+-//! Actual-entrypoint companion to independently derived STRESS_REFERENCE X1.
+-//! The construction was independently checked by ASSEMBLY_ORACLE before this test.
++//! Review-triggered public signed-reaction and spring-attribution controls.
++//! Authored by physics_manager; expectations follow whole-body equilibrium and
++//! the explicit spring laws, without calling a production reaction helper.
+ use open_pipe_stress_product_physics::{
+     run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope,
+     PreviewSolverMode,
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/annulus_geometry.rs
+@@ -0,0 +1,126 @@
++//! Pure circular areas from normalized source diameter and radial thickness.
++//!
++//! No material constants, pressure, stiffness or rounded-radius admission rule
++//! enters this API. The shared scaled arithmetic is the existing pressure scalar
++//! kernel's numeric primitive; its arithmetic is unchanged.
++use super::pressure_exact::Scaled;
++use std::f64::consts::PI;
++
++#[derive(Debug, Clone, Copy, PartialEq, Eq)]
++pub(crate) enum SourceAreaError {
++    InvalidOutsideDiameter,
++    InvalidWallThickness,
++    InvalidInsulationThickness,
++    NonRepresentableArea,
++}
++
++fn validate_diameter(od: f64) -> Result<(), SourceAreaError> {
++    if !od.is_finite() || od <= 0.0 {
++        Err(SourceAreaError::InvalidOutsideDiameter)
++    } else {
++        Ok(())
++    }
++}
++pub(crate) fn validate_wall(od: f64, wall: f64) -> Result<(), SourceAreaError> {
++    validate_diameter(od)?;
++    // Compare without first doubling wall or rounding the half-diameter.
++    if !wall.is_finite() || wall <= 0.0 || wall > od || wall > od - wall {
++        Err(SourceAreaError::InvalidWallThickness)
++    } else {
++        Ok(())
++    }
++}
++
++pub(crate) fn source_wall_area_scaled(od: f64, wall: f64) -> Result<Scaled, SourceAreaError> {
++    validate_wall(od, wall)?;
++    let t = Scaled::from_f64(wall);
++    Ok(Scaled::from_f64(PI).mul(t).mul(Scaled::from_f64(od).sub(t)))
++}
++pub(crate) fn source_bore_area_scaled(od: f64, wall: f64) -> Result<Scaled, SourceAreaError> {
++    validate_wall(od, wall)?;
++    let ri = Scaled::from_f64(od)
++        .mul(Scaled::from_f64(0.5))
++        .sub(Scaled::from_f64(wall));
++    Ok(Scaled::from_f64(PI).mul(ri).mul(ri))
++}
++fn represented_area(area: Scaled, zero_allowed: bool) -> Result<f64, SourceAreaError> {
++    let value = area.to_f64();
++    if !value.is_finite() || value < 0.0 || (value == 0.0 && !zero_allowed) {
++        Err(SourceAreaError::NonRepresentableArea)
++    } else {
++        Ok(value)
++    }
++}
++pub(crate) fn source_wall_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
++    represented_area(source_wall_area_scaled(od, wall)?, false)
++}
++pub(crate) fn source_bore_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
++    let area = source_bore_area_scaled(od, wall)?;
++    represented_area(area, od == wall + wall)
++}
++pub(crate) fn source_insulation_area_m2(od: f64, thickness: f64) -> Result<f64, SourceAreaError> {
++    validate_diameter(od)?;
++    if !thickness.is_finite() || thickness < 0.0 {
++        return Err(SourceAreaError::InvalidInsulationThickness);
++    }
++    let d = Scaled::from_f64(thickness);
++    let area = Scaled::from_f64(PI).mul(d).mul(Scaled::from_f64(od).add(d));
++    represented_area(area, thickness == 0.0)
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    fn close(actual: f64, expected: f64) {
++        assert!(
++            (actual - expected).abs() <= 1e-12 * expected.abs(),
++            "{actual:e} != {expected:e}"
++        );
++    }
++    #[test]
++    fn ordinary_source_areas_and_solid_core_are_explicit() {
++        close(source_wall_area_m2(4.0, 1.0).unwrap(), 3.0 * PI);
++        close(source_bore_area_m2(4.0, 1.0).unwrap(), PI);
++        close(source_wall_area_m2(4.0, 2.0).unwrap(), 4.0 * PI);
++        assert_eq!(source_bore_area_m2(4.0, 2.0).unwrap(), 0.0);
++        close(source_insulation_area_m2(4.0, 1.0).unwrap(), 5.0 * PI);
++        assert_eq!(source_insulation_area_m2(4.0, 0.0).unwrap(), 0.0);
++    }
++    #[test]
++    fn area_does_not_require_distinct_rounded_radii() {
++        let t = 2.0_f64.powi(-55);
++        assert_eq!(0.5 - t, 0.5);
++        close(source_wall_area_m2(1.0, t).unwrap(), PI * t * (1.0 - t));
++        close(
++            source_insulation_area_m2(1.0, t).unwrap(),
++            PI * t * (1.0 + t),
++        );
++    }
++    #[test]
++    fn scaled_source_area_does_not_depend_on_resolving_squared_radius_difference() {
++        // Rounded outer/inner radii coincide, but the source product remains PI.
++        let od = 1e154;
++        let t = 1e-154;
++        close(source_wall_area_m2(od, t).unwrap(), PI);
++        close(source_insulation_area_m2(od, t).unwrap(), PI);
++    }
++    #[test]
++    fn scaled_area_avoids_intermediate_underflow_before_final_rounding() {
++        let od = 2.0_f64.powi(-537);
++        let wall = 2.0_f64.powi(-539);
++        assert_eq!(wall * (od - wall), 0.0);
++        // Exact binary source product is 3*pi*2^-1078 = 0.589... minimum subnormals.
++        assert_eq!(source_wall_area_m2(od, wall).unwrap(), f64::from_bits(1));
++    }
++    #[test]
++    fn invalid_and_positive_unrepresentable_areas_fail_closed() {
++        assert!(source_wall_area_m2(1.0, 0.6).is_err());
++        assert!(source_wall_area_m2(1.0, 0.0).is_err());
++        assert!(source_wall_area_m2(f64::INFINITY, 0.1).is_err());
++        assert!(source_insulation_area_m2(1.0, -0.1).is_err());
++        assert!(source_wall_area_m2(1e-200, 1e-201).is_err());
++        assert!(source_bore_area_m2(1e-200, 1e-201).is_err());
++        assert!(source_insulation_area_m2(1e-200, 1e-201).is_err());
++        assert_eq!(source_bore_area_m2(1e-200, 5e-201).unwrap(), 0.0);
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs
+@@ -0,0 +1,187 @@
++//! Active source-OD/wall annulus, separate from the preserved radii-only scalar API.
++use super::{
++    cap_pair, eigenload_pair, pressure_trace_scaled, scaled_output, ExactAnnulus,
++    ExactPressureError, InternalDifferentialPressure, IsotropicENu, RadialHoopStressPa, Scaled,
++};
++use crate::annulus_geometry::{source_bore_area_scaled, source_wall_area_scaled, validate_wall};
++
++#[derive(Debug, Clone, Copy)]
++pub(crate) struct SourceAnnulus {
++    od_m: f64,
++    wall_m: f64,
++    // Reuse existing cap/eigen constitutive arithmetic through its actual areas.
++    // This private value is never passed to the radii-only interior Lamé API.
++    kernel: ExactAnnulus,
++    i_m4: f64,
++    j_m4: f64,
++    z_m3: f64,
++}
++fn positive(value: Scaled) -> Result<f64, ExactPressureError> {
++    let value = value.to_f64();
++    if value.is_finite() && value > 0.0 {
++        Ok(value)
++    } else {
++        Err(ExactPressureError::NonRepresentableGeometry)
++    }
++}
++impl SourceAnnulus {
++    pub(crate) fn from_od_wall(od_m: f64, wall_m: f64) -> Result<Self, ExactPressureError> {
++        validate_wall(od_m, wall_m).map_err(|_| ExactPressureError::InvalidGeometry)?;
++        let ro_m = od_m * 0.5;
++        let ri_m = ro_m - wall_m;
++        // Retained active-frame admission guard, distinct from pure area validity.
++        if !ro_m.is_finite() || ri_m <= 0.0 || ri_m >= ro_m {
++            return Err(ExactPressureError::InvalidGeometry);
++        }
++        let as_scaled = source_wall_area_scaled(od_m, wall_m)
++            .map_err(|_| ExactPressureError::InvalidGeometry)?;
++        let ai_scaled = source_bore_area_scaled(od_m, wall_m)
++            .map_err(|_| ExactPressureError::InvalidGeometry)?;
++        let ro = Scaled::from_f64(od_m).mul(Scaled::from_f64(0.5));
++        let ri = ro.sub(Scaled::from_f64(wall_m));
++        let i = as_scaled
++            .mul(ro.mul(ro).add(ri.mul(ri)))
++            .mul(Scaled::from_f64(0.25));
++        let j = i.mul(Scaled::from_f64(2.0));
++        let z = i
++            .div(ro)
++            .ok_or(ExactPressureError::NonRepresentableGeometry)?;
++        Ok(Self {
++            od_m,
++            wall_m,
++            kernel: ExactAnnulus {
++                ri_m,
++                ro_m,
++                ai_m2: positive(ai_scaled)?,
++                as_m2: positive(as_scaled)?,
++                ai_scaled,
++                as_scaled,
++            },
++            i_m4: positive(i)?,
++            j_m4: positive(j)?,
++            z_m3: positive(z)?,
++        })
++    }
++    pub(crate) fn outside_diameter_m(self) -> f64 {
++        self.od_m
++    }
++    pub(crate) fn effective_wall_thickness_m(self) -> f64 {
++        self.wall_m
++    }
++    pub(crate) fn inner_radius_m(self) -> f64 {
++        self.kernel.inner_radius_m()
++    }
++    pub(crate) fn outer_radius_m(self) -> f64 {
++        self.kernel.outer_radius_m()
++    }
++    pub(crate) fn internal_area_m2(self) -> f64 {
++        self.kernel.internal_area_m2()
++    }
++    pub(crate) fn wall_area_m2(self) -> f64 {
++        self.kernel.wall_area_m2()
++    }
++    pub(crate) fn second_moment_m4(self) -> f64 {
++        self.i_m4
++    }
++    pub(crate) fn polar_moment_m4(self) -> f64 {
++        self.j_m4
++    }
++    pub(crate) fn section_modulus_m3(self) -> f64 {
++        self.z_m3
++    }
++    pub(crate) fn cap_pair(
++        self,
++        p: InternalDifferentialPressure,
++    ) -> Result<[f64; 2], ExactPressureError> {
++        cap_pair(self.kernel, p)
++    }
++    pub(crate) fn eigenload_pair(
++        self,
++        m: IsotropicENu,
++        p: InternalDifferentialPressure,
++        thermal: f64,
++    ) -> Result<[f64; 2], ExactPressureError> {
++        eigenload_pair(self.kernel, m, p, thermal)
++    }
++    /// Exact two-difference identity of source OD/2-wall, without changing source inputs.
++    pub(crate) fn source_bore_key(self) -> (u64, u64) {
++        let a = self.od_m * 0.5;
++        let b = self.wall_m;
++        let x = a - b;
++        let b_virtual = a - x;
++        let a_virtual = x + b_virtual;
++        let y = (a - a_virtual) + (b_virtual - b);
++        (x.to_bits(), if y == 0.0 { 0 } else { y.to_bits() })
++    }
++    pub(crate) fn pressure_group_value(
++        self,
++        p: InternalDifferentialPressure,
++        coefficient: f64,
++        direction_magnitude: f64,
++    ) -> Result<f64, ExactPressureError> {
++        if !coefficient.is_finite() || !direction_magnitude.is_finite() {
++            return Err(ExactPressureError::NonRepresentableLoad);
++        }
++        let value = super::fluid_force_scaled(self.kernel, p)
++            .mul(Scaled::from_f64(coefficient))
++            .mul(Scaled::from_f64(direction_magnitude));
++        let output = scaled_output(value, ExactPressureError::NonRepresentableLoad)?;
++        if output == 0.0 && value.mantissa != 0.0 {
++            Err(ExactPressureError::NonRepresentableLoad)
++        } else {
++            Ok(output)
++        }
++    }
++    pub(crate) fn recover_wall_effective_membrane(
++        self,
++        mechanical_force: f64,
++        m: IsotropicENu,
++        p: InternalDifferentialPressure,
++    ) -> Result<(f64, f64, f64), ExactPressureError> {
++        if !mechanical_force.is_finite() {
++            return Err(ExactPressureError::NonRepresentableLoad);
++        }
++        let nm = Scaled::from_f64(mechanical_force);
++        let fluid = super::fluid_force_scaled(self.kernel, p);
++        let two_nu = 2.0 * m.poisson_ratio();
++        let wall = fluid.fused_mul_add(Scaled::from_f64(two_nu), nm);
++        // Two-difference retains a possible low term in (2nu-1); near 0.5 the high term itself is exact.
++        let high = two_nu - 1.0;
++        let bv = two_nu - high;
++        let av = high + bv;
++        let low = (two_nu - av) + (bv - 1.0);
++        let effective = fluid.fused_mul_add(
++            Scaled::from_f64(low),
++            fluid.fused_mul_add(Scaled::from_f64(high), nm),
++        );
++        let membrane = wall
++            .div(self.kernel.as_scaled)
++            .ok_or(ExactPressureError::NonRepresentableStress)?;
++        Ok((
++            scaled_output(wall, ExactPressureError::NonRepresentableLoad)?,
++            scaled_output(effective, ExactPressureError::NonRepresentableLoad)?,
++            scaled_output(membrane, ExactPressureError::NonRepresentableStress)?,
++        ))
++    }
++    pub(crate) fn surface_stresses(
++        self,
++        p: InternalDifferentialPressure,
++    ) -> Result<[RadialHoopStressPa; 2], ExactPressureError> {
++        let trace = pressure_trace_scaled(self.kernel, p);
++        let outer = scaled_output(trace, ExactPressureError::NonRepresentableStress)?;
++        let inner = scaled_output(
++            trace.add(Scaled::from_f64(p.pressure_pa())),
++            ExactPressureError::NonRepresentableStress,
++        )?;
++        Ok([
++            RadialHoopStressPa {
++                radial_pa: -p.pressure_pa(),
++                hoop_pa: inner,
++            },
++            RadialHoopStressPa {
++                radial_pa: 0.0,
++                hoop_pa: outer,
++            },
++        ])
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/src/pressure_sum.rs
+@@ -0,0 +1,185 @@
++//! Exact finite-binary64 sum followed by one nearest-even binary64 projection.
++//!
++//! Every finite operand is an integer multiple of 2^-1074. Separate unsigned
++//! accumulators retain positive/negative integers until final subtraction. The
++//! largest finite operand occupies at most bit2097; at most usize::MAX operands
++//! on the supported <=64-bit hosts require at most2162 bits.34 limbs provide2176.
++//! This does not recover information rounded before the operands were supplied.
++const LIMBS: usize = 34;
++type Magnitude = [u64; LIMBS];
++#[derive(Debug, Clone, Copy, PartialEq, Eq)]
++pub(crate) enum SumError {
++    NonFinite,
++    AccumulatorOverflow,
++    NonRepresentable,
++}
++fn add_word(value: &mut Magnitude, mut word: usize, mut add: u64) -> Result<(), SumError> {
++    while add != 0 {
++        let target = value.get_mut(word).ok_or(SumError::AccumulatorOverflow)?;
++        let (next, carry) = target.overflowing_add(add);
++        *target = next;
++        add = u64::from(carry);
++        word += 1;
++    }
++    Ok(())
++}
++fn add_operand(value: &mut Magnitude, bits: u64) -> Result<(), SumError> {
++    let exponent = ((bits >> 52) & 0x7ff) as usize;
++    let mantissa = (bits & ((1u64 << 52) - 1)) | if exponent == 0 { 0 } else { 1u64 << 52 };
++    let shift = if exponent == 0 { 0 } else { exponent - 1 };
++    let word = shift / 64;
++    let offset = shift % 64;
++    add_word(value, word, mantissa << offset)?;
++    if offset != 0 {
++        add_word(value, word + 1, mantissa >> (64 - offset))?;
++    }
++    Ok(())
++}
++fn greater(a: &Magnitude, b: &Magnitude) -> std::cmp::Ordering {
++    for i in (0..LIMBS).rev() {
++        let order = a[i].cmp(&b[i]);
++        if !order.is_eq() {
++            return order;
++        }
++    }
++    std::cmp::Ordering::Equal
++}
++fn subtract(a: &Magnitude, b: &Magnitude) -> Magnitude {
++    let mut out = [0; LIMBS];
++    let mut borrow = false;
++    for i in 0..LIMBS {
++        let (x, b1) = a[i].overflowing_sub(b[i]);
++        let (y, b2) = x.overflowing_sub(u64::from(borrow));
++        out[i] = y;
++        borrow = b1 || b2;
++    }
++    debug_assert!(!borrow);
++    out
++}
++fn bit(a: &Magnitude, index: usize) -> bool {
++    a[index / 64] & (1u64 << (index % 64)) != 0
++}
++fn any_below(a: &Magnitude, end: usize) -> bool {
++    let full = end / 64;
++    if a[..full].iter().any(|&x| x != 0) {
++        return true;
++    }
++    let rem = end % 64;
++    rem != 0 && a[full] & ((1u64 << rem) - 1) != 0
++}
++fn shifted_low(a: &Magnitude, shift: usize) -> u64 {
++    let word = shift / 64;
++    let offset = shift % 64;
++    let mut out = a[word] >> offset;
++    if offset != 0 && word + 1 < LIMBS {
++        out |= a[word + 1] << (64 - offset);
++    }
++    out
++}
++fn project(a: &Magnitude, negative: bool) -> Result<f64, SumError> {
++    let Some(word) = (0..LIMBS).rev().find(|&i| a[i] != 0) else {
++        return Ok(0.0);
++    };
++    let mut highest = word * 64 + 63 - a[word].leading_zeros() as usize;
++    let sign = if negative { 1u64 << 63 } else { 0 };
++    if highest < 52 {
++        return Ok(f64::from_bits(sign | a[0]));
++    }
++    let shift = highest - 52;
++    let mut mantissa = shifted_low(a, shift) & ((1u64 << 53) - 1);
++    if shift > 0 && bit(a, shift - 1) && (any_below(a, shift - 1) || mantissa & 1 != 0) {
++        mantissa += 1;
++    }
++    if mantissa == (1u64 << 53) {
++        mantissa >>= 1;
++        highest += 1;
++    }
++    let exponent = highest - 51;
++    if exponent >= 0x7ff {
++        return Err(SumError::NonRepresentable);
++    }
++    Ok(f64::from_bits(
++        sign | ((exponent as u64) << 52) | (mantissa & ((1u64 << 52) - 1)),
++    ))
++}
++pub(crate) fn exact_sum(values: impl IntoIterator<Item = f64>) -> Result<f64, SumError> {
++    let mut positive = [0; LIMBS];
++    let mut negative = [0; LIMBS];
++    for value in values {
++        if !value.is_finite() {
++            return Err(SumError::NonFinite);
++        }
++        let bits = value.to_bits();
++        add_operand(
++            if bits >> 63 == 0 {
++                &mut positive
++            } else {
++                &mut negative
++            },
++            bits,
++        )?;
++    }
++    match greater(&positive, &negative) {
++        std::cmp::Ordering::Less => project(&subtract(&negative, &positive), true),
++        _ => project(&subtract(&positive, &negative), false),
++    }
++}
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn cancellation_retains_source_coefficients_and_is_order_independent() {
++        let small = 2.0_f64.powi(-53);
++        for values in [[1.0, small, -1.0], [-1.0, 1.0, small], [small, -1.0, 1.0]] {
++            assert_eq!(exact_sum(values).unwrap(), small);
++        }
++        let nu = f64::from_bits(0x3fdfffffffffffff);
++        assert_eq!(exact_sum([1.0, -2.0 * nu]).unwrap(), small);
++    }
++    #[test]
++    fn rounding_ties_and_sticky_bits_are_explicit() {
++        let half = 2.0_f64.powi(-53);
++        let tiny = f64::from_bits(1);
++        assert_eq!(exact_sum([1.0, half]).unwrap().to_bits(), 1.0_f64.to_bits());
++        assert_eq!(
++            exact_sum([1.0, half, tiny]).unwrap().to_bits(),
++            1.0_f64.to_bits() + 1
++        );
++        assert_eq!(
++            exact_sum([-1.0, -half, -tiny]).unwrap().to_bits(),
++            (-1.0_f64).to_bits() + 1
++        );
++    }
++    #[test]
++    fn wide_range_cancellation_never_overflows_an_intermediate_float() {
++        assert_eq!(
++            exact_sum([f64::MAX, f64::MAX, -f64::MAX]).unwrap(),
++            f64::MAX
++        );
++        assert_eq!(
++            exact_sum([f64::MAX, -f64::MAX, f64::from_bits(1)]).unwrap(),
++            f64::from_bits(1)
++        );
++        assert_eq!(
++            exact_sum([f64::MAX, f64::MAX]),
++            Err(SumError::NonRepresentable)
++        );
++    }
++    #[test]
++    fn normal_subnormal_boundary_and_nonfinite_rejection() {
++        assert_eq!(
++            exact_sum([f64::MIN_POSITIVE, -f64::from_bits(1)])
++                .unwrap()
++                .to_bits(),
++            (1u64 << 52) - 1
++        );
++        assert_eq!(
++            exact_sum([f64::from_bits(1), f64::from_bits(1)])
++                .unwrap()
++                .to_bits(),
++            2
++        );
++        assert_eq!(exact_sum([f64::NAN]), Err(SumError::NonFinite));
++        assert_eq!(exact_sum([f64::INFINITY]), Err(SumError::NonFinite));
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs
+@@ -0,0 +1,836 @@
++//! Source-faithful section properties and public runtime response.
++//! Independent source OD/effective-wall expectations were frozen before repair.
++//! The older rounded-radii reference remains comparison evidence only.
++
++use open_pipe_stress_product_physics::{
++    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope,
++    PreviewSolverMode, ResultItem,
++};
++use serde_json::{json, Value};
++
++const SOURCE: &str = include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_ODWALL_EXPECTATIONS.json");
++const NEAR: &str = include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_INCOMPRESSIBLE_EXPECTATIONS.json");
++const CASE: &str = "case:source-section";
++const REGION: &str = "region:source-section";
++const PIPE: &str = "pipe:source-section";
++const A: &str = "node:section-a";
++const B: &str = "node:section-b";
++const MODES: [PreviewSolverMode; 2] = [
++    PreviewSolverMode::SparseInteractive,
++    PreviewSolverMode::DenseScrutiny,
++];
++
++fn oracle() -> Value {
++    serde_json::from_str(SOURCE).unwrap()
++}
++
++fn expected(case: &Value, key: &str) -> f64 {
++    case[key]["f64"]
++        .as_f64()
++        .expect("independent finite reference")
++}
++
++fn close(actual: f64, reference: f64, zero_scale: f64, label: &str) {
++    assert!(actual.is_finite(), "{label}: nonfinite {actual}");
++    let tolerance = 1e-9
++        * if reference == 0.0 {
++            zero_scale.abs()
++        } else {
++            reference.abs()
++        };
++    assert!(
++        (actual - reference).abs() <= tolerance,
++        "{label}: actual={actual:.17e}; source reference={reference:.17e}; tolerance={tolerance:.17e}"
++    );
++}
++
++fn anchor(id: &str, node: &str) -> Value {
++    json!({"id":id,"node":node,"family":"anchor",
++        "restraints":["UX","UY","UZ","RX","RY","RZ"],
++        "provenance":"independent_section_geometry_control"})
++}
++
++fn fixture(inputs: &Value, fixed: bool, pressurized: bool) -> Value {
++    let mut supports = vec![anchor("support:section-a", A)];
++    if fixed {
++        supports.push(anchor("support:section-b", B));
++    }
++    let mut loads = Vec::new();
++    for (id, direction, dimension, unit, magnitude) in [
++        (
++            "load:tip-y",
++            "global_y",
++            "force",
++            "N",
++            inputs["tip_Fy_N"].as_f64().unwrap_or(0.0),
++        ),
++        (
++            "load:tip-torque",
++            "rotation_x",
++            "moment",
++            "N*m",
++            inputs["tip_Mx_Nm"].as_f64().unwrap_or(0.0),
++        ),
++    ] {
++        if magnitude != 0.0 {
++            loads.push(json!({"id":id,"category":if dimension=="moment" {"concentrated_moment"} else {"concentrated_force"},
++                "target":{"type":"node","node":B},"direction":direction,
++                "dimension":dimension,"magnitude":{"value":magnitude,"unit":unit},
++                "provenance":"independent_section_geometry_reference"}));
++        }
++    }
++    let regions = if pressurized {
++        vec![json!({"id":REGION,"member_pipe_ids":[PIPE],
++            "pressure_basis":"internal_differential_zero_external_v1",
++            "pressure":{"value":inputs["p_Pa"],"unit":"Pa"},
++            "terminals":[
++                {"node_ref":A,"closure_transfer":"transfers_to_wall","provenance":"explicit_test_closure"},
++                {"node_ref":B,"closure_transfer":"transfers_to_wall","provenance":"explicit_test_closure"}],
++            "provenance":"independent_geometry_pressure_reference"})]
++    } else {
++        vec![]
++    };
++    json!({"model":{
++        "schema_version":"0.3.0","document_kind":"openpipestress.product_preview.model",
++        "pressure_contract":{"version":"2.0.0","mode":"exact_straight_pressure_v2"},
++        "project":{"id":"project:section-oracle","units":{"length":"m","force":"N","angle":"rad",
++            "pressure":"Pa","stress":"Pa","temperature":"degC"}},
++        "analysis_status":{"mechanics":"ready_for_preview_diagnostics",
++            "rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},
++        "nodes":[{"id":A,"position":{"x":0.0,"y":0.0,"z":0.0},"provenance":"synthetic"},
++            {"id":B,"position":{"x":inputs["L_m"],"y":0.0,"z":0.0},"provenance":"synthetic"}],
++        "pipe_segments":[{"id":PIPE,"from":A,"to":B,"section":{
++            "outside_diameter":{"value":inputs["OD_m"],"unit":"m"},
++            "wall_thickness":{"value":inputs["wall_m"],"unit":"m"}},
++            "material":"material:section","y_reference":{"x":0.0,"y":1.0,"z":0.0},
++            "provenance":"arithmetic_geometry_control_not_manufactured_pipe"}],
++        "materials":[{"id":"material:section","constitutive_basis":"homogeneous_isotropic_E_nu_v1",
++            "elastic_modulus":{"value":inputs["E_Pa"],"unit":"Pa"},
++            "poisson_ratio":{"value":inputs["nu"],"unit":"1"},
++            "provenance":"synthetic_isotropic_input"}],
++        "supports":supports,"components":[],
++        "load_cases":[{"id":CASE,"primitive_loads":loads,"pressure_regions":regions,
++            "provenance":"independent_reference"}],"combinations":[]
++    },"materials":[]})
++}
++
++fn solve(input: Value, mode: PreviewSolverMode) -> MechanicsEnvelope {
++    let request: LinearStaticPreviewRequest = serde_json::from_value(input).unwrap();
++    run_linear_static_preview_with_mode(request, mode)
++}
++
++fn solved(result: &MechanicsEnvelope) {
++    assert_eq!(
++        result.status.mechanics, "MECHANICS_SOLVED",
++        "{:?}",
++        result.diagnostics
++    );
++    assert!(!result.accepted_model_state_mutated);
++    assert!(result.results.iter().all(|r| r.value.is_finite()));
++}
++
++fn row<'a>(
++    result: &'a MechanicsEnvelope,
++    kind: &str,
++    entity: &str,
++    component: &str,
++    location: Option<&str>,
++) -> &'a ResultItem {
++    let matching: Vec<_> = result
++        .results
++        .iter()
++        .filter(|r| {
++            r.kind == kind
++                && r.entity_ref == entity
++                && r.basis_ref
++                    .as_ref()
++                    .is_some_and(|b| b.ref_type == "load_case" && b.ref_id == CASE)
++                && r.metadata.as_ref().is_some_and(|m| {
++                    m.component == component && location.map_or(true, |l| m.location == l)
++                })
++        })
++        .collect();
++    assert_eq!(
++        matching.len(),
++        1,
++        "missing/ambiguous actual row: {kind} {entity} {component} {location:?}"
++    );
++    matching[0]
++}
++
++fn scalar(
++    result: &MechanicsEnvelope,
++    kind: &str,
++    entity: &str,
++    component: &str,
++    location: Option<&str>,
++    unit: &str,
++) -> f64 {
++    let actual = row(result, kind, entity, component, location);
++    assert_eq!(actual.unit, unit);
++    actual.value
++}
++
++fn geometry<'a>(result: &'a MechanicsEnvelope, pressurized: bool) -> &'a Value {
++    let evidence = result
++        .contract_evidence
++        .as_ref()
++        .expect("exact source geometry evidence");
++    let case = evidence["exact_cases"]
++        .as_array()
++        .unwrap()
++        .iter()
++        .find(|c| c["load_case_id"] == CASE)
++        .expect("actual case evidence");
++    let section = case["pipe_sections"]
++        .as_array()
++        .expect("all exact members have section evidence")
++        .iter()
++        .find(|s| s["pipe_id"] == PIPE)
++        .expect("actual member source section");
++    if pressurized {
++        let region = evidence["pressure"]
++            .as_array()
++            .unwrap()
++            .iter()
++            .find(|p| p["region_id"] == REGION && p["load_case_id"] == CASE)
++            .unwrap();
++        let counterpart = region["geometry"]
++            .as_array()
++            .unwrap()
++            .iter()
++            .find(|p| p["pipe_id"] == PIPE)
++            .unwrap();
++        for key in [
++            "geometry_basis",
++            "outside_diameter_m",
++            "effective_wall_thickness_m",
++            "ri_m",
++            "ro_m",
++            "Ai_m2",
++            "As_m2",
++            "I_m4",
++            "J_m4",
++            "Z_m3",
++        ] {
++            assert_eq!(
++                counterpart[key], section[key],
++                "pressure and frame section disagree: {key}"
++            );
++        }
++    } else {
++        assert_eq!(
++            evidence["pressure"],
++            json!([]),
++            "unpressurized pipe acquired a fake pressure region"
++        );
++    }
++    section
++}
++
++fn check_geometry(result: &MechanicsEnvelope, case: &Value, pressurized: bool) {
++    let section = geometry(result, pressurized);
++    assert_eq!(section["geometry_basis"], "authored_normalized_od_wall_v1");
++    assert_eq!(
++        section["outside_diameter_m"].as_f64().unwrap(),
++        case["inputs"]["OD_m"].as_f64().unwrap()
++    );
++    assert_eq!(
++        section["effective_wall_thickness_m"].as_f64().unwrap(),
++        case["inputs"]["wall_m"].as_f64().unwrap()
++    );
++    for key in ["ro", "ri"] {
++        let bits =
++            u64::from_str_radix(case[format!("{key}_bits_hex")].as_str().unwrap(), 16).unwrap();
++        assert_eq!(
++            section[format!("{key}_m")].as_f64().unwrap().to_bits(),
++            bits,
++            "derived rounded radius is distinct from source property basis"
++        );
++    }
++    for (field, reference) in [
++        ("Ai_m2", "Ai_m2"),
++        ("As_m2", "A_m2"),
++        ("I_m4", "I_m4"),
++        ("J_m4", "J_m4"),
++        ("Z_m3", "Z_m3"),
++    ] {
++        close(
++            section[field].as_f64().unwrap(),
++            expected(case, reference),
++            0.0,
++            field,
++        );
++    }
++}
++
++fn check_response(result: &MechanicsEnvelope, case: &Value, pressure: bool) {
++    let inputs = &case["inputs"];
++    let reference_x = if pressure {
++        expected(case, "free_pressure_extension_m")
++    } else {
++        0.0
++    };
++    close(
++        scalar(
++            result,
++            "global_nodal_displacement_x",
++            B,
++            "nodal_displacement_x",
++            None,
++            "mm",
++        ) / 1000.0,
++        reference_x,
++        expected(case, "free_pressure_extension_m"),
++        "source pressure extension",
++    );
++    close(
++        scalar(
++            result,
++            "global_nodal_displacement_y",
++            B,
++            "nodal_displacement_y",
++            None,
++            "mm",
++        ) / 1000.0,
++        expected(case, "tip_bending_y_m"),
++        0.0,
++        "source I bending displacement",
++    );
++    close(
++        scalar(
++            result,
++            "global_nodal_rotation_z",
++            B,
++            "nodal_rotation_z",
++            None,
++            "rad",
++        ),
++        expected(case, "tip_rotation_z_rad"),
++        0.0,
++        "source I bending rotation",
++    );
++    close(
++        scalar(
++            result,
++            "global_nodal_rotation_x",
++            B,
++            "nodal_rotation_x",
++            None,
++            "rad",
++        ),
++        expected(case, "tip_rotation_x_rad"),
++        0.0,
++        "source J torsional rotation",
++    );
++    let bending = inputs["tip_Fy_N"].as_f64().unwrap() * inputs["L_m"].as_f64().unwrap()
++        / expected(case, "Z_m3");
++    let normal = if pressure {
++        expected(case, "maximum_absolute_normal_stress_Pa")
++    } else {
++        bending
++    };
++    close(
++        scalar(
++            result,
++            "pipe_elastic_normal_stress_maximum_v2",
++            PIPE,
++            "maximum_absolute_normal_stress",
++            Some("governing_station"),
++            "Pa",
++        ),
++        normal,
++        0.0,
++        "source A/Z normal maximum",
++    );
++    for (component, key, unit) in [
++        ("Fy", "root_force_Fy_N", "N"),
++        ("Mz", "root_moment_Mz_Nm", "N*m"),
++        ("Mx", "root_moment_Mx_Nm", "N*m"),
++    ] {
++        close(
++            scalar(
++                result,
++                "support_reaction_component_v2",
++                "support:section-a",
++                component,
++                Some("node"),
++                unit,
++            ),
++            expected(case, key),
++            0.0,
++            "actual support-on-pipe reaction",
++        );
++    }
++    if pressure {
++        for location in ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"] {
++            for (kind, component, key) in [
++                ("pipe_wall_axial_force_v2", "wall_axial_force", "P_N"),
++                (
++                    "pipe_axial_membrane_stress_v2",
++                    "axial_membrane_stress",
++                    "axial_membrane_Pa",
++                ),
++                (
++                    "pipe_lame_radial_stress_v2",
++                    "lame_inner_radial_stress",
++                    "lame_inner_radial_Pa",
++                ),
++                (
++                    "pipe_lame_radial_stress_v2",
++                    "lame_outer_radial_stress",
++                    "lame_outer_radial_Pa",
++                ),
++                (
++                    "pipe_lame_hoop_stress_v2",
++                    "lame_inner_hoop_stress",
++                    "lame_inner_hoop_Pa",
++                ),
++                (
++                    "pipe_lame_hoop_stress_v2",
++                    "lame_outer_hoop_stress",
++                    "lame_outer_hoop_Pa",
++                ),
++            ] {
++                let stress = kind.contains("stress");
++                close(
++                    scalar(
++                        result,
++                        kind,
++                        PIPE,
++                        component,
++                        Some(location),
++                        if stress { "Pa" } else { "N" },
++                    ),
++                    expected(case, key),
++                    if stress {
++                        expected(case, "axial_membrane_Pa")
++                    } else {
++                        expected(case, "P_N")
++                    },
++                    key,
++                );
++            }
++        }
++    }
++}
++
++#[test]
++fn ordinary_source_annulus_properties_and_all_responses() {
++    let reference = oracle();
++    let case = &reference["cases"][0];
++    for mode in MODES {
++        let result = solve(fixture(&case["inputs"], false, true), mode);
++        solved(&result);
++        check_response(&result, case, true);
++        check_geometry(&result, case, true);
++    }
++}
++
++#[test]
++fn thin_source_wall_drives_extension_stress_bending_and_torsion() {
++    let reference = oracle();
++    let case = &reference["cases"][1];
++    for mode in MODES {
++        let result = solve(fixture(&case["inputs"], false, true), mode);
++        solved(&result);
++        check_response(&result, case, true);
++        check_geometry(&result, case, true);
++        let actual = scalar(
++            &result,
++            "global_nodal_displacement_x",
++            B,
++            "nodal_displacement_x",
++            None,
++            "mm",
++        ) / 1000.0;
++        let rounded_radius = expected(
++            &case["earlier_declared_radius_comparison"],
++            "free_pressure_extension_m",
++        );
++        assert!(
++            (actual - rounded_radius).abs() > 1e-9 * actual.abs(),
++            "rounded-radius alternative silently replaced the source-wall target"
++        );
++    }
++}
++
++#[test]
++fn unpressurized_thin_member_uses_same_source_section_without_fake_region() {
++    let reference = oracle();
++    let case = &reference["cases"][1];
++    for mode in MODES {
++        let result = solve(fixture(&case["inputs"], false, false), mode);
++        solved(&result);
++        check_response(&result, case, false);
++        check_geometry(&result, case, false);
++    }
++}
++
++#[test]
++fn representable_i_and_j_survive_an_unrepresentable_naive_intermediate() {
++    let reference = oracle();
++    let case = &reference["representable_range_control"];
++    assert!(expected(case, "I_m4").is_finite() && expected(case, "J_m4").is_finite());
++    assert!(case["unrepresentable_intermediate"]["f64"].is_null());
++    for mode in MODES {
++        let result = solve(fixture(&case["inputs"], true, true), mode);
++        solved(&result);
++        check_geometry(&result, case, true);
++        close(
++            scalar(
++                &result,
++                "pipe_wall_axial_force_v2",
++                PIPE,
++                "wall_axial_force",
++                Some("end_i"),
++                "N",
++            ),
++            expected(case, "fixed_wall_force_N"),
++            0.0,
++            "finite range-control wall force",
++        );
++    }
++}
++
++#[test]
++fn unrepresented_gap_and_nonrepresentable_final_sections_block() {
++    let reference = oracle();
++    for boundary in reference["blocked_boundaries"].as_array().unwrap() {
++        let mut inputs = reference["cases"][0]["inputs"].clone();
++        inputs["OD_m"] = boundary["OD_m"].clone();
++        inputs["wall_m"] = boundary["wall_m"].clone();
++        inputs["tip_Fy_N"] = json!(0.0);
++        inputs["tip_Mx_Nm"] = json!(0.0);
++        for mode in MODES {
++            let result = solve(fixture(&inputs, true, true), mode);
++            assert_ne!(
++                result.status.mechanics, "MECHANICS_SOLVED",
++                "invalid range control {}",
++                boundary["id"]
++            );
++            assert!(result
++                .diagnostics
++                .iter()
++                .any(|d| d.severity == "blocking" || d.severity == "failure"));
++            assert!(result.results.iter().all(|r| r.value.is_finite()));
++            assert!(!result
++                .results
++                .iter()
++                .any(|r| r.kind == "pipe_wall_axial_force_v2"));
++        }
++    }
++}
++
++#[test]
++fn near_incompressible_source_net_load_retains_its_nonzero_extension() {
++    let references: Value = serde_json::from_str(NEAR).unwrap();
++    for case in references["cases"].as_array().unwrap() {
++        let mut inputs = references["inputs"].clone();
++        let bits = u64::from_str_radix(case["nu_bits_hex"].as_str().unwrap(), 16).unwrap();
++        inputs["nu"] = json!(f64::from_bits(bits));
++        for mode in MODES {
++            let result = solve(fixture(&inputs, false, true), mode);
++            solved(&result);
++            let displacement = scalar(
++                &result,
++                "global_nodal_displacement_x",
++                B,
++                "nodal_displacement_x",
++                None,
++                "mm",
++            ) / 1000.0;
++            close(
++                displacement,
++                expected(case, "extension_m"),
++                0.0,
++                "near-incompressible source extension",
++            );
++            assert!(
++                displacement > 0.0,
++                "admissible nonzero source load was lost"
++            );
++            let pressure = &result.contract_evidence.as_ref().unwrap()["pressure"][0];
++            let actual_nu = pressure["materials"][0]["nu"]
++                .as_f64()
++                .expect("actual selected nu");
++            assert_eq!(actual_nu.to_bits(), bits);
++            close(
++                scalar(
++                    &result,
++                    "pipe_wall_axial_force_v2",
++                    PIPE,
++                    "wall_axial_force",
++                    Some("end_j"),
++                    "N",
++                ),
++                expected(case, "wall_force_N"),
++                0.0,
++                "near-incompressible wall force",
++            );
++        }
++    }
++    let mut invalid = references["inputs"].clone();
++    invalid["nu"] = json!(0.5);
++    for mode in MODES {
++        let result = solve(fixture(&invalid, false, true), mode);
++        assert_ne!(result.status.mechanics, "MECHANICS_SOLVED");
++        assert!(result
++            .diagnostics
++            .iter()
++            .any(|d| d.code == "EXACT_PRESSURE_MATERIAL_INVALID"));
++    }
++}
++
++#[test]
++fn distinct_near_limit_nu_two_span_source_extensions_survive_all_reversals() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_TWO_SPAN_EXPECTATIONS.json")).unwrap();
++    let inputs = &reference["inputs"];
++    let nu1 =
++        f64::from_bits(u64::from_str_radix(inputs["nu1_bits_hex"].as_str().unwrap(), 16).unwrap());
++    let nu2 =
++        f64::from_bits(u64::from_str_radix(inputs["nu2_bits_hex"].as_str().unwrap(), 16).unwrap());
++    let first = json!({"OD_m":inputs["OD1_m"],"wall_m":inputs["wall1_m"],"E_Pa":inputs["E1_Pa"],
++        "nu":nu1,"p_Pa":inputs["p_Pa"],"L_m":inputs["L1_m"]});
++    let c = "node:section-c";
++    let second_pipe = "pipe:section-second";
++    for mode in MODES {
++        for reverse_first in [false, true] {
++            for reverse_second in [false, true] {
++                for reverse_terminals in [false, true] {
++                    let mut wire = fixture(&first, false, true);
++                    wire["model"]["nodes"].as_array_mut().unwrap().push(json!({
++                        "id":c,"position":{"x":6.0,"y":0.0,"z":0.0},"provenance":"independent_exact_dyadic_chain"}));
++                    let mut second = wire["model"]["pipe_segments"][0].clone();
++                    second["id"] = json!(second_pipe);
++                    second["from"] = json!(if reverse_second { c } else { B });
++                    second["to"] = json!(if reverse_second { B } else { c });
++                    second["section"]["outside_diameter"]["value"] = inputs["OD2_m"].clone();
++                    second["section"]["wall_thickness"]["value"] = inputs["wall2_m"].clone();
++                    second["material"] = json!("material:section-second");
++                    wire["model"]["pipe_segments"]
++                        .as_array_mut()
++                        .unwrap()
++                        .push(second);
++                    if reverse_first {
++                        wire["model"]["pipe_segments"][0]["from"] = json!(B);
++                        wire["model"]["pipe_segments"][0]["to"] = json!(A);
++                    }
++                    let mut second_material = wire["model"]["materials"][0].clone();
++                    second_material["id"] = json!("material:section-second");
++                    second_material["elastic_modulus"]["value"] = inputs["E2_Pa"].clone();
++                    second_material["poisson_ratio"]["value"] = json!(nu2);
++                    wire["model"]["materials"]
++                        .as_array_mut()
++                        .unwrap()
++                        .push(second_material);
++                    let region = &mut wire["model"]["load_cases"][0]["pressure_regions"][0];
++                    region["member_pipe_ids"] = json!([second_pipe, PIPE]);
++                    region["terminals"] = json!([
++                        {"node_ref":if reverse_terminals {c} else {A},
++                         "closure_transfer":"transfers_to_wall","provenance":"explicit_source_boundary"},
++                        {"node_ref":if reverse_terminals {A} else {c},
++                         "closure_transfer":"transfers_to_wall","provenance":"explicit_source_boundary"}]);
++                    let result = solve(wire, mode);
++                    solved(&result);
++                    let middle = scalar(
++                        &result,
++                        "global_nodal_displacement_x",
++                        B,
++                        "nodal_displacement_x",
++                        None,
++                        "mm",
++                    ) / 1000.0;
++                    let end = scalar(
++                        &result,
++                        "global_nodal_displacement_x",
++                        c,
++                        "nodal_displacement_x",
++                        None,
++                        "mm",
++                    ) / 1000.0;
++                    close(
++                        middle,
++                        expected(&reference, "span1_extension_m"),
++                        0.0,
++                        "member-specific near-limit first extension",
++                    );
++                    close(
++                        end - middle,
++                        expected(&reference, "span2_extension_m"),
++                        0.0,
++                        "comparable-scale near-limit second extension",
++                    );
++                    close(
++                        end,
++                        expected(&reference, "tip_displacement_m"),
++                        0.0,
++                        "near-limit complete-chain displacement",
++                    );
++                    for (member, stress_key) in
++                        [(PIPE, "wall_stress1_Pa"), (second_pipe, "wall_stress2_Pa")]
++                    {
++                        for location in ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"] {
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_wall_axial_force_v2",
++                                    member,
++                                    "wall_axial_force",
++                                    Some(location),
++                                    "N",
++                                ),
++                                expected(&reference, "wall_force_N"),
++                                0.0,
++                                "common source wall force",
++                            );
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_effective_axial_force_v2",
++                                    member,
++                                    "effective_axial_force",
++                                    Some(location),
++                                    "N",
++                                ),
++                                0.0,
++                                expected(&reference, "wall_force_N"),
++                                "free transferred effective force",
++                            );
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_axial_membrane_stress_v2",
++                                    member,
++                                    "axial_membrane_stress",
++                                    Some(location),
++                                    "Pa",
++                                ),
++                                expected(&reference, stress_key),
++                                0.0,
++                                "member-specific wall area",
++                            );
++                        }
++                    }
++                }
++            }
++        }
++    }
++}
++
++#[test]
++fn fixed_near_limit_effective_force_and_reactions_keep_small_source_difference() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_FIXED_EXPECTATIONS.json")).unwrap();
++    for case in reference["cases"].as_array().unwrap() {
++        let mut inputs = reference["inputs"].clone();
++        let bits = u64::from_str_radix(case["nu_bits_hex"].as_str().unwrap(), 16).unwrap();
++        inputs["nu"] = json!(f64::from_bits(bits));
++        for mode in MODES {
++            let result = solve(fixture(&inputs, true, true), mode);
++            solved(&result);
++            for location in ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"] {
++                close(
++                    scalar(
++                        &result,
++                        "pipe_wall_axial_force_v2",
++                        PIPE,
++                        "wall_axial_force",
++                        Some(location),
++                        "N",
++                    ),
++                    expected(case, "wall_force_N"),
++                    0.0,
++                    "fixed near-limit source wall force",
++                );
++                close(
++                    scalar(
++                        &result,
++                        "pipe_effective_axial_force_v2",
++                        PIPE,
++                        "effective_axial_force",
++                        Some(location),
++                        "N",
++                    ),
++                    expected(case, "effective_force_N"),
++                    0.0,
++                    "fixed small nonzero source effective force",
++                );
++            }
++            for (support, key) in [
++                ("support:section-a", "left_support_Fx_N"),
++                ("support:section-b", "right_support_Fx_N"),
++            ] {
++                close(
++                    scalar(
++                        &result,
++                        "support_reaction_component_v2",
++                        support,
++                        "Fx",
++                        Some("node"),
++                        "N",
++                    ),
++                    expected(case, key),
++                    0.0,
++                    "fixed signed small nonzero support reaction",
++                );
++            }
++            close(
++                scalar(
++                    &result,
++                    "global_nodal_displacement_x",
++                    B,
++                    "nodal_displacement_x",
++                    None,
++                    "mm",
++                ),
++                0.0,
++                0.0,
++                "fixed compatibility",
++            );
++        }
++    }
++}
++
++#[test]
++fn near_limit_source_extension_transforms_under_a_proper_spatial_rotation() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_ROTATION_EXPECTATIONS.json")).unwrap();
++    for case in reference["cases"].as_array().unwrap() {
++        let mut inputs = reference["inputs"].clone();
++        let bits = u64::from_str_radix(case["nu_bits_hex"].as_str().unwrap(), 16).unwrap();
++        inputs["nu"] = json!(f64::from_bits(bits));
++        for mode in MODES {
++            let mut wire = fixture(&inputs, false, true);
++            wire["model"]["nodes"][1]["position"] = json!({"x":2.0,"y":4.0,"z":4.0});
++            wire["model"]["pipe_segments"][0]["y_reference"] =
++                json!({"x":-2.0/5.0_f64.sqrt(),"y":1.0/5.0_f64.sqrt(),"z":0.0});
++            let result = solve(wire, mode);
++            solved(&result);
++            let mut vector = [0.0; 3];
++            for (index, axis) in ["x", "y", "z"].iter().enumerate() {
++                vector[index] = scalar(
++                    &result,
++                    &format!("global_nodal_displacement_{axis}"),
++                    B,
++                    &format!("nodal_displacement_{axis}"),
++                    None,
++                    "mm",
++                ) / 1000.0;
++                close(
++                    vector[index],
++                    case["global_displacement_m"][index]["f64"]
++                        .as_f64()
++                        .unwrap(),
++                    0.0,
++                    "proper-rotation near-limit source displacement component",
++                );
++            }
++            let norm = vector.iter().map(|v| v * v).sum::<f64>().sqrt();
++            close(
++                norm,
++                expected(case, "scalar_extension_m"),
++                0.0,
++                "proper-rotation near-limit source displacement magnitude",
++            );
++        }
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs
+@@ -0,0 +1,125 @@
++//! Manager public control for explicit unresolved source-factor cancellation.
++//! This tests the declared admission guard; it does not add a physical-response oracle.
++
++use open_pipe_stress_product_physics::{
++    run_linear_static_preview_with_mode, LinearStaticPreviewRequest, MechanicsEnvelope,
++    PreviewSolverMode,
++};
++use serde_json::{json, Value};
++
++const CASE: &str = "case:pressure-oracle";
++const REGION: &str = "region:pressure-oracle";
++const PIPE: &str = "pipe:A-B";
++const ROOT: &str = "node:A";
++const TIP: &str = "node:B";
++const ROOT_SUPPORT: &str = "support:A";
++const TIP_SUPPORT: &str = "support:B";
++const LENGTH: f64 = 6.0;
++const MODES: [PreviewSolverMode; 2] = [
++    PreviewSolverMode::SparseInteractive,
++    PreviewSolverMode::DenseScrutiny,
++];
++
++fn node(id: &str, position: [f64; 3]) -> Value {
++    json!({"id":id,"position":{"x":position[0],"y":position[1],"z":position[2]},
++        "provenance":"independent_pressure_runtime_oracle"})
++}
++
++fn anchor(id: &str, node_id: &str) -> Value {
++    json!({"id":id,"node":node_id,"family":"anchor",
++        "restraints":["UX","UY","UZ","RX","RY","RZ"],
++        "provenance":"independent_pressure_runtime_oracle"})
++}
++
++fn terminal(node_id: &str, transfer: bool) -> Value {
++    json!({"node_ref":node_id,"closure_transfer":if transfer {"transfers_to_wall"}
++        else {"separately_supported_or_compensated"},
++        "provenance":"explicit_independent_pressure_boundary"})
++}
++
++fn material(id: &str, e: f64, nu: f64) -> Value {
++    json!({"id":id,"constitutive_basis":"homogeneous_isotropic_E_nu_v1",
++        "elastic_modulus":{"value":e,"unit":"Pa"},
++        "poisson_ratio":{"value":nu,"unit":"1"},
++        "thermal_expansion_coefficient":{"value":0.000012,"unit":"1/degC"},
++        "temperature_points":[],"provenance":"synthetic_isotropic_reference_no_catalog"})
++}
++
++fn pipe(id: &str, from: &str, to: &str, outside: f64, wall: f64, material_id: &str) -> Value {
++    json!({"id":id,"from":from,"to":to,
++        "section":{"outside_diameter":{"value":outside,"unit":"m"},
++            "wall_thickness":{"value":wall,"unit":"m"}},
++        "material":material_id,"y_reference":{"x":0.0,"y":0.0,"z":1.0},
++        "provenance":"synthetic_straight_annulus"})
++}
++
++fn model(fixed: bool, transfer: bool, thermal: f64) -> Value {
++    let mut supports = vec![anchor(ROOT_SUPPORT, ROOT)];
++    if fixed {
++        supports.push(anchor(TIP_SUPPORT, TIP));
++    }
++    let loads = if thermal == 0.0 {
++        vec![]
++    } else {
++        vec![json!({"id":"load:thermal","category":"thermal",
++            "target":{"type":"element","pipe":PIPE},"direction":"global_x",
++            "magnitude":{"value":thermal/0.000012,"unit":"degC"},
++            "dimension":"temperature_interval","provenance":"independent_thermal_strain"})]
++    };
++    json!({"model":{
++        "schema_version":"0.3.0","document_kind":"openpipestress.product_preview.model",
++        "pressure_contract":{"version":"2.0.0","mode":"exact_straight_pressure_v2"},
++        "project":{"id":"project:pressure-oracle","units":{"length":"m","force":"N",
++            "angle":"rad","pressure":"Pa","stress":"Pa","temperature":"degC"}},
++        "analysis_status":{"mechanics":"ready_for_preview_diagnostics",
++            "rule_check":"not_performed_user_rule_inputs_missing","professional_acceptance":"not_provided"},
++        "nodes":[node(ROOT,[0.0,0.0,0.0]),node(TIP,[LENGTH,0.0,0.0])],
++        "pipe_segments":[pipe(PIPE,ROOT,TIP,0.12,0.01,"material:one")],
++        "supports":supports,"components":[],
++        "materials":[material("material:one",200e9,0.3)],
++        "load_cases":[{"id":CASE,"primitive_loads":loads,"pressure_regions":[{
++            "id":REGION,"member_pipe_ids":[PIPE],
++            "pressure_basis":"internal_differential_zero_external_v1",
++            "pressure":{"value":2e6,"unit":"Pa"},
++            "terminals":[terminal(ROOT,transfer),terminal(TIP,transfer)],
++            "provenance":"independent_pressure_region"}],
++            "provenance":"synthetic_load_case"}],"combinations":[]
++    },"materials":[]})
++}
++
++fn solve(input: Value, mode: PreviewSolverMode) -> MechanicsEnvelope {
++    let request: LinearStaticPreviewRequest = serde_json::from_value(input)
++        .expect("the independently authored public DTO must deserialize");
++    run_linear_static_preview_with_mode(request, mode)
++}
++
++#[test]
++fn strongly_cancelling_distinct_pressure_factors_are_explicitly_unqualified() {
++    let mut input = model(false, true, 0.0);
++    let second_pipe = pipe("pipe:parallel", ROOT, TIP, 0.16, 0.02, "material:one");
++    input["model"]["pipe_segments"]
++        .as_array_mut()
++        .unwrap()
++        .push(second_pipe);
++    let mut second = input["model"]["load_cases"][0]["pressure_regions"][0].clone();
++    second["id"] = json!("region:other-source");
++    second["member_pipe_ids"] = json!(["pipe:parallel"]);
++    second["pressure"]["value"] = json!(-2e6 * 25.0 / 36.0 * (1.0 + 1e-13));
++    input["model"]["load_cases"][0]["pressure_regions"]
++        .as_array_mut()
++        .unwrap()
++        .push(second);
++    for mode in MODES {
++        let output = solve(input.clone(), mode);
++        assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
++        assert!(output.results.is_empty());
++        assert!(
++            output
++                .diagnostics
++                .iter()
++                .any(|d| d.code == "PRESSURE_ASSEMBLY_CANCELLATION_UNRESOLVED"),
++            "{:?}",
++            output.diagnostics
++        );
++    }
++}
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/Cargo.toml
+@@ -0,0 +1,25 @@
++[package]
++name = "open_pipe_stress_product_physics"
++version = "0.1.0"
++edition = "2021"
++description = "Product-preview physics adapter for OpenPipeStress"
++publish = false
++
++[lib]
++path = "src/lib.rs"
++
++[dependencies]
++open_pipe_stress_curved_bend = { path = "../solver/curved_bend" }
++open_pipe_stress_frame_kernel = { path = "../solver/frame_kernel" }
++open_pipe_stress_load_case_algebra = { path = "../loads/load_case_algebra" }
++open_pipe_stress_linear_supports = { path = "../solver/linear_supports" }
++open_pipe_stress_nonlinear_integration = { path = "../solver/nonlinear_integration" }
++open_pipe_stress_nonlinear_supports = { path = "../solver/nonlinear_supports" }
++open_pipe_stress_primitive_loads = { path = "../loads/primitive_loads" }
++open_pipe_stress_solver_diagnostics = { path = "../solver/diagnostics" }
++open_pipe_stress_sparse_direct = { path = "../solver/sparse_direct" }
++open_pipe_stress_straight_pipe = { path = "../solver/straight_pipe" }
++open_pipe_stress_stress_recovery = { path = "../loads/stress_recovery" }
++open_pipe_stress_units = { path = "../units" }
++serde = { version = "1", features = ["derive"] }
++serde_json = { version = "1", features = ["float_roundtrip"] }
+--- /dev/null
++++ b/projects/chirality-piping/core/serialization/canonical_json/Cargo.toml
+@@ -0,0 +1,25 @@
++[package]
++name = "open_pipe_stress_canonical_json"
++version = "0.1.0"
++edition = "2021"
++description = "RFC 8785 (JCS) canonical JSON serialization shared by every OpenPipeStress hash seam"
++publish = false
++
++[features]
++checked-cli = []
++
++[lib]
++path = "src/lib.rs"
++
++[[bin]]
++name = "openpipestress_jcs_ijson"
++path = "src/bin/openpipestress_jcs_ijson.rs"
++required-features = ["checked-cli"]
++
++[dependencies]
++serde = { version = "1", features = ["derive"] }
++serde_json = { version = "1", features = ["float_roundtrip"] }
++# Digit source for ECMAScript-equal shortest round-trip rendering (closest
++# candidate, exact ties to even — the std formatter breaks ties differently).
++# Already in the dependency closure: serde_json formats floats through ryu.
++ryu = "1"

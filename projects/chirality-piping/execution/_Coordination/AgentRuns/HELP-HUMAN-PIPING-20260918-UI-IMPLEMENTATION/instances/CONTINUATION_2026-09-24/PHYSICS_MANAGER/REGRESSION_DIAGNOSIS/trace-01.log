@@ -1,0 +1,1069 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/frame_kernel)
+   Compiling proc-macro2 v1.0.106
+   Compiling open_pipe_stress_linear_supports v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/linear_supports)
+   Compiling open_pipe_stress_primitive_loads v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/primitive_loads)
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.45
+   Compiling serde_core v1.0.228
+   Compiling zmij v1.0.21
+   Compiling open_pipe_stress_sparse_direct v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/sparse_direct)
+   Compiling open_pipe_stress_solver_diagnostics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/diagnostics)
+   Compiling syn v2.0.117
+   Compiling serde v1.0.228
+   Compiling serde_json v1.0.149
+   Compiling serde_derive v1.0.228
+   Compiling open_pipe_stress_nonlinear_supports v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/nonlinear_supports)
+   Compiling open_pipe_stress_straight_pipe v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/straight_pipe)
+   Compiling open_pipe_stress_curved_bend v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/curved_bend)
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.0
+   Compiling open_pipe_stress_nonlinear_integration v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/nonlinear_integration)
+   Compiling open_pipe_stress_stress_recovery v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/stress_recovery)
+   Compiling open_pipe_stress_load_case_algebra v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/load_case_algebra)
+   Compiling open_pipe_stress_units v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/units)
+   Compiling open_pipe_stress_product_physics_diagnosis v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/harness)
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6723:4
+     |
+6723 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `material` is never read
+  --> /private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics_diagnosis` (lib test) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.66s
+     Running unittests src/lib.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/target/debug/deps/open_pipe_stress_product_physics_diagnosis-291764d39efa5167)
+
+running 195 tests
+test pressure_exact::tests::annulus_accepts_reference_and_adjacent_representable_radii ... ok
+test pressure_exact::tests::annulus_rejects_invalid_and_nonrepresentable_geometry ... ok
+test nonlinear_context_passthrough_tests::assembled_loop_context_is_a_pure_passthrough ... ok
+test pressure_exact::tests::balanced_product_preserves_applied_eigen_rhs_from_subnormal_partial_product ... ok
+test pressure_exact::tests::balanced_product_preserves_wall_force_from_subnormal_partial_product ... ok
+test pressure_exact::tests::cap_and_applied_eigen_rhs_have_frozen_local_signs ... ok
+test pressure_exact::tests::eigen_rhs_avoids_underflowing_eigenstrain_intermediate ... ok
+test pressure_exact::tests::final_force_conversion_preserves_gradual_underflow_and_signed_zero ... ok
+test pressure_exact::tests::four_rational_pi_states_match_frozen_oracle ... ok
+test pressure_exact::tests::lame_matches_boundaries_interior_and_constant_sum ... ok
+test pressure_exact::tests::lame_rejects_radii_outside_closed_wall_interval ... ok
+test pressure_exact::tests::lame_uses_pressure_scale_for_adjacent_radius_boundary_tractions ... ok
+test pressure_exact::tests::lame_zero_and_signed_pressure_scale_linearly ... ok
+test pressure_exact::tests::material_derives_single_shear_modulus_authority ... ok
+test pressure_exact::tests::material_rejects_invalid_bounds_and_nonrepresentable_g ... ok
+test pressure_exact::tests::nonfinite_strains_and_true_output_overflow_return_errors ... ok
+test pressure_exact::tests::numeric_edge_cases_preserve_frozen_outputs ... ok
+test pressure_exact::tests::opposed_finite_strains_do_not_overflow_before_stress_scaling ... ok
+test pressure_exact::tests::overflowing_force_terms_cancel_to_representable_applied_eigen_rhs ... ok
+test pressure_exact::tests::overflowing_force_terms_cancel_to_representable_axial_state ... ok
+test pressure_exact::tests::pressure_accepts_finite_signed_values_only ... ok
+test pressure_exact::tests::reductions_auxetic_behavior_and_superposition_hold ... ok
+test pressure_exact::tests::rounded_subnormal_area_does_not_control_normal_force_outputs ... ok
+test pressure_exact::tests::squared_radius_ratio_stays_scaled_until_final_stress ... ok
+test pressure_exact::tests::subnormal_area_intermediates_do_not_erase_representable_stress ... ok
+test pressure_exact::tests::underflowed_fluid_force_does_not_erase_representable_stress ... ok
+test pressure_exact::tests::subnormal_pressure_rounding_is_accepted_without_blanket_rejection ... ok
+test pressure_exact::tests::wall_effective_and_membrane_identities_remain_independent ... ok
+test pressure_runtime::tests::chain_geometry_and_region_ownership_reject_ambiguous_composition ... ok
+test pressure_runtime::tests::closure_ledger_excludes_remote_supports_and_does_not_invent_second_cap ... ok
+test pressure_runtime::tests::generic_node_and_support_row_suffix_collisions_block_exact_publication ... ok
+test pressure_runtime::tests::malformed_pressure_namespaces_and_competing_selectors_never_fall_back ... ok
+test pressure_runtime::tests::explicit_terminals_members_and_pressure_basis_are_required ... ok
+test pressure_runtime::tests::normalized_unit_path_and_nonrepresentable_output_are_explicit ... ok
+test pressure_runtime::tests::profile_dispatch_requires_explicit_regions_and_refuses_legacy_pressure ... ok
+test pressure_runtime::tests::region_identity_and_pipe_ownership_are_scoped_to_the_case ... ok
+test pressure_runtime::tests::signed_pressure_and_zero_poisson_limit_do_not_include_thermal_load ... ok
+test pressure_runtime::tests::unequal_wall_and_material_preserve_bore_caps_and_local_poisson_loads ... ok
+test pressure_runtime::tests::region_load_ledgers_are_separate_and_orientation_invariant ... ok
+test self_weight::tests::self_weight_invalid_quantities_fail_without_partial_plan ... ok
+test self_weight::tests::self_weight_rejects_unknown_request_options ... ok
+test self_weight::tests::self_weight_alternate_units_and_all_mass_sources ... ok
+test self_weight::tests::self_weight_section_resolution_and_unselected_isolation ... ok
+test self_weight::tests::self_weight_selection_geometry_and_collisions ... ok
+test tests::absent_mill_tolerance_slot_means_no_reduction ... ok
+test self_weight::tests::self_weight_signed_axes_shape_and_immutable_inputs ... ok
+test tests::audit_nonfinite_computed_mechanics_never_publishes_solved_rows ... ok
+test tests::audit_retained_spring_fixture_uses_selected_node_state ... FAILED
+test tests::authored_coordinate_units_preserve_preview_results_and_source ... FAILED
+test tests::base_material_values_are_used_when_no_modulus_basis_is_named ... ok
+test tests::bend_component_user_multipliers_emit_stress_review_rows ... FAILED
+test tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows ... FAILED
+test tests::audit_ground_spring_stability_and_duplicate_constraints ... ok
+test tests::combination_stress_summary_rows_are_skipped_with_diagnostics ... FAILED
+test tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence ... FAILED
+test tests::constant_effort_applies_in_every_solved_load_case ... ok
+test tests::constant_effort_direction_follows_declared_translational_dof_positive_axis ... ok
+test tests::constant_effort_consumption_matches_superposition_identity ... ok
+test tests::constant_effort_missing_or_nonpositive_load_keeps_existing_blocking_and_no_defaults ... ok
+test tests::constant_effort_user_limit_comparison_warns_from_user_data_only ... ok
+test tests::contact_recovery_failed_sparse_and_dense_attempt_emits_no_success_fallback ... ok
+test tests::constant_effort_non_consuming_shapes_warn_without_force_or_blocking ... ok
+test tests::contact_recovery_product_insufficient_or_invalid_potential_restraint_stays_blocked ... ok
+test tests::contact_recovery_product_crosses_preflight_and_absent_linear_solution ... ok
+test tests::curved_bend_macro_element_anchored_thermal_produces_reactions ... ok
+test tests::curved_bend_macro_element_assembles_arc_stiffness_without_straight_chord ... ok
+test tests::curved_bend_macro_element_blocks_on_missing_or_inconsistent_geometry ... ok
+test tests::contact_recovery_product_selected_tip_matches_axial_oracle_and_reverse_blocks ... ok
+test tests::curved_bend_macro_element_consumes_arc_consistent_uniform_weight ... ok
+test tests::curved_bend_macro_element_emits_arc_interior_station_results ... FAILED
+test tests::curved_bend_macro_element_multiplier_applies_sif_only ... ok
+test tests::curved_bend_macro_element_keeps_dense_sparse_parity ... ok
+test tests::curved_bend_macro_element_review_row_states_assembled_consumption ... ok
+test tests::curved_bend_macro_element_solves_assembled_nonlinear_loop ... ok
+test tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector ... FAILED
+test tests::curved_bend_macro_element_thermal_free_expansion_is_stress_free ... ok
+test tests::declared_solve_temperature_interpolates_e_and_alpha_with_provenance ... ok
+test tests::dense_scrutiny_mode_keeps_sparse_parity_row ... FAILED
+test tests::dec092_fixture_consumes_exact_and_interpolated_g_with_provenance_and_combination_carry_through ... ok
+test tests::displacement_component_rows_are_deterministic_across_runs ... ok
+test tests::duplicate_ids_block_with_diagnostic ... ok
+test tests::empty_ids_block_with_diagnostic ... ok
+test tests::displacement_component_rows_carry_signed_global_directions ... ok
+test tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state ... FAILED
+test tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants ... FAILED
+test tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves ... FAILED
+test tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve ... FAILED
+test tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations ... FAILED
+test tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress ... FAILED
+test tests::envelope_keeps_status_boundaries_separate ... ok
+test tests::exact_and_interpolated_basis_fields_are_mutually_exclusive ... ok
+test tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence ... FAILED
+test tests::expansion_joint_user_stiffness_emits_macro_element_review_rows ... FAILED
+test tests::explicit_anchor_all_six_preserves_complete_restraint ... ok
+test tests::explicit_anchor_mixed_dofs_leave_uy_spring_and_other_dofs_free ... ok
+test tests::explicit_anchor_repair_preserves_named_and_implicit_family_fallbacks ... ok
+test tests::explicit_anchor_rx_only_preserves_partial_rotation_through_boundary ... ok
+test tests::f3_canonical_spring_retains_elastic_stiffness ... FAILED
+test tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations ... FAILED
+test tests::f3_family_tokens_accept_exact_canonical_vocabulary ... ok
+test tests::endpoint_section_cut_straight_axial_torsion_and_bending_match_every_station ... ok
+test tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads ... FAILED
+test tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported ... FAILED
+test tests::fixed_fixed_thermal_load_applies_axial_fixed_end_correction ... ok
+test tests::friction_preview_derives_normal_from_named_support_reaction ... ok
+test tests::friction_preview_slides_and_converges_with_explicit_normal_evidence ... ok
+test tests::friction_preview_surfaces_explicit_normal_evidence_without_combining_it ... ok
+test tests::gap_preview_closes_to_explicit_clearance_through_dense_loop ... ok
+test tests::f3_invalid_family_blocks_every_payload_before_mechanics ... ok
+test tests::guide_preview_mapping_remains_guide_with_entered_dofs ... ok
+test tests::incompatible_material_unit_blocks_with_diagnostic ... ok
+test tests::generated_result_surface_matches_fallback_fixture_force_metadata ... FAILED
+test tests::input_contract_guided_rest_preserves_disjoint_restraint ... ok
+test tests::input_contract_hydrotest_pressure_blocks_instead_of_silently_ignoring ... ok
+test tests::input_contract_authored_moment_axes_reach_live_solve ... ok
+test tests::input_contract_local_provenance_is_traceability_not_clearance ... ok
+test tests::input_contract_repair_colocated_spring_and_contact_obey_equilibrium ... ok
+test tests::input_contract_repair_colocated_constant_force_and_contact_obey_equilibrium ... ok
+test tests::input_contract_repair_conflicting_spring_family_constant_hanger_blocks ... ok
+test tests::input_contract_unused_stiffness_and_conflicting_spring_axis_block ... ok
+test tests::interpolation_blocks_at_and_beyond_stored_range_edges ... ok
+test tests::invalid_combination_records_block_with_diagnostics ... ok
+test tests::invalid_load_unit_blocks_with_diagnostic ... ok
+test tests::invalid_subtraction_and_range_records_block_with_named_diagnostics ... ok
+test tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged ... FAILED
+test tests::lift_off_preview_releases_contact_through_dense_loop ... ok
+test tests::load_case_modulus_basis_selects_exact_user_entered_hot_point ... ok
+test tests::mill_tolerance_reduces_derived_effective_wall_and_section_modulus ... ok
+test tests::input_contract_repair_skew_authored_moments_match_rotated_analytical_couples ... ok
+test tests::missing_all_primitive_loads_blocks_with_diagnostic ... ok
+test tests::mill_tolerance_units_are_normalized_at_preview_boundary ... FAILED
+test tests::missing_load_input_blocks_with_diagnostic ... FAILED
+test tests::missing_material_blocks_with_diagnostic ... FAILED
+test tests::missing_or_invalid_project_length_units_block_preview ... FAILED
+test tests::missing_pipe_orientation_blocks_with_diagnostic ... FAILED
+test tests::missing_public_preview_provenance_blocks_with_diagnostic ... ok
+test tests::mixed_units_are_normalized_at_preview_mechanics_boundary ... FAILED
+test tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path ... FAILED
+test tests::mixed_nonlinear_preview_bundle_converges_and_emits_each_support_state ... ok
+test tests::named_line_stop_reaches_solver_family_with_entered_dof ... ok
+test tests::named_vertical_support_reaches_solver_family_with_entered_dof ... ok
+test tests::modulus_basis_point_without_elastic_modulus_is_blocking ... ok
+test tests::operation_authored_primitive_categories_map_to_preview_mechanics ... FAILED
+test tests::node_normalization_preserves_quantities_directions_and_authored_metadata ... ok
+test tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics ... FAILED
+test tests::p5_combined_magnitude_withholds_incomplete_vector ... ok
+test tests::p5_constant_signed_cut_fields_and_fixed_thermal_compression ... ok
+test tests::p5_combinations_cancel_vectors_and_preserve_subquantum_inputs ... ok
+test tests::p5_effective_thermal_alpha_and_duplicate_wind_fail_closed ... ok
+test tests::p5_disjoint_spans_superpose_signed_member_fields ... ok
+test tests::p5_piecewise_extrema_find_interior_peak_and_preserve_reversed_axes ... ok
+test tests::present_but_invalid_mill_tolerance_is_blocking ... ok
+test tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign ... FAILED
+test tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows ... FAILED
+test tests::pressure_thrust_on_macro_span_assembles_complete_self_equilibrated_arc_system ... ok
+test tests::range_combination_records_each_operand_modulus_basis ... FAILED
+test tests::p5_uniform_full_partial_and_rotated_beams_match_independent_equilibrium ... ok
+test tests::range_envelope_combination_selects_each_shipped_mode_deterministically ... FAILED
+test tests::seismic_generation_with_partial_insulation_pair_is_blocking ... ok
+test tests::seismic_generation_without_material_density_is_blocking ... ok
+test tests::seismic_generation_without_user_gravity_is_blocking_not_defaulted ... ok
+test tests::seismic_equivalent_static_generation_matches_authored_distributed_load ... ok
+test tests::selected_basis_blocks_missing_invalid_or_dimensionally_wrong_point_g ... ok
+test tests::shared_section_blank_reference_identity_blocks_common_entry ... FAILED
+test tests::shared_section_equivalent_but_different_cache_representation_is_stale ... FAILED
+test tests::shared_section_local_mill_tolerance_must_leave_positive_wall ... FAILED
+test tests::shared_section_matching_reference_resolves_and_preserves_local_inputs ... ok
+test tests::shared_section_reference_failures_are_explicit ... FAILED
+test tests::shared_section_stale_cache_blocks_common_solver_entry ... FAILED
+test tests::selected_point_g_is_base_independent_and_selected_g_sensitive ... ok
+test tests::spring_hanger_missing_stiffness_blocks_without_defaulting ... ok
+test tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults ... FAILED
+test tests::shared_section_wire_is_optional_and_retained ... ok
+test tests::subspan_wind_double_marking_same_pipe_is_blocking ... ok
+test tests::subspan_wind_generation_matches_hand_computed_lever_rule_nodal_forces ... ok
+test tests::subspan_wind_missing_span_fields_is_blocking ... ok
+test tests::subspan_wind_invalid_fractions_are_blocking ... ok
+test tests::subspan_wind_on_curved_bend_macro_span_is_blocking ... ok
+test tests::subspan_wind_overlapping_extents_are_blocking_but_disjoint_extents_solve ... ok
+test tests::subspan_wind_mixed_whole_and_partial_marking_superposes_on_distinct_pipes ... ok
+test tests::subspan_wind_unknown_pipe_ref_is_blocking ... ok
+test tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism ... FAILED
+test tests::thermal_load_direction_does_not_change_thermal_magnitude_or_sign ... ok
+test tests::temperature_g_interpolation_uses_adjacent_points_and_duplicate_temperatures_still_block ... ok
+test tests::thermal_load_requires_explicit_material_expansion_coefficient ... ok
+test tests::under_restrained_model_reports_solver_diagnostic ... FAILED
+test tests::unresolved_exact_modulus_basis_is_blocking_without_defaulting ... ok
+test tests::valid_invented_model_exposes_element_force_components ... FAILED
+test tests::valid_invented_model_exposes_endpoint_stress_components ... FAILED
+test tests::valid_invented_model_exposes_explicit_load_combination_results ... FAILED
+test tests::valid_invented_model_exposes_global_displacement_components ... FAILED
+test tests::valid_invented_model_exposes_nonlinear_support_loop_evidence ... FAILED
+test tests::valid_invented_model_solves_deterministically ... FAILED
+test tests::wind_generation_without_marked_spans_is_blocking ... ok
+test tests::wind_equivalent_static_generation_matches_authored_distributed_load ... ok
+
+failures:
+
+---- tests::audit_retained_spring_fixture_uses_selected_node_state stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::audit_retained_spring_fixture_uses_selected_node_state' (79486590) panicked at src/lib.rs:16506:13:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::authored_coordinate_units_preserve_preview_results_and_source stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::authored_coordinate_units_preserve_preview_results_and_source' (79486591) panicked at src/lib.rs:16283:13:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::bend_component_user_multipliers_emit_stress_review_rows stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::bend_component_user_multipliers_emit_stress_review_rows' (79486593) panicked at src/lib.rs:12823:14:
+bend user multiplier row should be emitted for adjacent pipe endpoint
+
+---- tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows' (79486594) panicked at src/lib.rs:12893:14:
+branch-side user multiplier row should be emitted for the branch pipe endpoint
+
+---- tests::combination_stress_summary_rows_are_skipped_with_diagnostics stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::combination_stress_summary_rows_are_skipped_with_diagnostics' (79486595) panicked at src/lib.rs:13781:9:
+assertion failed: result.diagnostics.iter().any(|item|
+        item.code == "COMBINATION_STRESS_SUMMARY_SKIPPED" &&
+            item.affected_refs.contains(&"result:stress:pipe-P-120".to_string()))
+
+---- tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence' (79486597) panicked at src/lib.rs:13626:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::curved_bend_macro_element_emits_arc_interior_station_results stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_STRESS_MULTIPLIER_APPLIED
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::curved_bend_macro_element_emits_arc_interior_station_results' (79486611) panicked at src/lib.rs:17833:14:
+straight midspan station row present
+
+---- tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+
+thread 'tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector' (79486617) panicked at src/lib.rs:18713:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::dense_scrutiny_mode_keeps_sparse_parity_row stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::dense_scrutiny_mode_keeps_sparse_parity_row' (79486620) panicked at src/lib.rs:11091:14:
+dense scrutiny sparse parity row is present
+
+---- tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+
+thread 'tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state' (79486625) panicked at src/lib.rs:18551:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+
+thread 'tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants' (79486626) panicked at src/lib.rs:18206:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves' (79486628) panicked at src/lib.rs:16763:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=HYDROTEST_PRESSURE_UNSUPPORTED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve' (79486629) panicked at src/lib.rs:16836:13:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_STRESS_MULTIPLIER_APPLIED
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_STRESS_MULTIPLIER_APPLIED
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_STRESS_MULTIPLIER_APPLIED
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_STRESS_MULTIPLIER_APPLIED
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations' (79486627) panicked at src/lib.rs:16679:21:
+assertion `left == right` failed: pressure free=false: [Diagnostic { id: "diagnostic:pressure-runtime:load-L-100-load-L-PRESSURE:PRESSURE_MODEL_REAUTHOR_REQUIRED", code: "PRESSURE_MODEL_REAUTHOR_REQUIRED", severity: "blocking", message: "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs", source: Some("core/product_physics/src/pressure_runtime.rs"), affected_refs: ["load:L-100", "load:L-PRESSURE"] }, Diagnostic { id: "diagnostic:component:component-C-120:node", code: "COMPONENT_NODE_UNKNOWN", severity: "warning", message: "component node is not present in preview model; component stress modifier rows will not be generated for this record", source: Some("core/product_physics"), affected_refs: ["component:C-120", "node:N-120"] }, Diagnostic { id: "diagnostic:component:component-C-120:branch-mapping", code: "BRANCH_MAPPING_INPUT_INVALID", severity: "warning", message: "branch component header and branch pipe references must exist and terminate at the component node before stress modifier rows can be generated for those pipe sides", source: Some("core/product_physics"), affected_refs: ["component:C-120"] }, Diagnostic { id: "diagnostic:component:component-C-130:node", code: "COMPONENT_NODE_UNKNOWN", severity: "warning", message: "component node is not present in preview model; component stress modifier rows will not be generated for this record", source: Some("core/product_physics"), affected_refs: ["component:C-130", "node:N-130"] }, Diagnostic { id: "diagnostic:component:component-C-130:rigid-mapping", code: "RIGID_COMPONENT_MAPPING_INPUT_INVALID", severity: "warning", message: "rigid/semi-rigid component pipe mapping must reference an existing generic frame member that terminates at the component node; no stiffness scaling is silently applied without a valid mapping", source: Some("core/product_physics"), affected_refs: ["component:C-130"] }, Diagnostic { id: "diagnostic:component:component-C-140:node", code: "COMPONENT_NODE_UNKNOWN", severity: "warning", message: "component node is not present in preview model; component stress modifier rows will not be generated for this record", source: Some("core/product_physics"), affected_refs: ["component:C-140", "node:N-140"] }, Diagnostic { id: "diagnostic:component:component-C-150:node", code: "COMPONENT_NODE_UNKNOWN", severity: "warning", message: "component node is not present in preview model; component stress modifier rows will not be generated for this record", source: Some("core/product_physics"), affected_refs: ["component:C-150", "node:N-140"] }, Diagnostic { id: "diagnostic:component:component-C-150:expansion-joint-mapping", code: "EXPANSION_JOINT_MAPPING_INPUT_INVALID", severity: "warning", message: "expansion joint pipe mapping must reference an existing frame member that terminates at the component node before user-stiffness macro-element evidence can be generated", source: Some("core/product_physics"), affected_refs: ["component:C-150"] }]
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress' (79486631) panicked at src/lib.rs:16801:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence' (79486634) panicked at src/lib.rs:13016:14:
+default load case expansion joint pressure-thrust row should be emitted
+
+---- tests::expansion_joint_user_stiffness_emits_macro_element_review_rows stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::expansion_joint_user_stiffness_emits_macro_element_review_rows' (79486635) panicked at src/lib.rs:12953:14:
+expansion joint axial stiffness review row should be emitted
+
+---- tests::f3_canonical_spring_retains_elastic_stiffness stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::f3_canonical_spring_retains_elastic_stiffness' (79486640) panicked at src/lib.rs:10479:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations' (79486641) panicked at src/lib.rs:10444:9:
+assertion failed: result.diagnostics.iter().any(|d| d.code == "SUPPORT_INPUT_INVALID")
+
+---- tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads' (79486644) panicked at src/lib.rs:10408:13:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported' (79486645) panicked at src/lib.rs:10517:13:
+assertion `left == right` failed: one_way: [Diagnostic { id: "diagnostic:pressure-runtime:load-L-100-load-L-100-P:PRESSURE_MODEL_REAUTHOR_REQUIRED", code: "PRESSURE_MODEL_REAUTHOR_REQUIRED", severity: "blocking", message: "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs", source: Some("core/product_physics/src/pressure_runtime.rs"), affected_refs: ["load:L-100", "load:L-100-P"] }, Diagnostic { id: "diagnostic:pressure-runtime:load-L-100-load-L-100-P-EJ:PRESSURE_MODEL_REAUTHOR_REQUIRED", code: "PRESSURE_MODEL_REAUTHOR_REQUIRED", severity: "blocking", message: "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs", source: Some("core/product_physics/src/pressure_runtime.rs"), affected_refs: ["load:L-100", "load:L-100-P-EJ"] }, Diagnostic { id: "diagnostic:pressure-runtime:load-L-200-load-L-200-P:PRESSURE_MODEL_REAUTHOR_REQUIRED", code: "PRESSURE_MODEL_REAUTHOR_REQUIRED", severity: "blocking", message: "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs", source: Some("core/product_physics/src/pressure_runtime.rs"), affected_refs: ["load:L-200", "load:L-200-P"] }, Diagnostic { id: "diagnostic:pressure-runtime:load-L-200-load-L-200-P-EJ:PRESSURE_MODEL_REAUTHOR_REQUIRED", code: "PRESSURE_MODEL_REAUTHOR_REQUIRED", severity: "blocking", message: "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs", source: Some("core/product_physics/src/pressure_runtime.rs"), affected_refs: ["load:L-200", "load:L-200-P-EJ"] }, Diagnostic { id: "diagnostic:spring-hanger:support-SH-140:hanger", code: "SPRING_HANGER_USER_DATA_REVIEWED", severity: "info", message: "variable spring hanger carries explicit user-entered stiffness, installed/cold/hot load metadata, travel metadata, and source reference under DEC-049; no catalog/default values are supplied", source: Some("core/product_physics"), affected_refs: ["support:SH-140", "hanger"] }, Diagnostic { id: "diagnostic:spring-hanger:support-CE-120:hanger", code: "CONSTANT_EFFORT_USER_DATA_REVIEWED", severity: "info", message: "constant-effort support carries explicit user-entered constant load, travel metadata, and source reference under DEC-049; no global constant-effort solve behavior or catalog default is claimed", source: Some("core/product_physics"), affected_refs: ["support:CE-120", "hanger"] }, Diagnostic { id: "diagnostic:component:component-C-130:rigid-review", code: "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED", severity: "info", message: "rigid/semi-rigid component carries user-entered dimensions, weight, center of gravity, mapping, stiffness scaling, semi-rigid stiffness quantities, and source notes under DEC-045 mechanics_geometry_only; no protected/default component values are supplied", source: Some("core/product_physics"), affected_refs: ["component:C-130"] }, Diagnostic { id: "diagnostic:component:component-C-150:expansion-joint-review", code: "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED", severity: "info", message: "expansion joint carries user-entered stiffnesses, effective pressure area, movement limit, hardware/manufacturer provenance, and load-side pressure-thrust handling evidence under DEC-045; no protected/default manufacturer values are supplied", source: Some("core/product_physics"), affected_refs: ["component:C-150"] }]
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::generated_result_surface_matches_fallback_fixture_force_metadata stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::generated_result_surface_matches_fallback_fixture_force_metadata' (79486651) panicked at src/lib.rs:10916:32:
+missing result result:force:pipe-P-120:axial
+
+---- tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged' (79486667) panicked at src/lib.rs:18775:14:
+legacy bend multiplier row is present
+
+---- tests::mill_tolerance_units_are_normalized_at_preview_boundary stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::mill_tolerance_units_are_normalized_at_preview_boundary' (79486671) panicked at src/lib.rs:13928:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::missing_load_input_blocks_with_diagnostic stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::missing_load_input_blocks_with_diagnostic' (79486673) panicked at src/lib.rs:15418:9:
+assertion failed: result.diagnostics.iter().any(|item| item.code == "LOAD_MAGNITUDE_INVALID")
+
+---- tests::missing_material_blocks_with_diagnostic stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::missing_material_blocks_with_diagnostic' (79486674) panicked at src/lib.rs:15401:9:
+assertion failed: result.diagnostics.iter().any(|item| item.code == "MATERIAL_INPUT_MISSING")
+
+---- tests::missing_or_invalid_project_length_units_block_preview stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::missing_or_invalid_project_length_units_block_preview' (79486675) panicked at src/lib.rs:16369:17:
+assertion failed: result.diagnostics.iter().any(|item|
+        {
+            item.code == "UNIT_INPUT_INVALID" &&
+                item.affected_refs.contains(&"project.units.length".to_string())
+        })
+
+---- tests::missing_pipe_orientation_blocks_with_diagnostic stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::missing_pipe_orientation_blocks_with_diagnostic' (79486676) panicked at src/lib.rs:15449:9:
+assertion failed: result.diagnostics.iter().any(|item|
+        item.code == "PIPE_ORIENTATION_INPUT_MISSING")
+
+---- tests::mixed_units_are_normalized_at_preview_mechanics_boundary stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::mixed_units_are_normalized_at_preview_mechanics_boundary' (79486679) panicked at src/lib.rs:16431:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path' (79486680) panicked at src/lib.rs:13679:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::operation_authored_primitive_categories_map_to_preview_mechanics stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::operation_authored_primitive_categories_map_to_preview_mechanics' (79486685) panicked at src/lib.rs:12366:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=RULE_CHECK_INPUTS_MISSING
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics' (79486686) panicked at src/lib.rs:17189:13:
+only 0 actual case source edges checked
+
+---- tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign' (79486695) panicked at src/lib.rs:15305:14:
+called `Option::unwrap()` on a `None` value
+
+---- tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=BRANCH_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_MAPPING_INPUT_INVALID
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=COMPONENT_NODE_UNKNOWN
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_MAPPING_INPUT_INVALID
+
+thread 'tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows' (79486696) panicked at src/lib.rs:15270:14:
+called `Option::unwrap()` on a `None` value
+
+---- tests::range_combination_records_each_operand_modulus_basis stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::range_combination_records_each_operand_modulus_basis' (79486698) panicked at src/lib.rs:15194:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::range_envelope_combination_selects_each_shipped_mode_deterministically stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::range_envelope_combination_selects_each_shipped_mode_deterministically' (79486699) panicked at src/lib.rs:15640:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::shared_section_blank_reference_identity_blocks_common_entry stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::shared_section_blank_reference_identity_blocks_common_entry' (79486706) panicked at src/lib.rs:10795:13:
+assertion failed: output.diagnostics.iter().any(|d|
+        d.code == "SECTION_REFERENCE_INVALID" && d.severity == "blocking")
+
+---- tests::shared_section_equivalent_but_different_cache_representation_is_stale stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::shared_section_equivalent_but_different_cache_representation_is_stale' (79486707) panicked at src/lib.rs:10782:9:
+assertion failed: output.diagnostics.iter().any(|d| d.code == "SECTION_REFERENCE_CACHE_STALE")
+
+---- tests::shared_section_local_mill_tolerance_must_leave_positive_wall stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::shared_section_local_mill_tolerance_must_leave_positive_wall' (79486708) panicked at src/lib.rs:10860:9:
+assertion failed: output.diagnostics.iter().any(|d|
+        d.code == "PIPE_DIMENSION_INVALID" &&
+            d.affected_refs.contains(&"mill_tolerance".to_string()))
+
+---- tests::shared_section_reference_failures_are_explicit stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::shared_section_reference_failures_are_explicit' (79486710) panicked at src/lib.rs:10846:13:
+missing
+
+---- tests::shared_section_stale_cache_blocks_common_solver_entry stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::shared_section_stale_cache_blocks_common_solver_entry' (79486711) panicked at src/lib.rs:10768:9:
+assertion failed: output.diagnostics.iter().any(|d|
+        d.code == "SECTION_REFERENCE_CACHE_STALE" && d.severity == "blocking")
+
+---- tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults' (79486714) panicked at src/lib.rs:13093:14:
+variable spring hanger stiffness review row should be emitted
+
+---- tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism' (79486723) panicked at src/lib.rs:15576:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+---- tests::under_restrained_model_reports_solver_diagnostic stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::under_restrained_model_reports_solver_diagnostic' (79486727) panicked at src/lib.rs:17383:14:
+under-restraint diagnostic should be present
+
+---- tests::valid_invented_model_exposes_element_force_components stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_exposes_element_force_components' (79486729) panicked at src/lib.rs:12409:9:
+assertion failed: result_ids.contains("result:force:pipe-P-120:axial")
+
+---- tests::valid_invented_model_exposes_endpoint_stress_components stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_exposes_endpoint_stress_components' (79486730) panicked at src/lib.rs:12721:9:
+assertion failed: result_ids.contains("result:stress:pipe-P-120")
+
+---- tests::valid_invented_model_exposes_explicit_load_combination_results stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_exposes_explicit_load_combination_results' (79486731) panicked at src/lib.rs:13703:14:
+combination result should be emitted
+
+---- tests::valid_invented_model_exposes_global_displacement_components stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_exposes_global_displacement_components' (79486732) panicked at src/lib.rs:12533:17:
+assertion failed: result_ids.contains(format!("result:disp:{node}:{tail}").as_str())
+
+---- tests::valid_invented_model_exposes_nonlinear_support_loop_evidence stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_exposes_nonlinear_support_loop_evidence' (79486733) panicked at src/lib.rs:11195:13:
+assertion failed: result_ids.contains("result:nonlinear-support:iteration-count")
+
+---- tests::valid_invented_model_solves_deterministically stdout ----
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=PRESSURE_MODEL_REAUTHOR_REQUIRED
+PHYSICS_DIAGNOSTIC_TRACE code=SPRING_HANGER_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=CONSTANT_EFFORT_USER_DATA_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED
+PHYSICS_DIAGNOSTIC_TRACE code=EXPANSION_JOINT_USER_STIFFNESS_REVIEWED
+
+thread 'tests::valid_invented_model_solves_deterministically' (79486734) panicked at src/lib.rs:11051:9:
+assertion `left == right` failed
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+
+
+failures:
+    tests::audit_retained_spring_fixture_uses_selected_node_state
+    tests::authored_coordinate_units_preserve_preview_results_and_source
+    tests::bend_component_user_multipliers_emit_stress_review_rows
+    tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows
+    tests::combination_stress_summary_rows_are_skipped_with_diagnostics
+    tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence
+    tests::curved_bend_macro_element_emits_arc_interior_station_results
+    tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector
+    tests::dense_scrutiny_mode_keeps_sparse_parity_row
+    tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state
+    tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants
+    tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations
+    tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves
+    tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve
+    tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress
+    tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence
+    tests::expansion_joint_user_stiffness_emits_macro_element_review_rows
+    tests::f3_canonical_spring_retains_elastic_stiffness
+    tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations
+    tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads
+    tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported
+    tests::generated_result_surface_matches_fallback_fixture_force_metadata
+    tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged
+    tests::mill_tolerance_units_are_normalized_at_preview_boundary
+    tests::missing_load_input_blocks_with_diagnostic
+    tests::missing_material_blocks_with_diagnostic
+    tests::missing_or_invalid_project_length_units_block_preview
+    tests::missing_pipe_orientation_blocks_with_diagnostic
+    tests::mixed_units_are_normalized_at_preview_mechanics_boundary
+    tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path
+    tests::operation_authored_primitive_categories_map_to_preview_mechanics
+    tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics
+    tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign
+    tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows
+    tests::range_combination_records_each_operand_modulus_basis
+    tests::range_envelope_combination_selects_each_shipped_mode_deterministically
+    tests::shared_section_blank_reference_identity_blocks_common_entry
+    tests::shared_section_equivalent_but_different_cache_representation_is_stale
+    tests::shared_section_local_mill_tolerance_must_leave_positive_wall
+    tests::shared_section_reference_failures_are_explicit
+    tests::shared_section_stale_cache_blocks_common_solver_entry
+    tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults
+    tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism
+    tests::under_restrained_model_reports_solver_diagnostic
+    tests::valid_invented_model_exposes_element_force_components
+    tests::valid_invented_model_exposes_endpoint_stress_components
+    tests::valid_invented_model_exposes_explicit_load_combination_results
+    tests::valid_invented_model_exposes_global_displacement_components
+    tests::valid_invented_model_exposes_nonlinear_support_loop_evidence
+    tests::valid_invented_model_solves_deterministically
+
+test result: FAILED. 145 passed; 50 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+error: test failed, to rerun pass `--lib`

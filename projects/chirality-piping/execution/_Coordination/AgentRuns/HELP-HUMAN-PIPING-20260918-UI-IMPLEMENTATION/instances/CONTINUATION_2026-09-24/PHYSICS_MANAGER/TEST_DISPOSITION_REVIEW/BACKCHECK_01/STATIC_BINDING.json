@@ -1,0 +1,46 @@
+{
+  "status": "PASS_STATIC_SUCCESSOR_BINDING",
+  "policy_patch_sha256": "db1f66527f093c68e6e068378e298703d2df7530d093d3db2e85b76e55cce53b",
+  "kpa_patch_sha256": "aaa11cab61ea2cb4a89e69feafb0976b79394bdbfcbca511fb4fc9f7da72190f",
+  "successor_lib_sha256": "61d7316246bc51983606c1bda006727b62c0e159d62c39b37b190d27d3e08568",
+  "successor_pressure_runtime_test_sha256": "ad501226fb01868d3f831f5b72b2ce1703c8a23703ee7a006166590bbbc168e3",
+  "policy_hunks": 3,
+  "kpa_hunks": 2,
+  "only_explicit_policy_repairs": true,
+  "original_assertions_unchanged_except_thermal_entrypoint": true,
+  "kpa_preserves_all_existing_predicates": true,
+  "historical_adapter_unchanged": true,
+  "reference_values": [
+    {
+      "case": "load:L-100",
+      "variant": "original",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    },
+    {
+      "case": "load:L-100",
+      "variant": "reverse_z",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    },
+    {
+      "case": "load:L-100",
+      "variant": "reverse_all",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "original",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "reverse_z",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    },
+    {
+      "case": "load:L-200",
+      "variant": "reverse_all",
+      "all_binary64_test_round6_expectations_match_Decimal": true
+    }
+  ],
+  "limits": "No Cargo/Rust/product execution, Git, source integration or acceptance. Parent PHYS-R4 runtime delta excluded."
+}

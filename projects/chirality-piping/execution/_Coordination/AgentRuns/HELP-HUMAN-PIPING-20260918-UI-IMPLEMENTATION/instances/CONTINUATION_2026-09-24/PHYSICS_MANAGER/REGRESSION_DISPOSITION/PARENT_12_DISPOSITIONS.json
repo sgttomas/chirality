@@ -1,0 +1,127 @@
+[
+  {
+    "test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector",
+    "source_line_at_initial_freeze": 18687,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it",
+    "future_current_boundary": "exact bends/joints/nonlinear pressure composition remains unimplemented programme work; historical vector consistency is not current physical qualification"
+  },
+  {
+    "test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state",
+    "source_line_at_initial_freeze": 18540,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it",
+    "future_current_boundary": "exact bends/joints/nonlinear pressure composition remains unimplemented programme work; historical vector consistency is not current physical qualification"
+  },
+  {
+    "test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves",
+    "source_line_at_initial_freeze": 16752,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it"
+  },
+  {
+    "test": "tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve",
+    "source_line_at_initial_freeze": 16820,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "public hydrotest refusal while preserving correct genuine-pressure selection behavior",
+    "input_delta": "split into a current legacy-nonzero control expecting PRESSURE_MODEL_REAUTHOR_REQUIRED and a hydrotest-only case without unrelated genuine legacy pressure expecting HYDROTEST_PRESSURE_UNSUPPORTED; preserve genuinely old mixed-pressure numerical premise as a historical reference if asserted",
+    "assertions": "no expected pressure response is imported into the hydrotest-only case; keep the whole-solve blocked/empty-results assertion and explicit hydrotest diagnostic",
+    "verification": "independent review of each split, current public entrypoint; no bypass for safety guard"
+  },
+  {
+    "test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations",
+    "source_line_at_initial_freeze": 16665,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it"
+  },
+  {
+    "test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress",
+    "source_line_at_initial_freeze": 16791,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it",
+    "future_current_boundary": "current exact pressure has one explicit region pressure; overlapping regions/primitive pressure selectors block. Any derived pressure state must be authored/combined explicitly under eligible signed-state semantics."
+  },
+  {
+    "test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence",
+    "source_line_at_initial_freeze": 13006,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it",
+    "future_current_boundary": "exact bends/joints/nonlinear pressure composition remains unimplemented programme work; historical vector consistency is not current physical qualification"
+  },
+  {
+    "test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata",
+    "source_line_at_initial_freeze": 15332,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "legacy generated/result-fixture metadata and identity compatibility",
+    "input_delta": "preserve original fallback fixture and compare its original historical result surface under an explicit private test-only legacy reference adapter; add a separate current exact-output kind/frame/basis contract control",
+    "assertions": "old force IDs/components/frames and source bytes remain unchanged in historical check; exact successor IDs/kinds use new pressure evidence/semantics, never relabel old rows",
+    "verification": "current14 pressure binding tests plus historical metadata check; native fallback publication/Current status remains ROOT-owned consumer work"
+  },
+  {
+    "test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+    "source_line_at_initial_freeze": 17144,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "current pressure-free adjacent-span full/split invariance, followed by a separate composite case-source-edge comparator",
+    "input_delta": "leave every p5_uniform_request full/split call and current adjacent-span numerical assertion untouched. Only the later request() used to count qualified case source edges inherits legacy pressure; use a local explicitly zero-pressure comparator for that call, not a shared fixture mutation or historical adapter",
+    "assertions": "keep the original current adjacent-span comparisons, same-case source_result_refs checks and checked >= 20 exactly; do not move these assertions into historical execution",
+    "verification": "independent reviewer inspected mixed test purpose; rerun exact current test and source-edge trace after the one local comparator input change. Any new failure needs diagnosis without weakening edge count or oracle",
+    "review_correction": "independent full-source reviewer corrected the initial overly broad historical classification; no source/input/assertion change has been made"
+  },
+  {
+    "test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign",
+    "source_line_at_initial_freeze": 15295,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it"
+  },
+  {
+    "test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows",
+    "source_line_at_initial_freeze": 15248,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "original pressure-model premise, signs/recovery/integration relationship",
+    "input_delta": "retain every original pressure, thermal, support, material and expected numeric value; relabel the test purpose as historical and route only its named old-premise evaluations through a private cfg(test)-only historical adapter; current public calls continue refusing nonzero legacy pressure",
+    "assertions": "unchanged historical oracle/tolerance; add/retain current public refusal separately; corrected straight-annulus behavior uses independently frozen exact-profile reference rather than old expected rows",
+    "verification": "review exact call-site scope and prove the private route is absent from normal library/native/headless builds; no shared request helper or public request field may activate it"
+  },
+  {
+    "test": "tests::valid_invented_model_solves_deterministically",
+    "source_line_at_initial_freeze": 11039,
+    "status": "proposal only; no old assertion/input/route change",
+    "causal_evidence": "REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json: actual legacy refusal precedes failure",
+    "purpose": "deterministic actual current solving and immutable accepted input, not a physical numerical oracle",
+    "input_delta": "use an explicitly named purpose-specific zero-pressure composite request local to this test, retaining original shared fixture untouched; preserve old pressure-bearing historical package separately",
+    "assertions": "same-request deterministic output, mechanical status and no-mutation assertions remain; do not assert byte equality with historical pressure results; inspect nonlinear state admissibility of the purpose-specific input before accepting it",
+    "verification": "two current public runs plus retained input/source identity; historical bytes remain separately verifiable"
+  }
+]

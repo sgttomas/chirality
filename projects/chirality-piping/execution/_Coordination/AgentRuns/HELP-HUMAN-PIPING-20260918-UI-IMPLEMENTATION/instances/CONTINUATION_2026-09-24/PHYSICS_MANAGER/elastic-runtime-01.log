@@ -1,0 +1,56 @@
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6718:4
+     |
+6718 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:300:19
+    |
+300 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:307:19
+    |
+306 | impl AxialState {
+    | --------------- methods in this implementation
+307 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+311 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+315 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:350:15
+    |
+350 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib) generated 5 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.79s
+     Running tests/elastic_extrema_runtime.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/elastic_extrema_runtime-5de8fd6e9ee826fb)
+
+running 2 tests
+test pure_torque_has_zero_normal_maximum_and_signed_torsion ... ok
+test actual_x1_loads_find_peak_missed_by_old_signed_sum_candidates ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

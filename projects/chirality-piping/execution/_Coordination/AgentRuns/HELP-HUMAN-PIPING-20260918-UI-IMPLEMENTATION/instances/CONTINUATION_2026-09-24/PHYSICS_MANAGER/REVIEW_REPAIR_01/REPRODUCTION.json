@@ -1,0 +1,10 @@
+{
+  "finding_source": "independent reviewer /root/c4_resume/startup_full_review; ROOT required repair",
+  "original_source_sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+  "actual_pre_repair_controls": "4/4 fail through public runtime: two coverage failures and two location-order failures",
+  "test_sha256": "6ab7a8c87a5a8e4013c7e642c6733ea00f7be6fc3b6fdfdefbb6ef3bb6f0e507",
+  "initial_negative_probe": "E1e308 blocks earlier on computed stiffness overflow; retained, not counted as successful reproduction",
+  "successful_negative_envelope": "E1e306; finite signed quantities and unavailable unrepresentable aggregate normal maximum; binary64 edge, not physical material fitness",
+  "changes": "case completeness tracked; global maximum requires every case quantity; deterministic location tie selection exact-only; valid rows retained",
+  "failed_patch_attempt": "first script assertion failed before writing source; coverage-after-repair-01.log thus reruns original source and remains failure evidence, not a completed repair"
+}

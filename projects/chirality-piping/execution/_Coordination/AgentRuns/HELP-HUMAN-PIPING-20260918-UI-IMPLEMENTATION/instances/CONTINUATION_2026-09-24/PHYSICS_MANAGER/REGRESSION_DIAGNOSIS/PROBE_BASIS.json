@@ -1,0 +1,14 @@
+{
+  "purpose": "observational diagnosis of preserved50 lib failures; no production repair or pass claim",
+  "original_source": "projects/chirality-piping/core/product_physics/src/lib.rs",
+  "original_sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+  "probe_sha256": "2777ab640fb3ebf2986a15e2c1303fda715afc12f04de126e8a779882f7ae82b",
+  "transformation": [
+    "absolute module/include resource paths into exact live frozen source",
+    "rename local crate/lock package only",
+    "cfg(test) stderr code trace at Diagnostic construction; no change to condition, data, results, assertions or expected values"
+  ],
+  "skill": ".agents/skills/software-defect-diagnosis/SKILL.md",
+  "skill_sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23",
+  "no_production_writes": true
+}

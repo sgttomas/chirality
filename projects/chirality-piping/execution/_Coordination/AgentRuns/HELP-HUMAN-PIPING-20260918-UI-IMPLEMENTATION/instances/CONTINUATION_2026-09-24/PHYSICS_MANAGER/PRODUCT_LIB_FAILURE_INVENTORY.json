@@ -1,0 +1,314 @@
+[
+  {
+    "test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::audit_retained_spring_fixture_uses_selected_node_state' (79470194) panicked at src/lib.rs:16506:13:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n"
+  },
+  {
+    "test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::authored_coordinate_units_preserve_preview_results_and_source' (79470195) panicked at src/lib.rs:16282:13:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::bend_component_user_multipliers_emit_stress_review_rows' (79470197) panicked at src/lib.rs:12819:14:\nbend user multiplier row should be emitted for adjacent pipe endpoint\n\n"
+  },
+  {
+    "test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows' (79470198) panicked at src/lib.rs:12889:14:\nbranch-side user multiplier row should be emitted for the branch pipe endpoint\n\n"
+  },
+  {
+    "test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::combination_stress_summary_rows_are_skipped_with_diagnostics' (79470199) panicked at src/lib.rs:13777:9:\nassertion failed: result.diagnostics.iter().any(|item|\n        item.code == \"COMBINATION_STRESS_SUMMARY_SKIPPED\" &&\n            item.affected_refs.contains(&\"result:stress:pipe-P-120\".to_string()))\n\n"
+  },
+  {
+    "test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence' (79470201) panicked at src/lib.rs:13622:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::curved_bend_macro_element_emits_arc_interior_station_results' (79470217) panicked at src/lib.rs:17833:14:\nstraight midspan station row present\n\n"
+  },
+  {
+    "test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector' (79470223) panicked at src/lib.rs:18713:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::dense_scrutiny_mode_keeps_sparse_parity_row' (79470226) panicked at src/lib.rs:11087:14:\ndense scrutiny sparse parity row is present\n\n"
+  },
+  {
+    "test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state' (79470231) panicked at src/lib.rs:18551:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants' (79470232) panicked at src/lib.rs:18206:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves' (79470234) panicked at src/lib.rs:16763:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve' (79470235) panicked at src/lib.rs:16836:13:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations",
+    "pressure_reauthor_diagnostic_present": true,
+    "diagnostic_codes": [
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID"
+    ],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations' (79470233) panicked at src/lib.rs:16679:21:\nassertion `left == right` failed: pressure free=false: [Diagnostic { id: \"diagnostic:pressure-runtime:load-L-100-load-L-PRESSURE:PRESSURE_MODEL_REAUTHOR_REQUIRED\", code: \"PRESSURE_MODEL_REAUTHOR_REQUIRED\", severity: \"blocking\", message: \"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\", source: Some(\"core/product_physics/src/pressure_runtime.rs\"), affected_refs: [\"load:L-100\", \"load:L-PRESSURE\"] }, Diagnostic { id: \"diagnostic:component:component-C-120:node\", code: \"COMPONENT_NODE_UNKNOWN\", severity: \"warning\", message: \"component node is not present in preview model; component stress modifier rows will not be generated for this record\", source: Some(\"core/product_physics\"), affected_refs: [\"component:C-120\", \"node:N-120\"] }, Diagnostic { id: \"diagnostic:component:component-C-120:branch-mapping\", code: \"BRANCH_MAPPING_INPUT_INVALID\", severity: \"warning\", message: \"branch component header and branch pipe references must exist and terminate at the component node before stress modifier rows can be generated for those pipe sides\", source: Some(\"core/product_physics\"), affected_refs: [\"component:C-120\"] }, Diagnostic { id: \"diagnostic:component:component-C-130:node\", code: \"COMPONENT_NODE_UNKNOWN\", severity: \"warning\", message: \"component node is not "
+  },
+  {
+    "test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress' (79470237) panicked at src/lib.rs:16801:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence' (79470240) panicked at src/lib.rs:13012:14:\ndefault load case expansion joint pressure-thrust row should be emitted\n\n"
+  },
+  {
+    "test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::expansion_joint_user_stiffness_emits_macro_element_review_rows' (79470241) panicked at src/lib.rs:12949:14:\nexpansion joint axial stiffness review row should be emitted\n\n"
+  },
+  {
+    "test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::f3_canonical_spring_retains_elastic_stiffness' (79470246) panicked at src/lib.rs:10473:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations' (79470247) panicked at src/lib.rs:10438:9:\nassertion failed: result.diagnostics.iter().any(|d| d.code == \"SUPPORT_INPUT_INVALID\")\n\n"
+  },
+  {
+    "test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads' (79470250) panicked at src/lib.rs:10402:13:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+    "pressure_reauthor_diagnostic_present": true,
+    "diagnostic_codes": [
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "SPRING_HANGER_USER_DATA_REVIEWED"
+    ],
+    "failure_excerpt": "\nthread 'tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported' (79470251) panicked at src/lib.rs:10511:13:\nassertion `left == right` failed: one_way: [Diagnostic { id: \"diagnostic:pressure-runtime:load-L-100-load-L-100-P:PRESSURE_MODEL_REAUTHOR_REQUIRED\", code: \"PRESSURE_MODEL_REAUTHOR_REQUIRED\", severity: \"blocking\", message: \"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\", source: Some(\"core/product_physics/src/pressure_runtime.rs\"), affected_refs: [\"load:L-100\", \"load:L-100-P\"] }, Diagnostic { id: \"diagnostic:pressure-runtime:load-L-100-load-L-100-P-EJ:PRESSURE_MODEL_REAUTHOR_REQUIRED\", code: \"PRESSURE_MODEL_REAUTHOR_REQUIRED\", severity: \"blocking\", message: \"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\", source: Some(\"core/product_physics/src/pressure_runtime.rs\"), affected_refs: [\"load:L-100\", \"load:L-100-P-EJ\"] }, Diagnostic { id: \"diagnostic:pressure-runtime:load-L-200-load-L-200-P:PRESSURE_MODEL_REAUTHOR_REQUIRED\", code: \"PRESSURE_MODEL_REAUTHOR_REQUIRED\", severity: \"blocking\", message: \"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\", source: Some(\"core/product_physics/src/pressure_runtime.rs\"), affected_refs: [\"load:L-200\", \"load:L-200-P\"] }, Diagnostic { id: \"di"
+  },
+  {
+    "test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::generated_result_surface_matches_fallback_fixture_force_metadata' (79470257) panicked at src/lib.rs:10912:32:\nmissing result result:force:pipe-P-120:axial\n\n"
+  },
+  {
+    "test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged' (79470273) panicked at src/lib.rs:18775:14:\nlegacy bend multiplier row is present\n\n"
+  },
+  {
+    "test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::mill_tolerance_units_are_normalized_at_preview_boundary' (79470277) panicked at src/lib.rs:13924:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::missing_load_input_blocks_with_diagnostic",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::missing_load_input_blocks_with_diagnostic' (79470279) panicked at src/lib.rs:15416:9:\nassertion failed: result.diagnostics.iter().any(|item| item.code == \"LOAD_MAGNITUDE_INVALID\")\n\n"
+  },
+  {
+    "test": "tests::missing_material_blocks_with_diagnostic",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::missing_material_blocks_with_diagnostic' (79470280) panicked at src/lib.rs:15399:9:\nassertion failed: result.diagnostics.iter().any(|item| item.code == \"MATERIAL_INPUT_MISSING\")\n\n"
+  },
+  {
+    "test": "tests::missing_or_invalid_project_length_units_block_preview",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::missing_or_invalid_project_length_units_block_preview' (79470281) panicked at src/lib.rs:16368:17:\nassertion failed: result.diagnostics.iter().any(|item|\n        {\n            item.code == \"UNIT_INPUT_INVALID\" &&\n                item.affected_refs.contains(&\"project.units.length\".to_string())\n        })\n\n"
+  },
+  {
+    "test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::missing_pipe_orientation_blocks_with_diagnostic' (79470282) panicked at src/lib.rs:15447:9:\nassertion failed: result.diagnostics.iter().any(|item|\n        item.code == \"PIPE_ORIENTATION_INPUT_MISSING\")\n\n"
+  },
+  {
+    "test": "tests::mixed_units_are_normalized_at_preview_mechanics_boundary",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::mixed_units_are_normalized_at_preview_mechanics_boundary' (79470285) panicked at src/lib.rs:16431:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path' (79470286) panicked at src/lib.rs:13675:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::operation_authored_primitive_categories_map_to_preview_mechanics' (79470291) panicked at src/lib.rs:12362:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics' (79470292) panicked at src/lib.rs:17189:13:\nonly 0 actual case source edges checked\n\n"
+  },
+  {
+    "test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign' (79470301) panicked at src/lib.rs:15302:14:\ncalled `Option::unwrap()` on a `None` value\n\n"
+  },
+  {
+    "test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows' (79470302) panicked at src/lib.rs:15267:14:\ncalled `Option::unwrap()` on a `None` value\n\n"
+  },
+  {
+    "test": "tests::range_combination_records_each_operand_modulus_basis",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::range_combination_records_each_operand_modulus_basis' (79470304) panicked at src/lib.rs:15191:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::range_envelope_combination_selects_each_shipped_mode_deterministically' (79470305) panicked at src/lib.rs:15638:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::shared_section_blank_reference_identity_blocks_common_entry' (79470312) panicked at src/lib.rs:10790:13:\nassertion failed: output.diagnostics.iter().any(|d|\n        d.code == \"SECTION_REFERENCE_INVALID\" && d.severity == \"blocking\")\n\n"
+  },
+  {
+    "test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::shared_section_equivalent_but_different_cache_representation_is_stale' (79470313) panicked at src/lib.rs:10777:9:\nassertion failed: output.diagnostics.iter().any(|d| d.code == \"SECTION_REFERENCE_CACHE_STALE\")\n\n"
+  },
+  {
+    "test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::shared_section_local_mill_tolerance_must_leave_positive_wall' (79470314) panicked at src/lib.rs:10855:9:\nassertion failed: output.diagnostics.iter().any(|d|\n        d.code == \"PIPE_DIMENSION_INVALID\" &&\n            d.affected_refs.contains(&\"mill_tolerance\".to_string()))\n\n"
+  },
+  {
+    "test": "tests::shared_section_reference_failures_are_explicit",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::shared_section_reference_failures_are_explicit' (79470316) panicked at src/lib.rs:10841:13:\nmissing\n\n"
+  },
+  {
+    "test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::shared_section_stale_cache_blocks_common_solver_entry' (79470317) panicked at src/lib.rs:10763:9:\nassertion failed: output.diagnostics.iter().any(|d|\n        d.code == \"SECTION_REFERENCE_CACHE_STALE\" && d.severity == \"blocking\")\n\n"
+  },
+  {
+    "test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults' (79470320) panicked at src/lib.rs:13089:14:\nvariable spring hanger stiffness review row should be emitted\n\n"
+  },
+  {
+    "test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism' (79470329) panicked at src/lib.rs:15574:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  },
+  {
+    "test": "tests::under_restrained_model_reports_solver_diagnostic",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::under_restrained_model_reports_solver_diagnostic' (79470333) panicked at src/lib.rs:17383:14:\nunder-restraint diagnostic should be present\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_element_force_components",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_exposes_element_force_components' (79470335) panicked at src/lib.rs:12405:9:\nassertion failed: result_ids.contains(\"result:force:pipe-P-120:axial\")\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_endpoint_stress_components",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_exposes_endpoint_stress_components' (79470336) panicked at src/lib.rs:12717:9:\nassertion failed: result_ids.contains(\"result:stress:pipe-P-120\")\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_exposes_explicit_load_combination_results' (79470337) panicked at src/lib.rs:13699:14:\ncombination result should be emitted\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_global_displacement_components",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_exposes_global_displacement_components' (79470338) panicked at src/lib.rs:12529:17:\nassertion failed: result_ids.contains(format!(\"result:disp:{node}:{tail}\").as_str())\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_nonlinear_support_loop_evidence",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_exposes_nonlinear_support_loop_evidence' (79470339) panicked at src/lib.rs:11191:13:\nassertion failed: result_ids.contains(\"result:nonlinear-support:iteration-count\")\n\n"
+  },
+  {
+    "test": "tests::valid_invented_model_solves_deterministically",
+    "pressure_reauthor_diagnostic_present": false,
+    "diagnostic_codes": [],
+    "failure_excerpt": "\nthread 'tests::valid_invented_model_solves_deterministically' (79470340) panicked at src/lib.rs:11047:9:\nassertion `left == right` failed\n  left: \"MODEL_INCOMPLETE\"\n right: \"MECHANICS_SOLVED\"\n\n"
+  }
+]

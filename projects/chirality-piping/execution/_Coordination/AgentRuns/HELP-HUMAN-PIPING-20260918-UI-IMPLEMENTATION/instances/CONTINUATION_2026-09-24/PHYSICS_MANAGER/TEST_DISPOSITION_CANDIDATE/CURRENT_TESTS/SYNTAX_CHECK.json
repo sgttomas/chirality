@@ -1,0 +1,175 @@
+{
+  "method": "rustfmt --edition 2021 --emit stdout per standalone postimage, stdout discarded; no source write/compile/run",
+  "results": [
+    {
+      "test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::missing_load_input_blocks_with_diagnostic",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::missing_material_blocks_with_diagnostic",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::missing_or_invalid_project_length_units_block_preview",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::range_combination_records_each_operand_modulus_basis",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::shared_section_reference_failures_are_explicit",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::under_restrained_model_reports_solver_diagnostic",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_element_force_components",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_global_displacement_components",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ]
+}

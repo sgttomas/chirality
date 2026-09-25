@@ -1,0 +1,28 @@
+warning: function `close` is never used
+  --> projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/_run_records/geometry_bit_diagnostic.rs:33:4
+   |
+33 | fn close(actual: f64, reference: f64, zero_scale: f64, label: &str) {
+   |    ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `solved` is never used
+   --> projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/_run_records/geometry_bit_diagnostic.rs:122:4
+    |
+122 | fn solved(result: &MechanicsEnvelope) {
+    |    ^^^^^^
+
+warning: function `check_geometry` is never used
+   --> projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/_run_records/geometry_bit_diagnostic.rs:231:4
+    |
+231 | fn check_geometry(result: &MechanicsEnvelope, case: &Value, pressurized: bool) {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `check_response` is never used
+   --> projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/_run_records/geometry_bit_diagnostic.rs:267:4
+    |
+267 | fn check_response(result: &MechanicsEnvelope, case: &Value, pressure: bool) {
+    |    ^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+

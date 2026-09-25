@@ -1,0 +1,42 @@
+   Compiling serde_json v1.0.149
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: unused variable: `section`
+   --> src/pressure_runtime.rs:471:22
+    |
+471 |             let Some(section) = built.sections.get(&pipe.element_id) else {
+    |                      ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_section`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6795:4
+     |
+6795 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:65:9
+   |
+61 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+65 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib test) generated 3 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.26s
+     Running unittests src/lib.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/open_pipe_stress_product_physics-3b52f3f3e55ec93b)
+
+running 5 tests
+test annulus_geometry::tests::area_does_not_require_distinct_rounded_radii ... ok
+test annulus_geometry::tests::invalid_and_positive_unrepresentable_areas_fail_closed ... ok
+test annulus_geometry::tests::ordinary_source_areas_and_solid_core_are_explicit ... ok
+test annulus_geometry::tests::scaled_area_avoids_intermediate_underflow_before_final_rounding ... ok
+test annulus_geometry::tests::scaled_source_area_does_not_depend_on_resolving_squared_radius_difference ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 195 filtered out; finished in 0.00s
+

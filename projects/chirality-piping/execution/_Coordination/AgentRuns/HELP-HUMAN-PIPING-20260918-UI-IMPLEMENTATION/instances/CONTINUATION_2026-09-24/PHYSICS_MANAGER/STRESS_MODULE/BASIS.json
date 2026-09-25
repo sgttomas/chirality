@@ -1,0 +1,51 @@
+{
+  "role": "TASK",
+  "agent": "/root/c4_projection_design",
+  "actual_harness_parent": "/root",
+  "issuer_and_integrator": "/root/physics_manager",
+  "mechanism": "delegated-harness-native reused descendant; prior C4 assignment historical; intended full TASK role loaded before work",
+  "source_head": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "scope": "Only new stress_recovery/src/elastic_section.rs and STRESS_MODULE evidence. No delegation. No lib.rs/source-owned-public-semantics change, Git mutation, browser/native/config writes. Bounded offline tests coordinated with manager.",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md",
+      "sha256": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/STRESS_REFERENCE.md",
+      "sha256": "07700e0b8e383c62cc378b9bd30365d0d5ba2cd9071a450985214111903d3a1c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RESULTS_AND_COMBINATIONS.md",
+      "sha256": "de2feae4829c9da9bca2d84442d740d1413e0bdde23538f8e26ec97ff49e3dd6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/BRIEF.md",
+      "sha256": "41ae6939e98bd0e7e8f06cddf477ad49c9bb49e82b85d8afb8c632ffdac35b0e"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "399693764fcff71c204d7594414fcda13c8a27b5217ab23f6abb7c48b7e6b4f4"
+    }
+  ]
+}

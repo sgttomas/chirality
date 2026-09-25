@@ -1,0 +1,37 @@
+{
+  "role": "TASK",
+  "agent": "/root/c4_projection_design",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "scope": "Independent read-only frozen pressure_sum.rs review; only PRESSURE_SUM_REVIEW evidence writes. No implementation authorship of reviewed helper. One standalone rustc/Python lane, no Cargo/delegation/Git/native/browser.",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_SUM_REVIEW/BRIEF.md",
+      "sha256": "360136e5f7b7e002bc9a820c91d8a1cac139487111e3d83cf5032b2381346727"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "sha256": "7231339e48cabe0f54122ac6253cb2ce936d025d1bb3a391e709030d8b617ef3"
+    }
+  ]
+}

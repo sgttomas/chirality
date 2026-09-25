@@ -1,0 +1,17 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "status": "source_OD_effective_wall_reference_frozen_before_source_repair",
+  "authority": "ROOT revised selected geometry to preserve source OD/wall and close source accuracy; prior radii reference preserved as comparison",
+  "sha256": {
+    "SOURCE_REFERENCE_RETURN.md": "05ae78e734b65a7e3074b2b4538fcc01df9c1809c12183cf1b7377dfbe984841",
+    "freeze_source_geometry.py": "c716a560bc68ca2c512b5c8691bdb04bcbca586b042f0a68a3454925eabd30da",
+    "SOURCE_ODWALL_EXPECTATIONS.json": "7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1",
+    "REFERENCE_RETURN.md": "d88fcfb6584a51a7c92e4c4fb7eb887846e96c464561925e63afd5e74669dc9a",
+    "REFERENCE_FREEZE.json": "efc91fd0fafc07ef922b89c4bce80202be3da809ac62cca22691e0eb830736dd",
+    "FROZEN_SECTION_EXPECTATIONS.json": "681f75cfb475f84dc56edeeae4d3683e379c6e74f49a3ef40dfe0a06640d0ace"
+  },
+  "source_read_boundary": "No new SourceAnnulus implementation read; independent source-parametric integration and response formulas only",
+  "checks": "Fraction/Machin freeze_source_geometry.py ran successfully; no Cargo/native/Git mutation"
+}

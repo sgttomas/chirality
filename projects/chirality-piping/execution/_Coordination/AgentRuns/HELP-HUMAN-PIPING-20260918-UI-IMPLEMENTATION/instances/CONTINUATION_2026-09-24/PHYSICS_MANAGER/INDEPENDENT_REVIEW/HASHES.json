@@ -1,0 +1,659 @@
+{
+  "reviewer": "/root/c4_resume/startup_full_review",
+  "physical_parent": "/root/c4_resume",
+  "current_assignment_caller": "/root",
+  "implementation_manager": "/root/physics_manager",
+  "role": "TASK Type2 existing session; no descendants; no reparenting",
+  "mechanism": "delegated-harness-native reassignment",
+  "recorded_utc": "2026-09-25T01:32:28.923078+00:00",
+  "base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "candidate": "FREEZE_02 a23ab1475bf97169c2c34e5b9c94139cf7bd0627ad277b5f900276602630afec plus explicit TEST_HEADER_DELTA",
+  "root": "REPO_ROOT = assigned isolated pressure checkout",
+  "verdict": "HELD for newly reproduced exact-profile section-geometry inconsistency; previous maximum/tie/reaction repairs backchecked;50 tests and integration gates remain",
+  "instructions": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    ".agents/skills/software-code-review/SKILL.md": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+  },
+  "selected_local_references": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_INTEGRATION.md": "b0ff7db5b24d146389a8c2a01ddee3160b3a3359b82f83be7eb3c78b6e112981",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_REFERENCE_QUALIFICATION.md": "b20188c364e1d625ec7077a902c2e4297a55aa7445a8f53a881fadb684399911",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RESULTS_AND_COMBINATIONS.md": "de2feae4829c9da9bca2d84442d740d1413e0bdde23538f8e26ec97ff49e3dd6",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/STRESS_REFERENCE.md": "07700e0b8e383c62cc378b9bd30365d0d5ba2cd9071a450985214111903d3a1c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/contracts/PRESSURE_CONTRACT_V1.md": "044232ff9c0ba8d86591611050f1d0f04a10b46c40f6831ef4013cc9e79d2710"
+  },
+  "actual_callers_inspected": {
+    "projects/chirality-piping/core/runner/headless/src/lib.rs": "39e60b1fb6ce53aaea1e3572eca48705520d6299f7636d3b2a1899190ef344f2",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs": "6ea1c8f46a32edc2c5d69cb6f9a94ea64d53e18e3ede324ef5d4e8e9fd56c880"
+  },
+  "final_source_paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "7e44003a09bb72c4ec1d9eb58130cac6a7ad085ebefec15129da41fdf04cf771"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "sha256": "06e031a1f91bfab37e541c04fa77a605911a646342fb75230f79076a9aa8cce5"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d"
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "sha256": "54c0999b5a90389c6d48507bf1ab246b6336de5d5f9e74d38d9518437f86a985"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "sha256": "8d899b979187e44cc814bb6bdaa425768dd329978e0e62b549b2d415021998b3"
+    }
+  ],
+  "complete_diff_coverage": "all10 initial paths/full source.patch; all12 final paths through repair delta and unchanged-file hash checks; final comment delta; large facade all diff and relevant caller context",
+  "read_only_scope_probe": {
+    "scope": "Full initial10-file source patch, explicit repair to12files, one-token test wire delta and final comment-only header delta; no Git invoked",
+    "freeze_01_paths": 10,
+    "freeze_02_paths": 12,
+    "full_base_reverse_reconstruction_matches": true,
+    "repair_reverse_reconstruction_matches_freeze_01": true,
+    "current_source_matches_freeze_02_plus_header_delta": true,
+    "header_executable_bodies_unchanged": true,
+    "initial_evidence_records": 30,
+    "initial_evidence_hash_mismatches": [],
+    "primary_selection_sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+    "primary_selection_commit": "9c4c48a7 caller-supplied commit; bytes independently hashed",
+    "earlier_scope_probe": "initial attempt stopped without writing after live lib.rs changed during authorized repair; original scope is now reconstructed from immutable FREEZE_02 snapshots and repair delta"
+  },
+  "primary_selection": {
+    "origin": "PRIMARY_ROOT/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RAW02_INTERFACE_ALIGNMENT.md",
+    "commit": "9c4c48a7 caller supplied",
+    "sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450"
+  },
+  "resolved_findings": [
+    "PHYS-R1 incomplete global maximum coverage",
+    "PHYS-R2 exact per-case location ties",
+    "PHYS-V1 nonzero signed moment and spring verification",
+    "PHYS-E1 copied oracle attribution",
+    "PHYS-P1 p5 current-path regression proposal"
+  ],
+  "executed_by_reviewer": [
+    "independent_reference_probe.py:10 Fraction assembly cases,Lame surface algebra,80-digit X1",
+    "support_reference_probe.py:exact proper rotation,signed root equilibrium and spring fractions",
+    "read-only reverse-patch/hash/record checks; no Rust or product execution"
+  ],
+  "external_sources": [
+    {
+      "url": "https://www.orcina.com/webhelp/OrcaFlex/Content/html/Linetheory,Calculationstage1tensionforces.htm",
+      "scope": "wall/effective tension and Poisson sign corroboration",
+      "remote_bytes_hashed": false
+    },
+    {
+      "url": "https://doc.comsol.com/6.4/doc/com.comsol.help.sme/sme_ug_theory.06.165.html",
+      "scope": "pressure Poisson initial strain; gauge approximation not generalized",
+      "remote_bytes_hashed": false
+    },
+    {
+      "url": "https://doc.rust-lang.org/std/primitive.f64.html#method.sqrt",
+      "scope": "correctly rounded sqrt operation contract; retrieved std1.98.1 documentation",
+      "remote_bytes_hashed": false
+    }
+  ],
+  "evidence_inventory_note": "Selected owned source/evidence artifact custody; excludes compiler targets/binaries. Hashing an artifact is not a claim to have reviewed every unrelated historical line. Runtime facts are manager execution records, not reviewer runs.",
+  "evidence_inventory": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/ADDITIONAL_REFERENCE_CONTROLS.md": {
+      "sha256": "b1e2787eaf708ded6ac07e24f53e4a5bef1e318beb42b63a81a312db228af4e1",
+      "bytes": 2951
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/BRIEF.md": {
+      "sha256": "40bca4499393ff9155c970a2944fa878c3aea6ad7eba8c824893774a507b1ca4",
+      "bytes": 3563
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/DELIVERY_HASHES.json": {
+      "sha256": "c8e8e61ce587c4206beccee4580caa4651b38eca2135e85b2575bf5de5aef4ce",
+      "bytes": 2198
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/FREEZE_MANIFEST.json": {
+      "sha256": "141b04b7df1d4bbb7af6ae6a0699e2c69acb99537856b7d2ceb905b7f8b4b4d1",
+      "bytes": 4425
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/FROZEN_RUNTIME_EXPECTATIONS.json": {
+      "sha256": "7c184177cf749e33d458ab6ae5e8c16d8d34bf6d2bf994f6d15ddd40017d757a",
+      "bytes": 25035
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/REFERENCE_RETURN.md": {
+      "sha256": "2edfea8aa0017ebbc8294f78fe4f06d59ed8ee35f820943bf4623503525f43a8",
+      "bytes": 8608
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/RETURN.md": {
+      "sha256": "ed87cedfb0d84a4a907a8bf72f4a48955a1117e054c49be981c9114082dad773",
+      "bytes": 7579
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/RUN1_INPUTS.json": {
+      "sha256": "a7bed794b29e85153acfb0096c0d89e90a8d0be59d6cc2a6e59d0aadd2253ce8",
+      "bytes": 1508
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/RUN2_INPUTS.json": {
+      "sha256": "0cca60c18ca7afe151ee14aa0aa5adbfbf75154dec1607441fb850d18d1a30da",
+      "bytes": 7114
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/RUN3_INPUTS.json": {
+      "sha256": "082bdafe514b742f659c62e43c3a0edd2e7090377f43b9b9241ee5cca16c502e",
+      "bytes": 6967
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/RUN3_RESULT.json": {
+      "sha256": "4b1e7a676a1a716fbeb74cfd95aa7d41cb6ba0ad0d5bd06f8a3b53e2b5715de3",
+      "bytes": 466
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/WIRE_FIX.json": {
+      "sha256": "6d2e9fb5b968a0aad3712fad6346e1f7695ac979e7404a29d68d079ddb421b77",
+      "bytes": 595
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/WIRE_FIX.patch": {
+      "sha256": "56fa0cabebe8af84ed7c0c29e979d0e4fe72b9c0ac1a7a3d6c1760de7824d16f",
+      "bytes": 457
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/pressure_runtime_before_wire_fix.rs": {
+      "sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+      "bytes": 41031
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/pressure_runtime_corrected.log": {
+      "sha256": "3aae74de8d4d369a7acecd3c6c2deef55816cd6c46c12f536c9030e7635bcef2",
+      "bytes": 3282
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/pressure_runtime_final.log": {
+      "sha256": "d3bd4484d417bef6ae54bcbdb4ba571760c4ffc0c11fa7e51ebb3c92d352821e",
+      "bytes": 5237
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/pressure_runtime_first.log": {
+      "sha256": "9ae3277bf2784b82efa2517c5308a02c76a781e61bfa9fb5125caa73c7972dd5",
+      "bytes": 3280
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/freeze_reference.py": {
+      "sha256": "d187e583210c9d072663fd2a6dd657bb77a93598117f86301b14b56bca16f3e4",
+      "bytes": 6151
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/CONSUMER_REVALIDATION.json": {
+      "sha256": "33157feb1546a94f76d8b8b4dab01caaac3f6b9c8349d3e88e46023cb6d090cf",
+      "bytes": 16589
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ENVIRONMENT.json": {
+      "sha256": "4abcf7198b65c34d5b2f4c8fe259967492b464df234fe3afd195ded0ef54125d",
+      "bytes": 499
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/EXECUTION.json": {
+      "sha256": "c5730216d485856ddece38057f089e91c5ccd8af36cc67ccbe5b90f7518c921d",
+      "bytes": 1217
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/EVIDENCE_INPUTS.json": {
+      "sha256": "479cffb20ae170cb08c2f0f875fb20135f3630542936cdb8a4c0733f1b1f2577",
+      "bytes": 8959
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/INTERFACE_SCHEMA.md": {
+      "sha256": "17c5d3b1974014edda9701ad88a203517767de2754c248f3ec8b498b791442f7",
+      "bytes": 6466
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/SOURCE_MANIFEST.json": {
+      "sha256": "de6f58cfb536c243a86d793a1bd5e080602bf18402d699dedf955c4e50676e63",
+      "bytes": 3143
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/SOURCE_WHITELIST.txt": {
+      "sha256": "9238f49eabeaf08454bc289cc78c4de96a177ec7e1d9f3035ba74a4e27d803af",
+      "bytes": 704
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/TEST_WIRE_DELTA.json": {
+      "sha256": "e9ffa1c73f5eca1e2b708329a99aa4705547d936bab4db8550a2f3e74f887af4",
+      "bytes": 801
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/TEST_WIRE_DELTA.patch": {
+      "sha256": "30ae4079511eac52913c90a3eba04cdcc3eb9a68334af21ae308f6b2a4dcd8f1",
+      "bytes": 554
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/pressure_runtime.corrected.rs": {
+      "sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+      "bytes": 41033
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs": {
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "bytes": 18135
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs": {
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "bytes": 16375
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/loads/stress_recovery/src/lib.rs": {
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "bytes": 55962
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/lib.rs": {
+      "sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+      "bytes": 752429
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/pressure_exact.rs": {
+      "sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "bytes": 40993
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/pressure_material.rs": {
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "bytes": 9519
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs": {
+      "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "bytes": 55004
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/validation.rs": {
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "bytes": 81781
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs": {
+      "sha256": "444d39850a895dfe1a1e14815ed6e3592caa8f9255409e284e5462e8e8f70b0b",
+      "bytes": 6440
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs": {
+      "sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+      "bytes": 41031
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source.patch": {
+      "sha256": "a90027ac17e66ac6a857bb3752983f88f486fadb836301deb6b8d04fea5265a7",
+      "bytes": 192985
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/CHECK_RESULTS.json": {
+      "sha256": "28f4edf9b68d4b28dde6be0836b7a9872ae859445e1062bf4813b7253f4b9e5c",
+      "bytes": 1012
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/INTERFACE_SCHEMA.md": {
+      "sha256": "215e33a016591b4e08172339ad1611ac8de3cf3af39ffc9ba86efeb8daf35522",
+      "bytes": 7349
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/REPAIR_RETURN.md": {
+      "sha256": "89af1d213b69c30e488b9e363f9102263740971e27023743afc752bfcef53501",
+      "bytes": 1561
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/SOURCE_MANIFEST.json": {
+      "sha256": "a5d9b78e4dc4176efb57c3e98522dbdc117c48a004ed802b55254bbae2f96e7b",
+      "bytes": 4386
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/SOURCE_WHITELIST.txt": {
+      "sha256": "c1abf52147ed4feebf71d5148087487dca166db84a760e3a07221e96c481def3",
+      "bytes": 866
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/TEST_HEADER_DELTA.json": {
+      "sha256": "984dbdadc60a0b9068f7731e29bc52488eff4b919347e72d4759cfd635b4be47",
+      "bytes": 838
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/TEST_HEADER_DELTA.patch": {
+      "sha256": "c45fd8c027c98a706a1b4153d2718cab520430d97dda3ee5e6a4c0670529b3c4",
+      "bytes": 1475
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/review-repair.delta.patch": {
+      "sha256": "7ebce7865ac6cbbf109d8996d58d33602fcf45391f8413af2d72b41e19968825",
+      "bytes": 27756
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs": {
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "bytes": 18135
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs": {
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "bytes": 16375
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/loads/stress_recovery/src/lib.rs": {
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "bytes": 55962
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/src/lib.rs": {
+      "sha256": "7e44003a09bb72c4ec1d9eb58130cac6a7ad085ebefec15129da41fdf04cf771",
+      "bytes": 754014
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/src/pressure_exact.rs": {
+      "sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "bytes": 40993
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/src/pressure_material.rs": {
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "bytes": 9519
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs": {
+      "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "bytes": 55004
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/src/validation.rs": {
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "bytes": 81781
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs": {
+      "sha256": "06e031a1f91bfab37e541c04fa77a605911a646342fb75230f79076a9aa8cce5",
+      "bytes": 6807
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs": {
+      "sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+      "bytes": 41033
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs": {
+      "sha256": "03c7b81c16804029948ea4d0db401ae8c430988c418c066f7cfecdaf58e781e4",
+      "bytes": 8970
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source/projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs": {
+      "sha256": "76d2763003c559897b41a31aeced36b70e9f2bd47a57c864d4549399e863b90f",
+      "bytes": 9777
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_02/source.patch": {
+      "sha256": "078a5ecf1a73616b199ffd2781cf3aa9781bd28b8fc0c87aaee8c48331b8dbd1",
+      "bytes": 214800
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INTERFACE_HANDOFF.md": {
+      "sha256": "6c4b35a8cf40aeb933d9be179a0b032afe3367bae2443e7ec50da206cb7d3529",
+      "bytes": 5406
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/JOINED_ALLOCATION_READ.json": {
+      "sha256": "fea07d312ea5021be72c977b1a3be42b85c04df55e8c86e57545ff5ef1c84435",
+      "bytes": 493
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PLAN.md": {
+      "sha256": "2cf0038fa42014dab3101a77d6ca85584721bb38675170d9266eb8ee959c082e",
+      "bytes": 753
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/BRIEF.md": {
+      "sha256": "c027e3e4b6ccbcadf3101c17f16595ae6333e078da6f12b72f615e78a6e3cba0",
+      "bytes": 3783
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/MANIFEST.json": {
+      "sha256": "ac90b8d99de9dbf63384a5144fc6269a188371f6401dabfc24e0a884c16c97e8",
+      "bytes": 11989
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/RETURN.md": {
+      "sha256": "fe7b58c8f843a0b58865b02a2c4fc1a2b9dbb8d27bb9e4c5fa7cec9acb722e3d",
+      "bytes": 7705
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/compile-01.log": {
+      "sha256": "b17a8c206f56159039fa57f2a98edd57e65b03985ba33d2b6d957330180d86e3",
+      "bytes": 3209
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/module-tests-01.log": {
+      "sha256": "6a08330dcfe49239dd5a0732be7fa63a95e7713e258a19c26a77205c6813cc19",
+      "bytes": 2199
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRODUCT_LIB_FAILURE_CLASSIFICATION.json": {
+      "sha256": "c44cac5d9b65c388297751667f49e9a1148459d96218f1bae8570776da860939",
+      "bytes": 165794
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRODUCT_LIB_FAILURE_INVENTORY.json": {
+      "sha256": "f51576129a4938d7e8ff84ab20de08d6a0689703c35cea401842f5164f989129",
+      "bytes": 23767
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/READ_BASIS.json": {
+      "sha256": "f51bfbb01a0cf5df44de69900b7dec75383a0d6fe6abeda90482bbf5ea525a41",
+      "bytes": 5297
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json": {
+      "sha256": "d2223fba3659142b596950beb966bcb26a32cf76460174b9bad32be072c374f8",
+      "bytes": 28746
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/PROBE_BASIS.json": {
+      "sha256": "349e597fa55a6f86a081a2f9074cd63894e93a1454efc3af4141c914e9daba19",
+      "bytes": 824
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/harness/src/lib.rs": {
+      "sha256": "2777ab640fb3ebf2986a15e2c1303fda715afc12f04de126e8a779882f7ae82b",
+      "bytes": 753469
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/trace-01.log": {
+      "sha256": "899dcd43089d76a2caa8b921f72f1d1eae7707078edef7b467d27e4f0be4ca71",
+      "bytes": 74809
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/BRIEF.md": {
+      "sha256": "56d525ecadc986645f61040724d07a5ccd104feecb53ee38b5ecf5fad62c8b95",
+      "bytes": 3119
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/DISPOSITIONS.json": {
+      "sha256": "d00448eca664974963aec97f3d7244ead417a71800932f683b8265cf43265447",
+      "bytes": 62834
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/HISTORICAL_ROUTE_PROPOSAL.md": {
+      "sha256": "2a2ddd185b65eb9a9484709348968d36294c731b0d4117de299234d88812cc6e",
+      "bytes": 1797
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/MANIFEST.json": {
+      "sha256": "488872fe9f43e46500bd2f1fdd15c6cacc3980284cbb03fc2265124f87695c8a",
+      "bytes": 5304
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/PARENT_12_DISPOSITIONS.json": {
+      "sha256": "f8be10a83fc2fefee19e69947e5e9abd96c0e876a254d6d2020779b4f6f6e67b",
+      "bytes": 14442
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/RETURN.md": {
+      "sha256": "abf7210ee6425e4b65c236a03d846ec395e04e210136cb1be17285a6d6dd4697",
+      "bytes": 3955
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/RETURN.md": {
+      "sha256": "30bf32bf59c8a40bbef315ea110cf2e7a7dca7ed124a430791be1a48a179a840",
+      "bytes": 4840
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REVIEW_REPAIR_01/REPRODUCTION.json": {
+      "sha256": "3530c9e323ac17ace83b5ed526ddaea6c2c1bbfa1ce2e0ff60a84fc015890cf8",
+      "bytes": 1064
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REVIEW_REPAIR_01/coverage_before.rs": {
+      "sha256": "6ab7a8c87a5a8e4013c7e642c6733ea00f7be6fc3b6fdfdefbb6ef3bb6f0e507",
+      "bytes": 8498
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REVIEW_REPAIR_01/lib_before.rs": {
+      "sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+      "bytes": 752429
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ROOT_BASIS.json": {
+      "sha256": "caea6a1ee32bdced133ced44fdd9766937106b4ddcdff0e276a5fa739018cb46",
+      "bytes": 1018
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ROOT_BRIEF.md": {
+      "sha256": "176b566001c0614d024eae17b601e3b1bf451991a7b4b3c497ebd784bd753ccd",
+      "bytes": 8311
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/BASIS.json": {
+      "sha256": "6cbd01a527c9c567c6116239944e520887e730a1678559ba5120fc687d17e98f",
+      "bytes": 2681
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/BRIEF.md": {
+      "sha256": "41ae6939e98bd0e7e8f06cddf477ad49c9bb49e82b85d8afb8c632ffdac35b0e",
+      "bytes": 3355
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_BASIS.json": {
+      "sha256": "676005327cf4d487145b1d07ab243dbaea26df2ed26b6a6bcd62cd0b7e4fd6bf",
+      "bytes": 2197
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_BRIEF.md": {
+      "sha256": "3cf7b3435a4f2fa68a115a40d72b30dd225822b22a787a34617cf74a0e1e775f",
+      "bytes": 2384
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_OUTPUT_HASHES.json": {
+      "sha256": "71a013da014e773e44c609627e54e2a8e5a11bf09af311bff3ef3c2a2710d461",
+      "bytes": 2003
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_REFERENCE_DISPOSITION.md": {
+      "sha256": "fc5be638e79e7ea862dff7129adfe806f2cf26342a7d8c2ee8c468bd1d1b2620",
+      "bytes": 6073
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_RETURN.md": {
+      "sha256": "04713cc94fb5ac4d37c3f26e6d9560e15383faa6107fcd7d9329bde4731d14e7",
+      "bytes": 6173
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/OUTPUT_HASHES.json": {
+      "sha256": "90e74362e4b89b16d72b16a532c78f84c56d39da39af4e33f71af210c62f2106",
+      "bytes": 2286
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/REFERENCE_DISPOSITION.md": {
+      "sha256": "d32dbc30281208d6b5445bad9714162019419d3cff1999a5b5fb459516139c5e",
+      "bytes": 4775
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/RETURN.md": {
+      "sha256": "19be50ecb0b793456aeacac59b87061e3be98f9b53ca7f1b24445336e4030797",
+      "bytes": 5223
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/execution.json": {
+      "sha256": "dd9fc01e29f0db0a49bcbd93bcab153a053a8b841885bdefb8cd0f7031176b6d",
+      "bytes": 1117
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-build-01.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-execution-01.json": {
+      "sha256": "01d5d70f5e311025962a060e16f19beb4d24aec2d372b699e76b23a8e0c5ca28",
+      "bytes": 1042
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-run-01.log": {
+      "sha256": "878416cf02518238d8fffff8a8e0f2e837806c3b555684a75ff160f2ba757c6a",
+      "bytes": 1062
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/rustc-test-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/rustc-test-run.log": {
+      "sha256": "6e815f235fdefa855e3a77e05dd7d95d693ceb6c37cb8f034cca71df0d745f56",
+      "bytes": 903
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/x1-independent-arithmetic.json": {
+      "sha256": "44810c2b2d618a611421bfc8e3bdbffea526fe9886c2f92ef9f321251429e6a6",
+      "bytes": 299
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/TASK_DISPATCHES.json": {
+      "sha256": "0c2fdd7cc5d1e6a218e62fe0de6220e7c77fd9aa547af5421e5d2176da218346",
+      "bytes": 3134
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/compile-integrated-01.log": {
+      "sha256": "1d55bf1fe696dec21863c46d6cc07079e0176448926fb4a53dcf5389ea812bae",
+      "bytes": 2899
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-after-repair-01.log": {
+      "sha256": "41272e6173e20430effd765407a3f43f4e9cb89c2fbe16aca2b9a282c6c4ebaf",
+      "bytes": 4589
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-after-repair-02.log": {
+      "sha256": "5fdc3b9b5b1d7d039c771592bea694154a25cdaa7339b016d759f5c02d99224d",
+      "bytes": 3087
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-before-repair-01.log": {
+      "sha256": "b799a5280f5fdcb38cc8de9e3f7b78d4503ab4c9adde6149f4086ac658c4c583",
+      "bytes": 3453
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-before-repair-02.log": {
+      "sha256": "1c7d4ee6b82d5d8a6785ad4d77c8b1646f226b319aa2c4fd47e7a3d79331b67c",
+      "bytes": 5593
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-before-repair-03.log": {
+      "sha256": "09fd174a520cce13e825e5bdb6459860fc46b048919ef4f477f65a10e68f67ba",
+      "bytes": 3862
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-before-repair-04.log": {
+      "sha256": "6d054456869e6dab6986c144de9e86149be10fcadf19882bd1e903bad2aa700e",
+      "bytes": 4736
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/coverage-probe-01.rs": {
+      "sha256": "98f5963efeb990a8cd44ac11e706d2f5c8bb4329f6e622d1e1303bd37a91550e",
+      "bytes": 4354
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/elastic-runtime-01.log": {
+      "sha256": "0be6d19aef318aa03228f97d059cd5f493b361fc5aac51adbbc8d4c83443db21",
+      "bytes": 2350
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/product-lib-after-review-repair-01.log": {
+      "sha256": "96f3c40325b979072bbe8eb6c6cc7b7b208de8add0883e8eb26f640b8640934f",
+      "bytes": 42875
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/product-lib-inventory-01.log": {
+      "sha256": "d12cc95c9f0faaafe6fbb2504f0b93534c8d076df216230493bc4903bd4201e9",
+      "bytes": 42875
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/public-after-review-repair-01.log": {
+      "sha256": "6a8d633bcd586cf9948cdfc3a3e885603783ea4c44abb6d98df96b302825bb6b",
+      "bytes": 5244
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/rustfmt-final-01.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/rustfmt-final-02.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/section-geometry-probe-01.log": {
+      "sha256": "988b0172ffc48b3dd19f01d486cfee88ea6be438c29d636f7cdcf98aa7cda288",
+      "bytes": 5356
+    },
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/stress-crate-01.log": {
+      "sha256": "fa3f91eac47f6a7c5e6d92f9e6ec8b436491e89a7a7cfb4ecb30e4dcb769ff7d",
+      "bytes": 5404
+    }
+  },
+  "review_probe_files": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/independent_reference_probe.json": "a577a044b14d633fc434a15bbf311a4a24084632c5243851a48b076c93a4aaa5",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/independent_reference_probe.py": "f4c50176d8a0c98ece5f55fe0fa0516a3a300e26c71a9ca505e9c085effc9136",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/static_scope_probe.json": "198324b2c43e59f980de8675a45dfc0f75dd43a2c369e03d7c82ef1947c9307c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/support_reference_probe.json": "68893424e4f5f920858506f4600fdc53362ce0797843a0e9d19f80f803166a7a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/support_reference_probe.py": "c5947f141d7e36e1df454e287d1393a9a6f7617882bfd4b8f341fed689c9e123",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/annulus_geometry_reference.json": "6f4b7991e40fbf53b7f4daeda690e4f87bda1e60f05fc452003a5d8d4d065acb",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/annulus_geometry_reference.py": "88d816280649701608766d3ed6ed467461d9a1825b7775360020389c1b524578"
+  },
+  "remaining_gates": [
+    "50 product failures: individual test-purpose implementation/review and actual rerun",
+    "NUM join and physics-1 producer/table/closed-source dispatch",
+    "consumer,headless/native authoring and save/reopen/export binding",
+    "actual candidate CI/DEC-025 and required native/practitioner evidence",
+    "later pressure/stress/support/combination capabilities and engineering acceptance"
+  ],
+  "return_sha256": "6d30c5f4a28db1dc4e5d365d01d56b5cd5b50267aeb6f92d107e7dacda6d23bd",
+  "open_findings": [
+    "PHYS-R3: require normalized source-OD/wall geometry consistency through K/stress/pressure; represented-radii-only agreement is insufficient"
+  ],
+  "status": "AVAILABLE-MATERIAL REVIEW COMPLETE; closure backcheck awaiting successor source-based geometry freeze/public outcomes; PHYS-R3 OPEN",
+  "additional_source_geometry_reference_inputs": {
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/DIAGNOSIS_BEFORE_PARSER_AND_LOAD_REPAIR.md": "fdde05ea7344487746daa4f4e5743177af43eb6fde12a8f9c19037726f27bd4d",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/FROZEN_SECTION_EXPECTATIONS.json": "681f75cfb475f84dc56edeeae4d3683e379c6e74f49a3ef40dfe0a06640d0ace",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/M34_FEATURE_HANDOFF.json": "e37b06f8ec9f3d8dd1cc4ce5829e57e0c7d351f2d39165833ef480c6a013c086",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/MANAGER_DIAGNOSIS.json": "efab8267e9e3a2b8bbcf0a3dfdf58a2a29a235117dc3794cf918b35ec364f569",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_INCOMPRESSIBLE_EXPECTATIONS.json": "a701ac49584ee40d7a5387601152d782e89853d01498f6e65090da08c1f0a95e",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_INCOMPRESSIBLE_FREEZE.json": "131759d0b183aedd3925e08d2b447a3f55594645e16bb33b2105a469f30b89ff",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/ORACLE_BRIEF.md": "286984b50d16270b93b5ad8544ece740faee74fb91919e086b77b86fb6169724",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/REFERENCE_FREEZE.json": "efc91fd0fafc07ef922b89c4bce80202be3da809ac62cca22691e0eb830736dd",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/REFERENCE_RETURN.md": "d88fcfb6584a51a7c92e4c4fb7eb887846e96c464561925e63afd5e74669dc9a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/ROOT_SELECTION.md": "b9cede002611f7d72b084bc9dc43c8885045597f442f6d9e57059e309673f514",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_INPUT_BITS.json": "39ec01a2ee2b7eb3173bbb6d9e592d1ef6f98df1f0d21a155a8db490c6ca4f6b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_ODWALL_EXPECTATIONS.json": "7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_REFERENCE_FREEZE.json": "e7235b891b9b8224d3c382740d5c4005a5730fd1e8e30d1017fba154bc57b50d",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/SOURCE_REFERENCE_RETURN.md": "05ae78e734b65a7e3074b2b4538fcc01df9c1809c12183cf1b7377dfbe984841",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/canonical_feature_metadata.json": "84ef84503d52de9f89aa95e26c8bbc02111a391f555aa6984d1dc42e75035be4",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/freeze_geometry_reference.py": "d53b5419c02033af3295e3f9b8325cb62d12acfa54d2f07945f49ae7248e1ae0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/freeze_near_incompressible.py": "de79873a290047e48d357557ae165c6cd56fb60f85410bb52ee531ce6bb18358",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/freeze_source_geometry.py": "c716a560bc68ca2c512b5c8691bdb04bcbca586b042f0a68a3454925eabd30da",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/product_feature_metadata.json": "e7408604326d9b60f38587f702bcc9d8cd188010360c2481d1a4f02c448437bd"
+  }
+}

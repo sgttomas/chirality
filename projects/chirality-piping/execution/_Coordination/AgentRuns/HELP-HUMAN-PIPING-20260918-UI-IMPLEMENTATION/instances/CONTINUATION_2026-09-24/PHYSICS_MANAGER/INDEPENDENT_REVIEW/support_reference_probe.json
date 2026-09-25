@@ -1,0 +1,31 @@
+{
+  "method": "Exact Fraction orthogonality/determinant, root moment balance -(M+r cross F), transformed vector balance and normalized parallel stiffness fractions. No product import.",
+  "rotation_proper": true,
+  "root_force_N": [
+    "-1000",
+    "-2000",
+    "3000"
+  ],
+  "root_moment_Nm": [
+    "-400",
+    "-2500",
+    "-2600"
+  ],
+  "rotated_root_force_N": [
+    "5000/3",
+    "1000/3",
+    "10000/3"
+  ],
+  "rotated_root_moment_Nm": [
+    "1600/3",
+    "-10600/3",
+    "-1900/3"
+  ],
+  "root_spring1_spring2_force_N": [
+    "-250",
+    "-250",
+    "-500"
+  ],
+  "pass": true,
+  "timing": "Independent check during review, after public tests were authored; not a prior ASSEMBLY_ORACLE freeze claim"
+}

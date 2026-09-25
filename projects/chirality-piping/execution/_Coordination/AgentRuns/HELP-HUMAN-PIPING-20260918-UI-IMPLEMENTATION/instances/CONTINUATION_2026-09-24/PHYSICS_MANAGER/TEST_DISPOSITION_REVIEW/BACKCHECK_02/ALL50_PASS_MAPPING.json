@@ -1,0 +1,352 @@
+[
+  {
+    "original_test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+    "integrated_test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+    "integrated_test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+    "integrated_test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+    "integrated_test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+    "integrated_test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+    "integrated_test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+    "integrated_test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+    "integrated_test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "integrated_test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+    "integrated_test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+    "integrated_test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+    "integrated_test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+    "integrated_test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+    "integrated_test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+    "integrated_test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::missing_load_input_blocks_with_diagnostic",
+    "integrated_test": "tests::missing_load_input_blocks_with_diagnostic",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::missing_material_blocks_with_diagnostic",
+    "integrated_test": "tests::missing_material_blocks_with_diagnostic",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::missing_or_invalid_project_length_units_block_preview",
+    "integrated_test": "tests::missing_or_invalid_project_length_units_block_preview",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+    "integrated_test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+    "integrated_test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+    "integrated_test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::range_combination_records_each_operand_modulus_basis",
+    "integrated_test": "tests::range_combination_records_each_operand_modulus_basis",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+    "integrated_test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+    "integrated_test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+    "integrated_test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+    "integrated_test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::shared_section_reference_failures_are_explicit",
+    "integrated_test": "tests::shared_section_reference_failures_are_explicit",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+    "integrated_test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+    "integrated_test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+    "integrated_test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::under_restrained_model_reports_solver_diagnostic",
+    "integrated_test": "tests::under_restrained_model_reports_solver_diagnostic",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_exposes_element_force_components",
+    "integrated_test": "tests::valid_invented_model_exposes_element_force_components",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+    "integrated_test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_exposes_global_displacement_components",
+    "integrated_test": "tests::valid_invented_model_exposes_global_displacement_components",
+    "purpose": "reviewed current local fixture",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_solves_deterministically",
+    "integrated_test": "tests::valid_invented_model_solves_deterministically",
+    "purpose": "current local fixture, existing predicates unchanged",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+    "integrated_test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+    "purpose": "current local fixture, existing predicates unchanged",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector",
+    "integrated_test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state",
+    "integrated_test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves",
+    "integrated_test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations",
+    "integrated_test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress",
+    "integrated_test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence",
+    "integrated_test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata",
+    "integrated_test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign",
+    "integrated_test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows",
+    "integrated_test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants",
+    "integrated_test": "tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::mixed_units_are_normalized_at_preview_mechanics_boundary",
+    "integrated_test": "tests::mixed_units_are_normalized_at_preview_mechanics_boundary_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_exposes_endpoint_stress_components",
+    "integrated_test": "tests::valid_invented_model_exposes_endpoint_stress_components_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::valid_invented_model_exposes_nonlinear_support_loop_evidence",
+    "integrated_test": "tests::valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise",
+    "purpose": "explicit private historical pressure premise; original assertions/values retained",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  },
+  {
+    "original_test": "tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve",
+    "integrated_test": "tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve",
+    "purpose": "current public genuine/hydrotest split",
+    "observed_result": "ok",
+    "prior_individual_review_retained": true
+  }
+]

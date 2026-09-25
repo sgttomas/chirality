@@ -1,0 +1,31 @@
+{
+  "parent": "/root",
+  "intended_role": "WORKING_ITEMS Type1",
+  "mechanism": "delegated-harness-native collaboration",
+  "base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "branch": "codex/piping-pressure-stress-20260924",
+  "actual_checkout": "/private/tmp/piping-pressure-stress-20260924",
+  "instruction_origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    }
+  ],
+  "brief_sha256": "176b566001c0614d024eae17b601e3b1bf451991a7b4b3c497ebd784bd753ccd",
+  "execution_started": true,
+  "actual_agent": "/root/physics_manager",
+  "observed_role_source_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+  "started_at_utc": "2026-09-24T23:47:36.935325+00:00"
+}

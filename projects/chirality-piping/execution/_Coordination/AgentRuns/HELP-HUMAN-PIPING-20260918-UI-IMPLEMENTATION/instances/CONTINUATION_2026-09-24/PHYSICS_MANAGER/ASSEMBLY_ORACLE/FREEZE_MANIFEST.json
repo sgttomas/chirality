@@ -1,0 +1,39 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "role": "TASK Type 2",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "mechanism": "delegated-harness-native continued assignment",
+  "source_base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "freeze_before_new_pressure_implementation_read": true,
+  "read_boundary": "No new product pressure implementation read. Only baseline public DTO excerpt lines525-628 through git show f702b4, existing public input fixture, design/qualification and independent oracle sources.",
+  "delegation": false,
+  "read_sources_sha256": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/BRIEF.md": "40bca4499393ff9155c970a2944fa878c3aea6ad7eba8c824893774a507b1ca4",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INTERFACE_HANDOFF.md": "e5717eb25300d7228a2aa56de5cbb0a36b221d0c73a940dfc61aed4adf4d2c75",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_INTEGRATION.md": "b0ff7db5b24d146389a8c2a01ddee3160b3a3359b82f83be7eb3c78b6e112981",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_REFERENCE_QUALIFICATION.md": "b20188c364e1d625ec7077a902c2e4297a55aa7445a8f53a881fadb684399911",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/contracts/PRESSURE_CONTRACT_V1.md": "044232ff9c0ba8d86591611050f1d0f04a10b46c40f6831ef4013cc9e79d2710",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/verification/ANALYTICAL_ORACLES_V1.json": "6549d544accae7131127e8a87c748ea514c21b4f4c0381b5cec7c135d9c0d76c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260914-RESULT-COMPATIBILITY-PRESSURE/instances/PRESSURE_ORACLE/ORACLE_BASIS.md": "99397bacc85ea36b4bd3deb94c9e403b9bda69ad4f9f3b685ce46eab24c9b205",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260914-RESULT-COMPATIBILITY-PRESSURE/instances/PRESSURE_ORACLE/FROZEN_EXPECTATIONS.json": "b1277ee86ced3dc28ca14d9e79e2187d98e6dd2c55fa5c8b238a475c41804a72",
+    "projects/chirality-piping/fixtures/product_preview/invented_preview_model.json": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c"
+  },
+  "frozen_artifacts_sha256": {
+    "REFERENCE_RETURN.md": "2edfea8aa0017ebbc8294f78fe4f06d59ed8ee35f820943bf4623503525f43a8",
+    "FROZEN_RUNTIME_EXPECTATIONS.json": "7c184177cf749e33d458ab6ae5e8c16d8d34bf6d2bf994f6d15ddd40017d757a",
+    "freeze_reference.py": "d187e583210c9d072663fd2a6dd657bb77a93598117f86301b14b56bca16f3e4"
+  },
+  "scope": "Only new pressure_runtime.rs public-entrypoint integration tests and ASSEMBLY_ORACLE evidence; no implementation/Git/native/config writes. Cargo requires parent-coordinated slot, jobs<=2 and isolated target.",
+  "checks": "Independent Fraction/Machin reference calculation executed; no solver/build/test observed before freeze.",
+  "web_sources_accessed_2026_09_24": [
+    "https://www.orcina.com/webhelp/OrcaFlex/Content/html/Linetheory,Calculationstage1tensionforces.htm",
+    "https://doc.comsol.com/6.4/doc/com.comsol.help.sme/sme_ug_theory.06.165.html"
+  ],
+  "limits": "Algebra/model reference only, not live implementation/native/application acceptance."
+}

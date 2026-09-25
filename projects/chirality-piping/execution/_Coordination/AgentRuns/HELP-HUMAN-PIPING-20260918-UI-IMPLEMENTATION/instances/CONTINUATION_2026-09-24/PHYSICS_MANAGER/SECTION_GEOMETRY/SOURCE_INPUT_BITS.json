@@ -1,0 +1,34 @@
+{
+  "basis": "Exact normalized binary64 source inputs used by the already frozen independent Python Fraction reference; no numerical expected value changed",
+  "source_reference_sha256": "7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1",
+  "inputs_by_case": {
+    "ordinary": {
+      "OD_m": "3fbeb851eb851eb8",
+      "wall_m": "3f847ae147ae147b",
+      "p_Pa": "413e848000000000",
+      "E_Pa": "42474876e8000000",
+      "nu": "3fd3333333333333",
+      "L_m": "4018000000000000",
+      "tip_Fy_N": "4059000000000000",
+      "tip_Mx_Nm": "3ff0000000000000"
+    },
+    "thin": {
+      "OD_m": "3fbeb851eb851eb8",
+      "wall_m": "3d719799812dea11",
+      "p_Pa": "3eb0c6f7a0b5ed8d",
+      "E_Pa": "42474876e8000000",
+      "nu": "3fd3333333333333",
+      "L_m": "4018000000000000",
+      "tip_Fy_N": "3d719799812dea11",
+      "tip_Mx_Nm": "3ddb7cdfd9d7bdbb"
+    },
+    "representable_range_control": {
+      "OD_m": "4ffba2bfd0d5ff5b",
+      "wall_m": "4fdba2bfd0d5ff5b",
+      "E_Pa": "2b2bff2ee48e0530",
+      "nu": "3fd3333333333333",
+      "p_Pa": "1fc1297872d9cbb5",
+      "L_m": "50559725db272f7f"
+    }
+  }
+}

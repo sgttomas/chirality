@@ -1,0 +1,121 @@
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: unused variable: `membrane`
+    --> src/lib.rs:8122:31
+     |
+8122 |         let (wall, effective, membrane) = match state.annulus.recover_wall_effective_membrane(
+     |                               ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_membrane`
+     |
+     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6829:4
+     |
+6829 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variants `InvalidInsulationThickness` and `NonRepresentableArea` are never constructed
+  --> src/annulus_geometry.rs:13:5
+   |
+10 | pub(crate) enum SourceAreaError {
+   |                 --------------- variants in this enum
+...
+13 |     InvalidInsulationThickness,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+14 |     NonRepresentableArea,
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `SourceAreaError` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: function `represented_area` is never used
+  --> src/annulus_geometry.rs:46:4
+   |
+46 | fn represented_area(area: Scaled, zero_allowed: bool) -> Result<f64, SourceAreaError> {
+   |    ^^^^^^^^^^^^^^^^
+
+warning: function `source_wall_area_m2` is never used
+  --> src/annulus_geometry.rs:54:15
+   |
+54 | pub(crate) fn source_wall_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `source_bore_area_m2` is never used
+  --> src/annulus_geometry.rs:57:15
+   |
+57 | pub(crate) fn source_bore_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `source_insulation_area_m2` is never used
+  --> src/annulus_geometry.rs:61:15
+   |
+61 | pub(crate) fn source_insulation_area_m2(od: f64, thickness: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: variant `RadiusOutsideWall` is never constructed
+   --> src/pressure_exact.rs:167:5
+    |
+161 | pub(crate) enum ExactPressureError {
+    |                 ------------------ variant in this enum
+...
+167 |     RadiusOutsideWall,
+    |     ^^^^^^^^^^^^^^^^^
+    |
+    = note: `ExactPressureError` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: associated function `from_radii` is never used
+   --> src/pressure_exact.rs:184:19
+    |
+183 | impl ExactAnnulus {
+    | ----------------- associated function in this implementation
+184 |     pub(crate) fn from_radii(ri_m: f64, ro_m: f64) -> Result<Self, ExactPressureError> {
+    |                   ^^^^^^^^^^
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:303:19
+    |
+303 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:310:19
+    |
+309 | impl AxialState {
+    | --------------- methods in this implementation
+310 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+314 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+318 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `lame_at_radius` is never used
+   --> src/pressure_exact.rs:323:15
+    |
+323 | pub(crate) fn lame_at_radius(
+    |               ^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:353:15
+    |
+353 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: `open_pipe_stress_product_physics` (lib) generated 13 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.77s
+     Running tests/pressure_section_geometry.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/pressure_section_geometry-56585b8b7848efe2)
+
+running 8 tests
+test fixed_near_limit_effective_force_and_reactions_keep_small_source_difference ... ok
+test near_incompressible_source_net_load_retains_its_nonzero_extension ... ok
+test ordinary_source_annulus_properties_and_all_responses ... ok
+test representable_i_and_j_survive_an_unrepresentable_naive_intermediate ... ok
+test thin_source_wall_drives_extension_stress_bending_and_torsion ... ok
+test unpressurized_thin_member_uses_same_source_section_without_fake_region ... ok
+test unrepresented_gap_and_nonrepresentable_final_sections_block ... ok
+test distinct_near_limit_nu_two_span_source_extensions_survive_all_reversals ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

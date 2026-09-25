@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "test_count": 14,
+  "failed_count": 0,
+  "cargo_exit_code": 0,
+  "source_hashes_unchanged_after_run": true,
+  "transitive_source_files_checked": 47,
+  "test_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+  "log_sha256": "3aae74de8d4d369a7acecd3c6c2deef55816cd6c46c12f536c9030e7635bcef2",
+  "scope": "public pressure_runtime integration suite only; not full library/sweep/native or complete-candidate review"
+}

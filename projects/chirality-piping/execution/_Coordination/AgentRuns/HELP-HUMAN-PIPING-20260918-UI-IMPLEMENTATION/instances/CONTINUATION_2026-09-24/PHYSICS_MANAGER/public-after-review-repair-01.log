@@ -1,0 +1,96 @@
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6765:4
+     |
+6765 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:300:19
+    |
+300 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:307:19
+    |
+306 | impl AxialState {
+    | --------------- methods in this implementation
+307 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+311 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+315 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:350:15
+    |
+350 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib) generated 5 warnings
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.03s
+     Running tests/elastic_extrema_runtime.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/elastic_extrema_runtime-5de8fd6e9ee826fb)
+
+running 2 tests
+test pure_torque_has_zero_normal_maximum_and_signed_torsion ... ok
+test actual_x1_loads_find_peak_missed_by_old_signed_sum_candidates ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/pressure_runtime.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/pressure_runtime-73a1328706367b17)
+
+running 14 tests
+test distributed_axial_load_is_subtracted_separately_from_pressure_eigenload ... ok
+test exact_material_and_region_contracts_are_required_without_inference ... ok
+test exact_override_materials_replace_base_list_and_redundant_g_is_not_authoritative ... ok
+test exact_pressure_rotates_as_vectors_and_normalizes_mm_mpa_inputs ... ok
+test invalid_region_membership_geometry_and_overlap_block ... ok
+test legacy_missing_g_remains_an_input_error ... ok
+test mixed_closures_use_the_actual_cap_load_path_for_support_reactions ... ok
+test namespaces_and_nonzero_legacy_pressure_cannot_silently_fallback ... ok
+test same_region_id_in_distinct_cases_has_unique_binding_and_order_independent_maximum ... ok
+test selected_point_and_interpolated_pair_determine_g_after_selection ... ok
+test signed_pressure_zero_poisson_and_thermal_reversal_preserve_the_selected_equations ... ok
+test equal_bore_unequal_wall_and_e_chain_is_orientation_independent ... ok
+test thermal_alpha_is_required_on_the_selected_basis_not_unused_base ... ok
+test six_si_pressure_states_through_both_public_solver_modes ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/stress_maximum_coverage.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/stress_maximum_coverage-17e97a1001e49fcd)
+
+running 4 tests
+test exact_zero_displacement_ties_use_location_identity_not_node_order ... ok
+test exact_zero_stress_ties_use_location_identity_not_member_order ... ok
+test incomplete_case_domain_withholds_overall_maximum_in_both_case_orders ... ok
+test incomplete_member_domain_withholds_case_maximum_in_both_member_orders ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/support_reactions_runtime.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/support_reactions_runtime-7423aa62e206c563)
+
+running 4 tests
+test same_record_spring_cannot_silently_replace_an_extra_rigid_guide ... ok
+test duplicate_rigid_devices_cannot_each_publish_the_complete_nodal_reaction ... ok
+test two_coincident_tip_springs_and_root_rigid_support_have_distinct_actions ... ok
+test six_nonzero_support_components_follow_global_force_and_moment_balance ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

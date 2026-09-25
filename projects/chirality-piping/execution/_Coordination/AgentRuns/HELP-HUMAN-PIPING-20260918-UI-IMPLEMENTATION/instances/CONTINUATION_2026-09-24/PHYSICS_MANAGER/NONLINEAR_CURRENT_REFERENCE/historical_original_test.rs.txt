@@ -1,0 +1,180 @@
+    #[test]
+    fn valid_invented_model_exposes_nonlinear_support_loop_evidence() {
+        for mode in [
+            PreviewSolverMode::DenseScrutiny,
+            PreviewSolverMode::SparseInteractive,
+        ] {
+            // Reference control for the historical nonlinear fixture: the former
+            // nonlinear path omitted linear springs. Keep that exact no-spring
+            // case explicit, rather than rewriting its friction oracle from output.
+            let mut input = request();
+            input.model.supports.retain(|support| {
+                support.stiffness.is_none()
+                    && support.family.as_deref() != Some("variable_spring_hanger")
+            });
+            // Also freeze the old distributed-load assembly as explicit qL/2
+            // nodal inputs. This is a historical friction-policy control, not
+            // the current distributed-load formulation (tested independently).
+            for case in &mut input.model.load_cases {
+                let mut old_nodal_loads = Vec::new();
+                for load in &case.primitive_loads {
+                    if load.dimension != "force_per_length" {
+                        old_nodal_loads.push(load.clone());
+                        continue;
+                    }
+                    let LoadTargetInput::Element { pipe } = &load.target else {
+                        unreachable!()
+                    };
+                    let pipe = input
+                        .model
+                        .pipe_segments
+                        .iter()
+                        .find(|p| &p.id == pipe)
+                        .unwrap();
+                    let i = input
+                        .model
+                        .nodes
+                        .iter()
+                        .find(|n| n.id == pipe.from)
+                        .unwrap()
+                        .position;
+                    let j = input
+                        .model
+                        .nodes
+                        .iter()
+                        .find(|n| n.id == pipe.to)
+                        .unwrap()
+                        .position;
+                    let length =
+                        ((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2)).sqrt();
+                    for (end, node) in [("i", &pipe.from), ("j", &pipe.to)] {
+                        let mut nodal = load.clone();
+                        nodal.id = format!("{}:historical-nodal-{end}", load.id);
+                        nodal.target = LoadTargetInput::Node { node: node.clone() };
+                        nodal.dimension = "force".to_string();
+                        nodal.category = "occasional".to_string();
+                        nodal.magnitude = Quantity {
+                            value: load.magnitude.value * length / 2.0,
+                            unit: "N".to_string(),
+                        };
+                        old_nodal_loads.push(nodal);
+                    }
+                }
+                case.primitive_loads = old_nodal_loads;
+            }
+            let result = run_linear_static_preview_with_mode(input, mode);
+            let result_ids = result
+                .results
+                .iter()
+                .map(|item| item.id.as_str())
+                .collect::<HashSet<_>>();
+            let diagnostic_codes = result
+                .diagnostics
+                .iter()
+                .map(|item| item.code.as_str())
+                .collect::<HashSet<_>>();
+
+            assert!(result_ids.contains("result:nonlinear-support:iteration-count"));
+            assert!(result_ids.contains("result:nonlinear-support:final-residual-count"));
+            assert!(result_ids.contains("result:nonlinear-support:converged-flag"));
+            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:state-code"));
+            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-displacement"));
+            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-reaction"));
+            assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:state-code"));
+            assert!(
+                result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-displacement")
+            );
+            assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-reaction"));
+            assert!(result_ids
+                .contains("result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"));
+            assert!(result_ids.contains(
+                "result:loadcase:load-L-200:nonlinear-support:support-NL-140:uy-reaction"
+            ));
+            assert!(result_ids.contains(
+            "result:combination:combination-C-OPER-ALT:nonlinear-support:support-NL-140:uy-reaction"
+        ));
+            // DEC-067: the sliding-seeded friction support defers convergence one
+            // iteration so the bounded sliding force is applied before the loop
+            // converges.
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:iteration-count"),
+                2.0
+            );
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:final-residual-count"),
+                0.0
+            );
+            assert_eq!(
+                result_value(&result, "result:nonlinear-support:converged-flag"),
+                1.0
+            );
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-140:state-code"
+                ),
+                1.0
+            );
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-140:uy-displacement"
+                ),
+                0.0
+            );
+            assert!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-140:uy-reaction"
+                ) < 0.0
+            );
+            assert_eq!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-130-FRIC:state-code"
+                ),
+                3.0
+            );
+            assert_ne!(
+                result_value(
+                    &result,
+                    "result:nonlinear-support:support-NL-130-FRIC:uz-displacement"
+                ),
+                0.0
+            );
+            // DEC-067: the sliding support carries the bounded +mu*N tangential
+            // reaction opposing its negative-Z motion instead of a released zero
+            // reaction.
+            let friction_reaction = result_value(
+                &result,
+                "result:nonlinear-support:support-NL-130-FRIC:uz-reaction",
+            );
+            let normal_evidence = result
+                .results
+                .iter()
+                .find(|item| {
+                    item.id
+                        == "result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
+                })
+                .expect("derived normal evidence row is present");
+            assert_eq!(
+                normal_evidence.kind,
+                "nonlinear_support_friction_normal_reaction_derived"
+            );
+            assert_eq!(friction_reaction, 0.489527);
+            assert_eq!(normal_evidence.value, 48.952719);
+            assert_eq!(friction_reaction, round6(0.01 * normal_evidence.value));
+            let normal_metadata = normal_evidence.metadata.as_ref().unwrap();
+            assert!(normal_metadata.basis.contains("derived_support_reaction"));
+            assert!(normal_metadata.basis.contains("source_ref=support:S-130"));
+            assert!(normal_metadata.basis.contains("source_dof=uy"));
+            assert!(!normal_metadata
+                .basis
+                .contains("derived_normal_force_model=TBD"));
+            assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+            assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+        }
+    }
+

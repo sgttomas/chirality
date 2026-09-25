@@ -1,0 +1,16 @@
+{
+  "authority": "physics_manager relayed ROOT request and explicitly directed separately recorded seventh two-span and eighth fixed near-limit tests",
+  "original_six_prefix_unchanged": true,
+  "before_sha256": "6fff5e055fee05956b5f286c5859ffc4a2cc0d1cd064cd02bf65dbdb51c471ba",
+  "after_sha256": "add7d2128ed8bc9f1a3696d8757580d210aab5948b18aff55cea535fb4ecb119",
+  "pressure14_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+  "new_reference_sha256": {
+    "NEAR_TWO_SPAN_EXPECTATIONS.json": "9e64a19a992087ac03cfd797042f9298154587bd827f306d1201700cd4e9f70d",
+    "freeze_near_two_span.py": "17c8b275c8491e41086eda1bad642dc682e17c3eca0879351ab4608212d184b5",
+    "NEAR_TWO_SPAN_REFERENCE.md": "cf706244ff7785e007155abe43dc56c8244a7cc3f3bebd368364ff35969290d9",
+    "NEAR_FIXED_EXPECTATIONS.json": "0a1859d52a98baa3a5f3ce0ef3048294c40441b6aaf26ca912709118e2ccd285",
+    "freeze_near_fixed.py": "3b1e878a76b2b4ad5d41de2fbe0941267cec69ac102abcfe6a2a8096cd808cb8",
+    "NEAR_FIXED_REFERENCE.md": "c614d5deb64a2dbf004ee8cf15e54968d8e1b49bbe1c37c013213f8a05a4fa4d"
+  },
+  "numbers_and_tolerances": "earlier values/predicates unchanged; additional source references independently frozen before observation"
+}

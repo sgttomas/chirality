@@ -1,0 +1,78 @@
+{
+  "base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "branch": "codex/piping-pressure-stress-20260924",
+  "freeze_utc": "2026-09-25T00:15:29.448599+00:00",
+  "state": "initial core source frozen; pending final public tests and independent whole-slice review;50 legacy regression failures retained",
+  "paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+      "base_sha256": "534d93aec126d6102ae6a4649e52764d4bd32af3a41b528298ff1bdee3c7e215",
+      "status": "modified",
+      "bytes": 752429
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "base_sha256": "4573e181828d84f7fa385796162bb3bd2c9908ad32d29a7f193673125d4d67c1",
+      "status": "modified",
+      "bytes": 81781
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "base_sha256": "baa83a5a62ea34d0677a5c5c5d6cd2fd2f977b6b62a5e2d4ddd06fa18951abc0",
+      "status": "modified",
+      "bytes": 40993
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 9519
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 55004
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 41031
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "sha256": "444d39850a895dfe1a1e14815ed6e3592caa8f9255409e284e5462e8e8f70b0b",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 6440
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "base_sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2",
+      "status": "modified",
+      "bytes": 55962
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 16375
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "base_sha256": null,
+      "status": "new",
+      "bytes": 18135
+    }
+  ]
+}

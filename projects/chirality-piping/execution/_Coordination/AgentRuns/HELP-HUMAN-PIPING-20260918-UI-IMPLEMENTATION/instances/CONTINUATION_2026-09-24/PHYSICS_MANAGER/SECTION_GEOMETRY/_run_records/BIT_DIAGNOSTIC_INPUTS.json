@@ -1,0 +1,17 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "authorization": "manager granted narrow input-bit/cancellation diagnostic slot; original frozen tests unchanged; no source-input reconstruction",
+  "source_test_sha256": "6fff5e055fee05956b5f286c5859ffc4a2cc0d1cd064cd02bf65dbdb51c471ba",
+  "diagnostic_sha256": "306b66655fe31c3b4f45410ce2f4a5a6b3c9bb916d3ade658e829bc26e5034b5",
+  "changes_to_copy": "include paths rebased only, appended main prints existing input parse and public responses; test values/fixtures unchanged",
+  "linked_rlibs": {
+    "product": {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/libopen_pipe_stress_product_physics-9e1991ec25cb7254.rlib",
+      "sha256": "0684ae4997f56c83a1c6a0b18ae9c1f67c68e3535417be94bd1ec026de023244"
+    },
+    "serde_json": {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/libserde_json-aa8f0bdbcbf1210d.rlib",
+      "sha256": "3be425f731305c89d843081627373b1e719ab11af838fcaa7b5949c132c4c5f9"
+    }
+  }
+}

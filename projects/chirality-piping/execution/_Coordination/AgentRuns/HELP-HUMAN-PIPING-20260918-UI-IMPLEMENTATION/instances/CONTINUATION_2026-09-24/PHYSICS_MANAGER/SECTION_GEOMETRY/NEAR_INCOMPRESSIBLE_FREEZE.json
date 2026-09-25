@@ -1,0 +1,7 @@
+{
+  "status": "independent_source_netload_control_frozen_before_first_geometry_run",
+  "sha256": {
+    "NEAR_INCOMPRESSIBLE_EXPECTATIONS.json": "a701ac49584ee40d7a5387601152d782e89853d01498f6e65090da08c1f0a95e",
+    "freeze_near_incompressible.py": "de79873a290047e48d357557ae165c6cd56fb60f85410bb52ee531ce6bb18358"
+  }
+}

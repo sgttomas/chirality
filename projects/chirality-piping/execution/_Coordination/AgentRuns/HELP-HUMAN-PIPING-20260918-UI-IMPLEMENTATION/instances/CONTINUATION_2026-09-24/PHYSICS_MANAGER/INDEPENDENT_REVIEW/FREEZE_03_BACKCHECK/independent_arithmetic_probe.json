@@ -1,0 +1,28 @@
+{
+  "actor": "/root/c4_resume/startup_full_review",
+  "actual_parent": "/root/c4_resume",
+  "assignment_integrator": "/root",
+  "method": "Independent Python Fraction algebra, IEEE binary64 via Python float, deterministic source-key arithmetic; no Rust/public product run",
+  "source_bore_identity_cases": 6000,
+  "same_exact_bore_grouping": true,
+  "same_rounded_bore_distinct_source_keys": true,
+  "two_span_reference_exact_agreement": true,
+  "fixed_reference_exact_agreement": true,
+  "proper_rotation_exact_agreement": true,
+  "membrane_publication_arithmetic": {
+    "scope": "Expression-level counterexample only; public path unverified by this reviewer",
+    "OD_m": 4e-77,
+    "wall_m": 1e-77,
+    "p_Pa": 4.7e-170,
+    "nu": 0.1,
+    "wall_published_N": 5e-324,
+    "stable_membrane_Pa": 3.1333333333333337e-171,
+    "redivided_membrane_Pa": 5.242199316501608e-171,
+    "relative_error": 0.6730423350537045
+  },
+  "limits": [
+    "Source-key arithmetic agreement does not qualify rounded pressure products or solver conditioning.",
+    "The 32epsilon normwise cancellation screen is an admission screen, not a universal per-component or subnormal forward-error proof.",
+    "No source/test edits and no model execution."
+  ]
+}

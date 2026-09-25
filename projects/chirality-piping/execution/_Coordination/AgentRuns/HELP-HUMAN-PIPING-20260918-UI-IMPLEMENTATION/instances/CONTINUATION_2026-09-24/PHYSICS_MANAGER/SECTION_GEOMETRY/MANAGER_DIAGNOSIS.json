@@ -1,0 +1,14 @@
+{
+  "purpose": "diagnostic consistency between declared normalized annulus and current frame assembly, not independent engineering oracle",
+  "original_probe_sha256": "81ce13a380e060e9ebb9e98f4033ef835a232d07b613760cc8ffe17dba71f73e",
+  "truthful_header_probe_sha256": "60477889ed95339d8675b3a7dfc933e8ab08ab42102f946104fdb6373d3f3a8a",
+  "header_correction": "original copied integration-test header did not apply to new manager control; original exact executed bytes preserved, corrected header states actual origin",
+  "original_location": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry_probe.rs",
+  "log": "../section-geometry-probe-01.log",
+  "observed_expected_m": 3.600004698054407e-07,
+  "observed_actual_m": 3.600002095934281e-07,
+  "relative_difference": -7.228102028374054e-07,
+  "criterion": "unchanged1e-9 relative",
+  "source_changed": false,
+  "probe_moved_out_of_product_tests": "preserved here; independent replacement test is separately assigned"
+}

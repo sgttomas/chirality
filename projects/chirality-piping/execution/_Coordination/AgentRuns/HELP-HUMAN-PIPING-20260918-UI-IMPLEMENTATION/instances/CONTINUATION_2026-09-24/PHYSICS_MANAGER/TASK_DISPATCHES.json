@@ -1,0 +1,51 @@
+{
+  "failed_initial_spawn": {
+    "task_name": "pressure_regions",
+    "result": "agent thread limit reached",
+    "executed": false
+  },
+  "resumed_tasks": [
+    {
+      "agent": "/root/solver_elements",
+      "harness_parent": "/root",
+      "assignment_issuer": "/root/physics_manager",
+      "implementation_integrator": "/root/physics_manager",
+      "mechanism": "delegated-harness-native followup_task on ROOT-nominated retained TASK",
+      "intended_role": "TASK Type2",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/BRIEF.md",
+      "brief_sha256": "c027e3e4b6ccbcadf3101c17f16595ae6333e078da6f12b72f615e78a6e3cba0",
+      "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "dispatch_utc": "2026-09-24T23:52:03.326308+00:00",
+      "actual_tool_result": "followup_task accepted; execution completion not yet observed",
+      "enforcement": "instructional disjoint write scope; same shared host filesystem permissions, no per-agent sandbox asserted"
+    },
+    {
+      "agent": "/root/numerical_policy_review",
+      "harness_parent": "/root",
+      "assignment_issuer": "/root/physics_manager",
+      "implementation_integrator": "/root/physics_manager",
+      "mechanism": "delegated-harness-native followup_task on ROOT-nominated retained TASK",
+      "intended_role": "TASK Type2",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/BRIEF.md",
+      "brief_sha256": "40bca4499393ff9155c970a2944fa878c3aea6ad7eba8c824893774a507b1ca4",
+      "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "dispatch_utc": "2026-09-24T23:52:03.326776+00:00",
+      "actual_tool_result": "followup_task accepted; execution completion not yet observed",
+      "enforcement": "instructional disjoint write scope; same shared host filesystem permissions, no per-agent sandbox asserted"
+    },
+    {
+      "agent": "/root/c4_projection_design",
+      "harness_parent": "/root",
+      "assignment_issuer": "/root/physics_manager",
+      "implementation_integrator": "/root/physics_manager",
+      "mechanism": "delegated-harness-native followup_task on ROOT-nominated retained TASK",
+      "intended_role": "TASK Type2",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/BRIEF.md",
+      "brief_sha256": "41ae6939e98bd0e7e8f06cddf477ad49c9bb49e82b85d8afb8c632ffdac35b0e",
+      "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "dispatch_utc": "2026-09-24T23:52:03.326854+00:00",
+      "actual_tool_result": "followup_task accepted; execution completion not yet observed",
+      "enforcement": "instructional disjoint write scope; same shared host filesystem permissions, no per-agent sandbox asserted"
+    }
+  ]
+}

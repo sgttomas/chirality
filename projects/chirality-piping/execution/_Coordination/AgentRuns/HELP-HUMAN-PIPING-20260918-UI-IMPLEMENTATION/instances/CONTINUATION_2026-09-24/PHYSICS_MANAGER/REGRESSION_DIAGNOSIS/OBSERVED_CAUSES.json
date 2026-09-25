@@ -1,0 +1,765 @@
+[
+  {
+    "test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+    "observed_diagnostic_codes": [
+      "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+      "RULE_CHECK_INPUTS_MISSING",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "HYDROTEST_PRESSURE_UNSUPPORTED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations",
+    "observed_diagnostic_codes": [
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+      "RULE_CHECK_INPUTS_MISSING",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+      "RULE_CHECK_INPUTS_MISSING",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+      "RULE_CHECK_INPUTS_MISSING",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+      "RULE_CHECK_INPUTS_MISSING",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::missing_load_input_blocks_with_diagnostic",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::missing_material_blocks_with_diagnostic",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::missing_or_invalid_project_length_units_block_preview",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::mixed_units_are_normalized_at_preview_mechanics_boundary",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+    "observed_diagnostic_codes": [
+      "RULE_CHECK_INPUTS_MISSING",
+      "RULE_CHECK_INPUTS_MISSING",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "COMPONENT_NODE_UNKNOWN",
+      "BRANCH_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "RIGID_COMPONENT_MAPPING_INPUT_INVALID",
+      "COMPONENT_NODE_UNKNOWN",
+      "COMPONENT_NODE_UNKNOWN",
+      "EXPANSION_JOINT_MAPPING_INPUT_INVALID"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::range_combination_records_each_operand_modulus_basis",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::shared_section_reference_failures_are_explicit",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::under_restrained_model_reports_solver_diagnostic",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_element_force_components",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_endpoint_stress_components",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_global_displacement_components",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_exposes_nonlinear_support_loop_evidence",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  },
+  {
+    "test": "tests::valid_invented_model_solves_deterministically",
+    "observed_diagnostic_codes": [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      "SPRING_HANGER_USER_DATA_REVIEWED",
+      "CONSTANT_EFFORT_USER_DATA_REVIEWED",
+      "RIGID_COMPONENT_STIFFNESS_SCALING_REVIEWED",
+      "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"
+    ],
+    "legacy_pressure_refusal_observed": true
+  }
+]

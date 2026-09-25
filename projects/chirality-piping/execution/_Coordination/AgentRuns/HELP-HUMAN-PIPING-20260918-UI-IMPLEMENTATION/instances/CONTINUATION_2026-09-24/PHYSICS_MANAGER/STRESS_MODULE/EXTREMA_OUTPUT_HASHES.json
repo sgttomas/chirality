@@ -1,0 +1,30 @@
+[
+  {
+    "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+    "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_REFERENCE_DISPOSITION.md",
+    "sha256": "fc5be638e79e7ea862dff7129adfe806f2cf26342a7d8c2ee8c468bd1d1b2620"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_RETURN.md",
+    "sha256": "04713cc94fb5ac4d37c3f26e6d9560e15383faa6107fcd7d9329bde4731d14e7"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/EXTREMA_BASIS.json",
+    "sha256": "676005327cf4d487145b1d07ab243dbaea26df2ed26b6a6bcd62cd0b7e4fd6bf"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-execution-01.json",
+    "sha256": "01d5d70f5e311025962a060e16f19beb4d24aec2d372b699e76b23a8e0c5ca28"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-build-01.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/extrema-run-01.log",
+    "sha256": "878416cf02518238d8fffff8a8e0f2e837806c3b555684a75ff160f2ba757c6a"
+  }
+]

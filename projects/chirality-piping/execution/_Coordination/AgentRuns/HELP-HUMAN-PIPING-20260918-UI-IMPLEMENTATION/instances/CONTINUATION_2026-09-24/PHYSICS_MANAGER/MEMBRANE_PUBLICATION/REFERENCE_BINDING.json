@@ -1,0 +1,9 @@
+{
+  "reference_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/FREEZE_03_BACKCHECK/independent_arithmetic_probe.json",
+  "reference_sha256": "23db606adf7fe61f4df6031ac6b11b8285b88b12d6dfe381a04faaabd13c349c",
+  "origin": "independent reviewer Fraction expression reference, no public execution claimed",
+  "test_sha256": "44847cc6e60f46ea7adfdfe31cfa1db6aeb4679e6bda6200ae921b05d049dc3c",
+  "source_freeze": "FREEZE_03",
+  "tolerance": "unchanged relative 1e-9 for represented nonzero normal stress",
+  "purpose": "publication after subnormal force rounding; not subnormal source-load forward accuracy or material fitness"
+}

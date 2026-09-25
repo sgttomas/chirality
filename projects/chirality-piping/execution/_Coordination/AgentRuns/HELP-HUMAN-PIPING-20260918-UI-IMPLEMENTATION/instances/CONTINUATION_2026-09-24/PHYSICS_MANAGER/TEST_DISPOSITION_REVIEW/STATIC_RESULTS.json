@@ -1,0 +1,382 @@
+{
+  "status": "STATIC_PROBES_PASS_NOT_PRODUCT_EXECUTION",
+  "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "patch": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs",
+      "hunks": 1,
+      "preimage_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "postimage_sha256": "086bbc7b789e839bf6eecfb9114c74cc1d654b0853cf76077d42b0ba1d281336",
+      "strict_patch_matches_f03_and_postimage": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "hunks": 65,
+      "preimage_sha256": "322c7f8b9a4040d77c3ccc0a5ba336715b1575e87267cc5100ae8125588390f8",
+      "postimage_sha256": "f68c71bf4873ce7a65e0ef9e740fff113c04014c705adb0297498053e235aa4b",
+      "strict_patch_matches_f03_and_postimage": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "hunks": 1,
+      "preimage_sha256": "ff582870bc155e65c361a60183c49fb8afa1712eba9cf61cecaee5ddcc45b908",
+      "postimage_sha256": "5755da52f60893102138d0f0f35b72276caf62fa08f982218da85d675ec5d1aa",
+      "strict_patch_matches_f03_and_postimage": true
+    }
+  ],
+  "all50_unique_proposal_and_failure_and_candidate_set_equal": true,
+  "all50_raw_failure_sections_contain_preceding_pressure_refusal": true,
+  "current_functions": [
+    {
+      "test": "tests::audit_retained_spring_fixture_uses_selected_node_state",
+      "before_sha256": "d11babe2a0de5dce8b22f9b586edb21d056bcc57a64bba543c1e474312942cbb",
+      "after_sha256": "2ab56e76bda5d99f88c773e3133a30b4dd8792aad5928e4421e9c6a96f5507ac",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::authored_coordinate_units_preserve_preview_results_and_source",
+      "before_sha256": "d8958635ef3a17e0d4448779bc4d2bfaa92b85d0b0348e6c0ca1d7a2579b7339",
+      "after_sha256": "e323777161d494d1105b313b09a071d5e76b7c4350a80354bf74da55e2bc83df",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::bend_component_user_multipliers_emit_stress_review_rows",
+      "before_sha256": "afeb8e56e9855c97683e494289364c1dce407e207de84656bfd00963f8c03e9d",
+      "after_sha256": "9be827fdd2e7f6b966de26b849cb325ab619ea3029272e0c5bd79cc200f11b1d",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::branch_component_user_multipliers_emit_side_specific_stress_review_rows",
+      "before_sha256": "0e3271bf23481e7d15788efb2b0a0dc8b49c84400b3f590eb568c405c4a82016",
+      "after_sha256": "9bf7f80c85205e4cd82face1aeb777719b4dfa7db166191680144ad95a119e3f",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::combination_stress_summary_rows_are_skipped_with_diagnostics",
+      "before_sha256": "d2841bcb4d53319118ea8d0063bff20e6a1ecf1efdf41b339b4bca89127437f5",
+      "after_sha256": "091784295f447bcac1a3775482299f1182f592c05ca4b23fb04ee0b124ebad04",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence",
+      "before_sha256": "38677e3be34dd36668d79e8e99dd865423eac50d5946a73308b6dc98369b43b9",
+      "after_sha256": "8cca5a44305ccb83150c146b00b09f516a50af9146b41483d285dbbe8c32d063",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::curved_bend_macro_element_emits_arc_interior_station_results",
+      "before_sha256": "889bf97000b27f7fdb9f7b00e52ec3373ad137eab0cabbf99320e932be0c6b63",
+      "after_sha256": "5c5182d67e7dc9cacbe5685f6661bd26da923d99b5442dbf56636931752fd3fb",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::dense_scrutiny_mode_keeps_sparse_parity_row",
+      "before_sha256": "f3fbbc03106bf36b1624a2e38b1db9a68994a19156f4fc5ffb4994b1bc55f00d",
+      "after_sha256": "be7e59a44fc2ba28fd2899bacf3745dc4fb9438601449d67a1c24159ce5ff4ca",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+      "before_sha256": "a09f9b13fbedbd8b99de2e770d4a1a41e26fde4b01f58c8fc3058ac2c5ee6285",
+      "after_sha256": "0eaa197e76e8f250559e72cbe1bf31460d6156a827716680bfb13ea9ba40c4b9",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::f3_canonical_spring_retains_elastic_stiffness",
+      "before_sha256": "9cd3b3832a86b28de68119ffe5ce023399af70a0d9b07cf6b38dc5b7387a667b",
+      "after_sha256": "838775b39382ab6b7a3e25dc40cd120c9947599b49ea5eaebb72aa0c25f8a531",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations",
+      "before_sha256": "6d8ea65d4a4d9a49dec9f9ce5d09a1b0ebcecf2c676dc4ed44066594af486344",
+      "after_sha256": "90811558a5800a6ce389a993c922902b57dd54339ffae07035301ff43367d2ab",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads",
+      "before_sha256": "5c9fabe742918a7c733ec849b7d0d42e0fe3244f4cefab2722eb28ad1f9626d5",
+      "after_sha256": "c5fc7a5bd4cdefe3d2b6615e22fae3ffb592b9430cbfd790a2a11c16dd07a3a7",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::f3_real_hanger_nonlinear_and_dof_aliases_remain_supported",
+      "before_sha256": "cf5a037071305aab02741413ee7314591f7dc0c411163c1e8db72c16cf4096c7",
+      "after_sha256": "f6b2260b251100d38cd98fc6cc48978c01c9efb0baf8e38d2ca250a59a1f2bb1",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::legacy_bend_mode_keeps_multiplier_and_chord_realization_unchanged",
+      "before_sha256": "130d8a2e43b3087b05c19b28a1d905159894997c7c27edc333fcf8accf5234bf",
+      "after_sha256": "28a7d42239dc46793c6b98e830ac5192dce66b46d3eef5fce831c00e2ce142b9",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::mill_tolerance_units_are_normalized_at_preview_boundary",
+      "before_sha256": "4342223bbf48f4ce77c3bebc6b6a03daed57d96a3390859bfdd39fb6e225120f",
+      "after_sha256": "14173e6638eddf15053d66e9247488f914fc3e3025b4b98cc364743a0fe3e436",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::missing_load_input_blocks_with_diagnostic",
+      "before_sha256": "dd9b14c37a2e2c2d29cfe4dad64c655de7e1aefc88bc701f12e6917632ef616e",
+      "after_sha256": "c6f9d9eba02343ec612283bcdaaf31711bbd7b5f72f66ce0a12595eb7c981e9f",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::missing_material_blocks_with_diagnostic",
+      "before_sha256": "3f03f486125b81db0d62a118ea4f3a60ccdcd0462e420cc2f8e9c51f4ab23568",
+      "after_sha256": "3b40792766a442cb8e0b1818722d237d869fe7ebd8e0c4a1f50485e232628156",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::missing_or_invalid_project_length_units_block_preview",
+      "before_sha256": "e87422b3330dc84d5f84ef4fc4e3e3c19321b6d623c1146107b43a651a176a49",
+      "after_sha256": "28232bb17462491715f60411c28d69c84a812d30b76b36b9c7e40dc3c594cd53",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::missing_pipe_orientation_blocks_with_diagnostic",
+      "before_sha256": "2071a3cd161b380977ff148d4db756365b9c058903b10ac17262983f1ed2e7c6",
+      "after_sha256": "b32b8d02a7ef45f225d7ea91a1f485360336a4a8f1ad4bc35dc13408e150b605",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::models_without_constant_effort_supports_are_untouched_by_the_consumption_path",
+      "before_sha256": "756e6ca335b19c77105075e1911a1b947b3fb9728d63e238a59273d31be72714",
+      "after_sha256": "b105b72a5ee532f50a01f65facb72cf65139c4b1af8958bdf5f1daa93245b54c",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::operation_authored_primitive_categories_map_to_preview_mechanics",
+      "before_sha256": "3136669e7fcc53c55cf794e4078516fc52115c07eadd4108cbe73b23762f1d0d",
+      "after_sha256": "69de2c2443d68fe8bf784c01c8448d453b49399e1729af46e4b4d83b7cf43d0e",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::range_combination_records_each_operand_modulus_basis",
+      "before_sha256": "0b5a974dd1bba4261d090aa4d7f3ffee9b6618a4f54457d42ed008d5993f3680",
+      "after_sha256": "b3fe39e120b3275acb543216b9567854b337ea92e095b2aa8c7e925f3c4eed64",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::range_envelope_combination_selects_each_shipped_mode_deterministically",
+      "before_sha256": "a44e828f0ec76c471cd816386dca5492a2d871a99bab723c809c3160df245507",
+      "after_sha256": "3a3b7c77eb661f2e20021de65011aed143bdb0fb1b6436dd30190a3119118864",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::shared_section_blank_reference_identity_blocks_common_entry",
+      "before_sha256": "17e91cb9a968c3d574b058ae38c6b4c09a895619c17199d5ad1bf2a41a50f9ca",
+      "after_sha256": "802c47bfd2b97f312ea251183be80f8d78c125f88d138e2ed60b974dc73bf1a7",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::shared_section_equivalent_but_different_cache_representation_is_stale",
+      "before_sha256": "ed7b9537cab9784321991610fccd5688abfeb76fd3dae483639a6150cf3dcd09",
+      "after_sha256": "8bb6b0ab0b3c71b79f719250264aa63c9a39a0f7558a72efe11b045503dce895",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::shared_section_local_mill_tolerance_must_leave_positive_wall",
+      "before_sha256": "b2171ef165b378fb1228b3e5882a90801be539accd7aaf61f458d1f8b36b7990",
+      "after_sha256": "873e949c629ab163ddd5e0e3a51a9f41a1909056cee9f8d2c5393d7185777b66",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::shared_section_reference_failures_are_explicit",
+      "before_sha256": "4c7e908a32960bd7240fea8041c8a610c20b8059113ceaee155cf93c4b21adf6",
+      "after_sha256": "a8745bd5438cf56a566dce5e5a5c09bb64b5f2113d25cc670a14f9a370c2464e",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::shared_section_stale_cache_blocks_common_solver_entry",
+      "before_sha256": "42839f62433570d19584bedd3605d8b2488c9664ea40c4632c820881611af6f5",
+      "after_sha256": "c6c4d6bcadd0cf63421dce7714dbc90a3631c3c0e7b48ec34d31c389ce95fe85",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults",
+      "before_sha256": "19749513c46f1de3faf355c6f01379066d89d5fe328274aae9ec22c5229e34b0",
+      "after_sha256": "a321f4031191975172069a317cc750b670c0d744d76ac4f331755e00d05bda47",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::subtraction_combination_subtracts_solved_rows_with_signed_determinism",
+      "before_sha256": "3c62633616b1444e837717ae26afa805ea2c52b8b98056aacdd8248a70be4a3a",
+      "after_sha256": "5da6d2d1a8057358fcb56d2b55d8ab2916e81aacf778562f42ed8a6ac45d8077",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::under_restrained_model_reports_solver_diagnostic",
+      "before_sha256": "9ca5c079a7c31b1683e546298f1bb96f39166f65ad6140df7e9179d72e0dc239",
+      "after_sha256": "71d90a970fa0e28aac3d99f9b97e2c14eaf6c5c7c876f1807f9946eba80adfea",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_element_force_components",
+      "before_sha256": "e88e30f5ab1b51678a927156a96888f148ca16de042353b2e72f925db4030d4f",
+      "after_sha256": "2124ddb18cea7d43c8d2fc081757d9d0074e5040228a98f48007c65dce313bcd",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_explicit_load_combination_results",
+      "before_sha256": "9709f1782395e0f5979ac7c4cc2431f973a552ea0baa76dd95547742a0e1717d",
+      "after_sha256": "bc3252a95e14d89f83e32d1dbb211f477c1a1bf36c3c7c332284653d0ef8e7e1",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_global_displacement_components",
+      "before_sha256": "d1d3aded66a247f0abd3145e2d7d10796b6c5be64cfb24d528c85c066f8492ed",
+      "after_sha256": "cc4742782ad0301eb232b79f7a407936eff6f18243e5673a3058a1ec14f237bb",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_solves_deterministically",
+      "before_sha256": "984ea394bccfd5d97850d417d44b076a3a856555c1bfc2aea8d2e08473a26127",
+      "after_sha256": "55ff3dc6e55eeb702246c4913da0ad44f823126a520f6ef7dc3155354ec81881",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    },
+    {
+      "test": "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics",
+      "before_sha256": "4e814780a4decf79190cbc9d74fe40e84cf0f6020655b882f0acd226bdd7c964",
+      "after_sha256": "923d89d72069585737f9aec0ae849397e46e22aa9ad06b97aa79554f651ab369",
+      "only_declared_constructor_wrappers": true,
+      "assertions_and_other_bytes_preserved": true
+    }
+  ],
+  "historical_functions": [
+    {
+      "test": "tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector",
+      "before_sha256": "1e21c9130da5eda9d99d4a8730a90ecf4a5c33af0c2cabc88f1533c922328be3",
+      "after_sha256": "e9da97d8e6907f157986c45e43d74d001c2773740d34bfc09e0239a79a6f7ec3",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state",
+      "before_sha256": "04d61fde3e153de1b1266853e7df99bf6c2ab63e9dafd40b52d2bbbfa8ef35ea",
+      "after_sha256": "5ec6602d36829fcabdd1d5bb1cbbe29b211ceb3133d9b301622274a0ef5ed05e",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves",
+      "before_sha256": "dc750347ea5c4d5652b1f0ff8b3e574611c08247a51a3afcd941984a28391fce",
+      "after_sha256": "8ee2918bf8cacc0b5a11742cb6df447883430eae512146a7e2a7e8316b60cc06",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations",
+      "before_sha256": "a8bb6c8258c2b3af33997afde75349da67b7821a7d58ffd453e23cf30d0e0e0d",
+      "after_sha256": "01524fb20807b2996d38443286305bda180c26a52c870a118a86493c1dddf060",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress",
+      "before_sha256": "d90ce52ddbc2d1d4912cb8c7a3e27a593b7faf8ef47c813f3146a366ad998308",
+      "after_sha256": "400fe00e684054e4337a8671954ef0dd090aca12b54c444c09d1b1a55a653a48",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence",
+      "before_sha256": "00d978c761a92ac250d0a41b0b3396e6e1529fab33e1d22c2e6e2e965ea9f5e5",
+      "after_sha256": "d1c80b4c0bcb3c31c0f564f3451736320072fff9c4ceb32186b1846a943d072f",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::generated_result_surface_matches_fallback_fixture_force_metadata",
+      "before_sha256": "a3cbfdcf72f4e69b753c78385c081688eed8cd51c9a8c6815ca497e277207994",
+      "after_sha256": "a36520b0e04a96817d1db78c413c704aba6c07098033177b42f294d90a88fd60",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign",
+      "before_sha256": "2f9f1f9288c2b73fc06c979090a943e8abe06c74ef658fbc5f5c2bfa022ec9c0",
+      "after_sha256": "8d3f6f6c6824c2191232bf47a3c2a08713054eb4a435ec0ba1a8d64e3288eb84",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows",
+      "before_sha256": "c5a2e95a6054138b9a71815c6019e4061a86f8c1d77889b94756be8776645055",
+      "after_sha256": "f38e1dacfc25a32d1260d8f55cf3843d3552e3f1f5c09154fa35a9f6ea783049",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants",
+      "before_sha256": "5603bfd0bc79fa1cd4968028a79a9fbcac440bca443a86a81fe6aeb87e8fa035",
+      "after_sha256": "01d426cc5203f067a687db8487d82d8f6682c96a324368ef32c93cd689694c56",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::mixed_units_are_normalized_at_preview_mechanics_boundary",
+      "before_sha256": "554a14e94ca3e40a0334cf63179b2e6038ad345926aa4345ab0d90c4418b0051",
+      "after_sha256": "ab1d4d4def71511948032fe96400c9cf44d164184392e6758476ee8cd1427a92",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_endpoint_stress_components",
+      "before_sha256": "b9073ae5fff45839362effffe2c1b150b499e834dba863c4f1fb147b0c6c0fda",
+      "after_sha256": "a3162ea3682464b46f8000829f5137d55035f64c3d57805aa4f3c4f3f7d4def3",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    },
+    {
+      "test": "tests::valid_invented_model_exposes_nonlinear_support_loop_evidence",
+      "before_sha256": "4af4600f26faa65f1b0edb72777245cc7e4efa6c147e2469b2acdfba73e1e120",
+      "after_sha256": "6a3c611521e6828e4dcb619efd789ac26ef32b0be472ead6ea53a66e24f6ea9f",
+      "only_name_and_entrypoint_changed": true,
+      "original_values_assertions_tolerances_preserved": true
+    }
+  ],
+  "p5_early_full_split_current_prefix_unchanged": true,
+  "p5_checked_at_least_20_retained": true,
+  "global_request_unchanged": true,
+  "prepared_input_hashes_all_match": true,
+  "limits": "No build, test runtime, Git, native/network operation or live product edit. Frozen patch basis only; unrelated simultaneous live membrane changes excluded."
+}

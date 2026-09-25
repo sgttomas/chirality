@@ -1,0 +1,9 @@
+# ROOT prospective source-geometry selection
+
+Received through collaboration from /root during this physical-correctness run, under the owner's expert-correctness authorization. This is a derivative record of that actual steering, not independent authority. Earlier represented-ro/ri repair and its measured oracle remain preserved as an intermediate comparison.
+
+ROOT requires closing the known source-OD/wall error as well as internal geometry agreement: use a bounded exact-profile source-OD/effective-wall path with stable As=pi*t*(OD-t), coherent Ai/I/J/Z and explicit authored normalized OD/wall geometry_basis. Rounded radii are derived observations, not replacement source inputs. Preserve the existing radii-only scalar constructor/arithmetic/history. Below-ULP and nonrepresentable pressure/frame guards remain until separately justified. The original1e-9 physical comparison is retained. Independent source-input geometry/response qualification must precede code effect.
+
+ROOT approved pressure geometry I_m4/J_m4/Z_m3 and exact_cases.pipe_sections for all active members. Proposed closed member fields are pipe_id,geometry_basis,outside_diameter_m,effective_wall_thickness_m,ri_m,ro_m,Ai_m2,As_m2,I_m4,J_m4,Z_m3. Each duplicated case/region geometry must come from the same selected source/built section.
+
+A coordinated M35 stable-algebra successor is separately authorized in the generated-loads branch. PHYSICS and AUTHORING must share one owned pure source-OD/wall area implementation or explicit source helper handoff. Geometry-only reuse adds no E/nu input requirement to mass. Pure area representability and pressure/frame admission guards are distinct: a positive source area may remain representable when rounded inner/outer radii coincide. M35's physical mass basis and v1 lineage/history remain explicit.

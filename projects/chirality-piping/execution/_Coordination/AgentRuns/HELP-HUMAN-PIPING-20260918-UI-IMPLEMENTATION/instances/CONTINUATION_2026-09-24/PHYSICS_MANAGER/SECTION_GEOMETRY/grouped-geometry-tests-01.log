@@ -1,0 +1,10 @@
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+error: no rules expected `[`
+   --> src/pressure_runtime.rs:809:102
+    |
+809 |         evidence.push(json!({"node_ref":model.nodes[dof/DOF_PER_NODE].id,"component":["Fx","Fy","Fz"][dof%DOF_PER_NODE],
+    |                                                                                                      ^ no rules expected this token in macro call
+    |
+    = note: while trying to match end of macro
+
+error: could not compile `open_pipe_stress_product_physics` (lib) due to 1 previous error

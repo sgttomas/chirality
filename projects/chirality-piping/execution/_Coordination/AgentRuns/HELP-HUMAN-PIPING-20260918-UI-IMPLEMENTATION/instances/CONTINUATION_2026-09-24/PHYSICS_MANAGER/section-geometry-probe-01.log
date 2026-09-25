@@ -1,0 +1,150 @@
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6765:4
+     |
+6765 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:300:19
+    |
+300 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:307:19
+    |
+306 | impl AxialState {
+    | --------------- methods in this implementation
+307 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+311 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+315 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:350:15
+    |
+350 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib) generated 5 warnings
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: constant `AS` is never used
+  --> tests/pressure_section_geometry_probe.rs:21:7
+   |
+21 | const AS: f64 = 0.0011 * PI;
+   |       ^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `EA` is never used
+  --> tests/pressure_section_geometry_probe.rs:22:7
+   |
+22 | const EA: f64 = 220_000_000.0 * PI;
+   |       ^^
+
+warning: constant `P` is never used
+  --> tests/pressure_section_geometry_probe.rs:23:7
+   |
+23 | const P: f64 = 5000.0 * PI;
+   |       ^
+
+warning: constant `STATIONS` is never used
+  --> tests/pressure_section_geometry_probe.rs:25:7
+   |
+25 | const STATIONS: [(&str, f64); 5] = [
+   |       ^^^^^^^^
+
+warning: constant `MODES` is never used
+  --> tests/pressure_section_geometry_probe.rs:32:7
+   |
+32 | const MODES: [PreviewSolverMode; 2] = [
+   |       ^^^^^
+
+warning: function `row` is never used
+   --> tests/pressure_section_geometry_probe.rs:142:4
+    |
+142 | fn row<'a>(
+    |    ^^^
+
+warning: function `displacement` is never used
+   --> tests/pressure_section_geometry_probe.rs:169:4
+    |
+169 | fn displacement(result: &MechanicsEnvelope, node_id: &str, vector: [f64; 3], scale_m: f64) {
+    |    ^^^^^^^^^^^^
+
+warning: function `support` is never used
+   --> tests/pressure_section_geometry_probe.rs:202:4
+    |
+202 | fn support(result: &MechanicsEnvelope, id: &str, force: [f64; 3], force_scale: f64) {
+    |    ^^^^^^^
+
+warning: function `pressure_row` is never used
+   --> tests/pressure_section_geometry_probe.rs:234:4
+    |
+234 | fn pressure_row(
+    |    ^^^^^^^^^^^^
+
+warning: function `pressure_fields` is never used
+   --> tests/pressure_section_geometry_probe.rs:268:4
+    |
+268 | fn pressure_fields(
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `region_evidence` is never used
+   --> tests/pressure_section_geometry_probe.rs:363:4
+    |
+363 | fn region_evidence(result: &MechanicsEnvelope, members: &[&str]) {
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `pressure_kind` is never used
+   --> tests/pressure_section_geometry_probe.rs:393:4
+    |
+393 | fn pressure_kind(kind: &str) -> bool {
+    |    ^^^^^^^^^^^^^
+
+warning: function `case_row` is never used
+   --> tests/pressure_section_geometry_probe.rs:405:4
+    |
+405 | fn case_row<'a>(
+    |    ^^^^^^^^
+
+warning: `open_pipe_stress_product_physics` (test "pressure_section_geometry_probe") generated 13 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.71s
+     Running tests/pressure_section_geometry_probe.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/pressure_section_geometry_probe-1a8e9145e718a794)
+
+running 1 test
+test thin_annulus_runtime_geometry_coherence_probe ... FAILED
+
+failures:
+
+---- thin_annulus_runtime_geometry_coherence_probe stdout ----
+ri=5.99999999989999991e-2 ro=5.99999999999999978e-2 expected=3.60000469805440719e-7 actual=3.60000209593428118e-7 relative=-7.22810202837405402e-7
+
+thread 'thin_annulus_runtime_geometry_coherence_probe' (79541249) panicked at tests/pressure_section_geometry_probe.rs:45:5:
+declared annulus geometry/assembly coherence: actual=3.60000209593428118e-7; expected=3.60000469805440719e-7; tolerance=3.60000469805440766e-16
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    thin_annulus_runtime_geometry_coherence_probe
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test pressure_section_geometry_probe`

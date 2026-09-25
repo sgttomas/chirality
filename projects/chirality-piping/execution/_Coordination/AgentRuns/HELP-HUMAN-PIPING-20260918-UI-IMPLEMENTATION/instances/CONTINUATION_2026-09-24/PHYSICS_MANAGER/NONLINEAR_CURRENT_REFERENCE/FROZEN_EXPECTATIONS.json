@@ -1,0 +1,195 @@
+{
+  "status": "independent_reference_not_observed_product_output",
+  "cases": {
+    "load:L-100": {
+      "original": {
+        "normal_magnitude_N": {
+          "reference": "48.952718890973642272305426860355279767006370894793783385290525726499961585454217",
+          "round6": "48.952719"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "0.48952718890973642272305426860355279767006370894793783385290525726499961590000",
+          "round6": "0.489527"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "-301.04728110902635772769457313964472023299362910520621661470947427350003841454578",
+          "round6": "-301.047281"
+        },
+        "source_UY_reaction_N": {
+          "reference": "-48.952718890973642272305426860355279767006370894793783385290525726499961585454217",
+          "round6": "-48.952719"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "-5.4691745195353122016765656582505306756311957292869388843224558546847498944388519000",
+          "round6": "-5.469175"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "0E-80",
+          "round6": "0.000000"
+        },
+        "stop_state_code": 1,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      },
+      "reverse_z": {
+        "normal_magnitude_N": {
+          "reference": "48.952718890973642272305426860355279767006370894793783385290525726499961585454223",
+          "round6": "48.952719"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "-0.48952718890973642272305426860355279767006370894793783385290525726499961590000",
+          "round6": "-0.489527"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "-398.95271889097364227230542686035527976700637089479378338529052572649996158545422",
+          "round6": "-398.952719"
+        },
+        "source_UY_reaction_N": {
+          "reference": "48.952718890973642272305426860355279767006370894793783385290525726499961585454223",
+          "round6": "48.952719"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "5.4691745195353122016765656582505306756311957292869388843224558546847498944388516000",
+          "round6": "5.469175"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "0E-80",
+          "round6": "0.000000"
+        },
+        "stop_state_code": 1,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      },
+      "reverse_all": {
+        "normal_magnitude_N": {
+          "reference": "350.00000000000000000000000000000000000000000000000000000000000000000000000000002",
+          "round6": "350.000000"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "-3.50000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "round6": "-3.500000"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "-2E-77",
+          "round6": "-0.000000"
+        },
+        "source_UY_reaction_N": {
+          "reference": "350.00000000000000000000000000000000000000000000000000000000000000000000000000002",
+          "round6": "350.000000"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "5.3927958157270536661102697767896368874816676898466948076998045844702838476387861000",
+          "round6": "5.392796"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "-0.31508173394551869421797212472838519155580007953154303751017326325046383985404280000",
+          "round6": "-0.315082"
+        },
+        "stop_state_code": 0,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      }
+    },
+    "load:L-200": {
+      "original": {
+        "normal_magnitude_N": {
+          "reference": "24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+          "round6": "24.476359"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "0.24476359445486821136152713430177639883503185447396891692645262863249980796000",
+          "round6": "0.244764"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "-100.52364055451317886384728656982236011649681455260310830735473713675001920727289",
+          "round6": "-100.523641"
+        },
+        "source_UY_reaction_N": {
+          "reference": "-24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+          "round6": "-24.476359"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "-2.7345872597676561008382828291252653378155978646434694421612279273423749472194257000",
+          "round6": "-2.734587"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "0E-80",
+          "round6": "0.000000"
+        },
+        "stop_state_code": 1,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      },
+      "reverse_z": {
+        "normal_magnitude_N": {
+          "reference": "24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+          "round6": "24.476359"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "-0.24476359445486821136152713430177639883503185447396891692645262863249980796000",
+          "round6": "-0.244764"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "-149.47635944548682113615271343017763988350318544739689169264526286324998079272711",
+          "round6": "-149.476359"
+        },
+        "source_UY_reaction_N": {
+          "reference": "24.476359445486821136152713430177639883503185447396891692645262863249980792727110",
+          "round6": "24.476359"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "2.7345872597676561008382828291252653378155978646434694421612279273423749472194257000",
+          "round6": "2.734587"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "0E-80",
+          "round6": "0.000000"
+        },
+        "stop_state_code": 1,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      },
+      "reverse_all": {
+        "normal_magnitude_N": {
+          "reference": "124.99999999999999999999999999999999999999999999999999999999999999999999999999998",
+          "round6": "125.000000"
+        },
+        "friction_UZ_reaction_N": {
+          "reference": "-1.25000000000000000000000000000000000000000000000000000000000000000000000002000",
+          "round6": "-1.250000"
+        },
+        "stop_UY_reaction_N": {
+          "reference": "2E-77",
+          "round6": "0.000000"
+        },
+        "source_UY_reaction_N": {
+          "reference": "124.99999999999999999999999999999999999999999999999999999999999999999999999999998",
+          "round6": "125.000000"
+        },
+        "friction_UZ_displacement_mm": {
+          "reference": "2.7090834075509658734078611020678690444683158564184169684540732544661219284512715000",
+          "round6": "2.709083"
+        },
+        "stop_UY_displacement_mm": {
+          "reference": "-0.10520992865888537755779033188087404157213534401341696060889538873707367495976786000",
+          "round6": "-0.105210"
+        },
+        "stop_state_code": 0,
+        "friction_state_code": 3,
+        "predicted_iteration_count": 2,
+        "predicted_final_changed_state_count": 0,
+        "predicted_converged_flag": 1
+      }
+    }
+  }
+}

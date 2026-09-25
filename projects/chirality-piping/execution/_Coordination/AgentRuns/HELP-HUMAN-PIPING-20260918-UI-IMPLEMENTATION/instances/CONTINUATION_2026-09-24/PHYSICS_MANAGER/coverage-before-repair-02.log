@@ -1,0 +1,84 @@
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6718:4
+     |
+6718 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:300:19
+    |
+300 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:307:19
+    |
+306 | impl AxialState {
+    | --------------- methods in this implementation
+307 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+311 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+315 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:350:15
+    |
+350 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib) generated 5 warnings
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: function `solve` is never used
+  --> tests/stress_maximum_coverage.rs:25:4
+   |
+25 | fn solve(wire: Value, mode: PreviewSolverMode) -> MechanicsEnvelope {
+   |    ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `close` is never used
+  --> tests/stress_maximum_coverage.rs:39:4
+   |
+39 | fn close(a: f64, b: f64, scale: f64) {
+   |    ^^^^^
+
+warning: `open_pipe_stress_product_physics` (test "stress_maximum_coverage") generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running tests/stress_maximum_coverage.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/stress_maximum_coverage-17e97a1001e49fcd)
+
+running 1 test
+test coverage_probe_two_cases ... FAILED
+
+failures:
+
+---- coverage_probe_two_cases stdout ----
+status=MECHANICS_SOLVED max=Some(LocatedQuantity { value: 289372.623803446, unit: "Pa", location_ref: "pipe:a-b", result_ref: "result:elastic-maximum:7:case:x1:8:pipe:a-b" }) diagnostics=[Diagnostic { id: "diagnostic:load:load-small:category-mapping", code: "LOAD_CATEGORY_PREVIEW_MAPPED", severity: "warning", message: "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification", source: Some("core/product_physics"), affected_refs: ["load:small", "case:x1"] }, Diagnostic { id: "diagnostic:load:load-large-force:category-mapping", code: "LOAD_CATEGORY_PREVIEW_MAPPED", severity: "warning", message: "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification", source: Some("core/product_physics"), affected_refs: ["load:large-force", "case:large"] }, Diagnostic { id: "diagnostic:load:load-large-moment:category-mapping", code: "LOAD_CATEGORY_PREVIEW_MAPPED", severity: "warning", message: "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification", source: Some("core/product_physics"), affected_refs: ["load:large-moment", "case:large"] }, Diagnostic { id: "diagnostic:exact-stress:pipe-a-b:extrema", code: "EXACT_STRESS_GOVERNING_MAXIMUM_UNAVAILABLE", severity: "warning", message: "signed physical rows remain available; governing circular-normal-stress maximum is unavailable: UnrepresentableBound { span_index: 0 }", source: Some("core/product_physics"), affected_refs: ["case:large", "pipe:a-b"] }, Diagnostic { id: "diagnostic:physics:high-displacement-review", code: "HIGH_DISPLACEMENT_REVIEW", severity: "warning", message: "computed preview displacement exceeds the invented review threshold; inspect support/load inputs before relying on trends", source: Some("core/product_physics"), affected_refs: ["result:loadcase:case-large:disp:node-b", "node:b"] }, Diagnostic { id: "diagnostic:physics:rule-inputs-missing", code: "RULE_CHECK_INPUTS_MISSING", severity: "warning", message: "rule-check inputs and protected criteria are absent; no compliance result is produced", source: Some("core/product_physics"), affected_refs: [] }]
+
+thread 'coverage_probe_two_cases' (79494098) panicked at tests/stress_maximum_coverage.rs:61:5:
+incomplete all-case domain cannot publish successful-subset maximum
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    coverage_probe_two_cases
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test stress_maximum_coverage`

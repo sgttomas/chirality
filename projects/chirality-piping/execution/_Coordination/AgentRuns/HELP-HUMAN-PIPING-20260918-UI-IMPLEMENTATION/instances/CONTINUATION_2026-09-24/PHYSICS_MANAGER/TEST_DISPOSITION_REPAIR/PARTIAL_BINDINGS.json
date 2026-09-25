@@ -1,0 +1,9 @@
+{
+  "status": "partial pending repair; nonlinear reference still required",
+  "thermal_basis": "TEST_DISPOSITION_CANDIDATE/source lib.rs",
+  "kpa_basis": "FREEZE_03/source tests/pressure_runtime.rs",
+  "patches": {
+    "exact_kpa.delta.patch": "aaa11cab61ea2cb4a89e69feafb0976b79394bdbfcbca511fb4fc9f7da72190f",
+    "thermal_route.delta.patch": "9700bb60348bfa946f0a71abe17c49db10c96afd7fc4e7cd6d8342f9433e5bf1"
+  }
+}

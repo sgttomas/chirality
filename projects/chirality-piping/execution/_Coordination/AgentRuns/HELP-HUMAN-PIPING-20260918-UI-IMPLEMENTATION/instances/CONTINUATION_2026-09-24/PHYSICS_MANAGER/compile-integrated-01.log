@@ -1,0 +1,61 @@
+   Compiling open_pipe_stress_stress_recovery v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/stress_recovery)
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6718:4
+     |
+6718 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `AxialState` is never constructed
+   --> src/pressure_exact.rs:300:19
+    |
+300 | pub(crate) struct AxialState {
+    |                   ^^^^^^^^^^
+
+warning: methods `wall_force_n`, `effective_force_n`, and `axial_membrane_pa` are never used
+   --> src/pressure_exact.rs:307:19
+    |
+306 | impl AxialState {
+    | --------------- methods in this implementation
+307 |     pub(crate) fn wall_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^
+...
+311 |     pub(crate) fn effective_force_n(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+315 |     pub(crate) fn axial_membrane_pa(self) -> f64 {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `axial_state` is never used
+   --> src/pressure_exact.rs:350:15
+    |
+350 | pub(crate) fn axial_state(
+    |               ^^^^^^^^^^^
+
+warning: field `material` is never read
+  --> src/pressure_runtime.rs:68:9
+   |
+64 | pub(crate) struct ExactPressurePipeState {
+   |                   ---------------------- field in this struct
+...
+68 |     pub material: IsotropicENu,
+   |         ^^^^^^^^
+   |
+   = note: `ExactPressurePipeState` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: `open_pipe_stress_product_physics` (lib) generated 5 warnings
+warning: constant `AS` is never used
+  --> tests/pressure_runtime.rs:21:7
+   |
+21 | const AS: f64 = 0.0011 * PI;
+   |       ^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `open_pipe_stress_product_physics` (test "pressure_runtime") generated 1 warning
+warning: `open_pipe_stress_product_physics` (lib test) generated 2 warnings (2 duplicates)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.03s
+  Executable unittests src/lib.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/open_pipe_stress_product_physics-d689cd64925c4cf1)
+  Executable tests/pressure_runtime.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target/debug/deps/pressure_runtime-73a1328706367b17)

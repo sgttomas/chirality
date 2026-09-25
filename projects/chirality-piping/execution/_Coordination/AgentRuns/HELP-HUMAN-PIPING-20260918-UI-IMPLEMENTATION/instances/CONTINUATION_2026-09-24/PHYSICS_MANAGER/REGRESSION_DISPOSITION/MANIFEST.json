@@ -1,0 +1,84 @@
+{
+  "schema": "bounded-test-disposition-manifest-v1",
+  "agent": "/root/solver_elements",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "role": "TASK Type2",
+  "delegation": "none; existing harness child retained",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION",
+  "scope": "38 initially nonpressure entries, individual test-purpose proposals only",
+  "source_base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "context_note": "Existing full project/loop instructions retained from prior assignment; full TASK role and this brief read again. Source/fixture read only.",
+  "origins": [
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/BRIEF.md",
+      "sha256": "56d525ecadc986645f61040724d07a5ccd104feecb53ee38b5ecf5fad62c8b95"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRODUCT_LIB_FAILURE_CLASSIFICATION.json",
+      "sha256": "c44cac5d9b65c388297751667f49e9a1148459d96218f1bae8570776da860939"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DIAGNOSIS/OBSERVED_CAUSES.json",
+      "sha256": "d2223fba3659142b596950beb966bcb26a32cf76460174b9bad32be072c374f8"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/SOURCE_MANIFEST.json",
+      "sha256": "de6f58cfb536c243a86d793a1bd5e080602bf18402d699dedf955c4e50676e63"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/TEST_WIRE_DELTA.json",
+      "sha256": "e9ffa1c73f5eca1e2b708329a99aa4705547d936bab4db8550a2f3e74f887af4"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "7e44003a09bb72c4ec1d9eb58130cac6a7ad085ebefec15129da41fdf04cf771"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/fixtures/product_preview/invented_preview_model.json",
+      "sha256": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_01/source/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb"
+    }
+  ],
+  "checks": {
+    "coverage": 38,
+    "all_individual_bodies_match_freeze": true,
+    "observed_refusal_from_manager_run": 38,
+    "test_execution_by_this_task": false,
+    "production_or_test_source_edits": false,
+    "pressure_module_edits": false
+  },
+  "outputs": [
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/DISPOSITIONS.json",
+      "sha256": "d00448eca664974963aec97f3d7244ead417a71800932f683b8265cf43265447"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/RETURN.md",
+      "sha256": "abf7210ee6425e4b65c236a03d846ec395e04e210136cb1be17285a6d6dd4697"
+    }
+  ]
+}

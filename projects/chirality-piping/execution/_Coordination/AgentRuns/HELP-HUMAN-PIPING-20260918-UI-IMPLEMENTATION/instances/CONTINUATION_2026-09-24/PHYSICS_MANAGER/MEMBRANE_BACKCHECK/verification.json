@@ -1,0 +1,185 @@
+{
+  "actor": "/root/physics_resume/membrane_backcheck",
+  "actual_parent": "/root/physics_resume",
+  "method": "Independent Python hashes, in-memory unified-patch reconstruction and exact Fraction algebra. No Git, Cargo, Rust/public product execution, native/browser or delegation.",
+  "recorded_utc": "2026-09-25T03:05:02.521621+00:00",
+  "basis": "18dc3fea2b087f00aeecbb92c321ce42e0e23812b5c541921e813c034d7fd7fb",
+  "patch_sha256": "177ef090e35d501efbc82685866d0ae2a23fb20dfca4cbe70d6d82e77db61aee",
+  "changed_paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "before_sha256": "322c7f8b9a4040d77c3ccc0a5ba336715b1575e87267cc5100ae8125588390f8",
+      "after_sha256": "0c5a275a82a4cdd244b613cb1028bd2a4639312126cff64e0965ad9afed71417",
+      "hunks": 4
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs",
+      "before_sha256": null,
+      "after_sha256": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea",
+      "hunks": 1
+    }
+  ],
+  "F03_snapshot_and_current_checks": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "current_sha256": "0c5a275a82a4cdd244b613cb1028bd2a4639312126cff64e0965ad9afed71417",
+      "unchanged_from_F03": false
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "current_sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "current_sha256": "b85630992db2e3a8be9c87f395dee09b0d27c68cf80ea9765cddb57b69768fa0",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "current_sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "current_sha256": "ff582870bc155e65c361a60183c49fb8afa1712eba9cf61cecaee5ddcc45b908",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "current_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "current_sha256": "06e031a1f91bfab37e541c04fa77a605911a646342fb75230f79076a9aa8cce5",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "current_sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "current_sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "current_sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "current_sha256": "54c0999b5a90389c6d48507bf1ab246b6336de5d5f9e74d38d9518437f86a985",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "current_sha256": "8d899b979187e44cc814bb6bdaa425768dd329978e0e62b549b2d415021998b3",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs",
+      "current_sha256": "98a781f126af9d8e6d94de96bbe0d9c3815f83760f7deca7a391e612acf979c9",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs",
+      "current_sha256": "a023170798a856506f90887df4b421c8979818ad8a8c029e6b334ac53d210143",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "current_sha256": "7231339e48cabe0f54122ac6253cb2ce936d025d1bb3a391e709030d8b617ef3",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs",
+      "current_sha256": "b81b1600adf62c711779ca1d06e908954fc2531b8545f37925b150cdbf7301f7",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs",
+      "current_sha256": "932cc43580c7dfe5754ca40f29e96dfa01ba9b20fc2021e05b9cc86d1e445f6c",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "current_sha256": "35e36952c2e4d37d55992153d726a6cbb709402a3e0dcac08a4712b53288c1c5",
+      "unchanged_from_F03": true
+    },
+    {
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "current_sha256": "531d6fcb62e47c3f4dfa5aae3c920255d40f2f1619036a001c1cb37e691c10f4",
+      "unchanged_from_F03": true
+    }
+  ],
+  "manager_execution_records_verified": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/red-02-execution.json",
+      "sha256": "3aa1ba7d35cbbe7c4a63c9f72e8b75a7ed00bfca3491a55072cd503e3377084b",
+      "log_sha256": "618e937089db6aeadbca224dc0dbbb0916cca9e43b0c856bc62e6ea55cfd93c3",
+      "exit_code": 101,
+      "attribution": "/root/physics_resume"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/green-01-execution.json",
+      "sha256": "4860c6abc5f36c6c7d82a1170ea659cae2791cf03fed9ed32e17d265198005cb",
+      "log_sha256": "4086f6863bef956dce8916ed7a7ce4f305ff21f1532e152bda0cf19576ca0a8c",
+      "exit_code": 0,
+      "attribution": "/root/physics_resume"
+    }
+  ],
+  "reference_binding": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/REFERENCE_BINDING_02.json",
+    "sha256": "70005e9fddc675e78af2fb47e99f3b7b564821350bb3e0e17f73f16b1e39498c",
+    "stale_predecessor_preserved": true,
+    "successor_matches_executed_test": true
+  },
+  "independent_arithmetic": {
+    "OD_m": 4e-77,
+    "wall_m": 1e-77,
+    "p_Pa": 4.7e-170,
+    "nu": 0.1,
+    "stable_membrane_Pa": 3.1333333333333337e-171,
+    "wall_published_N": 5e-324,
+    "redivided_membrane_Pa": 5.242199316501608e-171,
+    "old_relative_error": 0.6730423350537045,
+    "green_relative_error": -1.4669863914547882e-16,
+    "constant_pressure_polynomial_identities": 36,
+    "length_independence": "Fully fixed Nm=0; membrane ratio has no length term.",
+    "scope": "Reference arithmetic and source consequence only; manager logs establish observed public reachability."
+  },
+  "inspected_input_hashes": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    ".agents/skills/software-code-review/SKILL.md": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_BACKCHECK/BRIEF.md": "a756e4f661e38e0dfd71be5b4a604839bc1764c794b5af811c449c0b9639f420",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/FREEZE_03/SOURCE_MANIFEST.json": "ed5dc0ef77c69c5ab9e9aefcd59128217d87330ca7e9c78069ca8f49f139430a",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/FREEZE_03_BACKCHECK/RETURN.md": "4d0dffdf8c77156c8d3eb93bae0a9d64cf4e2c5be653d765e6d7ac56e9d7c270",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/FREEZE_03_BACKCHECK/independent_arithmetic_probe.py": "6da1922e0acdfa2466a9c56ac547d46c29d5634906b0c8ad00c967bc584ba728",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/FREEZE_03_BACKCHECK/independent_arithmetic_probe.json": "23db606adf7fe61f4df6031ac6b11b8285b88b12d6dfe381a04faaabd13c349c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/REPAIR_BINDING.json": "bf94251b732ca32225054992bb64d84066b98ad48354f934721560a7be1d9d70",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/REFERENCE_BINDING.json": "bac4cca3fe1a4d86c3aa8fcc8f3c367475687f668a2c148d410c794a3b210c26",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/REFERENCE_BINDING_02.json": "70005e9fddc675e78af2fb47e99f3b7b564821350bb3e0e17f73f16b1e39498c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/PHYS_R4.delta.patch": "177ef090e35d501efbc82685866d0ae2a23fb20dfca4cbe70d6d82e77db61aee",
+    "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/red-01-test.rs": "cb8c4edfd7bcf870d75129d243ce00b463f4932d8a7c86404dadbba1412c7689",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/red-01.log": "dcf2a9ceb9ecef64aadd6a2f849e7ed98c6053315fe9a41396e1c9e5290d2a0d",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/RED_01_EXECUTION.json": "12ccf648f0cd78a1f0bfb0b08762430434e35bd1908dc639f309bc49c6a1a799",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/run_check.py": "4516f79b1c6c1c07850127a42708dc7084ad255a788733676cd819040d2cbef4",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/RETURN.md": "056b50bb64328713f24cf5d1b9e0a519a618d3d78d78d5cd1e445dce8f2eeb20",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/red-02-execution.json": "3aa1ba7d35cbbe7c4a63c9f72e8b75a7ed00bfca3491a55072cd503e3377084b",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/green-01-execution.json": "4860c6abc5f36c6c7d82a1170ea659cae2791cf03fed9ed32e17d265198005cb",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/red-02.log": "618e937089db6aeadbca224dc0dbbb0916cca9e43b0c856bc62e6ea55cfd93c3",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/green-01.log": "4086f6863bef956dce8916ed7a7ce4f305ff21f1532e152bda0cf19576ca0a8c"
+  },
+  "limits": [
+    "No independent runtime run.",
+    "No general solver or subnormal force forward-error qualification.",
+    "Affected public regression reruns, full suite, consumer/native joins and merge gates remain manager/ROOT obligations."
+  ]
+}

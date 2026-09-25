@@ -1,0 +1,92 @@
+{
+  "base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+  "candidate_content_sha256": "a23ab1475bf97169c2c34e5b9c94139cf7bd0627ad277b5f900276602630afec",
+  "freeze_utc": "2026-09-25T00:32:27.881797+00:00",
+  "status": "core source frozen for independent repair backcheck; legacy50failures remain undisposed",
+  "paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "7e44003a09bb72c4ec1d9eb58130cac6a7ad085ebefec15129da41fdf04cf771",
+      "base_sha256": "534d93aec126d6102ae6a4649e52764d4bd32af3a41b528298ff1bdee3c7e215",
+      "freeze_01_sha256": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+      "bytes": 754014
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "base_sha256": "4573e181828d84f7fa385796162bb3bd2c9908ad32d29a7f193673125d4d67c1",
+      "freeze_01_sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "bytes": 81781
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "base_sha256": "baa83a5a62ea34d0677a5c5c5d6cd2fd2f977b6b62a5e2d4ddd06fa18951abc0",
+      "freeze_01_sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "bytes": 40993
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "base_sha256": null,
+      "freeze_01_sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "bytes": 9519
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "base_sha256": null,
+      "freeze_01_sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "bytes": 55004
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+      "base_sha256": null,
+      "freeze_01_sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+      "bytes": 41033
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "sha256": "06e031a1f91bfab37e541c04fa77a605911a646342fb75230f79076a9aa8cce5",
+      "base_sha256": null,
+      "freeze_01_sha256": "444d39850a895dfe1a1e14815ed6e3592caa8f9255409e284e5462e8e8f70b0b",
+      "bytes": 6807
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "base_sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2",
+      "freeze_01_sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "bytes": 55962
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "base_sha256": null,
+      "freeze_01_sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "bytes": 16375
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "base_sha256": null,
+      "freeze_01_sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "bytes": 18135
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "sha256": "03c7b81c16804029948ea4d0db401ae8c430988c418c066f7cfecdaf58e781e4",
+      "base_sha256": null,
+      "freeze_01_sha256": null,
+      "bytes": 8970
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "sha256": "76d2763003c559897b41a31aeced36b70e9f2bd47a57c864d4549399e863b90f",
+      "base_sha256": null,
+      "freeze_01_sha256": null,
+      "bytes": 9777
+    }
+  ]
+}

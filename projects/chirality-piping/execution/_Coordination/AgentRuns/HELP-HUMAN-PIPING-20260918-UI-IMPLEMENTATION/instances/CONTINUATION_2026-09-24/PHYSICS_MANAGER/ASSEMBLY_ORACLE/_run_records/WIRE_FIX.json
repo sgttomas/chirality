@@ -1,0 +1,10 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "authority": "physics_manager authorized exact wire-only repair after reported12/14 failure; production frozen, Cargo released",
+  "before_sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+  "after_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+  "difference": "one input direction token global_x to rotation_x for moment; all expected values and tolerances unchanged",
+  "input_manifest": "RUN2_INPUTS.json",
+  "raw_failed_log": "pressure_runtime_final.log",
+  "patch": "WIRE_FIX.patch"
+}

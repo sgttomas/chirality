@@ -1,0 +1,13 @@
+{
+  "actor": "/root/physics_resume",
+  "actual_harness_parent": "/root",
+  "mechanism": "delegated-harness-native collaboration",
+  "independent_children": {
+    "test_policy_review": "/root/physics_resume/test_policy_review",
+    "membrane_backcheck": "/root/physics_resume/membrane_backcheck",
+    "nonlinear_reference": "/root/physics_resume/nonlinear_reference"
+  },
+  "supplied_full_role": "agents/AGENT_TASK.md",
+  "role_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+  "scope": "Disjoint evidence directories; parent sole source/facade integration writer; no child source writes or Cargo/native execution"
+}

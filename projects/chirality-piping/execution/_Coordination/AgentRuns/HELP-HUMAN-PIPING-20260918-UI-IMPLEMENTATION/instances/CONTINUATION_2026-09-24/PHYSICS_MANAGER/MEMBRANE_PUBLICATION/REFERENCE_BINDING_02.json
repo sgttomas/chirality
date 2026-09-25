@@ -1,0 +1,15 @@
+{
+  "reference_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/INDEPENDENT_REVIEW/FREEZE_03_BACKCHECK/independent_arithmetic_probe.json",
+  "reference_sha256": "23db606adf7fe61f4df6031ac6b11b8285b88b12d6dfe381a04faaabd13c349c",
+  "origin": "independent reviewer Fraction expression reference, no public execution claimed",
+  "test_sha256": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea",
+  "source_freeze": "FREEZE_03 + PHYS_R4.delta.patch",
+  "tolerance": "unchanged relative 1e-9 for represented nonzero normal stress",
+  "purpose": "publication after subnormal force rounding; not subnormal source-load forward accuracy or material fitness",
+  "supersedes": "REFERENCE_BINDING.json",
+  "supersession_reason": "Original reference-binding test hash matched no retained test; original record preserved. This binding identifies admitted public test executed in red-02/green-01.",
+  "test_path": "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs",
+  "public_geometry_change": "Length only changed from 1e-77m to admitted 1m; fixed displacement keeps mechanical/thermal Nm=0, so frozen stress expectation is independent of length.",
+  "public_red": "red-02-execution.json",
+  "public_green": "green-01-execution.json"
+}

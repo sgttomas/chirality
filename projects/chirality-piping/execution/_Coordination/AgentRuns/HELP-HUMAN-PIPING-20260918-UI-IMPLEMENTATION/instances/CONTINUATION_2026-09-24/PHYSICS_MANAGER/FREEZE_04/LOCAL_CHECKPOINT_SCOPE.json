@@ -1,0 +1,17 @@
+{
+  "authorization": "ROOT scoped local checkpoint only after final review; no external push/PR/main join",
+  "source_candidate": "6bb99354fa9591032f672a7c3bd488edd8d4cdb6df9135e211cff3a10556b546",
+  "source_paths": 21,
+  "evidence_paths": 362,
+  "whitelist": "CHECKPOINT_WHITELIST.txt",
+  "exclusions": {
+    "all path components containing target": "build/cache outputs, never staged",
+    "__pycache__": "Python cache",
+    "TEST_DISPOSITION_CANDIDATE/harness": "nonexecuted mutable harness scratch"
+  },
+  "preserved_observed_probe": "REGRESSION_DIAGNOSIS/harness contains actual observed diagnosis source bound by PROBE_BASIS; retained as evidence, not mutable scratch",
+  "excluded_file_count": 17626,
+  "retained_historical_snapshots": "F01/F02/F03 original source snapshots and frozen pending test postimages are existing recoverable review basis; F04 adds only a delta, not another source forest",
+  "checks": "213 library +36 public pass, final independent selected-core composition/log review; inherited unchanged stress48/canonical8+2; no transitive immutability, joined sweep/CI/native/consumer/merge/release claim",
+  "local_checkpoint_review": "../TEST_DISPOSITION_REVIEW/BACKCHECK_02/LOCAL_CHECKPOINT_REVIEW.md"
+}

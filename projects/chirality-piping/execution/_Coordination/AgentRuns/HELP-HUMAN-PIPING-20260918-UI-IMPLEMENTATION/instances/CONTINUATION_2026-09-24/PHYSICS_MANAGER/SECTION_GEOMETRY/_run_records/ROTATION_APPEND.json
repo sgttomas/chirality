@@ -1,0 +1,11 @@
+{
+  "authority": "physics_manager relayed ROOT request and directed separate proper3D near-limit append after grouped source candidate8/8 result",
+  "original_eight_prefix_unchanged": true,
+  "before_sha256": "add7d2128ed8bc9f1a3696d8757580d210aab5948b18aff55cea535fb4ecb119",
+  "after_sha256": "b81b1600adf62c711779ca1d06e908954fc2531b8545f37925b150cdbf7301f7",
+  "references": {
+    "NEAR_ROTATION_EXPECTATIONS.json": "5c7206a74a95104aaa11fd83cbccb9bcb28916346458a26d1fd1a82e9a86398b",
+    "freeze_near_rotation.py": "36a022d86a4bddef9a323ddce1482704e22a923bdda9976adb75ea025ef9bba7"
+  },
+  "expectations": "same frozen scalar extension transformed by proper orthogonal R; every nonzero component relative1e-9; no earlier predicate changed"
+}

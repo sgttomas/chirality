@@ -1,0 +1,15 @@
+
+running 10 tests
+test tests::action_reversal_retains_absolute_normal_and_reverses_signed_outputs ... ok
+test tests::arbitrary_section_axis_rotation_preserves_normal_extrema ... ok
+test tests::compression_and_zero_actions_preserve_signed_normal_extrema ... ok
+test tests::finite_subnormal_results_are_retained_but_nonzero_underflow_is_rejected ... ok
+test tests::nonrepresentable_component_norm_and_extrema_are_rejected ... ok
+test tests::pressure_wall_force_is_counted_once_and_effective_force_is_not_an_input ... ok
+test tests::rejects_every_invalid_section_and_nonfinite_action_slot ... ok
+test tests::s1_exact_si_annulus_recovers_circular_extrema_and_torsion ... ok
+test tests::s2_pure_torsion_has_no_normal_stress ... ok
+test tests::scaled_arithmetic_avoids_intermediate_overflow_and_underflow ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

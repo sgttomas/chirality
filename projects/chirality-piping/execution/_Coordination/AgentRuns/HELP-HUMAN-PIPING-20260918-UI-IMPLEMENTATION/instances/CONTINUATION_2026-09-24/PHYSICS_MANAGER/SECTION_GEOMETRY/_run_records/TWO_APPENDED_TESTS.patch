@@ -1,0 +1,215 @@
+--- six/pressure_section_geometry.rs
++++ eight/pressure_section_geometry.rs
+@@ -581,3 +581,212 @@
+             .any(|d| d.code == "EXACT_PRESSURE_MATERIAL_INVALID"));
+     }
+ }
++
++#[test]
++fn distinct_near_limit_nu_two_span_source_extensions_survive_all_reversals() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_TWO_SPAN_EXPECTATIONS.json")).unwrap();
++    let inputs = &reference["inputs"];
++    let nu1 =
++        f64::from_bits(u64::from_str_radix(inputs["nu1_bits_hex"].as_str().unwrap(), 16).unwrap());
++    let nu2 =
++        f64::from_bits(u64::from_str_radix(inputs["nu2_bits_hex"].as_str().unwrap(), 16).unwrap());
++    let first = json!({"OD_m":inputs["OD1_m"],"wall_m":inputs["wall1_m"],"E_Pa":inputs["E1_Pa"],
++        "nu":nu1,"p_Pa":inputs["p_Pa"],"L_m":inputs["L1_m"]});
++    let c = "node:section-c";
++    let second_pipe = "pipe:section-second";
++    for mode in MODES {
++        for reverse_first in [false, true] {
++            for reverse_second in [false, true] {
++                for reverse_terminals in [false, true] {
++                    let mut wire = fixture(&first, false, true);
++                    wire["model"]["nodes"].as_array_mut().unwrap().push(json!({
++                        "id":c,"position":{"x":6.0,"y":0.0,"z":0.0},"provenance":"independent_exact_dyadic_chain"}));
++                    let mut second = wire["model"]["pipe_segments"][0].clone();
++                    second["id"] = json!(second_pipe);
++                    second["from"] = json!(if reverse_second { c } else { B });
++                    second["to"] = json!(if reverse_second { B } else { c });
++                    second["section"]["outside_diameter"]["value"] = inputs["OD2_m"].clone();
++                    second["section"]["wall_thickness"]["value"] = inputs["wall2_m"].clone();
++                    second["material"] = json!("material:section-second");
++                    wire["model"]["pipe_segments"]
++                        .as_array_mut()
++                        .unwrap()
++                        .push(second);
++                    if reverse_first {
++                        wire["model"]["pipe_segments"][0]["from"] = json!(B);
++                        wire["model"]["pipe_segments"][0]["to"] = json!(A);
++                    }
++                    let mut second_material = wire["model"]["materials"][0].clone();
++                    second_material["id"] = json!("material:section-second");
++                    second_material["elastic_modulus"]["value"] = inputs["E2_Pa"].clone();
++                    second_material["poisson_ratio"]["value"] = json!(nu2);
++                    wire["model"]["materials"]
++                        .as_array_mut()
++                        .unwrap()
++                        .push(second_material);
++                    let region = &mut wire["model"]["load_cases"][0]["pressure_regions"][0];
++                    region["member_pipe_ids"] = json!([second_pipe, PIPE]);
++                    region["terminals"] = json!([
++                        {"node_ref":if reverse_terminals {c} else {A},
++                         "closure_transfer":"transfers_to_wall","provenance":"explicit_source_boundary"},
++                        {"node_ref":if reverse_terminals {A} else {c},
++                         "closure_transfer":"transfers_to_wall","provenance":"explicit_source_boundary"}]);
++                    let result = solve(wire, mode);
++                    solved(&result);
++                    let middle = scalar(
++                        &result,
++                        "global_nodal_displacement_x",
++                        B,
++                        "nodal_displacement_x",
++                        None,
++                        "mm",
++                    ) / 1000.0;
++                    let end = scalar(
++                        &result,
++                        "global_nodal_displacement_x",
++                        c,
++                        "nodal_displacement_x",
++                        None,
++                        "mm",
++                    ) / 1000.0;
++                    close(
++                        middle,
++                        expected(&reference, "span1_extension_m"),
++                        0.0,
++                        "member-specific near-limit first extension",
++                    );
++                    close(
++                        end - middle,
++                        expected(&reference, "span2_extension_m"),
++                        0.0,
++                        "comparable-scale near-limit second extension",
++                    );
++                    close(
++                        end,
++                        expected(&reference, "tip_displacement_m"),
++                        0.0,
++                        "near-limit complete-chain displacement",
++                    );
++                    for (member, stress_key) in
++                        [(PIPE, "wall_stress1_Pa"), (second_pipe, "wall_stress2_Pa")]
++                    {
++                        for location in ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"] {
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_wall_axial_force_v2",
++                                    member,
++                                    "wall_axial_force",
++                                    Some(location),
++                                    "N",
++                                ),
++                                expected(&reference, "wall_force_N"),
++                                0.0,
++                                "common source wall force",
++                            );
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_effective_axial_force_v2",
++                                    member,
++                                    "effective_axial_force",
++                                    Some(location),
++                                    "N",
++                                ),
++                                0.0,
++                                expected(&reference, "wall_force_N"),
++                                "free transferred effective force",
++                            );
++                            close(
++                                scalar(
++                                    &result,
++                                    "pipe_axial_membrane_stress_v2",
++                                    member,
++                                    "axial_membrane_stress",
++                                    Some(location),
++                                    "Pa",
++                                ),
++                                expected(&reference, stress_key),
++                                0.0,
++                                "member-specific wall area",
++                            );
++                        }
++                    }
++                }
++            }
++        }
++    }
++}
++
++#[test]
++fn fixed_near_limit_effective_force_and_reactions_keep_small_source_difference() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_FIXED_EXPECTATIONS.json")).unwrap();
++    for case in reference["cases"].as_array().unwrap() {
++        let mut inputs = reference["inputs"].clone();
++        let bits = u64::from_str_radix(case["nu_bits_hex"].as_str().unwrap(), 16).unwrap();
++        inputs["nu"] = json!(f64::from_bits(bits));
++        for mode in MODES {
++            let result = solve(fixture(&inputs, true, true), mode);
++            solved(&result);
++            for location in ["end_i", "quarter_1", "midspan", "quarter_3", "end_j"] {
++                close(
++                    scalar(
++                        &result,
++                        "pipe_wall_axial_force_v2",
++                        PIPE,
++                        "wall_axial_force",
++                        Some(location),
++                        "N",
++                    ),
++                    expected(case, "wall_force_N"),
++                    0.0,
++                    "fixed near-limit source wall force",
++                );
++                close(
++                    scalar(
++                        &result,
++                        "pipe_effective_axial_force_v2",
++                        PIPE,
++                        "effective_axial_force",
++                        Some(location),
++                        "N",
++                    ),
++                    expected(case, "effective_force_N"),
++                    0.0,
++                    "fixed small nonzero source effective force",
++                );
++            }
++            for (support, key) in [
++                ("support:section-a", "left_support_Fx_N"),
++                ("support:section-b", "right_support_Fx_N"),
++            ] {
++                close(
++                    scalar(
++                        &result,
++                        "support_reaction_component_v2",
++                        support,
++                        "Fx",
++                        Some("node"),
++                        "N",
++                    ),
++                    expected(case, key),
++                    0.0,
++                    "fixed signed small nonzero support reaction",
++                );
++            }
++            close(
++                scalar(
++                    &result,
++                    "global_nodal_displacement_x",
++                    B,
++                    "nodal_displacement_x",
++                    None,
++                    "mm",
++                ),
++                0.0,
++                0.0,
++                "fixed compatibility",
++            );
++        }
++    }
++}

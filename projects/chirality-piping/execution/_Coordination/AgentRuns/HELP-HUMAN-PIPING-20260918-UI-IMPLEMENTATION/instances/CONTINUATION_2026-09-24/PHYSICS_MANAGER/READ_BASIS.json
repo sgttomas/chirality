@@ -1,0 +1,79 @@
+{
+  "active_role": "WORKING_ITEMS Type1",
+  "manager": "/root/physics_manager",
+  "mechanism": "delegated-harness-native",
+  "broader_role_consultation": "TASK full role read deliberately for bounded delegation; source hashes retained in briefs and dispatch records",
+  "workflow": "none selected; bounded ad hoc implementation under ROOT brief",
+  "paths": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md",
+      "sha256": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/SOLVER_FINDINGS_ASSESSMENT/ASSESSMENT.md",
+      "sha256": "c948cb13ac5d825b0d201074cad50e9b8f4d9de916bc246f574e8304121b72e6",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_INTEGRATION.md",
+      "sha256": "b0ff7db5b24d146389a8c2a01ddee3160b3a3359b82f83be7eb3c78b6e112981",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_REFERENCE_QUALIFICATION.md",
+      "sha256": "b20188c364e1d625ec7077a902c2e4297a55aa7445a8f53a881fadb684399911",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RESULTS_AND_COMBINATIONS.md",
+      "sha256": "de2feae4829c9da9bca2d84442d740d1413e0bdde23538f8e26ec97ff49e3dd6",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/STRESS_REFERENCE.md",
+      "sha256": "07700e0b8e383c62cc378b9bd30365d0d5ba2cd9071a450985214111903d3a1c",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/contracts/PRESSURE_CONTRACT_V1.md",
+      "sha256": "044232ff9c0ba8d86591611050f1d0f04a10b46c40f6831ef4013cc9e79d2710",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/contracts/CONNECTOR_CONTRACT_V1.md",
+      "sha256": "2f7939eb1f11eeb42e537d2edb7dd4b98e71fb232eeaebfd2db77152212fc4c4",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/CONSUMER_MAP_V1.json",
+      "sha256": "b0fe3ea58f2a847309f88940289bb4b8f0d0d82ab6eb91bbfb0b57fbfdb570c6",
+      "scope": "full or targeted sections as shown in transcript; source investigation not whole-corpus activation"
+    }
+  ]
+}

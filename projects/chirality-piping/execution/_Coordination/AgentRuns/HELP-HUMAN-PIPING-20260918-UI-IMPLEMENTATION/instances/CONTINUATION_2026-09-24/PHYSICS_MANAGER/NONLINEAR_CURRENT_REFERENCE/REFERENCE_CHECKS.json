@@ -1,0 +1,11 @@
+{
+  "reference_commands": [
+    "python3 reference.py 60",
+    "python3 reference.py 80"
+  ],
+  "reference_only_no_product_execution": true,
+  "max_absolute_scalar_or_vector_difference_60_vs_80": "1.000000000000000000000000E-53",
+  "compared_scalar_entries": 594,
+  "all_six_cases_unique_admissible_branch": true,
+  "historical_test_sha256": "2876454577d2e7eeaaf4474a613c3bb0055998aedb922e9434030a007de92111"
+}

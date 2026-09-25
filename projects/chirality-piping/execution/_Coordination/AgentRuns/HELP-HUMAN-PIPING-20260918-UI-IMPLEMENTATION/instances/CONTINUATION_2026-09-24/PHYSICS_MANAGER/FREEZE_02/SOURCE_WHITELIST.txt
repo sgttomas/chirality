@@ -1,0 +1,12 @@
+projects/chirality-piping/core/product_physics/src/lib.rs
+projects/chirality-piping/core/product_physics/src/validation.rs
+projects/chirality-piping/core/product_physics/src/pressure_exact.rs
+projects/chirality-piping/core/product_physics/src/pressure_material.rs
+projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
+projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs
+projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs
+projects/chirality-piping/core/loads/stress_recovery/src/lib.rs
+projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs
+projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs
+projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs
+projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs

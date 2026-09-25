@@ -1,0 +1,12 @@
+{
+  "passed": 4,
+  "failed": 2,
+  "exit_code": 101,
+  "post_run_source_changes": [],
+  "log_sha256": "7e8736d7825e3c3e16ee88f58d1a922c7449715eb01546de5a169ec93ce12483",
+  "failures": [
+    "near-incompressible extension at nu0.4999999999 exceeds1e-9",
+    "large range fixture derived ri one-bit mismatch; input transport investigation pending"
+  ],
+  "last_valid_nu_observed": false
+}

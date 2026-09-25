@@ -1,0 +1,19 @@
+{
+  "actor": "/root/physics_resume",
+  "basis": "FREEZE_03 18dc3fea2b087f00aeecbb92c321ce42e0e23812b5c541921e813c034d7fd7fb",
+  "files": {
+    "projects/chirality-piping/core/product_physics/src/lib.rs": {
+      "before_sha256": "322c7f8b9a4040d77c3ccc0a5ba336715b1575e87267cc5100ae8125588390f8",
+      "after_sha256": "0c5a275a82a4cdd244b613cb1028bd2a4639312126cff64e0965ad9afed71417"
+    },
+    "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs": {
+      "before_sha256": null,
+      "after_sha256": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea"
+    }
+  },
+  "patch_sha256": "177ef090e35d501efbc82685866d0ae2a23fb20dfca4cbe70d6d82e77db61aee",
+  "red": "red-02.log",
+  "green": "green-01.log",
+  "reference": "REFERENCE_BINDING_02.json",
+  "changes_since_first_probe": "Member length changed 1e-77 to 1m for the admitted public witness; pressure, section and independently derived stress unchanged. red-01 retained as failed admission attempt."
+}

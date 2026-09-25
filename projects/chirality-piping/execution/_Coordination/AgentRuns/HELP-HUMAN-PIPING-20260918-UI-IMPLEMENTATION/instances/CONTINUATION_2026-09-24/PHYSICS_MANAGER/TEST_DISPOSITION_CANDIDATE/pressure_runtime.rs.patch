@@ -1,0 +1,14 @@
+--- a/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
+@@ -200,6 +200,11 @@
+                 if (load.category == "pressure" || load.dimension == "pressure")
+                     && load.magnitude.value != 0.0
+                 {
++                    // Only named in-crate historical tests can enter this scope; normal builds have no selector.
++                    #[cfg(test)]
++                    if crate::historical_pressure_reference::active() {
++                        continue;
++                    }
+                     problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[&case.id, &load.id],
+                         "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs");
+                 }

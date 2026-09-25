@@ -1,0 +1,50 @@
+--- eight/pressure_section_geometry.rs
++++ nine/pressure_section_geometry.rs
+@@ -790,3 +790,47 @@
+         }
+     }
+ }
++
++#[test]
++fn near_limit_source_extension_transforms_under_a_proper_spatial_rotation() {
++    let reference: Value = serde_json::from_str(include_str!("../../../execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/SECTION_GEOMETRY/NEAR_ROTATION_EXPECTATIONS.json")).unwrap();
++    for case in reference["cases"].as_array().unwrap() {
++        let mut inputs = reference["inputs"].clone();
++        let bits = u64::from_str_radix(case["nu_bits_hex"].as_str().unwrap(), 16).unwrap();
++        inputs["nu"] = json!(f64::from_bits(bits));
++        for mode in MODES {
++            let mut wire = fixture(&inputs, false, true);
++            wire["model"]["nodes"][1]["position"] = json!({"x":2.0,"y":4.0,"z":4.0});
++            wire["model"]["pipe_segments"][0]["y_reference"] =
++                json!({"x":-2.0/5.0_f64.sqrt(),"y":1.0/5.0_f64.sqrt(),"z":0.0});
++            let result = solve(wire, mode);
++            solved(&result);
++            let mut vector = [0.0; 3];
++            for (index, axis) in ["x", "y", "z"].iter().enumerate() {
++                vector[index] = scalar(
++                    &result,
++                    &format!("global_nodal_displacement_{axis}"),
++                    B,
++                    &format!("nodal_displacement_{axis}"),
++                    None,
++                    "mm",
++                ) / 1000.0;
++                close(
++                    vector[index],
++                    case["global_displacement_m"][index]["f64"]
++                        .as_f64()
++                        .unwrap(),
++                    0.0,
++                    "proper-rotation near-limit source displacement component",
++                );
++            }
++            let norm = vector.iter().map(|v| v * v).sum::<f64>().sqrt();
++            close(
++                norm,
++                expected(case, "scalar_extension_m"),
++                0.0,
++                "proper-rotation near-limit source displacement magnitude",
++            );
++        }
++    }
++}

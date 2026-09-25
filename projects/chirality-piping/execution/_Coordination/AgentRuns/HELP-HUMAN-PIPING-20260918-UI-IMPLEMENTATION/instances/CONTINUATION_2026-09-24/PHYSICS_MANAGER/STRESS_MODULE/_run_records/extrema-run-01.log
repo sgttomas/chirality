@@ -1,0 +1,17 @@
+
+running 12 tests
+test tests::axial_zero_crossing_and_simultaneous_bending_zero_need_no_root_special_case ... ok
+test tests::constant_zero_and_constant_biaxial_fields_are_enclosed ... ok
+test tests::directed_averages_enclose_extreme_and_opposite_values ... ok
+test tests::discontinuity_retains_both_one_sided_values_and_governing_span ... ok
+test tests::exact_interior_quadratic_peak_is_located_and_bounded ... ok
+test tests::invalid_or_unrepresentable_inputs_never_become_zero_maxima ... ok
+test tests::no_budget_or_depth_is_an_explicit_unresolved_result ... ok
+test tests::repeated_stationary_root_with_zero_bending_vector_is_safe ... ok
+test tests::scaled_norm_does_not_square_large_components_and_bounds_subnormals ... ok
+test tests::section_axis_quarter_rotation_and_action_reversal_preserve_bound ... ok
+test tests::short_interval_preserves_the_local_witness_when_station_rounds ... ok
+test tests::x1_certifies_the_peak_missed_by_eight_sign_candidates ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

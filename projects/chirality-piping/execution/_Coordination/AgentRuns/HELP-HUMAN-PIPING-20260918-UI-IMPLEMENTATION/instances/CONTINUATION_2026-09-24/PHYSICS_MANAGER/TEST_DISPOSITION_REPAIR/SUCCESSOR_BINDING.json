@@ -1,0 +1,14 @@
+{
+  "status": "pending independent backcheck; no product execution of test-policy candidate",
+  "basis": {
+    "original_patch_sha256": "f7ee34f04a74e474a2f6fc97f2faeedfaa0476e54b2b1ee2082df1c3825678c3",
+    "original_candidate_lib_sha256": "f68c71bf4873ce7a65e0ef9e740fff113c04014c705adb0297498053e235aa4b"
+  },
+  "repaired_candidate_lib_sha256": "61d7316246bc51983606c1bda006727b62c0e159d62c39b37b190d27d3e08568",
+  "patches": {
+    "policy_successor.delta.patch": "db1f66527f093c68e6e068378e298703d2df7530d093d3db2e85b76e55cce53b",
+    "exact_kpa.delta.patch": "aaa11cab61ea2cb4a89e69feafb0976b79394bdbfcbca511fb4fc9f7da72190f"
+  },
+  "independent_reference_sha256": "0f2d6fea59033500f68d443fa2a0518a7c0fbf08582e684fdd1eca6f344a07c2",
+  "scope": "Original pending patch plus successor thermal routing/current composite test with original/reverse_z/reverse_all both cases/modes and exact-pressure kPa encoding. PHYS-R4 runtime delta remains separately reviewed and unchanged."
+}

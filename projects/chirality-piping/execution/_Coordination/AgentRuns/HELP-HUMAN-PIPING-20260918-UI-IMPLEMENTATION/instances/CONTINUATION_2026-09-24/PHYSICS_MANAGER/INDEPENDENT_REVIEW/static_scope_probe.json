@@ -1,0 +1,14 @@
+{
+  "scope": "Full initial10-file source patch, explicit repair to12files, one-token test wire delta and final comment-only header delta; no Git invoked",
+  "freeze_01_paths": 10,
+  "freeze_02_paths": 12,
+  "full_base_reverse_reconstruction_matches": true,
+  "repair_reverse_reconstruction_matches_freeze_01": true,
+  "current_source_matches_freeze_02_plus_header_delta": true,
+  "header_executable_bodies_unchanged": true,
+  "initial_evidence_records": 30,
+  "initial_evidence_hash_mismatches": [],
+  "primary_selection_sha256": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+  "primary_selection_commit": "9c4c48a7 caller-supplied commit; bytes independently hashed",
+  "earlier_scope_probe": "initial attempt stopped without writing after live lib.rs changed during authorized repair; original scope is now reconstructed from immutable FREEZE_02 snapshots and repair delta"
+}

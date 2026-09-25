@@ -1,0 +1,27 @@
+{
+  "actor": "/root/numerical_policy_review",
+  "actual_harness_parent": "/root",
+  "issuer_integrator": "/root/physics_manager",
+  "status": "bounded_public_runtime_suite_passed_14_of_14",
+  "test_path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+  "test_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+  "evidence_sha256": {
+    "RETURN.md": "ed87cedfb0d84a4a907a8bf72f4a48955a1117e054c49be981c9114082dad773",
+    "REFERENCE_RETURN.md": "2edfea8aa0017ebbc8294f78fe4f06d59ed8ee35f820943bf4623503525f43a8",
+    "FROZEN_RUNTIME_EXPECTATIONS.json": "7c184177cf749e33d458ab6ae5e8c16d8d34bf6d2bf994f6d15ddd40017d757a",
+    "freeze_reference.py": "d187e583210c9d072663fd2a6dd657bb77a93598117f86301b14b56bca16f3e4",
+    "FREEZE_MANIFEST.json": "141b04b7df1d4bbb7af6ae6a0699e2c69acb99537856b7d2ceb905b7f8b4b4d1",
+    "ADDITIONAL_REFERENCE_CONTROLS.md": "b1e2787eaf708ded6ac07e24f53e4a5bef1e318beb42b63a81a312db228af4e1",
+    "_run_records/RUN1_INPUTS.json": "a7bed794b29e85153acfb0096c0d89e90a8d0be59d6cc2a6e59d0aadd2253ce8",
+    "_run_records/RUN2_INPUTS.json": "0cca60c18ca7afe151ee14aa0aa5adbfbf75154dec1607441fb850d18d1a30da",
+    "_run_records/RUN3_INPUTS.json": "082bdafe514b742f659c62e43c3a0edd2e7090377f43b9b9241ee5cca16c502e",
+    "_run_records/RUN3_RESULT.json": "4b1e7a676a1a716fbeb74cfd95aa7d41cb6ba0ad0d5bd06f8a3b53e2b5715de3",
+    "_run_records/pressure_runtime_first.log": "9ae3277bf2784b82efa2517c5308a02c76a781e61bfa9fb5125caa73c7972dd5",
+    "_run_records/pressure_runtime_final.log": "d3bd4484d417bef6ae54bcbdb4ba571760c4ffc0c11fa7e51ebb3c92d352821e",
+    "_run_records/pressure_runtime_corrected.log": "3aae74de8d4d369a7acecd3c6c2deef55816cd6c46c12f536c9030e7635bcef2",
+    "_run_records/WIRE_FIX.json": "6d2e9fb5b968a0aad3712fad6346e1f7695ac979e7404a29d68d079ddb421b77",
+    "_run_records/WIRE_FIX.patch": "56fa0cabebe8af84ed7c0c29e979d0e4fe72b9c0ac1a7a3d6c1760de7824d16f",
+    "_run_records/pressure_runtime_before_wire_fix.rs": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc"
+  },
+  "limits": "Not full-suite, native, protected-legacy-disposition, complete-candidate review, or release acceptance."
+}

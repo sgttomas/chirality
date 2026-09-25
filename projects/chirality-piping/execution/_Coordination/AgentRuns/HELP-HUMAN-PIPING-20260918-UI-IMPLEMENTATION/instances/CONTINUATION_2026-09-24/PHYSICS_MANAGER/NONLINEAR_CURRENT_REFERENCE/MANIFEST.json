@@ -1,0 +1,36 @@
+{
+  "frozen_at_utc": "2026-09-25T03:09:21.594346+00:00",
+  "executor": "/root/physics_resume/nonlinear_reference",
+  "parent": "/root/physics_resume",
+  "mechanism": "delegated-harness-native",
+  "role": "TASK supplied in BRIEF.md",
+  "scope": "independent mathematical reference only; no product execution/source edits/Git/Cargo/native/delegation",
+  "source_hashes": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/loop/LOOP_INIT.md": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+    "projects/chirality-piping/fixtures/product_preview/invented_preview_model.json": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c",
+    "projects/chirality-piping/core/product_physics/src/lib.rs": "0c5a275a82a4cdd244b613cb1028bd2a4639312126cff64e0965ad9afed71417",
+    "projects/chirality-piping/core/solver/frame_kernel/src/lib.rs": "d657e6507aa5d4ef80124e3f6d10bd5a8af8eae54fe21af787c92814c8b73fde",
+    "projects/chirality-piping/core/solver/nonlinear_integration/src/lib.rs": "dcb9f8b9b1c09ba9b35627acce8af42383319ef95242088de45eb74a584e371c",
+    "projects/chirality-piping/core/solver/nonlinear_supports/src/lib.rs": "3839f407d70d7e85c017bc65ddccbcc5312f3f479eb62587df8ce6e527129a3e",
+    "projects/chirality-piping/validation/hand_calcs/nonlinear/assembled_friction_derived_normal.md": "15e40e80f7f8e1f4e6c595d5140b4c2f44d1a4a2c7daad5f692bc57aa805e68e",
+    "projects/chirality-piping/validation/hand_calcs/nonlinear/assembled_friction_bounded_sliding.md": "b83909ec3811380687da6b015f522360df3198ed485c08b216b2d649fb6d32cb",
+    "projects/chirality-piping/validation/hand_calcs/nonlinear/assembled_multi_support_derived_normal_gap_acceptance.md": "ba99d39cdf312eeda1391c514efed05c127030dc2fb92ad1276bbc4c2d7ec2c0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/NUMERICAL_REFERENCE.md": "67c8aac5798e9663528bea94b58d6d8f2eb8308f94b7ebb78aa22dca4b8f94ca",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/STRESS_REFERENCE.md": "07700e0b8e383c62cc378b9bd30365d0d5ba2cd9071a450985214111903d3a1c",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/REGRESSION_DISPOSITION/DISPOSITIONS.json": "d00448eca664974963aec97f3d7244ead417a71800932f683b8265cf43265447"
+  },
+  "artifacts": {
+    "fixture_pressure_free_nodalized.json": "ea128488c66c1cb838608094859a6aa85d23527a4e14199c4617be20a7b63dc1",
+    "reference_values_precision_60.json": "91ea97b5a83b1a2c99362587e4a0bda00c4d127c17962e2b6b213b293b32b4c2",
+    "FROZEN_EXPECTATIONS.json": "0f2d6fea59033500f68d443fa2a0518a7c0fbf08582e684fdd1eca6f344a07c2",
+    "RETURN.md": "ca0385b114dfa35b2d5bb66e65d934cb3def1cef4101fe79f0f37363822e3e4c",
+    "reference.py": "c303ba864278d4ffb8abfb1a71eb3b5ebe71b90642fc8dd0e49590dc4f0c08e4",
+    "reference_values_precision_80.json": "62f7f4f88416328c691ba38fb958b1aaf0362f9936921699b61e924256380a78",
+    "BRIEF.md": "98f8ea626f687356856ad3a90a9e3b07dbeb40a83fe930476278167286461cf7",
+    "SNIPPET_REFERENCE_CHECK.json": "683fea762d7bbfcbeae9f1ec7046ae9fc410abef6da8473fa8de274feef9248b",
+    "historical_original_test.rs.txt": "2876454577d2e7eeaaf4474a613c3bb0055998aedb922e9434030a007de92111",
+    "REFERENCE_CHECKS.json": "ee577a0d19079f3932de208513930697a79525fb2e9a98ffd28259b88e981693"
+  }
+}

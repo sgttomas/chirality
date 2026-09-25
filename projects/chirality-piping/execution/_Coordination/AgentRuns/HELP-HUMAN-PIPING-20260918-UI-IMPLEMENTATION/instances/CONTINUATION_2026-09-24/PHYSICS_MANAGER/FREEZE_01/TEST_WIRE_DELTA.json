@@ -1,0 +1,10 @@
+{
+  "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+  "before_sha256": "5dab6016eee1e2fb14f78891b9b282584cfeee07a969fd4e19c27a73871f20fc",
+  "after_sha256": "9493488af21d2459d47cb2f18f3b5e2f4c5da43351bf9a210387067e7839e272",
+  "reason": "independent test author corrected moment direction global_x to rotation_x after public boundary LOAD_INPUT_INVALID; no numeric expectation or tolerance change",
+  "original_result": "12/14 passed; 2 fixture-wire failures",
+  "corrected_result": "14/14 passed",
+  "log": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/ASSEMBLY_ORACLE/_run_records/pressure_runtime_corrected.log",
+  "production_source_changed": false
+}

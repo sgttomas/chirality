@@ -1,0 +1,181 @@
+{
+  "schema": "bounded-task-implementation-manifest-v1",
+  "task": "PRESSURE_REGIONS",
+  "agent": "/root/solver_elements",
+  "actual_harness_parent": "/root",
+  "assignment_issuer_and_integrator": "/root/physics_manager",
+  "role": "TASK Type 2",
+  "mechanism": "delegated-harness-native existing child reassigned; no descendants",
+  "basis": {
+    "isolated_checkout": "/private/tmp/piping-pressure-stress-20260924",
+    "base": "f702b439536c6e76af8e1c81ee536d5685e87907",
+    "head_observed": "f702b439536c6e76af8e1c81ee536d5685e87907"
+  },
+  "write_scope": [
+    "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS"
+  ],
+  "scope_enforcement": "instructional single-module scope in shared isolated checkout; not claimed exclusive OS isolation",
+  "origins": [
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/AGENTS.md",
+      "sha256_at_return": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/agents/AGENT_TASK.md",
+      "sha256_at_return": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256_at_return": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256_at_return": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/BRIEF.md",
+      "sha256_at_return": "c027e3e4b6ccbcadf3101c17f16595ae6333e078da6f12b72f615e78a6e3cba0",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_ACTIVATION.md",
+      "sha256_at_return": "dd98701526a31248f36a5e6e03490975af682f748dd349aa52faa1bfafc912a0",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_INTEGRATION.md",
+      "sha256_at_return": "b0ff7db5b24d146389a8c2a01ddee3160b3a3359b82f83be7eb3c78b6e112981",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/PRESSURE_REFERENCE_QUALIFICATION.md",
+      "sha256_at_return": "b20188c364e1d625ec7077a902c2e4297a55aa7445a8f53a881fadb684399911",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/6614/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/CORRECTNESS_DESIGN/RAW02_INTERFACE_ALIGNMENT.md",
+      "sha256_at_return": "00ef23b2cbf430309989dc63019aae3daaed331bef146cbb7a28cb4d02520450",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/instances/ENGINEERING/contracts/PRESSURE_CONTRACT_V1.md",
+      "sha256_at_return": "044232ff9c0ba8d86591611050f1d0f04a10b46c40f6831ef4013cc9e79d2710",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "sha256_at_return": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256_at_return": "b92654d096756144f3e06d97f6b862ef76c24b29dbd0882dd75847c80e5cd4fb",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256_at_return": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256_at_return": "2d04ed98254a98a1f24235ed09ba9538e96e63924ca2a2802b9cd3218d7c5035",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/Cargo.lock",
+      "sha256_at_return": "36b1eb6477d894b642e615d49c77a7f2b4bc00ba5569ddc80fbc66593356b58a",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    },
+    {
+      "path": "/private/tmp/piping-pressure-stress-20260924/.agents/skills/software-code-review/SKILL.md",
+      "sha256_at_return": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "note": "actual local origin; source excerpts where relevant; manager facade/material source was concurrently edited so current hashes are not a test-candidate seal"
+    }
+  ],
+  "selected_role_origin_note": "Full intended TASK role supplied in BRIEF.md; original repository role file also read in first entry call; no manager-role body loaded",
+  "module": {
+    "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+    "sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+    "prior_10_test_module_sha256": "59c239fbcc923b47796c6c4bc7e1e1ca2f49493ae07876349fc69617c3f9cb84"
+  },
+  "scalar_kernel": {
+    "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+    "whole_file_unchanged": false,
+    "implementation_body_unchanged": true,
+    "difference": "manager changed three documentation header lines only; no scalar arithmetic changes by this TASK"
+  },
+  "checks": [
+    {
+      "command": "rustfmt --edition 2021 projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "result": "PASS final module"
+    },
+    {
+      "command": "cargo test --offline --locked --manifest-path projects/chirality-piping/core/product_physics/Cargo.toml --target-dir projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target -j 2 --lib --no-run",
+      "result": "PASS compile; prior alpha-evidence module version",
+      "log": "compile-01.log"
+    },
+    {
+      "command": "cargo test --offline --locked --manifest-path projects/chirality-piping/core/product_physics/Cargo.toml --target-dir projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/PRESSURE_REGIONS/target -j 2 --lib pressure_runtime::tests -- --test-threads=2",
+      "result": "PASS 10 tests, 0 failed, 184 filtered out",
+      "log": "module-tests-01.log",
+      "source_limit": "predates final node/support suffix-collision review repair; manager facade concurrently changed"
+    }
+  ],
+  "review_repair": {
+    "reviewer": "/root/physics_manager",
+    "finding": "generic node/support rows still use stable_suffix and colliding IDs were not rejected",
+    "change": "validate node/support suffix uniqueness and add focused eleventh test",
+    "verification": "final integrated 11-test rerun assigned to manager; not independently run here"
+  },
+  "prospective_interface_changes": [
+    {
+      "origin": "ROOT RAW02_INTERFACE_ALIGNMENT.md, relayed by physics_manager then read from primary checkout",
+      "effect": "region identity is (load_case_id,region_id), not global region_id; manager owns case-basis/result_ids binding and exact_cases evidence"
+    },
+    {
+      "origin": "manager scoped integration instruction",
+      "effect": "objective-connector namespace refusal and exact-combination blocking until signed physical-state composition"
+    },
+    {
+      "origin": "ROOT selected-alpha requirement relayed by manager",
+      "effect": "thermal_consumed and nullable actual selected alpha_per_kelvin in each region material record"
+    }
+  ],
+  "toolchain": {
+    "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "1.97.1 (c980f4866 2026-06-30)"
+  },
+  "independent_verification": "/root/numerical_policy_review owns public-entrypoint oracle tests; no acceptance inferred",
+  "not_performed": [
+    "full historical tests",
+    "native/headless/save-reopen checks",
+    "Git mutation",
+    "delegation",
+    "scalar arithmetic fork",
+    "protected policy edits"
+  ],
+  "outputs": [
+    {
+      "path": "RETURN.md",
+      "sha256": "fe7b58c8f843a0b58865b02a2c4fc1a2b9dbb8d27bb9e4c5fa7cec9acb722e3d"
+    },
+    {
+      "path": "compile-01.log",
+      "sha256": "b17a8c206f56159039fa57f2a98edd57e65b03985ba33d2b6d957330180d86e3"
+    },
+    {
+      "path": "module-tests-01.log",
+      "sha256": "6a08330dcfe49239dd5a0732be7fa63a95e7713e258a19c26a77205c6813cc19"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "b53ee26e6ff1da219b0563333a76d2c9ec19eec713d6ee54e11a1edacb0e9f3d"
+    }
+  ]
+}

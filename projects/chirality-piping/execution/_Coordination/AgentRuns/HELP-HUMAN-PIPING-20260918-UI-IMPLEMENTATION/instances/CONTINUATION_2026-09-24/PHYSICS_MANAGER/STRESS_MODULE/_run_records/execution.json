@@ -1,0 +1,18 @@
+{
+  "time_utc": "2026-09-24T23:57:10.755520+00:00",
+  "command": [
+    "rustc",
+    "--edition=2021",
+    "--test",
+    "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+    "-o",
+    "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/STRESS_MODULE/_run_records/elastic-section-tests"
+  ],
+  "cwd": "/private/tmp/piping-pressure-stress-20260924",
+  "source_sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+  "build_exit": 0,
+  "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: aarch64-apple-darwin\nrelease: 1.97.1\nLLVM version: 22.1.6\n",
+  "lane": "one rustc process, no Cargo; authorized by physics_manager",
+  "test_exit": 0,
+  "binary_retention": "Transient executable removed after successful run; exact compile command/source hash and raw output retained."
+}

@@ -1,0 +1,312 @@
+{
+  "method": "Python file hashes and reverse unified-patch reconstruction; no Git/base checkout execution",
+  "candidate": "18dc3fea2b087f00aeecbb92c321ce42e0e23812b5c541921e813c034d7fd7fb",
+  "files": 19,
+  "checks": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    },
+    {
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "current_and_snapshot_match": true,
+      "full_patch_base_match": true,
+      "f02_delta_or_unchanged_match": true
+    }
+  ],
+  "full_patch": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "534d93aec126d6102ae6a4649e52764d4bd32af3a41b528298ff1bdee3c7e215",
+      "hunks": 55
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "4573e181828d84f7fa385796162bb3bd2c9908ad32d29a7f193673125d4d67c1",
+      "hunks": 3
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "baa83a5a62ea34d0677a5c5c5d6cd2fd2f977b6b62a5e2d4ddd06fa18951abc0",
+      "hunks": 5
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "0c3a0b6278a1cce4a802fc6c2e4c81af1b6f393c5cde4bb28ff55b99d5d956f2",
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "2d04ed98254a98a1f24235ed09ba9538e96e63924ca2a2802b9cd3218d7c5035",
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "f9697f4eb3b4e1542cffa7cf2ce05cef1f4936f7ec7d71cf544b61177e6a4b6b",
+      "hunks": 1
+    }
+  ],
+  "delta": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "7e44003a09bb72c4ec1d9eb58130cac6a7ad085ebefec15129da41fdf04cf771",
+      "hunks": 16
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "9ad9aa61be93404c1131cd0f9bc9b2324e3987945cec978e4c227428128d0d32",
+      "hunks": 5
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "1685c7f077cfc8dbfdafdd8f8ac2b60d4b5f4226ded8949b22615f0dc473257f",
+      "hunks": 12
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "03c7b81c16804029948ea4d0db401ae8c430988c418c066f7cfecdaf58e781e4",
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "old_absent_in_patch_basis": false,
+      "reconstructed_old_sha256": "76d2763003c559897b41a31aeced36b70e9f2bd47a57c864d4549399e863b90f",
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    },
+    {
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "old_absent_in_patch_basis": true,
+      "reconstructed_old_sha256": null,
+      "hunks": 1
+    }
+  ],
+  "note": "Cargo /dev/null in F02-owned delta means absent from prior owned snapshot; full base patch correctly treats the two manifests as pre-existing files."
+}

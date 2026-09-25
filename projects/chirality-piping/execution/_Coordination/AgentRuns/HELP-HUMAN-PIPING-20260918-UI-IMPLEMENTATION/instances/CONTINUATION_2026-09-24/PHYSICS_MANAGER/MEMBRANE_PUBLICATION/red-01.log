@@ -1,0 +1,114 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/frame_kernel)
+   Compiling proc-macro2 v1.0.106
+   Compiling open_pipe_stress_linear_supports v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/linear_supports)
+   Compiling open_pipe_stress_primitive_loads v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/primitive_loads)
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.45
+   Compiling serde_core v1.0.228
+   Compiling open_pipe_stress_sparse_direct v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/sparse_direct)
+   Compiling zmij v1.0.21
+   Compiling open_pipe_stress_solver_diagnostics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/diagnostics)
+   Compiling syn v2.0.117
+   Compiling serde_json v1.0.149
+   Compiling serde v1.0.228
+   Compiling serde_derive v1.0.228
+   Compiling open_pipe_stress_nonlinear_supports v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/nonlinear_supports)
+   Compiling open_pipe_stress_curved_bend v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/curved_bend)
+   Compiling open_pipe_stress_straight_pipe v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/straight_pipe)
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.0
+   Compiling open_pipe_stress_stress_recovery v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/stress_recovery)
+   Compiling open_pipe_stress_nonlinear_integration v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/solver/nonlinear_integration)
+   Compiling open_pipe_stress_load_case_algebra v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/loads/load_case_algebra)
+   Compiling open_pipe_stress_units v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/units)
+   Compiling open_pipe_stress_product_physics v0.1.0 (/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics)
+warning: unused variable: `membrane`
+    --> src/lib.rs:8123:31
+     |
+8123 |         let (wall, effective, membrane) = match state.annulus.recover_wall_effective_membrane(
+     |                               ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_membrane`
+     |
+     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `is_exact_pressure_result_kind` is never used
+    --> src/lib.rs:6830:4
+     |
+6830 | fn is_exact_pressure_result_kind(kind: &str) -> bool {
+     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: variants `InvalidInsulationThickness` and `NonRepresentableArea` are never constructed
+  --> src/annulus_geometry.rs:13:5
+   |
+10 | pub(crate) enum SourceAreaError {
+   |                 --------------- variants in this enum
+...
+13 |     InvalidInsulationThickness,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+14 |     NonRepresentableArea,
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `SourceAreaError` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: function `represented_area` is never used
+  --> src/annulus_geometry.rs:46:4
+   |
+46 | fn represented_area(area: Scaled, zero_allowed: bool) -> Result<f64, SourceAreaError> {
+   |    ^^^^^^^^^^^^^^^^
+
+warning: function `source_wall_area_m2` is never used
+  --> src/annulus_geometry.rs:54:15
+   |
+54 | pub(crate) fn source_wall_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `source_bore_area_m2` is never used
+  --> src/annulus_geometry.rs:57:15
+   |
+57 | pub(crate) fn source_bore_area_m2(od: f64, wall: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `source_insulation_area_m2` is never used
+  --> src/annulus_geometry.rs:61:15
+   |
+61 | pub(crate) fn source_insulation_area_m2(od: f64, thickness: f64) -> Result<f64, SourceAreaError> {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `open_pipe_stress_product_physics` (lib) generated 7 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics` to apply 1 suggestion)
+warning: constant `MODES` is never used
+  --> tests/pressure_membrane_range.rs:17:7
+   |
+17 | const MODES: [PreviewSolverMode; 2] = [
+   |       ^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `open_pipe_stress_product_physics` (test "pressure_membrane_range") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.89s
+     Running tests/pressure_membrane_range.rs (projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/target_product/debug/deps/pressure_membrane_range-d504fa2c23c9440b)
+
+running 2 tests
+
+thread 'fixed_subnormal_wall_force_preserves_normal_stress_sparse' (79757968) panicked at tests/pressure_membrane_range.rs:112:5:
+assertion `left == right` failed: [Diagnostic { id: "diagnostic:pipe-element:pipe-source-section", code: "PIPE_ELEMENT_INPUT_INVALID", severity: "blocking", message: "degenerate axis definition: element length", source: Some("core/product_physics"), affected_refs: ["pipe:source-section"] }]
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'fixed_subnormal_wall_force_preserves_normal_stress_dense' (79757967) panicked at tests/pressure_membrane_range.rs:112:5:
+assertion `left == right` failed: [Diagnostic { id: "diagnostic:pipe-element:pipe-source-section", code: "PIPE_ELEMENT_INPUT_INVALID", severity: "blocking", message: "degenerate axis definition: element length", source: Some("core/product_physics"), affected_refs: ["pipe:source-section"] }]
+  left: "MODEL_INCOMPLETE"
+ right: "MECHANICS_SOLVED"
+test fixed_subnormal_wall_force_preserves_normal_stress_dense ... FAILED
+test fixed_subnormal_wall_force_preserves_normal_stress_sparse ... FAILED
+
+failures:
+
+failures:
+    fixed_subnormal_wall_force_preserves_normal_stress_dense
+    fixed_subnormal_wall_force_preserves_normal_stress_sparse
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test pressure_membrane_range`

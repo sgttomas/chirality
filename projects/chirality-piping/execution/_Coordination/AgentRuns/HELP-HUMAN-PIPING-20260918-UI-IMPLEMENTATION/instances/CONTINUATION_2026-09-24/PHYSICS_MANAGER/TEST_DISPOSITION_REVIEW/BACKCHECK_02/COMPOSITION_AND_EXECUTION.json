@@ -1,0 +1,263 @@
+{
+  "status": "PASS_EXACT_COMPOSITION_AND_RECORDED_EXECUTION_BINDING",
+  "candidate_content_sha256": "6bb99354fa9591032f672a7c3bd488edd8d4cdb6df9135e211cff3a10556b546",
+  "F03_paths": 19,
+  "F04_paths": 21,
+  "changed_paths": [
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs",
+      "hunks": 1,
+      "sha256": "086bbc7b789e839bf6eecfb9114c74cc1d654b0853cf76077d42b0ba1d281336"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "hunks": 69,
+      "sha256": "0965164e6b6b8107a1b9563354ddbf5226ccc23e30516bd23cdea9789b0932c9"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "hunks": 1,
+      "sha256": "5755da52f60893102138d0f0f35b72276caf62fa08f982218da85d675ec5d1aa"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs",
+      "hunks": 1,
+      "sha256": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "hunks": 2,
+      "sha256": "ad501226fb01868d3f831f5b72b2ce1703c8a23703ee7a006166590bbbc168e3"
+    }
+  ],
+  "reviewed_nonoverlapping_lib_edits": 89,
+  "reviewed_composition_equals_F04_patch": true,
+  "all21_live_hashes_equal": true,
+  "live_paths": [
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_extrema.rs",
+      "sha256": "71ac0defce0607ddd78588e8968d704ec9342b75c5780163cc97d033bed9771d",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+      "sha256": "6f04adc18d8799ba208b07043c6a3ed1604efed526a186ba1735c3739013072d",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+      "sha256": "38c66ecd2bcb96561d27217294094ded1d5683af19f6f63a00840d0ffd056a1a",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256": "35e36952c2e4d37d55992153d726a6cbb709402a3e0dcac08a4712b53288c1c5",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/annulus_geometry.rs",
+      "sha256": "98a781f126af9d8e6d94de96bbe0d9c3815f83760f7deca7a391e612acf979c9",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs",
+      "sha256": "086bbc7b789e839bf6eecfb9114c74cc1d654b0853cf76077d42b0ba1d281336",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+      "sha256": "0965164e6b6b8107a1b9563354ddbf5226ccc23e30516bd23cdea9789b0932c9",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact.rs",
+      "sha256": "b85630992db2e3a8be9c87f395dee09b0d27c68cf80ea9765cddb57b69768fa0",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_exact/source_geometry.rs",
+      "sha256": "a023170798a856506f90887df4b421c8979818ad8a8c029e6b334ac53d210143",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_material.rs",
+      "sha256": "a7d63cedda6040e03c0583f9c3a7114cf9aff40144ea6a5748252898789de7b2",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+      "sha256": "5755da52f60893102138d0f0f35b72276caf62fa08f982218da85d675ec5d1aa",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/pressure_sum.rs",
+      "sha256": "7231339e48cabe0f54122ac6253cb2ce936d025d1bb3a391e709030d8b617ef3",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+      "sha256": "19109596a2e35f543156cda78ce873aeb021ff197767e6601220f11a9e64f8ad",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/elastic_extrema_runtime.rs",
+      "sha256": "06e031a1f91bfab37e541c04fa77a605911a646342fb75230f79076a9aa8cce5",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_grouping_limits.rs",
+      "sha256": "932cc43580c7dfe5754ca40f29e96dfa01ba9b20fc2021e05b9cc86d1e445f6c",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_membrane_range.rs",
+      "sha256": "53b461e708f092cd9b35717f9aa242ddfd288e2f742c61456fbf46fa0ec620ea",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+      "sha256": "ad501226fb01868d3f831f5b72b2ce1703c8a23703ee7a006166590bbbc168e3",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/pressure_section_geometry.rs",
+      "sha256": "b81b1600adf62c711779ca1d06e908954fc2531b8545f37925b150cdbf7301f7",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/stress_maximum_coverage.rs",
+      "sha256": "54c0999b5a90389c6d48507bf1ab246b6336de5d5f9e74d38d9518437f86a985",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/tests/support_reactions_runtime.rs",
+      "sha256": "8d899b979187e44cc814bb6bdaa425768dd329978e0e62b549b2d415021998b3",
+      "live_and_reconstructed_and_manifest_equal": true
+    },
+    {
+      "path": "projects/chirality-piping/core/serialization/canonical_json/Cargo.toml",
+      "sha256": "531d6fcb62e47c3f4dfa5aae3c920255d40f2f1619036a001c1cb37e691c10f4",
+      "live_and_reconstructed_and_manifest_equal": true
+    }
+  ],
+  "all21_bound_before_and_after_integrated_run": true,
+  "integrated_execution": {
+    "actor": "/root/physics_resume",
+    "exit_code": 0,
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/core/product_physics/Cargo.toml",
+      "--offline",
+      "--locked",
+      "-j",
+      "2",
+      "--target-dir",
+      "/private/tmp/piping-pressure-stress-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/PHYSICS_MANAGER/MEMBRANE_PUBLICATION/target_product",
+      "--lib",
+      "--test",
+      "pressure_runtime",
+      "--test",
+      "pressure_section_geometry",
+      "--test",
+      "pressure_membrane_range",
+      "--test",
+      "elastic_extrema_runtime",
+      "--test",
+      "stress_maximum_coverage",
+      "--test",
+      "support_reactions_runtime",
+      "--test",
+      "pressure_grouping_limits",
+      "--",
+      "--test-threads=2",
+      "--nocapture"
+    ],
+    "cwd": "/private/tmp/piping-pressure-stress-20260924",
+    "started_utc": "2026-09-25T03:14:50.052746+00:00",
+    "finished_utc": "2026-09-25T03:15:03.700615+00:00",
+    "versions": {
+      "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+    },
+    "log_sha256": "99b12efa0b3b5911a388c8b1d1a91d940bce97120e707a47173d2a7f7dc1315c",
+    "library_passed": 213,
+    "public_passed": 36,
+    "ignored": 0,
+    "filtered": 0,
+    "summaries": [
+      [
+        213,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "intentional_caught_panic_tests": [
+      "tests::private_historical_scope_restores_after_unwind_and_is_thread_local",
+      "tests::private_historical_pressure_scope_restores_public_refusal_and_rejects_exact"
+    ]
+  },
+  "all50_mapped_passed": true,
+  "added_tests_passed": [
+    "endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_without_pressure",
+    "mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure",
+    "valid_invented_model_exposes_endpoint_stress_components_without_pressure",
+    "nonlinear_support_current_pressure_free_law_in_both_modes",
+    "current_composite_derived_normal_friction_and_reversal",
+    "private_historical_pressure_scope_restores_public_refusal_and_rejects_exact",
+    "private_historical_scope_restores_after_unwind_and_is_thread_local"
+  ],
+  "limits": "Reviewer did not execute product. Command input manifest covers all21 selected files plus records, not every transitive workspace dependency or Cargo.lock. Broader consumer/native/CI/registered-sweep/merge gates remain open."
+}

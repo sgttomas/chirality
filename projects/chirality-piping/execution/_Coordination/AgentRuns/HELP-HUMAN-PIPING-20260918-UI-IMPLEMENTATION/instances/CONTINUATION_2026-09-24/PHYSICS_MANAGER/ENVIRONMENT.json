@@ -1,0 +1,11 @@
+{
+  "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+  "rustc_commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+  "host": "aarch64-apple-darwin",
+  "LLVM": "22.1.6",
+  "cargo": "1.97.1 (c980f4866 2026-06-30)",
+  "python": "3.9.6",
+  "commands": "offline locked Cargo, max2jobs,2testthreads, separate per-manifest targets; standalone rustc tests one process",
+  "native_or_browser": "not used",
+  "configured_model": "inherited Codex task allocation; no independently observed model override asserted"
+}
