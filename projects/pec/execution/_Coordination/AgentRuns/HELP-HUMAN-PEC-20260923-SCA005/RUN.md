@@ -43,10 +43,20 @@ Dispatch note: the host's agent roster is fixed at session start, so the gitigno
 
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
-| G3 record checkpoint-1 acceptance | HELP_HUMAN | merged PR #884 | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/{DECISION.md,ACCEPTED_MANIFEST.csv,Handoff_State.md}` (new); `SCA-005_2026-09-23_2139/Decision_Log.md` rows + `Handoff_State.md` amendment; `_REGISTER.md` D-PEC-86 status; `docs/STATUS.md`, `README.md`; `loop/LOOP_RECEIPTS.md` Receipt 181 | in progress — PR, independent review (`pec-reviewer`), CI, merge |
-| G4 explain remaining owner decisions (D-PEC-87 C-A/C-B + L-1/L-2; seven TM-PEC-023 rows) | HELP_HUMAN | none | chat only | in progress |
+| G3 record checkpoint-1 acceptance | HELP_HUMAN | merged PR #884 | `_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/{DECISION.md,ACCEPTED_MANIFEST.csv,Handoff_State.md}` (new); `SCA-005_2026-09-23_2139/Decision_Log.md` rows + `Handoff_State.md` amendment; `_REGISTER.md` D-PEC-86 status; `docs/STATUS.md`, `README.md`; `loop/LOOP_RECEIPTS.md` Receipt 181 | COMPLETE — PR #888 merged `3c3adae355739b2ad24acdb33d3b5422bb36db95` after review PASS on the final head |
+| G4 explain remaining owner decisions (D-PEC-87 C-A/C-B + L-1/L-2; seven TM-PEC-023 rows) | HELP_HUMAN | none | chat only | COMPLETE |
 | F3 independent review of the G3 candidate | TASK / host agent type `pec-reviewer` (read-only) | G3 | none (return transcribed to `returns/F3_REVIEW_CP1_ACCEPTANCE.md` by HELP_HUMAN) | cycle 1 FAIL (5 MAJOR: four record-currency, one substantive Seq 75/Q10 contradiction) → repaired; cycle 2 PASS WITH MINOR → minors applied; verdicts in `returns/F3_REVIEW_CP1_ACCEPTANCE.md` |
 | B2 checkpoint-2 package preparation | WORKING_ITEMS (`pec-manager`, scope-change) | G3 merged | `_ScopeChange/SCA-005_2026-09-23_2139/` checkpoint-2 artifacts | NOT_STARTED — next run; carries whichever TM-PEC-023 selections exist by then |
 
 
 Authority note for G3 (HELP_HUMAN): D-PEC-86 §4 names WORKING_ITEMS (scope-change) as owner of the `_ScopeChange` package and holds `checkpoint_snapshots/` "untouched until owner acceptance". The acceptance occurred 2026-09-24. HELP_HUMAN wrote the group-1 snapshot and the amendment-qualified pointer itself rather than dispatching a manager, because the act is a transcription of the owner's ruling (K-AUTH-1 places that duty on the role that received it) and the snapshot binds existing bytes only; no scope-change judgment was exercised. The second `docs/STATUS.md`/`README.md` refresh is the same present-current maintenance I-5 named, made necessary by the acceptance; it asserts no acceptance that did not occur. If the owner reads I-5 as a single refresh only, the STATUS/README hunks of PR #888 revert cleanly. Warrant for the pointer path: D-PEC-86 §3 I-1 opened SCA-005 under the scope-change workflow, whose method finalizes "the group-1 decision snapshot and pointer" after acceptance; §4's post-acceptance `checkpoint_snapshots/` clause is read to include that companion pointer. It is a new file and reverts cleanly; `_LATEST.md` is not touched.
+
+## Continuation 2026-09-24 (owner: "1. C-A.  2. L-1a, L-2a but no need to ask me about declaring CHECKING status … 3. … let's discuss 3 more.")
+
+HELP_HUMAN is served by `claude-opus-5-5` from this continuation (owner switched the session model); earlier nodes were served by `claude-fable-5-1`.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G5 record D-PEC-87 ruling | HELP_HUMAN | merged PR #888 | `_DECISIONS/D-PEC-87_RULING_2026-09-24.md` (new); `_REGISTER.md` D-PEC-87 row; `docs/STATUS.md`; `loop/LOOP_RECEIPTS.md` Receipt 182 | in progress — PR, independent review, CI, merge |
+| C2 D-PEC-87 C-A correction slice | WORKING_ITEMS (`pec-manager`) → one TASK author (`pec-task`, software-bounded-implementation) → one fresh read-only verifier (`pec-reviewer`, software-code-review) | G5 merged and observed on `origin/main` | the seven granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_02/**`, `MEMORY.md`, and the single L-1a `_STATUS.md` edit | NOT_STARTED |
+| G6 TM-PEC-023 per-row context for the owner | HELP_HUMAN (+ read-only research) | none | chat; no file unless the owner selects | in progress |

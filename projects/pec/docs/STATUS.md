@@ -63,12 +63,18 @@ acceptance, `CHECKING`, issuance, or release follows from that slice. Under
 `D-PEC-86` §3 I-4 its three read-only evidence inquiries DEL-01-03-REM-001..003
 produced reports under
 `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/REMAINING_EVIDENCE_DEL-01-03-REM-00{1,2,3}/`,
-each with an independent verifier verdict of PASS. Obligations O-1-1..O-1-10,
-O-2-1..O-2-8 and O-3-1..O-3-14 await owner disposition, including O-2-2 (the
-guard does not bound path length or line structure, confirmed read-only by
-HELP_HUMAN) and its routing. No Remaining item is closed and DEL-01-03
-`_STATUS.md` is unchanged
+each with an independent verifier verdict of PASS
 (`execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/C1_DEL0103_INQUIRIES.md`).
+Their obligations O-1-1..O-1-10, O-2-1..O-2-8 and O-3-1..O-3-14, including
+O-2-2 (the guard does not bound path length or line structure), were triaged
+on 2026-09-24 and the owner ruled `D-PEC-87` the same day
+(`execution/_Coordination/_DECISIONS/D-PEC-87_RULING_2026-09-24.md`): C-A
+opens one correction slice on seven existing files (R1–R8, X-1); L-1a lets
+that slice tick the three REM rows; L-2a lands the corrected bytes and then
+reviews them. The owner reserves any CHECKING declaration for DEL-01-03 to
+their own initiative; it is not an owner gate agents raise, and it holds no
+other work. Until the slice lands, O-2-2 remains a live defect in the merged
+primitive and the three REM rows remain unticked.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
@@ -148,12 +154,6 @@ P-A.
 
 Current owner gates (2026-09-24; none is accepted or inferred here):
 
-- **D-PEC-87 ruling:** C-A (recommended) / C-B / amend / defer for the
-  DEL-01-03 store/guard correction slice, with the separately rulable
-  lifecycle clauses L-1 (three REM rows) and L-2 (acceptance route). A C-A or
-  C-B ruling with L-1/L-2 would dispose of the 13 repair and 4 owner-only
-  obligations; the 15 class-A/B items rest on the triage
-  (`OBLIGATION_TRIAGE_DEL-01-03.md`), which is not itself a ruling.
 - **SCA-005 checkpoint 2:** accept the exact amendment and propagation plan
   once prepared from the accepted group-1 snapshot
   (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/`),
