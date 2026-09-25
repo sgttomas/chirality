@@ -252,6 +252,7 @@ class ContentMinimalGuardTests(unittest.TestCase):
             ),
             self.record("fresh", MetadataField("count", FieldClass.COUNT, 3)),
             MetadataRecord(cast(str, 7), RepositoryPath("projects/pec/source.md"), (count,)),
+            self.record("over-count", MetadataField("count", FieldClass.COUNT, 10**5000)),
         )
         located = self.store.admit_batch(cast(tuple[MetadataRecord, ...], batch))
         self.assertEqual(
@@ -271,6 +272,7 @@ class ContentMinimalGuardTests(unittest.TestCase):
                 ("two-failures", "lifecycle", "INVALID_VALUE"),
                 ("fresh", "<record>", "DUPLICATE_RECORD"),
                 ("<input:13>", "<record_id>", "INVALID_IDENTIFIER"),
+                ("over-count", "count", "INVALID_VALUE"),
             ],
         )
         self.assertEqual(
@@ -288,7 +290,7 @@ class ContentMinimalGuardTests(unittest.TestCase):
             },
         )
         self.assertNotIn("<unknown>", {item.record_id for item in located.failures})
-        self.assertEqual((located.attempted, located.accepted, located.rejected), (14, 1, 13))
+        self.assertEqual((located.attempted, located.accepted, located.rejected), (15, 1, 14))
         self.assertEqual(located.rejected, len({item.record_id for item in located.failures}))
         self.assertNotEqual(located.rejected, len(located.failures))
         self.assertEqual(located.attempted, located.accepted + located.rejected)
@@ -367,12 +369,43 @@ class ContentMinimalGuardTests(unittest.TestCase):
             MetadataField("raw_hash", FieldClass.HASH, "b" * 64),
             MetadataField("raw_state", FieldClass.STATE, "IN_PROGRESS"),
             MetadataField("conforming", FieldClass.COUNT, ConformingInt(3)),
+            MetadataField("over_max", FieldClass.COUNT, 2**53),
+            MetadataField("over_digit_limit", FieldClass.COUNT, 10**5000),
         )
         for index, field in enumerate(invalid_values):
             with self.subTest(field=field.name):
                 decision = ContentMinimalGuard().guard(self.record(f"invalid-{index}", field))
                 self.assertFalse(decision.accepted)
                 self.assertEqual(decision.failures[0].field_name, field.name)
+        # D-PEC-91 R15: the COUNT domain is 0..2**53 - 1 under every interpreter digit limit.
+        original_digits = sys.get_int_max_str_digits()
+        self.addCleanup(sys.set_int_max_str_digits, original_digits)
+        try:
+            for digit_limit in (sys.int_info.default_max_str_digits, 640, 0):
+                sys.set_int_max_str_digits(digit_limit)
+                with self.subTest(digit_limit=digit_limit):
+                    at_max = ContentMinimalGuard().guard(
+                        self.record("count-max", MetadataField("n", FieldClass.COUNT, 2**53 - 1))
+                    )
+                    self.assertTrue(at_max.accepted)
+                    assert at_max.record is not None
+                    self.assertEqual(at_max.record.fields[0].value, "9007199254740991")
+                    for label, over in (
+                        ("2**53", 2**53),
+                        ("2**63", 2**63),
+                        ("10**639", 10**639),
+                        ("10**5000", 10**5000),
+                    ):
+                        decision = ContentMinimalGuard().guard(
+                            self.record("count-over", MetadataField("n", FieldClass.COUNT, over))
+                        )
+                        self.assertEqual(
+                            [(failure.record_id, failure.field_name, failure.code) for failure in decision.failures],
+                            [("count-over", "n", "INVALID_VALUE")],
+                            label,
+                        )
+        finally:
+            sys.set_int_max_str_digits(original_digits)
         over_segment = "x/" + "y" * 256
         over_total = "y/" * 2048 + "y"
         over_segment_multibyte = "x/" + "\u00e9" * 128

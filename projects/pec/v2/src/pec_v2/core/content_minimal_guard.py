@@ -13,6 +13,11 @@ _LOWER_HEX = re.compile(r"^[0-9a-f]+$")
 _PATH_FORBIDDEN = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029\\]")
 _MAX_PATH_BYTES = 4096
 _MAX_SEGMENT_BYTES = 255
+# Largest admitted COUNT: the JSON safe-integer range (RFC 8259: integers up to
+# 2**53 - 1 are interoperable, because JSON consumers may parse numbers as
+# doubles). At 16 decimal digits it is far below the interpreter's smallest
+# nonzero int-to-str limit (640 digits).
+_MAX_COUNT = 2**53 - 1
 
 
 class FieldClass(str, Enum):
@@ -208,7 +213,7 @@ class ContentMinimalGuard:
             return AdmissionFailure(record_id, field_name, "UNKNOWN_FIELD_CLASS", "field class is not one of the five PEC-K-10 classes")
         if field_class is FieldClass.PATH and (path := _validated_repository_path(value)) is not None:
             rendered = path
-        elif field_class is FieldClass.COUNT and type(value) is int and value >= 0:
+        elif field_class is FieldClass.COUNT and type(value) is int and 0 <= value <= _MAX_COUNT:
             rendered = str(value)
         elif field_class is FieldClass.SHA and (sha := _validated_sha(value)) is not None:
             rendered = f"{sha[0]}:{sha[1]}"
