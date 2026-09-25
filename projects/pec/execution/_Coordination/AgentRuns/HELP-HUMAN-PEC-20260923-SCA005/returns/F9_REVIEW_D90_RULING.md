@@ -15,3 +15,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N5 | NOTE row should say checkpoint 2 still quotes in-force v2.2 | NOTE row clarified; `Decision_Log.md` hash updated in Handoff_State |
 | N6 | F9 transcription must exist before merge | This file |
 | N7 | STATUS/README omit "reliance begins at a release, not now" | Added to both |
+
+## Final-head confirmation of `44a879bd9d0f260461dd551191ef93dea0b24ec8`
+
+Same reviewer, re-reviewing the repair commit `6db0520e9..44a879bd9`. **Verdict: PASS, no blocking findings.** N1–N7 repairs match their findings and sources; proposal bytes unchanged (`b04a8aa2…`); `Decision_Log.md` SHA-256 `d8aced8d7cf196401525dd2ed5db0ad315ca042e0772d716bf453f949d1b8a11` matches both Handoff_State occurrences and the old value appears nowhere; the clarifications correct citations only and leave Grant and Limits byte-unchanged; this transcription is fair; validators pass. Non-blocking: the N5 sentence in row SCA005-D90-NOTE ("Checkpoint 2 still quotes the in-force PRD v2.2 … not diverge from the in-force text.") is HELP_HUMAN's clarification from F9 N5, not owner wording, although the row's status is `DIRECTED BY OWNER`. HELP_HUMAN records that provenance here rather than editing `Decision_Log.md` again. This section is added append-only after that head; no other byte changes.
