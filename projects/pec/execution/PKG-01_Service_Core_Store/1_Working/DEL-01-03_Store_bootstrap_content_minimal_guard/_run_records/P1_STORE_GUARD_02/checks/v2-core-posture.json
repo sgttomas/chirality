@@ -1,0 +1,27 @@
+{
+  "profile": "projects/pec/software-workflow.json",
+  "project_root": "projects/pec",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "v2/tools/check_service_core_posture.py",
+        "--config",
+        "v2/config/service_core_posture.json",
+        "--workflow",
+        "software-workflow.json"
+      ],
+      "cwd": "projects/pec",
+      "duration_seconds": 0.048,
+      "exit_code": 0,
+      "id": "v2-core-posture",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "{\n  \"assertions\": {\n    \"dependency\": \"PASS\",\n    \"locality\": \"PASS\",\n    \"registration\": \"PASS\"\n  },\n  \"evaluated\": {\n    \"config_sha256\": \"20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed\",\n    \"core_tree_sha256\": \"ac1c02fe61ecce9a08d41f48a23b16fc13c4466d706a7e06cca725aef6b0914b\",\n    \"workflow_sha256\": \"8ec9ba6dcba7ea6b935923f5b4d846b2a9ac3f3d5cc43f5e160abe0971058a8b\"\n  },\n  \"findings\": [],\n  \"release_force\": \"PEC_RELEASE_BLOCKING\",\n  \"schema_version\": 1,\n  \"verdict\": \"PASS\"\n}\n",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}

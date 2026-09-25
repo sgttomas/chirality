@@ -10,6 +10,9 @@ from enum import Enum
 
 _IDENTIFIER = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$")
 _LOWER_HEX = re.compile(r"^[0-9a-f]+$")
+_PATH_FORBIDDEN = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029\\]")
+_MAX_PATH_BYTES = 4096
+_MAX_SEGMENT_BYTES = 255
 
 
 class FieldClass(str, Enum):
@@ -288,8 +291,18 @@ def _valid_hex(value: object, length: int) -> bool:
 def _repository_path_problem(value: object) -> str | None:
     if not isinstance(value, str) or not value:
         return "path must be a non-empty string"
-    if "\\" in value or "\x00" in value:
-        return "path must use normalized POSIX syntax"
+    if _PATH_FORBIDDEN.search(value):
+        return "path must be single-line POSIX text without control characters or backslash"
+    # Unbound str methods: a forged str subclass cannot override the measurement.
+    try:
+        encoded = str.encode(value, "utf-8", "strict")
+    except UnicodeEncodeError:
+        return "path must be valid UTF-8 text"
+    segments = str.split(value, "/")
+    if len(encoded) > _MAX_PATH_BYTES or any(
+        len(str.encode(segment, "utf-8", "strict")) > _MAX_SEGMENT_BYTES for segment in segments
+    ):
+        return "path exceeds the finite path bound"
     parts = value.split("/")
     if value.startswith("/") or value != posixpath.normpath(value) or value == "." or ".." in parts:
         return "path must be normalized and repository-relative"
