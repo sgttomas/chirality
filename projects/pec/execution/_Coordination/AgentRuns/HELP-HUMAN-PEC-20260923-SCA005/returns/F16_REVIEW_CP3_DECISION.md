@@ -12,3 +12,7 @@ Reviewer: fresh read-only TASK (`pec-reviewer`, `model: opus`; host-reported `cl
 | N2 | README §Governance named SCA-004 as the accepted successor; State stamp dated 2026-09-23 | Updated to SCA-005 (`D-PEC-92`) and the stamp to 2026-09-25 |
 | N3 | F16 must exist before merge | This file |
 | N4 | New `RUN_SUMMARY.md` hash unrecorded; the DecompCoverage pointer move had no open-item home; `_Decomposition/_LATEST.md` open-work list shorter than the scope-change pointer's | `Handoff_State.md` amendment now records the `RUN_SUMMARY.md` hash and carries the pointer move as open work needing its own grant; `_Decomposition/_LATEST.md` list completed |
+
+## Final-head confirmation of `5fadd070cc2b5e4757337d3f5f537976e5ad5c71`
+
+Same reviewer, re-reviewing the repair commit `c9e5cd87d..5fadd070c`. **Verdict: PASS, no new findings.** N1, N2 and N4 repairs are true against the files (22/42/64 counts match the audit; the `RUN_SUMMARY.md` hash recomputes); `_Decomposition/_LATEST.md` changed only its open-work list; the decomposition, registers, PRD, `Decision_Log.md`, `_ScopeChange/_LATEST.md`, snapshots, loop records and tools are unchanged from the reviewed head; this transcription is fair. `git diff --check` clean; receipts validator VALID. This section is added append-only after that head; no other byte changes.
