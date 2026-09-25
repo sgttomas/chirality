@@ -2095,3 +2095,14 @@
   - Checks: L-2a reviewer ran the five registered checks, exit 0 each (store guard 13 OK, core posture PASS, loop registry 12 OK, API contract 6 OK, harness self-check unchanged); HELP_HUMAN reproduced F-1 at `088fb7868`; D-PEC-91 prototype checks exit 0 on a scratch export; for this publication, receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F10_REVIEW_L2A_D91.md`.
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; L-2a reviewer (`pec-reviewer`) and D-PEC-91 preparer (`pec-task`) host-reported `claude-opus-5-5`; roles instruction-asserted.
   - Gate-Outcome: `EXECUTED` — review outcome reported and proposal published for an owner ruling; no product, lifecycle, artifact-acceptance, release or reliance act.
+
+- **2026-09-25 — Receipt 189** (owner ruling on D-PEC-91 recorded; COUNT-domain repair slice authorized on publication).
+  - Receipt-ID: `Receipt-189`
+  - Examined-Through: `eec2855d829d9cd3704892fc7d603562fbd39b88`
+  - Parent-Receipt: `Receipt-188`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — “I agree with all your recommendations in those matters and rule accordingly.  Proceed.” The act of record is file-native (K-AUTH-1) in `execution/_Coordination/_DECISIONS/D-PEC-91_RULING_2026-09-25.md`, which records the recommendations referred to: option A-53 (bound `2**53 - 1`), no field-count bound, run now, default model steer.
+  - Pointers: `_DECISIONS/D-PEC-91_RULING_2026-09-25.md`; `_DECISIONS/_REGISTER.md` D-PEC-91 entry; `docs/STATUS.md` and `README.md` present-current lines under D-PEC-88; run record nodes G12, G13, C4.
+  - Stale-Map-Delta: the D-PEC-91 proposal bytes stay unchanged at `5c044b09…13ec`; the eight preimage paths still match its rollback table at the examined commit. No `v2/**`, `software-workflow.json`, `_STATUS.md`, decomposition, PRD or pointer byte changed in this publication.
+  - Checks: receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F11_REVIEW_D91_RULING.md`.
+  - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; reviewer dispatched with host `subagent_type: pec-reviewer`, model reported by the host; roles instruction-asserted.
+  - Gate-Outcome: `EXECUTED` — ruling recorded; the slice starts only after this publication is observed on `origin/main`; no product, lifecycle, artifact-acceptance, release or reliance act.

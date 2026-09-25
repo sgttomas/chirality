@@ -102,5 +102,13 @@ The L-2a review returned DEFECTS_FOUND. Under F-PEC-1 any repair to DEL-01-03 `v
 | Node | Role / agent type | Depends | Write locus | State |
 |---|---|---|---|---|
 | H7 D-PEC-91 proposal (COUNT domain, encoding residual, L-2a repairs) | TASK (`pec-task`, `model: opus`; host-reported `claude-opus-5-5`), read-only, prototype in a temporary directory | L2a | scratchpad draft, published unchanged by HELP_HUMAN as `_DECISIONS/D-PEC-91_del_01_03_count_domain_encoding_residual_proposal_2026-09-25.md` | COMPLETE — brief `briefs/H7_D91_PROPOSAL.md` (SHA-256 `0bd7d1209613e82aada62aaeaa98e5d9d212dd9988161f28f2bce21de811baee`); draft SHA-256 `5c044b095621bfb098bb3d4e69d55b5a0594a3c73322d58b440a767e2d2413ec`; recommends A (R15 COUNT exact `int` in `0..2**63-1`, R16 read-only-checkout test, R17 documentation); prototype: five registered checks exit 0, F-1 closed at three interpreter digit limits, seven new mutations and the nine D-PEC-89 mutations caught; bulky exports deleted, probe and check outputs kept in the session scratchpad; the TASK disclosed briefly creating and deleting one stray scratch file outside its write boundary |
-| G12 publish L-2a outcome and D-PEC-91 proposal | HELP_HUMAN | G11 merged | `briefs/L2A_DEL0103_REVIEW.md`, `briefs/H7_D91_PROPOSAL.md`, `returns/L2A_REVIEW_DEL-01-03.md` (new); the D-PEC-91 proposal (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 188 | in progress — PR, independent review, CI, merge |
-| C4 D-PEC-91 slice | WORKING_ITEMS → TASK author → fresh verifier | owner ruling on D-PEC-91 | per the ruling | NOT_STARTED — awaiting the owner's ruling |
+| G12 publish L-2a outcome and D-PEC-91 proposal | HELP_HUMAN | G11 merged | `briefs/L2A_DEL0103_REVIEW.md`, `briefs/H7_D91_PROPOSAL.md`, `returns/L2A_REVIEW_DEL-01-03.md` (new); the D-PEC-91 proposal (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 188 | COMPLETE — PR #900 merged `eec2855d829d9cd3704892fc7d603562fbd39b88`; review transcribed in `returns/F10_REVIEW_L2A_D91.md` |
+| C4 D-PEC-91 slice | WORKING_ITEMS → TASK author → fresh verifier | G13 merged and observed on `origin/main` | the four granted paths; DEL-01-03 `_run_records/P1_STORE_GUARD_04/**`, `MEMORY.md` | NOT_STARTED — ruled A-53 (G13) |
+
+## Continuation 2026-09-25 (owner: "I agree with all your recommendations in those matters and rule accordingly.  Proceed.")
+
+Before ruling, the owner asked whether a bound above what JSON readers handle is acceptable ("we design for the limiting component"); HELP_HUMAN changed its recommendation from A to A-53 and kept the others. The ruling adopts A-53.
+
+| Node | Role / agent type | Depends | Write locus | State |
+|---|---|---|---|---|
+| G13 record D-PEC-91 ruling | HELP_HUMAN | G12 merged | `_DECISIONS/D-PEC-91_RULING_2026-09-25.md` (new); `_REGISTER.md` D-PEC-91 row; `docs/STATUS.md`, `README.md` (D-PEC-88); Receipt 189 | in progress — PR, independent review, CI, merge |

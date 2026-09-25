@@ -102,8 +102,11 @@ and found defects: a COUNT value longer than the interpreter's integer-string
 limit makes the guard raise an unlocated error and lose the batch (F-1,
 major), and the documentation does not state that deliberately encoded
 content can pass through admitted field classes (F-2, minor), with smaller
-items. The five registered checks pass. Repairs are proposed as `D-PEC-91`
-for the owner's ruling.
+items. The five registered checks pass. The owner ruled the repairs as
+`D-PEC-91` A-53 on 2026-09-25: COUNT accepts only an exact integer from 0 to
+`2**53 - 1` (the range JSON consumers read exactly), anything else becomes a
+located rejection, plus a read-only-checkout test and documentation of the
+encoding residual. That slice is next.
 
 **Lifecycle census** (recounted 2026-09-23 from the 64 deliverable
 `_STATUS.md` files): 32 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING` (DEL-00-01,
@@ -190,9 +193,6 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   cmux deferral, the SOW-033 mapping and the PRD v2.3 successor candidate, and
   carrying the `D-PEC-90` note; checkpoint 3 (audited
   poststate) follows.
-- **`D-PEC-91` (DEL-01-03 L-2a repairs):** choose A (recommended), A-53, N,
-  amend or defer, and the COUNT bound
-  (`execution/_Coordination/_DECISIONS/D-PEC-91_del_01_03_count_domain_encoding_residual_proposal_2026-09-25.md`).
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
