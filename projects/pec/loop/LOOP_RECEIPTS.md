@@ -2084,3 +2084,14 @@
   - Checks: receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F9_REVIEW_D90_RULING.md`.
   - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; reviewer dispatched with host `subagent_type: pec-reviewer`, model reported by the host; roles instruction-asserted.
   - Gate-Outcome: `EXECUTED` — ruling recorded and notices sent; no PRD, instruction, access-class, product, lifecycle, artifact-acceptance, release or reliance act; the text amendment follows SCA-005 checkpoint 2.
+
+- **2026-09-25 — Receipt 188** (L-2a review of DEL-01-03 corrected bytes reported; repairs proposed as D-PEC-91).
+  - Receipt-ID: `Receipt-188`
+  - Examined-Through: `6add18573fd087574ad47c4e0e50ab7882038e39`
+  - Parent-Receipt: `Receipt-187`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — none new; the review executes `_DECISIONS/D-PEC-87_RULING_2026-09-24.md` L-2a as amended (review after the corrected bytes land; outcome reported in the ordinary record; lifecycle declaration reserved to the owner's own initiative). D-PEC-91 is HELP_HUMAN-initiated preparation for an owner ruling.
+  - Pointers: run record `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/` nodes L2a, H7, G12, C4, briefs `briefs/L2A_DEL0103_REVIEW.md` and `briefs/H7_D91_PROPOSAL.md`, return `returns/L2A_REVIEW_DEL-01-03.md`; `_DECISIONS/D-PEC-91_del_01_03_count_domain_encoding_residual_proposal_2026-09-25.md` (SHA-256 `5c044b095621bfb098bb3d4e69d55b5a0594a3c73322d58b440a767e2d2413ec`); `_DECISIONS/_REGISTER.md` D-PEC-91 entry; `docs/STATUS.md` and `README.md` present-current lines under D-PEC-88.
+  - Stale-Map-Delta: none; the review and the proposal preparation were read-only over `088fb7868`, and no `v2/**`, `software-workflow.json`, `_STATUS.md`, SOW, decomposition or PRD byte changed. DEL-01-03 lifecycle unchanged.
+  - Checks: L-2a reviewer ran the five registered checks, exit 0 each (store guard 13 OK, core posture PASS, loop registry 12 OK, API contract 6 OK, harness self-check unchanged); HELP_HUMAN reproduced F-1 at `088fb7868`; D-PEC-91 prototype checks exit 0 on a scratch export; for this publication, receipts validator VALID, exit 0; decomposition registers `--strict` exit 0; `git diff --check` exit 0; independent fresh read-only review of the PR candidate, transcribed in `AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/F10_REVIEW_L2A_D91.md`.
+  - Model-Attribution: HELP_HUMAN served by `claude-opus-5-5`; L-2a reviewer (`pec-reviewer`) and D-PEC-91 preparer (`pec-task`) host-reported `claude-opus-5-5`; roles instruction-asserted.
+  - Gate-Outcome: `EXECUTED` — review outcome reported and proposal published for an owner ruling; no product, lifecycle, artifact-acceptance, release or reliance act.

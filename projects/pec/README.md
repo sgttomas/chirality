@@ -44,7 +44,8 @@ correction slice on seven existing files, the three inquiry rows to be
 ticked, and review of the corrected bytes. The slice merged on 2026-09-24
 (PR #893) and the three inquiry rows are ticked; a wider guard residual is
 ruled for closure as `D-PEC-89` A, whose slice merged on 2026-09-25 (PR #897);
-the L-2a review of the corrected bytes is next. Build phases P1–P4 remain
+the L-2a review of the corrected bytes then found defects, whose repairs are
+proposed as `D-PEC-91` for the owner's ruling. Build phases P1–P4 remain
 separately owner-gated. `D-PEC-80` made `projects/pec/loop/` the loop home:
 follow `projects/pec/loop/LOOP_INIT.md` to discover
 work from deliverable `## Remaining` surfaces. Retired plans live in
