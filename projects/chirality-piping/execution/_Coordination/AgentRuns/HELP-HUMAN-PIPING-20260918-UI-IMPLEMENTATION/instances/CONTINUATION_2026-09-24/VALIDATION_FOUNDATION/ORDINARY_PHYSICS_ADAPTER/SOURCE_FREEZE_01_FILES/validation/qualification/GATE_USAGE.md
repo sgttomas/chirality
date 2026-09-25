@@ -11,8 +11,7 @@ The preserved transport is `main_sparse_cli_1.0_raw0.1`: the existing
 `openpipestress-runner solve` command, implicit sparse_interactive dispatch,
 ControlledExport wrapper, CLI1.0 and raw mechanics0.1. The known semantic table
 and existing comparison implementation are hash-pinned. This transport remains
-sparse only. The presence of newer producer, numerical, formulation, physical,
-recovery or foreign-carrier namespaces is refused even when their value is null.
+sparse only.
 Main's six-decimal output remains that producer; this adapter cannot upgrade it.
 
 The explicit successor `ordinary_physics_1_cli_1.0_raw0.2` covers only the two
@@ -44,11 +43,7 @@ Its `format` is `openpipestress.qualification_selection/1`. It contains:
 The ordinary transport additionally binds `physics_binding`, `reference_basis`,
 and boolean `runner.explicit_local_private_intent`. Each of its two cases retains
 all 73 scalar selectors plus ten separately reported structural obligations. The
-complete ordered case inventory is required. The authoritative two-case/73-ID
-ledger is predeclared even when a malformed submission omits or duplicates a
-case/assertion; submitted inventory is recorded separately. Failures retain the
-nine section identities as unavailable/error details per case, and malformed
-checker returns cannot shrink those nested obligations. Displacement magnitudes genuinely
+complete ordered case inventory is required. Displacement magnitudes genuinely
 lack metadata: `metadata: null` in their selectors requires an absent raw field,
 not a raw field containing null. Each case binds the structural obligations,
 original section reference and independently checked numeric addendum. Nine

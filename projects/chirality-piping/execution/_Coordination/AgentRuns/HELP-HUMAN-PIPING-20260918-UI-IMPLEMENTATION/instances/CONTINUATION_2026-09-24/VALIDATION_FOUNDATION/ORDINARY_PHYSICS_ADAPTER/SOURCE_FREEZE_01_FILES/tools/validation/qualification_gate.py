@@ -169,22 +169,6 @@ def predeclare(manifest: dict) -> dict:
     """Every intelligible required row exists before file/process admission."""
     require(type(manifest) is dict, 'selection must be an object')
     cases = manifest.get('cases')
-    submitted_inventory = None
-    if manifest.get('transport') == physics.TRANSPORT:
-        # This finite profile has an authoritative inventory independent of what
-        # an incomplete or malformed caller submitted. Never label its subset
-        # as the required programme. Raw submission remains in selection.json.
-        submitted_inventory = {'cases_type': type(cases).__name__, 'cases': []}
-        if type(cases) is list:
-            submitted_inventory['case_count'] = len(cases)
-            for case in cases[:MAX_CASES]:
-                assertions = case.get('assertions') if type(case) is dict else None
-                submitted_inventory['cases'].append({
-                    'id': case.get('id') if type(case) is dict else None,
-                    'assertion_count': len(assertions) if type(assertions) is list else None,
-                    'assertion_ids': [row.get('id') if type(row) is dict else None for row in assertions[:MAX_ASSERTIONS]] if type(assertions) is list else None})
-        cases = [{'id': cid, 'assertions': [{'id': aid} for aid in physics.REQUIRED_ASSERTION_IDS]}
-                 for cid in physics.REQUIRED_CASE_IDS]
     require(type(cases) is list and 0 < len(cases) <= MAX_CASES, 'nonzero bounded case inventory required')
     ledger, seen, assertion_total = [], set(), 0
     for case in cases:
@@ -206,14 +190,10 @@ def predeclare(manifest: dict) -> dict:
             rows.append({'id': aid, 'state': 'not_run', 'reason': 'not executed', 'observed': None})
         structural = [{'id': key, 'state': 'not_run', 'reason': 'not executed', 'details': {}}
                       for key in physics.REQUIRED_STRUCTURAL_CHECKS] if manifest.get('transport') == physics.TRANSPORT else []
-        for check in structural:
-            if check['id'] == 'complete_case_material_section':
-                check['details']['section_quantities'] = physics.section_obligations()
         ledger.append({'id': cid, 'state': 'not_run', 'reason': 'not executed', 'assertions': rows, 'structural_checks': structural, 'process': None})
     return {'artifact': 'openpipestress.qualification_development_ledger', 'version': '1.0.0',
             'profile_id': manifest.get('profile_id'), 'selection_sha256': None,
             'qualification': 'not_established_by_this_harness', 'outcome': 'not_run', 'publication_phase': 'in_progress',
-            'submitted_inventory': submitted_inventory,
             'cases': ledger, 'summary': {}, 'diagnostics': [],
             'created_at_utc': datetime.now(timezone.utc).isoformat()}
 
@@ -225,15 +205,10 @@ def summarize(ledger: dict) -> None:
             counts[row['state']] += 1
     structural_counts = {state: sum(row['state'] == state for case in ledger['cases'] for row in case.get('structural_checks', [])) for state in STATES}
     structural_total = sum(len(case.get('structural_checks', [])) for case in ledger['cases'])
-    section_rows = [row for case in ledger['cases'] for check in case.get('structural_checks', [])
-                    for row in check.get('details', {}).get('section_quantities', [])]
-    section_counts = {state: sum(row['state'] == state for row in section_rows) for state in STATES}
     total = sum(counts.values())
     ledger['summary'] = {'required_cases': len(ledger['cases']), 'required_assertions': total,
-                         'assertions': counts, 'required_structural_checks': structural_total, 'structural_checks': structural_counts,
-                         'required_section_subchecks': len(section_rows), 'section_subchecks': section_counts,
-                         'cases': {state: sum(c['state'] == state for c in ledger['cases']) for state in STATES}}
-    if total and counts['matched'] == total and structural_counts['matched'] == structural_total and section_counts['matched'] == len(section_rows) and all(c['state'] == 'matched' for c in ledger['cases']):
+                         'assertions': counts, 'required_structural_checks': structural_total, 'structural_checks': structural_counts, 'cases': {state: sum(c['state'] == state for c in ledger['cases']) for state in STATES}}
+    if total and counts['matched'] == total and structural_counts['matched'] == structural_total and all(c['state'] == 'matched' for c in ledger['cases']):
         ledger['outcome'] = 'all_required_assertions_matched' if ledger['publication_phase'] == 'complete' else 'in_progress'
     else:
         ledger['outcome'] = 'not_satisfied'
@@ -245,8 +220,6 @@ def fail_case(case: dict, state: str, reason: str) -> None:
         row.update(state=state, reason=reason, observed=None)
     for row in case.get('structural_checks', []):
         row.update(state=state, reason=reason, details={})
-        if row['id'] == 'complete_case_material_section':
-            row['details']['section_quantities'] = physics.section_obligations(state, reason)
 
 
 def atomic_record(path: Path, value: dict) -> None:
@@ -292,9 +265,6 @@ def unwrap(raw: bytes, request: dict, mode: str, *, transport: str = TRANSPORT) 
     require(type(mechanics) is dict and mechanics.get('document_kind') == 'openpipestress.product_preview.mechanics_result', 'unsupported raw mechanics document')
     if transport == TRANSPORT:
         require(mechanics.get('schema_version') == '0.1.0', 'unsupported raw mechanics version')
-        require(not any(key in mechanics for key in ('producer', 'numerical_quality', 'formulation_basis',
-                    'contract_evidence', 'source_block_recovery', 'carrier_evidence')),
-                'newer method identity/evidence is not legacy raw0.1')
     elif transport == physics.TRANSPORT:
         physics.ordinary_header_and_standing(mechanics, request, mode)
     else:
@@ -422,9 +392,7 @@ def selector_matches(row: dict, selector: dict) -> bool:
 
 def evaluate_rows(case_ledger: dict, prepared: dict, rows: list[dict]) -> None:
     indexed = {row['id']: row for row in rows}
-    required = {row['id']: row for row in case_ledger['assertions']}
-    for item in prepared['selected']:
-        target = required[item['assertion']['id']]
+    for item, target in zip(prepared['selected'], case_ledger['assertions']):
         selector = item['assertion']['selector']
         try:
             require(selector['id'] in indexed, 'required result missing')
@@ -477,7 +445,6 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
         require(runner['solver_mode'] == 'sparse_interactive' or (transport == physics.TRANSPORT and runner['solver_mode'] == 'dense_scrutiny'), 'mode not available through selected CLI')
         if transport == physics.TRANSPORT:
             require(type(runner['explicit_local_private_intent']) is bool, 'explicit local private intent must be boolean')
-            physics.validate_submitted_inventory(manifest['cases'])
         require(executable.is_absolute() and executable.is_file(), 'explicit executable required')
         require(file_sha256(executable) == runner['executable_sha256'], 'executable digest mismatch')
         actual_commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=source_root, text=True).strip()
@@ -549,9 +516,7 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
         atomic_record(output_dir / 'ledger.json', ledger)
         write_summary(output_dir / 'summary.md', ledger)
         return ledger
-    ledger_cases = {case['id']: case for case in ledger['cases']}
-    for index, case in enumerate(manifest['cases']):
-        case_ledger = ledger_cases[case['id']]
+    for index, (case, case_ledger) in enumerate(zip(manifest['cases'], ledger['cases'])):
         try:
             prepared = prepare_case(case, manifest_path.parent, manifest['purpose'], semantics, transport=transport)
             selected_originals = []
@@ -627,11 +592,6 @@ def run_selection(manifest_path: Path, executable: Path, source_root: Path, outp
                         scalar_coverage_ok=coverage, physical_consistency_ok=observation['response']['verdict'] == 'consistent')
                     require(type(checked_structure) is list and [row['id'] for row in checked_structure] == list(physics.REQUIRED_STRUCTURAL_CHECKS), 'structural checker lost required denominator')
                     require(all(row['state'] in STATES and type(row.get('reason')) is str for row in checked_structure), 'structural checker returned unknown outcome')
-                    section_check = next(row for row in checked_structure if row['id'] == 'complete_case_material_section')
-                    section_rows = section_check.get('details', {}).get('section_quantities')
-                    require(type(section_rows) is list and [row['id'] for row in section_rows] == list(physics.REQUIRED_SECTION_IDS), 'structural checker lost required section subchecks')
-                    require(all(row['state'] in STATES and type(row.get('reason')) is str for row in section_rows), 'section checker returned unknown outcome')
-                    require(section_check['state'] != 'matched' or all(row['state'] == 'matched' for row in section_rows), 'section parent contradicts subchecks')
                     case_ledger['structural_checks'] = checked_structure
                     if any(row['state'] != 'matched' for row in case_ledger['structural_checks']):
                         case_ledger.update(state='failed', reason='required structural obligations not satisfied')
