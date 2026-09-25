@@ -191,8 +191,9 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   SCA-005 checkpoint 2 if accepted there) and PEC loop-method migration
   (`D-PEC-86` §3 I-7, after SCA-005 closes).
 - **Agent reliance on PEC data:** the owner stated on 2026-09-25 that agents
-  should rely on PEC's data. That conflicts with PRD v2.2 PEC-K-02, PEC-K-03
-  and §8 and with a Root `AGENTS.md` sentence, so HELP_HUMAN will prepare it
+  should rely on PEC's data. That is in tension with PRD v2.2 PEC-K-03
+  (verify-before-rely) and §8, the PEC-K-02 gloss in `projects/pec/AGENTS.md`,
+  and a Root `AGENTS.md` sentence, so HELP_HUMAN will prepare it
   as a proposal (`D-PEC-90`) for a ruling; nothing changes before then.
 
 Gate lineage (historical record; the current gates are listed above):
