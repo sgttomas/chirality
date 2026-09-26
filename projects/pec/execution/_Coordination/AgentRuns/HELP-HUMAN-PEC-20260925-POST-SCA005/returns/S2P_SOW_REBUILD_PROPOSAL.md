@@ -18,7 +18,7 @@ HELP_HUMAN relayed a replacement for the brief's "Method choice as an owner opti
 ## Draft
 
 - **Path:** `projects/pec/execution/_Coordination/PEC_SOW_REBUILD_S2_PREP_2026-09-26/DRAFT_D-PEC-100_s2_sow_rebuild_proposal.md`.
-- **SHA-256:** `a6d9abe861ea76a7d87ce5c14d3c49ac71ad4e30d487b73d7fd3219aa16afe8e` (352 lines).
+- **SHA-256:** `a6d9abe861ea76a7d87ce5c14d3c49ac71ad4e30d487b73d7fd3219aa16afe8e` (352 lines). (HELP_HUMAN note: after PR #964 review 01, HELP_HUMAN repaired four wording lines; the draft is now `39c4331e083b28e34c1a9c0913247924e7a1cb4141a270e60c7dcd04dfcee25b`, see `returns/REVIEW_PR964_01.md`.)
 - **Suggested filing name:** `_DECISIONS/D-PEC-100_s2_sow_rebuild_proposal_2026-09-26.md`.
 - **Register:** HELP_HUMAN adds the register row. At `121900105` there is no D-PEC-100 row.
 
