@@ -651,7 +651,7 @@
       "name": "change",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Prepare and close a coherent Git change with inspectable evidence and existing human decision rights.",
+      "description": "Prepare and close a coherent Git change in any repository, isolating the work when warranted, checking and reviewing the diff, and committing, pushing, opening a PR, or merging only as far as the user or the repository actually authorizes.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [

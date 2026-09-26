@@ -1,0 +1,41 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-CHANGE-GENERIC-20260926
+title: Narrow the bundled change workflow to a repository-agnostic Git method
+date: '2026-09-26'
+basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
+instruction_surface_paths:
+  - .agents/skills/chirality-change/SKILL.md
+  - workflows/change/WORKFLOW.md
+  - workflows/change/resources/contract.md
+  - workflows/change/resources/method.md
+  - workflows/index.json
+  - docs/governance_harness/tranche_manifests/ROOT-CHANGE-GENERIC-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed on 2026-09-26 that the deferred item to
+    narrow the bundled change workflow into a generic Git method for App users
+    "needs your attention". The workflow ships to every App user but carried
+    sgttomas/chirality-specific rules, which move to the project-scoped
+    chirality-change skill.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code parent session under the standing Git authorization of
+    2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_CHANGE_GENERIC.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_CHANGE_GENERIC.md
+  rationale: >-
+    The App bundles the Root workflow library, so its users receive the
+    generic change workflow; the App packaging excludes chirality-change. App
+    and Piping instructions point Git closeout at the chirality-change skill,
+    which now carries the Chirality-specific rules change used to hold.
+scope_limits:
+  - The generic change workflow grants no Git authority; the Chirality standing grant and its conditions are unchanged and now live only in chirality-change, Root AGENTS.md and PRD_ROOT section 5.3.1.
+  - PRD_ROOT, Root and project LOOP_INIT files, project AGENTS.md files and the agent manual needed no change; they already name chirality-change for Chirality closeout.
+  - App-owned packaging files are not changed.
+  - Historical run records, briefs and graphs are not rewritten.
