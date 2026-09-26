@@ -1,0 +1,512 @@
+{
+  "deliverable": "DEL-02-05",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "Dependency register parser",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-05",
+      "column": "Name",
+      "where": "Purpose",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q02",
+      "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Purpose (objective warrant)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q03",
+      "text": "INDIRECT-8 breadth",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Purpose (objective warrant)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q04",
+      "text": "**AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Purpose (objective warrant)",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q05",
+      "text": "The parsers produce facts the SHA comparison operates over; they do not perform it.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+      "where": "Purpose (objective warrant)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q06",
+      "text": "SOW-015,IN,\"Parse dependency registers: `Dependencies.csv`, and `WORK_GRAPH.json` as a declared historical grammar for App/Piping\",\"PEC-RCN-002, §7.1 DependencyEdge\",PKG-02,DEL-02-05,OBJ-001;OBJ-002,SCA-005,FALSE,\"`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord; Markdown work-graph dependencies arrive through SOW-095\"",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q07",
+      "text": "ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q08",
+      "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum:",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q09",
+      "text": "dependency registers (`Dependencies.csv`; `WORK_GRAPH.json` as declared historical grammar)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q10",
+      "text": "Record tier (reconciled from file truth; citable with sources)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q11",
+      "text": "From `Dependencies.csv` registers and work-graph dependencies (WorkGraph); `WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q12",
+      "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q13",
+      "text": "Staleness is detected structurally by SHA comparison, never by judgment",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q14",
+      "text": "Parser + fixture tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-05",
+      "column": "AnticipatedArtifacts",
+      "where": "Ontology preamble; CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q15",
+      "text": "| DEL-02-05 | Dependency register parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-015 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q16",
+      "text": "`Dependencies.csv`, and `WORK_GRAPH.json` as a declared historical grammar for App/Piping, into DependencyEdge; Markdown `WORK_GRAPH.md` belongs to DEL-02-08.",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-05",
+      "column": "Description",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q17",
+      "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q18",
+      "text": "Each feed is a separately testable parser with its own grammar",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q19",
+      "text": "`WORK_GRAPH.json` was routed to the wrong entity",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q20",
+      "text": "`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "Notes",
+      "where": "CLM-006, CLM-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q21",
+      "text": "Markdown work-graph dependencies arrive through SOW-095",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "Notes",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q22",
+      "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q23",
+      "text": "SOW-011..017, 095, 096 (9)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q24",
+      "text": "Writing anything; interpretation beyond declared grammars",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-007, REQ-002, CON-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q25",
+      "text": "Writing anything",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q26",
+      "text": "Record-tier schema & entity model",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-05-003",
+      "column": "TargetName",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q27",
+      "text": "Parser emits DependencyEdge entities",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-05-003",
+      "column": "Statement",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q28",
+      "text": "PROPOSAL; Flag=none; EdgeID=E-P07",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-05-003",
+      "column": "Notes",
+      "where": "CLM-008, TBD-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q29",
+      "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-05-003",
+      "column": "EvidenceQuote",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q30",
+      "text": "E-P07,DEL-01-01,DEL-02-05,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits DependencyEdge entities",
+      "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q31",
+      "text": "Full rebuild ingests dependency registers",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-01-012",
+      "column": "Statement",
+      "where": "CLM-010",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q32",
+      "text": "The DAG's file form is read by the dependency register parser",
+      "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-10-10-003",
+      "column": "Statement",
+      "where": "CLM-010",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q33",
+      "text": "I think we've tried central dependency registries before and not found that desirable because it creates another surface for authority, while the deliverable local dependencies can be queried to construct a full accounting of all dependencies if needed.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+      "where": "CLM-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q34",
+      "text": "Register storage is deliverable-local by owner ruling (no central register)",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
+      "where": "CLM-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q35",
+      "text": "is advisory visibility only — never work assignment",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
+      "where": "CLM-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q36",
+      "text": "All strata require owner acceptance; strata are provenance not authority",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
+      "where": "CLM-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q37",
+      "text": "A dependency-register row blocks work only when it is `ACTIVE`, of type `PREREQUISITE`, its `SatisfactionStatus` is `TBD`, `PENDING` or `IN_PROGRESS`, and the work needs its target.",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q38",
+      "text": "**Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-013",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q39",
+      "text": "**Content-minimal.** Paths, counts, SHAs, states, hashes — never file or diff content",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-014",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q40",
+      "text": "accepted scope definition",
+      "source": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/Dependencies.csv",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q41",
+      "text": "Path conventions and grammars for each profile live in PEC's adapters",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q42",
+      "text": "the generation is frozen, and its silence is never reported as staleness",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q43",
+      "text": "the `Dependencies.csv` v3.1 schema is unchanged",
+      "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q44",
+      "text": "the union of the entries in the declared sections of `_DEPENDENCIES.md` and the rows of `Dependencies.csv`",
+      "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q45",
+      "text": "the owner is deferring action on this notice in this loop",
+      "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q46",
+      "text": "WORK_GRAPH.json historical; .md to DEL-02-08",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q47",
+      "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q48",
+      "text": "parser carry-forward (CON-001 cases for RETIRED, node states, run tokens)",
+      "source": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q49",
+      "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q50",
+      "text": "it shall never modify a source file",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q51",
+      "text": "The reconciler writes only its own store and generated views",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q52",
+      "text": "a separately testable parser with its own grammar",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q53",
+      "text": "the first loop the P1 reconciler ingests is PEC v2's own build",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q54",
+      "text": "for App/Piping",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "ScopeItemStatement",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q55",
+      "text": "where the loop's feed profile says so",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q56",
+      "text": "work-graph dependencies (WorkGraph)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q57",
+      "text": "Markdown work-graph dependencies",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "Notes",
+      "where": "CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q58",
+      "text": "another surface for authority",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+      "where": "AX-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q59",
+      "text": "**accepted, all strata as presented**",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+      "where": "AX-008",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q60",
+      "text": "exactly the sixteen record-tier entity types",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-009"
+    },
+    {
+      "id": "Q61",
+      "text": "a fixture carrying file content, diff hunks, register-row prose, work-graph outcome text and a `MEMORY.md` run description cannot be expressed in the model",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-009"
+    },
+    {
+      "id": "Q62",
+      "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-008 (rebuilt DEL-01-01/CLM-012 opening)"
+    },
+    {
+      "id": "Q63",
+      "text": "Path conventions and grammars for each profile stay with the parsers",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "where": "CLM-017"
+    },
+    {
+      "id": "Q64",
+      "text": "Archiving removes paths from the working tree only",
+      "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q65",
+      "text": "A loop that needs an archived record reads it from the tag.",
+      "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    }
+  ]
+}
