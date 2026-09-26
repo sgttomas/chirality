@@ -45,3 +45,22 @@ That's appropriate for the Chirality App to wrap the full Codex experience, but 
 This is the balance I was after.  Of course, the only certainty is that the pace of change will continue.  This is the best I can think of and should be the basis for v4.0 and if we learn better we can change for v5.0.
 
 ---
+
+## M-06 — reservation about Windows and native webviews (question)
+
+---
+
+I have some reservations about adding a Windows version of these apps and having the Tauri native browser issue being a limiting factor.  Any thoughts on how much of a risk that is and if you see it differently or have a solution?
+
+---
+
+HELPS_HUMANS answered with `conceptual/MAINTAINABILITY_ANALYSIS.md` §11.3
+(commit `9e87dae16`).
+
+## M-07 — the two architecture choices
+
+---
+
+Go with Tauri and the minimal loop.
+
+---

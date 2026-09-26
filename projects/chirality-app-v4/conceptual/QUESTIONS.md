@@ -18,7 +18,7 @@ The owner's words are recorded in [`DECISIONS.md`](DECISIONS.md) (D-01…D-15).
 | Q-02 host integration | Settled — option D (D-02) | Topology and panel surface follow the supplier experiments |
 | Q-03 workflow | Settled — option C (D-03) | Define the declared part in the PRD |
 | Q-04 autonomy | Settled — option B (D-04) | Confirm two points the words leave open: whether harness classifier approval modes are an acceptable user choice, and whether one invariant holds everywhere — an agent never originates or represents a human act (acceptance, checked mark, approval) in the human's name |
-| Q-05 supplier | **Settled (D-19)** | Two tiers as in `MAINTAINABILITY_ANALYSIS.md` §9–10 at `bf90ffc4d`; revisit for v5.0 |
+| Q-05 supplier | **Settled (D-19, amended by D-20)** | Chirality App: stock Codex App Server, pinned, run from the App's own process, Tauri + React/Vite. Hosts: minimal Chirality loop over Chat Completions, local model server by default, Pi as the upgrade path. Revisit for v5.0 |
 | Q-15 distribution | Settled (D-06) | Mac first; OAuth, API key and local model, possibly all at once — check against vendor terms (T7, T8) |
 | Q-06 records | Settled — proposal (D-07) | — |
 | Q-07 users and hosts | Partly settled (D-08) | PEC and Domains are independent connectors the App consumes; T9 returned — see `DISCUSSION_2026-09-25.md` §5 for the proposed reading and three questions (what "Domains" means). Confirm SWBPIPE and the standalone app as the essential hosts |

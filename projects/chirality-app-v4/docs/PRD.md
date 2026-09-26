@@ -323,8 +323,7 @@ Summarised here; specified in the companion documents.
 | OQ-04 | Whether any host besides SWBPIPE is essential to v4.0 | Examination scope | Owner | Acceptance |
 | OQ-05 | The build method (Q-11) | The operating method stays a draft | Owner, with HELPS_HUMANS | Before the implementation session |
 | OQ-06 | Further project-management scope ("more to it", D-09) | v4.0 carries option B only | Owner | FEED |
-| OQ-07 | The Chirality App's stack and topology (`conceptual/MAINTAINABILITY_ANALYSIS.md` §11.2) | Architecture and reuse plan | Owner | Before the architecture basis is presented |
-| OQ-09 | The host agent's loop: Pi libraries or a minimal Chirality loop with Pi as the upgrade path (§11.1) | Host maintenance cost | Owner | Before the architecture basis is presented |
+| — | OQ-07 and OQ-09 (the App's stack; the host agent's loop) were settled by D-20 | — | — | — |
 | OQ-08 | Written confirmation of sign-in terms for distributing the Chirality App (OpenAI) and any Claude sign-in (Anthropic) | Distribution beyond the owner's own use | Owner | Before public release |
 
 ## 10. Vocabulary

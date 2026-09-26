@@ -147,6 +147,10 @@ Notes on the returns:
     compatibility statements at source and the v3 topology record's A2
     premise, added §11 to the analysis (two choices for the owner), and
     wrote PRD draft 1 (`docs/PRD.md`).
+19. The owner raised Windows and native-webview risk (M-06); HELPS_HUMANS
+    answered in §11.3 and flagged SWBPIPE's Chromium-only end-to-end tests as a
+    separate task, which the owner started in its own session. The owner then
+    chose Tauri and the minimal loop (D-20).
 
 ## Current position
 
@@ -162,7 +166,7 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
 | Confirm or correct the drafting defaults for the open items | Owner | [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md) §3 |
 | Owner's review of PRD draft 1 (`docs/PRD.md`) | Owner | Plan checkpoint 4 |
-| Owner's choices on the host loop (§11.1) and the App's stack (§11.2) | Owner | Before the architecture basis |
+| Draft ARCHITECTURE, HOST_INTEGRATION, EXAMINATION, OPERATING_METHOD | HELPS_HUMANS | Stage F |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |

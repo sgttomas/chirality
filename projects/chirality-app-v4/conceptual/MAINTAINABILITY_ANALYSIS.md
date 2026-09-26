@@ -5,6 +5,8 @@
 > see §9 for why it was wrong and the revised direction. §1–3 stand, with
 > principle M-2 restated in §9.2; §7 is revised by §9.4. §10 (after D-18)
 > separates the Chirality App's agent from the host applications' agent.
+> §11 records the evidence after D-19; the owner chose §11.1 option M and
+> §11.2's Tauri recommendation (D-20).
 
 Standing: **interpretation and proposal (agent).** Written in response to
 D-16 ("code maintainability is top of my concerns … The best ability is
