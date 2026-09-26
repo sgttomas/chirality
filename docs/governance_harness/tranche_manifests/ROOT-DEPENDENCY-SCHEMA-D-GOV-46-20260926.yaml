@@ -37,14 +37,18 @@ m6_notice:
   disposition: routed
   routed_to:
     - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
     - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
     - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
   rationale: >-
-    App, Piping and PEC hold _DEPENDENCIES.md files and use preparation,
-    project-setup and dependency-extract; the App loop also mirrors SPEC §5
-    and has its own scaffold template.
+    App, Runtime, Piping and PEC hold _DEPENDENCIES.md files and use
+    preparation, project-setup and dependency-extract; Runtime records mode
+    DECLARED; the App loop also mirrors SPEC §5 and has its own scaffold
+    template.
 scope_limits:
   - Existing _DEPENDENCIES.md files and historical run records are not rewritten; they keep their headings and mode values.
   - The Dependencies.csv v3.1 schema, TYPES §6 coordination representations and the alignment manual are unchanged.
   - App-owned surfaces (projects/chirality-app-dev/docs/SPEC.md, frontend scaffold template) are left to the App loop through its notice.
+  - tools/coordination/materialize_local_dependencies.py --refresh-pointers still writes its own generated pointer format; aligning it is a follow-up.
+  - The thesis (docs/thesis/07_se_design_analysis.md) still lists TRACKED and is not edited here.
   - No release is granted.

@@ -458,6 +458,9 @@ writes the Extracted Dependency Register, Lifecycle Summary, Run Notes, and Run
 History headings with placeholder bodies: `- **Status:** NOT_RUN_YET` under the
 register heading and `- (placeholder)` under the others. It omits Downstream
 Handoff Notes. `dependency-extract` later replaces the placeholder bodies.
+If `dependency-extract` finds no file, it creates one with these headings and
+leaves the human-owned mode and declarations as `TBD` until the human records
+them; `TBD` is a placeholder, not a §5.3 mode.
 
 **Legacy headings.** Existing files keep the headings they have; they are not
 rewritten to this schema. Readers MUST accept these legacy headings as the
@@ -466,10 +469,11 @@ named §5.2 sections:
 | §5.2 section | Legacy headings read as equivalent |
 |---|---|
 | Dependency Tracking Mode | `## Coordination (human-owned)`, `## Coordination Mode`, `## Dependency Tracking` |
-| Declared Upstream | `## Upstream (I need these before I can proceed) — human-owned declarations`, `## Declared Upstream`, `## Declared Upstream Dependencies` |
-| Declared Downstream | `## Downstream (These need me) — human-owned declarations`, `## Declared Downstream`, `## Declared Downstream Dependencies` |
+| Declared Upstream | `## Upstream (I need these before I can proceed) — human-owned declarations`, `## Upstream (this deliverable depends on)`, `## Upstream (I need these)`, `## Upstream`, `## Declared Upstream`, `## Declared Upstream Dependencies` |
+| Declared Downstream | `## Downstream (These need me) — human-owned declarations`, `## Downstream (informational; consumers of this deliverable)`, `## Downstream`, `## Declared Downstream`, `## Declared Downstream Dependencies` |
+| Declared Upstream and Declared Downstream | `## Declared upstream/downstream lists` (one combined section) |
 | Run Notes and Run History | `## Run Notes & History` (one combined section) |
-| Downstream Handoff Notes | `## Consumer Handoff Notes (optional)` |
+| Downstream Handoff Notes | `## Consumer Handoff Notes (optional)`, `## Consumer Handoff Notes` |
 
 Other headings an existing file carries are preserved as they are and read by
 their content.
@@ -490,7 +494,7 @@ section.
 | Mode | Meaning |
 |---|---|
 | `NOT_TRACKED` | Dependency coordination occurs outside the files (by humans or an external schedule). The declared sections say "Dependencies coordinated externally by humans." Reports MUST NOT give a computed ready/blocked judgment from dependencies, because the files do not hold the graph. `project-setup` skips its dependency extraction stage and records the skip. |
-| `DECLARED` | Only critical dependencies are recorded (partial, human-curated). The recorded critical edges are a partial view, not the whole graph. Blockers are computed only from declared edges, and the absence of a recorded blocker is not a complete readiness judgment. Agent extraction MAY populate `Dependencies.csv` when the human-confirmed dependency rules call for extracted registers (`project-setup` Phases 1.3 and 2.2b). Extracted rows add evidence but do not make the view complete, and they never replace the human-owned declarations. Without extraction, `_DEPENDENCIES.md` is the declared register. |
+| `DECLARED` | Only critical dependencies are recorded (partial, human-curated). The recorded critical edges are a partial view, not the whole graph. Blockers are computed only from the recorded register (the declared sections, or `Dependencies.csv` where extraction has run), and the absence of a recorded blocker is not a complete readiness judgment. Edges in an unresolved strongly connected component are non-gating and reported as held, as under `FULL_GRAPH`. Agent extraction MAY populate `Dependencies.csv` when the human-confirmed dependency rules call for extracted registers (`project-setup` Phases 1.3 and 2.2b). Extracted rows add evidence but do not make the view complete, and they never replace the human-owned declarations. Without extraction, `_DEPENDENCIES.md` is the declared register. |
 | `FULL_GRAPH` | Dependency declarations are intended to cover the selected graph semantics (a complete DAG). Blockers are computed only from the declared graph, and only after closure audit and cycle treatment. Edges in an unresolved strongly connected component are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). Extraction by TASK+`dependency-extract` and closure audit by TASK+`audit-dep-closure` are the ordinary means (`project-setup` Phase 2.2b); `Dependencies.csv` is present once extraction has run. |
 
 In any mode, a dependency graph is not by itself a schedule.
@@ -928,7 +932,7 @@ A deliverable folder is **dependency-tracked** when it additionally contains:
 Located at `{EXECUTION_ROOT}/_Coordination/_COORDINATION.md`.
 
 Records the project's chosen coordination representation:
-- **Schedule-first:** Gantt drives sequencing; dependency tracking is active for blocker detection and audit
+- **Schedule-first:** Gantt drives sequencing; dependency tracking, unless its mode is `NOT_TRACKED`, supports blocker detection and audit
 - **Dependency-tracked:** Dependency graph drives sequencing
 - **Hybrid:** Combination of schedule-first and dependency-tracked
 

@@ -56,7 +56,7 @@ LEGACY_ALIASES = {
 
 def canonical_value(enum_name: str, value: str) -> str | None:
     """Return the canonical value for ``value``, or None if it is not valid."""
-    if value in ENUMS[enum_name]:
+    if value in ENUMS.get(enum_name, ()):
         return value
     return LEGACY_ALIASES.get(enum_name, {}).get(value)
 

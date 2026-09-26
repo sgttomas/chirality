@@ -34,7 +34,7 @@ loop's decision (see item 5)
 ## Owner direction (verbatim)
 
 Owner Ryan Tufts (repository owner sgttomas), 2026-09-26, in the Claude Code
-conversation. Asked:
+conversation. When the agent asked:
 
 > The _DEPENDENCIES.md format and the mode names disagree. SPEC §5.2 uses a
 > 'Dependency Tracking Mode' section with modes NOT_TRACKED / DECLARED /
@@ -129,14 +129,20 @@ Item #1 of wave 2b is this amendment.
    `NOT_TRACKED | DECLARED | FULL_GRAPH`. A `LEGACY_ALIASES` map accepts
    `TRACKED` on read, reports it as `FULL_GRAPH`, and names `FULL_GRAPH` as
    the write form. A new test covers this. No live tool in `tools/` parses
-   `_DEPENDENCIES.md` headings or modes. On 2026-09-26, no existing project
+   `_DEPENDENCIES.md` headings or modes. One tool writes the file:
+   `tools/coordination/materialize_local_dependencies.py --refresh-pointers`
+   overwrites it with a generated pointer format (`## Generated Dependency
+   Register`, `## Authority Boundary`) that drops human-owned sections. That
+   writer is outside this tranche and not aligned with §5.1; aligning it or
+   retiring the flag is a follow-up. On 2026-09-26, no existing project
    `_DEPENDENCIES.md` recorded `TRACKED`.
 5. **Adoption.**
    - Existing `_DEPENDENCIES.md` files, historical run records and in-flight
      projects keep their headings and mode values. Nothing is rewritten.
    - New files, and sections added to existing files, use the amended schema.
-   - Notices go to the App, Piping and PEC loops, and each loop decides its
-     own adoption. The App loop's own `docs/SPEC.md` mirror and its frontend
+   - Notices go to the App, Runtime, Piping and PEC loops, and each loop
+     decides its own adoption. The Runtime loop records mode `DECLARED`, whose
+     meaning this amendment states. The App loop's own `docs/SPEC.md` mirror and its frontend
      scaffold template are App-owned and are named in its notice.
 6. **Unchanged.**
    - The `Dependencies.csv` v3.1 schema (SPEC §6).
@@ -144,6 +150,8 @@ Item #1 of wave 2b is this amendment.
    - `docs/CYCLE_DRIVEN_RESOLUTION.md`, `audit-dep-closure` and
      `scc-resolution-case`, which carry no mode or heading text to align.
    - The alignment manual, which already states these meanings.
+   - The thesis (`docs/thesis/07_se_design_analysis.md` §7.9.3 still lists
+     `TRACKED`); it is historical exposition and is not edited here.
    - No release is granted.
 
 ## Application and assurance
