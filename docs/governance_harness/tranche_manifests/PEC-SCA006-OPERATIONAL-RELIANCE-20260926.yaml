@@ -1,0 +1,137 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: PEC-SCA006-OPERATIONAL-RELIANCE-20260926
+title: PEC instruction tranche for SCA-006 (operational reliance on PEC data in projects/pec/AGENTS.md)
+date: 2026-09-26
+basis: 94e9255b68d6cda15926c7ee0187d6e9a759a43b
+instruction_surface_paths:
+  - projects/pec/AGENTS.md
+  - docs/governance_harness/tranche_manifests/PEC-SCA006-OPERATIONAL-RELIANCE-20260926.yaml
+  - execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+candidate_paths:
+  - projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP2_CANDIDATE/AGENTS.candidate.md
+  - projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP2_CANDIDATE/AGENTS.candidate_without_I1.md
+  - projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/AGENTS_MD_CANDIDATE_DIFF.md
+m2_gate:
+  authorization: >-
+    Ryan Tufts accepted PEC SCA-006 checkpoint 1 on 2026-09-25, verbatim:
+    'SCA-006 CP1: accept; DQ a; ENV a; BUD a; GATE a; INS a; R-C excluded'
+    (projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/DECISION.md).
+    INS-a selected carrying the projects/pec/AGENTS.md change (accepted intake
+    Amendment_Actions.csv Seq 14-17) as an instruction tranche applied at
+    checkpoint 3. The owner then accepted the exact text at checkpoint 2,
+    verbatim: 'SCA-006 CP2: accept; Q1 a; Q2 a'
+    (projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/DECISION.md).
+    The accepted candidate is AGENTS.candidate.md, which
+    carries SCA-006 Seq 14-17 plus the work-graph node I1 corrections, as
+    fixed by that act at its recorded SHA-256. D-PEC-90 R-A grant item 3
+    authorized preparing the amendment. HELP_HUMAN undertaking
+    HELP-HUMAN-PEC-20260925-POST-SCA005, work-graph node R3 (with node I1 if
+    the accepted candidate carries it), is this instruction change's
+    authorized scope. This manifest records those acts and grants none.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-25
+  integration_owner: >-
+    WORKING_ITEMS manager for SCA-006 checkpoint 3 (work-graph node R3) under
+    HELP_HUMAN undertaking HELP-HUMAN-PEC-20260925-POST-SCA005; roles
+    instruction-asserted, not mechanically enforced. HELP_HUMAN owns the merge.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md
+  rationale: >-
+    PEC changes only its own instruction file; Root AGENTS.md requires notice
+    to each affected loop whose authority corpus or contract mirrors pin the
+    changed instructions. Root and App: D-PEC-90 grant item 2 named them as the
+    recipients of PEC's operational-reliance direction, and their 2026-09-25
+    D-PEC-90 notices said the PEC text would change in a later scope change;
+    these notices report the adopted text (SCA-006 Impact Assessment section
+    8.2, work-graph node R4). Runtime: the DEL-02-06 Scope of Work
+    (projects/chirality-runtime/execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md,
+    read scope item 5) names projects/pec/AGENTS.md,
+    projects/pec/execution/_Decomposition/Deliverables.csv and
+    ScopeLedger.csv as read-only sources, and its run record
+    _run_records/DEL-02-06-RUNTIME-SPEC-001/clients/SOURCE_PINS.json pins them
+    as S4, S5 and S6; SCA-006 changes all three. The D-PEC-94 tranche
+    (PEC-DEVELOPMENT-LOOP-ADOPTION-20260925) is the precedent for notifying
+    Runtime of a PEC instruction change. Piping is not notified: no Piping
+    file references these paths or PEC's PRD. Each notice is non-binding,
+    grants nothing and asks for no write.
+supersession:
+  D-PEC-67: >-
+    The K03-A row (PEC PRD PEC-K-03, whose verify-before-rely clause D-PEC-67
+    adopted) is superseded in PRD v2.4 under D-PEC-90 R-A through SCA-006; the
+    K03-A bytes stay as historical exact input and PEC-K-11 stays
+    byte-identical. In projects/pec/AGENTS.md the K-02 gloss's sentence "A PEC
+    value, view, or verdict is labeled non-authoritative data, verified against
+    its cited source before reliance." (present since the 2026-07-24 D-PEC-59
+    follow-on commit 08fabff60) is replaced by the gated operational-reliance
+    text; "PEC output is never citable as authority" and K-AUTH-1 stand
+    unchanged.
+  D-PEC-90: >-
+    Not edited. Its ruling changed no PRD or AGENTS.md bytes; its grant item 3
+    authorized preparing this amendment, which SCA-006 carries. The D-PEC-67
+    L-A1 reliance-hold control, its register and its preflight are unchanged.
+checks:
+  - python3 tools/validation/validate_instruction_entrypoints.py .
+  - python3 tools/validation/validate_instruction_tranche_manifest.py
+  - python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only
+  - python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py
+  - python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
+  - PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check (compared with the recorded baseline)
+  - git diff --check <basis>..HEAD
+  - sha256 of projects/pec/AGENTS.md equals the candidate SHA-256 fixed by the checkpoint-2 act, after slot substitution per CANON section 5
+  - python3 execution/_Scripts/pec_reliance_hold.py --operation exact-correction-preparation for projects/pec/AGENTS.md (run from projects/pec)
+rollback: >-
+  Revert this tranche's commits. projects/pec/AGENTS.md returns to its
+  preimage (SHA-256 c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a);
+  the three notices and this manifest are deleted. The PRD and decomposition
+  changes of SCA-006 checkpoint 3 are reverted by their own records, not by
+  this manifest. No lifecycle, source or data state changes.
+scope_limits:
+  - Only projects/pec/AGENTS.md, this manifest and the three notices change under this manifest.
+  - The four SCA-006 loci are the K-02 gloss, the consumer-owned-use bullet, the lineage (the front-matter amended line, the Product Posture lineage and the Governance Pointers), and the "Product release/reconciliation work" checks row; the I1 corrections, if carried, are the Product Posture implementation sentence and the Primary Agents table, applied only if the owner's checkpoint-2 act accepts them.
+  - PEC-K-01, PEC-K-02, PEC-K-06, PEC-K-11, K-AUTH-1, D-GOV-01 Option A and Root PRD N-1 stand unchanged; PEC output stays never citable as authority (D-PEC-90 R-C not selected).
+  - Operational reliance is available only from a PEC release that has passed the PRD section 12 reliance-advertisement gate; this manifest makes nothing usable now.
+  - F-PEC-1..4, Write Scopes And Fences, the frozen-corpus rules, the default-writable surfaces, the owner-ruled D-PEC packet rule and the reliance-hold control are unchanged.
+  - The Session model convention section is unchanged.
+  - The tier-0 profile _DomainEngines/profiles/pec.yaml needs its own tier-0 act before any PEC tool is declared or invoked; nothing here amends it.
+  - Root, App, Piping and Runtime files other than the notices are unchanged.
+  - No CHECKING, ISSUED, acceptance, release or operational-reliance act.
+group2_amendment_1:
+  recorded_in: projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/DECISION.md
+  owner_words:
+    - "Why am I seeing `remaining-items` appearing?  There must not be any of those going forward, so no need to scan for them."
+    - "revision 4: drop remaining-items and remaining-loop; yes, ride checkpoint 3.  SCA-006 pinned."
+  words_by: Ryan Tufts
+  words_date: 2026-09-26
+  change: >-
+    One addition to this tranche: in projects/pec/AGENTS.md the paragraph at
+    AGENTS.candidate.md L261-270 (applied L261-272), which began "PEC's
+    deliverable `_STATUS.md` `## Remaining` sections stay in place as", is
+    replaced, and no other line changes. The replacement states the owner's
+    direction: PEC adds no new `## Remaining` sections or entries; no PEC feed
+    profile reads them, so the coordination plane does not scan them; new open
+    scope goes to the work graph and its governing records. It keeps the status
+    quo for the existing sections until any retirement ruling (they stay in
+    place, each item's gate markers still bind that item, and they are updated
+    only under a packet that opens that `_STATUS.md`) and keeps retirement, as
+    App and Piping did, a separate owner-directed undertaking. It decides no
+    retirement. Exact hunk:
+    projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/AGENTS_MD_AMENDMENT1_DIFF.md.
+  verification: >-
+    Amendment 1 section "Verification rule" amends the projects/pec/AGENTS.md
+    hash check in `checks` for this tranche: the applied file equals
+    49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d with its
+    application-date slot filled, except this one hunk. Applied SHA-256
+    4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c.
+  owner_hunk_approval: >-
+    Amendment 1 requires the owner's explicit approval of the exact hunk text
+    before the checkpoint-3 application PR merges; display alone is not
+    enough. HELP_HUMAN obtains and records that approval. This manifest does
+    not record it and grants nothing.
