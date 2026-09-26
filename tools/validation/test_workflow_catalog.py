@@ -59,7 +59,7 @@ SPECIALIST_GROUPS = [
     ("research-understand", "Research & understand", 8),
     ("extract-documents", "Extract from documents", 15),
     ("create-publish-documents", "Create & publish documents", 8),
-    ("build-maintain-software", "Build & maintain software", 2),
+    ("build-maintain-software", "Build & maintain software", 1),
     ("estimate-cost", "Estimate & cost", 3),
     ("review-check", "Review & check", 10),
     ("manage-changes", "Manage changes", 5),
@@ -91,7 +91,7 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
-    assert len(specialist) == 56
+    assert len(specialist) == 55
     groups = {}
     group_identity = {}
     for item in specialist:

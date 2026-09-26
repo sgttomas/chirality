@@ -1,0 +1,54 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE2A-EXECUTION-20260926
+title: Retire software-bounded-implementation; work-graph and change workflow fixes
+date: '2026-09-26'
+basis: 56a626c3b5515fea790b0d40549e7729669b7dff
+instruction_surface_paths:
+  - workflows/software-bounded-implementation/**
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md
+  - docs/alignment-manual/README.md
+  - execution/_Coordination/LOOP_INIT.md
+  - tools/validation/test_workflow_catalog.py
+  - workflows/README.md
+  - workflows/catalog.yaml
+  - workflows/change/WORKFLOW.md
+  - workflows/change/resources/contract.md
+  - workflows/change/resources/method.md
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/construct-local-work-graph/resources/work-graph-template.md
+  - workflows/index.json
+  - workflows/legacy-methods.json
+  - workflows/project-setup/WORKFLOW.md
+  - workflows/project-setup/resources/software-activation.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-EXECUTION-20260926.yaml
+m2_gate:
+  authorization: >-
+    In the workflow-library review, the repository owner decided to retire the
+    software-bounded-implementation workflow ("Retire it, then go ahead in the
+    proposed order starting with wave 2a") after the evaluation showed its
+    resources never reached executors and no project loop relied on it. The
+    owner had authorized wave 2a correctness fixes to the workflows the loops
+    use, based on the independent wave 2 evaluation.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md
+  rationale: >-
+    App, Piping and PEC use construct-local-work-graph and commission
+    implementation work; the App also bundles the workflow library, so the
+    retired workflow leaves its Workflows panel.
+scope_limits:
+  - Retires only software-bounded-implementation; its activation guidance moves into project-setup resources.
+  - Fixes construct-local-work-graph and change text; change is not yet narrowed to a repository-agnostic method.
+  - Root LOOP_INIT changes only its Git closeout pointer.
+  - Historical run records, briefs and graphs are not rewritten.

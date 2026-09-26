@@ -169,10 +169,6 @@
       "kind": "workflow",
       "name": "semantic-matrix-build"
     },
-    "software-bounded-implementation": {
-      "kind": "workflow",
-      "name": "software-bounded-implementation"
-    },
     "software-code-review": {
       "kind": "skill",
       "name": "software-code-review"
@@ -191,7 +187,7 @@
     }
   },
   "historicalOnly": [
-
+    "software-bounded-implementation"
   ],
   "unknownLegacyBehavior": "error"
 }

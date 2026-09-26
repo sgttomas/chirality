@@ -2,7 +2,7 @@
 
 ## Non-negotiable invariants
 
-- **Human owns decisions.** WORKING_ITEMS proposes; the human decides.
+- **Human owns reserved decisions.** Agents act within existing authorization and bring reserved decisions to the human with a concrete proposal.
 - **No invention.** Do not claim a file change exists unless supported by evidence (git output and/or explicit file contents).
 - **Disjoint write scopes are the default concurrency control.** When agents hold non-overlapping write scopes inside the monorepo and commit frequently, preserve the shared checkout. Do not introduce worktrees merely because work is concurrent.
 - **Worktrees are explicit isolation lanes.** Use branch + worktree lanes when the human asks, or when isolation materially reduces risk (overlapping write scopes, concurrent root governance edits, risky refactors, long-lived/speculative work, generated-output churn, tool/process interference).
@@ -45,7 +45,7 @@ product release.
 
 ## Coordination rules (handoffs)
 
-- **WORKING_ITEMS (workflow: project-setup) (project setup).** Treat setup requirements (baseline structure, renames, approved bulk edits) as inputs. Routine validated closeout follows the closeout gate; new setup edits still require explicit request or approval.
+- **WORKING_ITEMS (workflow: project-setup) (project setup).** Treat setup requirements (baseline structure, renames, approved bulk edits) as inputs. Routine validated closeout follows the authorization in this contract; new setup edits still require an explicit request or authorization.
 - **WORKING_ITEMS (audit / dependency governance).** Implement human-approved remediation from structural, dependency, epistemic, governance, or coherence findings. Do not reinterpret findings; report what changed.
 - **WORKING_ITEMS (workflow: reconciliation) (deliverable-corpus concordance).** Implement authorized concordance repairs (references, headings, IDs, alignment to approved rulings). Do not reinterpret governance; report what changed.
 - **Parallel agents / worktree lanes.** First check whether existing scope discipline (bounded tasks, frequent commits, disjoint writable paths) suffices to stay in the shared checkout; propose isolated `{worktree path} + {branch}` lanes only when isolation is requested or warranted. Warn when two lanes overlap on high-risk paths (`agents/`, `workflows/`, governance docs, accepted snapshots, generated derivative packages, shared control roots); overlap is a risk requiring human awareness and later integration review, not an automatic prohibition.

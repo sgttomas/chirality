@@ -59,6 +59,15 @@ specific result or condition the next contribution needs. Arrange independent
 work around actual inputs, shared writes and test resources, with one owner for
 integration. A label such as "work on package" is not an assessable result.
 
+An implementation node is a bounded TASK assignment. Its brief carries the
+objective, accepted basis, write fence, exclusions, acceptance criteria and the
+registered checks it authorizes, and says whether edits may be applied. The
+executor makes the smallest coherent change with proportionate tests, runs only
+authorized checks, validates changed paths against the fence, and returns the
+diff, evidence, residual risks and blockers. It never silently changes scope,
+public contracts, migrations, shared ownership, tests or acceptance criteria; it
+returns those needs to the graph.
+
 Include the implementation, investigation, verification, validation where
 applicable, independent review, repairs and integration needed for the result.
 Plan substantive PRs, each carrying the documentation, reconciliation and
@@ -69,9 +78,13 @@ After the intended implementation/evidence PRs, plan one final bounded
 closeout stage. It includes documentation/governance reconciliation through
 `chirality-root:bundled:workflow:bounded-reconciliation`, conditional Task
 Management, the invoking loop's central receipt, terse MEMORY run entries, and
-the final PR. For App/Piping, use the graph's stable run ID for one receipt at
+the final PR. For a loop that adopts this method (currently App, Piping and PEC),
+use the graph's stable run ID for one receipt at
 `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; affected MEMORY entries
-point to it. Other loops retain their adopted recording rules. Divide
+point to it. Other loops retain their adopted recording rules. MEMORY and
+closeout writes remain subject to the project's write fences; where a needed
+grant is missing, record the entry in the graph or receipt and route the grant.
+Divide
 deliverable
 comparisons into bounded assignments as needed. Missing required production
 returns to the graph for repair and an affected backcheck, not transfer-based
@@ -87,8 +100,8 @@ URL; later Git/PR evidence establishes the actual merge.
 
 ## 4. Save and maintain the current graph
 
-Use the [graph template](resources/work-graph-template.md). For App/Piping local
-development, save the current graph exactly at
+Use the [graph template](resources/work-graph-template.md). For local
+development in a loop that adopts this method, save the current graph exactly at
 `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
 project. It is Git-tracked project state: include it early in the undertaking's
 PR sequence for handoff, then update it in later PRs. Return its path so the
@@ -96,7 +109,11 @@ continuing session can locate it through its steering or project records.
 Keep undertaking-specific paths and state out of reusable loop instructions.
 
 Keep one current account of the ready work, holds and next safe action, bound to
-the checked candidate. Link PRs, evidence, active operations and shared-resource
+the checked candidate. Replace superseded state in place: move a dated checkpoint
+into the run's AgentRuns record and link it rather than keeping it in the graph.
+When the graph advances on an unmerged branch, record that branch or ref where
+the successor's steering will find it; one designated graph ref is current at a
+time. Link PRs, evidence, active operations and shared-resource
 ownership needed to continue. Keep detailed launch histories, child attribution,
 source hashes and old pauses in their owning run records rather than repeatedly
 appending them to the current graph. Required execution provenance remains
@@ -106,7 +123,8 @@ latest graph revision.
 Preserve historical graphs at their original paths. A still-pinned undertaking
 adopts this method through its actual owning authorization. On that explicit
 adoption, carry its current scope/state into the required location and cite the
-predecessor without maintaining another current copy. Keep the stable run identity that
+predecessor without maintaining another current copy. Carry every open deferral,
+follow-up and evidence limitation, linked to its historical locus. Keep the stable run identity that
 relates the graph, central receipt/evidence, PRs and affected MEMORY rows. Preserve
 needed evidence before a temporary worktree retires. Do not require a later
 commit solely to write the final merge result back into its own candidate.
