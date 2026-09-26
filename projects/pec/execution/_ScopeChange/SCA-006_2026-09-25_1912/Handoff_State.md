@@ -22,7 +22,7 @@ status: checkpoint_1_package_prepared_awaiting_owner
 | Impact Assessment for owner acceptance | `Impact_Assessment.md`, at the SHA-256 in the table below |
 | Group-1 decision snapshot | not created; it follows owner acceptance, under `_ScopeChange/checkpoint_snapshots/` |
 | Next owning actor | the owner (question set, Impact Assessment §15); then WORKING_ITEMS (scope-change) prepares checkpoint 2 from the accepted group-1 snapshot |
-| Blockers | the owner's checkpoint-1 decision is the only blocker. The package has no internal blocker: independent verification reported none (`returns/B4_VERIFIER_VERDICT_*.md`) |
+| Blockers | the owner's checkpoint-1 decision is the only blocker. The package has no internal blocker: independent verification reported no BLOCKING findings in any round (`returns/B4_VERIFIER_VERDICT_*.md`) |
 | Basis commit | prepared at `origin/main` `13df8b795`; branch merged `origin/main` `bec8bdd65` before publication with no material drift (Impact Assessment §2.2) |
 
 ## Required state fields
@@ -47,10 +47,10 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | File | SHA-256 |
 |---|---|
 | `Brief.md` | `205a46c04f2db6d34bead78db3064a02ff9d9d66a5e54fa9ff06b5c6314a1831` |
-| `Impact_Assessment.md` | `87df5ea7b4d3954a2fc08fe3932272761d8a4eb779e7f1cc6e4945bb3f5d7601` |
-| `Amendment_Actions.csv` (PROPOSED) | `e8973bdd3fb699fc720c8db30e53ff678a60975b0a0e741460397794f444d44f` |
+| `Impact_Assessment.md` | `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691` |
+| `Amendment_Actions.csv` (PROPOSED) | `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `2e188ac8b11b62aecf547cd5ff2a03bcfa84b71ed769d42fc026590a4b0433db` |
+| `Decision_Log.md` | `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` |
 
 ## Basis hashes not repeated elsewhere
 
@@ -73,7 +73,8 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 |---|---|---|---|---|---|---|
 | A1 locus inventory (TASK, Type 2) | Claude Code Agent tool, `subagent_type: pec-task`, `model: opus` (host maps to claude-opus-5-5); background | this WORKING_ITEMS instance, itself dispatched by HELP_HUMAN for node R1 of `HELP-HUMAN-PEC-20260925-POST-SCA005` | child brief SHA-256 `7e9cafa8da8995b10118a1058572455891fbe7e47898719830b4445f9ada9e67`, plus two manager messages relaying the HELP_HUMAN addenda | the manager's scratchpad only; read-only on the repository | read-only use and "no Git state change" were instruction-asserted, not tool-enforced; verified afterwards by `git status` (only this snapshot folder is untracked) | `INVENTORY.csv` 232 rows (`bfcad344fe0715c18c8c375ff3b07c402b1f2ed5474737631b235f9e556ac682`), `SOW_POPULATION.csv` 32 rows (`5829902f0938e7c51b3a99d20913bf3ddb6c8b0883e9f64caaa9ab07c9764143`), `INVENTORY.md` (`3c1cce98228953793a05ad47084a22a543d150d833b29e3c1426c78ecd13d16c`); quote verifier `failures=0` over 264 checks |
 | Independent verifier, round 1 (TASK, read-only) | Agent tool, `subagent_type: pec-reviewer`, `model: opus` | this WORKING_ITEMS instance | candidate `e2855e552` and brief B4 | none (the reviewer agent type has no write tools) | tool-enforced: no Edit or Write | PASS WITH MINOR: 7 MINOR, 5 NOTE, 0 BLOCKING (`returns/B4_VERIFIER_VERDICT_01.md`). All MINOR findings and NOTEs 8–12 repaired; NOTE 10 is met by the return commit |
-| Independent verifier, round 2 (TASK, read-only; same instance, resumed) | as round 1 | this WORKING_ITEMS instance | the repaired candidate | none | as round 1 | recorded in `returns/B4_VERIFIER_VERDICT_02.md` |
+| Independent verifier, round 2 (TASK, read-only; same instance, resumed) | as round 1 | this WORKING_ITEMS instance | candidate `64677504b` | none | as round 1 | PASS WITH MINOR: 2 MINOR, 2 NOTE, 0 BLOCKING (`returns/B4_VERIFIER_VERDICT_02.md`); all repaired |
+| Independent verifier, round 3 (same instance, resumed) | as round 1 | this WORKING_ITEMS instance | the round-2 repair | none | as round 1 | recorded in `returns/B4_VERIFIER_VERDICT_03.md` |
 
 No audit-decomp child ran; the baseline was reused. The manager drafted every
 snapshot file itself.

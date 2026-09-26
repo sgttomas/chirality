@@ -50,7 +50,7 @@ direction into PEC's product definition and instructions:
 In the recommended set it keeps all 11 packages and 6 objectives, preserves
 every stable ID, adds 4 scope items (`SOW-097..100`, all IN) and 2 deliverables
 (`DEL-08-06`, `DEL-10-13`), modifies 3 deliverable rows, 3 packages, 2 objective
-views, 4 other ledger/constraint/issue rows and 1 vocabulary term, adds 3
+views, 5 other ledger/constraint/issue rows and 1 vocabulary term, adds 3
 vocabulary terms, and records 13 PRD and 4 instruction loci as
 product-authority and instruction inputs outside the decomposition. Its main
 cost is derivative: **9 of the 32 existing Scope of Work contracts** (§7.1),
@@ -118,10 +118,10 @@ files:
   `WORK_GRAPH.md` `f669ebe53d483419799e5c947ea903996187570e608f3ee2b849030c0ec00f78`.
 - PEC records: `docs/STATUS.md`, the prior run's `RUN.md`, and review returns
   for PR #919.
-- Unrelated Root research-workflow files.
+- Unrelated research-workflow files: Root skill, workflow and tranche-manifest files, and one App-loop notice (`projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_RESEARCH_CONTRACT_ALIGNMENT.md`).
 
-No PRD, `projects/pec/AGENTS.md`, decomposition, register, Scope of Work, SPEC,
-`_CONTEXT.md` or dependency file changed, so every locus in this document still
+No PRD, `projects/pec/AGENTS.md`, decomposition file, companion or dependency
+register, Scope of Work, SPEC or `_CONTEXT.md` changed, so every locus in this document still
 holds at `bec8bdd65`. The drift is not material.
 
 ## 3. Parsed change set and part-A validation
@@ -308,10 +308,11 @@ option column gives the change under other options. Line numbers are at
 | DEL-10-01 | NOT_AFFECTED | L77 quotes §11 metric 1 and the falsification clause | Seq 10 edits metric 4 only; the falsification clause keeps its meaning | same |
 | DEL-10-02 | NOT_AFFECTED | kill test (PEC-K-01) unchanged; CLM-004 L125 quotes the §12 P1 row, which GATE-a leaves unedited; "fault injection" unrelated | none | GATE-b: AFFECTED (L125) |
 | DEL-10-10 | NOT_AFFECTED | "relied on" (L339, L354) means DAG nodes consuming accepted capabilities (C16); L137 quotes the §12 P1 row, which GATE-a leaves unedited | none | GATE-b: AFFECTED (L137) |
+| DEL-03-01 | NOT_AFFECTED | CON-005 L405 quotes the P1 exit fragment "rebuild-from-scratch ≤ bound", which GATE-a leaves unedited | none | GATE-b: AFFECTED (L405) |
 | DEL-03-06 | NOT_AFFECTED | CLM-016 L373 quotes the §12 P1 exit test, which GATE-a leaves unedited | none | GATE-b: AFFECTED (L373) |
 | DEL-00-01 | NOT_AFFECTED | cites K-02 only (L45, L82); its ADR artifact cites K-03/K-11 for "not a new consumer duty", which stays true | none | same |
 | DEL-04-05 | NOT_AFFECTED | states coverage honesty (PEC-ORI-006) with no non-reliance premise; the gate cites it as an input | none | GATE-b: AFFECTED (it becomes a P1 exit proof) |
-| DEL-01-03, DEL-01-04, DEL-02-01, DEL-02-02, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07, DEL-03-01, DEL-03-02, DEL-03-03, DEL-08-02 | NOT_AFFECTED (12) | no verify-before-rely, K-03, PRD §8, access-class, auth-reuse, response-size or parity-gate text; "reliable input" and "Completion and Reliance Basis" are template boilerplate in the professional sense | none | same |
+| DEL-01-03, DEL-01-04, DEL-02-01, DEL-02-02, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07, DEL-03-02, DEL-03-03, DEL-08-02 | NOT_AFFECTED (11) | no verify-before-rely, K-03, PRD §8, access-class, auth-reuse, response-size or parity-gate text; "reliable input" and "Completion and Reliance Basis" are template boilerplate in the professional sense | none | same |
 
 Totals (recommended set): **9 AFFECTED, 23 NOT_AFFECTED** of 32.
 
@@ -570,13 +571,16 @@ Recommended: **DQ-a + ENV-a + BUD-a + GATE-a + INS-a** (54 actions: 12 ADD /
   - Seq 8 re-targets the P1 row;
   - add MODIFY rows for SOW-009 and SOW-020 notes, and for the DEL-04-05 and
     DEL-03-04 descriptions (+4);
-  - add group-S advisories for the SOWs that quote the P1 row or become P1
-    exit proofs: DEL-04-05, DEL-10-02 (L125), DEL-10-10 (L137), DEL-03-06
-    (L373) and DEL-10-11 (L185) (+5). DEL-08-04 (L287) is already an
-    advisory under DQ-a; under DQ-b or DQ-c it is added (+1).
+  - add group-S advisories for the SOWs that quote the P1 row, whole or as a
+    fragment, or become P1 exit proofs: DEL-04-05, DEL-10-02 (L125),
+    DEL-10-10 (L137), DEL-03-06 (L373), DEL-10-11 (L185) and DEL-03-01
+    (L405) (+6). DEL-08-04 (L287) is already an advisory under DQ-a; under
+    DQ-b or DQ-c it is added (+1). DEL-03-04 (L105, L223, L248) already has
+    one.
 
-  The action count is 60 with DQ-a. The SOW population becomes **14 AFFECTED**
-  (the 9 above plus DEL-04-05, DEL-10-02, DEL-10-10, DEL-03-06 and DEL-10-11).
+  The action count is 61 with DQ-a. The SOW population becomes **15 AFFECTED**
+  (the 9 above plus DEL-04-05, DEL-10-02, DEL-10-10, DEL-03-06, DEL-10-11 and
+  DEL-03-01).
   Risk: reliance is proved only once, at P1, and later phases would need their
   own restatement. Under GATE-a the P1 row text is not edited, so these
   quoting SOWs stay current.
