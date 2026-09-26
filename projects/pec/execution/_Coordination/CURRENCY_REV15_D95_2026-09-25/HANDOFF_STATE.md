@@ -38,9 +38,20 @@
    defect in the checkpoint-3 audit and SCA-005's own records, and the
    quote-currency finding in the post-setup audit. The N1 texts name the audit
    each time.
-5. **Ordering with SCA-006 (proposal finding 5).** An SCA-006 `audit-decomp`
-   pre-change baseline run before this act merges would again report the INFO
-   findings this act clears.
+5. **Ordering with SCA-006 (proposal finding 5; verifier note N-2).** This
+   has already happened. At the act's basis `590ec52c1`, the SCA-006
+   checkpoint-1 package (PR #922) reuses
+   `COV_SCA005_POSTSETUP_2026-09-25_1606` as its pre-change baseline
+   (`_ScopeChange/SCA-006_2026-09-25_1912/Handoff_State.md`, "Pre-change
+   baseline" row; its `Pre_Change_Coverage.json` is a byte copy of that
+   audit's `coverage_summary.json`, both
+   `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d`). So
+   SCA-006's recorded baseline carries COV-068/069/072/073 against the
+   pre-D-PEC-95 state, and the proposal's re-audit rationale ("SCA-006's
+   baseline will observe this state") no longer holds. The first audit to
+   observe the D-PEC-95 state will be SCA-006's post-change audit (work-graph
+   node R3). This does not affect the ruling ("no re-audit") or the act's
+   bytes; it is routed to HELP_HUMAN for the SCA-006 manager.
 6. **Loop records.** The work graph, central receipt, `docs/STATUS.md` and
    `README.md` lines (D-PEC-88) and any register-row status wording after
    merge are HELP_HUMAN's; this act writes none of them. No MEMORY row is
@@ -85,8 +96,21 @@
 
 ## Independent verification
 
-Pending at the time of writing; recorded in `VERIFIER_VERDICT_NN.md` and
-summarized here when returned.
+- **Verdict 01 (reviewed `fb030850b`): PASS WITH NOTES**, no blocking
+  finding (`VERIFIER_VERDICT_01.md`, transcribed verbatim). Same-day
+  reproduction on a fresh `git archive` export of `13df8b795` at 2026-09-25
+  20:47 MDT without `--reproduction`: 119/119 files and the generator report
+  byte-identical. DEP-10-05-004's weaker warrant recorded, not failed, per
+  the ruling.
+- **Repairs after verdict 01 (run-root records only; no product or register
+  byte changed):** N-1 — `checks/containment.out` now exists (a saved rerun
+  of `containment.py`, which now also prints the HEAD it checked), indexed in
+  `checks/COMMANDS.txt`, and the VALIDATION Containment row says what was
+  terminal-only. N-2 — residual 5 restated as fact (SCA-006 reused the
+  post-setup audit as its baseline; R3's post-change audit is the first to
+  observe this state) and routed to HELP_HUMAN. N-3 — `containment.py` added
+  to the MANIFEST helper list; the `<pre>` identity in VALIDATION stated by
+  tar hash.
 
 ## Not claimed
 

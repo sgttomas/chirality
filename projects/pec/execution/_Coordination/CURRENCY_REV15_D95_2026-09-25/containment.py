@@ -22,6 +22,9 @@ def main():
              if ln.startswith("WRITE\t")}
     out = subprocess.run(["git", "diff", "--name-status", f"{sys.argv[1]}...HEAD"],
                          capture_output=True, text=True, check=True).stdout
+    head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
+                          check=True).stdout.strip()
+    print(f"HEAD {head}; base {sys.argv[1]}")
     counts = collections.Counter()
     bad = []
     seen = set()

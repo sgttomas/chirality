@@ -8,9 +8,9 @@ All commands ran from the repository root (worktree
 command in order with its exit code; each output is the file named in the
 table. `<pre>` is a `git archive` export of `origin/main` `590ec52c1`
 (tar SHA-256 `152aba22aee83d9b0a76c7265d533f523a0373f43b6e6cda9ac7033ef75a4024`),
-extracted in the session scratchpad outside the repository; it is the same
-tree as `590ec52c1` (`diff -rq` over `projects/pec` showed only the new run
-root).
+extracted in the session scratchpad outside the repository. The verifier's
+own fresh `git archive` of `590ec52c1` has the same tar SHA-256
+(`VERIFIER_VERDICT_01.md`).
 
 ## Preconditions
 
@@ -39,7 +39,7 @@ root).
 | Schema per register | VALID × 10 | VALID × 10, exit 0 each | `checks/schema_10.out` |
 | Receipts validator unaffected | exit 0; output identical before and after | exit 0 both; `cmp` identical ("frozen through Receipt-166; versioned receipt contract satisfied") | `checks/pre_receipts.out`, `checks/post_receipts.out` |
 | Every-PR check | `harness.py self-check` exit 0; no finding cites a target path that the pre-act run did not | exit 0 both; output byte-identical before and after (`diff` empty) | `checks/pre_harness.out`, `checks/post_harness.out` |
-| Containment | exactly the grant's paths plus the run root; with T1, also the two Task Management registers; nothing else | at the act commit `fdc7a2071`: 119 product MODIFY, 2 Task Management MODIFY, run-root ADD only; 0 granted paths unchanged; 0 paths outside the boundary. The return file under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/` is added later, as the brief authorizes; the final-state record is `checks/containment.out` | `containment.py origin/main` |
+| Containment | exactly the grant's paths plus the run root; with T1, also the two Task Management registers; nothing else | at the act commit `fdc7a2071` (printed to the terminal, indexed in `checks/COMMANDS.txt`): 119 product MODIFY, 2 Task Management MODIFY, 57 run-root ADD; 0 granted paths unchanged; 0 paths outside the boundary. Saved rerun: `checks/containment.out`, at the commit its header names (after the verdict-01 repairs). Later commits add only run-root files and the brief-authorized return file under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/`, which `containment.py` accepts; the return records the final rerun | `containment.py origin/main`; `checks/containment.out` |
 | Whitespace | `git diff --check origin/main...HEAD` clean | **Disclosed deviation, as in the D-PEC-93 act.** Outside the run root (the 119 product paths and both registers): exit 0, 0 notices. Whole diff: exit 2, 291 `trailing whitespace` notices, all in raw tool outputs kept byte-exact in this run root: 164 in the CR-at-EOL rows of the analyzer's `checks/closure_pre/*.csv` and `checks/closure_post/*.csv`, 125 in the empty trailing field of the generator report's READ and PATHLIST lines, and 2 in the tab-terminated PASS lines of `checks/verify_d95.out`. They stay unnormalized because they are hashed or rerun-comparable evidence. `.gitattributes` states that cosmetic whitespace does not gate CI | `checks/diff_check.out` |
 | T1 | `taskmgmt validate` PASS on both registers after closing and after `archive` | PASS / PASS before, after closing and after archiving (details below) | `checks/t1_*` |
 

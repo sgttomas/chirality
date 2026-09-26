@@ -222,7 +222,8 @@ archive 16 rows.
 `gen_d95.py`, `verify_d95.py` and `t1_tm_pec_023.py` (bound copies);
 `gen_d95_report.tsv` and `gen_d95_stderr.txt` (the generator's output);
 `check_preimages.py`, `check_byte_identity.py`, `run_holds.sh`,
-`run_schema.sh` and `diffcheck.py` (the manager's read-only check helpers);
+`run_schema.sh`, `diffcheck.py` and `containment.py` (the manager's read-only
+check helpers);
 `checks/` (every command's output; `checks/COMMANDS.txt` is the index,
 with exit codes); this file, `VALIDATION.md`, `HANDOFF_STATE.md` and
 `VERIFIER_VERDICT_NN.md`. No `_run_records/` entry was written in any
