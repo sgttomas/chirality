@@ -234,8 +234,10 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   - `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
     `_COORDINATION.md` were brought to the post-setup state (since
     superseded: both pointers name revision 1.6 and SCA-006);
-  - all 66 contexts and 66 references then named revision 1.5 (since
-    re-pinned to revision 1.6 under `D-PEC-101`);
+  - all 66 contexts and 66 references then named revision 1.5 (three
+    contexts, DEL-04-03, DEL-08-01 and DEL-08-03, gained the revision-1.6
+    clause with SCA-006; the other 63 and all 66 references were re-pinned
+    to revision 1.6 under `D-PEC-101`);
   - the 19 stale dependency evidence quotes were refreshed, so all 111
     active execution quotes were then verbatim (127 of 127 since
     `D-PEC-101`);
@@ -248,8 +250,12 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
 
   Open:
   - SOW currency (S1, S2, S4). The owner ruled the S2 rebuild `D-PEC-100`
-    (seven contracts: DEL-01-01, DEL-01-06, DEL-02-03..07) on 2026-09-26;
-    the act follows. Done: the first SOWs for DEL-02-08/09
+    (seven contracts: DEL-01-01, DEL-01-06, DEL-02-03..07) on 2026-09-26.
+    Done: its act replaced the seven contracts with the ruled bytes (no
+    lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
+    with their gates; run root
+    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). Open: S1 and S4,
+    which absorb the quotations of old S2 text in 13 contracts. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
@@ -276,7 +282,7 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     ("approve hunk") and accepted checkpoint 3 on 2026-09-26
     (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`).
     SCA-006 is closed for scope change only: the pointers and the audit
-    pointer name revision 1.6 and SCA-006. Its Lane B items (the DEL-08-06
+    pointer then named revision 1.6, SCA-006 and its post-change audit (the audit pointer names `COV_D101_POSTSETUP_2026-09-26_1651` since `D-PEC-101`). Its Lane B items (the DEL-08-06
     and DEL-10-13 folders, dependency work, SOW currency, the DEL-00-03 SPEC
     premise, the tier-0 profile entry, the revision-1.6 re-pin and the API
     schema fields) and the correction of the stale `remaining-loop` design
