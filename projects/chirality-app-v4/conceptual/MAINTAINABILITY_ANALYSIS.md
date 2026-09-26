@@ -1,5 +1,10 @@
 # Maintainability as the governing criterion — analysis
 
+> **Revised 2026-09-26 after the owner's challenge (D-17).** The two-seam
+> recommendation in §4–5 (ACP between Chirality and the agent) is withdrawn;
+> see §9 for why it was wrong and the revised direction. §1–3 stand, with
+> principle M-2 restated in §9.2; §7 is revised by §9.4.
+
 Standing: **interpretation and proposal (agent).** Written in response to
 D-16 ("code maintainability is top of my concerns … The best ability is
 maintainability"). It proposes principles and an architectural seam for the
@@ -202,3 +207,80 @@ patterns) and as an app users may choose on their own.
    the user's configuration?
 3. Should the standalone App for Creating Workflows share SWBPIPE's stack
    (Tauri + React), so every Chirality application runs on one stack?
+
+## 9. Revision after the owner's challenge (2026-09-26)
+
+The owner rejected the ACP direction: building the ACP layer would be hard;
+losing native Codex functionality is a big loss because "Those harnesses are
+the best in the world"; native OAuth is essential; the aim is "to build
+around the best harnesses in the world in the easiest to maintain manner"
+(D-17, maintainability first, functionality second).
+
+### 9.1 Why the ACP recommendation was wrong
+
+1. **It repeated this project's own mistake.** D-GOV-43 found that v3's
+   generic, multi-engine event vocabulary left Codex items "with nothing to
+   render them" (finding 4). ACP is a better-maintained generic vocabulary,
+   but an adapter still maps Codex's native items into it, and whatever ACP
+   does not model is dropped or pushed into extensions. That is the same
+   translation layer, maintained by someone else.
+2. **It traded a certain loss for a hypothetical gain.** Replaceability of the
+   harness is a benefit only if the harness has to be replaced. Losing native
+   features (application tools, per-conversation model provider, native plan
+   mode, the full event stream) is certain and immediate. Under M-5 —
+   generality only on demand — the proposal failed its own test.
+3. **It understated the client work.** An ACP client that renders every
+   update, answers permissions, handles authentication and sessions, and then
+   uses vendor extensions to recover lost features is substantial code, not a
+   thin layer.
+4. **It added a dependency.** Each adapter is a third party between Chirality
+   and the harness, with its own release lag and its own defects.
+
+### 9.2 Restated principle M-2
+
+> **Meet each harness at its own published embedding interface, unmodified
+> and pinned, and pass its native items through to native presentation.**
+> No private modification, no generic vocabulary between Chirality and the
+> harness.
+
+Portability is sought where it costs no functionality: in content and host
+tools, which the best harnesses already share natively — `AGENTS.md`,
+skills (`SKILL.md`), workflow packages as files, and MCP servers.
+
+### 9.3 The revised direction (proposal)
+
+| Layer | Direction | Why it is maintainable | Functionality kept |
+|---|---|---|---|
+| Harness | **Codex through the stock Codex App Server**, pinned, over its published protocol (the v3 D-GOV-43 path) | A supported embedding surface; protocol types generated per version (`codex app-server generate-ts`); upgrades are deliberate dependency bumps, tested against recorded exchanges; experimental fields isolated | Full native loop, sandbox and approvals, plans, subagents, hooks, resume and fork, application tools, the full event stream |
+| Sign-in | **Native OAuth** through Codex's own account methods (ChatGPT sign-in), plus API key; credentials held by Codex, kept separate from the user's other Codex clients (v3's overlay) | Codex owns credential handling | Native OAuth, as shipped in v3 |
+| Local models | **Codex's own model providers**, chosen per conversation (`modelProvider` on `thread/start`); oMLX serves the Responses API Codex requires, as do LM Studio and Ollama | Configuration, not code | Local and cloud conversations side by side in one harness |
+| Host tools | **MCP servers owned by each host** (SWBPIPE: inspect, preview, submit, status), with Codex's native application tools available where a host needs them to pass through Chirality | MCP is native to both leading harnesses; the host's server outlives any harness choice | Nothing lost; both routes are native |
+| Knowledge and methods | `AGENTS.md`, skills, workflow packages as files | Read natively by the leading harnesses | Nothing lost |
+| A second best harness | **Claude Code through the Claude Agent SDK**, added as a second native adapter **when there is a concrete need** — not built in advance | One more pinned, published interface; T3 Code's MIT adapters show the shape | Claude Code's native features, including its subagents and hooks |
+
+**Honest limits of this direction:**
+
+- It depends on OpenAI's continued support of the App Server protocol and on
+  weekly Codex releases with schema drift; pinning makes upgrades
+  deliberate but not free.
+- Claude models are not available through the Codex harness. Claude Code
+  natively means a second adapter. Anthropic's documentation does not allow
+  third-party products to offer claude.ai sign-in without approval, so
+  native OAuth for Claude in a distributed product needs Anthropic's written
+  answer; API keys are clearly permitted.
+- Codex's own sign-in inside a third-party app is shipped in v3 and described
+  in OpenAI's App Server documentation; commercial terms for a distributed
+  product were recorded as unconfirmed and still need OpenAI's written
+  answer before wide release.
+
+### 9.4 What this changes elsewhere
+
+- **The v3 App Server work is an asset, not history.** The A2 service,
+  the authentication overlay, request cards, plan handling and application
+  tools are the tested base (S-1…S-8). The open maintainability question is
+  narrower: whether every host needs v3's Node service, or whether a host can
+  run the Codex binary directly and share one client library (a Tauri host
+  already runs native binaries as sidecars). To settle by reading the Runtime's
+  responsibilities, not by experiment.
+- **Q-05 settles toward option A of the original question** (build on the
+  incumbent) with M-5 governing any second harness.

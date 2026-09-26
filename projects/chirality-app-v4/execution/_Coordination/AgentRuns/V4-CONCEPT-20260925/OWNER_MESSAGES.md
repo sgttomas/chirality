@@ -21,3 +21,11 @@ HELPS_HUMANS replied yes and prepared `experiments/HX-01_BRIEF.md`
 But I don't really want to run those tests.  I think you can do more intellectual analysis before we need to get practical, because I don't know what I really expect to learn from those tests.  I know all those configurations work, but I won't know to what extent they work in all the ways that I want and anyways code maintainability is top of my concerns and none of that has to do with ability.  The best ability is maintainability.
 
 ---
+
+## M-03 — reply to the maintainability analysis
+
+---
+
+I'm not convinced.  I think that's going to be hard to build my own ACP layer, why do you think it will the best option for maintainability?  After that, my next priority is functionality and losing the functionality from the native Codex harness is a big loss.  Those harnesses are the best in the world.  And having OAuth natively is also essential.  I want to build around the best harnesses in the world in the easiest to maintain manner.  How does that balance strike you?
+
+---
