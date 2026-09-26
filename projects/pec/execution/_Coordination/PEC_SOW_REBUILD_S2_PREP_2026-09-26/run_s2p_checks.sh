@@ -68,8 +68,11 @@ note "INFO consequence scan (informational): $(tail -1 "$OUT/scan_external_quote
 (cd "$POST" && python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution > "$OUT/strict_post.out" 2>&1; print "exit=$?" >> "$OUT/strict_post.out")
 (cd "$POST" && python3 tools/practitioner_harness/harness.py self-check > "$OUT/harness_post.out" 2>&1; print "exit=$?" >> "$OUT/harness_post.out")
 (cd "$POST" && python3 tools/validation/validate_pec_loop_receipts.py --repo-root . > "$OUT/receipts_post.out" 2>&1; print "exit=$?" >> "$OUT/receipts_post.out")
+# The two exports live at different paths; outputs are compared with each export root
+# replaced by the literal <export> (the raw outputs are kept unchanged).
 for k in strict harness receipts; do
-  cmp -s "$OUT/${k}_pre.out" "$OUT/${k}_post.out" && note "PASS $k identical before/after ($(tail -1 "$OUT/${k}_post.out"))" || { note "FAIL $k differs"; fail=1; }
+  sed "s#$PRE#<export>#g" "$OUT/${k}_pre.out" > "$T/${k}_pre.norm"; sed "s#$POST#<export>#g" "$OUT/${k}_post.out" > "$T/${k}_post.norm"
+  cmp -s "$T/${k}_pre.norm" "$T/${k}_post.norm" && note "PASS $k identical before/after, export root normalized ($(tail -1 "$OUT/${k}_post.out"))" || { note "FAIL $k differs"; fail=1; }
 done
 
 # 7. whitespace (trailing blanks, tabs, missing final newline) in the seven candidates
