@@ -18,7 +18,7 @@ When this document refers to `execution/`, it means `{EXECUTION_ROOT}`.
 
 ## Session entry: state inspection
 
-The session prompt names the role and `{EXECUTION_ROOT}`. WORKING_ITEMS discovers everything else by inspecting workspace state, then matches observed state to the active phase and proposes the next gate. There are no session modes — there is one operation: **inspect, infer, propose.**
+The session prompt names the role and `{EXECUTION_ROOT}`. WORKING_ITEMS discovers everything else by inspecting workspace state, then matches observed state to the active phase and proposes the next gate. There are no separate session categories — there is one operation: **inspect, infer, propose.** The setup mode (`INITIAL` or `INCREMENTAL`, see [Setup modes](#setup-modes)) is itself inferred from that state and confirmed in the proposal.
 
 **Step 1 — Inspect workspace state.** Look at what actually exists on the filesystem. Do not commit to a category (initialization, resume, etc.) before doing this.
 
@@ -28,7 +28,8 @@ The session prompt names the role and `{EXECUTION_ROOT}`. WORKING_ITEMS discover
 | Sources | `{EXECUTION_ROOT}/_Sources/` (or equivalent). Extracted? `_LATEST.md` current? |
 | Workspace structure | Are `CAT-NNN/` / package / deliverable folders scaffolded? To what depth? Any `_STATUS.md` lifecycle states beyond `OPEN`? |
 | Authoring state | Any `KA-*.md` (DOMAIN) / `ScopeOfWork.md` or transitional legacy four-doc kits (PROJECT/SOFTWARE) present? Any `_REFERENCES.md` SCA-mode notes, contradictions registers, ratification verdicts? |
-| Control-plane | Retrieval index `_LATEST.md` present + ledger md5 matches current `Atomic_Domain_Ledger.csv`? Hypergraph snapshot present at `_Aggregation/Hypergraph/`? `_ScopeChange/_LATEST.md` indicating an active SCA? |
+| Control-plane | Retrieval index `_LATEST.md` present + ledger md5 matches current `Atomic_Domain_Ledger.csv`? Hypergraph snapshot present at `_Aggregation/Hypergraph/`? |
+| Scope change | Under `_ScopeChange/`: an amendment in progress (a group-1 or group-2 authorized pointer or candidate `SCA-*` folder not yet accepted at checkpoint group 3)? Accepted amendments (the `_LATEST.md` target and earlier accepted `SCA-*` snapshots) whose `Handoff_State.md` hands setup back to this workflow, that were accepted after the adoption baseline in `_Coordination/SETUP_LOG.md`, and that have no `COMPLETE` entry there? |
 
 Read only what's needed to answer those axes. Do not ceremonially read every coordination file when the workspace state already tells you the answer.
 
@@ -39,7 +40,9 @@ Read only what's needed to answer those axes. Do not ceremonially read every coo
 - Scaffolded folders + retrieval index present + no KAs → Phase 2.1b (retrieval preflight) → Phase 2.2 (authoring).
 - KAs present + no hypergraph snapshot → Phase 2.6 (TASK (workflow: domain-hypergraph)).
 - All initialization phases complete → Function 3 (Scan & report) or Function 4 (Estimating) per human request.
-- Active `_ScopeChange/_LATEST.md` → WORKING_ITEMS (workflow: scope-change) workflow takes precedence.
+- Amendment in progress under `_ScopeChange/` → WORKING_ITEMS (workflow: scope-change) takes precedence; setup of the amended scope waits for its checkpoint group 3 acceptance.
+- Accepted amendment with setup handed back and not yet recorded complete → Function 5 (Incremental setup) against that accepted snapshot.
+- No `SETUP_LOG.md` baseline yet while accepted amendments exist → propose the Function 5 adoption step (Phase 5.0) first.
 
 If the observed state doesn't match a phase cleanly (e.g., partial scaffolding from an interrupted run, mismatched accepted-doc references, errata pending in registers), surface the discrepancy to the human before acting.
 
@@ -62,6 +65,7 @@ If the observed state doesn't match a phase cleanly (e.g., partial scaffolding f
 - **No invented schedule facts.** Structure traces to accepted decomposition IDs; constraints trace to accepted dependency rows or explicit human rulings. Durations remain blank unless proposals are explicitly enabled and labeled.
 - **Schedule cycle discipline.** PRECEDENCE cycles require a recorded human-approved resolution. CONSTRAINT/HYBRID cycles are represented as concurrency/risk patterns unless the human rules otherwise.
 - **Schedule quarantine.** Each schedule run writes an immutable snapshot under `{EXECUTION_ROOT}/_Schedule/{RunID}/`; it never modifies decomposition or deliverable truth.
+- **Incremental setup preserves existing work.** In `INCREMENTAL` mode, existing folders, IDs, file content and lifecycle state are kept. Added entities are scaffolded; retired entities are never deleted; modified deliverables go to their production contract's update path, never to re-scaffolding.
 - **Lifecycle state recording follows the selected stage.** The authorized workflow and accepted project policy determine when state may advance. Record the actual decision actor separately from the executing recorder: human-gated CHECKING/ISSUED transitions require the human ruling and applicable approval evidence; WORKING_ITEMS or TASK records only transitions its brief and the guarded tool permit.
 
 Recommended lifecycle ownership (may vary by project):
@@ -82,6 +86,45 @@ Recommended lifecycle ownership (may vary by project):
   `scope-of-work` never edits `_STATUS.md`; `SEMANTIC_READY` then requires a
   separately authorized status act under the recorded project policy.
 - Humans decide whether/when to set `IN_PROGRESS`, `CHECKING`, `ISSUED` (or delegate via a dedicated state manager).
+
+---
+
+## Setup modes
+
+| Mode | Applies when | Functions | Human checkpoints |
+|---|---|---|---|
+| `INITIAL` | An accepted decomposition has not yet been set up | 1 (Initialize), 2 (Scaffold + setup pipelines) | The phase gates of Functions 1–2 |
+| `INCREMENTAL` | An accepted `scope-change` amendment, accepted after the project's adoption baseline, has been applied and its `Handoff_State.md` hands setup back to this workflow | 5 (Incremental setup) | Confirm the adoption baseline once per project; confirm the incremental plan; then report. Other gates only for decisions the stages reserve (for example DAG acceptance, SCC resolution, a lifecycle act such as reopening an `ISSUED` deliverable) |
+
+Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
+
+### `INCREMENTAL` inputs
+
+| Input | Source | Requirement |
+|---|---|---|
+| `AMENDMENT_SNAPSHOT` | `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md` target, or an earlier accepted `SCA-*` snapshot still awaiting setup | Accepted at checkpoint group 3 and after the adoption baseline. A candidate or returned snapshot is not an input; an amendment covered by the baseline is never reprocessed. |
+| Accepted action register | `Amendment_Actions.csv` in the snapshot, or the distinct register its group-2 `ACCEPTED_MANIFEST.csv` names (for example `Amendment_Actions_CP2.csv`) | Resolve through the accepted manifest; `Intake_Actions.csv` is group-1 evidence only. Verify the recorded hash. |
+| `Propagation_Plan.md`, `Handoff_State.md` | The same snapshot | Name the hand-back, derivative state, deferred items and blockers. |
+| Amended decomposition | `{DECOMP_ROOT}/`, as applied by the amendment | Source of IDs, names, parent bindings and metadata for added entities. |
+| Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | Representation, dependency tracking mode (`docs/SPEC.md` §5.3) and threshold are reused, not re-asked. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
+| Setup log | `{COORDINATION_ROOT}/SETUP_LOG.md` | Agent-owned and append-only (see [Setup log](#setup_logmd-project-level-agent-owned-append-only)). Holds the adoption baseline and one line per incremental run. Created by the adoption step when absent. |
+| Production format | Each affected deliverable, resolved per `docs/SPEC.md` §2.2 | Selects the update path for `MODIFY`. |
+
+If any input is missing, unaccepted or inconsistent with the workspace (for example a `REMOVE` without its decomposition annotation), report the discrepancy and return it to `scope-change` rather than repairing decomposition truth here.
+
+### `INCREMENTAL` action treatment
+
+| Accepted action | Setup treatment |
+|---|---|
+| `ADD` (and successor entities of `MERGE`/`SPLIT`) | Scaffold only the new package, deliverable, category or knowledge type with the source-qualified `preparation` skill (Phase 2.1 rules), then initialize production with the project's contract (`SOW_V1` via `scope-of-work`, `MODE=INIT`; DOMAIN via `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN` as the amendment's hand-off) and create its dependency and status records. |
+| `REMOVE` (and sources retired by `MERGE`/`SPLIT`) | No deletion of folders or files. Confirm the `scope-change` retirement rule was applied: the `[RETIRED — {AMENDMENT_ID}]` decomposition annotation and one appended `_STATUS.md` history line, lifecycle state unchanged, `write_status.sh` not used. Append the history line only where the accepted poststate lacks it. |
+| `MODIFY` | No re-scaffolding. Route the deliverable to its production contract's update path (Function 5, Phase 5.5): for `SOW_V1`, `scope-of-work` `MODE=REVISE` ending in `MODE=VERIFY`. A `CHECKING` or `ISSUED` deliverable is held for the human; an `ISSUED` deliverable reopens only as `docs/SPEC.md` §3.3 allows. `_CONTEXT.md` edits belong to the amendment itself. |
+| `RECLASSIFY` | As `MODIFY`. Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
+
+The affected set is the deliverables named by the accepted actions. Their
+neighbours are the deliverables with a recorded edge to or from an affected
+deliverable (declared sections, `Dependencies.csv`) and any the accepted
+impact assessment names for dependency review.
 
 ---
 
@@ -216,6 +259,32 @@ Every deliverable folder should be seeded with:
 - [Optional: stage gates definitions live here if humans want them recorded]
 ```
 
+This workflow does not add agent-written sections to `_COORDINATION.md`. Setup
+evidence goes to `SETUP_LOG.md` below.
+
+---
+
+### `SETUP_LOG.md` (project-level; agent-owned, append-only)
+
+`{COORDINATION_ROOT}/SETUP_LOG.md` records incremental setup. WORKING_ITEMS
+creates it at the adoption step and appends lines; it never edits or deletes
+an earlier line. A correction is a new line that names the line it corrects.
+
+```markdown
+# Setup Log
+
+Agent-owned and append-only. Written by WORKING_ITEMS (workflow: project-setup).
+
+- [YYYY-MM-DD] — BASELINE: incremental setup adopted; amendments accepted up to [YYYY-MM-DD] (latest [AMENDMENT_ID or "none"]) are already set up and are not reprocessed; confirmed by [human]
+- [YYYY-MM-DD] — INCREMENTAL [AMENDMENT_ID] setup [COMPLETE | PARTIAL | BLOCKED]; run record [path]
+```
+
+The `BASELINE` line is written once per project, with the human's
+confirmation. It covers the amendments accepted up to its date, through the
+latest amendment it names; those are never reprocessed in `INCREMENTAL`
+mode. An `INCREMENTAL` line marked `COMPLETE` is the record that
+an accepted amendment's setup hand-back has been carried out.
+
 ---
 
 ### Deliverable IDs (important)
@@ -231,10 +300,12 @@ Deliverable IDs are sourced from the decomposition. Do not invent new IDs. The e
 
 The selected setup phases produce these durable artifacts:
 
-- `{COORDINATION_ROOT}/_COORDINATION.md` — coordination representation record
+- `{COORDINATION_ROOT}/_COORDINATION.md` — coordination representation record (human-owned)
+- `{COORDINATION_ROOT}/SETUP_LOG.md` — for `INCREMENTAL` mode, the agent-owned, append-only setup log with its adoption baseline
 - Package and deliverable folders (via the actual eligible actor using the
   selected source-qualified `preparation` skill)
 - Bounded contribution outputs, including TASK outputs when dispatch was used
+- For `INCREMENTAL` mode, a run record under `{COORDINATION_ROOT}/AgentRuns/<RunID>/` (`docs/SPEC.md` §9.8) holding the confirmed incremental plan, the amendment snapshot path and register hash, briefs, returns, created and skipped paths, dependency-stage evidence and the final report
 
 These artifacts persist in the filesystem and are git-tracked. Phase-boundary evidence and any accepted snapshot references are recorded in the undertaking’s handoff.
 

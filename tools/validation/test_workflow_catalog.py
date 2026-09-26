@@ -527,6 +527,31 @@ def test_d_gov_49_project_dag_authority_and_case_home():
     assert "`_Candidates/DAG-NNN/` are working records rather than snapshots" in flat_spec
     assert "confirm it is under a PKG-00 control deliverable" not in scc
 
+def test_d_gov_50_issued_reopening_and_incremental_setup_routes():
+    # D-GOV-50: an accepted amendment naming the deliverable with MODIFY authorizes ISSUED -> IN_PROGRESS.
+    spec = " ".join((ROOT / "docs/SPEC.md").read_text().split())
+    assert "**Reopening an `ISSUED` deliverable.**" in spec
+    assert "its accepted action register names that deliverable with action `MODIFY`" in spec
+    assert "The human records the transition in `_STATUS.md`, citing the accepted amendment snapshot." in spec
+    assert "until they implement a check of the amendment record" in spec
+    scope_change = " ".join((ROOT / "workflows/scope-change/resources/contract.md").read_text().split())
+    assert "**Reopening an `ISSUED` deliverable.**" in scope_change
+    assert "until they implement a check of the amendment record" in scope_change
+
+    # scope-of-work carries the bounded REVISE mode that project-setup routes MODIFY to.
+    brief = (ROOT / "workflows/scope-of-work/resources/brief.md").read_text()
+    assert "| `RuntimeOverrides.MODE` | `INIT`, `CONVERT`, `REVISE`, or `VERIFY` |" in brief
+    assert "## Revision under an accepted amendment" in (ROOT / "workflows/scope-of-work/WORKFLOW.md").read_text()
+    method = (ROOT / "workflows/project-setup/resources/method.md").read_text()
+    assert "Otherwise dispatch `scope-of-work` `MODE=REVISE`" in method
+    assert "project's authorized contract-revision path" not in method
+    assert "#### Phase 5.0: Adopt incremental setup (once per project)" in method
+
+    # The setup log is agent-owned and lives outside the human-owned _COORDINATION.md.
+    contract = (ROOT / "workflows/project-setup/resources/contract.md").read_text()
+    assert "### `SETUP_LOG.md` (project-level; agent-owned, append-only)" in contract
+    assert "## Setup log (append-only)" not in contract
+
 
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     contract = (ROOT / "workflows/research-orchestration/resources/contract.md").read_text()

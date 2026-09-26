@@ -329,7 +329,21 @@ The `SEMANTIC_READY` state is optional in the lifecycle; a working root MAY omit
 | `IN_PROGRESS → CHECKING` | Human |
 | `CHECKING → ISSUED` | Human |
 | `CHECKING → IN_PROGRESS` | Human (reversal — the sole exit from an unsuccessful or withdrawn check) |
-| `ISSUED → IN_PROGRESS` | Human, via the governed scope-change process only (opens a new revision cycle) |
+| `ISSUED → IN_PROGRESS` | Human, only under an accepted scope-change amendment that names the deliverable with `MODIFY` (or scope-changing `RECLASSIFY`); opens a new revision cycle (rule below) |
+
+**Reopening an `ISSUED` deliverable.** `ISSUED → IN_PROGRESS` is authorized
+only by an accepted amendment of the governed scope-change process: its
+checkpoint group 3 is accepted, and its accepted action register names that
+deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification
+changes the deliverable's scope. A proposal, a group-1 or group-2 decision, a
+candidate snapshot, or any other action does not authorize it. The human
+records the transition in `_STATUS.md`, citing the accepted amendment
+snapshot. The incremental setup mode of `project-setup` routes the amended
+deliverable and presents the reopening to the human; no agent records it.
+Tool enforcement is not part of this rule yet: `tools/scaffolding/write_status.sh`
+and the App's lifecycle transition validator still refuse
+`ISSUED → IN_PROGRESS` until they implement a check of the amendment record,
+so the human records it directly meanwhile (D-GOV-50).
 
 **Invariant:** `_STATUS.md` is the authoritative lifecycle indicator. No other file determines deliverable state (`CONTRACT.md` K-STATUS-1).
 
@@ -341,7 +355,7 @@ Lifecycle states are governed production and change-control regimes with maturit
 
 - `IN_PROGRESS` permits ordinary authorized edits. It is the honest holding state whenever warranted open scope exists, however advanced the implementation.
 - `CHECKING` is a frozen candidate under review against a declared basis. Review evidence appends to run/review records, never to the frozen claim surfaces; reversal to `IN_PROGRESS` is the only edit path.
-- `ISSUED` is an accepted baseline; changes flow only through the governed scope-change process.
+- `ISSUED` is an accepted baseline; changes flow only through the governed scope-change process, and reopening follows the §3.3 rule.
 
 **Entry to `CHECKING` is layered**, not a single trigger:
 
@@ -1043,7 +1057,7 @@ Records the project's chosen coordination representation:
 
 The coordination representation is chosen per project instance and recorded once. The record also carries the project's dependency tracking mode (`NOT_TRACKED | DECLARED | FULL_GRAPH`, §5.3). The representation does not change what a mode means; only `FULL_GRAPH` intends a complete graph. It changes how teams use the recorded dependencies for scheduling.
 
-The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `workflows/project-setup/WORKFLOW.md`.
+The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `workflows/project-setup/WORKFLOW.md`. It also holds `SETUP_LOG.md`, the agent-owned, append-only log of incremental setup runs (D-GOV-50); `_COORDINATION.md` itself stays human-owned.
 
 ---
 

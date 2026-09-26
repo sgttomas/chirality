@@ -1,0 +1,85 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PROJECT-SETUP-INCREMENTAL-20260926
+title: Incremental project-setup after an accepted scope change, scope-of-work REVISE, and reopening an ISSUED deliverable (D-GOV-50)
+date: '2026-09-26'
+basis: 5bbc9de22378f8f7056a010e1a05d2c13518f0e7
+instruction_surface_paths:
+  - docs/SPEC.md
+  - docs/governance_harness/_DECISIONS/D-GOV-50_issued_reopening_by_accepted_amendment.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - tools/validation/test_workflow_catalog.py
+  - workflows/index.json
+  - workflows/project-setup/WORKFLOW.md
+  - workflows/project-setup/resources/contract.md
+  - workflows/project-setup/resources/method.md
+  - workflows/scope-change/WORKFLOW.md
+  - workflows/scope-change/resources/contract.md
+  - workflows/scope-change/resources/method.md
+  - workflows/scope-of-work/WORKFLOW.md
+  - workflows/scope-of-work/resources/brief.md
+  - workflows/scope-of-work/resources/checks.md
+  - workflows/scope-of-work/resources/tools.md
+  - workflows/domain-documents/WORKFLOW.md
+  - workflows/domain-documents/resources/brief.md
+  - docs/governance_harness/tranche_manifests/ROOT-PROJECT-SETUP-INCREMENTAL-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed on 2026-09-26 that the deferred item "needs
+    your attention": an incremental project-setup after a scope change. The
+    earlier workflow evaluation found no incremental or post-SCA setup mode,
+    project-setup Functions 1 and 2 stated as one-time, project-setup deferring
+    an active SCA to scope-change, and scope-change handing ADD back through
+    project-setup, so the two workflows pointed at each other and setup of
+    amended scope had no defined method. On the tranche's open questions the
+    owner then directed, on 2026-09-26, "A, B, C and E all as recommended",
+    applied here as: (1) scaffolding of added scope happens after acceptance,
+    with audit-scope-closure named as the post-acceptance closure check;
+    (2) a bounded scope-of-work MODE=REVISE for an existing SOW_V1 deliverable
+    whose scope an accepted amendment changes (MODIFY), revising only the named
+    parts, preserving identities and unaffected content, recording the
+    amendment reference, ending with VERIFY, never changing lifecycle state and
+    holding CHECKING or ISSUED deliverables for the human, with project-setup
+    INCREMENTAL MODIFY routed to it; (3) the setup log moved out of the
+    human-owned _COORDINATION.md into the agent-owned, append-only
+    execution/_Coordination/SETUP_LOG.md; (4) DOMAIN additions dispatched to
+    domain-documents in its SCA_DRIVEN mode as the amendment's hand-off, with
+    domain-documents noting that dispatch; (5) one adoption baseline line in
+    SETUP_LOG.md stating that amendments accepted up to that date are already
+    set up, older amendments never reprocessed; and (6, E1) ISSUED ->
+    IN_PROGRESS authorized only by an accepted amendment (checkpoint group 3
+    accepted) whose accepted action register names the deliverable with
+    MODIFY or scope-changing RECLASSIFY, recorded by the human citing the
+    accepted snapshot at the incremental MODIFY routing, written into
+    scope-change and SPEC section 3.3 and recorded as D-GOV-50, with tool
+    enforcement left as a follow-up.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code parent session integrating on branch claude/brave-goodall-wj3hok
+    under the standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md
+  rationale: >-
+    App, Runtime, Piping and PEC use project-setup, scope-change and
+    scope-of-work for their workspaces and amendments, and follow the SPEC
+    lifecycle table. The App notice also answers its DEL-07-04 REQ-004
+    question about which scope-change record authorizes reopening an ISSUED
+    deliverable. PEC is being redeveloped and the owner is deferring action
+    there; its notice is for the record.
+scope_limits:
+  - SPEC changes only in section 3.3 (transition row and the reopening rule) and one pointer in section 3.4; TYPES and DECOMPOSITION_STANDARD are unchanged; dependency tracking modes are cited from SPEC section 5.3, not restated.
+  - No tool changes. tools/scaffolding/write_status.sh and the App's lifecycle transition.ts still refuse ISSUED -> IN_PROGRESS until they implement a check of the amendment record; that is a follow-up.
+  - No validator or test enforced the scope-of-work MODE enum; REVISE is documented in the package and guarded by a text test in test_workflow_catalog.py.
+  - No project-DAG construction workflow; DAG re-acceptance stays under an authorized ad hoc plan (project-setup Phase 2.2b step 4).
+  - audit-scope-closure is unchanged; its existing ADD checks are the post-acceptance closure check after incremental setup.
+  - Existing _COORDINATION.md files, accepted SCA snapshots, _STATUS.md records and historical run records are not rewritten; no SETUP_LOG.md is created by this tranche.
+  - The D-GOV-48 and other register rows are unchanged apart from adding the D-GOV-50 row; no publication SHA is filled.
+  - The alignment manual does not describe project-setup as one-time or the SCA hand-back and is unchanged.
+  - No release is granted.
