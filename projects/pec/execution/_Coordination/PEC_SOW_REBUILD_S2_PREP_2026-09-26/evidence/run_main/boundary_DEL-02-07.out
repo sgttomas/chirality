@@ -1,0 +1,5 @@
+NOT_CHECKABLE: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md REQ-004: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md REQ-006: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+
+Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 2 | boundary requirements citing no claim: 0 | contracts failing: 0
+exit=0

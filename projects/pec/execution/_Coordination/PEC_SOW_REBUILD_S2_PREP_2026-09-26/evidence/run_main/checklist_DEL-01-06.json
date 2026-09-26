@@ -1,0 +1,388 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 164,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The configuration format documents every field it defines, names each served loop with a stable identifier, and is validatable deterministically, with a valid instance accepted and every malformed fixture rejected.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-001",
+          "source_line": 194,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the documented format against the checked-in default instance and against a fixture set of deliberately malformed configurations; the valid instance validates and every malformed fixture is rejected with a located failure."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 165,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The checked-in default instance registers exactly one loop at P1, identified as PEC v2's own build per OI-010, and admits further loops by adding rows only, with no schema change and no row that an owner ruling has not set.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-002",
+          "source_line": 195,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the default instance and assert exactly one registered loop at P1 whose identity is PEC v2's own build, then confirm by construction that adding further loops requires new rows only and no schema change."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 166,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The loader rejects an invalid or unreadable configuration with an explicit failure that names the offending entry or field, and never returns a silently defaulted, partial, or empty loop set in its place.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-003",
+          "source_line": 196,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the loader against invalid, unreadable, and absent configuration fixtures and assert an explicit located failure in each case, with no fallback, partial, or empty loop set returned."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 167,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The loader exposes the registered-loop set through an interface whose signature carries no configuration path or serialization detail, so that relocating or reshaping the registry changes no consumer deliverable.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-004",
+          "source_line": 197,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise the loader's consumer-facing interface, assert the returned loop set matches the configuration, and inspect the interface signature for configuration-path or serialization leakage."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 168,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The format, the default instance, and the loader add no third-party runtime dependency and make no network call, leaving the DEL-01-05 zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-005",
+          "source_line": 198,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the service-core dependency manifest and the registry module import graph for third-party runtime dependencies and network calls, and re-run the DEL-01-05 locality and zero-dependency enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-06-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 169,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The automated test suite implements VER-001 through VER-005 and VER-007 through VER-014, executes in the service-core test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-006",
+          "source_line": 199,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the service-core test suite and confirm that each of VER-001 through VER-005 and VER-007 through VER-014 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 170,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "Each malformed feed-profile case (an empty list, a missing or unknown entry field, an identifier outside the vocabulary, a repeated identifier, a non-integer or unsupported version, a state other than `live` or `historical`, and a non-normalized `basis`) is rejected at its location, and a valid entry is returned as a typed `FeedProfile`.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-007",
+          "source_line": 200,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the loader over one fixture per malformed feed-profile case of AC-007 and over a valid entry; assert each failure location and the typed `FeedProfile` returned for the valid entry."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 171,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "Each overlap kind (one surface both live and historical, two live readers of one surface, two historical grammars for one surface) is rejected at the later entry, naming the surface and the earlier entry; a row with no live profile is rejected at its `feed_profiles`; and a row of disjoint profiles with one live profile loads.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-008",
+          "source_line": 201,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the loader over rows exhibiting each overlap kind, using probe profiles added to the vocabulary for the test only and removed afterwards, over a row with no live profile, and over a disjoint control row; assert each failure location and message and the control row's acceptance."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 172,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The schema's profile set, versions, states and per-profile surface lists equal the adapter's and the port's; the shipped profiles are pairwise disjoint; and neither the schema nor the adapter names a `## Remaining` surface or a profile outside the three.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-009",
+          "source_line": 202,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Compare the schema's profile options, version, states and surface lists with the adapter's vocabulary and surface maps and the port's state type; assert pairwise disjointness of the shipped profiles; scan the schema and the adapter for any `## Remaining` surface or dropped profile identifier."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 173,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The version-1 fixture and every other version value fail at `$.schema_version`, and no loop set is returned.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-010",
+          "source_line": 203,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the loader over the version-1 fixture and over documents with other version values; assert the `$.schema_version` failure and that no loop set is returned."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 174,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "`RegisteredLoop` carries the required typed `feed_profiles` field; `FeedProfile` and `FeedProfileState` are core-owned and immutable; the port method's signature is unchanged; and the core imports only standard-library modules with no I/O module.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-011",
+          "source_line": 204,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the port's type definitions and method signature, assert immutability of `RegisteredLoop` and `FeedProfile`, and inspect the core's imports."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 175,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "Every row and feed-profile entry of the checked-in default matches the owner ruling that last set it (for PEC's row, `D-PEC-96` question 2 unless a later ruling changes it), and each `loop_init_path` and `basis` names a file present at the evaluated commit.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-012",
+          "source_line": 205,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Compare the default instance row by row and entry by entry with the owner rulings that set them, and check that each `loop_init_path` and `basis` names a file present at the evaluated commit."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 176,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The registry module parses no file of a registered loop, holds no feed grammar, and performs none of the excluded acts of REQ-014.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-013",
+          "source_line": 206,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the registry module's file access and call surface for any parse of a registered loop's files, any feed grammar, and any of the excluded acts of REQ-014."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 177,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "No failure message echoes a document value other than a validated vocabulary identifier or surface name.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-014",
+          "source_line": 207,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute failure cases carrying distinctive document values in every field and assert that no failure message contains them."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 178,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+      },
+      "text": "The review gate confirms this contract's traceability to `SOW-077`, `SOW-094` and `OBJ-004`, confirms the objective attribution is stated no more strongly than the objective warrant states it, confirms the current registry row is stated as the ruled and applied row with the stale design text of CON-003 labelled as such, and confirms no sibling feed grammar, `PKG-03` rebuild or `PKG-09` census scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "review gate confirms traceability to SOW-077, SOW-094 and OBJ-004, confirms the indirect objective attribution is stated no more strongly than the warrant, confirms the ruled and applied registry row with CON-003's stale design text labelled, and confirms no sibling, PKG-03 or PKG-09 scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e"
+  },
+  "tool_version": "1"
+}

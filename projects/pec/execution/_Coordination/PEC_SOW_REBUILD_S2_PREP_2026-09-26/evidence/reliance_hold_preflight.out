@@ -1,0 +1,63 @@
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ pec_reliance_hold.py --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
