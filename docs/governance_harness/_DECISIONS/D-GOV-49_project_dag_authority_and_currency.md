@@ -12,16 +12,18 @@ draft treated the accepted project DAG as a "derived view" only, because
 CONTRACT K-DEP-1 said "There is no central dependency graph". The owner
 clarified the intent of that sentence and ruled on the model below.
 
-AcceptedBasis: main@5bbc9de22378f8f7056a010e1a05d2c13518f0e7 (merge of PR #945;
+AcceptedBasis: main@53145aaebb23b617e7ba1d2c626a6218d2be9176 (merge of PR #947;
 PR #942 carried D-GOV-48)
 
-Amends: `docs/CONTRACT.md` K-DEP-1 (rewritten; K-DEP-2 unchanged). No earlier
+Amends: `docs/CONTRACT.md` K-DEP-1 (rewritten; K-DEP-2 unchanged) and K-SNAP-1
+(a `_DAG/` working-records clause added); `docs/PRD_ROOT.md` O-8. No earlier
 D-GOV record is superseded.
 
 PriorRevisions (git blob SHAs at AcceptedBasis, preserved by history):
 `docs/CONTRACT.md` `bbd3ff81…`;
 `docs/SPEC.md` `73223c0b…`;
 `docs/DIRECTIVE.md` `78e3d5f1…`;
+`docs/PRD_ROOT.md` `b4bdf91f…`;
 `workflows/scc-resolution-case/WORKFLOW.md` `2f44ed46…`;
 `workflows/scc-resolution-case/resources/brief.md` `ee9c1cd8…`;
 `workflows/scc-resolution-case/resources/checks.md` `62db4f43…`;
@@ -29,7 +31,7 @@ PriorRevisions (git blob SHAs at AcceptedBasis, preserved by history):
 `workflows/project-setup/WORKFLOW.md` `5177aed9…`;
 `workflows/project-setup/resources/method.md` `3ba16fd8…`;
 `workflows/catalog.yaml` `00e9bb05…`;
-`workflows/index.json` `54cccab7…`;
+`workflows/index.json` `f701e3d4…`;
 `tools/validation/build_workflow_index.py` `470439d5…`;
 `tools/validation/test_workflow_catalog.py` `9579a643…`;
 `docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md` `ade71852…`;
@@ -127,7 +129,7 @@ On the charter restatement of K-DEP-1:
    REQUIRED in every edge row of an accepted DAG version (SPEC §5.4; §6.2
    annotated). A blank is completed in the local file by its owner before
    acceptance; it is not an acceptable exception.
-9. **SCC case home.** `_DAG/cases/<SCC-ID>/` is where all projects hold SCC
+9. **SCC case home.** `_DAG/cases/<CASE-ID>/` is where all projects hold SCC
    resolution cases from this decision on. It is an allowed write location in
    SPEC §0.2.3, §0.3 and §1.2. A project whose cases are already held in a
    PKG-00 control deliverable may keep that legacy home. Each project uses one
@@ -136,27 +138,50 @@ On the charter restatement of K-DEP-1:
    `projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/`,
    stay where they are and are not migrated. Retiring the legacy home is a
    later decision, once no active project uses it.
-10. **Surfaces.** CONTRACT K-DEP-1 is rewritten to items 1 to 6, and K-DEP-1
-    joins the human-review enforcement row. SPEC gains §5.4 (Accepted Project
-    DAG, with the DAG-current and DAG-pending blocker rule), a §5.3 note that
-    its blocker rules apply to projects without an accepted DAG, the `_DAG/`
-    tree entry, tool-root row and paragraph, the `{DAG_ROOT}` token, the
-    containment note, the §6.2 annotations, and a §11.2 note. The DIRECTIVE
-    structural constraint reads "one DAG per project" instead of "no central
+
+   A case folder is keyed by a stable `CASE_ID`, not by the SCC ID of a
+   closure run, because `analyze_dep_closure.py` numbers SCCs by position in
+   each run. A new case takes `SCC-CASE-NNN`, the next unused three-digit
+   number in the project's case home, assigned when the case opens and never
+   reused. `Case_Datasheet.md` records the originating closure snapshot, the
+   SCC ID there, and the member node set. A later closure snapshot's SCC is
+   matched to an existing case by member node set: a changed membership is
+   recorded in that case, not given a new folder, unless the human rules it a
+   different cycle. Legacy PKG-00 case IDs are unchanged.
+10. **Working records in `_DAG/`.** Within `_DAG/`, `cases/<CASE-ID>/` and
+    `_Candidates/DAG-NNN/` are working records, updated in place under their
+    workflow's brief, with Git history as their revision record. Accepted
+    `DAG-NNN/` versions and `_Evaluation/DAGCurrency/` snapshots remain
+    immutable snapshots; a candidate becomes immutable when it is accepted as
+    a version. CONTRACT K-SNAP-1, SPEC §1.2 and SPEC §11.1 carry this clause.
+    It is a consequence of the owner's `_DAG/cases` ruling (an SCC case is
+    updated over time), confirmed by the owner.
+11. **Surfaces.** CONTRACT K-DEP-1 is rewritten to items 1 to 6, and K-DEP-1
+    joins the human-review enforcement row. K-SNAP-1 gains the item 10
+    clause. SPEC gains §5.4 (Accepted Project DAG, with the DAG-current and
+    DAG-pending blocker rule), a §5.3 note that its blocker rules apply to
+    projects without an accepted DAG, the `_DAG/` tree entry (with
+    `_Candidates/`), tool-root row and paragraph, the `{DAG_ROOT}` token, the
+    containment note, the §6.2 annotations, the item 10 working-records clause
+    in §1.2 and §11.1, and a §11.2 note. The DIRECTIVE structural constraint
+    reads "at most one accepted DAG per project" instead of "no central
     dependency graph to maintain". The agent manual v3 §8 is aligned and its
     HTML regenerated. `docs/PRD_ROOT.md` O-8, which transcribed the earlier
-    K-DEP-1, is revised to this decision.
-11. **Workflows.** `project-dag` drops its "derived view" framing and applies
-    items 1 to 9: currency audit, `DAG pending`, successor or rejection,
+    K-DEP-1, is revised to this decision, with an owner amendment note at the
+    top of the file.
+12. **Workflows.** `project-dag` drops its "derived view" framing and applies
+    items 1 to 10: currency audit, `DAG pending`, successor or rejection,
     `_DAG/_LATEST.md`, `_DAG/cases/`, and the required fields. Its fallback of
     holding cycle edges only as non-gating candidates when no PKG-00 control
     deliverable exists is removed; every held SCC edge cites its case. It
     joins the catalog's core navigation list (not `centralWorkflowNames` and
     not the Root `AGENTS.md` table). `construct-local-work-graph` works within
     the accepted current version and respects `DAG pending`.
-    `scc-resolution-case` defaults to `_DAG/cases/<SCC-ID>/` and allows the
-    legacy PKG-00 home. `project-setup` changes only at its SCC routing and DAG
-    handoff lines and adds the accepted-DAG blocker rule to its Phase 3.1 scan.
+    `scc-resolution-case` defaults to `_DAG/cases/<CASE-ID>/`, defines the
+    `SCC-CASE-NNN` identity and node-set matching of item 9, writes run
+    records under the case folder, and allows the legacy PKG-00 home.
+    `project-setup` changes only at its SCC routing and DAG handoff lines and
+    adds the accepted-DAG blocker rule to its Phase 3.1 scan.
 
 ## Adoption
 
@@ -193,6 +218,10 @@ edited. Each project loop decides its own adoption.
   belong to a separate held branch.
 - Historical records, earlier manual editions, the thesis and proposals.
 - The Root `AGENTS.md` central-workflow table and `centralWorkflowNames`.
+- `tools/coordination/analyze_dep_closure.py` and its positional SCC numbering.
+- Root product historical files restating the old O-8
+  (`execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv` SOW-033 and
+  `execution/PKG-03_*/.../DEL-03-03_*/ScopeOfWork.md`) are not edited.
 
 ## Application and assurance
 
@@ -202,9 +231,15 @@ edited. Each project loop decides its own adoption.
   §5.4, the `_DAG/` registration and `{DAG_ROOT}` token, the `_DAG/cases/`
   home, the three REQUIRED field annotations, that `project-dag` is core but
   not central and no longer a derived view, that its no-PKG-00 fallback is
-  gone, and that `scc-resolution-case` names `_DAG/cases/<SCC-ID>/`. The core
-  navigation list in `tools/validation/build_workflow_index.py` gains
-  `project-dag`, and `workflows/index.json` is regenerated.
+  gone, that `scc-resolution-case` names `_DAG/cases/<CASE-ID>/` with the
+  `SCC-CASE-NNN` identity and node-set matching, and the K-SNAP-1 and SPEC
+  §11.1 working-records clause. The core navigation list in
+  `tools/validation/build_workflow_index.py` gains `project-dag`, and
+  `workflows/index.json` is regenerated.
+- `validate_scc_resolution_case.py` checks for a `Dependencies.csv` only under
+  the App's legacy PKG-00 path; for `_DAG/cases/`, the
+  `scc-resolution-case` checks record that as a manual check until the
+  validator is generalized.
 - The register fills D-GOV-48's publication SHA
   (`7bfdcfa9d74d83f5a334fe71595d2a2e6eab6f75`, merge of PR #942).
 - Notices are routed to the App, Runtime, Piping and PEC loops. No release is

@@ -8,6 +8,10 @@
 > Revision 8 control and earlier candidate records below describe their
 > historical bases, not the current merge-execution policy.
 
+> **Owner O-8 amendment — 2026-09-26.** O-8 in §5.2 below is revised to match
+> D-GOV-49 at the owner's direction ("PRD_ROOT item O-8 should be revised to
+> match D-GOV-49"); no other requirement in this file changes.
+
 > PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
 
 > **Current status: ACCEPTED — Revision 8 is the current Root product

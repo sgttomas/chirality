@@ -2625,7 +2625,7 @@
       "name": "scc-resolution-case",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Create or update an SCC resolution case, under `_DAG/cases/<SCC-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
+      "description": "Create or update an SCC resolution case, under `_DAG/cases/<CASE-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [

@@ -57,11 +57,12 @@ run-specific brief. Selection grants no permissions and does not launch work.
    any cut or merge that is ready.
 5. **Resolve or hold coupled work.** Open or update an `scc-resolution-case`
    for each SCC that needs more than a one-line note, in the project's case
-   home: `_DAG/cases/<SCC-ID>/`, or its legacy PKG-00 control deliverable where
-   it already holds its cases. Owner workflows apply accepted remedies to
-   decomposition, contracts, and local files; rerun closure on the changed
-   evidence. SCCs still unresolved are held in the candidate layer, each
-   citing its case.
+   home: `_DAG/cases/<CASE-ID>/`, or its legacy PKG-00 control deliverable
+   where it already holds its cases. A case keeps its own stable ID; an SCC
+   from a later closure run is matched to it by member node set. Owner
+   workflows apply accepted remedies to decomposition, contracts, and local
+   files; rerun closure on the changed evidence. SCCs still unresolved are
+   held in the candidate layer, each citing its case.
 6. **Assemble and check the graph version.** A TASK assembles the candidate
    by the [graph-version rules](resources/graph-version.md), accounts for every
    in-scope execution row, and runs `audit_dag.py --canonical --strict`, which

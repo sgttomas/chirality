@@ -124,10 +124,12 @@ Optional (defaults shown):
   _LATEST.md                       accepted pointer (mutable; SPEC §11.2 form);
                                    names only an accepted version
   _Candidates/
-    DAG-NNN/                       candidate being prepared; mutable until presented;
+    DAG-NNN/                       candidate being prepared; working record, mutable
+                                   until presented; immutable once accepted as a version;
                                    REJECTION_RECORD.md when the human rejects the change
   cases/
-    <SCC-ID>/                      SCC resolution case (scc-resolution-case)
+    <CASE-ID>/                     SCC resolution case (scc-resolution-case); working
+                                   record keyed by its stable SCC-CASE-NNN identity
   DAG-NNN/                         accepted graph version; immutable once complete
     GRAPH_BASIS.md                 objective, semantics, direction, completeness,
                                    selection rules, rulings, limitations
@@ -232,7 +234,7 @@ pointer naming it.
 | `project-setup` | Phase 2.2b extracts dependency evidence and runs closure; it hands off here when the project needs an accepted DAG. |
 | `dependency-extract` | Owns the agent-extracted evidence rows. Reused, not duplicated, for coverage, canonicalization, declared-row mirroring, and remedies. |
 | `audit-dep-closure` | Owns closure analysis and its observation pointer. Its snapshot is evidence for checkpoint 1, not the accepted graph. |
-| `scc-resolution-case` | Holds evidence and rulings for coupled work in the project's case home: `_DAG/cases/<SCC-ID>/`, or a legacy PKG-00 control deliverable. |
+| `scc-resolution-case` | Holds evidence and rulings for coupled work in the project's case home: `_DAG/cases/<CASE-ID>/`, or a legacy PKG-00 control deliverable. |
 | `scope-change` | Owns decomposition and accepted-scope amendments, including decompose remedies and merges that change the decomposition. An accepted DAG is one of its derivative packages. |
 | `construct-local-work-graph` | Builds a development loop's work graph for a tranche of work within the accepted current version, respecting `DAG pending`. |
 | Scheduling in `project-setup` | May use the accepted version as a sequencing input; a DAG is not a schedule. |

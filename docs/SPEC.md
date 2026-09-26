@@ -64,7 +64,7 @@ Every `ScopePath` and every `AllowedWriteTarget` (see `AGENT_WORKFLOW_RUNTIME.md
 
 A `ScopePath` or write target that resolves outside the selected working root — including a sibling pack, the instruction root, a symlink escape, or `..` traversal — MUST be rejected (`SCOPE_OUTSIDE_WORKTREE` or `WRITE_TARGET_OUTSIDE_WORKTREE`); the task stops rather than writing. This is the deterministic backstop that prevents a run from writing into another checkout or pack. This rule is bound as `CONTRACT.md` invariant **K-WRITE-2**.
 
-The registered tool roots and their registered subtrees (§1.2) are allowed write locations under this rule when a brief names them and they resolve under `WORKING_ROOT`. This includes `{DAG_ROOT}/cases/<SCC-ID>/`, the home for SCC resolution cases (§1.2, §5.4). Containment itself grants no authority to write there.
+The registered tool roots and their registered subtrees (§1.2) are allowed write locations under this rule when a brief names them and they resolve under `WORKING_ROOT`. This includes `{DAG_ROOT}/cases/<CASE-ID>/`, the home for SCC resolution cases (§1.2, §5.4). Containment itself grants no authority to write there.
 
 ### 0.2.4 Path reference discipline
 
@@ -127,7 +127,8 @@ An execution instance is a self-contained project workspace rooted at `{EXECUTIO
 ├── _DAG/                            # Accepted project DAG versions (§5.4)
 │   ├── _LATEST.md                   # Pointer to the accepted current version
 │   ├── DAG-NNN/                     # Immutable accepted versions
-│   └── cases/                       # SCC resolution cases
+│   ├── _Candidates/                 # Candidate versions (working records)
+│   └── cases/                       # SCC resolution cases (working records)
 ├── _Decomposition/                  # Project/domain decomposition document(s)
 │   └── _Archive/
 ├── _Estimates/                      # Cost estimate snapshots
@@ -167,7 +168,7 @@ Tool roots are workspace-level directories for derived outputs and project contr
 | `_Aggregation/` | Aggregation snapshots and templates | AGGREGATION |
 | `_Change/` | Change management records | CHANGE |
 | `_Coordination/` | Coordination representation | PROJECT_SETUP |
-| `_DAG/` | Accepted project DAG versions as immutable `DAG-NNN/` snapshots, the `_LATEST.md` pointer to the accepted current version, candidate versions under `_Candidates/`, and SCC resolution cases under `cases/<SCC-ID>/` (§5.4) | WORKING_ITEMS with `project-dag` (versions and pointer, after human acceptance); TASK + `scc-resolution-case` (`cases/`) |
+| `_DAG/` | Accepted project DAG versions as immutable `DAG-NNN/` snapshots, the `_LATEST.md` pointer to the accepted current version, candidate versions under `_Candidates/`, and SCC resolution cases under `cases/<CASE-ID>/` (§5.4) | WORKING_ITEMS with `project-dag` (versions and pointer, after human acceptance); TASK + `scc-resolution-case` (`cases/`) |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | WORKING_ITEMS with `project-decomp`, `software-decomp`, or `domain-decomp` |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate workflows |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
@@ -196,13 +197,23 @@ rather than a timestamped label, and is immutable once complete (§11.1).
 `_DAG/_LATEST.md` names only a version the human accepted; a candidate, a
 closure snapshot, or an observation is never named there. Currency audits
 are observations and are written under `_Evaluation/DAGCurrency/`.
-`_DAG/cases/<SCC-ID>/` is the home for SCC resolution cases in every project
-from D-GOV-49 onward. A project whose cases are already held in a PKG-00
+`_DAG/cases/<CASE-ID>/` is the home for SCC resolution cases in every project
+from D-GOV-49 onward. A case folder is named by the stable `CASE_ID` assigned
+when the case opens (`SCC-CASE-NNN`), not by the positional SCC ID of a closure
+run; `scc-resolution-case` defines the identity and how later closure snapshots
+are matched to existing cases. A project whose cases are already held in a PKG-00
 control deliverable (for example
 `PKG-00_DAG_Closure_and_Project_Control`) may keep using that legacy home.
 Each project uses one home for its cases; existing cases are not migrated.
 Retiring the legacy PKG-00 home is a later decision, once no active project
 uses it.
+
+Within `_DAG/`, SCC cases under `cases/<CASE-ID>/` and candidate versions
+under `_Candidates/DAG-NNN/` are working records, not snapshots: they are
+updated in place under their workflow's brief, with Git history as their
+revision record. Accepted `DAG-NNN/` versions and `_Evaluation/DAGCurrency/`
+snapshots remain immutable snapshots. A candidate becomes immutable when it is
+accepted as a version (§11.1; `CONTRACT.md` K-SNAP-1).
 
 ---
 
@@ -588,9 +599,13 @@ clears when the human accepts a new version or rejects the change. A rejected
 change is recorded; the accepted version stands, and the departing evidence is
 routed to its owner.
 
-**SCC cases.** SCC resolution cases live under `{DAG_ROOT}/cases/<SCC-ID>/`,
+**SCC cases.** SCC resolution cases live under `{DAG_ROOT}/cases/<CASE-ID>/`,
 or in a project's legacy PKG-00 control deliverable where it already holds its
-cases (§1.2). A project uses one home for its cases.
+cases (§1.2). A project uses one home for its cases. A case is identified by
+the `CASE_ID` assigned when it opens, not by a closure run's positional SCC
+ID. Its `Case_Datasheet.md` records the originating closure snapshot, the SCC
+ID there, and the member node set; a later closure snapshot's SCC is matched
+to an existing case by member node set (`scc-resolution-case`).
 
 ---
 
@@ -965,6 +980,8 @@ Task agents that produce outputs to tool roots SHOULD write to timestamped snaps
 ```
 
 Snapshot folders are immutable after creation. Reruns create new snapshot folders. This is the enforcement point for `CONTRACT.md` K-SNAP-1.
+
+Within `_DAG/`, `cases/<CASE-ID>/` and `_Candidates/DAG-NNN/` are working records rather than snapshots. They are updated in place under their workflow's brief, with Git history as their revision record. Accepted `DAG-NNN/` versions and `_Evaluation/DAGCurrency/` snapshots remain immutable snapshots; a candidate becomes immutable when it is accepted as a version (§1.2, D-GOV-49).
 
 ### 11.2 Pointer Files
 

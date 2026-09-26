@@ -24,7 +24,7 @@ and its preparation inspected.
    the decisions it can affect. A current accepted version with no such event
    is reported as current; do not rebuild it.
 5. Resolve the project's SCC case home. The default is `{DAG_ROOT}/cases/`,
-   registered in SPEC §1.2. A project whose cases are already held in a PKG-00
+   registered in SPEC §1.2, with one `<CASE-ID>/` folder per case. A project whose cases are already held in a PKG-00
    control deliverable may keep that legacy home. Use one home per project,
    and record which one. Existing cases are not migrated.
 
@@ -90,8 +90,10 @@ decision as given. A rejected element returns to the stage that prepared it.
 
 1. For each SCC needing more than a one-line note, dispatch
    `scc-resolution-case` to open or update its case in the project's case home
-   (`{DAG_ROOT}/cases/<SCC-ID>/` by default). Supply the closure snapshot,
-   affected deliverables, and any seed packets. Its brief states that case
+   (`{DAG_ROOT}/cases/<CASE-ID>/` by default). Supply the closure snapshot,
+   its SCC ID and member node set, affected deliverables, and any seed packets.
+   The case workflow matches the SCC to an existing case by member node set
+   before opening a new `SCC-CASE-NNN`. Its brief states that case
    work does not change local files or claim closure.
 2. Commission bounded TASK inquiries the case needs: interface inspection,
    tracing a disputed dependency, or testing a proposed refinement. Consequential

@@ -297,7 +297,7 @@ These constraints are hard to change later. They define the boundaries of the sy
 | All state as plain files | Human-readable, git-trackable, tool-agnostic |
 | Git-trackable artifacts only | Auditability, reproducibility, rollback, diff-based review |
 | Flat package hierarchy | No nesting; simplifies automation, coverage checking, and scope assignment |
-| Deliverable-local dependency evidence; one DAG per project | No cross-project dependency graph; each project may accept its own project DAG as a snapshot of its local dependency evidence, with authority from the human's acceptance while it is current (`CONTRACT.md` K-DEP-1, D-GOV-49); other aggregation is on-demand |
+| Deliverable-local dependency evidence; at most one accepted DAG per project | No cross-project dependency graph; each project may accept its own project DAG as a snapshot of its local dependency evidence, with authority from the human's acceptance while it is current (`CONTRACT.md` K-DEP-1, D-GOV-49); other aggregation is on-demand |
 | Immutable snapshots for task agent outputs | Reruns are safe; historical outputs are preserved |
 | Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |
 | Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |

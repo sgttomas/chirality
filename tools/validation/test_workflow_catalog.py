@@ -501,7 +501,8 @@ def test_d_gov_49_project_dag_authority_and_case_home():
     assert "### 5.4 Accepted Project DAG" in spec
     assert "| `_DAG/` |" in spec
     assert "| `{DAG_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_DAG/`" in spec
-    assert "`_DAG/cases/<SCC-ID>/` is the home for SCC resolution cases" in flat_spec
+    assert "`_DAG/cases/<CASE-ID>/` is the home for SCC resolution cases" in flat_spec
+    assert "<SCC-ID>" not in spec
     assert "**DAG pending.**" in spec
     for field in ("Explicitness", "SatisfactionStatus", "Confidence"):
         assert f"`{field}` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) |" in spec
@@ -515,7 +516,15 @@ def test_d_gov_49_project_dag_authority_and_case_home():
     assert "Without one, unresolved SCCs are still held as candidates" not in method
 
     scc = (ROOT / "workflows/scc-resolution-case/WORKFLOW.md").read_text()
-    assert "`{EXECUTION_ROOT}/_DAG/cases/<SCC-ID>/`" in scc
+    assert "`{EXECUTION_ROOT}/_DAG/cases/<CASE-ID>/`" in scc
+    assert "<SCC-ID>" not in scc
+    assert "`SCC-CASE-NNN`" in scc
+    assert "matched to an existing case by member node set" in " ".join(scc.split())
+
+    # K-SNAP-1: _DAG/ cases and candidates are working records; accepted versions stay immutable.
+    assert "are **working records**: they are updated in place under their workflow's brief" in contract
+    assert "a candidate becomes immutable when it is accepted as a version" in contract
+    assert "`_Candidates/DAG-NNN/` are working records rather than snapshots" in flat_spec
     assert "confirm it is under a PKG-00 control deliverable" not in scc
 
 

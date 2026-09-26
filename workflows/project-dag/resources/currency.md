@@ -78,7 +78,9 @@ While a departure is undecided:
   match it. Neither side has won.
 
 A departure that forms a cycle is also routed to `scc-resolution-case` in the
-project's case home (`{DAG_ROOT}/cases/<SCC-ID>/` by default).
+project's case home (`{DAG_ROOT}/cases/<CASE-ID>/` by default). A cycle whose
+member node set matches an existing case updates that case rather than
+opening a new one.
 
 ## Preparing a successor
 
