@@ -2,7 +2,7 @@ schema: instruction-tranche-manifest/v1
 tranche_id: APP-TRANSITION-FORMS-20260926
 title: App Workbench and Pipeline transition forms take the ruling and amendment inputs (follow-up FU3), DEL-07-04 verification sentences describe the implemented gates (FU4), and the 3a and FU2 review follow-ups
 date: '2026-09-26'
-basis: f33291f90de1d74d5512def1ac884708bdc8b049
+basis: c46ad2143911388a9c99a85a4771623e7fb54841
 # Full coverage: every path this tranche changes is declared. Only the
 # manifests lie on the Root instruction surface; the App SPEC is the App loop's
 # instruction-bearing contract; the rest are the product source, tests, run

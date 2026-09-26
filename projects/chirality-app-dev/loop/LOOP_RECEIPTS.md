@@ -7284,7 +7284,7 @@
 
 - **2026-09-26 — Receipt 268** (work-graph FU3 transition-form inputs and FU4 DEL-07-04 verification sentences; 3a and FU2 review follow-ups).
   - Receipt-ID: `Receipt-268`
-  - Examined-Through: `f33291f90de1d74d5512def1ac884708bdc8b049`
+  - Examined-Through: `c46ad2143911388a9c99a85a4771623e7fb54841`
   - Parent-Receipt: `Receipt-267`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; Ryan Tufts, 2026-09-26: "D1 and D2 as recommended, D3 (a), and D4 yes proceed that way. Your work plan is approved." This run is plan item 3d as relayed; the scope and the parent session's added review follow-ups are in the run receipt.
   - Pointers: `execution/_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/RECEIPT.md` (with `render/` layout evidence); `execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md` (FU3, FU4); manifest `../../docs/governance_harness/tranche_manifests/APP-TRANSITION-FORMS-20260926.yaml`.
