@@ -5,9 +5,12 @@
 ### Step 0 — Preconditions and scope resolution
 
 1) Resolve `EXECUTION_ROOT` (default `execution/`).
-2) Discover deliverables in scope:
-   - If `SCOPE=ALL`: scan for deliverable folders by repo convention (deliverable ID prefix), or by decomposition index if available.
-   - If `SCOPE` is a list: treat entries as deliverable IDs, package IDs, or explicit paths and resolve to deliverable folders.
+2) Freeze the independent scope inventory:
+   - Derive the unit inventory from the accepted decomposition registers (`SCOPE_INVENTORY_SOURCE`, normally the accepted `Deliverables.csv`). If none can be resolved, fall back to the workspace folder inventory (all lifecycle folders) and record the degraded basis in `QA_Report.md`.
+   - Compare it with the workspace folders. Report accepted units without a folder and folders without an accepted row as inventory findings.
+   - Apply `EXEMPT_UNITS` (for example `CONTROL` units such as PKG-00 control deliverables, or `RETIRED` units). Report each exemption with its class and authority; do not count an exempt unit's missing or invalid register as FAIL/BLOCKER. Exempt units stay in the workspace inventory, so edges that target them are reported as outside-scope rather than orphans.
+   - If `SCOPE` is a list: treat entries as deliverable IDs, package IDs, or explicit paths and resolve them within that inventory.
+   - Pass the analyzer `--scope ALL` only when the accepted inventory, workspace inventory, and exemptions agree; otherwise pass the explicit non-exempt unit IDs.
 3) If zero deliverables found: write `RUN_SUMMARY.md (FAILED_INPUTS)` and stop.
 
 ---
@@ -38,7 +41,8 @@ For each readable `Dependencies.csv`:
 ### Step 3 — Build the graph (analysis-only)
 
 > Tool invocation: steps 1–4 are performed by a single deterministic call to `tools/coordination/analyze_dep_closure.py`, which handles register discovery, schema validation, graph construction, and core-check outputs.
-> `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {snapshot_folder} --scope {SCOPE} --filter-active-only {FILTER_ACTIVE_ONLY} --normalize-ids {NORMALIZE_IDS} --dependency-class EXECUTION --target-type DELIVERABLE --hub-threshold {HUB_THRESHOLD} --max-cycles {MAX_CYCLES}`
+> `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {snapshot_folder}/Evidence --scope {SCOPE_UNITS} --filter-active-only {FILTER_ACTIVE_ONLY} --normalize-ids {NORMALIZE_IDS} --dependency-class EXECUTION --target-type DELIVERABLE --hub-threshold {HUB_THRESHOLD} --max-cycles {MAX_CYCLES} [--prior-summary {PRIOR_SUMMARY}]`
+> The analyzer writes its outputs flat into `Evidence/` (see the contract's tool-root layout); the TASK writes `Tool_Run.json` at the snapshot root.
 
 Nodes:
 - All deliverables discovered in scope.
@@ -103,8 +107,8 @@ Also produce a single **Issue Log** (`Dependency_Closure_IssueLog.csv`) that con
 
 ### Step 5 — Optional comparison mode
 
-If `PRIOR_RUN_LABEL` is provided:
-- Load the prior run’s `closure_summary.json`.
+If `PRIOR_SUMMARY` is provided (an explicit prior `closure_summary.json` path; a legacy `PRIOR_RUN_LABEL` must first be resolved by the owner to that path):
+- Pass it to the analyzer as `--prior-summary {PRIOR_SUMMARY}`; the analyzer records the basis and integer deltas under `comparison` in `closure_summary.json`.
 - Produce a delta section in the report:
   - before/after metrics,
   - regressions/improvements,
@@ -117,11 +121,12 @@ If `PRIOR_RUN_LABEL` is provided:
 > Tool invocation: snapshot bootstrap and pointer updates use `tools/scaffolding/scaffold_tool_root.sh`, `tools/scaffolding/create_snapshot_folder.sh`, and `tools/scaffolding/update_latest_pointer.sh` (see Outputs section for concrete command lines).
 
 1) Write all artifacts into the run snapshot folder.
-2) Update `_LATEST.md` pointer.
+2) Update the `_LATEST.md` observation pointer only when the brief sets `UPDATE_LATEST_POINTER=true`. Do not present it as an accepted pointer; acceptance of a closure result as a project basis is a separate manager/human act.
 3) Return to the invoking manager:
    - snapshot path,
    - closure status (PASS/WARNING/BLOCKER),
+   - scope inventory source and declared exemptions,
    - top issues (≤10),
-   - recommended next action (e.g., dispatch WORKING_ITEMS (workflow: change) for fixes; rerun TASK+dependency-extract; rerun closure).
+   - recommended next action, routed to the owner of the defect: rerun TASK + `dependency-extract` for register defects; `scope-change` when the fix changes decomposition, scope, or accepted edges; `scc-resolution-case` for unresolved SCCs; otherwise the project's recorded change conventions; then rerun closure.
 
 ---

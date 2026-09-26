@@ -18,7 +18,7 @@ Parse the decomposition document (Ledger, Objectives, Partitions, and Production
 - **No invention.** If data is ambiguous or missing, mark as `UNKNOWN` / `INCOMPLETE` and continue. Do not infer intent.
 - **Deterministic.** Deterministic inventories and explicit semantic judgments.
 - **Immutable snapshots.** Each run writes a new snapshot folder; never overwrite prior snapshots.
-- **Pointer-only overwrite allowed.** `_LATEST.md` may be overwritten as a pointer; snapshots remain immutable.
+- **Pointer moves belong to the manager.** The TASK never moves `_LATEST.md`. After the run returns 0 BLOCKERs, the invoking manager may overwrite `_LATEST.md` as a pointer when its brief authorizes that move; snapshots remain immutable.
 - **Audit snapshot is derivative evidence.** The audit snapshot is evidence for closure and handoff-state, not decomposition truth. It must identify the authoritative inputs it evaluated.
 - **Package-aware for `DOMAIN`.** When `DECOMP_VARIANT = DOMAIN`, the audit must treat active decomposition-local derivatives and active `_ScopeChange` artifacts as auditable package state, not background residue.
 
@@ -38,6 +38,35 @@ Optional:
 - `PRIOR_RUN_LABEL`: optional label for comparison mode (load prior JSON and compute deltas)
 - `EXPECTED_SOURCE_SNAPSHOT`: optional accepted upstream snapshot path that this audit run is expected to evaluate and cite in outputs
 - `EXPECTED_HANDOFF_PHASE`: optional phase or handoff label so the run can state which closure boundary it supports
+- `ACCEPTED_DECISIONS`: optional list of accepted decision or scope-change references (for example SCA snapshots, D-records, retirement rulings) that the run may cite when classifying a finding as `EXPECTED_CONSEQUENCE`
+
+### Finding classification
+
+Each finding carries a `Severity` of `BLOCKER`, `WARNING`, `INFO`, or
+`EXPECTED_CONSEQUENCE`. `EXPECTED_CONSEQUENCE` marks a condition that would
+otherwise be a BLOCKER or WARNING but is the stated, expected result of an
+accepted decision (for example a retired or superseded production unit, a
+reallocated ledger row, or deferred production recorded by an accepted scope
+change). It requires a `DecisionRef` citing that accepted decision; without a
+citable accepted decision the finding keeps its ordinary severity. Expected
+consequences are reported and counted separately and do not count toward
+closure blockers, `overall_status`, or `closure_readiness`.
+
+### Retired production units
+
+A production unit is retired when its `_STATUS.md` Current State is `RETIRED`
+or an accepted decomposition row or scope-change record retires it.
+
+- It remains in the census and the coverage matrix with `LifecycleState=RETIRED`.
+- Identity checks (Checks 2–5) still apply. An absent or archived folder, or a
+  missing decomposition row, that an accepted decision explains is
+  `EXPECTED_CONSEQUENCE`; otherwise the ordinary severity applies.
+- Check 6 does not require anticipated artifacts for a retired unit.
+- Check 7 does not count a retired unit as active objective support.
+- Check 8 treats an `IN` ledger row mapped only to retired units as a WARNING
+  unless an accepted decision reallocates or retires that row
+  (`EXPECTED_CONSEQUENCE`).
+- Check 11 tallies `RETIRED` as a recognized state.
 
 ### Variant Entity Binding
 
@@ -83,7 +112,9 @@ When `DECOMP_VARIANT = SOFTWARE`, Check 7 (Objective Mapping) resolves objective
 | Pattern | WORKING_ITEMS (workflow: project-decomp) | WORKING_ITEMS (workflow: software-decomp) | WORKING_ITEMS (workflow: domain-decomp) |
 |---------|----------------|-----------------|---------------|
 | Partition folder | `{ROOT}/PKG-{ID}_*/` | `{ROOT}/PKG-{ID}_*/` | `{ROOT}/CAT-{ID}_*/` |
-| Production Unit folder | `PKG-{PID}_*/1_Working/DEL-{ID}_*/` | `PKG-{PID}_*/1_Working/DEL-{ID}_*/` | `CAT-{PID}_*/1_Working/KTY-{ID}_*/` |
+| Production Unit folder | `PKG-{PID}_*/{LIFECYCLE}/DEL-{ID}_*/` | `PKG-{PID}_*/{LIFECYCLE}/DEL-{ID}_*/` | `CAT-{PID}_*/{LIFECYCLE}/KTY-{ID}_*/` |
+
+`{LIFECYCLE}` is `1_Working`, `2_Checking`, or `3_Issued`; a unit found in more than one lifecycle folder is an ID-consistency finding (Check 4).
 
 ### Variant ID Formats
 
@@ -116,17 +147,23 @@ Bootstrap tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_
 
 Create snapshot folder: `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Evaluation/DecompCoverage COV {RUN_LABEL}`
 
+Deterministic inputs (run from the tool root, writing only into the snapshot folder):
+- Inventory and lifecycle (Checks 2, 3, 6 format resolution, and 11): `python3 tools/evaluation/audit_structure.py --root {EXECUTION_ROOT} --variant {DECOMP_VARIANT} --output {snapshot_folder}/structure.json [--inventory {snapshot_folder}/inventory.json]`, where `inventory.json` lists the accepted production units from the bound Production Units register.
+- DOMAIN package integrity (Checks 9 and 10 when `DECOMP_VARIANT = DOMAIN`): `python3 tools/validation/validate_domain_decomposition_integrity.py --decomposition-root {EXECUTION_ROOT}/_Decomposition --output-report {snapshot_folder}/Domain_Integrity_Report.md --output-findings {snapshot_folder}/Domain_Integrity_Findings.csv [--scope-change-snapshot {ACTIVE_SCA_SNAPSHOT}] [--package-subfolder {name}]`.
+Record each tool's command, exit code, and output path in `QA_Report.md`; when a tool is unavailable, mark the dependent checks `INCOMPLETE` with the reason.
+
 Snapshot contents (minimum):
 - `Brief.md` (verbatim brief + normalized parameters)
-- `RUN_SUMMARY.md` (`RUN_STATUS = OK|WARNINGS|FAILED_INPUTS`)
+- `RUN_SUMMARY.md` (`RUN_STATUS = OK|WARNINGS|BLOCKERS|FAILED_INPUTS`; for a completed run it equals `coverage_summary.json` `overall_status`)
 - `QA_Report.md` (scan coverage + parse issues + limits)
 - `Decision_Log.md` (defaults, overrides, assumptions)
 - `Decomp_Coverage_Report.md` (human-readable narrative)
 - `Decomp_Coverage_IssueLog.csv`
 - `Decomp_Coverage_Matrix.csv`
 - `coverage_summary.json`
+- deterministic tool outputs used by the run (`structure.json`, and for DOMAIN `Domain_Integrity_Report.md` and `Domain_Integrity_Findings.csv`)
 
-Update pointer: `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Evaluation/DecompCoverage {snapshot_folder_name}`
+Update pointer (manager only, after 0 BLOCKERs and when the manager's brief authorizes it): `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Evaluation/DecompCoverage {snapshot_folder_name}`
 
 ---
 
@@ -137,6 +174,7 @@ A run is valid when:
 - `Decomp_Coverage_Report.md`, `Decomp_Coverage_IssueLog.csv`, `Decomp_Coverage_Matrix.csv`, and `coverage_summary.json` exist.
 - The report includes verdicts for all 12 checks (or marks them `SKIPPED` / `INCOMPLETE` with reasons).
 - Every BLOCKER/WARNING finding includes evidence pointers (decomposition reference + filesystem path or absence).
+- Every `EXPECTED_CONSEQUENCE` finding cites an accepted decision in `DecisionRef`.
 - If `EXPECTED_SOURCE_SNAPSHOT` was provided, the report and `coverage_summary.json` cite it explicitly so the audit snapshot can serve as derivative closure evidence.
 - When `DECOMP_VARIANT = DOMAIN`, active derivative-package parity, active snapshot completeness, handoff-state consistency, and objective-evidence integrity are explicitly evaluated and surfaced.
 - No file outside the write zone is modified.
@@ -169,13 +207,14 @@ A run is valid when:
 |--------|------|-------------|
 | `IssueID` | string | `COV-{NNN}` sequential within run |
 | `CheckNumber` | string | One of `1`–`9`, `9b`, `10`, `11` (maps to check name). Not an integer: check `9b` is a lettered sub-check. Any value outside this set is invalid |
-| `Severity` | enum | `BLOCKER` / `WARNING` / `INFO` |
+| `Severity` | enum | `BLOCKER` / `WARNING` / `INFO` / `EXPECTED_CONSEQUENCE` |
 | `EntityType` | enum | `PARTITION` / `PRODUCTION_UNIT` / `OBJECTIVE` / `ATOMIC_UNIT` / `CONTEXT` / `ARTIFACT` / `DERIVATIVE_SURFACE` / `SNAPSHOT` / `HANDOFF_STATE` |
 | `ConcreteLabel` | string | Variant-specific name for the entity (e.g., `Package`, `Category`, `Deliverable`, `Knowledge Type`) |
 | `EntityID` | string | The stable ID of the affected entity |
 | `Description` | string | Human-readable description of the issue |
 | `DecompositionRef` | string | Section and row/line in the decomposition document |
 | `FilesystemRef` | string | Path (or "NOT_FOUND") in the filesystem |
+| `DecisionRef` | string | Accepted decision cited for an `EXPECTED_CONSEQUENCE`; empty otherwise |
 
 ### Coverage Matrix Schema
 

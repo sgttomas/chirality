@@ -5,7 +5,7 @@
 ### Step 0 — Preconditions and scope resolution
 
 1) Resolve `EXECUTION_ROOT` and `DECOMPOSITION_PATH`.
-2) Parse the decomposition document. Extract:
+2) Parse the decomposition document and bind its companion registers. Resolve the main document's companion inventory section; when it names authoritative companion registers (for example `Deliverables.csv`, `ScopeLedger.csv`, an objectives register, or the DOMAIN ledger/annex CSVs), parse those registers as the authoritative machine-truth for the matching semantic sections (`docs/DECOMPOSITION_STANDARD.md`: a companion register is authoritative unless explicitly documented otherwise) and treat main-document tables as summaries to compare against them. Record every bound register path and hash in `QA_Report.md`. Extract:
    - Partitions section (per Variant Section Binding) → list of `{PartitionID, PartitionName}`
    - Production Units section (per Variant Section Binding) → list of `{ProductionUnitID, ParentPartitionID, Name, Type, ResponsibleParty, AnticipatedArtifacts, CoversAtomicUnits, SupportsObjectives}` (for WORKING_ITEMS (workflow: domain-decomp), `AnticipatedArtifacts` maps to the Knowledge Type's anticipated Knowledge Subjects)
    - Objectives → list of `{ObjectiveID, Statement}` (from dedicated section or Ledger `ObjectiveID(s)` column, per variant binding)
@@ -17,8 +17,10 @@
    - record whether the active snapshot contains the required artifact set
 4) If parsing fails (sections not found, table format unrecognizable): `FAILED_INPUTS`.
 5) Discover filesystem deliverables in scope:
+   - Run `tools/evaluation/audit_structure.py` (see the contract's deterministic inputs) for the live inventory, lifecycle states, and production-format resolution; supply `--inventory` built from the bound Production Units register so declared-but-missing units are reported.
    - Scan folder pattern per Variant Folder Patterns table
    - Build a map of `{FolderPath → extracted PartitionID, ProductionUnitID}`
+   - Apply the contract's retired-unit rules before assigning severities.
 6) If `SCOPE` is a subset: filter both parsed lists and discovered folders to the specified scope.
 
 ---
@@ -121,19 +123,22 @@ For each Objective:
 
 Resolve the Ledger per DECOMP_VARIANT (Scope Ledger for PROJECT/SOFTWARE; Domain Ledger for DOMAIN).
 
+Basis: `docs/DECOMPOSITION_STANDARD.md` invariant I9 (every decomposition carries a machine-checkable ledger) and its companion-register rule. Parse the ledger from the bound companion ledger register when one is named (for example `ScopeLedger.csv` or the DOMAIN ledger); otherwise from the main document's Ledger section. Unresolved references are WARNING because they break machine-checkable coverage without by themselves disproving the partition.
+
 If the decomposition contains a Ledger (table with AtomicUnitID → PartitionID → ProductionUnitID mappings):
 - For each atomic unit with `InOutStatus = IN`:
   - Confirm PartitionID references an existing partition (from Check 1)
   - Confirm ProductionUnitID(s) reference existing production units (from Check 2), or are `TBD`
 - If an atomic unit references a non-existent partition or production unit: issue `WARNING` — "Atomic unit {ID} references {entity} which does not exist"
 
-If no Ledger is found: issue `INFO` — "No Ledger found in decomposition; Check 8 skipped"
+If no Ledger is found in either the main document or a bound companion register: issue `WARNING` — "No Ledger found in decomposition; Check 8 skipped" (I9 anti-pattern: missing Decomposition Ledger)
 
 ---
 
 ### Step 9 — Derivative Package Parity (Check 9)
 
 When `DECOMP_VARIANT = DOMAIN`:
+- Run `tools/validation/validate_domain_decomposition_integrity.py` (see the contract's deterministic inputs) and carry its findings into this check and Check 10; do not restate its registered checks by hand.
 - Audit active decomposition-local derivative surfaces under `_Decomposition/`
 - Include any active local surface that duplicates authoritative counts,
   mappings, validation evidence, objective support, open issues, or status
@@ -152,6 +157,15 @@ When `DECOMP_VARIANT = DOMAIN`:
 When `DECOMP_VARIANT != DOMAIN`:
 - Record `SKIPPED` with reason: "Derivative-package parity not variant-owned by
   this audit"
+
+Other derivative-currency observations (all variants): a derivative-currency
+observation that no check owns — for example a stale render, a main-document
+summary or telemetry table that disagrees with its bound companion register, or
+a derivative older than its accepted source snapshot — is still recorded in the
+Issue Log with `CheckNumber=9`, `EntityType=DERIVATIVE_SURFACE`, and `INFO`
+severity (`WARNING` when it could mislead amendment work), and listed in the
+report's "Other derivative-currency observations" section. It does not change a
+`SKIPPED` verdict for Check 9.
 
 ### Step 9b — Package-Shape Conformance (Check 9b)
 
@@ -222,7 +236,7 @@ If `PRIOR_RUN_LABEL` is provided:
 
 2) Compile `Decomp_Coverage_IssueLog.csv`:
    ```
-   IssueID,CheckNumber,Severity,EntityType,ConcreteLabel,EntityID,Description,DecompositionRef,FilesystemRef
+   IssueID,CheckNumber,Severity,EntityType,ConcreteLabel,EntityID,Description,DecompositionRef,FilesystemRef,DecisionRef
    ```
 
 3) Compile `Decomp_Coverage_Matrix.csv`:
@@ -270,6 +284,7 @@ If `PRIOR_RUN_LABEL` is provided:
      "issues_blocker": 0,
      "issues_warning": 0,
      "issues_info": 0,
+     "issues_expected_consequence": 0,
      "check_count": 12,
      "lifecycle_distribution": {},
      "overall_status": "OK|WARNINGS|BLOCKERS",
@@ -291,6 +306,10 @@ If `PRIOR_RUN_LABEL` is provided:
    object when the run does not measure whole-repository totals; never restate
    scoped counts in it.
 
+   `overall_status` and `closure_readiness` count only BLOCKER and WARNING
+   findings; `EXPECTED_CONSEQUENCE` findings are reported in
+   `issues_expected_consequence` and never count toward closure blockers.
+
    **`closure_readiness` is a three-way verdict**, not a lifecycle or handoff
    state. Emit exactly `PASS`, `WARN`, or `FAIL`. A phase name such as
    `READY_FOR_IMPLEMENTATION_HANDOFF` is not a valid value: readiness to hand
@@ -299,10 +318,12 @@ If `PRIOR_RUN_LABEL` is provided:
    as ready.
 
 5) Write all artifacts into the snapshot folder.
-6) Update `_LATEST.md` pointer.
+6) Do not move `_LATEST.md`. The invoking manager moves the pointer after the
+   run reports 0 BLOCKERs, and only when its brief authorizes that move.
 7) Return to the invoking manager:
    - snapshot path
-   - overall status (OK / WARNINGS / BLOCKERS)
+   - overall status (OK / WARNINGS / BLOCKERS), identical to `RUN_STATUS` for a completed run
+   - expected consequences and the decisions they cite
    - top issues (up to 10)
    - recommended next action
 

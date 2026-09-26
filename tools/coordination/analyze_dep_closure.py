@@ -14,7 +14,7 @@ from collections import defaultdict, deque
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
-from audit_common import inventory, parse_register, require_root, schema
+from audit_common import in_lifecycle_folder, inventory, parse_register, require_root, schema
 
 REQUIRED_COLUMNS = schema.REQUIRED_COLUMNS
 HUB_THRESHOLD = 20
@@ -290,7 +290,7 @@ def main(argv=None):
             summary["comparison"] = {"basis": str(args.prior_summary), "deltas": {key: summary[key] - prior[key] for key in comparable if isinstance(prior.get(key), int)}}
         if args.output_dir:
             output = args.output_dir.resolve()
-            if "1_Working" in output.parts:
+            if in_lifecycle_folder(output):
                 raise ValueError("output directory must be outside production-unit source paths")
             output.mkdir(parents=True, exist_ok=True)
             (output / "closure_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")

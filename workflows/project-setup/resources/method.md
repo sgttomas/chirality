@@ -103,6 +103,11 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
   - `tools/scaffolding/scaffold_deliverable.sh {cat_folder}/1_Working {KTY_ID} {KtyLabel}` — creates each Knowledge Type folder with minimum viable fileset stubs.
   - A newly created `_STATUS.md` stub is written to `OPEN` in the exact form given by the `preparation` skill's scaffold contract, naming the actual actor; `write_status.sh` handles later transitions but cannot initialize the empty stub.
   - If the domain pipeline requires structural prereqs for hypergraph/closure work, `PREPARATION_ACTOR` also uses `tools/scaffolding/scaffold_tool_root.sh` to initialize the required domain-level tool roots.
+- Scaffolding order and ownership:
+  - `scaffold_deliverable.sh` creates all five empty stubs (`_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`) in one call. Inventory targets first, capture each `CREATED_PATH`, and populate only files created by that invocation; an existing empty file is existing work.
+  - `write_status.sh` cannot initialize an empty `_STATUS.md`; the `preparation` skill writes the exact `OPEN` form into the newly created stub, and `write_status.sh` is used only for later transitions.
+  - When file ownership is split (for example, `_DEPENDENCIES.md` belongs to another owner or stage), the actor may instead use inventoried exclusive creation of exactly its accepted targets: record target existence before writing, create each target only if absent, and report created paths and hashes. The Piping SCA-011 carrier application is the precedent. Do not create placeholder files outside the actor's ownership.
+  - Folder labels follow the project's recorded label rule where one exists; the `preparation` skill's sanitization rule is the default for new workspaces.
 - `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
   - `_DEPENDENCIES.md`
@@ -124,14 +129,14 @@ state. If the precondition is not met (no index, or stale index), skip Phase
 skipped.
 
 **Action:**
-1. **Coverage inventory.** Run `python3 tools/diagnostics/ka_coverage_audit.py --all` to enumerate per-KTY MISSING / LEAN_BUT_SUBSTANTIVE / WELL_COVERED status. Inventory is informational — it surfaces authoring priority order, not a target.
+1. **Coverage inventory.** Run `python3 tools/diagnostics/ka_coverage_audit.py --all` to enumerate per-KTY MISSING / LEAN_BUT_SUBSTANTIVE / WELL_COVERED status. Inventory is informational — it surfaces authoring priority order, not a target. Limitation: the tool currently hard-codes `domains/piping-design/` ledger and KA paths; for another domain root, report the inventory as unavailable rather than relying on its output.
 2. **KTY-scope ratification — uniform pass across all KTYs.** Every KTY in `Knowledge_Type_Register.csv` is ratified, regardless of historical lifecycle status. Decomposition acceptance is decomposition acceptance; under the new retrieval-driven preflight, baseline KTYs and recently-admitted KTYs both undergo the same scope-vs-content alignment check. For each KTY, dispatch TASK with:
    - `Workflow: domain-documents`
    - `ScopePath: {KTY_PATH}`
    - `DECOMP_VARIANT: DOMAIN`
    - `RUN_SCOPE_RATIFICATION: true`
    - `RETRIEVAL_INDEX_PATH: {resolved index path}`
-   - The workflow runs only the ratification subroutine (see `workflows/domain-documents/checks.md`), returns a verdict (`CLUSTER_COHERENT` / `SCOPE_REFINEMENT_NEEDED` / `SCOPE_TOO_NARROW` / `SCOPE_TOO_BROAD`), and exits without drafting any KA files.
+   - The workflow runs only the ratification subroutine (see `workflows/domain-documents/resources/checks.md`), returns a verdict (`CLUSTER_COHERENT` / `SCOPE_REFINEMENT_NEEDED` / `SCOPE_TOO_NARROW` / `SCOPE_TOO_BROAD`), and exits without drafting any KA files.
 3. **Aggregate verdicts.** WORKING_ITEMS compiles a per-KTY verdict report.
 4. **Halt at any non-COHERENT verdict.** Surface the verdict, the dominant retrieved atoms, and the divergence rationale to the human. Do not proceed to Phase 2.2 for any KTY whose scope ratification is not `CLUSTER_COHERENT`. Scope refinements are SCA-class operations and are out of scope for the authoring run; record them and route them to a future scope-change cycle.
 
@@ -149,7 +154,7 @@ skipped.
   - `ScopePath: {DELIVERABLE_PATH}`
   - `MODE: INIT`
   - `DECOMP_VARIANT: {variant}`
-  - `STATUS_POLICY` and exact `ScopeOfWork.md` write target
+  - `STATUS_POLICY: NO_STATUS_TOUCH` and the exact `ScopeOfWork.md` write target, plus the other required fields in `workflows/scope-of-work/resources/brief.md`. `scope-of-work` accepts only `MODE=INIT|CONVERT|VERIFY` and never edits `_STATUS.md`; recording `INITIALIZED` is a separate authorized status act.
   - Existing `LEGACY_FOUR_DOC` maintenance may use `four-documents` only when
     the resolver confirms a complete legacy-only contract; never infer mode
     from a filename or create a new legacy kit.
@@ -196,6 +201,20 @@ Run this phase only when the human requests a DOMAIN KTY enrichment or verificat
 
 ---
 
+#### Phase 2.2b: Dependency extraction and closure audit (when the coordination mode calls for it)
+
+Run this phase only when the recorded dependency tracking mode is `DECLARED` or `FULL_GRAPH` and the human-confirmed dependency rules (Phase 1.3) call for extracted registers. Under `NOT_TRACKED`, skip it and record the skip.
+
+**Action:**
+1. After the production contracts from Phase 2.2 exist, dispatch **TASK + `dependency-extract`** once per deliverable (one deliverable per brief), with `SCOPE`, `DECOMPOSITION_PATH`, and the write boundary of `workflows/dependency-extract/resources/brief.md`. The default `DOC_ROLE_MAP` reads `ScopeOfWork.md`.
+2. After all extraction runs report, dispatch **TASK + `audit-dep-closure`** over the accepted scope inventory, with any declared exemptions and `UPDATE_LATEST_POINTER` set by the brief.
+3. Route each non-trivial SCC in the closure result to **`scc-resolution-case`** under an existing PKG-00 control deliverable. Cycle-participating edges stay non-gating and are reported as held until the owning decisions resolve them (see Phase 3.1).
+4. Project-DAG construction and acceptance currently have no bundled workflow (deferred). Where the project needs an accepted DAG, WORKING_ITEMS carries it out under an authorized ad hoc plan that cites the closure snapshot and ends in explicit human acceptance; do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
+
+**Gate question:** “Dependency registers extracted for [N] deliverables; closure audit [status] with [K] SCCs routed to resolution cases. Proceed to semantic lensing (if used), or first plan DAG construction and acceptance?”
+
+---
+
 #### Phase 2.3: Dispatch semantic matrix generation
 
 **Action:**
@@ -231,13 +250,14 @@ RuntimeOverrides:
   DELIVERABLE_PATH: {DELIVERABLE_PATH}
   decomposition_path: {DECOMPOSITION_PATH}
   PHASE: PROJECT_SETUP_PHASE_2_3
-  STATUS_POLICY: PRESERVE_CURRENT_STATE_UNTIL_POST_LENSING_P3
+  PRODUCTION_FORMAT: {SOW_V1|LEGACY_FOUR_DOC}   # resolver-selected
+  STATUS_POLICY: PRESERVE_CURRENT
 
 CustomInstructions:
   - Treat `_SEMANTIC.md` as a semantic lens scaffold, not an engineering authority.
   - Keep production documents read-only.
   - Use deliverable-conditioned semantic categories; do not restate implementation particulars as matrix cell values.
-  - Preserve the current `_STATUS.md` lifecycle state during Phase 2.3. On audit PASS, append history noting semantic matrix generation/validation and that readiness advancement is reserved for post-lensing/P3. On audit FAIL, append failure history only and do not advance state.
+  - Preserve the current `_STATUS.md` lifecycle state during Phase 2.3. On audit PASS, append history noting semantic matrix generation/validation and that readiness advancement is reserved for a later authorized status act. On audit FAIL, append failure history only and do not advance state.
   - If the active workflow's default status-advancement rule conflicts with this Phase 2.3 status policy, follow this explicit WORKING_ITEMS brief policy and record the override in the run report and `_SEMANTIC.md` phase note.
 
 ExpectedOutputs:
@@ -246,8 +266,8 @@ ExpectedOutputs:
 ```
 
 **Status policy:**
-- Default PROJECT/SOFTWARE setup pipeline policy: Phase 2.3 preserves the current lifecycle state. `_SEMANTIC.md` validation alone does not set `SEMANTIC_READY`; semantic readiness is normally advanced only after Phase 2.4 (`lens-register`) and Phase 2.5 enrichment of the resolver-selected production contract.
-- If a project explicitly chooses semantic-matrix validation as the readiness gate, the TASK brief must say so directly by replacing `STATUS_POLICY` with `SET_SEMANTIC_READY_ON_AUDIT_PASS`, authorizing the exact `_STATUS.md` change, and listing `_STATUS.md` as an allowed write target. Do not silently rely on the workflow default when project policy is ambiguous.
+- Default PROJECT/SOFTWARE setup pipeline policy: Phase 2.3 uses `STATUS_POLICY: PRESERVE_CURRENT`. `_SEMANTIC.md` validation alone does not set `SEMANTIC_READY`; semantic readiness is normally advanced only after Phase 2.4 (`lens-register`) and Phase 2.5 enrichment where an enrichment method exists for the production format (see Phase 2.5).
+- If a project explicitly chooses semantic-matrix validation as the readiness gate, the TASK brief must say so directly by setting `STATUS_POLICY: ADVANCE_ON_PASS`, authorizing the exact `_STATUS.md` change, and listing `_STATUS.md` as an allowed write target. Use `NO_STATUS_TOUCH` when the brief must not edit `_STATUS.md` at all (required for authorized `MIGRATION_DUAL`). Do not silently rely on the workflow default when project policy is ambiguous.
 
 **Required post-run review:**
 - Confirm TASK returned a run report with `Workflow: semantic-matrix-build`, resolved workflow version, companion-file status, tool policy compliance, outputs, missing inputs, and dependency notes.
@@ -287,27 +307,25 @@ See `workflows/lens-register/WORKFLOW.md` for the method contract.
 #### Phase 2.5: Dispatch document enrichment (Pass 3 only — apply semantic lensing)
 
 **Action (variant-routed):**
-- **WORKING_ITEMS (workflow: project-decomp) / WORKING_ITEMS (workflow: software-decomp):** Dispatch TASK for each deliverable with
-  the workflow selected by the resolver:
-  - `Workflow: scope-of-work` for `SOW_V1`, or `four-documents` only for
-    existing complete `LEGACY_FOUR_DOC`
+- **WORKING_ITEMS (workflow: project-decomp) / WORKING_ITEMS (workflow: software-decomp), existing complete `LEGACY_FOUR_DOC`:** Dispatch TASK for each deliverable with:
+  - `Workflow: four-documents`
   - `ScopePath: {DELIVERABLE_PATH}`
   - `RUN_PASSES: P3_ONLY`
   - `DECOMP_VARIANT: {variant}`
-  - For `SOW_V1`, target registered section/claim IDs in `ScopeOfWork.md`
-    through one integration owner; render HTML only as an on-demand derivative.
-  - The selected workflow applies warranted enrichments and performs a final consistency sweep.
-  - If the project uses `SEMANTIC_READY` as a lifecycle marker, the workflow's Pass 3 may set `_STATUS.md` from `INITIALIZED → SEMANTIC_READY` (only if that is the local policy).
-- Run this phase as a sealed TASK step after `_SEMANTIC_LENSING.md` validates. The WORKING_ITEMS (workflow: project-setup)/parent must not apply Pass 3 document edits inline.
+  - The workflow applies warranted enrichments and performs a final consistency sweep.
+  - If the project uses `SEMANTIC_READY` as a lifecycle marker, its Pass 3 may set `_STATUS.md` from `INITIALIZED → SEMANTIC_READY` (only if that is the local policy and the brief authorizes the `_STATUS.md` write).
+- **`SOW_V1`:** applying `_SEMANTIC_LENSING.md` to `ScopeOfWork.md` is not currently provided by a bundled workflow. `scope-of-work` accepts only `MODE=INIT|CONVERT|VERIFY`, has no Pass 3, and never touches `_STATUS.md`; `semantic-lensing` can produce reviewable `PROPOSAL:` blocks but does not edit the contract. Report the step as not provided, route any accepted proposal through the project's authorized contract-amendment path, and record `SEMANTIC_READY` only through a separately authorized status act.
+- Run the legacy enrichment as a sealed TASK step after `_SEMANTIC_LENSING.md` validates. The WORKING_ITEMS (workflow: project-setup)/parent must not apply Pass 3 document edits inline.
 - Before reporting Phase 2.5 complete, validate each deliverable with:
   - `python3 tools/validation/validate_p3_disposition.py "{DELIVERABLE_PATH}"`
   - `python3 tools/validation/validate_semantic_pipeline_scope.py "{DELIVERABLE_PATH}" --step p3` when the worktree contains only that P3 TASK's changes, or the equivalent parent review of touched files when multiple workers have fanned in.
 - **WORKING_ITEMS (workflow: domain-decomp):** Skip this phase. DOMAIN variants run Pass 3 (source-fidelity verification) as part of the `RUN_PASSES=FULL` directive in Phase 2.2. There is no separate Pass 3 enrichment phase for DOMAIN.
 
-See `workflows/scope-of-work/WORKFLOW.md` and retained compatibility
-`workflows/four-documents/WORKFLOW.md` for the method contracts.
+See retained compatibility `workflows/four-documents/WORKFLOW.md`,
+`workflows/scope-of-work/WORKFLOW.md`, and `workflows/semantic-lensing/WORKFLOW.md`
+for the method contracts.
 
-**Report to human (PROJECT/SOFTWARE):** “Enrichment pass complete. Production units are ready for WORKING_ITEMS sessions.”
+**Report to human (PROJECT/SOFTWARE):** “Enrichment pass complete for legacy kits; `SOW_V1` lensing application not provided (listed). Production units are ready for WORKING_ITEMS sessions.”
 **Report to human (DOMAIN):** Phase 2.5 skipped for DOMAIN variant — source-fidelity verification was completed in Phase 2.2. Production units are ready for TASK (workflow: domain-hypergraph) (Phase 2.6).
 
 ---
@@ -345,6 +363,7 @@ See `workflows/scope-of-work/WORKFLOW.md` and retained compatibility
 Dependencies:
 - If dependency tracking mode is `DECLARED` or `FULL_GRAPH`:
   - Compute `BLOCKED/UNBLOCKED` only from **declared** dependency registers (prefer `Dependencies.csv` when present).
+  - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
 - If dependency tracking mode is `NOT_TRACKED`:
   - Do not label items as blocked/available.
 
@@ -363,6 +382,7 @@ Always report by lifecycle state:
 Additionally, if dependency tracking mode is enabled, provide an **advisory** section:
 - UNBLOCKED (declared dependencies met)
 - BLOCKED (declared dependencies not met)
+- HELD (edges in unresolved cycles; non-gating and excluded from BLOCKED)
 
 WORKING_ITEMS does not assign or recommend priorities.
 

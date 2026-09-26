@@ -1,7 +1,8 @@
 ---
 name: dependency-extract
 description: 'Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with
-  evidence-first provenance. Setup-pipeline workflow dispatched by WORKING_ITEMS (workflow: project-setup) during project setup.'
+  evidence-first provenance. Dispatched as TASK + dependency-extract by project-setup (Function 2 dependency stage), scope-change reruns, or
+  explicit refresh briefs.'
 ---
 
 # WORKFLOW — dependency-extract
@@ -19,9 +20,12 @@ This workflow does **not** build project-level graphs. It produces only delivera
 
 ## Suitable agent shells
 
-- `TASK` (generic shell mode, no profile)
+- `TASK` (generic shell mode, no profile) — the ordinary executor.
+- `WORKING_ITEMS` or `HELPS_HUMANS` may run the same bounded extraction directly
+  when their brief authorizes it (`execution.json` lists all three roles); the
+  write boundary below applies unchanged.
 
-Typical dispatcher: WORKING_ITEMS (workflow: project-setup) dispatches TASK with `Workflow: dependency-extract` during project setup, or later for explicit refresh runs during the tier control loop. Runs straight-through; never blocks on human decisions.
+Typical callers: WORKING_ITEMS (workflow: project-setup) dispatches TASK with `Workflow: dependency-extract` in its Function 2 dependency stage when the coordination mode calls for extraction; `scope-change` recommends reruns for affected deliverables; a manager may also brief an explicit refresh run during the tier control loop. Runs straight-through; never blocks on human decisions.
 
 ## Inputs
 
@@ -43,8 +47,9 @@ Typical dispatcher: WORKING_ITEMS (workflow: project-setup) dispatches TASK with
 - `DOC_ROLE_MAP`: `DEFAULT` (default) | explicit mapping of doc roles to filenames/patterns
   - Roles: `ANCHOR_DOC` (definition/traceability signal) and `EXECUTION_DOCS` (workflow/execution signal).
   - DEFAULT heuristic (overrideable):
-    - ANCHOR_DOC candidates: filenames containing `datasheet`, `definition`, `requirements`, `scope`, `trace`, `spec`
-    - EXECUTION_DOC candidates: filenames containing `procedure`, `method`, `plan`, `workflow`, `guidance`, `runbook`
+    - ANCHOR_DOC candidates: `ScopeOfWork.md` (current canonical deliverable document; preferred when present), then filenames containing `datasheet`, `definition`, `requirements`, `scope`, `trace`, `spec` (including the legacy four-document `Datasheet.md` and `Specification.md`)
+    - EXECUTION_DOC candidates: `ScopeOfWork.md` (also scanned in Pass 2 for prerequisites, inputs, handovers, and constraints), then filenames containing `procedure`, `method`, `plan`, `workflow`, `guidance`, `runbook` (including the legacy four-document `Procedure.md` and `Guidance.md`)
+    - Legacy four-document names are transitional inputs; when both `ScopeOfWork.md` and legacy documents are present, record the chosen roles in Run Notes.
 - `ANCHOR_DOC`: `AUTO` (default) | explicit filename/path
   - `AUTO` means: choose the highest-confidence match from `DOC_ROLE_MAP` + `SOURCE_DOCS`; otherwise the first doc in `SOURCE_DOCS`.
 - `EXECUTION_DOC_ORDER`: `AUTO` (default) | ordered list of filenames/paths
@@ -53,8 +58,9 @@ Typical dispatcher: WORKING_ITEMS (workflow: project-setup) dispatches TASK with
 ### Optional controls (defaults shown)
 
 - `MODE`: `UPDATE` (default) | `RESET_EXTRACTED` | `CANONICALIZE_EXISTING`
+  - `RESET_EXTRACTED` re-extracts from the current sources without match/merge against prior extracted rows: every prior `Origin=EXTRACTED` row is set `Status=RETIRED` (never deleted; `Notes` records `retired_by=RESET_EXTRACTED`), new rows receive new `DependencyID`s, and `Origin=DECLARED` rows are preserved unchanged. Use it only when a brief says the prior extraction is unreliable.
 - `STRICTNESS`: `CONSERVATIVE` (default) | `AGGRESSIVE`
-- `CONSUMER_CONTEXT`: `NONE` (default) | `TASK_ESTIMATING` | `TASK (workflow: aggregation)` | `WORKING_ITEMS (workflow: reconciliation)`
+- `CONSUMER_CONTEXT`: `NONE` (default) | `TASK_ESTIMATING` | `AGGREGATION` | `RECONCILIATION`
 
 Defaults and chosen paths MUST be recorded in `_DEPENDENCIES.md` Run Notes.
 
@@ -75,7 +81,7 @@ Defaults and chosen paths MUST be recorded in `_DEPENDENCIES.md` Run Notes.
 | `EXECUTION_DOC_ORDER` | Execution doc ordering | `AUTO` | `AUTO` / ordered list |
 | `MODE` | Update, reset, or canonicalize existing register values | `UPDATE` | `UPDATE` / `RESET_EXTRACTED` / `CANONICALIZE_EXISTING` |
 | `STRICTNESS` | Extraction posture | `CONSERVATIVE` | `CONSERVATIVE` / `AGGRESSIVE` |
-| `CONSUMER_CONTEXT` | Downstream consumer hint | `NONE` | `NONE` / `TASK_ESTIMATING` / `TASK (workflow: aggregation)` / `WORKING_ITEMS (workflow: reconciliation)` |
+| `CONSUMER_CONTEXT` | Downstream consumer hint | `NONE` | `NONE` / `TASK_ESTIMATING` / `AGGREGATION` / `RECONCILIATION` |
 
 ## Tool usage
 
@@ -83,7 +89,8 @@ Preferred deterministic helpers (called during Function 5 local quality checks):
 
 - `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv` — confirms all 29 required v3.1 columns are present and CSV is parseable.
 - `python3 tools/validation/validate_enum.py {ENUM_NAME} {value}` — normalizes and validates enum field values (`DEPENDENCY_CLASS`, `ANCHOR_TYPE`, `DIRECTION`, `DEPENDENCY_TYPE`, `TARGET_TYPE`, `EXPLICITNESS`, `CONFIDENCE`, `ORIGIN`, `STATUS`, `SATISFACTION_STATUS`).
-- `tools/validation/validate_id_format.sh {TYPE} {value}` — validates deliverable/package/WBS ID formats.
+- `bash tools/validation/validate_id_format.sh {TYPE} {value}` — validates package/deliverable/dependency and other stable-ID formats (`PKG`, `DEL`, `DEP`, `SOW`, `OBJ`, `CAT`, `KTY`, `SUB`).
+- Optional: `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` — report-only evidence-quality and register-binding findings (see Function 5).
 
 Disallowed behavior:
 
@@ -106,6 +113,7 @@ Reads are limited to the current deliverable folder plus the decomposition docum
 | `{deliverable}/_DEPENDENCIES.md` | Full (if present) | Preserve declared lists + Run History |
 | `{DECOMPOSITION_PATH}` | Read-only | Validate anchors + resolve canonical labels |
 | Architecture-basis / PKG-00 source files | Relevant excerpts when cited | Confirm architecture-consistency dependency rows without writing PKG-00 |
+| `{EXECUTION_ROOT}` registers | Only through the optional `validate_decomposition_registers.py` check, when the brief permits | Report `EVQ`/`DRB` findings for in-scope registers |
 
 ## Write boundary
 
@@ -206,6 +214,16 @@ Dependency evidence must include:
 - `SourceRef` (path + heading; else `location TBD`)
 - optional `EvidenceQuote` (<= 30 words)
 
+`location TBD` and a blank `EvidenceQuote` keep this workflow's own run valid,
+but they are not clean evidence for downstream checks:
+`tools/validation/validate_decomposition_registers.py` reports a blank
+`EvidenceQuote` as `EVQ-003` and a placeholder `SourceRef` such as
+`location TBD` as `EVQ-004`. Populate a verbatim quote and a citable locus
+whenever the source supports one. A genuinely unquotable row may be covered by
+an attributed `Dependencies_EvidenceWaivers.csv` entry, which is a separate
+declaration outside this workflow's write boundary; never invent a quote to
+clear a finding.
+
 ### Function 2 — Resolve targets (best-effort, conservative)
 
 **Deliverable targets (preferred):**
@@ -238,6 +256,7 @@ Normalize legacy values on write:
 - In `MODE=CANONICALIZE_EXISTING`, do not extract new rows from prose. Read the existing register, normalize all core enum fields to canonical write form, preserve legacy values in `Notes`, and move any non-gating candidate relationship to a non-authoritative candidate worklist or mark the register row `RETIRED` with a candidate-disposition note.
 - Ensure `FromDeliverableID` matches the host deliverable identity.
 - Ensure `DependencyID` uniqueness within the deliverable register.
+- Assign new `DependencyID`s in the `docs/SPEC.md` §6.8 form `DEP-{PKG}-{DEL}-{SEQ}` (e.g. `DEP-01-01-001` for `DEL-01-01`): the prefix repeats the numeric segments of `FromDeliverableID` and `SEQ` is a zero-padded three-digit sequence within the register. A mismatched prefix is reported by `validate_decomposition_registers.py` as `DRB-006`; preserve existing IDs rather than renumbering them.
 - Normalize target ID placement on write:
   - For non-deliverable targets (e.g., `WBS_NODE`, `REQUIREMENT`, `DOCUMENT`, `EXTERNAL`), `TargetDeliverableID` MUST be empty; use `TargetRefID` (if a stable ID exists) and `TargetName`.
   - For `TargetType=DELIVERABLE`, `TargetDeliverableID` MUST contain the deliverable stable ID.
@@ -273,12 +292,14 @@ Before finalizing files, run these checks using deterministic tools where availa
 - Normalize legacy values: `INBOUND` -> `UPSTREAM`, `OUTBOUND` -> `DOWNSTREAM` on write.
 
 **ID format validation**
-- Validate all ID fields: `tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `tools/validation/validate_id_format.sh PKG {FromPackageID}`, etc.
+- Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
+- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/SPEC.md` §6.8) and its prefix agrees with `FromDeliverableID`.
 
 **Evidence & provenance checks**
 - ACTIVE rows contain `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
 - `_DEPENDENCIES.md` counts do not contradict `Dependencies.csv`.
 - Obvious duplicate extracted rows are merged or explicitly justified in `Notes`.
+- Optional, when the brief permits reading the execution root: run `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` (report-only; omit `--json` unless its output path is inside the write boundary) and record in Run Notes the `EVQ-003` (blank `EvidenceQuote`), `EVQ-004` (placeholder `SourceRef`, including `location TBD`), and `DRB-006` (`DependencyID` prefix disagrees with `FromDeliverableID`) findings for in-scope registers. These findings do not fail this workflow's run; repair them where the source supports it and report the remainder.
 
 **Tree x DAG integrity checks**
 - Parent anchor check:
@@ -368,7 +389,7 @@ Legacy read compatibility:
 If you can infer these reliably from text, you MAY add them (do not break older files if absent):
 
 - `EstimateImpactClass` (`BLOCKING|ADVISORY|INFO|TBD`)
-- `ConsumerHint` (`TASK_ESTIMATING|TASK (workflow: aggregation)|WORKING_ITEMS (workflow: reconciliation)|TBD`)
+- `ConsumerHint` (`TASK_ESTIMATING|AGGREGATION|RECONCILIATION|TBD`)
 
 Rules:
 - Do not mark these required.
