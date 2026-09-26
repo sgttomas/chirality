@@ -73,16 +73,15 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 | I1 `AGENTS.md` residual corrections | `projects/pec/AGENTS.md` (HELPS_HUMANS) | Instruction tranche with manifest | Validators pass; notice | COMPLETE — carried in R3's instruction tranche (Q-CP2-1 (a)) and accepted with checkpoint 3 |
 | RS1 Owner decision: open a separate undertaking to retire the `## Remaining` sections? | A decision record only. The retirement itself is not in this undertaking: `projects/pec/AGENTS.md` makes it a separate owner-directed undertaking, as App and Piping did (HELP_HUMAN records) | The owner's 2026-09-26 direction ("There must not be any of those going forward") bears on it, but did not open it | Decision recorded; if opened, the new undertaking's graph is named | COMPLETE — the owner decided "open RS1" on 2026-09-26, and ruled the retirement packet `D-PEC-99` A the same day (`_DECISIONS/D-PEC-99_RULING_2026-09-26.md`); the act merged as PR #957 (`22502e059`). The separate undertaking is `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`, with its graph at `WorkGraphs/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/WORK_GRAPH.md` |
 | C1 Bounded closeout | Affected deliverables and records (HELP_HUMAN) | All substantive PRs merged | `bounded-reconciliation` comparisons; warranted edits | PLANNED |
-| M1 Record the run | Central `RECEIPT.md` (HELP_HUMAN); MEMORY files and rows named by the governing packets, written by the actor each packet names (`D-PEC-98` add-on M: WORKING_ITEMS creates the DEL-02-08/09 `MEMORY.md`) | C1 | Receipt and rows written | PLANNED |
+| M1 Record the run | Central `RECEIPT.md` (HELP_HUMAN); MEMORY files and rows named by the governing packets, written by the actor each packet names (`D-PEC-98` add-on M: WORKING_ITEMS creates the DEL-02-08/09 `MEMORY.md`; `D-PEC-100` add-on M: WORKING_ITEMS creates `MEMORY.md` for DEL-01-01 and DEL-02-03..07 and adds one row to DEL-01-06's, after the `D-PEC-96` row) | C1 | Receipt and rows written | PLANNED |
 | F1 Final PR | Integrated undertaking (HELP_HUMAN) | M1 and all checks | Final PR merged | PLANNED |
 
 **Order.**
 - Done: U1 (with N1–N3 and T1), R1–R4, G1, I1 and RS1 (the owner opened the retirement undertaking; its packet `D-PEC-99` is ruled).
 - Done since the rulings: the retirement act (`D-PEC-99`), merged as PR #957 (`22502e059`), and the S3 act (`D-PEC-98`), merged as PR #958 (`aca930622`). Add-on M (the DEL-02-08/09 `MEMORY.md` files) is written at M1.
-- Ready after the ruling PR merges: the `D-PEC-101` act (K1 then K4, with add-on V). In the act's PR, after its verifier passes K1, HELP_HUMAN applies the owner-authorized Notes (a) replacement of the human-owned `_COORDINATION.md` line.
-- Ready after the ruling PR merges: the S2 act (`D-PEC-100`). The `D-PEC-101` act is in progress on branch `claude/pec-d101-act`.
-- Ordering: S2 lands before the S1 and S4 packets are drafted, because 15 other contracts quote the old S2 text.
-- Ready now: packet preparation for S1, S4 and D1. The S1, S2 and S4 packets absorb the `D-PEC-99` exhibit Part B carry-forwards named in their rows.
+- In progress: the `D-PEC-101` act (K1 then K4, with add-on V) on branch `claude/pec-d101-act`. In the act's PR, after its verifier passes K1, HELP_HUMAN applies the owner-authorized Notes (a) replacement of the human-owned `_COORDINATION.md` line.
+- Ready after the ruling PR merges: the S2 act (`D-PEC-100`).
+- Ready now: packet preparation for S1, S4 and D1. Ordering: S2 is ruled and lands before the S1 and S4 packets are finalized, so they absorb the quotations of old S2 text in 15 contracts (the rest belong to a later DEL-02-08/09 revision). The S1, S2 and S4 packets absorb the `D-PEC-99` exhibit Part B carry-forwards named in their rows.
 - K2 after K1; K3 after K2.
 - After S2 and S3: X1.
 - Then C1 → M1 → F1.
