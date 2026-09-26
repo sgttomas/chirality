@@ -1,0 +1,45 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE2A-CHANGE-CONCERNS-20260926
+title: Scope-change, closure-audit, packet and task-management fixes
+date: '2026-09-26'
+basis: 6721457be391a14667906363c290673b0d9aa09f
+instruction_surface_paths:
+  - tools/REGISTRY.md
+  - tools/query/scan_next_amendment_id.sh
+  - workflows/audit-scope-closure/resources/contract.md
+  - workflows/audit-scope-closure/resources/method.md
+  - workflows/scope-change-packet/WORKFLOW.md
+  - workflows/scope-change-packet/resources/brief.md
+  - workflows/scope-change-packet/resources/checks.md
+  - workflows/scope-change/resources/contract.md
+  - workflows/scope-change/resources/method.md
+  - workflows/task-management/WORKFLOW.md
+  - workflows/task-management/resources/contract.md
+  - workflows/task-management/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-CHANGE-CONCERNS-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed wave 2a of the workflow-library review ("go
+    ahead in the proposed order starting with wave 2a") and ruled that
+    retiring a deliverable makes no lifecycle change ("No lifecycle change").
+    This tranche carries the change-and-concerns cluster.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CHANGE_CONCERNS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CHANGE_CONCERNS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CHANGE_CONCERNS.md
+  rationale: >-
+    App, Piping and PEC run scope-change and task-management; PEC raised the
+    RETIRED-status mismatch and has SCA-006 in flight.
+scope_limits:
+  - Owner-delegated or standing Task Management dispositions are not introduced (needs a CONTRACT K-TM-3 decision).
+  - The scope-change-packet SCOPE_CHANGE_Gate column name is unchanged for validator compatibility.
+  - Historical run records are not rewritten; in-flight runs keep their bound files.

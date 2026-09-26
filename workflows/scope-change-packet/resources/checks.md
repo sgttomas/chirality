@@ -24,4 +24,4 @@ Use one of:
 
 `READY_FOR_HUMAN_REVIEW` requires all required files, evidence-backed proposed actions, and no blocking validator failures. It means the packet is structurally complete enough for review.
 
-`SELECTED_FOR_SCOPE_CHANGE_INTAKE` is not a TASK-authored default. Use it only after a human explicitly selects the packet as a WORKING_ITEMS (workflow: scope-change) seed. It does not bypass WORKING_ITEMS (workflow: scope-change) gates.
+`SELECTED_FOR_SCOPE_CHANGE_INTAKE` is not a TASK-authored default. Use it only after a human explicitly selects the packet as a WORKING_ITEMS (workflow: scope-change) seed. It does not bypass the WORKING_ITEMS (workflow: scope-change) checkpoint groups.

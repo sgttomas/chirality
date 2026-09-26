@@ -6,7 +6,8 @@
 2. Reasoning-led target resolution, row match/merge, and persistence to `Dependencies.csv` and `_DEPENDENCIES.md`.
 3. `python3 tools/validation/validate_dependencies_schema.py {deliverable_folder}/Dependencies.csv` — Function 5 canonical validation (confirms all 29 required v3.1 columns are present, CSV is parseable, core enum values are canonical, ANCHOR/EXECUTION row rules hold, and `Status=CANDIDATE` is absent).
 4. `python3 tools/validation/validate_enum.py {ENUM_NAME} {value}` — Function 5 enum-field normalization and validation on write.
-5. `tools/validation/validate_id_format.sh {TYPE} {value}` — Function 5 ID-format validation for deliverable/package/WBS IDs.
+5. `bash tools/validation/validate_id_format.sh {TYPE} {value}` — Function 5 ID-format validation for package/deliverable/dependency and other stable IDs.
+6. Optional: `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB` — Function 5 report-only evidence-quality (`EVQ-003`, `EVQ-004`) and binding (`DRB-006`) findings, when the brief permits reading the execution root.
 
 ## Allowed deterministic tools
 
@@ -15,11 +16,8 @@ The optional execution.json contains declared command restrictions. Effective au
 
 - `python3 tools/validation/validate_dependencies_schema.py:*`
 - `python3 tools/validation/validate_enum.py:*`
-
-### Operationally invoked
-_Tools named in `## Tool usage` body; operational guidance within effective permissions._
-
-- `tools/validation/validate_id_format.sh {TYPE} {value}` — validates deliverable/package/WBS ID formats
+- `bash tools/validation/validate_id_format.sh:*`
+- `python3 tools/validation/validate_decomposition_registers.py:*` (optional check)
 
 ## Expected use of reasoning
 

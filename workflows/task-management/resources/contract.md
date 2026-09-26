@@ -9,7 +9,9 @@ graphs, memory and evidence. Register rows record concerns and dispositions;
 they neither direct production nor grant scope, priority or acceptance.
 
 Promotion and disposition are human acts. WORKING_ITEMS applies the exact
-recorded decision; TASK never writes register rows. A manager may inspect and
+recorded decision; TASK never writes register rows. Dispatched to TASK, this
+workflow runs inspection-only and returns candidate rows; a register-write
+grant to TASK is ineffective. A manager may inspect and
 prepare an intake within the authority supplied by its caller, but cannot turn
 its recommendation into an owner decision. Accountable ownership remains human.
 Do not write another loop's register or assume a notice assigns work there.
@@ -58,7 +60,9 @@ Do not create a new register or schema unless authorized.
 
 Before each requested mode, perform the D-GOV-33 federation survey of canonical
 Git-tracked registers and their closed-row archives. Use `taskmgmt federation`
-when available. Discover sanctioned shapes, validate inputs, derive relationships
+when available. Bounded intake needs only this federation; `taskmgmt scan` is
+optional there, for deduplication. Persistent cross-register findings are
+routed as the method describes. Discover sanctioned shapes, validate inputs, derive relationships
 from governed fields rather than Notes, and state COMPLETE/PARTIAL coverage and
 operational failures. Emphasize relevant relationships while disclosing exclusions
 and integrity errors. Federation writes only a derived projection; registers
@@ -140,8 +144,8 @@ Archive already-closed rows only when requested or included in the assignment.
 
 Keep the result in its owning Task Management records and provide a pointer to
 the caller. A Task Management invocation creates no separate loop receipt;
-an App/Piping development undertaking's one central final receipt links its
-actual Task Management outcome when applicable. Other loops retain their own
+a loop whose instructions require one central receipt links its actual Task
+Management outcome from that receipt when applicable. Other loops retain their own
 recording contracts. Preserve historical receipts and their validation. Source
 integration follows
 standing Git authority and applicable checks; no separate old launcher gate is

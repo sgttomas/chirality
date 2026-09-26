@@ -23,12 +23,22 @@ schema = load_module("evaluation_dependency_schema", TOOLS / "validation/validat
 sow = load_module("evaluation_sow_contract", TOOLS / "scope_of_work/common.py")
 
 
+# Lifecycle folders that can hold a production unit. A unit moves between them
+# as it matures; 0_References holds reference material and is excluded.
+LIFECYCLE_DIRS = ("1_Working", "2_Checking", "3_Issued")
+
+
 def inventory(root, variant=None):
-    """Live immediate production units; never recurse into archived copies."""
+    """Live immediate production units in every lifecycle folder; never recurse into archived copies."""
     prefixes = (("CAT-", "KTY-"),) if variant == "DOMAIN" else (("PKG-", "DEL-"),)
     if variant is None:
         prefixes = (("PKG-", "DEL-"), ("CAT-", "KTY-"))
-    return sorted(path for partition, unit in prefixes for path in root.glob(f"{partition}*/1_Working/{unit}*") if path.is_dir())
+    return sorted(path for partition, unit in prefixes for folder in LIFECYCLE_DIRS
+                  for path in root.glob(f"{partition}*/{folder}/{unit}*") if path.is_dir())
+
+
+def in_lifecycle_folder(path):
+    return any(part in LIFECYCLE_DIRS for part in Path(path).parts)
 
 
 def require_root(root):
@@ -51,7 +61,7 @@ def write_report(report, output):
         if target.exists() and not target.is_file():
             raise ValueError(f"report output is not a regular file: {target}")
         # Reports cannot replace inspected workspace content.
-        if "1_Working" in target.parts or target.name in {"Dependencies.csv", "_STATUS.md"}:
+        if in_lifecycle_folder(target) or target.name in {"Dependencies.csv", "_STATUS.md"}:
             raise ValueError("report output must be outside production-unit source paths")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(text, encoding="utf-8")

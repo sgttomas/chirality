@@ -22,7 +22,7 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
 | `count_workspace_state.sh` | zsh | Count packages, deliverables, lifecycle states, tool roots | EXECUTION_ROOT | Summary table |
-| `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} ID | SCOPE_CHANGE_ROOT | Next ID string (stdout) |
+| `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} or SCA-{PREFIX}-{NNN} ID | SCOPE_CHANGE_ROOT [PREFIX] | Next ID string (stdout) |
 
 ## Software Workflow
 

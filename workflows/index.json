@@ -1108,7 +1108,7 @@
       "name": "dependency-extract",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Setup-pipeline workflow dispatched by WORKING_ITEMS (workflow: project-setup) during project setup.",
+      "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Dispatched as TASK + dependency-extract by project-setup (Function 2 dependency stage), scope-change reruns, or explicit refresh briefs.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -1143,7 +1143,9 @@
         "tools": {
           "commands": [
             "python3 tools/validation/validate_dependencies_schema.py:*",
-            "python3 tools/validation/validate_enum.py:*"
+            "python3 tools/validation/validate_enum.py:*",
+            "bash tools/validation/validate_id_format.sh:*",
+            "python3 tools/validation/validate_decomposition_registers.py:*"
           ]
         }
       }
@@ -2428,7 +2430,7 @@
       "name": "reconciliation",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.",
+      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) with accepted project truth.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2438,13 +2440,14 @@
         "WORKFLOW.md",
         "execution.json",
         "resources/contract.md",
-        "resources/method.md"
+        "resources/method.md",
+        "resources/representation-migration.md"
       ],
       "navigation": {
         "category": "core",
         "tier": "primary",
         "order": 9,
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       },
       "execution": {
         "schemaVersion": 1,
@@ -2465,7 +2468,7 @@
       },
       "metadata": {
         "category": "Review and validation",
-        "applicability": "Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus."
+        "applicability": "Reconcile claims, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) across a deliverable corpus."
       }
     },
     {
@@ -2562,7 +2565,7 @@
         "category": "core",
         "tier": "primary",
         "order": 8,
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       "execution": {
         "schemaVersion": 1,

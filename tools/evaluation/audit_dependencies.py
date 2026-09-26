@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from audit_common import inventory, parse_register, report_base, require_root, write_report
+from audit_common import in_lifecycle_folder, inventory, parse_register, report_base, require_root, write_report
 
 
 def audit(root):
@@ -24,7 +24,7 @@ def audit(root):
     known = {item["path"] for item in files}
     for path in sorted(root.rglob("Dependencies.csv")):
         relative = path.relative_to(root)
-        if "1_Working" in relative.parts and "_Archive" not in relative.parts and str(path) not in known:
+        if in_lifecycle_folder(relative) and "_Archive" not in relative.parts and str(path) not in known:
             info, _ = parse_register(path)
             files.append(info)
     files.sort(key=lambda info: info["path"])
