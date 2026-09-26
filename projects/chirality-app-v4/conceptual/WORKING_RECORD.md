@@ -132,7 +132,7 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Item | Owner | Condition |
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
-| Harness experiments 1–4 (`DISCUSSION_2026-09-25.md` §6) | Owner's go-ahead (installs T3 Code; uses oMLX) | Stage E3 |
+| Harness experiments HX-01 (X1–X4) on the owner's oMLX machine | Owner launches an agent there with [`HX-01_BRIEF.md`](../execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/experiments/HX-01_BRIEF.md); evidence returns on branch `claude/v4-hx01-evidence`; HELPS_HUMANS examines it | Stage E3 |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
