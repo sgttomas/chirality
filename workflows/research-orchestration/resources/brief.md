@@ -17,7 +17,7 @@ Load resources for the current stage.
 | `ResearchRoot` | path | `domains/chirality-app-dev/_Research` |
 | `StreamPlan` | table | see below |
 | `ApplyEdits` | bool | `true` (the packet + run record are written) |
-| `AllowedWriteTargets` | list | `["{ResearchRoot}/RCH_*/", "_run_records/"]` only |
+| `AllowedWriteTargets` | list | `["{ResearchRoot}/RCH_*/", "_run_records/"]` only; excludes `{ResearchRoot}/_LATEST.md` |
 
 ### `StreamPlan` shape
 
@@ -27,6 +27,9 @@ One row per sub-question:
 |---|---|---|---|
 | "Enumerate the current tool-descriptor surface" | AGENT | yes | yes |
 | "Exact name of the collision-check helper" | DIRECT | no | no |
+
+While `CRITIC_REQUIRED = true`, a row's `critic?` value cannot remove the critic step from a
+load-bearing claim.
 
 `DIRECT` rows are answered by a single `query_source_index.py`/`grep` call.
 `AGENT` rows are dispatched as TASK streams with
@@ -45,6 +48,6 @@ where the descriptor came from effective catalog discovery.
 | Override | Meaning | Default | Allowed |
 |---|---|---|---|
 | `MAX_RETRIES` | per-stream transient-failure retries | `2` | `0`–`3` |
-| `CRITIC_REQUIRED` | run the adversarial live critic before `R3+` | `true` | `true`/`false` |
+| `CRITIC_REQUIRED` | add a recorded adversarial critic step before `R3+`; `false` removes only that step, not live/accepted-source verification of load-bearing claims | `true` | `true`/`false` |
 | `ANCHOR_POLICY` | how much to anchor | `LIGHT` | `LIGHT`/`NONE` |
 | `FRESHNESS_GATE` | behavior on a `STALE` snapshot | `WARN` | `WARN` (no other; never auto-refresh) |

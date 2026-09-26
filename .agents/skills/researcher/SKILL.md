@@ -19,8 +19,8 @@ Read [references/evidence-contract.md](references/evidence-contract.md) when con
 2. Check retrieval-snapshot freshness with `tools/source_catalog/check_snapshot_freshness.py`. Record `FRESH` or `STALE`; never refresh the index as part of research.
 3. Choose the smallest useful mode: ontology, semantic discovery, lexical lookup, evidence map, cross-category inquiry, amendment candidate, or external comparison.
 4. Query the local index with `tools/retrieval/query_source_index.py --run-log <packet>/Query_Log.csv` so the log records executed queries. Use retrieval to discover candidates, then open the accepted register, ledger, snapshot, or source anchor that supports each material claim.
-5. Record evidence strength (`R0` unsupported hypothesis through `R5` explicit accepted snapshot decision), verification source (`LIVE_TREE`, `RETRIEVAL_INDEX`, or `INHERITED_BRIEF`), assertion mode (`READ` or `RUN`), and whether each claim is load-bearing.
-6. Independently verify every load-bearing claim. An inherited brief statement remains `R1`-equivalent and cannot become `R3+` until verified. Claims about executable behavior should use run evidence when practical.
+5. Record evidence strength (`R0` unsupported hypothesis through `R5` explicit accepted snapshot decision), verification source (`LIVE_TREE`, `ACCEPTED_SNAPSHOT`, `RETRIEVAL_INDEX`, or `INHERITED_BRIEF`), assertion mode (`READ` or `RUN`), and whether each claim is load-bearing.
+6. Independently verify every load-bearing claim against the live tree or accepted snapshot. An inherited brief statement remains `R1`-equivalent, and neither it nor retrieval-only support can become `R3+` until verified. Claims about executable behavior should use run evidence when practical.
 7. Record conflicts, open questions, and possible changes to accepted truth as structured candidates. Recommend a route; do not apply or approve an amendment.
 8. Finalize the packet and return `COMPLETE`, `PARTIAL`, or `FAILED_INPUTS`. A partial return must preserve completed evidence and identify every coverage gap.
 

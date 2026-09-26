@@ -13,7 +13,7 @@
 
 Prefer `R3` or better for final material claims. `READ` supports inspected artifacts; `RUN` supports an executed result. Do not describe a test, validator, query, or build as successful without `RUN` evidence.
 
-Every evidence row records `VerificationSource` as `LIVE_TREE`, `RETRIEVAL_INDEX`, or `INHERITED_BRIEF`; `AssertionMode` as `READ` or `RUN`; and `LoadBearing` as `TRUE` or `FALSE`.
+Every evidence row records `VerificationSource` as `LIVE_TREE`, `ACCEPTED_SNAPSHOT`, `RETRIEVAL_INDEX`, or `INHERITED_BRIEF`; `AssertionMode` as `READ` or `RUN`; and `LoadBearing` as `TRUE` or `FALSE`.
 
 ## CSV schemas
 
@@ -34,7 +34,7 @@ Open_Questions.csv:
 OpenQuestionID,ClaimID,Question,WhyItMatters,EvidenceNeeded,Status
 ```
 
-Valid amendment candidate kinds are `NEW_ATOM`, `SCOPE_GAP`, `KTY_REMAP`, `CATEGORY_CONFLICT`, `SOURCE_UPDATE`, and `VOCAB`. Leave `HumanRuling` as `TBD` unless an accepted ruling is part of the supplied basis.
+Valid amendment candidate kinds are `NEW_ATOM`, `SCOPE_GAP`, `KTY_REMAP`, `CATEGORY_CONFLICT`, `SOURCE_UPDATE`, and `VOCAB`. Valid `RecommendedRoute` values are `WORKING_ITEMS (workflow: scope-change)`, `WORKING_ITEMS (workflow: domain-decomp)`, `RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS` (for repository edits), and `WORKING_ITEMS (workflow: dbm-publisher)`; historical `WORKING_ITEMS (workflow: change)` values remain readable and are not rewritten. Leave `HumanRuling` as `TBD` unless an accepted ruling is part of the supplied basis.
 
 ## Research note
 

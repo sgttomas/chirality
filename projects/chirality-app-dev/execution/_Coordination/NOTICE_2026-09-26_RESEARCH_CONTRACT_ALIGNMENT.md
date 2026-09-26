@@ -1,0 +1,5 @@
+# Research contract alignment
+
+Owner-authorized Root tranche `ROOT-RESEARCH-CONTRACT-ALIGN-20260926` revises the bundled `research-orchestration` and `researcher` workflows and the `researcher` skill. Readiness verdicts now follow unresolved required coverage and validity checks, so a partial packet no longer counts as complete coverage. The critic step applies only when `CRITIC_REQUIRED` is true. Live-tree or accepted-snapshot verification of load-bearing claims remains mandatory, and `VerificationSource` gains `ACCEPTED_SNAPSHOT`. Retry records name the recovery mechanism actually used and record a resume identifier only when a host resume executed. `FAILED_INPUTS` returns do not consume retries.
+
+These workflows no longer update `{RESEARCH_ROOT}/_LATEST.md`; every scaffold call passes `--no-update-latest`. New repository-edit amendment rows use `RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS`; historical `WORKING_ITEMS (workflow: change)` values stay readable. Tools, packet headers and existing packets are unchanged. Future packaging consumes the revised source; this loop decides its own adoption. This source tranche grants no release.
