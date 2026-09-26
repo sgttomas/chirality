@@ -2376,7 +2376,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 7
+        "order": 8
       },
       "execution": {
         "schemaVersion": 1,
@@ -2488,7 +2488,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 10,
+        "order": 11,
         "displayName": "Run corpus concordance program"
       },
       "execution": {
@@ -2606,7 +2606,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 9,
+        "order": 10,
         "displayName": "Lifecycle transition review"
       },
       "execution": {
@@ -3042,7 +3042,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 8,
+        "order": 9,
         "displayName": "Manage tasks"
       },
       "execution": {
