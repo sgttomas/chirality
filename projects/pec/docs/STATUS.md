@@ -208,10 +208,12 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   warnings, 111 dependency edges with no cycles; re-audit
   `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
   0 blockers, now named by `_Evaluation/DecompCoverage/_LATEST.md`).
-  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md`, the SCA-005
-  `Handoff_State.md` and `RUN_SUMMARY.md`, and `_COORDINATION.md` still
-  describe the pre-setup audit state (and `RUN_SUMMARY.md` still lists the
-  re-audit as open); updating them needs its own act. Open: context and
+  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
+  `_COORDINATION.md` still describe the pre-setup audit state, and the
+  `D-PEC-95` act updates them. The SCA-005 `Handoff_State.md` and
+  `RUN_SUMMARY.md` stay as accepted: under the P ruling `_COORDINATION.md`
+  records them as superseded for current state (`RUN_SUMMARY.md` still
+  lists the re-audit as open). Open: context and
   reference re-pinning to revision 1.5; the 19 stale dependency evidence
   quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
   DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
@@ -221,8 +223,11 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
   D-PEC-93 run root `HANDOFF_STATE.md`.
   The records currency, the re-pinning, the 19 quotes and the TM-PEC-023
-  disposition are proposed together as `D-PEC-95`, awaiting the owner's
-  ruling (`execution/_Coordination/_DECISIONS/D-PEC-95_revision_1_5_currency_proposal_2026-09-25.md`).
+  disposition were ruled together as `D-PEC-95` option P + R on 2026-09-25
+  (`execution/_Coordination/_DECISIONS/D-PEC-95_RULING_2026-09-25.md`); the
+  act has not run yet. The D-PEC-90 reliance amendment is scope change
+  SCA-006, whose checkpoint-1 package
+  (`execution/_ScopeChange/SCA-006_2026-09-25_1912/`) awaits the owner.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
@@ -232,8 +237,8 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   stays file-native; agents may eventually query PEC directly through tool
   calls. Reliance begins at a PEC release whose gates prove parity and
   coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
-  amended by a later PEC scope change, which may be prepared now that SCA-005
-  checkpoint 2 is accepted; until then the existing wording stands (the v2.3
+  amended by scope change SCA-006, whose checkpoint-1 package awaits the
+  owner (see above); until it applies, the existing wording stands (the v2.3
   successor keeps it). Checkpoint 2 carried a note so DEL-04-01 and the §8
   refresh are not rebuilt around verify-before-rely.
 
