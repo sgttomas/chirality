@@ -419,6 +419,107 @@ def test_unknown_ids_objectives_and_context_budget_drift(tmp_path: Path) -> None
     assert found["XRG-010"] == 1
 
 
+def test_every_scope_item_has_a_package_home(tmp_path: Path) -> None:
+    """D-GOV-48: every IN, OUT and TBD item has one Package; only IN items map to Deliverables.
+
+    A missing home is XRG-011 (ERROR) on an IN item and XRG-013 (WARNING) on an
+    OUT or TBD item. XRG-012 (D-GOV-47) is retired: an OUT or TBD item with a
+    PackageID conforms.
+    """
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    blank = {"ScopeItemStatement": "s", "DeliverableIDs": "", "ObjectiveIDs": "",
+             "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""}
+    ledger.append({"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "SourceRef": "§7.3",
+                   "PackageID": "PKG-01", **blank})
+    ledger.append({"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "SourceRef": "§7.4",
+                   "PackageID": "PKG-02", **blank})
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+
+    # OUT and TBD items with a Package home and no Deliverable mapping conform.
+    assert vdr.run(execution_root, families=("XRG",))["findings"] == []
+
+    ledger[0]["PackageID"] = ""  # IN item without a Package  -> XRG-011
+    ledger[2]["PackageID"] = ""  # OUT item without a Package -> XRG-013
+    ledger[3]["PackageID"] = ""  # TBD item without a Package -> XRG-013
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert codes(report) == {"XRG-011": 1, "XRG-013": 2}
+    assert ids_for(report, "XRG-011") == ["SOW-001"]
+    assert ids_for(report, "XRG-013") == ["SOW-003", "SOW-004"]
+    assert report["error_count"] == 1  # XRG-013 is a WARNING
+    assert "XRG-012" not in vdr.CHECKS  # retired by D-GOV-48, not reused
+
+
+def test_package_home_is_exactly_one_known_package(tmp_path: Path) -> None:
+    """D-GOV-48: a ledger item names exactly one Package, and that Package exists."""
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    blank = {"ScopeItemStatement": "s", "DeliverableIDs": "", "ObjectiveIDs": "",
+             "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""}
+    ledger.append({"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "SourceRef": "§7.3",
+                   "PackageID": "PKG-99", **blank})
+    ledger.append({"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "SourceRef": "§7.4",
+                   "PackageID": "PKG-01;PKG-02", **blank})
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert codes(report) == {"XRG-014": 1, "XRG-015": 1}
+    assert ids_for(report, "XRG-014") == ["SOW-004"]
+    assert ids_for(report, "XRG-015") == ["SOW-003"]
+
+
+def test_single_home_is_compared_after_parsing(tmp_path: Path) -> None:
+    """XRG-004 compares the parsed home, so a stray separator is not a mismatch."""
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    ledger[0]["PackageID"] = "PKG-01; "
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    assert "XRG-004" not in codes(vdr.run(execution_root, families=("XRG",)))
+
+    ledger[0]["PackageID"] = "PKG-02;"
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    assert codes(vdr.run(execution_root, families=("XRG",))).get("XRG-004") == 1
+
+
+def test_unknown_package_check_needs_a_deliverable_package_column(tmp_path: Path) -> None:
+    """XRG-015 is suppressed when Deliverables.csv carries no PackageID column."""
+    execution_root = build_workspace(tmp_path)
+    decomposition = execution_root / "_Decomposition"
+    rows = list(csv.DictReader((decomposition / "Deliverables.csv").open(encoding="utf-8-sig")))
+    columns = [c for c in DELIVERABLE_COLUMNS if c != "PackageID"]
+    write_csv(decomposition / "Deliverables.csv", columns,
+              [{k: v for k, v in row.items() if k != "PackageID"} for row in rows])
+
+    assert "XRG-015" not in codes(vdr.run(execution_root, families=("XRG",)))
+
+
+def test_package_home_checks_skip_a_ledger_without_a_package_column(tmp_path: Path) -> None:
+    columns = [c for c in LEDGER_COLUMNS if c != "PackageID"]
+    ledger = [
+        {"ScopeItemID": "SOW-001", "InOutStatus": "IN", "ScopeItemStatement": "s",
+         "SourceRef": "§7.1", "DeliverableIDs": "DEL-01-01", "ObjectiveIDs": "OBJ-001",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+        {"ScopeItemID": "SOW-002", "InOutStatus": "IN", "ScopeItemStatement": "s",
+         "SourceRef": "§7.2", "DeliverableIDs": "DEL-02-01", "ObjectiveIDs": "OBJ-001",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+        {"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "ScopeItemStatement": "s",
+         "SourceRef": "§7.3", "DeliverableIDs": "", "ObjectiveIDs": "",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+        {"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "ScopeItemStatement": "s",
+         "SourceRef": "§7.4", "DeliverableIDs": "", "ObjectiveIDs": "",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+    ]
+    execution_root = build_workspace(tmp_path)
+    write_csv(execution_root / "_Decomposition" / "ScopeLedger.csv", columns, ledger)
+
+    assert vdr.run(execution_root, families=("XRG",))["findings"] == []
+
+
 def test_missing_companion_registers_are_skipped_not_errors(tmp_path: Path) -> None:
     execution_root = build_workspace(tmp_path)
     (execution_root / "_Decomposition" / "ScopeLedger.csv").unlink()

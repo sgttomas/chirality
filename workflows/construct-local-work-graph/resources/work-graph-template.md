@@ -1,6 +1,6 @@
 # Work graph — <undertaking>
 
-Save App/Piping local development graphs at
+Save local development graphs for loops that adopt this method at
 `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
 project. Commit this graph early in the undertaking's PR sequence, update it as
 work proceeds, and return its path for continuation. LOOP_INIT remains evergreen.
@@ -33,7 +33,8 @@ Preserve older historical graphs and link their relevant evidence.
 | M1 <record this run> | <affected MEMORY.md Runs rows> | <C1 result> | <terse local work descriptions and central pointers> | <state; row/run identity> |
 | F1 <final PR integration> | <integrated undertaking> | <all promised work complete; final review/checks and decisions> | <final PR merged> | <PR link; merge confirms loop completion> |
 
-Use PLANNED, READY, ACTIVE, BLOCKED, UNCERTAIN and COMPLETE consistently.
+Use PLANNED, READY, ACTIVE, BLOCKED, UNCERTAIN and COMPLETE consistently. A node
+awaiting a human decision is BLOCKED and names that decision.
 State the condition behind a dependency or blocker. A reference or an agent's
 ownership is not itself a prerequisite. Each substantive PR includes the
 documentation, reconciliation and conditional Task Management work its slice
@@ -49,6 +50,8 @@ Name any selected method's source-qualified identity in the node or linked brief
 - Local/unmerged work: <branch/worktree, partial edits and outstanding checks>.
 - Active operations and ownership: <what is still running; resources to transfer>.
 - Graph maintainer: <who integrates returns; current revision when editing>.
+- Open deferrals and follow-ups: <each open deferral, discovered follow-up or evidence limitation; its source node or record and current owner>.
+- Current graph ref: <branch or ref holding the designated current graph when it is ahead of the default branch>.
 
 | Completed work / node | What changed and was checked | Unresolved consequence |
 |---|---|---|

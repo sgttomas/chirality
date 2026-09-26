@@ -8,13 +8,13 @@
 | Type | BACKEND_FEATURE_SLICE |
 | ContextEnvelope | M |
 | PhaseHint | P1 |
-| CoversScopeItems | SOW-006;SOW-007 |
+| CoversScopeItems | SOW-006;SOW-007;SOW-097 |
 | SupportsObjectives | OBJ-001;OBJ-002 |
 | ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |
 
 ## Description
 
-Per-claim citations (path/anchor/SHA) and response stamping (examined-through SHA, generation time, per-feed freshness).
+Per-claim citations (path/anchor/SHA) and response stamping (examined-through SHA, generation time, per-feed freshness), with the reliance envelope (pin, per-feed coverage and limitations, per-claim trust tier, file-fallback signal).
 
 ## Anticipated artifacts
 
@@ -30,7 +30,9 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
 successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
+successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
+then by revision 1.5 (`current_basis`, SCA-005 successor),
+then by revision 1.6 (`current_basis`, SCA-006 successor).
 Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.

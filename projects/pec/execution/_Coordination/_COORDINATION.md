@@ -13,11 +13,12 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision **1.4** (`current_basis`, SCA-004 successor, accepted
-  2026-08-03 under D-PEC-78 O-A; evidence
-  `execution/_ScopeChange/SCA-004_2026-08-02_2325/`). Historical:
-  revision 1.1 was the basis at this gate's ruling, revision 1.2 was accepted
-  through SCA-002, and revision 1.3 through SCA-003; read
+  revision **1.5** (`current_basis`, SCA-005 successor, accepted
+  2026-09-25 at SCA-005 checkpoint 3 after the checkpoint-2 ruling
+  `D-PEC-92`; evidence `execution/_ScopeChange/SCA-005_2026-09-23_2139/`).
+  Historical: revision 1.1 was the basis at this gate's ruling, revision 1.2
+  was accepted through SCA-002, revision 1.3 through SCA-003, and revision
+  1.4 through SCA-004 (2026-08-03, D-PEC-78 O-A); read
   `execution/_Decomposition/_LATEST.md` first, always.
 
 ## Phase 1.3 owner rulings (2026-07-25 gate)
@@ -169,6 +170,33 @@
     DEL-00-03. TM-PEC-011 remains `OPEN` with stale source evidence pending a
     separate TASK_MANAGEMENT disposition; this item records no row closure.
 
+14. **SCA-005 feed-model rebaseline and downstream currency (2026-09-25):**
+    revision **1.5** is accepted `current_basis` and PRD v2.3 is the
+    product definition of record (SCA-005 checkpoint 3, after the
+    checkpoint-2 ruling `D-PEC-92`). The owner's TM-PEC-023 selections are
+    applied in revision 1.5: every IN scope item and active deliverable maps
+    to an objective. Four deliverables are retired (DEL-06-04, DEL-07-02,
+    DEL-07-04, DEL-07-05) and two added (DEL-02-08, DEL-02-09). `D-PEC-93`
+    prepared the two new folders and applied the dependency rerun: 66
+    registers, 263 rows, strict validator 0 errors / 0 warnings; 111
+    execution edges over 66 nodes, 0 SCCs, 0 bidirectional pairs. Evidence:
+    `PROJECT_SETUP_SCA005_A4_B3_2026-09-25/HANDOFF_STATE.md` and the audit
+    `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`.
+    `D-PEC-95` (2026-09-25) re-pinned the remaining 42 contexts and 64 reference
+    packets to revision 1.5 and refreshed 19 stale dependency evidence
+    quotes. The SCA-005 snapshot's `Handoff_State.md` (SHA-256
+    `a86ae910d0c9ae7bf20a7ebb47de3edb345d1a6067cb1988fc04d5c1d213328a`) and
+    `RUN_SUMMARY.md` (SHA-256
+    `e9a0224ec0152bba75c78b84e2c9abe7a5996014eec602b46de4fe3153c1e518`)
+    stay byte-identical; for current state they are superseded by this
+    item and the two `_LATEST.md` pointers.
+    This item supersedes the present-tense statements of items 12 and 13
+    (revision 1.4 as `current_basis`, TM-PEC-023 held for a mapping
+    session, and the two-category derivative state). Remaining
+    downstream work is planned in
+    `WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. No
+    source, lifecycle, release, or reliance act is inferred.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
@@ -180,6 +208,6 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.4 is `current_basis` since
-  SCA-004, with topology and execution-dependency bytes preserved) and are never a
-  substitute for decomposition truth.
+  (revision 1.1 at seeding; revision 1.5 is `current_basis` since
+  SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and
+  added register rows) and are never a substitute for decomposition truth.

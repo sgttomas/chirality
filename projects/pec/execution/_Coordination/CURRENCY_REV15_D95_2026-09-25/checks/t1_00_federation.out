@@ -1,0 +1,9 @@
+taskmgmt federation COMPLETE: 4 register(s), 28 finding(s), 0 presented -> projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/t1_federation_projection.json
+  coverage: COMPLETE; register_writes: 0
+  ROOT: OPEN=10 DEFERRED=8 ELEVATED=0 CLOSED=0; archived=109
+  APP: OPEN=7 DEFERRED=14 ELEVATED=0 CLOSED=0; archived=34
+  PIP: OPEN=7 DEFERRED=32 ELEVATED=0 CLOSED=1; archived=12
+  PEC: OPEN=9 DEFERRED=1 ELEVATED=0 CLOSED=0; archived=15
+  REMOTE_CLOSED_LOCAL_OPEN: 1
+  LOCAL_CLOSED_REMOTE_OPEN: 22
+  MISSING_NOTICE: 5

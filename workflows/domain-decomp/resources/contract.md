@@ -1,5 +1,23 @@
 # domain-decomp — contract
 
+## Precedence (conflict resolution)
+
+This package follows the precedence order required by
+`docs/DECOMPOSITION_STANDARD.md`:
+
+1. **PROTOCOL** — [method](method.md#method) governs sequencing and interaction
+   rules.
+2. **SPEC** — [Validity](#validity) governs pass/fail requirements.
+3. **STRUCTURE** — [Artifacts and schemas](#artifacts-and-schemas) defines the
+   allowed entities, relationships, and required sections.
+4. **RATIONALE** — the standard's RATIONALE governs interpretation when
+   ambiguity remains.
+
+If any instruction appears to conflict, do not silently reconcile. Surface the
+conflict as a contradiction and request the human's resolution.
+
+---
+
 ## Non-negotiable invariants
 
 - **Human-validated domain.** Before atomization, the agent presents one

@@ -139,3 +139,16 @@ def test_cli_arbitrary_cwd_and_source_protection(tmp_path):
     assert json.loads(output.read_text())["subject_status"] == "FAIL"
     blocked = subprocess.run([sys.executable, str(script), "--root", str(root), "--output", str(source)], capture_output=True)
     assert blocked.returncode == 2 and source.read_bytes() == before
+
+
+def test_inventory_scans_all_lifecycle_folders(tmp_path):
+    from audit_common import inventory
+    register(tmp_path, 1, [row()])
+    for folder, number in (("2_Checking", 2), ("3_Issued", 3), ("0_References", 4)):
+        (tmp_path / f"PKG-01_A/{folder}/DEL-01-{number:02d}_Item").mkdir(parents=True)
+    (tmp_path / "PKG-01_A/1_Working/_Archive/DEL-01-05_Old").mkdir(parents=True)
+    found = [path.relative_to(tmp_path).as_posix() for path in inventory(tmp_path)]
+    assert found == ["PKG-01_A/1_Working/DEL-01-01_Item", "PKG-01_A/2_Checking/DEL-01-02_Item", "PKG-01_A/3_Issued/DEL-01-03_Item"]
+    result = dependencies(tmp_path)
+    assert result["summary"]["production_units"] == 3
+    assert sum("missing register" in issue for issue in result["issues"]) == 2

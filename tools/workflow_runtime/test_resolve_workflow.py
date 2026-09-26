@@ -176,3 +176,31 @@ def test_catalog_identity_is_recorded_and_controls_qualification(root):
     second_basis=next(item for item in second['configuration_basis'] if item['path']=='workflows/catalog.yaml')
     assert first_basis['sha256'] != second_basis['sha256']
     assert second['methods'][0]['sourceRootId']=='fixture-bundle-v2'
+
+
+def test_legacy_agent_routes_retired_workflow_to_recorded_successor(root):
+    (root/'workflows/legacy-agents.json').write_text(json.dumps({'schema_version':1,'aliases':{
+        'LIVE':{'role':'TASK','workflow':'example'},
+        'RETIRED':{'role':'TASK','workflow':'removed','canonical_successor':{'kind':'skill','name':'converted-skill'}},
+        'ORPHANED':{'role':'TASK','workflow':'removed'},
+    }}))
+    live=resolve(root,'TASK',legacy_agent='LIVE',policy=policy())
+    assert live['methods'][0]['kind']=='workflow' and live['methods'][0]['name']=='example'
+    retired=resolve(root,'TASK',legacy_agent='RETIRED')
+    assert [(m['kind'],m['name']) for m in retired['methods']]==[('skill','converted-skill')]
+    assert retired['method_selection']['mapping_decisions'][-1]=={
+        'field':'legacyAgent','original':'RETIRED','historicalWorkflow':'removed',
+        'mapping':'retired-workflow-successor','resolved':retired['methods'][0]}
+    with pytest.raises(ValueError, match='retired without a canonical successor'):
+        resolve(root,'TASK',legacy_agent='ORPHANED')
+    same=resolve(root,'TASK',legacy_agent='RETIRED',task_skill='converted-skill')
+    assert [(m['kind'],m['name']) for m in same['methods']]==[('skill','converted-skill')]
+    (root/'.agents/skills/other-skill').mkdir()
+    (root/'.agents/skills/other-skill/SKILL.md').write_text('other skill')
+    legacy=json.loads((root/'workflows/legacy-methods.json').read_text())
+    legacy['convertedWorkflowAliases']['other-skill']={'kind':'skill','name':'other-skill'}
+    (root/'workflows/legacy-methods.json').write_text(json.dumps(legacy))
+    with pytest.raises(ValueError, match='conflicting Workflow/TaskSkill'):
+        resolve(root,'TASK',legacy_agent='RETIRED',task_skill='other-skill')
+    ordered=resolve(root,'TASK',legacy_agent='RETIRED',methods=['fixture-bundle:bundled:skill:other-skill'])
+    assert [m['name'] for m in ordered['methods']]==['other-skill','converted-skill']

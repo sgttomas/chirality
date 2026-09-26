@@ -19,7 +19,7 @@ Comprehensiveness invariant: the set of `KA-*.md` files in a KTY is expected to 
 - **Knowledge Artifact (`KA-*`)** = the document-layer file materialized from exactly one Knowledge Subject
 - `Scoping.md` = the Knowledge-Type-level entrypoint that records the `SubjectID -> ArtifactID -> Filename` mapping; it is not itself a Knowledge Subject
 
-**DOMAIN pipeline only.** This workflow is NOT called by PROJECT or SOFTWARE variants. The DOMAIN pipeline chain is `TASK (workflow: preparation) → TASK+domain-documents → WORKING_ITEMS` (no `semantic-matrix-build`, no `lens-register`, no `four-documents`). The quality gate is **source fidelity** (does the extraction faithfully represent the authoritative source?), not semantic enrichment.
+**DOMAIN pipeline only.** This workflow is NOT called by PROJECT or SOFTWARE variants. The DOMAIN pipeline chain is `TASK (skill: preparation) → TASK+domain-documents → WORKING_ITEMS` (no `semantic-matrix-build`, no `lens-register`, no `four-documents`). The quality gate is **source fidelity** (does the extraction faithfully represent the authoritative source?), not semantic enrichment.
 
 ### Relationship to the HBA / atomic-ledger layer (runtime-use framing)
 
@@ -468,7 +468,7 @@ See `resources/checks.md` for the full invariant set. Summary:
 
 - `workflows/project-setup/WORKFLOW.md` — dispatches this workflow via TASK during Phase 2.2 (DOMAIN variant)
 - `workflows/domain-decomp/WORKFLOW.md` — DOMAIN decomposition (upstream; produces KnowledgeSubjects)
-- `workflows/preparation/WORKFLOW.md` — creates Knowledge Type folders this workflow populates
+- `.agents/skills/preparation/SKILL.md` — creates Knowledge Type folders this workflow populates
 - `workflows/four-documents/` — PROJECT/SOFTWARE counterpart (fixed 4-doc kit)
 - `tools/EXTERNAL_TOOLS.md` — DOMAIN pipeline overview
 - `.Archive/SEMANTIC_PIPELINE_ARCHITECTURE.md` — pipeline architecture context

@@ -25,7 +25,11 @@ The project hierarchy is flat: **packages contain deliverables**. There are no p
 
 A **package** is a flat partition of project scope. Packages do not nest.
 
-- Every scope item belongs to exactly one package (no overlaps, no gaps).
+- Every scope item, whether IN, OUT or TBD, belongs to exactly one package
+  (no overlaps, no gaps). The package is the item's accountable home. IN
+  scope items also map to their deliverables (or `TBD`); OUT and TBD items
+  keep their package home and source reference for traceability and need no
+  deliverable mapping (D-GOV-48, superseding D-GOV-47 item 1).
 - Packages are proposed through `project-decomp` and confirmed by the human.
 
 ### 1.2 Deliverable
@@ -354,7 +358,7 @@ The project decomposition document (produced through `project-decomp`) defines t
 | **Scope Item** | `SOW-NNN` | Atomic, testable scope statement from the Structured Scope of Work |
 | **Objective** | `OBJ-NNN` | Success criterion derived from scope; mapped to supporting deliverables |
 | **Vocabulary Map** | (table) | Canonical terms and synonyms to prevent semantic drift |
-| **Scope Ledger** | (table) | Machine-checkable mapping of every scope item to packages and deliverables |
+| **Scope Ledger** | (table) | Machine-checkable record of every scope item with its status, source reference and package, mapping each IN item to its deliverables |
 | **Coverage & Telemetry** | (summary) | Metrics (counts, gaps, open issues) that make decomposition quality measurable |
 
 ### 8.2 Domain Decomposition Entities

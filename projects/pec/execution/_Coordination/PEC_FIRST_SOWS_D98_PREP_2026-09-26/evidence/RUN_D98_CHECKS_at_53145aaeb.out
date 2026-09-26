@@ -1,0 +1,78 @@
+# D-PEC-98 preparation checks
+python: Python 3.13.7
+scratch clone HEAD: 53145aaebb23b617e7ba1d2c626a6218d2be9176
+## pre-candidate checks
+receipts pre exit=0
+harness pre exit=0
+strict pre exit=1
+strict pre summary:  WARNING XRG-013 26 OUT or TBD ledger item has no PackageID  |  ERROR findings: 0  WARNING findings: 26 
+## containment
+ A projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+ A projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+## whitespace
+diff --check exit=0
+## scope-of-work tools (mechanical method checks)
+PASS format=SOW_V1 target=projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser
+DEL-02-08 validate exit=0
+DEL-02-08 checklist exit=0
+DEL-02-08 checklist rerun byte-identical
+DEL-02-08 checklist items: 21
+DEL-02-08 boundary exit=0 Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 3 | boundary requirements citing no claim: 0 | contracts failing: 0
+DEL-02-08 _STATUS.md blob unchanged: yes
+PASS format=SOW_V1 target=projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser
+DEL-02-09 validate exit=0
+DEL-02-09 checklist exit=0
+DEL-02-09 checklist rerun byte-identical
+DEL-02-09 checklist items: 17
+DEL-02-09 boundary exit=0 Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 3 | boundary requirements citing no claim: 0 | contracts failing: 0
+DEL-02-09 _STATUS.md blob unchanged: yes
+## quote fidelity (two-sided)
+verify_d98_quotes exit=0 RESULT PASS 69/69
+## commit-anchored state claims
+verify_d98_state_claims exit=0 RESULT PASS 44/44
+## post-candidate checks
+receipts post exit=0
+receipts output identical
+harness post exit=0
+harness output identical
+strict post exit=1
+strict output identical
+## reliance-hold preflight (exact-correction-preparation)
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/MEMORY.md
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+ exit=0 execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/MEMORY.md
+## add-on S prototype (write_status.sh at clone HEAD)
+write_status.sh sha256: 1857ad5933edad290f479955df167cb05561476a7052f550e8a7f0043f2d97bc
+DEL-02-08_Work_graph_parser write_status exit=0 postimage=4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe
+DEL-02-09_MEMORY_run_index_parser write_status exit=0 postimage=e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056
+ .../1_Working/DEL-02-08_Work_graph_parser/_STATUS.md                 | 5 +++--
+ .../1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md           | 5 +++--
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+## bound act prototype on a fresh copy of the base export
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+CHECK write set = grant (2 creates, 0 modifies, 0 removes); nothing written
+check-only exit=0
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+CHECK targets 2/2 byte-exact; write set = grant (2 created, 0 modified, 0 removed under projects/pec); pinned 8/8 unchanged
+apply exit=0
+FAIL target or temporary already exists: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+FAIL target or temporary already exists: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+preflight failed; nothing written
+second run exit=1 (expected 1)
+Only in <applied>/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser: ScopeOfWork.md
+Only in <applied>/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser: ScopeOfWork.md
+## act-script fault injection
+test_apply_d98 exit=0 RESULT PASS 5/5

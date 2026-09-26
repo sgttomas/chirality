@@ -19,7 +19,7 @@ This file enumerates the mandatory invariants and local quality checks that must
 13. **Information flow only.** Do not create edges that are merely "coordination" or "structural adjacency."
 14. **Architecture-basis consistency.** When `ARCHITECTURE_BASIS_POLICY=PKG00_CONSISTENCY_TRACKERS`, supported `DEL-00-*` rows are valid consistency dependencies; do not retire them merely because they point to PKG-00.
 
-## Mandatory local quality checks (from PROTOCOL Function 5)
+## Mandatory local quality checks (WORKFLOW.md Function 5)
 
 ### Schema validation
 
@@ -36,13 +36,15 @@ This file enumerates the mandatory invariants and local quality checks that must
 
 ### ID format validation
 
-- Validate all ID fields: `tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `tools/validation/validate_id_format.sh PKG {FromPackageID}`, etc.
+- Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
+- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/SPEC.md` §6.8, e.g. `DEP-01-01-001`) and its prefix agrees with `FromDeliverableID`.
 
 ### Evidence & provenance checks
 
 - ACTIVE rows contain `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
 - `_DEPENDENCIES.md` counts do not contradict `Dependencies.csv`.
 - Obvious duplicate extracted rows are merged or explicitly justified in `Notes`.
+- Optional (when the brief permits reading the execution root): `python3 tools/validation/validate_decomposition_registers.py {EXECUTION_ROOT} --families EVQ,DRB`. It reports a blank `EvidenceQuote` as `EVQ-003`, a placeholder `SourceRef` such as `location TBD` as `EVQ-004`, and a `DependencyID` prefix that disagrees with `FromDeliverableID` as `DRB-006`. `location TBD` satisfies invariant 1 for this run but remains an `EVQ-004` finding; record in-scope findings in Run Notes and never invent a quote or locus to clear them.
 
 ### Tree x DAG integrity checks
 
@@ -51,7 +53,7 @@ This file enumerates the mandatory invariants and local quality checks that must
   - If count == 0: add `[WARNING] FLOATING_NODE: No parent anchor (IMPLEMENTS_NODE) found.` to Run Notes.
   - If count > 1: add `[WARNING] AMBIGUOUS_ANCHOR: Multiple parent anchors found.` to Run Notes.
 
-## Validity requirements (from source agent SPEC)
+## Validity requirements
 
 A `dependency-extract` run is valid when all of the following hold:
 

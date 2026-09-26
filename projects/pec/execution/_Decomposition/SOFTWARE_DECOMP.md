@@ -2,14 +2,14 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: current_basis
-revision: "1.5"
-date: 2026-09-25
-accepted: 2026-09-25 (original Gate 7 owner ruling under D-PEC-60; revision 1.5 successor accepted through SCA-005 under the owner's checkpoint-group-3 audited-poststate acceptance)
+status: candidate_pending_checkpoint_3
+revision: "1.6"
+date: 2026-09-26
+accepted: not yet accepted — revision 1.6 applied during SCA-006 checkpoint-3 preparation; revision 1.5 (accepted 2026-09-25) remains the accepted basis until the owner's checkpoint-3 acceptance
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
-session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, by SCA-002 under D-PEC-64, by SCA-003 under the owner's 2026-07-28 standing completion approval, by SCA-004 under D-PEC-78 and the owner's 2026-08-03 Gate 5 post-change confirmation, then by SCA-005 under D-PEC-86 and the owner's SCA-005 checkpoint acceptances
-source_corpus: projects/pec/docs/PRD.md (v2.3; v2.0 adopted by D-PEC-58, directed-bootstrap clarification adopted by D-PEC-61, exact PEC-K-03/-11 rows adopted by D-PEC-67, surrounding consumer-interface concordance adopted by D-PEC-68, v2.3 successor accepted through SCA-005 carrying the D-PEC-79 §16.3 loop-registry concordance with the SCA-005 feed-model and Runtime-topology concordance)
+session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, by SCA-002 under D-PEC-64, by SCA-003 under the owner's 2026-07-28 standing completion approval, by SCA-004 under D-PEC-78 and the owner's 2026-08-03 Gate 5 post-change confirmation, by SCA-005 under D-PEC-86 and the owner's SCA-005 checkpoint acceptances, then by SCA-006 under D-PEC-90 R-A and the owner's SCA-006 checkpoint acceptances
+source_corpus: projects/pec/docs/PRD.md (v2.4; v2.0 adopted by D-PEC-58, directed-bootstrap clarification adopted by D-PEC-61, exact PEC-K-03/-11 rows adopted by D-PEC-67, surrounding consumer-interface concordance adopted by D-PEC-68, v2.3 successor accepted through SCA-005 carrying the D-PEC-79 §16.3 loop-registry concordance with the SCA-005 feed-model and Runtime-topology concordance, the v2.4 successor accepted through SCA-006 carrying the D-PEC-90 operational-reliance direction)
 ---
 
 # PEC v2 Coordination Plane — Software Development Decomposition
@@ -42,15 +42,15 @@ source_corpus: projects/pec/docs/PRD.md (v2.3; v2.0 adopted by D-PEC-58, directe
 
 ### 1.2 Intake summary
 
-The work is a greenfield software build of the product defined by PRD v2.2:
+The work is a greenfield software build of the product defined by PRD v2.4:
 a deterministic, rebuildable projection of governed file truth (**record
 tier**) plus an ephemeral presence layer (**presence tier**), embodying loop
 Step 0 (Discover) and the deterministic parts of Step 1 (gate review,
 decision-slate presentation). It is available to explicitly PEC-enabled
-consumers, including harnesses acting on behalf of agents, and to the human
-owner through dashboards. It must remain "the coordination plane that
-doesn't need to exist": deletable at any moment without blocking any governed
-act.
+consumers, including harnesses acting on behalf of agents and agents
+querying directly through tool calls, and to the human owner through
+dashboards. It must remain "the coordination plane that doesn't need to
+exist": deletable at any moment without blocking any governed act.
 
 The scope to decompose comprises, per the PRD:
 
@@ -66,9 +66,11 @@ The scope to decompose comprises, per the PRD:
   as a parity-peer input; incremental on Git delta; drift-classifying; never
   writing sources; permanently parity-diffable against the practitioner
   harness.
-- **Orientation** (PEC-ORI-001..006): per-loop orientation serves and deltas
+- **Orientation** (PEC-ORI-001..007): per-loop orientation serves and deltas
   since a caller SHA, scope-parameterized per the modes ladder, every claim
-  cited, every response SHA-stamped, measurement limits stated explicitly.
+  cited, every response SHA-stamped, measurement limits stated explicitly,
+  and every response declaring its reliance envelope (pin, coverage, trust
+  tier, file-fallback signal).
 - **Gate evaluation and decision slate** (PEC-GAT-001..004): deterministic,
   advisory, Explain-shaped evaluation of file/Git-reducible gate
   preconditions; a cross-loop decision slate that links to authored files
@@ -81,9 +83,12 @@ The scope to decompose comprises, per the PRD:
   ingest; versioned event contracts (home is an open §16 placement
   decision); the hooks CLI bridge, with the daemon SSE and cmux bridges
   deferred; stream loss always recovered by reconciliation.
-- **API** (PEC-API-001..005): local-only Unix-socket service, token-scoped;
+- **API** (PEC-API-001..007): local-only Unix-socket service, token-scoped;
   ≤100 ms p95 orientation reads; versioned additive schema; compact
-  citation-bearing responses; SSE delta/presence subscription.
+  citation-bearing responses; SSE delta/presence subscription; declared
+  response-size budgets met by pagination or continuation, with stated
+  truncation; a read-only query interface for agent tool calls under the
+  `agent` access class.
 - **Dashboards** (PEC-DSH-001..007): overview per loop, lifecycle census,
   read-only link-only register views, the aggregated "waiting on you"
   slate, presence board, universal drill-down to cited sources,
@@ -94,17 +99,19 @@ The scope to decompose comprises, per the PRD:
   minimalism; self-observable reconcile/ingest logging.
 - **Validation obligations carried by the PRD** (§11–§12): the pre-P1
   Step-0 cost baseline measurement, the permanent harness parity diff, the
-  standing kill test, the P1–P4 exit tests, and directed full-DAG
-  self-bootstrap validation for PEC's own build. (P0 governance is complete
-  and is not scope for this decomposition.)
+  standing kill test, the P1–P4 exit tests, the standing
+  reliance-advertisement gate for any release that advertises
+  operational reliance, and directed full-DAG self-bootstrap validation
+  for PEC's own build. (P0 governance is complete and is not scope for
+  this decomposition.)
 
 **Anticipated build shape (for sizing, not yet a package proposal):** the
 PRD's release strategy sequences P1 (one-loop reconciler + orientation
 store + read-only API for PEC's own build graph) → P2 (dashboards, the
 loops the registry lists, owner-use/non-use observation) → P3 (opt-in
-PEC-side consumer interfaces/adapters, presence registry, Git/worktree
-scanner) → P4 (PEC-side streams and optional hook-push interfaces). Live
-P3/P4 use requires separate
+PEC-side consumer interfaces/adapters, the agent tool-call query surface,
+presence registry, Git/worktree scanner) → P4 (PEC-side streams and
+optional hook-push interfaces). Live P3/P4 use requires separate
 receiving-consumer authority. Per the method's anti-pattern rule, **phases
 will not become packages**; packages will be work domains, and phase
 membership will be carried as deliverable metadata/sequencing hints.
@@ -115,7 +122,7 @@ membership will be carried as deliverable metadata/sequencing hints.
 |---|---|---|
 | C1 | Graceful absence: no governed act may require PEC; kill test is a standing release gate | PEC-K-01, PEC-SVC-004 |
 | C2 | Files govern: record tier rebuildable by one command; store gitignored, safe to delete; output never citable as authority; rulings file-native | PEC-K-02, D-GOV-01, K-AUTH-1 |
-| C3 | Pull-oriented, consumer-owned use: PEC serves labeled, non-authoritative orientation on request; it never self-polls, schedules a consumer, injects into an agent, or claims an external cadence; an explicitly enabled consumer decides whether and when to consume, and any injection is optional and verify-before-rely | PEC-K-03, D-PEC-67, D-PEC-68 |
+| C3 | Pull-oriented, consumer-owned use: PEC serves labeled, non-authoritative orientation on request (non-authoritative in the authority sense: never citable as authority); it never self-polls, schedules a consumer, injects into an agent, or claims an external cadence; an explicitly enabled consumer decides whether and when to consume and any injection is optional; a consumer may act on a record-tier claim within the pin, coverage and tier the response declares, with file fallback (operational reliance, PEC-ORI-007), only from a release that has passed the §12 reliance-advertisement gate | PEC-K-03, D-PEC-67, D-PEC-68, D-PEC-90 |
 | C4 | Two trust tiers never blurred; presence facts never in record-tier citations | PEC-K-05, PEC-PRS-007 |
 | C5 | Observation not participation: no dispatch, leases, arbitration, merge opinions; read-only over Git | PEC-K-06, D-GOV-43 A2 |
 | C6 | Content-minimal: paths, counts, SHAs, states, hashes — never file or diff content; enforced at ingest | PEC-K-10, PEC-SVC-005, D-T0-14/20 |
@@ -153,12 +160,12 @@ membership will be carried as deliverable metadata/sequencing hints.
 
 | Ref | Path | Role |
 |---|---|---|
-| R1 | `projects/pec/docs/PRD.md` (v2.3; lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`, with the `D-PEC-79` §16.3 concordance carried into the v2.3 successor accepted through SCA-005) | Source corpus |
+| R1 | `projects/pec/docs/PRD.md` (v2.4; lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`, with the `D-PEC-79` §16.3 concordance carried into the v2.3 successor accepted through SCA-005 and the `D-PEC-90` operational-reliance direction carried into the v2.4 successor accepted through SCA-006) | Source corpus |
 | R2 | `docs/DECOMPOSITION_STANDARD.md` | Ratified 7-gate protocol |
 | R3 | `agents/AGENT_SOFTWARE_DECOMP.md` | Conforming method (software variant) |
 | R4 | `projects/pec/plans/workplans/WORKPLAN_2026-07-24_pec_coordination_plane.md` | Retired history (D-PEC-80 D): the former standing plan; D1 authorization context |
 | R5 | `projects/pec/AGENTS.md` | Project agent posture, fences, write scopes |
-| R6 | `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57..68` | Pivot, adoption, decomposition, directed bootstrap, exact consumer rows, and v2.2 concordance |
+| R6 | `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57..68`, `D-PEC-90` | Pivot, adoption, decomposition, directed bootstrap, exact consumer rows, v2.2 concordance, and operational reliance on PEC data (`D-PEC-90` R-A) |
 | R7 | `tools/practitioner_harness/README.md` | Permanent parity peer |
 | R8 | `projects/pec/{core,server,web,agent-sidecar,tools}` | Frozen reference corpus (cite-only) |
 | R9 | Root `AGENTS.md`; `docs/SOFTWARE_WORKFLOW_PROFILE.md` | Runtime doctrine; downstream execution profile |
@@ -175,7 +182,8 @@ repeated as scope items unless they also require built or verified behavior
 (DL-7/DL-8). SOW-084..092 were appended during the Phase 2 adversarial
 verification and SOW-093..094 during the Phase 6 verification (DL-14);
 SOW-095..096 were appended under SCA-005 from the PRD v2.3 feed list
-(DL-20). IDs are append-only, so family ordering is not semantic.
+(DL-20), and SOW-097..100 under SCA-006 from PRD v2.4 (DL-21). IDs are
+append-only, so family ordering is not semantic.
 
 ### 2.1 IN-scope items
 
@@ -183,7 +191,7 @@ SOW-095..096 were appended under SCA-005 from the PRD v2.3 feed list
 |---|---|---|---|---|
 | SOW-001 | IN | Implement the record-tier entity model: Loop, Workplan/Step/Gate (declared historical-grammar entity; gate state re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes), Receipt (ledger entries and central `RECEIPT.md`), DecisionRow, Fence, Package/Deliverable, DependencyEdge, RunRecord (from central receipts, work graphs and the MEMORY run index; JSON run evidence historical), CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph/WorkNode | §7.1 | Receipt field availability is per-loop (PEC-ORI-006 limits apply); "remaining items" is a per-loop optional field, not a required one |
 | SOW-002 | IN | Implement the presence-tier entity model: Session, Worktree/GitRef, PresenceRecord, HierarchyEdge, ScopeClaim | §7.2 | Operational only; never citable (C4) |
-| SOW-003 | IN | Implement token-scoped access with three access classes: owner, harness, admin | §8 | v1.0/prototype role ontologies retired |
+| SOW-003 | IN | Implement token-scoped access with four access classes: owner, harness, agent (read-only query for tool calls), admin | §8 | v1.0/prototype role ontologies retired |
 | SOW-004 | IN | Serve per-loop orientation: newest applicable receipt over central receipts and ledgers, examined-through SHA, gate states from decisions, scope-change state and graph BLOCKED nodes, owner directions of record, open tranches/candidate briefs and parked lanes over graph READY/ACTIVE/BLOCKED nodes, each parked lane with its unparking owner action; terminal completion derived from local Git merge reachability of cited PRs, Explain-cited and advisory | PEC-ORI-001 | |
 | SOW-005 | IN | Serve deltas since a caller-supplied commit SHA | PEC-ORI-002 | |
 | SOW-006 | IN | Stamp every orientation response with examined-through SHA, generation time, and per-feed freshness | PEC-ORI-003 | Carries PEC-K-04 |
@@ -237,7 +245,7 @@ SOW-095..096 were appended under SCA-005 from the PRD v2.3 feed list
 | SOW-057 | IN | Log PEC's own reconcile runs and ingest activity, inspectable (self-observability) | PEC-SVC-006 | |
 | SOW-058 | IN | Measure the Step-0 cost baseline (LLM tokens per loop-iteration orientation) before P1 begins; this re-tests the harness query-pain precondition recorded unmet 2026-07-02 | §11.1, §2 | Sequencing obligation, pre-P1; baselines SOW-004/041 |
 | SOW-059 | IN | Provide the orientation defect-rate measurement: claims failing source spot-check per 100 claims | §11.2 | Method + any needed instrumentation; measures SOW-007 |
-| SOW-060 | IN | Measure consumer uptake: candidate-consumer enablement and, among enabled consumers, orientation use against contact opportunities defined by their own adopted mode/cadence rules | §11.4, §12 P3 | Measures uptake of SOW-004; no receiving-loop conformance criterion; supports the §11 falsification clause together with SOW-085 |
+| SOW-060 | IN | Measure consumer uptake: candidate-consumer enablement (registered loops, harnesses and enabled agent tool-call surfaces) and, among enabled consumers, orientation use against contact opportunities defined by their own adopted mode/cadence rules | §11.4, §12 P3 | Measures uptake of SOW-004; no receiving-loop conformance criterion; supports the §11 falsification clause together with SOW-085 |
 | SOW-061 | IN | Verify overlap warnings fire on seeded conflicts (P3 exit test) | §12 P3 | Tests SOW-031 |
 | SOW-062 | IN | Verify presence TTL honesty under kill/crash tests (P4 exit test) | §12 P4 | Tests SOW-030 |
 | SOW-063 | IN | Demonstrate stream-loss recovery by reconciliation (P4 exit test) | §12 P4 | Tests SOW-038 |
@@ -251,6 +259,10 @@ SOW-095..096 were appended under SCA-005 from the PRD v2.3 feed list
 | SOW-094 | IN | Maintain the loop-registration configuration naming the loops PEC serves and each row's feed-profile selection (local config default) | §12 P2, PEC-DSH-002 | Local JSON configuration is the implementation basis for the long-term PEC-owned service registry confirmed by D-PEC-78; the core port keeps filesystem and JSON details replaceable. PEC's own `pec` row declares the `remaining-loop` profile now; its later migration is one owner-gated row change under its own ruling (D-PEC-86 I-7) |
 | SOW-095 | IN | Parse `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` content-minimally (declared run-identity token, node IDs, closed-vocabulary node states, DEL bindings, PR numbers, hex SHAs, linked paths, per-state counts), discovered per the loop's declared feed profile; read the integration ref by default, with local branch refs opt-in and labelled unintegrated; resolve cited PR numbers to local merge commits by read-only plumbing, reporting unresolved-locally and never guessing | PEC-RCN-002 (PRD v2.3), §7.1 WorkGraph/WorkNode | New feed kind under SCA-005 (DL-4, DL-20); node states are declared activity, never liveness; objectives per the DL-17 parser precedent |
 | SOW-096 | IN | Parse deliverable `MEMORY.md` run-index entries (run-ID tokens, dates, link targets) in the template `## Runs` table, the observed bullet form and the dated-heading form, as RunRecord join evidence | PEC-RCN-002 (PRD v2.3), §7.1 RunRecord | New feed kind under SCA-005 (DL-4, DL-20); absence is a stated coverage limit (SOW-009); objectives per the DL-17 parser precedent |
+| SOW-097 | IN | Declare the reliance envelope on every orientation response: pin (examined-through SHA), per-feed coverage and freshness with stated limitations, per-claim trust tier, and the file-fallback signal | PEC-ORI-007 | New under SCA-006 (D-PEC-90 R-A; ENV-a); distinct from SOW-006 stamping; an input to the reliance-advertisement gate (SOW-100) |
+| SOW-098 | IN | Bound responses by declared size budgets met by pagination or continuation; state any truncation; never drop citations, stamps or stated limitations | PEC-API-006 | New under SCA-006 (D-PEC-91 carry-forward; BUD-a); numeric budgets confirmed at P1; distinct from the latency budget (SOW-041) |
+| SOW-099 | IN | Offer a read-only query interface for agent tool calls over the versioned API under the agent access class; enabling it is consumer-owned | PEC-API-007, §8 | New under SCA-006 (D-PEC-90 owner answer; DQ-a); token mechanism OI-006; tier-0 profile amendment before any tool is declared or invoked; P3 |
+| SOW-100 | IN | Maintain the reliance-advertisement gate: before any release advertises operational reliance, prove harness parity clean or explained, complete coverage statements under seeded feed failures, the reliance envelope on every response, passing parser fixture suites and the kill test | §12, PEC-RCN-005, PEC-ORI-006, PEC-ORI-007 | Instrument (DL-6): distinct from the behaviours it tests (SOW-020, SOW-009, SOW-097, SOW-055); re-proved at each release that advertises operational reliance; the §12 P1 row is not edited (GATE-a) |
 
 ### 2.2 OUT-of-scope items
 
@@ -289,7 +301,7 @@ SOW-035, SOW-037 and SOW-087 moved here from §2.1 under SCA-005 (DL-20).
 | SOW-076 | TBD | Design and ownership of a global event feed observable by a non-owning reader (premise: no daemon exists; each application owns a private Runtime instance whose only SSE route is the per-session turn stream; no non-owning observation interface is documented) | §16.2 | Assessed (not PRD-stated): bears on the deferred SOW-035 bridge and trigger T-RT, not on record-tier correctness |
 | SOW-078 | TBD | Long-term placement: `projects/pec` vs root promotion | §16.4 | Explicitly deferred by the PRD |
 | SOW-079 | TBD | Whether the web UI folds into the desktop app or remains a standalone local page | §16.5 | Assessed (not PRD-stated): affects P2 packaging, not dashboard content |
-| SOW-080 | TBD | Auth reuse: which PEC-local token mechanism PEC uses (premise: Runtime token registries are private to each application's Runtime instance, and reuse of an App registry is foreclosed by the Runtime consumer guide) | §16.6 | Affects SOW-003 implementation choice |
+| SOW-080 | TBD | Auth reuse: which PEC-local token mechanism PEC uses, including credentials for the agent access class (premise: Runtime token registries are private to each application's Runtime instance, and reuse of an App registry is foreclosed by the Runtime consumer guide) | §16.6 | Affects SOW-003 implementation choice |
 | SOW-081 | TBD | Whether "PEC" is re-expanded or kept as a legacy name | §16.7 | Naming only |
 | SOW-082 | TBD | Whether the Root, Runtime and Bridge ledgers adopt a receipt contract (premise: App, Piping and PEC ledgers carry receipt-contract-v2; App/Piping ledgers are historical and their new receipts are central `RECEIPT.md`) | §16.8 | Affects SOW-013 per-loop grammar coverage |
 | SOW-083 | TBD | Event-contract home (shared Runtime contracts at `projects/chirality-runtime/packages/contracts` vs PEC-local schema + pinned mirror) and API transport (Unix socket only vs additional loopback listener; transport posture per D-GOV-43 A2) | §16.9 | Fenced: PEC builds local-first either way (SOW-034/040) |
@@ -327,13 +339,13 @@ parity keeping the falsification clause honest.
 Derived from PRD §3 (product outcomes, one objective each) and §11
 (measurement/falsification posture, one objective). No objective is
 invented beyond those sources. Each is testable through the mapped scope
-items; the §11/§12 measurement items (SOW-058..063, 084, 085) are the
-test instruments.
+items; the §11/§12 measurement items (SOW-058..063, 084, 085) and the §12
+reliance-advertisement gate (SOW-100) are the test instruments.
 
 | ObjectiveID | Statement | SourceRef | Mapped Scope Items | MappedDeliverables |
 |---|---|---|---|---|
-| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095, SOW-096; instruments: SOW-058, SOW-059, SOW-063 | DEL-00-03, DEL-01-01, DEL-02-01..09, DEL-03-05, DEL-04-01..05, DEL-08-01..05, DEL-10-01, DEL-10-04, DEL-10-08 |
-| OBJ-002 | Staleness is detected structurally by SHA comparison, never by judgment | §3.2 | SOW-001, SOW-006, SOW-011..019, SOW-095, SOW-096; supported by SOW-005 | DEL-01-01, DEL-02-01..09, DEL-03-02, DEL-03-03, DEL-04-02, DEL-04-03 |
+| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095..099; instruments: SOW-058, SOW-059, SOW-063, SOW-100 | DEL-00-03, DEL-01-01, DEL-02-01..09, DEL-03-05, DEL-04-01..05, DEL-08-01..06, DEL-10-01, DEL-10-04, DEL-10-08, DEL-10-13 |
+| OBJ-002 | Staleness is detected structurally by SHA comparison, never by judgment | §3.2 | SOW-001, SOW-006, SOW-011..019, SOW-095..097; supported by SOW-005 | DEL-01-01, DEL-02-01..09, DEL-03-02, DEL-03-03, DEL-04-02, DEL-04-03 |
 | OBJ-003 | Concurrent sessions have a declared, durable surface for presence and status; write-scope collisions are surfaced before they land in Git | §3.3 | SOW-002, SOW-026..028, SOW-030..034, SOW-036, SOW-039, SOW-044, SOW-049; instruments: SOW-061, SOW-062, SOW-084 | DEL-00-02, DEL-01-02, DEL-06-01..03, DEL-06-05, DEL-06-06, DEL-07-01, DEL-07-03, DEL-08-05, DEL-09-05, DEL-10-06, DEL-10-07, DEL-10-09 |
 | OBJ-004 | The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where | §3.4 | SOW-022..024, SOW-045..051, SOW-077, SOW-094; instrument: SOW-085 | DEL-01-06, DEL-05-01, DEL-05-02, DEL-09-01..07, DEL-10-05 |
 | OBJ-005 | Everything PEC holds can be deleted at any moment without blocking any governed act | §3.5 | SOW-010, SOW-021, SOW-025, SOW-052..056, SOW-088; bound by C1/C2 across all items | DEL-00-01, DEL-01-03, DEL-01-05, DEL-03-01, DEL-03-06, DEL-10-02, DEL-10-03 |
@@ -379,17 +391,17 @@ package.
 | PKG-01 | Service Core & Store | The zero-dependency service foundation: record- and presence-tier entity schemas, the gitignored store with ingest-boundary content-minimal enforcement, locality/no-egress posture, self-observability logging, loop-registration config | SOW-001, 002, 052, 053, 056, 057, 077, 094 (8) | Parsing, derivation, serving — other packages |
 | PKG-02 | File-Truth Parsers | Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input | SOW-011..017, 095, 096 (9) | Writing anything; interpretation beyond declared grammars |
 | PKG-03 | Reconciliation & Parity | The guaranteed path from file truth to record tier: one-command rebuild, incremental Git-delta reconcile, drift classification, harness parity diffing, stream-loss recovery guarantee, store-only writes, rebuild performance bounds | SOW-010, 018, 019, 020, 021, 038, 054 (7) | Stream ingest mechanics (PKG-07); parsers (PKG-02) |
-| PKG-04 | Orientation Services | Derivation and serving of orientation: per-loop returns, deltas since SHA, SHA/freshness stamping, per-claim citations, scope parameterization, explicit measurement limits | SOW-004..009 (6) | Transport (PKG-08); rendering (PKG-09) |
+| PKG-04 | Orientation Services | Derivation and serving of orientation: per-loop returns, deltas since SHA, SHA/freshness stamping, per-claim citations, scope parameterization, explicit measurement limits, and the reliance envelope | SOW-004..009, 097 (7) | Transport (PKG-08); rendering (PKG-09) |
 | PKG-05 | Gate Evaluation & Decision Slate | Deterministic advisory evaluation of file/Git-reducible gate preconditions; Explain-shaped verdicts; the cross-loop decision slate | SOW-022, 023, 024 (3) | Any ruling write path (SOW-066, permanent OUT) |
 | PKG-06 | Presence & Git Observation | The presence tier's producers: harness-reported session records, Git/worktree scanning, session×worktree×scope correlation, TTL/heartbeat discipline, advisory overlap detection, citation-exclusion enforcement | SOW-026..028, 030..032 (6) | Session lifecycle ownership (the per-application Runtime's, C13); live hierarchy edges (SOW-029, deferred) |
 | PKG-07 | Event Ingest & Bridges | Best-effort freshness inputs: idempotent append-only event ingest, the hooks CLI bridge and the durable message store — implementing the PKG-00 event contracts. The daemon SSE bridge and the shared-runtime client seam are deferred (trigger T-RT) and the cmux adapter is deferred (later owner direction) | SOW-033, 036, 039 (3) | Record-tier fact creation (PKG-03 guarantee); contract definition (PKG-00); writes into `projects/chirality-runtime/**` (SOW-074, deferred) |
-| PKG-08 | API & Access | The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription | SOW-003, 040..044 (6) | Dashboard rendering (PKG-09) |
+| PKG-08 | API & Access | The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription, response-size budgets, and the agent tool-call query surface | SOW-003, 040..044, 098, 099 (8) | Dashboard rendering (PKG-09) |
 | PKG-09 | Dashboards | The human-owner surface: overview, lifecycle census, register views, decision slate view, presence board, universal drill-down, documented pressure rules | SOW-045..051 (7) | New data classes; restating authored text (C6) |
-| PKG-10 | Validation & Measurement | Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision/parity measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, directed bootstrap progression evidence | SOW-025, 055, 058..064, 084, 085, 093 (12) | The behaviors under test (their home packages) |
+| PKG-10 | Validation & Measurement | Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision/parity measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, directed bootstrap progression evidence, and the reliance-advertisement gate | SOW-025, 055, 058..064, 084, 085, 093, 100 (13) | The behaviors under test (their home packages) |
 
 ## 5. Deliverables (Phase 5)
 
-66 deliverable rows across the 11 packages: 62 active and 4 retired under
+68 deliverable rows across the 11 packages: 64 active and 4 retired under
 SCA-005 (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05), kept as
 `[RETIRED — SCA-005]` rows for register integrity. **`Deliverables.csv` is
 the authoritative companion register** (full fields: description, responsible
@@ -399,7 +411,7 @@ package. ResponsibleParty is `TBD` throughout — assignment happens at
 WORKING_ITEMS activation, not here. Conventions are DL-13; Phase 6
 verification errata are DL-14.
 
-Context Envelope posture (active deliverables): **28 S / 32 M / 2 L / 0 XL.**
+Context Envelope posture (active deliverables): **28 S / 34 M / 2 L / 0 XL.**
 Both L deliverables (DEL-02-03 receipts parser; DEL-01-01 record-tier schema)
 carry mandatory envelope notes; no XL exists, so no Gate 5/6
 acceptance-of-risk is required.
@@ -454,7 +466,7 @@ acceptance-of-risk is required.
 |---|---|---|---|---|---|
 | DEL-04-01 | Loop orientation return | BACKEND_FEATURE_SLICE | M | P1 | SOW-004 |
 | DEL-04-02 | Delta service since SHA | BACKEND_FEATURE_SLICE | M | P1 | SOW-005 |
-| DEL-04-03 | Citation & freshness stamping | BACKEND_FEATURE_SLICE | M | P1 | SOW-006, 007 |
+| DEL-04-03 | Citation & freshness stamping | BACKEND_FEATURE_SLICE | M | P1 | SOW-006, 007, 097 |
 | DEL-04-04 | Scope parameterization | BACKEND_FEATURE_SLICE | S | P2 | SOW-008 |
 | DEL-04-05 | Measurement-limitation honesty | BACKEND_FEATURE_SLICE | S | P1 | SOW-009 |
 
@@ -492,9 +504,10 @@ acceptance-of-risk is required.
 |---|---|---|---|---|---|
 | DEL-08-01 | Unix-socket server + token-scoped access | SECURITY_CONTROL | M | P1 | SOW-003, 040 |
 | DEL-08-02 | Versioned additive API schema | API_CONTRACT | S | P1 | SOW-042 |
-| DEL-08-03 | Compact citation-bearing response format | API_CONTRACT | S | P1 | SOW-043 |
+| DEL-08-03 | Compact citation-bearing response format | API_CONTRACT | M | P1 | SOW-043, 098 |
 | DEL-08-04 | Orientation latency budget (p95 ≤ 100 ms) | TEST_SUITE | S | P1 | SOW-041 |
 | DEL-08-05 | SSE delta/presence subscription | BACKEND_FEATURE_SLICE | M | P4 | SOW-044 |
+| DEL-08-06 | Agent tool-call query surface | BACKEND_FEATURE_SLICE | M | P3 | SOW-099 |
 
 ### PKG-09 Dashboards
 
@@ -524,10 +537,11 @@ acceptance-of-risk is required.
 | DEL-10-10 | Directed bootstrap self-ingest validation | TEST_SUITE | M | P1 | SOW-064 |
 | DEL-10-11 | Parity metric (DriftFindings per reconcile) | MEASUREMENT | S | P1 | SOW-093 |
 | DEL-10-12 | Poll-adoption measurement | MEASUREMENT | S | P3 | SOW-060 |
+| DEL-10-13 | Reliance-advertisement gate | TEST_SUITE | S | P1 | SOW-100 |
 
 ## 6. Scope Ledger
 
-**Authoritative register: `ScopeLedger.csv`** — 96 rows tracing every
+**Authoritative register: `ScopeLedger.csv`** — 100 rows tracing every
 scope item through SOW → PKG → DEL → OBJ with DecisionRef and OpenIssue
 columns. Live since Gate 4 (assignments) and completed at Phase 5 (the
 DeliverableIDs column). The `OpenIssue` column is TRUE for TBD items and
@@ -546,18 +560,18 @@ instrument.
 
 | Metric | Value |
 |---|---|
-| ScopeItemCount | 96 (70 IN / 18 OUT / 8 TBD) |
+| ScopeItemCount | 100 (74 IN / 18 OUT / 8 TBD) |
 | PackageCount | 11 (PKG-00..PKG-10) |
-| DeliverableCount | 66 rows (62 active / 4 RETIRED: DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05) |
+| DeliverableCount | 68 rows (64 active / 4 RETIRED: DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05) |
 | ObjectiveCount | 6 |
 | UnassignedScopeItems (IN without package) | **0** |
 | ScopeItemsWithoutDeliverableMapping (IN) | **0** |
 | UnmappedObjectives | **0** (every objective backed at both scope-item and deliverable level, §3) |
 | IN items without objective mapping | **0** (SCA-005: the owner's TM-PEC-023 selections and amendment 2 closed the SCA-002 O-A residue; SOW-035, SOW-037 and SOW-087 left IN; §3 mapping notes) |
-| ContextEnvelopeCounts | S 28 / M 32 / L 2 / XL 0 (active deliverables; the 4 retired rows are excluded) |
+| ContextEnvelopeCounts | S 28 / M 34 / L 2 / XL 0 (active deliverables; the 4 retired rows are excluded) |
 | OpenIssuesByType | 10 open (8 unresolved §16 owner decisions: OI-001, OI-002, OI-004..009; 1 architecture ADR: OI-012; 1 tooling follow-on: OI-013) / 3 resolved (OI-003 by D-PEC-78 O-A; OI-010 and OI-011 at Gate 2) |
-| Deliverable single-package membership | 66/66; every `DEL-XX-YY` prefix matched to its parent package |
-| Revision | 1.5, 2026-09-25 (SCA-005) |
+| Deliverable single-package membership | 68/68; every `DEL-XX-YY` prefix matched to its parent package |
+| Revision | 1.6, 2026-09-26 (SCA-006) |
 
 Coverage-check provenance: every IN scope item traces §PRD → SSOW →
 package → deliverable(s) in `ScopeLedger.csv`; OUT items record the
@@ -590,6 +604,14 @@ limitation, not register-coverage evidence (OI-013 remains open).
   one parser slice; DEL-02-09 (MEMORY run-index parser) is S, LOW;
   DEL-02-06 is held at M, LOW, with re-assessment toward S after its scope
   narrowed to `LOOP_INIT.md` identity.
+- **SCA-006 additions and re-assessments:** DEL-08-03 (compact response
+  format) is re-enveloped S → M with LOW risk kept — declared response-size
+  budgets met by pagination or continuation, with stated truncation, join
+  the citation-bearing format as one slice; DEL-08-06 (agent tool-call
+  query surface) is M with MEDIUM risk, coupled to OI-006 like DEL-08-01
+  and held at its envelope until that ruling; DEL-10-13
+  (reliance-advertisement gate) is S, LOW — it composes other packages'
+  evidence into one gate record.
 - **Four retired rows** (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05) keep
   their envelope and risk cells for register integrity and are excluded
   from active envelope counts.
@@ -607,7 +629,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | record tier | reconciled tier, projection | Rebuilt from file truth; per-claim citations; the only citable-with-sources tier (and even then never as authority) |
 | presence tier | — | TTL'd, heartbeat-aged, evaporating; never citable |
 | store | database | Gitignored, safe to delete; "database" avoided in prose where it suggests authority |
-| orientation | Step-0 return | The per-loop/scope serve of PEC-ORI-001..006 |
+| orientation | Step-0 return | The per-loop/scope serve of PEC-ORI-001..007 |
 | OrientationSnapshot | — | Record-tier entity (§7.1): a generated orientation return stamped with examined SHA — the machine generalization of a receipt. Distinct from the general term "orientation" |
 | reconciler | rebuild | The guaranteed path from file truth to record tier (PEC-K-07) |
 | ingest | stream ingest, event ingest | Best-effort (PEC-K-07); deliberately **not** a synonym of reconciliation, which is guaranteed |
@@ -616,7 +638,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | decision slate | "waiting on you" | Aggregated AWAITING_RULING rows + parked lanes; link-only |
 | gate verdict | gate evaluation, precondition check | Deterministic, advisory, never dispositive |
 | loop | work loop, domain-engine loop | Tenancy unit above Project. PEC serves only the loops its registry (`loops.json`) lists; the observed LOOP_INIT-bearing loops are six (root, app-dev, piping, pec, bridge — its last receipt was dated 2026-08-02 when SCA-005 was prepared — and runtime) |
-| harness | practitioner harness / application-owned Runtime service (per application, D-GOV-43 A2) / hooks CLI | Disambiguate: "practitioner harness" = the parity-peer CLI checker; "harness" unqualified = a potential machine consumer that acts only when explicitly enabled under its own authority; no polling or injection duty is inferred |
+| harness | practitioner harness / application-owned Runtime service (per application, D-GOV-43 A2) / hooks CLI | Disambiguate: "practitioner harness" = the parity-peer CLI checker; "harness" unqualified = a potential machine consumer that acts only when explicitly enabled under its own authority; no polling or injection duty is inferred. An agent may also query directly through tool calls under the agent access class; that agent is not a harness |
 | examined-through SHA | examined SHA, freshness SHA | The staleness comparator (PEC-K-04) |
 | DriftFinding | drift, parity discrepancy | Classified difference between snapshots or vs harness output |
 | heartbeat age | last-heartbeat, TTL age | Liveness is never asserted beyond it (PEC-PRS-005) |
@@ -629,6 +651,9 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | receipt | loop receipt, central receipt | Disambiguate a `LOOP_RECEIPTS.md` ledger entry from a central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md` (a derivative account, one per undertaking); both feed the Receipt entity (SOW-013) and neither is authority |
 | feed profile | — | A closed, PEC-versioned grammar bundle that a registry (`loops.json`) row selects, e.g. `shared-dev-loop`, `remaining-loop`, `loop-receipts-ledger`, `agentruns-json`; PEC's reading hypothesis, never the loop's truth (SOW-077, SOW-094) |
 | declared activity | graph-declared node state | A record-tier graph-declared node state (e.g. "declared ACTIVE as of commit X, age N"); never a liveness assertion and never presence tier (SOW-049) |
+| operational reliance | operational reliance on PEC data | Acting on a PEC record-tier claim as true as of its examined-through SHA, within the coverage and tier the response declares, with file fallback; available only from a release that has passed the §12 reliance-advertisement gate; never authority. Distinct from the L-A1 reliance-hold control (`ACTIVE_RELIANCE_HOLDS.csv`, `pec_reliance_hold.py` `rely-for-production`), from professional reliance (K-AUTH-1), and from Root PRD N-1 'for purposes of reliance' |
+| reliance envelope | — | The per-response declaration of pin, coverage, trust tier and file-fallback signal that bounds operational reliance (PEC-ORI-007, SOW-097) |
+| response budget | response-size budget, size cap | A declared bound on response size met by pagination or continuation, with stated truncation (PEC-API-006, SOW-098); distinct from the latency budget (PEC-API-002) |
 
 ## 10. Open Issues
 
@@ -639,7 +664,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | OI-003 | SOW-077 | **RESOLVED by D-PEC-78 O-A:** the existing PEC-owned JSON/schema paths and core-owned typed port are the long-term registry home and shape. PEC owns only its configured service set; each listed loop retains authority over its entrypoint and governed truth; no governed act depends on PEC or the registry | Closed |
 | OI-004 | SOW-078 | §16.4 long-term placement deferred | §16 ruling |
 | OI-005 | SOW-079 | §16.5 UI packaging undecided | §16 ruling |
-| OI-006 | SOW-080 | §16.6 auth reuse undecided; premise re-expressed under SCA-005: Runtime token registries are private to each application's Runtime instance and reuse of an App registry is foreclosed, so the open choice is the PEC-local token mechanism | §16 ruling |
+| OI-006 | SOW-080 | §16.6 auth reuse undecided; premise re-expressed under SCA-005: Runtime token registries are private to each application's Runtime instance and reuse of an App registry is foreclosed, so the open choice is the PEC-local token mechanism; the open choice also covers credentials for the agent access class (tool-call query, SOW-099; SCA-006) | §16 ruling |
 | OI-007 | SOW-081 | §16.7 name re-expansion undecided | §16 ruling |
 | OI-008 | SOW-082 | §16.8 receipt-contract adoption undecided for the Root, Runtime and Bridge ledgers; premise re-expressed under SCA-005: App, Piping and PEC ledgers carry receipt-contract-v2, and App/Piping ledgers are historical with new receipts in central `RECEIPT.md` | §16 ruling (per-loop) |
 | OI-009 | SOW-083 | §16.9 event-contract home and API transport undecided; the shared option path is `projects/chirality-runtime/packages/contracts` (Runtime loop; root `runtime/` relocated, PR #727) | §16 ruling |
@@ -672,6 +697,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | DL-18 | 2026-07-28 | SCA-003, owner-directed under the standing completion approval after D-PEC-68 became durable, reconciles the accepted decomposition to PRD v2.2's consumer-owned interface posture and D-PEC-67 L-A2's ADR-014 historical-lineage correction: C3/C15, source/basis prose, SOW-041/060/085/088, DEL-00-01/10-05/10-12 descriptions, and three exact `_CONTEXT.md` mirrors are modified; the DEL-10-12 canonical label/path is preserved | This is a MODIFY-only semantic correction. It preserves 94 scope items, 11 packages, 64 deliverables, 6 objectives, every stable ID, and all dependency edges. ScopeOfWork, `_REFERENCES.md`, dependencies, hold, lifecycle, implementation, estimates, schedules, release, and reliance remain downstream or excluded |
 | DL-19 | 2026-08-03 | SCA-004, requested by owner Ryan Tufts through D-PEC-78 O-A, promotes SOW-077 from TBD to IN, maps it to PKG-01 → DEL-01-06 → OBJ-004, adds SOW-077 to DEL-01-06 coverage, and records OI-003 resolved; DEL-01-06's stable name/path and all source bytes remain unchanged | The existing PEC-owned strict-version-1 JSON/schema paths and core-owned typed port are the selected long-term registry home and shape. PEC owns only its configured service set; each listed loop retains authority over its own entrypoint and truth; later row changes remain owner-gated PEC configuration acts; graceful absence and the no-governed-dependency boundary remain intact |
 | DL-20 | 2026-09-25 | SCA-005, requested by owner Ryan Tufts and opened by D-PEC-86, accepted at checkpoint 1 on 2026-09-24 with amendment 1 (TM-PEC-023 selections; cmux deferral) and amendment 2 (SOW-033 → OBJ-003), re-bases the feed model on the shared development-loop method and the application-owned Runtime topology (D-GOV-43 A2): it adds SOW-095/096 and DEL-02-08/09 (work-graph and MEMORY run-index parsers, P1, OBJ-001;OBJ-002); re-sources SOW-001/004/013..017 and DEL-01-01, DEL-02-03..07, DEL-03-03 and DEL-04-01; declares closed, PEC-versioned feed profiles on registry rows (SOW-077/094, DEL-01-06; a strict schema v2 by a later D-PEC source packet within D-PEC-78 O-A) and makes `adapter.yaml` a parity-peer input; moves SOW-029, SOW-035 and SOW-087 (trigger T-RT) and SOW-037 (later owner direction) to Deferred OUT and retires DEL-06-04, DEL-07-02, DEL-07-04 and DEL-07-05 non-destructively; records the owner's TM-PEC-023 selections and the SOW-033 mapping, so no IN item lacks an objective (SOW-063's mapping supersedes DL-14's objective-free rationale); and re-expresses C5, C13, R4, SOW-026/034/049/074/076/080/082/083/092, OI-002/006/008/009, PKG-00/02/06/07, the telemetry and the vocabulary. The source corpus moves to PRD v2.3 | Invariants preserved: 11 packages and 6 objectives; every stable ID, name and path retained (CP1-N) and the new IDs append-only; retired rows kept for register integrity; no IN item without package, deliverable or objective; the union invariant holds; the §16 decisions stay open (Q6); C3, C15 and SOW-058 unchanged. Dependency registers, `_CONTEXT.md` and `_REFERENCES.md` metadata, Scope of Work contracts, lifecycle and source remain downstream of this amendment |
+| DL-21 | 2026-09-26 | SCA-006, opened under `D-PEC-90` R-A grant item 3 (the owner's R-A ruling and direct-query answer of 2026-09-25) and accepted at checkpoint 1 on 2026-09-25 with DQ-a, ENV-a, BUD-a, GATE-a and INS-a (R-C excluded), writes operational reliance on PEC data into the decomposition: C3 is re-expressed (a consumer may act on a record-tier claim within the pin, coverage and tier the response declares, with file fallback, only from a release that has passed the §12 reliance-advertisement gate; non-authoritative is kept in the authority sense); it adds SOW-097 (reliance envelope, PEC-ORI-007 → DEL-04-03), SOW-098 (response-size budgets, PEC-API-006 → DEL-08-03), SOW-099 (agent tool-call query surface, PEC-API-007 → new DEL-08-06, P3) and SOW-100 (the standing reliance-advertisement gate, §12 → new DEL-10-13, P1), all mapped to OBJ-001 and SOW-097 also to OBJ-002; adds the read-only `agent` access class to SOW-003 and DEL-08-01, enabled agent tool-call surfaces to SOW-060, and `agent` credentials to the open SOW-080 / OI-006 premise; re-envelopes DEL-08-03 S → M; and re-expresses §1.2, PKG-04/08/10, the OBJ-001/OBJ-002 views, the telemetry and the vocabulary (+operational reliance, reliance envelope, response budget; `harness` modified). The source corpus moves to PRD v2.4 | Invariants preserved: 11 packages and 6 objectives with unchanged statements; every stable ID, name and path retained and the new IDs append-only; no IN item without package, deliverable or objective; the union invariant holds; C1, C2 and C15 (PEC-K-01, PEC-K-02, PEC-K-11) unchanged and PEC output stays never citable as authority (R-C not selected); the token mechanism stays open (OI-006); the §12 P1 row is not edited (GATE-a). Dependency registers, `_CONTEXT.md` and `_REFERENCES.md` metadata, Scope of Work contracts, lifecycle and source remain downstream of this amendment |
 
 ## 12. Revision History (Phase 7 change summary)
 
@@ -691,6 +717,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | 1.3 | SCA-003 | PRD v2.2 consumer-interface and ADR-014 historical-lineage concordance: C3/C15, source/basis, SOW-041/060/085/088, DEL-00-01/10-05/10-12 descriptions, and three `_CONTEXT.md` mirrors; DEL-10-12 label/path, topology, stable IDs, and dependency edges unchanged |
 | 1.4 | SCA-004 | D-PEC-78 O-A loop-registry disposition: SOW-077 TBD→IN and mapped to PKG-01 / DEL-01-06 / OBJ-004; SOW-094 implementation basis reconciled; DEL-01-06 coverage and description updated in place; OI-003 resolved; stable IDs, topology, source, dependency edges, envelope, phase, name, and path unchanged |
 | 1.5 | SCA-005 | Feed-model and Runtime-topology rebaseline under D-PEC-86: +SOW-095/096 and +DEL-02-08/09; SOW-029/035/037/087 IN→OUT Deferred and DEL-06-04/07-02/07-04/07-05 retired non-destructively; registry feed profiles; `adapter.yaml` parity-peer only; TM-PEC-023 selections and the SOW-033 mapping (0 IN items without objective); C5/C13, R4, SSOW rows, PKG-00/02/06/07, deliverable descriptions, §16 premises, vocabulary (26 terms), telemetry and envelope posture (S 28 / M 32 / L 2) reconciled; PRD v2.3 source; stable IDs, names and paths retained |
+| 1.6 | SCA-006 | Operational reliance on PEC data under D-PEC-90 R-A: C3 re-expressed; +SOW-097..100 and +DEL-08-06/10-13 (reliance envelope, response-size budgets, agent tool-call query surface, reliance-advertisement gate); read-only agent access class (SOW-003, DEL-08-01); SOW-060/080 and OI-006 extended; DEL-04-03/08-03 descriptions and coverage, DEL-08-03 S→M; PKG-04/08/10, OBJ-001/002 views, §1.2, vocabulary (29 terms), telemetry and envelope posture (S 28 / M 34 / L 2) reconciled; PRD v2.4 source; stable IDs, names and paths retained |
 
 ## Companion Inventory
 

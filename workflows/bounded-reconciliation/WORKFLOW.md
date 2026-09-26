@@ -14,6 +14,11 @@ activate whole-corpus concordance. Substantive PRs already carry the document,
 reconciliation and conditional Task Management work their slices need. Those
 consequences do not require a formal pass after each node. The final stage
 checks the combined result and completes the documentary/governance closeout.
+For a formal, human-activated corpus concordance program, select
+`reconciliation`; for one deliverable's lifecycle transition, select `review`.
+`review` may also dispatch this method for a read-only whole-deliverable
+candidacy comparison at a candidate commit; that use makes no edits and returns
+any warranted document edit as production work outside the review.
 
 TASK can perform one deliverable or a small connected comparison without
 further delegation. Its parent integrates the return and any resulting work
@@ -27,6 +32,10 @@ the affected deliverable IDs/folders, stable code or artifact revision, evidence
 permitted writes and completion conditions. Inspect consequential consumers when
 the original mapping is incomplete. Return a mapping question rather than force
 new scope into an unrelated deliverable.
+
+If an affected deliverable is CHECKING or ISSUED, or lies inside an active
+concordance run's frozen scope, do not edit it. Return the proposed edits to
+its reversal, scope-change or concordance-run path.
 
 The intended implementation and evidence work must be complete enough to support
 closeout. Identify the integrated candidate and any unmerged work accurately. A
@@ -53,11 +62,15 @@ verification. Preserve failures and limits. A later passing check alone does
 not demonstrate that a known defect was repaired.
 
 Keep claims at the level of commitments, relied-on interfaces and meaningful
-verification. Apply the owning claim-granularity rules: incidental mechanism
+verification. Apply the claim granularity rule
+(`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1: the decision, interface and
+verification tests), or a variant the project has adopted in its decision
+records: incidental mechanism
 detail belongs in code, tests or technical evidence; a decision-bound mechanism
-retains its force. Prefer lifting stale incidental wording to its stable claim
-rather than repeatedly rewriting the mechanism. Borderline cases go to the
-owning decision. This test does not authorize changing a requirement.
+retains its force. Lift is the default repair: move stale incidental wording to
+its stable claim rather than repeatedly rewriting the mechanism. Borderline
+cases go to the owning decision. This test does not authorize changing a
+requirement.
 
 ## 3. Make the warranted changes
 
@@ -69,9 +82,12 @@ necessary implementation/check/decision work in the graph, not in a second
 local task list or in MEMORY as future instructions.
 
 Changes to accepted scope, lifecycle, protected criteria or a pinned authority
-basis follow their owning decision path. When direct edits are not authorized,
-return precise proposed changes and leave application outstanding. Ordinary
-factual corrections already within the assignment need no new human prompt.
+basis follow their owning decision path. Updating a navigation pointer to an
+already accepted basis is an ordinary correction; changing a
+`decomposition_basis`, an approval SHA or an authority pin keeps its owning
+path. When direct edits are not authorized, return precise proposed changes
+and leave application outstanding. Ordinary factual corrections already
+within the assignment need no new human prompt.
 Code repair remains separate unless included in the assignment.
 
 A useful current document must say what it means. Adding a memory entry or a

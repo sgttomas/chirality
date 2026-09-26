@@ -11,11 +11,11 @@
 | Authority | D-PEC-86; owner checkpoint-1 acceptance 2026-09-24 with amendments 1 and 2; checkpoint-2 acceptance 2026-09-25 (`D-PEC-92`); checkpoint-3 acceptance 2026-09-25 |
 | DecisionSnapshots | `checkpoint_snapshots/SCA-005_GROUP-1_2026-09-24/` (+ amendments 1 and 2), `SCA-005_GROUP-2_2026-09-25/`, `SCA-005_GROUP-3_2026-09-25/` |
 | DecompositionTruthState | `COMPLETE` |
-| DerivativePackageState | `INCOMPLETE` — Lane B and the deferred A4 remain open |
+| DerivativePackageState | `INCOMPLETE` — A4 and B3 done under `D-PEC-93`, B1 under `D-PEC-95`; B4–B7 and the D-PEC-90 reliance amendment remain open |
 | ContentRemediationState | `NOT_REQUIRED` |
-| DownstreamRerunState | `FROZEN` — no Lane B rerun authorized by checkpoint 3 |
-| MetadataAlignmentState | `IN_PROGRESS` — 22 direct context mirrors done; 42 contexts and 64 references await re-pinning |
-| AuditState | **`BLOCKED`** by the count rule — `COV_SCA005_POSTCHANGE_2026-09-25_1344`, 2 blockers (both the A4 deferral's expected consequence) / 6 warnings / 74 info; excluding expected consequences 0 blockers / 4 warnings |
+| DownstreamRerunState | `IN_PROGRESS` — B1 and B3 applied under their own packets; each other Lane B rerun is separately gated |
+| MetadataAlignmentState | `COMPLETE` — 22 direct context mirrors, the two new deliverables' files, and 42 contexts and 64 references re-pinned to revision 1.5 on 2026-09-25 (`D-PEC-95`) |
+| AuditState | `WARNINGS` — `COV_SCA005_POSTSETUP_2026-09-25_1606`, 0 blockers / 3 pre-existing warnings / 70 info; its INFO findings COV-068/069/072/073 addressed on 2026-09-25 under `D-PEC-95` without a further audit |
 | ReadyForNextPhase | `NO` |
 | ClosureVerdict | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** (owner Q-CP3-1 (a)) |
 
@@ -29,10 +29,14 @@ record. Stable IDs are preserved; no ID is reused.
 
 ## Downstream boundary
 
-Checkpoint 3 authorizes no downstream repair. `SCA-005_2026-09-23_2139/Handoff_State.md`
-and `RUN_SUMMARY.md` name every open item and owner: DEL-02-08/09 folders
-with the dependency rerun (PROJECT_SETUP under its own packet), context and
-reference re-pinning, SOW currency, DEL-00-01/00-03 derivative review, the
-registry source packet, P1 fixtures, TM-PEC-023 disposition, the D-PEC-90
-reliance amendment, and the `projects/pec/AGENTS.md` instruction tranche.
-Each is separately gated.
+Checkpoint 3 authorized no downstream repair; each downstream item is
+separately gated. Done: the DEL-02-08/09 folders with the dependency
+rerun, the post-setup re-audit and the audit-pointer move (`D-PEC-93`;
+closeout `_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/HANDOFF_STATE.md`),
+and context and reference re-pinning with the evidence-quote refresh
+(`D-PEC-95`, 2026-09-25). `projects/pec/AGENTS.md` names PRD v2.3 and the D-GOV-43
+Runtime boundary since `D-PEC-94`. Open: SOW currency, DEL-00-01/00-03
+derivative review, the registry source packet, P1 fixtures and the D-PEC-90
+reliance amendment; TM-PEC-023's state is in the Task Management register.
+Undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005` plans the open items in
+`_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.

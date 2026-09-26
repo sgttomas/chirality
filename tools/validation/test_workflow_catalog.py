@@ -55,16 +55,24 @@ SUPERSEDED = {
 }
 # Group order follows catalog.yaml navigation.specialist authoring order.
 SPECIALIST_GROUPS = [
-    ("plan-organize", "Plan & organize", 7),
-    ("research-understand", "Research & understand", 9),
-    ("extract-documents", "Extract from documents", 15),
-    ("create-publish-documents", "Create & publish documents", 8),
-    ("build-maintain-software", "Build & maintain software", 4),
-    ("estimate-cost", "Estimate & cost", 3),
-    ("review-check", "Review & check", 11),
-    ("manage-changes", "Manage changes", 5),
+    ("plan-organize", "Plan & organize"),
+    ("research-understand", "Research & understand"),
+    ("extract-documents", "Extract from documents"),
+    ("create-publish-documents", "Create & publish documents"),
+    ("build-maintain-software", "Build & maintain software"),
+    ("estimate-cost", "Estimate & cost"),
+    ("review-check", "Review & check"),
+    ("manage-changes", "Manage changes"),
 ]
-SPECIALIST_GROUP_SIZES = {key: size for key, _, size in SPECIALIST_GROUPS}
+
+
+def _catalog_specialist_members() -> dict:
+    """Authored specialist membership, in order, keyed by group (catalog.yaml is strict JSON)."""
+    catalog = json.loads((ROOT / "workflows/catalog.yaml").read_text(encoding="utf-8"))
+    return {
+        group["key"]: [item["name"] for item in group["workflows"]]
+        for group in catalog["navigation"]["specialist"]
+    }
 
 
 def test_root_index_is_fresh_and_classification_is_bounded():
@@ -91,8 +99,10 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
-    assert len(specialist) == 62
+    catalog_members = _catalog_specialist_members()
+    assert len(specialist) == sum(len(names) for names in catalog_members.values())
     groups = {}
+    members = {}
     group_identity = {}
     for item in specialist:
         navigation = item["navigation"]
@@ -100,12 +110,16 @@ def test_root_navigation_partition_is_complete_and_ordered():
         assert navigation["tier"] in ("primary", "supporting")
         assert set(navigation["group"]) == {"key", "label", "order"} and navigation["group"]["label"].strip()
         groups.setdefault(navigation["group"]["key"], []).append(navigation["order"])
+        members.setdefault(navigation["group"]["key"], []).append((navigation["order"], item["name"]))
         group_identity.setdefault(navigation["group"]["key"], set()).add((navigation["group"]["label"], navigation["group"]["order"]))
-    assert {key: len(orders) for key, orders in groups.items()} == SPECIALIST_GROUP_SIZES
+    assert {key: [name for _, name in sorted(entries)] for key, entries in members.items()} == catalog_members
     assert all(sorted(orders) == list(range(len(orders))) for orders in groups.values())
-    assert group_identity == {key: {(label, order)} for order, (key, label, _) in enumerate(SPECIALIST_GROUPS)}
+    assert group_identity == {key: {(label, order)} for order, (key, label) in enumerate(SPECIALIST_GROUPS)}
     assert workflows["semantic-matrix-build"]["navigation"]["tier"] == "supporting"
-    assert workflows["researcher"]["navigation"]["tier"] == "primary"
+    assert workflows["scope-of-work"]["navigation"]["tier"] == "primary"
+    retired = {"deliverable-consistency", "preparation", "proposal-format", "researcher", "software-code-review", "software-defect-diagnosis"}
+    assert not retired & set(workflows)
+    assert all(index["legacy"]["convertedWorkflowAliases"][name] == {"kind": "skill", "name": name} for name in retired)
     assert workflows["construct-local-work-graph"]["navigation"]["group"]["key"] == "plan-organize"
     assert workflows["bounded-reconciliation"]["navigation"]["group"]["key"] == "review-check"
     superseded = {item["name"]: item for item in workflows.values() if item["navigation"]["category"] == "superseded"}
@@ -189,7 +203,7 @@ def test_navigation_core_is_fixed_and_display_names_are_bounded():
     placements = parse_navigation({"core": _core_navigation(), "specialist": [], "superseded": []})
     assert placements["create-workflow"] == {"category": "core", "tier": "primary", "order": 0}
     assert placements["project-setup"] == {"category": "core", "tier": "primary", "order": 1}
-    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": CORE.index("reconciliation"), "displayName": "Check project status"}
+    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": CORE.index("reconciliation"), "displayName": "Run corpus concordance program"}
 
 
 def test_workflow_purpose_metadata_reaches_descriptors(tmp_path):
@@ -437,6 +451,45 @@ def test_grouped_checkpoint_boundaries_use_accepted_snapshots():
     assert "Do not update `_LATEST.md` before checkpoint group 3 acceptance" in scope_change
 
 
+def test_d_gov_47_combined_review():
+    # D-GOV-47 item 2 (combined review sitting) stands; its item 1 is superseded by D-GOV-48.
+    standard = (ROOT / "docs/DECOMPOSITION_STANDARD.md").read_text()
+    assert "#### Combined review sitting (PROJECT and SOFTWARE only)" in standard
+    assert "DOMAIN does not use this\nallowance." in standard
+
+    for name in ("project-decomp", "software-decomp"):
+        method = (ROOT / "workflows" / name / "resources/method.md").read_text()
+        assert "### Combined review for a small, reversible undertaking" in method
+
+    domain = (ROOT / "workflows/domain-decomp/resources/method.md").read_text()
+    assert "Combined review" not in domain
+
+
+def test_d_gov_48_every_scope_item_has_a_package_home():
+    standard = (ROOT / "docs/DECOMPOSITION_STANDARD.md").read_text()
+    assert "In PROJECT and SOFTWARE, every atomic unit, whether IN, OUT or TBD, MUST be assigned to exactly one partition" in standard
+    assert "In DOMAIN, every IN-scope atomic unit MUST be assigned to exactly one partition." in standard
+    assert "blank for OUT and TBD" not in standard
+    types = (ROOT / "docs/TYPES.md").read_text()
+    assert "- Every scope item, whether IN, OUT or TBD, belongs to exactly one package" in types
+    assert "Every IN scope item belongs to exactly one package" not in types
+
+    for name in ("project-decomp", "software-decomp"):
+        method = (ROOT / "workflows" / name / "resources/method.md").read_text()
+        contract = (ROOT / "workflows" / name / "resources/contract.md").read_text()
+        flat_contract = " ".join(contract.split())
+        assert "Assign every Scope Item, whether `IN`," in " ".join(method.split())
+        assert "receive no Package" not in method
+        assert "very `ScopeItemID`, whether IN, OUT or TBD, has exactly one `PackageID`." in flat_contract
+        assert "- `PackageID` (exactly one for every item, whether IN, OUT or TBD)" in contract
+        assert "`UnassignedScopeItems` (scope items of any status without a Package" in contract
+        assert "`PackageID` (required for IN; blank for OUT and TBD)" not in contract
+
+    # DOMAIN keeps its Category rule for IN Handbook Units only.
+    domain = (ROOT / "workflows/domain-decomp/resources/contract.md").read_text()
+    assert "Every **IN-scope Handbook Unit** must be assigned to exactly one Category" in domain
+
+
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     contract = (ROOT / "workflows/research-orchestration/resources/contract.md").read_text()
     method = (ROOT / "workflows/research-orchestration/resources/method.md").read_text()
@@ -445,3 +498,13 @@ def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     assert "LEGACY_ACCEPTED_GATE_POINTER" in contract
     assert "Gate6_Publication_Manifest.csv" in contract
     assert "clearly label that compatibility basis" in method
+
+
+def test_retired_role_workflow_requires_a_catalog_package_or_successor(tmp_path):
+    root = _fixture_root(tmp_path)
+    ledger = root / "workflows" / "legacy-agents.json"
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"LIVE": {"role": "WORKING_ITEMS", "workflow": CORE[0]}}}))
+    validate_and_build(root)
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"GONE": {"role": "TASK", "workflow": "removed"}}}))
+    with pytest.raises(ValueError, match="removed without a canonical successor"):
+        validate_and_build(root)

@@ -11,6 +11,9 @@ implementation backlog, dependency graph or deliverable memory.
 
 WORKING_ITEMS owns the invocation and register writes; TASK may perform bounded
 inspection and return findings without delegating or writing register rows.
+If this workflow is dispatched to TASK, TASK runs inspection-only and returns
+candidate rows and findings to its caller; a register-write grant in a TASK
+brief is ineffective.
 Select this workflow with the invoking loop, purpose and scope. No separate Task
 Management init prompt or retired TASK_MANAGEMENT role is needed.
 
@@ -18,7 +21,7 @@ Management init prompt or retired TASK_MANAGEMENT role is needed.
 
 - **Bounded intake:** the loop supplies particular concerns and their evidence.
   Examine only those concerns and relevant existing records after the required
-  federation preflight. Do not expand this into a general harvest or a review of
+  federation preflight; `scan` is optional, for deduplication. Do not expand this into a general harvest or a review of
   every deferred item.
 - **Legacy-source retirement:** the human names an existing source population
   and authorizes its one-time examination and retirement. Account for every
@@ -49,8 +52,8 @@ An intake is not permission to promote, dispose, assign or execute its concern.
 5. Return the disposition and outstanding consequences to the caller. Preserve
    the result once in the Task Management home, linked from the caller's graph
    or closeout. Do not create a separate Task Management receipt or a MEMORY
-   work list. An App/Piping development loop's one final receipt links this
-   outcome when the invocation affected that undertaking.
+   work list. A loop whose instructions require one central receipt links this
+   outcome from that receipt when the invocation affected that undertaking.
 
 If required inputs or federation coverage are unavailable, return the precise
 limit with the retained concerns. Do not claim global absence or closure from

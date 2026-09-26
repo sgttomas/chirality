@@ -1,0 +1,54 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DEPENDENCY-SCHEMA-D-GOV-46-20260926
+title: Dependency tracking modes and _DEPENDENCIES.md heading schema (D-GOV-46)
+date: '2026-09-26'
+basis: 971ca68a15a562f6df33cf4c78d27948ad07f822
+instruction_surface_paths:
+  - .agents/skills/preparation/references/scaffold-contract.md
+  - docs/SPEC.md
+  - docs/governance_harness/_DECISIONS/D-GOV-46_dependency_tracking_modes_schema.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - tools/REGISTRY.md
+  - tools/validation/test_validate_enum.py
+  - tools/validation/validate_enum.py
+  - workflows/content-digest/WORKFLOW.md
+  - workflows/dependency-extract/WORKFLOW.md
+  - workflows/dependency-extract/resources/brief.md
+  - workflows/project-setup/resources/contract.md
+  - workflows/project-setup/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-DEPENDENCY-SCHEMA-D-GOV-46-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner, asked which dependency-mode vocabulary and
+    _DEPENDENCIES.md format should be the single source of truth, selected
+    "Amend SPEC to FULL_GRAPH" ("Keep the manual's NOT_TRACKED / DECLARED /
+    FULL_GRAPH meanings, where DECLARED means a partial view of critical
+    edges, and amend SPEC §5 to match. Needs a governance change.") and then
+    directed "yes, go ahead with wave 2b #1 and 2, and on #3 and 4 as
+    recommended." Item #1 is this amendment, recorded as D-GOV-46.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md
+  rationale: >-
+    App, Runtime, Piping and PEC hold _DEPENDENCIES.md files and use
+    preparation, project-setup and dependency-extract; Runtime records mode
+    DECLARED; the App loop also mirrors SPEC §5 and has its own scaffold
+    template.
+scope_limits:
+  - Existing _DEPENDENCIES.md files and historical run records are not rewritten; they keep their headings and mode values.
+  - The Dependencies.csv v3.1 schema, TYPES §6 coordination representations and the alignment manual are unchanged.
+  - App-owned surfaces (projects/chirality-app-dev/docs/SPEC.md, frontend scaffold template) are left to the App loop through its notice.
+  - tools/coordination/materialize_local_dependencies.py --refresh-pointers still writes its own generated pointer format; aligning it is a follow-up.
+  - The thesis (docs/thesis/07_se_design_analysis.md) still lists TRACKED and is not edited here.
+  - No release is granted.

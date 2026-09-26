@@ -1,0 +1,13 @@
+T1 was rerun by hand after run_prototypes.sh because t1_tm_pec_023.py's Notes wording changed
+(RESULTS.tsv t1* lines record the earlier script version). In gitmeta, the Task Management folder was
+reset to 13df8b795 (git checkout 13df8b795 -- projects/pec/execution/_Coordination/_TaskManagement/), then:
+  t1_tm_pec_023.py --repo . --act-date 2026-09-25        exit 0  REGISTER.csv d350d007... -> 62f897ab174d46282ce7762f2020a2dc94ef445db185d79303cd5526937d4e24
+  taskmgmt validate REGISTER.csv / REGISTER_CLOSED.csv    exit 0 / 0
+  taskmgmt archive --register REGISTER.csv                exit 0  (1 CLOSED row moved; live 9, archive 16)
+  taskmgmt validate REGISTER.csv / REGISTER_CLOSED.csv    exit 0 / 0
+  final hashes: REGISTER.csv 634641f0b7bf2d1f53d74283cc5e5253fee49ee6292e58a74b751f477345376a
+                REGISTER_CLOSED.csv 3c1349ba79ffb6eb0abc3502b0325da93ff28e7ecafd5498739a28ea0af11fd2
+  t1_tm_pec_023.py rerun                                  exit 1  (preimage mismatch; nothing written)
+  validate_instruction_entrypoints.py .                   exit 0  PASS
+  git diff --name-only | wc -l                            123 (121 option-A paths + 2 registers)
+Script SHA-256 0e0cd6f94448005ecf17f564f35ef72a42f2c2862e97bc33256a3c701b957bec

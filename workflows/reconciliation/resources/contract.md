@@ -2,9 +2,11 @@
 
 ## Invariants
 
-- **Activation before dispatch.** A project decision register must contain the
-  human ruling, activated scope, pinned method revision, and run pointer on the
-  shared baseline before discovery begins.
+- **Activation before discovery dispatch.** A project decision register must
+  contain the human ruling, activated scope, pinned method revision, and run
+  pointer on the shared baseline before any discovery dispatch. Independent
+  review of the activation diff, where required before its merge, is permitted
+  before activation and recorded in the run evidence; it performs no discovery.
 - **Frozen accepted basis.** Record accepted decomposition, decisions,
   lifecycle semantics, source/reliability rules, implementation state, current
   dependency pointer, evidence boundary, and overlapping work.
@@ -16,18 +18,18 @@
   descriptions are evidence, not claims, and a claim written at that level is
   a granularity defect in the deliverable, repaired by default by lifting
   it, and by rewriting it to the code only where the ruling gives a reason.
-- **Format-aware preservation.** During authorized conversion, legacy
-  path/section claims remain the bound source and candidate stable IDs are
-  derivative mappings. Every source claim receives exactly one disposition;
-  deterministic finalization must externalize migration metadata and bind the
-  clean production hash before atomic replacement selects `SOW_V1`.
-  Unauthorized dual, evidence-candidate integration, silent loss, or semantic
-  change fails closed.
+- **Representation migration.** A run that performs or verifies an authorized
+  deliverable-format or representation migration also follows
+  [the representation-migration profile](representation-migration.md).
 - **Discovery is read-only.** Calibration, inventory, claim concordance, and
   synthesis do not repair the target corpus.
 - **Evidence is not authority.** Implementation and tests are evidence, not
   permission to invent or change scope. Agent dispositions are not human
-  rulings.
+  rulings. A ruling not yet applied to its carriers is R5 work under that
+  ruling, not a new owner question. An application under an explicit written
+  owner delegation that names the decision class or rows it covers, recorded
+  verbatim and kept within its words and this run, is an agent disposition;
+  issuance, professional acceptance, and holds stay with their holders.
 - **Source-state binding.** Every evidence citation names the source state it
   evaluated. Material source change marks affected work `STALE_INPUT` and
   requires rerun.
@@ -45,21 +47,6 @@
 - **Validated fan-in.** Every wave receives structural checks and a bounded
   adversarial/semantic verifier. Defective ledgers are rerun; they are not
   silently patched by the manager.
-- **No blanket third-pass duplication.** When a representation-migration wave
-  already has 100% deterministic member validation plus a fresh evidence-only
-  verifier over every member, WORKING_ITEMS independently validates the full
-  aggregate evidence surface but does not automatically repeat every member's
-  complete semantic/deterministic suite. Fresh member reproduction is
-  exception-driven plus the deterministic sample below. This optimization
-  never removes the package verifier or weakens fail-closed escalation.
-- **Accepted batch-production prerequisite.** A representation-migration
-  package may arrive from one package-wide author plus one fresh package-wide
-  verifier when each deterministic numeric batch contains no more than five
-  members and 2,053 frozen legacy source lines. Larger packages are consecutive
-  numeric sub-batches under one WORKING_ITEMS manager. This changes production
-  session topology only: every member still requires complete author and
-  verifier evidence, and the verifier remains evidence-only with no repair
-  authority.
 - **Containment includes ignored state.** Check tracked changes, untracked
   non-ignored paths, and ignored-path allowlists. Keep frozen evidence trees
   unchanged; use copy-out or external cache/target roots when validation would
@@ -67,13 +54,20 @@
 - **Independent progress.** Blocked claims or packages do not halt independent
   work. Declared dependants remain held.
 - **No invented repair authority.** R4 human/engineering decisions authorize
-  R5 tranches. Scope changes route to WORKING_ITEMS (workflow: scope-change); lifecycle acceptance to
-  WORKING_ITEMS (workflow: review); Git closeout to WORKING_ITEMS (workflow: change); workflow-component findings to HELPS_HUMANS.
+  R5 tranches. Scope changes route to WORKING_ITEMS (workflow: scope-change).
+  Only a single deliverable's lifecycle transition routes to WORKING_ITEMS
+  (workflow: review); other review acts route to a bounded independent TASK
+  review with a named output, or to the owner or engineering holder. Git
+  closeout in the Chirality repository (`sgttomas/chirality`) follows
+  `.agents/skills/chirality-change/SKILL.md`; elsewhere it follows WORKING_ITEMS
+  (workflow: change) or the project's change conventions. Workflow-component
+  findings route to HELPS_HUMANS.
 - **One execution record.** In an adopting local-graph loop, the authorized
   graph carries executable work; no new Remaining seeding or duplicate residual
   list is required. Scope and decisions retain their authority; MEMORY is
-  a terse index of actual runs and central evidence. Earlier pinned programs retain their own Remaining-based
-  conventions and audited source populations until a specific migration.
+  a terse index of actual runs and central evidence. Earlier pinned programs
+  retain their own Remaining-based conventions and audited source populations
+  until a specific migration.
 - **No false closure.** Closure requires backchecked changed claims, evidence
   accounting for unfulfilled obligations and their owning work/decision,
   derivative disposition, source-state binding, blockers and handoff state.
@@ -95,7 +89,8 @@
 A concordance run is valid only when:
 
 1. Activation, accepted scope, pinned method/profile, and source state are
-   explicit and committed before dispatch.
+   explicit and committed before any discovery dispatch; any independent review
+   of the activation diff that preceded it is recorded.
 2. Discovery phases do not modify the target corpus.
 3. Every claim has an authority source or an explicit unmapped/unknown status.
 4. Behavioral aligned claims cite implementation and current verification;
@@ -103,18 +98,23 @@ A concordance run is valid only when:
 5. Evidence and dispositions are bound to the actual source state.
 6. Project-specific reliability and professional-boundary rules are applied.
 7. Every wave passes structural validation and independent fan-in review. A
-   narrowed representation-migration fan-in additionally proves its 100%
-   aggregate coverage, exception population, deterministic sample, and
-   escalation disposition.
+   narrowed [representation-migration](representation-migration.md) fan-in
+   additionally proves its 100% aggregate coverage, exception population,
+   deterministic sample, and escalation disposition.
 8. Package and corpus summaries reproduce from accepted claim rows.
 9. Conflicts, unknowns, stale inputs, unmapped implementation, lifecycle
-   issues, and Remaining mismatches remain visible.
+   issues, and unfulfilled-obligation mismatches (legacy Remaining only where
+   pinned) remain visible.
 10. Repairs cite the authorizing human decision and respect owning workflows.
     Held and deferred rows retain their exact claim populations, gates, and
     non-activation evidence; issued baselines use their formal change path.
 11. Backcheck covers every changed claim reference and proves exact multiset
     equality to the authorized repair manifest; authorized no-change rows are
-    separately and explicitly accounted for.
+    separately and explicitly accounted for. Auxiliary assessment tables
+    (dependency-record, capability, and reverse-pass populations) are
+    accounted separately with their own exact keys, never folded into the
+    claim population. Each coverage checker demonstrates, by negative controls,
+    that it rejects a missing key and a duplicate key.
     A conversion candidate proves 100% source-claim disposition and source-hash
     equality; deterministic finalization proves the clean production binding
     without treating isolated dual-format output as accepted truth.
@@ -124,7 +124,9 @@ A concordance run is valid only when:
     maintained queue. A still-pinned legacy Remaining census retains its exact
     population and convention until the owning program explicitly migrates it.
 13. The accepted discovery snapshot remains immutable and R6 is a new
-    source-state-bound derivative snapshot.
+    source-state-bound derivative snapshot. An authorized post-R6 continuation
+    is a further successor derivative under `BACKCHECK/` with its own
+    multiset proof.
 14. Closure records unresolved blockers, waivers, reruns, derivative status,
     validation limitations, and next owner without making reliance claims.
     Routed authority residuals may remain open when their non-activation is
@@ -135,6 +137,8 @@ A concordance run is valid only when:
 ```text
 {EXECUTION_ROOT}/_Reconciliation/DeliverableConcordance/<RunID>/
   RUN_BASIS.md
+  RUN_STATE.jsonl                            # append-only phase state
+  RESUME.md
   R0_CALIBRATION/
   CONVENTIONS.md
   DELIVERABLE_INVENTORY.csv
@@ -150,7 +154,7 @@ A concordance run is valid only when:
   CROSS_PACKAGE_FINDINGS.csv
   DECISION_PACKETS/
   REPAIR_TRANCHES/
-  BACKCHECK/<BackcheckSnapshotID>/
+  BACKCHECK/<BackcheckSnapshotID>/           # R6 or an authorized successor
     CHANGED_CLAIM_REEXTRACTION.csv
     DETAILED_EVIDENCE.csv
     RIDER_AND_ASSESSMENT_AUDIT.md

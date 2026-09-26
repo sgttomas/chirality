@@ -1,0 +1,20 @@
+## N1: DEL-02-08 with the AC-017/VER-017 matrix row removed
+FAIL format=INVALID target=<neg>/DEL-02-08_Work_graph_parser
+- format state is INVALID
+- defined acceptance criteria missing from matrix: AC-017
+- defined verification methods missing from matrix: VER-017
+validate exit=1
+ERROR: format state is INVALID; validated ScopeOfWork.md is required: defined acceptance criteria missing from matrix: AC-017; defined verification methods missing from matrix: VER-017
+checklist exit=1
+no output artifact created
+## N2: one source-side quotation mutated in each candidate
+FAIL 08 CLM-001 ledger row verbatim (whole CSV line)
+FAIL 08 register Description [559 chars; candidate=NO; source=yes]
+FAIL 09 §7.1 RunRecord row [480 chars; candidate=yes; source=NO]
+RESULT FAIL 66/69
+verify exit=1 (expected 1)
+## N3: candidate drops a quoted phrase and reintroduces an unanchored basis phrase
+FAIL 08 no unanchored 'at the basis' phrase
+FAIL 08 template states [142 chars; candidate=NO; source=yes]
+RESULT FAIL 67/69
+verify exit=1 (expected 1)

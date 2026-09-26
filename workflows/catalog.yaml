@@ -42,11 +42,11 @@
       },
       {
         "name": "review",
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       {
         "name": "reconciliation",
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       }
     ],
     "specialist": [
@@ -56,9 +56,6 @@
         "workflows": [
           {
             "name": "construct-local-work-graph"
-          },
-          {
-            "name": "preparation"
           },
           {
             "name": "scope-of-work"
@@ -71,9 +68,6 @@
           },
           {
             "name": "aggregation"
-          },
-          {
-            "name": "proposal-format"
           }
         ]
       },
@@ -81,9 +75,6 @@
         "key": "research-understand",
         "label": "Research & understand",
         "workflows": [
-          {
-            "name": "researcher"
-          },
           {
             "name": "domain-hypergraph"
           },
@@ -211,15 +202,6 @@
         "label": "Build & maintain software",
         "workflows": [
           {
-            "name": "software-bounded-implementation"
-          },
-          {
-            "name": "software-code-review"
-          },
-          {
-            "name": "software-defect-diagnosis"
-          },
-          {
             "name": "software-test-planning"
           }
         ]
@@ -263,9 +245,6 @@
           },
           {
             "name": "audit-hypergraph-closure"
-          },
-          {
-            "name": "deliverable-consistency"
           },
           {
             "name": "decomposition-package-review"

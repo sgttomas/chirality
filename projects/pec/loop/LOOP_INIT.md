@@ -1,346 +1,147 @@
-# PEC work loop — session init and generic loop
+# PEC development loop
 
-This file is the PEC loop's generic instruction surface: protocol, fences,
-checks, and pointers. It holds no status, history, or work.
-Work lives in `projects/pec/execution/PKG-*/1_Working/DEL-*/`, in each
-`_STATUS.md` `## Remaining` section, and current state is re-derived from
-those files every iteration.
+Resolve `REPO_ROOT` from the active checkout and set `WORKING_ROOT` to
+`{REPO_ROOT}/projects/pec`. Paths below are relative to `WORKING_ROOT`.
+Enter through `init/dev-loop-init-prompt.md` with the selected role and the
+human's steering. This file owns the recurring development-loop procedure;
+project `AGENTS.md` supplies standing responsibilities, boundaries and checks.
+Keep this file evergreen: undertaking selection and graph references come from
+the init steering and subsequent human directions; execution state lives in the
+selected work graph.
 
-## 1. Bootstrap
+## Project pointers
 
-- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`; run commands from
-  that directory. `WORKING_ROOT` is `{REPO_ROOT}/projects/pec`.
-- Loop surfaces resolve beside this file, under `projects/pec/loop/`.
-  `LOOP_RECEIPTS.md` holds handoff context; its local rules govern receipts.
-- This file is instruction, not an owner act. Owner directions and rulings
-  authorize work; on disagreement, the cited sources govern.
+- Purpose and scope: `docs/PRD.md`, the accepted decomposition reached through
+  `execution/_Decomposition/_LATEST.md`, and `execution/_ScopeChange/_LATEST.md`.
+- Dependencies: affected deliverables' `Dependencies.csv` and `_DEPENDENCIES.md`,
+  with the accepted project relationship basis they reference.
+- Deliverables: relevant `execution/PKG-*/1_Working/DEL-*/` folders and their
+  accepted production form, MEMORY.md, dependencies and lifecycle _STATUS.md.
+- Decisions and boundaries: project `AGENTS.md`, applicable entries in
+  `execution/_Coordination/_DECISIONS/_REGISTER.md`, and relevant
+  `execution/_Coordination/NOTICE_*` files.
+- Checks: `software-workflow.json` and the applicable project verification rules.
+- Task Management register: `execution/_Coordination/_TaskManagement/REGISTER.csv`.
 
-## 2. Where live work is re-derived
+## 0. Read the steering and recover the situation
 
-All paths below are repository-relative unless explicitly labelled otherwise.
+The init steering and subsequent human directions establish the purpose, phase,
+priorities and limits. Recover the graph for that undertaking from the supplied
+references and relevant project records. Read it, relevant deliverable contracts,
+MEMORY run pointers, dependencies, implementation and evidence. Give a concise
+reading of the intended outcome and proceed where the direction is clear.
 
-- **Work:** `projects/pec/execution/PKG-*/1_Working/DEL-*/` — `_STATUS.md`
-  (`## Remaining` and lifecycle), `ScopeOfWork.md`, `MEMORY.md` when present,
-  `Dependencies.csv` / `_DEPENDENCIES.md`, and `_run_records/**`.
-- **Product and decomposition:** `projects/pec/docs/PRD.md`;
-  `projects/pec/execution/_Decomposition/_LATEST.md` and its accepted package;
-  `projects/pec/execution/_ScopeChange/_LATEST.md`. Tranche scope comes from
-  accepted decomposition and deliverable contracts, never directly from a PRD.
-- **Standing purpose:**
-  `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md`
-  preserves owner intent and dated history; verify its owner disposition.
-  It selects no item and creates no work queue.
-- **Owner gates:** `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
-  and packets beside it; `_DomainEngines/_DECISIONS/_REGISTER.md` and its
-  tier-0 packets. D-PEC-57/58 are product/fence lineage; D-PEC-78 governs the
-  service registry's home and shape. A tracking row is not its ruling source.
-- **Profile:** `_DomainEngines/profiles/pec.yaml`; effective adoption and any
-  later path amendment must be verified against their exact owner records.
-- **Handoffs:** `projects/pec/loop/LOOP_RECEIPTS.md`;
-  `projects/pec/execution/_Coordination/NOTICE_*`; current-map pointers in
-  `projects/pec/docs/STATUS.md` are discovery aids, not accepted state.
-- **Task Management:**
-  `projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv` and
-  `REGISTER_CLOSED.csv`; routed handoffs are in the same directory.
-  Register concerns do not substitute for deliverable `Remaining` work.
-- **Reliance holds:**
-  `projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` and the
-  preflight documented in `projects/pec/AGENTS.md` (exact command in §8).
-- **Dependency evidence:** deliverable-local registers plus any accepted
-  DepClosure snapshot actually named by the selected item's sources. Do not
-  assume an app-dev DepClosure path exists in PEC. Cycles follow
-  `docs/CYCLE_DRIVEN_RESOLUTION.md`.
-- **Accepted repair evidence named by the historical plan:**
-  `projects/pec/execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`,
-  `projects/pec/execution/_Coordination/WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/HANDOFF_STATE.md`,
-  and `projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md`.
-  Follow later accepted successors; these locators assert no present status.
-- **Method and agent posture:** `projects/pec/AGENTS.md` (including the model
-  convention and concurrent-scope discipline), root `AGENTS.md`,
-  `docs/DECOMPOSITION_STANDARD.md`, `docs/SOFTWARE_WORKFLOW_PROFILE.md`, and
-  the applicable canonical agent instructions.
-- **Checks and parity:** `projects/pec/software-workflow.json`;
-  `tools/practitioner_harness/README.md`; commands by work type in §8.
-- **Historical archive (never selection surfaces):**
-  `projects/pec/plans/workplans/` holds the retired workplans and currency note;
-  original product authoring at
-  `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md`;
-  frozen source corpus `projects/pec/{core,server,web,agent-sidecar,tools}`.
-  None is a substitute work queue or a new source authorization.
+Verify branch/worktree state, partial edits, active workers and prior integration
+before repeating work. Recover the actual graph and its accepted basis when
+continuing an undertaking. Preserve unrelated edits and transfer shared-file or
+test-resource ownership explicitly. Missing or stale pointers require recovery
+from their sources; they are not permission to restart completed work.
 
-## 3. Hard fences
+## 1. Construct or revise the work graph
 
-The following text is carried verbatim from the project's **Write Scopes And
-Fences** section and the retired plan. Fence wording changes only by owner act.
+Use `chirality-root:bundled:workflow:construct-local-work-graph` when no graph
+exists or its route needs substantial revision. Relate the intended outcome to
+the project DAG, deliverables and present work. Before the first DAG exists,
+follow the phase steering and applicable dependency/cycle-resolution method.
 
-Default writable project-local surfaces are only `execution/_Coordination/**`,
-this `AGENTS.md`, and the one-time `docs/STATUS.md` governance pointer
-section (F-PEC-1). Per-tranche `docs/STATUS.md` upkeep beyond that pointer
-requires an explicit packet clause (as `D-PEC-58`/`D-PEC-59` supplied for
-their tranches).
+Create the Git-tracked graph at
+`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`. Return its
+path for continuation and commit it in the undertaking's PR sequence early
+enough for handoff. Keep the graph current across sessions and preserve
+historical graphs at their existing locations.
 
-**Every other write under `projects/pec` — including any new v2 source tree,
-scaffolding, manifest, or configuration — requires an owner-ruled `D-PEC`
-packet naming the exact paths, acts, verification, and rollback.** New source
-trees are named in their own packet.
+Plan substantive implementation and evidence through PRs, each carrying the
+documentation, reconciliation and conditional Task Management work its slice
+needs. Then plan one final bounded documentation/governance closeout stage:
+reconciliation, conditional Task Management, one central loop receipt, terse
+MEMORY entries and the final PR. Steps 2–6 supply the mechanics; no formal
+reconciliation pass is required
+after every node.
 
-`F-PEC-1..4` (`D-T0-15`, with `F-PEC-4` as extended by `D-T0-19`) remain the
-outer fences and are amended only by an explicit per-tranche packet clause.
-`F-PEC-1` is the outer fence over source work until a packet opens it.
+## 2. Advance implementation and evidence
 
-- Runtime/source implementation remains parked until an exact per-tranche
-  packet opens the applicable PEC and Root fences; PRD adoption alone opens
-  none.
+Use Agent 0/1/2 responsibilities to maintain alignment, manage connected work and
+execute bounded contributions. Managers integrate their children's returns and
+advance independent ready work. Size concurrency to actual review and integration
+capacity, with one owner for shared writes.
 
-- **`F-PEC-1..4` remain in force** as ruled in `D-T0-15` (F-PEC-4 as extended
-  by `D-T0-19`); they are amended only by an explicit per-tranche packet clause.
+Implement, verify, validate where applicable, review, repair and integrate via
+PRs under the graph and project requirements. Each PR carries the document,
+reconciliation and governance consequences needed for that slice, including a
+qualified Task Management transfer when needed under Step 4. Exercise meaningful connected behavior and
+record the actual candidate and evidence. Prepare consequential decisions for
+the human while unaffected work proceeds. Keep required production work in the
+graph until its conditions are satisfied; an intermediate merge does not finish
+the undertaking.
 
-- Implementation writes to `core/`, `server/`, `web/`, or any new source tree
-  require their own packets; F-PEC-1 is the outer fence until one opens it.
+## 3. Perform the bounded documentation and governance closeout
 
-- Old-PEC source trees (`projects/pec/{core,server,web,agent-sidecar,tools}`)
-  are **frozen reference corpus**: read and cite only, never edited, never
-  deleted (archival from the working tree once P2 is useful is its own packet).
-  Machinery carries as pattern, not as code (PRD v2 §7.3, §13).
+After integrating the intended implementation and evidence work—normally the
+penultimate merge—perform one planned documentation/governance closeout stage.
+Use `chirality-root:bundled:workflow:bounded-reconciliation` for bounded
+per-deliverable comparisons as needed within that stage. The closeout precedes
+the final PR. Compare the delivered result and evidence with the actual
+Scope of Work, dependency and governance records; apply warranted edits and
+accepted decisions. Preserve future requirements and owning authority for scope,
+lifecycle, protected criteria and issued baselines.
 
-- `D-T0` data-residency rows are unchanged; PEC v2 is content-minimal (paths,
-  counts, SHAs, states, hashes — never file or diff content).
+This closeout is bounded to the undertaking. A supported no-change result is
+sufficient. If it finds missing required implementation or evidence, return that
+work to the graph and repair it before completing closeout. Recheck affected
+comparisons after a change; do not declare required work complete through a
+report or transfer.
 
-- No second execution loop: the runtime daemon keeps session, delegation, and
-  turn-lock ownership (`D-GOV-20`, `D-PEC-56`). PEC dispatches nothing.
+## 4. Route exceptional concerns
 
-- Rulings stay file-native (K-AUTH-1); PEC renders decision slates authored
-  elsewhere and provides no ruling write path.
+For a substantive PR or the final closeout, first resolve a concern through
+authorized graph work,
+a warranted document amendment, or the owning decision/scope-change route.
+Work already allocated to an identified successor stays there. Ordinary future
+requirements remain in their governing scope.
 
-## 4. Deliverables alone; workplans retired
+Only a material, evidenced concern without a current or identified successor
+home qualifies for bounded Task Management intake. Give it to WORKING_ITEMS
+selecting `chirality-root:bundled:workflow:task-management`, with the source,
+significance, missing home and proposed treatment. Perform that workflow's
+federation preflight; no general harvest is required. Promotion, disposition
+and external assignment remain actual human acts. Retain the outcome or pending
+intake in Task Management and link it from the originating PR/graph node and
+final closeout as applicable. Routing does not
+satisfy an unmet requirement or permit graph completion that depends on it.
 
-Work is discovered only from deliverable `## Remaining` surfaces, with the
-explicit scoped preparation exception in Step 1. No workplan is an overlay,
-a source of ordering, or a selection surface. Retired plans and currency notes
-are immutable history in `projects/pec/plans/workplans/`; the owner-intent
-record in §2 preserves purpose and the sources of any surviving constraints.
+## 5. Write the central receipt and affected MEMORY entries
 
-Step 0 retains committed-HEAD plan discovery only as a retirement check. It
-must report `no committed plan: deliverables alone`. A plan appearing beside
-this init is a defect: stop and repair through owner direction; never load or
-select from it. Working-tree or untracked plans supply no authority either.
+Near final PR preparation, write one receipt for the undertaking at
+`execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`, using the graph's stable
+run identity. It is a concise, derivative account of what landed, affected
+deliverables, actual PRs, checks and evidence, decisions or Task Management
+transfers, and material limits. Use its result/checks/limits account for the
+final PR description, adjusting links for the PR surface. Keep detailed logs at
+their sources and link the graph; the receipt is neither a second execution
+graph, a future-work list nor decision authority. A graph node or Task
+Management invocation does not create another loop receipt.
 
-## 5. Protocol — every iteration
+Then add a terse entry to each affected deliverable's `MEMORY.md`: run/date,
+what this run did there, and a link to the central receipt. Add the relevant PR,
+decision, scope-change or transfer pointer when useful. MEMORY is a local run
+index, not a decision record or future assignment. Preserve existing history.
+Include the receipt and MEMORY changes in the final PR; use a stable run/branch
+link until its PR URL exists, then bind that URL before final checks. Do not
+claim a pending merge as complete. Root SPEC §9.8 still governs required
+multi-agent execution provenance.
 
-### Step 0 — Discover
+## 6. Complete the graph and merge the final PR
 
-Run this complete block from the checkout; it stops on command errors.
-Empty optional discoveries are reported explicitly, not treated as errors.
-If the host blocks a required command, use its permission mechanism for that
-exact command and rerun the block. If permission is denied, report the block
-as incomplete; do not claim fresh remote state or advance dependent work.
+Complete the graph's promised work, bounded closeout, central receipt and
+memory entries, and prepare the final PR with the integrated result and
+evidence. Review and required checks must cover the actual final candidate;
+resolve blocking findings and
+obtain the decisions reserved to the human. Record readiness for final merge and
+the PR URL in the candidate graph. Verify the actual merged state afterward
+through Git or the PR service; do not assert a future merge SHA in the candidate or require a later completion-record commit.
 
-```bash
-set -e
-REPO_ROOT="$(git rev-parse --show-toplevel)"
-cd "$REPO_ROOT"
-git fetch origin
-git status --short
-git log --oneline -20
-python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
-plan_paths="$(git ls-tree -r --name-only HEAD -- projects/pec/loop/)"
-p="$(printf '%s\n' "$plan_paths" | LC_ALL=C sort | awk -F/ '$1 == "projects" && $2 == "pec" && $3 == "loop" && NF == 4 && $4 ~ /^WORKPLAN_.*\.md$/ {last=$0} END {print last}')"
-if [ -n "$p" ]; then echo "ERROR: retired workplan remains in committed loop home: $p" >&2; exit 1; else echo 'no committed plan: deliverables alone'; fi
-head -34 projects/pec/loop/LOOP_RECEIPTS.md
-tail -60 projects/pec/loop/LOOP_RECEIPTS.md
-if grep -nE "^\| D-PEC-[0-9]+ \|([^|]*\|){2} (AWAITING_RULING|NOT_PREPARED)" projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md; then
-  :
-else
-  rc=$?; if [ "$rc" -ne 1 ]; then exit "$rc"; fi
-  echo 'no open PEC register rows'
-fi
-cat _DomainEngines/_DECISIONS/_REGISTER.md
-cat _DomainEngines/profiles/pec.yaml
-cat projects/pec/execution/_Decomposition/_LATEST.md
-cat projects/pec/execution/_ScopeChange/_LATEST.md
-head -32 projects/pec/docs/PRD.md
-cat projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv
-python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv
-python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
-python3 - <<'DISCOVER'
-from pathlib import Path
-root = Path('projects/pec/execution')
-statuses = sorted(root.glob('PKG-*/1_Working/DEL-*/_STATUS.md'))
-if not statuses:
-    raise SystemExit('ERROR: no deliverable status files found')
-remaining = []
-for path in statuses:
-    text = path.read_text(encoding='utf-8')
-    print(path)
-    if any(line.rstrip() == '## Remaining' for line in text.splitlines()):
-        remaining.append(str(path))
-print('Remaining surfaces:', *remaining, sep='\n')
-if not remaining:
-    print('No recorded selectable scope: no ## Remaining sections; do not infer work from lifecycle alone.')
-notices = sorted((root / '_Coordination').glob('NOTICE_*'))
-print('Routed notices:', *notices, sep='\n')
-if not notices:
-    print('No routed notice files.')
-DISCOVER
-PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check
-```
-
-- A receipt-validator failure blocks use of the ledger until governed repair.
-- Verify before relying: open a map's cited live source; record disagreements
-  as receipt deltas, never by editing historical maps.
-- Recompute any hash pinned by the selected `Remaining` item; stop
-  on mismatch. A historical preimage hash identifies history, not current bytes.
-- Read candidate packets and later owner records behind register/receipt
-  pointers before selecting. Open legacy rows do not revive retired work.
-- A `_STATUS.md` without `## Remaining` has no recorded selectable scope.
-  Report missing scope for owner-directed preparation; do not manufacture it.
-
-### Step 1 — Select from `## Remaining` only
-
-A Remaining item is selectable when it has no `(gated: ...)`,
-`(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:` marker, or its named act is
-observable. Owner acts, rulings, routed notices, and reliance-hold releases
-are observable only on `origin/main` after `git fetch`; inspect those exact
-remote-tracking bytes, not merely an unmerged branch's claim of a ruling.
-A predecessor item is observable once its commit, checks, and run record are
-on the run's branch. This never substitutes for a separately named human
-acceptance gate or an explicit packet requirement.
-
-Re-derive blockedness from the item's `Depends` line, local
-`Dependencies.csv` / `_DEPENDENCIES.md`, and accepted dependency evidence.
-A register row blocks an item only when it is `ACTIVE`, of type
-`PREREQUISITE`, its `SatisfactionStatus` is `TBD`, `PENDING`, or
-`IN_PROGRESS`, and the item's `Depends` line names its target; `INTERFACE`,
-`HANDOVER`, `CONSTRAINT`, and `ENABLES` rows order work and never block;
-`SATISFIED`, `WAIVED`, and `NOT_APPLICABLE` never block; separately, a matching
-`ACTIVE` PEC reliance-hold row blocks its prohibited act under the exact
-preflight in §8, which fails closed on an unreadable or malformed register.
-
-Prioritize failing validation on landed work, then named gate prerequisites,
-owner-directed work, and highest-value ungated work.
-Selection stays within recorded scope and exact granted paths; report a
-missing or contradictory contract instead of inventing work from an OPEN
-lifecycle, a Task Management concern, or a historical plan.
-
-An explicitly scoped owner request for preparation or correction may proceed
-to Step 2 even when no Remaining item exists. Record that request as the
-selection basis; do not create deliverable scope or treat preparation as
-production authorization or satisfaction of a merged owner prerequisite.
-
-### Step 2 — Brief or slate
-
-Prepare CANDIDATE deliverable briefs, or a PROPOSAL decision slate for
-coordination work, with exact scope, paths, checks, rollback, and on-ruling
-mechanics. Material forks, source openings, scope amendments, profile changes,
-and owner-shaped decisions go to the PEC decision register. Ordinary method
-choices inside an existing grant are attributed to the agent.
-
-### Step 3 — Gate
-
-Stop at §3 fences and owner acts: adoption, ruling, and direction are the
-owner's (K-AUTH-1; D-GOV-04). Record owner directions verbatim in their
-owning artifact; chat-only directions without another governed home go in
-the receipt as evidence, not ruling. Record every gate outcome and reason,
-including no-ops. Preparation or a brief is never its own acceptance.
-
-### Step 4 — Execute and check
-
-One branch per run, cut from `origin/main`. Iterate Steps 0 to 5 on it:
-one commit and one receipt per iteration, pushed after every closeout.
-Within an iteration, independent nodes run concurrently under one recorded
-work graph with disjoint write loci, per `projects/pec/AGENTS.md`; dependent
-nodes run in later iterations on the same branch. Open one PR at terminus
-(§7) or when the next lawful step requires a merged act. Agents may merge under
-Root `docs/PRD_ROOT.md` §5.3.1's standing owner authorization after required CI
-and independent review cover the actual candidate with no blocking findings.
-Explicit holds and later owner directions prevail. A rejected item's next run
-restarts at Step 0 from `origin/main`.
-
-Write only within the run's exact owner-granted scope; §3 is unchanged,
-including the packet requirement for loop-ledger writes. An adopted brief
-still needs every applicable gate satisfied. Run the work-type checks in §8,
-and apply the selected role's evidence/validation contract (§9).
-This run-based boundary amends the prior per-iteration
-`READY PR IS OWNER MERGE GATE` practice without relaxing its owner merge gate.
-
-### Step 5 — Closeout
-
-Record deliverable-local results in `_run_records/**` and `MEMORY.md` when
-applicable; update `Remaining` to reflect completed and remaining scope.
-Lifecycle changes require their separate ruled gates. Append one receipt
-beside this init per the ledger's rules and rerun its validator before commit.
-The first receipt names the run's base commit; later receipts chain to the
-previous one. Commit, push, and return to Step 0 on the same run branch.
-At the PR boundary, identify exact commits, checks, unresolved gates, and the
-owner's separately rulable items; do not mark them accepted before the act.
-
-## 6. First return from Step 0
-
-Return the live Git state and newest applicable receipt; owner directions
-and register/profile gates; standing purpose; the widest lawful tranche;
-and parked lanes with the owner act that would unpark them. If no Remaining
-scope is recorded, say so and identify preparation as an owner decision.
-If parked pending owner direction, stop after this return unless the owner
-has supplied a scoped preparation or correction task for this run.
-
-## 7. Posture
-
-- Continue within lawful scope until every path of advancement is exhausted
-  except human decision. Failed checks enter repair; they do not justify
-  lowering evidence or crossing a fence.
-- When only owner decisions remain, present a slate and stop; never
-  manufacture lower-value work to stay busy.
-- Attribute choices and evidence truthfully. Never record a ruling that did
-  not occur; role assertion is not mechanical enforcement.
-
-## 8. Checks by work type
-
-Cosmetic whitespace is not a commit or merge gate; local formatting diagnostics are optional.
-
-| Work type | Required checks |
-|---|---|
-| Every closeout | `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` before/after append; `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check` |
-| Task Management changes | `python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv` and the same command with `REGISTER_CLOSED.csv`; federation/row dispositions follow its owning role |
-| Launcher/init/posture changes | `python3 tools/validation/validate_instruction_entrypoints.py .`; `python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` |
-| Tool changes | Focused tests for each changed tool plus practitioner-harness pytest when its code changes; record command, interpreter, and result |
-| PEC v2 source/configuration | Exact packet's registered checks in `projects/pec/software-workflow.json`; run from `projects/pec` with an explicit compatible Python (registry requires 3.10+); record the selected version |
-| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; absent implementations are unmet gates, never fabricated passes |
-| Governance/control only | Record source-only, kill, and parity checks as not applicable when no corresponding capability changed; legacy source/demo/typecheck/build/drill checks do not authorize running the frozen product |
-| Any dispatch, review, fan-in, promotion, or reliance | PEC hold preflight below for each exact target/act, plus the owning role's checks |
-
-Run the preflight from `projects/pec`, replacing the example target and
-operation with the exact intended act (target paths are project-relative):
-
-```bash
-python3 execution/_Scripts/pec_reliance_hold.py \
-  --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv \
-  --target execution/PKG-XX_Name/1_Working/DEL-XX-YY_Name/ScopeOfWork.md \
-  --operation candidate-validation
-```
-
-Operations are `historical-read-only-inspection`, `exact-correction-preparation`,
-`candidate-validation`, `dispatch-for-production`, `rely-for-production`,
-`consume`, and `promote`. Use the matching operation; candidate validation is
-not a bypass for production. Re-verify any release against `origin/main`.
-Checks constrain PEC work; they do not impose duties on a sister project.
-
-## 9. Evidence contract
-
-The retired plan supplied no separate empirical evidence schema. Follow the
-selected role and `docs/SOFTWARE_WORKFLOW_PROFILE.md`: preserve source
-identities, commands/cwd/interpreter, exit codes, outputs, and a bounded rerun
-method for verification claims. Cite accepted upstream snapshots; distinguish
-candidate artifacts, historical records, derivative packages, and owner acts.
-Keep detail in the owning packet or run record, with a minimal receipt pointer;
-never convert a passing check into authority or professional reliance.
-
-## 10. Per-run steer and historical references
-
-Honor the owner's per-run steer over §7 defaults;
-fences and owner gates still apply unless explicitly amended by the owner.
-Historical receipts refer to the old `_DomainEngines/pec/` paths and section
-numbers of the revision then in force: former init §7 is the model convention
-now in project AGENTS, and former §5 is the default posture; the relocation
-map in `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/RELOCATION_MAP.csv`
-and its D_RETIREMENT/RELOCATION_MAP.csv continuation plus Git history resolve
-those references without a second live loop surface.
+The loop ends when the completed work graph's final PR merges under standing
+Git authority. A review hold, unfinished required node or unmerged final PR
+means it remains open. On interruption, retain the candidate, open checks,
+active operations and next safe action in the graph. Final integration does not
+itself issue a deliverable, accept a product or authorize release.

@@ -10,10 +10,13 @@ coordination plane that doesn't need to exist**: files and Git remain the
 sole authority, every potential consumer has a file-native fallback, and
 deleting PEC degrades throughput, never correctness.
 
-Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.3, adopted
-2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance (`D-PEC-92`) and
-applied in checkpoint-3 preparation, and settled by the owner's checkpoint-3
-acceptance the same day; it carries the `D-PEC-79` §16.3 hunks.
+Product definition of record: [`docs/PRD.md`](docs/PRD.md), v2.4.
+- Adopted 2026-09-25 by the owner's SCA-006 checkpoint-2 acceptance
+  (`D-PEC-97`).
+- Applied in checkpoint-3 preparation on 2026-09-26.
+- The owner's checkpoint-3 acceptance is pending.
+
+v2.3 (SCA-005, `D-PEC-92`) preceded it.
 Earlier versions: v2.0 `D-PEC-58`, v2.1 `D-PEC-61`, exact consumer-interface
 rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 [`docs/STATUS.md`](docs/STATUS.md) first.**
@@ -27,18 +30,19 @@ after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the
 owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
 `D-PEC-93` added DEL-02-08 and DEL-02-09), and completed the SCA-004
 metadata-alignment subset (all context provenance blocks and reference packets
-were current for revision 1.4; now 24 of 66 contexts name revision 1.5, and
-the other 42 contexts and 64 of 66 references await re-pinning), and DEL-01-06 carries the non-gating
+were current for revision 1.4; since the `D-PEC-95` act of 2026-09-25 all 66
+contexts and 66 references name revision 1.5, and three contexts also carry
+the SCA-006 revision-1.6 clause), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
 initialized. DEL-01-06 now has the accepted revision-1.4 production contract
 at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
 RF-001 and RF-002 are resolved, while Gate 5 remains HOLD at `INITIALIZED`.
 The earlier
 eleven-contract reconciliation remains historical under `D-PEC-69`, and
-`PEC-HOLD-001` was released by `D-PEC-70`. Current SCA-004 derivative state is
-recorded in
-`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`:
-incomplete only for TM-PEC-023. Lifecycle census (2026-09-25): 30 `OPEN` / 26
+`PEC-HOLD-001` was released by `D-PEC-70`. The SCA-004 closeout
+(`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`)
+recorded derivative state as incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
+`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-25): 30 `OPEN` / 26
 `INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
@@ -50,11 +54,13 @@ ticked, and review of the corrected bytes. The slice merged on 2026-09-24
 ruled for closure as `D-PEC-89` A, whose slice merged on 2026-09-25 (PR #897);
 the L-2a review of the corrected bytes then found defects, whose repairs are
 ruled as `D-PEC-91` A-53, whose slice merged on 2026-09-25 (PR #903). Build phases P1–P4 remain
-separately owner-gated. `D-PEC-80` made `projects/pec/loop/` the loop home:
-follow `projects/pec/loop/LOOP_INIT.md` to discover
-work from deliverable `## Remaining` surfaces. Retired plans live in
-`projects/pec/plans/workplans/` as history only. PEC's adoption of the shared
-development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
+separately owner-gated. PEC runs the shared development loop under `D-PEC-94`
+(2026-09-25): `projects/pec/loop/LOOP_INIT.md` is the evergreen procedure, the
+human's steering selects each undertaking, its work graph lives at
+`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, and each
+undertaking ends with one central receipt under `execution/_Coordination/AgentRuns/`.
+`loop/LOOP_RECEIPTS.md` is a historical ledger closed by Receipt 197. Retired
+plans live in `projects/pec/plans/workplans/` as history only.
 
 **SCA-005** (feed-model rebaseline, `D-PEC-86`) is closed for scope change
 only (below). Its
@@ -81,9 +87,13 @@ See `docs/STATUS.md` for current gates.
 response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
-coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
-until a later scope change, which may be prepared now that SCA-005 checkpoint 2
-is accepted, amends it.
+coverage, not now. Scope change SCA-006 carries this into PRD v2.4 and
+`projects/pec/AGENTS.md`. The owner accepted its checkpoint 1 on
+2026-09-25, specifying direct query under a new read-only `agent` access
+class (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`);
+the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
+`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
+checkpoint 3 was applied on 2026-09-26, and its acceptance is pending.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
@@ -99,19 +109,20 @@ DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03. TM-PEC-011 remains `OPEN` with
 stale source evidence pending a separate TASK_MANAGEMENT disposition; no row
 is closed here. Since then the currency lane completed on 2026-08-09,
 TM-PEC-011/013/014 are archived `CLOSED / RESOLVED_WITH_CHANGE`, and
-TM-PEC-023 moved into SCA-005 intake.
+TM-PEC-023 moved into SCA-005 intake; it was closed `RESOLVED_BY_DECISION`
+on 2026-09-25 under `D-PEC-95`.
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `docs/PRD.md` | Adopted product definition (v2.3, coordination plane) |
+| `docs/PRD.md` | Adopted product definition (v2.4, coordination plane) |
 | `docs/STATUS.md` | Status & handoff — read first |
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.5 (`current_basis`, SCA-005) and authoritative companion registers |
 | `execution/_ScopeChange/` | Immutable SCA-001 to SCA-005 amendment evidence, the SCA-005 checkpoint-group snapshots under `checkpoint_snapshots/`, and the active scope-change pointer (SCA-005) |
-| `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
+| `loop/` | Loop instruction surface (`LOOP_INIT.md`, shared method under `D-PEC-94`) and the historical receipts ledger (`LOOP_RECEIPTS.md`, closed at Receipt 197) |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
 | `init/` | Loop launcher prompt (points at `projects/pec/loop/LOOP_INIT.md`) |
@@ -133,5 +144,7 @@ consumer rows: `D-PEC-67`; v2.2 concordance: `D-PEC-68`; loop-registry ruling:
 `D-PEC-78`; accepted decomposition successor: `SCA-005` (revision 1.5,
 checkpoint 2 `D-PEC-92`), after `SCA-004`; historical contract
 reconciliation and hold release: `D-PEC-69`/`D-PEC-70`; loop home: `D-PEC-80`;
-first store/guard slice: `D-PEC-85`; SCA-005 opening: `D-PEC-86`). Receipts:
-`projects/pec/loop/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.
+first store/guard slice: `D-PEC-85`; SCA-005 opening: `D-PEC-86`; loop adoption:
+`D-PEC-94`). Receipts: one central `RECEIPT.md` per undertaking under
+`execution/_Coordination/AgentRuns/`; the earlier ledger
+`projects/pec/loop/LOOP_RECEIPTS.md` is historical. Project agent rules: `AGENTS.md`.

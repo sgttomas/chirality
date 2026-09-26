@@ -1,0 +1,3 @@
+taskmgmt archive COMPLETE: 1 CLOSED row(s) moved projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv -> projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
+  live after: OPEN=8 DEFERRED=1 ELEVATED=0 CLOSED=0 (9 row(s)); archive total: 16
+  mechanical relocation only; closure itself remains the owner's recorded act (K-TM-3), and archived rows stay part of the register's federated identity

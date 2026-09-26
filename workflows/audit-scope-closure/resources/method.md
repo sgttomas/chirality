@@ -7,24 +7,44 @@
 1. Confirm `EXECUTION_ROOT` exists and is readable.
 2. Confirm `SCOPE_CHANGE_ROOT` exists (default: `{EXECUTION_ROOT}/_ScopeChange/`).
 3. Locate the amendment snapshot for the specified `AMENDMENT_ID`:
-   - Path pattern: `{SCOPE_CHANGE_ROOT}/SCA-{NNN}_*/`
+   - Path pattern: `{SCOPE_CHANGE_ROOT}/{AMENDMENT_ID}_*/`, where `AMENDMENT_ID` is `SCA-{NNN}` or a project-qualified form such as `SCA-APP-{NNN}`. Match the full ID followed by `_`, so `SCA-001` never matches `SCA-APP-001`.
    - If not found: `FAILED_INPUTS` — cannot audit a scope change with no amendment record.
-4. Read and parse `Amendment_Actions.csv` from the snapshot.
-   - If missing or malformed: `FAILED_INPUTS`.
+4. Resolve and parse the accepted action register:
+   - Resolve the accepted checkpoint-group-2 decision snapshot (the amendment-qualified pointer `{SCOPE_CHANGE_ROOT}/{AMENDMENT_ID}_GROUP-2_AUTHORIZED.md`, or the latest `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-2_*/` folder it names). Use the action register bound in its `ACCEPTED_MANIFEST.csv` and verify the recorded SHA-256.
+   - Current runs bind `Amendment_Actions.csv`. A historical run may bind another name (for example `Amendment_Actions_CP2.csv`); use the bound file and record its name. `Intake_Actions.csv` holds group-1 `PROPOSED` rows and is never the register.
+   - The register is the single manifest row whose path basename matches `Amendment_Actions*.csv`; none or more than one is `FAILED_INPUTS`.
+   - Fallback only for an amendment with no `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-*` folder (for example a gate-era run): use `Amendment_Actions.csv` in the amendment snapshot and record the fallback as an OBSERVATION. A run with a group-1 snapshot but no group-2 snapshot is `FAILED_INPUTS`.
+   - If the bound register is missing, malformed or hash-mismatched: `FAILED_INPUTS`.
+   - Later passes use this resolved register wherever this method names `Amendment_Actions.csv`.
 5. Read `RUN_SUMMARY.md` from the snapshot for downstream rerun recommendations.
 6. Read `Propagation_Plan.md` from the snapshot for expected filesystem changes.
-7. Verify amendment snapshot recency:
+7. Read `Handoff_State.md` from the snapshot and every later handoff record for this amendment: later checkpoint-snapshot `Handoff_State.md` files, `_PostAcceptanceValidation/{AMENDMENT_ID}_*/` records, and closeout or effective-state records under `{SCOPE_CHANGE_ROOT}`. Take each obligation's current disposition from the latest applicable record, including human deferrals and optional derivatives recorded as not activated, and cite the deciding record.
+8. Verify amendment snapshot recency:
    - Determine amendment date from the snapshot's `Brief.md` or folder timestamp.
-   - Record amendment recency as context. Determine rerun sufficiency from matching scope, input hashes, and successful run receipts.
+   - Record amendment recency as context only. Determine rerun sufficiency from matching scope, input hashes and successful run receipts (see Pass 2), never from dates alone.
    - If amendment date is in the future (clock skew):
      - Record a MAJOR finding with uncertainty recorded separately: "Amendment snapshot timestamp is in the future; cannot audit."
      - Halt with `FAILED_INPUTS`.
-8. Locate the decomposition document (`DECOMPOSITION_PATH` from brief or discovered from `{EXECUTION_ROOT}/_Decomposition/`).
-9. Determine `DECOMP_VARIANT` from the brief or auto-detect from folder naming conventions.
-   - Valid values: `PROJECT`, `SOFTWARE`, `DOMAIN`.
-   - For `DOMAIN`, Pass 4 invokes `tools/validation/validate_domain_decomposition_integrity.py` against the active decomposition package and amendment snapshot; Pass 7 adds KTY content remediation verification.
+9. Locate the decomposition document (`DECOMPOSITION_PATH` from brief or discovered from `{EXECUTION_ROOT}/_Decomposition/`).
+10. Determine `DECOMP_VARIANT` from the brief or auto-detect from folder naming conventions.
+    - Valid values: `PROJECT`, `SOFTWARE`, `DOMAIN`.
+    - For `DOMAIN`, Pass 4 invokes `tools/validation/validate_domain_decomposition_integrity.py` against the active decomposition package and amendment snapshot; Pass 7 adds KTY content remediation verification.
 
 If preconditions fail, halt with `FAILED_INPUTS` and report what is missing.
+
+**Input manifest and rerun of this audit.** Write `INPUT_MANIFEST.sha256` in the
+audit snapshot, listing the SHA-256 of every input read (register, handoff
+records, decomposition, affected metadata, dependency registers and tool
+outputs). A prior audit snapshot remains sufficient only while its
+`INPUT_MANIFEST.sha256` still matches the current inputs; its date does not
+decide this. A prior snapshot without an input manifest cannot establish that
+its inputs are current, so rerun the audit.
+
+**Superseding snapshot.** To correct or refresh a published audit snapshot,
+write a new snapshot; never edit the earlier one. The new snapshot records in
+its report (or a `SUPERSESSION_NOTE.md`) the superseded snapshot path, the
+reason, and what changed in inputs or evidence binding. Then update
+`_LATEST.md` to the new snapshot. The earlier bytes remain historical evidence.
 
 ---
 
@@ -35,14 +55,14 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 **ADD actions:**
 - Confirm the deliverable folder exists at the expected path under the correct package.
 - Confirm minimum viable fileset is present: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`.
-- Confirm `_STATUS.md` shows lifecycle state >= `OPEN` (TASK (workflow: preparation) ran).
+- Confirm `_STATUS.md` shows lifecycle state >= `OPEN` (the `preparation` skill ran).
 - Confirm `_CONTEXT.md` header fields match the decomposition document's entry for this deliverable.
 
 **REMOVE actions:**
-- Confirm `_STATUS.md` shows `Current State: RETIRED`.
-- Confirm `_STATUS.md` history contains a WORKING_ITEMS (workflow: scope-change) entry referencing the amendment ID.
+- Confirm the decomposition document's deliverable row is annotated with `[RETIRED — {AMENDMENT_ID}]`.
+- Confirm `_STATUS.md` history contains an appended line recording the retirement under the amendment ID.
+- Confirm the retirement left the lifecycle state unchanged: RETIRED is not a project lifecycle value (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value). If a historical run's accepted group-2 decision explicitly authorized a hand-authored `RETIRED` current state, verify against that decision and cite it rather than reporting a discrepancy.
 - Confirm the deliverable folder still exists (non-destructive removal).
-- Confirm the decomposition document's deliverable row is annotated with `[RETIRED — SCA-{NNN}]`.
 
 **MODIFY actions:**
 - Confirm `_CONTEXT.md` reflects the modified fields per the propagation plan.
@@ -62,7 +82,13 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 - Verify ADD checks for each fragment entity.
 - Check that dependencies previously targeting the source have been re-targeted or flagged.
 
-For each action, record: `ActionSeq`, `Expected`, `Actual`, `Status` (VERIFIED / DISCREPANCY / NOT_EXECUTED).
+For each action, record: `ActionSeq`, `Expected`, `Actual`, `Status`, `Evidence`. Status values:
+
+- `VERIFIED` — current state matches the action.
+- `DISCREPANCY` — current state contradicts the action.
+- `NOT_EXECUTED` — no evidence the action was applied and no recorded decision explains it.
+- `DEFERRED_BY_HUMAN` — the action's application was deferred by a recorded human decision (cite the decision record and item). It is reported as an OBSERVATION and listed as open work; it is not counted as CRITICAL or MAJOR and not reported as done.
+- `SUPERSEDED_BY:<ref>` — the action was applied or accepted, then superseded by a later accepted decision or amendment `<ref>`. Required evidence: the superseding accepted record, evidence that the action was applied or accepted before supersession (or that the superseding record withdrew it), and a check that current state matches the superseding record. Without that evidence, use `DISCREPANCY` or `NOT_EXECUTED`.
 
 ---
 
@@ -72,23 +98,27 @@ From `RUN_SUMMARY.md`, extract the list of recommended downstream reruns.
 
 For each recommended rerun:
 
+A rerun is sufficient when its recorded input basis (an `INPUT_MANIFEST.sha256` or equivalent hash-bearing run receipt) includes the accepted post-change hashes of the amended inputs and its scope covers the affected entities. Dates such as `LastSeen` values or snapshot folder dates are context only; a later date without matching input hashes is not evidence of a sufficient rerun.
+
+Before judging a rerun missing, apply the current disposition from the handoff records read in Pass 0. A rerun deferred by a recorded human decision is `DEFERRED_BY_HUMAN`; an optional derivative the accepted records leave unactivated is `NOT_ACTIVATED`. Cite the decision; report either as an OBSERVATION and list it as open work, not as MAJOR or MINOR.
+
 **TASK+dependency-extract re-extraction:**
 - Check whether `Dependencies.csv` exists in the affected deliverable folder.
-- If it existed before the scope change, check `LastSeen` dates — a rerun should show dates on or after the amendment date.
-- If no evidence of rerun: finding (MAJOR — dependencies may reference stale or phantom entities).
+- Confirm the extraction run's input manifest binds the amended deliverable inputs and decomposition at their post-change hashes.
+- If no evidence of a sufficient rerun and no recorded deferral: finding (MAJOR — dependencies may reference stale or phantom entities).
 
-**TASK (workflow: preparation) runs (for ADD actions):**
+**`preparation` skill runs (for ADD actions):**
 - Already verified in Pass 1 (folder + minimum viable fileset existence).
 
 **Estimation-workflow reruns:**
-- Check `_Estimates/` for snapshot folders with dates on or after the amendment date that include the affected scope.
-- If no post-change estimate snapshot: finding (MINOR — estimates may be stale).
+- Check `_Estimates/` for a snapshot whose input manifest binds the affected scope at its post-change hashes.
+- If no such post-change estimate snapshot and no recorded deferral: finding (MINOR — estimates may be stale).
 
 **WORKING_ITEMS (workflow: project-setup) scheduling workflow reruns:**
-- Check `_Schedule/` for snapshot folders with dates on or after the amendment date.
-- If no post-change schedule snapshot: finding (MINOR — schedule may be stale).
+- Check `_Schedule/` for a snapshot whose input manifest binds the post-change basis.
+- If no such post-change schedule snapshot and no recorded deferral: finding (MINOR — schedule may be stale).
 
-For each recommended rerun, record: `Agent`, `Scope`, `Evidence of Completion`, `Status` (COMPLETED / NO_EVIDENCE / NOT_APPLICABLE).
+For each recommended rerun, record: `Agent`, `Scope`, `Evidence of Completion`, `Status` (COMPLETED / NO_EVIDENCE / NOT_APPLICABLE / DEFERRED_BY_HUMAN / NOT_ACTIVATED / SUPERSEDED_BY:<ref>), with the deciding record for the last three.
 
 ---
 
@@ -130,7 +160,7 @@ Treat `CRITICAL` and `MAJOR` validator findings as blocking decomposition-consis
 
 4. **Deliverables section:** For all actions, confirm rows reflect the post-change state.
 
-5. **Coverage check:** If pre-change and post-change `coverage_summary.json` files exist in the amendment snapshot, compare:
+5. **Coverage check:** If `Pre_Change_Coverage.json` and `Post_Change_Coverage.json` exist in the amendment snapshot (a historical run may instead cite pre- and post-change audit `coverage_summary.json` outputs), compare:
    - Forward coverage should not have regressed (unless intentional REMOVE).
    - No new unassigned scope items (unless from ADD not yet fully propagated).
 
@@ -148,7 +178,7 @@ For every deliverable affected by the scope change (listed in `Amendment_Actions
    - `Scope Traceability` section lists the correct SOW-IDs and OBJ-IDs per the Scope Ledger.
 
 2. Read `_STATUS.md` and verify:
-   - Lifecycle state is consistent with expectations (RETIRED for removed entities; >= OPEN for added entities).
+   - Lifecycle state is consistent with expectations (unchanged by retirement for removed entities, which carry the retirement history line instead, unless an accepted decision recorded otherwise; >= OPEN for added entities).
    - History section contains entries consistent with the scope change timeline.
 
 ---
@@ -164,6 +194,7 @@ This pass runs whenever any row in `Amendment_Actions.csv` has `SupersessionBind
    `python3 tools/coordination/accumulate_supersession_map.py --prior-map {prior_snapshot}/Supersession_Map.csv --delta {AMENDMENT_SNAPSHOT}/Supersession_Delta.csv --output-map {AUDIT_SNAPSHOT}/Expected_Supersession_Map.csv --check-map {AMENDMENT_SNAPSHOT}/Supersession_Map.csv --output-findings {AUDIT_SNAPSHOT}/Supersession_Map_Findings.csv`
    - Omit `--delta` when the audited SCA introduces no delta.
    - Use `--allow-empty` when no prior map and no current delta exist.
+   - If the prior accepted snapshot's `Supersession_Map.csv` is missing but prior accepted maps or deltas exist, reconstruct the expected prior map by replaying the accepted chain through the same accumulator from the latest available accepted map into the audit snapshot (for example `Reconstructed_{PRIOR_ID}_Backfill.csv`), record every source path and hash, and report the reconstruction as an OBSERVATION. If the chain cannot be reconstructed from accepted records, emit a MAJOR finding with `Assessment: UNKNOWN`; never hand-author the missing map.
    - Incorporate `MISSING_EXPECTED_ROW` and `UNEXPECTED_ROW` findings into this pass.
 5. Verify that surviving rows use canonical applicability fields: canonical root names in `AppliesToRoots`, canonical facility IDs in `AppliesToFacilities`, and either explicit section IDs or an intentionally blank `AppliesToSections` field indicating global scope.
 
@@ -254,9 +285,9 @@ contains `KTY_Remediation_Manifest.csv`.
 | Severity | Meaning |
 |---|---|
 | `CRITICAL` | Scope change action was not executed, or orphaned dependency targets a retired deliverable — project integrity compromised |
-| `MAJOR` | Downstream rerun did not occur, or metadata is inconsistent with the amendment — work products may be stale |
+| `MAJOR` | Downstream rerun did not occur, or metadata is inconsistent with the amendment — work products may be stale (a `DEFERRED_BY_HUMAN` or `NOT_ACTIVATED` item citing its decision is not MAJOR) |
 | `MINOR` | Cosmetic inconsistency (stale name reference, advisory folder relocation not performed) — does not affect integrity |
-| `OBSERVATION` | No action required; noted for completeness |
+| `OBSERVATION` | No action required in this audit; noted for completeness, including `DEFERRED_BY_HUMAN`, `NOT_ACTIVATED` and evidenced `SUPERSEDED_BY:<ref>` items |
 
 3. Determine overall closure status:
 
@@ -265,9 +296,14 @@ contains `KTY_Remediation_Manifest.csv`.
 | `CLOSED` | Zero findings of every severity; all required checks complete |
 | `CLOSED_WITH_OBSERVATIONS` | All required checks complete; zero CRITICAL or MAJOR; one or more MINOR/OBSERVATION |
 | `OPEN` | One or more CRITICAL or MAJOR findings remain |
+| `FAILED_INPUTS` | Pass 0 preconditions failed; no closure determination was made |
+
+`CLOSED` and `CLOSED_WITH_OBSERVATIONS` do not claim that deferred or
+not-activated obligations are complete; the report lists them as open work with
+their deciding records.
 
 4. Write all output artifacts to snapshot folder.
 5. Update `_LATEST.md` pointer.
-6. Return summary to WORKING_ITEMS (workflow: evaluation-protocol).
+6. Return the summary to its caller.
 
 ---

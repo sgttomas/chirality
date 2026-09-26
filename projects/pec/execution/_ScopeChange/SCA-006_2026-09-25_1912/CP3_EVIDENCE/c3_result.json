@@ -1,0 +1,237 @@
+{
+ "fails": 0,
+ "results": [
+  {
+   "check": "scope items total",
+   "expected": 100,
+   "observed": 100,
+   "result": "PASS"
+  },
+  {
+   "check": "scope items IN/OUT/TBD",
+   "expected": [
+    74,
+    18,
+    8
+   ],
+   "observed": [
+    74,
+    18,
+    8
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "packages (distinct PackageID in Deliverables.csv)",
+   "expected": 11,
+   "observed": 11,
+   "result": "PASS"
+  },
+  {
+   "check": "deliverable rows",
+   "expected": 68,
+   "observed": 68,
+   "result": "PASS"
+  },
+  {
+   "check": "deliverables active/RETIRED",
+   "expected": [
+    64,
+    4
+   ],
+   "observed": [
+    64,
+    4
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "ContextBudgetQA rows",
+   "expected": 68,
+   "observed": 68,
+   "result": "PASS"
+  },
+  {
+   "check": "active envelopes S/M/L/XL",
+   "expected": [
+    28,
+    34,
+    2,
+    0
+   ],
+   "observed": [
+    28,
+    34,
+    2,
+    0
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "IN items without package",
+   "expected": 0,
+   "observed": 0,
+   "result": "PASS"
+  },
+  {
+   "check": "IN items without deliverable",
+   "expected": 0,
+   "observed": 0,
+   "result": "PASS"
+  },
+  {
+   "check": "IN items without objective",
+   "expected": 0,
+   "observed": 0,
+   "result": "PASS"
+  },
+  {
+   "check": "active deliverables without SupportsObjectives",
+   "expected": 0,
+   "observed": 0,
+   "result": "PASS"
+  },
+  {
+   "check": "union rule holds on active rows",
+   "expected": "64/64",
+   "observed": "64/64",
+   "result": "PASS"
+  },
+  {
+   "check": "PKG-04 assigned IN scope",
+   "expected": 7,
+   "observed": 7,
+   "result": "PASS"
+  },
+  {
+   "check": "PKG-08 assigned IN scope",
+   "expected": 8,
+   "observed": 8,
+   "result": "PASS"
+  },
+  {
+   "check": "PKG-10 assigned IN scope",
+   "expected": 13,
+   "observed": 13,
+   "result": "PASS"
+  },
+  {
+   "check": "open / resolved issues",
+   "expected": [
+    10,
+    3
+   ],
+   "observed": [
+    10,
+    3
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "vocabulary terms",
+   "expected": 29,
+   "observed": 29,
+   "result": "PASS"
+  },
+  {
+   "check": "objectives count",
+   "expected": 6,
+   "observed": 6,
+   "result": "PASS"
+  },
+  {
+   "check": "objective statements byte-identical to revision 1.5",
+   "expected": true,
+   "observed": true,
+   "result": "PASS"
+  },
+  {
+   "check": "rev-1.5 deliverable IDs/names/packages retained",
+   "expected": [],
+   "observed": [],
+   "result": "PASS"
+  },
+  {
+   "check": "rev-1.5 scope IDs retained",
+   "expected": [],
+   "observed": [],
+   "result": "PASS"
+  },
+  {
+   "check": "new deliverable IDs (append-only)",
+   "expected": [
+    "DEL-08-06",
+    "DEL-10-13"
+   ],
+   "observed": [
+    "DEL-08-06",
+    "DEL-10-13"
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "new scope IDs (append-only)",
+   "expected": [
+    "SOW-097",
+    "SOW-098",
+    "SOW-099",
+    "SOW-100"
+   ],
+   "observed": [
+    "SOW-097",
+    "SOW-098",
+    "SOW-099",
+    "SOW-100"
+   ],
+   "result": "PASS"
+  },
+  {
+   "check": "deliverable folders on disk (66; none added or removed)",
+   "expected": 66,
+   "observed": 66,
+   "result": "PASS"
+  },
+  {
+   "check": "no folder for DEL-08-06 / DEL-10-13 (B1 deferred)",
+   "expected": [],
+   "observed": [],
+   "result": "PASS"
+  },
+  {
+   "check": "PRD requirement rows",
+   "expected": 49,
+   "observed": 49,
+   "result": "PASS"
+  },
+  {
+   "check": "PRD unique requirement IDs",
+   "expected": 49,
+   "observed": 49,
+   "result": "PASS"
+  },
+  {
+   "check": "PRD PEC-K-01 row byte-identical to v2.3 (rows found 1)",
+   "expected": true,
+   "observed": true,
+   "result": "PASS"
+  },
+  {
+   "check": "PRD PEC-K-02 row byte-identical to v2.3 (rows found 1)",
+   "expected": true,
+   "observed": true,
+   "result": "PASS"
+  },
+  {
+   "check": "PRD PEC-K-11 row byte-identical to v2.3 (rows found 1)",
+   "expected": true,
+   "observed": true,
+   "result": "PASS"
+  },
+  {
+   "check": "PRD P1 row byte-identical to v2.3 (rows found 1)",
+   "expected": true,
+   "observed": true,
+   "result": "PASS"
+  }
+ ]
+}
