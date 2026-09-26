@@ -1,9 +1,9 @@
 #!/bin/zsh
 # Run every S2 preparation check on fresh `git archive` exports (never on a checkout).
-# Usage: run_s2p_checks.sh <repo (for git objects)> <commit> <prep dir> <out dir>
+# Usage: run_s2p_checks.sh <repo (for git objects)> <commit> <prep dir> <out dir> [observation commit, default aca930622]
 # Writes all outputs under <out dir>; prints a summary; exit 0 only if every check passes.
 set -u
-REPO=$1; C=$2; PREP=${3:A}; OUT=${4:A}
+REPO=$1; C=$2; PREP=${3:A}; OUT=${4:A}; OBS=${5:-aca930622}
 export PYTHONDONTWRITEBYTECODE=1
 mkdir -p "$OUT"
 T=$(mktemp -d "${TMPDIR:-/tmp}/s2pchk.XXXXXX")
@@ -46,11 +46,15 @@ for d in ${(f)"$(cd "$POST" && python3 -c 'import importlib.util,sys;s=importlib
 done
 
 # 5. quotes (two-sided, against the post-act tree) and commit-anchored state claims
-OBS=$(git -C "$REPO" rev-parse --short=9 "$C")
 python3 "$PREP/verify_s2p_quotes.py" --tree "$POST" --gitdir "$REPO" --prep "$PREP" --observation "${OBS}" > "$OUT/verify_quotes.out" 2>&1; rq=$?
 note "$( [[ $rq -eq 0 ]] && print PASS || print FAIL ) quotes: $(tail -1 "$OUT/verify_quotes.out")"; [[ $rq -eq 0 ]] || fail=1
 python3 "$PREP/verify_s2p_state_claims.py" --gitdir "$REPO" --prep "$PREP" > "$OUT/verify_state_claims.out" 2>&1; rc=$?
 note "$( [[ $rc -eq 0 ]] && print PASS || print FAIL ) state claims: $(tail -1 "$OUT/verify_state_claims.out")"; [[ $rc -eq 0 ]] || fail=1
+
+python3 "$PREP/check_sibling_ids.py" "$PREP" > "$OUT/check_sibling_ids.out" 2>&1; rs=$?
+note "$( [[ $rs -eq 0 ]] && print PASS || print FAIL ) sibling IDs: $(tail -1 "$OUT/check_sibling_ids.out")"; [[ $rs -eq 0 ]] || fail=1
+python3 "$PREP/scan_external_quotes.py" --tree "$PRE" --prep "$PREP" > "$OUT/scan_external_quotes.out" 2>&1
+note "INFO consequence scan (informational): $(tail -1 "$OUT/scan_external_quotes.out")"
 
 # 6. after-state registers and every-PR checks identical to before (D-GOV-48: identical, not 0/0)
 (cd "$POST" && python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution > "$OUT/strict_post.out" 2>&1; print "exit=$?" >> "$OUT/strict_post.out")
