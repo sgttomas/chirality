@@ -1,0 +1,30 @@
+$ python3 projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/test_apply_d98.py <git archive export of 189f205ff:projects/pec> projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/candidates
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+FAIL injected rename failure; every created target and temporary file removed
+PASS rename failure on second target: exit 1, no target or temporary left
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+FAIL write set differs from grant: added=[] missing=[] removed=[] modified=['projects/pec/docs/PRD.md']; every created target and temporary file removed
+PASS post-write inventory shows a modified file: exit 1, rolled back
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+FAIL write set differs from grant: added=['projects/pec/execution/_Coordination/stray.md'] missing=[] removed=[] modified=[]; every created target and temporary file removed
+PASS post-write inventory shows an extra file: exit 1, rolled back
+FAIL pinned hash mismatch: projects/pec/docs/PRD.md
+preflight failed; nothing written
+PASS pinned basis file changed: preflight exit 1, nothing written
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+CHECK write set = grant (2 creates, 0 modifies, 0 removes); nothing written
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+CHECK targets 2/2 byte-exact; write set = grant (2 created, 0 modified, 0 removed under projects/pec); pinned 8/8 unchanged
+FAIL target or temporary already exists: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+FAIL target or temporary already exists: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+preflight failed; nothing written
+PASS check-only writes nothing; apply succeeds; second run refuses
+RESULT PASS 5/5
+exit=0
