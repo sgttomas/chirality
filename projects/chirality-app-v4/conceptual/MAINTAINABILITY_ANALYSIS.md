@@ -370,3 +370,85 @@ for the human becomes available to both agents without separate work.
 | Actions | Codex's own tools, plus hosts' MCP servers | The host's capability catalog |
 | Shared | Workflow files with declared checkpoints; skills; the four roles' instructions; record format; the capability-catalog contract; panel components where they fit |
 
+## 11. Evidence after D-19 (T10, T11) — two choices to put to the owner
+
+Two reading investigations were run after the owner accepted the two-tier
+direction. Neither changes the structure of D-19. Each bears on one choice
+inside it.
+
+### 11.1 The host tier: Pi, or a minimal loop of Chirality's own
+
+**What T10 found about Pi** (`earendil-works/pi@d6af72e`, all packages 0.87.1):
+
+- **It fits technically.** `pi-agent-core` runs in a browser from its root
+  entry; Node-only code sits behind separate entry points, and Pi's own CI
+  checks that the browser bundle resolves. `pi-ai` documents browser use.
+  Nothing in the model library, agent library or telemetry package sends data
+  anywhere but the configured endpoint by default.
+- **It changes fast and says so.** Its release policy states "`minor` =
+  breaking changes. No major releases", and its contributor guide says "Do
+  not preserve backward compatibility unless the user asks for it" (both
+  verified by HELPS_HUMANS). In four months: 41 releases across 12 minor
+  versions, each allowed to break, and breaking changes also in four patch
+  releases. The agent library changed its session model, turn-ending API and
+  stream-function contract; the model library changed its context type and
+  provider API.
+- **Maintenance is concentrated and gated.** One maintainer holds most of
+  the commits; reports from new contributors are closed automatically; the
+  owning company plans paid tiers beside the MIT core.
+- **Local-model tool calling has open issues**: truncated or fenced
+  arguments silently becoming empty, quadratic re-parsing that freezes the
+  interface, provider-specific fields rejected by compatible servers. A
+  keyless local server needs a placeholder key.
+- Chirality's earlier Pi integration used the Node-only coding-agent package
+  and bypassed Pi's transport; it cannot be reused in a webview.
+
+**What that means.** A host agent needs a small part of Pi: a loop that sends
+messages, receives streamed tool calls, validates arguments against the
+host's catalog, and calls the host's operations. Pi supplies that loop plus a
+great deal the host does not use, under a policy of frequent breaking change.
+The one interface every local server implements — OpenAI-compatible Chat
+Completions with tool calls — has been stable for years.
+
+| Option | Maintainability | Functionality | Local and private |
+|---|---|---|---|
+| **P. Pi libraries (as accepted in D-19)** | Upgrades are frequent breaking work, or pinning forgoes "keeping up"; large install footprint; fixes depend on a small gated team | Richer loop, multi-provider, and future session and compaction features | Good; the host must still route requests through its own process to control the endpoint |
+| **M. A minimal Chirality loop over Chat Completions, with Pi as the upgrade path** | A few hundred lines agents can read and repair; one stable wire format; Chirality fixes local-model quirks itself | Enough for a simpler host agent; richer features added only when needed, possibly by adopting Pi then | Best; no third-party code between the host and the model |
+
+**Recommendation: M.** The same boundary serves both: Chirality defines the
+host agent's interface (messages, tools from the catalog, events,
+checkpoints), so moving to Pi later is a contained change if the host agent
+outgrows the minimal loop. This is M-5 — generality only on need — applied
+to the host tier. **The choice is the owner's**, because D-19 named Pi.
+
+### 11.2 The Chirality App: topology and stack
+
+**What T11 found about v3** (`2b0572fe0`):
+
+- v3 kept a separate Node service ("A2") on one premise, stated in its own
+  record: "B remains the smaller choice only if the embedding intent is set
+  aside." D-19 sets that intent aside — hosts use their own local agent — so
+  the in-process topology ("B": the App's main process runs Codex directly)
+  is now the lower-maintenance choice. The v3 record rated B as one process
+  and "lowest maintenance".
+- Of the Runtime's 20.2k source lines, about 4.8k are unwired and about 3.7k
+  exist only for the service's socket boundary; the Codex client itself is
+  about 330 lines. Codex is a native binary and does not need Node; only the
+  service did.
+- v3's valuable interface pieces (request cards, plan panel, workflow draft
+  review, turn phases) port to another shell with modest change; its coupling
+  to Next.js is shallow. The parts built on v3's translated event vocabulary
+  would be rebuilt on Codex's native items, as M-2 requires anyway.
+
+**The stack choice:**
+
+| Option | For | Against |
+|---|---|---|
+| **Electron, in-process (drop Next and the service)** | Signing, notarisation and bundling of the Codex binaries are proven and scripted; the Node Codex client moves into main almost unchanged | Two application stacks across Chirality (Electron here, Tauri in SWBPIPE) |
+| **Tauri + React/Vite (SWBPIPE's stack)** | One stack across every Chirality application; the Codex binary fits Tauri's sidecar model; components and panels can be shared with hosts | Signing and notarisation must be established for Tauri (SWBPIPE ships unsigned today, so that work would serve it too); the Codex host logic moves to Rust or runs in the webview with Rust piping its input and output; React 18 to 19 alignment |
+
+**Recommendation: Tauri + React/Vite with the in-process topology.**
+Maintainability is the first priority, and one stack serves it for as long as
+Chirality lives; the extra cost is largely once-only. **The choice is the
+owner's.**
+

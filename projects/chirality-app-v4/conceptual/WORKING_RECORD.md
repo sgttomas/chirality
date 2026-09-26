@@ -54,8 +54,8 @@ extracted programmatically from the host's transcripts.
 | T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
 | T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:22:57 |
 | T9 | PEC and Domains as connectors | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:16:51 |
-| T10 | Pi libraries: browser use, data behaviour, stability (read-only) | claude-opus-5-5 | dispatched after D-19; pending |
-| T11 | v3 Runtime responsibilities and frontend reuse (read-only) | claude-opus-5-5 | dispatched after D-19; pending |
+| T10 | Pi libraries: browser use, data behaviour, stability (read-only) | claude-opus-5-5 | 2026-09-26 06:22:04 → 06:35:54 |
+| T11 | v3 Runtime responsibilities and frontend reuse (read-only) | claude-opus-5-5 | 2026-09-26 06:22:05 → 06:35:07 |
 
 Notes on the returns:
 
@@ -143,6 +143,10 @@ Notes on the returns:
 17. The owner accepted the two-tier direction as the v4.0 basis (D-19).
     HELPS_HUMANS dispatched T10 and T11 (reading only) for the architecture
     basis and wrote [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md).
+18. T10 and T11 returned. HELPS_HUMANS verified Pi's versioning and
+    compatibility statements at source and the v3 topology record's A2
+    premise, added §11 to the analysis (two choices for the owner), and
+    wrote PRD draft 1 (`docs/PRD.md`).
 
 ## Current position
 
@@ -157,7 +161,8 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
 | Confirm or correct the drafting defaults for the open items | Owner | [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md) §3 |
-| Fold in T10 and T11; draft the PRD's load-bearing sections | HELPS_HUMANS | Stage F |
+| Owner's review of PRD draft 1 (`docs/PRD.md`) | Owner | Plan checkpoint 4 |
+| Owner's choices on the host loop (§11.1) and the App's stack (§11.2) | Owner | Before the architecture basis |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
