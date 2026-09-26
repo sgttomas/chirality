@@ -50,7 +50,7 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | `Impact_Assessment.md` | `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691` |
 | `Amendment_Actions.csv` (PROPOSED) | `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `4968fe9d62be5151ee3f6832b82c8471b786f9be9061407915eb3bf87e26537c` (after the checkpoint-1 acceptance; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the owner's act) |
+| `Decision_Log.md` | `b4b75e3569a210597ba87b8c0bd223b81bb3f98db18444b63ca73e1e389465df` (after the checkpoint-2 acceptance; `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e` at the checkpoint-2 act; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the checkpoint-1 act) |
 
 ## Basis hashes not repeated elsewhere
 
@@ -191,3 +191,27 @@ The manager wrote `Amendment_Actions_CP2.csv`, `Supersession_Delta.csv` and `Pro
 ### Merge basis (2026-09-25/26)
 
 The package was prepared from `origin/main` `4d5f7b911`. Before verification the branch merged `origin/main` `7f33b4dd5` (merge `005a45445`), which carries the Root tranches `ROOT-WORKFLOW-DUPLICATE-RETIREMENT-20260926` and `ROOT-WORKFLOW-WAVE2A-EXECUTION-20260926`. Between the two bases no PEC decomposition, register, PRD, `projects/pec/AGENTS.md`, SOW, `_CONTEXT.md`, `Dependencies.csv` or pointer changed; the only PEC path added is the notice `execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md`. Every preimage hash in `Propagation_Plan.md` §"Checkpoint-3 preconditions" still holds. The merge made one I1 row stale (it named the retired `software-bounded-implementation` workflow and the pre-skill forms of `software-code-review` / `software-defect-diagnosis`); T3 revision 2 corrected only the I1 WORKING_ITEMS and CHANGE rows of `AGENTS.candidate.md`, and the without-I1 candidate is unchanged. Observation not carried: Root `docs/SOFTWARE_WORKFLOW_PROFILE.md` L22 still says "software-* workflows executed by TASK" (Root-owned).
+
+## Checkpoint-2 acceptance (HELP_HUMAN, 2026-09-25; appended)
+
+The owner accepted checkpoint group 2 on 2026-09-25:
+"SCA-006 CP2: accept; Q1 a; Q2 a". The group-2 decision snapshot is
+`../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`, the amendment-qualified
+pointer is `../SCA-006_GROUP-2_AUTHORIZED.md`, and the Lane A packet row is
+`D-PEC-97`.
+
+- The next owning actor is WORKING_ITEMS, for checkpoint-3 preparation.
+- `ReadyForNextPhase` stays `NO` until checkpoint 3, and
+  `DerivativePackageState` is `INCOMPLETE`, and `DownstreamRerunState` is
+  `FROZEN`.
+- Some lines in the checkpoint-2 preparation section above describe the
+  pre-acceptance state. They are: "The checkpoint-group-2 package is
+  prepared and awaits the owner"; the closure-verdict note "checkpoints 2
+  and 3 are open"; and the "Next owning actor" list. After the acceptance,
+  checkpoint 2 is accepted, checkpoint 3 is open, HELP_HUMAN has written the
+  group-2 snapshot, the `D-PEC-97` row, the graph and the STATUS/README
+  updates, and the next owning actor is WORKING_ITEMS for checkpoint-3
+  preparation.
+- Open before checkpoint-3 dispatch: the owner's choice of scope-change
+  method edition. See the group-2 `DECISION.md`.
+- At the owner's act, this file's hash was `0043e9b1fcf453678e120461ae7809a220091ee35060131fcd1518576af479a9`.

@@ -87,7 +87,9 @@ coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
 until scope change SCA-006 amends it. The owner accepted its checkpoint 1 on
 2026-09-25, specifying direct query under a new read-only `agent` access
 class (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`);
-checkpoint-2 preparation is authorized.
+the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
+`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
+checkpoint-3 preparation is authorized.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
