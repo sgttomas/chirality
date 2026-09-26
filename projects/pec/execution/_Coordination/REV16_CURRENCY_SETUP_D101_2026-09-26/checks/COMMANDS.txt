@@ -31,3 +31,7 @@ gen_d101_k4_report.tsv	exit=0	PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/exe
 31_fileset_DEL-10-13.out	exit=0	bash tools/validation/check_min_viable_fileset.sh projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate
 32_final_k1_postimages.out	exit=0	python3 projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/check_hashes.py projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md k1-post
 33_final_k4c_postimages.out	exit=0	python3 projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/check_hashes.py projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md k4c-post
+34_containment_pre_V.out	exit=0	python3 projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/containment.py projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md origin/main  (origin/main d36c1a55f; merge-base f392294b5)
+35_diff_check_whole.out	exit=0	git diff --check origin/main...HEAD  (empty: whole diff clean with the run-root .gitattributes)
+35_diff_check_product.out	exit=0	git diff --check origin/main...HEAD -- ':(exclude)projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26'
+36_preflight_rely-for-production.out	exit=0	(from projects/pec) sh execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/run_holds.sh rely-for-production  (run after the K1 and K4 commits; see VALIDATION.md disclosure)
