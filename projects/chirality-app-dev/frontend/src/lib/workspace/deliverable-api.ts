@@ -107,6 +107,7 @@ export interface DeliverableStatusTransitionInput {
   date?: string;
   metadata?: Record<string, string>;
   approvalSha?: string;
+  ruling?: string;
 }
 
 export interface DependencyRowSummary {

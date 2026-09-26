@@ -233,6 +233,83 @@ describe('Chirality mutating MCP tools', () => {
     );
   });
 
+  it('applies the human-ruled CHECKING reversal only with the full human-gate evidence', async () => {
+    const checking = IN_PROGRESS_STATUS_DOCUMENT.replace(
+      '**Current State:** IN_PROGRESS',
+      '**Current State:** CHECKING'
+    ).concat('- 2026-02-25 - State set to CHECKING (HUMAN)\n');
+    const statusPath = path.join(fixture.deliverablePath, '_STATUS.md');
+    await writeFile(statusPath, checking, 'utf8');
+    await mkdir(path.join(fixture.projectRoot, '_DECISIONS'), { recursive: true });
+    await writeFile(path.join(fixture.projectRoot, '_DECISIONS', 'D-001.md'), '# Ruling\n', 'utf8');
+    const context = { projectRoot: fixture.projectRoot, sessionId, mode: 'workspaceWrite' as const };
+    const base = {
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'IN_PROGRESS',
+      date: '2026-02-26'
+    };
+
+    // The tool rejects the reversal for HUMAN with neither SHA nor ruling, with a
+    // ruling but no SHA, with a SHA but no ruling, and for an agent actor. The
+    // actor is caller-asserted: HUMAN with a well-formed SHA and a real ruling file
+    // passes (App SPEC §4.3 known limit).
+    for (const [args, code] of [
+      [{ ...base, actor: 'HUMAN' }, 'APPROVAL_SHA_REQUIRED'],
+      [{ ...base, actor: 'HUMAN', ruling: '_DECISIONS/D-001.md' }, 'APPROVAL_SHA_REQUIRED'],
+      [{ ...base, actor: 'HUMAN', approvalSha: 'abc1234' }, 'RULING_REQUIRED'],
+      [
+        { ...base, actor: 'WORKING_ITEMS', approvalSha: 'abc1234', ruling: '_DECISIONS/D-001.md' },
+        'UNAUTHORIZED_ACTOR'
+      ]
+    ] as const) {
+      await expect(statusTransitionTool(context, args)).rejects.toMatchObject({ code });
+      await expect(readFile(statusPath, 'utf8')).resolves.toBe(checking);
+    }
+
+    const result = parseJsonToolResult<{
+      transition: { from: string; to: string; actor: string };
+      status: { currentState: string };
+    }>(
+      await statusTransitionTool(context, {
+        ...base,
+        actor: 'HUMAN',
+        approvalSha: 'abc1234',
+        ruling: '_DECISIONS/D-001.md'
+      })
+    );
+
+    expect(result.transition).toEqual({ from: 'CHECKING', to: 'IN_PROGRESS', actor: 'HUMAN' });
+    await expect(readFile(statusPath, 'utf8')).resolves.toContain(
+      '[reversal from CHECKING; ruling: _DECISIONS/D-001.md; approval SHA: abc1234]'
+    );
+  });
+
+  it('keeps ISSUED -> IN_PROGRESS rejected through the MCP tool', async () => {
+    const issued = IN_PROGRESS_STATUS_DOCUMENT.replace(
+      '**Current State:** IN_PROGRESS',
+      '**Current State:** ISSUED'
+    ).concat('- 2026-02-25 - State set to ISSUED (HUMAN)\n');
+    const statusPath = path.join(fixture.deliverablePath, '_STATUS.md');
+    await writeFile(statusPath, issued, 'utf8');
+    await mkdir(path.join(fixture.projectRoot, '_DECISIONS'), { recursive: true });
+    await writeFile(path.join(fixture.projectRoot, '_DECISIONS', 'D-001.md'), '# Ruling\n', 'utf8');
+
+    await expect(
+      statusTransitionTool(
+        { projectRoot: fixture.projectRoot, sessionId, mode: 'workspaceWrite' },
+        {
+          deliverablePath: fixture.deliverablePath,
+          targetState: 'IN_PROGRESS',
+          actor: 'HUMAN',
+          date: '2026-02-26',
+          approvalSha: 'abc1234',
+          ruling: '_DECISIONS/D-001.md'
+        }
+      )
+    ).rejects.toMatchObject({ code: 'BACKWARD_TRANSITION' });
+    await expect(readFile(statusPath, 'utf8')).resolves.toBe(issued);
+  });
+
   it('writes Dependencies.csv through v3.1 writer semantics without event row payloads', async () => {
     const nextRow = makeDependencyRow({
       SatisfactionStatus: 'SATISFIED',

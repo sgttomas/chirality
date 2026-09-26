@@ -1,5 +1,15 @@
 # MEMORY - DEL-07-02
 
+## Runs
+
+- 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the scaffold's
+  `_DEPENDENCIES.md` template now writes the SPEC §5.2 (D-GOV-46) skeleton. It
+  takes the mode from the `_COORDINATION.md` it writes, uses placeholders only
+  and infers no edges. Existing files are preserved on rerun. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-LIFECYCLE-DEPS-2026-09-26/RECEIPT.md),
+  [work graph](../../../_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md),
+  branch `wave3-app-lifecycle-deps`.
+
 ## Decisions And Evidence
 
 - 2026-06-21 - ADQ-06 implemented G1 scaffold baseline seeding. `frontend/src/lib/harness/scaffold.ts` now creates the minimum PREPARATION fileset for scaffolded deliverables, including canonical `OPEN` `_STATUS.md` content, and preserves existing metadata on rerun. Evidence recorded in `Evidence_ADQ-06_Scaffold_Baseline_Seeding.md`. No lifecycle state, dependency row, provider policy, release posture, or professional/code-compliance claim changed.
