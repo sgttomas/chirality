@@ -15,7 +15,7 @@ HELP_HUMAN's chat messages of 2026-09-25 did three things:
 
 HELP_HUMAN also noted that D-PEC-95 later changed deliverable metadata
 after the package's baseline audit. The change touched re-pinned contexts and
-references and refreshed evidence quotes, and nothing SCA-006 amends.
+references and refreshed evidence quotes, and no text that SCA-006 amends.
 
 The owner then asked for the DQ-a and DQ-b implications. HELP_HUMAN
 explained the difference:
@@ -38,7 +38,7 @@ release passes the §12 reliance gate, and recommended (a).
 |---|---|
 | CP1-A | The parsed change set in `Amendment_Actions.csv` (SHA-256 `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891`, 54 PROPOSED actions: 12 ADD / 42 MODIFY) is confirmed as the intake for the recommended set. The snapshot CSV is not rewritten. |
 | CP1-B | `Impact_Assessment.md` is accepted at SHA-256 `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691`. Its §13 option deltas remain historical alternatives. |
-| CP1-DQ | (a): direct query through tool calls is specified now, with a read-only `agent` access class (Seq 3, 7, 20, 26, 28, 31, 41 and the DQ-a advisories). The token mechanism stays the open §16.6 decision. |
+| CP1-DQ | (a): direct query through tool calls is specified now, with a read-only `agent` access class. The rows specific to the agent class are Seq 3, 20, 31, 41 and the advisories Seq 50 and 51. The direct-query rows kept under every DQ option include Seq 4, 7, 9, 10, 15, 21, 26, 28 and 34 (Impact Assessment §13.1). The token mechanism stays the open §16.6 decision. |
 | CP1-ENV | (a): a new PEC-ORI-007 mapped through SOW-097 to DEL-04-03. |
 | CP1-BUD | (a): a new PEC-API-006 mapped through SOW-098 to DEL-08-03, with numeric values confirmed at P1. |
 | CP1-GATE | (a): a standing §12 gate for any release that advertises operational reliance, with SOW-100 and a new DEL-10-13. The §12 P1 row text is not edited. |

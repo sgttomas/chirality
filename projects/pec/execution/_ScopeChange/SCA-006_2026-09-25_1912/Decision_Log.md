@@ -9,16 +9,16 @@ status: checkpoint_1_accepted_checkpoint_2_preparation_authorized
 # SCA-006 Decision Log
 
 Only decisions that actually occurred are recorded as decided. Every other
-row is `AWAITING_OWNER` or `NOT_STARTED`. Agent recommendations are not
-rulings. The owner accepts checkpoint group 1, if at all, by the exact
-SHA-256 values quoted in row SCA006-CP1 (a file cannot quote its own hash;
-the Impact Assessment and action-register hashes are quoted here and in the
-run return).
+row is `AWAITING_OWNER`, `PREPARATION AUTHORIZED` or `NOT_STARTED`. Agent
+recommendations are not rulings. The owner accepted checkpoint group 1 on
+2026-09-25 by the exact SHA-256 values quoted in row SCA006-CP1. A file
+cannot quote its own hash, so the Impact Assessment and action-register
+hashes are quoted here and in the run return.
 
 | DecisionRef | Checkpoint | Decision | Status | Authority |
 |---|---|---|---|---|
 | SCA006-G1 | Gate 1 intake | Open SCA-006 (SOFTWARE variant) under `chirality-root:bundled:workflow:scope-change` to amend PEC's reliance text: PRD PEC-K-03, §8 (agents, access classes, direct query through tool calls), §9 reliance envelope and response-size budgets, §12 reliance gate, and the `projects/pec/AGENTS.md` K-02 gloss | `OPENED BY OWNER DIRECTION` | `D-PEC-90` R-A grant item 3 and the owner's direct-query answer (verbatim below); `D-PEC-94` direction (verbatim below); precondition met by `D-PEC-92` (SCA-005 checkpoint 2 accepted 2026-09-25) |
-| SCA006-CP1 | 1 | Confirm or modify the parsed change set (`Amendment_Actions.csv`, SHA-256 `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891`, 54 PROPOSED actions) and accept `Impact_Assessment.md` at SHA-256 `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691`, together with the owner items below | `ACCEPTED` (2026-09-25) | owner act verbatim below; snapshot `checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/` |
+| SCA006-CP1 | 1 | Confirm or modify the parsed change set (`Amendment_Actions.csv`, SHA-256 `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891`, 54 PROPOSED actions) and accept `Impact_Assessment.md` at SHA-256 `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691`, together with the owner items below | `ACCEPTED` (2026-09-25) | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/` |
 | SCA006-CP1-DQ | 1 | Direct query through tool calls: (a) specify now with a read-only `agent` access class; (b) specify now, riding the `harness` class; (c) defer behind a new §16 access-class decision | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-ENV | 1 | Reliance envelope: (a) new PEC-ORI-007 mapped to DEL-04-03; (b) fold into PEC-ORI-003 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-BUD | 1 | Response-size budgets: (a) new PEC-API-006 mapped to DEL-08-03, numeric values confirmed at P1; (b) fold into PEC-API-004 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
@@ -62,15 +62,19 @@ Checkpoint groups 1–3 remain the owner's acceptances.
 ## Non-decisions recorded for clarity
 
 - Before 2026-09-25's checkpoint-1 acceptance, no option had been selected. The selections now recorded are the owner's (section below).
-- No PRD, `projects/pec/AGENTS.md`, decomposition, register, pointer,
-  `checkpoint_snapshots/`, Scope of Work, SPEC, `_CONTEXT.md`, `_STATUS.md`,
-  `v2/**` or foreign-surface byte has changed.
+- No PRD, `projects/pec/AGENTS.md`, decomposition, decomposition-register,
+  Scope of Work, SPEC, `_CONTEXT.md`, `_STATUS.md`, `v2/**` or foreign-surface
+  byte has changed.
+- The checkpoint-1 acceptance added the group-1 decision snapshot and the
+  amendment-qualified pointer `../SCA-006_GROUP-1_AUTHORIZED.md`.
+  `_ScopeChange/_LATEST.md` still names SCA-005. The PEC decision-register
+  row `D-PEC-90` gained a pointer to this scope change.
 - No access class has changed. No consumer has adopted anything. The
   `D-PEC-67` L-A1 reliance-hold control is untouched.
 - No notice has been sent to Root, the App or Runtime; notices are graph node
   R4, after checkpoint 3.
-- The checkpoint-1 decision snapshot will be written under
-  `_ScopeChange/checkpoint_snapshots/` only after the owner's acceptance.
+- The checkpoint-1 decision snapshot was written after the owner's acceptance,
+  at `../checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`.
 
 ## SCA006-CP1 — owner act (verbatim), 2026-09-25
 

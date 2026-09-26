@@ -236,7 +236,7 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     owner accepted checkpoint 1 on 2026-09-25 (DQ a, ENV a, BUD a, GATE a,
     INS a, R-C excluded;
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`),
-    and checkpoint 2 is in preparation.
+    and checkpoint-2 preparation is authorized.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
@@ -252,7 +252,7 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   amended by scope change SCA-006, whose checkpoint 1 the owner accepted on
   2026-09-25 with a read-only `agent` access class for direct query (see
   above); until it applies, the existing wording stands (the v2.3
-  successor keeps it). Checkpoint 2 carried a note so DEL-04-01 and the §8
+  successor keeps it). SCA-005's checkpoint 2 carried a note so DEL-04-01 and the §8
   refresh are not rebuilt around verify-before-rely.
 
 Gate lineage (historical record; the current gates are listed above):

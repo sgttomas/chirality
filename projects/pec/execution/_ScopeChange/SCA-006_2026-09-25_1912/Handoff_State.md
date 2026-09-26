@@ -50,7 +50,7 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | `Impact_Assessment.md` | `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691` |
 | `Amendment_Actions.csv` (PROPOSED) | `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` |
+| `Decision_Log.md` | `4968fe9d62be5151ee3f6832b82c8471b786f9be9061407915eb3bf87e26537c` (after the checkpoint-1 acceptance; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the owner's act) |
 
 ## Basis hashes not repeated elsewhere
 
@@ -105,14 +105,20 @@ registers.
 
 ## Checkpoint-1 acceptance (HELP_HUMAN, 2026-09-25; appended)
 
-The owner accepted checkpoint group 1 on 2026-09-25: "SCA-006 CP1: accept;
-DQ a; ENV a; BUD a; GATE a; INS a; R-C excluded". The group-1 decision
+The owner accepted checkpoint group 1 on 2026-09-25:
+"SCA-006 CP1: accept; DQ a; ENV a; BUD a; GATE a; INS a; R-C excluded". The group-1 decision
 snapshot is `../checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`, and the
 amendment-qualified pointer is `../SCA-006_GROUP-1_AUTHORIZED.md`.
 
 - The next owning actor is WORKING_ITEMS, which prepares checkpoint 2.
-- `ReadyForNextPhase` for checkpoint-2 preparation is `YES`. All other state
-  fields above are unchanged.
+- Checkpoint-2 preparation is authorized. `ReadyForNextPhase` stays `NO`
+  until checkpoint 3, and the other state fields in the table above are
+  unchanged.
+- The Position rows "Stage reached", "Group-1 decision snapshot", "Next
+  owning actor" and "Blockers" describe the pre-acceptance state. After the
+  acceptance: the stage reached is checkpoint group 1 accepted, the snapshot
+  exists, the next owning actor is WORKING_ITEMS, and there is no blocker to
+  checkpoint-2 preparation.
 - The `D-PEC-95` act post-dates this package's reused baseline; see the
   baseline note in the group-1 `DECISION.md`.
 - This file's hash at the owner's act was
