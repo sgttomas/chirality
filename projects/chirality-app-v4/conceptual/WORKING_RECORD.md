@@ -151,10 +151,14 @@ Notes on the returns:
     answered in §11.3 and flagged SWBPIPE's Chromium-only end-to-end tests as a
     separate task, which the owner started in its own session. The owner then
     chose Tauri and the minimal loop (D-20).
+20. Drafted the four companion documents (`docs/ARCHITECTURE.md`,
+    `docs/HOST_INTEGRATION.md`, `docs/EXAMINATION.md`,
+    `docs/OPERATING_METHOD.md`), completing draft 1 of the seed set, and
+    corrected one gendered pronoun for the owner in the examination draft.
 
 ## Current position
 
-Stage D (direction conversation) substantially complete; Stage F (drafting the seed set) beginning. The owner has answered the
+Stage F: draft 1 of the seed set is complete and awaits the owner's review. The owner has answered the
 questions (D-01…D-15). Open for discussion: the working statement (Q-01),
 the build method (Q-11), the further project-management scope (Q-08), and
 two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
@@ -166,7 +170,9 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
 | Confirm or correct the drafting defaults for the open items | Owner | [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md) §3 |
 | Owner's review of PRD draft 1 (`docs/PRD.md`) | Owner | Plan checkpoint 4 |
-| Draft ARCHITECTURE, HOST_INTEGRATION, EXAMINATION, OPERATING_METHOD | HELPS_HUMANS | Stage F |
+| Owner's review of draft 1 of the five seed documents, and the remaining pending items (Q-01, Q-04, Q-07, Q-08 scope, Q-11 questions) | Owner | Plan checkpoint 4 |
+| Self-check walk of the examination scenarios through the set; repair | HELPS_HUMANS | After the owner's review |
+| Independent review by a Codex reviewer (D-13) | HELPS_HUMANS, with the owner's Codex session | Stage G |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
