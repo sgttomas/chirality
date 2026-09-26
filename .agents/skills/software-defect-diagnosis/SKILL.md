@@ -5,7 +5,7 @@ description: Reproduce, isolate, and explain a bounded software defect before re
 
 # Software Defect Diagnosis
 
-Freeze the observed symptom, environment, expected behavior, and reproduction boundary. Reproduce it with the narrowest registered check or deterministic probe available; use the repository discovery and registered-check helpers under `tools/software_workflow/` when applicable.
+Freeze the observed symptom, environment, expected behavior, and reproduction boundary. Do not install dependencies, mutate persistent data, call networks, or run broad suites when a bounded reproducer exists. Reproduce it with the narrowest registered check or deterministic probe available; use the repository discovery and registered-check helpers under `tools/software_workflow/` when applicable.
 
 Reduce competing hypotheses with evidence. Trace inputs and state transitions to the earliest divergence, and distinguish the root cause from contributing conditions and downstream consequences. Record failed reproduction attempts when they materially narrow the diagnosis.
 
@@ -17,4 +17,4 @@ Return:
 - bounded repair options and the regression check needed to prove the fix;
 - remaining unknowns or environmental limits.
 
-Diagnosis does not imply repair authority. Do not edit code unless the request separately authorizes implementation.
+Diagnosis does not imply repair authority. Do not edit code unless the request separately authorizes implementation; authorized diagnostic instrumentation is temporary and removed before return. Return effects on other packages as coordination notices rather than acting on them.
