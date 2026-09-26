@@ -136,7 +136,8 @@ Produced:
    The input hashes were taken at the pre-integration commit `cebb0da1b`; at
    the integrated candidate the three inputs differ only by #972's dependency
    summary code, and an independent review re-bundled the renderer at the
-   candidate and reproduced all four HTML hashes and all eight PNG hashes.
+   candidate and reproduced all four HTML hashes, and confirmed the eight
+   committed PNGs match their recorded hashes (it did not re-take them).
    An agent inspected all eight and found no overlap, no clipping of labels or
    controls, and no hidden required control. Long values scroll inside their
    inputs. One finding was fixed: the first option labels
