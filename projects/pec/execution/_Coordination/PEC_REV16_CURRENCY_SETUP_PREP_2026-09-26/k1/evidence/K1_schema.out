@@ -1,0 +1,18 @@
+VALID: projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 6
+VALID: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14
+VALID: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+VALID: projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+VALID: projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+VALID: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 4

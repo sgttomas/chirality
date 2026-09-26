@@ -144,6 +144,10 @@ heads = ["## Dependency Tracking Mode", "## Declared Upstream (I need these befo
          "## Declared Downstream (These need me)", "## Extracted Dependency Register", "## Lifecycle Summary",
          "## Run Notes", "## Run History"]
 for did, d in new_dirs.items():
+    if not all(k in B for k in (f"{d}/{n}" for n in ("_CONTEXT.md", "_STATUS.md", "_SEMANTIC.md",
+                                                       "_DEPENDENCIES.md", "_REFERENCES.md"))):
+        check(False, f"{did}: new folder files present")
+        continue
     ctx = B[f"{d}/_CONTEXT.md"].decode()
     r = dels[did]
     for label, col in (("DeliverableID", "DeliverableID"), ("Canonical name", "Name"), ("Type", "Type"),
