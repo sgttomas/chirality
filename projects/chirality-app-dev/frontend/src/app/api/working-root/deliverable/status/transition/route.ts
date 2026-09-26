@@ -17,6 +17,7 @@ type TransitionRequest = {
   metadata?: Record<string, string>;
   approvalSha?: string;
   ruling?: string;
+  amendment?: string;
 };
 
 function requireNonEmptyString(value: unknown, field: string): string {
@@ -71,7 +72,8 @@ export async function POST(request: Request): Promise<Response> {
       date: body.date?.trim(),
       metadata: parseMetadata(body.metadata),
       approvalSha: body.approvalSha?.trim(),
-      ruling: parseOptionalString(body.ruling, 'ruling')
+      ruling: parseOptionalString(body.ruling, 'ruling'),
+      amendment: parseOptionalString(body.amendment, 'amendment')
     };
 
     const result = await transitionDeliverableStatus(transitionInput);

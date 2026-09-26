@@ -112,6 +112,8 @@ export interface DeliverableStatusTransitionInput {
   metadata?: Record<string, string>;
   approvalSha?: string;
   ruling?: string;
+  /** Accepted scope-change amendment (ID or path) authorizing ISSUED -> IN_PROGRESS. */
+  amendment?: string;
 }
 
 export interface DependencyRowSummary {
