@@ -1,0 +1,11 @@
+PASS	no file removed under projects/	0 removed []
+PASS	no file added under projects/ (beyond --allow-k1 new deliverable folders)	0 added []; tolerated K1 files 0
+PASS	pre-state census	66 contexts / 66 references; std 61, d93 2, refs 66
+FAIL	changed files under projects/ equal the write set	changed 0 (expected 129); extra []; missing ['projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md', 'projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md', 'projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_CONTEXT.md']
+FAIL	counts 63 contexts + 66 references	0 + 0
+PASS	edits confined to the anchor lines	off-anchor 0 []
+PASS	covers bullets changed exactly as the flags require	changed covers: none
+FAIL	every context ends its provenance at revision 1.6 (SCA-006)	3/66
+FAIL	every reference names revision 1.6 and PRD v2.4 (and not 1.5 / v2.3)	0/66
+FAIL	the 64 D-PEC-62-scaffolded contexts share one provenance block	64 contexts, 2 distinct
+PASS	covers lists equal Deliverables.csv	64/66 agree; differ: DEL-04-03;DEL-08-03

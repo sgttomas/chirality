@@ -1,0 +1,5 @@
+# Hash-bound preparation evidence for provisional D-PEC-101 part K1 (listed in SHA256SUMS).
+# Reports, CSVs and diffs keep their exact bytes, including empty trailing
+# fields, CRLF closure output and diff context lines.
+evidence/** -whitespace
+evidence_aca930622/** -whitespace
