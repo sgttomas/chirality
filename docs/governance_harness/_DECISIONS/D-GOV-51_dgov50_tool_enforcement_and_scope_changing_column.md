@@ -69,23 +69,56 @@ scope-changing reclassification from a move.
 2. **The deterministic check.** `tools/validation/check_amendment_reopen.py`
    (CLI and importable `check_reopen()`) admits reopening a deliverable under an
    amendment only when:
-   - a `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-3_*/` folder holds
-     `ACCEPTED_MANIFEST.csv` and a `DECISION.md` whose first heading reads
-     `# {AMENDMENT_ID} checkpoint group 3 — accepted …`;
-   - a group-2 `ACCEPTED_MANIFEST.csv` of the amendment binds the action
-     register, and the register's current SHA-256 matches. The register is the
-     row whose file name begins `Amendment_Actions` and ends `.csv`; where
-     several such rows exist, it is the one whose `Role` names the
-     `action register`;
-   - a register row has `EntityType` `DELIVERABLE`, `EntityID` equal to the
-     deliverable ID (or the ID followed by `_` and a label), `AmendmentID`
-     equal to the amendment when filled, and `ActionType` `MODIFY`, or
-     `RECLASSIFY` with `ScopeChanging` `YES`.
+   - a decision folder
+     `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-3_[AMENDMENT-{K}_]{YYYY-MM-DD}[_{N}]/`
+     holds `ACCEPTED_MANIFEST.csv` and a `DECISION.md` whose first non-blank
+     line is the heading `# {AMENDMENT_ID} checkpoint group 3 — accepted …`,
+     with `accepted` directly after the dash. Folders with other names, such
+     as candidates, do not count. Scope-change group 3 accepts or returns, so
+     a qualified acceptance (`accepted with a limited basis`) is the accepted
+     outcome; its qualifications are not interpreted;
+   - the governing group-2 `ACCEPTED_MANIFEST.csv` binds the action register,
+     and the register's SHA-256 matches. The governing manifest is that of the
+     latest group-2 decision folder that binds a register (highest
+     `AMENDMENT-{K}`, then date, then `_{N}`), so a revised group-2 acceptance
+     replaces an earlier binding. The register is the row whose file name
+     begins `Amendment_Actions` and ends `.csv`; where one manifest binds
+     several such rows, it is the single row whose whole `Role` value is
+     `action register` or `exact final action register` (case-insensitive,
+     optionally with a parenthesized note);
+   - the register rows naming the deliverable (`EntityType` `DELIVERABLE`,
+     `EntityID` equal to the deliverable ID or the ID followed by `_` and a
+     label, `AmendmentID` equal to the amendment or blank) include no
+     `REMOVE`, and one is `MODIFY`, or `RECLASSIFY` with `ScopeChanging`
+     `YES`. Values are read as recorded; a relevant value or column name with
+     stray leading or trailing whitespace is a schema refusal (no accepted
+     register in the repository carried any on 2026-09-26);
+   - given the deliverable's `_STATUS.md`, its history does not already record
+     `reopened from ISSUED; amendment: {AMENDMENT_ID}`: one tool-recorded
+     reopening per accepted amendment. A human may still record a further
+     reopening directly.
 
-   It reads only inside the scope-change root, refuses paths and symlinks that
-   leave it, and, when given a deliverable folder, refuses a scope-change root
-   of another execution root. Group-1 and group-2 decisions, candidate
-   snapshots and other actions are refused.
+   With `--at-commit <sha>` (importable `at_commit=`), every record above is
+   read from that commit through git, never from the working tree:
+   `checkpoint_snapshots/` is listed from the commit's tree, tree entries are
+   resolved as such, a symlink entry whose target leaves the scope-change root
+   is refused, and the commit must be an ancestor of `HEAD`. Without it the
+   working tree is read and the result is reported as unanchored; that mode
+   serves inspection only. The scope-change root is the `_ScopeChange/` folder
+   of the deliverable's execution root (its outermost `execution/` ancestor,
+   which an adapter manifest found above the deliverable must agree with); a
+   `_ScopeChange/` inside a package or deliverable folder is never used. It
+   reads only inside that root and refuses paths and symlinks that leave it.
+   Group-1 and group-2 decisions, candidate snapshots and other actions are
+   refused. Refusal codes: `AMENDMENT_UNRESOLVED`,
+   `SCOPE_CHANGE_ROOT_NOT_FOUND`, `PATH_ESCAPE`,
+   `AMENDMENT_OUTSIDE_DELIVERABLE_ROOT`, `APPROVAL_SHA_UNREACHABLE`,
+   `APPROVAL_SHA_NOT_ANCESTOR`, `AMENDMENT_ALREADY_USED`,
+   `GROUP3_NOT_ACCEPTED`, `GROUP2_MANIFEST_MISSING`, `MANIFEST_SCHEMA`,
+   `REGISTER_NOT_BOUND`, `REGISTER_AMBIGUOUS`, `REGISTER_MISSING`,
+   `REGISTER_HASH_MISMATCH`, `REGISTER_SCHEMA`, `NO_DELIVERABLE_ACTION`,
+   `DELIVERABLE_REMOVED`, `RECLASSIFY_LEGACY_REGISTER`,
+   `RECLASSIFY_NOT_SCOPE_CHANGING`, `ACTION_NOT_AUTHORIZING`.
 3. **Legacy registers.** A register accepted without the `ScopeChanging`
    column is legacy: the check admits its `MODIFY` rows and refuses its
    `RECLASSIFY` rows. A run that records group 3 only by moving `_LATEST.md`,
@@ -93,17 +126,19 @@ scope-changing reclassification from a move.
    the human records a lawful reopening directly, citing the accepted
    snapshot, as under D-GOV-50.
 4. **`write_status.sh`.** `ISSUED → IN_PROGRESS` is admitted only with all of
-   these: a `HUMAN` actor; a git repository; `--approval-sha` on every root, well
-   formed, reachable, and a commit whose tree holds the group-3
-   `DECISION.md`; and a new `--amendment <id-or-path>` that passes the checker.
-   Every reopening refusal is hard: `--force-human-override` cannot waive
-   it. Without `--amendment`, the transition stays refused as
-   `BACKWARD_TRANSITION`. The history line records the amendment ID, the
-   group-3 snapshot, the register row and the approval SHA. `--amendment` on
-   any other transition is a usage error. Every other refusal is unchanged.
+   these: a `HUMAN` actor; a git repository; `--approval-sha` on every root,
+   well formed, reachable and an ancestor of `HEAD`; and a new
+   `--amendment <id-or-path>` that passes the checker run as
+   `--at-commit <approval SHA> --status-file <_STATUS.md>`. The guard never
+   uses the checker's working-tree mode. Every reopening refusal is hard:
+   `--force-human-override` cannot waive it. Without `--amendment`, the
+   transition stays refused as `BACKWARD_TRANSITION`. The history line records
+   the amendment ID, the group-3 snapshot, the register row and the approval
+   SHA. `--amendment` on any other transition is a usage error. Every other
+   refusal is unchanged.
 5. **Group-3 record.** An amendment that authorizes reopening an `ISSUED`
-   deliverable records its group-3 acceptance as a decision folder with that
-   heading; PEC's SCA-005 and SCA-006 records already do.
+   deliverable records its group-3 acceptance as a committed decision folder
+   with that heading; PEC's SCA-005 and SCA-006 records already do.
 6. **Surfaces.** `docs/SPEC.md` §3.3 (transition row and reopening rule);
    `scope-change` contract (reopening invariant, deterministic tool contract,
    snapshot-layout note, register schema), method (group-2 preparation of
@@ -113,9 +148,13 @@ scope-changing reclassification from a move.
 
 ## Limits
 
-The check reads recorded structure and hashes. It does not establish that the
-human's act was genuine, or interpret a decision beyond its heading, and it
-grants nothing (K-AUTH-1). Hand edits of `_STATUS.md` bypass any guard.
+The check reads recorded structure and hashes. The approval SHA fixes which
+committed records are read; it does not establish that the human's act was
+genuine or took place at that commit, and a record committed on the branch's
+history is read as recorded. The check does not interpret a decision beyond
+its heading, and it grants nothing (K-AUTH-1). Hand edits of `_STATUS.md`
+bypass any guard, including the once-per-amendment check, which reads the
+tool's own history line.
 
 ## Adoption
 
@@ -138,11 +177,25 @@ keep their columns, and historical `_STATUS.md` records are not rewritten.
 - Application paths are listed in the tranche manifest
   `docs/governance_harness/tranche_manifests/ROOT-DGOV50-ENFORCEMENT-20260926.yaml`.
 - `tools/validation/test_check_amendment_reopen.py` covers fixture and real
-  amendment folders, hash mismatch, group-1 and group-2-only records,
-  candidate snapshots, other actions, `RECLASSIFY` with `YES`, `NO`, blank
-  and a missing column, and path and symlink escapes.
+  amendment folders (PEC SCA-005 and SCA-006, Piping SCA-011 and Runtime
+  SCA-001, read at `HEAD`), hash mismatch, group-1 and group-2-only records,
+  candidate snapshots and folders, heading forms, `REMOVE` beside `MODIFY`,
+  other actions, `RECLASSIFY` with `YES`, `NO`, blank and a missing column,
+  revised group-2 bindings, role matching, stray whitespace, replay, nested
+  `_ScopeChange/` folders, path and symlink escapes in the working tree and in
+  a commit's tree, and the at-commit regressions: uncommitted register and
+  manifest edits, an uncommitted heading flip, an untracked forged group-3
+  folder, and a side-branch commit.
   `tools/practitioner_harness/test_write_status_guard.py` covers the
-  `write_status.sh` admit and refuse paths. `tools/validation/test_workflow_catalog.py`
+  `write_status.sh` admit and refuse paths, including those regressions and a
+  second reopening under the same amendment. `tools/validation/test_workflow_catalog.py`
   checks the rule text.
+- Independent review of the first candidate of the introducing pull request
+  (#968) found that the approval SHA bound no content: the checker read the
+  working tree. The at-commit mode, the ancestry check, the anchored heading
+  pattern, candidate-folder exclusion, the `REMOVE`, replay, execution-root,
+  revised-group-2, `AmendmentID`, role and whitespace rules above were added
+  in the same pull request before merge, so this record states the merged
+  behaviour.
 - Notices are routed to the App, Runtime, Piping and PEC loops. PEC is being
   redeveloped; its notice asks for no action. No release is made.

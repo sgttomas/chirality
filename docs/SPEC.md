@@ -344,18 +344,23 @@ deliverable and presents the reopening to the human; no agent records it
 (D-GOV-50).
 
 `tools/scaffolding/write_status.sh` records the reopening only for a human
-actor with `--approval-sha`, a reachable commit that contains the group-3
-decision record, and `--amendment`, which must pass
-`tools/validation/check_amendment_reopen.py`. The checker confirms three
-things: a group-3 decision snapshot recording acceptance; the action register
-bound by SHA-256 in the group-2 `ACCEPTED_MANIFEST.csv`, with unchanged bytes;
-and a qualifying row. It reads only inside the scope-change root. It checks
-recorded structure and hashes, not the genuineness of the human act. A register
-accepted without the `ScopeChanging` column is a legacy register: the tool still
-admits its `MODIFY` rows but refuses its `RECLASSIFY` rows. The tool also
-refuses a run without hash-bound decision snapshots. The human records such a
-lawful reopening directly. The App's lifecycle transition validator refuses
-`ISSUED → IN_PROGRESS` until it adopts the same check (D-GOV-51).
+actor with `--approval-sha`, a commit that is an ancestor of `HEAD`, and
+`--amendment`, which must pass `tools/validation/check_amendment_reopen.py` at
+that commit. The checker reads every amendment record it relies on from that
+commit, not from the working tree, and confirms four things: a group-3
+decision snapshot whose heading records acceptance; the action register bound
+by SHA-256 in the governing group-2 `ACCEPTED_MANIFEST.csv`, with unchanged
+bytes; a qualifying row and no `REMOVE` of the deliverable; and no reopening
+already recorded in `_STATUS.md` under the same amendment. It reads only inside
+the scope-change root beside the deliverable's execution root. It checks
+recorded structure and hashes at the cited commit; it does not establish that
+the human's act was genuine or that the commit records it. A register accepted
+without the `ScopeChanging` column is a legacy register: the tool still admits
+its `MODIFY` rows but refuses its `RECLASSIFY` rows. The tool also refuses a
+run without hash-bound decision snapshots, and a second reopening under the
+same amendment. The human records such a lawful reopening directly. The App's
+lifecycle transition validator refuses `ISSUED → IN_PROGRESS` until it adopts
+the same check (D-GOV-51).
 
 **Invariant:** `_STATUS.md` is the authoritative lifecycle indicator. No other file determines deliverable state (`CONTRACT.md` K-STATUS-1).
 

@@ -18,10 +18,14 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
 Where the accepted register names an `ISSUED` deliverable with `MODIFY` or
 scope-changing `RECLASSIFY`, also record the group-3 acceptance as a
 `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-3_{date}/` decision folder whose
-`DECISION.md` first heading reads
-`# {AMENDMENT_ID} checkpoint group 3 — accepted …`. The tool check
-`write_status.sh --amendment` reads that record when the human reopens the
-deliverable.
+`DECISION.md` first line is the heading
+`# {AMENDMENT_ID} checkpoint group 3 — accepted …`, and commit it with the
+accepted register and group-2 decision snapshot. When the human reopens the
+deliverable, `write_status.sh --amendment` reads those records at the commit
+the human cites as `--approval-sha`, which must be an ancestor of `HEAD`;
+uncommitted records do not count. Each accepted amendment admits one
+tool-recorded reopening per deliverable, and an amendment that removes the
+deliverable admits none.
 
 **Agent does:**
 
@@ -257,7 +261,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
      - List any downstream generated knowledge artifacts that should be marked review-needed / retired by their owning workflow
 
 3) **For `MODIFY` actions**
-   - `PROJECT/SOFTWARE`: list specific `_CONTEXT.md` edits per affected deliverable, and record each deliverable's lifecycle state. For an `ISSUED` deliverable, state in the plan that this amendment, once accepted at checkpoint group 3, is the record that authorizes its reopening (`ISSUED → IN_PROGRESS`, `docs/SPEC.md` §3.3): the human records the transition after acceptance, citing the accepted snapshot (with `write_status.sh --amendment`, which checks the record), and `project-setup` in `INCREMENTAL` mode then routes the contract revision. For a `CHECKING` deliverable, state that the revision waits for a human reversal to `IN_PROGRESS`
+   - `PROJECT/SOFTWARE`: list specific `_CONTEXT.md` edits per affected deliverable, and record each deliverable's lifecycle state. For an `ISSUED` deliverable, state in the plan that this amendment, once accepted at checkpoint group 3, is the record that authorizes its reopening (`ISSUED → IN_PROGRESS`, `docs/SPEC.md` §3.3): the human records the transition after acceptance, citing the accepted snapshot (with `write_status.sh --amendment`, which checks the committed record at the approval SHA), and `project-setup` in `INCREMENTAL` mode then routes the contract revision. For a `CHECKING` deliverable, state that the revision waits for a human reversal to `IN_PROGRESS`
    - `DOMAIN`: list exact edits to the decomposition document and affected annex CSVs, and list any downstream KTY-local artifacts or terminology indexes that should be refreshed by their owning workflow
 
 4) **For `RECLASSIFY` actions**
@@ -305,7 +309,10 @@ Produce:
   Only this file, accepted at checkpoint group 2 and bound by hash in that
   snapshot's `ACCEPTED_MANIFEST.csv`, is the authoritative register;
   `Intake_Actions.csv` remains group-1 evidence. Fill `ScopeChanging` (`YES`
-  or `NO`) on every row; the human accepts it with the register.
+  or `NO`) on every row; the human accepts it with the register. Write values
+  without leading or trailing spaces. When a revised group-2 acceptance changes
+  the register, bind the revised register in that acceptance's own
+  `ACCEPTED_MANIFEST.csv`; the latest binding governs.
 
 ```csv
 AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging

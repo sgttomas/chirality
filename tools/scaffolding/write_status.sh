@@ -21,15 +21,19 @@
 # Reopening (SPEC §3.3, D-GOV-50, D-GOV-51): ISSUED -> IN_PROGRESS is admitted
 # only under an accepted scope-change amendment. It requires a HUMAN actor, a git
 # repository, --approval-sha on every root (well formed, a reachable commit, and
-# one whose tree holds the amendment's group-3 DECISION.md), and --amendment
-# <id-or-path> that passes tools/validation/check_amendment_reopen.py (group 3
-# accepted; register bound by hash in the group-2 ACCEPTED_MANIFEST.csv and
-# unchanged; a DELIVERABLE row with MODIFY, or RECLASSIFY with ScopeChanging YES).
-# Without --amendment it stays BLOCKED as a backward transition. The history line
-# is suffixed "[reopened from ISSUED; amendment: <ID> (<group-3 snapshot>);
-# action: <register> ActionSeq <n> <type>; approval SHA: <sha>]". Every other
-# backward move stays BLOCKED. --force-human-override cannot waive the
-# reversal's ruling preconditions or any reopening precondition.
+# an ancestor of HEAD), and --amendment <id-or-path> that passes
+# tools/validation/check_amendment_reopen.py --at-commit <approval SHA>: every
+# amendment record is read from the approval commit, never the working tree
+# (group 3 accepted; register bound by hash in the governing group-2
+# ACCEPTED_MANIFEST.csv and unchanged; no REMOVE of the deliverable and a
+# DELIVERABLE row with MODIFY, or RECLASSIFY with ScopeChanging YES), and
+# _STATUS.md must not already record a reopening under the same amendment (one
+# tool-recorded reopening per accepted amendment; a human may record a further
+# one directly). Without --amendment it stays BLOCKED as a backward transition.
+# The history line is suffixed "[reopened from ISSUED; amendment: <ID> (<group-3
+# snapshot>); action: <register> ActionSeq <n> <type>; approval SHA: <sha>]".
+# Every other backward move stays BLOCKED. --force-human-override cannot waive
+# the reversal's ruling preconditions or any reopening precondition.
 #
 # Usage: ./write_status.sh <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--amendment <id-or-path>] [--force-human-override <reason>]
 #
@@ -47,12 +51,15 @@
 #                           guard_requires_approval_sha; must match ^[0-9a-f]{7,64}$ and
 #                           be reachable (git cat-file -e <sha>^{commit}). Roots that do
 #                           not declare an approval-SHA schema get a REVIEW note and proceed.
-#                           Required on every root for ISSUED -> IN_PROGRESS.
+#                           Required on every root for ISSUED -> IN_PROGRESS, where it
+#                           must also be an ancestor of HEAD and is the commit the
+#                           amendment records are read from.
 #   --amendment <id-or-path>
 #                         — Accepted scope-change amendment authorizing ISSUED -> IN_PROGRESS:
-#                           an amendment ID (SCA-NNN, SCA-APP-NNN; its _ScopeChange/ is found
-#                           above DEL_PATH) or its snapshot or group-3 decision path. A usage
-#                           error for any other transition. --ruling is not used for reopening.
+#                           an amendment ID (SCA-NNN, SCA-APP-NNN; read from <execution
+#                           root>/_ScopeChange/ of DEL_PATH) or its snapshot or group-3
+#                           decision path, resolved in the approval commit. A usage error
+#                           for any other transition. --ruling is not used for reopening.
 #   --force-human-override <reason>
 #                         — HUMAN-actor-only: converts a BLOCK into a recorded override;
 #                           the reason is appended to the history line as
@@ -329,13 +336,18 @@ if [ $REOPEN -eq 1 ]; then
       hard_block INVALID_APPROVAL_SHA "--approval-sha must be a git SHA-like hexadecimal token (7-64 chars); got '$APPROVAL_SHA'"
     elif ! git -C "$REPO_ROOT" cat-file -e "${APPROVAL_SHA}^{commit}" 2>/dev/null; then
       hard_block APPROVAL_SHA_UNREACHABLE "--approval-sha $APPROVAL_SHA is not a reachable commit in this repository"
+    elif ! git -C "$REPO_ROOT" merge-base --is-ancestor "$APPROVAL_SHA" HEAD 2>/dev/null; then
+      hard_block APPROVAL_SHA_NOT_ANCESTOR "--approval-sha $APPROVAL_SHA is not an ancestor of HEAD; cite a commit on this branch's history"
     else
       SHA_OK=1
     fi
     if [ ! -f "$CHECKER" ]; then
       hard_block AMENDMENT_CHECK_ERROR "reopening checker not found: $CHECKER"
-    else
+    elif [ $SHA_OK -eq 1 ]; then
+      # Anchored check only: every amendment record is read from the approval
+      # commit. The checker's unanchored working-tree mode is never used here.
       CHECK_JSON=$(python3 "$CHECKER" --deliverable "$DEL_ABS" --amendment "$AMENDMENT" \
+        --at-commit "$APPROVAL_SHA" --status-file "$DEL_ABS/_STATUS.md" \
         --project-root "$REPO_ROOT" --json 2>/dev/null)
       CHECK_RC=$?
       # One field per line (whitespace collapsed), then an END sentinel so an
@@ -346,22 +358,22 @@ try:
     d = json.load(sys.stdin)
 except Exception:
     sys.exit(3)
-for key in ("code", "reason", "amendment_id", "group3_snapshot", "group3_decision",
+for key in ("code", "reason", "amendment_id", "group3_snapshot", "at_commit",
             "register_path", "action_seq", "action_type"):
     print(" ".join(str(d.get(key) or "").split()))
+print("anchored" if d.get("anchored") is True else "unanchored")
 print("END")
 ' 2>/dev/null)}")
-      if [ ${#CHECK_FIELDS} -ne 9 ] || [ "${CHECK_FIELDS[9]}" != "END" ]; then
-        hard_block AMENDMENT_CHECK_ERROR "the reopening checker could not decide (exit $CHECK_RC); run tools/validation/check_amendment_reopen.py --deliverable '$DEL_PATH' --amendment '$AMENDMENT' for details"
-      elif [ $CHECK_RC -eq 0 ] && [ "${CHECK_FIELDS[1]}" = "ADMITTED" ]; then
+      if [ ${#CHECK_FIELDS} -ne 10 ] || [ "${CHECK_FIELDS[10]}" != "END" ]; then
+        hard_block AMENDMENT_CHECK_ERROR "the reopening checker could not decide (exit $CHECK_RC); run tools/validation/check_amendment_reopen.py --deliverable '$DEL_PATH' --amendment '$AMENDMENT' --at-commit '$APPROVAL_SHA' for details"
+      elif [ $CHECK_RC -eq 0 ] && [ "${CHECK_FIELDS[1]}" = "ADMITTED" ] && [ "${CHECK_FIELDS[9]}" = "anchored" ] && [ -n "${CHECK_FIELDS[5]}" ]; then
         REOPEN_AMENDMENT_ID="${CHECK_FIELDS[3]}"
         REOPEN_GROUP3="${CHECK_FIELDS[4]}"
         REOPEN_REGISTER="${CHECK_FIELDS[6]}"
         REOPEN_SEQ="${CHECK_FIELDS[7]}"
         REOPEN_ACTION="${CHECK_FIELDS[8]}"
-        if [ $SHA_OK -eq 1 ] && ! git -C "$REPO_ROOT" cat-file -e "${APPROVAL_SHA}:${CHECK_FIELDS[5]}" 2>/dev/null; then
-          hard_block AMENDMENT_NOT_AT_APPROVAL_SHA "group-3 decision ${CHECK_FIELDS[5]} is not in approval commit $APPROVAL_SHA; cite a commit that contains the accepted amendment"
-        fi
+      elif [ $CHECK_RC -eq 0 ]; then
+        hard_block AMENDMENT_CHECK_ERROR "the reopening checker admitted without reading the approval commit; refusing"
       else
         hard_block AMENDMENT_NOT_ADMITTED "${CHECK_FIELDS[1]}: ${CHECK_FIELDS[2]}"
       fi

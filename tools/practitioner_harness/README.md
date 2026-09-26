@@ -536,15 +536,23 @@ Recorded divergences from transition.ts:
    loop's decision.
 8. **Reopening `ISSUED → IN_PROGRESS` under an accepted amendment is admitted**
    (SPEC §3.3, D-GOV-50, D-GOV-51). It requires a HUMAN actor, a git
-   repository, `--approval-sha` on every root (a reachable commit whose tree
-   holds the amendment's group-3 `DECISION.md`), and `--amendment
-   <id-or-path>` that passes `tools/validation/check_amendment_reopen.py`
-   (group 3 accepted; register bound by hash in the group-2
-   `ACCEPTED_MANIFEST.csv` and unchanged; a `DELIVERABLE` row with `MODIFY`, or
-   `RECLASSIFY` with `ScopeChanging` `YES`). Every refusal is not overridable;
+   repository, `--approval-sha` on every root (a reachable commit that is an
+   ancestor of `HEAD`, else `APPROVAL_SHA_NOT_ANCESTOR`), and `--amendment
+   <id-or-path>` that passes `tools/validation/check_amendment_reopen.py
+   --at-commit <approval SHA> --status-file <_STATUS.md>`. The checker reads
+   every amendment record from the approval commit, never the working tree,
+   so uncommitted or untracked edits do not count (group 3 accepted; register
+   bound by hash in the governing group-2 `ACCEPTED_MANIFEST.csv` and
+   unchanged; no `REMOVE` of the deliverable and a `DELIVERABLE` row with
+   `MODIFY`, or `RECLASSIFY` with `ScopeChanging` `YES`; no reopening already
+   recorded in `_STATUS.md` under the same amendment). The guard never uses the
+   checker's unanchored working-tree mode. Every refusal is not overridable;
    without `--amendment` the transition stays `BACKWARD_TRANSITION`. The
    history line carries `[reopened from ISSUED; amendment: <ID> (<group-3
-   snapshot>); action: <register> ActionSeq <n> <type>; approval SHA: <sha>]`.
+   snapshot>); action: <register> ActionSeq <n> <type>; approval SHA: <sha>]`,
+   and that line is what the once-per-amendment check reads; a human may still
+   record a further reopening directly. The approval SHA fixes which records
+   are read; it does not show that the human's act happened at that commit.
    `transition.ts` still rejects the transition; the App loop mirrors the
    checker in its own change.
 
