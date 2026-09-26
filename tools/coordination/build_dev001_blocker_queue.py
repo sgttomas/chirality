@@ -29,8 +29,12 @@ under docs/SPEC.md §5.3-§5.4 (D-GOV-49):
   is `NOT_TRACKED` gets no verdict.
 
 An arc is satisfied when the supplier's `_STATUS.md` state has reached the
-arc's required maturity (`--default-maturity` when it is TBD), or, when
-`--evidence` is given, by the DEV-001 committed-evidence rule above.
+arc's required maturity, or, when `--evidence` is given, by the DEV-001
+committed-evidence rule above applied to the supplier (its evidence row, and
+PKG-00 by the supplier's package), whichever side's row records the arc.
+Without an accepted DAG, a declared entry's stated maturity governs the arc;
+otherwise the highest stated row maturity applies, and `--default-maturity`
+(project-setup Phase 1.3) when none is stated.
 """
 
 from __future__ import annotations
@@ -355,12 +359,61 @@ def arc_rows(rows: Iterable[Row]) -> dict[tuple[str, str], list[Row]]:
     return grouped
 
 
-def required_maturity(rows: list[Row], default: str) -> str:
-    stated = [de.maturity_value(row.get("RequiredMaturity", "")) for row in rows]
-    stated = [value for value in stated if value != "TBD"]
-    if not stated:
-        return default
-    return max(stated, key=de.LIFECYCLE_ORDER.index)
+def required_maturity(rows: list[Row], default: str, declared: Iterable[str] = ()) -> str:
+    """The arc's required maturity: a stated declaration governs, then the rows, then the default."""
+    for values in (declared, (row.get("RequiredMaturity", "") for row in rows)):
+        stated = [value for value in (de.maturity_value(item) for item in values) if value != "TBD"]
+        if stated:
+            return max(stated, key=de.LIFECYCLE_ORDER.index)
+    return default
+
+
+def declared_maturities(registers: dict[str, de.RecordedRegister]) -> dict[tuple[str, str], list[str]]:
+    """Stated required maturities of the declared entries, by consumer-to-supplier arc."""
+    declared: dict[tuple[str, str], list[str]] = defaultdict(list)
+    for register in registers.values():
+        for item, values in register.declared_arcs().items():
+            declared[item].extend(value for value in values if value != "TBD")
+    return declared
+
+
+def arc_disagreements(
+    gating: dict[tuple[str, str], list[Row]],
+    declared: dict[tuple[str, str], list[str]],
+) -> list[Row]:
+    """Rows whose stated maturity differs from the arc's declaration, across deliverables (SPEC §5.3)."""
+    found: list[Row] = []
+    for (consumer, supplier), rows in sorted(gating.items()):
+        values = declared.get((consumer, supplier))
+        if not values:
+            continue
+        governing = required_maturity([], "TBD", values)
+        for row in rows:
+            recorded = de.maturity_value(row.get("RequiredMaturity", ""))
+            if recorded not in {"TBD", governing}:
+                found.append({
+                    "DeliverableID": de.normalize_id(row.get("FromDeliverableID", "")),
+                    "Direction": clean(row.get("Direction")),
+                    "TargetDeliverableID": de.normalize_id(row.get("TargetDeliverableID", "")),
+                    "DependencyID": clean(row.get("DependencyID")),
+                    "Field": "RequiredMaturity",
+                    "Declared": governing,
+                    "Csv": recorded,
+                })
+    return found
+
+
+def supplier_package(supplier: str, rows: list[Row], nodes: dict[str, Row], registers: dict[str, de.RecordedRegister]) -> str:
+    """The supplier's package: from the version's nodes, its folder, or a row that names it."""
+    package = clean(nodes.get(supplier, {}).get("PackageID"))
+    if not package and supplier in registers:
+        package = unit_package(registers[supplier].path)
+    for row in rows:
+        if package:
+            break
+        side = "TargetPackageID" if clean(row.get("Direction")) == "UPSTREAM" else "FromPackageID"
+        package = clean(row.get(side))
+    return package
 
 
 def build_project_queue(
@@ -379,7 +432,8 @@ def build_project_queue(
     if dag is not None:
         source = f"ACCEPTED_DAG:{dag.name}"
         gating = arc_rows(dag.admitted)
-        held = set(arc_rows(dag.candidates))
+        # Candidate arcs are held whatever their Status (a legacy version marks them CANDIDATE).
+        held = {item for item in (de.arc(row) for row in dag.candidates) if item}
         result = de.check_currency(dag, registers)
         pending = result.pending
         currency = result.as_dict()
@@ -394,6 +448,9 @@ def build_project_queue(
         gating = {item: rows for item, rows in grouped.items() if item not in held}
     for key in registers:
         nodes.setdefault(key, {})
+    declared = declared_maturities(registers) if dag is None else {}
+    disagreements = [item for register in registers.values() for item in register.disagreements]
+    disagreements += [item for item in arc_disagreements(gating, declared) if item not in disagreements]
 
     blockers: dict[str, list[tuple[tuple[str, str], list[Row]]]] = defaultdict(list)
     upstream_counts: Counter[str] = Counter()
@@ -404,10 +461,13 @@ def build_project_queue(
     for (consumer, supplier), rows in sorted(gating.items()):
         upstream_counts[consumer] += 1
         if evidence_by_id is not None:
-            satisfied, _reason = provider_satisfaction(rows[0], evidence_by_id)
+            # Judge the arc by its supplier, whichever side's row (UPSTREAM or DOWNSTREAM) records it.
+            provider = {"TargetDeliverableID": supplier, "TargetPackageID": supplier_package(supplier, rows, nodes, registers)}
+            satisfied, _reason = provider_satisfaction(provider, evidence_by_id)
         else:
             supplier_unit = registers[supplier].path if supplier in registers else None
-            satisfied = de.maturity_reached(de.lifecycle_state(supplier_unit), required_maturity(rows, default_maturity))
+            required = required_maturity(rows, default_maturity, declared.get((consumer, supplier), ()))
+            satisfied = de.maturity_reached(de.lifecycle_state(supplier_unit), required)
         if satisfied:
             satisfied_counts[consumer] += 1
         else:
@@ -464,7 +524,7 @@ def build_project_queue(
         "gating_arc_count": len(gating),
         "held_arc_count": len(held),
         "declared_only_count": sum(len(register.declared_only) for register in registers.values()),
-        "declared_disagreements": [item for register in registers.values() for item in register.disagreements],
+        "declared_disagreements": disagreements,
         "unblocked_count": states.get(UNBLOCKED, 0),
         "blocked_count": states.get(BLOCKED, 0),
         "dag_pending_count": states.get(DAG_PENDING, 0),

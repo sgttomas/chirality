@@ -10,7 +10,9 @@ Shared by the blocker and closure tools. It applies docs/SPEC.md §5.3 and §5.4
   and an ACTIVE EXECUTION row with the same `Direction` and target are one
   edge; where they disagree on required maturity, the declaration governs and
   the disagreement is reported. A declared entry without such a row becomes a
-  synthesized `Origin=DECLARED` row.
+  synthesized `Origin=DECLARED` row; where the only matching row is RETIRED,
+  the declaration still wins and the retired row is reported as a
+  disagreement.
 - A project may accept a project DAG. `{EXECUTION_ROOT}/_DAG/_LATEST.md` names
   the accepted current version. Local evidence departs from it when it adds an
   arc the version does not account for, or lacks an arc the version holds, or
@@ -43,6 +45,10 @@ TRACKING_MODES = ("NOT_TRACKED", "DECLARED", "FULL_GRAPH")
 DIRECTION_BY_SECTION = {UPSTREAM: "UPSTREAM", DOWNSTREAM: "DOWNSTREAM"}
 # SPEC §5.2 section headings supply the type of a mirrored declaration.
 TYPE_BY_DIRECTION = {"UPSTREAM": "PREREQUISITE", "DOWNSTREAM": "ENABLES"}
+# A legacy informational downstream heading (for example
+# `## Downstream (informational; consumers of this deliverable)`) records a
+# consumer list rather than a stated need, so its mirror is IMPLICIT/MEDIUM.
+INFORMATIONAL_HEADING = re.compile(r"\binformational\b", re.IGNORECASE)
 
 ID_PATTERN = re.compile(r"^((?:DEL|KTY)-\d{2,3}-\d{2,3}|(?:PKG|CAT)-\d{2,3})(?:_.+)?$")
 ENTRY_ID = re.compile(r"^`?(?:[A-Za-z0-9_.-]+::)?((?:DEL|KTY)-\d{2,3}-\d{2,3})(?![0-9])([^`]*)`?(.*)$")
@@ -236,6 +242,7 @@ class RecordedRegister:
     mode: str = "UNKNOWN"
     csv_present: bool = False
     declarations_present: bool = False
+    entries: list[DeclaredEntry] = field(default_factory=list)
     rows: list[dict[str, str]] = field(default_factory=list)
     declared_only: list[dict[str, str]] = field(default_factory=list)
     disagreements: list[dict[str, str]] = field(default_factory=list)
@@ -245,9 +252,28 @@ class RecordedRegister:
     def union_rows(self) -> list[dict[str, str]]:
         return self.rows + self.declared_only
 
+    def declared_arcs(self) -> dict[tuple[str, str], list[str]]:
+        """Consumer-to-supplier arcs of this deliverable's declared entries, with their stated maturities."""
+        arcs: dict[tuple[str, str], list[str]] = {}
+        for entry in self.entries:
+            item = (
+                (self.deliverable_id, entry.target_id)
+                if entry.direction == "UPSTREAM"
+                else (entry.target_id, self.deliverable_id)
+            )
+            arcs.setdefault(item, []).append(entry.required_maturity)
+        return arcs
+
 
 def declared_row(deliverable_id: str, entry: DeclaredEntry, ordinal: int) -> dict[str, str]:
-    """A synthesized `Origin=DECLARED` row for a declaration that has no CSV row."""
+    """A synthesized `Origin=DECLARED` row for a declaration that has no CSV row.
+
+    Its fields follow dependency-extract's mirror rows: `SourceRef` is
+    `_DEPENDENCIES.md` plus the section heading, the heading supplies the
+    `DependencyType` (noted as `type_from=section_heading`), and an entry under
+    a legacy informational downstream heading is `IMPLICIT`/`MEDIUM`.
+    """
+    informational = bool(INFORMATIONAL_HEADING.search(entry.heading))
     return {
         "RegisterSchemaVersion": "v3.1",
         "DependencyID": f"DECLARED-{deliverable_id}-{ordinal:03d}",
@@ -262,12 +288,15 @@ def declared_row(deliverable_id: str, entry: DeclaredEntry, ordinal: int) -> dic
         "TargetLocation": entry.location,
         "Statement": entry.reason,
         "EvidenceFile": "_DEPENDENCIES.md",
-        "SourceRef": entry.heading,
+        "SourceRef": f"_DEPENDENCIES.md {entry.heading}".strip(),
+        "EvidenceQuote": " ".join(entry.raw.split()[:30]),
+        "Explicitness": "IMPLICIT" if informational else "EXPLICIT",
         "RequiredMaturity": entry.required_maturity,
         "SatisfactionStatus": "TBD",
+        "Confidence": "MEDIUM" if informational else "HIGH",
         "Origin": "DECLARED",
         "Status": "ACTIVE",
-        "Notes": "declared_only=_DEPENDENCIES.md",
+        "Notes": "declared_only=_DEPENDENCIES.md; type_from=section_heading",
     }
 
 
@@ -280,14 +309,23 @@ def union_register(
 
     Returns the CSV rows (copies, with a declared required maturity applied
     where the declaration governs), the synthesized rows for declarations
-    without a CSV row, and the disagreements found.
+    without an ACTIVE CSV row, and the disagreements found. A declaration whose
+    only matching rows are RETIRED still yields a synthesized row (the
+    declaration governs), and each retired row is reported as a `Status`
+    disagreement so that the revival is visible.
     """
     rows = [dict(row) for row in csv_rows]
     index: dict[tuple[str, str], list[dict[str, str]]] = {}
+    retired: dict[tuple[str, str], list[dict[str, str]]] = {}
     for row in rows:
-        if clean(row.get("Status")) == "ACTIVE" and clean(row.get("DependencyClass")) == "EXECUTION":
-            key = (clean(row.get("Direction")), normalize_id(row.get("TargetDeliverableID", "")))
+        if clean(row.get("DependencyClass")) != "EXECUTION":
+            continue
+        key = (clean(row.get("Direction")), normalize_id(row.get("TargetDeliverableID", "")))
+        status = clean(row.get("Status"))
+        if status == "ACTIVE":
             index.setdefault(key, []).append(row)
+        elif status == "RETIRED":
+            retired.setdefault(key, []).append(row)
     declared_only: list[dict[str, str]] = []
     disagreements: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
@@ -299,6 +337,16 @@ def union_register(
         matches = index.get(key, [])
         if not matches:
             declared_only.append(declared_row(deliverable_id, entry, len(declared_only) + 1))
+            for row in retired.get(key, []):
+                disagreements.append({
+                    "DeliverableID": deliverable_id,
+                    "Direction": entry.direction,
+                    "TargetDeliverableID": entry.target_id,
+                    "DependencyID": clean(row.get("DependencyID")),
+                    "Field": "Status",
+                    "Declared": "ACTIVE",
+                    "Csv": "RETIRED",
+                })
             continue
         if entry.required_maturity == "TBD":
             continue
@@ -318,8 +366,12 @@ def union_register(
     return rows, declared_only, disagreements
 
 
-def recorded_register(unit: Path) -> RecordedRegister:
-    """The recorded register of one deliverable folder (SPEC §5.3)."""
+def recorded_register(unit: Path, include_declared: bool = True) -> RecordedRegister:
+    """The recorded register of one deliverable folder (SPEC §5.3).
+
+    With `include_declared=False` the register is the CSV alone (the earlier
+    reading): `_DEPENDENCIES.md` is not read, so the mode stays UNKNOWN.
+    """
     register = RecordedRegister(unit_id(unit), unit)
     csv_path = unit / "Dependencies.csv"
     md_path = unit / "_DEPENDENCIES.md"
@@ -327,11 +379,15 @@ def recorded_register(unit: Path) -> RecordedRegister:
     if csv_path.is_file():
         register.csv_present = True
         _header, csv_rows = read_csv(csv_path)
+    if not include_declared:
+        register.rows = [dict(row) for row in csv_rows]
+        return register
     declarations = Declarations()
     if md_path.is_file():
         register.declarations_present = True
         declarations = parse_declarations(md_path.read_text(encoding="utf-8", errors="replace"))
     register.mode = declarations.mode
+    register.entries = list(declarations.entries)
     register.unread = declarations.unread
     register.rows, register.declared_only, register.disagreements = union_register(
         register.deliverable_id, csv_rows, declarations
@@ -339,11 +395,11 @@ def recorded_register(unit: Path) -> RecordedRegister:
     return register
 
 
-def project_registers(execution_root: Path) -> dict[str, RecordedRegister]:
+def project_registers(execution_root: Path, include_declared: bool = True) -> dict[str, RecordedRegister]:
     """Recorded registers of every live production unit under the execution root."""
     registers: dict[str, RecordedRegister] = {}
     for unit in inventory(execution_root):
-        registers.setdefault(unit_id(unit), recorded_register(unit))
+        registers.setdefault(unit_id(unit), recorded_register(unit, include_declared))
     return registers
 
 
@@ -421,23 +477,32 @@ def check_currency(dag: AcceptedDag, registers: dict[str, RecordedRegister]) -> 
     """Compare local evidence with the accepted version (SPEC §5.4 departure).
 
     Arcs the version accounts for are its admitted, candidate and excluded
-    arcs. A local ACTIVE arc outside them is added; an admitted or candidate
-    arc with no local ACTIVE row is removed. A deliverable present on one side
-    only is an inventory change. Endpoints of added and removed arcs, and the
-    added or removed deliverables, are `DAG pending`.
+    arcs. A local ACTIVE arc outside them is added. An admitted arc with no
+    local ACTIVE row is removed; a candidate arc is removed only when no local
+    ACTIVE or CANDIDATE row holds it, since a register may keep a candidate
+    as `Status=CANDIDATE`. A deliverable present on one side only is an
+    inventory change. Endpoints of added and removed arcs, and the added or
+    removed deliverables, are `DAG pending`.
     """
     admitted = {item for item in (arc(row) for row in dag.admitted) if item}
     candidate = {item for item in (arc(row) for row in dag.candidates) if item}
     excluded = {item for item in (arc(row, require_class=False) for row in dag.excluded) if item}
     local: set[tuple[str, str]] = set()
+    local_candidate: set[tuple[str, str]] = set()
     for register in registers.values():
         for row in register.union_rows:
-            if clean(row.get("Status")) == "ACTIVE":
-                item = arc(row)
-                if item:
-                    local.add(item)
+            status = clean(row.get("Status"))
+            if status not in {"ACTIVE", "CANDIDATE"}:
+                continue
+            item = arc(row)
+            if not item:
+                continue
+            if status == "ACTIVE":
+                local.add(item)
+            else:
+                local_candidate.add(item)
     added = sorted(local - admitted - candidate - excluded)
-    removed = sorted((admitted | candidate) - local)
+    removed = sorted((admitted - local) | (candidate - local - local_candidate))
     version_nodes = dag.node_ids
     local_nodes = set(registers)
     added_nodes = sorted(local_nodes - version_nodes)

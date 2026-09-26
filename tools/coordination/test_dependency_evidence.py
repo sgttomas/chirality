@@ -181,3 +181,51 @@ def test_unresolvable_pointer_is_an_error(tmp_path: Path) -> None:
         de.resolve_accepted_dag(root)
     (root / "_DAG" / "_LATEST.md").unlink()
     assert de.resolve_accepted_dag(root) is None
+
+
+def test_declaration_matching_only_a_retired_row_is_a_visible_disagreement() -> None:
+    declarations = de.parse_declarations(DECLARED)
+    retired = edge("DEP-1", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02", status="RETIRED")
+
+    rows, declared_only, disagreements = de.union_register("DEL-01-01", [retired], declarations)
+
+    assert rows[0]["Status"] == "RETIRED"
+    assert ("UPSTREAM", "DEL-01-02") in {(r["Direction"], r["TargetDeliverableID"]) for r in declared_only}
+    assert disagreements == [{
+        "DeliverableID": "DEL-01-01", "Direction": "UPSTREAM", "TargetDeliverableID": "DEL-01-02",
+        "DependencyID": "DEP-1", "Field": "Status", "Declared": "ACTIVE", "Csv": "RETIRED",
+    }]
+
+
+def test_synthesized_rows_follow_the_dependency_extract_mirror_fields() -> None:
+    text = (
+        "## Declared Upstream (I need these before I can proceed)\n- DEL-01-02 B — Reason: r\n\n"
+        "## Downstream (informational; consumers of this deliverable)\n- DEL-03-01 D — Reason: consumes\n"
+    )
+    _rows, declared_only, _found = de.union_register("DEL-01-01", [], de.parse_declarations(text))
+    upstream, downstream = declared_only
+
+    assert upstream["SourceRef"] == "_DEPENDENCIES.md ## Declared Upstream (I need these before I can proceed)"
+    assert "type_from=section_heading" in upstream["Notes"]
+    assert (upstream["Explicitness"], upstream["Confidence"]) == ("EXPLICIT", "HIGH")
+    assert downstream["DependencyType"] == "ENABLES"
+    assert downstream["SourceRef"] == "_DEPENDENCIES.md ## Downstream (informational; consumers of this deliverable)"
+    assert (downstream["Explicitness"], downstream["Confidence"]) == ("IMPLICIT", "MEDIUM")
+
+
+def test_currency_accepts_a_candidate_arc_held_locally_as_candidate(tmp_path: Path) -> None:
+    root = accepted_project(tmp_path)
+    b = root / "PKG-01_P" / "1_Working" / "DEL-01-02_B"
+    write_csv(b / "Dependencies.csv", [edge("DEP-3", "PKG-01", "DEL-01-02", "PKG-01", "DEL-01-03", status="CANDIDATE")], REQUIRED_COLUMNS)
+    version = root / "_DAG" / "DAG-001"
+    write_csv(version / "CandidateEdges.csv", [edge("DEP-3", "PKG-01", "DEL-01-02", "PKG-01", "DEL-01-03", status="CANDIDATE")], REQUIRED_COLUMNS)
+
+    currency = de.check_currency(de.resolve_accepted_dag(root), de.project_registers(root))
+
+    assert currency.result == "NO_DEPARTURE_FOUND"
+    assert currency.removed_arcs == []
+
+    # Without any local row, the candidate arc is removed.
+    (b / "Dependencies.csv").unlink()
+    currency = de.check_currency(de.resolve_accepted_dag(root), de.project_registers(root))
+    assert currency.removed_arcs == [("DEL-01-02", "DEL-01-03")]

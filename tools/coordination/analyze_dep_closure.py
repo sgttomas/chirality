@@ -6,7 +6,9 @@ The graph is read from each unit's recorded register (docs/SPEC.md §5.3): its
 `_DEPENDENCIES.md` that have no matching row (`--include-declared false` reads
 the CSV alone, as earlier runs did). When `{EXECUTION_ROOT}/_DAG/_LATEST.md`
 names an accepted project DAG, the summary also reports the deliverables whose
-local evidence departs from it as `DAG pending` (docs/SPEC.md §5.4).
+local evidence departs from it as `DAG pending` (docs/SPEC.md §5.4); that
+comparison reads the same evidence as the graph, so it uses the CSV alone
+when `--include-declared false`.
 
 The historical positional root and --output-dir interface remains supported.
 See tools/evaluation/README.md for report meanings and all brief-to-CLI options.
@@ -215,8 +217,12 @@ def declared_rows(selected, rows, normalize_ids=True):
     return added, disagreements, unread
 
 
-def dag_currency(root, selected_ids):
-    """Accepted project DAG and the deliverables whose evidence departs from it (SPEC §5.4), or None."""
+def dag_currency(root, selected_ids, include_declared=True):
+    """Accepted project DAG and the deliverables whose evidence departs from it (SPEC §5.4), or None.
+
+    The local evidence is read as the analyzer reads it: the union by default,
+    the CSV rows alone when `include_declared` is false.
+    """
     try:
         dag = evidence.resolve_accepted_dag(root)
     except evidence.DagPointerError as exc:
@@ -224,7 +230,8 @@ def dag_currency(root, selected_ids):
     if dag is None:
         return None
     report = {"version": dag.name, "path": str(dag.path), "pointer": str(dag.pointer)}
-    report.update(evidence.check_currency(dag, evidence.project_registers(root)).as_dict())
+    report["include_declared"] = include_declared
+    report.update(evidence.check_currency(dag, evidence.project_registers(root, include_declared)).as_dict())
     report["dag_pending_in_scope"] = sorted(set(report["dag_pending"]) & set(selected_ids))
     return report
 
@@ -292,7 +299,7 @@ def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_c
     summary["declared_only_rows"] = len(declared)
     summary["declared_disagreement_count"] = len(disagreements)
     summary["declared_unread_count"] = len(unread)
-    summary["accepted_dag"] = dag_currency(root, ids)
+    summary["accepted_dag"] = dag_currency(root, ids, include_declared)
     summary["misplaced_field_count"] = misplaced
     summary["invalid_ids"] = invalid_ids
     summary["checks"] = {

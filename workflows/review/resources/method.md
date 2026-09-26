@@ -181,8 +181,12 @@ Ask: "Proceed with review, or resolve precondition issues first?"
    - For each Declared Upstream entry without a CSV row (no accepted DAG): compare its
      `Required maturity` (SPEC §5.2 entry form) with the upstream deliverable's
      current `_STATUS.md` state. Mark it satisfied when the state has reached
-     that maturity in the SPEC §3.2 order. A missing or `TBD` maturity, or
-     an unreadable state, is recorded as `TBD`, not satisfied.
+     that maturity in the SPEC §3.2 order. When the entry states no maturity
+     (missing or `TBD`), compare against the project's default maturity
+     threshold in `_COORDINATION.md` (`project-setup` Phase 1.3; recommended
+     `INITIALIZED`), as SPEC §5.3 says. An unreadable state, or no recorded
+     threshold for an entry without a maturity, is recorded as `TBD`, not
+     satisfied.
    - ID format: `DS-{NNN}`
 
 6) **TBD Inventory**:

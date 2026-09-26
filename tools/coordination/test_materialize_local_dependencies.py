@@ -1,7 +1,7 @@
 """`_DEPENDENCIES.md` refresh by materialize_local_dependencies.py --refresh-pointers.
 
 The refresh writes only agent-owned sections (docs/SPEC.md §5.1-§5.2): human-owned,
-legacy and unrecognized sections stay byte-for-byte, a second identical refresh is a
+legacy and unrecognized sections keep their text, a second identical refresh is a
 no-op, and a missing file starts from the §5.2 skeleton with human-owned fields TBD.
 """
 
@@ -13,6 +13,7 @@ from audit_dag import ACTIVE, REQUIRED_COLUMNS
 from materialize_local_dependencies import (
     materialize_local_dependencies,
     refresh_dependencies_text,
+    render_console,
     split_sections,
 )
 from test_dag_control_plane import NODE_COLUMNS, edge, node, read_rows, write_csv
@@ -270,7 +271,7 @@ def test_refresh_adds_missing_human_owned_sections_as_tbd_placeholders() -> None
     mode = sections["## Dependency Tracking Mode"]
     assert "- **Mode:** TBD\n" in mode and "- **Notes:** TBD\n" in mode
     assert sections["## Declared Downstream (These need me)"] == "## Declared Downstream (These need me)\n- TBD\n\n"
-    # The existing declaration is kept byte-for-byte and never supplemented.
+    # The existing declaration keeps its text and is never supplemented.
     assert HUMAN_UPSTREAM in refreshed
     assert refresh(refreshed) == refreshed
 
@@ -321,19 +322,63 @@ def test_materializer_keeps_local_declared_rows_when_rewriting_csv(tmp_path: Pat
     assert header == REQUIRED_COLUMNS + ["LocalExtension"]
     by_id = {row["DependencyID"]: row for row in rows}
     # Aggregate rows are written; the stale extracted row is replaced as before.
-    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
-    # Local declared rows (mirror, direct and retired) are kept byte-for-byte, including extension columns.
-    for row in (mirror, direct, retired):
+    # The retired declared row is set aside: only materialized statuses are written.
+    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002"]
+    # Kept local declared rows (mirror and direct) keep their field values, including extension columns.
+    for row in (mirror, direct):
         assert by_id[row["DependencyID"]] == {column: row.get(column, "") for column in header}
     assert by_id["DEP-01-01-002"]["Statement"] == "declared directly in the CSV"
     item = summary["written"][0]
-    assert item["PreservedDeclaredRows"] == 3
+    assert item["PreservedDeclaredRows"] == 2
+    assert item["SetAsideDeclaredRows"] == ["DEP-01-01-003"]
     assert item["DeclaredIdCollisions"] == ["DEP-01-01-002"]
-    assert summary["total_preserved_declared_rows"] == 3
+    assert summary["total_preserved_declared_rows"] == 2
+    assert summary["total_set_aside_declared_rows"] == 1
+    assert summary["total_declared_id_collisions"] == 1
+    console = render_console(summary)
+    assert "DeclaredIdCollisions: 1" in console
+    assert "Local Origin=DECLARED rows set aside by status: 1" in console
     pointer = (unit / "_DEPENDENCIES.md").read_text(encoding="utf-8")
-    assert "- **Rows:** 4 total; 3 ACTIVE; 0 CANDIDATE." in pointer
+    assert "- **Rows:** 3 total; 3 ACTIVE; 0 CANDIDATE." in pointer
 
     # A rerun keeps the same bytes.
     before = (unit / "Dependencies.csv").read_bytes()
     run()
     assert (unit / "Dependencies.csv").read_bytes() == before
+
+
+def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    write_csv(edges_path, [edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02")], REQUIRED_COLUMNS)
+    active = edge("DEP-01-01-001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03")
+    active.update(Origin="DECLARED")
+    candidate = edge("DEP-01-01-002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-04", status="CANDIDATE")
+    candidate.update(Origin="DECLARED")
+    retired = edge("DEP-01-01-003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-05", status="RETIRED")
+    retired.update(Origin="DECLARED")
+    local = [active, candidate, retired]
+
+    def run(canonical: bool) -> tuple[dict[str, object], list[str]]:
+        write_csv(unit / "Dependencies.csv", local, REQUIRED_COLUMNS)
+        summary = materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            generated_date="2026-09-26",
+            source_label="DAG-001",
+            canonical_output=canonical,
+        )
+        return summary, sorted(row["DependencyID"] for row in read_rows(unit / "Dependencies.csv")[1])
+
+    summary, ids = run(canonical=True)
+    assert ids == ["DAG-001-E0001", "DEP-01-01-001"]
+    assert summary["written"][0]["SetAsideDeclaredRows"] == ["DEP-01-01-002", "DEP-01-01-003"]
+
+    summary, ids = run(canonical=False)
+    assert ids == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002"]
+    assert summary["written"][0]["SetAsideDeclaredRows"] == ["DEP-01-01-003"]

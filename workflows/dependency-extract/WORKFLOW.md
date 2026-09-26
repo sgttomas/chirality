@@ -282,8 +282,9 @@ An extracted row that duplicates a declared edge (same `Direction` and target) i
   - `RequiredMaturity` is the stated required maturity, or `TBD`. Leave `ProposedMaturity` empty.
   - `EvidenceFile=_DEPENDENCIES.md`. `SourceRef` is `_DEPENDENCIES.md` plus the section heading as the file writes it. `EvidenceQuote` is the entry line, at most 30 words.
   - `Explicitness=EXPLICIT`, `Confidence=HIGH`, `Origin=DECLARED`, `Status=ACTIVE`.
+  - Entries under a legacy informational downstream heading (for example `## Downstream (informational; consumers of this deliverable)`) list consumers rather than state a need, so they are mirrored as `ENABLES` with `Explicitness=IMPLICIT` and `Confidence=MEDIUM`, not `EXPLICIT`/`HIGH`.
   - `SatisfactionStatus=TBD` on a new row.
-  - `Notes` records `mirrored_from=_DEPENDENCIES.md`.
+  - `Notes` records `mirrored_from=_DEPENDENCIES.md; type_from=section_heading`.
 - **Idempotent update.** Match a mirror row by `Origin=DECLARED` + `mirrored_from=_DEPENDENCIES.md` + `Direction` + target identifier (`TargetDeliverableID`, or `TargetName` for an `UNKNOWN` target). On a match, keep the `DependencyID`, `FirstSeen` and `SatisfactionStatus`. Refresh the stated fields and `LastSeen`, and set `Status=ACTIVE`. Otherwise create the row with the next §6.8 `DependencyID`. A rerun with unchanged declarations changes nothing but `LastSeen`.
 - **Removed declarations.** A mirror row whose entry no longer appears is set `Status=RETIRED`, with `retired_by=declaration_removed` in `Notes`. It is never deleted. `Origin=DECLARED` rows without the `mirrored_from` marker were declared directly in the CSV and are preserved unchanged.
 - **Direct CSV declarations.** Sometimes an `Origin=DECLARED` row without the marker already names the entry's `Direction` and target. That row already carries the declaration, so do not add a mirror row. If its fields differ from the entry, leave the row unchanged and record `[WARNING] DECLARED_MISMATCH` in Run Notes. The human-owned section governs readers until a human reconciles the two.

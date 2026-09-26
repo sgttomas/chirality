@@ -126,3 +126,19 @@ def test_accepted_dag_departure_reported_as_dag_pending(tmp_path, capsys):
     assert "DEL-01-03" in (output / "dag_pending.csv").read_text()
     (tmp_path / "_DAG" / "_LATEST.md").write_text("no pointer\n")
     assert closure.analyze(tmp_path)[0]["accepted_dag"]["result"] == "INCOMPLETE"
+
+
+def test_csv_only_reading_compares_csv_evidence_with_the_accepted_dag(tmp_path):
+    put(tmp_path, "DEL-01-01_A", "DEL-01-02")
+    (tmp_path / "PKG-01_A/1_Working/DEL-01-03_C").mkdir(parents=True)
+    # A declaration held only in the markdown departs from the version under the union reading.
+    declare(tmp_path, "DEL-01-02_B", "## Declared Upstream (I need these before I can proceed)\n- DEL-01-03 C — Reason: r\n")
+    version = tmp_path / "_DAG" / "DAG-001"
+    version.mkdir(parents=True)
+    (version / "DeliverableNodes.csv").write_text("DeliverableID,PackageID\nDEL-01-01,PKG-01\nDEL-01-02,PKG-01\nDEL-01-03,PKG-01\n")
+    (version / "DependencyEdges.csv").write_text((tmp_path / "PKG-01_A/1_Working/DEL-01-01_A/Dependencies.csv").read_text())
+    (tmp_path / "_DAG" / "_LATEST.md").write_text("Latest: DAG-001\n")
+    union = closure.analyze(tmp_path)[0]["accepted_dag"]
+    assert union["result"] == "DEPARTURE" and union["include_declared"] is True
+    csv_only = closure.analyze(tmp_path, include_declared=False)[0]["accepted_dag"]
+    assert csv_only["result"] == "NO_DEPARTURE_FOUND" and csv_only["include_declared"] is False

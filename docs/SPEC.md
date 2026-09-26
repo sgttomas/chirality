@@ -567,7 +567,11 @@ and a row with the same `Direction` and target are one edge, counted once. If
 they disagree, for example on required maturity, the human-owned declared
 section governs and the reader reports the disagreement. For a declared entry
 without a CSV row, the reader compares the entry's required maturity with the
-target deliverable's current lifecycle state in its `_STATUS.md` (§3.2).
+target deliverable's current lifecycle state in its `_STATUS.md` (§3.2). When
+the entry states no required maturity (missing or `TBD`), the reader uses the
+project's default maturity threshold, recorded in `_COORDINATION.md` when the
+human confirms the dependency rules (`project-setup` Phase 1.3; its
+recommended default is `INITIALIZED`).
 
 In a project with an accepted DAG, the same union is the local evidence that a
 currency audit compares with the accepted version. Blocking edges come from

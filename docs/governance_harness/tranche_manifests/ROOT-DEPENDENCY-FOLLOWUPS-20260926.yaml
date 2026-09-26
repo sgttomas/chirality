@@ -27,6 +27,8 @@ instruction_surface_paths:
   - workflows/project-dag/resources/graph-version.md
   - workflows/review/resources/contract.md
   - workflows/review/resources/method.md
+  - workflows/audit-dep-closure/resources/contract.md
+  - workflows/audit-dep-closure/resources/method.md
   - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
   - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
   - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
@@ -101,8 +103,32 @@ rationale: >-
   union and an arc-and-inventory departure check against the accepted
   version; the project-dag currency audit governs where they differ. The
   blocker queue's DEV-001 DAG-file behaviour is unchanged and the new rule sits
-  behind --execution-root; the closure tool reads the union by default, with
-  --include-declared false for the earlier CSV-only reading. (5) SPEC section
+  behind --execution-root. The closure tool's default changed: it now reads
+  the union by default, to follow the owner-accepted union rule (decision B
+  item 1), and --include-declared false reproduces the prior CSV-only reading,
+  for both the graph and the accepted-DAG comparison. The audit-dep-closure
+  workflow's contract and method are updated to match: the recorded register
+  is the graph source, the brief field INCLUDE_DECLARED (default true) maps to
+  --include-declared, the new declared_only, declared_disagreements,
+  declared_unread and dag_pending outputs are listed, and Tool_Run.json's
+  accepted input basis records the _DEPENDENCIES.md files and _DAG/_LATEST.md
+  the analyzer read. In project mode the blocker queue judges an arc's
+  committed evidence and PKG-00 basis by its supplier, whichever side's row
+  records it; holds a version's candidate arcs whatever their Status; and,
+  without an accepted DAG, lets a stated declaration govern the arc's
+  required maturity across deliverables. The union reader reports a
+  declaration whose only matching CSV row is RETIRED as a disagreement, and a
+  version's candidate arc held locally as CANDIDATE is not a removal. Its
+  synthesized rows carry the dependency-extract mirror fields (SourceRef with
+  the heading, type_from=section_heading, IMPLICIT/MEDIUM under a legacy
+  informational downstream heading, which dependency-extract now states).
+  The materializer keeps local declared rows with their field values
+  unchanged, re-serialized under the output header, only when their status
+  is materialized (ACTIVE only with --canonical-output), sets the others
+  aside and counts them, and prints the collision total. SPEC section 5.3
+  states that a declared entry without a required maturity uses the
+  project-setup Phase 1.3 default threshold, and review Gate 2 item 5
+  applies the same rule. (5) SPEC section
   5.2 and the preparation scaffold's Register line name both sources.
   (6) As a consequential alignment with D-GOV-49 made in the integrating
   session's brief, audit_dag.py's markdown report names the edge file it
@@ -113,8 +139,9 @@ rationale: >-
   and Phase 3.2's advisory section gains a DAG PENDING group so that the
   pending deliverables Phase 3.1 and Phase 5.7 name have a place in the
   report. The workflow index was rebuilt and is unchanged, because no
-  package metadata changed; the public export manifest and report were
-  regenerated.
+  package metadata changed (the audit-dep-closure and dependency-extract
+  edits touch resource text only); the public export manifest and report
+  were regenerated.
 scope_limits:
   - No existing _DEPENDENCIES.md, Dependencies.csv, DAG version, pointer, generated report or historical run record is changed or regenerated; no tool was run to write project files.
   - The Dependencies.csv v3.1 schema (SPEC section 6), the section 5.2 headings and the section 5.3 mode vocabulary are unchanged.

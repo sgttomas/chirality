@@ -6,19 +6,26 @@ Only non-PKG-00 deliverables are written. PKG-00 remains architecture context
 evidence and does not receive local dependency registers from this tool.
 
 Rewriting a deliverable's Dependencies.csv keeps its existing `Origin=DECLARED`
-rows (human declarations and their `dependency-extract` mirrors): the local
-files are the dependency evidence (docs/SPEC.md §5.4), so a declaration is
-never dropped by a rewrite from the aggregate. Where the aggregate carries a
-row with the same DependencyID, the local declared row is kept and a
-difference is reported.
+rows (human declarations and their `dependency-extract` mirrors) with their
+field values unchanged: the local files are the dependency evidence
+(docs/SPEC.md §5.4), so a declaration is never dropped by a rewrite from the
+aggregate. The kept rows are written under the output header, so column order,
+quoting and empty cells for columns they lacked follow that header. They are
+filtered by the same statuses as the aggregate rows (ACTIVE and CANDIDATE, or
+ACTIVE only with --canonical-output); a declared row with another status, such
+as a RETIRED mirror of a withdrawn declaration, is set aside and counted.
+Where the aggregate carries a row with the same DependencyID, the local
+declared row is kept and the difference is reported.
 
 With --refresh-pointers, each deliverable's _DEPENDENCIES.md is refreshed in
 place under the docs/SPEC.md §5.2 schema: the tool writes the agent-owned
 Extracted Dependency Register (with the authority-boundary statements) and
 Lifecycle Summary, fills a placeholder Run Notes body, and appends one Run
 History entry per distinct refresh. Human-owned sections (tracking mode and
-declarations), unrecognized sections and Downstream Handoff Notes are kept
-byte-for-byte; legacy headings are read per the SPEC §5.2 table. A missing
+declarations), unrecognized sections and Downstream Handoff Notes keep their
+text unchanged (a blank separator line may be added after one when a missing
+section is inserted next to it); legacy headings are read per the SPEC §5.2
+table. A missing
 human-owned section is added as a TBD placeholder (mode and declarations TBD)
 and is never filled. A missing file is created from the §5.2 skeleton with the
 human-owned mode and declarations left TBD.
@@ -59,17 +66,22 @@ def merge_declared_rows(
     rows: list[dict[str, str]],
     local_header: list[str],
     local_rows: list[dict[str, str]],
-) -> tuple[list[str], list[dict[str, str]], list[dict[str, str]], list[str]]:
+    statuses: set[str] | frozenset[str] = frozenset(MATERIALIZED_STATUSES),
+) -> tuple[list[str], list[dict[str, str]], list[dict[str, str]], list[str], list[dict[str, str]]]:
     """Keep the local register's `Origin=DECLARED` rows in a rewrite from the aggregate.
 
-    Returns the output header (the aggregate header plus any local columns the
-    kept rows need), the rows to write, the kept declared rows, and the
-    DependencyIDs where an aggregate row with different content was set aside
-    for the local declared row with the same ID.
+    Only declared rows whose `Status` is in `statuses` (the materialized
+    statuses) are kept; the others are set aside. Returns the output header
+    (the aggregate header plus any local columns the kept rows need), the rows
+    to write, the kept declared rows, the DependencyIDs where an aggregate row
+    with different content was set aside for the local declared row with the
+    same ID, and the declared rows set aside by status.
     """
-    declared = [row for row in local_rows if row.get("Origin", "").strip() == DECLARED_ORIGIN]
+    all_declared = [row for row in local_rows if row.get("Origin", "").strip() == DECLARED_ORIGIN]
+    declared = [row for row in all_declared if row.get("Status", "").strip() in statuses]
+    set_aside = [row for row in all_declared if row.get("Status", "").strip() not in statuses]
     if not declared:
-        return header, rows, [], []
+        return header, rows, [], [], set_aside
     by_id = {row.get("DependencyID", "").strip(): row for row in declared}
     collisions: list[str] = []
     kept_aggregate: list[dict[str, str]] = []
@@ -81,7 +93,7 @@ def merge_declared_rows(
             collisions.append(row.get("DependencyID", "").strip())
     extra = [column for column in local_header if column not in header]
     merged = sorted(kept_aggregate + declared, key=sort_key)
-    return header + extra, merged, declared, sorted(collisions)
+    return header + extra, merged, declared, sorted(collisions), set_aside
 
 
 def write_dependency_csv(path: Path, header: list[str], rows: list[dict[str, str]], dry_run: bool) -> None:
@@ -110,7 +122,8 @@ def pointer_status(source_label: str) -> str:
 # downstream) and agent-owned sections. This tool writes only the agent-owned
 # Extracted Dependency Register and Lifecycle Summary, fills a placeholder
 # Run Notes body, and appends to Run History. Human-owned sections,
-# unrecognized sections and Downstream Handoff Notes are kept byte-for-byte.
+# unrecognized sections and Downstream Handoff Notes keep their text unchanged,
+# apart from a blank separator line added when a missing section follows them.
 
 MODE = "mode"
 UPSTREAM = "upstream"
@@ -401,7 +414,8 @@ def refresh_dependencies_text(
 
     A missing or blank file starts from the §5.2 skeleton. In an existing file,
     human-owned sections, unrecognized sections and Downstream Handoff Notes
-    are kept byte-for-byte. A missing human-owned section is added as a TBD
+    keep their text unchanged; only a blank separator line may be added after
+    one when a missing section is inserted next to it. A missing human-owned section is added as a TBD
     placeholder and never filled. Agent-owned sections are refreshed under the
     heading the file already uses, and missing ones are added under their §5.2
     heading in §5.2 order. Refreshing twice with the same inputs is a no-op.
@@ -527,7 +541,9 @@ def materialize_local_dependencies(
         pointer_path = execution_path / "_DEPENDENCIES.md"
 
         local_header, local_rows = read_local_register(csv_path)
-        out_header, out_rows, kept_declared, collisions = merge_declared_rows(header, rows, local_header, local_rows)
+        out_header, out_rows, kept_declared, collisions, set_aside = merge_declared_rows(
+            header, rows, local_header, local_rows, materialized_statuses
+        )
         write_dependency_csv(csv_path, out_header, out_rows, dry_run=dry_run)
         pointer_action = ""
         if refresh_pointers:
@@ -560,6 +576,7 @@ def materialize_local_dependencies(
             "ActiveRows": active_count,
             "CandidateRows": candidate_count,
             "PreservedDeclaredRows": len(kept_declared),
+            "SetAsideDeclaredRows": [row.get("DependencyID", "").strip() for row in set_aside],
             "DeclaredIdCollisions": collisions,
         })
 
@@ -567,6 +584,8 @@ def materialize_local_dependencies(
     total_active_rows = sum(int(item["ActiveRows"]) for item in written)
     total_candidate_rows = sum(int(item["CandidateRows"]) for item in written)
     total_preserved_declared = sum(int(item["PreservedDeclaredRows"]) for item in written)
+    total_set_aside_declared = sum(len(item["SetAsideDeclaredRows"]) for item in written)  # type: ignore[arg-type]
+    total_collisions = sum(len(item["DeclaredIdCollisions"]) for item in written)  # type: ignore[arg-type]
 
     return {
         "edges_path": str(edges_path),
@@ -586,6 +605,8 @@ def materialize_local_dependencies(
         "total_active_rows": total_active_rows,
         "total_candidate_rows": total_candidate_rows,
         "total_preserved_declared_rows": total_preserved_declared,
+        "total_set_aside_declared_rows": total_set_aside_declared,
+        "total_declared_id_collisions": total_collisions,
         "written": written,
         "skipped_pkg00_count": len(skipped_pkg00),
         "skipped_pkg00": skipped_pkg00,
@@ -606,6 +627,8 @@ def render_console(summary: dict[str, object]) -> str:
         f"Missing execution paths: {summary['missing_execution_path_count']}",
         f"Rows materialized: total={summary['total_rows']} active={summary['total_active_rows']} candidate={summary['total_candidate_rows']}",
         f"Local Origin=DECLARED rows preserved: {summary['total_preserved_declared_rows']}",
+        f"Local Origin=DECLARED rows set aside by status: {summary['total_set_aside_declared_rows']}",
+        f"DeclaredIdCollisions: {summary['total_declared_id_collisions']}",
         f"Canonical output: {summary['canonical_output']} canonical_findings={summary['canonical_finding_count']}",
         f"Pointer refresh: {summary['refresh_pointers']}",
         f"Dry run: {summary['dry_run']}",
@@ -614,7 +637,12 @@ def render_console(summary: dict[str, object]) -> str:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Materialize local Dependencies.csv mirrors from an aggregate DAG.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Materialize local Dependencies.csv mirrors from an aggregate DAG. Local Origin=DECLARED rows with a "
+            "materialized status are kept with their field values unchanged."
+        )
+    )
     parser.add_argument(
         "--dag-dir",
         type=Path,
@@ -635,7 +663,10 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument(
         "--canonical-output",
         action="store_true",
-        help="Materialize only canonical ACTIVE rows and report canonical validation findings.",
+        help=(
+            "Materialize only canonical ACTIVE rows, from the aggregate and among the kept local Origin=DECLARED "
+            "rows, and report canonical validation findings."
+        ),
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--json-out", type=Path, help="Write materialization summary JSON.")

@@ -197,7 +197,7 @@ def test_semantic_only_upstreams_do_not_satisfy_implementation_dependencies(tmp_
 
 import pytest  # noqa: E402
 
-from build_dev001_blocker_queue import DAG_PENDING, NOT_TRACKED, build_project_queue, main  # noqa: E402
+from build_dev001_blocker_queue import DAG_PENDING, NOT_TRACKED, PKG_00, build_project_queue, main  # noqa: E402
 
 
 def unit(root: Path, name: str, state: str, dependencies: str | None = None, rows: list[dict[str, str]] | None = None) -> Path:
@@ -324,3 +324,66 @@ def test_project_mode_cli(tmp_path: Path) -> None:
     (root / "_DAG").mkdir()
     (root / "_DAG" / "_LATEST.md").write_text("Latest: DAG-404\n", encoding="utf-8")
     assert main(["--execution-root", str(root)]) == 2
+
+
+def evidence_file(path: Path, committed: list[str]) -> Path:
+    write_csv(path, [{"DeliverableID": item, "PackageID": "PKG-01", "EvidenceState": COMMITTED} for item in committed], EVIDENCE_COLUMNS)
+    return path
+
+
+@pytest.mark.parametrize(("committed", "consumer_package", "expected"), [
+    (["DEL-01-02"], "PKG-01", UNBLOCKED),  # only the supplier has committed evidence
+    (["DEL-01-01"], "PKG-01", BLOCKED),  # only the consumer has committed evidence
+    ([], PKG_00, BLOCKED),  # the row's TargetPackageID is the consumer's, so PKG-00 there does not satisfy the arc
+])
+def test_project_mode_evidence_judges_a_downstream_arc_by_its_supplier(
+    tmp_path: Path, committed: list[str], consumer_package: str, expected: str
+) -> None:
+    root = tmp_path / "execution"
+    # Only the supplier records the arc, as a DOWNSTREAM row: From = supplier, Target = consumer.
+    downstream = {**edge("DEP-B-1", "DEL-01-02", "DEL-01-01", target_package=consumer_package), "Direction": "DOWNSTREAM"}
+    unit(root, "DEL-01-01_A", "OPEN")
+    unit(root, "DEL-01-02_B", "OPEN", rows=[downstream])
+
+    summary = build_project_queue(root, evidence_file(tmp_path / "evidence.csv", committed))
+    row = summary["queue_rows_by_id"]["DEL-01-01"]  # type: ignore[index]
+
+    assert row["ActiveUpstreamCount"] == "1"
+    assert row["BlockerState"] == expected
+    assert summary["queue_rows_by_id"]["DEL-01-02"]["ActiveUpstreamCount"] == "0"  # type: ignore[index]
+
+
+def test_project_mode_holds_legacy_candidate_status_arcs_of_the_version(tmp_path: Path) -> None:
+    root = tmp_path / "execution"
+    unit(root, "DEL-01-01_A", "OPEN", rows=[edge("DEP-A-1", "DEL-01-01", "DEL-01-02")])
+    unit(root, "DEL-01-02_B", "INITIALIZED")
+    unit(root, "DEL-01-03_C", "OPEN", rows=[edge("DEP-C-1", "DEL-01-03", "DEL-01-01", status=CANDIDATE)])
+    accepted(root, [edge("DEP-A-1", "DEL-01-01", "DEL-01-02"), edge("DEP-C-1", "DEL-01-03", "DEL-01-01", status=CANDIDATE)])
+
+    summary = build_project_queue(root)
+    rows = summary["queue_rows_by_id"]  # type: ignore[index]
+
+    assert summary["currency"]["result"] == "NO_DEPARTURE_FOUND"  # type: ignore[index]
+    assert summary["held_arc_count"] == 1
+    assert rows["DEL-01-03"]["HeldEdgeIDs"] == "DEL-01-03->DEL-01-01"
+    assert rows["DEL-01-03"]["BlockerState"] == UNBLOCKED
+
+
+def test_project_mode_declared_maturity_governs_across_deliverables(tmp_path: Path) -> None:
+    root = tmp_path / "execution"
+    # The consumer's CSV row asks for ISSUED; the supplier's declaration of the same arc says IN_PROGRESS.
+    unit(root, "DEL-01-01_A", "OPEN", rows=[{**edge("DEP-A-1", "DEL-01-01", "DEL-01-02"), "RequiredMaturity": "ISSUED"}])
+    unit(root, "DEL-01-02_B", "CHECKING", (
+        "## Dependency Tracking Mode\n- **Mode:** DECLARED\n\n"
+        "## Declared Downstream (These need me)\n- DEL-01-01 A — Reason: r\n  - Required maturity: IN_PROGRESS\n"
+    ))
+
+    summary = build_project_queue(root)
+    row = summary["queue_rows_by_id"]["DEL-01-01"]  # type: ignore[index]
+
+    assert row["ActiveUpstreamCount"] == "1"
+    assert row["BlockerState"] == UNBLOCKED
+    assert summary["declared_disagreements"] == [{
+        "DeliverableID": "DEL-01-01", "Direction": "UPSTREAM", "TargetDeliverableID": "DEL-01-02",
+        "DependencyID": "DEP-A-1", "Field": "RequiredMaturity", "Declared": "IN_PROGRESS", "Csv": "ISSUED",
+    }]
