@@ -105,6 +105,8 @@ Scope: `projects/chirality-app-dev`, `projects/chirality-piping`, `projects/pec`
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-33_task_management_invocation_local_federation_survey.md:48` | K-PROV-1 (RATIFIED) | Reference `agents/AGENT_TASK_MANAGEMENT.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-34_change_clean_basis_lane_routine.md:51` | K-PROV-1 (RATIFIED) | Reference `agents/AGENT_CHANGE.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md:75` | K-PROV-1 (RATIFIED) | Reference `resources/contract.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-48_every_scope_item_package_home.md:137` | K-PROV-1 (RATIFIED) | Reference `_Decomposition/ScopeLedger.csv` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
+| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-48_every_scope_item_package_home.md:143` | K-PROV-1 (RATIFIED) | Reference `_Decomposition/RUNTIME_SCOPE_LEDGER.csv` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:36` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:37` | K-PROV-1 (RATIFIED) | Reference `domains/chirality` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
 | WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/_REGISTER.md:43` | K-PROV-1 (RATIFIED) | Reference `CANDIDATE_B_SHARED_CHANGE/PRD_ROOT_REV7_CANDIDATE.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |
@@ -164,7 +166,7 @@ Scope: `projects/chirality-app-dev`, `projects/chirality-piping`, `projects/pec`
 
 ## Summary
 
-Finding severities: INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=124
+Finding severities: INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=126
 - scope: ['projects/chirality-app-dev', 'projects/chirality-piping', 'projects/pec', '_DomainEngines', 'docs/governance_harness']
 - pointer_files_scanned: 37
 - checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (active-surface portability: structural roles + hash-bound historical exceptions + semantic invariants), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward), GEN-11 (D-44 piping receipt contract), GEN-12 (D-APP-57 app-dev receipt contract), GEN-13 (claims-language DEC-081)

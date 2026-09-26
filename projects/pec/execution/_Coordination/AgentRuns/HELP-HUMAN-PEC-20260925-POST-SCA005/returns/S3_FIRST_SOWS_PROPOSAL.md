@@ -79,3 +79,79 @@ Brief hash verified (`ef12b740…537a`). Basis is `origin/main` `8f9bd314c` afte
 - The DEL-01-01 and DEL-01-06 contracts are stale; their rebuilds are graph node S2.
 - The checkout moved to `claude/pec-owner-directions-20260926` (`a07f62190`) during my run, not by me.
 - I briefly wrote one temp file directly in `/tmp` (hash list) and deleted it. My other scratch trees sit beside `s3/` in the scratchpad, as `s3proto.*`, `s3base.*` and `s3gitmeta.*`.
+
+## Revision 2 (after PR #944 review 01)
+
+The preparer's revision-2 report follows.
+
+- **SHA-256 of the report text (UTF-8):** `7d5bb8e9bfaf6be0f79470fd9ab1f62954badbaa423d0e47504e83a30b330d73`.
+- **Publication:** HELP_HUMAN replaced the published proposal with revision 2, SHA-256 `92b6f1a223f5cb6fffc399f16e5e4e63cf5d8aa8f391981d3afcb9f4027a3e40`. It also replaced the preparation folder with the revision-2 `s3/` contents; `SHA256SUMS` verifies except for the draft, and `.gitattributes` was added again. Revision-1 bytes stay recoverable at `47bf0c1c7`.
+
+### Revision-2 report (verbatim)
+
+S3 revision return. D-PEC-98 is revised as revision 2. Both blocking findings (B1, B2) and all six non-blocking ones (C1–C4, C8, C9) are addressed, and every check passes at the new basis. **The fresh independent `MODE=VERIFY` of revision 2 has not run yet**: I am the author and cannot delegate it. I did not see the verifier's report on revision 1; I worked from your relayed findings. The number D-PEC-98 stays marked provisional and the status line is still PROPOSAL / AWAITING_RULING (revision 2).
+
+**Basis.** `origin/main` `53145aaeb`, after `git fetch`. PR #946 merged while I was revising (at `f90320c1d`, 07:31Z), so I moved the observation commit from `5bbc9de22` to `53145aaeb` and reran every check there. PR #947 (the generic `change` workflow) also landed; it changed `workflows/index.json`, but the `scope-of-work` entry is unchanged. I made no edits in the checkout and wrote only under `scratchpad/s3/` and my own temp directories.
+
+**New hashes (SHA-256)**
+
+| File | Hash |
+|---|---|
+| Draft `s3/D-PEC-98_DRAFT.md` | `92b6f1a223f5cb6fffc399f16e5e4e63cf5d8aa8f391981d3afcb9f4027a3e40` |
+| DEL-02-08 `ScopeOfWork.md` (262 lines) | `03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a` |
+| DEL-02-09 `ScopeOfWork.md` (235 lines) | `aafb54fd6457f09da8304ead444686703d5f8d2c28f4c94ec4eab4d2737b188b` |
+| `apply_d98.py` (bound act script) | `19c2ecb6bd40082c2397956dee2e0efb48b7a2aef5ec56e7498d4ed5e2fc419e` |
+| `verify_d98_quotes.py` | `9cadc2c44359c9ea2d4d20c6a95122e9be02cf221612032f0c5bf6a06cadb745` |
+| `verify_d98_state_claims.py` (new) | `7bb9e6bbe3ad6e2bfa68c19c56c8b2e786b91f2e362c2a5e9e2fdddbc598b673` |
+| `test_apply_d98.py` (new) | `ad7dce86b07d5c0fd36fb4ed46324b40be4d30559be2b0c18d258ffcc3e79a7a` |
+| `run_d98_checks.sh` | `abc20da2d6fa8e3a590997ef6b15848449869fa23dd492ef5c41c110e9793b8d` |
+| Checklist DEL-02-08 | `54c84487…e2db` |
+| Checklist DEL-02-09 | `2f495a54…86f3` |
+
+Everything is listed in `s3/SHA256SUMS`, which verifies clean.
+
+**What changed**
+- **B1 (false "at the basis" claims).**
+  - Each contract now has an "Observation commit" paragraph. The pin `c9e5cd87d` binds only the accepted register and PRD bytes, and every unanchored state claim is an observation at `origin/main` `53145aaeb`. The phrase "at the basis" is gone from both contracts.
+  - DEL-02-08 CLM-013 gives the template and workflow hashes at both commits (`4411d0c2…`/`24268f35…` at the pin, `5661c609…`/`3e197c9d…` now) and names the Root commit that changed them (`ea5009d05`).
+  - D-PEC-96 now reads: revision 4 merged at `6281273fa`; at `53145aaeb` the register row says `RULED A / EFFECTIVE ON MERGE`, with the ruling record merged at `f90320c1d`. The registry act is not applied yet (`loops.json` is still schema version 1, with no feed profiles). The contracts still rely on no D-PEC-96 identifier.
+  - While revising I also found and anchored one more unanchored claim, the fixture-blob "unchanged at `origin/main`".
+- **B2 (strict-validator row).** The row now requires the exit code and output to match the pre-act run, and names the 26 pre-existing D-GOV-48 `XRG-013` warnings (0 errors, exit 1 under `--strict`). The notice is recorded as finding 10.
+- **C1.** "Entry counts per file" is dropped from DEL-02-09 REQ-003 and AC-003, which now extract only the three SOW-096 fields "and no other field".
+- **C2.** Question 4 now names:
+  - the three places each candidate changes on a re-pin;
+  - how `TARGETS` and `PINNED` are re-bound (new candidate hashes, plus the four register/PRD pins at the new basis; the other four pins stay);
+  - the word-diff record and the verifier check on it;
+  - why the other "revision 1.5" and "PRD v2.3" mentions stay: each is verbatim accepted text or an observation at a named commit;
+  - how the basis moves while the observation commit does not.
+- **C3.** Every quote check now requires the text in the candidate and at its source. Building this caught two revision-1 defects:
+  - DEL-02-09 cited PEC-K-10 without quoting it, so that check was wrongly applied to it; the check is now DEL-02-08-only.
+  - DEL-02-09 quoted a fragment ("S, LOW") too short to verify; the quote is now the full §8 sentence.
+- **C4.** The grant table names both `MEMORY.md` paths.
+- **C8.** Add-on S runs after the scope-of-work run returns, as one generic-shell TASK dispatched by WORKING_ITEMS (the D-PEC-63 pattern), with only the two `_STATUS.md` files as allowed targets.
+- **C9.** `apply_d98.py` now:
+  - writes through temporary files and removes any created target and temp on every post-write failure, so on exit 1 nothing is left behind;
+  - inventories all of `projects/pec` before and after, and requires the difference to be exactly the two created files.
+  - It detects, but cannot revert, a change made by another process; the draft says so.
+
+**Checks** (`evidence/RUN_D98_CHECKS_at_53145aaeb.out`; the method's mechanical checks rerun by me):
+- `validate_scope_of_work.py`: PASS format=SOW_V1 for both.
+- `derive_review_checklist.py`: 21 and 17 items, in source order, bound to each candidate's hash; reruns byte-identical.
+- `check_boundary_owner_resolution.py`: 1 checked, 0 failing, per contract. The three per-act clauses per contract that the tool reports as `NOT_CHECKABLE` are resolved by hand in the draft.
+- Quote check: 69/69, two-sided.
+- State-claim check: 44/44, read with `git show` at each named commit.
+- ID-collision scan: clean.
+- Strict register validator: exit 1 before and after, identical output (26 `XRG-013`, 0 errors).
+- Receipts validator and harness self-check: exit 0 before and after, identical output.
+- `git diff --check`: clean. Containment is exactly the two new files, and both `_STATUS.md` files are unchanged.
+- Reliance-hold preflight: ALLOW on all six targets.
+- Add-on S prototype: its postimages are identical under three editions of `write_status.sh`.
+- Act prototype: check-only, apply and rerun exit 0 / 0 / 1.
+- Fault injection: 5/5.
+- Negative controls fail as they should: the validator and checklist refuse a broken matrix; source-side quote mutations fail 3 checks; candidate-side mutations fail 2, including a reintroduced "At the basis".
+
+**Unresolved**
+- A fresh independent `MODE=VERIFY` of revision 2 is outstanding.
+- The draft file carries no filing-name slot for the provisional number; it uses the name already published in PR #944.
+- CON-001 and CON-002 stay open until the DEL-01-01 and DEL-01-06 rebuilds (graph node S2) and the D-PEC-96 act are applied.
+- If SCA-006 checkpoint 3 lands before the act, question 4's re-pin procedure applies.

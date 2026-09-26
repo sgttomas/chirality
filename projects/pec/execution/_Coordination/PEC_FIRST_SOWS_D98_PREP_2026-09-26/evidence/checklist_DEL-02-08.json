@@ -10,9 +10,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 155,
+        "line": 162,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "A graph at the canonical path of a loop whose registry row declares the work-graph surface is discovered; a same-named file elsewhere is not; and a loop with no declaration yields a no-declaration report and no graph facts.",
       "verification": [
@@ -20,7 +20,7 @@
           "id": "VER-001",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-001",
-          "source_line": 195,
+          "source_line": 202,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute discovery over a fixture tree holding a canonical graph, a same-named file at another path, a loop with a work-graph declaration and a loop without one; assert discovery, non-discovery and the no-declaration report respectively."
         }
@@ -35,9 +35,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 156,
+        "line": 163,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "With default settings only integration-ref blobs are read; with branch reading enabled, every fact from a branch ref carries its ref and commit and the unintegrated label; and a before/after comparison shows no change to refs, index, worktree or configuration.",
       "verification": [
@@ -45,7 +45,7 @@
           "id": "VER-002",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-002",
-          "source_line": 196,
+          "source_line": 203,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute with default settings and with branch reading enabled over a fixture repository whose branch holds a graph revision absent from the integration ref; assert ref labels and the unintegrated label; snapshot refs, index, worktree and configuration before and after and assert equality."
         }
@@ -60,9 +60,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 157,
+        "line": 164,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The grammar declaration exists as a readable artifact with an identifier and version, names every construct the parser reads, and covers the eight fields of `SOW-095`; altering an undeclared construct in a fixture changes nothing in the output.",
       "verification": [
@@ -70,7 +70,7 @@
           "id": "VER-003",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-003",
-          "source_line": 197,
+          "source_line": 204,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Inspect the grammar declaration for identifier, version and coverage of the eight `SOW-095` fields; compare the constructs actually read, by instrumentation or inspection, against it; mutate an undeclared construct in a fixture and assert output invariance."
         }
@@ -85,9 +85,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 158,
+        "line": 165,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "Each vocabulary state is recognized; a fixture whose state cell begins with a non-vocabulary token yields an unrecognized-state limitation with no coerced state and no copy of the token.",
       "verification": [
@@ -95,7 +95,7 @@
           "id": "VER-004",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-004",
-          "source_line": 198,
+          "source_line": 205,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over synthetic fixtures carrying each vocabulary state and one non-vocabulary token; assert recognition, the unrecognized-state limitation, no coerced state and no copy of the token."
         }
@@ -110,9 +110,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 159,
+        "line": 166,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "For a fixture whose terminal node is declared `ACTIVE` while its cited PR is merged locally, the output reports the declared state at its commit and makes no completion, liveness or lag claim.",
       "verification": [
@@ -120,7 +120,7 @@
           "id": "VER-005",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-005",
-          "source_line": 199,
+          "source_line": 206,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over FC-1, FC-2 and FC-3, whose terminal nodes are declared `ACTIVE` while their cited final PRs are merged; assert declared-state output at the cited commit and the absence of any completion, liveness or lag field."
         }
@@ -135,9 +135,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 160,
+        "line": 167,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "For fixtures whose folder name differs from the declared identity, the declared identity is emitted; fixtures with no identity or with two identities yield a limitation and no fabricated identity.",
       "verification": [
@@ -145,7 +145,7 @@
           "id": "VER-006",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-006",
-          "source_line": 200,
+          "source_line": 207,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over FC-2 and FC-3 (folder name ≠ run identity) and over synthetic missing- and duplicate-identity fixtures; assert the declared identity, or the limitation with no fabricated identity."
         }
@@ -160,9 +160,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 161,
+        "line": 168,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "DEL bindings are emitted as identifiers only, linked paths as normalized repository-relative paths without link text, and no external URL is dereferenced.",
       "verification": [
@@ -170,7 +170,7 @@
           "id": "VER-007",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-007",
-          "source_line": 201,
+          "source_line": 208,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over a fixture whose nodes carry DEL identifiers, relative links with link text and external URLs; assert identifier-only bindings, normalized paths without link text, and no dereference, with network access denied."
         }
@@ -185,9 +185,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 162,
+        "line": 169,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "A PR number with a local merge commit resolves to that commit; one without resolves to \"unresolved locally\"; no network call is made; and no emitted SHA is longer or more complete than the cited or locally resolved object name warrants.",
       "verification": [
@@ -195,7 +195,7 @@
           "id": "VER-008",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-008",
-          "source_line": 202,
+          "source_line": 209,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over fixtures citing a PR merged in the fixture repository and a PR with no local merge commit, with network access denied; assert the resolved commit, \"unresolved locally\", the method identifier, and that every emitted SHA equals a cited or locally resolved object name."
         }
@@ -210,9 +210,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 163,
+        "line": 170,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "Absent, unreadable, unparseable and partially parseable fixtures each yield an explicit limitation naming loop, path and fault with the correct parse outcome, and none yields a result presented as complete.",
       "verification": [
@@ -220,7 +220,7 @@
           "id": "VER-009",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-009",
-          "source_line": 203,
+          "source_line": 210,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over absent, unreadable, unparseable and partially parseable fixtures; assert per case the limitation fields and parse outcome."
         }
@@ -235,9 +235,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 164,
+        "line": 171,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "A fixture graph whose outcome, needs, completion-check, result, intent and open-question text contains distinctive prose yields output containing none of it, and no emitted field type can hold prose.",
       "verification": [
@@ -245,7 +245,7 @@
           "id": "VER-010",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-010",
-          "source_line": 204,
+          "source_line": 211,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Execute over a fixture carrying distinctive prose in every prose-bearing position; assert that none of it appears in the output; review every emitted field's type for capacity to hold prose."
         }
@@ -260,9 +260,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 165,
+        "line": 172,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "For a sample fact from each fixture class, the recorded provenance resolves to the live source by loop, path, blob SHA, examined commit, ref label and grammar identifier.",
       "verification": [
@@ -270,7 +270,7 @@
           "id": "VER-011",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-011",
-          "source_line": 205,
+          "source_line": 212,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "For a sample fact from each fixture class, resolve the recorded provenance to the source and assert each provenance element is present and locatable."
         }
@@ -285,9 +285,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 166,
+        "line": 173,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "A parser run leaves the fixture repository's objects, refs, index and worktree byte-identical, and the module contains no write, create, delete or ref-updating call.",
       "verification": [
@@ -295,7 +295,7 @@
           "id": "VER-012",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-012",
-          "source_line": 206,
+          "source_line": 213,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Hash the fixture repository's objects, refs, index and worktree before and after a run and assert byte-identity; inspect the module's call graph for write, create, delete or ref-updating operations."
         }
@@ -310,9 +310,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 167,
+        "line": 174,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "Two runs over identical inputs yield identical output, including limitations and PR resolutions.",
       "verification": [
@@ -320,7 +320,7 @@
           "id": "VER-013",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-013",
-          "source_line": 207,
+          "source_line": 214,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Run the parser twice over identical inputs and assert identical output."
         }
@@ -335,9 +335,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 168,
+        "line": 175,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "Reviewed against the record-tier contract in force at review time, the emitted payload introduces no field that contract does not oblige, drops none it obliges for WorkGraph and WorkNode, and contains no entity of another type; if that contract does not yet oblige WorkGraph and WorkNode, the review records the open CON-001 condition rather than passing it.",
       "verification": [
@@ -345,7 +345,7 @@
           "id": "VER-014",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-014",
-          "source_line": 208,
+          "source_line": 215,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Review the emitted payload field by field against the record-tier contract in force at review time, and search the module for any record-tier type definition or any emission of another entity type."
         }
@@ -360,9 +360,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 169,
+        "line": 176,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The module reads no sibling feed, including no `## Remaining` section, and performs none of the excluded acts of REQ-015.",
       "verification": [
@@ -370,7 +370,7 @@
           "id": "VER-015",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-015",
-          "source_line": 209,
+          "source_line": 216,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Inspect the module's file and Git access for any sibling feed path or `## Remaining` read, and its call surface for any of the excluded acts of REQ-015."
         }
@@ -385,9 +385,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 170,
+        "line": 177,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The pinned suites reference FC-1, FC-2 and FC-3 by `(commit, path, blob)` at `d61981ee2` with content-minimal goldens, copy no fixture source into PEC's tree, and assert the no-source-text run check on every golden test.",
       "verification": [
@@ -395,7 +395,7 @@
           "id": "VER-016",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-016",
-          "source_line": 210,
+          "source_line": 217,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Inspect the pinned fixture manifests for `(commit, path, blob)` references at `d61981ee2` covering FC-1, FC-2 and FC-3, resolve each pin by read-only plumbing, check for the absence of copied fixture sources, and run the no-source-text assertion on every golden test."
         }
@@ -410,9 +410,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 171,
+        "line": 178,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The synthetic fixtures cover the six cases of REQ-017, sit only at packet-named paths, and contain no text copied from another loop's files.",
       "verification": [
@@ -420,7 +420,7 @@
           "id": "VER-017",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-017",
-          "source_line": 211,
+          "source_line": 218,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Inspect the synthetic fixture set against the six cases of REQ-017 and the packet-named paths, and compare its text against the pinned fixture blobs to assert no copied text."
         }
@@ -435,9 +435,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 172,
+        "line": 179,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The review gate confirms this contract's traceability to `SOW-095`, `OBJ-001` and `OBJ-002` as entered under `DL-20`, confirms the indirect `OBJ-002` leg is stated no more strongly than the §3 mapping note states it, and confirms no sibling feed grammar, `PKG-01` type or registry scope, or `PKG-03`/`PKG-04` derivation has been absorbed.",
       "verification": [
@@ -456,9 +456,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 173,
+        "line": 180,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The work is delivered as one parser slice, or split along the recorded line with its seam evidence recorded.",
       "verification": [
@@ -466,7 +466,7 @@
           "id": "VER-018",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-018",
-          "source_line": 212,
+          "source_line": 219,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Compare the delivered slice structure with the envelope record of CLM-006, asserting one parser slice or a split along the recorded line with its seam evidence."
         }
@@ -481,9 +481,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 174,
+        "line": 181,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` assertion intact.",
       "verification": [
@@ -491,7 +491,7 @@
           "id": "VER-019",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-019",
-          "source_line": 213,
+          "source_line": 220,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Inspect the `PKG-02` dependency manifest and the module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` enforcement once that deliverable is available, without discharging it here."
         }
@@ -506,9 +506,9 @@
       "review_status": null,
       "source_identity": {
         "document": "ScopeOfWork.md",
-        "line": 175,
+        "line": 182,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+        "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
       },
       "text": "The fixture test suite implements VER-001 through VER-019, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -516,7 +516,7 @@
           "id": "VER-020",
           "kind": "VER",
           "qualified_id": "DEL-02-08-VER-020",
-          "source_line": 214,
+          "source_line": 221,
           "source_section": "Production and Verification Method — Praxeology",
           "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-019 has a corresponding executing test and that no test asserts a criterion absent from this contract."
         }
@@ -531,7 +531,7 @@
     "migration_authority": null,
     "package_id": "PKG-02",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "b28cf13d93851dc875575dafd759171205a75bc4bb63ef67e103fa2094d10b24"
+    "sha256": "03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a"
   },
   "tool_version": "1"
 }
