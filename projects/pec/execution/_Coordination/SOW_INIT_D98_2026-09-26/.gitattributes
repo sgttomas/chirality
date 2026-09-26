@@ -1,2 +1,4 @@
 # Captured command output for the D-PEC-98 act (hash-listed in MANIFEST.md).
 evidence/** -whitespace
+# Verbatim TASK return; its embedded unified diff has single-space blank context lines.
+S_TASK_RETURN.md -whitespace

@@ -59,7 +59,7 @@ add-on S (`9354647df`), then the closeout records and the return.
 
 | File | SHA-256 |
 |---|---|
-| `.gitattributes` | `ef9d42c8a496258d48ff8c53cbbdaa324e582ee4cd9ca3939b90f645b2fe068a` |
+| `.gitattributes` | `e5f8a3ea8b4a96c127640f989b79db2c839d94e294a8c242a9db7083d3310a56` |
 | `HANDOFF_STATE.md` | `3f33d44ec498c50cab0c4f0a1ac7b4d6914c72bd035ae0d226c3008c2bf3982c` |
 | `REPIN.md` | `7ea1b1391d3275a4f4384a4da840e5b6e88d29e060d8ffc04523218cbd6e08c8` |
 | `REPIN_WORDDIFF.txt` | `d67bc0991ddaec149d9c7b41dc61e43a7f4f15e76ea52ea556e57d06cc66ed61` |
