@@ -1,0 +1,277 @@
+{
+ "schema_version": 1,
+ "units": [
+  {
+   "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures",
+   "required_files": []
+  },
+  {
+   "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1",
+   "required_files": []
+  },
+  {
+   "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement",
+   "required_files": []
+  },
+  {
+   "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee",
+   "required_files": []
+  },
+  {
+   "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds",
+   "required_files": []
+  },
+  {
+   "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return",
+   "required_files": []
+  },
+  {
+   "path": "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA",
+   "required_files": []
+  },
+  {
+   "path": "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping",
+   "required_files": []
+  },
+  {
+   "path": "PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization",
+   "required_files": []
+  },
+  {
+   "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty",
+   "required_files": []
+  },
+  {
+   "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped",
+   "required_files": []
+  },
+  {
+   "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion",
+   "required_files": []
+  },
+  {
+   "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection",
+   "required_files": []
+  },
+  {
+   "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store",
+   "required_files": []
+  },
+  {
+   "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge",
+   "required_files": []
+  },
+  {
+   "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge",
+   "required_files": []
+  },
+  {
+   "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional",
+   "required_files": []
+  },
+  {
+   "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription",
+   "required_files": []
+  },
+  {
+   "path": "PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source",
+   "required_files": []
+  },
+  {
+   "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement",
+   "required_files": []
+  },
+  {
+   "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate",
+   "required_files": []
+  }
+ ]
+}
