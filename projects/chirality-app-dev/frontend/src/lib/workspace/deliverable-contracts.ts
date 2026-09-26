@@ -580,21 +580,24 @@ export interface DeliverableDependenciesSnapshot {
 }
 
 /**
- * The recorded register for a dependency read. A filesystem failure while
- * reading the execution root leaves it out and adds a warning, so the CSV
- * register evidence is still returned.
+ * The recorded register for a dependency read. Its reads stay inside the
+ * canonical project root; a refused read (outside the root, or too large) is
+ * carried as a warning. A filesystem failure while reading the execution root
+ * leaves the register out and adds a warning, so the CSV register evidence is
+ * still returned.
  */
 async function readRecordedRegisterForSnapshot(
   deliverablePath: string,
   canonicalProjectRoot: string
 ): Promise<{ recordedRegister?: DeliverableRecordedRegister; warnings: string[] }> {
   try {
+    const recordedRegister = await readDeliverableRecordedRegister({
+      deliverablePath,
+      containmentRoot: canonicalProjectRoot
+    });
     return {
-      recordedRegister: await readDeliverableRecordedRegister({
-        deliverablePath,
-        containmentRoot: canonicalProjectRoot
-      }),
-      warnings: []
+      recordedRegister,
+      warnings: recordedRegister.warnings.map((warning) => `RECORDED_REGISTER_${warning}`)
     };
   } catch (error) {
     const errnoCode = getErrnoCode(error);

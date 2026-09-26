@@ -14,7 +14,7 @@
  * then run this test. A difference here means the TypeScript module and the
  * Root tools no longer agree on the same files.
  */
-import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -23,6 +23,8 @@ import {
   checkCurrency,
   DagPointerError,
   executionRootForDeliverable,
+  heldArcs,
+  MAX_REGISTER_FILE_BYTES,
   parseDeclarations,
   parseDefaultMaturity,
   readDefaultMaturity,
@@ -86,7 +88,10 @@ const COVERAGE: Record<string, string> = {
   'legacy-headings': 'legacy headings, TRACKED read as FULL_GRAPH, the combined list, informational downstream and unread lines',
   'default-threshold': 'missing and TBD maturities take the _COORDINATION.md default threshold',
   'downstream-first': 'DOWNSTREAM-first rows judged by the supplier, a cross-deliverable disagreement, NOT_TRACKED and a held cycle',
+  'declared-governs-arc':
+    'a cross-deliverable arc whose declared maturity (satisfied) and row maturity (not satisfied) give different verdicts',
   'dag-current': 'an accepted DAG that is current: blockers from the version, candidates held',
+  'dag-candidate-removed': 'a DAG candidate arc (CandidateEdges.csv) with no local row: its endpoints are DAG pending',
   'dag-departure': 'a DAG departure: DAG pending with no verdict, excluded arcs, inventory changes'
 };
 
@@ -218,5 +223,189 @@ describe('recorded register reads for one deliverable', () => {
       '## Dependency Tracking Mode\n- **Mode:** NOT_TRACKED\n\n## Declared Upstream (I need these before I can proceed)\n- Dependencies coordinated externally by humans.\n- TBD\n'
     );
     expect(parsed).toEqual({ mode: 'NOT_TRACKED', entries: [], unread: [] });
+  });
+});
+
+describe('recorded register reads stay inside the read root', () => {
+  const scratch: string[] = [];
+
+  afterAll(async () => {
+    await Promise.all(scratch.map((dir) => rm(dir, { recursive: true, force: true })));
+  });
+
+  /** A copy of a fixture case at `<base>/root`, and an empty `<base>/outside`. */
+  async function copyCase(name: string): Promise<{ root: string; outside: string }> {
+    const base = await mkdtemp(path.join(os.tmpdir(), 'recorded-register-scope-'));
+    scratch.push(base);
+    const root = path.join(base, 'root');
+    const outside = path.join(base, 'outside');
+    await cp(path.join(CASES, name), root, { recursive: true });
+    await mkdir(outside, { recursive: true });
+    return { root, outside };
+  }
+
+  const status = (state: string): string => `# Status\n\n**Current State:** ${state}\n`;
+
+  it('does not inventory units through a lifecycle folder linked outside the root', async () => {
+    const { root, outside } = await copyCase('union-no-csv');
+    const secret = path.join(outside, 'DEL-01-09_Secret');
+    await mkdir(secret);
+    const header = (await readFile(path.join(CASES, 'dag-current', '_DAG', 'DAG-001', 'DependencyEdges.csv'), 'utf8'))
+      .split('\n')[0];
+    await writeFile(
+      path.join(secret, 'Dependencies.csv'),
+      `${header}\nv3.1,DEP-01-09-001,PKG-01,DEL-01-09,,EXECUTION,NOT_APPLICABLE,DOWNSTREAM,ENABLES,DELIVERABLE,PKG-01,DEL-01-01,,,,x,_CONTEXT.md,_CONTEXT.md,x,EXPLICIT,ISSUED,,TBD,HIGH,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,\n`,
+      'utf8'
+    );
+    await writeFile(path.join(secret, '_STATUS.md'), status('OPEN'), 'utf8');
+    await symlink(outside, path.join(root, 'PKG-01_Core', '3_Issued'), 'dir');
+
+    expect([...(await readProjectRegisters(root)).keys()]).not.toContain('DEL-01-09');
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-01_Core', '1_Working', 'DEL-01-01_Alpha'),
+      containmentRoot: root
+    });
+    expect(read.warnings).toEqual([
+      'READ_OUTSIDE_ROOT: PKG-01_Core/3_Issued resolves outside the read root; it was not read.'
+    ]);
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
+    expect(JSON.stringify(read)).not.toContain('DEL-01-09');
+  });
+
+  it('does not read the default threshold through a _Coordination folder linked outside the root', async () => {
+    const { root, outside } = await copyCase('union-no-csv');
+    await rm(path.join(root, '_Coordination'), { recursive: true });
+    await writeFile(
+      path.join(outside, '_COORDINATION.md'),
+      '# Coordination Record\n\n**Default maturity threshold (if computing blockers):** `ISSUED`\n',
+      'utf8'
+    );
+    await symlink(outside, path.join(root, '_Coordination'), 'dir');
+
+    expect(await readDefaultMaturity(root)).toEqual({ value: 'INITIALIZED', source: 'FALLBACK' });
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-01_Core', '1_Working', 'DEL-01-01_Alpha'),
+      containmentRoot: root
+    });
+    expect(read.blockers.defaultMaturity).toEqual({ value: 'INITIALIZED', source: 'FALLBACK' });
+    expect(read.warnings).toEqual([
+      `READ_OUTSIDE_ROOT: ${path.join('_Coordination', '_COORDINATION.md')} resolves outside the read root; it was not read.`
+    ]);
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+  });
+
+  it('does not read an accepted DAG version folder linked outside the root', async () => {
+    const { root, outside } = await copyCase('dag-current');
+    await rename(path.join(root, '_DAG', 'DAG-001'), path.join(outside, 'DAG-001'));
+    await symlink(path.join(outside, 'DAG-001'), path.join(root, '_DAG', 'DAG-001'), 'dir');
+
+    await expect(resolveAcceptedDag(root)).rejects.toBeInstanceOf(DagPointerError);
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
+      containmentRoot: root
+    });
+    expect(read.warnings).toContain(
+      `READ_OUTSIDE_ROOT: ${path.join('_DAG', 'DAG-001', 'DeliverableNodes.csv')} resolves outside the read root; it was not read.`
+    );
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.acceptedDagVersion).toBeNull();
+  });
+
+  it('does not read a _DAG folder linked outside the root, and does not fall back silently', async () => {
+    const { root, outside } = await copyCase('dag-current');
+    await rename(path.join(root, '_DAG'), path.join(outside, '_DAG'));
+    await symlink(path.join(outside, '_DAG'), path.join(root, '_DAG'), 'dir');
+
+    const queue = await buildProjectBlockerQueue(root);
+    expect(queue.acceptedDag).toBeNull();
+    expect(queue.warnings).toEqual([
+      `READ_OUTSIDE_ROOT: ${path.join('_DAG', '_LATEST.md')} resolves outside the read root; it was not read.`
+    ]);
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
+      containmentRoot: root
+    });
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.blockerSource).not.toMatch(/^ACCEPTED_DAG|^RECORDED_REGISTER/);
+    expect(read.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
+  });
+
+  it('reads a _LATEST.md and a Dependencies.csv linked inside the root as their targets, as the Root tools do', async () => {
+    const { root } = await copyCase('dag-current');
+    const links = path.join(root, '_Coordination', 'linked');
+    await mkdir(links);
+    await rename(path.join(root, '_DAG', '_LATEST.md'), path.join(links, 'LATEST.md'));
+    await symlink(path.join('..', '_Coordination', 'linked', 'LATEST.md'), path.join(root, '_DAG', '_LATEST.md'));
+    const planner = path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
+    await rename(path.join(planner, 'Dependencies.csv'), path.join(links, 'planner.csv'));
+    await symlink(path.join(links, 'planner.csv'), path.join(planner, 'Dependencies.csv'));
+
+    const expected = JSON.parse(await readFile(path.join(FIXTURES, 'expected', 'dag-current.json'), 'utf8'));
+    expect(JSON.parse(JSON.stringify(await actual(root)))).toEqual(expected);
+    const read = await readDeliverableRecordedRegister({ deliverablePath: planner, containmentRoot: root });
+    expect(read.warnings).toEqual([]);
+    expect(read.blockers.blockerSource).toBe('ACCEPTED_DAG:DAG-001');
+  });
+
+  it('refuses a _LATEST.md linked outside the root with a warning and no verdict', async () => {
+    const { root, outside } = await copyCase('dag-current');
+    await rename(path.join(root, '_DAG', '_LATEST.md'), path.join(outside, 'LATEST.md'));
+    await symlink(path.join(outside, 'LATEST.md'), path.join(root, '_DAG', '_LATEST.md'));
+
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
+      containmentRoot: root
+    });
+    expect(read.warnings).toEqual([
+      `READ_OUTSIDE_ROOT: ${path.join('_DAG', '_LATEST.md')} resolves outside the read root; it was not read.`
+    ]);
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+  });
+
+  it('reports a file over the size cap as a warning instead of reading it', async () => {
+    const { root } = await copyCase('union-with-csv');
+    const consumer = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
+    const csvPath = path.join(consumer, 'Dependencies.csv');
+    const original = await readFile(csvPath, 'utf8');
+    await writeFile(csvPath, original + ' '.repeat(MAX_REGISTER_FILE_BYTES + 1 - Buffer.byteLength(original)), 'utf8');
+
+    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    expect(read.warnings).toEqual([
+      `FILE_TOO_LARGE: ${path.join('PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is larger than ${MAX_REGISTER_FILE_BYTES} bytes; it was not read.`
+    ]);
+    expect(read.csvPresent).toBe(false);
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+
+    await writeFile(csvPath, original + ' '.repeat(MAX_REGISTER_FILE_BYTES - Buffer.byteLength(original)), 'utf8');
+    const atLimit = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    expect(atLimit.warnings).toEqual([]);
+    expect(atLimit.csvPresent).toBe(true);
+  });
+});
+
+describe('held arcs', () => {
+  const id = (index: number): string => `DEL-${String(index).padStart(6, '0')}`;
+
+  it('finds cycles without recursion on a 12,000-arc chain', () => {
+    const chain: Array<[string, string]> = [];
+    for (let index = 0; index < 12000; index += 1) {
+      chain.push([id(index), id(index + 1)]);
+    }
+    expect(heldArcs(chain).size).toBe(0);
+
+    const cycle: Array<[string, string]> = [...chain, [id(12000), id(0)]];
+    expect(heldArcs(cycle).size).toBe(12001);
+  });
+
+  it('holds only the arcs inside a cycle, and self-loops', () => {
+    const held = heldArcs([
+      ['A', 'B'],
+      ['B', 'C'],
+      ['C', 'B'],
+      ['C', 'D'],
+      ['E', 'E']
+    ]);
+    expect([...held].map((key) => key.split('\u0000').join('->')).sort()).toEqual(['B->C', 'C->B', 'E->E']);
   });
 });

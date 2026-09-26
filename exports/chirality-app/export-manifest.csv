@@ -117,7 +117,7 @@ desktop/src/__tests__/api/harness/scaffold-route.test.ts,5572,06d4ee74843a5fc68f
 desktop/src/__tests__/api/harness/turn-registry-routes.test.ts,9093,980f76d5ee9842a6684d2d9efdfcaa243a40f0735d83468cbb1b6b64598e126d
 desktop/src/__tests__/api/harness/turn-route-attachments.test.ts,6165,8963e9efaaf24413f88cc819cc51fd3d4f50a6157f1cbdadf73795b8bcfde78a
 desktop/src/__tests__/api/project/deliverables-route.test.ts,10709,64523601a2a5b4cef3a178992f59c5ff81249454397f4a37e57a82e6689f4ce7
-desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,37952,bde68fc7aab5c5b4ef06a815d4a9191bbfc8cfd478239363329d56acb8f8a41e
+desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,39927,d2c1ae0c772cb613cd073c1648b42479cf851780dc23a3b36edcbc6209ad393d
 desktop/src/__tests__/api/working-root/file-route.test.ts,16443,8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63
 desktop/src/__tests__/api/working-root/tree-route.test.ts,6089,068cc0dc11f0e48fbd229bbc381d4807ea83eb97e65d812fa8ed7289d5db92d6
 desktop/src/__tests__/api/working-root/validate-route.test.ts,2703,1bfc432c5011c0fe617b0581ff9d1411cc8047cac0a56835185877b23929ca67
@@ -208,6 +208,15 @@ desktop/src/__tests__/electron/runtime-control-ipc.test.ts,3532,cd052e8ea1a898e9
 desktop/src/__tests__/electron/runtime-service-host.test.ts,15288,775e79519580482c56387734634b1aead20f788ef5ebd7e48870f55f9b462e8f
 desktop/src/__tests__/electron/runtime-socket-watch.test.ts,9860,1e737036b6289602a482c1f3e23eb7e68607e79c4243cad898e8d215e85db2df
 desktop/src/__tests__/fixtures/controlled-v3-runtime.mjs,23474,1b7bd3cd687ffb5887804c8534807ff9c5cac98cb3ec374d0554dbc2a4050e79
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/PKG-10_Pipe/1_Working/DEL-10-01_Loader/Dependencies.csv,635,6612a7781603fe8ffe33dd129b88da00e75f229b38616b843707e843b9b1ceae
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/PKG-10_Pipe/1_Working/DEL-10-01_Loader/_STATUS.md,145,340662b2be6ce0da9876127c2f55aeb29cf798eaeee002d8b532089277df9948
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/PKG-10_Pipe/1_Working/DEL-10-02_Parser/_STATUS.md,139,15d933f2b55f85489885856819ef2f0e862b2b505b14b839a0011a39769e4421
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/PKG-10_Pipe/1_Working/DEL-10-03_Exporter/_STATUS.md,145,ed7bdb405cd23f03a2e7a2b74b3f10858457ec6114c1b565ac9bddbc14c931ad
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/_Coordination/_COORDINATION.md,222,83ecb221a438b29a84ac9a2c8e8c7cb031c0677c11250202994746b57c1279ee
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/_DAG/DAG-001/CandidateEdges.csv,630,10b67ba29948700fccef7f295e64fb313f006c01d16d86840affa3e3b6968d23
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/_DAG/DAG-001/DeliverableNodes.csv,114,b53c14be9eebc8fae4a94e447b46845fa975de7f1041f5a2a192556974f5465b
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/_DAG/DAG-001/DependencyEdges.csv,627,6b692d08de9bb00f3bd74e51784acfa6d50aec8f592cfb8f5ff8f6ab3d61b6f6
+desktop/src/__tests__/fixtures/recorded-register/cases/dag-candidate-removed/_DAG/_LATEST.md,75,2bfc2a7ea3a78fa2867f77adb51ab9295a204a7d929c8c8c96be45bfe14609f6
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-current/PKG-07_Graph/1_Working/DEL-07-01_Planner/Dependencies.csv,635,5eb5c989338621e2e8b4d4c30308db95174fd419db10b7f98fdd408a6396bde0
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-current/PKG-07_Graph/1_Working/DEL-07-01_Planner/_DEPENDENCIES.md,625,745d620c1970803fec064075bb7e1167609deaf394c495b063b311922d8cbe72
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-current/PKG-07_Graph/1_Working/DEL-07-01_Planner/_STATUS.md,145,146421e3e877c413c3ce6bb40ab49811e22d4c7b0a60adfa3c80997a96390b5f
@@ -232,6 +241,11 @@ desktop/src/__tests__/fixtures/recorded-register/cases/dag-departure/_DAG/DAG-00
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-departure/_DAG/DAG-002/DependencyEdges.csv,627,7f8da63be2236535ed4c498379b8460a50c2a0a02f387182898f7f0b742a2a34
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-departure/_DAG/DAG-002/ExcludedRows.csv,144,c1d2bdbd261b405253c9926c5ff55a62339eaa3fc791b0dbd5e117c6ca42f934
 desktop/src/__tests__/fixtures/recorded-register/cases/dag-departure/_DAG/_LATEST.md,44,bec607f13de79c2e96d8071bedda9a48cd41dfefbb6909a541182cdd6593066e
+desktop/src/__tests__/fixtures/recorded-register/cases/declared-governs-arc/PKG-09_Arc/1_Working/DEL-09-01_Consumer/_DEPENDENCIES.md,629,f2453078dd999c671801e410fd9ab3a4b59c47ddfef6cb5d6fe302a11f5cd888
+desktop/src/__tests__/fixtures/recorded-register/cases/declared-governs-arc/PKG-09_Arc/1_Working/DEL-09-01_Consumer/_STATUS.md,145,504485437b029543b4aadd856166496c5869e3ea2a5aac83747d9f2e7968c630
+desktop/src/__tests__/fixtures/recorded-register/cases/declared-governs-arc/PKG-09_Arc/1_Working/DEL-09-02_Supplier/Dependencies.csv,629,ef1cf07d910d05838e61295d8ad852273385cbfe59c973a231374b374cb8b6c2
+desktop/src/__tests__/fixtures/recorded-register/cases/declared-governs-arc/PKG-09_Arc/1_Working/DEL-09-02_Supplier/_STATUS.md,145,a9a05c969a7211229aa70174f72e8f49bc95117f7893b4caa0b009e78466bb9d
+desktop/src/__tests__/fixtures/recorded-register/cases/declared-governs-arc/_Coordination/_COORDINATION.md,222,83ecb221a438b29a84ac9a2c8e8c7cb031c0677c11250202994746b57c1279ee
 desktop/src/__tests__/fixtures/recorded-register/cases/default-threshold/PKG-05_Build/1_Working/DEL-05-01_App/_DEPENDENCIES.md,681,8ea9a0eba549e19414047ce42c6410b5ede79c9b6b70fa48dbf9c5c0807ab451
 desktop/src/__tests__/fixtures/recorded-register/cases/default-threshold/PKG-05_Build/1_Working/DEL-05-01_App/_STATUS.md,145,8c233309d08ac72e1158fb5ac0ae48c66bdfa90231f24be9e6aaf3f30b951260
 desktop/src/__tests__/fixtures/recorded-register/cases/default-threshold/PKG-05_Build/1_Working/DEL-05-02_Lib/_STATUS.md,145,97535c26813a687e0de778c0d6b829690136068812e91da87228a74f01394997
@@ -279,8 +293,10 @@ desktop/src/__tests__/fixtures/recorded-register/cases/union-with-csv/PKG-02_Dat
 desktop/src/__tests__/fixtures/recorded-register/cases/union-with-csv/PKG-02_Data/1_Working/DEL-02-03_Index/_STATUS.md,145,7624499a6f7a8cf38bb9b6037fb6c5a8c6b7f686e7de5f12189c15cae0231cee
 desktop/src/__tests__/fixtures/recorded-register/cases/union-with-csv/PKG-02_Data/1_Working/DEL-02-05_Cache/_STATUS.md,145,1b2633a31a184f5a62d11120e5bf097b93191762323b561242283e977b30b256
 desktop/src/__tests__/fixtures/recorded-register/cases/union-with-csv/_Coordination/_COORDINATION.md,222,83ecb221a438b29a84ac9a2c8e8c7cb031c0677c11250202994746b57c1279ee
+desktop/src/__tests__/fixtures/recorded-register/expected/dag-candidate-removed.json,4532,2305f3e816a79e81a06f9ba627a848646164ac6843390cfaaf050de934454f6f
 desktop/src/__tests__/fixtures/recorded-register/expected/dag-current.json,5803,6b22be15576bd110345698b7012aeadda2bcfca2bf93a149bb27b8f8c82bd307
 desktop/src/__tests__/fixtures/recorded-register/expected/dag-departure.json,8630,ea59c9fef73319e939d1037fbb6b52eb2803254c3839edced884b5ec7de2130f
+desktop/src/__tests__/fixtures/recorded-register/expected/declared-governs-arc.json,4939,54af8bde71d13189385e91cc5e6775033696527aab32cad3346f850dad4e4050
 desktop/src/__tests__/fixtures/recorded-register/expected/default-threshold.json,7668,972c5c3046f9cae67c570355bc48513e72f1c415f7c327bd4a8412e664271ce7
 desktop/src/__tests__/fixtures/recorded-register/expected/downstream-first.json,11451,b18bda1cadd1dc86f29d27618b927bdd052841cd0355a3d7dfef892e249106b1
 desktop/src/__tests__/fixtures/recorded-register/expected/legacy-headings.json,11702,50adbd2bac5c10b055aa8eaa43e4853d89bc7fa0046d6f192c0de9c84943c7e0
@@ -375,7 +391,7 @@ desktop/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts,1838,3d5f647849
 desktop/src/__tests__/lib/plan-executions.test.ts,3861,f50290dffa1215d992249a41778decf4dc9c008e0841aeeb273e89df5430b0a5
 desktop/src/__tests__/lib/plan-export-dialog.test.ts,3021,f5a9224c921127d964d13d678b7550869f2f56d0de607996c78bf71c01b2e973
 desktop/src/__tests__/lib/recorded-agent-hierarchy.test.ts,4073,dabf78dc57fa255bd96ac020592e9f9b26ff3d7ac37836b817504ffb9105fe5c
-desktop/src/__tests__/lib/recorded-register-parity.test.ts,10156,527f045183c006fb6b46b25851f889237dad3027cb17f27da3a732f64bdc7e86
+desktop/src/__tests__/lib/recorded-register-parity.test.ts,19719,6ea0f87a54321eb325efbf18155a1c55e63cc6dd9bc977e90aa88e8949443aa0
 desktop/src/__tests__/lib/redaction-path-matrix.test.ts,3398,cb386af8beda2b0158734b2f63e7faad4cd29321761058dff274c19a162295d5
 desktop/src/__tests__/lib/run-logger.test.ts,3743,9ce9ec664f91670923add2a63925df927471ea067da3c212c899695b7323d390
 desktop/src/__tests__/lib/runtime-daemon-harness-port.test.ts,59111,65252b9b8be980e4ec17c71a1ce54469a39309c8772b4c2c1c059c4d1b6a57c4
@@ -397,7 +413,7 @@ desktop/src/__tests__/lib/turn-activity.test.ts,4891,9a2bfc480ab91ed8ca538398817
 desktop/src/__tests__/lib/turn-engine.test.ts,11085,32c558fcb605e23dee30c61e9144b0735c261c7fd002fdbba68c1e060b0538c7
 desktop/src/__tests__/lib/user-data-inventory.test.ts,3536,5a4351724fc60e054fd19f6120d1d8aef7929eb980876fb716dec4fe3d455d4d
 desktop/src/__tests__/lib/workflow-library.test.ts,3165,e1bfa18382ad8ca94c94abbe2d58404343fb4169ac7089c5026a18c19d18cea8
-desktop/src/__tests__/lib/workspace-deliverable-api.test.ts,12127,35285ad38d65eda7c5bd33d08d3573e0fe2c03d6d6b6523144c9f23a116c30e4
+desktop/src/__tests__/lib/workspace-deliverable-api.test.ts,14226,e99f365ffd009b29943d4d6419834e37d3b0a6d700a235da9250ae44873b0524
 desktop/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts,17045,295fbb0369b448534de6c1bb56fbecd35df6fc2f595b96677ed2e96ed1b0ebaf
 desktop/src/__tests__/lib/workspace-file-tree-refresh.test.ts,1760,4b9d86d10276e04d0cccd34fa2221cc0f921e1fed9053c6ac2730deacdcf0843
 desktop/src/__tests__/lib/woven-workspace-state.test.ts,31207,7a9a5beabf6f52453f7d987bce3e10c03e707cd88d6da2b4b007baff59623824
@@ -480,7 +496,7 @@ desktop/src/app/pipeline/page.tsx,273,d247518695ceb6efb23a2e8af87d1350a5aed349fd
 desktop/src/app/pipeline/pipeline-client.tsx,626,45eaa21101cf08ea866b9bacbd0cba1e0a4cef935749318d254d19b53effb591
 desktop/src/app/workbench/page.tsx,278,f3fbf1673d8ad0fe84f16b311bb814d01344c39726de5c18bf67709012474b7f
 desktop/src/app/workbench/workbench-client.tsx,625,fa53c2af844ffcaadd77a65fc61f9c9e709d801adbe9358e78d23fb9cc4445ff
-desktop/src/components/pipeline/pipeline-surface.tsx,39861,39ec89dcd623eac5d5ce3245ad762cf68a4e4ecbc090f218f3038c838bd5f7e0
+desktop/src/components/pipeline/pipeline-surface.tsx,40072,1b5c3340bcdcf189f6861ad24333a008619e3aa4417d553e131e2595c554f45e
 desktop/src/components/portal/agent-matrix.tsx,2648,06294bda98ae9691e73353f26e57f94f517cd9c9e0e63051e1ecabb0f0218b5e
 desktop/src/components/settings/account-consent-settings.tsx,19106,e96729bb6fcb83807d8eb0bb080ce15018e5f2b57e40a93c31f07fa163f8e769
 desktop/src/components/settings/api-key-settings.tsx,11621,cf3e81aaaf25075ffa7c8baadc786488100524c6418cc97606dc0cf14225da42
@@ -528,7 +544,7 @@ desktop/src/components/shell/transcript-stream-view.tsx,3603,d6ac0121270161ead8a
 desktop/src/components/shell/turn-activity.tsx,2006,f3cb8210ec5460cf1b1e9b46f78cab57282f26310de30f5ee5de583a6aa1394f
 desktop/src/components/shell/use-runtime-connectivity.ts,2657,5c54fc009af887fdb1d87d634d5adf7f3873d803ac3ff735026e04d88a9ed015
 desktop/src/components/shell/workspace-sidebar.tsx,6840,a6c9ded97a9a6a580d91797722079f7b216c7773fe445f8cb003f65b5006cc80
-desktop/src/components/workbench/workbench-surface.tsx,20002,da43edc7491a8a7344ee392f06dd75e2e4b09045dcbfd3a4f41559481d3673f7
+desktop/src/components/workbench/workbench-surface.tsx,20213,1f33508bf28361a3e46cdd9f493cca5d9ca0c62c238e57fd004ebd300aeaf996
 desktop/src/components/workspace/deliverables-provider.tsx,4297,71c38b81f67c09f59f13f98d368af10d29aec19c5ce804a56764cd89f974623d
 desktop/src/components/workspace/harness-events-provider.tsx,4284,68dd53da465bfba46a8dc72e686c7a85e73e0820ee8ca3927c834b11eaf886c3
 desktop/src/components/workspace/toolkit-provider.tsx,6917,f880618d05fe2b2ea46adeba0194a10b73efee0968a9c86849660b9459838d97
@@ -566,7 +582,7 @@ desktop/src/lib/consent/fake-hosted-engine-consent-port.ts,13466,9d43b0fdf38ab63
 desktop/src/lib/consent/hosted-engine-consent-port.ts,14209,2caeff6a7a3f2aefa1ce4a167a734214f7ac916746e8c34d26b03c15f8ff006d
 desktop/src/lib/credential-storage-state.ts,1581,b9a9e171ae8de26845d1868fe03510e3f4b8737a177460538127ba7376441e43
 desktop/src/lib/dependencies/csv-utils.ts,1713,5e5e3f727e78934f540c8a10366e4c9f63277715ca6c60bece5cc131be09df77
-desktop/src/lib/dependencies/recorded-register.ts,51240,0c7ec9e92cb62341c9da19c988984d707ce46728a70cb81efcc83bb13ec924e8
+desktop/src/lib/dependencies/recorded-register.ts,57867,142e8435f51d20c641b87eb3c8f4dd99abb9429db3dc47477971c7a9c695a3ca
 desktop/src/lib/dependencies/register-reader.ts,4089,63e54980cba8acb21ff163a0ef0a952ffe0ea333760dd3a90ce43a1a5feec504
 desktop/src/lib/dependencies/register-writer.ts,13903,b14be869ce17de370e85d222185b8e2cfac848b5d1606178f4dd41e80ae3f747
 desktop/src/lib/dependencies/schema.ts,6350,a6a5bc29f70226ebc6e6e951bb5a025e27b5c9a985e734a941bf04c2d219f8da
@@ -659,8 +675,8 @@ desktop/src/lib/shell/turn-activity.ts,6995,f087f9c0292f817b681f99d850b5cbb8e7fe
 desktop/src/lib/shell/turn-phase.ts,4066,a61446375b2173d2624c8ca541e411b574c8929cfef6bc886535f72dcf7ec99c
 desktop/src/lib/shell/user-data-inventory.ts,6803,e8911bfb99e6f9d2aaf4f693817e7d8a5356374abe262668c3d126cf683c8942
 desktop/src/lib/shell/workflow-library.ts,3944,c7284eab0f43d8a4e394c1b0bd8c1387631b470276d3c21f3716fc35b3fe8966
-desktop/src/lib/workspace/deliverable-api.ts,9823,a48c77f686111189d72ff1e5faa73d8585f8029f5b51a7f2de64d6d9dd40d43e
-desktop/src/lib/workspace/deliverable-contracts.ts,23211,22e03dc591cecb029e88d37c9f3da1d875ee3a21bf402239b6896e60e954cb89
+desktop/src/lib/workspace/deliverable-api.ts,11735,f60d83855956b96456a82cc518f01c7c8a25204149dec3eadf10fc9a57e4c422
+desktop/src/lib/workspace/deliverable-contracts.ts,23445,999aa70f74b634c0b364897ec2836d777b4d086ce13286af330459ae93e9fa49
 desktop/src/lib/workspace/file-tree-refresh.ts,1109,7e1cbe7392ebb796ab5ac6ac91036a39199e58d1e5cc9342719dd4deeaa9227c
 desktop/src/lib/workspace/filesystem.ts,40702,810e9af626acc30bb5f171b2a91537af5fb804c9c1407e2f10f6679b05034819
 desktop/src/lib/workspace/governed-workflow.ts,11981,dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768

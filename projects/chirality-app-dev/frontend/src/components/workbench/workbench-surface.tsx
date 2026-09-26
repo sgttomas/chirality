@@ -11,6 +11,7 @@ import {
   fetchDeliverableDependencies,
   fetchDeliverableStatus,
   formatBlockingUpstreamMetric,
+  formatBlockingUpstreamNote,
   isExecutionBlockerSubsetRow,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
@@ -358,6 +359,7 @@ export function WorkbenchSurface(): JSX.Element {
         : null,
     [dependenciesSnapshot]
   );
+  const blockingUpstreamNote = formatBlockingUpstreamNote(dependencySummary);
 
   const blockerCandidateIds = useMemo(() => {
     if (!dependenciesSnapshot) {
@@ -530,6 +532,8 @@ export function WorkbenchSurface(): JSX.Element {
                   <dd>{formatBlockingUpstreamMetric(dependencySummary)}</dd>
                 </div>
               </dl>
+
+              {blockingUpstreamNote ? <p className="pipeline-note">{blockingUpstreamNote}</p> : null}
 
               {blockerCandidateIds.length > 0 ? (
                 <div className="pipeline-contract-warnings">

@@ -399,7 +399,15 @@ parity fixtures check that both give the same result on the same files:
 
 - The read covers the execution root that holds the deliverable
   (`{EXECUTION_ROOT}/PKG-*/1_Working|2_Checking|3_Issued/DEL-*`, and
-  `CAT-*`/`KTY-*`), and only when that root lies inside the project root. It
+  `CAT-*`/`KTY-*`), and only when that root resolves inside the project root.
+  Every file and folder it reads or lists is first resolved with `realpath`,
+  and it is read only when its canonical path lies inside the canonical project
+  root. A symbolic link whose target stays inside the project root is read as
+  its target, as the Root tools read it. A file or folder that leaves the
+  project root through a link, at any level, is not read and is reported as a
+  warning, and so is a file larger than 5 MiB. A read that refused anything
+  gives `NOT_ASSESSED` rather than a verdict on incomplete evidence. Symbolic-link
+  unit and package folders are skipped when the units are inventoried. It
   reads the declared sections of each `_DEPENDENCIES.md`, including the legacy
   headings above, together with each `Dependencies.csv`. A declared entry and an
   ACTIVE row with the same `Direction` and target count once. Where they disagree
@@ -424,12 +432,14 @@ The read keeps the raw `Dependencies.csv` rows as register evidence. It adds a
 `recordedRegister` field with the union rows, the synthesized declared rows,
 disagreements, unread declaration lines and the blocker judgment. The judgment
 gives the state (`BLOCKED`, `UNBLOCKED`, `DAG_PENDING`, `NOT_TRACKED` or
-`NOT_ASSESSED`), each upstream arc with its required maturity and supplier
-state, held suppliers and DAG-pending reasons. The
+`NOT_ASSESSED` with its reason), each upstream arc with its required maturity
+and supplier state, held suppliers and DAG-pending reasons, and the refused
+reads are added to the read's warnings. The
 `activeUpstreamBlockerCandidates` count carries the number of blocking
 suppliers when there is a verdict. Without a recorded register it falls back to
 the CSV blocker-subset count, which remains evidence only. Under `DECLARED` the
-absence of a blocker is still not a complete readiness judgment. The Runtime-owned
+absence of a blocker is still not a complete readiness judgment, and the panels
+state this caveat beside the verdict. The Runtime-owned
 `deps_read` descriptor text still describes the CSV-only read.
 
 `_COORDINATION.md` (repo-root SPEC §13) records the project's coordination

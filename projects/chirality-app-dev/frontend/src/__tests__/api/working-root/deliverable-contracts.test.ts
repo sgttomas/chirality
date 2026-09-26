@@ -659,6 +659,52 @@ describe('working-root deliverable contract routes', () => {
     ]);
   });
 
+  it('does not read recorded-register evidence through a lifecycle folder linked outside projectRoot', async () => {
+    const outsideIssued = path.join(fixture.tmpRoot, 'outside-issued');
+    const secretPath = path.join(outsideIssued, 'DEL-05-09_Secret');
+    await mkdir(secretPath, { recursive: true });
+    await writeFile(
+      path.join(secretPath, 'Dependencies.csv'),
+      serializeDependencyRegister(
+        [
+          makeDependencyRow({
+            DependencyID: 'DEP-05-09-001',
+            FromDeliverableID: 'DEL-05-09',
+            Direction: 'DOWNSTREAM',
+            TargetDeliverableID: 'DEL-05-03',
+            RequiredMaturity: 'ISSUED'
+          })
+        ],
+        { hostDeliverableId: 'DEL-05-09' }
+      ).csv,
+      'utf8'
+    );
+    await symlink(outsideIssued, path.join(fixture.projectRoot, 'PKG-05_Filesystem_Execution_Model', '3_Issued'), 'dir');
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      warnings: string[];
+      recordedRegister: {
+        disagreements: Array<Record<string, string>>;
+        blockers: { blockerState: string; notAssessedReason?: string; upstreamArcs: unknown[] };
+        warnings: string[];
+      };
+    };
+    expect(body.warnings).toContain(
+      'RECORDED_REGISTER_READ_OUTSIDE_ROOT: PKG-05_Filesystem_Execution_Model/3_Issued resolves outside the read root; it was not read.'
+    );
+    expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
+    expect(JSON.stringify(body.recordedRegister)).not.toContain('DEL-05-09');
+  });
+
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {
     const routes = await importRouteModules();
     const externalDeliverable = path.join(

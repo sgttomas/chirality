@@ -27,12 +27,20 @@
  *   come from that version's admitted edges. Deliverables whose local evidence
  *   departs from it are `DAG_PENDING` and get no verdict.
  *
- * Differences from the Python reference are limited to filesystem reach: this
- * module skips symbolic-link unit folders and reads only regular (non-link)
- * files, so a read never leaves the folders it inventories.
+ * Differences from the Python reference are limited to filesystem reach. Every
+ * file and folder is resolved with `realpath` before it is read or listed, and
+ * it is read only when its canonical path lies inside the canonical read root
+ * (`RegisterReadScope`: the App's project root for a deliverable read, else the
+ * execution root or unit folder passed in). A symbolic link whose target stays
+ * inside that root is read as its target, as the Python tools read it; one whose
+ * target, or any intermediate folder's target, leaves the root is not read and
+ * is reported as a warning. Files larger than `MAX_REGISTER_FILE_BYTES` are not
+ * read either and are reported the same way. A deliverable read that met either
+ * refusal gives no verdict (`NOT_ASSESSED`). Symbolic-link unit and package
+ * folders are skipped when the units are inventoried.
  */
 
-import { lstat, readFile, readdir } from 'node:fs/promises';
+import { open, readdir, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { parseCsv } from './csv-utils';
 
@@ -552,17 +560,128 @@ export function unionRegister(
 
 // --- Filesystem reading ------------------------------------------------------
 
-/** A regular (non-link) file's text, or null when it is absent or not a regular file. */
-async function readRegularFile(filePath: string): Promise<string | null> {
+/**
+ * Largest file the reader opens, following the App's 5 MiB precedent for CSV
+ * reads (`PEC_BRIDGE_MAX_CSV_BYTES` in `harness/mcp/pec-bridge-client.ts`). A
+ * larger file is not read and is reported as a warning.
+ */
+export const MAX_REGISTER_FILE_BYTES = 5 * 1024 * 1024;
+
+/**
+ * Where reads may go. Every path is resolved with `realpath` and read only when
+ * it lies inside the canonical `root`. Refused reads (a path that resolves
+ * outside the root, or a file over `MAX_REGISTER_FILE_BYTES`) are listed in
+ * `warnings` and read as absent.
+ */
+export interface RegisterReadScope {
+  root: string;
+  warnings: string[];
+  /** Canonical `root`, resolved on first use; null when the root does not exist. */
+  canonicalRoot?: string | null;
+}
+
+export function createReadScope(root: string): RegisterReadScope {
+  return { root, warnings: [] };
+}
+
+function isMissing(error: unknown): boolean {
+  const code = (error as NodeJS.ErrnoException | undefined)?.code;
+  return code === 'ENOENT' || code === 'ENOTDIR' || code === 'ELOOP';
+}
+
+function isWithin(root: string, candidate: string): boolean {
+  const relative = path.relative(root, candidate);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function warn(scope: RegisterReadScope, message: string): void {
+  if (!scope.warnings.includes(message)) {
+    scope.warnings.push(message);
+  }
+}
+
+function scopePath(scope: RegisterReadScope, target: string): string {
+  const relative = path.relative(scope.root, target);
+  return relative && !relative.startsWith('..') && !path.isAbsolute(relative) ? relative : target;
+}
+
+async function canonicalScopeRoot(scope: RegisterReadScope): Promise<string | null> {
+  if (scope.canonicalRoot === undefined) {
+    try {
+      scope.canonicalRoot = await realpath(scope.root);
+    } catch (error) {
+      if (!isMissing(error)) {
+        throw error;
+      }
+      scope.canonicalRoot = null;
+    }
+  }
+  return scope.canonicalRoot;
+}
+
+/**
+ * The canonical path of `target` when it exists and resolves inside the scope's
+ * canonical root, or null. A path that resolves outside is reported.
+ */
+async function containedPath(scope: RegisterReadScope, target: string): Promise<string | null> {
+  const root = await canonicalScopeRoot(scope);
+  if (root === null) {
+    return null;
+  }
+  let real: string;
   try {
-    const info = await lstat(filePath);
+    real = await realpath(target);
+  } catch (error) {
+    if (isMissing(error)) {
+      return null;
+    }
+    throw error;
+  }
+  if (!isWithin(root, real)) {
+    warn(
+      scope,
+      `READ_OUTSIDE_ROOT: ${scopePath(scope, target)} resolves outside the read root; it was not read.`
+    );
+    return null;
+  }
+  return real;
+}
+
+/**
+ * A regular file's text, or null when it is absent, not a regular file,
+ * resolves outside the scope's root, or is larger than
+ * `MAX_REGISTER_FILE_BYTES` (the last two are reported in the scope's warnings).
+ */
+async function readRegularFile(filePath: string, scope: RegisterReadScope): Promise<string | null> {
+  const real = await containedPath(scope, filePath);
+  if (real === null) {
+    return null;
+  }
+  const tooLarge = (): null => {
+    warn(
+      scope,
+      `FILE_TOO_LARGE: ${scopePath(scope, filePath)} is larger than ${MAX_REGISTER_FILE_BYTES} bytes; it was not read.`
+    );
+    return null;
+  };
+  try {
+    const info = await stat(real);
     if (!info.isFile()) {
       return null;
     }
-    return await readFile(filePath, 'utf8');
+    if (info.size > MAX_REGISTER_FILE_BYTES) {
+      return tooLarge();
+    }
+    const handle = await open(real, 'r');
+    try {
+      const content = await handle.readFile();
+      // A file that grew past the limit after the stat is still refused.
+      return content.length > MAX_REGISTER_FILE_BYTES ? tooLarge() : content.toString('utf8');
+    } finally {
+      await handle.close();
+    }
   } catch (error) {
-    const code = (error as NodeJS.ErrnoException | undefined)?.code;
-    if (code === 'ENOENT' || code === 'ENOTDIR') {
+    if (isMissing(error)) {
       return null;
     }
     throw error;
@@ -585,13 +704,19 @@ export function readCsvRecords(text: string): RegisterRow[] {
   });
 }
 
-async function readCsvFile(filePath: string): Promise<RegisterRow[] | null> {
-  const text = await readRegularFile(filePath);
+async function readCsvFile(filePath: string, scope: RegisterReadScope): Promise<RegisterRow[] | null> {
+  const text = await readRegularFile(filePath, scope);
   return text === null ? null : readCsvRecords(text);
 }
 
-/** The recorded register of one deliverable folder (`recorded_register`). */
-export async function readRecordedRegister(unitPath: string): Promise<RecordedRegister> {
+/**
+ * The recorded register of one deliverable folder (`recorded_register`). Reads
+ * stay inside `scope` (by default, the unit folder itself).
+ */
+export async function readRecordedRegister(
+  unitPath: string,
+  scope: RegisterReadScope = createReadScope(unitPath)
+): Promise<RecordedRegister> {
   const register: RecordedRegister = {
     deliverableId: unitId(unitPath),
     path: unitPath,
@@ -604,12 +729,12 @@ export async function readRecordedRegister(unitPath: string): Promise<RecordedRe
     disagreements: [],
     unread: []
   };
-  const csvRows = await readCsvFile(path.join(unitPath, 'Dependencies.csv'));
+  const csvRows = await readCsvFile(path.join(unitPath, 'Dependencies.csv'), scope);
   if (csvRows !== null) {
     register.csvPresent = true;
   }
   let declarations: Declarations = { mode: 'UNKNOWN', entries: [], unread: [] };
-  const markdown = await readRegularFile(path.join(unitPath, '_DEPENDENCIES.md'));
+  const markdown = await readRegularFile(path.join(unitPath, '_DEPENDENCIES.md'), scope);
   if (markdown !== null) {
     register.declarationsPresent = true;
     declarations = parseDeclarations(markdown);
@@ -624,15 +749,22 @@ export async function readRecordedRegister(unitPath: string): Promise<RecordedRe
   return register;
 }
 
-async function childDirectories(directory: string, prefix: string): Promise<string[]> {
+/**
+ * Names of the real (non-link) child folders of `directory` that start with
+ * `prefix`. The folder itself is listed only when it resolves inside the scope.
+ */
+async function childDirectories(directory: string, prefix: string, scope: RegisterReadScope): Promise<string[]> {
+  const real = await containedPath(scope, directory);
+  if (real === null) {
+    return [];
+  }
   try {
-    const entries = await readdir(directory, { withFileTypes: true });
+    const entries = await readdir(real, { withFileTypes: true });
     return entries
       .filter((entry) => entry.isDirectory() && entry.name.startsWith(prefix))
       .map((entry) => entry.name);
   } catch (error) {
-    const code = (error as NodeJS.ErrnoException | undefined)?.code;
-    if (code === 'ENOENT' || code === 'ENOTDIR') {
+    if (isMissing(error)) {
       return [];
     }
     throw error;
@@ -654,13 +786,16 @@ function compareParts(left: string[], right: string[]): number {
  * Live production units in every lifecycle folder (`audit_common.inventory`),
  * in path order. Archived copies are never read.
  */
-export async function inventoryUnits(executionRoot: string): Promise<string[]> {
+export async function inventoryUnits(
+  executionRoot: string,
+  scope: RegisterReadScope = createReadScope(executionRoot)
+): Promise<string[]> {
   const found: string[][] = [];
   for (const [partition, unitPrefix] of UNIT_PARTITIONS) {
-    const packages = await childDirectories(executionRoot, partition);
+    const packages = await childDirectories(executionRoot, partition, scope);
     for (const folder of LIFECYCLE_DIRS) {
       for (const pkg of packages) {
-        for (const unit of await childDirectories(path.join(executionRoot, pkg, folder), unitPrefix)) {
+        for (const unit of await childDirectories(path.join(executionRoot, pkg, folder), unitPrefix, scope)) {
           found.push([pkg, folder, unit]);
         }
       }
@@ -670,23 +805,29 @@ export async function inventoryUnits(executionRoot: string): Promise<string[]> {
 }
 
 /** Recorded registers of every live production unit, keyed by deliverable ID (first unit wins). */
-export async function readProjectRegisters(executionRoot: string): Promise<Map<string, RecordedRegister>> {
+export async function readProjectRegisters(
+  executionRoot: string,
+  scope: RegisterReadScope = createReadScope(executionRoot)
+): Promise<Map<string, RecordedRegister>> {
   const registers = new Map<string, RecordedRegister>();
-  for (const unit of await inventoryUnits(executionRoot)) {
+  for (const unit of await inventoryUnits(executionRoot, scope)) {
     const id = unitId(unit);
     if (!registers.has(id)) {
-      registers.set(id, await readRecordedRegister(unit));
+      registers.set(id, await readRecordedRegister(unit, scope));
     }
   }
   return registers;
 }
 
 /** The `Current State` recorded in a deliverable's `_STATUS.md`, or UNKNOWN. */
-export async function readLifecycleState(unitPath: string | null): Promise<string> {
+export async function readLifecycleState(
+  unitPath: string | null,
+  scope: RegisterReadScope = createReadScope(unitPath ?? '')
+): Promise<string> {
   if (unitPath === null) {
     return 'UNKNOWN';
   }
-  const text = await readRegularFile(path.join(unitPath, '_STATUS.md'));
+  const text = await readRegularFile(path.join(unitPath, '_STATUS.md'), scope);
   if (text === null) {
     return 'UNKNOWN';
   }
@@ -729,9 +870,12 @@ export function parseDefaultMaturity(text: string | null): DefaultMaturity {
   return { value: [...states][0], source: 'COORDINATION_RECORD' };
 }
 
-export async function readDefaultMaturity(executionRoot: string): Promise<DefaultMaturity> {
+export async function readDefaultMaturity(
+  executionRoot: string,
+  scope: RegisterReadScope = createReadScope(executionRoot)
+): Promise<DefaultMaturity> {
   return parseDefaultMaturity(
-    await readRegularFile(path.join(executionRoot, '_Coordination', '_COORDINATION.md'))
+    await readRegularFile(path.join(executionRoot, '_Coordination', '_COORDINATION.md'), scope)
   );
 }
 
@@ -771,9 +915,12 @@ export function pointerTarget(text: string): string | null {
 }
 
 /** The accepted current version named by `{EXECUTION_ROOT}/_DAG/_LATEST.md`, or null when there is none. */
-export async function resolveAcceptedDag(executionRoot: string): Promise<AcceptedDag | null> {
+export async function resolveAcceptedDag(
+  executionRoot: string,
+  scope: RegisterReadScope = createReadScope(executionRoot)
+): Promise<AcceptedDag | null> {
   const pointer = path.join(executionRoot, '_DAG', '_LATEST.md');
-  const pointerText = await readRegularFile(pointer);
+  const pointerText = await readRegularFile(pointer, scope);
   if (pointerText === null) {
     return null;
   }
@@ -782,8 +929,8 @@ export async function resolveAcceptedDag(executionRoot: string): Promise<Accepte
     throw new DagPointerError(`${pointer}: no \`Latest:\` line naming a version`);
   }
   const version = path.join(executionRoot, '_DAG', name);
-  const nodes = name.startsWith('_') ? null : await readCsvFile(path.join(version, 'DeliverableNodes.csv'));
-  const edges = name.startsWith('_') ? null : await readCsvFile(path.join(version, 'DependencyEdges.csv'));
+  const nodes = name.startsWith('_') ? null : await readCsvFile(path.join(version, 'DeliverableNodes.csv'), scope);
+  const edges = name.startsWith('_') ? null : await readCsvFile(path.join(version, 'DependencyEdges.csv'), scope);
   if (nodes === null || edges === null) {
     throw new DagPointerError(
       `${pointer}: ${name} is not an accepted version folder with DependencyEdges.csv and DeliverableNodes.csv`
@@ -791,8 +938,8 @@ export async function resolveAcceptedDag(executionRoot: string): Promise<Accepte
   }
   const admitted = edges.filter((row) => clean(row.Status) === 'ACTIVE');
   const candidates = edges.filter((row) => clean(row.Status) === 'CANDIDATE');
-  candidates.push(...((await readCsvFile(path.join(version, 'CandidateEdges.csv'))) ?? []));
-  const excluded = (await readCsvFile(path.join(version, 'ExcludedRows.csv'))) ?? [];
+  candidates.push(...((await readCsvFile(path.join(version, 'CandidateEdges.csv'), scope)) ?? []));
+  const excluded = (await readCsvFile(path.join(version, 'ExcludedRows.csv'), scope)) ?? [];
   return { name, path: version, pointer, nodes, admitted, candidates, excluded };
 }
 
@@ -914,12 +1061,21 @@ export function checkCurrency(dag: AcceptedDag, registers: Map<string, RecordedR
 
 // --- Project blockers (build_project_queue without --evidence) ---------------
 
-/** Arcs inside a non-trivial strongly connected component, and self-loops. */
-function heldArcs(arcs: Arc[]): Set<string> {
+/**
+ * Arcs inside a non-trivial strongly connected component, and self-loops
+ * (Tarjan's algorithm with an explicit stack, so a long chain cannot exhaust
+ * the call stack).
+ */
+export function heldArcs(arcs: Arc[]): Set<string> {
   const graph = new Map<string, string[]>();
   const nodes = new Set<string>();
   for (const [consumer, supplier] of arcs) {
-    graph.set(consumer, [...(graph.get(consumer) ?? []), supplier]);
+    const children = graph.get(consumer);
+    if (children) {
+      children.push(supplier);
+    } else {
+      graph.set(consumer, [supplier]);
+    }
     nodes.add(consumer);
     nodes.add(supplier);
   }
@@ -929,34 +1085,49 @@ function heldArcs(arcs: Arc[]): Set<string> {
   const stack: string[] = [];
   const onStack = new Set<string>();
   let counter = 0;
-  const visit = (node: string): void => {
+  const frames: Array<{ node: string; next: number }> = [];
+  const enter = (node: string): void => {
     index.set(node, counter);
     low.set(node, counter);
     counter += 1;
     stack.push(node);
     onStack.add(node);
-    for (const child of graph.get(node) ?? []) {
-      if (!index.has(child)) {
-        visit(child);
-        low.set(node, Math.min(low.get(node) ?? 0, low.get(child) ?? 0));
-      } else if (onStack.has(child)) {
-        low.set(node, Math.min(low.get(node) ?? 0, index.get(child) ?? 0));
-      }
+    frames.push({ node, next: 0 });
+  };
+  for (const start of [...nodes].sort(compareText)) {
+    if (index.has(start)) {
+      continue;
     }
-    if (low.get(node) === index.get(node)) {
-      for (;;) {
-        const member = stack.pop() as string;
-        onStack.delete(member);
-        component.set(member, index.get(node) ?? 0);
-        if (member === node) {
-          break;
+    enter(start);
+    while (frames.length > 0) {
+      const frame = frames[frames.length - 1];
+      const children = graph.get(frame.node) ?? [];
+      if (frame.next < children.length) {
+        const child = children[frame.next];
+        frame.next += 1;
+        if (!index.has(child)) {
+          enter(child);
+        } else if (onStack.has(child)) {
+          low.set(frame.node, Math.min(low.get(frame.node) ?? 0, index.get(child) ?? 0));
+        }
+        continue;
+      }
+      frames.pop();
+      const node = frame.node;
+      if (low.get(node) === index.get(node)) {
+        for (;;) {
+          const member = stack.pop() as string;
+          onStack.delete(member);
+          component.set(member, index.get(node) ?? 0);
+          if (member === node) {
+            break;
+          }
         }
       }
-    }
-  };
-  for (const node of [...nodes].sort(compareText)) {
-    if (!index.has(node)) {
-      visit(node);
+      if (frames.length > 0) {
+        const parent = frames[frames.length - 1].node;
+        low.set(parent, Math.min(low.get(parent) ?? 0, low.get(node) ?? 0));
+      }
     }
   }
   return new Set(
@@ -1102,6 +1273,8 @@ export interface ProjectBlockerQueue {
   /** Held (non-gating) arcs, in (consumer, supplier) order. */
   heldArcs: Arc[];
   registers: Map<string, RecordedRegister>;
+  /** Reads refused while building the queue (outside the read root, or too large). */
+  warnings: string[];
 }
 
 function unitPackage(unitPath: string | null): string {
@@ -1127,11 +1300,12 @@ function unitName(unitPath: string | null): string {
  */
 export async function buildProjectBlockerQueue(
   executionRoot: string,
-  options: { defaultMaturity?: string } = {}
+  options: { defaultMaturity?: string; scope?: RegisterReadScope } = {}
 ): Promise<ProjectBlockerQueue> {
   const defaultMaturity = options.defaultMaturity ?? DEFAULT_MATURITY_FALLBACK;
-  const registers = await readProjectRegisters(executionRoot);
-  const dag = await resolveAcceptedDag(executionRoot);
+  const scope = options.scope ?? createReadScope(executionRoot);
+  const registers = await readProjectRegisters(executionRoot, scope);
+  const dag = await resolveAcceptedDag(executionRoot, scope);
 
   let pending: Record<string, string[]> = {};
   let currency: Currency | null = null;
@@ -1187,7 +1361,7 @@ export async function buildProjectBlockerQueue(
   const states = new Map<string, string>();
   const stateOf = async (id: string): Promise<string> => {
     if (!states.has(id)) {
-      states.set(id, await readLifecycleState(registers.get(id)?.path ?? null));
+      states.set(id, await readLifecycleState(registers.get(id)?.path ?? null, scope));
     }
     return states.get(id) as string;
   };
@@ -1275,7 +1449,8 @@ export async function buildProjectBlockerQueue(
     queueRows,
     arcs,
     heldArcs: heldList,
-    registers
+    registers,
+    warnings: [...scope.warnings]
   };
 }
 
@@ -1316,6 +1491,12 @@ export interface DeliverableRecordedRegister {
   disagreements: RegisterDisagreement[];
   unreadDeclarations: string[];
   blockers: DeliverableBlockerJudgement;
+  /**
+   * Reads refused inside the project root's containment: a file or folder that
+   * resolves outside it, or a file over `MAX_REGISTER_FILE_BYTES`. When any
+   * read was refused, the blocker judgment is `NOT_ASSESSED`.
+   */
+  warnings: string[];
 }
 
 /**
@@ -1336,11 +1517,6 @@ export function executionRootForDeliverable(deliverablePath: string): string | n
     ([partitionPrefix, unitPrefix]) => pkg.startsWith(partitionPrefix) && name.startsWith(unitPrefix)
   );
   return matches ? path.dirname(partition) : null;
-}
-
-function isWithin(root: string, candidate: string): boolean {
-  const relative = path.relative(root, candidate);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
 function notAssessed(reason: string, defaultMaturity: DefaultMaturity): DeliverableBlockerJudgement {
@@ -1368,22 +1544,31 @@ function splitList(value: string, separator: string): string[] {
 
 /**
  * The recorded register of one deliverable and its supplier-judged blocker
- * verdict, computed over the execution root that contains it. The execution
- * root must lie inside `containmentRoot` (the App's project root); otherwise
- * only the deliverable's own register is read and no verdict is given.
+ * verdict, computed over the execution root that contains it. Every read stays
+ * inside the canonical `containmentRoot` (the App's project root): a file or
+ * folder, or any folder on its way, that resolves outside it through a symbolic
+ * link is not read and is reported in `warnings`, and so is a file over
+ * `MAX_REGISTER_FILE_BYTES`. The execution root must itself resolve inside
+ * `containmentRoot`; otherwise only the deliverable's own register is read and
+ * no verdict is given. A read that refused any file gives no verdict either.
  */
 export async function readDeliverableRecordedRegister(input: {
   deliverablePath: string;
   containmentRoot: string;
 }): Promise<DeliverableRecordedRegister> {
   const deliverableId = unitId(input.deliverablePath);
+  const scope = createReadScope(input.containmentRoot);
   const candidateRoot = executionRootForDeliverable(input.deliverablePath);
   const executionRoot =
-    candidateRoot !== null && isWithin(input.containmentRoot, candidateRoot) ? candidateRoot : null;
+    candidateRoot !== null &&
+    isWithin(input.containmentRoot, candidateRoot) &&
+    (await containedPath(scope, candidateRoot)) !== null
+      ? candidateRoot
+      : null;
   const defaultMaturity =
     executionRoot === null
       ? parseDefaultMaturity(null)
-      : await readDefaultMaturity(executionRoot);
+      : await readDefaultMaturity(executionRoot, scope);
 
   let queue: ProjectBlockerQueue | null = null;
   let blockers: DeliverableBlockerJudgement;
@@ -1396,7 +1581,7 @@ export async function readDeliverableRecordedRegister(input: {
     );
   } else {
     try {
-      queue = await buildProjectBlockerQueue(executionRoot, { defaultMaturity: defaultMaturity.value });
+      queue = await buildProjectBlockerQueue(executionRoot, { defaultMaturity: defaultMaturity.value, scope });
       blockers = notAssessed('DELIVERABLE_NOT_IN_INVENTORY', defaultMaturity);
     } catch (error) {
       if (!(error instanceof DagPointerError)) {
@@ -1408,10 +1593,19 @@ export async function readDeliverableRecordedRegister(input: {
 
   let register = queue?.registers.get(deliverableId);
   if (!register || register.path !== input.deliverablePath) {
-    register = await readRecordedRegister(input.deliverablePath);
+    register = await readRecordedRegister(input.deliverablePath, scope);
   }
   const row = queue?.queueRows.find((item) => item.DeliverableID === deliverableId);
-  if (queue !== null && row !== undefined && queue.registers.get(deliverableId)?.path === input.deliverablePath) {
+  if (executionRoot !== null && scope.warnings.length > 0) {
+    blockers = notAssessed(
+      `READ_REFUSED: ${scope.warnings.length} file or folder read(s) were refused (see warnings); the evidence is incomplete, so no verdict is given`,
+      defaultMaturity
+    );
+  } else if (
+    queue !== null &&
+    row !== undefined &&
+    queue.registers.get(deliverableId)?.path === input.deliverablePath
+  ) {
     const verdict = row.BlockerState === BLOCKED || row.BlockerState === UNBLOCKED;
     blockers = {
       blockerState: row.BlockerState,
@@ -1446,6 +1640,7 @@ export async function readDeliverableRecordedRegister(input: {
     declaredOnlyRows: register.declaredOnly,
     disagreements,
     unreadDeclarations: register.unread,
-    blockers
+    blockers,
+    warnings: [...scope.warnings]
   };
 }

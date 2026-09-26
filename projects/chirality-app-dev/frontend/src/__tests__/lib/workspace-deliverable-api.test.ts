@@ -5,7 +5,9 @@ import {
   currentIsoDate,
   fetchDeliverableDependencies,
   fetchDeliverableStatus,
+  DECLARED_READINESS_CAVEAT,
   formatBlockingUpstreamMetric,
+  formatBlockingUpstreamNote,
   isExecutionBlockerSubsetRow,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
@@ -54,7 +56,8 @@ function makeRecordedRegister(
       dagPending: false,
       dagPendingReasons: [],
       ...blockers
-    }
+    },
+    warnings: []
   };
 }
 
@@ -170,6 +173,7 @@ describe('deliverable API helpers', () => {
     expect(summary.bySatisfaction.SATISFIED).toBe(1);
     expect(summary.blockerState).toBe('CSV_EVIDENCE');
     expect(formatBlockingUpstreamMetric(summary)).toBe('2 CSV rows (evidence only)');
+    expect(formatBlockingUpstreamNote(summary)).toBeNull();
   });
 
   it('takes the blocking count from the recorded register verdict when one is read', () => {
@@ -183,6 +187,8 @@ describe('deliverable API helpers', () => {
     expect(blocked.disagreementCount).toBe(1);
     expect(blocked.declaredOnlyRows).toBe(1);
     expect(formatBlockingUpstreamMetric(blocked)).toBe('1 (BLOCKED)');
+    expect(blocked.trackingMode).toBe('DECLARED');
+    expect(formatBlockingUpstreamNote(blocked)).toBe(DECLARED_READINESS_CAVEAT);
 
     const pending = summarizeDependencyRows(
       rows,
@@ -199,13 +205,54 @@ describe('deliverable API helpers', () => {
     expect(pending.dagPending).toBe(true);
     expect(pending.dagPendingReasons).toEqual(['arc added: DEL-05-04 -> DEL-05-09']);
     expect(formatBlockingUpstreamMetric(pending)).toBe('DAG pending (no verdict)');
+    expect(formatBlockingUpstreamNote(pending)).toBeNull();
 
     expect(
       formatBlockingUpstreamMetric(
         summarizeDependencyRows(rows, makeRecordedRegister({ blockerState: 'NOT_TRACKED', blockingUpstreamCount: null }))
       )
     ).toBe('Not tracked (no verdict)');
-    expect(formatBlockingUpstreamMetric(null)).toBe('0');
+    expect(formatBlockingUpstreamMetric(null)).toBe('—');
+    expect(formatBlockingUpstreamNote(null)).toBeNull();
+  });
+
+  it('shows the SPEC §5.3 caveat under DECLARED, including when nothing blocks', () => {
+    const unblocked = summarizeDependencyRows(
+      [],
+      makeRecordedRegister({
+        blockerState: 'UNBLOCKED',
+        blockingUpstreamCount: 0,
+        blockingUpstreamDeliverables: [],
+        blockingEdgeIds: []
+      })
+    );
+    expect(formatBlockingUpstreamMetric(unblocked)).toBe('0 (UNBLOCKED)');
+    expect(formatBlockingUpstreamNote(unblocked)).toBe(DECLARED_READINESS_CAVEAT);
+    expect(DECLARED_READINESS_CAVEAT).toContain('no recorded blocker is not a complete readiness judgment');
+
+    const fullGraph = summarizeDependencyRows([], {
+      ...makeRecordedRegister({ blockerState: 'UNBLOCKED', blockingUpstreamCount: 0 }),
+      trackingMode: 'FULL_GRAPH'
+    });
+    expect(formatBlockingUpstreamNote(fullGraph)).toBeNull();
+  });
+
+  it('shows why a judgment was not assessed', () => {
+    const reason =
+      'EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT: the execution root holding this deliverable is outside projectRoot';
+    const summary = summarizeDependencyRows(
+      [],
+      makeRecordedRegister({ blockerState: 'NOT_ASSESSED', notAssessedReason: reason, blockingUpstreamCount: null })
+    );
+    expect(summary.notAssessedReason).toBe(reason);
+    expect(formatBlockingUpstreamMetric(summary)).toBe('Not assessed (EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT)');
+    expect(formatBlockingUpstreamNote(summary)).toBe(`Not assessed: ${reason}.`);
+
+    const unexplained = summarizeDependencyRows(
+      [],
+      makeRecordedRegister({ blockerState: 'NOT_ASSESSED', blockingUpstreamCount: null })
+    );
+    expect(formatBlockingUpstreamMetric(unexplained)).toBe('Not assessed (no verdict)');
   });
 
   it('returns allowed forward lifecycle targets per state', () => {
