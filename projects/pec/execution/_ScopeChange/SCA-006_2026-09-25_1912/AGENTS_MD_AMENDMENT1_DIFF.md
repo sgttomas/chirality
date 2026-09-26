@@ -56,7 +56,15 @@ One clause of the candidate paragraph is not carried: "its graph accounts for
 the Remaining items it touches". The owner's words say there is "no need to
 scan for them", and that clause implies that each undertaking's graph looks
 for Remaining items. The duty that still applies when an undertaking does
-touch an item is kept in sentences 6 and 7. The verifier is asked to confirm
+touch an item is kept in part in sentences 6 and 7. Disclosure (verifier verdict
+01, finding 2): the clause concerned only items an undertaking already
+touches, so dropping it is a judgment. The candidate's positive duty ("When an
+undertaking completes or changes an item, update it under the packet…")
+becomes a restriction ("Update an item only under the packet…"), and "changes"
+becomes "affects". An undertaking holding a grant therefore has no explicit
+duty left to update an item it completes; without a grant, the duty to record
+the consequence in the graph and bring it to the owner remains. The owner
+approved these bytes after seeing the dropped clause. The verifier is asked to confirm
 this reading (brief B6 §"Independent verification").
 
 ## 3. The hunk (exact text)

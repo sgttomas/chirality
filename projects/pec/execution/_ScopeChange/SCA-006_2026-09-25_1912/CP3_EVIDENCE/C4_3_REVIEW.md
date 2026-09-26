@@ -188,10 +188,10 @@ My verdict covers `c5efad489` only. To check the committed bytes, I exported tha
 |---|---|
 | 1 | Repaired as proposed, with the hunk bytes unchanged. `AGENTS_MD_AMENDMENT1_DIFF.md` §2 now names the four revision-1.6 loci and COV-083. `RUN_SUMMARY.md` (§3.2, Q-CP3-1, §6) and `Handoff_State.md` carry the reconciliation forward. Since the review, `D-PEC-96` has been ruled; the ruling is on `origin/main` through PR #946 and is recorded in `RUN_SUMMARY.md`. The owner saw the COV-083 observation before approving the hunk (per HELP_HUMAN's relay; `Decision_Log.md` SCA006-G2-A1). The audit output is not edited, and COV-083 stays INFO there. The manager records the reviewer's under-classification argument in `RUN_SUMMARY.md` §5 |
 | 2 | Recorded in `RUN_SUMMARY.md` §4 and in the final return: `git diff --check` exits 2 because of the accumulator's CRLF output in `Supersession_Map.csv`, as in SCA-005's map; with that file excluded it exits 0. The CSV is not edited. The interim return's claim was true at the time of the A4 check (before the map existed) and is superseded by the final return |
-| 3 | Already carried: `RUN_SUMMARY.md` §3.1 A6 note and `Handoff_State.md` A6 instruction 3 |
+| 3 | Carried in `RUN_SUMMARY.md` §3.1 (A6 note) and `Handoff_State.md` A6 instructions 2–3. Corrected after verifier verdict 01: there are **four** acceptance-date slots (the first token of `accepted:` is the fourth), and the post-A6 hash for acceptance on 2026-09-26 is `9374c21f…08eb1` |
 | 4 | Noted. The owner approved the hunk as written, including "affects"; no change |
 | 5 | Final verifier scope: it reviews the final head, including the approval record and G4 on the final manifest |
-| 6 | Recorded in `RUN_SUMMARY.md` §4 (rerun method: set `R` to `git rev-parse --show-toplevel`) |
+| 6 | Recorded in `RUN_SUMMARY.md` §8 and `AGENTS_MD_AMENDMENT1_DIFF.md` §4 (rerun method: set `R` to `git rev-parse --show-toplevel`) |
 | 7 | HELP_HUMAN's pre-merge items; the approval is now recorded |
 | 8 | Noted in `RUN_SUMMARY.md` §5; the audit output is not edited |
-| 9 | Added to the rollback note in `RUN_SUMMARY.md` §9 and `Handoff_State.md` A6 instruction 5 |
+| 9 | Added to the rollback note in `RUN_SUMMARY.md` §9 and `Handoff_State.md` A6 instruction 5 (only the Runtime notice carries the "revision 1.6 adds" wording) |

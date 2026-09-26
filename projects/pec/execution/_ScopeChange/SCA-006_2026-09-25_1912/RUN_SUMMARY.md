@@ -78,7 +78,7 @@ Every write was made by a script that asserts the preimage, the candidate and th
 | File | Slot | Default | Applied | Rule |
 |---|---|---|---|---|
 | `SOFTWARE_DECOMP.md` | front-matter `date:` (L7), §7 `Revision` row (L574), §11 DL-21 date cell (L700) | `2026-09-25` | `2026-09-26` | application date (brief B6 A1). See the A6 note below |
-| `SOFTWARE_DECOMP.md` | `status:` (L5), `accepted:` (L8) | accepted values | the two pre-acceptance lines of `Amendment_Preview.md` | pre-acceptance application state. The pre-acceptance variant at defaults is `3ad0de68…a8b` |
+| `SOFTWARE_DECOMP.md` | `status:` (L5) and `accepted:` (L8) | `current_basis`; `accepted: 2026-09-25 (…revision 1.6 successor accepted through SCA-006…)` | the two pre-acceptance lines of `Amendment_Preview.md` | pre-acceptance application state; the pre-acceptance variant at defaults is `3ad0de68…a8b`. **`accepted:`'s first token is the fourth acceptance-date slot** (`Amendment_Preview.md` §"Acceptance-bound tokens"): when A6 restores the accepted line, that token takes the checkpoint-3 acceptance date |
 | `docs/PRD.md` | S1–S4 and the group-2 folder token | `2026-09-25` / `SCA-006_GROUP-2_2026-09-25` | unchanged | act-date values; the written file equals the candidate byte for byte |
 | `projects/pec/AGENTS.md` | L6 `amended:` first token | `2026-09-25` | `2026-09-26` | application-date slot (`AGENTS_MD_CANDIDATE_DIFF.md` §9) |
 | `projects/pec/AGENTS.md` | L209 group-2 folder token | `SCA-006_GROUP-2_2026-09-25` | unchanged | the actual folder name |
@@ -91,11 +91,11 @@ Every write was made by a script that asserts the preimage, the candidate and th
 | notices | group-2 folder token | `SCA-006_GROUP-2_2026-09-25` | unchanged | the actual folder name |
 
 **Slot proofs:**
-- *Decomposition:* substituting the defaults back gives the pre-acceptance variant `3ad0de68…`. Restoring the two accepted lines as well gives `4eed1247…`. With the application-date slots filled, the accepted candidate hashes to `86de50c3b56812dec9537210c0202ec9efc98aac7b328a8736cac8a6c688ecb3`.
+- *Decomposition:* substituting the defaults back gives the pre-acceptance variant `3ad0de68…`. Restoring the two accepted lines as well gives `4eed1247…`. **Post-A6 hash:** restore `status: current_basis` and the accepted `accepted:` line with its date token set to the acceptance date, and keep the three date slots at the same date. For acceptance on 2026-09-26, the accepted file hashes `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`, with all four slots at 2026-09-26. The earlier figure `86de50c3…ecb3` wrongly left `accepted:` at 2026-09-25 and is withdrawn (verifier verdict 01, finding 1).
 - *`AGENTS.md`:* the accepted candidate with its slot filled is `6f6f2ed1c0ed6e009323beaa004a79b72b717b4cd9431199eb2f9b990cf264e6`. Taking out the amendment-1 hunk and restoring the slot default gives `49ce993a…070d`.
 - *Manifest and notices:* removing the one named amendment-1 addition and restoring the slot defaults gives each draft's hash.
 
-**A6 note (decomposition date slots).** `Amendment_Preview.md` binds `date:`, the §7 Revision row and the DL-21 date to the checkpoint-3 acceptance date. The brief directed the application date, and HELP_HUMAN confirmed that choice. If the owner accepts checkpoint 3 on a date later than 2026-09-26, the A6 act substitutes the acceptance date at exactly these three loci, under the preview's slot rule, when it restores the two accepted front-matter lines.
+**A6 note (decomposition date slots).** `Amendment_Preview.md` binds **four** decomposition tokens to the checkpoint-3 acceptance date: `date:` (L7), the first token of `accepted:` (L8), the §7 Revision row (L574) and the DL-21 date (L700). At application, the brief directed the application date for `date:`, the Revision row and DL-21 (HELP_HUMAN confirmed), and `accepted:` is in its pre-acceptance form. At A6, the restored `accepted:` line takes the acceptance date. If the owner accepts on a date later than 2026-09-26, A6 also substitutes that date at `date:`, the Revision row and DL-21, so that all four slots carry the acceptance date, under the preview's slot rule. With acceptance on 2026-09-26 the file hashes `9374c21f…08eb1`; for any other date the verifier recomputes the hash with all four slots at that date.
 
 ### 3.2 The amendment-1 hunk (owner approval gate: satisfied)
 
@@ -133,7 +133,7 @@ consequence in the graph and bring it to the owner. Retiring the sections, as
 App and Piping did, is a separate owner-directed undertaking.
 ```
 
-**Dropped clause (disclosed).** The candidate's "its graph accounts for the Remaining items it touches" is not carried. The owner said "no need to scan for them", and that clause implies each undertaking's graph looks for Remaining items. The duty that still applies when an undertaking does touch an item is kept: update the item under the opening packet, or record the consequence in the graph and bring it to the owner.
+**Dropped clause (disclosed).** The candidate's "its graph accounts for the Remaining items it touches" is not carried. The manager read the owner's "no need to scan for them" and "There must not be any of those going forward" as removing that bookkeeping duty. The verifier (verdict 01, finding 2) notes that the clause only concerned items an undertaking already touches, so the rationale is a judgment, not a necessity. Disclosure of the net effect: the candidate's positive duty ("When an undertaking completes or changes an item, update it under the packet…") becomes a restriction ("Update an item only under the packet…"), and "changes" becomes "affects". With the graph clause gone, an undertaking holding a grant has no explicit duty left to update an item it completes; without a grant, the duty to record the consequence in the graph and bring it to the owner remains. The owner approved the hunk after seeing the dropped clause (§3.2 above); the bytes are unchanged.
 
 **Known tension (audit COV-083, INFO).** Revision 1.6 keeps, unchanged from 1.5, the text "PEC's own `pec` row declares the `remaining-loop` profile now". It appears in:
 - SOW-094 (§2 L259; `ScopeLedger.csv` row SOW-094);
@@ -146,7 +146,7 @@ The hunk's sentence "No PEC feed profile reads them" is true of the code: `proje
 
 | Check | Command (cwd = worktree root; `python3` 3.13.7) | Exit | Result |
 |---|---|---:|---|
-| C1 containment | `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after merging `origin/main` `f90320c1d`, so the diff is this PR's own changes) | 0 | every changed path (46 at the final rerun, before the return and verifier files; `CP3_EVIDENCE/c1_result.json`) inside the Lane A allowlist or B6 returns; 34 hash checks pass (14 planned postimages, the manifest at `2b29af18…`; 18 frozen checkpoint-1/2 artifacts; both `_LATEST.md` unchanged); no deletion |
+| C1 containment | `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after merging `origin/main` `f90320c1d`, so the diff is this PR's own changes) | 0 | every changed path (46 at the final rerun, before the return and verifier files; `CP3_EVIDENCE/c1_result.json`) inside the Lane A allowlist or B6 returns; 34 hash checks pass: 14 planned postimages (the manifest among them, at `2b29af18…`) plus 20 frozen paths (18 checkpoint-1/2 artifacts and both `_LATEST.md`, unchanged); no deletion |
 | C2 registers | `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict` | 1 (by design of `--strict`) | **At the basis `94e9255b6`:** 0 ERROR, exactly 2 WARNING DRB-008 (DEL-08-06, DEL-10-13), as planned. **At the merged head (validator `869df1d5…` after Root `D-GOV-48`, PR #942):** 0 ERROR, 2 DRB-008 as above, plus 26 WARNING XRG-013 (OUT/TBD ledger items without a PackageID). The 26 are pre-existing: they are exactly the revision-1.5 OUT/TBD items without a PackageID (same 26 IDs), and SCA-006 does not cause them. SOW-097..100 are IN, with packages PKG-04/08/08/10, so they add no XRG finding. Per PEC's `NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md`, the owner defers action and PEC's registers are not edited |
 | C2 closure | `python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir <scratch>` (basis and merged head) | 0 | 111 edges, 66 nodes, 0 SCCs, 0 bidirectional pairs; unchanged |
 | C3 assertions | `python3 CP3_EVIDENCE/c3_assert.py <preimage dir>` (the preimages are `git show 94e9255b6:<path>`) | 0 | 31/31 PASS (see below) |
@@ -254,7 +254,7 @@ Affected entities: SOW-003/060/080, SOW-097..100, DEL-04-03, DEL-08-01, DEL-08-0
 ## 9. Checkpoint-3 owner question
 
 **Q-CP3-A: accept the audited poststate.** Accept, as the checkpoint-group-3 decision, SCA-006's audited poststate:
-- **Live decomposition revision 1.6:** `SOFTWARE_DECOMP.md` `3ef0412a99812885e247bc4e9726fe005ce3446372f609c47274b6ad25b29b59`. This is the pre-acceptance form; at A6 the two accepted front-matter lines are restored, giving `86de50c3…ecb3` with the 2026-09-26 date slots.
+- **Live decomposition revision 1.6:** `SOFTWARE_DECOMP.md` `3ef0412a99812885e247bc4e9726fe005ce3446372f609c47274b6ad25b29b59`. This is the pre-acceptance form. At A6 the two accepted front-matter lines are restored, with all four acceptance-date slots at the acceptance date; for acceptance on 2026-09-26 this gives `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`.
 - **Registers:** `ScopeLedger.csv` `1d24a4b8…e916e`, `Deliverables.csv` `94ee5d18…9805`, `ContextBudgetQA.csv` `93b0bb07…7c7c`, `Companion_Inventory.csv` `1597ceec…8662`.
 - **PRD v2.4:** `docs/PRD.md` `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe`.
 - **Instruction file:** `projects/pec/AGENTS.md` `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c`. It includes **the exact amendment-1 hunk quoted verbatim in §3.2**. The owner explicitly approved that hunk on 2026-09-26 ("approve hunk"), so amendment 1's pre-merge gate is satisfied. The dropped clause and the COV-083 tension are disclosed there.
@@ -265,9 +265,9 @@ Affected entities: SOW-003/060/080, SOW-097..100, DEL-04-03, DEL-08-01, DEL-08-0
 On acceptance, HELP_HUMAN performs A6:
 - `_Decomposition/_LATEST.md` becomes the revision-1.6 handoff.
 - `_ScopeChange/_LATEST.md` names SCA-006.
-- The two front-matter lines return to their accepted values. If the acceptance date is later than 2026-09-26, the acceptance date is also substituted at the three decomposition date slots (§3.1).
+- The two front-matter lines return to their accepted values. The `accepted:` date token takes the acceptance date. If the acceptance date is later than 2026-09-26, it is also substituted at `date:`, the §7 Revision row and DL-21, so all four slots carry it (§3.1).
 
-**Rollback if checkpoint 3 is returned.** Use the plan's §"Failure and rollback". Also name the provenance lines that anticipate acceptance: the three A2 `_CONTEXT.md` lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079), and the notices' present-tense "revision 1.6 adds …" wording. The notices would need a withdrawal notice, since they are foreign files.
+**Rollback if checkpoint 3 is returned.** Use the plan's §"Failure and rollback". Also name the provenance lines that anticipate acceptance: the three A2 `_CONTEXT.md` lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079), and the Runtime notice's present-tense "decomposition revision 1.6 adds …" wording. The Runtime notice is a foreign file, so it would need a withdrawal notice.
 
 **Recommendation: accept.**
 

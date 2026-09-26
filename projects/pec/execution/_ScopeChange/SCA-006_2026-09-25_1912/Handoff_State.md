@@ -283,10 +283,10 @@ KTY remediation and metadata-alignment summaries: not applicable (SOFTWARE varia
 ### A6 instructions for HELP_HUMAN (after the owner's checkpoint-3 acceptance only)
 
 1. Write `_Decomposition/_LATEST.md` as the revision-1.6 handoff, and `_ScopeChange/_LATEST.md` naming SCA-006.
-2. Restore `status: current_basis` and the accepted `accepted:` line in `SOFTWARE_DECOMP.md`.
-3. If the acceptance date is later than 2026-09-26, substitute it at `date:` (L7), the §7 Revision row (L574) and the DL-21 date cell (L700), under `Amendment_Preview.md`'s slot rule. With 2026-09-26 the accepted file hashes `86de50c3b56812dec9537210c0202ec9efc98aac7b328a8736cac8a6c688ecb3`.
+2. Restore `status: current_basis` and the accepted `accepted:` line in `SOFTWARE_DECOMP.md`. The line's first token is an acceptance-date slot: set it to the checkpoint-3 acceptance date.
+3. If the acceptance date is later than 2026-09-26, also substitute it at `date:` (L7), the §7 Revision row (L574) and the DL-21 date cell (L700), so that all four acceptance-date slots (`Amendment_Preview.md` §"Acceptance-bound tokens") carry it. With acceptance on 2026-09-26, the accepted file hashes `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`. The earlier `86de50c3…` is withdrawn (verifier verdict 01, finding 1).
 4. If the owner answers Q-CP3-2 (a), move `_Evaluation/DecompCoverage/_LATEST.md` to `COV_SCA006_POSTCHANGE_2026-09-26_0051`.
-5. Rollback if checkpoint 3 is returned: the plan's §"Failure and rollback". Also include the three A2 provenance lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079) and the instruction-tranche revert. The notices' present-tense "revision 1.6 adds …" wording needs a withdrawal notice.
+5. Rollback if checkpoint 3 is returned: the plan's §"Failure and rollback". Also include the three A2 provenance lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079) and the instruction-tranche revert. The Runtime notice's present-tense "decomposition revision 1.6 adds …" wording needs a withdrawal notice.
 
 ### Remaining blockers and human decisions
 
