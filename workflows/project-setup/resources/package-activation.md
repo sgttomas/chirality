@@ -13,9 +13,9 @@ decisions, waivers, notices, blockers, and rerun requirements. Route lifecycle
 decisions through review and scope amendments through scope-change. Hand any
 repository closeout evidence and exact change scope to the responsible current
 role, which follows the applicable project's change skill or repository
-conventions when present. This current method does not require Git or select the
-retained legacy `change` workflow; preserve that identity for explicitly
-selected historical runs.
+conventions when present, or the generic `change` workflow otherwise. This
+method itself does not require Git; preserve a historical `change` identity for
+explicitly selected legacy runs.
 
 When runtime telemetry is required, use tools/workflow_runtime/runtime_telemetry.py with stable session/event IDs. Record attempts, checks, retries, remediations, detection layers, failure classes, reason codes, member IDs, and dispositions. Exposed token/context occupancy may be recorded; missing measurements remain explicit. Bind RUNTIME_SUMMARY.json in the package manifest and disclose interrupted sessions and required reruns.
 
