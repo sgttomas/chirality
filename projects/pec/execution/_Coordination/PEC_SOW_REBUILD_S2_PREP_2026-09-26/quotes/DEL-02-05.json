@@ -220,34 +220,6 @@
   },
   {
    "id": "Q31",
-   "text": "exactly the fourteen record-tier entity types",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q32",
-   "text": "register-row prose cannot be expressed in the model",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q33",
-   "text": "From `Dependencies.csv` registers and `WORK_GRAPH.json`",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q34",
-   "text": "16 entity types",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "Description",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q35",
    "text": "Full rebuild ingests dependency registers",
    "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
    "kind": "csv_cell",
@@ -257,7 +229,7 @@
    "where": "CLM-010"
   },
   {
-   "id": "Q36",
+   "id": "Q32",
    "text": "The DAG's file form is read by the dependency register parser",
    "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
    "kind": "csv_cell",
@@ -267,135 +239,135 @@
    "where": "CLM-010"
   },
   {
-   "id": "Q37",
+   "id": "Q33",
    "text": "I think we've tried central dependency registries before and not found that desirable because it creates another surface for authority, while the deliverable local dependencies can be queried to construct a full accounting of all dependencies if needed.",
    "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q38",
+   "id": "Q34",
    "text": "Register storage is deliverable-local by owner ruling (no central register)",
    "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q39",
+   "id": "Q35",
    "text": "is advisory visibility only — never work assignment",
    "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q40",
+   "id": "Q36",
    "text": "All strata require owner acceptance; strata are provenance not authority",
    "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q41",
+   "id": "Q37",
    "text": "A dependency-register row blocks work only when it is `ACTIVE`, of type `PREREQUISITE`, its `SatisfactionStatus` is `TBD`, `PENDING` or `IN_PROGRESS`, and the work needs its target.",
    "source": "projects/pec/AGENTS.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q42",
+   "id": "Q38",
    "text": "**Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented.",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-013",
    "strip_emphasis": true
   },
   {
-   "id": "Q43",
+   "id": "Q39",
    "text": "**Content-minimal.** Paths, counts, SHAs, states, hashes — never file or diff content",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-014",
    "strip_emphasis": true
   },
   {
-   "id": "Q44",
+   "id": "Q40",
    "text": "accepted scope definition",
    "source": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/Dependencies.csv",
    "where": "CLM-016"
   },
   {
-   "id": "Q45",
+   "id": "Q41",
    "text": "Path conventions and grammars for each profile live in PEC's adapters",
    "source": "projects/pec/v2/config/loops.schema.json",
    "where": "CLM-017"
   },
   {
-   "id": "Q46",
+   "id": "Q42",
    "text": "the generation is frozen, and its silence is never reported as staleness",
    "source": "projects/pec/v2/config/loops.schema.json",
    "where": "CLM-017"
   },
   {
-   "id": "Q47",
+   "id": "Q43",
    "text": "the `Dependencies.csv` v3.1 schema is unchanged",
    "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
    "where": "CLM-018"
   },
   {
-   "id": "Q48",
+   "id": "Q44",
    "text": "the union of the entries in the declared sections of `_DEPENDENCIES.md` and the rows of `Dependencies.csv`",
    "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
    "where": "CLM-018"
   },
   {
-   "id": "Q49",
+   "id": "Q45",
    "text": "the owner is deferring action on this notice in this loop",
    "source": "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md",
    "where": "CLM-018"
   },
   {
-   "id": "Q50",
+   "id": "Q46",
    "text": "WORK_GRAPH.json historical; .md to DEL-02-08",
    "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
    "where": "CLM-019"
   },
   {
-   "id": "Q51",
+   "id": "Q47",
    "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
    "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
    "where": "CLM-019"
   },
   {
-   "id": "Q52",
+   "id": "Q48",
    "text": "parser carry-forward (CON-001 cases for RETIRED, node states, run tokens)",
    "source": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
    "where": "CLM-019"
   },
   {
-   "id": "Q53",
+   "id": "Q49",
    "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-006"
   },
   {
-   "id": "Q54",
+   "id": "Q50",
    "text": "it shall never modify a source file",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-007"
   },
   {
-   "id": "Q55",
+   "id": "Q51",
    "text": "The reconciler writes only its own store and generated views",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-007"
   },
   {
-   "id": "Q56",
+   "id": "Q52",
    "text": "a separately testable parser with its own grammar",
    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "where": "CON-001"
   },
   {
-   "id": "Q57",
+   "id": "Q53",
    "text": "the first loop the P1 reconciler ingests is PEC v2's own build",
    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "where": "CON-004"
   },
   {
-   "id": "Q58",
+   "id": "Q54",
    "text": "for App/Piping",
    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
    "kind": "csv_cell",
@@ -405,19 +377,19 @@
    "where": "CON-004"
   },
   {
-   "id": "Q59",
+   "id": "Q55",
    "text": "where the loop's feed profile says so",
    "source": "projects/pec/docs/PRD.md",
    "where": "CON-004"
   },
   {
-   "id": "Q60",
+   "id": "Q56",
    "text": "work-graph dependencies (WorkGraph)",
    "source": "projects/pec/docs/PRD.md",
    "where": "CON-005"
   },
   {
-   "id": "Q61",
+   "id": "Q57",
    "text": "Markdown work-graph dependencies",
    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
    "kind": "csv_cell",
@@ -427,17 +399,53 @@
    "where": "CON-005"
   },
   {
-   "id": "Q62",
+   "id": "Q58",
    "text": "another surface for authority",
    "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "where": "AX-003"
   },
   {
-   "id": "Q63",
+   "id": "Q59",
    "text": "**accepted, all strata as presented**",
    "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "where": "AX-008",
    "strip_emphasis": true
+  },
+  {
+   "id": "Q60",
+   "text": "exactly the sixteen record-tier entity types",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q61",
+   "text": "a fixture carrying file content, diff hunks, register-row prose, work-graph outcome text and a `MEMORY.md` run description cannot be expressed in the model",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q62",
+   "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008 (rebuilt DEL-01-01/CLM-012 opening)"
+  },
+  {
+   "id": "Q63",
+   "text": "Path conventions and grammars for each profile stay with the parsers",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q64",
+   "text": "Archiving removes paths from the working tree only",
+   "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+   "where": "CLM-016"
+  },
+  {
+   "id": "Q65",
+   "text": "A loop that needs an archived record reads it from the tag.",
+   "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+   "where": "CLM-016"
   }
  ]
 }

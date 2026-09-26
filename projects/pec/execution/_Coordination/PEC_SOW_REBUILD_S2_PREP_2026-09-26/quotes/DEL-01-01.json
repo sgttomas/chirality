@@ -439,6 +439,12 @@
    "text": "Presence facts never enter record-tier citations",
    "source": "projects/pec/docs/PRD.md",
    "where": "AX-003"
+  },
+  {
+   "id": "Q65",
+   "text": "between the current reconcile and the prior snapshot, or between PEC and harness parity output",
+   "source": "projects/pec/docs/PRD.md",
+   "where": "CON-008"
   }
  ]
 }

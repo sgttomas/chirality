@@ -147,13 +147,13 @@
    "id": "Q20",
    "text": "- **REQ-004** — The loader shall expose the registered-loop set to the record-tier consumers declared in CLM-006 through a stable in-process interface.",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "where": "CLM-007"
+   "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
   },
   {
    "id": "Q21",
-   "text": "- **REQ-005** — Consumers shall depend only on the core-owned typed `LoopRegistry` port and shall not depend on the registry's JSON paths, serialization, or adapter errors. The selected version-1 JSON/schema files remain replaceable behind that port; a path, schema, or field-meaning change requires a separately governed migration without amending DEL-02-07, DEL-03-01, or DEL-09-02 merely for adapter details.",
+   "text": "- **REQ-005** — Consumers shall depend only on the core-owned typed `LoopRegistry` port and shall not depend on the registry's JSON paths, serialization, or adapter errors. The selected schema-version-2 JSON/schema files remain replaceable behind that port; a path, schema, or field-meaning change requires a separately governed migration without amending DEL-02-07, DEL-03-01, or DEL-09-02 merely for adapter details.",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "where": "CLM-007"
+   "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
   },
   {
    "id": "Q22",

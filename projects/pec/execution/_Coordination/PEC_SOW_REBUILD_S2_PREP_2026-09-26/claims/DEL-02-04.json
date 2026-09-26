@@ -716,14 +716,6 @@
   {
    "id": "S070",
    "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "value": "- **CLM-012** — The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
-   "candidate_text": "(its `EvidenceQuote` is quoted from that claim)"
-  },
-  {
-   "id": "S071",
-   "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
    "value": {
@@ -732,10 +724,10 @@
     "column": "EvidenceQuote",
     "equals": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)"
    },
-   "candidate_text": "(its `EvidenceQuote` is quoted from that claim)"
+   "candidate_text": "`EvidenceQuote` \"The acts that consume this model"
   },
   {
-   "id": "S072",
+   "id": "S071",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
@@ -743,47 +735,7 @@
    "candidate_text": "`DEL-01-01` is at lifecycle `INITIALIZED`"
   },
   {
-   "id": "S073",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "value": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170",
-   "candidate_text": "`43f1f57a13bb…0170`"
-  },
-  {
-   "id": "S074",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "value": "- **REQ-003** — Every record-tier entity type shall carry provenance sufficient for a per-claim citation",
-   "candidate_text": "`DEL-01-01/REQ-003` obliges per-claim provenance"
-  },
-  {
-   "id": "S075",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "value": "- **REQ-005** — Every record-tier entity shall be fully regenerable from file sources.",
-   "candidate_text": "`DEL-01-01/REQ-005` full regenerability"
-  },
-  {
-   "id": "S076",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "value": "| DEL-01-01 | INITIALIZED | `43f1f57a13bb…` | entity model re-sourced (A-01, A-12) | `STALE_REBUILD_REQUIRED` |",
-   "candidate_text": "SCA-005 §B4 classes that contract `STALE_REBUILD_REQUIRED`"
-  },
-  {
-   "id": "S077",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
-   "value": "| S2 SOW currency: rebuild class outside the S4 set | DEL-01-01, DEL-02-03, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07; DEL-01-06 after G1 (WORKING_ITEMS) |",
-   "candidate_text": "the undertaking graph schedules its rebuild in node S2"
-  },
-  {
-   "id": "S078",
+   "id": "S072",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
@@ -796,7 +748,7 @@
    "candidate_text": "via `[E-P22]`"
   },
   {
-   "id": "S079",
+   "id": "S073",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
@@ -809,7 +761,7 @@
    "candidate_text": "`EvidenceFile` `docs/PRD.md`"
   },
   {
-   "id": "S080",
+   "id": "S074",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
@@ -822,7 +774,7 @@
    "candidate_text": "`EvidenceFile` `docs/PRD.md`"
   },
   {
-   "id": "S081",
+   "id": "S075",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
@@ -835,7 +787,7 @@
    "candidate_text": "`RequiredMaturity` `INITIALIZED`, `Status` `ACTIVE`"
   },
   {
-   "id": "S082",
+   "id": "S076",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
@@ -848,7 +800,7 @@
    "candidate_text": "via `[E-P22]`"
   },
   {
-   "id": "S083",
+   "id": "S077",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -861,7 +813,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S084",
+   "id": "S078",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -874,7 +826,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S085",
+   "id": "S079",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -887,7 +839,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S086",
+   "id": "S080",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -900,7 +852,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S087",
+   "id": "S081",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -913,7 +865,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S088",
+   "id": "S082",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -926,7 +878,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S089",
+   "id": "S083",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -939,7 +891,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S090",
+   "id": "S084",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -952,7 +904,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S091",
+   "id": "S085",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -965,7 +917,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S092",
+   "id": "S086",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -978,7 +930,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S093",
+   "id": "S087",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -991,7 +943,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S094",
+   "id": "S088",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1004,7 +956,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S095",
+   "id": "S089",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1017,7 +969,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S096",
+   "id": "S090",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1030,7 +982,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S097",
+   "id": "S091",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1043,7 +995,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S098",
+   "id": "S092",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1056,7 +1008,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S099",
+   "id": "S093",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1069,7 +1021,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S100",
+   "id": "S094",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1082,7 +1034,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S101",
+   "id": "S095",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1095,7 +1047,7 @@
    "candidate_text": "`DEL-04-05` and `DEL-10-02` carry `P1`"
   },
   {
-   "id": "S102",
+   "id": "S096",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1108,7 +1060,7 @@
    "candidate_text": "carries `P3`"
   },
   {
-   "id": "S103",
+   "id": "S097",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -1121,7 +1073,7 @@
    "candidate_text": "`DEL-01-02` (Presence-tier schema & entity model)"
   },
   {
-   "id": "S104",
+   "id": "S098",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1134,7 +1086,7 @@
    "candidate_text": "The RunRecord type is `DEL-01-01` (`SOW-001`)"
   },
   {
-   "id": "S105",
+   "id": "S099",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1147,7 +1099,7 @@
    "candidate_text": "`DEL-02-01` (`SOW-011`)"
   },
   {
-   "id": "S106",
+   "id": "S100",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1160,7 +1112,7 @@
    "candidate_text": "`DEL-02-02` (`SOW-012`)"
   },
   {
-   "id": "S107",
+   "id": "S101",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1173,7 +1125,7 @@
    "candidate_text": "`DEL-02-03` (`SOW-013`)"
   },
   {
-   "id": "S108",
+   "id": "S102",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1186,7 +1138,7 @@
    "candidate_text": "`DEL-02-05` (`SOW-015`"
   },
   {
-   "id": "S109",
+   "id": "S103",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1199,7 +1151,7 @@
    "candidate_text": "`DEL-02-06` (`SOW-016`)"
   },
   {
-   "id": "S110",
+   "id": "S104",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1212,7 +1164,7 @@
    "candidate_text": "`DEL-02-07` (`SOW-017`)"
   },
   {
-   "id": "S111",
+   "id": "S105",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1225,7 +1177,7 @@
    "candidate_text": "`DEL-02-08` (`SOW-095`)"
   },
   {
-   "id": "S112",
+   "id": "S106",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1238,7 +1190,7 @@
    "candidate_text": "`DEL-02-09` (`SOW-096`)"
   },
   {
-   "id": "S113",
+   "id": "S107",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1251,7 +1203,7 @@
    "candidate_text": "`DEL-03-01` (`SOW-010`, `SOW-021`)"
   },
   {
-   "id": "S114",
+   "id": "S108",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1264,7 +1216,7 @@
    "candidate_text": "`DEL-03-01` (`SOW-010`, `SOW-021`)"
   },
   {
-   "id": "S115",
+   "id": "S109",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1277,7 +1229,7 @@
    "candidate_text": "`DEL-03-02` (`SOW-018`)"
   },
   {
-   "id": "S116",
+   "id": "S110",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1290,7 +1242,7 @@
    "candidate_text": "`DEL-03-03` (`SOW-019`)"
   },
   {
-   "id": "S117",
+   "id": "S111",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1303,7 +1255,7 @@
    "candidate_text": "`DEL-04-03` (`SOW-006`, `SOW-007`)"
   },
   {
-   "id": "S118",
+   "id": "S112",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1316,7 +1268,7 @@
    "candidate_text": "`DEL-04-03` (`SOW-006`, `SOW-007`)"
   },
   {
-   "id": "S119",
+   "id": "S113",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1329,7 +1281,7 @@
    "candidate_text": "`DEL-04-05` (`SOW-009`)"
   },
   {
-   "id": "S120",
+   "id": "S114",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1342,7 +1294,7 @@
    "candidate_text": "`DEL-01-03` (`SOW-056`)"
   },
   {
-   "id": "S121",
+   "id": "S115",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1355,7 +1307,7 @@
    "candidate_text": "`DEL-01-05` (`SOW-052`, `SOW-053`)"
   },
   {
-   "id": "S122",
+   "id": "S116",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1368,7 +1320,7 @@
    "candidate_text": "`DEL-01-05` (`SOW-052`, `SOW-053`)"
   },
   {
-   "id": "S123",
+   "id": "S117",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1381,7 +1333,7 @@
    "candidate_text": "`DEL-01-06` (`SOW-077`, `SOW-094`)"
   },
   {
-   "id": "S124",
+   "id": "S118",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1394,7 +1346,7 @@
    "candidate_text": "`DEL-01-06` (`SOW-077`, `SOW-094`)"
   },
   {
-   "id": "S125",
+   "id": "S119",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1407,7 +1359,7 @@
    "candidate_text": "`DEL-10-02` (`SOW-055`)"
   },
   {
-   "id": "S126",
+   "id": "S120",
    "commit": "aca930622",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -1420,7 +1372,7 @@
    "candidate_text": "`DEL-01-02` (`SOW-002`)"
   },
   {
-   "id": "S127",
+   "id": "S121",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
@@ -1428,7 +1380,7 @@
    "candidate_text": "at lifecycle `INITIALIZED` with no implementation present"
   },
   {
-   "id": "S128",
+   "id": "S122",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1440,7 +1392,7 @@
    "candidate_text": "at lifecycle `INITIALIZED` with no implementation present"
   },
   {
-   "id": "S129",
+   "id": "S123",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1452,7 +1404,7 @@
    "candidate_text": "at lifecycle `INITIALIZED` with no implementation present"
   },
   {
-   "id": "S130",
+   "id": "S124",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1463,7 +1415,7 @@
    "candidate_text": "**16** files named `STATUS.json`"
   },
   {
-   "id": "S131",
+   "id": "S125",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1474,7 +1426,7 @@
    "candidate_text": "**16** files named `STATUS.json`"
   },
   {
-   "id": "S132",
+   "id": "S126",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1485,7 +1437,7 @@
    "candidate_text": "all in `chirality-piping`"
   },
   {
-   "id": "S133",
+   "id": "S127",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1496,7 +1448,7 @@
    "candidate_text": "**8** named `RUNTIME_SUMMARY.json`"
   },
   {
-   "id": "S134",
+   "id": "S128",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1507,7 +1459,7 @@
    "candidate_text": "(Root 2, `chirality-piping` 3, `chirality-runtime` 3)"
   },
   {
-   "id": "S135",
+   "id": "S129",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1518,7 +1470,7 @@
    "candidate_text": "(Root 2, `chirality-piping` 3, `chirality-runtime` 3)"
   },
   {
-   "id": "S136",
+   "id": "S130",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1529,7 +1481,7 @@
    "candidate_text": "(Root 2, `chirality-piping` 3, `chirality-runtime` 3)"
   },
   {
-   "id": "S137",
+   "id": "S131",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1540,7 +1492,7 @@
    "candidate_text": "`projects/pec` holds **zero** of either"
   },
   {
-   "id": "S138",
+   "id": "S132",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1551,7 +1503,7 @@
    "candidate_text": "`projects/pec` holds **zero** of either"
   },
   {
-   "id": "S139",
+   "id": "S133",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1563,7 +1515,7 @@
    "candidate_text": "12 carry no `schema` key and the other 4 carry 4 distinct values"
   },
   {
-   "id": "S140",
+   "id": "S134",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1575,7 +1527,7 @@
    "candidate_text": "the other 4 carry 4 distinct values"
   },
   {
-   "id": "S141",
+   "id": "S135",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1587,7 +1539,7 @@
    "candidate_text": "the other 4 carry 4 distinct values"
   },
   {
-   "id": "S142",
+   "id": "S136",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1599,7 +1551,7 @@
    "candidate_text": "the other 4 carry 4 distinct values"
   },
   {
-   "id": "S143",
+   "id": "S137",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1611,7 +1563,7 @@
    "candidate_text": "the other 4 carry 4 distinct values"
   },
   {
-   "id": "S144",
+   "id": "S138",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1623,7 +1575,7 @@
    "candidate_text": "all 8 `RUNTIME_SUMMARY.json` files carry `chirality-runtime-summary/v1`"
   },
   {
-   "id": "S145",
+   "id": "S139",
    "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
    "kind": "count_glob",
    "path": null,
@@ -1634,7 +1586,7 @@
    "candidate_text": "**954** `STATUS.json` and **104** `RUNTIME_SUMMARY.json` files"
   },
   {
-   "id": "S146",
+   "id": "S140",
    "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
    "kind": "count_glob",
    "path": null,
@@ -1645,7 +1597,7 @@
    "candidate_text": "**954** `STATUS.json` and **104** `RUNTIME_SUMMARY.json` files"
   },
   {
-   "id": "S147",
+   "id": "S141",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
@@ -1653,7 +1605,7 @@
    "candidate_text": "(342 and 24, with 1,096 distinct top-level `STATUS.json` keys)"
   },
   {
-   "id": "S148",
+   "id": "S142",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
@@ -1661,7 +1613,7 @@
    "candidate_text": "(342 and 24, with 1,096 distinct top-level `STATUS.json` keys)"
   },
   {
-   "id": "S149",
+   "id": "S143",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
@@ -1669,7 +1621,7 @@
    "candidate_text": "recorded a census of 2026-07-25"
   },
   {
-   "id": "S150",
+   "id": "S144",
    "commit": "73ed349ed",
    "kind": "ancestor",
    "path": null,
@@ -1677,7 +1629,7 @@
    "candidate_text": "merge commit `73ed349ed`, an ancestor of `aca930622`"
   },
   {
-   "id": "S151",
+   "id": "S145",
    "commit": "73ed349ed",
    "kind": "sha256",
    "path": "projects/pec/v2/config/loops.json",
@@ -1685,7 +1637,7 @@
    "candidate_text": "merge commit `73ed349ed`"
   },
   {
-   "id": "S152",
+   "id": "S146",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
@@ -1693,7 +1645,7 @@
    "candidate_text": "`RULED A / EFFECTIVE ON MERGE`"
   },
   {
-   "id": "S153",
+   "id": "S147",
    "commit": "aca930622",
    "kind": "sha256",
    "path": "projects/pec/v2/config/loops.json",
@@ -1701,7 +1653,7 @@
    "candidate_text": "`fd342b4f29ed…53d7`"
   },
   {
-   "id": "S154",
+   "id": "S148",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -1709,7 +1661,7 @@
    "candidate_text": "`\"schema_version\": 2`"
   },
   {
-   "id": "S155",
+   "id": "S149",
    "commit": "aca930622",
    "kind": "sha256",
    "path": "projects/pec/v2/config/loops.schema.json",
@@ -1717,7 +1669,7 @@
    "candidate_text": "`104ed64820b7…b143`"
   },
   {
-   "id": "S156",
+   "id": "S150",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.schema.json",
@@ -1725,7 +1677,7 @@
    "candidate_text": "defines a closed vocabulary of `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`, each at version 1"
   },
   {
-   "id": "S157",
+   "id": "S151",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.schema.json",
@@ -1733,7 +1685,7 @@
    "candidate_text": "defines a closed vocabulary of `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`, each at version 1"
   },
   {
-   "id": "S158",
+   "id": "S152",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.schema.json",
@@ -1741,7 +1693,7 @@
    "candidate_text": "defines a closed vocabulary of `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`, each at version 1"
   },
   {
-   "id": "S159",
+   "id": "S153",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.schema.json",
@@ -1749,7 +1701,7 @@
    "candidate_text": "each at version 1"
   },
   {
-   "id": "S160",
+   "id": "S154",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -1757,7 +1709,7 @@
    "candidate_text": "The registry lists one loop, `pec`"
   },
   {
-   "id": "S161",
+   "id": "S155",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -1765,7 +1717,7 @@
    "candidate_text": "The registry lists one loop, `pec`"
   },
   {
-   "id": "S162",
+   "id": "S156",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -1773,47 +1725,7 @@
    "candidate_text": "declares `agentruns-json` version 1 with state `historical` and basis the `D-PEC-94` record"
   },
   {
-   "id": "S163",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
-   "value": "**Current State:** INITIALIZED",
-   "candidate_text": "`DEL-01-06` is `INITIALIZED`"
-  },
-  {
-   "id": "S164",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
-   "candidate_text": "`5fdcfd968345…a2fa8`"
-  },
-  {
-   "id": "S165",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "The strict version-1 configuration shall name each loop PEC serves",
-   "candidate_text": "still describes a strict version-1 registry"
-  },
-  {
-   "id": "S166",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "feed_profiles",
-   "candidate_text": "still describes a strict version-1 registry"
-  },
-  {
-   "id": "S167",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
-   "value": "DEL-01-06 after G1",
-   "candidate_text": "its rebuild is scheduled in graph node S2"
-  },
-  {
-   "id": "S168",
+   "id": "S157",
    "commit": "aca930622",
    "kind": "contains",
    "path": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
@@ -1821,7 +1733,7 @@
    "candidate_text": "owner-ratified Root decision `D-GOV-45`"
   },
   {
-   "id": "S169",
+   "id": "S158",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/AgentRuns/ARCHIVE_INDEX.json",
@@ -1829,7 +1741,7 @@
    "candidate_text": "names the tag `archive/agent-runs-2026-09-25`"
   },
   {
-   "id": "S170",
+   "id": "S159",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/AgentRuns/ARCHIVE_INDEX.json",
@@ -1837,7 +1749,7 @@
    "candidate_text": "its commit `8007c59270bc83035eac8ec6eab65926cfe8668c`"
   },
   {
-   "id": "S171",
+   "id": "S160",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/AgentRuns/ARCHIVE_INDEX.json",
@@ -1845,7 +1757,7 @@
    "candidate_text": "archived out of the working tree on 2026-09-25"
   },
   {
-   "id": "S172",
+   "id": "S161",
    "commit": "3e5291138",
    "kind": "sha256",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",
@@ -1853,7 +1765,7 @@
    "candidate_text": "its bytes are unchanged since `3e5291138`"
   },
   {
-   "id": "S173",
+   "id": "S162",
    "commit": "3e5291138",
    "kind": "count_glob",
    "path": null,
@@ -1864,7 +1776,7 @@
    "candidate_text": "where `projects/pec` holds none"
   },
   {
-   "id": "S174",
+   "id": "S163",
    "commit": "3e5291138",
    "kind": "ancestor",
    "path": null,
@@ -1872,7 +1784,7 @@
    "candidate_text": "were added in `34134e093`"
   },
   {
-   "id": "S175",
+   "id": "S164",
    "commit": "34134e093~1",
    "kind": "count_glob",
    "path": null,
@@ -1883,7 +1795,7 @@
    "candidate_text": "were added in `34134e093`"
   },
   {
-   "id": "S176",
+   "id": "S165",
    "commit": "34134e093",
    "kind": "count_glob",
    "path": null,
@@ -1894,7 +1806,7 @@
    "candidate_text": "thirteen PEC `STATUS.json` files"
   },
   {
-   "id": "S177",
+   "id": "S166",
    "commit": "34134e093",
    "kind": "ancestor",
    "path": null,
@@ -1902,7 +1814,7 @@
    "candidate_text": "removed from the tree by the archive commit `d9385479e`"
   },
   {
-   "id": "S178",
+   "id": "S167",
    "commit": "d9385479e~1",
    "kind": "count_glob",
    "path": null,
@@ -1913,7 +1825,7 @@
    "candidate_text": "removed from the tree by the archive commit `d9385479e`"
   },
   {
-   "id": "S179",
+   "id": "S168",
    "commit": "d9385479e",
    "kind": "count_glob",
    "path": null,
@@ -1924,7 +1836,7 @@
    "candidate_text": "removed from the tree by the archive commit `d9385479e`"
   },
   {
-   "id": "S180",
+   "id": "S169",
    "commit": "d9385479e",
    "kind": "ancestor",
    "path": null,
@@ -1932,7 +1844,7 @@
    "candidate_text": "At `aca930622` they are readable only from the tag"
   },
   {
-   "id": "S181",
+   "id": "S170",
    "commit": "aca930622",
    "kind": "count_glob",
    "path": null,
@@ -1943,7 +1855,7 @@
    "candidate_text": "At `aca930622` they are readable only from the tag"
   },
   {
-   "id": "S182",
+   "id": "S171",
    "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
    "kind": "count_glob",
    "path": null,
@@ -1954,7 +1866,7 @@
    "candidate_text": "the tag's commit holds all thirteen"
   },
   {
-   "id": "S183",
+   "id": "S172",
    "commit": "8007c59270bc83035eac8ec6eab65926cfe8668c",
    "kind": "ancestor",
    "path": null,
@@ -1962,7 +1874,7 @@
    "candidate_text": "the tag's commit holds all thirteen"
   },
   {
-   "id": "S184",
+   "id": "S173",
    "commit": "aca930622",
    "kind": "sha256",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -1970,7 +1882,7 @@
    "candidate_text": "`740a4a741221…19ee9`"
   },
   {
-   "id": "S185",
+   "id": "S174",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
@@ -1978,7 +1890,7 @@
    "candidate_text": "`DEL-01-03` is `IN_PROGRESS`"
   },
   {
-   "id": "S186",
+   "id": "S175",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -1986,7 +1898,7 @@
    "candidate_text": "admits five field classes (path, count, SHA, state, hash)"
   },
   {
-   "id": "S187",
+   "id": "S176",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -1994,7 +1906,7 @@
    "candidate_text": "admits five field classes (path, count, SHA, state, hash)"
   },
   {
-   "id": "S188",
+   "id": "S177",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2002,7 +1914,7 @@
    "candidate_text": "admits five field classes (path, count, SHA, state, hash)"
   },
   {
-   "id": "S189",
+   "id": "S178",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2010,7 +1922,7 @@
    "candidate_text": "admits five field classes (path, count, SHA, state, hash)"
   },
   {
-   "id": "S190",
+   "id": "S179",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2018,7 +1930,7 @@
    "candidate_text": "admits five field classes (path, count, SHA, state, hash)"
   },
   {
-   "id": "S191",
+   "id": "S180",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2026,7 +1938,7 @@
    "candidate_text": "a state set of `OPEN` through `ISSUED`"
   },
   {
-   "id": "S192",
+   "id": "S181",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2034,7 +1946,7 @@
    "candidate_text": "a state set of `OPEN` through `ISSUED`"
   },
   {
-   "id": "S193",
+   "id": "S182",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
@@ -2042,7 +1954,7 @@
    "candidate_text": "exactly 40 or 64 hex characters"
   },
   {
-   "id": "S194",
+   "id": "S183",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
@@ -2050,7 +1962,7 @@
    "candidate_text": "The undertaking graph extends this carry-forward to the node S2 parsers"
   },
   {
-   "id": "S195",
+   "id": "S184",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
@@ -2058,7 +1970,7 @@
    "candidate_text": "which records that no accepted source yet states the test separating an extracted state token from prose"
   },
   {
-   "id": "S196",
+   "id": "S185",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
@@ -2066,7 +1978,7 @@
    "candidate_text": "assigns its golden-by-reference fixture classes to the work-graph, MEMORY and receipts parsers only"
   },
   {
-   "id": "S197",
+   "id": "S186",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
@@ -2074,7 +1986,7 @@
    "candidate_text": "graph node X1 names no JSON fixture class"
   },
   {
-   "id": "S198",
+   "id": "S187",
    "commit": "aca930622",
    "kind": "not_contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -2082,7 +1994,7 @@
    "candidate_text": "Root has no registry row at `aca930622`"
   },
   {
-   "id": "S199",
+   "id": "S188",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.json",
@@ -2090,7 +2002,7 @@
    "candidate_text": "nor do App or Piping"
   },
   {
-   "id": "S200",
+   "id": "S189",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
@@ -2098,7 +2010,7 @@
    "candidate_text": "the decomposition's §1.2 intake summary treat run-evidence JSON wholesale as declared historical grammars"
   },
   {
-   "id": "S201",
+   "id": "S190",
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
@@ -2106,7 +2018,7 @@
    "candidate_text": "the decomposition's §1.2 intake summary"
   },
   {
-   "id": "S202",
+   "id": "S191",
    "commit": "aca930622",
    "kind": "sha256",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md",

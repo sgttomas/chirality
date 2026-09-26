@@ -187,21 +187,21 @@
   },
   {
    "id": "Q25",
-   "text": "exactly the fourteen record-tier entity types",
+   "text": "exactly the sixteen record-tier entity types",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
+   "where": "CLM-009 (DEL-01-01 candidate REQ-001)"
   },
   {
    "id": "Q26",
-   "text": "- **REQ-008** — The Receipt type shall represent field availability explicitly per loop, so that a coverage limitation can be stated rather than silently omitted (`PEC-ORI-006`: \"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). The representation shall accommodate both the `D-APP-57` field set and prose-structured ledgers with no validated schema, without presupposing any outcome of `OI-008` (CON-002).",
+   "text": "- **REQ-008** — The Receipt type shall represent field availability explicitly per loop and per grammar, so that a coverage limitation can be stated rather than silently omitted (`PEC-ORI-006`: \"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). It shall represent both grammar generations of the one Receipt feed kind — `LOOP_RECEIPTS.md` ledger entries, each ledger live or declared historical per its loop's feed profile, and central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md` receipts — and shall accommodate both the shared validated field set of ledgers carrying the `receipt-contract-v2` marker (Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome) and ledgers and central receipts with no shared validated schema, without presupposing any outcome of `OI-008` (CON-002).",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
+   "where": "CLM-009 (DEL-01-01 candidate, post-act path)"
   },
   {
    "id": "Q27",
-   "text": "- **AC-007** — Receipt field availability is explicit per loop: the `D-APP-57` field set and a prose-structured ledger with no validated schema are both representable, the difference between them is readable from the model rather than inferred, and no `OI-008` outcome is presupposed.",
+   "text": "- **AC-007** — Receipt field availability is explicit per loop and per grammar: the `receipt-contract-v2` field set, a ledger without the marker and a central `RECEIPT.md` receipt are all representable, a ledger's live or historical label is carried, the difference between them is readable from the model rather than inferred, and no `OI-008` outcome is presupposed.",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-009"
+   "where": "CLM-009 (DEL-01-01 candidate, post-act path)"
   },
   {
    "id": "Q28",

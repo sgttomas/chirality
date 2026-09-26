@@ -1872,6 +1872,46 @@
     "contains": "RegisteredLoop"
    },
    "candidate_text": "the only files under `projects/pec/v2` that name `RegisteredLoop`"
+  },
+  {
+   "id": "S187",
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+   "value": "loop_id: str loop_init_path: str feed_profiles: tuple[FeedProfile, ...]",
+   "candidate_text": "the applied `RegisteredLoop` carries no project field"
+  },
+  {
+   "id": "S188",
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+   "value": "project",
+   "candidate_text": "the applied `RegisteredLoop` carries no project field"
+  },
+  {
+   "id": "S189",
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/v2/config/loops.schema.json",
+   "value": "orkplan",
+   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
+  },
+  {
+   "id": "S190",
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+   "value": "orkplan",
+   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
+  },
+  {
+   "id": "S191",
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+   "value": "LOOP_INIT",
+   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
   }
  ]
 }

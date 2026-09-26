@@ -452,30 +452,6 @@
    "candidate_text": "`DEL-01-06` is at lifecycle `INITIALIZED`"
   },
   {
-   "id": "S41",
-   "commit": "aca930622",
-   "kind": "sha256_prefix",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd968345",
-   "candidate_text": "`5fdcfd968345…a2fa8`"
-  },
-  {
-   "id": "S42",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "strict-version-1 registry home and shape",
-   "candidate_text": "still describes a strict version-1 registry"
-  },
-  {
-   "id": "S43",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "value": "| DEL-01-06 | INITIALIZED | `5fdcfd968345…` | feed-profile declarations, schema v2 obligation, five-loop claims (A-10, A-11, A-13) | `STALE_REBUILD_REQUIRED (new obligation; RF-002 stays RESOLVED; gated on B6)` |",
-   "candidate_text": "classes it `STALE_REBUILD_REQUIRED`, gated on the registry source packet of §B6"
-  },
-  {
    "id": "S44",
    "commit": "aca930622",
    "kind": "contains",
@@ -1604,7 +1580,7 @@
    "kind": "contains",
    "path": "projects/pec/v2/config/loops.schema.json",
    "value": "Path conventions and grammars for each profile live in PEC's adapters.",
-   "candidate_text": "whose path convention the registry schema leaves to PEC's adapters"
+   "candidate_text": "whose schema likewise leaves them to PEC's adapters"
   },
   {
    "id": "S152",
@@ -1649,7 +1625,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
    "value": "- **REQ-001** — The reader shall consume, per project, that project's `_harness/adapter.yaml` and derive from it the feed manifest for that project",
-   "candidate_text": "derive the feed manifest, which feeds are read and where each is located"
+   "candidate_text": "derive the feed manifest: which feeds are read and where each is located"
   },
   {
    "id": "S157",
@@ -1721,6 +1697,22 @@
     "equals": "P2"
    },
    "candidate_text": "a `P2` deliverable with no `ScopeOfWork.md` at `aca930622`"
+  },
+  {
+   "id": "S164",
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+   "value": "- **CON-001** — D-PEC-78 O-A, propagated by SCA-004 into accepted decomposition revision 1.4, resolved `SOW-077` / `OI-003`",
+   "candidate_text": "`DEL-02-07/CON-001` (the registry home resolved under `D-PEC-78`"
+  },
+  {
+   "id": "S165",
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+   "value": "census population",
+   "candidate_text": "names no census population"
   }
  ]
 }

@@ -221,28 +221,6 @@
   },
   {
    "id": "Q32",
-   "text": "exactly the fourteen record-tier entity types",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q33",
-   "text": "Workplan / Step / Gate as three distinct types carrying the standing plan's protocol steps, owner gates, and gate state",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q34",
-   "text": "Workplan/Step/Gate is a declared historical-grammar entity whose gate state is re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "where": "CLM-008",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "Description"
-  },
-  {
-   "id": "Q35",
    "text": "Full rebuild ingests workplans/LOOP_INIT",
    "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
    "where": "CLM-009",
@@ -252,7 +230,7 @@
    "column": "Statement"
   },
   {
-   "id": "Q36",
+   "id": "Q33",
    "text": "`LOOP_INIT.md` loop identity, entrypoint and procedure SHA only (workplans as declared historical grammar)",
    "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
    "where": "CLM-009",
@@ -262,161 +240,215 @@
    "column": "EvidenceQuote"
   },
   {
-   "id": "Q37",
+   "id": "Q34",
    "text": "E-P24,DEL-02-06,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests workplans/LOOP_INIT",
    "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
    "where": "CLM-009"
   },
   {
-   "id": "Q38",
+   "id": "Q35",
    "text": "Repository-relative path to the loop's governed LOOP_INIT.md surface",
    "source": "projects/pec/v2/config/loops.schema.json",
    "where": "CLM-017"
   },
   {
-   "id": "Q39",
+   "id": "Q36",
    "text": "no step/gate state is read from `LOOP_INIT.md`",
    "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
    "where": "CLM-012"
   },
   {
-   "id": "Q40",
+   "id": "Q37",
    "text": "from decision registers, scope-change pointers and work-graph `BLOCKED` nodes",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-012"
   },
   {
-   "id": "Q41",
+   "id": "Q38",
    "text": "gate preconditions that reduce to file/Git facts: ruling presence, ruling-SHA commit reachability, receipt ancestry, snapshot/freeze presence, register-row status",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-012"
   },
   {
-   "id": "Q42",
+   "id": "Q39",
    "text": "Gate verdicts shall be Explain-shaped (rule, threshold, contributing citations) and advisory only",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-012"
   },
   {
-   "id": "Q43",
+   "id": "Q40",
    "text": "shall provide no write path that records adoption, ruling, or direction (PEC-K-02; K-AUTH-1)",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-012"
   },
   {
-   "id": "Q44",
+   "id": "Q41",
    "text": "Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.",
    "source": "projects/pec/docs/PRD.md",
    "where": "CLM-013"
   },
   {
-   "id": "Q45",
+   "id": "Q42",
    "text": "`loop/LOOP_INIT.md` owns the recurring development procedure",
    "source": "projects/pec/AGENTS.md",
    "where": "CLM-016"
   },
   {
-   "id": "Q46",
+   "id": "Q43",
    "text": "Keep LOOP_INIT evergreen, with no undertaking-specific graph pointer or execution state",
    "source": "projects/pec/AGENTS.md",
    "where": "CLM-016"
   },
   {
-   "id": "Q47",
+   "id": "Q44",
    "text": "retired plans stay in `plans/workplans/`, and a `WORKPLAN_*.md` appearing in `loop/` is a defect, never loaded or selected",
    "source": "projects/pec/AGENTS.md",
    "where": "CLM-016"
   },
   {
-   "id": "Q48",
+   "id": "Q45",
    "text": "historical archive, never selection surfaces",
    "source": "projects/pec/AGENTS.md",
    "where": "CLM-016"
   },
   {
-   "id": "Q49",
+   "id": "Q46",
    "text": "Enter through `init/dev-loop-init-prompt.md` with the selected role and the human's steering",
    "source": "projects/pec/loop/LOOP_INIT.md",
    "where": "CLM-016"
   },
   {
-   "id": "Q50",
+   "id": "Q47",
    "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
    "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
    "where": "CLM-018"
   },
   {
-   "id": "Q51",
+   "id": "Q48",
    "text": "Enter through",
    "source": "projects/pec/loop/LOOP_INIT.md",
    "where": "CLM-015; CON-001"
   },
   {
-   "id": "Q52",
+   "id": "Q49",
    "text": "the newest `WORKPLAN_*.md` in this file's directory",
    "source": "_DomainEngines/bridge/LOOP_INIT.md",
    "where": "CLM-015"
   },
   {
-   "id": "Q53",
+   "id": "Q50",
    "text": "owns the recurring development procedure",
    "source": "projects/pec/AGENTS.md",
    "where": "TBD-006"
   },
   {
-   "id": "Q54",
+   "id": "Q51",
    "text": "interpretation beyond declared grammars",
    "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "where": "REQ-002; CON-001"
   },
   {
-   "id": "Q55",
+   "id": "Q52",
    "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-007"
   },
   {
-   "id": "Q56",
+   "id": "Q53",
    "text": "it shall never modify a source file",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-008"
   },
   {
-   "id": "Q57",
+   "id": "Q54",
    "text": "The reconciler writes only its own store and generated views",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-008"
   },
   {
-   "id": "Q58",
+   "id": "Q55",
    "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-009"
   },
   {
-   "id": "Q59",
+   "id": "Q56",
    "text": "as history only",
    "source": "projects/pec/docs/PRD.md",
    "where": "REQ-005"
   },
   {
-   "id": "Q60",
+   "id": "Q57",
    "text": "accepted, all strata as presented",
    "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "where": "AX-010",
    "strip_emphasis": true
   },
   {
-   "id": "Q61",
+   "id": "Q58",
    "text": "per the closed, PEC-versioned feed profile declared on each loop-registry row",
    "source": "projects/pec/docs/PRD.md",
    "where": "CON-004"
   },
   {
-   "id": "Q62",
-   "text": "carrying the standing plan's protocol steps, owner gates, and gate state",
+   "id": "Q59",
+   "text": "exactly the sixteen record-tier entity types",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CON-002"
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q60",
+   "text": "Workplan and Step index workplans as history only and Gate carries gate state re-sourced from decision registers, scope-change pointers and work-graph `BLOCKED` nodes, with no field populated from `LOOP_INIT.md`",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q61",
+   "text": "The Loop type shall carry only the loop identity, entrypoint and procedure SHA that §7.1 permits PEC to read from `LOOP_INIT.md`, together with its listing in the loop registry (§16.3); it shall have no step, gate or execution-state field sourced from `LOOP_INIT.md`",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q62",
+   "text": "identifiers carried as field values (loop, decision, node and DEL identifiers and PR numbers)",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q63",
+   "text": "abbreviated hex SHAs",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q64",
+   "text": "Each type's exact field set is fixed by no accepted source",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q65",
+   "text": "Whether the Loop type carries a reference to its registry row's feed-profile selection is not fixed",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q66",
+   "text": "a normalized repository-relative `loop_init_path` locating that loop's own file truth",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q67",
+   "text": "`LOOP_INIT.md` identity, entrypoint and procedure SHA are `DEL-02-06`'s (`SOW-016`)",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q68",
+   "text": "Adding a profile, version or surface shall be a PEC code change under an owner-ruled D-PEC packet within schema version 2",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+   "where": "CLM-017"
   }
  ]
 }
