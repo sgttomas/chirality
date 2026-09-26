@@ -119,6 +119,7 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
   - **`NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md`** (D-GOV-50): `project-setup` `INCREMENTAL` mode after checkpoint-3 acceptance, `scope-of-work` `MODE=REVISE`, and the `ISSUED` reopening rule. It bears on K1 (setup of DEL-08-06 and DEL-10-13 after SCA-006) and on the S packets (revising existing contracts). Because the owner defers adoption, those packets follow PEC's current practice (the `D-PEC-93` and `D-PEC-98` precedents) and disclose the new modes in one line without putting adoption to the owner.
   - **`NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md`:** blocker sources, declaration mirroring and the materializer's refresh mode. `D-PEC-62` already records that PEC does not use the materializer. No node.
   - **`NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md`:** `software-prd` becomes a core workflow. No node.
+- **`NOTICE_2026-09-26_XRG004_SUPPORTING.md`** (Root `b53c0f8c4`): `validate_decomposition_registers.py` allows supporting deliverables in another Package under XRG-004. Notice only; the owner defers action for PEC. It states PEC's XRG family result is unchanged (26 `XRG-013` warnings, no errors), and the `D-PEC-101` act recorded identical strict output after the change. No node.
 - **`NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md`** (Root PR #968, D-GOV-51): `write_status.sh` admits `ISSUED → IN_PROGRESS` only with an accepted amendment (new checker `check_amendment_reopen.py`) and scope-change registers gain `ScopeChanging`. The owner defers action for PEC. It changed a tool `D-PEC-101`'s K1 generator pins: K1 ran before the change with the pinned tool, creating `OPEN` files is unaffected, and the act's records note that a K1 re-check on later main would stop on that pin by design. No node.
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_FORMATION.md`:** revises `software-decomp` and other formation methods. Nothing in flight uses them, and nothing is retrofitted.
 
@@ -130,6 +131,8 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 
 **Carried from the `D-PEC-101` act (for later packets).**
 - `_Decomposition/_LATEST.md` and `_ScopeChange/_LATEST.md` still describe SCA-006 Lane B as open (audit COV-077); `D-PEC-101` does not open them, and its run root's `HANDOFF_STATE.md` records the Lane B1/B2/B3/B7 closeout.
+- The owner-authorized Notes (a) replacement in PR #976 resolves re-audit COV-076 (the human-owned `_COORDINATION.md` line naming revision 1.5); the run root's `HANDOFF_STATE.md` residual 1 predates it and is kept as a point-in-time record.
+- The act's verifier observed that the `D-PEC-101` ruling's Grant paragraph under-lists the changes between `aca930622` and `f392294b5` (`docs/STATUS.md`, the decision records and register, three `tools/` files). No target, basis file or bound tool is among them; the ruling is not edited, and this entry is the disposition.
 - The re-audit keeps at INFO that revision 1.6 still says PEC's registry row declares `remaining-loop` (removed by `D-PEC-96`); the COV-083 correction for a later scope change covers it.
 
 **Carried from SCA-006 checkpoint-1 preparation (settled at R2: see K1–K3, R4 and I1).**
@@ -147,8 +150,8 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
   - Review and merge PR #976 (the `D-PEC-101` act, with the Notes (a) replacement and these records); then receive, review and merge the S2 act (`D-PEC-100`).
   - Prepare the S1, S4, D1 and K2 packets (K2 after K1 merges); S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on.
   - Carry to a later packet: the DEL-02-08/09 contract-wording items below.
-- **Local or unmerged work:** PR #976 (this record); the S2 act, in progress on branch `claude/pec-d100-act`.
-- **Active operations and ownership:** the S2 act manager (brief `briefs/S2A_D100_SOW_ACT.md`, committed with its PR). Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P and K14A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
+- **Local or unmerged work:** PR #976 (this record) and PR #979 (the S2 act).
+- **Active operations and ownership:** none running. The S2 act is published as PR #979 (brief `briefs/S2A_D100_SOW_ACT.md` and return committed with it). Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P and K14A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
 
@@ -204,3 +207,4 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
   - `D-PEC-101` ruling PR: the `docs/STATUS.md` open list records the ruling.
   - `D-PEC-100` ruling PR: the `docs/STATUS.md` open list records the ruling.
   - `D-PEC-101` act PR (#976), HELP_HUMAN commits: the owner-authorized Notes (a) replacement in `_COORDINATION.md`; `docs/STATUS.md` census (68 deliverables: 30 `OPEN` / 28 `INITIALIZED`) and Lane B paragraph; `README.md` census.
+  - `D-PEC-101` act PR review-01 repair: `docs/STATUS.md` D-PEC-95 and SCA-006 paragraphs put in past tense where D-PEC-101 superseded them.

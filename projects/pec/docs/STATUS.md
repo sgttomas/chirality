@@ -234,11 +234,11 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   - `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
     `_COORDINATION.md` were brought to the post-setup state (since
     superseded: both pointers name revision 1.6 and SCA-006);
-  - all 66 contexts and 66 references name revision 1.5. Since the SCA-006
-    application, three contexts (DEL-04-03, DEL-08-01, DEL-08-03) also carry
-    the revision-1.6 successor clause;
-  - the 19 stale dependency evidence quotes are refreshed, so all 111 active
-    execution quotes are verbatim;
+  - all 66 contexts and 66 references then named revision 1.5 (since
+    re-pinned to revision 1.6 under `D-PEC-101`);
+  - the 19 stale dependency evidence quotes were refreshed, so all 111
+    active execution quotes were then verbatim (127 of 127 since
+    `D-PEC-101`);
   - TM-PEC-023 is closed `RESOLVED_BY_DECISION` and archived.
 
   No re-audit ran, by owner ruling. SCA-006's post-change audit
@@ -276,11 +276,11 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     ("approve hunk") and accepted checkpoint 3 on 2026-09-26
     (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`).
     SCA-006 is closed for scope change only: the pointers and the audit
-    pointer name revision 1.6, SCA-006 and its post-change audit. Its Lane B
-    items (the DEL-08-06 and DEL-10-13 folders, dependency work, SOW currency,
-    the DEL-00-03 SPEC premise, the tier-0 profile entry, the revision-1.6
-    re-pin and the API schema fields) and the correction of the stale
-    `remaining-loop` design text stay open, each under its own packet.
+    pointer name revision 1.6 and SCA-006. Its Lane B items (the DEL-08-06
+    and DEL-10-13 folders, dependency work, SOW currency, the DEL-00-03 SPEC
+    premise, the tier-0 profile entry, the revision-1.6 re-pin and the API
+    schema fields) and the correction of the stale `remaining-loop` design
+    text were left open, each under its own packet.
     The owner ruled `D-PEC-101` on 2026-09-26 for the folders, dependency
     work and re-pin (Lane B1, B2, B3, B7: K4 with add-on C, K1, and a
     re-audit). Its act created DEL-08-06 and DEL-10-13 (`OPEN`), added 22
