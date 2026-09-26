@@ -33,10 +33,11 @@ Defaults (only when not otherwise specified by the human):
   pinned criterion is the candidacy basis until the loop adopts §3.4; it never
   adds a deferral path.
 - **Frozen candidate.** While `CHECKING`, the deliverable's claim surfaces
-  (every file in the deliverable folder except the review, status, context and
-  dependency records: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md`, `_CONTEXT.md`,
-  `_DEPENDENCIES.md`, and `Dependencies.csv`) are
-  frozen at the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
+  (every file in the deliverable folder except the review, status, context,
+  dependency, memory and run records: `_REVIEW.md`, `Review_Findings.csv`,
+  `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `Dependencies.csv`,
+  `MEMORY.md` or legacy `_MEMORY.md`, and run-record folders such as
+  `_run_records/`) are frozen at the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
   `Review_Findings.csv`, and review snapshots, never to the frozen claim
   surfaces. Any correction requires the human-ruled reversal to `IN_PROGRESS`;
   `ISSUED` changes use the governed scope-change process only.
@@ -115,7 +116,8 @@ This is the single rule for how findings affect each transition.
   checklist and candidacy account are re-bound to the corrected candidate) or
   by a cited owning rescoping decision. Deferral is not an entry path.
 - **Closing a `CRITICAL` or `MAJOR` finding (entry and issuance alike).** A
-  `CRITICAL` finding closes only with `Status = RESOLVED`, or with
+  `CRITICAL` finding closes only with `Status = RESOLVED` by correction or
+  appended evidence (never by `ACCEPT_AS_IS`), or with
   `HumanDisposition = NOT_APPLICABLE`, or with `HumanDisposition = WITHDRAWN`
   (`Status = WITHDRAWN`). A `MAJOR` finding closes in the same ways or with
   `HumanDisposition = ACCEPT_AS_IS` (`Status = RESOLVED`) when the human rules
@@ -124,7 +126,8 @@ This is the single rule for how findings affect each transition.
   Every `CRITICAL` and `MAJOR` finding is closed under the rule above, where
   `RESOLVED` means resolved without changing the frozen claim surfaces (for
   example, by appended evidence). `MINOR` findings should be dispositioned; a
-  `MINOR` or `OBSERVATION` finding may be `DEFERRED` with documented human
+  `MINOR` or `OBSERVATION` finding that is a quality item, not unfinished
+  production work, may be `DEFERRED` with documented human
   rationale as a known limitation of the issued baseline, whose later
   treatment flows only through governed scope change.
 - **Unsuccessful check.** A `CRITICAL` or `MAJOR` finding that cannot close

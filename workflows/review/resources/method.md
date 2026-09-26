@@ -24,15 +24,17 @@ intended transition (or withdrawal of a current check).
      section or the entry snapshot) and confirm the deliverable's claim
      surfaces (contract, Frozen candidate) are unchanged since it, for example
      with `git diff --quiet {FROZEN_SHA} -- {deliverable_folder}` and
-     `:(exclude)` pathspecs for the review, status, context and dependency
-     records. A changed frozen surface means the candidate under review is not
+     `:(exclude)` pathspecs for the excluded records, paired with
+     `git status --porcelain -- {deliverable_folder}` so that untracked files
+     are seen too. A changed frozen surface means the candidate under review is not
      the frozen one: stop and present the reversal branch of Gate 5.
    - If no frozen SHA or declared checking basis is recorded (for example, a
      deliverable that entered `CHECKING` under an earlier override), stop and
      surface the missing basis. Offer the human two routes: a committed ruling
      that records the checking basis and the entry-commit SHA as the frozen
-     candidate, after which this review continues; or the reversal branch of
-     Gate 5.
+     candidate, and either cites the entry evidence it relied on or directs
+     the candidacy comparison to be run now at that SHA, after which this
+     review continues; or the reversal branch of Gate 5.
    - For a withdrawn check (state `CHECKING`, human withdraws): go directly to
      the reversal branch of Gate 5 after recording the stated reason.
    - If state is `ISSUED`: stop. Changes to an accepted baseline use the
