@@ -192,7 +192,7 @@ def test_navigation_core_is_fixed_and_display_names_are_bounded():
     placements = parse_navigation({"core": _core_navigation(), "specialist": [], "superseded": []})
     assert placements["create-workflow"] == {"category": "core", "tier": "primary", "order": 0}
     assert placements["project-setup"] == {"category": "core", "tier": "primary", "order": 1}
-    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": CORE.index("reconciliation"), "displayName": "Check project status"}
+    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": CORE.index("reconciliation"), "displayName": "Run corpus concordance program"}
 
 
 def test_workflow_purpose_metadata_reaches_descriptors(tmp_path):
