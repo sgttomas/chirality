@@ -44,7 +44,7 @@ This hunk implements its row "`AGENTS.md` Remaining correction".
 |---|---|
 | Replace exactly the paragraph at candidate L261–270, and no other line | The replaced span is candidate L261–270 (live preimage L241–250). Candidate L1–260 and L271–454 are byte-identical in the applied file, apart from the application-date slot at L6 (§4) |
 | State that PEC adds no new `## Remaining` sections or entries | Sentence 1 |
-| State that no PEC feed profile reads them, so the coordination plane does not scan them | Sentence 2. Checked against the live tree: no `projects/pec/v2/**` file names a `remaining-loop` or `remaining-items` profile, and PRD v2.4 §7.1 (Package / Deliverable row) makes remaining items a per-loop optional field read only where a loop's feed profile declares it |
+| State that no PEC feed profile reads them, so the coordination plane does not scan them | Sentence 2. Checked against the live tree: no `projects/pec/v2/**` file names a `remaining-loop` or `remaining-items` profile, and PRD v2.4 §7.1 (Package / Deliverable row) makes remaining items a per-loop optional field read only where a loop's feed profile declares it. **Conflicting design text in the same poststate:** revision 1.6 keeps, unchanged from 1.5, the statement that PEC's own `pec` row "declares the `remaining-loop` profile now". It appears in `SOFTWARE_DECOMP.md` L259 (SOW-094), `ScopeLedger.csv` L72 (SOW-094), `Deliverables.csv` L10 (DEL-01-06) and `SOFTWARE_DECOMP.md` L652 (§9 "feed profile" examples); audit finding COV-083 in `COV_SCA006_POSTCHANGE_2026-09-26_0051` records it. Under SCA-005 (Q8 (a)) `remaining-loop` is the profile that would read these sections. `D-PEC-96` has since been ruled (2026-09-26, `_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md`, SHA-256 `852057f0…399e`, on `origin/main` through PR #946): PEC's row is migrated and carries no `remaining-loop` profile. That ruling leaves the decomposition sentences to a later PEC scope change, which SCA-006 cannot perform without enlarging its accepted amendment (`RUN_SUMMARY.md` Q-CP3-1). HELP_HUMAN presented this observation to the owner before the hunk was approved |
 | New open scope goes to the work graph and its governing records | Sentence 3 |
 | Keep the status quo for the existing sections until any retirement ruling: they stay in place | Sentence 4 |
 | Each item's gate markers still bind that item | Sentence 5, unchanged from the candidate |
@@ -143,7 +143,7 @@ Amendment 1 §"Verification rule": the applied file equals
 | Accepted candidate with the L6 slot filled | `6f6f2ed1c0ed6e009323beaa004a79b72b717b4cd9431199eb2f9b990cf264e6` |
 | Applied postimage (slot filled plus this hunk) | `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c` |
 
-Proof, run by `CP3_EVIDENCE/apply_a4_agents.py` (Python 3.13.7):
+Proof, run by `CP3_EVIDENCE/apply_a4_agents.py` (Python 3.13.7). To rerun any `CP3_EVIDENCE` script elsewhere, set its `R` constant to the value of `git rev-parse --show-toplevel`:
 1. It asserts the preimage and candidate hashes.
 2. It fills the L6 slot, and asserts that L209 carries the act-date token.
 3. It asserts that the replaced span is exactly candidate L261–270, bounded by

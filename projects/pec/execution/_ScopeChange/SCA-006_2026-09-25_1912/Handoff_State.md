@@ -265,7 +265,7 @@ fences F-PEC-1..4 stay the accepted basis until then.
 | DEL-00-03 SPEC | owning workflow | `STALE_REVIEW_REQUIRED` | plan §B5 | B5 |
 | Tier-0 `pec.yaml` | tier-0 owner | `CURRENT` until a tool is declared | plan §B6 | B6 |
 | `v2/**` API schema | later D-PEC packet | `STALE_SOURCE_PACKET_REQUIRED` when built | plan §B8 | B8 |
-| `remaining-loop` design text (SOW-094, DEL-01-06, §9) | a later scope change | stale by owner direction | audit COV-083 | after `D-PEC-96` revision 4 is ruled |
+| `remaining-loop` design text (SOW-094, DEL-01-06, §9) | a later PEC scope change | stale by owner direction. `D-PEC-96` has since been ruled (2026-09-26, PR #946): PEC's row is migrated, and the ruling routes these sentences to graph node S2 and a later scope change. The approved `AGENTS.md` hunk contradicts them until then | audit COV-083; `RUN_SUMMARY.md` Q-CP3-1 | a later PEC scope change |
 | Pointers | HELP_HUMAN | unchanged | C1 | A6 on acceptance (and `_Evaluation/DecompCoverage/_LATEST.md` if Q-CP3-2 (a)) |
 
 ### Active derivative-surface state
@@ -286,14 +286,24 @@ KTY remediation and metadata-alignment summaries: not applicable (SOFTWARE varia
 2. Restore `status: current_basis` and the accepted `accepted:` line in `SOFTWARE_DECOMP.md`.
 3. If the acceptance date is later than 2026-09-26, substitute it at `date:` (L7), the §7 Revision row (L574) and the DL-21 date cell (L700), under `Amendment_Preview.md`'s slot rule. With 2026-09-26 the accepted file hashes `86de50c3b56812dec9537210c0202ec9efc98aac7b328a8736cac8a6c688ecb3`.
 4. If the owner answers Q-CP3-2 (a), move `_Evaluation/DecompCoverage/_LATEST.md` to `COV_SCA006_POSTCHANGE_2026-09-26_0051`.
-5. Rollback if checkpoint 3 is returned: the plan's §"Failure and rollback". Include the three A2 provenance lines (audit COV-079) and the instruction-tranche revert.
+5. Rollback if checkpoint 3 is returned: the plan's §"Failure and rollback". Also include the three A2 provenance lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079) and the instruction-tranche revert. The notices' present-tense "revision 1.6 adds …" wording needs a withdrawal notice.
 
 ### Remaining blockers and human decisions
 
 - The owner's checkpoint-3 decision (Q-CP3-A, Q-CP3-1, Q-CP3-2).
 - HELP_HUMAN's notice review and its `docs/STATUS.md` correction under `D-PEC-88`, before merge.
-- A known Root consequence outside SCA-006: `origin/main` moved to `6281273fa` after the basis. It merged `D-GOV-48`, whose updated `validate_decomposition_registers.py` reports 26 XRG-013 warnings for PEC's OUT/TBD ledger items without a PackageID. Those items are unchanged by SCA-006 (the same 26 exist at revision 1.5). PEC's `D-GOV-48` notice is for HELP_HUMAN.
+- A known Root consequence outside SCA-006: the branch merged `origin/main` `f90320c1d`, which carries Root `D-GOV-48` (PR #942). Its updated `validate_decomposition_registers.py` reports 26 XRG-013 warnings for PEC's OUT/TBD ledger items without a PackageID. They are the same 26 IDs as at revision 1.5, SCA-006's four new items are IN with packages, and the owner defers action (`NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md`). PEC's registers are not edited.
 
 ### Next owning workflows
 
 The owner (checkpoint 3), then HELP_HUMAN (A6), then the Lane B owners under their own packets.
+
+### Lane C results and snapshot hashes (final rerun at the merged head)
+
+- **C1:** `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after the `f90320c1d` merge), exit 0. 43 changed paths, all allowed; 34 hash checks pass; no deletion.
+- **C2:** 0 ERROR; 2 DRB-008 (planned); 26 XRG-013 (pre-existing, `D-GOV-48`). Closure: 111 edges, 0 SCCs.
+- **C3:** 31/31 PASS (`CP3_EVIDENCE/c3_result.json`).
+- **C4:** `COV_SCA006_POSTCHANGE_2026-09-26_0051`, `WARNINGS` (0 BLOCKER).
+- **C4.3:** PASS WITH MINOR, 0 BLOCKING (`CP3_EVIDENCE/C4_3_REVIEW.md`, with dispositions).
+- **C5:** `CP3_EVIDENCE/c5_completeness.py`, exit 0. The hashes of this folder's files are in the final return `returns/B6_SCA006_CHECKPOINT3.md`, because this file and `Decision_Log.md` cannot quote their own final hashes.
+- **Independent verification:** fresh `pec-reviewer` verdicts in `returns/B6_VERIFIER_VERDICT_NN.md`.

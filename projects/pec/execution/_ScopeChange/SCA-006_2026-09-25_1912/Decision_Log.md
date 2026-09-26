@@ -151,3 +151,28 @@ K-AUTH-1: HELP_HUMAN relayed the act to WORKING_ITEMS (brief B6), which wrote
 this section at HELP_HUMAN's direction. This satisfies amendment 1's
 pre-merge approval gate for the hunk. It accepts nothing else: checkpoint 3
 remains the owner's.
+
+## SCA006-CP3 — package prepared (not a decision)
+
+Prepared 2026-09-26 by WORKING_ITEMS under brief B6 (`8bdc7181…2df4`, work-graph
+node R3), on the pinned scope-change edition. No owner decision on checkpoint 3
+is recorded here: Q-CP3-A, Q-CP3-1 and Q-CP3-2 (`RUN_SUMMARY.md` §9) are
+`AWAITING_OWNER`, and the recommendations are the manager's, not rulings. The
+live poststate is applied as a candidate. Both `_LATEST.md` pointers are
+unchanged, and no `_STATUS.md` or lifecycle changed. Hashes at preparation:
+
+| Artifact | SHA-256 |
+|---|---|
+| `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` (pre-acceptance form) | `3ef0412a99812885e247bc4e9726fe005ce3446372f609c47274b6ad25b29b59` |
+| `ScopeLedger.csv` / `Deliverables.csv` / `ContextBudgetQA.csv` / `Companion_Inventory.csv` | `1d24a4b8…e916e` / `94ee5d18…9805` / `93b0bb07…7c7c` / `1597ceec…8662` |
+| `projects/pec/docs/PRD.md` (v2.4) | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
+| `projects/pec/AGENTS.md` (hunk approved) | `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c` |
+| tranche manifest `PEC-SCA006-OPERATIONAL-RELIANCE-20260926.yaml` | `2b29af181947ba0ed75cd83a286c56a2863802d1d6a7e5b3ca9ab82330cdee74` |
+| `RUN_SUMMARY.md` (question set §9) | `992d86d366f35493bb13b2402b6d6543acd9d76464b0eda8f2e02b811f03eacf` |
+| `AGENTS_MD_AMENDMENT1_DIFF.md` | `0202158bb6d3232c3ccf411672e6f95e32bef8d15f272e96b8323087a40ac111` |
+| `Supersession_Map.csv` / `Post_Change_Coverage.json` | `010ce5c4…ab92` / `b9a068c0…09cf0` |
+| C4.3 review `CP3_EVIDENCE/C4_3_REVIEW.md` | `3caacea4d805a576fec0c00e6747cd5442e15a77dc51836bdbd42200c86a402d` |
+| audit `COV_SCA006_POSTCHANGE_2026-09-26_0051/RUN_SUMMARY.md` | `f97bde4e087d8da764d98f582c3f54c852bae332e1e0d2695ab5899adedd6499` |
+
+Independent verification: `B6_VERIFIER_VERDICT_NN.md` in
+`execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/`.

@@ -140,24 +140,24 @@ App and Piping did, is a separate owner-directed undertaking.
 - the DEL-01-06 Description;
 - the §9 "feed profile" examples.
 
-The hunk's sentence "No PEC feed profile reads them" is true of the code: `projects/pec/v2/config/loops.json` declares no feed profiles, and no `v2/**` file names `remaining-loop`. It is also the owner's direction. It differs, however, from that accepted design text. The design text would be corrected after `D-PEC-96` revision 4 is ruled, by a later scope change. SCA-006 cannot correct it without enlarging its accepted amendment. See Q-CP3-1.
+The hunk's sentence "No PEC feed profile reads them" is true of the code: `projects/pec/v2/config/loops.json` declares no feed profiles, and no `v2/**` file names `remaining-loop`. It is also the owner's direction. It differs, however, from that design text. Since the audit ran, `D-PEC-96` has been ruled (2026-09-26, "D-PEC-96: A; migrated; confirm; reject v1; create MEMORY; defaults"; `_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md`, SHA-256 `852057f0…399e`, on `origin/main` through PR #946). PEC's row is migrated, with no `remaining-loop` profile. That ruling changes no decomposition text and leaves the "declares `remaining-loop` now" sentences to graph node S2 (the DEL-01-06 rebuild) and to a later PEC scope change. SCA-006 cannot correct them without enlarging its accepted amendment. The audit output, which says the basis change "still needs its ruling", is not edited. See Q-CP3-1. HELP_HUMAN presented this observation to the owner before the hunk was approved.
 
 ## 4. Validation (Lane C)
 
 | Check | Command (cwd = worktree root; `python3` 3.13.7) | Exit | Result |
 |---|---|---:|---|
-| C1 containment | `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status 94e9255b6 HEAD` | 0 | recorded in `Handoff_State.md` §"Checkpoint-3 preparation" (final rerun) |
-| C2 registers | `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict` | 1 (by design of `--strict`) | 0 ERROR; exactly 2 WARNING DRB-008 (DEL-08-06, DEL-10-13), as planned |
-| C2 closure | `python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir <scratch>` | 0 | 111 edges, 66 nodes, 0 SCCs, 0 bidirectional pairs; unchanged |
+| C1 containment | `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after merging `origin/main` `f90320c1d`, so the diff is this PR's own changes) | 0 | 43 changed paths, all inside the Lane A allowlist or B6 returns; 34 hash checks pass (14 planned postimages, the manifest at `2b29af18…`; 18 frozen checkpoint-1/2 artifacts; both `_LATEST.md` unchanged); no deletion |
+| C2 registers | `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict` | 1 (by design of `--strict`) | **At the basis `94e9255b6`:** 0 ERROR, exactly 2 WARNING DRB-008 (DEL-08-06, DEL-10-13), as planned. **At the merged head (validator `869df1d5…` after Root `D-GOV-48`, PR #942):** 0 ERROR, 2 DRB-008 as above, plus 26 WARNING XRG-013 (OUT/TBD ledger items without a PackageID). The 26 are pre-existing: they are exactly the revision-1.5 OUT/TBD items without a PackageID (same 26 IDs), and SCA-006 does not cause them. SOW-097..100 are IN, with packages PKG-04/08/08/10, so they add no XRG finding. Per PEC's `NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md`, the owner defers action and PEC's registers are not edited |
+| C2 closure | `python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir <scratch>` (basis and merged head) | 0 | 111 edges, 66 nodes, 0 SCCs, 0 bidirectional pairs; unchanged |
 | C3 assertions | `python3 CP3_EVIDENCE/c3_assert.py <preimage dir>` (the preimages are `git show 94e9255b6:<path>`) | 0 | 31/31 PASS (see below) |
 | C4 audit | TASK `audit-decomp` (current edition), output `../../_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/` | — | `WARNINGS` / closure readiness `WARN`: 0 BLOCKER, 3 WARNING, 71 INFO, 12 EXPECTED_CONSEQUENCE |
-| C4.3 separate review | fresh `pec-reviewer`, authored nothing | — | `CP3_EVIDENCE/C4_3_REVIEW.md` |
-| C5 completeness | see `Handoff_State.md` | — | recorded there |
+| C4.3 separate review | fresh `pec-reviewer`, authored nothing; reviewed `c5efad489` | — | **PASS WITH MINOR**, 0 BLOCKING (2 MINOR, 7 NOTE). Saved verbatim with the manager's dispositions in `CP3_EVIDENCE/C4_3_REVIEW.md` |
+| C5 completeness | `python3 CP3_EVIDENCE/c5_completeness.py` | 0 | every §C5 artifact present with its hash; all seven state fields in this file and in the `Handoff_State.md` checkpoint-3 section (hashes in `Handoff_State.md`) |
 | A4 entrypoints | `python3 tools/validation/validate_instruction_entrypoints.py .` | 0 | PASS |
-| A4 G4, CI mode | `python3 tools/validation/validate_instruction_tranche_manifest.py` | 0 | PASS, 124 manifests; INFO over-declaration for `projects/pec/AGENTS.md` and the notices (as the `D-PEC-94` precedent) |
-| A4 G4, diff mode | `… --base origin/main --head HEAD --added-manifests-only` | 0 | PASS: 1 instruction-surface path covered by 1 added manifest |
+| A4 G4, CI mode | `python3 tools/validation/validate_instruction_tranche_manifest.py` (rerun on the merged head with the final manifest) | 0 | PASS, 126 manifests; INFO over-declaration for `projects/pec/AGENTS.md` and the notices (as the `D-PEC-94` precedent) |
+| A4 G4, diff mode | `… --base origin/main --head HEAD --added-manifests-only` (merged head; also at the basis with `--base 94e9255b6`) | 0 | PASS: 43 changed paths, 1 on the instruction surface, covered by 1 added manifest |
 | A4 receipts | `PYTHONDONTWRITEBYTECODE=1 python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` | 0 | VALID; the closed ledger is unchanged |
-| A4 whitespace | `git diff --check origin/main HEAD` | 0 | clean |
+| A4 whitespace | `git diff --check origin/main HEAD` | 2 | 46 trailing-whitespace reports, all in `Supersession_Map.csv`: the accumulator writes CRLF line endings, as SCA-005's map has. The map is generated and never hand-edited (plan §A5), and cosmetic whitespace is not a gate (`projects/pec/AGENTS.md`). With that file excluded, the check exits 0. The interim return's "clean" was measured before the map existed; it is superseded |
 | extra | `pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` | 0 | 33 passed |
 | extra | `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check` | 0 | no finding names a changed file |
 
@@ -201,6 +201,7 @@ The baseline is `COV_SCA005_POSTSETUP_2026-09-25_1606`. `Pre_Change_Coverage.jso
   - B2: COV-080 (no register traces SOW-097..100 yet);
   - A6/A1: COV-084 (pointers on 1.5 / SCA-005; pre-acceptance front matter);
   - A5/C5: COV-085 (the snapshot was mid-A5 while the audit ran).
+- **Reading notes on the audit.** The new audit reuses the IDs COV-068, COV-069, COV-072 and COV-073 for different findings. `PrePost_Comparison.md` maps them correctly; wherever this summary names those IDs, it means the baseline findings. The C4.3 reviewer argued that COV-083 could be WARNING rather than INFO, because the same poststate's `AGENTS.md` hunk contradicts that text. The audit output is not edited; the manager carries the point as Q-CP3-1.
 - **New INFO findings:**
   - COV-083: the `remaining-loop` design text (§3.2).
   - COV-001 and COV-002: the first run of the now-required `audit_structure.py`. The packages lack the SHOULD-level `0_References/`, `2_Checking/` and `3_Issued/` folders, and the tool roots `_Aggregation/`, `_Estimates/` and `_Sources/` are absent. Both conditions predate SCA-006.
@@ -219,7 +220,7 @@ Each item below needs its own owner-ruled packet. None is satisfied by Lane A.
 | B6 | tier-0 owner | a `pec.yaml` tool entry before any agent tool-call query tool is declared or invoked |
 | B7 | PROJECT_SETUP | re-pin 63 `_CONTEXT.md` and 66 `_REFERENCES.md` to revision 1.6 / PRD v2.4 |
 | B8 | later `D-PEC` source packet | additive `v2/contracts/api/v1/schema.json` fields when the deliverables are built |
-| COV-083 follow-up | a later scope change after `D-PEC-96` revision 4 is ruled | correct SOW-094, the DEL-01-06 Description and the §9 "feed profile" example for the `remaining-loop` direction |
+| COV-083 follow-up | a later PEC scope change (`D-PEC-96` now ruled: PEC's row migrated) | correct SOW-094, the DEL-01-06 Description and the §9 "feed profile" example for the `remaining-loop` direction |
 
 ## 7. State fields
 
@@ -236,7 +237,8 @@ Each item below needs its own owner-ruled packet. None is satisfied by Lane A.
 
 ## 8. Repository-change evidence
 
-- **PR:** https://github.com/sgttomas/chirality/pull/943, branch `claude/pec-sca006-cp3-execution`, from `origin/main` `94e9255b6`.
+- **PR:** https://github.com/sgttomas/chirality/pull/943, branch `claude/pec-sca006-cp3-execution`, cut from `origin/main` `94e9255b6`. It later merged `origin/main` `f90320c1d` (Root `D-GOV-48`, the `D-PEC-96` ruling, workflows wave 3), with no overlap with any SCA-006 path.
+- **Rerunning `CP3_EVIDENCE` scripts:** set each script's `R` constant to the value of `git rev-parse --show-toplevel` (they were written against this worktree's absolute path).
 - **Modified or added paths:** exactly those in §3, plus the audit folder and the B6 return files.
 - **The hunk-approval gate is satisfied** ("approve hunk", 2026-09-26; §3.2). Before merge, HELP_HUMAN still reviews the notices and adds its `docs/STATUS.md` correction under `D-PEC-88`. The ordinary merge conditions (required CI and independent review) still apply. Checkpoint 3 remains the owner's.
 - **Recommended commit message** (for the checkpoint-3 act):
@@ -265,13 +267,15 @@ On acceptance, HELP_HUMAN performs A6:
 - `_ScopeChange/_LATEST.md` names SCA-006.
 - The two front-matter lines return to their accepted values. If the acceptance date is later than 2026-09-26, the acceptance date is also substituted at the three decomposition date slots (§3.1).
 
+**Rollback if checkpoint 3 is returned.** Use the plan's §"Failure and rollback". Also name the provenance lines that anticipate acceptance: the three A2 `_CONTEXT.md` lines "then by revision 1.6 (`current_basis`, SCA-006 successor)" (audit COV-079), and the notices' present-tense "revision 1.6 adds …" wording. The notices would need a withdrawal notice, since they are foreign files.
+
 **Recommendation: accept.**
 
 Genuinely open choices besides Q-CP3-A:
 
 | # | Choice | Options | Recommendation |
 |---|---|---|---|
-| Q-CP3-1 | The `remaining-loop` design text in revision 1.6 (COV-083): SOW-094, the DEL-01-06 Description and the §9 example still say PEC's own row declares `remaining-loop` now. The owner's 2026-09-26 direction drops it, but `D-PEC-96` revision 4 is not yet ruled | (a) accept revision 1.6 as accepted at checkpoint 2, and record the correction as a follow-up for a later scope change once `D-PEC-96` revision 4 is ruled; (b) return SCA-006 to checkpoint 2 to add the correction, which enlarges the accepted amendment and needs a new group-2 act | **(a)**. The text changes no code: `v2/config/loops.json` declares no profile. SCA-006 may not enlarge its accepted amendment. The follow-up is recorded in §6 |
+| Q-CP3-1 | The `remaining-loop` design text in revision 1.6 (COV-083). SOW-094 (decomposition L259, `ScopeLedger.csv` L72), the DEL-01-06 Description (`Deliverables.csv` L10) and the §9 example (L652) still say PEC's own row declares `remaining-loop` now. This contradicts the approved `AGENTS.md` hunk and the `D-PEC-96` ruling of 2026-09-26 (PEC's row migrated) | (a) accept revision 1.6 as accepted at checkpoint 2, knowingly carrying this drift, and record the correction for a later PEC scope change (the `D-PEC-96` ruling already routes it there and to graph node S2); (b) return SCA-006 to checkpoint 2 to add the correction, which enlarges the accepted amendment and needs a new group-2 act | **(a)**. The text changes no code (`v2/config/loops.json` declares no `remaining-loop` profile). SCA-006 may not enlarge its accepted amendment. The follow-up is recorded in §6 and in `Handoff_State.md` |
 | Q-CP3-2 | The audit pointer `_Evaluation/DecompCoverage/_LATEST.md`, which names `COV_SCA005_POSTSETUP_2026-09-25_1606`. `D-PEC-97` opens the two A6 pointers but not this one | (a) name it in the checkpoint-3 acceptance, so that HELP_HUMAN moves it to `COV_SCA006_POSTCHANGE_2026-09-26_0051` with A6 (the audit has 0 BLOCKERs, which is the audit contract's condition); (b) leave it until a later packet | **(a)**. It keeps the audit pointer consistent with the accepted poststate at no extra cost |
 
 Nothing here asks about CHECKING, ISSUED or acceptance of any deliverable.
