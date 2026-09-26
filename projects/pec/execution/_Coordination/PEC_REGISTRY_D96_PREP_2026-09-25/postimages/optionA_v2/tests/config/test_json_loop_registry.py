@@ -15,6 +15,7 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
 sys.path.insert(0, str(SRC_ROOT))
 
 from pec_v2.adapters.config.loop_registry import (  # noqa: E402
+    FEED_PROFILE_SURFACES,
     FEED_PROFILE_VERSIONS,
     JsonLoopRegistry,
     LoopRegistryConfigError,
@@ -27,6 +28,7 @@ from pec_v2.core.ports.loop_registry import (  # noqa: E402
 
 
 PEC_LOOP_INIT = "projects/pec/loop/LOOP_INIT.md"
+PEC_AGENTS = "projects/pec/AGENTS.md"
 D_PEC_94 = (
     "projects/pec/execution/_Coordination/_DECISIONS/"
     "D-PEC-94_owner_direction_loop_migration_2026-09-25.md"
@@ -42,12 +44,9 @@ def valid_document() -> dict:
                 "loop_init_path": PEC_LOOP_INIT,
                 "feed_profiles": [
                     {"profile": "shared-dev-loop", "version": 1, "state": "live", "basis": D_PEC_94},
-                    {
-                        "profile": "loop-receipts-ledger",
-                        "version": 1,
-                        "state": "historical",
-                        "basis": "projects/pec/AGENTS.md",
-                    },
+                    {"profile": "remaining-items", "version": 1, "state": "live", "basis": PEC_AGENTS},
+                    {"profile": "loop-receipts-ledger", "version": 1, "state": "historical", "basis": PEC_AGENTS},
+                    {"profile": "agentruns-json", "version": 1, "state": "historical", "basis": D_PEC_94},
                 ],
             }
         ],
@@ -71,12 +70,9 @@ class JsonLoopRegistryTests(unittest.TestCase):
                     PEC_LOOP_INIT,
                     (
                         FeedProfile("shared-dev-loop", 1, FeedProfileState.LIVE, D_PEC_94),
-                        FeedProfile(
-                            "loop-receipts-ledger",
-                            1,
-                            FeedProfileState.HISTORICAL,
-                            "projects/pec/AGENTS.md",
-                        ),
+                        FeedProfile("remaining-items", 1, FeedProfileState.LIVE, PEC_AGENTS),
+                        FeedProfile("loop-receipts-ledger", 1, FeedProfileState.HISTORICAL, PEC_AGENTS),
+                        FeedProfile("agentruns-json", 1, FeedProfileState.HISTORICAL, D_PEC_94),
                     ),
                 ),
             ),
@@ -86,6 +82,7 @@ class JsonLoopRegistryTests(unittest.TestCase):
         schema = json.loads((CONFIG_ROOT / "loops.schema.json").read_text(encoding="utf-8"))
         document = json.loads((CONFIG_ROOT / "loops.json").read_text(encoding="utf-8"))
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        self.assertEqual(schema["$id"], "https://chirality.local/pec/v2/config/loops.schema.v2.json")
         self.assertEqual(schema["properties"]["schema_version"]["const"], 2)
         self.assertEqual(document["schema_version"], 2)
         self.assertEqual(len(document["loops"]), 1)
@@ -102,7 +99,11 @@ class JsonLoopRegistryTests(unittest.TestCase):
             self.assertTrue(entry["properties"][field]["description"])
         declared = {option["const"]: option["description"] for option in entry["properties"]["profile"]["oneOf"]}
         self.assertEqual(set(declared), set(FEED_PROFILE_VERSIONS))
-        self.assertTrue(all(declared.values()))
+        self.assertEqual(set(FEED_PROFILE_SURFACES), set(FEED_PROFILE_VERSIONS))
+        for profile, description in declared.items():
+            with self.subTest(profile=profile):
+                _, _, listed = description.rstrip(".").partition(" Surfaces: ")
+                self.assertEqual(set(listed.split(", ")), set(FEED_PROFILE_SURFACES[profile]))
         self.assertEqual({entry["properties"]["version"]["const"]}, set().union(*FEED_PROFILE_VERSIONS.values()))
         self.assertEqual(
             set(entry["properties"]["state"]["enum"]),
@@ -165,6 +166,12 @@ class JsonLoopRegistryTests(unittest.TestCase):
             "boolean version": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("version", True), f"{entry}.version", "supported integer version"),
             "string version": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("version", "1"), f"{entry}.version", "supported integer version"),
             "unknown state": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", "active"), f"{entry}.state", "expected live or historical"),
+            "state not a string": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", 1), f"{entry}.state", "expected live or historical"),
+            "profile null": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("profile", None), f"{entry}.profile", "closed feed-profile vocabulary"),
+            "ledger live and historical": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][2], profile="remaining-loop", state="live"), d["loops"][0]["feed_profiles"][2]]), f"{row}.feed_profiles[1].profile", "surface receipt-ledger is already covered by"),
+            "two live lifecycle readers": (lambda d: d["loops"][0].__setitem__("feed_profiles", [d["loops"][0]["feed_profiles"][0], dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop")]), f"{row}.feed_profiles[1].profile", "surface decision-registers is already covered by"),
+            "remaining read twice": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop"), d["loops"][0]["feed_profiles"][1]]), f"{row}.feed_profiles[1].profile", "surface status-remaining is already covered by"),
+            "no live profile": (lambda d: [entry.__setitem__("state", "historical") for entry in d["loops"][0]["feed_profiles"]], f"{row}.feed_profiles", "expected at least one live feed profile"),
             "empty basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", ""), f"{entry}.basis", "expected a non-empty string"),
             "absolute basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", "/etc/passwd"), f"{entry}.basis", "normalized repository-relative path"),
             "traversing basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", "projects/../x.md"), f"{entry}.basis", "normalized repository-relative path"),
@@ -179,6 +186,24 @@ class JsonLoopRegistryTests(unittest.TestCase):
                 text = str(raised.exception)
                 self.assertIn(f":{location}: ", text)
                 self.assertIn(message, text)
+
+    def test_failures_do_not_echo_document_values(self) -> None:
+        sentinel = "zzsentinelzz"
+        cases = {
+            "loop_id": lambda d: d["loops"][0].__setitem__("loop_id", sentinel.upper()),
+            "loop_init_path": lambda d: d["loops"][0].__setitem__("loop_init_path", f"/{sentinel}"),
+            "profile": lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("profile", sentinel),
+            "version": lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("version", sentinel),
+            "state": lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", sentinel),
+            "basis": lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", f"../{sentinel}"),
+        }
+        for name, mutate in cases.items():
+            with self.subTest(field=name):
+                document = copy.deepcopy(valid_document())
+                mutate(document)
+                with self.assertRaises(LoopRegistryConfigError) as raised:
+                    self.load(document)
+                self.assertNotIn(sentinel, str(raised.exception).lower())
 
     def test_additional_loops_need_entries_only(self) -> None:
         document = valid_document()

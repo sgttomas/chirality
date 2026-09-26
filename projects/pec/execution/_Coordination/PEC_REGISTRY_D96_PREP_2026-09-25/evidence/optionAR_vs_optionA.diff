@@ -1,6 +1,6 @@
---- protoA/projects/pec/v2/config/loops.json	2026-09-25 21:24:30
-+++ protoAR/projects/pec/v2/config/loops.json	2026-09-25 21:29:31
-@@ -3,16 +3,10 @@
+--- protoA/projects/pec/v2/config/loops.json	2026-09-25 22:16:04
++++ protoAR/projects/pec/v2/config/loops.json	2026-09-25 22:16:21
+@@ -3,28 +3,10 @@
      {
        "feed_profiles": [
          {
@@ -13,28 +13,41 @@
 -        },
 -        {
 -          "basis": "projects/pec/AGENTS.md",
+-          "profile": "remaining-items",
+-          "state": "live",
+-          "version": 1
+-        },
+-        {
+-          "basis": "projects/pec/AGENTS.md",
 -          "profile": "loop-receipts-ledger",
+-          "state": "historical",
+-          "version": 1
+-        },
+-        {
+-          "basis": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md",
+-          "profile": "agentruns-json",
 -          "state": "historical",
 -          "version": 1
          }
        ],
        "loop_id": "pec",
---- protoA/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 21:24:30
-+++ protoAR/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 21:29:31
-@@ -70,12 +70,12 @@
+--- protoA/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:16:04
++++ protoAR/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:16:21
+@@ -69,10 +69,13 @@
                      "pec",
                      PEC_LOOP_INIT,
                      (
 -                        FeedProfile("shared-dev-loop", 1, FeedProfileState.LIVE, D_PEC_94),
-                         FeedProfile(
--                            "loop-receipts-ledger",
+-                        FeedProfile("remaining-items", 1, FeedProfileState.LIVE, PEC_AGENTS),
+-                        FeedProfile("loop-receipts-ledger", 1, FeedProfileState.HISTORICAL, PEC_AGENTS),
+-                        FeedProfile("agentruns-json", 1, FeedProfileState.HISTORICAL, D_PEC_94),
++                        FeedProfile(
 +                            "remaining-loop",
-                             1,
--                            FeedProfileState.HISTORICAL,
--                            "projects/pec/AGENTS.md",
++                            1,
 +                            FeedProfileState.LIVE,
 +                            "projects/pec/execution/_Coordination/_DECISIONS/"
 +                            "D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md",
-                         ),
++                        ),
                      ),
                  ),
+             ),

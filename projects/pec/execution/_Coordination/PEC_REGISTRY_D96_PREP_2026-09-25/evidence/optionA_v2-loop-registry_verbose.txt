@@ -2,6 +2,7 @@ test_absent_file_is_rejected_explicitly (test_json_loop_registry.JsonLoopRegistr
 test_additional_loops_need_entries_only (test_json_loop_registry.JsonLoopRegistryTests.test_additional_loops_need_entries_only) ... ok
 test_checked_in_default_has_exactly_the_pec_loop (test_json_loop_registry.JsonLoopRegistryTests.test_checked_in_default_has_exactly_the_pec_loop) ... ok
 test_duplicate_loop_id_is_rejected_with_location (test_json_loop_registry.JsonLoopRegistryTests.test_duplicate_loop_id_is_rejected_with_location) ... ok
+test_failures_do_not_echo_document_values (test_json_loop_registry.JsonLoopRegistryTests.test_failures_do_not_echo_document_values) ... ok
 test_invalid_document_never_returns_partial_or_empty_set (test_json_loop_registry.JsonLoopRegistryTests.test_invalid_document_never_returns_partial_or_empty_set) ... ok
 test_invalid_feed_profiles_are_rejected_with_location (test_json_loop_registry.JsonLoopRegistryTests.test_invalid_feed_profiles_are_rejected_with_location) ... ok
 test_malformed_json_is_rejected_with_line_and_column (test_json_loop_registry.JsonLoopRegistryTests.test_malformed_json_is_rejected_with_line_and_column) ... ok
@@ -16,6 +17,6 @@ test_registered_loop_carries_the_typed_feed_profile_field (test_loop_registry_co
 test_registered_loop_is_immutable (test_loop_registry_contract.LoopRegistryContractTests.test_registered_loop_is_immutable) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.017s
+Ran 17 tests in 0.020s
 
 OK

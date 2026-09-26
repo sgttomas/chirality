@@ -64,6 +64,12 @@ MUTATIONS = {
     "M11 default declares remaining-loop": edit_json(DEFAULT, default_remaining),
     "M12 RegisteredLoop field order": replace(PORT, "    loop_init_path: str\n    feed_profiles: tuple[FeedProfile, ...]\n", "    feed_profiles: tuple[FeedProfile, ...]\n    loop_init_path: str\n"),
     "M13 allow traversing loop_init_path": replace(ADAPTER, 'if locator.is_absolute() or ".." in locator.parts or "\\\\" in value:', 'if locator.is_absolute() or "\\\\" in value:'),
+    "M14 drop surface-disjointness check": replace(ADAPTER, "                if surface in covered:\n", "                if False:\n"),
+    "M15 drop at-least-one-live rule": replace(ADAPTER, "        if not any(item.state is FeedProfileState.LIVE for item in profiles):\n", "        if False:\n"),
+    "M16 remaining-loop no longer claims the ledger": replace(ADAPTER, '            "receipt-ledger",\n            "status-lifecycle",\n            "status-remaining",\n', '            "status-lifecycle",\n            "status-remaining",\n'),
+    "M17 overlap allowed between live and historical only": replace(ADAPTER, "                if surface in covered:\n", "                if surface in covered and entry[\"state\"] == profiles[covered[surface]].state.value:\n"),
+    "M18 echo the invalid state value": replace(ADAPTER, 'self._fail(f"{entry_location}.state", "expected live or historical")', 'self._fail(f"{entry_location}.state", f"expected live or historical, got {state!r}")'),
+    "M19 default drops remaining-items": edit_json(DEFAULT, lambda d: d["loops"][0]["feed_profiles"].pop(1)),
 }
 
 

@@ -1,4 +1,4 @@
-Registered checks via tools/software_workflow/run_registered_checks.py (runner exit 0 for all 10 runs); Python 3.13.7
+Basis origin/main 56a626c3b5515fea790b0d40549e7729669b7dff; Python 3.13.7; registered checks via tools/software_workflow/run_registered_checks.py
 baseG	harness-self-check	status=PASS	exit=0	ran=-	verdict=-	core_tree=-	INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=124	stdout_sha256=e5f9ff706de84cc84e85961a9c4deb11691b4cac8cd8390bfef0412a0680d110
 baseG	v2-api-contract	status=PASS	exit=0	ran=6	verdict=-	core_tree=-		stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 baseG	v2-core-posture	status=PASS	exit=0	ran=-	verdict=PASS	core_tree=88f590c019eb67febfbb569a34ec688831edc7e867f251376ecebe3f7799c016		stdout_sha256=a5b6adf09e0184da99987dc91eccdd7ae5eccdf9c72132c70d209734b3ea38ec
@@ -7,17 +7,15 @@ baseG	v2-store-guard	status=PASS	exit=0	ran=13	verdict=-	core_tree=-		stdout_sha
 protoA	harness-self-check	status=PASS	exit=0	ran=-	verdict=-	core_tree=-	INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=124	stdout_sha256=e5f9ff706de84cc84e85961a9c4deb11691b4cac8cd8390bfef0412a0680d110
 protoA	v2-api-contract	status=PASS	exit=0	ran=6	verdict=-	core_tree=-		stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 protoA	v2-core-posture	status=PASS	exit=0	ran=-	verdict=PASS	core_tree=dd7e1ddaddb269525e45699158e31e5a9ce6d252dab27b14ce59c5b2ad9e6e5a		stdout_sha256=653fc89ad3c08896d909171e6694f4d024c451e85454b87178986afb0bf4adee
-protoA	v2-loop-registry	status=PASS	exit=0	ran=16	verdict=-	core_tree=-		stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+protoA	v2-loop-registry	status=PASS	exit=0	ran=17	verdict=-	core_tree=-		stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 protoA	v2-store-guard	status=PASS	exit=0	ran=13	verdict=-	core_tree=-		stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-
-Other checks (cwd projects/pec unless noted; PYTHONDONTWRITEBYTECODE=1)
-baseG	v2/tests/enforcement unittest	exit=0	Ran 28 tests in 0.079s	OK
-baseG	validate_pec_loop_receipts.py --repo-root . (cwd repo)	exit=0	VALID projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
-baseG	validate_decomposition_registers.py --strict projects/pec/execution (cwd repo)	exit=0	 ERROR findings: 0  WARNING findings: 0 
-protoA	v2/tests/enforcement unittest	exit=0	Ran 28 tests in 0.087s	OK
-protoA	validate_pec_loop_receipts.py --repo-root . (cwd repo)	exit=0	VALID projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
-protoA	validate_decomposition_registers.py --strict projects/pec/execution (cwd repo)	exit=0	 ERROR findings: 0  WARNING findings: 0 
-protoA	git diff --check	exit=0 (clean)
+baseG	v2/tests/enforcement	exit=0	Ran 28 tests	OK
+baseG	validate_pec_loop_receipts	exit=0	VALID projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
+baseG	validate_decomposition_registers --strict	exit=0	ERROR findings:   0 WARNING findings: 0
+protoA	v2/tests/enforcement	exit=0	Ran 28 tests	OK
+protoA	validate_pec_loop_receipts	exit=0	VALID projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
+protoA	validate_decomposition_registers --strict	exit=0	ERROR findings:   0 WARNING findings: 0
+protoA	git diff --check	exit=0
 protoA	non-ASCII bytes in the 11 postimages	0
-protoA	select_affected_checks.py over the 11 paths	harness-self-check, v2-api-contract, v2-core-posture, v2-loop-registry, v2-store-guard
-strict validator output byte-identical base vs protoA: yes; receipts output identical except the absolute path prefix
+strict output byte-identical base vs protoA; receipts identical modulo path prefix
+apply_d96.py: check-only exit 0 tree unchanged; A exit 0 (11 WRITE); rerun exit 1; drift exit 1 nothing written; A-R exit 0, registry Ran 17 OK

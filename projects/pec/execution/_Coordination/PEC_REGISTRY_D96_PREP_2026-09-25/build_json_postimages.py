@@ -26,7 +26,7 @@ PATH_RULE = (
 )
 
 SCHEMA = {
-    "$id": "https://chirality.local/pec/v2/config/loops.schema.json",
+    "$id": "https://chirality.local/pec/v2/config/loops.schema.v2.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": False,
     "description": (
@@ -43,8 +43,10 @@ SCHEMA = {
                     "feed_profiles": {
                         "description": (
                             "The feed profiles PEC applies to this loop: PEC's reading hypothesis, "
-                            "never the loop's truth. At least one entry; a profile identifier "
-                            "appears at most once per loop."
+                            "never the loop's truth. At least one entry and at least one live entry; "
+                            "a profile identifier appears at most once per loop, and the profiles "
+                            "on one loop cover pairwise-disjoint surfaces, so no surface is read "
+                            "under two grammars or declared both live and historical."
                         ),
                         "items": {
                             "additionalProperties": False,
@@ -60,27 +62,44 @@ SCHEMA = {
                                 },
                                 "profile": {
                                     "description": (
-                                        "Identifier from PEC's closed feed-profile vocabulary. Path "
-                                        "conventions and grammars for each profile live in PEC's adapters."
+                                        "Identifier from PEC's closed feed-profile vocabulary. Each option "
+                                        "ends with the surfaces it covers. Path conventions and grammars "
+                                        "for each profile live in PEC's adapters."
                                     ),
                                     "oneOf": [
                                         {
                                             "const": "agentruns-json",
                                             "description": (
-                                                "JSON run evidence under execution/_Coordination/AgentRuns/ "
-                                                "(WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json)."
+                                                "JSON run evidence anywhere under the loop's execution/ tree "
+                                                "(WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json), including "
+                                                "AgentRuns/ and deliverable _run_records/; the identifier keeps "
+                                                "its SCA-005 name. Surfaces: json-run-evidence."
                                             ),
                                         },
                                         {
                                             "const": "loop-receipts-ledger",
-                                            "description": "The loop's loop/LOOP_RECEIPTS.md receipt ledger, under that loop's grammar.",
+                                            "description": (
+                                                "The loop's loop/LOOP_RECEIPTS.md receipt ledger, under that "
+                                                "loop's grammar. Surfaces: receipt-ledger."
+                                            ),
+                                        },
+                                        {
+                                            "const": "remaining-items",
+                                            "description": (
+                                                "The '## Remaining' sections of the loop's _STATUS.md files, read "
+                                                "as deliverable-local records of open scope with their gate "
+                                                "markers, never as a work-selection signal. Surfaces: "
+                                                "status-remaining."
+                                            ),
                                         },
                                         {
                                             "const": "remaining-loop",
                                             "description": (
                                                 "Loops that select work from _STATUS.md '## Remaining' items: "
                                                 "lifecycle with those items, the loop/LOOP_RECEIPTS.md ledger as "
-                                                "the receipt feed, dependency registers and decision registers."
+                                                "the receipt feed, dependency registers and decision registers. "
+                                                "Surfaces: decision-registers, dependency-registers, "
+                                                "receipt-ledger, status-lifecycle, status-remaining."
                                             ),
                                         },
                                         {
@@ -90,7 +109,9 @@ SCHEMA = {
                                                 "(execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md), "
                                                 "central receipts (execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md), "
                                                 "the deliverable MEMORY.md run index, _STATUS.md lifecycle, "
-                                                "dependency registers and decision registers."
+                                                "dependency registers and decision registers. Surfaces: "
+                                                "central-receipts, decision-registers, dependency-registers, "
+                                                "memory-run-index, status-lifecycle, work-graphs."
                                             ),
                                         },
                                     ],
@@ -150,7 +171,9 @@ def default_document(pec_row: str) -> dict:
     if pec_row == "migrated":
         profiles = [
             {"basis": D94, "profile": "shared-dev-loop", "state": "live", "version": 1},
+            {"basis": PEC_AGENTS, "profile": "remaining-items", "state": "live", "version": 1},
             {"basis": PEC_AGENTS, "profile": "loop-receipts-ledger", "state": "historical", "version": 1},
+            {"basis": D94, "profile": "agentruns-json", "state": "historical", "version": 1},
         ]
     elif pec_row == "remaining":
         profiles = [

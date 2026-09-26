@@ -19,8 +19,37 @@ _SCHEMA_VERSION = 2
 FEED_PROFILE_VERSIONS: dict[str, frozenset[int]] = {
     "agentruns-json": frozenset({1}),
     "loop-receipts-ledger": frozenset({1}),
+    "remaining-items": frozenset({1}),
     "remaining-loop": frozenset({1}),
     "shared-dev-loop": frozenset({1}),
+}
+
+# The file-truth surfaces each profile reads. The profiles declared on one
+# loop must cover pairwise-disjoint surfaces, so no surface is read under two
+# grammars or declared both live and historical.
+FEED_PROFILE_SURFACES: dict[str, frozenset[str]] = {
+    "agentruns-json": frozenset({"json-run-evidence"}),
+    "loop-receipts-ledger": frozenset({"receipt-ledger"}),
+    "remaining-items": frozenset({"status-remaining"}),
+    "remaining-loop": frozenset(
+        {
+            "decision-registers",
+            "dependency-registers",
+            "receipt-ledger",
+            "status-lifecycle",
+            "status-remaining",
+        }
+    ),
+    "shared-dev-loop": frozenset(
+        {
+            "central-receipts",
+            "decision-registers",
+            "dependency-registers",
+            "memory-run-index",
+            "status-lifecycle",
+            "work-graphs",
+        }
+    ),
 }
 
 
@@ -123,6 +152,7 @@ class JsonLoopRegistry:
 
         profiles: list[FeedProfile] = []
         seen: dict[str, int] = {}
+        covered: dict[str, int] = {}
         for index, entry in enumerate(value):
             entry_location = f"{location}[{index}]"
             if not isinstance(entry, dict):
@@ -158,6 +188,16 @@ class JsonLoopRegistry:
 
             basis = self._repository_path(entry["basis"], f"{entry_location}.basis")
 
+            for surface in sorted(FEED_PROFILE_SURFACES[profile]):
+                if surface in covered:
+                    self._fail(
+                        f"{entry_location}.profile",
+                        f"surface {surface} is already covered by "
+                        f"{location}[{covered[surface]}].profile",
+                    )
+            for surface in FEED_PROFILE_SURFACES[profile]:
+                covered[surface] = index
+
             seen[profile] = index
             profiles.append(
                 FeedProfile(
@@ -168,6 +208,8 @@ class JsonLoopRegistry:
                 )
             )
 
+        if not any(item.state is FeedProfileState.LIVE for item in profiles):
+            self._fail(location, "expected at least one live feed profile")
         return tuple(profiles)
 
     def _repository_path(self, value: Any, location: str) -> str:
