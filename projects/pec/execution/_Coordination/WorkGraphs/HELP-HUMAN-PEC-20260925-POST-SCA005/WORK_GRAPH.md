@@ -79,7 +79,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 **Order.**
 - Done: U1 (with N1–N3 and T1), R1–R4, G1, I1 and RS1 (the owner opened the retirement undertaking; its packet `D-PEC-99` is ruled).
 - Done since the rulings: the retirement act (`D-PEC-99`), merged as PR #957 (`22502e059`), and the S3 act (`D-PEC-98`), merged as PR #958 (`aca930622`). Add-on M (the DEL-02-08/09 `MEMORY.md` files) is written at M1.
-- Ready after the ruling PR merges: the `D-PEC-101` act (K1 then K4, with add-on V).
+- Ready after the ruling PR merges: the `D-PEC-101` act (K1 then K4, with add-on V). In the act's PR, after its verifier passes K1, HELP_HUMAN applies the owner-authorized Notes (a) replacement of the human-owned `_COORDINATION.md` line.
 - In preparation: the S2 packet (`D-PEC-100`, reserved).
 - Ready now: packet preparation for S1, S4 and D1. The S1, S2 and S4 packets absorb the `D-PEC-99` exhibit Part B carry-forwards named in their rows.
 - K2 after K1; K3 after K2.
