@@ -119,6 +119,14 @@ Notes on the returns:
     `software-bounded-implementation` and the `preparation` workflow). The
     investigation revision stays `2b0572fe0`; the change matters to Q-11,
     since the User Manual moves with the Root workflow library.
+13. The owner asked whether an agent on another machine (where oMLX runs)
+    could run experiments from a brief; HELPS_HUMANS prepared the HX-01 brief.
+    The owner then declined the tests (D-16) and made code maintainability the
+    governing concern; the brief was marked withdrawn, never launched.
+14. Verified the Agent Client Protocol's session, permission and MCP
+    provisions from its documentation, and the adapters' and SDKs' licences,
+    features and activity from their repositories (read-only), then wrote
+    [`MAINTAINABILITY_ANALYSIS.md`](MAINTAINABILITY_ANALYSIS.md).
 
 ## Current position
 
@@ -132,7 +140,7 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Item | Owner | Condition |
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
-| Harness experiments HX-01 (X1–X4) on the owner's oMLX machine | Owner launches an agent there with [`HX-01_BRIEF.md`](../execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/experiments/HX-01_BRIEF.md); evidence returns on branch `claude/v4-hx01-evidence`; HELPS_HUMANS examines it | Stage E3 |
+| Owner's view of the maintainability principles and the two-seam direction (ACP to the agent, MCP to the host) | Owner | [`MAINTAINABILITY_ANALYSIS.md`](MAINTAINABILITY_ANALYSIS.md) §8 |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |

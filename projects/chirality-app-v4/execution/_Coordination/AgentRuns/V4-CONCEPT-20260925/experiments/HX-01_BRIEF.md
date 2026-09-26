@@ -1,3 +1,9 @@
+> **WITHDRAWN — not to be launched.** The owner declined these tests on
+> 2026-09-26 (D-16, `OWNER_MESSAGES.md` M-02). The brief was never run. It is
+> kept as the record of what was proposed; the text below is unchanged from
+> commit `d7c7d2c5a` (SHA-256 of that version
+> `620b83af28d4fc2a91d8402ca9e15488b36ee6b7132f665365f8d729a6042c0b`).
+
 # HX-01 — Harness experiments with a local model server (brief)
 
 Standing: **brief for an executing agent on another machine.** Written by

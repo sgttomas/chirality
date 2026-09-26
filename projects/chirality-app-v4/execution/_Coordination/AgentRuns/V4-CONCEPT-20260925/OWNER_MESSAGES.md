@@ -1,0 +1,23 @@
+# Owner's later messages (verbatim)
+
+Messages from the owner in the session after the answers of 2026-09-25,
+reproduced exactly, in order. Each is quoted between rules.
+
+## M-01 — reply to the harness-experiments proposal
+
+---
+
+oMLX is on my other machine.  I'd need to have you give instructions to another agent and then that agent leaves evidence you can accept.  Would that be okay?
+
+---
+
+HELPS_HUMANS replied yes and prepared `experiments/HX-01_BRIEF.md`
+(commit `d7c7d2c5a`). The brief was never launched.
+
+## M-02 — direction on tests and maintainability
+
+---
+
+But I don't really want to run those tests.  I think you can do more intellectual analysis before we need to get practical, because I don't know what I really expect to learn from those tests.  I know all those configurations work, but I won't know to what extent they work in all the ways that I want and anyways code maintainability is top of my concerns and none of that has to do with ability.  The best ability is maintainability.
+
+---
