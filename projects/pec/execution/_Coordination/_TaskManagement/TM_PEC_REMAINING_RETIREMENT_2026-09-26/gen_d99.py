@@ -4,7 +4,7 @@
 Stdlib only; prepared with CPython 3.13.7. Run from any directory:
 
   PYTHONDONTWRITEBYTECODE=1 python3 gen_d99.py --repo <REPO_ROOT> --act-date YYYY-MM-DD \
-      --ruling-date YYYY-MM-DD [--decision D-PEC-NN] [--q1 s1|decline] \
+      --ruling-date YYYY-MM-DD [--decision D-PEC-NN] [--q1 s1|park|decline] \
       [--check-only] [--reproduction] [--render-to DIR]
 
 Before any write it checks: the pinned census and decision account; every pinned preimage
@@ -19,13 +19,15 @@ instead of the repository.
 
 Slots: --act-date {D}, --ruling-date {R}, --decision {N} (default D-PEC-99; the final number is
 fixed at publication with its register row) and --q1 (the owner's answer to question 1 on
-DEL-03-06-REM-004; default s1 = the recommended option). No other byte varies.
+DEL-03-06-REM-004: s1 = carry-forward for S1, recommended and default; park = exhibit Part A,
+unselected; decline = closed by the ruling). The exhibit folder name carries the fixed preparation
+date 2026-09-26, not a slot. No other byte varies.
 """
 import argparse, csv, datetime, hashlib, io, os, re, sys
 
 # ---------------------------------------------------------------- pinned block
 PINS = {'basis': {'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/REMAINING_CENSUS.csv': 'b0e25361b4955b1a2689fa729b9727a2caa0efe8d3770cb0fd006af4ab445eb4',
-           'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/SEMANTIC_DECISION_ACCOUNT.csv': 'cc7ccca20972d571365ed0485b8b4ac7a60642e967dc443734d34c4c4ccfdcf8'},
+           'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/SEMANTIC_DECISION_ACCOUNT.csv': 'b240b38d940448a66b37752a1f2509ea4c6783f388c0a8d6cb0d3d21a465f7e2'},
  'status': {'projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md': '90412b8561835d76d697054cd30049760ff95a686dbc175c4e1fd216c6eb0d84',
             'projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md': '37d11e4937651bfb29108db79031b2b73902f40a06d0b928ccc5340941843eb3',
             'projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md': '8f0e880702d0fd09595d2f41cd70031645254847c604dae85633d7387f5f66db',
@@ -110,11 +112,13 @@ PINS = {'basis': {'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_R
                           'into the exhibit of `{N}`: the unselected `D-PEC-83` E evidence\n'
                           'inquiries stay there until steering selects one, and each Scope of Work\n'
                           'carry-forward is absorbed by the currency packet the exhibit names. A moved\n'
-                          "item's gate markers still bind it at its destination. Add no `## Remaining`\n"
-                          'section or entry. No PEC feed profile reads such sections, so the\n'
-                          'coordination plane does not scan them, and they are not a work-selection\n'
-                          'surface. Steering selects the undertaking; record new open scope in its work\n'
-                          'graph and governing records.\n')],
+                          "item's gate markers still bind it at its destination. When selected work\n"
+                          'completes or changes an exhibit item, record that in the selecting graph and\n'
+                          'its central receipt; the exhibit is not edited. Add no `## Remaining` section\n'
+                          'or entry. No PEC feed profile reads such sections, so the coordination plane\n'
+                          'does not scan them, and they are not a work-selection surface. Steering\n'
+                          'selects the undertaking; record new open scope in its work graph and\n'
+                          'governing records.\n')],
  'exhibit_path': 'projects/pec/execution/_Coordination/_DECISIONS/{N}_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md',
  'new_files': {'docs/governance_harness/tranche_manifests/PEC-REMAINING-RETIREMENT-{DC}.yaml': 'schema: '
                                                                                                'instruction-tranche-manifest/v1\n'
@@ -391,15 +395,19 @@ PINS = {'basis': {'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_R
                                                                                  'accounted for in a finite '
                                                                                  'account at\n'
                                                                                  '`projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`\n'
-                                                                                 'and now lives in its '
-                                                                                 'governing Scope of Work or '
-                                                                                 "in `{N}`'s decision-owned\n"
-                                                                                 'exhibit, from which a '
-                                                                                 'named currency packet '
-                                                                                 'carries it into its Scope '
-                                                                                 'of\n'
-                                                                                 'Work, or it was closed on '
-                                                                                 'its record. '
+                                                                                 'and was either closed on '
+                                                                                 'its record or moved '
+                                                                                 'verbatim, with its gate, '
+                                                                                 'into\n'
+                                                                                 "`{N}`'s decision-owned "
+                                                                                 'exhibit. Evidence '
+                                                                                 'inquiries stay there '
+                                                                                 'unselected;\n'
+                                                                                 'Scope of Work '
+                                                                                 'carry-forwards are '
+                                                                                 'absorbed later by the '
+                                                                                 'currency packets the\n'
+                                                                                 'exhibit names. '
                                                                                  '`projects/pec/AGENTS.md` '
                                                                                  "now says PEC's\n"
                                                                                  '`_STATUS.md` files carry '
@@ -585,7 +593,7 @@ def resolved(r, a):
     if r['Disposition'] == 'e':
         if r['Key'] != 'DEL-03-06-REM-004':
             fail('unexpected owner-decision row ' + r['Key'])
-        return 'EXHIBIT_B_CARRY_S1' if a.q1 == 's1' else 'CLOSED_ON_RECORD'
+        return {'s1': 'EXHIBIT_B_CARRY_S1', 'park': 'EXHIBIT_A_D83E', 'decline': 'CLOSED_BY_RULING'}[a.q1]
     return r['DestinationClass']
 
 
@@ -596,6 +604,8 @@ def label(cls, a):
         n = cls[-2:]
         return ('the %s exhibit, for exact carry-forward into this deliverable\'s `ScopeOfWork.md` by '
                 'work-graph node %s' % (a.decision, n))
+    if cls == 'CLOSED_BY_RULING':
+        return 'closed by the %s ruling (the owner declined the correction)' % a.decision
     if cls == 'CLOSED_ON_RECORD':
         return 'closed on the record cited in the account'
     fail('label ' + cls)
@@ -617,7 +627,7 @@ def status_post(pre, keys, rs, a, exhibit_rel):
         fail('Last Updated / History anchor')
     head = head.replace(lu[0], '**Last Updated:** ' + a.act_date, 1)
     groups = []
-    for cls in ('EXHIBIT_A_D83E', 'EXHIBIT_B_CARRY_S1', 'EXHIBIT_B_CARRY_S2', 'EXHIBIT_B_CARRY_S4', 'CLOSED_ON_RECORD'):
+    for cls in ('EXHIBIT_A_D83E', 'EXHIBIT_B_CARRY_S1', 'EXHIBIT_B_CARRY_S2', 'EXHIBIT_B_CARRY_S4', 'CLOSED_ON_RECORD', 'CLOSED_BY_RULING'):
         ks = [r['Key'] for r in rs if resolved(r, a) == cls]
         if ks:
             groups.append('%s → %s' % (', '.join(ks), label(cls, a)))
@@ -651,6 +661,12 @@ def exhibit(rows, a):
               'Depends: ' + r['Depends'], '', 'Gate: ' + r['GateMarkers'], '']
         if r['ClaimCurrency'].strip():
             L += ['Currency note (2026-09-26 assessment): ' + ' '.join(r['ClaimCurrency'].split()), '']
+        if r['Population'] != 'LIVE_REMAINING':
+            L += ['Provenance (frozen `D-PEC-83` F carrier, never applied; its application gate is superseded by '
+                  'this ruling\'s closure of F): ' + r['Annotations'], '']
+        if r['Disposition'] == 'e':
+            L += ['Correction input (parked by the owner\'s answer to question 1; not applied, not selected): '
+                  + ' '.join(r['DestinationExactText'].split()), '']
     L += ['## Part B — Scope of Work carry-forwards (%d items)' % sum(len(v) for v in B.values()), '',
           'Each of these items belongs in its deliverable\'s `ScopeOfWork.md`, which a pending currency node of '
           'work graph `HELP-HUMAN-PEC-20260925-POST-SCA005` will rewrite. To avoid editing the same Scope of Work '
@@ -675,7 +691,7 @@ def main():
     ap.add_argument('--act-date', required=True)
     ap.add_argument('--ruling-date', required=True)
     ap.add_argument('--decision', default='D-PEC-99')
-    ap.add_argument('--q1', choices=('s1', 'decline'), default='s1')
+    ap.add_argument('--q1', choices=('s1', 'park', 'decline'), default='s1')
     ap.add_argument('--check-only', action='store_true')
     ap.add_argument('--reproduction', action='store_true')
     ap.add_argument('--render-to')
@@ -746,7 +762,7 @@ def main():
     ex = out[exhibit_rel].decode('utf-8')
     for r in rows:
         cls = resolved(r, a)
-        if cls.startswith('EXHIBIT_') and not all(x in ex for x in (r['Key'], r['ItemText'], r['GateMarkers'])):
+        if cls.startswith('EXHIBIT_') and not all(x in ex for x in (r['Key'], r['ItemText'], 'Depends: ' + r['Depends'], 'Gate: ' + r['GateMarkers'])):
             fail('exhibit misses ' + r['Key'])
     for rel in sorted(out):
         print('POST %s %s' % (sha(out[rel]), rel))

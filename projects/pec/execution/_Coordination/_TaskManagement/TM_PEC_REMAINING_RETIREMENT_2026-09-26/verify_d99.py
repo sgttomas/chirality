@@ -6,7 +6,13 @@ Stdlib only. Two modes:
   account mode (before the act, on any checkout):
     python3 verify_d99.py --repo <REPO_ROOT> --account-only
   act mode (after the act; <PRE> is a fresh `git archive` export of the act's base commit):
-    python3 verify_d99.py --repo <REPO_ROOT> --pre <PRE> [--decision D-PEC-NN] [--q1 s1|decline]
+    python3 verify_d99.py --repo <REPO_ROOT> --pre <PRE> [--decision D-PEC-NN] [--q1 s1|park|decline]
+        [--allow-extra PATH ...]
+  <PRE> is a `git archive` export of the commit immediately before the generator run. Run act mode
+  right after the generator, before any other file is written; or name each later default-writable
+  path (run root, FINAL_ROW_ACCOUNT.csv, graph, register, ruling, docs/STATUS.md, README.md) with
+  --allow-extra. Only paths under projects/pec/execution/_Coordination/ and projects/pec/docs/STATUS.md
+  and projects/pec/README.md may be allowed; protected paths can never be allowed.
 
 Account mode checks the finite account: 92 keys equal to the census and unique; one disposition
 per key in {c, d, e}; every (c) row cites evidence whose path exists with the cited hash prefix;
@@ -56,7 +62,8 @@ def main():
     ap.add_argument('--pre')
     ap.add_argument('--account-only', action='store_true')
     ap.add_argument('--decision', default='D-PEC-99')
-    ap.add_argument('--q1', choices=('s1', 'decline'), default='s1')
+    ap.add_argument('--q1', choices=('s1', 'park', 'decline'), default='s1')
+    ap.add_argument('--allow-extra', nargs='*', default=[])
     a = ap.parse_args()
     base = a.pre if a.pre else a.repo  # sources for the account checks are the preimage tree
     acc = csv_rows(rd(a.repo, TM + 'SEMANTIC_DECISION_ACCOUNT.csv'))
@@ -110,17 +117,19 @@ def main():
     check('exhibit_present', bool(ex))
     missing = []
     for r in acc:
-        moved = r['Disposition'] == 'd' or (r['Disposition'] == 'e' and a.q1 == 's1')
-        if moved and not all(x in ex for x in ('### ' + r['Key'] if r['DestinationClass'] == 'EXHIBIT_A_D83E' else '#### ' + r['Key'],
+        moved = r['Disposition'] == 'd' or (r['Disposition'] == 'e' and a.q1 in ('s1', 'park'))
+        in_a = r['DestinationClass'] == 'EXHIBIT_A_D83E' or (r['Disposition'] == 'e' and a.q1 == 'park')
+        if moved and not all(x in ex for x in ('### ' + r['Key'] if in_a else '#### ' + r['Key'],
                                                r['ItemText'], 'Depends: ' + r['Depends'], 'Gate: ' + r['GateMarkers'])):
             missing.append(r['Key'])
-        if moved and r['DestinationClass'].startswith('EXHIBIT_B') or (r['Disposition'] == 'e' and a.q1 == 's1'):
+        if (moved and r['DestinationClass'].startswith('EXHIBIT_B')) or (r['Disposition'] == 'e' and a.q1 in ('s1', 'park')):
             if r['DestinationExactText'].strip() not in ex:
                 missing.append(r['Key'] + ':carry')
     check('moved_items_in_exhibit', not missing, ','.join(missing[:10]))
     all_status = sorted(glob.glob(os.path.join(a.repo, 'projects/pec/execution/PKG-*/1_Working/DEL-*/_STATUS.md')))
     surv = [p for p in all_status if re.search(r'^## Remaining', open(p, encoding='utf-8').read(), re.M)]
-    check('no_remaining_heading_66', len(all_status) == 66 and not surv, '%d files; survivors %d' % (len(all_status), len(surv)))
+    present = all(os.path.isfile(os.path.join(a.repo, r['SourcePath'])) for r in acc if r['Population'] == 'LIVE_REMAINING')
+    check('no_remaining_heading_all', len(all_status) >= 66 and present and not surv, '%d files; survivors %d' % (len(all_status), len(surv)))
     by_path = {}
     for r in acc:
         if r['Population'] == 'LIVE_REMAINING':
@@ -156,6 +165,13 @@ def main():
     news = {x for x in added}
     exp_new_prefix = (ex_rel, 'docs/governance_harness/tranche_manifests/PEC-REMAINING-RETIREMENT-',
                       'execution/_Coordination/NOTICE_', 'projects/chirality-runtime/execution/_Coordination/NOTICE_')
+    allowed_roots = ('projects/pec/execution/_Coordination/', 'projects/pec/docs/STATUS.md', 'projects/pec/README.md')
+    bad_allow = [x for x in a.allow_extra if not x.startswith(allowed_roots)]
+    check('allow_extra_default_writable_only', not bad_allow, ','.join(bad_allow))
+    allow = lambda q: any(q == x or q.startswith(x.rstrip('/') + '/') for x in a.allow_extra if x not in bad_allow)
+    changed = {q for q in changed if q in expect_changed or not allow(q)}
+    added = {q for q in added if not allow(q)}
+    news = set(added)
     check('changed_paths_equal_grant', changed == expect_changed, 'changed %d; unexpected %s' % (len(changed), sorted(changed - expect_changed)[:5]))
     check('new_paths_equal_grant', len(news) == 4 and all(any(n.startswith(p) for p in exp_new_prefix) for n in news) and not removed,
           'new %s; removed %d' % (sorted(news), len(removed)))
