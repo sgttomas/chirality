@@ -29,3 +29,11 @@ But I don't really want to run those tests.  I think you can do more intellectua
 I'm not convinced.  I think that's going to be hard to build my own ACP layer, why do you think it will the best option for maintainability?  After that, my next priority is functionality and losing the functionality from the native Codex harness is a big loss.  Those harnesses are the best in the world.  And having OAuth natively is also essential.  I want to build around the best harnesses in the world in the easiest to maintain manner.  How does that balance strike you?
 
 ---
+
+## M-04 — two agent experiences; local models and privacy as third priority
+
+---
+
+That's appropriate for the Chirality App to wrap the full Codex experience, but for SWBPIPE a simpler agent experience and local models are acceptable.  Maybe your first proposal was discarded too quickly?  Because my third priority is having the local model server be the primary interface and be a good user experience and capabilities that keep up with developments and not have to depend upon a third party harness that sends data elsewhere.  So local models and data privacy are my third priority and having that still provide the user with an agent that can take the same actions as the human user ("semantic parity" as it's been called at times).
+
+---

@@ -133,6 +133,11 @@ Notes on the returns:
     repeated the generic-vocabulary failure of D-GOV-43 finding 4 and traded
     certain functionality for hypothetical replaceability — and added §9 to
     the analysis with the revised direction.
+16. The owner separated the two expressions (D-18): the full Codex experience
+    in the Chirality App; a simpler, local-first, private agent with semantic
+    parity in hosts. HELPS_HUMANS verified Pi's model and agent libraries
+    (licence, local-provider and browser support, telemetry defaults) from
+    its repository and added §10 to the analysis.
 
 ## Current position
 
@@ -146,7 +151,7 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Item | Owner | Condition |
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
-| Owner's view of the revised harness direction (native Codex App Server; MCP host tools; second native harness on need) | Owner | [`MAINTAINABILITY_ANALYSIS.md`](MAINTAINABILITY_ANALYSIS.md) §9 |
+| Owner's view of the two-tier direction (Codex App Server in the Chirality App; Pi libraries with the local model and the host's capability catalog in hosts) and the semantic-parity definition | Owner | [`MAINTAINABILITY_ANALYSIS.md`](MAINTAINABILITY_ANALYSIS.md) §9–10 |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |

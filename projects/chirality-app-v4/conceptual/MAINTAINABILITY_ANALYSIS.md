@@ -3,7 +3,8 @@
 > **Revised 2026-09-26 after the owner's challenge (D-17).** The two-seam
 > recommendation in §4–5 (ACP between Chirality and the agent) is withdrawn;
 > see §9 for why it was wrong and the revised direction. §1–3 stand, with
-> principle M-2 restated in §9.2; §7 is revised by §9.4.
+> principle M-2 restated in §9.2; §7 is revised by §9.4. §10 (after D-18)
+> separates the Chirality App's agent from the host applications' agent.
 
 Standing: **interpretation and proposal (agent).** Written in response to
 D-16 ("code maintainability is top of my concerns … The best ability is
@@ -284,3 +285,88 @@ skills (`SKILL.md`), workflow packages as files, and MCP servers.
   responsibilities, not by experiment.
 - **Q-05 settles toward option A of the original question** (build on the
   incumbent) with M-5 governing any second harness.
+
+## 10. Two agent tiers (after D-18, 2026-09-26)
+
+The owner separated the two expressions: the Chirality App wraps the full
+Codex experience; SWBPIPE may have a simpler agent with local models, and a
+third priority applies there — the local model server as the primary
+interface, a good experience that keeps up with developments, no dependence
+on a third-party harness that sends data elsewhere, and **semantic parity**
+(the agent can take the same actions as the human user).
+
+### 10.1 Was the first proposal discarded too quickly?
+
+In part. Its **insight** was right for hosts: a host should not be tied to one
+vendor's heavy harness, and the host's operations should be defined once,
+independently of any harness. Its **mechanism** is still not the best fit,
+even for hosts. ACP puts a separate agent program — a coding harness with its
+own shell and file tools, and its own network behaviour — between the host
+and the model. For a local-first, private, simple agent that is one layer and
+one data path too many. The simplest maintainable arrangement for a host
+takes the model access and agent loop as a **library inside the host**, not a
+harness beside it.
+
+### 10.2 The host tier (proposal)
+
+| Element | Proposal | Evidence and standing |
+|---|---|---|
+| Agent loop and model access | Pi's libraries, used inside the host: `pi-ai` (unified model API; custom providers for "local inference servers, proxies, or any OpenAI/Anthropic-compatible endpoint"; documented browser support) and `pi-agent-core` ("stateful agent with tool execution and event streaming") | Repository `earendil-works/pi`, MIT, read 2026-09-26; not the Pi coding-agent app. Chirality's Runtime ran Pi 0.82.0 against a loopback oMLX in a live validation (`projects/chirality-runtime/README.md` L131–136, historical record) |
+| Model | The local model server by default (oMLX, LM Studio, Ollama); a cloud model by API key only if the user chooses | Configuration |
+| Privacy | The library calls only the endpoint the host configures; Pi's telemetry package defines contracts with a no-op default and no exporter. The host can restrict network access to the local server | `packages/telemetry/README.md`; SWBPIPE's webview currently has no content-security policy (T6), which the host would set |
+| Tools | **Generated from the host's own capability catalog** — the same definitions the human's interface uses (below) | SWBPIPE already has a capability catalog with disabled reasons and one applier route for every mutation (T6) |
+| Experience | Simpler than Codex: conversation, workflow selection, proposal queue, checks, beside the host's own overlays (proposed rows, origins, checked tags — X-07) | Owner direction 2026-09-17 |
+| Methods | The same workflow files, skills and role instructions the Chirality App uses | D-03, D-10 |
+
+Maintainability of this tier: Chirality owns the tool binding, the workflow
+and checkpoint handling and the panel; Pi owns model access and the loop and
+keeps them current with new providers and models. Pi is pre-1.0 and releases
+several times a week, so it is pinned and upgraded deliberately behind a thin
+boundary; if it faltered, what sits behind that boundary is small enough to
+replace with another library or a few hundred lines of Chirality's own. That
+is a far smaller exposure than a harness application.
+
+What the host tier gives up: a sandboxed shell and file editing (not needed —
+the host's operations are the only actuators), and the harness-level depth of
+Codex (long-horizon planning, compaction, subagents), which the owner
+accepts for hosts. The agent's quality rests on the local model's tool
+calling; the host validates every operation, so a weak model produces
+refused or poor proposals, not damage.
+
+To check by reading before relying on it: whether `pi-agent-core` itself
+runs in a browser environment (its model library documents this; its
+dependencies suggest it may, but it is not stated), or whether the host runs
+it in a small Node process; and Pi's release notes for breaking changes.
+
+### 10.3 Semantic parity, defined for the PRD
+
+1. **One capability catalog per host.** Every operation a human can perform
+   is described once: name, inputs, preconditions and disabled reasons,
+   effects, result, errors.
+2. **Same perception.** The agent reads the same views the human reads —
+   tables, results, diagnostics — with the same standing marks.
+3. **Same route.** Agent operations pass through the same validation and
+   applier as the human's, with the same outcomes and errors.
+4. **Three consumers of one definition.** The host's interface (the human),
+   the host's embedded agent (tools), and an external agent such as the
+   Chirality App's Codex (through the host's MCP server or CLI — the
+   "controller first" path already adopted for SWBPIPE).
+5. **Only human acts differ.** Accepting a proposal (within the autonomy the
+   user has set, D-04), marking work checked, approving or relying on a
+   result remain the human's acts; the agent can prepare them, never perform
+   them in the human's name (the invariant awaiting confirmation, Q-04).
+
+Defining parity once is itself the maintainable choice: a new operation added
+for the human becomes available to both agents without separate work.
+
+### 10.4 The whole picture
+
+| | Chirality App (for creating workflows) | Host applications (SWBPIPE first) |
+|---|---|---|
+| Agent | Codex, stock App Server, pinned (§9.3) | Pi libraries inside the host (§10.2) |
+| Models | The user's Codex sign-in, API key, or a local provider | Local model server by default; cloud by API key if chosen |
+| Sign-in | Native OAuth through Codex | Not needed for local use |
+| Experience | Full Codex: plans, approvals, subagents, tools | Simpler: conversation, workflows, proposals, checks, host overlays |
+| Actions | Codex's own tools, plus hosts' MCP servers | The host's capability catalog |
+| Shared | Workflow files with declared checkpoints; skills; the four roles' instructions; record format; the capability-catalog contract; panel components where they fit |
+
