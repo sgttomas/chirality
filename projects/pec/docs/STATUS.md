@@ -208,10 +208,12 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   warnings, 111 dependency edges with no cycles; re-audit
   `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
   0 blockers, now named by `_Evaluation/DecompCoverage/_LATEST.md`).
-  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md`, the SCA-005
-  `Handoff_State.md` and `RUN_SUMMARY.md`, and `_COORDINATION.md` still
-  describe the pre-setup audit state (and `RUN_SUMMARY.md` still lists the
-  re-audit as open); updating them needs its own act. Open: context and
+  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
+  `_COORDINATION.md` still describe the pre-setup audit state, and the
+  `D-PEC-95` act updates them. The SCA-005 `Handoff_State.md` and
+  `RUN_SUMMARY.md` stay as accepted: under the P ruling `_COORDINATION.md`
+  records them as superseded for current state (`RUN_SUMMARY.md` still
+  lists the re-audit as open). Open: context and
   reference re-pinning to revision 1.5; the 19 stale dependency evidence
   quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
   DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
