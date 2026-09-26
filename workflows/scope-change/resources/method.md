@@ -18,8 +18,8 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
 
 **Agent does:**
 
-1) Resolve `DECOMP_VARIANT`, `CONTEXT_ROOT`, and `DECOMPOSITION_PATH`. Parse the current decomposition state using the semantic section binding table above.
-2) Parse the human's request into one or more atomic actions:
+1) Resolve `DECOMP_VARIANT`, `CONTEXT_ROOT`, and `DECOMPOSITION_PATH`. Parse the current decomposition state using the semantic section binding table in [the contract](contract.md) (§Variant Section Binding).
+2) Parse the human's request or the admitted evidence-backed proposal (including a `scope-change-packet` seed or an `scc-resolution-case`) into one or more atomic actions:
    - `ActionType`
    - `EntityType`
    - `EntityID`
@@ -39,7 +39,7 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
      - package-level structural changes resolve every child deliverable and the affected `_CONTEXT.md` / `_STATUS.md` files or produce an explicit handoff set,
      - if the originating decomposition defines package-discipline isolation, artifact-kind deliverable granularity, or equivalent design-partition rules, the proposed change does not violate those rules unless it is surfaced as an explicit contract-level change for human approval.
    - `DOMAIN` specific:
-     - every affected `HBK-####` remains explicitly `IN | OUT | TBD`,
+     - every affected Handbook Unit (`HBA-<SOURCE_PREFIX>-NNNNN`) remains explicitly `IN | OUT | TBD`,
      - every `IN` Handbook Unit ends with exactly one `CategoryID`,
      - every `KTY-*` belongs to exactly one `Category`,
      - every `SUB-*` belongs to exactly one `KTY-*`,
@@ -47,13 +47,19 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
      - any `CAT-*` or `KTY-*` structural change resolves all child `KTY-*`, `SUB-*`, and `Domain Ledger` mappings in the same amendment,
      - vocabulary impacts are enumerated,
      - Coverage & Telemetry consequences are identified up front.
-4) Assign `AMENDMENT_ID` (next available `SCA-{NNN}`). Scan existing: `tools/query/scan_next_amendment_id.sh {SCOPE_CHANGE_ROOT}` (or inline directory scan if no dedicated helper exists).
+4) Assign `AMENDMENT_ID` (next available `SCA-{NNN}`). Scan existing: `tools/query/scan_next_amendment_id.sh {SCOPE_CHANGE_ROOT}` (or inline directory scan if no dedicated helper exists). Without a prefix the helper counts only unqualified `SCA-{NNN}` folders. A project whose accepted records use project-qualified IDs (for example `SCA-APP-{NNN}`) passes its prefix, `tools/query/scan_next_amendment_id.sh {SCOPE_CHANGE_ROOT} APP`, and keeps that form in every artifact.
 5) Capture the **pre-change baseline**:
    - `PROJECT/SOFTWARE`: dispatch `TASK (workflow: audit-decomp)` (scoped to affected packages/deliverables; pass `DECOMP_VARIANT`) and store the `coverage_summary.json` path.
    - `DOMAIN`: run the deterministic coverage serializer against the current frozen decomposition state:
      `python3 tools/reporting/synthesize_domain_coverage_json.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --output-json {snapshot}/Pre_Change_Coverage.json --missing-manifest-state NOT_FORMALIZED`
-6) Carry the parsed action list, validation results, errors, warnings, unknowns,
-and pre-change coverage into the impact assessment. Do not ask for a separate
+   - An existing baseline audit may be reused instead of a fresh run when its
+     recorded input decomposition and registers are byte-identical to the
+     current pre-change state. Record the reused audit path, the compared input
+     hashes and the reuse in `Brief.md` or `Impact_Assessment.md`.
+6) Write the parsed actions to `Intake_Actions.csv` with every row
+`Status = PROPOSED`. It is intake evidence, not the accepted register. Carry the
+parsed action list, validation results, errors, warnings, unknowns, and
+pre-change coverage into the impact assessment. Do not ask for a separate
 intake decision.
 
 ---
@@ -92,7 +98,7 @@ Action-specific tracing rules:
 - Trace every reference to the entity being retired.
 - If the retired entity is a parent partition / parent entity, enumerate the full child-closure set and every ledger remapping that must be completed in the same amendment.
 - `PROJECT/SOFTWARE`: run `python3 tools/coordination/analyze_dep_closure.py {CONTEXT_ROOT} --output-dir {temp_dir}` and inspect estimate/schedule references.
-- `DOMAIN`: enumerate affected `HBK-*`, `CAT-*`, `KTY-*`, `SUB-*`, and canonical term occurrences. Count potential orphan conditions:
+- `DOMAIN`: enumerate affected `HBA-*`, `CAT-*`, `KTY-*`, `SUB-*`, and canonical term occurrences. Count potential orphan conditions:
   - `UnassignedINUnits`
   - `UnitsWithoutKnowledgeTypeMapping`
   - `TypesWithoutSubjects`
@@ -174,7 +180,7 @@ Draft the exact text changes to the decomposition document using **semantic sect
 5) **Unit Ledger** (`Scope Ledger` or `Domain Ledger`)
    - Update authoritative row-level mappings
    - `PROJECT/SOFTWARE`: scope item → package/deliverable mappings
-   - `DOMAIN`: `HBK-*` rows, `CategoryID`, `KnowledgeTypeID(s)`, `SubjectID(s)`, `OpenIssue`, and decision refs
+   - `DOMAIN`: `HBA-*` rows, `CategoryID`, `KnowledgeTypeID(s)`, `SubjectID(s)`, `OpenIssue`, and decision refs
 
 6) **Objectives** (`PROJECT/SOFTWARE` only — not applicable to `DOMAIN`)
    - Update objective statements or objective mappings
@@ -196,9 +202,12 @@ Draft the exact text changes to the decomposition document using **semantic sect
      - `NO_CHANGE`
    - Show the expected active snapshot state after execution, including the required handoff-state values
 
-Prepare the full amendment as a diff-style preview: sections with before/after
-or additions/retirements clearly marked. Carry it into the propagation-plan
-package; do not ask for a separate amendment decision.
+Prepare the full amendment as a diff-style preview in `Amendment_Preview.md`:
+sections with before/after or additions/retirements clearly marked. Mark any
+edit whose bytes depend on the future acceptance act (for example acceptance
+dates, status header lines or pointer moves) as acceptance-conditional and state
+its exact rule. Carry it into the propagation-plan package; do not ask for a
+separate amendment decision.
 
 ---
 
@@ -224,7 +233,8 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 
 2) **For `REMOVE` actions**
    - `PROJECT/SOFTWARE`:
-     - Before updating lifecycle state, read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present. Then update lifecycle state: `tools/scaffolding/write_status.sh {deliverable_folder} RETIRED WORKING_ITEMS`
+     - Annotate the decomposition row `[RETIRED — {AMENDMENT_ID}]`.
+     - Read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present, then plan one appended `_STATUS.md` history line recording the retirement under the amendment, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state unchanged ({ACTOR})`. Leave `**Current State:**` unchanged: RETIRED is never an active project lifecycle value (`docs/SPEC.md` §3.2), and `tools/scaffolding/write_status.sh` is not used for retirement.
      - Do **not** delete the folder or any files
      - If a `PACKAGE` is being retired, enumerate every child deliverable and Scope Ledger row being retired or remapped in the same amendment
    - `DOMAIN`:
@@ -277,14 +287,17 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 
 Produce:
 - `Propagation_Plan.md`
-- `Amendment_Actions.csv`
+- `Amendment_Actions.csv` — the exact action register proposed for acceptance.
+  Only this file, accepted at checkpoint group 2 and bound by hash in that
+  snapshot's `ACCEPTED_MANIFEST.csv`, is the authoritative register;
+  `Intake_Actions.csv` remains group-1 evidence.
 
 ```csv
 AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns
 ```
 
 **Checkpoint group 2 — exact amendment and propagation plan:** Present the
-diff-style exact amendment, `Propagation_Plan.md`, `Amendment_Actions.csv`,
+diff-style exact amendment (`Amendment_Preview.md`), `Propagation_Plan.md`, `Amendment_Actions.csv`,
 write boundary, child-closure set, downstream ownership, and validation plan as
 one reviewable package. The human accepts or revises the amendment and its
 propagation together. This is the authority for the execution stage.
@@ -312,7 +325,8 @@ candidate pointer posture:
 
 Before applying or dispatching work, verify that
 `ACCEPTED_GROUP2_DECISION_SNAPSHOT` actually contains the accepted exact
-amendment, `Amendment_Actions.csv`, `Propagation_Plan.md`, and every required
+amendment, `Amendment_Actions.csv` (or, for a historical run, the accepted
+register its `ACCEPTED_MANIFEST.csv` names), `Propagation_Plan.md`, and every required
 supersession input or a hash-bound reference to it. A pointer to an incomplete
 decision record is not sufficient child authority; repair the group-2 snapshot
 under its owning checkpoint rules before proceeding.
@@ -325,7 +339,7 @@ under its owning checkpoint rules before proceeding.
 
 2) **Apply accepted propagation writes**
    - `PROJECT/SOFTWARE`:
-     - `REMOVE`: update `_STATUS.md`
+     - `REMOVE`: apply the `[RETIRED — {AMENDMENT_ID}]` decomposition-row annotation and append the planned `_STATUS.md` history line; leave the lifecycle state unchanged and do not use `write_status.sh`
      - `MODIFY/RECLASSIFY`: update `_CONTEXT.md`
      - `ADD`: hand off through WORKING_ITEMS with project-setup to the eligible
        actor named in the accepted propagation plan, using the exact
@@ -381,6 +395,13 @@ under its owning checkpoint rules before proceeding.
      - Confirm no unintended coverage regression (unless an intentional `REMOVE`)
      - Confirm no new orphan conditions beyond those explicitly accepted by the human
      - Confirm no parent-partition / parent-entity change left orphaned child rows or dangling authoritative mappings
+     - Classify every post-change audit or validator finding as either
+       `EXPECTED_CONSEQUENCE`, when it stems only from a consequence the
+       accepted group-2 decision deferred or excluded (cite that decision and
+       item), or new. Do not repair or hide an expected consequence; handle a
+       new finding on its own merits. Report both the raw `AuditState` over all
+       findings and the adjusted `AuditState` excluding `EXPECTED_CONSEQUENCE`
+       findings, with the classification table
      - `PROJECT/SOFTWARE` specific:
        - no package change left deliverables or Scope Ledger rows parentless
        - when the originating decomposition defines package-discipline isolation, artifact-kind deliverable granularity, or equivalent design-partition rules, the changed rows still satisfy those rules and the check is recorded explicitly in the run summary
@@ -428,6 +449,8 @@ under its owning checkpoint rules before proceeding.
      snapshot path when posture is `ACCEPTED_PREDECESSOR`, otherwise the
      accepted decomposition and group-2 bases for `FIRST_AMENDMENT`
    - Authoritative truth changed in this run
+   - Authoritative action register: `Amendment_Actions.csv` as accepted in the
+     group-2 snapshot (path and hash); `Intake_Actions.csv` is group-1 evidence only
    - Derivative-package state table (`package`, `owner`, `status`, `evidence`, `next required action`)
    - Active derivative-surface state table (`surface`, `classification`, `status`, `evidence`)
    - KTY remediation manifest summary (`pending`, `deferred`, `blocked`, `complete`, evidence coverage)
@@ -437,7 +460,8 @@ under its owning checkpoint rules before proceeding.
      pre-acceptance pointer state)
    - Closure verdict: `CLOSED_FOR_SCOPE_CHANGE_ONLY` or `OPEN_PENDING_DERIVATIVE_CLOSURE`
    - Remaining blockers / human decisions
-   - Next owning workflow(s)
+   - Next owning workflow(s); name `audit-scope-closure` wherever a closure
+     audit of implementation and downstream reruns applies
 
 8) Write all artifacts to a candidate snapshot folder that is not yet active:
    - `{SCOPE_CHANGE_ROOT}/SCA-{NNN}_{YYYY-MM-DD}_{HHMM}/`
@@ -446,7 +470,9 @@ under its owning checkpoint rules before proceeding.
 
 Present to the human:
 - Summary of what changed
-- Post-change validation result
+- Post-change validation result, with raw and adjusted `AuditState` and each
+  `EXPECTED_CONSEQUENCE` citation
+- The exact acceptance-conditional edit list
 - Recommended downstream reruns
 - Handoff-state / closure verdict
 - Repository-change evidence and exact scope for the responsible current role,
@@ -457,15 +483,28 @@ returns the audited poststate, its closure verdict, and its explicitly open
 downstream obligations. Output and snapshot writing around the accepted state
 does not create an additional checkpoint.
 
+**Acceptance-conditional edits (all variants).** The group-3 package lists
+every edit that may be applied only after acceptance, exactly: file, before and
+after bytes or the slot rule, and the expected resulting hash where
+determinable. This includes `_LATEST.md` and any other pointer moves, status or
+header lines, and acceptance-date slots. None is applied before acceptance.
+
 After acceptance, finalize the candidate as the immutable group-3 amendment
-snapshot, record the accepted decision, update `_LATEST.md`, and rerun the
-validator against that now-active snapshot in its default active mode (or with
-`--scope-change-snapshot-mode active`). Write this validation to a new
-append-only postacceptance record under
-`{SCOPE_CHANGE_ROOT}/_PostAcceptanceValidation/{AMENDMENT_ID}_{UTC}/`; do not
-overwrite the candidate `Domain_Integrity_Report.md` or
-`Domain_Integrity_Findings.csv` bytes that were reviewed. Downstream
-handoff consumes that accepted snapshot. A returned candidate remains
+snapshot, record the accepted decision, and apply exactly the listed
+acceptance-conditional edits, including updating `_LATEST.md`. An edit not on
+the list returns to the human rather than being applied. Then verify the
+applied state in a new append-only postacceptance record under
+`{SCOPE_CHANGE_ROOT}/_PostAcceptanceValidation/{AMENDMENT_ID}_{UTC}/`:
+
+- all variants: compare the applied bytes or hashes with the listed edits;
+- `PROJECT/SOFTWARE`: rerun `audit-decomp` or the project's register validator
+  against the applied state;
+- `DOMAIN`: rerun the validator against the now-active snapshot in its default
+  active mode (or with `--scope-change-snapshot-mode active`).
+
+Do not overwrite the candidate validation bytes that were reviewed (for
+`DOMAIN`, `Domain_Integrity_Report.md` and `Domain_Integrity_Findings.csv`).
+Downstream handoff consumes that accepted snapshot. A returned candidate remains
 non-current evidence and cannot become the active pointer target.
 
 If accepted material basis changes after either earlier checkpoint, identify
