@@ -26,8 +26,7 @@ that doesn't need to exist": no governed act may ever require it.
 checkpoint-3 acceptance the same day. It carries the
 `D-PEC-79` §16.3 hunks. Earlier versions: v2.0 `D-PEC-58` (2026-07-24), v2.1
 `D-PEC-61`, exact PEC-K-03/-11 rows `D-PEC-67`, v2.2 `D-PEC-68`.
-`projects/pec/AGENTS.md` still names v2.2 until its separate instruction
-tranche.
+`projects/pec/AGENTS.md` names v2.3 since the `D-PEC-94` adoption tranche.
 
 **Implementation:** the first bounded P1 slice is reviewed and exact-byte
 accepted under `D-PEC-74` O-A: the DEL-08-02 version-1 API JSON Schema,
@@ -123,15 +122,19 @@ DEL-02-08 and DEL-02-09): 30 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING`
 DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
 
-**Loop:** `D-PEC-80` A–D (ruled 2026-09-05) made `projects/pec/loop/`
-(`LOOP_INIT.md`, `LOOP_RECEIPTS.md`) the loop home with a generic instruction
-surface, adopted the run-based PR boundary, and retired the workplan overlay:
-work is selected from deliverable `_STATUS.md` `## Remaining`, and
-`plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
+**Loop:** PEC runs the shared development loop under `D-PEC-94` (2026-09-25):
+the evergreen `loop/LOOP_INIT.md`, steering-selected undertakings, work graphs
+under `execution/_Coordination/WorkGraphs/`, one central receipt per
+undertaking and terse deliverable `MEMORY.md` rows; `loop/LOOP_RECEIPTS.md` is
+historical, closed by Receipt 197. *Historical:* `D-PEC-80` A–D (ruled
+2026-09-05) made `projects/pec/loop/` the loop home, adopted the run-based PR
+boundary and retired the workplan overlay, with work selected from deliverable
+`_STATUS.md` `## Remaining` (that selection is replaced under `D-PEC-94`; the
+sections remain as records), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
 reported the Remaining concordance; `D-PEC-83` R-A/A-A applied the 57
 ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
-not applied. PEC's adoption of the shared 2026-09-22 development-loop method
-is deferred until SCA-005 closes (`D-PEC-86` §3 I-7); no ruling on it exists.
+not applied. PEC adopted the shared 2026-09-22 development-loop method on
+2026-09-25 under `D-PEC-94`, exercising `D-PEC-86` §3 I-7.
 
 **Active scope change — SCA-005:** opened at Gate 1 on 2026-09-23 under
 `D-PEC-86` (owner direction of record, §1) to rebaseline PEC's feed model on
@@ -211,15 +214,13 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   reference re-pinning to revision 1.5; the 19 stale dependency evidence
   quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
   DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
-  packet; P1 fixtures; TM-PEC-023 disposition; the `projects/pec/AGENTS.md`
-  instruction tranche (it still names PRD v2.2); the D-PEC-90 reliance
-  amendment. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
+  packet; P1 fixtures; TM-PEC-023 disposition; residual `projects/pec/AGENTS.md`
+  corrections; the D-PEC-90 reliance amendment. These will be organized in
+  the work graph that follows the `D-PEC-94` adoption. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
   D-PEC-93 run root `HANDOFF_STATE.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
-- **Later rulings:** PEC loop-method migration (`D-PEC-86` §3 I-7); its
-  precondition, SCA-005 closing, is met.
 - **Agent reliance on PEC data:** the owner ruled `D-PEC-90` R-A on
   2026-09-25: agents may act on PEC record-tier data as true as of the
   response's examined-through commit, within stated bounds, and authority
@@ -307,23 +308,28 @@ Gate lineage (historical record; the current gates are listed above):
    release, or professional reliance is authorized.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
-   P4 streams are historical phase orientation; live work is discovered from
-   deliverable `## Remaining` surfaces under `loop/LOOP_INIT.md`.
+   P4 streams are historical phase orientation; live work is selected by the
+   human's steering and carried in work graphs under `loop/LOOP_INIT.md`
+   (`D-PEC-94`).
 
 ## Orient yourself (read-order)
 
 1. `docs/PRD.md` — the adopted product definition (v2.3), including the
    invariants (PEC-K-01..11), modes ladder, and release strategy.
-2. `projects/pec/loop/LOOP_INIT.md` — protocol, gates, fences and deliverable
-   discovery. `projects/pec/plans/workplans/` is history only.
+2. `projects/pec/loop/LOOP_INIT.md` — the evergreen development-loop
+   procedure (`D-PEC-94`); `projects/pec/AGENTS.md` holds fences and authority
+   rules. `projects/pec/plans/workplans/` is history only.
 3. `execution/_Coordination/_DECISIONS/_REGISTER.md` — decision register
-   (D-PEC-57/58 are the pivot and adoption rows; D-PEC-86 is the active
-   SCA-005 row).
-4. `projects/pec/loop/LOOP_RECEIPTS.md` — handoff ledger.
+   (D-PEC-57/58 are the pivot and adoption rows; D-PEC-86 opened SCA-005;
+   D-PEC-94 adopted the shared loop).
+4. The current undertaking's work graph under
+   `execution/_Coordination/WorkGraphs/` and its central receipt under
+   `execution/_Coordination/AgentRuns/`; `projects/pec/loop/LOOP_RECEIPTS.md`
+   is the historical ledger (closed at Receipt 197).
 
 ## Governance & agent harness
 
-Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`).
+Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`; loop, record and Runtime-boundary sections amended 2026-09-25 under `D-PEC-94`).
 Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
 accepted; `execution/_Decomposition/**` opened by its fence for the
 canonical working package). Directed-bootstrap amendment `SCA-001` closed
@@ -342,9 +348,9 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-70` released the exceptional reliance hold. SCA-004 resolved OI-003
 in decomposition truth, the metadata subset is current, and DEL-01-06 RF-002
 is resolved by exact successor acceptance; the nine TM-PEC-023 objective
-blanks now carry owner selections (SCA-005 amendment 1), applied only when SCA-005 applies. P1
+blanks now carry owner selections (SCA-005 amendment 1), applied in revision 1.5. P1
 source work remains separately owner-gated and fenced by `F-PEC-1`.
-Loop instruction surface: `loop/LOOP_INIT.md` under `D-PEC-80`.
+Loop instruction surface: `loop/LOOP_INIT.md`, the shared development loop under `D-PEC-94` (loop home from `D-PEC-80`).
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact
 D-T0-27 O-A PEC v2 `ADOPTED / READ_ONLY` postimage and is validator `VALID`,
 effective through PR #459 merge
