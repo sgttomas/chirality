@@ -1,0 +1,41 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE2A-FORMATION-20260926
+title: Formation workflow fixes (software-decomp, reverse-engineer-software, create-workflow)
+date: '2026-09-26'
+basis: d97fb75a9459b652a38aa171f363f8829b7a4d52
+instruction_surface_paths:
+  - docs/AGENT_WORKFLOW_RUNTIME.md
+  - tools/validation/test_workflow_catalog.py
+  - workflows/create-workflow/WORKFLOW.md
+  - workflows/reverse-engineer-software/WORKFLOW.md
+  - workflows/software-decomp/WORKFLOW.md
+  - workflows/software-decomp/resources/contract.md
+  - workflows/software-decomp/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-FORMATION-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed wave 2a of the workflow-library review ("go
+    ahead in the proposed order starting with wave 2a"): correctness fixes to
+    the workflows the loops use, from the independent wave 2 evaluation. This
+    tranche carries the formation cluster, including the runtime-doc authoring
+    paragraph alignment with Root AGENTS.md.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_FORMATION.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_FORMATION.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_FORMATION.md
+  rationale: >-
+    App, Piping and PEC use software-decomp and create-workflow; the App pins
+    software-decomp hashes in its authority corpus and bundles the library.
+scope_limits:
+  - The Package-home rule and any combined-review allowance are unchanged and await owner rulings.
+  - The software-prd draft is not registered.
+  - In-flight projects keep their adopted decomposition edition; nothing is retrofitted.
