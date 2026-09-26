@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 V2_ROOT = Path(__file__).resolve().parents[2]
@@ -44,7 +45,6 @@ def valid_document() -> dict:
                 "loop_init_path": PEC_LOOP_INIT,
                 "feed_profiles": [
                     {"profile": "shared-dev-loop", "version": 1, "state": "live", "basis": D_PEC_94},
-                    {"profile": "remaining-items", "version": 1, "state": "live", "basis": PEC_AGENTS},
                     {"profile": "loop-receipts-ledger", "version": 1, "state": "historical", "basis": PEC_AGENTS},
                     {"profile": "agentruns-json", "version": 1, "state": "historical", "basis": D_PEC_94},
                 ],
@@ -70,7 +70,6 @@ class JsonLoopRegistryTests(unittest.TestCase):
                     PEC_LOOP_INIT,
                     (
                         FeedProfile("shared-dev-loop", 1, FeedProfileState.LIVE, D_PEC_94),
-                        FeedProfile("remaining-items", 1, FeedProfileState.LIVE, PEC_AGENTS),
                         FeedProfile("loop-receipts-ledger", 1, FeedProfileState.HISTORICAL, PEC_AGENTS),
                         FeedProfile("agentruns-json", 1, FeedProfileState.HISTORICAL, D_PEC_94),
                     ),
@@ -168,9 +167,6 @@ class JsonLoopRegistryTests(unittest.TestCase):
             "unknown state": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", "active"), f"{entry}.state", "expected live or historical"),
             "state not a string": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", 1), f"{entry}.state", "expected live or historical"),
             "profile null": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("profile", None), f"{entry}.profile", "closed feed-profile vocabulary"),
-            "ledger live and historical": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][2], profile="remaining-loop", state="live"), d["loops"][0]["feed_profiles"][2]]), f"{row}.feed_profiles[1].profile", "surface receipt-ledger is already covered by"),
-            "two live lifecycle readers": (lambda d: d["loops"][0].__setitem__("feed_profiles", [d["loops"][0]["feed_profiles"][0], dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop")]), f"{row}.feed_profiles[1].profile", "surface decision-registers is already covered by"),
-            "remaining read twice": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop"), d["loops"][0]["feed_profiles"][1]]), f"{row}.feed_profiles[1].profile", "surface status-remaining is already covered by"),
             "no live profile": (lambda d: [entry.__setitem__("state", "historical") for entry in d["loops"][0]["feed_profiles"]], f"{row}.feed_profiles", "expected at least one live feed profile"),
             "empty basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", ""), f"{entry}.basis", "expected a non-empty string"),
             "absolute basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", "/etc/passwd"), f"{entry}.basis", "normalized repository-relative path"),
@@ -186,6 +182,52 @@ class JsonLoopRegistryTests(unittest.TestCase):
                 text = str(raised.exception)
                 self.assertIn(f":{location}: ", text)
                 self.assertIn(message, text)
+
+    def test_shipped_vocabulary_surfaces_are_pairwise_disjoint(self) -> None:
+        profiles = sorted(FEED_PROFILE_SURFACES)
+        for index, first in enumerate(profiles):
+            for second in profiles[index + 1:]:
+                with self.subTest(pair=(first, second)):
+                    self.assertFalse(FEED_PROFILE_SURFACES[first] & FEED_PROFILE_SURFACES[second])
+
+    def test_overlapping_profiles_are_rejected_with_location(self) -> None:
+        # The shipped profiles are pairwise disjoint, so overlap needs a vocabulary
+        # the adapter does not ship. Two probe profiles, each copying one surface of
+        # a shipped profile, exercise the rule without changing the shipped files.
+        probes_versions = {"probe-ledger": frozenset({1}), "probe-lifecycle": frozenset({1})}
+        probes_surfaces = {
+            "probe-ledger": frozenset({"receipt-ledger"}),
+            "probe-lifecycle": frozenset({"status-lifecycle"}),
+        }
+        row = "$.loops[0]"
+
+        def entry(profile: str, state: str) -> dict:
+            return {"profile": profile, "version": 1, "state": state, "basis": PEC_AGENTS}
+
+        cases = {
+            "live and historical on one surface": [entry("probe-ledger", "live"), entry("loop-receipts-ledger", "historical")],
+            "two live readers of one surface": [entry("shared-dev-loop", "live"), entry("probe-lifecycle", "live")],
+            "two historical grammars for one surface": [entry("shared-dev-loop", "live"), entry("loop-receipts-ledger", "historical"), entry("probe-ledger", "historical")],
+        }
+        expected = {
+            "live and historical on one surface": (f"{row}.feed_profiles[1].profile", "surface receipt-ledger is already covered by $.loops[0].feed_profiles[0].profile"),
+            "two live readers of one surface": (f"{row}.feed_profiles[1].profile", "surface status-lifecycle is already covered by $.loops[0].feed_profiles[0].profile"),
+            "two historical grammars for one surface": (f"{row}.feed_profiles[2].profile", "surface receipt-ledger is already covered by $.loops[0].feed_profiles[1].profile"),
+        }
+        with mock.patch.dict(FEED_PROFILE_VERSIONS, probes_versions), mock.patch.dict(FEED_PROFILE_SURFACES, probes_surfaces):
+            for name, profiles in cases.items():
+                with self.subTest(case=name):
+                    document = copy.deepcopy(valid_document())
+                    document["loops"][0]["feed_profiles"] = profiles
+                    with self.assertRaises(LoopRegistryConfigError) as raised:
+                        self.load(document)
+                    location, message = expected[name]
+                    self.assertIn(f":{location}: ", str(raised.exception))
+                    self.assertIn(message, str(raised.exception))
+            disjoint = copy.deepcopy(valid_document())
+            disjoint["loops"][0]["feed_profiles"] = [entry("probe-ledger", "live"), entry("shared-dev-loop", "historical")]
+            self.assertEqual(len(self.load(disjoint)[0].feed_profiles), 2)
+        self.assertNotIn("probe-ledger", FEED_PROFILE_VERSIONS)
 
     def test_failures_do_not_echo_document_values(self) -> None:
         sentinel = "zzsentinelzz"

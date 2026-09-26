@@ -303,3 +303,110 @@ These are unchanged from revision 2, apart from the question-2 additions above:
 
 ### Files
 - My helpers are in `/private/tmp/claude-501/g1work.uHT090/` (`r3/` for this revision). The large exports and clones are deleted.
+
+## Revision 4 (by owner direction, 2026-09-26)
+
+HELP_HUMAN relayed the owner's direction ("revision 4: drop remaining-items and remaining-loop"; recorded in `_DECISIONS/D-PEC-96_AMEND_DIRECTION_2026-09-26.md`). The preparer's revision-4 report follows.
+
+- **SHA-256 of the report text (UTF-8):** `c3e729d08ff6930890a2a893f09fbf9d463e7a363e72cd387f0b1309925d9252`.
+- **Publication.** HELP_HUMAN replaced the published proposal with revision 4, SHA-256 `4506597b1bfd6cafd8fc561c688bcb9e803d9c2b04c3abdec9dc05edf155180e`, and replaced the preparation folder with the revision-4 `g1/` contents. `SHA256SUMS` verifies, apart from the draft, and `.gitattributes` was added again. Revision-3 bytes stay recoverable at `6721457be`.
+
+### Revision-4 report (verbatim)
+
+## G1 revision 4: D-PEC-96 draft with `remaining-items` and `remaining-loop` removed
+
+Revision 4 is written and every check passes. It carries out the owner's direction: "revision 4: drop remaining-items and remaining-loop". All five registered checks, enforcement, the act-script runs and the reliance-hold preflight pass. The registry suite runs 19 tests, and the mutation run catches 19 of 19 with `RESULT PASS`.
+
+**Basis.** `origin/main` is at `8f9bd314c5f2499e6faf5bf4bdce917927e8185e`, the same at the start and the end of the work.
+- Nothing under `projects/pec/v2/**`, and nothing in `projects/pec/software-workflow.json`, has changed since `7f33b4dd5`, or since `abfd0897b`. All 10 product preimages and all 6 files the act must leave unchanged were re-verified at `8f9bd314c`.
+- Other PEC changes since revision 3:
+  - HELP_HUMAN's records: the filed revision-3 proposal, the prep folder, the register row and the graph;
+  - seven Root notices dated 2026-09-26;
+  - SCA-006 checkpoint 2, accepted ("SCA-006 CP2: accept; Q1 a; Q2 a").
+
+  None of them touches the registry.
+- The checkout is clean. I switched no branch; another actor has since moved it to `claude/pec-owner-directions-20260926`.
+
+### New hashes
+- **Draft:** `/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/g1/D-PEC-96_DRAFT.md`, SHA-256 `4506597b1bfd6cafd8fc561c688bcb9e803d9c2b04c3abdec9dc05edf155180e`, 729 lines, status "revision 4".
+- **`apply_d96.py`:** `80725b4ff0180e858e6a0ecf0cf50fc8bcf19d861fcf53278f115567e6d6bbf3`
+- **`mutate_d96.py`:** `57c2f03107aec5056f03847c43b9443a6986fbfd522017971c3cab72c3c826f0`
+- **Changed postimages:**
+  - `v2/config/loops.json`: `fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7`
+  - `v2/config/loops.schema.json`: `104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143`
+  - adapter `loop_registry.py`: `620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07`
+  - `test_json_loop_registry.py`: `8b45495fdc78eb77c12a4ebefdb064d34d40d5602fde573be4b4e817ddbe0c9b`
+- **Unchanged since revision 2:** the port file, both `__init__.py` files, the contract test and the three fixtures.
+- **Grant:** still 11 paths (10 modified, 1 created); path-list hash `b5db12e5…c73c`.
+- **Evidence:** `SHA256SUMS` in `g1/` covers 24 files and verifies. The diff is now `evidence/optionA_vs_8f9bd314c.diff`. The A-R postimages and outputs are removed.
+
+### Changes by item
+1. **Vocabulary.**
+   - The closed vocabulary is now `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`, each at version 1. The schema options, `FEED_PROFILE_VERSIONS`, `FEED_PROFILE_SURFACES`, the surface table and the tests were all updated to match.
+   - `status-remaining` was declared only by the two dropped profiles, so it is removed from the surface set. No other surface lost its only profile.
+   - `grep -ri remaining` over the applied `v2/` tree finds nothing.
+   - **Coherence rules are kept.** The three shipped profiles are pairwise disjoint, so the overlap rule has no shipped case to fire on today; it now guards later vocabulary changes. Two tests keep it honest:
+     - `test_shipped_vocabulary_surfaces_are_pairwise_disjoint` pins the disjointness.
+     - `test_overlapping_profiles_are_rejected_with_location` adds two probe profiles through `mock.patch.dict`, without touching the shipped files. It exercises three real overlaps: live and historical on one surface, two live readers, and two historical grammars. It also checks a disjoint control row and that the probes are removed afterwards.
+   - The at-least-one-live rule keeps its real test case.
+2. **PEC's row.** `shared-dev-loop` v1 live (basis: the D-PEC-94 record); `loop-receipts-ledger` v1 historical (basis: `projects/pec/AGENTS.md`); `agentruns-json` v1 historical (basis: the D-PEC-94 record, by implication).
+3. **Options.**
+   - A-R is gone: its postimage overrides, its mutation variants and the `--pec-row` path of both scripts. `apply_d96.py --pec-row …` now exits 2.
+   - The runner stays fail-closed. A probe run with M1's anchor made invalid gives `NOT_APPLIED`, `TOTAL 18/19`, `RESULT FAIL` and exit 1; it is in the evidence.
+   - Three replacement mutations: M11 is now "default declares the ledger live", M16 is now "`shared-dev-loop` also claims the receipt ledger", and M19 is now "default drops `agentruns-json`". The runner prints `TOTAL 19/19 CAUGHT`.
+4. **Owner questions.** The Remaining question is recorded as settled, under its own heading, "Settled by the owner's direction": not read, and no profile. The owner's words are quoted verbatim.
+5. **Text.**
+   - A revision-4 table quotes both of the owner's statements verbatim. It is labelled evidence of the direction, not the ruling.
+   - The stale "declares `remaining-loop` now" sentences in the SOW-094 Notes and the DEL-01-06 description and `_CONTEXT.md` are carried to S2, as before.
+   - The `projects/pec/AGENTS.md` Remaining sentences are corrected separately, in the SCA-006 checkpoint-3 instruction tranche, as you relayed the owner's direction. At `8f9bd314c`, the accepted checkpoint-2 `AGENTS.candidate.md` still carries that paragraph.
+   - The FX-PEC-0 fixture is redefined without the Remaining sections, and that is carried to X1.
+6. **Preimages** re-verified at `8f9bd314c`, as above.
+
+### Test and mutation counts
+- `v2-loop-registry`: Ran 19, OK (12 before). The invalid-profile test has 21 located sub-cases, the overlap test 3 cases plus a control, and the no-echo test 6 fields.
+- Mutations: 19 of 19 caught; `RESULT PASS`.
+
+### Updated owner questions
+1. A, amend or defer. Recommended: A.
+2. PEC's row, as its own ruling. It keeps the sentence stating the departure from the letter of the CP2-accepted §B6 and from SCA005-CP1-Q8 (a), and why: D-PEC-94 exercised I-7 after checkpoint 3.
+   - It says plainly that the owner's revision-4 direction leaves only the migrated row expressible, but is not itself the ruling.
+   - Choices: migrated (recommended), or other states and bases within the three profiles.
+3. Confirm the three-profile vocabulary, the surface lists, the list-shaped `feed_profiles`, and the coherence rules, kept as a guard.
+4. Version-1 files: rejected (recommended), or a time-bounded dual read.
+5. DEL-01-06 `MEMORY.md`: create it (recommended), or complete without the row.
+6. Model steer.
+
+### Prototype results (on `8f9bd314c`)
+- **Registered checks:** all five exit 0 before and after the act.
+
+| Check | Before | After |
+|---|---|---|
+| `v2-loop-registry` | 12 OK | 19 OK |
+| `v2-store-guard` | 13 OK | 13 OK |
+| `v2-api-contract` | 6 OK | 6 OK |
+| `v2-core-posture` | PASS, 0 findings | PASS, 0 findings |
+| `harness-self-check` | stdout `e5f9ff70…d110` | byte-identical |
+
+  The core tree hash moves from `88f590c0…` to `dd7e1dda…`.
+- **Enforcement:** 28 OK. The receipts and strict register validators exit 0 with unchanged output. `git diff --check` is clean, and there are 0 non-ASCII bytes. The check selector still picks all five checks.
+- **Act script:**
+  - `--check-only`: exit 0, tree unchanged.
+  - The act: exit 0, exactly 11 paths written, byte-identical to the prototype.
+  - A second run: exit 1, nothing written.
+  - A run with a drifted file that must stay unchanged: exit 1, nothing written.
+  - `--pec-row`: exit 2.
+- **Reliance-hold:** `exact-correction-preparation` returns ALLOW with exit 0 on all 13 targets.
+
+### Unresolved
+- **Review of the new bytes.** Revision 4 changes the schema, the default instance, the adapter, the tests and the runner. Under D-PEC-78 §4.3, a reviewer should look at these bytes before the ruling.
+- **Where the owner direction lives.** The owner's 2026-09-26 words reached me only through your relay. Their repository record is yours to file.
+- **Filed copy is stale.** The proposal filed on `origin/main` is revision 3 (`2f7d9875…afc4`). The prep folder `_Coordination/PEC_REGISTRY_D96_PREP_2026-09-25/` also holds the revision-3 scripts. Both need replacing when revision 4 is published.
+- **Carried forward:**
+  - The `agentruns-json` basis rests on implication from D-PEC-94.
+  - The path-normalization residual (amendment only).
+  - The DEL-01-06 Scope of Work lag, for S2.
+  - The `SOFTWARE_DECOMP.md` §9 vocabulary term still lists `remaining-loop` as an example.
+  - FX-PEC-0 and R-05, for X1.
+
+### Files
+- Helpers are in `/private/tmp/claude-501/g1work.uHT090/r4/`. The large exports and clones are deleted.
