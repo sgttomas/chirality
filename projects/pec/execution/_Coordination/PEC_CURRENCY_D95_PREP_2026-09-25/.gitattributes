@@ -1,0 +1,4 @@
+# Hash-bound preparation evidence for D-PEC-95 (listed in SHA256SUMS).
+# Unified diffs and TSV reports keep their exact bytes, including
+# format-mandated trailing spaces and empty trailing fields.
+evidence/** -whitespace
