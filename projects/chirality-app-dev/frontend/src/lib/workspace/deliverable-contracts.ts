@@ -1,4 +1,4 @@
-import { lstat, readFile, realpath, stat } from 'node:fs/promises';
+import { lstat, open, readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { writeTextFileAtomically } from '../atomic-write';
 import { readDependencyRegister } from '../dependencies/register-reader';
@@ -362,22 +362,59 @@ export interface DeliverableStatusTransitionResult extends DeliverableStatusSnap
 }
 
 /**
- * Resolves the ruling reference of the human-ruled `CHECKING -> IN_PROGRESS`
- * reversal to a project-relative POSIX path. The reference may be relative to
+ * True when `relative` (a `path.relative` result) leaves its base: it is `..`,
+ * starts with a `..` segment, or is absolute (another drive on Windows). A name
+ * that merely begins with two dots, such as `..notes.md`, stays inside.
+ */
+function escapesBase(relative: string): boolean {
+  return relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
+}
+
+const RULING_CONTENT_SCAN_CHUNK_BYTES = 64 * 1024;
+// Tab, line feed, vertical tab, form feed, carriage return and space.
+const ASCII_WHITESPACE_BYTES = new Set([0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x20]);
+
+/** True when the file holds at least one byte other than ASCII whitespace. */
+async function hasNonWhitespaceContent(filePath: string): Promise<boolean> {
+  const handle = await open(filePath, 'r');
+  try {
+    const buffer = Buffer.alloc(RULING_CONTENT_SCAN_CHUNK_BYTES);
+    for (;;) {
+      const { bytesRead } = await handle.read(buffer, 0, buffer.length, null);
+      if (bytesRead === 0) {
+        return false;
+      }
+      // Any byte other than ASCII whitespace is content; multi-byte UTF-8
+      // sequences never contain ASCII whitespace bytes.
+      if (buffer.subarray(0, bytesRead).some((byte) => !ASCII_WHITESPACE_BYTES.has(byte))) {
+        return true;
+      }
+    }
+  } finally {
+    await handle.close();
+  }
+}
+
+/**
+ * Resolves the ruling reference of a human gate (required for the
+ * `CHECKING -> IN_PROGRESS` reversal, optional for entry to `CHECKING` or
+ * `ISSUED`) to a project-relative POSIX path. The reference may be relative to
  * projectRoot or absolute; it must resolve, lexically and after symlink
- * resolution, to a regular file inside projectRoot. This checks existence and
- * location only: it does not establish that a human made the ruling or that the
- * record is committed.
+ * resolution, to a non-empty regular file inside projectRoot that is not the
+ * deliverable's own `_STATUS.md`. This checks existence, content and location
+ * only: it does not establish that a human made the ruling or that the record is
+ * committed.
  */
 async function resolveRulingReference(
   projectRoot: string,
   canonicalProjectRoot: string,
+  statusFilePath: string,
   rulingInput: string
 ): Promise<string> {
   const ruling = rulingInput.trim();
   const candidatePath = path.resolve(projectRoot, ruling);
   const lexicalRelative = path.relative(projectRoot, candidatePath);
-  if (!lexicalRelative || lexicalRelative.startsWith('..') || path.isAbsolute(lexicalRelative)) {
+  if (!lexicalRelative || escapesBase(lexicalRelative)) {
     throw new WorkspaceOperationError(
       'RULING_OUTSIDE_PROJECT_ROOT',
       400,
@@ -401,11 +438,7 @@ async function resolveRulingReference(
   }
 
   const canonicalRelative = path.relative(canonicalProjectRoot, canonicalPath);
-  if (
-    !canonicalRelative ||
-    canonicalRelative.startsWith('..') ||
-    path.isAbsolute(canonicalRelative)
-  ) {
+  if (!canonicalRelative || escapesBase(canonicalRelative)) {
     throw new WorkspaceOperationError(
       'RULING_OUTSIDE_PROJECT_ROOT',
       400,
@@ -419,6 +452,41 @@ async function resolveRulingReference(
       'RULING_NOT_FOUND',
       400,
       'ruling must name a ruling record file',
+      { ruling }
+    );
+  }
+
+  let canonicalStatusPath: string | undefined;
+  try {
+    canonicalStatusPath = await realpath(statusFilePath);
+  } catch {
+    canonicalStatusPath = undefined;
+  }
+  if (canonicalStatusPath !== undefined && canonicalStatusPath === canonicalPath) {
+    throw new WorkspaceOperationError(
+      'RULING_IS_STATUS_FILE',
+      400,
+      "ruling must name a ruling record, not the deliverable's own _STATUS.md",
+      { ruling }
+    );
+  }
+
+  let nonEmpty: boolean;
+  try {
+    nonEmpty = rulingStat.size > 0 && (await hasNonWhitespaceContent(canonicalPath));
+  } catch {
+    throw new WorkspaceOperationError(
+      'RULING_NOT_FOUND',
+      400,
+      'ruling does not name a readable record in projectRoot',
+      { ruling }
+    );
+  }
+  if (!nonEmpty) {
+    throw new WorkspaceOperationError(
+      'RULING_EMPTY',
+      400,
+      'ruling must name a record with content; the file is empty or whitespace only',
       { ruling }
     );
   }
@@ -438,7 +506,7 @@ export async function transitionDeliverableStatus(
   );
   const statusFilePath = path.join(deliverablePath, '_STATUS.md');
   const ruling = input.ruling?.trim()
-    ? await resolveRulingReference(projectRoot, canonicalProjectRoot, input.ruling)
+    ? await resolveRulingReference(projectRoot, canonicalProjectRoot, statusFilePath, input.ruling)
     : undefined;
 
   try {

@@ -638,7 +638,7 @@ function buildDependenciesTemplate(deliverable: PackagePlan['deliverables'][numb
 
 ## Dependency Tracking Mode
 - **Mode:** ${SCAFFOLD_DEPENDENCY_TRACKING_MODE}
-- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
+- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)
 - **Notes:** ../../../_Coordination/_COORDINATION.md
 
 ---

@@ -249,8 +249,10 @@ describe('Chirality mutating MCP tools', () => {
       date: '2026-02-26'
     };
 
-    // An agent calling the tool cannot reach the reversal with a caller-supplied
-    // HUMAN string alone, with a SHA but no ruling, or with an agent actor.
+    // The tool rejects the reversal for HUMAN with neither SHA nor ruling, with a
+    // ruling but no SHA, with a SHA but no ruling, and for an agent actor. The
+    // actor is caller-asserted: HUMAN with a well-formed SHA and a real ruling file
+    // passes (App SPEC §4.3 known limit).
     for (const [args, code] of [
       [{ ...base, actor: 'HUMAN' }, 'APPROVAL_SHA_REQUIRED'],
       [{ ...base, actor: 'HUMAN', ruling: '_DECISIONS/D-001.md' }, 'APPROVAL_SHA_REQUIRED'],

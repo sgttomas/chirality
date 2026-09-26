@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { writeTextFileAtomically } from '../atomic-write';
 import { LifecycleState, LIFECYCLE_STATES, parseLifecycleState, parseStatusDocument } from './status-parser';
-import { updateStatusDocument } from './status-writer';
+import { StatusWriteError, updateStatusDocument } from './status-writer';
 
 const STATE_INDEX = new Map<LifecycleState, number>(
   LIFECYCLE_STATES.map((state, index) => [state, index])
@@ -42,7 +42,8 @@ export type TransitionErrorCode =
   | 'INVALID_APPROVAL_SHA'
   | 'RULING_REQUIRED'
   | 'INVALID_RULING_REFERENCE'
-  | 'RULING_NOT_APPLICABLE';
+  | 'RULING_NOT_APPLICABLE'
+  | 'INVALID_METADATA';
 
 export class LifecycleTransitionError extends Error {
   readonly code: TransitionErrorCode;
@@ -60,7 +61,11 @@ export interface LifecycleTransitionOptions {
   date?: string;
   metadata?: Record<string, string>;
   approvalSha?: string;
-  /** Ruling record authorizing `CHECKING -> IN_PROGRESS`; required for that reversal only. */
+  /**
+   * Ruling record authorizing a human gate: required for the `CHECKING -> IN_PROGRESS`
+   * reversal, optional for `IN_PROGRESS -> CHECKING` and `CHECKING -> ISSUED`, and
+   * rejected for every other transition.
+   */
   ruling?: string;
 }
 
@@ -73,9 +78,12 @@ export interface LifecycleTransitionResult {
 
 const APPROVAL_SHA_PATTERN = /^[0-9a-f]{7,64}$/i;
 const RULING_REFERENCE_MAX_LENGTH = 512;
-// The ruling reference is recorded inside a `[...]` history note, so it must be
-// one line without brackets or control characters.
-const RULING_REFERENCE_FORBIDDEN = /[\u0000-\u001f\u007f[\]]/;
+// The ruling reference is recorded inside a `[...]` history note whose parts are
+// separated by `; `, so it must be one line without brackets, semicolons or
+// control characters.
+const RULING_REFERENCE_FORBIDDEN = /[\u0000-\u001f\u007f[\];]/;
+// The CHECKING entry records its approval SHA in this field; the reversal removes it.
+const CHECKING_APPROVAL_SHA_FIELD = 'Checking Approval SHA';
 
 function normalizeActor(actor: string): string {
   const normalized = actor.trim().toUpperCase().replace(/\s+/g, '_');
@@ -138,9 +146,10 @@ function parseApprovalShaForTransition(
 }
 
 /**
- * Returns the ruling reference the human-ruled reversal requires, or `undefined`
- * for a transition that takes none. A ruling supplied to any other transition is
- * denied rather than silently dropped (deny-first).
+ * Returns the ruling reference for a human gate, or `undefined` when none was
+ * supplied to a gate where it is optional. The human-ruled reversal requires one;
+ * the forward gates into `CHECKING` and `ISSUED` accept one. A ruling supplied to
+ * any other transition is denied rather than silently dropped (deny-first).
  */
 function parseRulingReference(
   rule: TransitionRule,
@@ -149,7 +158,7 @@ function parseRulingReference(
   const ruling = options.ruling?.trim() || undefined;
   const { from, to } = rule;
 
-  if (!rule.rulingReversal) {
+  if (!isHumanGateTransition(rule)) {
     if (ruling) {
       throw new LifecycleTransitionError(
         'RULING_NOT_APPLICABLE',
@@ -160,6 +169,9 @@ function parseRulingReference(
     return undefined;
   }
 
+  if (!ruling && !rule.rulingReversal) {
+    return undefined;
+  }
   if (!ruling) {
     throw new LifecycleTransitionError(
       'RULING_REQUIRED',
@@ -170,22 +182,32 @@ function parseRulingReference(
   if (ruling.length > RULING_REFERENCE_MAX_LENGTH || RULING_REFERENCE_FORBIDDEN.test(ruling)) {
     throw new LifecycleTransitionError(
       'INVALID_RULING_REFERENCE',
-      `ruling must be a single-line reference of at most ${RULING_REFERENCE_MAX_LENGTH} characters without brackets`,
+      `ruling must be a single-line reference of at most ${RULING_REFERENCE_MAX_LENGTH} characters without brackets or semicolons`,
       { from, to }
     );
   }
   return ruling;
 }
 
-function reversalHistoryNote(
+/**
+ * History note for a human gate that carries a ruling: the reversal is marked as
+ * such, and a forward gate records the ruling it was given.
+ */
+function rulingHistoryNote(
+  rule: TransitionRule,
   ruling: string | undefined,
   approvalSha: string | undefined
 ): string | undefined {
   if (!ruling) {
     return undefined;
   }
-  const basis = `reversal from CHECKING; ruling: ${ruling}`;
-  return approvalSha ? `${basis}; approval SHA: ${approvalSha}` : basis;
+  const parts = rule.rulingReversal
+    ? ['reversal from CHECKING', `ruling: ${ruling}`]
+    : [`ruling: ${ruling}`];
+  if (approvalSha) {
+    parts.push(`approval SHA: ${approvalSha}`);
+  }
+  return parts.join('; ');
 }
 
 function mergeTransitionMetadata(
@@ -253,13 +275,24 @@ export function applyLifecycleTransition(
   const approvalSha = parseApprovalShaForTransition(rule, options);
   const ruling = parseRulingReference(rule, options);
   const metadata = mergeTransitionMetadata(to, options, approvalSha);
-  const updated = updateStatusDocument(currentStatusContent, {
-    targetState: to,
-    actor,
-    date: options.date,
-    metadata,
-    notes: reversalHistoryNote(ruling, approvalSha)
-  });
+  let updated: ReturnType<typeof updateStatusDocument>;
+  try {
+    updated = updateStatusDocument(currentStatusContent, {
+      targetState: to,
+      actor,
+      date: options.date,
+      metadata,
+      // The reversal withdraws the check, so its approval SHA no longer describes
+      // the current state; the history line keeps the record.
+      removeFields: rule.rulingReversal ? [CHECKING_APPROVAL_SHA_FIELD] : undefined,
+      notes: rulingHistoryNote(rule, ruling, approvalSha)
+    });
+  } catch (error) {
+    if (error instanceof StatusWriteError) {
+      throw new LifecycleTransitionError('INVALID_METADATA', error.message, error.details);
+    }
+    throw error;
+  }
 
   return {
     from,

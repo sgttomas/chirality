@@ -2,23 +2,31 @@
 
 ## Runs
 
-- 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the transition validator, API and
-  MCP tool now admit the human-ruled `CHECKING -> IN_PROGRESS` reversal for a
-  HUMAN/USER/OPERATOR actor with an approval SHA and a `ruling` file inside the
-  project root. `ISSUED -> IN_PROGRESS` and every other backward move stay
-  rejected. REQ-004's open question, which record authorizes the scope-change
-  route for `ISSUED -> IN_PROGRESS`, is answered by the owner's 2026-09-26
-  decision (E, recorded in the receipt): an ACCEPTED amendment (checkpoint group
-  3 accepted) whose accepted action register names the deliverable with action
-  `MODIFY`; App SPEC §4.3 states it. Tool enforcement is pending: the tools keep
-  refusing the move until an amendment-record check is implemented (App
-  follow-up). This addresses the CHECKING part of CLM-011.4 and the
-  `NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md` lag. Known limit: the App layer
-  cannot verify that the ruling is committed or the SHA is a real commit, so
-  HUMAN plus a well-formed SHA plus a real ruling path suffices, as for the
-  CHECKING/ISSUED gates; the REQ-005 human-identity limit remains. The other App
-  follow-ups (Runtime descriptor `ruling`, UI reversal input, SOW verification
-  sentences) are in the work graph. No lifecycle change. Evidence:
+- 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the transition validator, API
+  and MCP tool now admit the human-ruled `CHECKING -> IN_PROGRESS` reversal for
+  a HUMAN/USER/OPERATOR actor with an approval SHA and a `ruling` naming a
+  non-empty file inside the project root other than the deliverable's own
+  `_STATUS.md`; the reversal removes the `**Checking Approval SHA:**` field. The
+  forward gates into `CHECKING` and `ISSUED` accept an optional ruling under the
+  same checks. Status-field writes reject reserved labels and multi-line or
+  control-character keys and values. `ISSUED -> IN_PROGRESS` and every other
+  backward move stay rejected. REQ-004's open question, which record authorizes
+  the scope-change route for `ISSUED -> IN_PROGRESS`, is answered by the owner's
+  2026-09-26 decision (E, recorded in the receipt): an ACCEPTED amendment
+  (checkpoint group 3 accepted) whose accepted action register names the
+  deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification
+  changes the deliverable's scope (D-GOV-50); App SPEC §4.3 states it. Tool
+  enforcement is pending: the tools keep refusing the move until an
+  amendment-record check is implemented (App follow-up). This addresses the
+  CHECKING part of CLM-011.4 and the
+  `NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md` lag. Known limit: the actor is
+  caller-asserted and the App layer does not verify that the ruling is committed
+  or the SHA is a real commit, so any caller able to write files in the project
+  can satisfy the checks with HUMAN, a well-formed SHA and a non-empty ruling
+  file, as for the CHECKING/ISSUED gates; the REQ-005 human-identity limit
+  remains. The other App follow-ups (Runtime descriptor `ruling`, UI reversal
+  input, SOW verification sentences) are in the work graph. No lifecycle change.
+  Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-LIFECYCLE-DEPS-2026-09-26/RECEIPT.md),
   [work graph](../../../_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md),
   branch `wave3-app-lifecycle-deps`.

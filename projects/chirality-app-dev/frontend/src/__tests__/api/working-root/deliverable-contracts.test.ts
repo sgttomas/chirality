@@ -330,7 +330,7 @@ describe('working-root deliverable contract routes', () => {
   describe('human-ruled CHECKING reversal', () => {
     const RULING_RELATIVE = 'execution/_Coordination/_DECISIONS/D-001_check_withdrawn.md';
 
-    function statusAt(state: 'CHECKING' | 'ISSUED'): string {
+    function statusAt(state: 'IN_PROGRESS' | 'CHECKING' | 'ISSUED'): string {
       return `${INITIAL_STATUS.replace('**Current State:** INITIALIZED', `**Current State:** ${state}`)}- 2026-02-25 - State set to ${state} (HUMAN)\n`;
     }
 
@@ -388,7 +388,7 @@ describe('working-root deliverable contract routes', () => {
     });
 
     it.each([
-      ['CHECKING', 'a caller-supplied HUMAN string alone', { approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
+      ['CHECKING', 'HUMAN with neither SHA nor ruling', { approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
       ['CHECKING', 'HUMAN with a SHA but no ruling', {}, 'RULING_REQUIRED'],
       ['CHECKING', 'no SHA', { approvalSha: undefined, ruling: RULING_RELATIVE }, 'APPROVAL_SHA_REQUIRED'],
       ['CHECKING', 'an agent actor', { actor: 'WORKING_ITEMS', ruling: RULING_RELATIVE }, 'UNAUTHORIZED_ACTOR'],
@@ -409,6 +409,95 @@ describe('working-root deliverable contract routes', () => {
       expect(response.status).toBe(400);
       expect(await response.json()).toMatchObject({ error: { type } });
       await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toBe(before);
+    });
+
+    async function expectDeniedWithoutWrite(
+      body: Record<string, unknown>,
+      type: string,
+      state: 'IN_PROGRESS' | 'CHECKING' = 'CHECKING'
+    ): Promise<void> {
+      const before = statusAt(state);
+      await writeFile(fixture.statusFilePath, before, 'utf8');
+
+      const response = await postTransition(body);
+
+      expect(response.status).toBe(400);
+      expect(await response.json()).toMatchObject({ error: { type } });
+      await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toBe(before);
+    }
+
+    it('denies an absolute ruling path outside projectRoot', async () => {
+      const outside = path.join(fixture.tmpRoot, 'outside-ruling.md');
+      await writeFile(outside, '# Outside\n', 'utf8');
+      await expectDeniedWithoutWrite({ ruling: outside }, 'RULING_OUTSIDE_PROJECT_ROOT');
+    });
+
+    it.each([
+      ['a zero-byte ruling file', ''],
+      ['a whitespace-only ruling file', ' \n\t\r\n  ']
+    ])('denies %s', async (_label, content) => {
+      const empty = 'execution/_Coordination/_DECISIONS/D-002_empty.md';
+      await writeFile(path.join(fixture.projectRoot, empty), content, 'utf8');
+      await expectDeniedWithoutWrite({ ruling: empty }, 'RULING_EMPTY');
+    });
+
+    it("denies the deliverable's own _STATUS.md as the ruling", async () => {
+      await expectDeniedWithoutWrite(
+        { ruling: path.relative(fixture.projectRoot, fixture.statusFilePath) },
+        'RULING_IS_STATUS_FILE'
+      );
+    });
+
+    it('denies a ruling path containing a semicolon', async () => {
+      const semicolon = 'execution/_Coordination/_DECISIONS/D-003;approval SHA fff0000.md';
+      await writeFile(path.join(fixture.projectRoot, semicolon), '# Ruling\n', 'utf8');
+      await expectDeniedWithoutWrite({ ruling: semicolon }, 'INVALID_RULING_REFERENCE');
+    });
+
+    it('accepts a ruling whose name begins with two dots', async () => {
+      await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
+      await writeFile(path.join(fixture.projectRoot, '..ruling-notes.md'), '# Ruling\n', 'utf8');
+
+      const response = await postTransition({ ruling: '..ruling-notes.md' });
+
+      expect(response.status).toBe(200);
+      await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toContain(
+        '[reversal from CHECKING; ruling: ..ruling-notes.md; approval SHA: abc1234]'
+      );
+    });
+
+    it('accepts an optional ruling on IN_PROGRESS -> CHECKING and records it', async () => {
+      await writeFile(fixture.statusFilePath, statusAt('IN_PROGRESS'), 'utf8');
+
+      const response = await postTransition({ targetState: 'CHECKING', ruling: RULING_RELATIVE });
+
+      expect(response.status).toBe(200);
+      const statusFile = await readFile(fixture.statusFilePath, 'utf8');
+      expect(statusFile).toContain(
+        `- 2026-02-27 - State set to CHECKING (HUMAN) [ruling: ${RULING_RELATIVE}; approval SHA: abc1234]`
+      );
+      expect(statusFile).toContain('**Checking Approval SHA:** abc1234');
+    });
+
+    it('applies the same ruling path checks on a forward gate', async () => {
+      await expectDeniedWithoutWrite(
+        { targetState: 'CHECKING', ruling: '../outside-ruling.md' },
+        'RULING_OUTSIDE_PROJECT_ROOT',
+        'IN_PROGRESS'
+      );
+    });
+
+    it('rejects metadata that would forge _STATUS.md history', async () => {
+      await expectDeniedWithoutWrite(
+        {
+          ruling: RULING_RELATIVE,
+          metadata: {
+            currentState: 'ISSUED',
+            note: 'x\n\n## History\n- 2026-02-27 - State set to ISSUED (HUMAN)'
+          }
+        },
+        'INVALID_METADATA'
+      );
     });
 
     it('denies a ruling symlink that resolves outside projectRoot', async () => {

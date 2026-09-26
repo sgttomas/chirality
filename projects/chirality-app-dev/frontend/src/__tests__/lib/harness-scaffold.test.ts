@@ -148,7 +148,7 @@ describe('scaffoldExecutionRoot', () => {
     ]);
     expect(dependencies).toContain('- **Mode:** FULL_GRAPH\n');
     expect(dependencies).toContain(
-      '- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file\n'
+      '- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)\n'
     );
     const coordinationPointer = dependencies.match(/^- \*\*Notes:\*\* (.+)$/m)?.[1];
     expect(coordinationPointer).toBeDefined();

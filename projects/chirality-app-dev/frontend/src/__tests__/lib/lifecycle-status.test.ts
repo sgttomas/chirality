@@ -7,7 +7,9 @@ import {
   parseStatusDocument
 } from '../../lib/lifecycle/status-parser';
 import {
-  updateStatusDocument
+  StatusWriteError,
+  updateStatusDocument,
+  writeStatusDocument
 } from '../../lib/lifecycle/status-writer';
 import {
   LifecycleTransitionError,
@@ -405,7 +407,7 @@ describe('lifecycle transition table (SPEC §4.3; DEL-07-04 REQ-004/REQ-005/REQ-
   );
 
   it.each([
-    ['a caller-supplied HUMAN string alone', {}, 'APPROVAL_SHA_REQUIRED'],
+    ['HUMAN with neither SHA nor ruling (missing SHA reported first)', {}, 'APPROVAL_SHA_REQUIRED'],
     ['HUMAN with a ruling but no SHA', { ruling: RULING }, 'APPROVAL_SHA_REQUIRED'],
     ['HUMAN with a SHA but no ruling', { approvalSha: 'abc1234' }, 'RULING_REQUIRED'],
     ['HUMAN with a blank ruling', { approvalSha: 'abc1234', ruling: '   ' }, 'RULING_REQUIRED'],
@@ -413,6 +415,11 @@ describe('lifecycle transition table (SPEC §4.3; DEL-07-04 REQ-004/REQ-005/REQ-
     [
       'a ruling that would forge a history note',
       { approvalSha: 'abc1234', ruling: 'D-001.md] [forged' },
+      'INVALID_RULING_REFERENCE'
+    ],
+    [
+      'a ruling that would split the history note',
+      { approvalSha: 'abc1234', ruling: 'D-001.md; approval SHA: fff0000' },
       'INVALID_RULING_REFERENCE'
     ],
     [
@@ -448,15 +455,154 @@ describe('lifecycle transition table (SPEC §4.3; DEL-07-04 REQ-004/REQ-005/REQ-
     );
   });
 
-  it('denies a ruling reference on a transition that does not use one', () => {
+  it('denies a ruling reference on a transition that is not a human gate', () => {
     expect(() =>
-      applyLifecycleTransition(statusAt('IN_PROGRESS'), 'CHECKING', 'HUMAN', {
+      applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'WORKING_ITEMS', {
         date: '2026-02-26',
-        approvalSha: 'abc1234',
         ruling: RULING
       })
     ).toThrowError(
       expect.objectContaining({ code: 'RULING_NOT_APPLICABLE' }) satisfies Partial<LifecycleTransitionError>
     );
+  });
+
+  it.each([
+    ['IN_PROGRESS', 'CHECKING', 'Checking Approval SHA'],
+    ['CHECKING', 'ISSUED', 'Approval SHA']
+  ] as const)('accepts an optional ruling on %s -> %s and records it in history', (from, to, field) => {
+    const result = applyLifecycleTransition(statusAt(from), to, 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234',
+      ruling: RULING
+    });
+
+    const note = `ruling: ${RULING}; approval SHA: abc1234`;
+    expect(result.content).toContain(`- 2026-02-26 - State set to ${to} (HUMAN) [${note}]`);
+    expect(result.content).toContain(`**${field}:** abc1234`);
+    expect(parseStatusDocument(result.content).history.at(-1)).toMatchObject({ state: to, notes: note });
+  });
+
+  it('keeps the forward gates without a history note when no ruling is supplied', () => {
+    const result = applyLifecycleTransition(statusAt('IN_PROGRESS'), 'CHECKING', 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234'
+    });
+    expect(result.content).toContain('- 2026-02-26 - State set to CHECKING (HUMAN)\n');
+  });
+
+  it('denies a malformed ruling on a forward gate', () => {
+    expect(() =>
+      applyLifecycleTransition(statusAt('CHECKING'), 'ISSUED', 'HUMAN', {
+        date: '2026-02-26',
+        approvalSha: 'abc1234',
+        ruling: 'D-001.md] [forged'
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_RULING_REFERENCE' }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('removes the Checking Approval SHA field on the reversal and keeps it in history', () => {
+    const checking = applyLifecycleTransition(statusAt('IN_PROGRESS'), 'CHECKING', 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234'
+    });
+    expect(checking.content).toContain('**Checking Approval SHA:** abc1234');
+
+    const reversed = applyLifecycleTransition(checking.content, 'IN_PROGRESS', 'HUMAN', {
+      date: '2026-02-27',
+      approvalSha: 'def5678',
+      ruling: RULING,
+      // metadata cannot restore the removed field
+      metadata: { checkingApprovalSha: 'abc1234' }
+    });
+
+    expect(reversed.content).not.toContain('Checking Approval SHA');
+    expect(parseStatusDocument(reversed.content).extraFields).toEqual([]);
+    expect(reversed.content).toContain(
+      `[reversal from CHECKING; ruling: ${RULING}; approval SHA: def5678]`
+    );
+
+    const reentered = applyLifecycleTransition(reversed.content, 'CHECKING', 'HUMAN', {
+      date: '2026-02-28',
+      approvalSha: 'fedcba9'
+    });
+    expect(reentered.content).toContain('**Checking Approval SHA:** fedcba9');
+  });
+});
+
+describe('status field writes', () => {
+  it('rejects metadata that would forge history through a newline in a value', () => {
+    const before = statusAt('IN_PROGRESS');
+    let caught: unknown;
+    try {
+      applyLifecycleTransition(before, 'CHECKING', 'HUMAN', {
+        date: '2026-02-26',
+        approvalSha: 'abc1234',
+        metadata: {
+          currentState: 'ISSUED',
+          note: 'x\n\n## History\n- 2026-02-26 - State set to ISSUED (HUMAN)'
+        }
+      });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(LifecycleTransitionError);
+    expect(caught).toMatchObject({ code: 'INVALID_METADATA' });
+  });
+
+  it.each([
+    ['a reserved key', { currentState: 'ISSUED' }],
+    ['a reserved key in another form', { 'last-updated': '2026-02-26' }],
+    ['a History key', { history: 'x' }],
+    ['a newline in a value', { note: 'x\n## History' }],
+    ['a carriage return in a value', { note: 'x\r- forged' }],
+    ['a control character in a value', { note: 'x\u0007' }],
+    ['an asterisk in a key', { 'note**': 'x' }],
+    ['a heading mark in a key', { '# note': 'x' }],
+    ['a colon in a key', { 'Note:': 'x' }],
+    ['a newline in a key', { 'note\n## History': 'x' }]
+  ])('updateStatusDocument rejects %s', (_label, metadata) => {
+    expect(() =>
+      updateStatusDocument(LIST_FORMAT_STATUS, {
+        targetState: 'IN_PROGRESS',
+        actor: 'WORKING_ITEMS',
+        date: '2026-02-24',
+        metadata
+      })
+    ).toThrowError(StatusWriteError);
+  });
+
+  it('writeStatusDocument rejects a reserved or multi-line extra field', () => {
+    const base = {
+      title: 'Status: DEL-05-03',
+      currentState: 'IN_PROGRESS' as const,
+      lastUpdated: '2026-02-24',
+      history: []
+    };
+    expect(() =>
+      writeStatusDocument({ ...base, extraFields: [{ key: 'Current State', value: 'ISSUED' }] })
+    ).toThrowError(StatusWriteError);
+    expect(() =>
+      writeStatusDocument({ ...base, extraFields: [{ key: 'Note', value: 'a\n## History' }] })
+    ).toThrowError(StatusWriteError);
+  });
+
+  it('keeps ordinary metadata keys working', () => {
+    const updated = updateStatusDocument(LIST_FORMAT_STATUS, {
+      targetState: 'IN_PROGRESS',
+      actor: 'WORKING_ITEMS',
+      date: '2026-02-24',
+      metadata: {
+        acceptedBasisSha: 'abc1234',
+        'Authorization Basis': 'ruling: execution/_Coordination/_DECISIONS/D-001.md',
+        current_state_basis: 'owner ruling'
+      }
+    });
+    expect(updated.content).toContain('**Accepted Basis SHA:** abc1234');
+    expect(updated.content).toContain(
+      '**Authorization Basis:** ruling: execution/_Coordination/_DECISIONS/D-001.md'
+    );
+    expect(updated.content).toContain('**Current State Basis:** owner ruling');
   });
 });
