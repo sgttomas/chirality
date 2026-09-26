@@ -15,6 +15,7 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 2. Draft the exact amendment and propagation plan, preserving stable identity, source lineage, and downstream ownership, before the second grouped checkpoint.
 3. Apply only the accepted amendment and propagation plan, dispatch bounded remediation, and regenerate affected derivatives from the accepted basis.
 4. Dispatch a separate review instance and present the audited poststate, closure evidence, and remaining obligations at the third grouped checkpoint.
+5. After acceptance, hand setup of added, retired and modified entities to `project-setup` in `INCREMENTAL` mode through `Handoff_State.md`, with `audit-scope-closure` as the closure check. An accepted amendment whose action register names an `ISSUED` deliverable with `MODIFY` is the record that authorizes the human to reopen it (`docs/SPEC.md` §3.3).
 
 ## Resources
 

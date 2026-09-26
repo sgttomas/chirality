@@ -17,6 +17,8 @@
 
 ### Step 1 — Locate dependency registers
 
+The graph source is each deliverable's recorded register (`docs/SPEC.md` §5.3): the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv`. `INCLUDE_DECLARED=false` (analyzer `--include-declared false`) reads `Dependencies.csv` alone, the prior reading.
+
 For each deliverable in scope:
 - Locate `{deliverable}/Dependencies.csv`.
 - Record existence/readability into `coverage.csv`.
@@ -24,6 +26,8 @@ For each deliverable in scope:
   - continue (do not halt),
   - mark the deliverable as `MISSING_DEPENDENCIES_CSV` or `UNREADABLE`,
   - exclude its rows from graph edges (but keep the deliverable as a node).
+- When `INCLUDE_DECLARED=true`, also read `{deliverable}/_DEPENDENCIES.md` when present. Its declared entries in the §5.2 entry form that have no ACTIVE EXECUTION row with the same `Direction` and target join the graph (`declared_only.csv`). A disagreement between a declaration and a row, including a declaration whose only matching row is `RETIRED`, is reported (`declared_disagreements.csv`); the declaration governs. Lines naming a deliverable in another form are listed in `declared_unread.csv`, never inferred. A deliverable with declared entries but no `Dependencies.csv` still contributes those edges.
+- Record every file read, with its SHA-256, in the accepted input basis of `Tool_Run.json`: the `Dependencies.csv` and, with `INCLUDE_DECLARED=true`, `_DEPENDENCIES.md` files, and `{EXECUTION_ROOT}/_DAG/_LATEST.md` with the version files it names when present (with an accepted DAG, the registers of every unit under the execution root, which the comparison reads).
 
 ---
 
@@ -41,7 +45,7 @@ For each readable `Dependencies.csv`:
 ### Step 3 — Build the graph (analysis-only)
 
 > Tool invocation: steps 1–4 are performed by a single deterministic call to `tools/coordination/analyze_dep_closure.py`, which handles register discovery, schema validation, graph construction, and core-check outputs.
-> `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {snapshot_folder}/Evidence --scope {SCOPE_UNITS} --filter-active-only {FILTER_ACTIVE_ONLY} --normalize-ids {NORMALIZE_IDS} --dependency-class EXECUTION --target-type DELIVERABLE --hub-threshold {HUB_THRESHOLD} --max-cycles {MAX_CYCLES} [--prior-summary {PRIOR_SUMMARY}]`
+> `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {snapshot_folder}/Evidence --scope {SCOPE_UNITS} --filter-active-only {FILTER_ACTIVE_ONLY} --normalize-ids {NORMALIZE_IDS} --dependency-class EXECUTION --target-type DELIVERABLE --hub-threshold {HUB_THRESHOLD} --max-cycles {MAX_CYCLES} --include-declared {INCLUDE_DECLARED} [--prior-summary {PRIOR_SUMMARY}]`
 > The analyzer writes its outputs flat into `Evidence/` (see the contract's tool-root layout); the TASK writes `Tool_Run.json` at the snapshot root.
 
 Nodes:
@@ -56,6 +60,9 @@ Edges:
 
 Normalization:
 - If `NORMALIZE_IDS=true`, normalize IDs for analysis only; never rewrite source CSVs.
+
+Declared entries:
+- With `INCLUDE_DECLARED=true`, a declared entry without a matching row is an ACTIVE EXECUTION edge with `TargetType=DELIVERABLE`; its direction comes from its section (Declared Upstream `UPSTREAM`, Declared Downstream `DOWNSTREAM`).
 
 Direction handling:
 - Preserve `Direction` metadata for reporting.
@@ -96,6 +103,12 @@ Run and report (PASS/WARNING/BLOCKER) for each check:
 
 9) **Bidirectional pairs**
    - A→B and B→A both present (INFO by default; elevate if the human requests).
+
+10) **Declared disagreements** (`INCLUDE_DECLARED=true`)
+   - A declared entry and a CSV row for the same edge disagree (WARNING), with `declared_disagreements.csv` as evidence; the declaration governs. Report `declared_only.csv` and `declared_unread.csv` counts in `QA_Report.md`.
+
+11) **Accepted DAG currency** (only when `{EXECUTION_ROOT}/_DAG/_LATEST.md` names an accepted project DAG)
+   - Report the analyzer's `accepted_dag` result and `dag_pending.csv` (WARNING on departure). This arc-and-inventory check is advisory; the `project-dag` currency audit governs where they differ.
 
 Each finding must include evidence:
 - file paths, deliverable IDs, and row identifiers (`DependencyID` when available).

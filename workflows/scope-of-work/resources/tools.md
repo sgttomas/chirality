@@ -5,11 +5,15 @@
 1. Read and hash the authoritative source kit and `_STATUS.md`.
 2. In `CONVERT`, run `convert_four_documents_to_scope_of_work.py` only under
    exact accepted path-scoped migration authority. `INIT` is source-grounded
-   authoring and `VERIFY` is read-only on production content.
+   authoring, `REVISE` edits the existing production contract within its
+   `REVISION_SCOPE` (run `validate_scope_of_work.py` on it first; an invalid
+   prior contract fails the run), and `VERIFY` is read-only on production
+   content.
 3. In `CONVERT`, refine the evidence candidate through bounded reasoning
    without removing source markers. In `INIT`, author the production
    `ScopeOfWork.md` directly from accepted decomposition and source evidence;
-   there is no evidence candidate to refine.
+   there is no evidence candidate to refine. `REVISE` likewise has no evidence
+   candidate, mapping, parity or finalization.
 4. In `CONVERT`, run `map_scope_of_work_claims.py` and
    `report_scope_of_work_parity.py` independently of the authoring judgment.
    Both tools require `--source-dir` and are structurally conversion-only; they
@@ -21,7 +25,7 @@
    production contract.
 6. Run `validate_scope_of_work.py` against the production contract — in
    `CONVERT` the clean finalized candidate produced by step 5, in `INIT` the
-   `ScopeOfWork.md` authored in step 3. Steps 6–8 take the same production
+   `ScopeOfWork.md` authored in step 3, in `REVISE` the revised contract. Steps 6–8 take the same production
    contract as input in every mode; only how it was produced differs.
 7. Run `derive_review_checklist.py` against that production contract; preserve
    its exact `AC-*` order, text, source binding, and matrix linkage.
@@ -59,6 +63,8 @@ fails before output for invalid or unauthorized ambiguous input.
   in the same isolated candidate workspace.
 - No converter use on `ISSUED` without exact human-approved administrative
   representation-replacement authority and bound hashes.
+- No `REVISE` on a `CHECKING` or `ISSUED` deliverable, on `LEGACY_FOUR_DOC` or
+  `MIGRATION_DUAL`, or without an accepted amendment naming the deliverable.
 - No write to legacy production documents or underscore files.
 - No HTML tracking as canonical or accepted truth.
 - In `CONVERT`, no checklist, HTML rendering, or integration from an

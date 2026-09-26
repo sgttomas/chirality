@@ -1,0 +1,56 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: PEC-REMAINING-RETIREMENT-20260926
+title: PEC retires its deliverable Remaining sections after a finite governed transfer
+date: 2026-09-26
+instruction_surface_paths:
+  - projects/pec/AGENTS.md
+  - execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md
+  - docs/governance_harness/tranche_manifests/PEC-REMAINING-RETIREMENT-20260926.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts, 2026-09-26: "Why am I seeing `remaining-items` appearing?
+    There must not be any of those going forward, so no need to scan for
+    them." and, answering HELP_HUMAN's question whether to open a retirement
+    undertaking as App and Piping did, "open RS1". The retirement's exact
+    edits, including this instruction change, are ruled by the owner in
+    D-PEC-99 (PEC decision register). projects/pec/AGENTS.md made retiring the
+    sections a separate owner-directed undertaking. This manifest records
+    those acts and grants none.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-26
+  integration_owner: >-
+    PEC WORKING_ITEMS manager under HELP_HUMAN undertaking
+    HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT; roles instruction-asserted,
+    not mechanically enforced. HELP_HUMAN owns the merge.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md
+  rationale: >-
+    Root: its alignment manual
+    (docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md
+    line 60) still describes PEC's selection as "Deliverable `Remaining`".
+    Runtime: DEL-02-06 pins projects/pec/AGENTS.md (SOURCE_PINS.json S4). App
+    and Piping receive none: each retired its own sections on 2026-09-23 and
+    neither pins projects/pec/AGENTS.md. Each notice is non-binding and asks
+    for no write.
+checks:
+  - python3 tools/validation/validate_instruction_entrypoints.py .
+  - python3 tools/validation/validate_instruction_tranche_manifest.py
+  - python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only
+  - python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
+  - python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py
+  - PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check
+rollback: >-
+  Revert the retirement act's commit. projects/pec/AGENTS.md returns to its
+  post-SCA-006 preimage; the notices, this manifest and the exhibit are
+  deleted; every _STATUS.md regains its Remaining section byte for byte and
+  every other touched file returns to its preimage.
+scope_limits:
+  - PEC fences F-PEC-1..4, the owner-ruled D-PEC packet rule, K-AUTH-1 and the reliance-hold control are unchanged.
+  - projects/pec/loop/LOOP_INIT.md names no Remaining surface and is unchanged; projects/pec/init/ is unchanged.
+  - No CHECKING, ISSUED, acceptance, release or reliance act; no lifecycle state changes.

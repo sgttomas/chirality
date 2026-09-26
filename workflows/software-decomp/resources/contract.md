@@ -22,7 +22,8 @@ conflict as a contradiction and request the human's resolution.
 
 Inputs:
 
-- The accepted software intent (for example, a successor PRD handed off by
+- The accepted software intent (for example, a PRD handed off by
+  `software-prd` or a successor PRD handed off by
   `reverse-engineer-software`), identified by path, content hash, and the
   separate acceptance decision record, together with its accepted portions and
   shared constraints. Material outside the accepted portions is not accepted

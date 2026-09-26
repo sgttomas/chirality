@@ -279,3 +279,7 @@ Genuinely open choices besides Q-CP3-A:
 | Q-CP3-2 | The audit pointer `_Evaluation/DecompCoverage/_LATEST.md`, which names `COV_SCA005_POSTSETUP_2026-09-25_1606`. `D-PEC-97` opens the two A6 pointers but not this one | (a) name it in the checkpoint-3 acceptance, so that HELP_HUMAN moves it to `COV_SCA006_POSTCHANGE_2026-09-26_0051` with A6 (the audit has 0 BLOCKERs, which is the audit contract's condition); (b) leave it until a later packet | **(a)**. It keeps the audit pointer consistent with the accepted poststate at no extra cost |
 
 Nothing here asks about CHECKING, ISSUED or acceptance of any deliverable.
+
+## Checkpoint-3 outcome (HELP_HUMAN, 2026-09-26)
+
+The owner accepted the audited poststate and answered both open choices (a): "SCA-006 CP3: accept; Q1 a; Q2 a." (record `../checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`). A6 is performed, including the audit-pointer move. Closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`. The COV-083 `remaining-loop` text is carried knowingly for a later PEC scope change. The rows above that describe the pre-acceptance state, including the §7 closure-verdict row, are superseded by this section.

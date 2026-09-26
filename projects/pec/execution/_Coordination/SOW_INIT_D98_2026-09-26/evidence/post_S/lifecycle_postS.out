@@ -1,0 +1,5 @@
+$ git diff --name-status HEAD -- **/_STATUS.md
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=1e40886239a59655985976a9ffe1f4e4d7bc30a4 python=Python 3.13.7
+M	projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+M	projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+exit=0

@@ -38,6 +38,7 @@ Defaults (only when not otherwise specified by the human):
   analysis, validation, remediation, and derivative-quality evidence do not add
   prompts.
 - **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, a removed deliverable's decomposition row is annotated `[RETIRED — {AMENDMENT_ID}]` and its `_STATUS.md` gains an appended history line recording the retirement under the amendment; its lifecycle state is left unchanged (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for it. Folders and files are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
+- **Reopening an `ISSUED` deliverable.** `ISSUED → IN_PROGRESS` is authorized only by an accepted amendment (its checkpoint group 3 accepted) whose accepted action register names that deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification changes the deliverable's scope (`docs/SPEC.md` §3.3). The human records the transition in `_STATUS.md`, citing the accepted amendment snapshot. This happens after acceptance, at the `MODIFY` routing of `project-setup` in `INCREMENTAL` mode, never in the candidate poststate; no agent records it. A group-1 or group-2 decision, a candidate snapshot, or an action other than `MODIFY` or scope-changing `RECLASSIFY` does not authorize it. Tool enforcement is not yet in place: `tools/scaffolding/write_status.sh` and the App's lifecycle `transition.ts` still refuse `ISSUED → IN_PROGRESS` until they implement a check of the amendment record, so the human records the transition directly for now.
 - **Impact before action.** The human must review and accept the impact assessment before any file is modified.
 - **No direct collateral writes.** Except for an authoritative carrier the accepted checkpoint-group-2 write boundary names exactly (see `ALLOWED_PROPAGATION_WRITES`), WORKING_ITEMS does not directly modify deliverable scope carriers (`ScopeOfWork.md`, or the legacy four-document set only where a deliverable still pins it), `Dependencies.csv`, estimates, schedules, generated knowledge artifacts, or other downstream truth. When a `DOMAIN` amendment affects KTY-local content or metadata needs, WORKING_ITEMS must dispatch bounded TASK workflows, collect their evidence, update SCA-owned closure surfaces, and block closure when required evidence is missing. WORKING_ITEMS never edits active `Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` inside KTY folders itself.
 - **Derivative packages are downstream only.** `DERIVATIVE_PACKAGES` may consume accepted decomposition truth, but they do not redefine it and they are never updated in place by WORKING_ITEMS except for the amendment snapshot artifacts WORKING_ITEMS itself owns.
@@ -84,7 +85,13 @@ Defaults (only when not otherwise specified by the human):
   creating new deliverable folders and metadata files for `PROJECT/SOFTWARE`
   within its existing role and brief. The selection uses the effective
   source-qualified skill descriptor in the ordered `methods` field and is
-  coordinated through WORKING_ITEMS with project-setup; delegation is optional.
+  coordinated by `project-setup` in `INCREMENTAL` mode (its Function 5) after
+  checkpoint group 3 acceptance; delegation is optional.
+- **`project-setup` in `INCREMENTAL` mode** owns setup of the amended scope
+  after acceptance: scaffolding additions, recording retirements without
+  deletion, routing modified deliverables to their production contract's
+  update path, and refreshing their dependency and coordination records. This
+  workflow names that hand-back in `Handoff_State.md`; it does not perform it.
 - **The responsible current role** receives repository-change evidence and the
   exact change scope. It follows the applicable project's change skill or
   repository conventions when present. This current workflow does not require
@@ -376,7 +383,7 @@ one of these defaults, the manifest row must cite that ruling in
 | `REMOVE` affecting a `KNOWLEDGE_SUBJECT` or `HANDBOOK_UNIT` that leaves the parent KTY active | `REGENERATE_CONTENT` | Regenerate the parent KTY so the retired subject/unit is removed from active content. |
 | `MODIFY` with `SupersessionBindingPresent = YES` or any source-superseding factual change | `REGENERATE_CONTENT` | Dispatch `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN`. |
 | `MODIFY` that is metadata-only and does not alter active KTY factual content | `VERIFY_ONLY` | Verify no active content rewrite is required. Metadata repair belongs to `kty-metadata-align` when separately dispatched. |
-| `ADD` creating a new `KNOWLEDGE_TYPE` | `NO_ACTION` | Initial folder/content creation remains downstream initialization unless the approved plan explicitly dispatches regeneration after preparation. |
+| `ADD` creating a new `KNOWLEDGE_TYPE` | `NO_ACTION` | Initial folder/content creation is downstream initialization by `project-setup` in `INCREMENTAL` mode unless the approved plan explicitly dispatches regeneration after preparation. |
 | `ADD` creating new `KNOWLEDGE_SUBJECT` rows in an existing KTY | `REGENERATE_CONTENT` | Regenerate the parent KTY to materialize the new subject-to-artifact mapping. |
 | `ADD` adding `HANDBOOK_UNIT` support to an existing active KTY | `REGENERATE_CONTENT` | Regenerate or verify the parent KTY depending on whether factual content changes; default to regenerate when uncertain. |
 | `RECLASSIFY` without factual-content change | `VERIFY_ONLY` | Verify active content, path references, and factual-use gate after the authoritative remap. |

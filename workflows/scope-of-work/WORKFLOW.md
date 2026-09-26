@@ -1,7 +1,7 @@
 ---
 name: scope-of-work
-description: Initialize, convert, validate, and independently verify one objective-anchored PROJECT/SOFTWARE ScopeOfWork.md under the active SOW_V1
-  transition contract. Do not use for DOMAIN/KTY or independent schemas, lifecycle changes, or unauthorized corpus conversion.
+description: Initialize, convert, revise under an accepted scope-change amendment, validate, and independently verify one objective-anchored
+  PROJECT/SOFTWARE ScopeOfWork.md under the active SOW_V1 transition contract. Do not use for DOMAIN/KTY or independent schemas, lifecycle changes, or unauthorized corpus conversion.
 ---
 
 # WORKFLOW — scope-of-work
@@ -10,8 +10,10 @@ description: Initialize, convert, validate, and independently verify one objecti
 
 Produce or verify one `SOW_V1` production contract. `MODE=INIT` creates a new
 source-grounded PROJECT/SOFTWARE contract; `MODE=CONVERT` preserves every
-legacy source range in an isolated `MIGRATION_DUAL` workspace; `MODE=VERIFY`
-is read-only on production content. The ratified
+legacy source range in an isolated `MIGRATION_DUAL` workspace; `MODE=REVISE`
+revises an existing `SOW_V1` contract only where an accepted `scope-change`
+amendment changes its scope; `MODE=VERIFY` is read-only on production content.
+The ratified
 `docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md` governs all modes.
 
 Read [resources/brief.md](resources/brief.md) before accepting a run. Read
@@ -28,9 +30,11 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
    objective references, format state, and disjoint write targets.
 2. Resolve the production format fail-closed. `INIT` requires no production
    contract; `CONVERT` requires complete `LEGACY_FOUR_DOC` plus exact isolated
-   migration authority; `VERIFY` requires `SOW_V1` or authorized
-   `MIGRATION_DUAL`. Missing, partial, invalid, or unauthorized dual input
-   fails before output.
+   migration authority; `REVISE` requires a valid `SOW_V1` contract at
+   `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` and an accepted amendment
+   (see [Revision under an accepted amendment](#revision-under-an-accepted-amendment));
+   `VERIFY` requires `SOW_V1` or authorized `MIGRATION_DUAL`. Missing,
+   partial, invalid, or unauthorized dual input fails before output.
 3. For `INIT`, ground every definition in accepted decomposition/source
    evidence. For `CONVERT`, hash the four sources and `_STATUS.md`, then use
    the deterministic converter to create a lossless scaffold. Tests may
@@ -46,7 +50,8 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
    contract and external finalization report. Require the map and parity report
    to bind the clean production hash. `INIT` produces no evidence candidate,
    runs no mapping, parity, or finalization, and authors the production
-   contract directly.
+   contract directly. `REVISE` follows its own steps below and produces no
+   evidence candidate.
 6. Validate and derive the WORKING_ITEMS (workflow: review) checklist from the production contract, and
    optionally render HTML from it. Under `CONVERT` the production contract is
    the clean finalized artifact and no other.
@@ -54,7 +59,44 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
    conflicts, and the `_STATUS.md` hash — unchanged under `NO_STATUS_TOUCH`, or
    before/after when the brief authorizes a status act. For `CONVERT`,
    additionally return the evidence-candidate path, source and evidence hashes,
-   finalization report, claim map, and parity report.
+   finalization report, claim map, and parity report. For `REVISE`,
+   additionally return the prior contract hash, the amendment reference, the
+   revised parts, and the `MODE=VERIFY` result.
+
+## Revision under an accepted amendment
+
+`MODE=REVISE` applies when an accepted `scope-change` amendment (checkpoint
+group 3 accepted) names this deliverable with action `MODIFY` or `RECLASSIFY`
+and did not itself change `ScopeOfWork.md` within its write boundary. The
+usual dispatcher is `project-setup` in `INCREMENTAL` mode.
+
+1. Bind the inputs: the accepted amendment snapshot and its ID, the accepted
+   action rows naming this deliverable with the register hash, the amended
+   decomposition basis, the `REVISION_SCOPE` (the parts of the contract the
+   amendment changes), and the prior contract's hash.
+2. Refuse before output when the lifecycle state is `CHECKING` or `ISSUED`,
+   and return `UNSUPPORTED_STATE` so the deliverable is held for the human.
+   `CHECKING` changes only after a human reversal to `IN_PROGRESS`; `ISSUED`
+   only after the human records `ISSUED → IN_PROGRESS` under the accepted
+   amendment (`docs/SPEC.md` §3.3). Also refuse `LEGACY_FOUR_DOC`,
+   `MIGRATION_DUAL`, and a contract that does not validate before revision.
+3. Revise only the parts the amendment names: the affected definitions,
+   matrix rows and references, and the `decomposition_basis`,
+   `project_scope_refs` or `package_objective_refs` values the amendment
+   changes. Keep every other byte apart from the amendment reference
+   (step 4). Keep existing `OUT-*`, `AC-*`, `VER-*` and
+   other local IDs; never renumber them or reuse an ID the amendment removes.
+   Mark a change the amendment does not clearly determine `CONFLICT`.
+4. Record the amendment reference (amendment ID and accepted snapshot path)
+   in `Governing Values and Decisions — Axiology`, naming the revised and
+   removed IDs.
+5. Validate and derive the checklist (Method step 6), then end with a
+   `MODE=VERIFY` run on the revised contract. The return includes a diff of
+   the prior and revised contracts for the independent check that nothing
+   outside `REVISION_SCOPE` changed.
+
+`REVISE` never changes lifecycle state: it runs only under `NO_STATUS_TOUCH`,
+and recording any later transition is a separate authorized act.
 
 ## Non-negotiable constraints
 
@@ -62,6 +104,9 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
   the isolated dual state remains derivative until atomic replacement by WORKING_ITEMS (workflow: change).
 - Do not modify `_STATUS.md`, lifecycle state, underscore control files,
   historical evidence, or other deliverables.
+- Do not run `REVISE` without an accepted amendment that names the
+  deliverable, on a `CHECKING` or `ISSUED` deliverable, or outside the named
+  `REVISION_SCOPE`. `REVISE` is not a general editing mode.
 - Do not resolve substantive conflicts through formatting.
 - Do not treat generated HTML, migration receipts, or parity reports as
   authoritative deliverable truth.
@@ -116,7 +161,8 @@ Read [resources/brief.md](resources/brief.md) before accepting a run. Read
 ## Failure semantics
 
 - Return `FAILED_INPUTS` for missing sources, objective mappings, accepted
-  basis, required migration authority, or lifecycle evidence.
+  basis, required migration authority, lifecycle evidence, or, for `REVISE`,
+  an amendment that is not accepted or does not name the deliverable.
 - Return `UNSUPPORTED_STATE` for an operation not authorized for the resolved
   format/lifecycle state.
 - Return `CONFLICT` for a semantic change or authority question.

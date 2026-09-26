@@ -113,6 +113,7 @@ export type StatusTransitionArgs = {
   actor: string;
   date?: string;
   approvalSha?: string;
+  ruling?: string;
   metadata?: Record<string, string>;
 };
 
@@ -942,6 +943,7 @@ export async function statusTransitionTool(
         actor: args.actor,
         date: args.date,
         approvalSha: args.approvalSha,
+        ruling: args.ruling,
         metadata: args.metadata
       });
       const summary = {
@@ -1133,6 +1135,7 @@ export function buildChiralityMcpTools(input: {
           actor: z.string().min(1),
           date: z.string().optional(),
           approvalSha: z.string().optional(),
+          ruling: z.string().optional(),
           metadata: z.record(z.string(), z.string()).optional()
         },
         (args) => statusTransitionTool(mutatingContext, args)

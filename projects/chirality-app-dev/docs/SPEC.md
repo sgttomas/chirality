@@ -233,6 +233,11 @@ Rules:
 - `_STATUS.md` is the canonical lifecycle file.
 - Transitions are forward-only except the two human-authorized reversal transitions above; any other reversal requires a human explicitly amending the record.
 - Transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
+- `CHECKING → IN_PROGRESS` also requires approval SHA evidence and a `ruling` naming the human ruling record: a non-empty file inside the project root other than the deliverable's own `_STATUS.md`. The history entry records the ruling and SHA, and the reversal removes the `**Checking Approval SHA:**` field; the next `CHECKING` entry writes a new one.
+- Caller metadata cannot set the lifecycle fields (`Current State`, `Last Updated`, `History`) or the approval SHA fields, which only the transition writes from a validated approval SHA. Metadata keys are printable ASCII without `*`, `#` or `:`, and metadata values, history notes and rulings cannot contain line breaks, including Unicode line and paragraph separators. The actor is recorded on one line.
+- `IN_PROGRESS → CHECKING` and `CHECKING → ISSUED` accept an optional `ruling` under the same path checks; when one is supplied, the history entry records it with the SHA. Other transitions reject a `ruling`.
+- These checks are format, location and content checks, not proof of a human act. The actor is asserted by the caller. The App does not verify that the ruling file is committed or that the approval SHA names a real commit. Any caller able to write files in the project can therefore satisfy them. The ruling and SHA are recorded evidence of the authorization, and the human remains accountable for it.
+- `ISSUED → IN_PROGRESS` occurs only through the governed scope-change process. It is authorized only by an ACCEPTED amendment (checkpoint group 3 accepted) whose accepted action register names that deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification changes the deliverable's scope (repo-root `docs/SPEC.md` §3.3; D-GOV-50; the `scope-change` workflow). The status-transition tools do not perform that process or yet check that amendment record, and they reject the transition until that check is implemented.
 - SDK/MCP status-transition tools MUST enforce these rules.
 
 ### 4.4 Lifecycle Regimes and CHECKING Entry Conditions
@@ -301,23 +306,105 @@ Rules:
 
 ### 5.2 `_DEPENDENCIES.md`
 
-Hybrid container with human-owned and agent/tool-owned sections:
+Hybrid container with human-owned and agent/tool-owned sections. Its single
+heading schema is repo-root `docs/SPEC.md` §5.2 (D-GOV-46); this section
+restates it for App surfaces.
 
-- Dependency Tracking Mode
-- Declared Upstream
-- Declared Downstream
-- Extracted Dependency Register
-- Lifecycle Summary
-- Run Notes
-- Run History
+- **Human-owned** (created by PREPARATION/scaffold; maintained by humans or the
+  coordinating workflow): Dependency Tracking Mode, Declared Upstream, Declared
+  Downstream.
+- **Agent-owned** (populated by `dependency-extract`; PREPARATION/scaffold
+  creates the first four as placeholders): Extracted Dependency Register,
+  Lifecycle Summary, Run Notes, Run History, and Downstream Handoff Notes
+  (present only after a run whose `CONSUMER_CONTEXT` is not `NONE`).
 
-Tracking modes:
+Agent-owned sections never overwrite or rename human-owned sections. A new file,
+or a section added to an existing file, uses these exact headings in order:
+
+```markdown
+# Dependencies: {DEL-ID} {DeliverableName}
+
+## Dependency Tracking Mode
+- **Mode:** {NOT_TRACKED | DECLARED | FULL_GRAPH}
+- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)
+- **Notes:** {pointer to _COORDINATION.md or the external coordination system, or TBD}
+
+## Declared Upstream (I need these before I can proceed)
+## Declared Downstream (These need me)
+## Extracted Dependency Register
+## Lifecycle Summary
+## Run Notes
+## Run History
+## Downstream Handoff Notes
+```
+
+Declared entries name `{DEL-ID} {Name} — Reason: {reason}` with `Required
+maturity` and `Location`, or, under `NOT_TRACKED`, "Dependencies coordinated
+externally by humans." Before the first extraction the declared sections come
+only from supplied declarations (`TBD` when none were supplied; edges are never
+inferred), the register body is `- **Status:** NOT_RUN_YET`, the other
+agent-owned bodies are `- (placeholder)`, and Downstream Handoff Notes is
+omitted. The App scaffold (`frontend/src/lib/harness/scaffold.ts`) writes this
+skeleton and takes the mode from the `_COORDINATION.md` it writes.
+
+Existing files keep their headings and are not rewritten. Readers accept the
+legacy headings listed in the repo-root SPEC §5.2 table as the corresponding
+sections (for example `## Coordination (human-owned)`, `## Coordination Mode` or
+`## Dependency Tracking` for Dependency Tracking Mode, `## Run Notes & History`
+for Run Notes and Run History, and `## Consumer Handoff Notes` for Downstream
+Handoff Notes). An agent-owned heading with the suffix `(populated by
+TASK+dependency-extract)` is the same section as the heading without it. Other
+headings are preserved and read by their content.
+The `docs/SPEC.md §5.3` in the Register line refers to the repo-root SPEC.
+
+Tracking modes (repo-root SPEC §5.3). The human chooses the project mode; it is
+recorded in `execution/_Coordination/_COORDINATION.md` and in each deliverable's
+Dependency Tracking Mode section.
 
 | Mode | Meaning |
 |---|---|
-| `NOT_TRACKED` | Dependencies coordinated externally by humans. |
-| `DECLARED` | Human-declared upstream/downstream only. |
-| `TRACKED` | Full extraction via dependency workflow and `Dependencies.csv`. |
+| `NOT_TRACKED` | Coordination occurs outside the files. Reports give no computed ready/blocked judgment from dependencies. |
+| `DECLARED` | The recorded critical edges are a partial, human-curated view. Without an accepted project DAG, blockers come only from the recorded register (below), and the absence of a recorded blocker is not a complete readiness judgment. Extraction MAY populate `Dependencies.csv` when the confirmed dependency rules call for it; extracted rows add evidence but neither complete the view nor replace the declarations. |
+| `FULL_GRAPH` | Declarations are intended to cover the selected graph semantics (a complete DAG). Without an accepted project DAG, blockers are computed only from the declared graph, held in the recorded register (below), and only after closure audit and cycle treatment. |
+
+Under `DECLARED` and `FULL_GRAPH`, edges in an unresolved strongly connected
+component are non-gating and reported as held pending resolution. In any mode a
+dependency graph is not by itself a schedule. The legacy value `TRACKED` is read
+as `FULL_GRAPH`; files that record it are not rewritten, and new or updated
+records write `FULL_GRAPH`.
+
+The blocker rules above apply to a project without an accepted project DAG
+(repo-root SPEC §5.3); a project with one computes blockers as in repo-root
+SPEC §5.4 (D-GOV-49):
+
+| Project state | Blocker computation |
+|---|---|
+| No accepted project DAG | From each deliverable's recorded register. Under `DECLARED` and `FULL_GRAPH` that register is the union of the entries in the declared sections of `_DEPENDENCIES.md` and the rows of `Dependencies.csv` when present; a reader never relies on the CSV alone. A declared entry and a row with the same `Direction` and target are one edge, counted once. Where they disagree, for example on required maturity, the human-owned declared section governs and the reader reports the disagreement. A declared entry without a CSV row is compared with the target's current `_STATUS.md` state; when it states no required maturity (missing or `TBD`), the project's default maturity threshold recorded in `_COORDINATION.md` applies. |
+| Accepted DAG; deliverable current | From the accepted current version's edges (named by `execution/_DAG/_LATEST.md`), with satisfaction read from the local files. Edges the version holds as unresolved-cycle candidates stay non-gating. The recorded register is the local evidence a currency audit compares with that version. |
+| Accepted DAG; deliverable affected by an undecided departure | `DAG pending`: no ready or blocked verdict from dependencies. Reports show the departure and the decision awaited. The flag clears when the human accepts a new version or rejects the change. |
+
+Neither the local dependency files nor a project DAG is self-authorizing: an
+accepted DAG version carries authority only through its acceptance record and
+only while it is current with the local evidence (repo-root SPEC §5.4). A
+`DECLARED` project may accept a DAG labelled as a partial view; a `NOT_TRACKED`
+project has no DAG built from its files. The App project has no
+`execution/_DAG/`, so its blockers follow the no-accepted-DAG row.
+
+App dependency reads (the `Dependencies.csv` rows and the
+`activeUpstreamBlockerCandidates` count) take structured rows only from
+`Dependencies.csv` and infer no rows from `_DEPENDENCIES.md`. They are register
+evidence, not a blocker judgment: they do not read declarations held only in
+the markdown, so they do not implement the union rule above, and a zero count
+does not mean a deliverable is unblocked. Computing blockers from the recorded
+register is an App follow-up.
+
+`_COORDINATION.md` (repo-root SPEC §13) records the project's coordination
+representation once, together with its tracking mode. Under `SCHEDULE_FIRST`
+the schedule drives sequencing and dependency tracking, unless its mode is
+`NOT_TRACKED`, supports blocker detection and audit; under `DEPENDENCY_TRACKED`
+the dependency graph drives sequencing; `HYBRID` combines them. The
+representation does not change what a mode means, and only `FULL_GRAPH`
+intends a complete graph.
 
 ### 5.3 `_REFERENCES.md`
 

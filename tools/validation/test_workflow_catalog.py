@@ -98,6 +98,9 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert [item["navigation"]["order"] for item in core] == list(range(len(CORE)))
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
+    assert workflows["software-prd"]["navigation"]["category"] == "core" and not workflows["software-prd"]["central"]
+    assert workflows["software-prd"]["executionRoleIds"] == ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS"]
+    assert set(CENTRAL) <= set(CORE)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
     catalog_members = _catalog_specialist_members()
     assert len(specialist) == sum(len(names) for names in catalog_members.values())
@@ -488,6 +491,78 @@ def test_d_gov_48_every_scope_item_has_a_package_home():
     # DOMAIN keeps its Category rule for IN Handbook Units only.
     domain = (ROOT / "workflows/domain-decomp/resources/contract.md").read_text()
     assert "Every **IN-scope Handbook Unit** must be assigned to exactly one Category" in domain
+
+
+def test_d_gov_49_project_dag_authority_and_case_home():
+    contract = " ".join((ROOT / "docs/CONTRACT.md").read_text().split())
+    assert "neither the local dependency files nor a project DAG is self-authorizing (D-GOV-49)" in contract
+    assert "There is no central dependency graph" not in contract
+    assert "The Chirality repository has no cross-project dependency graph" in contract
+
+    spec = (ROOT / "docs/SPEC.md").read_text()
+    flat_spec = " ".join(spec.split())
+    assert "### 5.4 Accepted Project DAG" in spec
+    assert "| `_DAG/` |" in spec
+    assert "| `{DAG_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_DAG/`" in spec
+    assert "`_DAG/cases/<CASE-ID>/` is the home for SCC resolution cases" in flat_spec
+    assert "<SCC-ID>" not in spec
+    assert "**DAG pending.**" in spec
+    for field in ("Explicitness", "SatisfactionStatus", "Confidence"):
+        assert f"`{field}` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) |" in spec
+
+    # project-dag is a core (not central) workflow and no longer a derived view.
+    assert "project-dag" in CORE and "project-dag" not in CENTRAL
+    workflow = (ROOT / "workflows/project-dag/WORKFLOW.md").read_text()
+    assert "derived view" not in workflow
+    assert "`DAG pending`" in workflow
+    method = (ROOT / "workflows/project-dag/resources/method.md").read_text()
+    assert "Without one, unresolved SCCs are still held as candidates" not in method
+
+    scc = (ROOT / "workflows/scc-resolution-case/WORKFLOW.md").read_text()
+    assert "`{EXECUTION_ROOT}/_DAG/cases/<CASE-ID>/`" in scc
+    assert "<SCC-ID>" not in scc
+    assert "`SCC-CASE-NNN`" in scc
+    assert "matched to an existing case by member node set" in " ".join(scc.split())
+
+    # K-SNAP-1: _DAG/ cases and candidates are working records; accepted versions stay immutable.
+    assert "are **working records**: they are updated in place under their workflow's brief" in contract
+    assert "a candidate becomes immutable when it is accepted as a version" in contract
+    assert "`_Candidates/DAG-NNN/` are working records rather than snapshots" in flat_spec
+    assert "confirm it is under a PKG-00 control deliverable" not in scc
+
+def test_d_gov_50_issued_reopening_and_incremental_setup_routes():
+    # D-GOV-50: an accepted amendment naming the deliverable with MODIFY authorizes ISSUED -> IN_PROGRESS.
+    spec = " ".join((ROOT / "docs/SPEC.md").read_text().split())
+    assert "**Reopening an `ISSUED` deliverable.**" in spec
+    assert "its accepted action register names that deliverable with action `MODIFY`" in spec
+    assert "The human records the transition in `_STATUS.md`, citing the accepted amendment snapshot." in spec
+    assert "until they implement a check of the amendment record" in spec
+    scope_change = " ".join((ROOT / "workflows/scope-change/resources/contract.md").read_text().split())
+    assert "**Reopening an `ISSUED` deliverable.**" in scope_change
+    assert "until they implement a check of the amendment record" in scope_change
+
+    # scope-of-work carries the bounded REVISE mode that project-setup routes MODIFY to.
+    brief = (ROOT / "workflows/scope-of-work/resources/brief.md").read_text()
+    assert "| `RuntimeOverrides.MODE` | `INIT`, `CONVERT`, `REVISE`, or `VERIFY` |" in brief
+    assert "## Revision under an accepted amendment" in (ROOT / "workflows/scope-of-work/WORKFLOW.md").read_text()
+    method = (ROOT / "workflows/project-setup/resources/method.md").read_text()
+    assert "Otherwise dispatch `scope-of-work` `MODE=REVISE`" in method
+    assert "project's authorized contract-revision path" not in method
+    assert "#### Phase 5.0: Adopt incremental setup (once per project)" in method
+    flat_method = " ".join(method.split())
+    # INITIAL setup records the baseline; adoption never covers an amendment handed to INCREMENTAL.
+    assert "#### Phase 2.7: Record the setup baseline (all variants)" in method
+    assert "(latest none) are already set up and are not reprocessed" in flat_method
+    assert "An amendment whose `Handoff_State.md` hands setup to `project-setup` `INCREMENTAL` is never covered" in flat_method
+    # D-GOV-49: an accepted project DAG gets a project-dag currency audit and affected deliverables are DAG pending.
+    assert "hand off to `project-dag` after extraction and closure for a currency audit" in flat_method
+    assert "`DAG pending` [deliverables" in flat_method
+    assert "stale until re-accepted under Phase 2.2b step 4" not in flat_method
+
+    # The setup log is agent-owned and lives outside the human-owned _COORDINATION.md.
+    contract = (ROOT / "workflows/project-setup/resources/contract.md").read_text()
+    assert "### `SETUP_LOG.md` (project-level; agent-owned, append-only)" in contract
+    assert "## Setup log (append-only)" not in contract
 
 
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():

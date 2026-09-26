@@ -4,7 +4,7 @@ import csv
 from pathlib import Path
 
 
-from audit_dag import ACTIVE, CANDIDATE, ARCHITECTURE_BASIS, REQUIRED_COLUMNS, audit_dag, strict_passed  # noqa: E402
+from audit_dag import ACTIVE, CANDIDATE, ARCHITECTURE_BASIS, REQUIRED_COLUMNS, audit_dag, render_markdown, strict_passed  # noqa: E402
 from materialize_local_dependencies import materialize_local_dependencies  # noqa: E402
 
 
@@ -114,6 +114,22 @@ def test_aggregate_dag_audit_reports_fixture_hygiene_findings(tmp_path: Path) ->
     assert summary["active_graph"]["bidirectional_pair_count"] == 1
     assert summary["dev001_projection"]["active_edge_count"] == 4
     assert strict_passed(summary) is False
+
+
+def test_aggregate_dag_audit_markdown_names_audited_path_and_d_gov_49_authority(tmp_path: Path) -> None:
+    dag_dir = tmp_path / "execution" / "_DAG" / "DAG-007"
+    nodes_path = dag_dir / "DeliverableNodes.csv"
+    edges_path = dag_dir / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "A"), node("DEL-01-02", "PKG-01", "B")], NODE_COLUMNS)
+    write_csv(edges_path, [edge("DAG-TEST-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02")], REQUIRED_COLUMNS)
+
+    report = render_markdown(audit_dag(edges_path=edges_path, nodes_path=nodes_path))
+
+    assert f"- Edges audited: `{edges_path}`." in report
+    assert "DAG-001" not in report
+    assert "synchronized mirrors" not in report
+    assert "are the dependency evidence" in report
+    assert "only while it is current" in report
 
 
 def test_aggregate_dag_audit_canonical_mode_reports_legacy_rows(tmp_path: Path) -> None:

@@ -1170,7 +1170,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 4
+        "order": 5
       },
       "execution": {
         "schemaVersion": 1,
@@ -2356,6 +2356,48 @@
     },
     {
       "kind": "workflow",
+      "name": "project-dag",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Construct, examine, and obtain human acceptance of a project DAG version from the deliverable-local dependency evidence, audit its currency when that evidence changes, and hold affected deliverables as DAG pending until the human accepts a successor or rejects the change. Use it toward the 30% gate, after a decomposition or scope change, or when local dependency files may have departed from the accepted DAG.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "WORKING_ITEMS"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "execution.json",
+        "resources/contract.md",
+        "resources/currency.md",
+        "resources/graph-version.md",
+        "resources/method.md"
+      ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 8
+      },
+      "execution": {
+        "schemaVersion": 1,
+        "compatibleRoles": [
+          "WORKING_ITEMS"
+        ],
+        "tools": {
+          "capabilities": [
+            "read",
+            "write",
+            "bash",
+            "delegate_agent",
+            "report_coordination_notice",
+            "send_agent_update",
+            "ack_agent_update"
+          ]
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "project-decomp",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2388,7 +2430,7 @@
       "name": "project-setup",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Initialize an accepted project workspace and coordinate its selected setup and estimation phases.",
+      "description": "Initialize an accepted project workspace and coordinate its selected setup and estimation phases, or set up the amended scope incrementally after an accepted scope change.",
       "central": true,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2446,7 +2488,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 9,
+        "order": 11,
         "displayName": "Run corpus concordance program"
       },
       "execution": {
@@ -2494,7 +2536,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 5
+        "order": 6
       },
       "execution": {
         "schemaVersion": 1,
@@ -2564,7 +2606,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 8,
+        "order": 10,
         "displayName": "Lifecycle transition review"
       },
       "execution": {
@@ -2583,7 +2625,7 @@
       "name": "scc-resolution-case",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Create or update a PKG-00 SCC resolution case that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
+      "description": "Create or update an SCC resolution case, under `_DAG/cases/<CASE-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2637,7 +2679,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 6
+        "order": 7
       },
       "execution": {
         "schemaVersion": 1,
@@ -2701,7 +2743,7 @@
       "name": "scope-of-work",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Initialize, convert, validate, and independently verify one objective-anchored PROJECT/SOFTWARE ScopeOfWork.md under the active SOW_V1 transition contract. Do not use for DOMAIN/KTY or independent schemas, lifecycle changes, or unauthorized corpus conversion.",
+      "description": "Initialize, convert, revise under an accepted scope-change amendment, validate, and independently verify one objective-anchored PROJECT/SOFTWARE ScopeOfWork.md under the active SOW_V1 transition contract. Do not use for DOMAIN/KTY or independent schemas, lifecycle changes, or unauthorized corpus conversion.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2846,11 +2888,46 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
+        "order": 4
+      },
+      "execution": {
+        "schemaVersion": 1,
+        "compatibleRoles": [
+          "WORKING_ITEMS"
+        ]
+      }
+    },
+    {
+      "kind": "workflow",
+      "name": "software-prd",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Develop a product requirements document for a new software product or a defined development undertaking with the human, examine the complete candidate independently, and hand the human-accepted PRD to software-decomp as its accepted basis. For a successor PRD formed by examining an existing project, use reverse-engineer-software. Not for maintenance, bug repair, issue-ticket execution, or stand-alone data repair or analysis.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "execution.json",
+        "resources/contract.md",
+        "resources/method.md",
+        "resources/product-questions.md",
+        "resources/records-and-review.md"
+      ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
         "order": 3
       },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
+          "HELP_HUMAN",
+          "HELPS_HUMANS",
           "WORKING_ITEMS"
         ]
       }
@@ -2965,7 +3042,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 7,
+        "order": 9,
         "displayName": "Manage tasks"
       },
       "execution": {

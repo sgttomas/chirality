@@ -1,0 +1,6 @@
+$ PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/apply_d98.py --repo . --candidates projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/candidates --check-only
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=6b48b6f26ed3e9ef60fde1c7d2289843bd1aea25 apply_d98.py sha256=0a28d05d7d285596497a98306f4327909fd3817ac8403f66a1b64f7c86d29343
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+CHECK write set = grant (2 creates, 0 modifies, 0 removes); nothing written
+exit=0

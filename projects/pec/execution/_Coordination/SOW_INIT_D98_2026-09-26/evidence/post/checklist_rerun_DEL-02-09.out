@@ -1,0 +1,3 @@
+$ python3 tools/scope_of_work/derive_review_checklist.py --output /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/d98act/post/checklist_DEL-02-09_rerun.json projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=af1a3c74bbf038fc42cec8676da2e8c6a685275a python=Python 3.13.7
+exit=0

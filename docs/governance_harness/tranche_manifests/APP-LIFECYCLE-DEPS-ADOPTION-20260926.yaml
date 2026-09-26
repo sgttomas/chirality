@@ -1,0 +1,88 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: APP-LIFECYCLE-DEPS-ADOPTION-20260926
+title: App adoption of the D-GOV-46 dependency schema and the human-ruled CHECKING reversal
+date: '2026-09-26'
+basis: 6128f8b85251ccb0a5e13ad48d0e4d5e971d11d6
+# Full coverage: every path this tranche changes is declared. Only the manifest
+# itself lies on the Root instruction surface; the App SPEC is the App loop's
+# instruction-bearing contract; the rest are the product source, tests and run
+# records that carry the change and are declared for completeness.
+instruction_surface_paths:
+  - projects/chirality-app-dev/docs/SPEC.md
+  - docs/governance_harness/tranche_manifests/APP-LIFECYCLE-DEPS-ADOPTION-20260926.yaml
+  - projects/chirality-app-dev/frontend/src/lib/lifecycle/transition.ts
+  - projects/chirality-app-dev/frontend/src/lib/lifecycle/status-writer.ts
+  - projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts
+  - projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-api.ts
+  - projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/status/transition/route.ts
+  - projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts
+  - projects/chirality-app-dev/frontend/src/lib/harness/scaffold.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/lifecycle-status.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/harness-scaffold.test.ts
+  - projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/MEMORY.md
+  - projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/MEMORY.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-LIFECYCLE-DEPS-2026-09-26/RECEIPT.md
+  - projects/chirality-app-dev/execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md
+  - projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed "Fix it appropriately." (2026-09-26, Claude Code
+    conversation) about three App-owned items that Root D-GOV-46 and
+    ROOT-REVIEW-SPEC34-REVERSAL-20260926 left behind: the App SPEC dependency
+    vocabulary, the scaffold _DEPENDENCIES.md template, and transition.ts
+    rejecting CHECKING -> IN_PROGRESS. The two Root notices leave adoption to
+    this loop. DEL-07-04 REQ-004/REQ-005 already require the human-authorized
+    reversals. On the open points the first candidate reported, Ryan Tufts
+    then decided "A, B, C and E all as recommended" (2026-09-26, Claude Code
+    conversation). E: (1) reopening an ISSUED deliverable is authorized only by
+    an ACCEPTED amendment (checkpoint group 3 accepted) whose accepted action
+    register names that deliverable with action MODIFY, or RECLASSIFY where
+    the reclassification changes the deliverable's scope (the relay named only
+    MODIFY; D-GOV-50 and Root SPEC §3.3 also admit a scope-changing
+    RECLASSIFY); the App SPEC §4.3 states it, citing Root SPEC §3.3, D-GOV-50
+    and scope-change, and the tools keep
+    refusing ISSUED -> IN_PROGRESS until an amendment-record check is
+    implemented as a follow-up; (2) the App layer's inability to verify that
+    the ruling is committed or the SHA is a real commit is recorded as a known
+    limit; (3) the run-folder receipt and the LOOP_RECEIPTS pointer are both
+    kept; (4) the Runtime descriptor's missing ruling field, the UI reversal
+    input and the DEL-07-04 SOW verification sentences are App-loop follow-ups.
+    The review of PR #960 then asked, within the same direction, for the App
+    to adopt NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md and
+    NOTICE_2026-09-26_PROJECT_DAG_D-GOV-49.md in App SPEC §5.2 and the scaffold
+    Register line, and for hardening of the transition tools (reserved and
+    multi-line status fields rejected, ruling path checks, the reversal
+    removing the Checking Approval SHA field, and an optional ruling on the
+    forward human gates as write_status.sh accepts).
+    Transcription and adoption are recorded in
+    projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-LIFECYCLE-DEPS-2026-09-26/RECEIPT.md.
+  authorized_by: Ryan Tufts
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code parent session integrating on branch claude/brave-goodall-wj3hok,
+    under the standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The changes adopt Root notices inside App-owned surfaces (the App SPEC,
+    frontend scaffold and lifecycle transition code). No Root instruction,
+    role, skill, workflow or tool changes, and no other loop pins the App
+    SPEC. The Root SPEC §3.3 and scope-change wording of the ISSUED rule is
+    written by a separate Root branch with its own manifest, as are the
+    D-GOV-49 and dependency follow-up rules the App SPEC §5.2 now restates. The
+    App authority
+    corpus already reported drift for the App SPEC before this change; that
+    drift is retained, not repinned.
+scope_limits:
+  - App SPEC §5.2 restates Root SPEC §5.2-5.4 (the union recorded register, the no-accepted-DAG/accepted-DAG blocker split of D-GOV-49 and the Register line) and the §13 coordination-representation wording for App surfaces, and states that the App's CSV-only dependency reads are not a blocker judgment; §4.3 records the evidence the status-transition tools require for the human-ruled CHECKING -> IN_PROGRESS reversal and the optional ruling on the forward human gates, states plainly that the actor is caller-asserted and that the App does not verify the ruling is committed or the SHA names a real commit, states the owner-decided authorizing record for ISSUED -> IN_PROGRESS (MODIFY, or scope-changing RECLASSIFY, per D-GOV-50), and records that the tools reject ISSUED -> IN_PROGRESS until they check that amendment record. No other SPEC section changes.
+  - The transition tools reject reserved (Current State, Last Updated, History) and malformed status-field keys, multi-line or control-character field values, and ruling references containing semicolons; they require a non-empty ruling file other than the deliverable's own _STATUS.md; the reversal removes the Checking Approval SHA field. They do not check that the ruling is git-tracked or that the SHA is reachable, unlike write_status.sh.
+  - No lifecycle transition, approval-SHA refresh, dependency acceptance, authority-corpus repin, UI change, Runtime change, release or issuance.
+  - No amendment-record check, App blocker computation from the recorded register, Runtime descriptor, UI reversal input or SOW verification-sentence change; these are App-loop follow-ups.
+  - The App's bundled dependency-extract, project-setup and review workflows are not changed here; when they pick up the dependency follow-up revision is left to this loop.
+  - APP_HOLD_REGISTER.csv is unchanged; its schema admits no known-limit row.
+  - Existing _DEPENDENCIES.md files and historical records are not rewritten.

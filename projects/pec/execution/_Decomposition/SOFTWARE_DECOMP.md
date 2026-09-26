@@ -2,10 +2,10 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: candidate_pending_checkpoint_3
+status: current_basis
 revision: "1.6"
 date: 2026-09-26
-accepted: not yet accepted — revision 1.6 applied during SCA-006 checkpoint-3 preparation; revision 1.5 (accepted 2026-09-25) remains the accepted basis until the owner's checkpoint-3 acceptance
+accepted: 2026-09-26 (original Gate 7 owner ruling under D-PEC-60; revision 1.6 successor accepted through SCA-006 under the owner's checkpoint-group-3 audited-poststate acceptance)
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
 session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, by SCA-002 under D-PEC-64, by SCA-003 under the owner's 2026-07-28 standing completion approval, by SCA-004 under D-PEC-78 and the owner's 2026-08-03 Gate 5 post-change confirmation, by SCA-005 under D-PEC-86 and the owner's SCA-005 checkpoint acceptances, then by SCA-006 under D-PEC-90 R-A and the owner's SCA-006 checkpoint acceptances

@@ -1,0 +1,8 @@
+$ python3 tools/scope_of_work/check_boundary_owner_resolution.py --json projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/boundary_DEL-02-08.json --show-not-checkable projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=af1a3c74bbf038fc42cec8676da2e8c6a685275a python=Python 3.13.7
+NOT_CHECKABLE: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md REQ-009: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md REQ-010: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md REQ-011: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+
+Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 3 | boundary requirements citing no claim: 0 | contracts failing: 0
+exit=0

@@ -1,0 +1,75 @@
+### candidates/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+@@ -5 +5 @@ package_id: PKG-02
+decomposition_basis: [-projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@c9e5cd87d-]{+projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@189f205ff02df4111b33c20be441ce06e65ada7a+}
+@@ -20,2 +20,3 @@ The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
+**revision [-1.5**-]{+1.6**+} (`current_basis`, [-SCA-005-]{+SCA-006+} successor), accepted by the owner at
+[-SCA-005-]{+SCA-006+} checkpoint group 3 on [-2026-09-25.-]{+2026-09-26.+} The frontmatter pin
+[-`c9e5cd87d`-]{+`189f205ff02df4111b33c20be441ce06e65ada7a`+} is the
+@@ -23,4 +24,4 @@ checkpoint-3 acceptance commit, an ancestor of `origin/main`. At that commit
+`SOFTWARE_DECOMP.md` has SHA-256 [-`dc2b84791454…9660`,-]{+`9374c21fb87b…8eb1`,+} `Deliverables.csv`
+[-`b8628fc4c7b3…3d65a`-]{+`94ee5d182ae9…9805`+} and `ScopeLedger.csv` [-`83152a94d91c…9df`,-]{+`1d24a4b86f05…916e`,+} the values
+`_Decomposition/_LATEST.md` records, and `docs/PRD.md` [-v2.3-]{+v2.4+} has SHA-256
+[-`fff27a66cd23…dc32`.-]{+`ae49b8065698…3fbe`.+}
+@@ -32,2 +33,11 @@ the state of a file, record, lifecycle or decision is an observation at
+`origin/main` [-`53145aaeb`, where-]{+`53145aaeb`. There+} the three registers and the PRD[-named above-] are [-byte-identical to-]{+the+}
+{+revision-1.5 and PRD v2.3 bytes (`dc2b84791454…9660`, `b8628fc4c7b3…3d65a`,+}
+{+`83152a94d91c…9df` and `fff27a66cd23…dc32`), which differ from+} the pin. {+The+}
+{+loci this contract quotes from them were re-verified verbatim at the pin:+}
+{+the `SOW-095` row and the `SOW-015` Notes cell of `ScopeLedger.csv`; the+}
+{+`DEL-02-08` Description and context-envelope notes and the `DEL-01-01` and+}
+{+`DEL-02-05` Descriptions in `Deliverables.csv`; the `OBJ-001` and `OBJ-002`+}
+{+statements, the §3 mapping note, decision-log entry `DL-20`, the `PKG-02`+}
+{+charter, the §5 row and the §8 text of `SOFTWARE_DECOMP.md`; and, in the PRD,+}
+{+`PEC-RCN-002`, the §7.1 WorkGraph/WorkNode row, the §7.1 DependencyEdge source,+}
+{+the §7.1 remaining-items field and `PEC-K-10`.+} At `53145aaeb` the deliverable-local
+### candidates/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+@@ -5 +5 @@ package_id: PKG-02
+decomposition_basis: [-projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@c9e5cd87d-]{+projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@189f205ff02df4111b33c20be441ce06e65ada7a+}
+@@ -21,2 +21,3 @@ The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
+**revision [-1.5**-]{+1.6**+} (`current_basis`, [-SCA-005-]{+SCA-006+} successor), accepted by the owner at
+[-SCA-005-]{+SCA-006+} checkpoint group 3 on [-2026-09-25.-]{+2026-09-26.+} The frontmatter pin
+[-`c9e5cd87d`-]{+`189f205ff02df4111b33c20be441ce06e65ada7a`+} is the
+@@ -24,4 +25,4 @@ checkpoint-3 acceptance commit, an ancestor of `origin/main`. At that commit
+`SOFTWARE_DECOMP.md` has SHA-256 [-`dc2b84791454…9660`,-]{+`9374c21fb87b…8eb1`,+} `Deliverables.csv`
+[-`b8628fc4c7b3…3d65a`-]{+`94ee5d182ae9…9805`+} and `ScopeLedger.csv` [-`83152a94d91c…9df`,-]{+`1d24a4b86f05…916e`,+} the values
+`_Decomposition/_LATEST.md` records, and `docs/PRD.md` [-v2.3-]{+v2.4+} has SHA-256
+[-`fff27a66cd23…dc32`.-]{+`ae49b8065698…3fbe`.+}
+@@ -33,2 +34,9 @@ the state of a file, record, lifecycle or decision is an observation at
+`origin/main` [-`53145aaeb`, where-]{+`53145aaeb`. There+} the three registers and the PRD[-named above-] are [-byte-identical to-]{+the+}
+{+revision-1.5 and PRD v2.3 bytes (`dc2b84791454…9660`, `b8628fc4c7b3…3d65a`,+}
+{+`83152a94d91c…9df` and `fff27a66cd23…dc32`), which differ from+} the pin. {+The+}
+{+loci this contract quotes from them were re-verified verbatim at the pin:+}
+{+the `SOW-096` row of `ScopeLedger.csv`; the `DEL-02-09` and `DEL-01-01`+}
+{+Descriptions in `Deliverables.csv`; the `OBJ-001` and `OBJ-002` statements,+}
+{+the §3 mapping note, decision-log entry `DL-20`, the `PKG-02` charter, the §5+}
+{+row and the §8 text of `SOFTWARE_DECOMP.md`; and, in the PRD, `PEC-RCN-002`,+}
+{+the §7.1 RunRecord row and the §7.1 remaining-items field.+} At `53145aaeb` the deliverable-local
+### apply_d98.py
+@@ -29 +29 @@ TARGETS = {
+        [-"03cce13f484a9b595b5162bd662af42bcd67aae37a8843304bf03cfbb3badc0a",-]{+"2319661b3225aa8c48ca4a82423e0459e806373fccb67985c4c7536a843fdd26",+}
+@@ -31 +31 @@ TARGETS = {
+        [-"aafb54fd6457f09da8304ead444686703d5f8d2c28f4c94ec4eab4d2737b188b",-]{+"eab18e17a41f9ca979a932cc0dc2ba4dea590340e4e3a8a404ffd5f3013b6f5e",+}
+@@ -35,4 +35,4 @@ PINNED = {
+    "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md": [-"dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660",-]{+"9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",+}
+    "projects/pec/execution/_Decomposition/Deliverables.csv": [-"b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a",-]{+"94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",+}
+    "projects/pec/execution/_Decomposition/ScopeLedger.csv": [-"83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df",-]{+"1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",+}
+    "projects/pec/docs/PRD.md": [-"fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32",-]{+"ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",+}
+### verify_d98_state_claims.py
+@@ -85,0 +86,17 @@ ok(len(runs) == 4, f"7a00a88df MEMORY.md with ## Runs = {len(runs)} (claimed 4)"
+{+# Second PIN (D-PEC-98 question-4 re-pin): the SCA-006 checkpoint-3 acceptance commit, revision 1.6.+}
+{+PIN2 = "189f205ff02df4111b33c20be441ce06e65ada7a"+}
+{+reg2 = {"SOFTWARE_DECOMP.md": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",+}
+{+        "Deliverables.csv": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",+}
+{+        "ScopeLedger.csv": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e"}+}
+{+PRD2 = "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe"+}
+{+for f, h in reg2.items(): ok(sha(PIN2, PK + "_Decomposition/" + f) == h, f"{PIN2[:9]} {f} {h[:12]}")+}
+{+ok(sha(PIN2, "projects/pec/docs/PRD.md") == PRD2, f"{PIN2[:9]} PRD.md {PRD2[:12]}")+}
+{+prd2 = (show(PIN2, "projects/pec/docs/PRD.md") or b"").decode()+}
+{+ok("| **Version** | 2.4 |" in prd2, f"{PIN2[:9]} PRD.md is v2.4")+}
+{+sd2 = (show(PIN2, PK + "_Decomposition/SOFTWARE_DECOMP.md") or b"").decode()+}
+{+ok('revision: "1.6"' in sd2 and "status: current_basis" in sd2 and "accepted through SCA-006 under the owner's checkpoint-group-3" in sd2, f"{PIN2[:9]} SOFTWARE_DECOMP.md revision 1.6, current_basis, accepted through SCA-006 checkpoint group 3")+}
+{+lt2 = (show(PIN2, PK + "_Decomposition/_LATEST.md") or b"").decode()+}
+{+ok(all(h in lt2 for h in list(reg2.values()) + [PRD2]) and "accepted 2026-09-26 as the SCA-006 successor" in lt2, f"{PIN2[:9]} _LATEST.md records revision 1.6 accepted 2026-09-26 with the three register and PRD hashes")+}
+{+ok(subprocess.run(["git", "-C", repo, "merge-base", "--is-ancestor", PIN2, "origin/main"]).returncode == 0, f"{PIN2[:9]} is an ancestor of origin/main")+}
+{+for f in reg2: ok(sha(OBS, PK + "_Decomposition/" + f) != sha(PIN2, PK + "_Decomposition/" + f), f"{OBS} {f} differs from {PIN2[:9]}")+}
+{+ok(sha(OBS, "projects/pec/docs/PRD.md") != PRD2, f"{OBS} PRD.md differs from {PIN2[:9]}")+}

@@ -13,9 +13,10 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision **1.5** (`current_basis`, SCA-005 successor, accepted
-  2026-09-25 at SCA-005 checkpoint 3 after the checkpoint-2 ruling
-  `D-PEC-92`; evidence `execution/_ScopeChange/SCA-005_2026-09-23_2139/`).
+  revision **1.6** (`current_basis`, SCA-006 successor, accepted
+  2026-09-26 at SCA-006 checkpoint 3 after the checkpoint-2 ruling
+  `D-PEC-97`; evidence `execution/_ScopeChange/SCA-006_2026-09-25_1912/`;
+  revision 1.5 was accepted 2026-09-25 through SCA-005 under `D-PEC-92`).
   Historical: revision 1.1 was the basis at this gate's ruling, revision 1.2
   was accepted through SCA-002, revision 1.3 through SCA-003, and revision
   1.4 through SCA-004 (2026-08-03, D-PEC-78 O-A); read
@@ -196,6 +197,19 @@
     downstream work is planned in
     `WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. No
     source, lifecycle, release, or reliance act is inferred.
+
+15. **SCA-006 operational reliance (2026-09-26):** revision **1.6** is
+    accepted `current_basis` and PRD v2.4 is the product definition of
+    record (SCA-006 checkpoint 3, accepted 2026-09-26 after the checkpoint-2
+    ruling `D-PEC-97`; `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`).
+    Both `_LATEST.md` pointers name revision 1.6 and SCA-006, and the audit
+    pointer names `COV_SCA006_POSTCHANGE_2026-09-26_0051`. This item
+    supersedes item 14's present-tense statements of revision 1.5 as
+    `current_basis`. SCA-006's Lane B work (new DEL-08-06 and DEL-10-13
+    folders, dependency work, SOW currency, the revision-1.6 re-pin) is
+    separately gated and planned in the same work graph. The Notes line below
+    is human-owned and is left unchanged. No source, lifecycle, release, or
+    reliance act is inferred.
 
 ## Notes (human-owned)
 

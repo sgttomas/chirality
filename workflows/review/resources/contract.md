@@ -295,7 +295,7 @@ A review cycle is valid when:
 ### Dependency Satisfaction
 | ID | Dependency | Target | Satisfaction | Notes |
 |----|------------|--------|-------------|-------|
-| DS-001 | {DependencyID} | {TargetDeliverableID} | {SATISFIED/UNSATISFIED/TBD} | |
+| DS-001 | {DependencyID, or "declared" for a `_DEPENDENCIES.md` entry without a CSV row} | {TargetDeliverableID} | {SATISFIED/UNSATISFIED/TBD/HELD/DAG pending} | |
 
 ### TBD Inventory
 | ID | Check | Result | Notes |

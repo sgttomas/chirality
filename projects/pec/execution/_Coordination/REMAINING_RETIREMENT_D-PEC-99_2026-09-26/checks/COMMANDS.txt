@@ -1,0 +1,22 @@
+D-PEC-99 act (RR3) — command index. Interpreter: CPython 3.13.7 (/usr/bin/env python3), PYTHONDONTWRITEBYTECODE=1.
+cwd = repository root unless marked (pec) = projects/pec. RR = projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26.
+Basis: origin/main 189f205ff (PR #954 merge). Pre-act commit 3b0231ecc; generator commit 5066f895c.
+
+hold_targets.txt                         63 project-relative targets (57 _STATUS.md, AGENTS.md, exhibit, run root, FINAL_ROW_ACCOUNT.csv, brief, return)
+hold_dispatch-for-production.{tsv,out}   (pec) sh RR/run_holds.sh dispatch-for-production RR/checks/hold_targets.txt RR/checks/hold_dispatch-for-production.tsv   -> 63/63 ALLOW, exit 0 each
+closure_pre.out                          python3 RR/verify_d99.py --repo . --account-only   -> RESULT PASS, exit 0
+gen_check_only.out                       python3 RR/gen_d99.py --repo . --act-date 2026-09-26 --ruling-date 2026-09-26 --decision D-PEC-99 --q1 s1 --check-only   -> write_set 62, status_sections_removed 57, exit 0
+sow_targets.txt                          find projects/pec/execution -name ScopeOfWork.md | sort   (34: the 32 deliverable SOWs + 2 D-PEC-98 candidate copies under _Coordination/PEC_FIRST_SOWS_D98_PREP_2026-09-26/)
+pre_*.out                                sh RR/run_checks.sh pre   (SOW validation, strict registers, harness self-check, PEC receipt validator, taskmgmt validate x2, instruction entrypoints) at 3b0231ecc
+  (git archive --format=tar HEAD at 3b0231ecc -> scratch tar sha256 1edcfe20562cdfe56e227ca319be82b71f226c337c572ec406789e2fdc135bfb, extracted to a mktemp -d outside the checkout = <pre>)
+gen_act.out                              python3 RR/gen_d99.py --repo . --act-date 2026-09-26 --ruling-date 2026-09-26 --decision D-PEC-99 --q1 s1   (2026-09-26 12:03 MDT; captured outside projects/pec, then copied) -> WROTE 62 files, exit 0
+closure_post.out                         python3 RR/verify_d99.py --repo . --pre <pre> --decision D-PEC-99 --q1 s1   (immediately after the generator, before any other write; no --allow-extra) -> RESULT PASS, exit 0
+posts_vs_proposal.out                    python3 RR/check_posts_vs_proposal.py RR/checks/gen_act.out projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_remaining_retirement_proposal_2026-09-26.md -> 62/62 MATCH
+post_*.out                               sh RR/run_checks.sh post   at 5066f895c; every pre/post pair byte-identical (cmp)
+post_manifest_default.out                python3 tools/validation/validate_instruction_tranche_manifest.py -> G4 PASS (CI mode), exit 0
+post_manifest_added.out                  python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only -> G4 PASS (diff mode), exit 0
+post_pytest.out                          python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py -> 33 passed
+post_diff_check.out                      git diff --check origin/main...HEAD -> exit 0, no output
+final_account.out                        python3 RR/make_final_account.py -> FINAL_ROW_ACCOUNT.csv (only AppliedResult differs from the account)
+hold_rely-for-production.{tsv,out}       (pec) sh RR/run_holds.sh rely-for-production RR/checks/hold_targets.txt RR/checks/hold_rely-for-production.tsv -> 63/63 ALLOW
+containment.out                          python3 RR/containment.py origin/main
