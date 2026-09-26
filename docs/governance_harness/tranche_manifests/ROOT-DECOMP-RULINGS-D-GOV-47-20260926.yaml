@@ -46,6 +46,6 @@ m6_notice:
     bundles the library, so drift is expected there.
 scope_limits:
   - PROJECT and SOFTWARE only; domain-decomp and its Category rule are unchanged.
-  - The management manual and thesis still carry the earlier every-item Package wording; they are not edited here.
+  - The management manual, the field book, and the thesis still carry the earlier every-item Package wording; they are not edited here.
   - Dependency schema, SPEC section 5, workflows/review, write_status.sh, semantic-lens and engineering-extraction are unchanged.
   - In-flight projects keep their adopted decomposition rule and edition; nothing is retrofitted; no release.

@@ -118,6 +118,8 @@ outside this record.
   and needs its own authorized revision.
 - `docs/thesis/04_architecture.md` §4.3 and `docs/thesis/glossary.md`
   (Package, Scope ledger) restate the earlier every-item wording.
+- The field book (`docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.md`)
+  says to give each scope item one accountable package home.
 
 ## Application and assurance
 

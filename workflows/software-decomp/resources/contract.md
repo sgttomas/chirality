@@ -82,7 +82,8 @@ The accepted package is consumed downstream by `project-setup`, then by
   snapshot under `checkpoint_snapshots/` with `DECISION.md`,
   `ACCEPTED_MANIFEST.csv`, and `HANDOFF_STATE.md`, then updates that group's
   authorized pointer. Each later group consumes the preceding accepted
-  snapshot rather than mutable working files alone.
+  snapshot rather than mutable working files alone (except in a combined
+  review sitting, where snapshots are written in order after the decision).
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages.
 - **No overlap / no gaps at the package level.** Every IN scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2). OUT and TBD items remain in the Scope Ledger with their `SourceRef` and have no Package (`PackageID` blank).

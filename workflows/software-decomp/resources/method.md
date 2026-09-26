@@ -16,7 +16,8 @@ and then update `_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, or
 `_LATEST_ACCEPTED.md` as applicable. The manifest binds paths, package roles,
 and hashes. The handoff names the accepted upstream snapshot, derivative
 status, closure verdict, rerun requirements, and blockers. A later preparation
-stage begins by resolving the preceding pointer and reading that immutable
+stage (except in a combined review sitting; see below) begins by resolving
+the preceding pointer and reading that immutable
 snapshot. Reopened decisions create successors; never overwrite a snapshot.
 
 ### Combined review for a small, reversible undertaking
@@ -29,13 +30,16 @@ combined review sitting). Propose it where it fits; the human chooses it. Then:
   group-2 state, and complete the independent audit of the final package
   before the human decides.
 - Present the three groups together. The human's decision records which
-  groups it covers.
+  groups it covers, and the audit and decision record the hashes of the
+  presented package.
 - After the decision, write the group-1, group-2, and group-3 snapshots in
   that order, each naming the preceding snapshot as its upstream basis, and
-  update each pointer only after its snapshot is complete.
-- A material change found during the sitting reopens only the groups it
-  affects. Refresh their dependent preparation and audit before they are
-  decided; unaffected groups may still be decided in the sitting.
+  update each pointer only after its snapshot is complete. The snapshots must
+  match the recorded hashes; any difference reopens the affected groups.
+- A material change found during the sitting reopens the groups it affects
+  and every later group. Refresh their dependent preparation and audit
+  before they are decided; only earlier, unaffected groups may still be
+  decided in the sitting.
 
 Otherwise, the groups below are decided in separate sittings.
 

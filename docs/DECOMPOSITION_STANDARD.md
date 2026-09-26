@@ -267,17 +267,21 @@ coverage findings and exceptions; and the audited final decomposition. The
 agent may propose this; the human chooses it. DOMAIN does not use this
 allowance. In a combined sitting:
 
-1. Stages A, B, and C are each prepared on the preceding stage's proposed
-   state, and the independent audit of the final package is completed before
-   the human decides. The audit examines the package against the basis and
+1. Stage A is prepared as usual, and Stages B and C are each prepared on the
+   preceding stage's proposed state. The independent audit of the final package
+   is completed before the human decides. The audit examines the package against the basis and
    structure presented in the sitting.
-2. The human's decision records which groups it covers.
+2. The human's decision records which groups it covers, and the audit and
+   decision record the hashes of the presented package.
 3. After the decision, the group-1, group-2, and group-3 snapshots are
    written in that order, each naming the preceding snapshot as its upstream
-   basis, and each pointer is updated only after its snapshot is complete.
-4. A material change found during the sitting reopens only the groups it
-   affects. Their dependent preparation and audit are refreshed before those
-   groups are decided; unaffected groups may still be decided in the sitting.
+   basis, and each pointer is updated only after its snapshot is complete. The
+   snapshots must match the recorded hashes; any difference reopens the
+   affected groups.
+4. A material change found during the sitting reopens the groups it affects
+   and every later group. Their dependent preparation and audit are refreshed
+   before those groups are decided; only earlier, unaffected groups may still
+   be decided in the sitting.
 
 A combined sitting changes the number of sittings, not the three subjects,
 their preparation, the independent audit, or the snapshot record.

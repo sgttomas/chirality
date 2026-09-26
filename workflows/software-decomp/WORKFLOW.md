@@ -21,7 +21,7 @@ project keeps the edition it adopted; nothing is retrofitted.
 1. Record the accepted basis identity and accepted portions, then extract atomic scope, objectives, dependencies, and unresolved decisions from that accepted software intent.
 2. Define flat Packages and Deliverables, judging semantic coupling and verification demands.
 3. Specify each Context Envelope, artifact, interface, acceptance condition, and source mapping, and prepare checks before each grouped human checkpoint.
-4. Preserve stable IDs through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use. A small, reversible undertaking may decide all three in one sitting after the independent audit.
+4. Preserve stable IDs through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use. For a small, reversible undertaking the human may choose to decide all three in one sitting after the independent audit.
 
 ## Resources
 
