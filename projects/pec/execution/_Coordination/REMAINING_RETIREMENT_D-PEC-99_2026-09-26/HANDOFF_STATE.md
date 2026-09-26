@@ -42,7 +42,7 @@ Closed on record (9): DEL-01-03-REM-001..003, DEL-06-04-REM-001, DEL-07-02-REM-0
 | Every-PR checks | harness self-check exit 0 and receipt validator VALID, each byte-identical before and after (so no new harness finding cites a target path) | `checks/{pre,post}_{harness,receipts}.out` |
 | Task Management | `REGISTER.csv` PASS (9 rows) and `REGISTER_CLOSED.csv` PASS (16 rows), identical before and after; no row written | `checks/{pre,post}_tm_*.out` |
 | `git diff --check` | exit 0, no output | `checks/post_diff_check.out` |
-| Containment | PASS: 62/62 grant paths, run-root files, `FINAL_ROW_ACCOUNT.csv` and the brief copy; nothing HELP_HUMAN-owned or outside. `checks/containment.out` is a saved run at the commit before it is added (so it never counts itself); the RR3 return records the rerun at the final head | `containment.py`, `checks/containment.out` |
+| Containment | PASS: 62/62 grant paths, run-root files, `FINAL_ROW_ACCOUNT.csv` and the brief copy; nothing HELP_HUMAN-owned or outside. `checks/containment.out` is a saved run at the commit before its latest version is committed, so it may count its own earlier version (it does from its second run on); the RR3 return records a rerun at the commit immediately before the return's own commit | `containment.py`, `checks/containment.out` |
 
 ## Residuals and disclosures (recorded, not repaired here)
 
@@ -76,6 +76,12 @@ Closed on record (9): DEL-01-03-REM-001..003, DEL-06-04-REM-001, DEL-07-02-REM-0
   - N5 (`origin/main` advanced by #955): no overlap. Routed to HELP_HUMAN: #955 changed `workflows/scope-of-work/WORKFLOW.md` (`d616865a…` to `84dadde4c573…`) and `docs/SPEC.md` §3.3/§3.4/§13, which the S1, S2 and S4 packets absorbing Part B should use; #955 also sent PEC a record-only notice.
   - N6 (`containment.out` one commit behind): the Containment row above now says so; the return records the rerun at the final head.
   - N7 (manifest `rollback` says "commit", singular): the manifest bytes are the proposal-tabled postimage; the proposal's revert-PR rollback governs; no change.
+- **Verdict 02 (reviewed `0802a3725`, the repair delta `10feef34c..0802a3725`): PASS WITH NOTES**, no blocking finding (`VERIFIER_VERDICT_02.md`, transcribed verbatim). Verdict 01 transcription byte-identical; N1–N7 dispositions true; delta touches only three run-root files; containment PASS at `a609758aa` and `0802a3725` against `189f205ff` and `cb85f85d1`.
+- **Dispositions:**
+  - V2-1 (the Containment row's "never counts itself" overstated for the rerun): the row is reworded above.
+  - V2-2 (the return did not yet record a final-head rerun): the row now says the return records a rerun at the commit immediately before the return's own commit, and the return does so. A file cannot record the hash of the commit that adds it.
+  - V2-3 (graph sentences and RS1 still absent): unchanged; HELP_HUMAN's (N1).
+  - V2-4 (`origin/main` advanced again, PR #956 `cb85f85d1`): no overlap; clean trial merge; #956 sent PEC a record-only notice; the Root notice's cited locus still stands. Routed to HELP_HUMAN.
 
 ## Not claimed
 
