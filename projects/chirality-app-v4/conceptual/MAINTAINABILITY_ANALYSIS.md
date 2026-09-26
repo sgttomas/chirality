@@ -452,3 +452,60 @@ Maintainability is the first priority, and one stack serves it for as long as
 Chirality lives; the extra cost is largely once-only. **The choice is the
 owner's.**
 
+### 11.3 Windows and the native-webview question (owner's reservation, 2026-09-26)
+
+The owner asked how much risk Tauri's use of each platform's own web engine
+poses for future Windows versions of the applications.
+
+**Facts** (Tauri documentation, retrieved 2026-09-26; SWBPIPE at `2b0572fe0`):
+
+- Tauri uses **WKWebView** (Safari's engine) on macOS, tied to the macOS
+  version; **WebView2** (Microsoft Edge, i.e. Chromium) on Windows, evergreen
+  and preinstalled on Windows 11; and WebKitGTK on Linux, which varies by
+  distribution (`v2.tauri.app/reference/webview-versions/`).
+- On Windows, Tauri can instead **bundle a fixed WebView2 runtime** (about
+  180 MB) for version control and offline installs
+  (`v2.tauri.app/distribute/windows-installer/`).
+- A Tauri runtime that bundles Chromium (CEF) is **not official**; a community
+  runtime exists and is verified on Linux only (tauri-apps issue #14963;
+  `SableClient/tauri-runtime-cef`).
+- **SWBPIPE's end-to-end tests run only in Chromium**, against the Vite
+  development server (`apps/desktop/playwright.config.ts`: projects
+  `chromium-desktop` and `chromium-compact`), while the shipped macOS app runs
+  in WKWebView.
+
+**Reading:**
+
+1. **Windows is the lower-risk step for the web engine.** Under Tauri, Windows
+   runs Chromium — the same engine Electron bundles and SWBPIPE's tests use.
+   The engine that differs is **macOS's WebKit**, the platform shipped first.
+2. **The divergence is present today, not a future Windows problem.**
+   SWBPIPE ships on WebKit and tests on Chromium, so WebKit-specific defects
+   can reach users unexamined.
+3. **The Chirality App's shell choice does not remove the WebKit question.**
+   Panel components shared with SWBPIPE must work in WebKit whichever shell
+   the App uses. Electron would remove it only for App-only interface code.
+4. **The mitigations are ordinary and cheap:** run the interface tests in both
+   engines (Playwright's WebKit build is close to, though not identical with,
+   WKWebView); a short smoke check of each packaged application on each
+   platform; conservative web features, with Tauri's own file, dialog and
+   clipboard interfaces instead of browser ones; and a fixed WebView2 runtime
+   on Windows if exact versions matter.
+5. **The larger Windows questions lie elsewhere:** oMLX runs only on Apple
+   Silicon, so Windows users would use Ollama, LM Studio or llama.cpp — which
+   the Chat Completions interface (§11.1, option M) already covers; code
+   signing and SmartScreen reputation on Windows apply to either shell; Codex's
+   Windows behaviour (notably sandboxing) is to be read up when Windows enters
+   scope.
+
+**Effect on §11.2.** The shell decision is less consequential than §11.2
+implied, because the shared parts — React panels, TypeScript client logic,
+the workflow layer — are shell-independent when kept behind a small shell
+interface (as v3's `window.chirality` bridge already is). The choice turns on
+packaging and main-process language: Tauri gives one signing pipeline and one
+main-process language across all Chirality applications; Electron keeps
+v3's proven signing of the Codex binaries and its Node code, and one engine
+for App-only screens. Both are defensible; the recommendation stays Tauri,
+with lower confidence, and the owner's preference on engine uniformity is a
+sufficient reason to choose Electron for the App.
+
