@@ -18,7 +18,8 @@ SCH  Per-file v3.1 schema conformance (delegated).
 EVQ  Evidence-cell quality: locus/quote confusion and empty-evidence rows,
      reported as distinct named sub-classes, row-class aware.
 XRG  Cross-register consistency: Deliverables.csv <-> ScopeLedger.csv <->
-     ContextBudgetQA.csv.
+     ContextBudgetQA.csv, and the ledger's Package home (every IN item has a
+     PackageID; OUT and TBD items leave it blank, per D-GOV-47).
 DRB  Dependency-register binding: Dependencies.csv <-> Deliverables.csv and
      the owning deliverable folder.
 
@@ -108,6 +109,8 @@ CHECKS: dict[str, tuple[str, str, str]] = {
     "XRG-008": ("XRG", WARNING, "Deliverables.csv row has a blank PhaseHint"),
     "XRG-009": ("XRG", ERROR, "ContextBudgetQA.csv and Deliverables.csv cover different deliverable sets"),
     "XRG-010": ("XRG", ERROR, "ContextEnvelope disagrees between ContextBudgetQA.csv and Deliverables.csv"),
+    "XRG-011": ("XRG", ERROR, "IN-scope ledger item has no PackageID"),
+    "XRG-012": ("XRG", WARNING, "Non-IN ledger item carries a PackageID (D-GOV-47: OUT/TBD items have no Package)"),
     "DRB-001": ("DRB", ERROR, "FromDeliverableID disagrees with the owning deliverable folder"),
     "DRB-002": ("DRB", ERROR, "FromDeliverableID is absent from Deliverables.csv"),
     "DRB-003": ("DRB", ERROR, "FromPackageID disagrees with Deliverables.csv"),
@@ -578,6 +581,21 @@ def check_cross_register(
                         f"{status} item {item_id} names deliverables {', '.join(linked)}",
                         row_id=item_id)
             )
+        # Package home (D-GOV-47): every IN item has exactly one Package; OUT and
+        # TBD items stay in the ledger with their SourceRef and a blank PackageID.
+        # Checked only when the ledger carries a PackageID column.
+        if "PackageID" in item:
+            if status == "IN" and not ledger_pkg:
+                findings.append(
+                    Finding("XRG-011", paths["ledger"],
+                            f"IN-scope item {item_id} has no PackageID", row_id=item_id)
+                )
+            if status and status != "IN" and ledger_pkg:
+                findings.append(
+                    Finding("XRG-012", paths["ledger"],
+                            f"{status} item {item_id} carries PackageID {ledger_pkg!r}; "
+                            f"leave it blank", row_id=item_id)
+                )
 
         for deliverable_id in linked:
             record = deliverables.get(deliverable_id)

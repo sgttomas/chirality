@@ -7,6 +7,13 @@
 > the prospective amendment is accepted through its governing closeout, the
 > D-GOV-14 edition at commit `ee35409f5cf3a81ecb29a271527156b991df97b9`
 > remains the ratified decomposition protocol.
+>
+> **Owner-directed amendment D-GOV-47 (2026-09-26).** PROJECT and SOFTWARE
+> Package homes are required for IN atomic units only (OUT and TBD units stay
+> in the ledger with their `SourceRef` and no partition), and a small,
+> reversible PROJECT or SOFTWARE undertaking may present its three checkpoint
+> groups in one sitting under the conditions in PROTOCOL. In-flight
+> decompositions keep the edition they adopted; nothing is retrofitted.
 
 This normative document defines the invariant protocol, validity requirements,
 entity schemas, and required output sections shared by decomposition workflows
@@ -64,7 +71,8 @@ regardless of domain.
   source-fidelity checkpoint before atomization, followed by three grouped
   checkpoints expressed in domain terms. A required checkpoint may not be
   skipped or multiplied merely because a tool or asset-quality check produced
-  evidence.
+  evidence. A PROJECT or SOFTWARE combined review sitting (PROTOCOL) decides
+  all three groups at once; it does not skip any of them.
 - **I2 — No invention.** Do not create atomic units, objectives, partitions, production units, or artifacts beyond what the source material and user intent support. If unknown, mark `TBD` and surface as an open issue.
 - **I3 — Partitions are flat.** Do not create nested partitions. If more granularity is needed, propose additional partitions at the same level.
 - **I4 — No overlap / no gaps at the partition level.** Every IN-scope atomic unit MUST be assigned to exactly one partition. Forced decision if ambiguous; human resolves at the applicable grouped checkpoint.
@@ -90,7 +98,7 @@ These are the abstract entity names used in this specification. Conforming agent
 | **Production Unit** | An operational unit within a partition that produces tangible outputs; belongs to exactly one partition | Deliverable (PROJECT, SOFTWARE); Knowledge Type (DOMAIN) |
 | **Artifact** | An anticipated tangible output of a production unit | Artifact (PROJECT, SOFTWARE); Knowledge Subject (DOMAIN) |
 | **Objective** | A success condition derived from the source material | Objective (all) |
-| **Decomposition Ledger** | A table proving coverage: every atomic unit mapped to partitions and production units | Scope Ledger (PROJECT, SOFTWARE); Domain Ledger (DOMAIN) |
+| **Decomposition Ledger** | A table proving coverage: every atomic unit recorded with its status and source, and every IN unit mapped to its partition and production units | Scope Ledger (PROJECT, SOFTWARE); Domain Ledger (DOMAIN) |
 | **Coverage & Telemetry** | A structured summary of counts and gaps | Coverage & Telemetry (all) |
 
 ---
@@ -172,6 +180,10 @@ consumes that accepted snapshot; it does not rely on the mutable working package
 alone. Reopened decisions produce successor snapshots and never overwrite an
 earlier accepted snapshot.
 
+A combined review sitting (below) is the one exception to preparing a stage
+only after the preceding checkpoint is accepted: its stages are prepared on the
+proposed state, and its snapshots are written in order after the decision.
+
 ### Output Target
 
 The agent maintains the canonical working package and revises its working
@@ -245,6 +257,34 @@ If the material basis changes after a checkpoint, reopen only the decisions
 whose warrants, mappings, or consequences are affected. Refresh dependent
 checks before returning to the next applicable checkpoint; do not replay
 unaffected decisions.
+
+#### Combined review sitting (PROJECT and SOFTWARE only)
+
+For a small, reversible PROJECT or SOFTWARE undertaking, the human may choose
+to decide all three checkpoint groups in one sitting: the basis, normalized
+scope, vocabulary, and objectives; the proposed Packages and Deliverables with
+coverage findings and exceptions; and the audited final decomposition. The
+agent may propose this; the human chooses it. DOMAIN does not use this
+allowance. In a combined sitting:
+
+1. Stage A is prepared as usual, and Stages B and C are each prepared on the
+   preceding stage's proposed state. The independent audit of the final package
+   is completed before the human decides. The audit examines the package
+   against the basis and structure presented in the sitting.
+2. The human's decision records which groups it covers, and the audit and
+   decision record the hashes of the presented package.
+3. After the decision, the group-1, group-2, and group-3 snapshots are
+   written in that order, each naming the preceding snapshot as its upstream
+   basis, and each pointer is updated only after its snapshot is complete. The
+   snapshots must match the recorded hashes; any difference reopens the
+   affected groups and every later group.
+4. A material change found during the sitting reopens the groups it affects
+   and every later group. Their dependent preparation and audit are refreshed
+   before those groups are decided; only earlier, unaffected groups may still
+   be decided in the sitting.
+
+A combined sitting changes the number of sittings, not the three subjects,
+their preparation, the independent audit, or the snapshot record.
 
 [[END:PROTOCOL]]
 
@@ -389,7 +429,7 @@ Minimum columns:
 - `InOutStatus`
 - `UnitStatement`
 - `SourceRef`
-- `PartitionID` (required for IN; blank for OUT)
+- `PartitionID` (required for IN; blank for OUT and TBD)
 - `ProductionUnitID(s)` (one or many; or `TBD`)
 - `ObjectiveID(s)` (zero or many; or `TBD`)
 - `DecisionRef` (optional; points to Decision Log entry)
@@ -401,7 +441,9 @@ Minimum columns:
 Conforming workflows use domain-specific column names (for example,
 `ScopeItemID` / `PackageID` / `DeliverableID(s)` in `project-decomp`, or
 `UnitID` / `CategoryID` / `KnowledgeTypeID(s)` in `domain-decomp`). The
-structural contract — every IN unit maps to exactly one partition — is invariant.
+structural contract — every IN unit maps to exactly one partition, and OUT and
+TBD units remain in the ledger with their `SourceRef` but have no partition —
+is invariant.
 
 #### 3) Coverage & Telemetry (summary block)
 Minimum fields:

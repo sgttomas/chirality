@@ -451,6 +451,26 @@ def test_grouped_checkpoint_boundaries_use_accepted_snapshots():
     assert "Do not update `_LATEST.md` before checkpoint group 3 acceptance" in scope_change
 
 
+def test_d_gov_47_package_home_and_combined_review():
+    standard = (ROOT / "docs/DECOMPOSITION_STANDARD.md").read_text()
+    assert "#### Combined review sitting (PROJECT and SOFTWARE only)" in standard
+    assert "DOMAIN does not use this\nallowance." in standard
+    assert "- `PartitionID` (required for IN; blank for OUT and TBD)" in standard
+    types = (ROOT / "docs/TYPES.md").read_text()
+    assert "- Every IN scope item belongs to exactly one package" in types
+
+    for name in ("project-decomp", "software-decomp"):
+        method = (ROOT / "workflows" / name / "resources/method.md").read_text()
+        contract = (ROOT / "workflows" / name / "resources/contract.md").read_text()
+        assert "### Combined review for a small, reversible undertaking" in method
+        assert "receive no Package" in method
+        assert "very IN `ScopeItemID` has exactly one `PackageID`." in contract
+        assert "very `ScopeItemID` has exactly one `PackageID`" not in contract
+
+    domain = (ROOT / "workflows/domain-decomp/resources/method.md").read_text()
+    assert "Combined review" not in domain
+
+
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     contract = (ROOT / "workflows/research-orchestration/resources/contract.md").read_text()
     method = (ROOT / "workflows/research-orchestration/resources/method.md").read_text()
