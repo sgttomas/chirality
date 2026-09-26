@@ -1,1917 +1,1965 @@
 {
- "deliverable": "DEL-01-06",
- "claims": [
-  {
-   "id": "S001",
-   "commit": "189f205ff",
-   "kind": "ancestor",
-   "path": null,
-   "value": "aca930622",
-   "candidate_text": "an ancestor of `origin/main`"
-  },
-  {
-   "id": "S002",
-   "commit": "189f205ff",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
-   "candidate_text": "`9374c21fb87b…8eb1`"
-  },
-  {
-   "id": "S003",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
-   "candidate_text": "byte-identical to the pin"
-  },
-  {
-   "id": "S004",
-   "commit": "189f205ff",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
-   "candidate_text": "`94ee5d182ae9…9805`"
-  },
-  {
-   "id": "S005",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
-   "candidate_text": "byte-identical to the pin"
-  },
-  {
-   "id": "S006",
-   "commit": "189f205ff",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
-   "candidate_text": "`1d24a4b86f05…916e`"
-  },
-  {
-   "id": "S007",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
-   "candidate_text": "byte-identical to the pin"
-  },
-  {
-   "id": "S008",
-   "commit": "189f205ff",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
-   "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
-   "candidate_text": "`93b0bb075a0e…4c7c`"
-  },
-  {
-   "id": "S009",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
-   "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
-   "candidate_text": "byte-identical to the pin"
-  },
-  {
-   "id": "S010",
-   "commit": "189f205ff",
-   "kind": "sha256",
-   "path": "projects/pec/docs/PRD.md",
-   "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
-   "candidate_text": "`ae49b8065698…3fbe`"
-  },
-  {
-   "id": "S011",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/docs/PRD.md",
-   "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
-   "candidate_text": "byte-identical to the pin"
-  },
-  {
-   "id": "S012",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/docs/PRD.md",
-   "value": "| **Status** | **Adopted 2026-09-25** by owner acceptance of SCA-006 checkpoint group 2",
-   "candidate_text": "`docs/PRD.md` v2.4"
-  },
-  {
-   "id": "S013",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
-   "candidate_text": "`5fdcfd968345…a2fa8`"
-  },
-  {
-   "id": "S014",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
-   "candidate_text": "`5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`"
-  },
-  {
-   "id": "S015",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "- **CLM-007** —",
-   "candidate_text": "`DEL-01-06/CLM-007`"
-  },
-  {
-   "id": "S016",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "- **TBD-002** —",
-   "candidate_text": "`DEL-01-06/TBD-002`"
-  },
-  {
-   "id": "S017",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "- **CON-001** —",
-   "candidate_text": "`DEL-01-06/CON-001`"
-  },
-  {
-   "id": "S018",
-   "commit": "73ed349ed",
-   "kind": "ancestor",
-   "path": null,
-   "value": "aca930622",
-   "candidate_text": "`D-PEC-96` act merge `73ed349ed`"
-  },
-  {
-   "id": "S019",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S020",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S021",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S022",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S023",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S024",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S025",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S026",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S027",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S028",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S029",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
-   "value": "20e6db0216943cf93d734cf97a18c50ece47706e6a012e47580aea9745e5e90d",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S030",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
-   "value": "20e6db0216943cf93d734cf97a18c50ece47706e6a012e47580aea9745e5e90d",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S031",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
-   "value": "035ecb8686d72b18eb680531e1239ab4b2df4f5ae1b70811f6e4d667ccf30a3f",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S032",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
-   "value": "035ecb8686d72b18eb680531e1239ab4b2df4f5ae1b70811f6e4d667ccf30a3f",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S033",
-   "commit": "73ed349ed",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "1362ed668436b5af79fe54dd5f7ab660dac9ddd29dad2a0d1b0adebb01ad5919",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S034",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "1362ed668436b5af79fe54dd5f7ab660dac9ddd29dad2a0d1b0adebb01ad5919",
-   "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
-  },
-  {
-   "id": "S035",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "PEC's own row declares `remaining-loop` now",
-   "candidate_text": "carries the register `Description` of CLM-010"
-  },
-  {
-   "id": "S036",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "then by revision 1.5 (`current_basis`, SCA-005 successor).",
-   "candidate_text": "a provenance tail ending at revision 1.5"
-  },
-  {
-   "id": "S037",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "revision 1.6",
-   "candidate_text": "a provenance tail ending at revision 1.5"
-  },
-  {
-   "id": "S038",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md",
-   "value": "(revision 1.5, accepted `current_basis`; SCA-005 successor)",
-   "candidate_text": "`_REFERENCES.md` names revision 1.5 and PRD v2.3"
-  },
-  {
-   "id": "S039",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md",
-   "value": "`docs/PRD.md` v2.3",
-   "candidate_text": "`_REFERENCES.md` names revision 1.5 and PRD v2.3"
-  },
-  {
-   "id": "S040",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "value": "| §3.4 | SOW-022..024, SOW-045..051, SOW-077, SOW-094; instrument: SOW-085 | DEL-01-06,",
-   "candidate_text": "the §3 objective row lists both items and this deliverable"
-  },
-  {
-   "id": "S041",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "Type",
-    "equals": "BACKEND_FEATURE_SLICE"
-   },
-   "candidate_text": "Type `BACKEND_FEATURE_SLICE`"
-  },
-  {
-   "id": "S042",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "ContextEnvelope",
-    "equals": "S"
-   },
-   "candidate_text": "Context Envelope `S`"
-  },
-  {
-   "id": "S043",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "`PhaseHint` `P1`"
-  },
-  {
-   "id": "S044",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "ResponsibleParty",
-    "equals": "TBD"
-   },
-   "candidate_text": "`ResponsibleParty` `TBD`"
-  },
-  {
-   "id": "S045",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "CoversScopeItems",
-    "equals": "SOW-077;SOW-094"
-   },
-   "candidate_text": "`CoversScopeItems` `SOW-077;SOW-094`"
-  },
-  {
-   "id": "S046",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "SupportsObjectives",
-    "equals": "OBJ-004"
-   },
-   "candidate_text": "`SupportsObjectives` `OBJ-004`"
-  },
-  {
-   "id": "S047",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "ContextEnvelopeNotes",
-    "equals": ""
-   },
-   "candidate_text": "carries no `ContextEnvelopeNotes`"
-  },
-  {
-   "id": "S048",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "Risk",
-    "equals": "LOW"
-   },
-   "candidate_text": "`Risk` `LOW` with no recommended action"
-  },
-  {
-   "id": "S049",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "RecommendedAction",
-    "equals": "None"
-   },
-   "candidate_text": "`Risk` `LOW` with no recommended action"
-  },
-  {
-   "id": "S050",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
-   "value": "**Current State:** INITIALIZED",
-   "candidate_text": "its `_STATUS.md` reads `INITIALIZED`"
-  },
-  {
-   "id": "S051",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
-   "value": "**Current State:** INITIALIZED",
-   "candidate_text": "The deliverable is at lifecycle `INITIALIZED`"
-  },
-  {
-   "id": "S052",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
-   "value": "Scaffolded under `D-PEC-62`",
-   "candidate_text": "The folder was scaffolded under `D-PEC-62`"
-  },
-  {
-   "id": "S053",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/MANIFEST.md",
-   "value": "| `MEMORY.md` | create, from the template, substituting only `{{DEL-ID}}` → `DEL-01-06`; empty Runs table",
-   "candidate_text": "created under `D-PEC-96` from the template, holds no run row"
-  },
-  {
-   "id": "S054",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
-   "value": "| Run ID / date | Work in this deliverable | Result and source links |\n|---|---|---|",
-   "candidate_text": "holds no run row"
-  },
-  {
-   "id": "S055",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_DEPENDENCIES.md",
-   "value": "**no upstream predecessors (root node)**",
-   "candidate_text": "declares no upstream predecessors"
-  },
-  {
-   "id": "S056",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-01-06-001",
-    "column": "DependencyClass",
-    "equals": "ANCHOR"
-   },
-   "candidate_text": "holds only three non-gating `ANCHOR` rows"
-  },
-  {
-   "id": "S057",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-01-06-002",
-    "column": "DependencyClass",
-    "equals": "ANCHOR"
-   },
-   "candidate_text": "holds only three non-gating `ANCHOR` rows"
-  },
-  {
-   "id": "S058",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-01-06-003",
-    "column": "DependencyClass",
-    "equals": "ANCHOR"
-   },
-   "candidate_text": "holds only three non-gating `ANCHOR` rows"
-  },
-  {
-   "id": "S059",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": ",EXECUTION,",
-   "candidate_text": "holds only three non-gating `ANCHOR` rows"
-  },
-  {
-   "id": "S060",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": "c733411f9d1aa300eaacd84406fc2de83a1c04d4ebd4426994c92bec90019c46",
-   "candidate_text": "holds only three non-gating `ANCHOR` rows"
-  },
-  {
-   "id": "S061",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-01-06-002",
-    "column": "TargetRefID",
-    "equals": "SOW-094"
-   },
-   "candidate_text": "`DEP-01-06-002` `SOW-094` requirement trace"
-  },
-  {
-   "id": "S062",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-01-06-003",
-    "column": "TargetRefID",
-    "equals": "SOW-077"
-   },
-   "candidate_text": "`DEP-01-06-003` `SOW-077` requirement trace"
-  },
-  {
-   "id": "S063",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "Status",
-    "equals": "ACTIVE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S064",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "DependencyClass",
-    "equals": "EXECUTION"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S065",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "DependencyType",
-    "equals": "PREREQUISITE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S066",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "SatisfactionStatus",
-    "equals": "PENDING"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S067",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "RequiredMaturity",
-    "equals": "INITIALIZED"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S068",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "TargetDeliverableID",
-    "equals": "DEL-01-06"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S069",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "FromDeliverableID",
-    "equals": "DEL-02-07"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S070",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-02-07-003",
-    "column": "Notes",
-    "contains": "PROPOSAL; Flag=none; EdgeID=E-N16"
-   },
-   "candidate_text": "all currently `PROPOSAL` stratum"
-  },
-  {
-   "id": "S071",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "Status",
-    "equals": "ACTIVE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S072",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "DependencyClass",
-    "equals": "EXECUTION"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S073",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "DependencyType",
-    "equals": "PREREQUISITE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S074",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "SatisfactionStatus",
-    "equals": "PENDING"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S075",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "RequiredMaturity",
-    "equals": "INITIALIZED"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S076",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "TargetDeliverableID",
-    "equals": "DEL-01-06"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S077",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "FromDeliverableID",
-    "equals": "DEL-03-01"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S078",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-03-01-007",
-    "column": "Notes",
-    "contains": "PROPOSAL; Flag=none; EdgeID=E-P18"
-   },
-   "candidate_text": "all currently `PROPOSAL` stratum"
-  },
-  {
-   "id": "S079",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "Status",
-    "equals": "ACTIVE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S080",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "DependencyClass",
-    "equals": "EXECUTION"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S081",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "DependencyType",
-    "equals": "PREREQUISITE"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S082",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "SatisfactionStatus",
-    "equals": "PENDING"
-   },
-   "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
-  },
-  {
-   "id": "S083",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "RequiredMaturity",
-    "equals": "INITIALIZED"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S084",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "TargetDeliverableID",
-    "equals": "DEL-01-06"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S085",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "FromDeliverableID",
-    "equals": "DEL-09-02"
-   },
-   "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
-  },
-  {
-   "id": "S086",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "value": {
-    "key_column": "DependencyID",
-    "key": "DEP-09-02-006",
-    "column": "Notes",
-    "contains": "PROPOSAL; Flag=none; EdgeID=E-P62"
-   },
-   "candidate_text": "all currently `PROPOSAL` stratum"
-  },
-  {
-   "id": "S087",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-07",
-    "column": "Description",
-    "contains": "read as a parity-peer input only"
-   },
-   "candidate_text": "re-purposed `DEL-02-07` as a parity-peer reader"
-  },
-  {
-   "id": "S088",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
-   "value": "No dependency row links this deliverable to `DEL-01-06` in either register.",
-   "candidate_text": "each records that no dependency row links it to this deliverable"
-  },
-  {
-   "id": "S089",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
-   "value": "No dependency row links this deliverable to `DEL-01",
-   "candidate_text": "each records that no dependency row links it to this deliverable"
-  },
-  {
-   "id": "S090",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
-   "value": "through the loop-registry port of `DEL-01-06`",
-   "candidate_text": "\"through the loop-registry port of `DEL-01-06`\""
-  },
-  {
-   "id": "S091",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
-   "value": "The feed-profile identifier, version and surface name under which a loop declares its work graphs are fixed by no accepted contract",
-   "candidate_text": "They left the profile identifier and surface name open until this rebuild"
-  },
-  {
-   "id": "S092",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
-   "value": "The feed-profile identifier, version and surface name under which a loop declares its MEMORY run index are fixed by no accepted contract",
-   "candidate_text": "They left the profile identifier and surface name open until this rebuild"
-  },
-  {
-   "id": "S093",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-06",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S094",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-01",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S095",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-03",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S096",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-01-05",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S097",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-01",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S098",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-02",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S099",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-03",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S100",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-04",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S101",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-05",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S102",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-06",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S103",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-07",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S104",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-08",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S105",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-02-09",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S106",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-03-01",
-    "column": "PhaseHint",
-    "equals": "P1"
-   },
-   "candidate_text": "and `DEL-03-01` carry `P1`"
-  },
-  {
-   "id": "S107",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "value": {
-    "key_column": "DeliverableID",
-    "key": "DEL-09-02",
-    "column": "PhaseHint",
-    "equals": "P2"
-   },
-   "candidate_text": "`DEL-09-02` carries `P2`"
-  },
-  {
-   "id": "S108",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-011",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-01"
-   },
-   "candidate_text": "`DEL-02-01`"
-  },
-  {
-   "id": "S109",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-012",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-02"
-   },
-   "candidate_text": "`DEL-02-02`"
-  },
-  {
-   "id": "S110",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-013",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-03"
-   },
-   "candidate_text": "`DEL-02-03`"
-  },
-  {
-   "id": "S111",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-014",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-04"
-   },
-   "candidate_text": "`DEL-02-04`"
-  },
-  {
-   "id": "S112",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-015",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-05"
-   },
-   "candidate_text": "`DEL-02-05`"
-  },
-  {
-   "id": "S113",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-016",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-06"
-   },
-   "candidate_text": "`DEL-02-06`"
-  },
-  {
-   "id": "S114",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-017",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-07"
-   },
-   "candidate_text": "`DEL-02-07`"
-  },
-  {
-   "id": "S115",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-095",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-08"
-   },
-   "candidate_text": "`DEL-02-08`"
-  },
-  {
-   "id": "S116",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-096",
-    "column": "DeliverableIDs",
-    "equals": "DEL-02-09"
-   },
-   "candidate_text": "`DEL-02-09`"
-  },
-  {
-   "id": "S117",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-010",
-    "column": "DeliverableIDs",
-    "equals": "DEL-03-01"
-   },
-   "candidate_text": "`DEL-03-01`"
-  },
-  {
-   "id": "S118",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-021",
-    "column": "DeliverableIDs",
-    "equals": "DEL-03-01"
-   },
-   "candidate_text": "`DEL-03-01`"
-  },
-  {
-   "id": "S119",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-046",
-    "column": "DeliverableIDs",
-    "equals": "DEL-09-02"
-   },
-   "candidate_text": "`DEL-09-02`"
-  },
-  {
-   "id": "S120",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-001",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-01"
-   },
-   "candidate_text": "`DEL-01-01`"
-  },
-  {
-   "id": "S121",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-056",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-03"
-   },
-   "candidate_text": "`DEL-01-03`"
-  },
-  {
-   "id": "S122",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-052",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-05"
-   },
-   "candidate_text": "`DEL-01-05`"
-  },
-  {
-   "id": "S123",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-053",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-05"
-   },
-   "candidate_text": "`DEL-01-05`"
-  },
-  {
-   "id": "S124",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "value": "4506597b1bfd6cafd8fc561c688bcb9e803d9c2b04c3abdec9dc05edf155180e",
-   "candidate_text": "`4506597b1bfd…180e`"
-  },
-  {
-   "id": "S125",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "value": "852057f0ff6989e0b1180232424ff9fd8de434b3345c1d6c775e76b8defb399e",
-   "candidate_text": "`852057f0ff69…399e`"
-  },
-  {
-   "id": "S126",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "value": "Owner: Ryan Tufts. Date: 2026-09-26",
-   "candidate_text": "on 2026-09-26 with"
-  },
-  {
-   "id": "S127",
-   "commit": "c55362095",
-   "kind": "ancestor",
-   "path": null,
-   "value": "aca930622",
-   "candidate_text": "The act commit is `c55362095`"
-  },
-  {
-   "id": "S128",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/MANIFEST.md",
-   "value": "**Act commit (product writes):** `c55362095a5b56e61bb57c588e741513324ea52c`",
-   "candidate_text": "The act commit is `c55362095`"
-  },
-  {
-   "id": "S129",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
-   "value": "PR #950 merged as `73ed349ed`",
-   "candidate_text": "PR #950 merged as `73ed349ed`"
-  },
-  {
-   "id": "S130",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
-   "candidate_text": "`fd342b4f29ed…53d7`"
-  },
-  {
-   "id": "S131",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "\"schema_version\": 2",
-   "candidate_text": "carries `\"schema_version\": 2` and one row"
-  },
-  {
-   "id": "S132",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "\"loop_id\": \"pec\", \"loop_init_path\": \"projects/pec/loop/LOOP_INIT.md\" } ], \"schema_version\": 2",
-   "candidate_text": "`pec` → `projects/pec/loop/LOOP_INIT.md`"
-  },
-  {
-   "id": "S133",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/config/loops.json",
-   "value": "{ \"feed_profiles\": [ { \"basis\": \"projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md\", \"profile\": \"shared-dev-loop\", \"state\": \"live\", \"version\": 1 }, { \"basis\": \"projects/pec/AGENTS.md\", \"profile\": \"loop-receipts-ledger\", \"state\": \"historical\", \"version\": 1 }, { \"basis\": \"projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md\", \"profile\": \"agentruns-json\", \"state\": \"historical\", \"version\": 1 } ], \"loop_id\": \"pec\"",
-   "candidate_text": "| `agentruns-json` | 1 | `historical` |"
-  },
-  {
-   "id": "S134",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
-   "candidate_text": "`104ed64820b7…b143`"
-  },
-  {
-   "id": "S135",
-   "commit": "aca930622",
-   "kind": "exists",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md",
-   "value": null,
-   "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
-  },
-  {
-   "id": "S136",
-   "commit": "aca930622",
-   "kind": "exists",
-   "path": "projects/pec/AGENTS.md",
-   "value": null,
-   "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
-  },
-  {
-   "id": "S137",
-   "commit": "aca930622",
-   "kind": "exists",
-   "path": "projects/pec/loop/LOOP_INIT.md",
-   "value": null,
-   "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
-  },
-  {
-   "id": "S138",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "\"agentruns-json\": frozenset({\"json-run-evidence\"}),",
-   "candidate_text": "`agentruns-json` covers `json-run-evidence`"
-  },
-  {
-   "id": "S139",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "\"loop-receipts-ledger\": frozenset({\"receipt-ledger\"}),",
-   "candidate_text": "`loop-receipts-ledger` covers `receipt-ledger`"
-  },
-  {
-   "id": "S140",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "\"central-receipts\", \"decision-registers\", \"dependency-registers\", \"memory-run-index\", \"status-lifecycle\", \"work-graphs\",",
-   "candidate_text": "`shared-dev-loop` covers `central-receipts`"
-  },
-  {
-   "id": "S141",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "\"agentruns-json\": frozenset({1}), \"loop-receipts-ledger\": frozenset({1}), \"shared-dev-loop\": frozenset({1}),",
-   "candidate_text": "three profiles, each at version 1"
-  },
-  {
-   "id": "S142",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "Surfaces: central-receipts, decision-registers, dependency-registers, memory-run-index, status-lifecycle, work-graphs.",
-   "candidate_text": "schema option descriptions"
-  },
-  {
-   "id": "S143",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "emaining",
-   "candidate_text": "No profile and no surface covers `## Remaining` sections"
-  },
-  {
-   "id": "S144",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "emaining",
-   "candidate_text": "No profile and no surface covers `## Remaining` sections"
-  },
-  {
-   "id": "S145",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "_SCHEMA_VERSION = 2",
-   "candidate_text": "accepts only `schema_version` 2"
-  },
-  {
-   "id": "S146",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
-   "candidate_text": "`620a173d19d8…2f07`"
-  },
-  {
-   "id": "S147",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
-   "candidate_text": "`a509bfb74920…c8a9`"
-  },
-  {
-   "id": "S148",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "feed_profiles: tuple[FeedProfile, ...]",
-   "candidate_text": "`feed_profiles: tuple[FeedProfile, ...]`"
-  },
-  {
-   "id": "S149",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "def registered_loops(self) -> tuple[RegisteredLoop, ...]:",
-   "candidate_text": "`registered_loops() -> tuple[RegisteredLoop, ...]`"
-  },
-  {
-   "id": "S150",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "LIVE = \"live\" HISTORICAL = \"historical\"",
-   "candidate_text": "`HISTORICAL` = `historical`"
-  },
-  {
-   "id": "S151",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "profile: str version: int state: FeedProfileState basis: str",
-   "candidate_text": "fields `profile`, `version`, `state` and `basis`"
-  },
-  {
-   "id": "S152",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/AGENTS.md",
-   "value": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
-   "candidate_text": "under `D-PEC-99` `projects/pec/AGENTS.md` states"
-  },
-  {
-   "id": "S153",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/AGENTS.md",
-   "value": "df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8",
-   "candidate_text": "under `D-PEC-99` `projects/pec/AGENTS.md` states"
-  },
-  {
-   "id": "S154",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/docs/PRD.md",
-   "value": "remaining items is a per-loop optional field, read only where the loop's feed profile declares it",
-   "candidate_text": "PRD v2.4 §7.1 makes remaining items a per-loop optional field"
-  },
-  {
-   "id": "S155",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md",
-   "value": "**Outcome:** retain `HOLD` at `INITIALIZED`",
-   "candidate_text": "Gate 5 outcome as `HOLD` at `INITIALIZED`"
-  },
-  {
-   "id": "S156",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv",
-   "value": {
-    "key_column": "FindingID",
-    "key": "RF-001",
-    "column": "Status",
-    "equals": "RESOLVED"
-   },
-   "candidate_text": "records `RF-001` and `RF-002` as `RESOLVED`"
-  },
-  {
-   "id": "S157",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv",
-   "value": {
-    "key_column": "FindingID",
-    "key": "RF-002",
-    "column": "Status",
-    "equals": "RESOLVED"
-   },
-   "candidate_text": "records `RF-001` and `RF-002` as `RESOLVED`"
-  },
-  {
-   "id": "S158",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md",
-   "value": "merged as `ccd9a2178ffd8029fdd1cd779910e954e0612e21`",
-   "candidate_text": "merged as `ccd9a2178`"
-  },
-  {
-   "id": "S159",
-   "commit": "ccd9a2178",
-   "kind": "ancestor",
-   "path": null,
-   "value": "aca930622",
-   "candidate_text": "merged as `ccd9a2178`"
-  },
-  {
-   "id": "S160",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/VALIDATION.md",
-   "value": "| **`v2-loop-registry`** (VER-001, VER-003 rerun) | exit 0; Ran 19, OK (12 before) | exit 0; **Ran 19, OK**",
-   "candidate_text": "19 tests run and passing"
-  },
-  {
-   "id": "S161",
-   "commit": "aca930622",
-   "kind": "sha256",
-   "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
-   "value": "740a4a74122178cc31947bb69c23d6aa55abc15b87c523dcf1c551dee3e19ee9",
-   "candidate_text": "`740a4a741221…19ee9`"
-  },
-  {
-   "id": "S162",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
-   "value": "**Current State:** IN_PROGRESS",
-   "candidate_text": "`DEL-01-03` is `IN_PROGRESS`"
-  },
-  {
-   "id": "S163",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
-   "value": "OPEN = \"OPEN\"",
-   "candidate_text": "a state set of `OPEN` through `ISSUED`"
-  },
-  {
-   "id": "S164",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
-   "value": "ISSUED = \"ISSUED\"",
-   "candidate_text": "a state set of `OPEN` through `ISSUED`"
-  },
-  {
-   "id": "S165",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
-   "value": "\"field class is not one of the five PEC-K-10 classes\"",
-   "candidate_text": "admits five field classes"
-  },
-  {
-   "id": "S166",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decomp_Coverage_IssueLog.csv",
-   "value": "COV-083,9,INFO,ATOMIC_UNIT,Scope Item,SOW-094; DEL-01-06;",
-   "candidate_text": "The post-change audit records them as `COV-083`"
-  },
-  {
-   "id": "S167",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Decomposition/_LATEST.md",
-   "value": "carried knowingly for a later PEC scope change (owner Q-CP3-1 (a))",
-   "candidate_text": "as the owner's checkpoint-3 answer carried it"
-  },
-  {
-   "id": "S168",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "value": "| DEL-01-06 | INITIALIZED | `5fdcfd968345…` | feed-profile declarations, schema v2 obligation, five-loop claims (A-10, A-11, A-13) | `STALE_REBUILD_REQUIRED (new obligation; RF-002 stays RESOLVED; gated on B6)`",
-   "candidate_text": "classed the earlier contract as needing a rebuild gated on the §B6 source packet"
-  },
-  {
-   "id": "S169",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "value": "PEC's own `pec` row `remaining-loop`, Q8 (a)",
-   "candidate_text": "gave PEC's row the `remaining-loop` profile"
-  },
-  {
-   "id": "S170",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
-   "value": "### A-10 — MODIFY OTHER `SOW-077`",
-   "candidate_text": "(amendment actions A-10, A-11 and A-13)"
-  },
-  {
-   "id": "S171",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
-   "value": "### A-11 — MODIFY OTHER `SOW-094`",
-   "candidate_text": "(amendment actions A-10, A-11 and A-13)"
-  },
-  {
-   "id": "S172",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
-   "value": "### A-13 — MODIFY DELIVERABLE `DEL-01-06`",
-   "candidate_text": "(amendment actions A-10, A-11 and A-13)"
-  },
-  {
-   "id": "S173",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "value": "| OI-010 | SOW-064 | **RESOLVED at Gate 2 (2026-07-24):**",
-   "candidate_text": "per `OI-010` as resolved at Gate 2 (2026-07-24, `DL-10`)"
-  },
-  {
-   "id": "S174",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "value": "Option A therefore makes `feed_profiles` a list with at least one live entry and disjoint surfaces (question 3)",
-   "candidate_text": "made `feed_profiles` a list"
-  },
-  {
-   "id": "S175",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "value": "| 3. Vocabulary, surfaces and row shape | **Confirmed.**",
-   "candidate_text": "the owner confirmed that shape under question 3"
-  },
-  {
-   "id": "S176",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "value": "| 2. PEC's own row (migration ruling) | **Migrated.**",
-   "candidate_text": "ruled PEC's row migrated"
-  },
-  {
-   "id": "S177",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "value": "| 4. Version-1 files | **Rejected** with a located error.",
-   "candidate_text": "no dual read is provided"
-  },
-  {
-   "id": "S178",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "value": "It accepts `projects/./pec/x`, `projects//pec/x`, a trailing `/`, a leading space and `C:x`.",
-   "candidate_text": "a trailing `/`, a leading space and `C:x`"
-  },
-  {
-   "id": "S179",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/HANDOFF_STATE.md",
-   "value": "9. **Adapter stricter than the schema text (verdict 01 N3).**",
-   "candidate_text": "carried as residual 9 of its handoff"
-  },
-  {
-   "id": "S180",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
-   "value": "| DEL-01-06 | NOT_AFFECTED |",
-   "candidate_text": "classes this deliverable `NOT_AFFECTED`"
-  },
-  {
-   "id": "S181",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "value": "| DL-20 | 2026-09-25 | SCA-005,",
-   "candidate_text": "SCA-005 `DL-20` added"
-  },
-  {
-   "id": "S182",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-077",
-    "column": "ObjectiveIDs",
-    "equals": "OBJ-004"
-   },
-   "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
-  },
-  {
-   "id": "S183",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-077",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-06"
-   },
-   "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
-  },
-  {
-   "id": "S184",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-094",
-    "column": "ObjectiveIDs",
-    "equals": "OBJ-004"
-   },
-   "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
-  },
-  {
-   "id": "S185",
-   "commit": "aca930622",
-   "kind": "csv_cell",
-   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "value": {
-    "key_column": "ScopeItemID",
-    "key": "SOW-094",
-    "column": "DeliverableIDs",
-    "equals": "DEL-01-06"
-   },
-   "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
-  },
-  {
-   "id": "S186",
-   "commit": "aca930622",
-   "kind": "count_glob",
-   "path": null,
-   "value": {
-    "pattern": "projects/pec/v2/*",
-    "count": 6,
-    "contains": "RegisteredLoop"
-   },
-   "candidate_text": "the only files under `projects/pec/v2` that name `RegisteredLoop`"
-  },
-  {
-   "id": "S187",
-   "commit": "aca930622",
-   "kind": "contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "loop_id: str loop_init_path: str feed_profiles: tuple[FeedProfile, ...]",
-   "candidate_text": "the applied `RegisteredLoop` carries no project field"
-  },
-  {
-   "id": "S188",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
-   "value": "project",
-   "candidate_text": "the applied `RegisteredLoop` carries no project field"
-  },
-  {
-   "id": "S189",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/config/loops.schema.json",
-   "value": "orkplan",
-   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
-  },
-  {
-   "id": "S190",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "orkplan",
-   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
-  },
-  {
-   "id": "S191",
-   "commit": "aca930622",
-   "kind": "not_contains",
-   "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
-   "value": "LOOP_INIT",
-   "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
-  }
- ]
+  "deliverable": "DEL-01-06",
+  "claims": [
+    {
+      "id": "S001",
+      "commit": "189f205ff",
+      "kind": "ancestor",
+      "path": null,
+      "value": "aca930622",
+      "candidate_text": "an ancestor of `origin/main`"
+    },
+    {
+      "id": "S002",
+      "commit": "189f205ff",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
+      "candidate_text": "`9374c21fb87b…8eb1`"
+    },
+    {
+      "id": "S003",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
+      "candidate_text": "byte-identical to the pin"
+    },
+    {
+      "id": "S004",
+      "commit": "189f205ff",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+      "candidate_text": "`94ee5d182ae9…9805`"
+    },
+    {
+      "id": "S005",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+      "candidate_text": "byte-identical to the pin"
+    },
+    {
+      "id": "S006",
+      "commit": "189f205ff",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+      "candidate_text": "`1d24a4b86f05…916e`"
+    },
+    {
+      "id": "S007",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+      "candidate_text": "byte-identical to the pin"
+    },
+    {
+      "id": "S008",
+      "commit": "189f205ff",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+      "candidate_text": "`93b0bb075a0e…4c7c`"
+    },
+    {
+      "id": "S009",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+      "candidate_text": "byte-identical to the pin"
+    },
+    {
+      "id": "S010",
+      "commit": "189f205ff",
+      "kind": "sha256",
+      "path": "projects/pec/docs/PRD.md",
+      "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
+      "candidate_text": "`ae49b8065698…3fbe`"
+    },
+    {
+      "id": "S011",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/docs/PRD.md",
+      "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
+      "candidate_text": "byte-identical to the pin"
+    },
+    {
+      "id": "S012",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/docs/PRD.md",
+      "value": "| **Status** | **Adopted 2026-09-25** by owner acceptance of SCA-006 checkpoint group 2",
+      "candidate_text": "`docs/PRD.md` v2.4"
+    },
+    {
+      "id": "S013",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
+      "candidate_text": "`5fdcfd968345…a2fa8`"
+    },
+    {
+      "id": "S014",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
+      "candidate_text": "`5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`"
+    },
+    {
+      "id": "S015",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "- **CLM-007** —",
+      "candidate_text": "`DEL-01-06/CLM-007`"
+    },
+    {
+      "id": "S016",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "- **TBD-002** —",
+      "candidate_text": "`DEL-01-06/TBD-002`"
+    },
+    {
+      "id": "S017",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "- **CON-001** —",
+      "candidate_text": "`DEL-01-06/CON-001`"
+    },
+    {
+      "id": "S018",
+      "commit": "73ed349ed",
+      "kind": "ancestor",
+      "path": null,
+      "value": "aca930622",
+      "candidate_text": "`D-PEC-96` act merge `73ed349ed`"
+    },
+    {
+      "id": "S019",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S020",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S021",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S022",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S023",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S024",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S025",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S026",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S027",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S028",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "value": "5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S029",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "value": "20e6db0216943cf93d734cf97a18c50ece47706e6a012e47580aea9745e5e90d",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S030",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "value": "20e6db0216943cf93d734cf97a18c50ece47706e6a012e47580aea9745e5e90d",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S031",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
+      "value": "035ecb8686d72b18eb680531e1239ab4b2df4f5ae1b70811f6e4d667ccf30a3f",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S032",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
+      "value": "035ecb8686d72b18eb680531e1239ab4b2df4f5ae1b70811f6e4d667ccf30a3f",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S033",
+      "commit": "73ed349ed",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "1362ed668436b5af79fe54dd5f7ab660dac9ddd29dad2a0d1b0adebb01ad5919",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S034",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "1362ed668436b5af79fe54dd5f7ab660dac9ddd29dad2a0d1b0adebb01ad5919",
+      "candidate_text": "are byte-unchanged between the `D-PEC-96` act merge"
+    },
+    {
+      "id": "S035",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "PEC's own row declares `remaining-loop` now",
+      "candidate_text": "carries the register `Description` of CLM-010"
+    },
+    {
+      "id": "S036",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "then by revision 1.5 (`current_basis`, SCA-005 successor).",
+      "candidate_text": "a provenance tail ending at revision 1.5"
+    },
+    {
+      "id": "S037",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "revision 1.6",
+      "candidate_text": "a provenance tail ending at revision 1.5"
+    },
+    {
+      "id": "S038",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md",
+      "value": "(revision 1.5, accepted `current_basis`; SCA-005 successor)",
+      "candidate_text": "`_REFERENCES.md` names revision 1.5 and PRD v2.3"
+    },
+    {
+      "id": "S039",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md",
+      "value": "`docs/PRD.md` v2.3",
+      "candidate_text": "`_REFERENCES.md` names revision 1.5 and PRD v2.3"
+    },
+    {
+      "id": "S040",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "value": "| §3.4 | SOW-022..024, SOW-045..051, SOW-077, SOW-094; instrument: SOW-085 | DEL-01-06,",
+      "candidate_text": "the §3 objective row lists both items and this deliverable"
+    },
+    {
+      "id": "S041",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "Type",
+        "equals": "BACKEND_FEATURE_SLICE"
+      },
+      "candidate_text": "Type `BACKEND_FEATURE_SLICE`"
+    },
+    {
+      "id": "S042",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "ContextEnvelope",
+        "equals": "S"
+      },
+      "candidate_text": "Context Envelope `S`"
+    },
+    {
+      "id": "S043",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "`PhaseHint` `P1`"
+    },
+    {
+      "id": "S044",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "ResponsibleParty",
+        "equals": "TBD"
+      },
+      "candidate_text": "`ResponsibleParty` `TBD`"
+    },
+    {
+      "id": "S045",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "CoversScopeItems",
+        "equals": "SOW-077;SOW-094"
+      },
+      "candidate_text": "`CoversScopeItems` `SOW-077;SOW-094`"
+    },
+    {
+      "id": "S046",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "SupportsObjectives",
+        "equals": "OBJ-004"
+      },
+      "candidate_text": "`SupportsObjectives` `OBJ-004`"
+    },
+    {
+      "id": "S047",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "ContextEnvelopeNotes",
+        "equals": ""
+      },
+      "candidate_text": "carries no `ContextEnvelopeNotes`"
+    },
+    {
+      "id": "S048",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "Risk",
+        "equals": "LOW"
+      },
+      "candidate_text": "`Risk` `LOW` with no recommended action"
+    },
+    {
+      "id": "S049",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "RecommendedAction",
+        "equals": "None"
+      },
+      "candidate_text": "`Risk` `LOW` with no recommended action"
+    },
+    {
+      "id": "S050",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "value": "**Current State:** INITIALIZED",
+      "candidate_text": "its `_STATUS.md` reads `INITIALIZED`"
+    },
+    {
+      "id": "S051",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "value": "**Current State:** INITIALIZED",
+      "candidate_text": "The deliverable is at lifecycle `INITIALIZED`"
+    },
+    {
+      "id": "S052",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_CONTEXT.md",
+      "value": "Scaffolded under `D-PEC-62`",
+      "candidate_text": "The folder was scaffolded under `D-PEC-62`"
+    },
+    {
+      "id": "S053",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/MANIFEST.md",
+      "value": "| `MEMORY.md` | create, from the template, substituting only `{{DEL-ID}}` → `DEL-01-06`; empty Runs table",
+      "candidate_text": "created under `D-PEC-96` from the template, holds no run row"
+    },
+    {
+      "id": "S054",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md",
+      "value": "| Run ID / date | Work in this deliverable | Result and source links |\n|---|---|---|",
+      "candidate_text": "holds no run row"
+    },
+    {
+      "id": "S055",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_DEPENDENCIES.md",
+      "value": "**no upstream predecessors (root node)**",
+      "candidate_text": "declares no upstream predecessors"
+    },
+    {
+      "id": "S056",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-01-06-001",
+        "column": "DependencyClass",
+        "equals": "ANCHOR"
+      },
+      "candidate_text": "holds only three non-gating `ANCHOR` rows"
+    },
+    {
+      "id": "S057",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-01-06-002",
+        "column": "DependencyClass",
+        "equals": "ANCHOR"
+      },
+      "candidate_text": "holds only three non-gating `ANCHOR` rows"
+    },
+    {
+      "id": "S058",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-01-06-003",
+        "column": "DependencyClass",
+        "equals": "ANCHOR"
+      },
+      "candidate_text": "holds only three non-gating `ANCHOR` rows"
+    },
+    {
+      "id": "S059",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": ",EXECUTION,",
+      "candidate_text": "holds only three non-gating `ANCHOR` rows"
+    },
+    {
+      "id": "S060",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": "c733411f9d1aa300eaacd84406fc2de83a1c04d4ebd4426994c92bec90019c46",
+      "candidate_text": "holds only three non-gating `ANCHOR` rows"
+    },
+    {
+      "id": "S061",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-01-06-002",
+        "column": "TargetRefID",
+        "equals": "SOW-094"
+      },
+      "candidate_text": "`DEP-01-06-002` `SOW-094` requirement trace"
+    },
+    {
+      "id": "S062",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-01-06-003",
+        "column": "TargetRefID",
+        "equals": "SOW-077"
+      },
+      "candidate_text": "`DEP-01-06-003` `SOW-077` requirement trace"
+    },
+    {
+      "id": "S063",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "Status",
+        "equals": "ACTIVE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S064",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "DependencyClass",
+        "equals": "EXECUTION"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S065",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "DependencyType",
+        "equals": "PREREQUISITE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S066",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "SatisfactionStatus",
+        "equals": "PENDING"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S067",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "RequiredMaturity",
+        "equals": "INITIALIZED"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S068",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "TargetDeliverableID",
+        "equals": "DEL-01-06"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S069",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "FromDeliverableID",
+        "equals": "DEL-02-07"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S070",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-02-07-003",
+        "column": "Notes",
+        "contains": "PROPOSAL; Flag=none; EdgeID=E-N16"
+      },
+      "candidate_text": "all currently `PROPOSAL` stratum"
+    },
+    {
+      "id": "S071",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "Status",
+        "equals": "ACTIVE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S072",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "DependencyClass",
+        "equals": "EXECUTION"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S073",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "DependencyType",
+        "equals": "PREREQUISITE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S074",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "SatisfactionStatus",
+        "equals": "PENDING"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S075",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "RequiredMaturity",
+        "equals": "INITIALIZED"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S076",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "TargetDeliverableID",
+        "equals": "DEL-01-06"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S077",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "FromDeliverableID",
+        "equals": "DEL-03-01"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S078",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-03-01-007",
+        "column": "Notes",
+        "contains": "PROPOSAL; Flag=none; EdgeID=E-P18"
+      },
+      "candidate_text": "all currently `PROPOSAL` stratum"
+    },
+    {
+      "id": "S079",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "Status",
+        "equals": "ACTIVE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S080",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "DependencyClass",
+        "equals": "EXECUTION"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S081",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "DependencyType",
+        "equals": "PREREQUISITE"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S082",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "SatisfactionStatus",
+        "equals": "PENDING"
+      },
+      "candidate_text": "`ACTIVE`, `EXECUTION`, `PREREQUISITE`, `SatisfactionStatus` `PENDING`"
+    },
+    {
+      "id": "S083",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "RequiredMaturity",
+        "equals": "INITIALIZED"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S084",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "TargetDeliverableID",
+        "equals": "DEL-01-06"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S085",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "FromDeliverableID",
+        "equals": "DEL-09-02"
+      },
+      "candidate_text": "all at `RequiredMaturity` `INITIALIZED`"
+    },
+    {
+      "id": "S086",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "value": {
+        "key_column": "DependencyID",
+        "key": "DEP-09-02-006",
+        "column": "Notes",
+        "contains": "PROPOSAL; Flag=none; EdgeID=E-P62"
+      },
+      "candidate_text": "all currently `PROPOSAL` stratum"
+    },
+    {
+      "id": "S087",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-07",
+        "column": "Description",
+        "contains": "read as a parity-peer input only"
+      },
+      "candidate_text": "re-purposed `DEL-02-07` as a parity-peer reader"
+    },
+    {
+      "id": "S088",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
+      "value": "No dependency row links this deliverable to `DEL-01-06` in either register.",
+      "candidate_text": "each records that no dependency row links it to this deliverable"
+    },
+    {
+      "id": "S089",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
+      "value": "No dependency row links this deliverable to `DEL-01",
+      "candidate_text": "each records that no dependency row links it to this deliverable"
+    },
+    {
+      "id": "S090",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
+      "value": "through the loop-registry port of `DEL-01-06`",
+      "candidate_text": "\"through the loop-registry port of `DEL-01-06`\""
+    },
+    {
+      "id": "S091",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
+      "value": "The feed-profile identifier, version and surface name under which a loop declares its work graphs are fixed by no accepted contract",
+      "candidate_text": "They left the profile identifier and surface name open until this rebuild"
+    },
+    {
+      "id": "S092",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md",
+      "value": "The feed-profile identifier, version and surface name under which a loop declares its MEMORY run index are fixed by no accepted contract",
+      "candidate_text": "They left the profile identifier and surface name open until this rebuild"
+    },
+    {
+      "id": "S093",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-06",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S094",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-01",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S095",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-03",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S096",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-01-05",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S097",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-01",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S098",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-02",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S099",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-03",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S100",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-04",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S101",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-05",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S102",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-06",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S103",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-07",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S104",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-08",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S105",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-02-09",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S106",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-03-01",
+        "column": "PhaseHint",
+        "equals": "P1"
+      },
+      "candidate_text": "and `DEL-03-01` carry `P1`"
+    },
+    {
+      "id": "S107",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "value": {
+        "key_column": "DeliverableID",
+        "key": "DEL-09-02",
+        "column": "PhaseHint",
+        "equals": "P2"
+      },
+      "candidate_text": "`DEL-09-02` carries `P2`"
+    },
+    {
+      "id": "S108",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-011",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-01"
+      },
+      "candidate_text": "`DEL-02-01`"
+    },
+    {
+      "id": "S109",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-012",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-02"
+      },
+      "candidate_text": "`DEL-02-02`"
+    },
+    {
+      "id": "S110",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-013",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-03"
+      },
+      "candidate_text": "`DEL-02-03`"
+    },
+    {
+      "id": "S111",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-014",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-04"
+      },
+      "candidate_text": "`DEL-02-04`"
+    },
+    {
+      "id": "S112",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-015",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-05"
+      },
+      "candidate_text": "`DEL-02-05`"
+    },
+    {
+      "id": "S113",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-016",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-06"
+      },
+      "candidate_text": "`DEL-02-06`"
+    },
+    {
+      "id": "S114",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-017",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-07"
+      },
+      "candidate_text": "`DEL-02-07`"
+    },
+    {
+      "id": "S115",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-095",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-08"
+      },
+      "candidate_text": "`DEL-02-08`"
+    },
+    {
+      "id": "S116",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-096",
+        "column": "DeliverableIDs",
+        "equals": "DEL-02-09"
+      },
+      "candidate_text": "`DEL-02-09`"
+    },
+    {
+      "id": "S117",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-010",
+        "column": "DeliverableIDs",
+        "equals": "DEL-03-01"
+      },
+      "candidate_text": "`DEL-03-01`"
+    },
+    {
+      "id": "S118",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-021",
+        "column": "DeliverableIDs",
+        "equals": "DEL-03-01"
+      },
+      "candidate_text": "`DEL-03-01`"
+    },
+    {
+      "id": "S119",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-046",
+        "column": "DeliverableIDs",
+        "equals": "DEL-09-02"
+      },
+      "candidate_text": "`DEL-09-02`"
+    },
+    {
+      "id": "S120",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-001",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-01"
+      },
+      "candidate_text": "`DEL-01-01`"
+    },
+    {
+      "id": "S121",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-056",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-03"
+      },
+      "candidate_text": "`DEL-01-03`"
+    },
+    {
+      "id": "S122",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-052",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-05"
+      },
+      "candidate_text": "`DEL-01-05`"
+    },
+    {
+      "id": "S123",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-053",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-05"
+      },
+      "candidate_text": "`DEL-01-05`"
+    },
+    {
+      "id": "S124",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "value": "4506597b1bfd6cafd8fc561c688bcb9e803d9c2b04c3abdec9dc05edf155180e",
+      "candidate_text": "`4506597b1bfd…180e`"
+    },
+    {
+      "id": "S125",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "value": "852057f0ff6989e0b1180232424ff9fd8de434b3345c1d6c775e76b8defb399e",
+      "candidate_text": "`852057f0ff69…399e`"
+    },
+    {
+      "id": "S126",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "value": "Owner: Ryan Tufts. Date: 2026-09-26",
+      "candidate_text": "on 2026-09-26 with"
+    },
+    {
+      "id": "S127",
+      "commit": "c55362095",
+      "kind": "ancestor",
+      "path": null,
+      "value": "aca930622",
+      "candidate_text": "The act commit is `c55362095`"
+    },
+    {
+      "id": "S128",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/MANIFEST.md",
+      "value": "**Act commit (product writes):** `c55362095a5b56e61bb57c588e741513324ea52c`",
+      "candidate_text": "The act commit is `c55362095`"
+    },
+    {
+      "id": "S129",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+      "value": "PR #950 merged as `73ed349ed`",
+      "candidate_text": "PR #950 merged as `73ed349ed`"
+    },
+    {
+      "id": "S130",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7",
+      "candidate_text": "`fd342b4f29ed…53d7`"
+    },
+    {
+      "id": "S131",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "\"schema_version\": 2",
+      "candidate_text": "carries `\"schema_version\": 2` and one row"
+    },
+    {
+      "id": "S132",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "\"loop_id\": \"pec\", \"loop_init_path\": \"projects/pec/loop/LOOP_INIT.md\" } ], \"schema_version\": 2",
+      "candidate_text": "`pec` → `projects/pec/loop/LOOP_INIT.md`"
+    },
+    {
+      "id": "S133",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/config/loops.json",
+      "value": "{ \"feed_profiles\": [ { \"basis\": \"projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md\", \"profile\": \"shared-dev-loop\", \"state\": \"live\", \"version\": 1 }, { \"basis\": \"projects/pec/AGENTS.md\", \"profile\": \"loop-receipts-ledger\", \"state\": \"historical\", \"version\": 1 }, { \"basis\": \"projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md\", \"profile\": \"agentruns-json\", \"state\": \"historical\", \"version\": 1 } ], \"loop_id\": \"pec\"",
+      "candidate_text": "| `agentruns-json` | 1 | `historical` |"
+    },
+    {
+      "id": "S134",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143",
+      "candidate_text": "`104ed64820b7…b143`"
+    },
+    {
+      "id": "S135",
+      "commit": "aca930622",
+      "kind": "exists",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md",
+      "value": null,
+      "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
+    },
+    {
+      "id": "S136",
+      "commit": "aca930622",
+      "kind": "exists",
+      "path": "projects/pec/AGENTS.md",
+      "value": null,
+      "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
+    },
+    {
+      "id": "S137",
+      "commit": "aca930622",
+      "kind": "exists",
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "value": null,
+      "candidate_text": "The three basis paths and the `loop_init_path` exist at `aca930622`"
+    },
+    {
+      "id": "S138",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "\"agentruns-json\": frozenset({\"json-run-evidence\"}),",
+      "candidate_text": "`agentruns-json` covers `json-run-evidence`"
+    },
+    {
+      "id": "S139",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "\"loop-receipts-ledger\": frozenset({\"receipt-ledger\"}),",
+      "candidate_text": "`loop-receipts-ledger` covers `receipt-ledger`"
+    },
+    {
+      "id": "S140",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "\"central-receipts\", \"decision-registers\", \"dependency-registers\", \"memory-run-index\", \"status-lifecycle\", \"work-graphs\",",
+      "candidate_text": "`shared-dev-loop` covers `central-receipts`"
+    },
+    {
+      "id": "S141",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "\"agentruns-json\": frozenset({1}), \"loop-receipts-ledger\": frozenset({1}), \"shared-dev-loop\": frozenset({1}),",
+      "candidate_text": "three profiles, each at version 1"
+    },
+    {
+      "id": "S142",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "Surfaces: central-receipts, decision-registers, dependency-registers, memory-run-index, status-lifecycle, work-graphs.",
+      "candidate_text": "schema option descriptions"
+    },
+    {
+      "id": "S143",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "emaining",
+      "candidate_text": "No profile and no surface covers `## Remaining` sections"
+    },
+    {
+      "id": "S144",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "emaining",
+      "candidate_text": "No profile and no surface covers `## Remaining` sections"
+    },
+    {
+      "id": "S145",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "_SCHEMA_VERSION = 2",
+      "candidate_text": "accepts only `schema_version` 2"
+    },
+    {
+      "id": "S146",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "620a173d19d881ef396ebb339e4097f5ee4e3a0b6ada231718ca700926832f07",
+      "candidate_text": "`620a173d19d8…2f07`"
+    },
+    {
+      "id": "S147",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "a509bfb74920172a86ac21aff6a67245cd3248c5d73ef4e7427966069099c8a9",
+      "candidate_text": "`a509bfb74920…c8a9`"
+    },
+    {
+      "id": "S148",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "feed_profiles: tuple[FeedProfile, ...]",
+      "candidate_text": "`feed_profiles: tuple[FeedProfile, ...]`"
+    },
+    {
+      "id": "S149",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "def registered_loops(self) -> tuple[RegisteredLoop, ...]:",
+      "candidate_text": "`registered_loops() -> tuple[RegisteredLoop, ...]`"
+    },
+    {
+      "id": "S150",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "LIVE = \"live\" HISTORICAL = \"historical\"",
+      "candidate_text": "`HISTORICAL` = `historical`"
+    },
+    {
+      "id": "S151",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "profile: str version: int state: FeedProfileState basis: str",
+      "candidate_text": "fields `profile`, `version`, `state` and `basis`"
+    },
+    {
+      "id": "S152",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/AGENTS.md",
+      "value": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
+      "candidate_text": "under `D-PEC-99` `projects/pec/AGENTS.md` states"
+    },
+    {
+      "id": "S153",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/AGENTS.md",
+      "value": "df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8",
+      "candidate_text": "under `D-PEC-99` `projects/pec/AGENTS.md` states"
+    },
+    {
+      "id": "S154",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/docs/PRD.md",
+      "value": "remaining items is a per-loop optional field, read only where the loop's feed profile declares it",
+      "candidate_text": "PRD v2.4 §7.1 makes remaining items a per-loop optional field"
+    },
+    {
+      "id": "S155",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md",
+      "value": "**Outcome:** retain `HOLD` at `INITIALIZED`",
+      "candidate_text": "Gate 5 outcome as `HOLD` at `INITIALIZED`"
+    },
+    {
+      "id": "S156",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv",
+      "value": {
+        "key_column": "FindingID",
+        "key": "RF-001",
+        "column": "Status",
+        "equals": "RESOLVED"
+      },
+      "candidate_text": "records `RF-001` and `RF-002` as `RESOLVED`"
+    },
+    {
+      "id": "S157",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv",
+      "value": {
+        "key_column": "FindingID",
+        "key": "RF-002",
+        "column": "Status",
+        "equals": "RESOLVED"
+      },
+      "candidate_text": "records `RF-001` and `RF-002` as `RESOLVED`"
+    },
+    {
+      "id": "S158",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md",
+      "value": "merged as `ccd9a2178ffd8029fdd1cd779910e954e0612e21`",
+      "candidate_text": "merged as `ccd9a2178`"
+    },
+    {
+      "id": "S159",
+      "commit": "ccd9a2178",
+      "kind": "ancestor",
+      "path": null,
+      "value": "aca930622",
+      "candidate_text": "merged as `ccd9a2178`"
+    },
+    {
+      "id": "S160",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/VALIDATION.md",
+      "value": "| **`v2-loop-registry`** (VER-001, VER-003 rerun) | exit 0; Ran 19, OK (12 before) | exit 0; **Ran 19, OK**",
+      "candidate_text": "19 tests run and passing"
+    },
+    {
+      "id": "S161",
+      "commit": "aca930622",
+      "kind": "sha256",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "value": "740a4a74122178cc31947bb69c23d6aa55abc15b87c523dcf1c551dee3e19ee9",
+      "candidate_text": "`740a4a741221…19ee9`"
+    },
+    {
+      "id": "S162",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "value": "**Current State:** IN_PROGRESS",
+      "candidate_text": "`DEL-01-03` is `IN_PROGRESS`"
+    },
+    {
+      "id": "S163",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "value": "OPEN = \"OPEN\"",
+      "candidate_text": "a state set of `OPEN` through `ISSUED`"
+    },
+    {
+      "id": "S164",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "value": "ISSUED = \"ISSUED\"",
+      "candidate_text": "a state set of `OPEN` through `ISSUED`"
+    },
+    {
+      "id": "S165",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/content_minimal_guard.py",
+      "value": "\"field class is not one of the five PEC-K-10 classes\"",
+      "candidate_text": "admits five field classes"
+    },
+    {
+      "id": "S166",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decomp_Coverage_IssueLog.csv",
+      "value": "COV-083,9,INFO,ATOMIC_UNIT,Scope Item,SOW-094; DEL-01-06;",
+      "candidate_text": "The post-change audit records them as `COV-083`"
+    },
+    {
+      "id": "S167",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+      "value": "carried knowingly for a later PEC scope change (owner Q-CP3-1 (a))",
+      "candidate_text": "as the owner's checkpoint-3 answer carried it"
+    },
+    {
+      "id": "S168",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "value": "| DEL-01-06 | INITIALIZED | `5fdcfd968345…` | feed-profile declarations, schema v2 obligation, five-loop claims (A-10, A-11, A-13) | `STALE_REBUILD_REQUIRED (new obligation; RF-002 stays RESOLVED; gated on B6)`",
+      "candidate_text": "classed the earlier contract as needing a rebuild gated on the §B6 source packet"
+    },
+    {
+      "id": "S169",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "value": "PEC's own `pec` row `remaining-loop`, Q8 (a)",
+      "candidate_text": "gave PEC's row the `remaining-loop` profile"
+    },
+    {
+      "id": "S170",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
+      "value": "### A-10 — MODIFY OTHER `SOW-077`",
+      "candidate_text": "(amendment actions A-10, A-11 and A-13)"
+    },
+    {
+      "id": "S171",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
+      "value": "### A-11 — MODIFY OTHER `SOW-094`",
+      "candidate_text": "(amendment actions A-10, A-11 and A-13)"
+    },
+    {
+      "id": "S172",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
+      "value": "### A-13 — MODIFY DELIVERABLE `DEL-01-06`",
+      "candidate_text": "(amendment actions A-10, A-11 and A-13)"
+    },
+    {
+      "id": "S173",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "value": "| OI-010 | SOW-064 | **RESOLVED at Gate 2 (2026-07-24):**",
+      "candidate_text": "per `OI-010` as resolved at Gate 2 (2026-07-24, `DL-10`)"
+    },
+    {
+      "id": "S174",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "value": "Option A therefore makes `feed_profiles` a list with at least one live entry and disjoint surfaces (question 3)",
+      "candidate_text": "made `feed_profiles` a list"
+    },
+    {
+      "id": "S175",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "value": "| 3. Vocabulary, surfaces and row shape | **Confirmed.**",
+      "candidate_text": "the owner confirmed that shape under question 3"
+    },
+    {
+      "id": "S176",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "value": "| 2. PEC's own row (migration ruling) | **Migrated.**",
+      "candidate_text": "ruled PEC's row migrated"
+    },
+    {
+      "id": "S177",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "value": "| 4. Version-1 files | **Rejected** with a located error.",
+      "candidate_text": "no dual read is provided"
+    },
+    {
+      "id": "S178",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "value": "It accepts `projects/./pec/x`, `projects//pec/x`, a trailing `/`, a leading space and `C:x`.",
+      "candidate_text": "a trailing `/`, a leading space and `C:x`"
+    },
+    {
+      "id": "S179",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/HANDOFF_STATE.md",
+      "value": "9. **Adapter stricter than the schema text (verdict 01 N3).**",
+      "candidate_text": "carried as residual 9 of its handoff"
+    },
+    {
+      "id": "S180",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
+      "value": "| DEL-01-06 | NOT_AFFECTED |",
+      "candidate_text": "classes this deliverable `NOT_AFFECTED`"
+    },
+    {
+      "id": "S181",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "value": "| DL-20 | 2026-09-25 | SCA-005,",
+      "candidate_text": "SCA-005 `DL-20` added"
+    },
+    {
+      "id": "S182",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-077",
+        "column": "ObjectiveIDs",
+        "equals": "OBJ-004"
+      },
+      "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
+    },
+    {
+      "id": "S183",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-077",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-06"
+      },
+      "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
+    },
+    {
+      "id": "S184",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-094",
+        "column": "ObjectiveIDs",
+        "equals": "OBJ-004"
+      },
+      "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
+    },
+    {
+      "id": "S185",
+      "commit": "aca930622",
+      "kind": "csv_cell",
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "value": {
+        "key_column": "ScopeItemID",
+        "key": "SOW-094",
+        "column": "DeliverableIDs",
+        "equals": "DEL-01-06"
+      },
+      "candidate_text": "Revision 1.6 maps both `SOW-077` and `SOW-094` through"
+    },
+    {
+      "id": "S186",
+      "commit": "aca930622",
+      "kind": "count_glob",
+      "path": null,
+      "value": {
+        "pattern": "projects/pec/v2/*",
+        "count": 6,
+        "contains": "RegisteredLoop"
+      },
+      "candidate_text": "the only files under `projects/pec/v2` that name `RegisteredLoop`"
+    },
+    {
+      "id": "S187",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "loop_id: str loop_init_path: str feed_profiles: tuple[FeedProfile, ...]",
+      "candidate_text": "the applied `RegisteredLoop` carries no project field"
+    },
+    {
+      "id": "S188",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "project",
+      "candidate_text": "the applied `RegisteredLoop` carries no project field"
+    },
+    {
+      "id": "S189",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/config/loops.schema.json",
+      "value": "orkplan",
+      "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
+    },
+    {
+      "id": "S190",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "orkplan",
+      "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
+    },
+    {
+      "id": "S191",
+      "commit": "aca930622",
+      "kind": "not_contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "LOOP_INIT",
+      "candidate_text": "no profile lists a `LOOP_INIT.md` or workplan surface"
+    },
+    {
+      "id": "S192",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "the registry's own port"
+    },
+    {
+      "id": "S193",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "adapter"
+    },
+    {
+      "id": "S194",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/__init__.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "package re-exports"
+    },
+    {
+      "id": "S195",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "package re-exports"
+    },
+    {
+      "id": "S196",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/tests/config/test_json_loop_registry.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "and tests"
+    },
+    {
+      "id": "S197",
+      "commit": "aca930622",
+      "kind": "contains",
+      "path": "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+      "value": "RegisteredLoop",
+      "candidate_text": "and tests"
+    }
+  ]
 }

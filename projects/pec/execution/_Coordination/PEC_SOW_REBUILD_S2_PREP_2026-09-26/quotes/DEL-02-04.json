@@ -1,434 +1,489 @@
 {
- "deliverable": "DEL-02-04",
- "quotes": [
-  {
-   "id": "Q01",
-   "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q02",
-   "text": "AFFIRM `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
-   "where": "Objective warrant",
-   "strip_emphasis": true
-  },
-  {
-   "id": "Q03",
-   "text": "my own measurement shows OBJ-002's register locus is the reconciler layer (`SOW-006/018/019`), which genuinely supports a parsers-are-`OBJ-001`-only reading",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q04",
-   "text": "SOW-014,IN,\"Parse run-evidence JSON: `STATUS.json` and `RUNTIME_SUMMARY.json` under `execution/**`, as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root\",\"PEC-RCN-002, §7.1 RunRecord\",PKG-02,DEL-02-04,OBJ-001;OBJ-002,SCA-005,FALSE,\"Application-owned Runtime service user-data is operational, never an input (D-GOV-43 A2; D-GOV-20 item 5)\"",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q05",
-   "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum:",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q06",
-   "text": "run evidence — deliverable `MEMORY.md` run-index entries as RunRecord join evidence, with `STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical grammar or current evidence per profile",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q07",
-   "text": "Summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index; `STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` are read as declared historical grammar or current evidence per the loop's feed profile; application-owned Runtime service user-data is operational and non-authoritative (D-GOV-20 item 5; D-GOV-43 A2), is never an input, and is never record-tier citable",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q08",
-   "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q09",
-   "text": "Staleness is detected structurally by SHA comparison, never by judgment",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q10",
-   "text": "Parser + fixture tests",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-04",
-   "column": "AnticipatedArtifacts",
-   "where": "Ontology preamble"
-  },
-  {
-   "id": "Q11",
-   "text": "| DEL-02-04 | Run-evidence JSON parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-014 |",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q12",
-   "text": "`STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` into RunRecord summaries, as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root; application-owned Runtime service user-data is operational, never an input. Name and path retained under SCA-005 (CP1-N); run-evidence JSON is no longer the primary RunRecord source.",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-04",
-   "column": "Description",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q13",
-   "text": "Run-evidence JSON parser",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-04",
-   "column": "Name",
-   "where": "Purpose; CLM-004"
-  },
-  {
-   "id": "Q14",
-   "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q15",
-   "text": "Each feed is a separately testable parser with its own grammar; a single \"ingest everything\" item is not atomic",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q16",
-   "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q17",
-   "text": "Writing anything; interpretation beyond declared grammars",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q18",
-   "text": "interpretation beyond declared grammars",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "REQ-002; CON-001"
-  },
-  {
-   "id": "Q19",
-   "text": "Writing anything",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "REQ-007"
-  },
-  {
-   "id": "Q20",
-   "text": "historical JSON grammar; daemon referent; CON-003 false",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-018"
-  },
-  {
-   "id": "Q21",
-   "text": "CON-003 \"no STATUS.json in PEC\" false (13 exist)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Impact_Assessment.md",
-   "where": "CLM-018"
-  },
-  {
-   "id": "Q22",
-   "text": "revision 1.1",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-018"
-  },
-  {
-   "id": "Q23",
-   "text": "Parser emits RunRecord entities",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-04-003",
-   "column": "Statement",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q24",
-   "text": "PROPOSAL; Flag=none; EdgeID=E-P06",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-04-003",
-   "column": "Notes",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q25",
-   "text": "Record-tier schema & entity model",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-04-003",
-   "column": "TargetName",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q26",
-   "text": "Full-rebuild reconciler (one command)",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-03-01",
-   "column": "Name",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q27",
-   "text": "Full rebuild ingests run-evidence JSON",
-   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-03-01-011",
-   "column": "Statement",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q28",
-   "text": "PRD.md §9.2 requirement PEC-RCN-002",
-   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-03-01-011",
-   "column": "SourceRef",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q29",
-   "text": "`STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical grammar or current evidence per profile",
-   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-03-01-011",
-   "column": "EvidenceQuote",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q30",
-   "text": "`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-015",
-   "column": "Notes",
-   "where": "CLM-011"
-  },
-  {
-   "id": "Q31",
-   "text": "Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-012"
-  },
-  {
-   "id": "Q32",
-   "text": "is never an input, and is never record-tier citable",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-012"
-  },
-  {
-   "id": "Q33",
-   "text": "no per-user daemon exists (`D-GOV-43` A2)",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-012"
-  },
-  {
-   "id": "Q34",
-   "text": "JSON run evidence anywhere under the loop's execution/ tree (WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json), including AgentRuns/ and deliverable _run_records/; the identifier keeps its SCA-005 name. Surfaces: json-run-evidence.",
-   "source": "projects/pec/v2/config/loops.schema.json",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q35",
-   "text": "the generation is frozen, and its silence is never reported as staleness.",
-   "source": "projects/pec/v2/config/loops.schema.json",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q36",
-   "text": "`agentruns-json` v1 `historical` (basis: the D-PEC-94 record, by implication)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q37",
-   "text": "No PEC record states in so many words that JSON run evidence is historical, so this basis rests on implication.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q38",
-   "text": "a profile is PEC's reading hypothesis, never the loop's truth",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-015; AX-013"
-  },
-  {
-   "id": "Q39",
-   "text": "Archiving removes paths from the working tree only",
-   "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q40",
-   "text": "A loop that needs an archived record reads it from the tag.",
-   "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q41",
-   "text": "from the tag",
-   "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
-   "where": "CON-005"
-  },
-  {
-   "id": "Q42",
-   "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-017"
-  },
-  {
-   "id": "Q43",
-   "text": "Application-owned Runtime service user-data is operational, never an input",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-014",
-   "column": "Notes",
-   "where": "REQ-004"
-  },
-  {
-   "id": "Q44",
-   "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-006"
-  },
-  {
-   "id": "Q45",
-   "text": "it shall never modify a source file",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-007"
-  },
-  {
-   "id": "Q46",
-   "text": "The reconciler writes only its own store and generated views",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-007"
-  },
-  {
-   "id": "Q47",
-   "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-008"
-  },
-  {
-   "id": "Q48",
-   "text": "as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-014",
-   "column": "ScopeItemStatement",
-   "where": "CON-004"
-  },
-  {
-   "id": "Q49",
-   "text": "current-by-own-practice",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-014",
-   "column": "ScopeItemStatement",
-   "where": "CON-004"
-  },
-  {
-   "id": "Q50",
-   "text": "as declared historical grammar or current evidence per profile",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-004"
-  },
-  {
-   "id": "Q51",
-   "text": "checkout-contained",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-005"
-  },
-  {
-   "id": "Q52",
-   "text": "under `execution/**`",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-014",
-   "column": "ScopeItemStatement",
-   "where": "CON-005"
-  },
-  {
-   "id": "Q53",
-   "text": "PEC-RCN-002, §7.1 RunRecord",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-014",
-   "column": "SourceRef",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q54",
-   "text": "as declared historical grammar or current evidence per the loop's feed profile",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-002"
-  },
-  {
-   "id": "Q55",
-   "text": "exactly the sixteen record-tier entity types",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-008 (sibling postimage)"
-  },
-  {
-   "id": "Q56",
-   "text": "No presence-tier entity shall be defined by this deliverable (`PEC-K-05`, CLM-011). RunRecord shall admit only summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index, with `STATUS.json` and `RUNTIME_SUMMARY.json` under `execution/**` admitted as declared historical grammar or current evidence per the loop's feed profile (CLM-006). Application-owned Runtime service user-data is operational and non-authoritative, is never an input and is never record-tier citable (§7.1, citing `D-GOV-20` item 5 and `D-GOV-43` A2), and shall not be representable in this schema. The model types the join key and each source's contribution; it performs no join (TBD-004).",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-008 (sibling postimage)"
-  },
-  {
-   "id": "Q57",
-   "text": "the live or declared-historical label of the source generation it was read from, as the loop's feed profile declares it",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-008 (sibling postimage)"
-  },
-  {
-   "id": "Q58",
-   "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
-   "where": "CLM-007 (sibling postimage)"
-  },
-  {
-   "id": "Q59",
-   "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-04-003",
-   "column": "EvidenceQuote",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q60",
-   "text": "Path conventions and grammars for each profile stay with the parsers",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "where": "CLM-015 (sibling postimage)"
-  }
- ]
+  "deliverable": "DEL-02-04",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q02",
+      "text": "AFFIRM `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Objective warrant",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q03",
+      "text": "my own measurement shows OBJ-002's register locus is the reconciler layer (`SOW-006/018/019`), which genuinely supports a parsers-are-`OBJ-001`-only reading",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q04",
+      "text": "SOW-014,IN,\"Parse run-evidence JSON: `STATUS.json` and `RUNTIME_SUMMARY.json` under `execution/**`, as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root\",\"PEC-RCN-002, §7.1 RunRecord\",PKG-02,DEL-02-04,OBJ-001;OBJ-002,SCA-005,FALSE,\"Application-owned Runtime service user-data is operational, never an input (D-GOV-43 A2; D-GOV-20 item 5)\"",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q05",
+      "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum:",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q06",
+      "text": "run evidence — deliverable `MEMORY.md` run-index entries as RunRecord join evidence, with `STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical grammar or current evidence per profile",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q07",
+      "text": "Summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index; `STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` are read as declared historical grammar or current evidence per the loop's feed profile; application-owned Runtime service user-data is operational and non-authoritative (D-GOV-20 item 5; D-GOV-43 A2), is never an input, and is never record-tier citable",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q08",
+      "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q09",
+      "text": "Staleness is detected structurally by SHA comparison, never by judgment",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q10",
+      "text": "Parser + fixture tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-04",
+      "column": "AnticipatedArtifacts",
+      "where": "Ontology preamble",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q11",
+      "text": "| DEL-02-04 | Run-evidence JSON parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-014 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q12",
+      "text": "`STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` into RunRecord summaries, as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root; application-owned Runtime service user-data is operational, never an input. Name and path retained under SCA-005 (CP1-N); run-evidence JSON is no longer the primary RunRecord source.",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-04",
+      "column": "Description",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q13",
+      "text": "Run-evidence JSON parser",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-04",
+      "column": "Name",
+      "where": "Purpose; CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q14",
+      "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q15",
+      "text": "Each feed is a separately testable parser with its own grammar; a single \"ingest everything\" item is not atomic",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q16",
+      "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q17",
+      "text": "Writing anything; interpretation beyond declared grammars",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q18",
+      "text": "interpretation beyond declared grammars",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-002; CON-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q19",
+      "text": "Writing anything",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q20",
+      "text": "historical JSON grammar; daemon referent; CON-003 false",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q21",
+      "text": "CON-003 \"no STATUS.json in PEC\" false (13 exist)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Impact_Assessment.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q22",
+      "text": "revision 1.1",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q23",
+      "text": "Parser emits RunRecord entities",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-04-003",
+      "column": "Statement",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q24",
+      "text": "PROPOSAL; Flag=none; EdgeID=E-P06",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-04-003",
+      "column": "Notes",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q25",
+      "text": "Record-tier schema & entity model",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-04-003",
+      "column": "TargetName",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q26",
+      "text": "Full-rebuild reconciler (one command)",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-03-01",
+      "column": "Name",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q27",
+      "text": "Full rebuild ingests run-evidence JSON",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-01-011",
+      "column": "Statement",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q28",
+      "text": "PRD.md §9.2 requirement PEC-RCN-002",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-01-011",
+      "column": "SourceRef",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q29",
+      "text": "`STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical grammar or current evidence per profile",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-01-011",
+      "column": "EvidenceQuote",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q30",
+      "text": "`WORK_GRAPH.json` feeds DependencyEdge, not RunRecord",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "Notes",
+      "where": "CLM-011",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q31",
+      "text": "Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q32",
+      "text": "is never an input, and is never record-tier citable",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q33",
+      "text": "no per-user daemon exists (`D-GOV-43` A2)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q34",
+      "text": "JSON run evidence anywhere under the loop's execution/ tree (WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json), including AgentRuns/ and deliverable _run_records/; the identifier keeps its SCA-005 name. Surfaces: json-run-evidence.",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q35",
+      "text": "the generation is frozen, and its silence is never reported as staleness.",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q36",
+      "text": "`agentruns-json` v1 `historical` (basis: the D-PEC-94 record, by implication)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q37",
+      "text": "No PEC record states in so many words that JSON run evidence is historical, so this basis rests on implication.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q38",
+      "text": "a profile is PEC's reading hypothesis, never the loop's truth",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-015; AX-013",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q39",
+      "text": "Archiving removes paths from the working tree only",
+      "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q40",
+      "text": "A loop that needs an archived record reads it from the tag.",
+      "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q41",
+      "text": "from the tag",
+      "source": "docs/governance_harness/_DECISIONS/D-GOV-45_agent_run_record_archive.md",
+      "where": "CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q42",
+      "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q43",
+      "text": "Application-owned Runtime service user-data is operational, never an input",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-014",
+      "column": "Notes",
+      "where": "REQ-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q44",
+      "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q45",
+      "text": "it shall never modify a source file",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q46",
+      "text": "The reconciler writes only its own store and generated views",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q47",
+      "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q48",
+      "text": "as a declared historical grammar for App/Piping and current-by-own-practice for PEC/Root",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-014",
+      "column": "ScopeItemStatement",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q49",
+      "text": "current-by-own-practice",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-014",
+      "column": "ScopeItemStatement",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q50",
+      "text": "as declared historical grammar or current evidence per profile",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q51",
+      "text": "checkout-contained",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q52",
+      "text": "under `execution/**`",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-014",
+      "column": "ScopeItemStatement",
+      "where": "CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q53",
+      "text": "PEC-RCN-002, §7.1 RunRecord",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-014",
+      "column": "SourceRef",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q54",
+      "text": "as declared historical grammar or current evidence per the loop's feed profile",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q55",
+      "text": "exactly the sixteen record-tier entity types",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-008 (sibling postimage)"
+    },
+    {
+      "id": "Q56",
+      "text": "No presence-tier entity shall be defined by this deliverable (`PEC-K-05`, CLM-011). RunRecord shall admit only summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index, with `STATUS.json` and `RUNTIME_SUMMARY.json` under `execution/**` admitted as declared historical grammar or current evidence per the loop's feed profile (CLM-006). Application-owned Runtime service user-data is operational and non-authoritative, is never an input and is never record-tier citable (§7.1, citing `D-GOV-20` item 5 and `D-GOV-43` A2), and shall not be representable in this schema. The model types the join key and each source's contribution; it performs no join (TBD-004).",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-008 (sibling postimage)"
+    },
+    {
+      "id": "Q57",
+      "text": "the live or declared-historical label of the source generation it was read from, as the loop's feed profile declares it",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-008 (sibling postimage)"
+    },
+    {
+      "id": "Q58",
+      "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+      "where": "CLM-007 (sibling postimage)"
+    },
+    {
+      "id": "Q59",
+      "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged: parsing the file feeds that populate these entities is `DEL-02-01` through `DEL-02-07` (`SOW-011`..`SOW-017`)",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-04-003",
+      "column": "EvidenceQuote",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q60",
+      "text": "Path conventions and grammars for each profile stay with the parsers",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "where": "CLM-015 (sibling postimage)"
+    }
+  ]
 }

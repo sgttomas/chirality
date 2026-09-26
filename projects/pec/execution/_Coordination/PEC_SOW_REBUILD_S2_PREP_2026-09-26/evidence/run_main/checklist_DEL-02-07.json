@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 202,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The reader consumes a valid fixture manifest and yields exactly the declared field values that fixture carries, `status_glob` included; every field it reads appears in the documented grammar; and altering an undeclared field in the fixture changes nothing in its output.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 203,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The reader acquires its loop set only through the `LoopRegistry` port: no registry path, filename or serialization detail appears in this deliverable's source, fixtures or call surface, so a separately governed registry adapter migration changes nothing here.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 204,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "For absent, unreadable, malformed and schema-invalid manifest fixtures, and for a fixture where either population cannot be obtained, the reader returns an explicit limitation naming the project and the fault, and never a silently empty, partial or defaulted result; an absent manifest is reported as a missing parity peer, not as agreement or divergence.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 205,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "A reader run over a fixture corpus leaves that corpus and its repository byte-identical, and the module contains no write, create, delete or ref-updating call against any source path.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 206,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The reader and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 207,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The reader's emitted payload for a fixture project contains only declared manifest-derived fields and the paths and counts of the two populations, with no content of any file those paths name and no undeclared manifest content.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 208,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The fixture test suite implements VER-001 through VER-006, VER-009, VER-010, VER-011 and VER-014, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 209,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The review gate confirms this contract's traceability to `SOW-017`, `OBJ-001` and `OBJ-002` as ruled at SCA-002 Gate 3 Q2 and carried unchanged through SCA-005; confirms that the indirect attribution is stated no more strongly than that record states it, including the unadopted narrowing evidence and the open objective-fit question of CON-007; confirms that the D-PEC-99 carry-forwards appear verbatim with their gates; and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, `PKG-04`, `PKG-09` or `PKG-10` scope has been absorbed.",
       "verification": [
@@ -208,7 +208,7 @@
         "document": "ScopeOfWork.md",
         "line": 210,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The grammar declaration and the YAML parsing approach exist as a readable artifact whose recorded commit precedes the first commit of reader source, and the artifact names every field the reader reads.",
       "verification": [
@@ -233,7 +233,7 @@
         "document": "ScopeOfWork.md",
         "line": 211,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "For an agreeing fixture the reader reports agreement and no finding; for fixtures seeded with a path only PEC declares and a path only the manifest's `status_glob` designates, it reports divergence naming each one-sided path; and the PEC-side population enters only through the interface fixed under CON-003.",
       "verification": [
@@ -258,7 +258,7 @@
         "document": "ScopeOfWork.md",
         "line": 212,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "Mutating any manifest field changes no feed selection, feed locator or grammar choice anywhere in PEC, and the reader's output contains no feed locator or feed selection.",
       "verification": [
@@ -283,7 +283,7 @@
         "document": "ScopeOfWork.md",
         "line": 213,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "Every divergence is an instance of the upstream-obliged DriftFinding type carrying project, manifest path and blob SHA, examined commit, population sources and grammar identifier; this deliverable's source defines no record-tier type and adds no field to the upstream type; and the reader persists nothing.",
       "verification": [
@@ -308,7 +308,7 @@
         "document": "ScopeOfWork.md",
         "line": 214,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The loop-to-project resolution used by the reader cites accepted evidence or an owner ruling; no code path derives it from `loop_init_path`, another path or file presence; and absent such evidence, no production proceeds.",
       "verification": [
@@ -333,7 +333,7 @@
         "document": "ScopeOfWork.md",
         "line": 215,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "The module performs none of the excluded acts of REQ-014: it declares no loop or profile, parses no sibling feed, defines no type, classifies no snapshot drift, obtains no harness output, and contains no metric, gate-record, rebuild, reconcile, admission, rendering, stamping, enforcement, dashboard or kill-test path.",
       "verification": [
@@ -358,7 +358,7 @@
         "document": "ScopeOfWork.md",
         "line": 216,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "Two runs over identical inputs yield identical output, including limitations and findings.",
       "verification": [
@@ -383,7 +383,7 @@
         "document": "ScopeOfWork.md",
         "line": 217,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+        "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
       },
       "text": "`projects/pec/software-workflow.json` registers the fixture suite as a check of the ruled `DEL-02-07` production packet, in the form that packet names.",
       "verification": [
@@ -406,7 +406,7 @@
     "migration_authority": null,
     "package_id": "PKG-02",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"
+    "sha256": "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"
   },
   "tool_version": "1"
 }

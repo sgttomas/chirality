@@ -1,4 +1,4 @@
-basis commit: dfb089b8abae48ee699117c5bc167301963b2ab5
+basis commit: 5aa4285c222f8f272218e49b31232f0f5e3a976a
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 7 differing files, all ScopeOfWork.md
@@ -24,7 +24,7 @@ PASS validate DEL-02-07
 PASS checklist DEL-02-07 (rerun byte-identical)
 PASS boundary DEL-02-07 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS quotes: RESULT PASS 460/460
-PASS state claims: RESULT PASS 1274/1274
+PASS state claims: RESULT PASS 1280/1280
 PASS sibling IDs: RESULT PASS 92/92
 INFO consequence scan (informational): SUMMARY stale=31 kept=32
 PASS strict identical before/after, export root normalized (exit=1)

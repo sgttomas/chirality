@@ -5,5 +5,5 @@ RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_
 RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md
 RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md
 RENDER projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md
-CHECK write set = grant (0 creates, 7 modifies, 0 removes); nothing written
+CHECK preflight passed; planned write set 7 modifies, 0 creates, 0 removes (not yet inventoried; the inventory check runs in apply mode); nothing written
 exit=0

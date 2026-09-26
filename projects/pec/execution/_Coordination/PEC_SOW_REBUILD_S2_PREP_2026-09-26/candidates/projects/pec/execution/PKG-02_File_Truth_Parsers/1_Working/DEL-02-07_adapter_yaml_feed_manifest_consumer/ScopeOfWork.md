@@ -166,7 +166,7 @@ ID-shaped text inside this quotation is upstream source context, not a local def
 >
 > Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)
 
-ID-shaped text inside this quotation is upstream source context, not a local definition or reference. "This contract" in the quotation refers to the contract that carries the item, which is this one. Local implementation: the suite is OUT-002; tests implementing the verification methods, and no others, are REQ-008 (AC-007, VER-007); registration in `projects/pec/software-workflow.json` is REQ-016 (AC-016, VER-015). Four of this contract's methods (VER-008, VER-012, VER-013, VER-015) are recorded inspections rather than executable tests, and VER-007 says so. The registration is a production obligation under the gate; this contract registers nothing.
+ID-shaped text inside this quotation is upstream source context, not a local definition or reference. "this contract" in the quotation refers to the contract that carries the item, which is this one. Local implementation: the suite is OUT-002; tests implementing the verification methods, and no others, are REQ-008 (AC-007, VER-007); registration in `projects/pec/software-workflow.json` is REQ-016 (AC-016, VER-015). Four of this contract's methods (VER-008, VER-012, VER-013, VER-015) are recorded inspections rather than executable tests, and VER-007 says so. The registration is a production obligation under the gate; this contract registers nothing.
 
 ### Open information
 

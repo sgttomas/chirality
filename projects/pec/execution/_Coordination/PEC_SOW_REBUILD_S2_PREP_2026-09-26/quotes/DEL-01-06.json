@@ -1,341 +1,384 @@
 {
- "deliverable": "DEL-01-06",
- "quotes": [
-  {
-   "id": "Q01",
-   "text": "Loop registry (local config default)",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-06",
-   "column": "Name",
-   "where": "Purpose; CLM-009"
-  },
-  {
-   "id": "Q02",
-   "text": "Lifecycle census across all registered loops' packages/deliverables",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q03",
-   "text": "all registered loops",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q04",
-   "text": "The loops the loop registry lists (§16.3); Overview, census, registers, decision slate",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q05",
-   "text": "Maintain the loop-registration configuration naming the loops PEC serves and each row's feed-profile selection (local config default)",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "ScopeItemStatement",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q06",
-   "text": "§12 P2, PEC-DSH-002",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "SourceRef",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q07",
-   "text": "D-PEC-78; SCA-005",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "DecisionRef",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q08",
-   "text": "The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q09",
-   "text": "Maintain the PEC-owned long-term service registry naming the loop locators PEC serves through the strict, versioned JSON/schema paths and core-owned typed LoopRegistry port, each row declaring a closed, PEC-versioned feed profile (profile ID, version, live/historical, basis citation to the loop's own record)",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-077",
-   "column": "ScopeItemStatement",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q10",
-   "text": "A feed profile is PEC's reading hypothesis, never the loop's truth; feed-profile declarations need a strict schema v2 plus a `RegisteredLoop` port field through a later D-PEC source packet (no `v2/**` write here), within D-PEC-78 O-A (version 1 remains strict; supplementary extension, no supersession)",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-077",
-   "column": "Notes",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q11",
-   "text": "Local JSON configuration is the implementation basis for the long-term PEC-owned service registry confirmed by D-PEC-78; the core port keeps filesystem and JSON details replaceable.",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "Notes",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q12",
-   "text": "**Resolved 2026-08-02 by `D-PEC-78` O-A.** The long-term home and shape of PEC's loop registry is the existing PEC-owned strict, versioned JSON/schema paths with the core-owned typed `LoopRegistry` port. PEC owns only its configured service set; each listed loop remains authoritative for its own entrypoint and governed truth. Later row changes remain owner-gated PEC configuration changes. Listing or removing a loop creates no duty, lifecycle effect, cadence, conformance obligation, or authority over that loop, and no governed act may depend on PEC or the registry. Registry rows may declare closed, PEC-versioned feed profiles (profile ID, version, live or historical, and a basis citation to the loop's own record); a profile is PEC's reading hypothesis, never the loop's truth. Schema version 1 remains strict; a strict schema version 2 carrying feed profiles, with a `RegisteredLoop` port field, arrives only through a later D-PEC packet, within D-PEC-78 O-A.",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q13",
-   "text": "later D-PEC packet",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q14",
-   "text": "Config format + loader + tests",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-06",
-   "column": "AnticipatedArtifacts",
-   "where": "Ontology"
-  },
-  {
-   "id": "Q15",
-   "text": "| DEL-01-06 | Loop registry (local config default) | BACKEND_FEATURE_SLICE | S | P1 | SOW-077, SOW-094 |",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q16",
-   "text": "PEC-owned local configuration naming the loop locators PEC serves: one loop at P1 (PEC's own build, OI-010), extendable by owner-gated PEC configuration changes. The strict, versioned JSON/schema paths and core-owned typed port are the long-term home and shape under D-PEC-78; each listed loop remains authoritative for its own entrypoint and truth, and no governed act depends on PEC or the registry. Each row declares a closed, PEC-versioned feed profile (profile ID, version, live/historical, basis citation to the loop's own record), PEC's reading hypothesis and never the loop's truth; PEC's own row declares `remaining-loop` now. Feed-profile declarations need a strict schema v2 (`loops.schema.json` v2, `loops.json`, a `RegisteredLoop` field) through a later D-PEC source packet within D-PEC-78 O-A, with VER-001/VER-003 re-run: a new Scope of Work currency obligation (RF-002 stays resolved).",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-06",
-   "column": "Description",
-   "where": "CLM-010"
-  },
-  {
-   "id": "Q17",
-   "text": "PEC's own row declares `remaining-loop` now",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-06",
-   "column": "Description",
-   "where": "CLM-010"
-  },
-  {
-   "id": "Q18",
-   "text": "Tenancy unit, above Project: a `LOOP_INIT.md`-governed work loop that the loop registry lists (§16.3); PEC reads only loop identity, entrypoint and procedure SHA from `LOOP_INIT.md`",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q19",
-   "text": "PEC serves only the loops its registry (`loops.json`) lists",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q20",
-   "text": "one loop at P1 (PEC's own build, OI-010), extendable by owner-gated PEC configuration changes",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-06",
-   "column": "Description",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q21",
-   "text": "Per-loop manifest consumption requires the registered-loop set from the loop registry",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-07-003",
-   "column": "Statement",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q22",
-   "text": "Reconciler needs the loop registry",
-   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-03-01-007",
-   "column": "Statement",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q23",
-   "text": "Census spans the registered loops",
-   "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-09-02-006",
-   "column": "Statement",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q24",
-   "text": "DEL-02-07 reads per-project manifests per loop",
-   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
-   "where": "CLM-006"
-  },
-  {
-   "id": "Q25",
-   "text": "through the loop-registry port of `DEL-01-06`",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
-   "where": "CLM-011"
-  },
-  {
-   "id": "Q26",
-   "text": "Adding, removing, or changing a field's meaning requires a new schema version and a successor D-PEC migration packet. Version 1 is not silently widened. A dual-read transition, if needed, must be time-bounded and tested; unknown versions fail closed.",
-   "source": "projects/pec/execution/_Coordination/D-PEC-78_OI-003_LOOP_REGISTRY_HOME_2026-08-02/PACKET.md",
-   "where": "CLM-014"
-  },
-  {
-   "id": "Q27",
-   "text": "D-PEC-96: A; migrated; confirm; reject v1; create MEMORY; defaults",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q28",
-   "text": "by implication",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q29",
-   "text": "revision 4: drop remaining-items and remaining-loop",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q30",
-   "text": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
-   "source": "projects/pec/AGENTS.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q31",
-   "text": "a closed, PEC-versioned feed profile",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-077",
-   "column": "ScopeItemStatement",
-   "where": "CLM-019"
-  },
-  {
-   "id": "Q32",
-   "text": "each row's feed-profile selection",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "ScopeItemStatement",
-   "where": "CLM-019"
-  },
-  {
-   "id": "Q33",
-   "text": "PEC's own `pec` row declares the `remaining-loop` profile now; its later migration is one owner-gated row change under its own ruling (D-PEC-86 I-7)",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "Notes",
-   "where": "CLM-020"
-  },
-  {
-   "id": "Q34",
-   "text": "feed profile",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-020"
-  },
-  {
-   "id": "Q35",
-   "text": "e.g. `shared-dev-loop`, `remaining-loop`, `loop-receipts-ledger`, `agentruns-json`",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-020"
-  },
-  {
-   "id": "Q36",
-   "text": "carried knowingly for a later PEC scope change",
-   "source": "projects/pec/execution/_Decomposition/_LATEST.md",
-   "where": "CLM-020"
-  },
-  {
-   "id": "Q37",
-   "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-021"
-  },
-  {
-   "id": "Q38",
-   "text": "a target entrypoint is absent or invalid",
-   "source": "projects/pec/execution/_Coordination/D-PEC-78_OI-003_LOOP_REGISTRY_HOME_2026-08-02/PACKET.md",
-   "where": "TBD-005"
-  },
-  {
-   "id": "Q39",
-   "text": "local config default",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-094",
-   "column": "ScopeItemStatement",
-   "where": "REQ-002"
-  },
-  {
-   "id": "Q40",
-   "text": "(piping or root)",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "AX-004"
-  },
-  {
-   "id": "Q41",
-   "text": "all strata as presented",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
-   "where": "AX-005"
-  },
-  {
-   "id": "Q42",
-   "text": "PEC runs nowhere, and no store or consumer holds registry data",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "where": "AX-007"
-  },
-  {
-   "id": "Q43",
-   "text": "obtain the set of loops it serves only through the core-owned typed `LoopRegistry` port",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
-   "where": "CLM-006 (sibling S2 candidate, production path, post-act export)"
-  },
-  {
-   "id": "Q44",
-   "text": "`loop_init_path` is read for loop identity on every row, whatever its profiles, as PRD PEC-RCN-002 requires, so it is not a profile surface",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "where": "CLM-016"
-  }
- ]
+  "deliverable": "DEL-01-06",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "Loop registry (local config default)",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-06",
+      "column": "Name",
+      "where": "Purpose; CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q02",
+      "text": "Lifecycle census across all registered loops' packages/deliverables",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q03",
+      "text": "all registered loops",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q04",
+      "text": "The loops the loop registry lists (§16.3); Overview, census, registers, decision slate",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q05",
+      "text": "Maintain the loop-registration configuration naming the loops PEC serves and each row's feed-profile selection (local config default)",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "ScopeItemStatement",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q06",
+      "text": "§12 P2, PEC-DSH-002",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "SourceRef",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q07",
+      "text": "D-PEC-78; SCA-005",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "DecisionRef",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q08",
+      "text": "The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q09",
+      "text": "Maintain the PEC-owned long-term service registry naming the loop locators PEC serves through the strict, versioned JSON/schema paths and core-owned typed LoopRegistry port, each row declaring a closed, PEC-versioned feed profile (profile ID, version, live/historical, basis citation to the loop's own record)",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-077",
+      "column": "ScopeItemStatement",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q10",
+      "text": "A feed profile is PEC's reading hypothesis, never the loop's truth; feed-profile declarations need a strict schema v2 plus a `RegisteredLoop` port field through a later D-PEC source packet (no `v2/**` write here), within D-PEC-78 O-A (version 1 remains strict; supplementary extension, no supersession)",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-077",
+      "column": "Notes",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q11",
+      "text": "Local JSON configuration is the implementation basis for the long-term PEC-owned service registry confirmed by D-PEC-78; the core port keeps filesystem and JSON details replaceable.",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "Notes",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q12",
+      "text": "**Resolved 2026-08-02 by `D-PEC-78` O-A.** The long-term home and shape of PEC's loop registry is the existing PEC-owned strict, versioned JSON/schema paths with the core-owned typed `LoopRegistry` port. PEC owns only its configured service set; each listed loop remains authoritative for its own entrypoint and governed truth. Later row changes remain owner-gated PEC configuration changes. Listing or removing a loop creates no duty, lifecycle effect, cadence, conformance obligation, or authority over that loop, and no governed act may depend on PEC or the registry. Registry rows may declare closed, PEC-versioned feed profiles (profile ID, version, live or historical, and a basis citation to the loop's own record); a profile is PEC's reading hypothesis, never the loop's truth. Schema version 1 remains strict; a strict schema version 2 carrying feed profiles, with a `RegisteredLoop` port field, arrives only through a later D-PEC packet, within D-PEC-78 O-A.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q13",
+      "text": "later D-PEC packet",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q14",
+      "text": "Config format + loader + tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-06",
+      "column": "AnticipatedArtifacts",
+      "where": "Ontology",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q15",
+      "text": "| DEL-01-06 | Loop registry (local config default) | BACKEND_FEATURE_SLICE | S | P1 | SOW-077, SOW-094 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q16",
+      "text": "PEC-owned local configuration naming the loop locators PEC serves: one loop at P1 (PEC's own build, OI-010), extendable by owner-gated PEC configuration changes. The strict, versioned JSON/schema paths and core-owned typed port are the long-term home and shape under D-PEC-78; each listed loop remains authoritative for its own entrypoint and truth, and no governed act depends on PEC or the registry. Each row declares a closed, PEC-versioned feed profile (profile ID, version, live/historical, basis citation to the loop's own record), PEC's reading hypothesis and never the loop's truth; PEC's own row declares `remaining-loop` now. Feed-profile declarations need a strict schema v2 (`loops.schema.json` v2, `loops.json`, a `RegisteredLoop` field) through a later D-PEC source packet within D-PEC-78 O-A, with VER-001/VER-003 re-run: a new Scope of Work currency obligation (RF-002 stays resolved).",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-06",
+      "column": "Description",
+      "where": "CLM-010",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q17",
+      "text": "PEC's own row declares `remaining-loop` now",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-06",
+      "column": "Description",
+      "where": "CLM-010",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q18",
+      "text": "Tenancy unit, above Project: a `LOOP_INIT.md`-governed work loop that the loop registry lists (§16.3); PEC reads only loop identity, entrypoint and procedure SHA from `LOOP_INIT.md`",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q19",
+      "text": "PEC serves only the loops its registry (`loops.json`) lists",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q20",
+      "text": "one loop at P1 (PEC's own build, OI-010), extendable by owner-gated PEC configuration changes",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-06",
+      "column": "Description",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q21",
+      "text": "Per-loop manifest consumption requires the registered-loop set from the loop registry",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-07-003",
+      "column": "Statement",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q22",
+      "text": "Reconciler needs the loop registry",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-01-007",
+      "column": "Statement",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q23",
+      "text": "Census spans the registered loops",
+      "source": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-09-02-006",
+      "column": "Statement",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q24",
+      "text": "DEL-02-07 reads per-project manifests per loop",
+      "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+      "where": "CLM-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q25",
+      "text": "through the loop-registry port of `DEL-01-06`",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
+      "where": "CLM-011",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q26",
+      "text": "Adding, removing, or changing a field's meaning requires a new schema version and a successor D-PEC migration packet. Version 1 is not silently widened. A dual-read transition, if needed, must be time-bounded and tested; unknown versions fail closed.",
+      "source": "projects/pec/execution/_Coordination/D-PEC-78_OI-003_LOOP_REGISTRY_HOME_2026-08-02/PACKET.md",
+      "where": "CLM-014",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q27",
+      "text": "D-PEC-96: A; migrated; confirm; reject v1; create MEMORY; defaults",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q28",
+      "text": "by implication",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q29",
+      "text": "revision 4: drop remaining-items and remaining-loop",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q30",
+      "text": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q31",
+      "text": "a closed, PEC-versioned feed profile",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-077",
+      "column": "ScopeItemStatement",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q32",
+      "text": "each row's feed-profile selection",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "ScopeItemStatement",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q33",
+      "text": "PEC's own `pec` row declares the `remaining-loop` profile now; its later migration is one owner-gated row change under its own ruling (D-PEC-86 I-7)",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "Notes",
+      "where": "CLM-020",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q34",
+      "text": "feed profile",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-020",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q35",
+      "text": "e.g. `shared-dev-loop`, `remaining-loop`, `loop-receipts-ledger`, `agentruns-json`",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-020",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q36",
+      "text": "carried knowingly for a later PEC scope change",
+      "source": "projects/pec/execution/_Decomposition/_LATEST.md",
+      "where": "CLM-020",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q37",
+      "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-021",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q38",
+      "text": "a target entrypoint is absent or invalid",
+      "source": "projects/pec/execution/_Coordination/D-PEC-78_OI-003_LOOP_REGISTRY_HOME_2026-08-02/PACKET.md",
+      "where": "TBD-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q39",
+      "text": "local config default",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-094",
+      "column": "ScopeItemStatement",
+      "where": "REQ-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q40",
+      "text": "(piping or root)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "AX-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q41",
+      "text": "all strata as presented",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+      "where": "AX-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q42",
+      "text": "PEC runs nowhere, and no store or consumer holds registry data",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "where": "AX-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q43",
+      "text": "obtain the set of loops it serves only through the core-owned typed `LoopRegistry` port",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+      "where": "CLM-006 (sibling S2 candidate, production path, post-act export)"
+    },
+    {
+      "id": "Q44",
+      "text": "`loop_init_path` is read for loop identity on every row, whatever its profiles, as PRD PEC-RCN-002 requires, so it is not a profile surface",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    }
+  ]
 }

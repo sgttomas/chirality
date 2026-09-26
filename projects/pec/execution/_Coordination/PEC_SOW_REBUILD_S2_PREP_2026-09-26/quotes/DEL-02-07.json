@@ -1,382 +1,438 @@
 {
- "deliverable": "DEL-02-07",
- "quotes": [
-  {
-   "id": "Q01",
-   "text": "`adapter.yaml` feed-manifest consumer",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "where": "Purpose paragraph; CLM-012",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-07",
-   "column": "Name"
-  },
-  {
-   "id": "Q02",
-   "text": "| Q2 | INDIRECT-8 breadth | **AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2) |",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q03",
-   "text": "Gate 3 owner ruling — APPROVED 2026-07-25",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q04",
-   "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001)",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q05",
-   "text": "**Evidence for narrowing, stated because it is real:** OBJ-002's register locus is the reconciler layer — `SOW-018` (incremental, Git-delta-keyed), `SOW-019` (drift classification), `SOW-006` (SHA stamping). The parsers produce facts the SHA comparison operates over; they do not perform it. N1 would arguably describe the system more precisely than the §3 sentence does.",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q06",
-   "text": "SOW-017,IN,\"Read per-project `_harness/adapter.yaml` as a parity-peer input only, comparing PEC's declared census population with the harness `status_glob`; report divergence as a DriftFinding\",PEC-RCN-002,PKG-02,DEL-02-07,OBJ-001;OBJ-002,SCA-005,FALSE,\"No longer the feed manifest: per-loop feed profiles in the PEC-owned registry declare the feeds (SOW-077, SOW-094)\"",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q07",
-   "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum:",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q08",
-   "text": "Per-project `_harness/adapter.yaml` is a parity-peer input only, read to compare PEC's declared census population with the harness `status_glob` (divergence is a DriftFinding); it is not the feed manifest.",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q09",
-   "text": "**Not the practitioner harness's replacement.** The harness remains an independent deterministic checker; PEC parity-diffs against it permanently.",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q10",
-   "text": "Permanent parity-diff against the practitioner harness; PEC neither directs the harness nor opens its cache half",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-002 (constraint C10)"
-  },
-  {
-   "id": "Q11",
-   "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q12",
-   "text": "Staleness is detected structurally by SHA comparison, never by judgment",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q13",
-   "text": "Manifest reader + fixture tests",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "where": "Ontology intro",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-07",
-   "column": "AnticipatedArtifacts"
-  },
-  {
-   "id": "Q14",
-   "text": "| DEL-02-07 | `adapter.yaml` feed-manifest consumer | BACKEND_FEATURE_SLICE | S | P1 | SOW-017 |",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-012"
-  },
-  {
-   "id": "Q15",
-   "text": "Per-project `_harness/adapter.yaml` read as a parity-peer input only: PEC's declared census population is compared with the harness `status_glob`, and divergence is reported as a DriftFinding; no longer the feed manifest (per-loop feed profiles in the PEC-owned registry, DEL-01-06, declare the feeds). Name \"`adapter.yaml` feed-manifest consumer\" and path retained under SCA-005 (CP1-N); the label no longer describes the role.",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "where": "CLM-013",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-02-07",
-   "column": "Description"
-  },
-  {
-   "id": "Q16",
-   "text": "Loop registry (local config default)",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "where": "CLM-006",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-07-003",
-   "column": "TargetName"
-  },
-  {
-   "id": "Q17",
-   "text": "Per-loop manifest consumption requires the registered-loop set from the loop registry",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "where": "CLM-006",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-07-003",
-   "column": "Statement"
-  },
-  {
-   "id": "Q18",
-   "text": "manifest consumption",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "where": "CLM-006",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-07-003",
-   "column": "Statement"
-  },
-  {
-   "id": "Q19",
-   "text": "PROPOSAL; Flag=none; EdgeID=E-N16",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
-   "where": "CLM-006",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-02-07-003",
-   "column": "Notes"
-  },
-  {
-   "id": "Q20",
-   "text": "- **REQ-004** — The loader shall expose the registered-loop set to the record-tier consumers declared in CLM-006 through a stable in-process interface.",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
-  },
-  {
-   "id": "Q21",
-   "text": "- **REQ-005** — Consumers shall depend only on the core-owned typed `LoopRegistry` port and shall not depend on the registry's JSON paths, serialization, or adapter errors. The selected schema-version-2 JSON/schema files remain replaceable behind that port; a path, schema, or field-meaning change requires a separately governed migration without amending DEL-02-07, DEL-03-01, or DEL-09-02 merely for adapter details.",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
-   "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
-  },
-  {
-   "id": "Q22",
-   "text": "This packet is that migration.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q23",
-   "text": "RETIRED 2026-09-25 under SCA-005 (D-PEC-93)",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_DEPENDENCIES.md",
-   "where": "CLM-008",
-   "strip_emphasis": true
-  },
-  {
-   "id": "Q24",
-   "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q25",
-   "text": "Each feed is a separately testable parser with its own grammar; a single \"ingest everything\" item is not atomic",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q26",
-   "text": "makes `adapter.yaml` a parity-peer input",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004"
-  },
-  {
-   "id": "Q27",
-   "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q28",
-   "text": "Writing anything; interpretation beyond declared grammars",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q29",
-   "text": "`adapter.yaml` / SOW-017 / DEL-02-07: **(b)** parity-peer input only, DEL-02-07 re-purposed",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q30",
-   "text": "re-purposed to parity-peer reader (Q2 b)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q31",
-   "text": "PEC reads `adapter.yaml` and reports the divergence as a DriftFinding (\"census population mismatch\").",
-   "source": "projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q32",
-   "text": "`_harness/adapter.yaml` | **Harness configuration authority only** — governed, committed, human-reviewed; never lifecycle or project truth",
-   "source": "tools/practitioner_harness/README.md",
-   "where": "CLM-018"
-  },
-  {
-   "id": "Q33",
-   "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-017"
-  },
-  {
-   "id": "Q34",
-   "text": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
-   "source": "projects/pec/AGENTS.md",
-   "where": "CLM-019"
-  },
-  {
-   "id": "Q35",
-   "text": "keeps its exact text, `Depends:` value and gate, and **its gate still binds it here**",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q36",
-   "text": "as an exact carry-forward, re-verified at that packet's basis, and its ruling discharges the item's gate only for the text it applies",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q37",
-   "text": "A moved item's gate markers still bind it at its destination.",
-   "source": "projects/pec/AGENTS.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q38",
-   "text": "Carry-forward from DEL-02-07-REM-001, re-expressed for SOW-017 at revision 1.5: Before producing the reader, declare the consumed `_harness/adapter.yaml` grammar (every field the reader reads, including the harness `status_glob`, and that field's semantics) and the YAML parsing approach that satisfies the zero-third-party-runtime-dependency rule. Then produce the per-project parity-peer manifest reader, with evidence for a valid fixture and for undeclared-field invariance. Deriving a feed manifest (which feeds are read and where each is located) is superseded by SCA-005 (SOW-017, revision 1.5) and is not carried.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-001 carry-forward input"
-  },
-  {
-   "id": "Q39",
-   "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-001 gate"
-  },
-  {
-   "id": "Q40",
-   "text": "Carry-forward from DEL-02-07-REM-002: The relation between a registered loop and the project or projects whose `_harness/adapter.yaml` is read for the parity comparison is fixed by no accepted source. Production shall resolve it from accepted evidence only. If no accepted source derives it, the resolution is an owner-ruled scope change (CON-002), not a production decision (gate: accepted CON-002 loop-to-project relation derivation or owner-ruled SCOPE_CHANGE if not derivable). The reader shall acquire its loop set only through the core-owned typed LoopRegistry port (DEL-01-06; Depends: DEL-01-06, DEP-02-07-003) and shall depend on no registry on-disk location, filename or serialization.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-002 carry-forward input"
-  },
-  {
-   "id": "Q41",
-   "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight) (gated: accepted CON-002 loop-to-project relation derivation or owner-ruled SCOPE_CHANGE if not derivable)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-002 gate"
-  },
-  {
-   "id": "Q42",
-   "text": "Carry-forward from DEL-02-07-REM-003: Produce and verify, for absent, unreadable, malformed and schema-invalid manifests, an explicit limitation naming the project and the fault, never a silently empty, partial or defaulted result. Also produce and verify source byte preservation (no write, create or delete against any source path, including the manifests read); a content-minimal record-tier payload carrying only declared manifest-derived fields, with no undeclared manifest content and no feed content; and no third-party runtime dependency and no external network egress, with the DEL-01-05 enforcement re-run.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-003 carry-forward input"
-  },
-  {
-   "id": "Q43",
-   "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-003 gate"
-  },
-  {
-   "id": "Q44",
-   "text": "Carry-forward from DEL-02-07-REM-004: Produce the DEL-02-07 fixture suite implementing each verification method this contract declares, and register it as a check of the PEC v2 packet in `projects/pec/software-workflow.json`. Run it in the PKG-02 test suite and show that every assertion derives from this contract and that none introduces a criterion absent from it.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-004 carry-forward input"
-  },
-  {
-   "id": "Q45",
-   "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-004 gate"
-  },
-  {
-   "id": "Q46",
-   "text": "This contract",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
-   "where": "Carried production obligations, DEL-02-07-REM-004 own-voice note"
-  },
-  {
-   "id": "Q47",
-   "text": "census population mismatch",
-   "source": "projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md",
-   "where": "TBD-006"
-  },
-  {
-   "id": "Q48",
-   "text": "interpretation beyond declared grammars",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "REQ-002"
-  },
-  {
-   "id": "Q49",
-   "text": "it shall never modify a source file",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-005"
-  },
-  {
-   "id": "Q50",
-   "text": "The reconciler writes only its own store and generated views",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-005"
-  },
-  {
-   "id": "Q51",
-   "text": "Writing anything",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "REQ-005"
-  },
-  {
-   "id": "Q52",
-   "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-006"
-  },
-  {
-   "id": "Q53",
-   "text": "PEC's declared census population",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CON-003"
-  },
-  {
-   "id": "Q54",
-   "text": "A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-006"
-  },
-  {
-   "id": "Q55",
-   "text": "parity DriftFindings",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CON-006"
-  },
-  {
-   "id": "Q56",
-   "text": "harness parity clean or explained",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CON-006"
-  },
-  {
-   "id": "Q57",
-   "text": "all strata as presented",
-   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
-   "where": "AX-004"
-  },
-  {
-   "id": "Q58",
-   "text": "the feed manifest",
-   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
-   "where": "CON-003"
-  }
- ]
+  "deliverable": "DEL-02-07",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "`adapter.yaml` feed-manifest consumer",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "Purpose paragraph; CLM-012",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-07",
+      "column": "Name",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q02",
+      "text": "| Q2 | INDIRECT-8 breadth | **AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2) |",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q03",
+      "text": "Gate 3 owner ruling — APPROVED 2026-07-25",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q04",
+      "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q05",
+      "text": "**Evidence for narrowing, stated because it is real:** OBJ-002's register locus is the reconciler layer — `SOW-018` (incremental, Git-delta-keyed), `SOW-019` (drift classification), `SOW-006` (SHA stamping). The parsers produce facts the SHA comparison operates over; they do not perform it. N1 would arguably describe the system more precisely than the §3 sentence does.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q06",
+      "text": "SOW-017,IN,\"Read per-project `_harness/adapter.yaml` as a parity-peer input only, comparing PEC's declared census population with the harness `status_glob`; report divergence as a DriftFinding\",PEC-RCN-002,PKG-02,DEL-02-07,OBJ-001;OBJ-002,SCA-005,FALSE,\"No longer the feed manifest: per-loop feed profiles in the PEC-owned registry declare the feeds (SOW-077, SOW-094)\"",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q07",
+      "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum:",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q08",
+      "text": "Per-project `_harness/adapter.yaml` is a parity-peer input only, read to compare PEC's declared census population with the harness `status_glob` (divergence is a DriftFinding); it is not the feed manifest.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q09",
+      "text": "**Not the practitioner harness's replacement.** The harness remains an independent deterministic checker; PEC parity-diffs against it permanently.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q10",
+      "text": "Permanent parity-diff against the practitioner harness; PEC neither directs the harness nor opens its cache half",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-002 (constraint C10)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q11",
+      "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q12",
+      "text": "Staleness is detected structurally by SHA comparison, never by judgment",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q13",
+      "text": "Manifest reader + fixture tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "Ontology intro",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-07",
+      "column": "AnticipatedArtifacts",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q14",
+      "text": "| DEL-02-07 | `adapter.yaml` feed-manifest consumer | BACKEND_FEATURE_SLICE | S | P1 | SOW-017 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q15",
+      "text": "Per-project `_harness/adapter.yaml` read as a parity-peer input only: PEC's declared census population is compared with the harness `status_glob`, and divergence is reported as a DriftFinding; no longer the feed manifest (per-loop feed profiles in the PEC-owned registry, DEL-01-06, declare the feeds). Name \"`adapter.yaml` feed-manifest consumer\" and path retained under SCA-005 (CP1-N); the label no longer describes the role.",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "CLM-013",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-02-07",
+      "column": "Description",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q16",
+      "text": "Loop registry (local config default)",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "where": "CLM-006",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-07-003",
+      "column": "TargetName",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q17",
+      "text": "Per-loop manifest consumption requires the registered-loop set from the loop registry",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "where": "CLM-006",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-07-003",
+      "column": "Statement",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q18",
+      "text": "manifest consumption",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "where": "CLM-006",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-07-003",
+      "column": "Statement",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q19",
+      "text": "PROPOSAL; Flag=none; EdgeID=E-N16",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "where": "CLM-006",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-02-07-003",
+      "column": "Notes",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q20",
+      "text": "- **REQ-004** — The loader shall expose the registered-loop set to the record-tier consumers declared in CLM-006 through a stable in-process interface.",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
+    },
+    {
+      "id": "Q21",
+      "text": "- **REQ-005** — Consumers shall depend only on the core-owned typed `LoopRegistry` port and shall not depend on the registry's JSON paths, serialization, or adapter errors. The selected schema-version-2 JSON/schema files remain replaceable behind that port; a path, schema, or field-meaning change requires a separately governed migration without amending DEL-02-07, DEL-03-01, or DEL-09-02 merely for adapter details.",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+      "where": "CLM-007 (DEL-01-06 contract as rebuilt in the S2 packet; verify on the post-act export)"
+    },
+    {
+      "id": "Q22",
+      "text": "This packet is that migration.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q23",
+      "text": "RETIRED 2026-09-25 under SCA-005 (D-PEC-93)",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_DEPENDENCIES.md",
+      "where": "CLM-008",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q24",
+      "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q25",
+      "text": "Each feed is a separately testable parser with its own grammar; a single \"ingest everything\" item is not atomic",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q26",
+      "text": "makes `adapter.yaml` a parity-peer input",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q27",
+      "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q28",
+      "text": "Writing anything; interpretation beyond declared grammars",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q29",
+      "text": "`adapter.yaml` / SOW-017 / DEL-02-07: **(b)** parity-peer input only, DEL-02-07 re-purposed",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q30",
+      "text": "re-purposed to parity-peer reader (Q2 b)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q31",
+      "text": "PEC reads `adapter.yaml` and reports the divergence as a DriftFinding (\"census population mismatch\").",
+      "source": "projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q32",
+      "text": "`_harness/adapter.yaml` | **Harness configuration authority only** — governed, committed, human-reviewed; never lifecycle or project truth",
+      "source": "tools/practitioner_harness/README.md",
+      "where": "CLM-018",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q33",
+      "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q34",
+      "text": "No PEC feed profile reads such sections, so the coordination plane does not scan them, and they are not a work-selection surface.",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-019",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q35",
+      "text": "keeps its exact text, `Depends:` value and gate, and **its gate still binds it here**",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q36",
+      "text": "as an exact carry-forward, re-verified at that packet's basis, and its ruling discharges the item's gate only for the text it applies",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q37",
+      "text": "A moved item's gate markers still bind it at its destination.",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q38",
+      "text": "Carry-forward from DEL-02-07-REM-001, re-expressed for SOW-017 at revision 1.5: Before producing the reader, declare the consumed `_harness/adapter.yaml` grammar (every field the reader reads, including the harness `status_glob`, and that field's semantics) and the YAML parsing approach that satisfies the zero-third-party-runtime-dependency rule. Then produce the per-project parity-peer manifest reader, with evidence for a valid fixture and for undeclared-field invariance. Deriving a feed manifest (which feeds are read and where each is located) is superseded by SCA-005 (SOW-017, revision 1.5) and is not carried.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-001 carry-forward input",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q39",
+      "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-001 gate",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q40",
+      "text": "Carry-forward from DEL-02-07-REM-002: The relation between a registered loop and the project or projects whose `_harness/adapter.yaml` is read for the parity comparison is fixed by no accepted source. Production shall resolve it from accepted evidence only. If no accepted source derives it, the resolution is an owner-ruled scope change (CON-002), not a production decision (gate: accepted CON-002 loop-to-project relation derivation or owner-ruled SCOPE_CHANGE if not derivable). The reader shall acquire its loop set only through the core-owned typed LoopRegistry port (DEL-01-06; Depends: DEL-01-06, DEP-02-07-003) and shall depend on no registry on-disk location, filename or serialization.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-002 carry-forward input",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q41",
+      "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight) (gated: accepted CON-002 loop-to-project relation derivation or owner-ruled SCOPE_CHANGE if not derivable)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-002 gate",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q42",
+      "text": "Carry-forward from DEL-02-07-REM-003: Produce and verify, for absent, unreadable, malformed and schema-invalid manifests, an explicit limitation naming the project and the fault, never a silently empty, partial or defaulted result. Also produce and verify source byte preservation (no write, create or delete against any source path, including the manifests read); a content-minimal record-tier payload carrying only declared manifest-derived fields, with no undeclared manifest content and no feed content; and no third-party runtime dependency and no external network egress, with the DEL-01-05 enforcement re-run.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-003 carry-forward input",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q43",
+      "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-003 gate",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q44",
+      "text": "Carry-forward from DEL-02-07-REM-004: Produce the DEL-02-07 fixture suite implementing each verification method this contract declares, and register it as a check of the PEC v2 packet in `projects/pec/software-workflow.json`. Run it in the PKG-02 test suite and show that every assertion derives from this contract and that none introduces a criterion absent from it.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-004 carry-forward input",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q45",
+      "text": "Gate: (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-004 gate",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q46",
+      "text": "each verification method this contract declares",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "where": "Carried production obligations, DEL-02-07-REM-004 own-voice note",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q47",
+      "text": "census population mismatch",
+      "source": "projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md",
+      "where": "TBD-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q48",
+      "text": "interpretation beyond declared grammars",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q49",
+      "text": "it shall never modify a source file",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q50",
+      "text": "The reconciler writes only its own store and generated views",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q51",
+      "text": "Writing anything",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q52",
+      "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q53",
+      "text": "PEC's declared census population",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CON-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q54",
+      "text": "A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q55",
+      "text": "parity DriftFindings",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CON-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q56",
+      "text": "harness parity clean or explained",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CON-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q57",
+      "text": "all strata as presented",
+      "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+      "where": "AX-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q58",
+      "text": "the feed manifest",
+      "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+      "where": "CON-003",
+      "commit": "aca930622"
+    }
+  ]
 }

@@ -1,450 +1,515 @@
 {
- "deliverable": "DEL-01-01",
- "quotes": [
-  {
-   "id": "Q01",
-   "text": "SOW-001,IN,\"Implement the record-tier entity model: Loop, Workplan/Step/Gate (declared historical-grammar entity; gate state re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes), Receipt (ledger entries and central `RECEIPT.md`), DecisionRow, Fence, Package/Deliverable, DependencyEdge, RunRecord (from central receipts, work graphs and the MEMORY run index; JSON run evidence historical), CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph/WorkNode\",§7.1,PKG-01,DEL-01-01,OBJ-001;OBJ-002,SCA-005,FALSE,\"Receipt field availability is per-loop (PEC-ORI-006 limits apply); \"\"remaining items\"\" is a per-loop optional field, not a required one\"",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "where": "CLM-001"
-  },
-  {
-   "id": "Q02",
-   "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q03",
-   "text": "SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095..099; instruments: SOW-058, SOW-059, SOW-063, SOW-100",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-002"
-  },
-  {
-   "id": "Q04",
-   "text": "Staleness is detected structurally by SHA comparison, never by judgment",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q05",
-   "text": "SOW-001, SOW-006, SOW-011..019, SOW-095..097; supported by SOW-005",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-003"
-  },
-  {
-   "id": "Q06",
-   "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "Objective warrant"
-  },
-  {
-   "id": "Q07",
-   "text": "Q2 | INDIRECT-8 breadth | **AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
-   "where": "Objective warrant",
-   "strip_emphasis": true
-  },
-  {
-   "id": "Q08",
-   "text": "re-sources SOW-001/004/013..017 and DEL-01-01, DEL-02-03..07, DEL-03-03 and DEL-04-01",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "Objective warrant (DL-20)"
-  },
-  {
-   "id": "Q09",
-   "text": "Schema/DDL + entity types + model tests",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "AnticipatedArtifacts",
-   "where": "Ontology preamble; CON-005"
-  },
-  {
-   "id": "Q10",
-   "text": "| DEL-01-01 | Record-tier schema & entity model | DATA_MODEL_CHANGE | **L** | P1 | SOW-001 |",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-004",
-   "strip_emphasis": true
-  },
-  {
-   "id": "Q11",
-   "text": "Store schema and typed entity model for the record tier: 16 entity types (Workplan/Step/Gate, Package/Deliverable and WorkGraph/WorkNode are compound rows) — Loop, Workplan, Step, Gate, Receipt, DecisionRow, Fence, Package, Deliverable, DependencyEdge, RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph, WorkNode. Workplan/Step/Gate is a declared historical-grammar entity whose gate state is re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes; Receipt covers ledger entries and central `RECEIPT.md`; RunRecord is sourced from central receipts, work graphs and the MEMORY run index, with JSON run evidence historical; \"remaining items\" is a per-loop optional field.",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "Description",
-   "where": "CLM-005"
-  },
-  {
-   "id": "Q12",
-   "text": "DEL-01-01 re-enveloped M→L (14 entity types, not \"11 entities\")",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-005 (DL-14)"
-  },
-  {
-   "id": "Q13",
-   "text": "DEL-01-01 description/envelope notes follow SOW-001 (16 entity types)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
-   "where": "CLM-005 (A-12)"
-  },
-  {
-   "id": "Q14",
-   "text": "Record tier (reconciled from file truth; citable with sources)",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-006 heading"
-  },
-  {
-   "id": "Q15",
-   "text": "| Entity | Purpose |\n|---|---|\n| Loop | Tenancy unit, above Project: a `LOOP_INIT.md`-governed work loop that the loop registry lists (§16.3); PEC reads only loop identity, entrypoint and procedure SHA from `LOOP_INIT.md` |\n| Workplan / Step / Gate | Declared historical-grammar entity: workplans are indexed as history only; gate state is re-sourced from decision registers, scope-change pointers and work-graph `BLOCKED` nodes, never read from `LOOP_INIT.md` |\n| Receipt | Parsed `LOOP_RECEIPTS.md` ledger entries and central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md` receipts — two grammar generations of one Receipt feed kind; each ledger is live or declared historical per its loop's feed profile. Field availability is per-loop and per-grammar: ledgers carrying the `receipt-contract-v2` marker share one validated field set (Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome); other ledgers and central receipts have no shared validated schema — coverage limits stated per PEC-ORI-006 |\n| DecisionRow | Register-row identity and status only (decision ID, packet path, anchor, state — never the row's prose; PEC-K-10) |\n| Fence | Declared write-scope constraints from rulings and briefs |\n| Package / Deliverable | Lifecycle census from `_STATUS.md` (OPEN→ISSUED), stuck-age; remaining items is a per-loop optional field, read only where the loop's feed profile declares it |\n| DependencyEdge | From `Dependencies.csv` registers and work-graph dependencies (WorkGraph); `WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so |\n| RunRecord | Summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index; `STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` are read as declared historical grammar or current evidence per the loop's feed profile; application-owned Runtime service user-data is operational and non-authoritative (D-GOV-20 item 5; D-GOV-43 A2), is never an input, and is never record-tier citable |\n| CandidateBrief | Adopted-but-unexecuted and proposed briefs (the work-selection queue) |\n| OrientationSnapshot | A generated orientation return, stamped with examined SHA — the machine generalization of a receipt |\n| DriftFinding | A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output |\n| WorkGraph / WorkNode | A loop's undertaking graph `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` and its nodes, discovered per the loop's feed profile and read content-minimally (declared run-identity token, node IDs, closed-vocabulary node states, DEL bindings, PR numbers, hex SHAs, linked paths, per-state counts); a node state is declared activity, never a liveness assertion; terminal completion is derived from local Git merge reachability of cited PRs |",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-006 blockquote (PRD v2.4 §7.1 table)"
-  },
-  {
-   "id": "Q16",
-   "text": "From `Dependencies.csv` registers and work-graph dependencies (WorkGraph); `WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-006 (DependencyEdge cell)"
-  },
-  {
-   "id": "Q17",
-   "text": "L: 16 entity types (DL-14's 14 plus WorkGraph and WorkNode) and the schema every derivation package depends on; kept one cohesive DDL slice — split (core record entities vs lifecycle/dependency/run/graph entities) only if implementation shows a natural seam",
-   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "ContextEnvelopeNotes",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q18",
-   "text": "Hold as L; split core record entities from lifecycle/dependency/run/graph entities only if implementation shows a natural seam",
-   "source": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
-   "kind": "csv_cell",
-   "key_column": "DeliverableID",
-   "key": "DEL-01-01",
-   "column": "RecommendedAction",
-   "where": "CLM-007"
-  },
-  {
-   "id": "Q19",
-   "text": "(record-tier schema: 16 entity types, the dependency of every derivation package)",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-007 (§8)"
-  },
-  {
-   "id": "Q20",
-   "text": "Both MEDIUM risk with envelope notes and named split lines if implementation demands them",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CLM-007 (§8)"
-  },
-  {
-   "id": "Q21",
-   "text": "v2 first ADRs (core isolation + carried postures)",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-01-01-003",
-   "column": "TargetName",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q22",
-   "text": "The ADR ruling shapes the PKG-01 schema/persistence seam",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-01-01-003",
-   "column": "Statement",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q23",
-   "text": "PROPOSAL; Flag=none; EdgeID=E-P01",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-01-01-003",
-   "column": "Notes",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q24",
-   "text": "the one seam to keep crisp is entity schema (core) vs store persistence (adapter) inside PKG-01",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
-   "kind": "csv_cell",
-   "key_column": "DependencyID",
-   "key": "DEP-01-01-003",
-   "column": "EvidenceQuote",
-   "where": "CLM-008"
-  },
-  {
-   "id": "Q25",
-   "text": "The ADR set shall make explicit the seam identified as the one to keep crisp: entity schema (core) versus store persistence (adapter) inside `PKG-01`.",
-   "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
-   "where": "CLM-009 (DEL-00-01/REQ-006)"
-  },
-  {
-   "id": "Q26",
-   "text": "The ADR set states the entity-schema versus store-persistence seam inside PKG-01 explicitly enough that a reader can classify a candidate PKG-01 change as core or adapter",
-   "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
-   "where": "CLM-009 (DEL-00-01/AC-005)"
-  },
-  {
-   "id": "Q27",
-   "text": "so that if and when either proposed edge is taken up, no republication is needed",
-   "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
-   "where": "CLM-009 (DEL-00-01/REQ-009)"
-  },
-  {
-   "id": "Q28",
-   "text": "O-B ruled 2026-08-01",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q29",
-   "text": "The D-PEC-72 ruling confirms the O-B style but does not accept subsequently authored bytes.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q30",
-   "text": "Inside PKG-01, record- and presence-tier entity schemas are core-facing.",
-   "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
-   "where": "CLM-009"
-  },
-  {
-   "id": "Q31",
-   "text": "Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_DEPENDENCIES.md",
-   "where": "CLM-010"
-  },
-  {
-   "id": "Q32",
-   "text": "`DEL-01-01` rebuild (graph S2)",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_first_sows_del_02_08_02_09_proposal_2026-09-26.md",
-   "where": "CLM-014"
-  },
-  {
-   "id": "Q33",
-   "text": "Surfaces: central-receipts, decision-registers, dependency-registers, memory-run-index, status-lifecycle, work-graphs.",
-   "source": "projects/pec/v2/config/loops.schema.json",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q34",
-   "text": "historical: the generation is frozen, and its silence is never reported as staleness.",
-   "source": "projects/pec/v2/config/loops.schema.json",
-   "where": "CLM-015"
-  },
-  {
-   "id": "Q35",
-   "text": "Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-011; AX-003"
-  },
-  {
-   "id": "Q36",
-   "text": "Implement the presence-tier entity model: Session, Worktree/GitRef, PresenceRecord, HierarchyEdge, ScopeClaim",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-002",
-   "column": "ScopeItemStatement",
-   "where": "CLM-011"
-  },
-  {
-   "id": "Q37",
-   "text": "Operational only; never citable (C4)",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-002",
-   "column": "Notes",
-   "where": "CLM-011"
-  },
-  {
-   "id": "Q38",
-   "text": "remaining items is a per-loop optional field, read only where the loop's feed profile declares it",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q39",
-   "text": "is a per-loop optional field, not a required one",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-001",
-   "column": "Notes",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q40",
-   "text": "remaining items",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-001",
-   "column": "Notes",
-   "where": "CON-004"
-  },
-  {
-   "id": "Q41",
-   "text": "No PEC feed profile reads such sections",
-   "source": "projects/pec/AGENTS.md",
-   "where": "CLM-016"
-  },
-  {
-   "id": "Q42",
-   "text": "entity model re-sourced (A-01, A-12)",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-017"
-  },
-  {
-   "id": "Q43",
-   "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
-   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
-   "where": "CLM-017 blockquote"
-  },
-  {
-   "id": "Q44",
-   "text": "parser carry-forward",
-   "source": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
-   "where": "CLM-017"
-  },
-  {
-   "id": "Q45",
-   "text": "Prototype machinery carried as pattern (not as code)",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "TBD-002"
-  },
-  {
-   "id": "Q46",
-   "text": "SQL-level append-only enforcement; dry-run-then-apply ingestion",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "TBD-002"
-  },
-  {
-   "id": "Q47",
-   "text": "one disposable local SQLite store for generic guarded metadata envelopes",
-   "source": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
-   "where": "TBD-002"
-  },
-  {
-   "id": "Q48",
-   "text": "citable with sources",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-003"
-  },
-  {
-   "id": "Q49",
-   "text": "The record tier is regenerated from sources by one command",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-005"
-  },
-  {
-   "id": "Q50",
-   "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-007"
-  },
-  {
-   "id": "Q51",
-   "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "REQ-008"
-  },
-  {
-   "id": "Q52",
-   "text": "a deliverable never writes into another package",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "REQ-012 (DL-12)"
-  },
-  {
-   "id": "Q53",
-   "text": "Core isolation style — ports-and-adapters (hexagonal) vs functional-core/imperative-shell — is undecided",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CON-001 (OI-012)"
-  },
-  {
-   "id": "Q54",
-   "text": "Decided in DEL-00-01's ADR; owner review at that ADR",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CON-001 (OI-012)"
-  },
-  {
-   "id": "Q55",
-   "text": "§16.8 receipt-contract adoption undecided for the Root, Runtime and Bridge ledgers",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CON-002 (OI-008)"
-  },
-  {
-   "id": "Q56",
-   "text": "§16 ruling (per-loop)",
-   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
-   "where": "CON-002 (OI-008)"
-  },
-  {
-   "id": "Q57",
-   "text": "Every write into the store shall pass through one declared ingest boundary.",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
-   "where": "CON-005 (DEL-01-03/REQ-003)"
-  },
-  {
-   "id": "Q58",
-   "text": "and work-graph dependencies (WorkGraph)",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-006"
-  },
-  {
-   "id": "Q59",
-   "text": "Markdown work-graph dependencies arrive through SOW-095",
-   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
-   "kind": "csv_cell",
-   "key_column": "ScopeItemID",
-   "key": "SOW-015",
-   "column": "Notes",
-   "where": "CON-006"
-  },
-  {
-   "id": "Q60",
-   "text": "**Left open** and routed to the next PEC scope change.",
-   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_RULING_2026-09-26.md",
-   "where": "CON-006",
-   "strip_emphasis": true
-  },
-  {
-   "id": "Q61",
-   "text": "Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "AX-004"
-  },
-  {
-   "id": "Q62",
-   "text": "strata are provenance not authority",
-   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_DEPENDENCIES.md",
-   "where": "AX-007"
-  },
-  {
-   "id": "Q63",
-   "text": "a profile is PEC's reading hypothesis, never the loop's truth",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "AX-012"
-  },
-  {
-   "id": "Q64",
-   "text": "Presence facts never enter record-tier citations",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "AX-003"
-  },
-  {
-   "id": "Q65",
-   "text": "between the current reconcile and the prior snapshot, or between PEC and harness parity output",
-   "source": "projects/pec/docs/PRD.md",
-   "where": "CON-008"
-  }
- ]
+  "deliverable": "DEL-01-01",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "SOW-001,IN,\"Implement the record-tier entity model: Loop, Workplan/Step/Gate (declared historical-grammar entity; gate state re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes), Receipt (ledger entries and central `RECEIPT.md`), DecisionRow, Fence, Package/Deliverable, DependencyEdge, RunRecord (from central receipts, work graphs and the MEMORY run index; JSON run evidence historical), CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph/WorkNode\",§7.1,PKG-01,DEL-01-01,OBJ-001;OBJ-002,SCA-005,FALSE,\"Receipt field availability is per-loop (PEC-ORI-006 limits apply); \"\"remaining items\"\" is a per-loop optional field, not a required one\"",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q02",
+      "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q03",
+      "text": "SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095..099; instruments: SOW-058, SOW-059, SOW-063, SOW-100",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q04",
+      "text": "Staleness is detected structurally by SHA comparison, never by judgment",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q05",
+      "text": "SOW-001, SOW-006, SOW-011..019, SOW-095..097; supported by SOW-005",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q06",
+      "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q07",
+      "text": "Q2 | INDIRECT-8 breadth | **AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+      "where": "Objective warrant",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q08",
+      "text": "re-sources SOW-001/004/013..017 and DEL-01-01, DEL-02-03..07, DEL-03-03 and DEL-04-01",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant (DL-20)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q09",
+      "text": "Schema/DDL + entity types + model tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-01",
+      "column": "AnticipatedArtifacts",
+      "where": "Ontology preamble; CON-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q10",
+      "text": "| DEL-01-01 | Record-tier schema & entity model | DATA_MODEL_CHANGE | **L** | P1 | SOW-001 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q11",
+      "text": "Store schema and typed entity model for the record tier: 16 entity types (Workplan/Step/Gate, Package/Deliverable and WorkGraph/WorkNode are compound rows) — Loop, Workplan, Step, Gate, Receipt, DecisionRow, Fence, Package, Deliverable, DependencyEdge, RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph, WorkNode. Workplan/Step/Gate is a declared historical-grammar entity whose gate state is re-sourced from decision registers, scope-change pointers and graph BLOCKED nodes; Receipt covers ledger entries and central `RECEIPT.md`; RunRecord is sourced from central receipts, work graphs and the MEMORY run index, with JSON run evidence historical; \"remaining items\" is a per-loop optional field.",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-01",
+      "column": "Description",
+      "where": "CLM-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q12",
+      "text": "DEL-01-01 re-enveloped M→L (14 entity types, not \"11 entities\")",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-005 (DL-14)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q13",
+      "text": "DEL-01-01 description/envelope notes follow SOW-001 (16 entity types)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Preview.md",
+      "where": "CLM-005 (A-12)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q14",
+      "text": "Record tier (reconciled from file truth; citable with sources)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-006 heading",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q15",
+      "text": "| Entity | Purpose |\n|---|---|\n| Loop | Tenancy unit, above Project: a `LOOP_INIT.md`-governed work loop that the loop registry lists (§16.3); PEC reads only loop identity, entrypoint and procedure SHA from `LOOP_INIT.md` |\n| Workplan / Step / Gate | Declared historical-grammar entity: workplans are indexed as history only; gate state is re-sourced from decision registers, scope-change pointers and work-graph `BLOCKED` nodes, never read from `LOOP_INIT.md` |\n| Receipt | Parsed `LOOP_RECEIPTS.md` ledger entries and central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md` receipts — two grammar generations of one Receipt feed kind; each ledger is live or declared historical per its loop's feed profile. Field availability is per-loop and per-grammar: ledgers carrying the `receipt-contract-v2` marker share one validated field set (Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome); other ledgers and central receipts have no shared validated schema — coverage limits stated per PEC-ORI-006 |\n| DecisionRow | Register-row identity and status only (decision ID, packet path, anchor, state — never the row's prose; PEC-K-10) |\n| Fence | Declared write-scope constraints from rulings and briefs |\n| Package / Deliverable | Lifecycle census from `_STATUS.md` (OPEN→ISSUED), stuck-age; remaining items is a per-loop optional field, read only where the loop's feed profile declares it |\n| DependencyEdge | From `Dependencies.csv` registers and work-graph dependencies (WorkGraph); `WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so |\n| RunRecord | Summaries of checkout-contained AgentRun evidence, joined on the declared run-identity token from central receipts, work graphs and the deliverable `MEMORY.md` run index; `STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` are read as declared historical grammar or current evidence per the loop's feed profile; application-owned Runtime service user-data is operational and non-authoritative (D-GOV-20 item 5; D-GOV-43 A2), is never an input, and is never record-tier citable |\n| CandidateBrief | Adopted-but-unexecuted and proposed briefs (the work-selection queue) |\n| OrientationSnapshot | A generated orientation return, stamped with examined SHA — the machine generalization of a receipt |\n| DriftFinding | A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output |\n| WorkGraph / WorkNode | A loop's undertaking graph `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` and its nodes, discovered per the loop's feed profile and read content-minimally (declared run-identity token, node IDs, closed-vocabulary node states, DEL bindings, PR numbers, hex SHAs, linked paths, per-state counts); a node state is declared activity, never a liveness assertion; terminal completion is derived from local Git merge reachability of cited PRs |",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-006 blockquote (PRD v2.4 §7.1 table)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q16",
+      "text": "From `Dependencies.csv` registers and work-graph dependencies (WorkGraph); `WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-006 (DependencyEdge cell)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q17",
+      "text": "L: 16 entity types (DL-14's 14 plus WorkGraph and WorkNode) and the schema every derivation package depends on; kept one cohesive DDL slice — split (core record entities vs lifecycle/dependency/run/graph entities) only if implementation shows a natural seam",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-01",
+      "column": "ContextEnvelopeNotes",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q18",
+      "text": "Hold as L; split core record entities from lifecycle/dependency/run/graph entities only if implementation shows a natural seam",
+      "source": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-01-01",
+      "column": "RecommendedAction",
+      "where": "CLM-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q19",
+      "text": "(record-tier schema: 16 entity types, the dependency of every derivation package)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-007 (§8)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q20",
+      "text": "Both MEDIUM risk with envelope notes and named split lines if implementation demands them",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-007 (§8)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q21",
+      "text": "v2 first ADRs (core isolation + carried postures)",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-01-01-003",
+      "column": "TargetName",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q22",
+      "text": "The ADR ruling shapes the PKG-01 schema/persistence seam",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-01-01-003",
+      "column": "Statement",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q23",
+      "text": "PROPOSAL; Flag=none; EdgeID=E-P01",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-01-01-003",
+      "column": "Notes",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q24",
+      "text": "the one seam to keep crisp is entity schema (core) vs store persistence (adapter) inside PKG-01",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-01-01-003",
+      "column": "EvidenceQuote",
+      "where": "CLM-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q25",
+      "text": "The ADR set shall make explicit the seam identified as the one to keep crisp: entity schema (core) versus store persistence (adapter) inside `PKG-01`.",
+      "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+      "where": "CLM-009 (DEL-00-01/REQ-006)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q26",
+      "text": "The ADR set states the entity-schema versus store-persistence seam inside PKG-01 explicitly enough that a reader can classify a candidate PKG-01 change as core or adapter",
+      "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+      "where": "CLM-009 (DEL-00-01/AC-005)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q27",
+      "text": "so that if and when either proposed edge is taken up, no republication is needed",
+      "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+      "where": "CLM-009 (DEL-00-01/REQ-009)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q28",
+      "text": "O-B ruled 2026-08-01",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q29",
+      "text": "The D-PEC-72 ruling confirms the O-B style but does not accept subsequently authored bytes.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q30",
+      "text": "Inside PKG-01, record- and presence-tier entity schemas are core-facing.",
+      "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
+      "where": "CLM-009",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q31",
+      "text": "Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_DEPENDENCIES.md",
+      "where": "CLM-010",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q32",
+      "text": "`DEL-01-01` rebuild (graph S2)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_first_sows_del_02_08_02_09_proposal_2026-09-26.md",
+      "where": "CLM-014",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q33",
+      "text": "Surfaces: central-receipts, decision-registers, dependency-registers, memory-run-index, status-lifecycle, work-graphs.",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q34",
+      "text": "historical: the generation is frozen, and its silence is never reported as staleness.",
+      "source": "projects/pec/v2/config/loops.schema.json",
+      "where": "CLM-015",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q35",
+      "text": "Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-011; AX-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q36",
+      "text": "Implement the presence-tier entity model: Session, Worktree/GitRef, PresenceRecord, HierarchyEdge, ScopeClaim",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-002",
+      "column": "ScopeItemStatement",
+      "where": "CLM-011",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q37",
+      "text": "Operational only; never citable (C4)",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-002",
+      "column": "Notes",
+      "where": "CLM-011",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q38",
+      "text": "remaining items is a per-loop optional field, read only where the loop's feed profile declares it",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q39",
+      "text": "is a per-loop optional field, not a required one",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-001",
+      "column": "Notes",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q40",
+      "text": "remaining items",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-001",
+      "column": "Notes",
+      "where": "CON-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q41",
+      "text": "No PEC feed profile reads such sections",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-016",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q42",
+      "text": "entity model re-sourced (A-01, A-12)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q43",
+      "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+      "where": "CLM-017 blockquote",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q44",
+      "text": "parser carry-forward",
+      "source": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+      "where": "CLM-017",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q45",
+      "text": "Prototype machinery carried as pattern (not as code)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "TBD-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q46",
+      "text": "SQL-level append-only enforcement; dry-run-then-apply ingestion",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "TBD-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q47",
+      "text": "one disposable local SQLite store for generic guarded metadata envelopes",
+      "source": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "where": "TBD-002",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q48",
+      "text": "citable with sources",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q49",
+      "text": "The record tier is regenerated from sources by one command",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-005",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q50",
+      "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q51",
+      "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "REQ-008",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q52",
+      "text": "a deliverable never writes into another package",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "REQ-012 (DL-12)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q53",
+      "text": "Core isolation style — ports-and-adapters (hexagonal) vs functional-core/imperative-shell — is undecided",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-001 (OI-012)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q54",
+      "text": "Decided in DEL-00-01's ADR; owner review at that ADR",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-001 (OI-012)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q55",
+      "text": "§16.8 receipt-contract adoption undecided for the Root, Runtime and Bridge ledgers",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-002 (OI-008)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q56",
+      "text": "§16 ruling (per-loop)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CON-002 (OI-008)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q57",
+      "text": "Every write into the store shall pass through one declared ingest boundary.",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+      "where": "CON-005 (DEL-01-03/REQ-003)",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q58",
+      "text": "and work-graph dependencies (WorkGraph)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q59",
+      "text": "Markdown work-graph dependencies arrive through SOW-095",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-015",
+      "column": "Notes",
+      "where": "CON-006",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q60",
+      "text": "**Left open** and routed to the next PEC scope change.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_RULING_2026-09-26.md",
+      "where": "CON-006",
+      "strip_emphasis": true,
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q61",
+      "text": "Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "AX-004",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q62",
+      "text": "strata are provenance not authority",
+      "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_DEPENDENCIES.md",
+      "where": "AX-007",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q63",
+      "text": "a profile is PEC's reading hypothesis, never the loop's truth",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "AX-012",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q64",
+      "text": "Presence facts never enter record-tier citations",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "AX-003",
+      "commit": "aca930622"
+    },
+    {
+      "id": "Q65",
+      "text": "between the current reconcile and the prior snapshot, or between PEC and harness parity output",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CON-008",
+      "commit": "aca930622"
+    }
+  ]
 }

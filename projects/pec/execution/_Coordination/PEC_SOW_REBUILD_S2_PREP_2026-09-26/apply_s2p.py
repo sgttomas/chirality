@@ -52,9 +52,9 @@ TARGETS = {
          "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"),
     E + "PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md":
         ("d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559",
-         "a07d5f17305598731e98d853f71361d0f8a1def3597d5b25c48eb25f03ff9079"),
+         "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"),
 }
-# Read-only files the act re-verifies (values at origin/main c76434101; unchanged since aca930622).
+# Read-only files the act re-verifies (values at origin/main 5aa4285c2; unchanged since aca930622).
 PINNED = {
     E + "_Decomposition/SOFTWARE_DECOMP.md":
         "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
@@ -155,7 +155,7 @@ def main():
     before = inventory(repo)
     for rel in TARGETS: print(("RENDER " if a.check_only else "PLAN ") + rel)
     if a.check_only:
-        print(f"CHECK write set = grant (0 creates, {len(TARGETS)} modifies, 0 removes); nothing written"); return 0
+        print(f"CHECK preflight passed; planned write set {len(TARGETS)} modifies, 0 creates, 0 removes (not yet inventoried; the inventory check runs in apply mode); nothing written"); return 0
     replaced = []
     try:
         for rel, (pre, post) in TARGETS.items():

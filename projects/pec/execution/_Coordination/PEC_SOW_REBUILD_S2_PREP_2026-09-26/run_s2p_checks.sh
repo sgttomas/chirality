@@ -37,7 +37,7 @@ grep -q '^exit=0$' "$OUT/apply_checkonly.out" && grep -q '^exit=0$' "$OUT/apply.
   && note "PASS act: check-only 0, apply 0, rerun refuses 1" || { note "FAIL act"; fail=1; }
 
 # 3. containment: diff of the two exports is exactly the seven contracts
-diff -rq "$PRE" "$POST" > "$OUT/containment.out" 2>&1
+diff -rq -x .git "$PRE" "$POST" > "$OUT/containment.out" 2>&1   # .git is the borrowed-object identity added above, not tree content
 n=$(grep -c . "$OUT/containment.out"); nsow=$(grep -c 'ScopeOfWork.md differ$' "$OUT/containment.out")
 [[ $n -eq 7 && $nsow -eq 7 ]] && note "PASS containment: 7 differing files, all ScopeOfWork.md" || { note "FAIL containment ($n differing, $nsow SOW)"; fail=1; }
 

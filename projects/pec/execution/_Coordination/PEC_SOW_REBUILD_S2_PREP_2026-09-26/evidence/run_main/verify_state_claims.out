@@ -396,6 +396,12 @@ PASS DEL-01-06 S188 not_contains aca930622:projects/pec/v2/src/pec_v2/core/ports
 PASS DEL-01-06 S189 not_contains aca930622:projects/pec/v2/config/loops.schema.json [git=yes; candidate=yes]
 PASS DEL-01-06 S190 not_contains aca930622:projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py [git=yes; candidate=yes]
 PASS DEL-01-06 S191 not_contains aca930622:projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py [git=yes; candidate=yes]
+PASS DEL-01-06 S192 contains aca930622:projects/pec/v2/src/pec_v2/core/ports/loop_registry.py [git=yes; candidate=yes]
+PASS DEL-01-06 S193 contains aca930622:projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py [git=yes; candidate=yes]
+PASS DEL-01-06 S194 contains aca930622:projects/pec/v2/src/pec_v2/core/__init__.py [git=yes; candidate=yes]
+PASS DEL-01-06 S195 contains aca930622:projects/pec/v2/src/pec_v2/core/ports/__init__.py [git=yes; candidate=yes]
+PASS DEL-01-06 S196 contains aca930622:projects/pec/v2/tests/config/test_json_loop_registry.py [git=yes; candidate=yes]
+PASS DEL-01-06 S197 contains aca930622:projects/pec/v2/tests/config/test_loop_registry_contract.py [git=yes; candidate=yes]
 PASS DEL-02-03 S001 ancestor 189f205ff: [git=yes; candidate=yes]
 PASS DEL-02-03 S002 sha256 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-02-03 S003 sha256 aca930622:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
@@ -1272,4 +1278,4 @@ PASS DEL-02-07 S162 absent aca930622:projects/pec/execution/PKG-09_Dashboards/1_
 PASS DEL-02-07 S163 csv_cell aca930622:projects/pec/execution/_Decomposition/Deliverables.csv [git=yes; candidate=yes]
 PASS DEL-02-07 S164 contains aca930622:projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md [git=yes; candidate=yes]
 PASS DEL-02-07 S165 not_contains aca930622:projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md [git=yes; candidate=yes]
-RESULT PASS 1274/1274
+RESULT PASS 1280/1280

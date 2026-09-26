@@ -30,3 +30,5 @@ checklist exit=1 artifact=absent
 # - The printed "exit=" lines in controls 1 and 5 capture the exit of the last pipeline stage,
 #   not of the verifier or validator; the result lines above are the evidence. Control 5's
 #   validator output line is its failure message; the checklist refused with no artifact (QA 18).
+# - Label correction (verdict 01, finding 8): control 4 altered the first sha256 claim of
+#   claims/DEL-02-05.json, which is S003 on SOFTWARE_DECOMP.md at 189f205ff, not the PRD.
