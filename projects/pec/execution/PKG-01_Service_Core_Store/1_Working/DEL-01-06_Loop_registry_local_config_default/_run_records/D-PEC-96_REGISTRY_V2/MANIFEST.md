@@ -3,7 +3,7 @@
 **Status:** EXECUTED / VALIDATED by the manager. Independent verification is recorded in `VERIFIER_VERDICT_NN.md`; see `HANDOFF_STATE.md`.
 **Owning instrument:** `D-PEC-96` option A (revision 4), as the owner's ruling of 2026-09-26 resolves its six questions.
 **Executor:** WORKING_ITEMS (Type 1), graph node G1 (the act) of HELP_HUMAN undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`.
-**Act date:** 2026-09-26. The act script ran at 01:37 MDT (`apply_d96_run_time.txt`). `/etc/localtime` is America/Edmonton and `TZ` is unset. The product bytes carry no date.
+**Act date:** 2026-09-26. The act script started at 01:38:04 MDT. `apply_d96_run_time.txt` records that value; `date` wrote it immediately before the script, in the same command line. (Verdict 01 N1 corrected an earlier "01:37".) `/etc/localtime` is America/Edmonton and `TZ` is unset. The product bytes carry no date.
 **Branch:** `claude/pec-d96-registry-act`
 **Branch basis:** `origin/main` `f90320c1d110cad75d04c96c91a595b7eb244498` (PR #946 merge)
 **Act commit (product writes):** `c55362095a5b56e61bb57c588e741513324ea52c`. The run root and preflight were committed at `d7c43074199b20e83dc03e6690460aff14323fc4`, the verification outputs at `590066fddbd9c38e818e0eb32db477fe092c7429`, and `MEMORY.md` at `dd63560a76d6e581c6c2a316e2c5a13e61079c5e`.
@@ -104,7 +104,7 @@ the `loop_init_path` exist (`checks/basis_citations.out`).
 | `post_checks.sh` | manager-written, read-only: selection, mutation evidence, byte identity, basis citations, non-ASCII and vocabulary scans |
 | `containment.py` | manager-written, read-only: classifies `git diff --name-status origin/main...HEAD` against the write boundary |
 | `checks/` | every output, and `checks/COMMANDS.txt` (each command, cwd and exit code, in order) |
-| `MANIFEST.md`, `VALIDATION.md`, `HANDOFF_STATE.md` | this record |
+| `MANIFEST.md`, `VALIDATION.md`, `HANDOFF_STATE.md` | this record. Together they form the run record that the proposal's administrative grant calls `RUN.md`. The brief asked for this three-file form, after the D-PEC-95 precedent, so no separate `RUN.md` exists (verdict 01 N2) |
 | `VERIFIER_VERDICT_NN.md` | independent verifier verdicts |
 
 The earlier `_run_records/*` files (D-PEC-75, D-PEC-77, TASK_RUN_*) are unchanged.

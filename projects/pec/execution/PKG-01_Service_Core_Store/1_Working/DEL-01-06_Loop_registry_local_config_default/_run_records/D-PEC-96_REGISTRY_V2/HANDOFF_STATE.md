@@ -28,6 +28,19 @@ export of `f90320c1d` and a containment check. Verdicts are saved as
 `VERIFIER_VERDICT_NN.md` in this run root. The final state is recorded in the
 return file `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/G2_D96_REGISTRY_ACT.md`.
 
+- **Verdict 01** (candidate `a8e6fd959`): **PASS WITH NOTES**, with no BLOCKING
+  findings. It reproduced the act on a fresh `git archive` export of
+  `f90320c1d` with byte-identical output, reran every check with the same
+  results (mutation 19/19 CAUGHT, byte-identical to this run's output), and
+  found containment clean.
+  - N1 (non-blocking): `MANIFEST.md` misstated the act-script time. Repaired.
+  - N2 (note): `RUN.md` was substituted without disclosure. Repaired by
+    disclosure in `MANIFEST.md`.
+  - N3 and N6 are notes on bound bytes. They are carried below as residuals 9 and 10.
+  - N4 (`origin/main` moved) is carried as residual 11.
+  - N5 (the brief's hash cannot be recomputed from the repository) needs no action.
+- **Backcheck** of the N1/N2 repairs: see `VERIFIER_VERDICT_02.md`.
+
 ## Residuals (recorded, not repaired here)
 
 1. **Stale "declares `remaining-loop` now" sentences.** They are in the SOW-094 Notes cell,
@@ -55,6 +68,24 @@ return file `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA0
 8. **Loop records.** The work graph, central receipt, `docs/STATUS.md` and
    `README.md` (D-PEC-88), and any register-row status wording after merge
    belong to HELP_HUMAN. This act writes none of them.
+9. **Adapter stricter than the schema text (verdict 01 N3).** This is in the bound bytes and is mostly
+   inherited from version 1. Each case fails closed:
+   - The adapter rejects `2.0` and `1.0`, which JSON Schema `integer` admits.
+   - `loop_id` uniqueness and `loop_init_path` normalization are enforced but
+     not stated in the schema.
+   - The unknown-field location names the key, which the packet permits.
+
+   The home for this is a later packet or the S2 rebuild, alongside residual 5.
+10. **Probe-removal assertion (verdict 01 N6).** In the bound test bytes, the
+    `test_overlapping_profiles_are_rejected_with_location` probe-removal
+    assertion checks `FEED_PROFILE_VERSIONS` only. `mock.patch.dict` restores
+    both maps, so this is not a defect. If the test is revised later, add the
+    same assertion for `FEED_PROFILE_SURFACES`.
+11. **Basis movement (verdict 01 N4).** During the act, `origin/main` moved to
+    `53145aaeb` (PR #947, a Root change workflow and a PEC notice that defers
+    action). That change is disjoint from this candidate and merges cleanly. CI
+    and review must cover the actual merge candidate. If CI reports "Update the
+    PR base", that is reported to HELP_HUMAN, not repaired here.
 
 ## Execution disclosures
 
