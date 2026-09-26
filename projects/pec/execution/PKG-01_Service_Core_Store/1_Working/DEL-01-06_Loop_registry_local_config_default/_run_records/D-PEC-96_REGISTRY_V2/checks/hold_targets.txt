@@ -1,0 +1,13 @@
+v2/config/loops.json
+v2/config/loops.schema.json
+v2/src/pec_v2/core/ports/loop_registry.py
+v2/src/pec_v2/core/ports/__init__.py
+v2/src/pec_v2/core/__init__.py
+v2/src/pec_v2/adapters/config/loop_registry.py
+v2/tests/config/test_json_loop_registry.py
+v2/tests/config/test_loop_registry_contract.py
+v2/tests/config/fixtures/duplicate_loop_id.json
+v2/tests/config/fixtures/missing_loop_id.json
+v2/tests/config/fixtures/schema_version_1.json
+execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md
+execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2
