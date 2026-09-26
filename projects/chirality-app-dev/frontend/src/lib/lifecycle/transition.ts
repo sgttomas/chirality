@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { writeTextFileAtomically } from '../atomic-write';
 import {
@@ -60,6 +60,7 @@ export type TransitionErrorCode =
   | 'INVALID_AMENDMENT_REFERENCE'
   | 'AMENDMENT_NOT_ADMITTED'
   | 'AMENDMENT_CHECK_ERROR'
+  | 'HISTORY_NOT_PRESERVED'
   | 'INVALID_METADATA';
 
 export class LifecycleTransitionError extends Error {
@@ -99,6 +100,11 @@ export interface LifecycleTransitionContext {
    * runs the check; a reopening without an admitted decision is refused.
    */
   amendmentDecision?: AmendmentReopenDecision;
+  /**
+   * The deliverable the status file belongs to. The decision must name it;
+   * when omitted, the deliverable ID in the status title is used.
+   */
+  deliverableId?: string;
 }
 
 /** Context for `transitionStatusFile`. */
@@ -418,6 +424,40 @@ function validateLifecycleTransition(
   return { from, to, rule, actor, approvalSha, ruling, amendment, metadata };
 }
 
+const AMENDMENT_ID_PATTERN = /^SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+$/u;
+const AMENDMENT_FOLDER_PATTERN = /^(SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+)_/u;
+const DELIVERABLE_ID_IN_TEXT = /\bDEL-[0-9A-Za-z]+(?:-[0-9A-Za-z]+)+/;
+// The reopening marker the amendment check reads (AMENDMENT_ALREADY_USED).
+const REOPENING_MARKER = /reopened from ISSUED; amendment: (SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+)(?=[\s(;\]]|$)/gmu;
+
+/**
+ * The amendment ID a reference names: the ID itself, or the `SCA-..._` prefix
+ * of the last path component that carries one (a snapshot or decision folder).
+ */
+function requestedAmendmentId(reference: string): string | undefined {
+  const value = reference.trim();
+  if (AMENDMENT_ID_PATTERN.test(value)) {
+    return value;
+  }
+  const components = value.split(/[\\/]+/).filter(Boolean).reverse();
+  for (const component of components) {
+    const match = AMENDMENT_FOLDER_PATTERN.exec(component);
+    if (match) {
+      return match[1];
+    }
+  }
+  return undefined;
+}
+
+/** Reopening markers by amendment ID, counted. */
+function reopeningMarkers(content: string): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const match of content.matchAll(REOPENING_MARKER)) {
+    counts.set(match[1], (counts.get(match[1]) ?? 0) + 1);
+  }
+  return counts;
+}
+
 export function applyLifecycleTransition(
   currentStatusContent: string,
   targetStateInput: string,
@@ -445,6 +485,24 @@ export function applyLifecycleTransition(
         { from, to, amendment, refusalCode: decision.code }
       );
     }
+    // The decision must be for this request: the amendment it names and the
+    // deliverable this status file belongs to.
+    const expectedAmendment = amendment !== undefined ? requestedAmendmentId(amendment) : undefined;
+    const expectedDeliverable =
+      context.deliverableId ?? DELIVERABLE_ID_IN_TEXT.exec(parseStatusDocument(currentStatusContent).title)?.[0];
+    if (
+      expectedAmendment === undefined ||
+      decision.amendmentId !== expectedAmendment ||
+      expectedDeliverable === undefined ||
+      decision.deliverableId !== expectedDeliverable
+    ) {
+      throw new LifecycleTransitionError(
+        'AMENDMENT_NOT_ADMITTED',
+        `The amendment decision (${decision.amendmentId || '?'} for ${decision.deliverableId || '?'}) does not match ` +
+          `the request (${expectedAmendment ?? '?'} for ${expectedDeliverable ?? '?'})`,
+        { from, to, amendment }
+      );
+    }
     notes = reopenHistoryNote(decision, approvalSha);
   }
 
@@ -465,6 +523,20 @@ export function applyLifecycleTransition(
       throw new LifecycleTransitionError('INVALID_METADATA', error.message, error.details);
     }
     throw error;
+  }
+
+  // Safety net: a transition never loses a recorded reopening, which the
+  // amendment check relies on to refuse a second reopening (AMENDMENT_ALREADY_USED).
+  const before = reopeningMarkers(currentStatusContent);
+  const after = reopeningMarkers(updated.content);
+  for (const [amendmentId, count] of before) {
+    if ((after.get(amendmentId) ?? 0) < count) {
+      throw new LifecycleTransitionError(
+        'HISTORY_NOT_PRESERVED',
+        `The transition would drop the recorded reopening under ${amendmentId} from _STATUS.md`,
+        { from, to, amendmentId }
+      );
+    }
   }
 
   return {
@@ -488,6 +560,7 @@ export async function transitionStatusFile(
   context: LifecycleTransitionFileContext = {}
 ): Promise<LifecycleTransitionResult> {
   const existingContent = await readFile(statusFilePath, 'utf8');
+  const deliverableFolder = path.dirname(statusFilePath);
   const validated = validateLifecycleTransition(existingContent, targetStateInput, actorInput, options);
   let amendmentDecision: AmendmentReopenDecision | undefined;
   if (validated.amendment !== undefined) {
@@ -501,7 +574,7 @@ export async function transitionStatusFile(
     try {
       amendmentDecision = await checkAmendmentForReopen({
         workingRoot: context.projectRoot,
-        deliverablePath: path.dirname(statusFilePath),
+        deliverablePath: deliverableFolder,
         amendment: validated.amendment,
         // A reopening already recorded under this amendment is refused
         // (AMENDMENT_ALREADY_USED).
@@ -518,12 +591,25 @@ export async function transitionStatusFile(
       throw error;
     }
   }
+  let deliverableId: string | undefined;
+  if (amendmentDecision !== undefined) {
+    // The checker names the deliverable from its real folder name.
+    let folderName = path.basename(deliverableFolder);
+    try {
+      folderName = path.basename(await realpath(deliverableFolder));
+    } catch {
+      // Keep the lexical name; a mismatch is refused below.
+    }
+    deliverableId = folderName.split('_')[0];
+  }
+  // The amendment check runs without a lock: a concurrent write to _STATUS.md
+  // during it can be overwritten (App SPEC §4.3 known limit).
   const result = applyLifecycleTransition(
     existingContent,
     targetStateInput,
     actorInput,
     options,
-    { amendmentDecision }
+    { amendmentDecision, deliverableId }
   );
   await writeTextFileAtomically(statusFilePath, result.content);
   return result;

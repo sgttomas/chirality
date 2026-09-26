@@ -102,41 +102,6 @@ function toFieldLabel(key: string): string {
     .join(' ');
 }
 
-function mergeFields(
-  existing: StatusField[],
-  metadata: Record<string, string> | undefined
-): StatusField[] {
-  if (!metadata) {
-    return existing;
-  }
-
-  const merged = [...existing];
-  for (const [key, value] of Object.entries(metadata)) {
-    // Validate the raw key and value before trimming, so a trailing newline or a
-    // reserved label cannot slip through normalization.
-    assertWritableField(key, value);
-    const trimmedValue = value.trim();
-    if (!trimmedValue) {
-      continue;
-    }
-
-    const label = toFieldLabel(key);
-    assertWritableField(label, trimmedValue);
-    const existingIndex = merged.findIndex(
-      (field) => field.key.trim().toLowerCase() === label.toLowerCase()
-    );
-
-    if (existingIndex >= 0) {
-      merged[existingIndex] = { key: label, value: trimmedValue };
-      continue;
-    }
-
-    merged.push({ key: label, value: trimmedValue });
-  }
-
-  return merged;
-}
-
 function formatHistoryEntry(entry: StatusHistoryEntry): string {
   const actor = entry.actor.trim() || 'UNKNOWN';
   const notesSuffix = entry.notes?.trim() ? ` [${entry.notes.trim()}]` : '';
@@ -180,6 +145,64 @@ export function writeStatusDocument(input: StatusWriterInput): string {
   return lines.join('\n');
 }
 
+interface DocumentLine {
+  text: string;
+  /** The line terminator as found (`\n`, `\r\n`) or `''` for a final line without one. */
+  eol: string;
+}
+
+function splitDocumentLines(content: string): DocumentLine[] {
+  const lines: DocumentLine[] = [];
+  const pattern = /([^\n]*?)(\r?\n|$)/g;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(content)) !== null) {
+    if (match[0] === '' && pattern.lastIndex >= content.length) {
+      break;
+    }
+    lines.push({ text: match[1], eol: match[2] });
+    if (match[2] === '') {
+      break;
+    }
+  }
+  return lines;
+}
+
+function joinDocumentLines(lines: DocumentLine[]): string {
+  return lines.map((line) => line.text + line.eol).join('');
+}
+
+const FIELD_LINE = /^\*\*([^*]+):\*\*\s*(.*?)\s*$/;
+const HISTORY_HEADING = /^##\s+History\s*$/;
+const SECTION_HEADING = /^##\s+/;
+
+function formatTableHistoryRow(
+  date: string,
+  fromState: string,
+  toState: string,
+  actor: string,
+  notes: string | undefined
+): string | undefined {
+  const cells = [date, fromState, toState, actor, notes ?? ''];
+  if (cells.some((value) => value.includes('|'))) {
+    return undefined;
+  }
+  return `| ${cells.join(' | ')} |`;
+}
+
+/**
+ * Applies a lifecycle transition to an existing `_STATUS.md` without rebuilding
+ * it. The writer owns only these parts:
+ *
+ * - the values of the first `**Current State:**` and `**Last Updated:**` lines;
+ * - the metadata fields it sets, removes or updates among the field lines above
+ *   `## History`;
+ * - the one history line it appends at the end of the `## History` section (or
+ *   in place of a lone `-` placeholder).
+ *
+ * Every other line — the title, other fields, every existing history line
+ * (including lines the parser does not read), sections after `## History` and
+ * any other content — is kept verbatim and in order, with its line endings.
+ */
 export function updateStatusDocument(
   content: string,
   input: StatusUpdateInput
@@ -197,31 +220,110 @@ export function updateStatusDocument(
       'History notes must be one line without brackets or control characters'
     );
   }
-  const nextHistory: StatusHistoryEntry[] = [
-    ...parsed.history,
-    {
-      date,
-      state: targetState,
-      actor,
-      ...(notes ? { notes } : {}),
-      source: 'list',
-      raw: ''
+
+  const lines = splitDocumentLines(content);
+  const docEol = lines.find((line) => line.eol !== '')?.eol ?? '\n';
+  const historyIndex = lines.findIndex((line) => HISTORY_HEADING.test(line.text.trim()));
+  if (historyIndex < 0) {
+    throw new StatusWriteError("Missing '## History' section");
+  }
+
+  // Owned lifecycle fields: the first occurrences, which the parser reads.
+  const currentIndex = lines.findIndex((line) => /^\*\*Current State:\*\*\s*(.+?)\s*$/.test(line.text));
+  const updatedIndex = lines.findIndex((line) => /^\*\*Last Updated:\*\*\s*(.+?)\s*$/.test(line.text));
+  if (currentIndex < 0 || updatedIndex < 0) {
+    throw new StatusWriteError('Missing lifecycle fields');
+  }
+  lines[currentIndex] = { ...lines[currentIndex], text: `**Current State:** ${targetState}` };
+  lines[updatedIndex] = { ...lines[updatedIndex], text: `**Last Updated:** ${date}` };
+
+  // Metadata fields: updated in place or added after the last field line above
+  // `## History`.
+  let headerEnd = historyIndex;
+  for (const [key, value] of Object.entries(input.metadata ?? {})) {
+    // Validate the raw key and value before trimming, so a trailing newline or a
+    // reserved label cannot slip through normalization.
+    assertWritableField(key, value);
+    const trimmedValue = value.trim();
+    if (!trimmedValue) {
+      continue;
     }
-  ];
+    const label = toFieldLabel(key);
+    assertWritableField(label, trimmedValue);
+    const text = `**${label}:** ${trimmedValue}`;
+    const existing = lines
+      .slice(0, headerEnd)
+      .findIndex((line) => FIELD_LINE.exec(line.text)?.[1].trim().toLowerCase() === label.toLowerCase());
+    if (existing >= 0) {
+      lines[existing] = { ...lines[existing], text };
+      continue;
+    }
+    let insertAt = -1;
+    for (let index = 0; index < headerEnd; index += 1) {
+      if (FIELD_LINE.test(lines[index].text)) {
+        insertAt = index + 1;
+      }
+    }
+    if (insertAt < 0) {
+      insertAt = headerEnd;
+    }
+    lines.splice(insertAt, 0, { text, eol: docEol });
+    headerEnd += 1;
+  }
 
+  // Removed fields (after metadata, so metadata cannot restore them).
   const removed = new Set((input.removeFields ?? []).map(normalizeFieldLabel));
-  const nextFields = mergeFields(parsed.extraFields, input.metadata).filter(
-    (field) => !removed.has(normalizeFieldLabel(field.key))
-  );
+  if (removed.size > 0) {
+    for (let index = headerEnd - 1; index >= 0; index -= 1) {
+      const field = FIELD_LINE.exec(lines[index].text);
+      if (field && removed.has(normalizeFieldLabel(field[1]))) {
+        lines.splice(index, 1);
+        headerEnd -= 1;
+      }
+    }
+  }
 
-  const nextContent = writeStatusDocument({
-    title: parsed.title,
-    currentState: targetState,
-    lastUpdated: date,
-    history: nextHistory,
-    extraFields: nextFields
+  // Append the history line at the end of the `## History` section, in the
+  // section's format; every existing line stays.
+  let sectionEnd = lines.length;
+  for (let index = headerEnd + 1; index < lines.length; index += 1) {
+    if (SECTION_HEADING.test(lines[index].text.trim())) {
+      sectionEnd = index;
+      break;
+    }
+  }
+  let lastContent = headerEnd;
+  for (let index = headerEnd + 1; index < sectionEnd; index += 1) {
+    if (lines[index].text.trim() !== '') {
+      lastContent = index;
+    }
+  }
+  const tableFormat = parsed.history.length > 0 && parsed.history.every((entry) => entry.source === 'table');
+  const listLine = formatHistoryEntry({
+    date,
+    state: targetState,
+    actor,
+    ...(notes ? { notes } : {}),
+    source: 'list',
+    raw: ''
   });
+  const historyLine =
+    (tableFormat
+      ? formatTableHistoryRow(date, parsed.currentState, targetState, actor, notes)
+      : undefined) ?? listLine;
+  const sectionLines = lines.slice(headerEnd + 1, sectionEnd).filter((line) => line.text.trim() !== '');
+  if (sectionLines.length === 1 && sectionLines[0].text.trim() === '-') {
+    lines[lastContent] = { ...lines[lastContent], text: historyLine };
+  } else {
+    if (lines[lastContent].eol === '') {
+      lines[lastContent] = { ...lines[lastContent], eol: docEol };
+      lines.splice(lastContent + 1, 0, { text: historyLine, eol: '' });
+    } else {
+      lines.splice(lastContent + 1, 0, { text: historyLine, eol: docEol });
+    }
+  }
 
+  const nextContent = joinDocumentLines(lines);
   return {
     content: nextContent,
     parsed: parseStatusDocument(nextContent)

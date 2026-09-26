@@ -938,3 +938,245 @@ describe('gate-evidence metadata is HUMAN-only (owner decision D2, 2026-09-26)',
     expect(result.content).toContain('**Authorization Note:** not gate evidence');
   });
 });
+
+describe('status history is preserved across transitions (review B1)', () => {
+  const MODIFY_ROW = {
+    AmendmentID: 'SCA-001',
+    ActionSeq: '4',
+    ActionType: 'MODIFY',
+    EntityType: 'DELIVERABLE',
+    EntityID: 'DEL-05-03',
+    ScopeChanging: 'NO'
+  };
+  const REOPEN = { approvalSha: 'def5678', amendment: 'SCA-001' };
+  // The line tools/scaffolding/write_status.sh appends for a reopening.
+  const ROOT_REOPEN_LINE = (actor: string): string =>
+    `- 2026-09-20 — State set to IN_PROGRESS (${actor}) [reopened from ISSUED; amendment: SCA-001 ` +
+    '(execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); action: ' +
+    'execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 4 MODIFY; approval SHA: abc1234]';
+  const TRAILING = '## Notes\n\nFree text the writer does not own.\n**Reviewer:** kept here\n\n### Sub-heading\n- a bullet\n';
+
+  async function writeFixture(status: string): Promise<string> {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-history-'));
+    const deliverable = path.join(tmpDir, 'execution', 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+    await mkdir(deliverable, { recursive: true });
+    const statusPath = path.join(deliverable, '_STATUS.md');
+    await writeFile(statusPath, status, 'utf8');
+    await writeAmendmentRecords({
+      scopeChangeRoot: path.join(tmpDir, 'execution', '_ScopeChange'),
+      manifestBase: tmpDir,
+      rows: [MODIFY_ROW]
+    });
+    return statusPath;
+  }
+
+  async function replay(statusPath: string): Promise<void> {
+    // The App checks and issues the reopened deliverable, then tries to reopen
+    // it again under the same amendment.
+    await transitionStatusFile(statusPath, 'CHECKING', 'HUMAN', { date: '2026-09-21', approvalSha: 'abc1234' });
+    await transitionStatusFile(statusPath, 'ISSUED', 'HUMAN', { date: '2026-09-22', approvalSha: 'abc1234' });
+    await expect(
+      transitionStatusFile(
+        statusPath,
+        'IN_PROGRESS',
+        'HUMAN',
+        { ...REOPEN, date: '2026-09-23' },
+        { projectRoot: tmpDir }
+      )
+    ).rejects.toMatchObject({
+      code: 'AMENDMENT_NOT_ADMITTED',
+      details: expect.objectContaining({ refusalCode: 'AMENDMENT_ALREADY_USED' })
+    });
+  }
+
+  it('refuses a second reopening after write_status.sh appended the first below a trailing section', async () => {
+    // write_status.sh appends its history line at the end of the file.
+    const status = `${statusAt('IN_PROGRESS')}\n${TRAILING}${ROOT_REOPEN_LINE('human')}\n`;
+    const statusPath = await writeFixture(status);
+    await replay(statusPath);
+    const after = await readFile(statusPath, 'utf8');
+    expect(after).toContain(ROOT_REOPEN_LINE('human'));
+    expect(after).toContain(TRAILING);
+  });
+
+  it('refuses a second reopening when the first line carries an actor with a parenthesis', async () => {
+    const line = ROOT_REOPEN_LINE('Ryan (owner)');
+    const status = `${statusAt('IN_PROGRESS')}${line}\n\n${TRAILING}`;
+    const statusPath = await writeFixture(status);
+    // The parser does not read that history line; it is kept regardless.
+    expect(parseStatusDocument(status).history.some((entry) => entry.raw === line)).toBe(false);
+    await replay(statusPath);
+    await expect(readFile(statusPath, 'utf8')).resolves.toContain(line);
+  });
+
+  it('keeps a trailing section byte-for-byte, including CRLF line endings', () => {
+    const crlf = `${statusAt('INITIALIZED')}\n${TRAILING}`.replace(/\n/g, '\r\n');
+    const result = applyLifecycleTransition(crlf, 'IN_PROGRESS', 'WORKING_ITEMS', { date: '2026-02-26' });
+    expect(result.content.endsWith(TRAILING.replace(/\n/g, '\r\n'))).toBe(true);
+    expect(result.content).toContain(
+      '- 2026-02-25 - State set to INITIALIZED (HUMAN)\r\n- 2026-02-26 - State set to IN_PROGRESS (WORKING_ITEMS)\r\n'
+    );
+    expect(result.content).not.toMatch(/[^\r]\n/);
+  });
+
+  it('keeps history lines the parser does not read, in order, and appends after them', () => {
+    const status = statusAt('INITIALIZED').replace(
+      '- 2026-02-21 - State set to OPEN (PREPARATION)\n',
+      '- 2026-02-21 - State set to OPEN (PREPARATION)\n- 2026-02-22 manual note (not a transition)\n  continued detail\n'
+    );
+    const result = applyLifecycleTransition(status, 'IN_PROGRESS', 'WORKING_ITEMS', { date: '2026-02-26' });
+    expect(result.content).toBe(
+      status.replace(
+        '**Current State:** INITIALIZED\n**Last Updated:** 2026-02-25',
+        '**Current State:** IN_PROGRESS\n**Last Updated:** 2026-02-26'
+      ) + '- 2026-02-26 - State set to IN_PROGRESS (WORKING_ITEMS)\n'
+    );
+  });
+
+  it('changes only the owned fields and adds gate fields above the history', () => {
+    const status = `${statusAt('IN_PROGRESS').replace(
+      '**Last Updated:** 2026-02-25\n',
+      '**Last Updated:** 2026-02-25\n**Directive:** kept\n'
+    )}\n${TRAILING}`;
+    const result = applyLifecycleTransition(status, 'CHECKING', 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234',
+      metadata: { authorizationBasis: 'owner ruling D-001' }
+    });
+    expect(result.content).toBe(
+      status
+        .replace('**Current State:** IN_PROGRESS', '**Current State:** CHECKING')
+        .replace('**Last Updated:** 2026-02-25', '**Last Updated:** 2026-02-26')
+        .replace(
+          '**Directive:** kept\n',
+          '**Directive:** kept\n**Authorization Basis:** owner ruling D-001\n**Checking Approval SHA:** abc1234\n'
+        )
+        .replace(
+          '- 2026-02-25 - State set to IN_PROGRESS (HUMAN)\n',
+          '- 2026-02-25 - State set to IN_PROGRESS (HUMAN)\n- 2026-02-26 - State set to CHECKING (HUMAN)\n'
+        )
+    );
+  });
+
+  it('appends a table row to a table-format history and keeps its rows', () => {
+    const result = applyLifecycleTransition(TABLE_FORMAT_STATUS, 'IN_PROGRESS', 'WORKING_ITEMS', {
+      date: '2026-02-26'
+    });
+    expect(result.content).toBe(
+      TABLE_FORMAT_STATUS.replace('**Current State:** SEMANTIC_READY', '**Current State:** IN_PROGRESS').replace(
+        '**Last Updated:** 2026-02-23',
+        '**Last Updated:** 2026-02-26'
+      ) + '| 2026-02-26 | SEMANTIC_READY | IN_PROGRESS | WORKING_ITEMS |  |\n'
+    );
+    expect(parseStatusDocument(result.content).history.map((entry) => entry.state)).toEqual([
+      'OPEN',
+      'INITIALIZED',
+      'SEMANTIC_READY',
+      'IN_PROGRESS'
+    ]);
+  });
+
+  it('refuses a decision for another amendment or deliverable', () => {
+    const decision: AmendmentReopenDecision = {
+      admitted: true,
+      code: 'ADMITTED',
+      reason: 'fixture',
+      deliverableId: 'DEL-05-03',
+      amendmentId: 'SCA-001',
+      mode: 'working-tree',
+      anchored: false,
+      atCommit: '',
+      executionRoot: 'execution',
+      scopeChangeRoot: 'execution/_ScopeChange',
+      group3Snapshot: 'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26',
+      group3Decision: 'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md',
+      group2Manifest: 'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv',
+      registerPath: 'execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv',
+      registerSha256: 'a'.repeat(64),
+      actionSeq: '4',
+      actionType: 'MODIFY',
+      scopeChanging: 'NO',
+      notes: []
+    };
+    const issued = statusAt('ISSUED');
+    const options = { date: '2026-02-27', ...REOPEN };
+    const mismatches: [Partial<AmendmentReopenDecision>, { deliverableId?: string }][] = [
+      [{ amendmentId: 'SCA-002' }, {}],
+      [{ deliverableId: 'DEL-09-09' }, {}],
+      [{}, { deliverableId: 'DEL-09-09' }]
+    ];
+    for (const [override, context] of mismatches) {
+      expect(() =>
+        applyLifecycleTransition(issued, 'IN_PROGRESS', 'HUMAN', options, {
+          amendmentDecision: { ...decision, ...override },
+          ...context
+        })
+      ).toThrowError(expect.objectContaining({ code: 'AMENDMENT_NOT_ADMITTED' }));
+    }
+    // A path reference names its amendment by the decision folder.
+    const byPath = applyLifecycleTransition(
+      issued,
+      'IN_PROGRESS',
+      'HUMAN',
+      { ...options, amendment: `${decision.group3Snapshot}/DECISION.md` },
+      { amendmentDecision: decision }
+    );
+    expect(byPath.to).toBe('IN_PROGRESS');
+  });
+});
+
+describe('amendment record size bounds', () => {
+  const REOPEN = { date: '2026-02-27', approvalSha: 'def5678', amendment: 'SCA-001' };
+
+  async function writeFixture(): Promise<{ statusPath: string; group3Dir: string }> {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-bounds-'));
+    const deliverable = path.join(tmpDir, 'execution', 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+    await mkdir(deliverable, { recursive: true });
+    const statusPath = path.join(deliverable, '_STATUS.md');
+    await writeFile(statusPath, statusAt('ISSUED'), 'utf8');
+    const records = await writeAmendmentRecords({
+      scopeChangeRoot: path.join(tmpDir, 'execution', '_ScopeChange'),
+      manifestBase: tmpDir,
+      rows: [
+        {
+          AmendmentID: 'SCA-001',
+          ActionSeq: '1',
+          ActionType: 'MODIFY',
+          EntityType: 'DELIVERABLE',
+          EntityID: 'DEL-05-03',
+          ScopeChanging: 'NO'
+        }
+      ]
+    });
+    return { statusPath, group3Dir: records.group3Dir };
+  }
+
+  it('refuses an oversize record as AMENDMENT_CHECK_ERROR without writing', async () => {
+    const { statusPath, group3Dir } = await writeFixture();
+    const group2 = path.join(path.dirname(group3Dir), 'SCA-001_GROUP-2_2026-09-26', 'ACCEPTED_MANIFEST.csv');
+    await writeFile(group2, Buffer.concat([await readFile(group2), Buffer.alloc(5 * 1024 * 1024, 0x20)]));
+    let caught: unknown;
+    try {
+      await transitionStatusFile(statusPath, 'IN_PROGRESS', 'HUMAN', REOPEN, { projectRoot: tmpDir });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toMatchObject({ code: 'AMENDMENT_CHECK_ERROR' });
+    expect((caught as Error).message).toContain('amendment records are read up to 5242880 bytes');
+    await expect(readFile(statusPath, 'utf8')).resolves.toBe(statusAt('ISSUED'));
+  });
+
+  it('reads only a bounded prefix of DECISION.md', async () => {
+    const { statusPath, group3Dir } = await writeFixture();
+    await writeFile(
+      path.join(group3Dir, 'DECISION.md'),
+      Buffer.concat([
+        Buffer.from('# SCA-001 checkpoint group 3 — accepted\n', 'utf8'),
+        Buffer.alloc(80 * 1024, 0x78),
+        Buffer.from([0xff, 0xfe])
+      ])
+    );
+    const result = await transitionStatusFile(statusPath, 'IN_PROGRESS', 'HUMAN', REOPEN, { projectRoot: tmpDir });
+    expect(result.to).toBe('IN_PROGRESS');
+  });
+});

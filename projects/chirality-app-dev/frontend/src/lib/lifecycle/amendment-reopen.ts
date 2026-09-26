@@ -40,12 +40,15 @@
  * Python path, `realpath`, `csv`, `str.strip`, `str.splitlines` and `repr`
  * behaviour is reproduced so both checkers decide alike; the parity test
  * `src/__tests__/lib/amendment-reopen-parity.test.ts` compares them. The
- * project root must be given (there is no `git rev-parse` fallback). The check
+ * project root must be given (there is no `git rev-parse` fallback). Records
+ * over `MAX_RECORD_BYTES` are refused as operational errors, and only the first
+ * `DECISION_PREFIX_BYTES` of a group-3 `DECISION.md` are read (up to its last
+ * complete line), so bytes beyond that prefix are not decoded. The check
  * reads recorded structure and hashes only; it grants nothing (K-AUTH-1).
  */
 import { createHash } from 'node:crypto';
 import type { Stats } from 'node:fs';
-import { lstat, readdir, readFile, readlink, realpath, stat } from 'node:fs/promises';
+import { lstat, open, readdir, readlink, realpath, stat } from 'node:fs/promises';
 import nodePath from 'node:path';
 
 export const AMENDMENT_REOPEN_ADMITTED = 'ADMITTED';
@@ -141,6 +144,11 @@ class Refusal extends Error {
 }
 
 class RecordReadError extends Error {}
+
+/** Largest amendment record read whole (App precedent: 5 MiB). */
+export const MAX_RECORD_BYTES = 5 * 1024 * 1024;
+/** Bytes of a group-3 `DECISION.md` read for its first non-blank line. */
+export const DECISION_PREFIX_BYTES = 64 * 1024;
 
 // ---------------------------------------------------------------------------
 // Python string and regular-expression behaviour
@@ -763,8 +771,45 @@ class WorkTree {
     return (await readdir(rel ? pyJoin(this.proj, rel) : this.proj)).sort(compareCodePoints);
   }
 
+  /** The whole record; one over `MAX_RECORD_BYTES` is an operational error. */
   async read(entry: Entry): Promise<Buffer> {
-    return readFile(entry.path ? pyJoin(this.proj, entry.path) : this.proj);
+    const handle = await open(entry.path ? pyJoin(this.proj, entry.path) : this.proj, 'r');
+    try {
+      const { size } = await handle.stat();
+      if (size > MAX_RECORD_BYTES) {
+        throw new RecordReadError(
+          `${entry.path} is ${size} bytes; amendment records are read up to ${MAX_RECORD_BYTES} bytes`
+        );
+      }
+      return await handle.readFile();
+    } finally {
+      await handle.close();
+    }
+  }
+
+  /**
+   * At most `limit` bytes from the start of the record, cut after the last
+   * complete line when the record is longer: enough for a first line.
+   */
+  async readPrefix(entry: Entry, limit: number): Promise<Buffer> {
+    const handle = await open(entry.path ? pyJoin(this.proj, entry.path) : this.proj, 'r');
+    try {
+      const buffer = Buffer.alloc(limit + 1);
+      let filled = 0;
+      while (filled < buffer.length) {
+        const { bytesRead } = await handle.read(buffer, filled, buffer.length - filled, filled);
+        if (bytesRead === 0) {
+          break;
+        }
+        filled += bytesRead;
+      }
+      if (filled <= limit) {
+        return buffer.subarray(0, filled);
+      }
+      return buffer.subarray(0, buffer.subarray(0, limit).lastIndexOf(0x0a) + 1);
+    } finally {
+      await handle.close();
+    }
   }
 }
 
@@ -995,7 +1040,8 @@ async function acceptedGroup3(
       problems.push(`${name} lacks DECISION.md or ACCEPTED_MANIFEST.csv`);
       continue;
     }
-    const line = firstLine(decodeUtf8Sig(await store.read(decision), decision.path));
+    // Only the first non-blank line counts, so a bounded prefix is read.
+    const line = firstLine(decodeUtf8Sig(await store.readPrefix(decision, DECISION_PREFIX_BYTES), decision.path));
     if (heading.test(line)) {
       return [folderPath, decision.path];
     }

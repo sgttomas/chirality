@@ -12,7 +12,12 @@
   HUMAN actor. Known limit: no git, so the Root-only at-commit checks
   (`APPROVAL_SHA_UNREACHABLE`, `APPROVAL_SHA_NOT_ANCESTOR`, records read at the
   approval commit) are not made and uncommitted record edits are not detected;
-  `write_status.sh` is the anchored check. No lifecycle change. Evidence:
+  `write_status.sh` is the anchored check. Fixed here: a pre-existing defect
+  where every transition rebuilt `_STATUS.md` and dropped trailing sections and
+  unread history lines (including `write_status.sh` reopening lines). The
+  writer now edits in place, and a transition that would drop a reopening
+  marker is refused (`HISTORY_NOT_PRESERVED`). A lock-free check-to-write race
+  remains a known limit. No lifecycle change. Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-AMENDMENT-REOPEN-2026-09-26/RECEIPT.md).
 - 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the transition validator, API
   and MCP tool now admit the human-ruled `CHECKING -> IN_PROGRESS` reversal for

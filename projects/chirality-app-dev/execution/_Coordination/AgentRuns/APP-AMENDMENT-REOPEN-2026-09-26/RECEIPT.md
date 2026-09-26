@@ -89,6 +89,57 @@ recorded here only as part of the quoted decision.
   Receipt-267 and the tranche manifest
   `docs/governance_harness/tranche_manifests/APP-AMENDMENT-REOPEN-20260926.yaml`.
 
+## Review fixes (on `2a0e9841d`)
+
+- **B1: a pre-existing defect, fixed here.** Every App transition rebuilt
+  `_STATUS.md` from its parsed form. That dropped every section after
+  `## History`, and every history line the list pattern does not read, such as
+  an actor containing `)`. It also dropped the reopening line `write_status.sh`
+  appends at the end of the file. The reviewer's replay then passed:
+  1. `write_status.sh` reopens under SCA-001.
+  2. The App moves the deliverable to CHECKING, and the rewrite drops the line.
+  3. The App moves it to ISSUED.
+  4. The App reopens again under SCA-001, and that was ADMITTED.
+
+  `updateStatusDocument` now edits in place. It changes only:
+  - the first `Current State` and `Last Updated` values;
+  - the metadata fields it sets, updates or removes above `## History`;
+  - the one history line it appends at the end of the History section (a table
+    row for table-format history).
+
+  Everything else is kept verbatim, in order and with its line endings.
+  `applyLifecycleTransition` also refuses (`HISTORY_NOT_PRESERVED`) a transition
+  whose output would drop any `reopened from ISSUED; amendment: <ID>` marker of
+  its input.
+  - Tests cover the replay with a trailing section, the replay with an actor
+    containing `)`, a CRLF trailing section kept byte-for-byte, an unread history
+    line, owned-field edits and table history.
+  - Negative control: with the old writer in place, the six new preservation
+    tests fail, and both replays stop at `HISTORY_NOT_PRESERVED`.
+- **Scan of all 698 tracked `_STATUS.md` files** (NUL-separated list). Each file
+  was copied into memory and given a legal next transition through
+  `applyLifecycleTransition`, or, for the one ISSUED file, through the writer
+  alone.
+  - 175 files do not parse for the App (163 `INVALID_STATE`, such as `RETIRED`;
+    12 `INVALID_STATUS_FORMAT`), so the App cannot transition them.
+  - For the 523 others, every original line is kept in order, apart from the
+    owned field values, with nothing added but owned field lines and the new
+    history line: 0 files lost content. 110 of them have a trailing section and
+    345 have history lines the parser does not read.
+  - On the same 523 files, the old writer rewrote or dropped non-owned lines in
+    every one, 3,909 lines in all.
+- `applyLifecycleTransition` now requires the decision to name the requested
+  amendment and the deliverable, and refuses one that does not
+  (`AMENDMENT_NOT_ADMITTED`). The requested amendment is the ID given, or the ID
+  of the snapshot or decision folder a path names. The deliverable is the one
+  whose folder `transitionStatusFile` reads, or the ID in the status title.
+- Size bounds: the checker reads amendment records up to 5 MiB, the App
+  precedent, and refuses a larger one as `AMENDMENT_CHECK_ERROR`. Of a group-3
+  `DECISION.md` it reads only the first 64 KiB, up to the last complete line,
+  because only the first non-blank line counts.
+- App SPEC §4.3 states the normalized-label rule exactly, the in-place writer
+  rule and the check-to-write race.
+
 ## D2 caller scan
 
 - Tracked `_STATUS.md` files (NUL-separated `git ls-files -z`): 698. The
@@ -135,6 +186,14 @@ regeneration; the Root validators.
 - The Git work-tree top level is found by the nearest `.git` directory or file.
   `GIT_DIR`, `GIT_CEILING_DIRECTORIES` and similar git discovery settings are
   not honoured.
+- Check-to-write race: `transitionStatusFile` reads `_STATUS.md`, runs the
+  asynchronous amendment check and rewrites the file with no lock. A concurrent
+  write inside that window can be lost, as for every App transition.
+- The App's size bounds differ from the Python checker, which reads records
+  whole. An App refusal of a record over 5 MiB is `AMENDMENT_CHECK_ERROR`.
+  Invalid UTF-8 beyond the 64 KiB `DECISION.md` prefix is not decoded, so the
+  App admits where Python would stop with a usage error. The parity fixtures
+  stay within both bounds.
 - The port follows the Root checker at `5038f2554`. A later Root change needs a
   matching App change and a regenerated `expected.json`; `generate_expected.py
   --check` reports the drift.
