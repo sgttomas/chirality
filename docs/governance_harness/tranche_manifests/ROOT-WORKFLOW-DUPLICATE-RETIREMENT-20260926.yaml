@@ -20,7 +20,11 @@ instruction_surface_paths:
   - workflows/index.json
   - workflows/README.md
   - workflows/domain-documents/WORKFLOW.md
+  - workflows/project-setup/resources/method.md
+  - tools/validation/build_workflow_index.py
   - tools/validation/test_workflow_catalog.py
+  - tools/workflow_runtime/resolve_workflow.py
+  - tools/workflow_runtime/test_resolve_workflow.py
   - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-DUPLICATE-RETIREMENT-20260926.yaml
 m2_gate:
   authorization: >-
@@ -50,5 +54,7 @@ scope_limits:
   - Retires only the six workflow packages; the canonical skills remain and carry the methods.
   - Before retirement, execution-critical content missing from the skills was ported (exact _STATUS.md form, scaffold tool operations, research packet command and return fields, diagnosis and consistency write limits, blocking labels for review findings).
   - The legacy-method ledger format and Runtime parsers are unchanged; last revisions are recorded in workflows/README.md.
+  - The reference resolver routes a legacy agent whose historical workflow was retired to its recorded canonical successor and records that mapping; the index validator rejects a retired-role workflow removed without a successor.
+  - project-setup's status step is aligned with the preparation skill because write_status.sh cannot initialize the scaffolder's empty stub.
   - drawing-titleblock-page, superseded packages, and all other workflows are unchanged apart from one link repair.
   - Historical run evidence and pinned identities are not rewritten.

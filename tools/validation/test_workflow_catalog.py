@@ -105,6 +105,7 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert all(sorted(orders) == list(range(len(orders))) for orders in groups.values())
     assert group_identity == {key: {(label, order)} for order, (key, label, _) in enumerate(SPECIALIST_GROUPS)}
     assert workflows["semantic-matrix-build"]["navigation"]["tier"] == "supporting"
+    assert workflows["scope-of-work"]["navigation"]["tier"] == "primary"
     retired = {"deliverable-consistency", "preparation", "proposal-format", "researcher", "software-code-review", "software-defect-diagnosis"}
     assert not retired & set(workflows)
     assert all(index["legacy"]["convertedWorkflowAliases"][name] == {"kind": "skill", "name": name} for name in retired)
@@ -447,3 +448,13 @@ def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     assert "LEGACY_ACCEPTED_GATE_POINTER" in contract
     assert "Gate6_Publication_Manifest.csv" in contract
     assert "clearly label that compatibility basis" in method
+
+
+def test_retired_role_workflow_requires_a_catalog_package_or_successor(tmp_path):
+    root = _fixture_root(tmp_path)
+    ledger = root / "workflows" / "legacy-agents.json"
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"LIVE": {"role": "WORKING_ITEMS", "workflow": CORE[0]}}}))
+    validate_and_build(root)
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"GONE": {"role": "TASK", "workflow": "removed"}}}))
+    with pytest.raises(ValueError, match="removed without a canonical successor"):
+        validate_and_build(root)

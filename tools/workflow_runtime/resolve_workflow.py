@@ -255,6 +255,7 @@ def resolve(root: Path, role: str, workflow=None, task_skill=None, resources=(),
     if not isinstance(registry, dict) or registry.get('schema_version') != 1 or not isinstance(registry.get('roles'), dict) or role not in registry['roles']:
         raise ValueError('unsupported registry or unknown role')
     alias = None
+    retired_route = None
     if legacy_agent:
         aliases = json.loads(contained(root, 'workflows/legacy-agents.json').read_text())
         alias = aliases['aliases'].get(legacy_agent)
@@ -263,12 +264,26 @@ def resolve(root: Path, role: str, workflow=None, task_skill=None, resources=(),
         if alias.get('workflow'):
             if workflow is not None:
                 raise ValueError('conflicting Workflow/legacy-agent selections')
-            _, library = load_catalog_identity(root)
-            workflow = f"{library['sourceRootId']}:{library['source']}:workflow:{alias['workflow']}"
+            if (root / 'workflows' / alias['workflow'] / 'WORKFLOW.md').is_file():
+                _, library = load_catalog_identity(root)
+                workflow = f"{library['sourceRootId']}:{library['source']}:workflow:{alias['workflow']}"
+            else:
+                # The historical workflow package was retired; route to the
+                # recorded canonical successor and record that decision.
+                successor = alias.get('canonical_successor')
+                if not isinstance(successor, dict):
+                    raise ValueError(f"legacy agent workflow was retired without a canonical successor: {alias['workflow']}")
+                retired_route = {'kind': successor['kind'], 'name': successor['name']}
+                methods = [retired_route, *methods]
         if stage and alias.get('stage') and stage != alias['stage']:
             raise ValueError('conflicting legacy stage')
         stage = stage or alias.get('stage')
     selection = normalize_method_selection(root, workflow, task_skill, methods)
+    if retired_route is not None:
+        selection['mapping_decisions'].append({
+            'field': 'legacyAgent', 'original': legacy_agent, 'historicalWorkflow': alias['workflow'],
+            'mapping': 'retired-workflow-successor', 'resolved': dict(selection['resolved_methods'][0]),
+        })
     selected_methods = selection['resolved_methods']
     role_config = registry['roles'][role]
     if not isinstance(role_config, dict) or not isinstance(role_config.get('tools'), list) or not isinstance(role_config.get('instruction'), str):

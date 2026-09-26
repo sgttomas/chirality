@@ -11,4 +11,4 @@ Trace changed behavior through relevant callers, interfaces, persistence, error 
 
 Report only actionable findings. Each finding should identify a precise location, the triggering condition, concrete impact, supporting evidence, and remediation direction. Mark each finding blocking or non-blocking and order findings by severity. Separate confirmed defects from residual risk and missing verification.
 
-Conclude whether the implementation return is suitable for manager fan-in and state the remaining risk. Review is read-only unless the request separately authorizes edits; it does not perform lifecycle acceptance.
+Conclude whether the implementation return is suitable for manager fan-in and state the remaining risk. Review is read-only unless the request separately authorizes edits; it does not install dependencies, release, run unregistered commands, or perform lifecycle acceptance.

@@ -16,8 +16,9 @@
 
 Resolve commands against the tool root.
 
-- Package or category hierarchy: `tools/scaffolding/scaffold_package.sh`.
-- Deliverable or knowledge-type folder: `tools/scaffolding/scaffold_deliverable.sh <package-or-category>/1_Working <ID> <Label>`. It creates `{ID}_{Label}` under the parent's `1_Working/` with empty control-file stubs. Add `--memory` only when `MEMORY.md` is selected and authorized; the tool refuses when a legacy `_MEMORY.md` exists, so report that instead of working around it.
+- Package or category hierarchy: `tools/scaffolding/scaffold_package.sh <EXECUTION_ROOT> <ID> <Label>`.
+- Identifier check: `tools/validation/validate_id_format.sh <PKG|DEL|CAT|KTY> <ID>`.
+- Deliverable or knowledge-type folder: `tools/scaffolding/scaffold_deliverable.sh <package-or-category>/1_Working <ID> <Label>`. It creates `{ID}_{Label}` under the parent's `1_Working/` with empty control-file stubs. Add `--memory` as the fourth argument only when `MEMORY.md` is selected and authorized; the tool refuses when a legacy `_MEMORY.md` exists, so report that instead of working around it.
 - Aggregation prerequisites: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Aggregation`, then create any missing `_Aggregation/_Templates/AGGREGATION_BRIEF_TEMPLATE.md` (neutral headings only) and `_Aggregation/_Templates/TARGET_SCHEMA_TEMPLATE.csv` (header row only).
 - Domain tool roots: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Aggregation Hypergraph` and `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Evaluation HypergraphClosure`.
 
@@ -33,14 +34,41 @@ Do not normalize or embellish accepted field values. Use `TBD` only when the acc
 
 ## Dependency file
 
-`_DEPENDENCIES.md` is a durable container with:
+`_DEPENDENCIES.md` is a durable container. Humans or the coordinating workflow own the declared sections; `dependency-extract` later fills the extracted sections and must find these headings unchanged. Create it with this skeleton, using `KTY`/category labels for a knowledge type. Do not infer dependency edges.
 
-- a human-owned coordination mode: `NOT_TRACKED`, `DECLARED`, or `FULL_GRAPH`;
-- human-declared upstream and downstream entries, including reason, required maturity, and location when supplied;
-- an extracted dependency-register section initialized to `NOT_RUN_YET`;
-- run-history, lifecycle-summary, and consumer-handoff placeholders.
+```markdown
+# Dependencies: [DEL-ID] [Deliverable Name]
 
-Do not infer dependency edges. For `NOT_TRACKED`, state that humans coordinate dependencies externally.
+## Coordination (human-owned)
+- **Mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
+- **Notes:** [pointer to coordination record or external system, or "TBD"]
+
+## Upstream (I need these before I can proceed) — human-owned declarations
+- (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
+- [DEL-ID] [Name] — Reason: [from WORKING_ITEMS (workflow: project-setup) declarations]
+  - Required maturity: [OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED]
+  - Location: [path if known, else TBD]
+
+## Downstream (These need me) — human-owned declarations
+- (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
+- [DEL-ID] [Name] — Reason: [from WORKING_ITEMS (workflow: project-setup) declarations]
+  - Required maturity: [state they need from me]
+  - Location: [path if known, else TBD]
+
+## Extracted Dependency Register (populated by TASK+dependency-extract)
+- **Status:** NOT_RUN_YET
+- **Dependencies.csv:** TBD
+- **Summary:** TBD
+
+## Run Notes & History (populated by TASK+dependency-extract)
+- (placeholder)
+
+## Lifecycle Summary (populated by TASK+dependency-extract)
+- (placeholder)
+
+## Consumer Handoff Notes (optional)
+- (placeholder)
+```
 
 ## Remaining control files
 

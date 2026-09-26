@@ -17,4 +17,4 @@ Return:
 - bounded repair options and the regression check needed to prove the fix;
 - remaining unknowns or environmental limits.
 
-Diagnosis does not imply repair authority. Do not edit code unless the request separately authorizes implementation.
+Diagnosis does not imply repair authority. Do not edit code unless the request separately authorizes implementation; authorized diagnostic instrumentation is temporary and removed before return. Return effects on other packages as coordination notices rather than acting on them.
