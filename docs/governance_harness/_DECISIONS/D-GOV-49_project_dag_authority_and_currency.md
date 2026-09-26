@@ -155,7 +155,7 @@ On the charter restatement of K-DEP-1:
     immutable snapshots; a candidate becomes immutable when it is accepted as
     a version. CONTRACT K-SNAP-1, SPEC §1.2 and SPEC §11.1 carry this clause.
     It is a consequence of the owner's `_DAG/cases` ruling (an SCC case is
-    updated over time), confirmed by the owner.
+    updated over time), PENDING OWNER CONFIRMATION (asked 2026-09-26; this PR does not merge without it).
 11. **Surfaces.** CONTRACT K-DEP-1 is rewritten to items 1 to 6, and K-DEP-1
     joins the human-review enforcement row. K-SNAP-1 gains the item 10
     clause. SPEC gains §5.4 (Accepted Project DAG, with the DAG-current and

@@ -52,7 +52,7 @@ m2_gate:
     item O-8 should be revised to match D-GOV-49"; docs/PRD_ROOT.md O-8 is
     revised with an owner amendment note. The K-SNAP-1 working-records clause
     for _DAG/cases/ and _DAG/_Candidates/ is a consequence of the owner's
-    _DAG/cases ruling, confirmed by the owner. Recorded as D-GOV-49.
+    _DAG/cases ruling, pending owner confirmation (the PR does not merge without it). Recorded as D-GOV-49.
   authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
   authorization_date: '2026-09-26'
   integration_owner: >-
