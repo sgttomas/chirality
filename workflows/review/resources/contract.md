@@ -33,8 +33,10 @@ Defaults (only when not otherwise specified by the human):
   pinned criterion is the candidacy basis until the loop adopts §3.4; it never
   adds a deferral path.
 - **Frozen candidate.** While `CHECKING`, the deliverable's claim surfaces
-  (the selected production contract and its other content files) are frozen at
-  the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
+  (every file in the deliverable folder except the review, status, context and
+  dependency records: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md`, `_CONTEXT.md`,
+  `_DEPENDENCIES.md`, and `Dependencies.csv`) are
+  frozen at the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
   `Review_Findings.csv`, and review snapshots, never to the frozen claim
   surfaces. Any correction requires the human-ruled reversal to `IN_PROGRESS`;
   `ISSUED` changes use the governed scope-change process only.
@@ -103,7 +105,7 @@ This is the single rule for how findings affect each transition.
 | Severity | Meaning |
 |---|---|
 | `CRITICAL` | Safety, regulatory, or fundamental correctness issue; blocks both entry to `CHECKING` and issuance |
-| `MAJOR` | Significant technical issue; must be resolved before entry to `CHECKING`; at issuance, see below |
+| `MAJOR` | Significant technical issue; must be closed before entry to `CHECKING` and before issuance, as below |
 | `MINOR` | Quality improvement |
 | `OBSERVATION` | Noted for record; no action required |
 
@@ -111,20 +113,26 @@ This is the single rule for how findings affect each transition.
   and no finding has `Status = OPEN` or `DEFERRED`. Every `REVISE` finding is
   `RESOLVED` by an authorized correction to the candidate (after which the
   checklist and candidacy account are re-bound to the corrected candidate) or
-  by a cited owning rescoping decision. A `CRITICAL` or `MAJOR` finding closes
-  only as `RESOLVED`, `NOT_APPLICABLE`, `WITHDRAWN`, or `ACCEPT_AS_IS` when the
-  human rules that no correction is required. Deferral is not an entry path.
+  by a cited owning rescoping decision. Deferral is not an entry path.
+- **Closing a `CRITICAL` or `MAJOR` finding (entry and issuance alike).** A
+  `CRITICAL` finding closes only with `Status = RESOLVED`, or with
+  `HumanDisposition = NOT_APPLICABLE`, or with `HumanDisposition = WITHDRAWN`
+  (`Status = WITHDRAWN`). A `MAJOR` finding closes in the same ways or with
+  `HumanDisposition = ACCEPT_AS_IS` (`Status = RESOLVED`) when the human rules
+  that no correction is required. Neither is ever `DEFER` or `DEFERRED`.
 - **`CHECKING → ISSUED`.** The frozen candidate cannot be corrected in place.
-  Every `CRITICAL` finding is `RESOLVED` without changing the frozen claim
-  surfaces (for example, by appended evidence), `NOT_APPLICABLE`, or
-  `WITHDRAWN`. Every `MAJOR` finding has a non-TBD human disposition: resolved
-  likewise, `ACCEPT_AS_IS`, or `DEFERRED` with documented human rationale as a
-  known limitation of the issued baseline whose later correction flows only
-  through governed scope change. `MINOR` findings should be dispositioned.
-- **Unsuccessful check.** A finding that requires correcting the frozen
-  candidate, and that the human does not accept or defer under the issuance
-  rule, makes the check unsuccessful. Its exit is the human-ruled reversal to
-  `IN_PROGRESS`, with the correction carried in authorized work.
+  Every `CRITICAL` and `MAJOR` finding is closed under the rule above, where
+  `RESOLVED` means resolved without changing the frozen claim surfaces (for
+  example, by appended evidence). `MINOR` findings should be dispositioned; a
+  `MINOR` or `OBSERVATION` finding may be `DEFERRED` with documented human
+  rationale as a known limitation of the issued baseline, whose later
+  treatment flows only through governed scope change.
+- **Unsuccessful check.** A `CRITICAL` or `MAJOR` finding that cannot close
+  under the rule above without correcting the frozen candidate makes the check
+  unsuccessful. Its exit is the human-ruled reversal to `IN_PROGRESS`, with the
+  correction carried in authorized work. A `MINOR` finding that needs
+  correction is either `DEFERRED` as above or, if the human chooses, corrected
+  through the same reversal.
 
 The issuance judgment itself remains human (K-GATE-1); this rule states what
 the review evidence must show, not a machine block.
@@ -323,7 +331,7 @@ A review cycle is valid when:
 | `FindingSeverity` | enum | `CRITICAL` / `MAJOR` / `MINOR` / `OBSERVATION` |
 | `Description` | string | The finding as stated |
 | `Origin` | enum | `REVIEWER` (human-provided) / `AGENT_CHECK` (mechanical check) |
-| `ProposedDisposition` | enum | `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` — labeled PROPOSAL; `DEFER` is never an entry path to `CHECKING` |
+| `ProposedDisposition` | enum | `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` — labeled PROPOSAL; `DEFER` is never an entry path to `CHECKING` and at issuance applies only to `MINOR` or `OBSERVATION` findings |
 | `HumanDisposition` | enum | `TBD` / `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` / `WITHDRAWN` |
 | `Status` | enum | `OPEN` / `RESOLVED` / `DEFERRED` / `WITHDRAWN` |
 | `ReviewerID` | string | Reviewer identifier or `TBD` |

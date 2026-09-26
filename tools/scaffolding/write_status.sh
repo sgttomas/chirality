@@ -18,7 +18,8 @@
 # Authorization Basis fields are left as history; the next CHECKING entry
 # replaces them. Every other backward move stays BLOCKED, including
 # ISSUED -> IN_PROGRESS, which belongs to the governed scope-change process
-# and is not admitted by this tool.
+# and is not admitted by this tool. --force-human-override cannot waive the
+# reversal's ruling preconditions or the ISSUED -> IN_PROGRESS block.
 #
 # Usage: ./write_status.sh <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--force-human-override <reason>]
 #
@@ -226,6 +227,14 @@ block() {
   echo "BLOCK $code: $*" >&2
   BLOCKED=1
 }
+# hard_block: a refusal --force-human-override cannot waive (the reversal's
+# ruling preconditions and ISSUED -> IN_PROGRESS, which SPEC §3.3/§3.4 reserve
+# to a recorded ruling and the governed scope-change process respectively).
+hard_block() {
+  local code="$1"; shift
+  echo "BLOCK $code: $* (not overridable)" >&2
+  BLOCKED=1
+}
 warn() { echo "WARN: $*" >&2 }
 review() { echo "REVIEW: $*" >&2 }
 
@@ -248,7 +257,7 @@ else
       # SPEC §3.3: human reversal, the sole exit from an unsuccessful or withdrawn check.
       REVERSAL=1
     elif [ "$CURRENT>$STATE" = "ISSUED>IN_PROGRESS" ]; then
-      block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); ISSUED changes use the governed scope-change process, which this tool does not perform"
+      hard_block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); ISSUED changes use the governed scope-change process, which this tool does not perform"
     else
       block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); the only admitted reversal is the human-ruled CHECKING -> IN_PROGRESS"
     fi
@@ -276,9 +285,9 @@ if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ] || [ $REVERSAL -eq 1 ]; 
     review "not a git repository — committed-ruling and SHA reachability checks unavailable here"
     if [ $REVERSAL -eq 1 ]; then
       if [ -z "$RULING" ]; then
-        block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <ruling path>"
+        hard_block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <ruling path>"
       elif [ ! -e "$RULING" ]; then
-        block RULING_PATH_MISSING "--ruling path not found: $RULING"
+        hard_block RULING_PATH_MISSING "--ruling path not found: $RULING"
       fi
     fi
     if [ -n "$APPROVAL_SHA" ] && ! sha_format_ok "$APPROVAL_SHA"; then
@@ -288,7 +297,7 @@ if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ] || [ $REVERSAL -eq 1 ]; 
     # Committed-ruling precondition (always required for the reversal).
     if [ -z "$RULING" ]; then
       if [ $REVERSAL -eq 1 ]; then
-        block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <committed ruling path>"
+        hard_block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <committed ruling path>"
       elif [ "$REQ_RULING" = "true" ]; then
         block RULING_REQUIRED "state $STATE requires --ruling <committed ruling path> (guard_requires_committed_ruling_path)"
       fi
@@ -297,11 +306,17 @@ if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ] || [ $REVERSAL -eq 1 ]; 
         RULING_ABS="$(cd "$(dirname "$RULING")" && pwd)/$(basename "$RULING")"
       elif [ -e "$REPO_ROOT/$RULING" ]; then
         RULING_ABS="$REPO_ROOT/$RULING"
+      elif [ $REVERSAL -eq 1 ]; then
+        hard_block RULING_PATH_MISSING "--ruling path not found: $RULING"
       else
         block RULING_PATH_MISSING "--ruling path not found: $RULING"
       fi
       if [ -n "$RULING_ABS" ] && ! git -C "$REPO_ROOT" ls-files --error-unmatch -- "$RULING_ABS" >/dev/null 2>&1; then
-        block RULING_NOT_COMMITTED "--ruling path is not git-tracked: $RULING"
+        if [ $REVERSAL -eq 1 ]; then
+          hard_block RULING_NOT_COMMITTED "--ruling path is not git-tracked: $RULING"
+        else
+          block RULING_NOT_COMMITTED "--ruling path is not git-tracked: $RULING"
+        fi
       fi
     fi
 

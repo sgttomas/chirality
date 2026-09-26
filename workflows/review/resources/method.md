@@ -22,11 +22,17 @@ intended transition (or withdrawal of a current check).
    - For a `CHECKING → ISSUED` review: state must be `CHECKING`. Read the
      frozen candidate SHA recorded at entry (in the prior `_REVIEW.md` Freeze
      section or the entry snapshot) and confirm the deliverable's claim
-     surfaces are unchanged since it, for example with
-     `git diff --quiet {FROZEN_SHA} -- {deliverable_folder}/ScopeOfWork.md`
-     (all selected production files in legacy mode). A changed frozen surface
-     means the candidate under review is not the frozen one: stop and present
-     the reversal branch of Gate 5.
+     surfaces (contract, Frozen candidate) are unchanged since it, for example
+     with `git diff --quiet {FROZEN_SHA} -- {deliverable_folder}` and
+     `:(exclude)` pathspecs for the review, status, context and dependency
+     records. A changed frozen surface means the candidate under review is not
+     the frozen one: stop and present the reversal branch of Gate 5.
+   - If no frozen SHA or declared checking basis is recorded (for example, a
+     deliverable that entered `CHECKING` under an earlier override), stop and
+     surface the missing basis. Offer the human two routes: a committed ruling
+     that records the checking basis and the entry-commit SHA as the frozen
+     candidate, after which this review continues; or the reversal branch of
+     Gate 5.
    - For a withdrawn check (state `CHECKING`, human withdraws): go directly to
      the reversal branch of Gate 5 after recording the stated reason.
    - If state is `ISSUED`: stop. Changes to an accepted baseline use the
@@ -207,7 +213,7 @@ This gate is iterative. The human provides findings across multiple conversation
      contract's severity table (`CRITICAL`, `MAJOR`, `MINOR`, `OBSERVATION`);
      flag uncertain classifications for human confirmation
    - `Description`: the finding as stated
-   - `ProposedDisposition`: agent may suggest one of `ACCEPT_AS_IS`, `REVISE`, `DEFER`, `NOT_APPLICABLE` — always labeled as `PROPOSAL`; never propose `DEFER` as a path into `CHECKING`
+   - `ProposedDisposition`: agent may suggest one of `ACCEPT_AS_IS`, `REVISE`, `DEFER`, `NOT_APPLICABLE` — always labeled as `PROPOSAL`; never propose `DEFER` as a path into `CHECKING`, or for a `CRITICAL` or `MAJOR` finding
    - `HumanDisposition`: `TBD` (until human rules at Gate 4)
    - `Status`: `OPEN`
    - `ReviewerID`: from input or `TBD`
@@ -245,9 +251,9 @@ Typical mechanical checks:
 
 2) Record human rulings in `Review_Findings.csv`:
    - Update `HumanDisposition` from `TBD` to the human's choice
-   - Update `Status` to `RESOLVED`, `WITHDRAWN`, or (only where the contract's
-     issuance rule permits) `DEFERRED` with the human's rationale; a finding
-     awaiting correction stays `OPEN`
+   - Update `Status` to `RESOLVED`, `WITHDRAWN`, or (only at issuance, and only
+     for a `MINOR` or `OBSERVATION` finding) `DEFERRED` with the human's
+     rationale; a finding awaiting correction stays `OPEN`
 
 3) If a `REVISE` ruling during a candidacy review is corrected through
    separately authorized production work, re-run the checklist derivation and
@@ -301,8 +307,9 @@ Present the review summary and transition readiness assessment. Ask: "Are all di
    - Present: `RECOMMEND_ADVANCE`, `RECOMMEND_HOLD` (continue checking), or
      `RECOMMEND_REVERSAL` (unsuccessful check) with reasons.
 
-2) Run the owning loop's required promotion preflight for the intended
-   transition (for example, from the App working root:
+2) For entry to `CHECKING` and for issuance only (the reversal is a demotion
+   and needs neither), run the owning loop's required promotion preflight for
+   the intended transition (for example, from the App working root:
    `python3 execution/_Scripts/app_hold.py check --operation checking-promotion --entry-path {declared-entry-path} --target {DeliverableID}`)
    and check its issuance fences. A failing preflight or an applicable fence
    (for example, App F-APP-4 for `CHECKING → ISSUED`) holds the transition:
@@ -367,8 +374,10 @@ This is the sole exit from an unsuccessful or withdrawn check (SPEC §3.3).
 
 8) Finalize the review snapshot after the Gate 5 outcome is recorded (for an
    approved or reversal branch, after the guarded status write succeeds; a
-   held write keeps the package run-local until it completes or is
-   abandoned, and an abandoned write is recorded as a hold):
+   status write still pending its ruling or SHA (step 4) keeps the package
+   run-local until it completes or is abandoned, and an abandoned write is
+   recorded as a hold). A withdrawn check that skipped Gate 4 stages at least
+   `Brief.md` (with the stated reason) and `Decision_Log.md` first:
    ```text
    zsh {INSTRUCTION_ROOT}/tools/scaffolding/create_snapshot_folder.sh {REVIEWS_ROOT} REV {DeliverableID}
    ```

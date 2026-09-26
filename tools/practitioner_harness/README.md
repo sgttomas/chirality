@@ -512,7 +512,8 @@ Recorded divergences from transition.ts:
 3. **New-file creation permitted at OPEN** (`transition.ts` only transitions
    existing documents); creation at any other state is refused.
 4. **`--force-human-override <reason>` exists** (HUMAN-only; reason recorded in
-   the history line as `[override: ...]`; never overrides usage errors) —
+   the history line as `[override: ...]`; never overrides usage errors, the
+   reversal's `--ruling` preconditions, or the `ISSUED → IN_PROGRESS` block) —
    BLOCK override is human-only and recorded, per D-GOV-02. `transition.ts`
    has no override path.
 5. **Approval-SHA requirement is adapter-conditional**

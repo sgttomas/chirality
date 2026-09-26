@@ -40,7 +40,7 @@ m6_notice:
     write_status.sh guard for lifecycle transitions; PEC holds deliverables in
     CHECKING.
 scope_limits:
-  - ISSUED→IN_PROGRESS stays blocked in write_status.sh; it belongs to the governed scope-change process.
+  - ISSUED→IN_PROGRESS stays blocked in write_status.sh, and --force-human-override cannot waive it or the reversal's ruling; it belongs to the governed scope-change process.
   - No App or Runtime TypeScript change; transition.ts still rejects the reversal and its adoption is the App loop's decision.
   - LEGACY_FOUR_DOC and MIGRATION_DUAL review branches are retained because SPEC §2.2 still recognizes them.
   - No lifecycle state is changed and historical review records are not rewritten.
