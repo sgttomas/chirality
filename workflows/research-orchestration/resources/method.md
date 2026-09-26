@@ -89,10 +89,10 @@ If research identifies possible changes:
 - For publication from accepted truth, hand off to `WORKING_ITEMS (workflow: dbm-publisher)` or the relevant publisher.
 - For repository edits, hand the evidence and exact change scope to the
   responsible current role. That role follows the applicable project's change
-  skill or repository conventions when present; the research workflow does not
-  require Git or select the retained legacy `change` workflow. Preserve an
-  explicitly selected historical `change` identity when processing a legacy
-  run.
+  skill or repository conventions when present, or the generic `change`
+  workflow otherwise; the research workflow itself does not require Git.
+  Preserve an explicitly selected historical `change` identity when processing
+  a legacy run.
 - For audits, hand off to the appropriate audit/review agent.
 
 WORKING_ITEMS does not apply those changes itself.
