@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| **Version** | 2.3 |
+| **Version** | 2.4 |
 | **Date** | 2026-09-25 |
-| **Status** | **Adopted 2026-09-25** by owner acceptance of SCA-005 checkpoint group 2 (`execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/`); v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; consumer-interface concordance adopted as v2.2 by `D-PEC-68`; §16.3 loop-registry disposition concordance adopted as exact v2.3 candidate bytes by `D-PEC-79` (not separately applied; carried into this successor); SCA-005 feed-model, presence and runtime-topology concordance adopted with this successor; product definition of record |
+| **Status** | **Adopted 2026-09-25** by owner acceptance of SCA-006 checkpoint group 2 (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`); v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; consumer-interface concordance adopted as v2.2 by `D-PEC-68`; §16.3 loop-registry disposition concordance adopted as exact v2.3 candidate bytes by `D-PEC-79` (not separately applied; carried into the v2.3 successor); v2.3 successor adopted by owner acceptance of SCA-005 checkpoint group 2; SCA-005 feed-model, presence and runtime-topology concordance adopted with that successor; `D-PEC-90` operational reliance on PEC data carried into this successor; product definition of record |
 | **Product stage** | Prototype of the prior product exists (v0.4 baseline code); the coordination plane defined here is not yet implemented |
 | **Supersession** | Supersedes PRD v1.0 ("team information hub", adopted 2026-07-10 by `D-PEC-55`), preserved at `c31be74c2:projects/pec/docs/PRD.md` and archived at `docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. |
 
@@ -14,10 +14,15 @@
 > (`D-PEC-67`), then adopted with surrounding v2.2 consumer-interface
 > concordance on 2026-07-27 (`D-PEC-68`). A v2.3 candidate reconciling §16.3
 > to D-PEC-78 O-A and accepted SCA-004 decomposition truth was adopted as
-> exact bytes on 2026-08-09 (`D-PEC-79`) but not applied; this successor
+> exact bytes on 2026-08-09 (`D-PEC-79`) but not applied; the successor
 > v2.3 carries those changes and was adopted on 2026-09-25 by owner
 > acceptance of SCA-005 checkpoint group 2, which also reconciles the feed,
-> presence and runtime-topology premises to current file truth. Adoption
+> presence and runtime-topology premises to current file truth. v2.4 was
+> adopted on 2026-09-25 by owner acceptance of SCA-006 checkpoint group 2
+> under `D-PEC-90` R-A; it writes operational reliance on PEC data into
+> the product definition without changing authority, and operational
+> reliance begins only at a release that passes the §12
+> reliance-advertisement gate. Adoption
 > makes a PRD the product definition of record only — nothing in this
 > document is an implementation
 > mandate; each build tranche still requires its own owner-ruled packet.
@@ -59,6 +64,18 @@
 > changes creates an implementation mandate, a receiving-loop duty, or a
 > source, configuration, consumer, lifecycle, or release authority.
 
+> **v2.4 successor provenance labels (SCA-006):** In this block `PROPOSED`
+> means product text adopted through the SCA-006 checkpoint-group-2 owner
+> gate. PEC-K-03, the §8 Agents bullet and access-class sentence,
+> PEC-ORI-007, PEC-API-006, PEC-API-007 and the §12 reliance-advertisement
+> gate are `PROPOSED` (substance selected at SCA-006 checkpoint 1 under
+> `D-PEC-90` R-A and the owner's direct-query answer); §1.1, the §8
+> Harnesses sentence, §11 metric 4, the §12 P3 row and closing paragraph,
+> §15 and §16.6 are `CLARIFIED`. Earlier label blocks stay as history. None
+> of the changes creates an implementation mandate, a receiving-loop duty,
+> or a source, configuration, consumer, lifecycle, release or authority
+> grant.
+
 ---
 
 ## 1. Product definition
@@ -72,7 +89,8 @@ deterministic parts of **Step 1 (gate review and decision-slate
 presentation)** of the canonical development loop.
 
 It is available to explicitly PEC-enabled consumers, including harnesses
-acting on behalf of agents, and to the human owner through dashboards. It is
+acting on behalf of agents and agents querying directly through tool calls,
+and to the human owner through dashboards. It is
 the coordination plane that **does not need to exist**: every potential
 consumer has a file-native fallback, and deleting PEC degrades throughput,
 never correctness.
@@ -209,7 +227,7 @@ optional service surface, not the exclusive source of lawfulness.
 |---|---|
 | **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (§12) passes at every release. |
 | **PEC-K-02** | **Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native. |
-| **PEC-K-03** | **Pull-oriented interface; consumer-owned use.** PEC provides labeled, non-authoritative orientation data on request and never self-polls, schedules a consumer, injects into an agent, or claims an external cadence. An explicitly PEC-enabled consumer decides under its own authority whether and when to consume. If it injects PEC data, verify-before-rely is an interface precondition; injection is not required. |
+| **PEC-K-03** | **Pull-oriented interface; consumer-owned use.** PEC provides labeled, non-authoritative orientation data on request and never self-polls, schedules a consumer, injects into an agent, or claims an external cadence. An explicitly PEC-enabled consumer decides under its own authority whether and when to consume; injection is not required. Non-authoritative means never citable as authority (PEC-K-02). Within the pin, coverage and trust tier that a response declares (PEC-ORI-007), a consumer, or an agent acting through one or through the tool-call surface (PEC-API-007), may take a record-tier claim as true as of its examined-through SHA and act on it without re-reading the cited source (operational reliance); wherever PEC is absent, degraded, failing its own checks or stating a limitation, it falls back to the files (PEC-K-01). Operational reliance is available only from a PEC release that has passed the §12 reliance-advertisement gate. |
 | **PEC-K-04** | **Staleness is a comparison.** Every response carries the examined-through commit SHA and per-feed freshness; consumers detect staleness structurally. |
 | **PEC-K-05** | **Two trust tiers, never blurred.** Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations. |
 | **PEC-K-06** | **Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented. |
@@ -275,15 +293,26 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
   permitted machine consumers of the API on behalf of agent sessions when
   explicitly enabled under their own authority; the hooks CLI is also a
   producer of presence and status events (Runtime-sourced events are
-  deferred, PEC-STR-003).
-- **Agents** — never call PEC directly by instruction under the current access
-  classes. They may receive orientation as labeled, non-authoritative data
-  only if an explicitly enabled consumer chooses to inject it; injection is
-  not required (PEC-K-03).
+  deferred, PEC-STR-003). A harness is one enabled path to PEC data, not the
+  only one.
+- **Agents** — may act on PEC data received through an explicitly enabled
+  consumer, and may query PEC directly through tool calls under the
+  read-only `agent` access class (PEC-API-007) where that surface is
+  enabled. Either way they act on labeled, non-authoritative data under
+  operational reliance within the declared envelope (PEC-K-03,
+  PEC-ORI-007), never as authority (PEC-K-02), and only from a release that
+  has passed the §12 reliance-advertisement gate. Enabling any path is
+  consumer-owned; injection is not required, and no agent, harness or loop
+  is required to query PEC (PEC-K-01, PEC-K-11).
 - Access is local-only (Unix socket; any loopback listener is a §16 open
   decision), token-scoped. The v1.0 role ontology (12 roles, v1.0 §8) and
   the prototype's implemented 14-role RBAC set (`core/src/types.ts`) are
-  retired; access classes are owner, harness, and admin.
+  retired; access classes are owner, harness, agent, and admin. The `agent`
+  class is read-only query access for tool calls: orientation, deltas, gate
+  verdicts, decision-slate and presence reads, with no event ingest, no
+  presence reports and no admin act. Every class is local-only and
+  token-scoped; the token mechanism, including credentials for the `agent`
+  class, is the open §16.6 decision.
 
 ---
 
@@ -299,6 +328,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 | PEC-ORI-004 | Every claim in an orientation response shall carry a citation (file path, anchor, and/or SHA) to its live source. |
 | PEC-ORI-005 | Orientation shall be scope-parameterized (loop / project / package) per the modes ladder (§5). |
 | PEC-ORI-006 | Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited. |
+| PEC-ORI-007 | Every orientation response shall declare the operational reliance it supports (its reliance envelope): its pin (examined-through SHA); per-feed coverage and freshness with any stated limitation (PEC-ORI-006); the trust tier of each claim, where only record-tier claims support correctness decisions and presence-tier facts are advisory at their stated heartbeat age (PEC-K-05); and a file-fallback signal whenever PEC is absent, degraded or failing its own checks. No consumer may treat silence as a claim. |
 
 ### 9.2 Reconciliation (PEC-RCN)
 
@@ -351,6 +381,8 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 | PEC-API-003 | The API schema is versioned; evolution is additive. |
 | PEC-API-004 | Responses are compact, machine-first, and citation-bearing. |
 | PEC-API-005 | PEC shall offer an SSE subscription for deltas and presence changes (dashboards; long-running managers). |
+| PEC-API-006 | Responses shall be bounded by declared size budgets suited to agent consumers and met by pagination or continuation. A budget is never met by dropping citations, stamps or stated limitations, and any truncation is stated in the response, never silent. Numeric budgets are confirmed at Phase 1. |
+| PEC-API-007 | PEC shall offer a read-only query interface packaged for agent tool calls, over the same versioned API and responses (PEC-API-003, PEC-API-004, PEC-API-006, PEC-ORI-007), under the `agent` access class. Enabling it in any harness, App or agent configuration is consumer-owned (PEC-K-03, PEC-K-11); PEC never injects or schedules. Before any such tool is declared or invoked, the PEC Domain Engine Profile (`_DomainEngines/profiles/pec.yaml`) is amended under its own tier-0 act. P3 capability. |
 
 ### 9.7 Dashboards (PEC-DSH)
 
@@ -392,8 +424,9 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
    enable PEC; and (b) among enabled consumers, the fraction of contact
    opportunities defined by their own adopted mode/cadence rules that consume
    orientation. Neither figure is a conformance criterion for a receiving
-   loop. Candidate consumers are registered loops or harnesses for which PEC
-   exposes a compatible interface; membership asserts no duty.
+   loop. Candidate consumers are registered loops, harnesses, or enabled
+   agent tool-call surfaces for which PEC exposes a compatible interface;
+   membership asserts no duty.
 5. Parity: DriftFindings against practitioner-harness output per reconcile.
 6. Kill test: pass, at every release.
 
@@ -412,8 +445,20 @@ external nonconformance.
 | **P0 — Governance** | `D-PEC-57` direction; PRD lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`; workplan live; decomposition authorized | Packets ruled; standing plan live |
 | **P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |
 | **P2 — Dashboards** | The loops the loop registry lists (§16.3); Overview, census, registers, decision slate | **P2-B uptake observation:** owner-use evidence is gathered; use or non-use informs falsification, and manual Step 0 remains available |
-| **P3 — Opt-in consumer integration** | PEC-side interfaces/adapters usable by hooks CLI or daemon consumers; presence registry + Git/worktree scanner; live use requires a separately authorized receiving consumer | Capability contract tests pass; consumer enablement/use is measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
+| **P3 — Opt-in consumer integration** | PEC-side interfaces/adapters usable by hooks CLI or application-owned Runtime service consumers, and the agent tool-call query surface (PEC-API-007); presence registry + Git/worktree scanner; live use requires a separately authorized receiving consumer | Capability contract tests pass; consumer enablement/use is measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
 | **P4 — Streams** | PEC-side optional hook-push interface; live use requires separately authorized receiving consumers. The Runtime SSE bridge and live hierarchy tier are deferred (trigger T-RT, PEC-PRS-004); the cmux adapter is deferred (re-entry only by a later owner direction, PEC-STR-003) | Stream loss demonstrably recovered by reconcile; presence TTLs honest under kill/crash tests |
+
+**Standing reliance-advertisement gate.** No PEC release advertises
+operational reliance on PEC data (PEC-K-03) until its gates prove, for the
+scope it serves: parity with the practitioner harness clean, or each
+difference explained by a recorded DriftFinding disposition (PEC-RCN-005);
+complete coverage statements under seeded unparseable and stale feeds
+(PEC-ORI-006); the reliance envelope on every response (PEC-ORI-007);
+passing parser fixture suites; and the kill test (PEC-K-01). The gate is
+re-proved at each release that advertises operational reliance. A release
+that has not passed it advertises none, and consumers keep reading the
+files. The gate creates no consumer duty and does not change the phase exit
+tests above.
 
 The PEC v2 build itself runs through the governed pipeline (SOFTWARE_DECOMP →
 PROJECT_SETUP → WORKING_ITEMS), and the first loop the P1 reconciler ingests
@@ -434,8 +479,8 @@ self-ingestion.
 The P2 exit records owner-use evidence without making a PEC read or write a
 governed duty; manual Step 0 remains the fallback. P3 and P4 supply PEC-side
 integration capability and accept evidence from separately authorized
-consumers. They do not themselves authorize Root, App, a harness, or another
-loop to poll, push, inject, subscribe, or consume.
+consumers. They do not themselves authorize Root, App, a harness, an agent's
+tool host, or another loop to poll, push, inject, subscribe, or consume.
 
 ---
 
@@ -510,10 +555,21 @@ On adoption (2026-07-24, `D-PEC-58`):
   §8/§13. Its no-dual-loop boundary (behavior 4) and human-only-act
   restrictions (behavior 7) survive unchanged. The partial supersession is
   declared in the `D-PEC-58` packet.
-- **`D-PEC-67` — exact consumer-interface rows preserved.** PEC-K-03 and
-  PEC-K-11 remain byte-identical to the rows adopted by D-PEC-67. Surrounding
-  v2.2 prose makes their optional, consumer-owned use coherent across the
-  PRD; it creates no receiving-loop duty or implementation authority.
+- **`D-PEC-67` — exact consumer-interface rows.** PEC-K-11 remains
+  byte-identical to the row adopted by D-PEC-67. PEC-K-03 is amended under
+  `D-PEC-90` R-A through SCA-006; the D-PEC-67 K03-A bytes are preserved as
+  historical exact input, and the amended row keeps pull-oriented,
+  consumer-owned use. Surrounding prose makes their optional, consumer-owned
+  use coherent across the PRD; it creates no receiving-loop duty or
+  implementation authority.
+- **`D-PEC-90` — operational reliance is not authority.** PEC-K-03,
+  PEC-ORI-007 and the §12 reliance-advertisement gate let a consumer act on a
+  record-tier claim within its declared bounds. No governed record cites
+  PEC; no ruling, acceptance, lifecycle transition or merge rests on PEC
+  output; deleting PEC still blocks nothing. `D-GOV-01` Option A, Root PRD
+  N-1 and K-AUTH-1 are therefore complied with unchanged, and PEC output
+  stays never citable as authority (the `D-PEC-90` R-C option was not
+  selected).
 - **Doctrine** — the sibling rule prohibits hidden or undeclared direct
   messaging under a mediating parent (`AGENTS.md`); PEC is one optional
   declared, durable, recorded surface and therefore not hidden messaging.
@@ -564,7 +620,8 @@ On adoption (2026-07-24, `D-PEC-58`):
    Runtime token registries are private to each owning application and per
    instance (`D-GOV-43` A2), and the Runtime consumer guide forecloses
    pointing a new consumer at the running App's socket or token file. The
-   decision on PEC's own token mechanism stays open.
+   decision on PEC's own token mechanism stays open; it includes the
+   credentials of the `agent` access class for tool-call query (PEC-API-007).
 7. Whether "PEC" is re-expanded (e.g., Project Execution *Coordination*) or
    kept as a legacy name.
 8. Whether the Root, Runtime and Bridge loop ledgers adopt the shared

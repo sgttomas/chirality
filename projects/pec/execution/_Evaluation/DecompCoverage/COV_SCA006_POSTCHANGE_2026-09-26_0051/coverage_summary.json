@@ -1,0 +1,201 @@
+{
+  "run_label": "COV_SCA006_POSTCHANGE",
+  "snapshot_folder": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/",
+  "timestamp": "2026-09-26T01:12:45-06:00",
+  "requested_by": "WORKING_ITEMS (brief B6, work-graph node R3 of HELP_HUMAN undertaking HELP-HUMAN-PEC-20260925-POST-SCA005; SCA-006 checkpoint-3 preparation, plan item C4.1-C4.2)",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "Candidate SCA-006 (projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/, incomplete until A5) under the accepted group-2 decision projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/ (D-PEC-97) and its amendment 1 (checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/); accepted predecessor SCA-005 (_ScopeChange/SCA-005_2026-09-23_2139/, named by _ScopeChange/_LATEST.md, posture ACCEPTED_PREDECESSOR)",
+  "expected_handoff_phase": "SCA-006 checkpoint-3 preparation (pre-acceptance poststate); the audit pointer decision belongs to the invoking manager",
+  "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.6 candidate_pending_checkpoint_3 (pre-acceptance)",
+  "decomposition_sha256": "3ef0412a99812885e247bc4e9726fe005ce3446372f609c47274b6ad25b29b59",
+  "companion_register_sha256": {
+    "ScopeLedger.csv": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+    "Deliverables.csv": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+    "ContextBudgetQA.csv": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+    "Companion_Inventory.csv": "1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662"
+  },
+  "prd_sha256": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
+  "audited_commit": "5e0169f5e (HEAD of claude/pec-sca006-cp3-execution; audited paths clean against HEAD)",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 11,
+    "deliverables": 68,
+    "deliverables_active": 64,
+    "deliverables_retired": 4,
+    "objectives": 6,
+    "scope_items": 100,
+    "ledger_rows": 100
+  },
+  "ledger_status": {
+    "IN": 74,
+    "OUT": 18,
+    "TBD": 8
+  },
+  "active_envelopes": {
+    "S": 28,
+    "M": 34,
+    "L": 2,
+    "XL": 0
+  },
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 68,
+  "production_units_found": 66,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 97.0588,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "context_fidelity_basis": "66/66 matched folders",
+  "artifact_presence_pct": 4.4118,
+  "artifact_presence_basis": "3 anticipated sets found / 68 declared production units (66 matched folders)",
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 4,
+  "active_deliverables_without_objective_mapping": 0,
+  "retired_deliverables_without_objective_mapping_by_design": 4,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 3,
+  "issues_info": 71,
+  "issues_expected_consequence": 12,
+  "expected_consequence_decision_refs": [
+    "D-PEC-97"
+  ],
+  "check_count": 12,
+  "check_verdicts": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "WARNING",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "SKIPPED",
+    "9b": "PASS",
+    "10": "PASS",
+    "11": "PASS"
+  },
+  "lifecycle_distribution": {
+    "CHECKING": 4,
+    "INITIALIZED": 26,
+    "IN_PROGRESS": 2,
+    "OPEN": 30,
+    "RETIRED": 4
+  },
+  "contract_distribution": {
+    "SOW_V1": 32,
+    "NONE": 34,
+    "AMBIGUOUS_DUAL": 0,
+    "declared_without_folder": 2
+  },
+  "context_provenance_revision": {
+    "1.5": 63,
+    "1.6": 3
+  },
+  "references_revision": {
+    "1.5": 66
+  },
+  "references_prd_version": {
+    "2.3": 66
+  },
+  "structure_tool": {
+    "run_status": "COMPLETE",
+    "subject_status": "FAIL",
+    "units": 68,
+    "pass": 66,
+    "fail": 2,
+    "failing_units": [
+      "DEL-08-06",
+      "DEL-10-13"
+    ],
+    "tool_issues": [
+      "partition directory contract is incomplete",
+      "required tool roots are missing"
+    ],
+    "production_formats": {
+      "INVALID": 36,
+      "SOW_V1": 32
+    }
+  },
+  "register_validator": {
+    "registers": 66,
+    "dependency_rows": 263,
+    "deliverables_declared": 68,
+    "errors": 0,
+    "warnings": 2,
+    "warning_codes": [
+      "DRB-008 (DEL-08-06)",
+      "DRB-008 (DEL-10-13)"
+    ],
+    "exit_strict": 1
+  },
+  "dependency_rows_by_status": {
+    "ANCHOR/ACTIVE": 132,
+    "EXECUTION/ACTIVE": 111,
+    "EXECUTION/RETIRED": 12,
+    "ANCHOR/RETIRED": 8
+  },
+  "dependency_closure": {
+    "execution_edges": 111,
+    "graph_nodes": 66,
+    "scc_count": 0,
+    "bidirectional_pairs": 0,
+    "isolated": [
+      "DEL-00-03",
+      "DEL-01-05",
+      "DEL-06-04",
+      "DEL-07-02",
+      "DEL-07-04",
+      "DEL-07-05"
+    ],
+    "hubs": [
+      "DEL-03-01 (in 13, out 12, total 25)"
+    ],
+    "orphans": 0,
+    "active_rows_targeting_retired": [],
+    "active_rows_in_retired_registers": [],
+    "closure_summary_sha256": "bd73806c98e82455f6abfe66aeeee38623cd24f2e48ed102bb2689934bbc187a",
+    "state": "unchanged since D-PEC-93/D-PEC-95 (SCA-006 Lane A changed no dependency register)"
+  },
+  "evidence_quote_currency": {
+    "active_execution_rows_not_verbatim": 2,
+    "rows": [
+      "DEP-09-06-003",
+      "DEP-10-03-003"
+    ],
+    "baseline_19_now_verbatim": true,
+    "baseline_19_resolved_by": "D-PEC-95 N3 (PR #924, merge abfd0897b)",
+    "sca006_b3_intake_cells_still_verbatim": [
+      "DEP-09-06-004",
+      "DEP-10-12-004"
+    ],
+    "active_anchor_rows_semantically_true": "132/132 (structured D-PEC-62 assertion quotes, checked against the registers)"
+  },
+  "baseline_dispositions": {
+    "COV-068": "RESOLVED by D-PEC-95 N2",
+    "COV-069": "RESOLVED by D-PEC-95 N2",
+    "COV-072": "RESOLVED by D-PEC-95 N3",
+    "COV-073": "PARTIALLY RESOLVED by D-PEC-95 N1 (pointers); SCA-005 snapshot files kept byte-identical by D-PEC-95 option P (residual INFO)"
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "closure_readiness_note": "Method-literal three-way verdict from the counts: 0 BLOCKERs; 3 WARNINGs, all pre-existing Check-6 artifact-location findings unrelated to SCA-006; 12 EXPECTED_CONSEQUENCE findings are reported separately and do not count. This is not a lifecycle, readiness, acceptance or reliance judgement.",
+  "prior_run_label": "COV_SCA005_POSTSETUP_2026-09-25_1606",
+  "prior_coverage_summary_sha256": "b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d",
+  "comparison_mode": "RUN (PrePost_Comparison.md)",
+  "method_edition": {
+    "WORKFLOW.md": "7ba6291c836973a6af0aeb81d56d60ede89466c3d006673d7ef07f09b984246b",
+    "contract.md": "704929c7c006a20a5fbe3fc903d4f172e2edb4c6a451c4b6db40506b40004e75",
+    "method.md": "51a0c69b389d0c641f88e8faa7bebbc2b3650518eede8882436853c583308827"
+  },
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

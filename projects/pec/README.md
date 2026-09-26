@@ -10,10 +10,13 @@ coordination plane that doesn't need to exist**: files and Git remain the
 sole authority, every potential consumer has a file-native fallback, and
 deleting PEC degrades throughput, never correctness.
 
-Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.3, adopted
-2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance (`D-PEC-92`) and
-applied in checkpoint-3 preparation, and settled by the owner's checkpoint-3
-acceptance the same day; it carries the `D-PEC-79` §16.3 hunks.
+Product definition of record: [`docs/PRD.md`](docs/PRD.md), v2.4.
+- Adopted 2026-09-25 by the owner's SCA-006 checkpoint-2 acceptance
+  (`D-PEC-97`).
+- Applied in checkpoint-3 preparation on 2026-09-26.
+- The owner's checkpoint-3 acceptance is pending.
+
+v2.3 (SCA-005, `D-PEC-92`) preceded it.
 Earlier versions: v2.0 `D-PEC-58`, v2.1 `D-PEC-61`, exact consumer-interface
 rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 [`docs/STATUS.md`](docs/STATUS.md) first.**
@@ -28,7 +31,8 @@ owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
 `D-PEC-93` added DEL-02-08 and DEL-02-09), and completed the SCA-004
 metadata-alignment subset (all context provenance blocks and reference packets
 were current for revision 1.4; since the `D-PEC-95` act of 2026-09-25 all 66
-contexts and 66 references name revision 1.5), and DEL-01-06 carries the non-gating
+contexts and 66 references name revision 1.5, and three contexts also carry
+the SCA-006 revision-1.6 clause), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
 initialized. DEL-01-06 now has the accepted revision-1.4 production contract
 at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
@@ -83,13 +87,13 @@ See `docs/STATUS.md` for current gates.
 response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
-coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
-until scope change SCA-006 amends it. The owner accepted its checkpoint 1 on
+coverage, not now. Scope change SCA-006 carries this into PRD v2.4 and
+`projects/pec/AGENTS.md`. The owner accepted its checkpoint 1 on
 2026-09-25, specifying direct query under a new read-only `agent` access
 class (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`);
 the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
 `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
-checkpoint-3 preparation is authorized.
+checkpoint 3 was applied on 2026-09-26, and its acceptance is pending.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
@@ -112,7 +116,7 @@ on 2026-09-25 under `D-PEC-95`.
 
 | Path | Contents |
 |---|---|
-| `docs/PRD.md` | Adopted product definition (v2.3, coordination plane) |
+| `docs/PRD.md` | Adopted product definition (v2.4, coordination plane) |
 | `docs/STATUS.md` | Status & handoff — read first |
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |

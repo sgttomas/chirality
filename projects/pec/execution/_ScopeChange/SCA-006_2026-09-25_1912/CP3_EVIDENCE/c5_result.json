@@ -1,0 +1,49 @@
+{
+ "missing": [],
+ "state_fields_missing_in_RUN_SUMMARY": [],
+ "state_fields_missing_in_Handoff_checkpoint3_section": [],
+ "hashes": {
+  "Brief.md": "205a46c04f2db6d34bead78db3064a02ff9d9d66a5e54fa9ff06b5c6314a1831",
+  "Impact_Assessment.md": "93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691",
+  "Amendment_Preview.md": "737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4",
+  "Propagation_Plan.md": "f95d00d154610d44a37d4aeabfae3fff29aac6c0a0c016bb1241810ebc87d7d8",
+  "Amendment_Actions.csv": "c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891",
+  "Amendment_Actions_CP2.csv": "d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de",
+  "Supersession_Delta.csv": "e69f97814294ccd993fceff12cdf992623156c33ca4993adb103b61774e5977b",
+  "Supersession_Map.csv": "010ce5c423530123f923413dbfad03ce70fc0ba0c072ee7726f7718847caab92",
+  "Pre_Change_Coverage.json": "b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d",
+  "Post_Change_Coverage.json": "b9a068c078ba6ca4daf5d6129c2823141cae787f7770068e1d70644b13a09cf0",
+  "Decision_Log.md": "96cc5602ebbf9fa95d30fb0bfee2ca75b1c40c60c9b256de3638fc7a369d38c7",
+  "Handoff_State.md": "89af74b86eb235f7b4a24dcbfdd6d1b58dc8b0edd593b3d8c9f41b87753ecfde",
+  "RUN_SUMMARY.md": "690b4923e7e7f7e62c25a6db35540e0e6b8bcd1276fbaa69dc078cf2b70c9b62",
+  "PRD_V2_4_SUCCESSOR_DIFF.md": "a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c",
+  "AGENTS_MD_CANDIDATE_DIFF.md": "7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158",
+  "CP2_CANDIDATE": {
+   "CP2_CANDIDATE/AGENTS.candidate.md": "49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d",
+   "CP2_CANDIDATE/AGENTS.candidate_without_I1.md": "a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188",
+   "CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv": "1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662",
+   "CP2_CANDIDATE/_Decomposition/ContextBudgetQA.csv": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+   "CP2_CANDIDATE/_Decomposition/Deliverables.csv": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+   "CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md": "4eed1247de47d1921e5526ef5027c12d504bffd4b8393b59645bb973fac62d71",
+   "CP2_CANDIDATE/_Decomposition/ScopeLedger.csv": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+   "CP2_CANDIDATE/docs/PRD.md": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe"
+  }
+ },
+ "additional_files": [
+  "AGENTS_MD_AMENDMENT1_DIFF.md",
+  "CP3_EVIDENCE/C4_3_REVIEW.md",
+  "CP3_EVIDENCE/apply_a1_a2.py",
+  "CP3_EVIDENCE/apply_a4_agents.py",
+  "CP3_EVIDENCE/apply_a4_manifest_notices.py",
+  "CP3_EVIDENCE/c1_containment.py",
+  "CP3_EVIDENCE/c1_result.json",
+  "CP3_EVIDENCE/c3_assert.py",
+  "CP3_EVIDENCE/c3_result.json",
+  "CP3_EVIDENCE/c5_completeness.py",
+  "CP3_EVIDENCE/c5_result.json",
+  "CP3_EVIDENCE/extract_drafts.py",
+  "CP3_EVIDENCE/precheck.py",
+  "CP3_EVIDENCE/preflight.py",
+  "CP3_EVIDENCE/verify_manifest.py"
+ ]
+}
