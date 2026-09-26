@@ -1,0 +1,16 @@
+{
+  "loops": [
+    {
+      "feed_profiles": [
+        {
+          "basis": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md",
+          "profile": "shared-dev-loop",
+          "state": "live",
+          "version": 1
+        }
+      ],
+      "loop_init_path": "projects/pec/loop/LOOP_INIT.md"
+    }
+  ],
+  "schema_version": 2
+}

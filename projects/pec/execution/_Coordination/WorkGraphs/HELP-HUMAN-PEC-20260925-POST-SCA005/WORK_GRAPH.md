@@ -55,14 +55,14 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 | N3 Evidence-quote refresh | 19 rows in 10 `Dependencies.csv` (WORKING_ITEMS) | `D-PEC-95` ruled P + R; exact new quotes verbatim in the cited files | Every ACTIVE EvidenceQuote verbatim; strict 0/0; closure unchanged | COMPLETE — act merged as PR #924 (`abfd0897b`); run root `CURRENCY_REV15_D95_2026-09-25/`; 111/111 active execution quotes verbatim; strict registers 0/0; closure `bd73806c…187a` unchanged |
 | U1 Currency act PR | N1–N3 and T1: one `gen_d95.py --option P --retired-covers` run from run root `CURRENCY_REV15_D95_{D}/`, the proposal's verification and a fresh verifier, with T1 riding along (WORKING_ITEMS) | `D-PEC-95` ruling and register row on `origin/main` | PR merged after review and CI | COMPLETE — PR #924 merged as `abfd0897b`. Two verifier verdicts PASS WITH NOTES, no blocking finding. HELP_HUMAN re-checked: 115 postimages equal P, 4 equal R, 0 mismatch; containment is 119 product + 2 register + run root + return |
 | R1 SCA-006 checkpoint 1: reliance amendment intake and impact | Snapshot folder `_ScopeChange/SCA-006_<date>/` only. It assesses PRD PEC-K-03, §8 (agents, access classes, direct query through tool calls), §9 reliance envelope and §12 release gate; response-size budgets; the `projects/pec/AGENTS.md` K-02 gloss; and the explicit list of affected SOWs and ADR/SPEC rows (WORKING_ITEMS, `scope-change`) | `D-PEC-90` R-A. Path basis: `D-PEC-90` grant item 3 ("prepare the exact PRD and `projects/pec/AGENTS.md` amendment as the next PEC scope change once SCA-005 checkpoint 2 is accepted"), whose precondition `D-PEC-92` met. *Interpretation:* like `D-PEC-86` for SCA-005, this covers writing the checkpoint-1 snapshot folder. Method: `chirality-root:bundled:workflow:scope-change` | Owner accepts checkpoint 1 | COMPLETE — owner accepted checkpoint 1 on 2026-09-25 (DQ a, ENV a, BUD a, GATE a, INS a, R-C excluded); snapshot `_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`, pointer `_ScopeChange/SCA-006_GROUP-1_AUTHORIZED.md` |
-| R2 SCA-006 checkpoint 2: exact amendment and propagation | PRD v2.4 candidate; the affected SOW and ADR/SPEC set fixed as exact rows (WORKING_ITEMS) | R1 accepted | Owner accepts checkpoint 2, which fixes the S4 set | READY — preparation authorized by the checkpoint-1 acceptance; a WORKING_ITEMS manager is dispatched after this graph update |
+| R2 SCA-006 checkpoint 2: exact amendment and propagation | PRD v2.4 candidate; the affected SOW and ADR/SPEC set fixed as exact rows (WORKING_ITEMS) | R1 accepted | Owner accepts checkpoint 2, which fixes the S4 set | ACTIVE — a WORKING_ITEMS manager is preparing the checkpoint-2 package under brief `briefs/B5_SCA006_CHECKPOINT2.md` (`142d6be0…efb4`), on branch `claude/pec-sca006-cp2-package`; returns go under `returns/B5_*` |
 | R3 SCA-006 checkpoint 3: apply and audit | Lane A writes per the accepted plan (WORKING_ITEMS) | R2 accepted | Owner accepts checkpoint 3 | PLANNED |
 | R4 Reliance notices | Root and App notices, per the `D-PEC-90` grant. A Runtime notice only if the checkpoint-2 plan names one (HELP_HUMAN) | R3 | Notices merged | PLANNED |
 | S1 SOW currency: review class outside the S4 set | Review-class SOWs from SCA-005 §B4 that SCA-006 does not name as affected, plus the 5 housekeeping-only (pins, false revision-1.1 claims) (WORKING_ITEMS with REVIEW or artifact gates) | U1; the latest SCA-006 affected-SOW list (R1's, replaced by R2's once accepted), whose members stay out of S1; packet per batch | Each SOW validator-clean and reviewed | READY — packet preparation; U1 and R1 are met. The accepted §7.1 AFFECTED set (9) stays out |
 | S2 SOW currency: rebuild class outside the S4 set | DEL-01-01, DEL-02-03, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07; DEL-01-06 after G1 (WORKING_ITEMS) | U1; R1 (the affected list, as for S1 and S3); packet(s); parser carry-forward (CON-001 cases for RETIRED, node states, run tokens). A member of the latest SCA-006 affected list moves to S4 | Same | READY — packet preparation for the six named; DEL-01-06 waits for G1 |
 | S3 First SOWs for DEL-02-08 and DEL-02-09 | Their `ScopeOfWork.md`, via preparation → Scope of Work (WORKING_ITEMS) | U1; R1 (the affected list, as for S1 and S2); packet. S2's parser carry-forward context informs it, but S3 is not blocked on S2 | Same | READY — packet preparation; U1 and R1 are met |
 | S4 SOWs whose quoted PRD text SCA-006 changes | The set that checkpoint 2 fixes. The accepted SCA-006 checkpoint-1 Impact Assessment §7.1 lists DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04 and DEL-04-03, with DEL-03-04, DEL-10-03 and DEL-00-03 AFFECTED at review level. §7.1 routes those three to "S1 or D1", but this graph holds them until R3 as well (DEL-00-03 through D1). That is a more conservative choice, and R2 records it. §7.1 classifies DEL-01-01, DEL-01-05, DEL-02-03 and DEL-01-06 NOT_AFFECTED. DEL-04-01 is a fixed member: the `D-PEC-90` proposal names its CLM-016/AX-007 as a locus, and grant item 1 bars rebuilding it around verify-before-rely. Other candidates, from a grep of the SOWs: quoting PEC-K-03 or verify-before-rely, DEL-04-02, DEL-08-01 and DEL-08-03; citing PRD §8, DEL-01-05, DEL-04-02, DEL-08-01, DEL-08-03 and DEL-08-04. (DEL-01-01, DEL-02-03 and DEL-04-03 cite `SOFTWARE_DECOMP.md` §8, not PRD §8. Checkpoint 1 classes DEL-04-03 AFFECTED anyway, for its scope growth.) DEL-04-02 is `current` under SCA-005 §B4 but is included because of CLM-016. A SOW that R2 drops from the R1 list returns to S1 or S2; a SOW that R2 adds after S1 or S2 processed it is reopened here (WORKING_ITEMS) | R3; packet, or the accepted checkpoint-2 propagation plan where it binds exact rows | Same | PLANNED |
-| G1 Registry source packet | `v2/config/loops.json`, `loops.schema.json`, `RegisteredLoop` port and tests (WORKING_ITEMS) | Packet (F-PEC-1); VER-001/VER-003 rerun | v2 checks pass; review | ACTIVE — the `D-PEC-96` draft returned from its read-only TASK (brief `briefs/G1_REGISTRY_SOURCE_PROPOSAL.md`); publication for independent review, then the owner's ruling. The accepted SCA-006 checkpoint 1 classes DEL-01-06 NOT_AFFECTED |
+| G1 Registry source packet | `v2/config/loops.json`, `loops.schema.json`, `RegisteredLoop` port and tests (WORKING_ITEMS) | Packet (F-PEC-1); VER-001/VER-003 rerun | v2 checks pass; review | ACTIVE — `D-PEC-96` revision 3 is published in this graph's sixth PR. The mutation runner is now option-aware: 19/19 caught under both A and A-R. It is under backcheck before the owner rules. Brief `briefs/G1_REGISTRY_SOURCE_PROPOSAL.md`; return `returns/G1_REGISTRY_SOURCE_PROPOSAL.md`. The accepted SCA-006 checkpoint 1 classes DEL-01-06 NOT_AFFECTED |
 | D1 Derivative premise review | DEL-00-01 ADRs, DEL-00-03 SPEC (WORKING_ITEMS with owning workflows) | Packet binding exact bytes (outside default surfaces); after R3 for K-03 text | Owner rules the packet; premise-only amendments merged | PLANNED |
 | X1 P1 fixture suites | DEL-02-03, DEL-02-08, DEL-02-09 fixture classes (receipt present, evidence-only, no AgentRuns record) (WORKING_ITEMS) | S2, S3 (and R3 if DEL-02-03 moves to S4); v2 packet (SCA-005 Propagation_Plan §B7) | Fixtures committed under the ruled packet | PLANNED |
 | T1 TM-PEC-023 disposition | Task Management register row, which is default-writable (WORKING_ITEMS, `task-management`) | Owner disposition: `D-PEC-95` ruling ("confirm TM-PEC-023"), on the basis of the amendment-1 selections, the checkpoint-2-accepted §B8 (`D-PEC-92`) and checkpoint 3, as `task-management` and Root `docs/CONTRACT.md` K-TM-3 require. A TASK does not write the row | Row closed and archived on the owner's confirmation; `taskmgmt validate` passes | COMPLETE — closed `RESOLVED_BY_DECISION` and archived in PR #924; live register 9 rows (8 `OPEN`, 1 `DEFERRED`), archive 16 |
@@ -73,8 +73,8 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 
 **Order.**
 - Done: U1 (with N1–N3 and T1), and R1.
-- Active: G1 (the `D-PEC-96` draft is returned; publication next).
-- Ready now: R2, and S1–S3 packet preparation.
+- Active: G1 (`D-PEC-96` published for review) and R2 (SCA-006 checkpoint-2 preparation).
+- Ready now: S1–S3 packet preparation.
 - After U1 and R1: S1, S2 and S3. Their membership follows the latest SCA-006 affected-SOW list (R1's, replaced by R2's once accepted).
 - After G1: DEL-01-06 in S2.
 - After R3: S4, D1 and I1.
@@ -98,18 +98,18 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 
 ## Current state and recovery
 
-- **Checked basis:** `origin/main` `3245f9acd` (PR #925 merged).
+- **Checked basis:** `origin/main` `56a626c3b` (PR #927, which changed nothing under `projects/pec` after PR #926's `4d5f7b911`).
 - **Next work:**
-  - Dispatch SCA-006 checkpoint-2 preparation (R2).
-  - Publish the G1 `D-PEC-96` draft for independent review, then bring it to the owner.
+  - Review `D-PEC-96`, then bring it to the owner.
+  - Receive the SCA-006 checkpoint-2 package (R2), then review it and present it.
   - Prepare the S1–S3 Scope of Work packets.
   - Each fenced packet comes to the owner to rule on.
-- **Local or unmerged work:** this graph's fifth PR (branch `claude/pec-sca006-cp1-accept`). It records the checkpoint-1 acceptance and updates STATUS and README.
+- **Local or unmerged work:** this graph's sixth PR (branch `claude/pec-d96-registry-proposal`). It publishes `D-PEC-96`.
 - **Active operations and ownership:**
   - The SCA-006 checkpoint-1 manager handed back (`returns/B4_SCA006_CHECKPOINT1.md`); its scratch helpers are named in the SCA-006 `Handoff_State.md` (not hashed, and not in the repository).
   - The U1 act manager handed back (`returns/U1_D95_CURRENCY_ACT.md`, brief `briefs/U1_D95_CURRENCY_ACT.md`); nothing is running from it.
-  - G1 (`D-PEC-96` draft): the read-only TASK handed back. Its brief is `briefs/G1_REGISTRY_SOURCE_PROPOSAL.md` (`084eadd8…0fca1`), and its draft and evidence sit in a HELP_HUMAN scratch folder until publication.
-  - Nothing is running.
+  - G1: the read-only preparer's draft is published in the sixth PR. Review 01 (`returns/REVIEW_PR928_01.md`) sent it back for revision 2. Review 02 (`returns/REVIEW_PR928_02.md`) found an A-R mutation crash, so the preparer made revision 3, now published and under backcheck.
+  - R2: a WORKING_ITEMS manager, brief `B5_SCA006_CHECKPOINT2.md` (`142d6be0…efb4`), in its own worktree on branch `claude/pec-sca006-cp2-package`. Returns go under `returns/B5_*`.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
 
@@ -119,6 +119,7 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 | `D-PEC-95` preparation (N1–N3, T1) | TASK draft, generator and prototype evidence published. Brief `briefs/H9_D95_CURRENCY_PROPOSAL.md`; return `returns/H9_D95_CURRENCY_PROPOSAL.md`. The generator's check-only run on `bec8bdd65` passed, with no preimage drift | Resolved: PR #921 merged as `325629882` after review 01 PASS (`returns/REVIEW_PR921_01.md`), and the owner ruled P + R. Review 01's findings 3, 4, 5 and 7 are repaired in this graph's third PR; findings 1, 2 and 8 went to the owner with the presentation |
 | SCA-006 checkpoint-1 package (R1) | Six snapshot files under `_ScopeChange/SCA-006_2026-09-25_1912/`: 54 PROPOSED actions, and all 32 SOWs classified (9 AFFECTED). Verifier PASS on round 03; PR #922 merged as `b1145955e`, with branch updated and package bytes unchanged. The owner accepted it 2026-09-25 (recommended set) | R2 checkpoint-2 preparation |
 | U1 currency act (N1–N3, T1) | PR #924 merged as `abfd0897b`. 119 P + R paths byte-identical to the tabled postimages; TM-PEC-023 archived; strict registers 0/0; closure unchanged; verifier PASS WITH NOTES ×2 (run root `VERIFIER_VERDICT_01.md`, `_02.md`) | None |
+| SCA-006 checkpoint-1 acceptance record | PR #926 merged as `4d5f7b911`. Group-1 snapshot and pointer; reviews 01 FAIL, 02 FAIL and 03 PASS, with every finding repaired (`returns/REVIEW_PR926_0{1,2,3}.md`) | None |
 
 ## Owner-direction evidence and D-PEC-88 trace
 
@@ -137,3 +138,4 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
     - It annotates the TM-PEC-023 historical sentence with the closure.
     - `README.md` records the checkpoint-1 acceptance and rephrases the SCA-004 closeout sentence (PR #925 review 01, findings 1, 2 and 8).
     - Review repair (PR #926 review 01): STATUS and README say checkpoint-2 preparation is "authorized", not "in preparation". STATUS names SCA-005 in the "Checkpoint 2 carried a note" sentence.
+  - Sixth PR: the `docs/STATUS.md` owner-gates list names `D-PEC-96` as awaiting ruling.
