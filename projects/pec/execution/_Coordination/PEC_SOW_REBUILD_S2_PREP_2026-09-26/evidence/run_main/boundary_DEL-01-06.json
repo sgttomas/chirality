@@ -1,0 +1,10 @@
+[
+  {
+    "findings": [],
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

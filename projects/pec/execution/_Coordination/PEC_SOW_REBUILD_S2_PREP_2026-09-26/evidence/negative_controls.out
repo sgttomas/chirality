@@ -1,0 +1,32 @@
+# 1 candidate-side: drop the REM-002 Gate phrase from DEL-02-07 (expect quotes FAIL)
+FAIL DEL-02-07 Q32 [138 chars; candidate=yes; source=NO] tools/practitioner_harness/README.md
+FAIL DEL-02-07 Q40 [695 chars; candidate=NO; source=yes] projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md
+FAIL DEL-02-07 Q41 [328 chars; candidate=NO; source=yes] projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md
+RESULT FAIL 57/60
+exit=0
+# 2 source-side: alter the D-PEC-99 exhibit in the tree (expect quotes FAIL)
+FAIL DEL-02-07 Q32 [138 chars; candidate=yes; source=NO] tools/practitioner_harness/README.md
+FAIL DEL-02-07 Q38 [620 chars; candidate=yes; source=NO] projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md
+RESULT FAIL 58/60
+# 3 raw dependency quote: break one character in DEL-01-01 CLM-012 (expect DEP FAIL)
+FAIL DEL-01-01 DEP DEP-02-01-003 EvidenceQuote raw-verbatim in candidate
+FAIL DEL-01-01 DEP DEP-02-02-003 EvidenceQuote raw-verbatim in candidate
+FAIL DEL-01-01 DEP DEP-02-03-003 EvidenceQuote raw-verbatim in candidate
+FAIL DEL-01-01 DEP DEP-02-04-003 EvidenceQuote raw-verbatim in candidate
+FAIL DEL-01-01 DEP DEP-02-05-003 EvidenceQuote raw-verbatim in candidate
+FAIL DEL-01-01 DEP DEP-02-06-003 EvidenceQuote raw-verbatim in candidate
+RESULT FAIL 67/73
+# 4 state claim: wrong hash for PRD in a copy of claims/DEL-02-05.json (expect FAIL)
+FAIL DEL-02-05 S003 sha256 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=NO; candidate=yes]
+RESULT FAIL 178/179
+# 5 validator: remove the first Output and Evaluation Matrix row from DEL-02-04 (expect FAIL and checklist refusal)
+- defined verification methods missing from matrix: VER-001
+exit=0
+checklist exit=1 artifact=absent
+# NOTES (manager, 2026-09-26)
+# - The controls ran on a path-limited export (projects/pec, tools/scope_of_work). Q32's source,
+#   tools/practitioner_harness/README.md, is outside that export, so Q32 reads as source=NO in
+#   controls 1 and 2 only; in the full-export run (evidence/run_main/verify_quotes.out) Q32 passes.
+# - The printed "exit=" lines in controls 1 and 5 capture the exit of the last pipeline stage,
+#   not of the verifier or validator; the result lines above are the evidence. Control 5's
+#   validator output line is its failure message; the checklist refused with no artifact (QA 18).

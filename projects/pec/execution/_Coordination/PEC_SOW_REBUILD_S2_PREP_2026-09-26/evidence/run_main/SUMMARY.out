@@ -1,0 +1,35 @@
+basis commit: dfb089b8abae48ee699117c5bc167301963b2ab5
+python: Python 3.13.7
+PASS act: check-only 0, apply 0, rerun refuses 1
+PASS containment: 7 differing files, all ScopeOfWork.md
+PASS validate DEL-01-01
+PASS checklist DEL-01-01 (rerun byte-identical)
+PASS boundary DEL-01-01 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-01-06
+PASS checklist DEL-01-06 (rerun byte-identical)
+PASS boundary DEL-01-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-02-03
+PASS checklist DEL-02-03 (rerun byte-identical)
+PASS boundary DEL-02-03 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-02-04
+PASS checklist DEL-02-04 (rerun byte-identical)
+PASS boundary DEL-02-04 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-02-05
+PASS checklist DEL-02-05 (rerun byte-identical)
+PASS boundary DEL-02-05 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-02-06
+PASS checklist DEL-02-06 (rerun byte-identical)
+PASS boundary DEL-02-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-02-07
+PASS checklist DEL-02-07 (rerun byte-identical)
+PASS boundary DEL-02-07 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS quotes: RESULT PASS 460/460
+PASS state claims: RESULT PASS 1274/1274
+PASS sibling IDs: RESULT PASS 92/92
+INFO consequence scan (informational): SUMMARY stale=31 kept=32
+PASS strict identical before/after, export root normalized (exit=1)
+PASS harness identical before/after, export root normalized (exit=0)
+PASS receipts identical before/after, export root normalized (exit=0)
+PASS whitespace
+PASS fault injection: RESULT PASS 7/7
+OVERALL PASS

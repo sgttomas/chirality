@@ -1,0 +1,487 @@
+{
+  "item_count": 19,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 191,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "For each loop and generation the table covers, the parser applies exactly the declared grammar and every emitted Receipt names its loop, generation and grammar; a surface the table does not cover is reported as uncovered rather than parsed under any default, and no output is produced for it.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-001",
+          "source_line": 232,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over one fixture per covered loop and generation and assert that the applied grammar is the table's declared one and that every emitted Receipt names its loop, generation and grammar; then execute it over a surface the table does not cover and assert an uncovered report with no Receipt emitted."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 192,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The per-loop grammar table exists as a readable artifact and states, per covered loop and generation, the grammar with its identifier and version, the yieldable fields and the unyieldable fields; every construct the parser actually reads appears in the table; and altering an undeclared construct in a fixture changes nothing in the output.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-002",
+          "source_line": 233,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the grammar table for identifiers, versions and field statements; compare the set of constructs actually read — by instrumentation or code inspection — against the table, asserting the table is complete; then mutate an undeclared construct in a fixture and assert output invariance."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 193,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The receipt-contract-v2 marker is detected from the ledger and never from the loop's identity: marker-governed fixture entries yield the four fields, with prose field values yielding presence only; entries the marker does not govern, from the same ledger, yield the unavailable marking rather than an error or a fabricated value; no loop is hard-coded as carrying or lacking the marker; and the parser defines no fifth receipt-contract field.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-003",
+          "source_line": 234,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over a marker-carrying fixture ledger holding entries the marker governs and entries it does not, and assert the four declared fields for the former, presence only for prose values, and the unavailable marking for the latter; inspect the source and table for any loop-identity-keyed marker assumption and for any receipt-contract field beyond the four."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 194,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "For prose-structured ledger fixtures and central-receipt fixtures the parser yields the fields its grammar obtains, marks every unobtained field unavailable with the loop and reason identified, and returns no silently omitted, defaulted, or inferred field; malformed and unreadable fixtures likewise yield an explicit limitation rather than a partial result presented as complete.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-004",
+          "source_line": 235,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over prose-structured ledger, central-receipt, malformed and unreadable fixtures and assert, per case, the fields obtained plus an explicit unavailable marking naming loop and reason for every field not obtained, with no defaulted or inferred value present."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 195,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "Reviewed against the `DEL-01-01` contract's Receipt obligations in force at review time (`DEL-01-01/REQ-008`, `DEL-01-01/REQ-015` and `DEL-01-01/AC-007` as this act writes them), the emitted payload introduces no field that contract is not obliged to carry, drops no availability distinction it is obliged to make readable, and defines no record-tier type; the difference between a marker-carrying ledger, a prose-structured ledger and a central receipt is readable from the output rather than inferred.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-005",
+          "source_line": 236,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the emitted payload field by field against the accepted `DEL-01-01` contract's Receipt obligations in force at review time, asserting no extra field, no dropped availability distinction and no record-tier type definition, and assert that marker-carrying, prose-structured and central-receipt outputs are distinguishable by inspection alone."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 196,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "For a sample Receipt from each covered grammar, the recorded provenance resolves to the live source by loop, path, blob SHA, examined commit, anchor and grammar identifier.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-006",
+          "source_line": 237,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "For a sample Receipt from each covered grammar, resolve the recorded provenance to the source and assert that each provenance element is present and locatable."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 197,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "No emitted field holds receipt prose: fixture entries containing a verbatim owner direction, result and checks prose, a gate-outcome sentence and a narrative body yield only the grammar's structured facts and field presence, and the prose is not expressible anywhere in the output.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-007",
+          "source_line": 238,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over fixture entries containing a verbatim owner direction, result and checks prose, a gate-outcome sentence and a narrative body; assert the output holds only structured facts and field presence, and review every emitted field's type for capacity to hold prose."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 198,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "A parser run leaves the fixture repository's objects, refs, index and worktree byte-identical, and the module contains no write, create, delete or ref-updating call against any source path.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-008",
+          "source_line": 239,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Hash the fixture repository's objects, refs, index and worktree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, delete or ref-updating operations against any source path."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 199,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "Two runs over identical inputs yield identical Receipt sets, including identical availability markings, generation labels and live or historical labels.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-009",
+          "source_line": 240,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the parser twice over identical inputs and assert the two Receipt sets, including availability markings, generation labels and live or historical labels, are identical."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 200,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "Adding a loop row to the table, flipping a loop's recorded marker status, and flipping a declared profile's live or historical state each require a change to the table, its fixtures or the registry declaration only: the parser's emitted typing, its call surface and every other deliverable are untouched, and no `OI-008` outcome is presupposed by parser or table.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-010",
+          "source_line": 241,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Perform three isolated change exercises — add a loop row to the table with its fixtures, flip a loop's recorded marker status, and flip a declared profile's live or historical state — and assert in each case that the diff touches the table, fixtures or registry declaration only, that emitted typing and call surface are unchanged, and that no `OI-008` outcome is encoded anywhere in parser or table."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 201,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The work is delivered as one parser holding multiple grammars; no split is taken under this contract, and the central-receipt split line is left to the scope-change process.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-011",
+          "source_line": 242,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Compare the delivered artifact structure against the envelope record of CLM-007, asserting a single parser holding multiple grammars and no split taken under this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 202,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-012",
+          "source_line": 243,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-02-03-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 203,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The fixture test suite implements VER-001 through VER-012 and VER-014 through VER-018, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-013",
+          "source_line": 244,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-012 and VER-014 through VER-018 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 204,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The review gate confirms this contract's traceability to `SOW-013`, `OBJ-001` and `OBJ-002` through the §3 mapping note and the SCA-002 Gate 3 Q2 ruling, confirms that the indirect `OBJ-002` leg is stated no more strongly than those records state it, including the recorded and unadopted N1 narrowing evidence, and confirms that no `PKG-01` schema or registry scope, sibling `PKG-02` feed grammar, or `PKG-03`/`PKG-04` reconciliation or honesty scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "review gate confirms traceability to SOW-013 and to OBJ-001/OBJ-002 through the §3 mapping note and the SCA-002 Gate 3 Q2 ruling, confirms the indirect OBJ-002 leg is stated no more strongly than those records state it given the unadopted N1 narrowing evidence, and confirms no PKG-01, registry, sibling or PKG-03/PKG-04 scope absorption"
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 205,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "A ledger at the canonical path of a loop whose row declares the receipt-ledger surface, and central receipts of a loop whose row declares the central-receipts surface, are read; a same-named file elsewhere and a non-receipt AgentRuns file are not; and a loop with no declaration yields a no-declaration report and no Receipt facts.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-014",
+          "source_line": 245,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute discovery over a fixture tree holding a canonical ledger and central receipt for a loop declaring both surfaces, a same-named file at another path, a non-receipt AgentRuns file and a loop with no declaration; assert reading, non-reading and the no-declaration report respectively."
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 206,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "Every emitted Receipt carries the live or historical label its registry declaration gives; a historical ledger that has not changed yields no staleness claim; and changing only the register text or the ledger's own text leaves the label unchanged.",
+      "verification": [
+        {
+          "id": "VER-015",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-015",
+          "source_line": 246,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute over fixtures whose declarations give the live and the historical state, with the register text and the ledger's own text held constant and then varied; assert the labels follow the declaration only and that an unchanged historical ledger yields no staleness claim."
+        }
+      ]
+    },
+    {
+      "id": "AC-017",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-017",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 207,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "A central receipt's Receipt-ID comes from its cursor field and not from its folder name; the FC-2 and FC-3 cases each yield a stated coverage limit and no nonconformance finding.",
+      "verification": [
+        {
+          "id": "VER-016",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-016",
+          "source_line": 247,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute over the FC-1 central receipt and a synthetic receipt whose folder name differs from its cursor Receipt-ID, and over the FC-2 and FC-3 cases; assert the cursor-field identity and the stated coverage limits with no nonconformance finding."
+        }
+      ]
+    },
+    {
+      "id": "AC-018",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-02-03-AC-018",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 208,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The fixture suite references FC-1, FC-2 and FC-3 by `(commit, path, blob)` at `d61981ee2` with content-minimal goldens, copies no fixture source into PEC's tree, includes the six synthetic cases of REQ-017 at packet-named paths with no copied text, reads no `## Remaining` section, and asserts the no-source-text run check on every golden test.",
+      "verification": [
+        {
+          "id": "VER-017",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-017",
+          "source_line": 248,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the fixture manifests for `(commit, path, blob)` references at `d61981ee2` covering FC-1, FC-2 and FC-3, resolve each pin by read-only plumbing, check for the absence of copied fixture sources and of any `## Remaining` read, compare the synthetic set against the six cases of REQ-017 and the packet-named paths, and run the no-source-text assertion on every golden test."
+        }
+      ]
+    },
+    {
+      "id": "AC-019",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-019",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 209,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+      },
+      "text": "The module reads no sibling feed and performs none of the excluded acts of REQ-018.",
+      "verification": [
+        {
+          "id": "VER-018",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-018",
+          "source_line": 249,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the module's file access for any sibling feed path and its call surface for any excluded act of REQ-018."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b"
+  },
+  "tool_version": "1"
+}
