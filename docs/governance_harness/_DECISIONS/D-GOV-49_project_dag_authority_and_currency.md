@@ -82,6 +82,10 @@ an accepted DAG version the three fields that `audit_dag.py --strict` rejects
 but SPEC marks only as recommended. Of the new workflows, the owner said they
 "can become core".
 
+On the charter restatement of K-DEP-1:
+
+> PRD_ROOT item O-8 should be revised to match D-GOV-49
+
 ## Decision
 
 1. **Neither side is self-authorizing.** Neither the project DAG nor the local
@@ -140,7 +144,8 @@ but SPEC marks only as recommended. Of the new workflows, the owner said they
     containment note, the §6.2 annotations, and a §11.2 note. The DIRECTIVE
     structural constraint reads "one DAG per project" instead of "no central
     dependency graph to maintain". The agent manual v3 §8 is aligned and its
-    HTML regenerated.
+    HTML regenerated. `docs/PRD_ROOT.md` O-8, which transcribed the earlier
+    K-DEP-1, is revised to this decision.
 11. **Workflows.** `project-dag` drops its "derived view" framing and applies
     items 1 to 9: currency audit, `DAG pending`, successor or rejection,
     `_DAG/_LATEST.md`, `_DAG/cases/`, and the required fields. Its fallback of
@@ -186,9 +191,6 @@ edited. Each project loop decides its own adoption.
   `tools/coordination/materialize_local_dependencies.py`, the
   `dependency-extract` mirroring, and the `review` workflow. The last three
   belong to a separate held branch.
-- `docs/PRD_ROOT.md` O-8, which transcribes the earlier K-DEP-1. It is read
-  under this decision; aligning the charter's text is left to its own
-  revision.
 - Historical records, earlier manual editions, the thesis and proposals.
 - The Root `AGENTS.md` central-workflow table and `centralWorkflowNames`.
 
