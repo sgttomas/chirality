@@ -92,14 +92,14 @@ Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HU
 
 | Artifact | SHA-256 |
 |---|---|
-| `Amendment_Preview.md` | `a8aad4dbab59979214c7f814695765679255f13b1e26181dafc0abdd0d725cca` |
-| `Propagation_Plan.md` | `05f7f8f8ccc75aa67c1cd4f9033680169f68283586d6c7e1eb034d74e6e95acb` |
+| `Amendment_Preview.md` | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
+| `Propagation_Plan.md` | `22e56f40a0ceff93e3a7923b1608dfea9bcd82b3f7e1fe9a55024e71483338c6` |
 | `Amendment_Actions_CP2.csv` | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
 | `Supersession_Delta.csv` | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
-| `AGENTS_MD_CANDIDATE_DIFF.md` | `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b` |
+| `AGENTS_MD_CANDIDATE_DIFF.md` | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
-| `CP2_CANDIDATE/AGENTS.candidate.md` | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` |
+| `CP2_CANDIDATE/AGENTS.candidate.md` | `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d` |
 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` |
 | `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `4eed1247de47d1921e5526ef5027c12d504bffd4b8393b59645bb973fac62d71` |
 | `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e` |

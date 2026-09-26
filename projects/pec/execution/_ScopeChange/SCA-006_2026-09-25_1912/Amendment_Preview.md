@@ -27,7 +27,7 @@ Basis consumed: the accepted group-1 snapshot `checkpoint_snapshots/SCA-006_GROU
 | `_Decomposition/ContextBudgetQA.csv` | `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` | `93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c` |
 | `_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` | `1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662` |
 | `docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
-| `projects/pec/AGENTS.md` | `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a` | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` (`CP2_CANDIDATE/AGENTS.candidate.md`, with the I1 corrections; recommended) or `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (`CP2_CANDIDATE/AGENTS.candidate_without_I1.md`), per owner question Q-CP2-1; applied only through the checkpoint-3 instruction tranche |
+| `projects/pec/AGENTS.md` | `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a` | `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d` (`CP2_CANDIDATE/AGENTS.candidate.md`, with the I1 corrections; recommended) or `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (`CP2_CANDIDATE/AGENTS.candidate_without_I1.md`), per owner question Q-CP2-1; applied only through the checkpoint-3 instruction tranche |
 | `_Decomposition/_LATEST.md` — not in the approval unit; rewritten only after checkpoint-3 acceptance (A-43) | `626feaafa213c3fe4995640a42a0a7606a1bd89a200ebf2e588afd4209a212dd` | none |
 
 Any preimage mismatch before application invalidates this preview and returns the package to checkpoint 2.
@@ -680,7 +680,7 @@ OI-006 premise extended to credentials for the agent access class (tool-call que
 ## 8. Product authority and instructions outside the decomposition
 
 - **K group (Seq 1–13), PRD v2.4 successor candidate:** exact text in `PRD_V2_4_SUCCESSOR_DIFF.md` (SHA-256 `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c`); candidate bytes `CP2_CANDIDATE/docs/PRD.md` (SHA-256 in the byte table above).
-- **I group (Seq 14–17), `projects/pec/AGENTS.md` instruction candidate:** exact text in `AGENTS_MD_CANDIDATE_DIFF.md` (SHA-256 `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b`); applied at checkpoint 3 as an instruction tranche (INS-a).
+- **I group (Seq 14–17), `projects/pec/AGENTS.md` instruction candidate:** exact text in `AGENTS_MD_CANDIDATE_DIFF.md` (SHA-256 `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158`); applied at checkpoint 3 as an instruction tranche (INS-a).
 
 The decomposition texts above use the same canonical wording as those documents for C3 (PEC-K-03), SOW-003 (the §8 access classes), SOW-060 (§11 metric 4), SOW-080 / OI-006 (§16.6), SOW-097 (PEC-ORI-007), SOW-098 (PEC-API-006), SOW-099 (PEC-API-007) and SOW-100 (the §12 reliance-advertisement gate). The §12 P1 row is not edited (GATE-a).
 

@@ -4,12 +4,12 @@ doc_kind: scope_change.instruction_candidate_diff
 status: candidate_pending_checkpoint_2
 amendment: SCA-006
 prepared: 2026-09-25
-revision: 1 (manager decisions on observations O-2, O-3 and O-5 applied; see §8)
+revision: 2 (r1 manager decisions on observations O-2, O-3 and O-5, see §8; r2 I1 hunks made true at origin/main 7f33b4dd5, see §4.2)
 prepared_by: TASK child T3 (Type 2) under the WORKING_ITEMS manager for brief B5, HELP_HUMAN undertaking HELP-HUMAN-PEC-20260925-POST-SCA005, work-graph node R2; roles instruction-asserted, not mechanically enforced
 preimage: projects/pec/AGENTS.md
 preimage_sha256: c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a
 candidate_with_I1: CP2_CANDIDATE/AGENTS.candidate.md
-candidate_with_I1_sha256: bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919
+candidate_with_I1_sha256: 49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d
 candidate_with_I1_lines: 454
 candidate_without_I1: CP2_CANDIDATE/AGENTS.candidate_without_I1.md
 candidate_without_I1_sha256: a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188
@@ -46,9 +46,9 @@ value (§9).
 | Brief | B5 `BRIEF_T3_AGENTS.md`, SHA-256 `508761093efb04e63b780623c3dd734ccc58b45c09f4581bf9af8966ddb44175` (manager scratchpad; not in the repository) |
 | Shared canon | B5 `CANON.md`, SHA-256 `5617eb1c0ead3cfb04246945fc033b3e5c0744b7d091ac2d47affae4cb0e67d0` (manager scratchpad; binding for the texts of §3) |
 | Executor | TASK child T3, claude-opus-5-5 at high reasoning effort as steered; the runtime exposed that model name; no delegation |
-| Repository basis | worktree branch `claude/pec-sca006-cp2-package` at `4d5f7b91102b7106ff74b98118b2bda2fe873f36`; no tracked file modified. Other TASK children wrote their own untracked files in the same snapshot concurrently (`PRD_V2_4_SUCCESSOR_DIFF.md`, `CP2_CANDIDATE/docs/`, `CP2_CANDIDATE/_Decomposition/`); this task did not read or touch them |
+| Repository basis | Preimage basis: `4d5f7b91102b7106ff74b98118b2bda2fe873f36` (the SCA-006 hunks and the preimage `c9d3b44d…` are unchanged there and at the current head). I1 facts (roles, workflows, skills) verified at `origin/main` `7f33b4dd51f93553f17607167077c28ddd773ff6`, merged into the branch by the manager as HEAD `005a454454cc5f7232dc630bc85c605ea7c35372` (revision 2). This task made no Git state change. Other TASK children wrote their own untracked files in the same snapshot concurrently (`PRD_V2_4_SUCCESSOR_DIFF.md`, `CP2_CANDIDATE/docs/`, `CP2_CANDIDATE/_Decomposition/`); this task did not read or touch them |
 | Preimage | `projects/pec/AGENTS.md`, SHA-256 `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a`, 434 lines |
-| Candidate with I1 | `CP2_CANDIDATE/AGENTS.candidate.md`, SHA-256 `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919`, 454 lines |
+| Candidate with I1 | `CP2_CANDIDATE/AGENTS.candidate.md`, SHA-256 `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d`, 454 lines |
 | Candidate without I1 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md`, SHA-256 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188`, 448 lines |
 | Draft tranche manifest | full text in §6.1 (SHA-256 of the draft bytes `852b1d5b876500fb4970df8b688394ad2c15883ede6f4a8e8cd821989efbbc45`); not written into `docs/` |
 | Draft notices | full texts in §6.3 (Root `43cfa3183ed242d7ec3d349e77cce6403e2355bc8965ed93560f2917c132b930`, App `eb927e1f061fd81760079868e78ee288134d180ad41a9c20c0bbdf8ed00b704a`, Runtime `385e5e2f5495634470c1c3439b6c8937edc88074132b4f89de211b67ffadc8bc`) |
@@ -64,7 +64,8 @@ value (§9).
 | `docs/governance_harness/tranche_manifests/PEC-DEVELOPMENT-LOOP-ADOPTION-20260925.yaml` (precedent) | `0ccddebe999f1ee3a35ff0672069fce20302ab9ae56517836e825c68a3beb783` | manifest shape |
 | `execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md` (precedent) | `b6814e902c23f24020337ab925a7c287b66b5ee485785bee07b042e25e1e5a6b` | tranche precedent |
 | `agents/registry.json` | `767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4` | role identities (I1) |
-| `workflows/index.json` | `213a07389d18f4ad0582582485b872931c0242861586e875f27965548b0fca3c` | workflow and skill identities, `legacy.retiredRoles` (I1) |
+| `workflows/index.json` at `7f33b4dd5` (revision 2) | `083277c5c8eb35d28a1a39ed99f9a9ec829e673df3d8b556c2193fcbb4ac75bb` (was `213a0738…` at `4d5f7b911`) | workflow and skill identities, `legacy.retiredRoles`, `legacy.historicalOnly` (I1) |
+| `workflows/construct-local-work-graph/WORKFLOW.md` at `7f33b4dd5` | `3e197c9ddc75d40daa02929dc3df653a66f7d76ab6996239e823bba647dd9dc3` | implementation-node requirements (L62–64) (I1) |
 | `agents/AGENT_HELPS_HUMANS.md` | `a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e` | consulted, as the brief permits, for instruction-candidate comparison |
 | `projects/chirality-runtime/…/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md` | `2e66ee8681800307f5675db63c9870413bb6148bc5cace8e3423ac89b4eeaefe` | Runtime notice basis (read scope item 5, L459–461) |
 | `projects/chirality-runtime/…/_run_records/DEL-02-06-RUNTIME-SPEC-001/clients/SOURCE_PINS.json` | `796cd368d44d67b4371cc47b7596740e6d0edddba2035a76dc27c8e764e2f71b` | Runtime notice basis (S4–S6) |
@@ -262,14 +263,14 @@ PRD is an implementation mandate" is kept verbatim.
 -| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 +| `WORKING_ITEMS` with `software-decomp` (formerly `SOFTWARE_DECOMP`) | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 +| `WORKING_ITEMS` with `project-setup` (formerly `PROJECT_SETUP`) | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
-+| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK workflows (`software-repository-reconnaissance`, `software-test-planning`, `software-bounded-implementation`, `software-code-review`, `software-defect-diagnosis`; catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
++| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the `software-repository-reconnaissance` and `software-test-planning` workflows and the `software-code-review` and `software-defect-diagnosis` skills, with implementation commissioned as a bounded TASK assignment under the implementation-node requirements of `construct-local-work-graph` (catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 @@ -122,5 +124,9 @@
 -| `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
 -| `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 -| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
 -| `RESEARCH` | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
 -| `AUDIT_*` | 2 | Bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
-+| `WORKING_ITEMS` with `change`, or the project `chirality-change` skill (formerly `CHANGE`) | 1 | Performs scoped Git/file-state closeout for validated tranches. The agent performing it owns Git state; PEC never will. |
++| `WORKING_ITEMS` with the project `chirality-change` skill (formerly `CHANGE`, whose legacy mapping is the `change` workflow) | 1 | Performs scoped Git/file-state closeout for validated tranches. The agent performing it owns Git state; PEC never will. |
 +| `WORKING_ITEMS` with `review` (formerly `REVIEW`) | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 +| `WORKING_ITEMS` with `reconciliation` (formerly `RECONCILIATION`) | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
 +| `WORKING_ITEMS` with `research-orchestration` (formerly `RESEARCH`) | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
@@ -280,22 +281,25 @@ PRD is an implementation mandate" is kept verbatim.
 +`{REPO_ROOT}/workflows/index.json` (`legacy.retiredRoles`).
 ```
 
-Evidence and identities used (all verified to exist at the basis):
+Evidence and identities used (revision 2: all rechecked at `7f33b4dd5`
+against `workflows/index.json` `083277c5…` and `agents/registry.json`
+`767fdfe2…`, whose roles are HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS and TASK;
+every named method's package file exists):
 
 | Preimage row | Candidate label | Where defined |
 |---|---|---|
 | `SOFTWARE_DECOMP` (1) | `WORKING_ITEMS` with `software-decomp` | `workflows/index.json` `legacy.retiredRoles.SOFTWARE_DECOMP` = {role WORKING_ITEMS, workflow software-decomp}; `workflows/software-decomp/WORKFLOW.md` |
 | `PROJECT_SETUP` (1) | `WORKING_ITEMS` with `project-setup` | `legacy.retiredRoles.PROJECT_SETUP`; `workflows/project-setup/WORKFLOW.md` |
-| `WORKING_ITEMS` (1): "five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`)" | same role; the five `software-*` TASK workflows, named | Root `AGENTS.md` has no agent index and `skills/` does not exist at the basis; `docs/SOFTWARE_WORKFLOW_PROFILE.md` L22 "software-* workflows executed by TASK"; `workflows/index.json` lists `software-repository-reconnaissance`, `software-test-planning`, `software-bounded-implementation`, `software-code-review`, `software-defect-diagnosis` as bundled workflows (the last two also as bundled skills), each with `workflows/<name>/WORKFLOW.md`. `software-decomp` is a sixth `software-*` directory, so the five are named rather than globbed |
+| `WORKING_ITEMS` (1): "five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`)" | same role; the current software methods named with their kinds, and implementation "commissioned as a bounded TASK assignment under the implementation-node requirements of `construct-local-work-graph`"; the catalog pointer and the `SOFTWARE_WORKFLOW_PROFILE.md` conformance clause kept | Root `AGENTS.md` has no agent index and `skills/` does not exist. At `7f33b4dd5`, `workflows/index.json` lists `software-repository-reconnaissance` and `software-test-planning` as bundled workflows (`workflows/<name>/WORKFLOW.md`) and `software-code-review` and `software-defect-diagnosis` as bundled skills (`.agents/skills/<name>/SKILL.md`; no workflow package remains). `software-bounded-implementation` is retired with no successor and listed in `legacy.historicalOnly`; it is not named. Root commit `ea5009d05` (tranche `ROOT-WORKFLOW-WAVE2A-EXECUTION-20260926`) and PEC's notice `execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md` say implementation "is commissioned as a bounded TASK assignment" and that `construct-local-work-graph` states the implementation-node requirements (its `WORKFLOW.md` L62: "An implementation node is a bounded TASK assignment."). `software-decomp` is also `software-*` but is a decomposition method, so the methods are named rather than globbed |
 | `TASK` (2) | unchanged | `agents/registry.json` |
-| `CHANGE` (1) | `WORKING_ITEMS` with `change`, or the project `chirality-change` skill | `legacy.retiredRoles.CHANGE` = {role WORKING_ITEMS, workflow change, canonical_successor skill chirality-change (project)}; `.agents/skills/chirality-change/SKILL.md`; Root `AGENTS.md` cites that skill for PR records. "CHANGE owns Git state; PEC never will." becomes "The agent performing it owns Git state; PEC never will." |
+| `CHANGE` (1) | `WORKING_ITEMS` with the project `chirality-change` skill (the legacy `change` workflow named only as the retired role's mapping) | `legacy.retiredRoles.CHANGE` = {role WORKING_ITEMS, workflow change, canonical_successor skill chirality-change (project)}; index kind `skill`, source `project`, execution roles HELPS_HUMANS, WORKING_ITEMS, TASK; `.agents/skills/chirality-change/SKILL.md`; Root `AGENTS.md` cites that skill for PR records, and at `7f33b4dd5` the Root loop names it for Git closeout (`execution/_Coordination/LOOP_INIT.md` L19). "CHANGE owns Git state; PEC never will." becomes "The agent performing it owns Git state; PEC never will." |
 | `REVIEW` (1) | `WORKING_ITEMS` with `review` | `legacy.retiredRoles.REVIEW`; `workflows/review/WORKFLOW.md` |
 | `RECONCILIATION` (1) | `WORKING_ITEMS` with `reconciliation` | `legacy.retiredRoles.RECONCILIATION`; `workflows/reconciliation/WORKFLOW.md` |
 | `RESEARCH` (1) | `WORKING_ITEMS` with `research-orchestration` | `legacy.retiredRoles.RESEARCH`; `workflows/research-orchestration/WORKFLOW.md` |
 | `AUDIT_*` (2) | `TASK` with an `audit-*` workflow | `legacy.retiredRoles.AUDIT_*` (seven entries, each role TASK); `workflows/audit-*/WORKFLOW.md` |
 
-Each row's "Role in this project" text is unchanged except the one `CHANGE`
-sentence above; the Type column is unchanged in every row, because each
+Each row's "Role in this project" text is unchanged except the `WORKING_ITEMS`
+method list and the one `CHANGE` sentence above; the Type column is unchanged in every row, because each
 retired name maps to a role of the same type. The column header "Agent"
 becomes "Role and method" because the first cell now names a role and the
 method it runs. The two-sentence note after the table gives the source of the
@@ -428,14 +432,14 @@ Product Posture hunk ending at its L36 in the unchanged-wording form shown in
 -| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 +| `WORKING_ITEMS` with `software-decomp` (formerly `SOFTWARE_DECOMP`) | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 +| `WORKING_ITEMS` with `project-setup` (formerly `PROJECT_SETUP`) | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
-+| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK workflows (`software-repository-reconnaissance`, `software-test-planning`, `software-bounded-implementation`, `software-code-review`, `software-defect-diagnosis`; catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
++| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the `software-repository-reconnaissance` and `software-test-planning` workflows and the `software-code-review` and `software-defect-diagnosis` skills, with implementation commissioned as a bounded TASK assignment under the implementation-node requirements of `construct-local-work-graph` (catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 @@ -110,5 +124,5 @@
 -| `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
 -| `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 -| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
 -| `RESEARCH` | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
 -| `AUDIT_*` | 2 | Bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
-+| `WORKING_ITEMS` with `change`, or the project `chirality-change` skill (formerly `CHANGE`) | 1 | Performs scoped Git/file-state closeout for validated tranches. The agent performing it owns Git state; PEC never will. |
++| `WORKING_ITEMS` with the project `chirality-change` skill (formerly `CHANGE`, whose legacy mapping is the `change` workflow) | 1 | Performs scoped Git/file-state closeout for validated tranches. The agent performing it owns Git state; PEC never will. |
 +| `WORKING_ITEMS` with `review` (formerly `REVIEW`) | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 +| `WORKING_ITEMS` with `reconciliation` (formerly `RECONCILIATION`) | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
 +| `WORKING_ITEMS` with `research-orchestration` (formerly `RESEARCH`) | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
@@ -800,8 +804,8 @@ V1–V18 are the original run on the pre-revision candidates
 
 | # | Command | cwd | State | Exit | Result |
 |---|---|---|---|---|---|
-| R1 | `python3 build_candidates.py` (6 SCA-006 + 9 I1 replacements, each asserted to match once) | `SCR` | preimage `c9d3b44d…` | 0 | without I1 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (448 lines); with I1 `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` (454 lines) |
-| R2 | `python3 REPO/tools/validation/validate_instruction_entrypoints.py SCR/repo` | `SCR` | preimage; then without I1 (`a8b8d906…`); then with I1 (`bd34d03d…`) | 0, 0, 0 | PASS each time |
+| R1 | `python3 build_candidates.py` (6 SCA-006 + 9 I1 replacements, each asserted to match once) | `SCR` | preimage `c9d3b44d…` | 0 | without I1 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (448 lines); with I1 `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d` (454 lines) |
+| R2 | `python3 REPO/tools/validation/validate_instruction_entrypoints.py SCR/repo` | `SCR` | preimage; then without I1 (`a8b8d906…`); then with I1 (`49ce993a…`) | 0, 0, 0 | PASS each time |
 | R3 | `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py` | `SCR/repo` | with I1 | 0 | 24 passed |
 | R4 | `python3 REPO/tools/validation/validate_instruction_tranche_manifest.py` (CI) | `SCR/repo` | revised manifest draft (`852b1d5b…`) + three notices | 0 | `G4 PASS (CI mode): 115 tranche manifest(s)` |
 | R5 | third scratch commit replacing the manifest draft and `projects/pec/AGENTS.md` (revised candidate with I1); `git diff --name-status base HEAD` | `SCR/g4repo` | 4 A + 1 M | 0 | — |
@@ -814,6 +818,21 @@ Not rerun after revision 1: V8 (negative control; the notice set is
 unchanged), V15 (harness), V16–V17 (they read neither `AGENTS.md` nor the
 drafts) and V18 (the preflight checks target paths, which are unchanged).
 The notice drafts are byte-identical to the original run.
+
+Revision 2 changed only I1 text in `AGENTS.candidate.md` (the `WORKING_ITEMS`
+and `CHANGE` rows), after `origin/main` `7f33b4dd5` was merged into the
+branch as HEAD `005a45445`. The without-I1 candidate, the manifest draft and
+the notices are unchanged, so G4 was not rerun. Rechecks:
+
+| # | Command | cwd | State | Exit | Result |
+|---|---|---|---|---|---|
+| R10 | `python3 build_candidates.py` | `SCR` | preimage `c9d3b44d…` (unchanged at HEAD `005a45445`) | 0 | all 6 SCA-006 replacements still match the preimage exactly once; without I1 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (unchanged from revision 1); with I1 `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d`; `diff -U0` without→with gives exactly the four I1 hunks |
+| R11 | `git archive --format=tar -o SCR/light.tar HEAD AGENTS.md CLAUDE.md init tools/validation projects/{pec,chirality-app-dev,chirality-piping}/{AGENTS.md,init,loop,software-workflow.json}`; `tar -xf` into `SCR/light` | worktree | read-only | 0 | light copy of `005a45445`, 2.7 MB |
+| R12 | `python3 SCR/light/tools/validation/validate_instruction_entrypoints.py SCR/light` | `SCR` | preimage; without I1; with I1 (`49ce993a…`) | 0, 0, 0 | PASS each time |
+| R13 | `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py` | `SCR/light` | with I1 | 0 | 24 passed |
+| R14 | `python3 term_check.py`; `python3 selfcheck.py` | `SCR` | both candidates | 0, 0 | no trailing whitespace or tab; no new bare "reliance"/"rely"; headings and invariants as in R9 |
+
+The light copy was deleted after these runs.
 
 Fit notes. `validate_instruction_entrypoints.py` checks only that
 `projects/pec/AGENTS.md` contains `software_workflow_profile.md` (kept at
@@ -864,6 +883,12 @@ routes that exist in the worktree, and V6–V8 used a full copy.
   descendant of the basis that publishes the `D-PEC-96` proposal); it was not
   checked out here. It does not change `projects/pec/AGENTS.md` (hash matched
   the brief), and `D-PEC-96` is a proposal, so it is not in the I1 slice list.
+- **O-9 Root profile wording (revision 2).** At `7f33b4dd5`,
+  `docs/SOFTWARE_WORKFLOW_PROFILE.md` L22 still reads "software-* workflows
+  executed by TASK", although two of those methods are now skills and
+  `software-bounded-implementation` is retired. The profile is Root's file;
+  the candidate keeps only its conformance clause and names the methods from
+  `workflows/index.json`. Not carried.
 
 ## 9. Acceptance-bound slots (CANON §5)
 

@@ -7,7 +7,7 @@ created: 2026-09-25
 status: candidate_awaiting_checkpoint_2_acceptance
 accepted_impact_assessment_sha256: 93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691
 accepted_intake_sha256: c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891
-amendment_preview_sha256: a8aad4dbab59979214c7f814695765679255f13b1e26181dafc0abdd0d725cca
+amendment_preview_sha256: 3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac
 ---
 
 # SCA-006 — checkpoint-group-2 propagation plan
@@ -39,13 +39,13 @@ Package files and candidate postimages:
 
 | File | Role | SHA-256 |
 |---|---|---|
-| `Amendment_Preview.md` | exact decomposition amendment (Seq 18–43), diff-style, mechanically proved | `a8aad4dbab59979214c7f814695765679255f13b1e26181dafc0abdd0d725cca` |
+| `Amendment_Preview.md` | exact decomposition amendment (Seq 18–43), diff-style, mechanically proved | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
 | `Amendment_Actions_CP2.csv` | final action register (54 rows) | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
 | `Supersession_Delta.csv` | 16 bindings | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | exact PRD amendment (Seq 1–13), section by section | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
-| `AGENTS_MD_CANDIDATE_DIFF.md` | exact instruction amendment (Seq 14–17), I1 hunks separated, tranche manifest and notice drafts | `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b` |
+| `AGENTS_MD_CANDIDATE_DIFF.md` | exact instruction amendment (Seq 14–17), I1 hunks separated, tranche manifest and notice drafts | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | PRD v2.4 successor candidate (preimage v2.3 `fff27a66…dfc32`) | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
-| `CP2_CANDIDATE/AGENTS.candidate.md` | `projects/pec/AGENTS.md` postimage with I1 (preimage `c9d3b44d…197a`) | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` |
+| `CP2_CANDIDATE/AGENTS.candidate.md` | `projects/pec/AGENTS.md` postimage with I1 (preimage `c9d3b44d…197a`) | `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d` |
 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | the same without I1 | `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` |
 | `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | revision 1.6 (preimage `dc2b8479…9660`; pre-acceptance variant `3ad0de686616f895c5fc63cceccef15dca3cd45ba1ca154d9797c2b9551f8a8b`) | `4eed1247de47d1921e5526ef5027c12d504bffd4b8393b59645bb973fac62d71` |
 | `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | 100 rows (preimage `83152a94…d9df`) | `1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e` |
@@ -512,13 +512,13 @@ The owner answers these as one package. The settled selections are not re-asked:
 
 | Artifact | SHA-256 |
 |---|---|
-| `Amendment_Preview.md` | `a8aad4dbab59979214c7f814695765679255f13b1e26181dafc0abdd0d725cca` |
+| `Amendment_Preview.md` | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
 | `Amendment_Actions_CP2.csv` | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
 | `Supersession_Delta.csv` | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
-| `AGENTS_MD_CANDIDATE_DIFF.md` | `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b` |
+| `AGENTS_MD_CANDIDATE_DIFF.md` | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
-| `CP2_CANDIDATE/AGENTS.candidate.md` (if Q-CP2-1 (a)) | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` |
+| `CP2_CANDIDATE/AGENTS.candidate.md` (if Q-CP2-1 (a)) | `49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d` |
 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` (if Q-CP2-1 (b)) | `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` |
 | `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `4eed1247de47d1921e5526ef5027c12d504bffd4b8393b59645bb973fac62d71` |
 | `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e` |
@@ -539,5 +539,5 @@ Genuinely open choices besides Q-CP2-A:
 
 | # | Choice | Options | Recommendation |
 |---|---|---|---|
-| Q-CP2-1 | Whether the work-graph node I1 residual corrections ride the SCA-006 instruction tranche. I1 has two parts: (i) "Implementation does not exist yet" becomes a verified statement naming the owner-ruled `v2/**` source slices (`D-PEC-74`, `75`, `77`, `84`, `85`, `87`, `89`, `91`); (ii) the pre-v3 names in the Primary Agents table become Root's roles with their workflows, per `workflows/index.json` `legacy.retiredRoles`. They are separated in `AGENTS_MD_CANDIDATE_DIFF.md` §4 as the only difference between the two candidates | (a) ride: apply `AGENTS.candidate.md`, and graph node I1 completes with R3; (b) do not ride: apply `AGENTS.candidate_without_I1.md`, and I1 stays PLANNED for its own tranche | **(a)** — Root `AGENTS.md` requires a tranche and manifest for every instruction change, so one tranche costs one set of checks and notices instead of two. Both corrections are factual, they change no fence, check or authority, and the work graph already allows I1 to ride R3 |
+| Q-CP2-1 | Whether the work-graph node I1 residual corrections ride the SCA-006 instruction tranche. I1 has two parts: (i) "Implementation does not exist yet" becomes a verified statement naming the owner-ruled `v2/**` source slices (`D-PEC-74`, `75`, `77`, `84`, `85`, `87`, `89`, `91`); (ii) the pre-v3 names in the Primary Agents table become Root's roles with their current workflows or skills, per `workflows/index.json` `legacy.retiredRoles` (verified at `origin/main` `7f33b4dd5`, after the Root Wave 2a tranche retired `software-bounded-implementation`). They are separated in `AGENTS_MD_CANDIDATE_DIFF.md` §4 as the only difference between the two candidates | (a) ride: apply `AGENTS.candidate.md`, and graph node I1 completes with R3; (b) do not ride: apply `AGENTS.candidate_without_I1.md`, and I1 stays PLANNED for its own tranche | **(a)** — Root `AGENTS.md` requires a tranche and manifest for every instruction change, so one tranche costs one set of checks and notices instead of two. Both corrections are factual, they change no fence, check or authority, and the work graph already allows I1 to ride R3 |
 | Q-CP2-2 | Which instrument opens PEC's write fence for Lane A. `projects/pec/AGENTS.md` requires an owner-ruled D-PEC packet naming exact paths, acts, verification and rollback for every write outside the default surfaces | (a) the checkpoint-group-2 decision snapshot, with a D-PEC register row that HELP_HUMAN adds pointing to it, is that packet (the `D-PEC-92` precedent for SCA-005). It opens A1, A2, A4, A5 and A6 (A6 only after checkpoint 3), plus C4's `COV_SCA006_POSTCHANGE_*` folder, with Lane C as verification and §"Failure and rollback" as rollback. It does **not** open B1 (PROJECT_SETUP for DEL-08-06 and DEL-10-13) or any other Lane B item; (b) a separate D-PEC ruling adopting the same bytes and opening the same paths | **(a)** — one exact gate. The plan already names the paths, acts, checks and rollback, and the PRD candidate's Status row cites the group-2 snapshot |
