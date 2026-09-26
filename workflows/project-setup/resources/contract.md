@@ -29,7 +29,7 @@ The session prompt names the role and `{EXECUTION_ROOT}`. WORKING_ITEMS discover
 | Workspace structure | Are `CAT-NNN/` / package / deliverable folders scaffolded? To what depth? Any `_STATUS.md` lifecycle states beyond `OPEN`? |
 | Authoring state | Any `KA-*.md` (DOMAIN) / `ScopeOfWork.md` or transitional legacy four-doc kits (PROJECT/SOFTWARE) present? Any `_REFERENCES.md` SCA-mode notes, contradictions registers, ratification verdicts? |
 | Control-plane | Retrieval index `_LATEST.md` present + ledger md5 matches current `Atomic_Domain_Ledger.csv`? Hypergraph snapshot present at `_Aggregation/Hypergraph/`? |
-| Scope change | Under `_ScopeChange/`: an amendment in progress (a group-1 or group-2 authorized pointer or candidate `SCA-*` folder not yet accepted at checkpoint group 3)? Accepted amendments (the `_LATEST.md` target and earlier accepted `SCA-*` snapshots) whose `Handoff_State.md` hands setup back to this workflow, that were accepted after the adoption baseline in `_Coordination/SETUP_LOG.md`, and that have no `COMPLETE` entry there? |
+| Scope change | Under `_ScopeChange/`: an amendment in progress (a group-1 or group-2 authorized pointer or candidate `SCA-*` folder not yet accepted at checkpoint group 3)? Accepted amendments (the `_LATEST.md` target and earlier accepted `SCA-*` snapshots) whose `Handoff_State.md` hands setup back to this workflow, that are not covered by the adoption baseline in `_Coordination/SETUP_LOG.md`, and that have no `COMPLETE` entry there? |
 
 Read only what's needed to answer those axes. Do not ceremonially read every coordination file when the workspace state already tells you the answer.
 
@@ -42,7 +42,7 @@ Read only what's needed to answer those axes. Do not ceremonially read every coo
 - All initialization phases complete → Function 3 (Scan & report) or Function 4 (Estimating) per human request.
 - Amendment in progress under `_ScopeChange/` → WORKING_ITEMS (workflow: scope-change) takes precedence; setup of the amended scope waits for its checkpoint group 3 acceptance.
 - Accepted amendment with setup handed back and not yet recorded complete → Function 5 (Incremental setup) against that accepted snapshot.
-- No `SETUP_LOG.md` baseline yet while accepted amendments exist → propose the Function 5 adoption step (Phase 5.0) first.
+- No `SETUP_LOG.md` baseline yet while accepted amendments exist (a project set up before incremental setup existed) → propose the Function 5 adoption step (Phase 5.0) first. Its baseline never covers an amendment whose `Handoff_State.md` hands setup to `project-setup` `INCREMENTAL`, so the amendment that prompted adoption is set up next.
 
 If the observed state doesn't match a phase cleanly (e.g., partial scaffolding from an interrupted run, mismatched accepted-doc references, errata pending in registers), surface the discrepancy to the human before acting.
 
@@ -94,7 +94,7 @@ Recommended lifecycle ownership (may vary by project):
 | Mode | Applies when | Functions | Human checkpoints |
 |---|---|---|---|
 | `INITIAL` | An accepted decomposition has not yet been set up | 1 (Initialize), 2 (Scaffold + setup pipelines) | The phase gates of Functions 1–2 |
-| `INCREMENTAL` | An accepted `scope-change` amendment, accepted after the project's adoption baseline, has been applied and its `Handoff_State.md` hands setup back to this workflow | 5 (Incremental setup) | Confirm the adoption baseline once per project; confirm the incremental plan; then report. Other gates only for decisions the stages reserve (for example DAG acceptance, SCC resolution, a lifecycle act such as reopening an `ISSUED` deliverable) |
+| `INCREMENTAL` | An accepted `scope-change` amendment, not covered by the project's adoption baseline, has been applied and its `Handoff_State.md` hands setup back to this workflow | 5 (Incremental setup) | Confirm the adoption baseline once per project where `INITIAL` setup did not record it; confirm the incremental plan; then report. Other gates only for decisions the stages reserve (for example accepting a `project-dag` successor or rejecting the change for `DAG pending` deliverables, SCC resolution, a lifecycle act such as reopening an `ISSUED` deliverable) |
 
 Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
 
@@ -102,12 +102,12 @@ Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
 
 | Input | Source | Requirement |
 |---|---|---|
-| `AMENDMENT_SNAPSHOT` | `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md` target, or an earlier accepted `SCA-*` snapshot still awaiting setup | Accepted at checkpoint group 3 and after the adoption baseline. A candidate or returned snapshot is not an input; an amendment covered by the baseline is never reprocessed. |
+| `AMENDMENT_SNAPSHOT` | `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md` target, or an earlier accepted `SCA-*` snapshot still awaiting setup | Accepted at checkpoint group 3 and not covered by the adoption baseline. A candidate or returned snapshot is not an input; an amendment covered by the baseline is never reprocessed. |
 | Accepted action register | `Amendment_Actions.csv` in the snapshot, or the distinct register its group-2 `ACCEPTED_MANIFEST.csv` names (for example `Amendment_Actions_CP2.csv`) | Resolve through the accepted manifest; `Intake_Actions.csv` is group-1 evidence only. Verify the recorded hash. |
 | `Propagation_Plan.md`, `Handoff_State.md` | The same snapshot | Name the hand-back, derivative state, deferred items and blockers. |
 | Amended decomposition | `{DECOMP_ROOT}/`, as applied by the amendment | Source of IDs, names, parent bindings and metadata for added entities. |
 | Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | Representation, dependency tracking mode (`docs/SPEC.md` §5.3) and threshold are reused, not re-asked. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
-| Setup log | `{COORDINATION_ROOT}/SETUP_LOG.md` | Agent-owned and append-only (see [Setup log](#setup_logmd-project-level-agent-owned-append-only)). Holds the adoption baseline and one line per incremental run. Created by the adoption step when absent. |
+| Setup log | `{COORDINATION_ROOT}/SETUP_LOG.md` | Agent-owned and append-only (see [Setup log](#setup_logmd-project-level-agent-owned-append-only)). Holds the adoption baseline and one line per incremental run. Created at the end of `INITIAL` setup (method Phase 2.7), or by the adoption step (Phase 5.0) in a project set up before incremental setup existed. |
 | Production format | Each affected deliverable, resolved per `docs/SPEC.md` §2.2 | Selects the update path for `MODIFY`. |
 
 If any input is missing, unaccepted or inconsistent with the workspace (for example a `REMOVE` without its decomposition annotation), report the discrepancy and return it to `scope-change` rather than repairing decomposition truth here.
@@ -119,12 +119,18 @@ If any input is missing, unaccepted or inconsistent with the workspace (for exam
 | `ADD` (and successor entities of `MERGE`/`SPLIT`) | Scaffold only the new package, deliverable, category or knowledge type with the source-qualified `preparation` skill (Phase 2.1 rules), then initialize production with the project's contract (`SOW_V1` via `scope-of-work`, `MODE=INIT`; DOMAIN via `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN` as the amendment's hand-off) and create its dependency and status records. |
 | `REMOVE` (and sources retired by `MERGE`/`SPLIT`) | No deletion of folders or files. Confirm the `scope-change` retirement rule was applied: the `[RETIRED — {AMENDMENT_ID}]` decomposition annotation and one appended `_STATUS.md` history line, lifecycle state unchanged, `write_status.sh` not used. Append the history line only where the accepted poststate lacks it. |
 | `MODIFY` | No re-scaffolding. Route the deliverable to its production contract's update path (Function 5, Phase 5.5): for `SOW_V1`, `scope-of-work` `MODE=REVISE` ending in `MODE=VERIFY`. A `CHECKING` or `ISSUED` deliverable is held for the human; an `ISSUED` deliverable reopens only as `docs/SPEC.md` §3.3 allows. `_CONTEXT.md` edits belong to the amendment itself. |
-| `RECLASSIFY` | As `MODIFY`. Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
+| `RECLASSIFY` | Routed as `MODIFY` (Phase 5.5). An `ISSUED` deliverable reopens only for a scope-changing `RECLASSIFY` (`docs/SPEC.md` §3.3). Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
 
 The affected set is the deliverables named by the accepted actions. Their
 neighbours are the deliverables with a recorded edge to or from an affected
 deliverable (declared sections, `Dependencies.csv`) and any the accepted
 impact assessment names for dependency review.
+
+Where the project has an accepted project DAG (`docs/SPEC.md` §5.4), the
+incremental dependency stage ends with a `project-dag` currency audit. The
+deliverables a departure affects are `DAG pending` until the human accepts the
+candidate successor or rejects the change; unaffected work continues on the
+accepted version. This workflow reports the flag and does not clear it.
 
 ---
 
@@ -267,8 +273,9 @@ evidence goes to `SETUP_LOG.md` below.
 ### `SETUP_LOG.md` (project-level; agent-owned, append-only)
 
 `{COORDINATION_ROOT}/SETUP_LOG.md` records incremental setup. WORKING_ITEMS
-creates it at the adoption step and appends lines; it never edits or deletes
-an earlier line. A correction is a new line that names the line it corrects.
+creates it when `INITIAL` setup completes (method Phase 2.7), or at the
+adoption step (Phase 5.0) in a project set up before incremental setup
+existed, and appends lines; it never edits or deletes an earlier line. A correction is a new line that names the line it corrects.
 
 ```markdown
 # Setup Log
@@ -280,9 +287,14 @@ Agent-owned and append-only. Written by WORKING_ITEMS (workflow: project-setup).
 ```
 
 The `BASELINE` line is written once per project, with the human's
-confirmation. It covers the amendments accepted up to its date, through the
-latest amendment it names; those are never reprocessed in `INCREMENTAL`
-mode. An `INCREMENTAL` line marked `COMPLETE` is the record that
+confirmation. `INITIAL` setup writes it with `latest none` (or the latest
+accepted amendment already included in the decomposition it set up). At
+adoption in an existing project, the proposed baseline names the latest
+accepted amendment whose `Handoff_State.md` does not hand setup to
+`project-setup` `INCREMENTAL`, or `none`, and its acceptance date. It covers
+the amendment it names and those accepted before it; those are never
+reprocessed in `INCREMENTAL` mode. An amendment whose `Handoff_State.md` hands
+setup to `project-setup` `INCREMENTAL` is never covered by the baseline. An `INCREMENTAL` line marked `COMPLETE` is the record that
 an accepted amendment's setup hand-back has been carried out.
 
 ---

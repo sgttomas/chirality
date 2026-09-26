@@ -11,16 +11,16 @@ project-setup after a scope change), prepared on local branch
 `wave3-incremental-setup` for integration by the Claude Code parent session on
 `claude/brave-goodall-wj3hok`
 
-AcceptedBasis: main@5bbc9de22378f8f7056a010e1a05d2c13518f0e7 (merge of PR #945)
+AcceptedBasis: main@0583e36ff7daca09a7f16f83d60d53392af12f7a (merge of PR #949)
 
 PriorRevisions (git blob SHAs at AcceptedBasis, preserved by history):
-`docs/SPEC.md` `73223c0b…`;
+`docs/SPEC.md` `9b312348…`;
 `workflows/scope-change/WORKFLOW.md` `414957e4…`;
 `workflows/scope-change/resources/contract.md` `b0fb2fbc…`;
 `workflows/scope-change/resources/method.md` `def62110…`;
-`workflows/project-setup/resources/method.md` `3ba16fd8…`;
-`tools/validation/test_workflow_catalog.py` `9579a643…`;
-`docs/governance_harness/_DECISIONS/_REGISTER.md` `be4e4cb5…`
+`workflows/project-setup/resources/method.md` `bfe818fc…`;
+`tools/validation/test_workflow_catalog.py` `40346ab5…`;
+`docs/governance_harness/_DECISIONS/_REGISTER.md` `2ac004d0…`
 
 PublicationSHA: the merge commit of the pull request that introduces this
 file; recorded in `_REGISTER.md` by the next Root change that touches the
@@ -79,7 +79,9 @@ transition validator.
    record. Until then the human records the transition directly. That tool
    work is a follow-up; neither tool is changed here.
 5. **Surfaces.** `docs/SPEC.md` §3.3 (transition table row and a new
-   "Reopening an `ISSUED` deliverable" rule; §3.4 points to it);
+   "Reopening an `ISSUED` deliverable" rule; §3.4 points to it) and §13 (the
+   coordination root holds the agent-owned, append-only `SETUP_LOG.md` of
+   incremental setup, which cites this record);
    `scope-change` contract (invariant), method (`MODIFY` planning, apply step,
    `Handoff_State.md`) and `WORKFLOW.md`; `project-setup` method Phase 5.5.
 

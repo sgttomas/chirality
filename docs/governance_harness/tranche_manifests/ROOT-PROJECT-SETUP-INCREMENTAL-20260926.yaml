@@ -2,7 +2,7 @@ schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-PROJECT-SETUP-INCREMENTAL-20260926
 title: Incremental project-setup after an accepted scope change, scope-of-work REVISE, and reopening an ISSUED deliverable (D-GOV-50)
 date: '2026-09-26'
-basis: 5bbc9de22378f8f7056a010e1a05d2c13518f0e7
+basis: 0583e36ff7daca09a7f16f83d60d53392af12f7a
 instruction_surface_paths:
   - docs/SPEC.md
   - docs/governance_harness/_DECISIONS/D-GOV-50_issued_reopening_by_accepted_amendment.md
@@ -74,12 +74,13 @@ m6_notice:
     deliverable. PEC is being redeveloped and the owner is deferring action
     there; its notice is for the record.
 scope_limits:
-  - SPEC changes only in section 3.3 (transition row and the reopening rule) and one pointer in section 3.4; TYPES and DECOMPOSITION_STANDARD are unchanged; dependency tracking modes are cited from SPEC section 5.3, not restated.
+  - SPEC changes only in section 3.3 (transition row and the reopening rule), one pointer in section 3.4, and one sentence in section 13 naming the agent-owned, append-only SETUP_LOG.md in the coordination root; TYPES and DECOMPOSITION_STANDARD are unchanged; dependency tracking modes are cited from SPEC section 5.3 and the accepted project DAG, its currency audit and DAG pending from SPEC section 5.4 (D-GOV-49), not restated.
   - No tool changes. tools/scaffolding/write_status.sh and the App's lifecycle transition.ts still refuse ISSUED -> IN_PROGRESS until they implement a check of the amendment record; that is a follow-up.
   - No validator or test enforced the scope-of-work MODE enum; REVISE is documented in the package and guarded by a text test in test_workflow_catalog.py.
-  - No project-DAG construction workflow; DAG re-acceptance stays under an authorized ad hoc plan (project-setup Phase 2.2b step 4).
+  - project-dag and its currency rules are unchanged; incremental setup hands an accepted project DAG to project-dag for a currency audit and reports DAG pending deliverables, but never edits, re-accepts or clears the flag on a DAG version.
   - audit-scope-closure is unchanged; its existing ADD checks are the post-acceptance closure check after incremental setup.
   - Existing _COORDINATION.md files, accepted SCA snapshots, _STATUS.md records and historical run records are not rewritten; no SETUP_LOG.md is created by this tranche.
-  - The D-GOV-48 and other register rows are unchanged apart from adding the D-GOV-50 row; no publication SHA is filled.
+  - In the decisions register the D-GOV-50 row is added and D-GOV-49's publication SHA (0583e36ff7daca09a7f16f83d60d53392af12f7a, merge of PR #949) is recorded under K-AUTH-2; other rows are unchanged, and D-GOV-50's own publication SHA is left for the next register touch.
+  - The adoption baseline of decision (5) is applied so that it never covers an amendment whose Handoff_State.md hands setup to project-setup INCREMENTAL; INITIAL setup records it with latest none on completion, so a project set up after this tranche needs no retroactive baseline.
   - The alignment manual does not describe project-setup as one-time or the SCA hand-back and is unchanged.
   - No release is granted.

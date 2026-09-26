@@ -546,6 +546,15 @@ def test_d_gov_50_issued_reopening_and_incremental_setup_routes():
     assert "Otherwise dispatch `scope-of-work` `MODE=REVISE`" in method
     assert "project's authorized contract-revision path" not in method
     assert "#### Phase 5.0: Adopt incremental setup (once per project)" in method
+    flat_method = " ".join(method.split())
+    # INITIAL setup records the baseline; adoption never covers an amendment handed to INCREMENTAL.
+    assert "#### Phase 2.7: Record the setup baseline (all variants)" in method
+    assert "(latest none) are already set up and are not reprocessed" in flat_method
+    assert "An amendment whose `Handoff_State.md` hands setup to `project-setup` `INCREMENTAL` is never covered" in flat_method
+    # D-GOV-49: an accepted project DAG gets a project-dag currency audit and affected deliverables are DAG pending.
+    assert "hand off to `project-dag` after extraction and closure for a currency audit" in flat_method
+    assert "`DAG pending` [deliverables" in flat_method
+    assert "stale until re-accepted under Phase 2.2b step 4" not in flat_method
 
     # The setup log is agent-owned and lives outside the human-owned _COORDINATION.md.
     contract = (ROOT / "workflows/project-setup/resources/contract.md").read_text()
