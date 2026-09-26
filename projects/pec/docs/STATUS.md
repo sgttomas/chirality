@@ -121,10 +121,11 @@ one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broa
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
-**Lifecycle census** (recounted 2026-09-26 from the 66 deliverable
+**Lifecycle census** (recounted 2026-09-26 from the 68 deliverable
 `_STATUS.md` files, after SCA-005's retirements, the `D-PEC-93` setup of
-DEL-02-08 and DEL-02-09, and their `D-PEC-98` add-on S step to
-`INITIALIZED`): 28 `OPEN` / 28 `INITIALIZED` / 4 `CHECKING`
+DEL-02-08 and DEL-02-09, their `D-PEC-98` add-on S step to `INITIALIZED`,
+and the `D-PEC-101` setup of DEL-08-06 and DEL-10-13 at `OPEN`): 30 `OPEN` /
+28 `INITIALIZED` / 4 `CHECKING`
 (DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03,
 DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
@@ -282,7 +283,15 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `remaining-loop` design text stay open, each under its own packet.
     The owner ruled `D-PEC-101` on 2026-09-26 for the folders, dependency
     work and re-pin (Lane B1, B2, B3, B7: K4 with add-on C, K1, and a
-    re-audit); the act follows.
+    re-audit). Its act created DEL-08-06 and DEL-10-13 (`OPEN`), added 22
+    dependency rows and refreshed two quotes (127 execution edges, no
+    cycles), re-pinned every context and reference to revision 1.6 / PRD
+    v2.4, and re-audited: `COV_D101_POSTSETUP_2026-09-26_1651`, 0 blockers,
+    coverage 100 %, now named by `_Evaluation/DecompCoverage/_LATEST.md`
+    (run root `execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/`).
+    Still open from Lane B: first SOWs for the two new deliverables (K2),
+    the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and the API
+    schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
