@@ -121,9 +121,10 @@ one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broa
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
-**Lifecycle census** (recounted 2026-09-25 from the 66 deliverable
-`_STATUS.md` files, after SCA-005's retirements and the `D-PEC-93` setup of
-DEL-02-08 and DEL-02-09): 30 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING`
+**Lifecycle census** (recounted 2026-09-26 from the 66 deliverable
+`_STATUS.md` files, after SCA-005's retirements, the `D-PEC-93` setup of
+DEL-02-08 and DEL-02-09, and their `D-PEC-98` add-on S step to
+`INITIALIZED`): 28 `OPEN` / 28 `INITIALIZED` / 4 `CHECKING`
 (DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03,
 DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
@@ -245,9 +246,12 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency and first SOWs for DEL-02-08/09. The owner ruled the first
-    SOWs `D-PEC-98` A + S + M on 2026-09-26, with the bounded re-pin to
-    revision 1.6; the act follows;
+  - SOW currency (S1, S2, S4). Done: the first SOWs for DEL-02-08/09
+    (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
+    re-pinned to revision 1.6, validated and independently verified, and
+    both deliverables `INITIALIZED` (run root
+    `execution/_Coordination/SOW_INIT_D98_2026-09-26/`); their `MEMORY.md`
+    files come at the undertaking's closeout;
   - DEL-00-01/00-03 derivative review;
   - done: the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
     (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
