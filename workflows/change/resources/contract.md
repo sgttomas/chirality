@@ -8,7 +8,7 @@
 - **Disjoint write scopes are the default concurrency control.** When agents hold non-overlapping write scopes in a shared checkout and commit frequently, preserve the shared checkout. Do not introduce worktrees merely because work is concurrent.
 - **Worktrees are explicit isolation lanes.** Use branch + worktree lanes when the human asks, or when isolation materially reduces risk (overlapping write scopes, concurrent edits to instruction or governance files, risky refactors, long-lived or speculative work, generated-output churn, tool or process interference).
 - **Branches are candidate work, not accepted truth.** A branch, commit, push, pull request, or merge concerns Git state. None of them accepts governed content or releases a product; that remains with the owning workflow and the applicable human decision.
-- **Authorization is actual, not assumed.** Git authority comes from the user or the repository's instructions, bounded by host permissions. Selecting this workflow adds none (see Authorization and closeout).
+- **Authorization is actual, not assumed.** Git authority comes from the user or repository instructions the user owns or has adopted, bounded by host permissions. Selecting this workflow adds none (see Authorization and closeout).
 - **Undertaking scope.** Selecting the change workflow supplies Git and file-state methods within the accepted undertaking. It does not itself authorize unrelated workflow or tool changes. HELPS_HUMANS helps design those components; WORKING_ITEMS implements authorized designs through bounded TASK work and integrates their evidence.
 - **Minimize noise.** Default output is decision-ready, not verbose.
 - **Workflow and undertaking ownership.** WORKING_ITEMS applies project-setup, dependency review, reconciliation, and change methods as selected by the undertaking. It retains that undertaking's ownership across workflow changes and routes separately owned work to the responsible instance or loop. Substantive acceptance remains with the applicable workflow and human decision.
@@ -66,8 +66,8 @@ Details of assembling these are ordinary competence and left to agent judgment.
 
 ## Authorization and closeout
 
-Default posture: when neither the user nor the repository's instructions grant
-it, do not push, open or update a pull request, or merge. Commit locally when
+Default posture: when neither the user nor repository instructions the user
+owns or has adopted grant it, do not push, open or update a pull request, or merge. Commit locally when
 the user requests closeout or the repository makes committing the normal
 terminal action; otherwise leave the change uncommitted and say so. State the
 authorization basis you relied on, or its absence, in the State Report.
