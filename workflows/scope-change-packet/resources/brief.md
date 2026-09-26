@@ -38,7 +38,7 @@ ExpectedOutputs:
 
 ## Optional Runtime Overrides
 
-- `BIDIRECTIONAL_PAIRS` — semicolon-separated pair labels for SCC-001 packet subsets.
+- `BIDIRECTIONAL_PAIRS` — semicolon-separated pair labels for packet subsets of a bidirectional SCC.
 - `PACKET_SCOPE_NOTE` — extra bounded framing.
 - `MAX_ACTIONS` — soft cap on proposed actions.
 
@@ -47,4 +47,4 @@ ExpectedOutputs:
 - Treat packet outputs as proposals and evidence only.
 - Do not edit product deliverables, dependency registers, decomposition files, `_ScopeChange/`, or `_Reconciliation/`.
 - Do not report SCC closure or project-wide blocked/unblocked status.
-- Keep `SCOPE_CHANGE_INIT.md` human-initiated and gate-controlled.
+- Keep `SCOPE_CHANGE_INIT.md` human-initiated and subject to the scope-change checkpoint groups.

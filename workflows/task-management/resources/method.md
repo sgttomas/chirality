@@ -4,9 +4,14 @@
 
 Read the caller's concrete concern and sources. Confirm its significance and
 lack of a current or identified successor home using the contract's eligibility
-conditions. Inspect relevant existing register rows and notices after federation
-to avoid duplication. The nine domains can help expose a missing responsibility
-or decision; they are optional perspectives, not nine compulsory stages.
+conditions. Intake requires only the federation preflight. Inspect relevant
+existing register rows and notices after federation to avoid duplication; a
+`scan` projection is optional and serves only that deduplication. The nine
+domains of task management (Action Item, Assignment, Prioritization,
+Deliverables, Work, Planning, Approval, Checking, Decisions; see
+`plans/chirality-task-management/PRD_CANDIDATE_2026-07-31.md` §4) can help
+expose a missing responsibility or decision; they are optional scanning
+lenses, not nine compulsory stages.
 
 Prepare the smallest useful disposition question. Explain what is known, why it
 cannot presently be carried through ordinary work, what may resolve that problem
@@ -104,6 +109,24 @@ sections, MEMORY and per-document token scanning are not implemented. Inspect
 explicitly supplied concerns directly; perform a bounded manual supplement only
 when the requested harvest includes unsupported sources. Report the actual
 coverage and exclusions rather than treating helper success as a complete sweep.
+
+## Cross-register federation findings
+
+Report federation findings in the return with their class, rows and registers.
+A finding that persists across federations is routed by where its repair lies:
+
+- In the invoking register (for example `MISSING_NOTICE` for a local row whose
+  `NoticeRef` cites no notice, or `REMOTE_CLOSED_LOCAL_OPEN`): prepare a
+  row-maintenance candidate for human decision; repair only under that decision.
+- In another loop (for example `LOCAL_CLOSED_REMOTE_OPEN`, or a notice the other
+  loop owes): send a non-binding coordination notice to that loop's
+  `execution/_Coordination/` when the invocation authorizes it, or return the
+  finding to the caller for routing. Never write the other loop's register.
+
+A persistent finding is not itself a register concern unless it meets the
+intake eligibility conditions.
+
+## Retained evidence
 
 Retain exact human decisions and the inputs/evidence needed to check register
 changes. Preserve returns from bounded TASK contributions and the parent's

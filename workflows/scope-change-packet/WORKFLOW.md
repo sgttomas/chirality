@@ -24,7 +24,7 @@ For active SCC resolution work, use `TASK + scc-resolution-case`. Existing scope
 - `RuntimeOverrides.PACKET_ID` — local packet ID, for example `PKG00-SCA-PACKET-001`.
 - `RuntimeOverrides.PACKET_PATH` — absolute output folder inside `{ScopePath}/scope-change-packets/`.
 - `RuntimeOverrides.PACKET_TITLE` — human-readable packet title.
-- `RuntimeOverrides.SCC_ID` — `SCC-001` or `SCC-002`.
+- `RuntimeOverrides.SCC_ID` — the target `SCC-{NNN}` identifier as recorded in the cited DepClosure snapshot.
 - `RuntimeOverrides.DECOMP_VARIANT` — `SOFTWARE`.
 - `RuntimeOverrides.DECOMPOSITION_PATH` — current decomposition authority.
 - `RuntimeOverrides.DEPCLOSURE_SNAPSHOT` — accepted upstream DepClosure snapshot.
@@ -71,13 +71,13 @@ Never write:
 
 Each packet must contain the fixed ten-file set named above.
 
-`Packet_Contract.md` defines consumption rules, authority limits, WORKING_ITEMS (workflow: scope-change) gate mapping, and non-goals.
+`Packet_Contract.md` defines consumption rules, authority limits, the mapping of packet content to WORKING_ITEMS (workflow: scope-change) checkpoint groups, and non-goals.
 
 `Packet_Datasheet.md` records identity, SCC baseline, affected deliverables, affected rows, and evidence inventory.
 
 `Packet_Specification.md` records proposed amendment requirements, action candidates, acceptance criteria, and invariant checks.
 
-`Packet_Procedure.md` gives WORKING_ITEMS (workflow: scope-change) intake and gate-by-gate use instructions.
+`Packet_Procedure.md` gives WORKING_ITEMS (workflow: scope-change) intake instructions and how the packet serves each of its three checkpoint groups: (1) proposed change and impact, (2) exact amendment and propagation plan, (3) audited poststate acceptance.
 
 `Packet_Rationale.md` records source-grounded reasoning, why dependency-edge treatment is insufficient, risks, and alternatives rejected.
 
@@ -88,6 +88,11 @@ Each packet must contain the fixed ten-file set named above.
 ```csv
 PacketID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedDeliverables,AffectedFiles,EvidenceRefs,SCOPE_CHANGE_Gate,Status
 ```
+
+`SCOPE_CHANGE_Gate` keeps its column name for validator and historical-packet
+compatibility. New packets record the checkpoint group or groups the row serves
+(`CHECKPOINT_GROUP_1`, `CHECKPOINT_GROUP_2`, `CHECKPOINT_GROUP_3`,
+semicolon-separated). Historical gate labels remain readable as written.
 
 `Affected_Surfaces.csv` uses columns:
 
