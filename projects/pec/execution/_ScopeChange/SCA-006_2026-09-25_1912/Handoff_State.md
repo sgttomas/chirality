@@ -2,9 +2,9 @@
 amendment_id: SCA-006
 doc_kind: scope_change.handoff_state
 decomp_variant: SOFTWARE
-checkpoint_group: 1
+checkpoint_group: 3
 created: 2026-09-25
-status: checkpoint_1_package_prepared_awaiting_owner
+status: closed_for_scope_change_only
 ---
 
 # SCA-006 Checkpoint-group-1 Handoff State
@@ -50,7 +50,7 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | `Impact_Assessment.md` | `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691` |
 | `Amendment_Actions.csv` (PROPOSED) | `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `b4b75e3569a210597ba87b8c0bd223b81bb3f98db18444b63ca73e1e389465df` (after the checkpoint-2 acceptance; `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e` at the checkpoint-2 act; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the checkpoint-1 act) |
+| `Decision_Log.md` | `fecf45a7e5b6fcb35d78d846fba6444f3b4284e6471dd0d9da6dabc55d6e1628` (after the checkpoint-3 acceptance, 2026-09-26; `96cc5602ebbf9fa95d30fb0bfee2ca75b1c40c60c9b256de3638fc7a369d38c7` at the checkpoint-3 package, bound in the group-3 `ACCEPTED_MANIFEST.csv`; `b4b75e3569a210597ba87b8c0bd223b81bb3f98db18444b63ca73e1e389465df` after the checkpoint-2 acceptance; `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e` at the checkpoint-2 act; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the checkpoint-1 act) |
 
 ## Basis hashes not repeated elsewhere
 
@@ -307,3 +307,15 @@ The owner (checkpoint 3), then HELP_HUMAN (A6), then the Lane B owners under the
 - **C4.3:** PASS WITH MINOR, 0 BLOCKING (`CP3_EVIDENCE/C4_3_REVIEW.md`, with dispositions).
 - **C5:** `CP3_EVIDENCE/c5_completeness.py`, exit 0. The hashes of this folder's files are in the final return `returns/B6_SCA006_CHECKPOINT3.md`, because this file and `Decision_Log.md` cannot quote their own final hashes.
 - **Independent verification:** fresh `pec-reviewer` verdicts in `returns/B6_VERIFIER_VERDICT_NN.md`.
+
+## Checkpoint-3 acceptance and A6 (HELP_HUMAN, 2026-09-26; appended)
+
+The owner accepted the audited poststate and answered Q-CP3-1 (a) and Q-CP3-2 (a): "SCA-006 CP3: accept; Q1 a; Q2 a." (verbatim in `Decision_Log.md` §"SCA006-CP3 — owner acceptance of record"; record `../checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`). The front matter of this file is brought current (it had stayed at its checkpoint-1 values); the sections above are the record at each stage.
+
+A6, performed the same day under the §"A6 instructions for HELP_HUMAN" above:
+1. `_Decomposition/_LATEST.md` is the revision-1.6 handoff; `_ScopeChange/_LATEST.md` names SCA-006.
+2. `SOFTWARE_DECOMP.md` has `status: current_basis` and the accepted `accepted:` line, first token 2026-09-26. The acceptance date equals the value already in the other three slots, so item 3 needed no substitution. The file hashes `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`, as predicted.
+3. Q-CP3-2 (a): `_Evaluation/DecompCoverage/_LATEST.md` names `COV_SCA006_POSTCHANGE_2026-09-26_0051`.
+4. Rollback, if the acceptance is ever withdrawn at the owner's direction: item 5 above, plus reverting the three pointer files and the two front-matter lines.
+
+Final state fields: `DecompositionTruthState` `COMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `FROZEN`; `MetadataAlignmentState` `IN_PROGRESS`; `AuditState` `WARNINGS`; `ReadyForNextPhase` `NO`; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`. Open, each under its own packet: Lane B1–B8 (`RUN_SUMMARY.md` §6) and the COV-083 correction (a later PEC scope change; graph node S2 for DEL-01-06's contract). `Decision_Log.md` now hashes `fecf45a7e5b6fcb35d78d846fba6444f3b4284e6471dd0d9da6dabc55d6e1628`; the hash table above is updated in place.
