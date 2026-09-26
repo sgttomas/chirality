@@ -2,8 +2,8 @@
 amendment_id: SCA-006
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
-current_checkpoint_group: 2
-status: checkpoint_2_package_prepared_awaiting_owner
+current_checkpoint_group: 3
+status: checkpoint_2_accepted_checkpoint_3_preparation_authorized
 ---
 
 # SCA-006 Decision Log
@@ -25,8 +25,8 @@ hashes are quoted here and in the run return.
 | SCA006-CP1-GATE | 1 | Reliance gate: (a) standing gate for any release that advertises operational reliance, with SOW-100 and a new DEL-10-13; (b) bind to the P1 exit test and extend existing deliverables | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-INS | 1 | `projects/pec/AGENTS.md` route: (a) carried at checkpoint 3 as an instruction tranche with its own manifest and notices; (b) a separate instruction tranche after checkpoint 3 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-RC | 1 | Confirm that R-C (PEC output citable as authority) stays excluded | `CONFIRMED EXCLUDED` | owner act 2026-09-25 (verbatim below) |
-| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `PREPARED / AWAITING_OWNER` | SCA006-CP1 accepted 2026-09-25; package hashes in §"SCA006-CP2 — package prepared (not a decision)"; question set in `Propagation_Plan.md` §"Checkpoint-2 owner question set" (Q-CP2-A, Q-CP2-1, Q-CP2-2) |
-| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA006-CP2 acceptance |
+| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25) | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
+| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARATION AUTHORIZED` | SCA006-CP2 accepted 2026-09-25 |
 
 ## SCA006-G1 — owner directions of record (verbatim)
 
@@ -108,3 +108,12 @@ Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HU
 | `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662` |
 
 Independent verification: `B5_VERIFIER_VERDICT_NN.md` in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/`.
+
+## SCA006-CP2 — owner act (verbatim), 2026-09-25
+
+> SCA-006 CP2: accept; Q1 a; Q2 a
+
+HELP_HUMAN recorded this under K-AUTH-1. The interpretation and bounds are in
+`../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/DECISION.md`, and register
+row `D-PEC-97` makes that snapshot the Lane A packet. At the owner's act, this
+log's hash was `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e`.

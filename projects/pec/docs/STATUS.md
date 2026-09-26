@@ -238,7 +238,9 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     owner accepted checkpoint 1 on 2026-09-25 (DQ a, ENV a, BUD a, GATE a,
     INS a, R-C excluded;
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`),
-    and checkpoint-2 preparation is authorized.
+    and the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
+    `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
+    checkpoint-3 preparation is authorized.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
