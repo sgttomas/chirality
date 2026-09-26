@@ -26,8 +26,8 @@ Basis consumed: the accepted group-1 snapshot `checkpoint_snapshots/SCA-006_GROU
 | `_Decomposition/Deliverables.csv` | `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` | `94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805` |
 | `_Decomposition/ContextBudgetQA.csv` | `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` | `93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c` |
 | `_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` | `1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662` |
-| `docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` | `<<PRD_CANDIDATE_SHA>>` |
-| `projects/pec/AGENTS.md` | `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a` | `<<AGENTS_CANDIDATE_SHA>>` |
+| `docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
+| `projects/pec/AGENTS.md` | `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a` | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` (`CP2_CANDIDATE/AGENTS.candidate.md`, with the I1 corrections; recommended) or `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (`CP2_CANDIDATE/AGENTS.candidate_without_I1.md`), per owner question Q-CP2-1; applied only through the checkpoint-3 instruction tranche |
 | `_Decomposition/_LATEST.md` — not in the approval unit; rewritten only after checkpoint-3 acceptance (A-43) | `626feaafa213c3fe4995640a42a0a7606a1bd89a200ebf2e588afd4209a212dd` | none |
 
 Any preimage mismatch before application invalidates this preview and returns the package to checkpoint 2.
@@ -62,13 +62,20 @@ Pre-acceptance variant SHA-256: `3ad0de686616f895c5fc63cceccef15dca3cd45ba1ca154
 
 ## Final action set
 
-<<MANAGER_FINAL_SET>>
+`Amendment_Actions_CP2.csv` holds **54 actions: 12 ADD / 42 MODIFY** (0 REMOVE / RECLASSIFY / MERGE / SPLIT). It is the accepted intake exactly: every intake Seq 1–54 is carried with the same ActionSeq, ActionType, EntityType and EntityID, and nothing is dropped or added. The owner's selections (DQ-a, ENV-a, BUD-a, GATE-a, INS-a; R-C excluded) are the intake's recommended set, so no option delta of Impact Assessment §13 applies. Each row's Description states its exact text and cites its intake Seq.
+
+Differences from the intake rows, all within their accepted scope:
+
+- **Seq 54 narrowed.** The exact candidate breaks exactly two EvidenceQuote cells, DEP-09-06-003 and DEP-10-03-003 (both quote the DEL-08-01 description). The canon keeps the DEL-08-03 first sentence and the PKG-08 charter as byte-identical prefixes, so DEP-09-06-004 and DEP-10-12-004 stay verbatim. The DEL-10-12 register leaves `AffectedFiles`.
+- **Seq 49, 51, 52, 53 routing.** Their `DownstreamReruns` name graph node S4 (Seq 49, 51) or D1 (Seq 52, 53), each held until checkpoint 3, following the work graph's more conservative hold (`Propagation_Plan.md` §B4).
+- **`SupersessionBindingPresent`.** 16 rows are `YES` (Seq 1, 2, 3, 5–12, 14, 18, 20–22), matching the 16 rows of `Supersession_Delta.csv` (`Propagation_Plan.md` §"Supersession binding policy").
+- **Pure mirrors attributed to their action** (listed by the drafter; no new action): the §1.2 validation-obligations sentence and the P3 build-shape line (A-19, mirroring Seq 8/27 and Seq 9); the §3 intro instrument sentence (A-36); the vocabulary row `orientation` (PEC-ORI-001..007, A-39); the §2 intro sentence on SOW-097..100 (A-24, SCA-005 A-08 precedent); the DEL-08-03 envelope note that records the S → M re-assessment (A-32); and DEL-08-06's ContextBudgetQA risk `MEDIUM` / "Hold envelope; re-assess on the linked OI's ruling" (A-28, the DL-14 rule for deliverables coupled to an open issue, here OI-006).
 
 ## 1. Change Register (Decision Log, Revision History, front matter, references)
 
 ### A-43 — MODIFY OTHER `SCA-006`
 
-Traceability: front matter revision 1.6 (date and accepted acceptance-bound; pre-acceptance lines per this preview), session_authorization, source_corpus and §1.5 R1 → PRD v2.4, R6 + D-PEC-90, DL-21, revision 1.6 row, §7 Revision, Companion_Inventory row counts; `_Decomposition/_LATEST.md` and `_ScopeChange/_LATEST.md` move only after checkpoint-3 acceptance; the §1.4 Gate-1 intake posture stays as history. Supersession binding: **<<SB>>**.
+Traceability: front matter revision 1.6 (date and accepted acceptance-bound; pre-acceptance lines per this preview), session_authorization, source_corpus and §1.5 R1 → PRD v2.4, R6 + D-PEC-90, DL-21, revision 1.6 row, §7 Revision, Companion_Inventory row counts; `_Decomposition/_LATEST.md` and `_ScopeChange/_LATEST.md` move only after checkpoint-3 acceptance; the §1.4 Gate-1 intake posture stays as history. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — FM revision (Seq 43):
 
@@ -153,7 +160,7 @@ Traceability: front matter revision 1.6 (date and accepted acceptance-bound; pre
 
 ### A-33 — MODIFY PACKAGE `PKG-04`
 
-PKG-04 charter adds the reliance envelope; assigned SOW-004..009, 097 (6 → 7). Supersession binding: **<<SB>>**.
+PKG-04 charter adds the reliance envelope; assigned SOW-004..009, 097 (6 → 7). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §4 PKG-04 (Seq 33):
 
@@ -164,7 +171,7 @@ PKG-04 charter adds the reliance envelope; assigned SOW-004..009, 097 (6 → 7).
 
 ### A-34 — MODIFY PACKAGE `PKG-08`
 
-PKG-08 charter keeps its current text byte-for-byte as prefix and adds response-size budgets and the agent tool-call query surface; assigned SOW-003, 040..044, 098, 099 (6 → 8); §5 PKG-08 table gains DEL-08-06 (A-28). Supersession binding: **<<SB>>**.
+PKG-08 charter keeps its current text byte-for-byte as prefix and adds response-size budgets and the agent tool-call query surface; assigned SOW-003, 040..044, 098, 099 (6 → 8); §5 PKG-08 table gains DEL-08-06 (A-28). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §4 PKG-08 (Seq 34):
 
@@ -175,7 +182,7 @@ PKG-08 charter keeps its current text byte-for-byte as prefix and adds response-
 
 ### A-35 — MODIFY PACKAGE `PKG-10`
 
-PKG-10 charter adds the reliance-advertisement gate; assigned + SOW-100 (12 → 13); §5 PKG-10 table gains DEL-10-13 (A-29). Supersession binding: **<<SB>>**.
+PKG-10 charter adds the reliance-advertisement gate; assigned + SOW-100 (12 → 13); §5 PKG-10 table gains DEL-10-13 (A-29). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §4 PKG-10 (Seq 35):
 
@@ -188,7 +195,7 @@ PKG-10 charter adds the reliance-advertisement gate; assigned + SOW-100 (12 → 
 
 ### A-28 — ADD DELIVERABLE `DEL-08-06`
 
-ADD DEL-08-06 'Agent tool-call query surface' (PKG-08, BACKEND_FEATURE_SLICE, M, P3, covers SOW-099, OBJ-001) plus ContextBudgetQA row (M / MEDIUM), inserted after DEL-08-05; §5 PKG-08 mirror. Supersession binding: **<<SB>>**.
+ADD DEL-08-06 'Agent tool-call query surface' (PKG-08, BACKEND_FEATURE_SLICE, M, P3, covers SOW-099, OBJ-001) plus ContextBudgetQA row (M / MEDIUM), inserted after DEL-08-05; §5 PKG-08 mirror. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §5 PKG-08 ADD DEL-08-06 (Seq 28):
 
@@ -212,7 +219,7 @@ ADD DEL-08-06 'Agent tool-call query surface' (PKG-08, BACKEND_FEATURE_SLICE, M,
 
 ### A-29 — ADD DELIVERABLE `DEL-10-13`
 
-ADD DEL-10-13 'Reliance-advertisement gate' (PKG-10, TEST_SUITE, S, P1, covers SOW-100, OBJ-001) plus ContextBudgetQA row (S / LOW), inserted after DEL-10-12; §5 PKG-10 mirror. Supersession binding: **<<SB>>**.
+ADD DEL-10-13 'Reliance-advertisement gate' (PKG-10, TEST_SUITE, S, P1, covers SOW-100, OBJ-001) plus ContextBudgetQA row (S / LOW), inserted after DEL-10-12; §5 PKG-10 mirror. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §5 PKG-10 ADD DEL-10-13 (Seq 29):
 
@@ -236,7 +243,7 @@ ADD DEL-10-13 'Reliance-advertisement gate' (PKG-10, TEST_SUITE, S, P1, covers S
 
 ### A-30 — MODIFY DELIVERABLE `DEL-04-03`
 
-DEL-04-03 description adds the reliance envelope; CoversScopeItems + SOW-097; envelope M and SupportsObjectives `OBJ-001;OBJ-002` unchanged; §5 mirror. Supersession binding: **<<SB>>**.
+DEL-04-03 description adds the reliance envelope; CoversScopeItems + SOW-097; envelope M and SupportsObjectives `OBJ-001;OBJ-002` unchanged; §5 mirror. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §5 DEL-04-03 (Seq 30):
 
@@ -254,7 +261,7 @@ DEL-04-03 description adds the reliance envelope; CoversScopeItems + SOW-097; en
 
 ### A-31 — MODIFY DELIVERABLE `DEL-08-01`
 
-DEL-08-01 description: access classes owner, harness, agent, admin (agent is read-only query for tool calls); envelope, notes and ContextBudgetQA row unchanged. Supersession binding: **<<SB>>**.
+DEL-08-01 description: access classes owner, harness, agent, admin (agent is read-only query for tool calls); envelope, notes and ContextBudgetQA row unchanged. Supersession binding: **NO**.
 
 `Deliverables.csv` row `DEL-08-01` (replace):
 
@@ -265,7 +272,7 @@ DEL-08-01 description: access classes owner, harness, agent, admin (agent is rea
 
 ### A-32 — MODIFY DELIVERABLE `DEL-08-03`
 
-DEL-08-03 description appends the response-size budget sentence, keeping the current sentence byte-for-byte as its prefix; CoversScopeItems + SOW-098; envelope S → M, risk LOW kept (ContextBudgetQA re-assessed; the re-assessment note is written in both registers); §5 mirror. Supersession binding: **<<SB>>**.
+DEL-08-03 description appends the response-size budget sentence, keeping the current sentence byte-for-byte as its prefix; CoversScopeItems + SOW-098; envelope S → M, risk LOW kept (ContextBudgetQA re-assessed; the re-assessment note is written in both registers); §5 mirror. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §5 DEL-08-03 (Seq 32):
 
@@ -292,7 +299,7 @@ DEL-08-03 description appends the response-size budget sentence, keeping the cur
 
 ### A-20 — MODIFY OTHER `SOW-003`
 
-SOW-003: three → four access classes (owner, harness, agent (read-only query for tool calls), admin); ledger DecisionRef `DL-11` → `DL-11; SCA-006`; §2.1 mirror. Supersession binding: **<<SB>>**.
+SOW-003: three → four access classes (owner, harness, agent (read-only query for tool calls), admin); ledger DecisionRef `DL-11` → `DL-11; SCA-006`; §2.1 mirror. Supersession binding: **YES (D-020 in `Supersession_Delta.csv`)**.
 
 `SOFTWARE_DECOMP.md` — §2.1 SOW-003 (Seq 20):
 
@@ -310,7 +317,7 @@ SOW-003: three → four access classes (owner, harness, agent (read-only query f
 
 ### A-21 — MODIFY OTHER `SOW-060`
 
-SOW-060: candidate-consumer enablement names registered loops, harnesses and enabled agent tool-call surfaces (mirrors PRD §11 metric 4); ledger DecisionRef blank → `SCA-006`; Notes unchanged; §2.1 mirror. Supersession binding: **<<SB>>**.
+SOW-060: candidate-consumer enablement names registered loops, harnesses and enabled agent tool-call surfaces (mirrors PRD §11 metric 4); ledger DecisionRef blank → `SCA-006`; Notes unchanged; §2.1 mirror. Supersession binding: **YES (D-021 in `Supersession_Delta.csv`)**.
 
 `SOFTWARE_DECOMP.md` — §2.1 SOW-060 (Seq 21):
 
@@ -328,7 +335,7 @@ SOW-060: candidate-consumer enablement names registered loops, harnesses and ena
 
 ### A-22 — MODIFY OTHER `SOW-080`
 
-SOW-080 (TBD, OI-006): the open PEC-local token mechanism includes credentials for the agent access class; stays TBD; ledger DecisionRef `SCA-005` → `SCA-005; SCA-006`; §2.3 mirror. Supersession binding: **<<SB>>**.
+SOW-080 (TBD, OI-006): the open PEC-local token mechanism includes credentials for the agent access class; stays TBD; ledger DecisionRef `SCA-005` → `SCA-005; SCA-006`; §2.3 mirror. Supersession binding: **YES (D-022 in `Supersession_Delta.csv`)**.
 
 `SOFTWARE_DECOMP.md` — §2.3 SOW-080 (Seq 22):
 
@@ -346,7 +353,7 @@ SOW-080 (TBD, OI-006): the open PEC-local token mechanism includes credentials f
 
 ### A-24 — ADD OTHER `SOW-097`
 
-ADD SOW-097 (IN; PEC-ORI-007; PKG-04 / DEL-04-03 / OBJ-001;OBJ-002): declare the reliance envelope on every orientation response; appended after SOW-096; §2 intro and §2.1 mirrors. Supersession binding: **<<SB>>**.
+ADD SOW-097 (IN; PEC-ORI-007; PKG-04 / DEL-04-03 / OBJ-001;OBJ-002): declare the reliance envelope on every orientation response; appended after SOW-096; §2 intro and §2.1 mirrors. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §2 intro (SOW-097..100 appended) (Seq 24):
 
@@ -377,7 +384,7 @@ ADD SOW-097 (IN; PEC-ORI-007; PKG-04 / DEL-04-03 / OBJ-001;OBJ-002): declare the
 
 ### A-25 — ADD OTHER `SOW-098`
 
-ADD SOW-098 (IN; PEC-API-006; PKG-08 / DEL-08-03 / OBJ-001): response-size budgets met by pagination or continuation, truncation stated; appended after SOW-097. Supersession binding: **<<SB>>**.
+ADD SOW-098 (IN; PEC-API-006; PKG-08 / DEL-08-03 / OBJ-001): response-size budgets met by pagination or continuation, truncation stated; appended after SOW-097. Supersession binding: **NO**.
 
 `ScopeLedger.csv` row `SOW-098` (insert after `SOW-097`):
 
@@ -389,7 +396,7 @@ The §2.1 row is in the single §2.1 insertion shown under A-24.
 
 ### A-26 — ADD OTHER `SOW-099`
 
-ADD SOW-099 (IN; PEC-API-007, §8; PKG-08 / DEL-08-06 / OBJ-001): read-only query interface for agent tool calls under the agent access class; appended after SOW-098. Supersession binding: **<<SB>>**.
+ADD SOW-099 (IN; PEC-API-007, §8; PKG-08 / DEL-08-06 / OBJ-001): read-only query interface for agent tool calls under the agent access class; appended after SOW-098. Supersession binding: **NO**.
 
 `ScopeLedger.csv` row `SOW-099` (insert after `SOW-098`):
 
@@ -401,7 +408,7 @@ The §2.1 row is in the single §2.1 insertion shown under A-24.
 
 ### A-27 — ADD OTHER `SOW-100`
 
-ADD SOW-100 (IN; §12, PEC-RCN-005, PEC-ORI-006, PEC-ORI-007; PKG-10 / DEL-10-13 / OBJ-001): the standing reliance-advertisement gate, an instrument under DL-6; appended after SOW-099. Supersession binding: **<<SB>>**.
+ADD SOW-100 (IN; §12, PEC-RCN-005, PEC-ORI-006, PEC-ORI-007; PKG-10 / DEL-10-13 / OBJ-001): the standing reliance-advertisement gate, an instrument under DL-6; appended after SOW-099. Supersession binding: **NO**.
 
 `ScopeLedger.csv` row `SOW-100` (insert after `SOW-099`):
 
@@ -415,7 +422,7 @@ The §2.1 row is in the single §2.1 insertion shown under A-24.
 
 ### A-36 — MODIFY OBJECTIVE `OBJ-001`
 
-OBJ-001 objective-side view: + SOW-097, SOW-098, SOW-099 and instrument SOW-100; + DEL-08-06, DEL-10-13; statement unchanged. Supersession binding: **<<SB>>**.
+OBJ-001 objective-side view: + SOW-097, SOW-098, SOW-099 and instrument SOW-100; + DEL-08-06, DEL-10-13; statement unchanged. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §3 OBJ-001 view (Seq 36):
 
@@ -435,7 +442,7 @@ OBJ-001 objective-side view: + SOW-097, SOW-098, SOW-099 and instrument SOW-100;
 
 ### A-37 — MODIFY OBJECTIVE `OBJ-002`
 
-OBJ-002 objective-side view: + SOW-097; statement unchanged; deliverable side unchanged (DEL-04-03 already present). Supersession binding: **<<SB>>**.
+OBJ-002 objective-side view: + SOW-097; statement unchanged; deliverable side unchanged (DEL-04-03 already present). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §3 OBJ-002 view (Seq 37):
 
@@ -459,7 +466,7 @@ No existing ledger `ObjectiveIDs` or deliverable `SupportsObjectives` cell chang
 
 ### A-38 — ADD VOCAB_TERM `operational reliance`
 
-ADD vocabulary 'operational reliance' with its disambiguation from the L-A1 reliance-hold control, professional reliance (K-AUTH-1) and Root PRD N-1. Supersession binding: **<<SB>>**.
+ADD vocabulary 'operational reliance' with its disambiguation from the L-A1 reliance-hold control, professional reliance (K-AUTH-1) and Root PRD N-1. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §9 ADD operational reliance, reliance envelope, response budget (Seq 38-40) (Seq 38):
 
@@ -473,7 +480,7 @@ ADD vocabulary 'operational reliance' with its disambiguation from the L-A1 reli
 
 ### A-39 — ADD VOCAB_TERM `reliance envelope`
 
-ADD vocabulary 'reliance envelope' (PEC-ORI-007, SOW-097). Supersession binding: **<<SB>>**.
+ADD vocabulary 'reliance envelope' (PEC-ORI-007, SOW-097). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §9 orientation (mirror of Seq 5/39) (Seq 39) — mirror edit beyond the literal intake description (step-8 list):
 
@@ -486,13 +493,13 @@ The term row itself is added in the single §9 insertion shown under A-38.
 
 ### A-40 — ADD VOCAB_TERM `response budget`
 
-ADD vocabulary 'response budget' (PEC-API-006, SOW-098), distinct from the latency budget. Supersession binding: **<<SB>>**.
+ADD vocabulary 'response budget' (PEC-API-006, SOW-098), distinct from the latency budget. Supersession binding: **NO**.
 
 Added in the single §9 insertion shown under A-38.
 
 ### A-41 — MODIFY VOCAB_TERM `harness`
 
-Vocabulary 'harness': current row kept; an agent may also query directly through tool calls under the agent access class, and that agent is not a harness. Supersession binding: **<<SB>>**.
+Vocabulary 'harness': current row kept; an agent may also query directly through tool calls under the agent access class, and that agent is not a harness. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §9 harness (Seq 41):
 
@@ -505,7 +512,7 @@ Vocabulary 'harness': current row kept; an agent may also query directly through
 
 ### A-18 — MODIFY OTHER `C3`
 
-C3 re-expressed: a consumer may act on a record-tier claim within the pin, coverage and tier the response declares, with file fallback (operational reliance, PEC-ORI-007), only from a release that has passed the §12 reliance-advertisement gate; 'non-authoritative' kept in the authority sense; Source adds D-PEC-90. Supersession binding: **<<SB>>**.
+C3 re-expressed: a consumer may act on a record-tier claim within the pin, coverage and tier the response declares, with file fallback (operational reliance, PEC-ORI-007), only from a release that has passed the §12 reliance-advertisement gate; 'non-authoritative' kept in the authority sense; Source adds D-PEC-90. Supersession binding: **YES (D-018 in `Supersession_Delta.csv`)**.
 
 `SOFTWARE_DECOMP.md` — §1.3 C3 (Seq 18):
 
@@ -516,7 +523,7 @@ C3 re-expressed: a consumer may act on a record-tier claim within the pin, cover
 
 ### A-19 — MODIFY OTHER `S1.2-Intake`
 
-§1.2 intake summary: PRD v2.4 (the SCA-005 'PRD v2.2' residue at L45 corrected in the same edit, IA §9.5); thesis adds agents querying directly through tool calls; orientation bullet PEC-ORI-001..007 with the reliance envelope; API bullet PEC-API-001..007 with response-size budgets and the tool-call surface. Two further §1.2 mirror edits are marked below (step-8 list). Supersession binding: **<<SB>>**.
+§1.2 intake summary: PRD v2.4 (the SCA-005 'PRD v2.2' residue at L45 corrected in the same edit, IA §9.5); thesis adds agents querying directly through tool calls; orientation bullet PEC-ORI-001..007 with the reliance envelope; API bullet PEC-API-001..007 with response-size budgets and the tool-call surface. Two further §1.2 mirror edits are marked below (step-8 list). Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §1.2 opening (SCA-005 residue "PRD v2.2", IA §9.5) (Seq 19):
 
@@ -593,7 +600,7 @@ C3 re-expressed: a consumer may act on a record-tier claim within the pin, cover
 
 ### A-23 — MODIFY OTHER `OI-006`
 
-OI-006 premise extended to credentials for the agent access class (tool-call query, SOW-099); still closed only by a §16 ruling. Supersession binding: **<<SB>>**.
+OI-006 premise extended to credentials for the agent access class (tool-call query, SOW-099); still closed only by a §16 ruling. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §10 OI-006 (Seq 23):
 
@@ -604,7 +611,7 @@ OI-006 premise extended to credentials for the agent access class (tool-call que
 
 ### A-42 — MODIFY OTHER `S7-S8-telemetry`
 
-§5 intro counts and envelope posture, §6 row count, §7 telemetry and §8 prose recomputed: 100 scope items (74 IN / 18 OUT / 8 TBD); 68 deliverable rows (64 active / 4 RETIRED); active envelopes S 28 / M 34 / L 2 / XL 0; 0 IN items and 0 active deliverables without objective. Supersession binding: **<<SB>>**.
+§5 intro counts and envelope posture, §6 row count, §7 telemetry and §8 prose recomputed: 100 scope items (74 IN / 18 OUT / 8 TBD); 68 deliverable rows (64 active / 4 RETIRED); active envelopes S 28 / M 34 / L 2 / XL 0; 0 IN items and 0 active deliverables without objective. Supersession binding: **NO**.
 
 `SOFTWARE_DECOMP.md` — §5 intro counts (Seq 42):
 
@@ -672,8 +679,8 @@ OI-006 premise extended to credentials for the agent access class (tool-call que
 
 ## 8. Product authority and instructions outside the decomposition
 
-- **K group (Seq 1–13), PRD v2.4 successor candidate:** exact text in `PRD_V2_4_SUCCESSOR_DIFF.md` (SHA-256 `<<PRD_DIFF_SHA>>`); candidate bytes `CP2_CANDIDATE/docs/PRD.md` (SHA-256 in the byte table above).
-- **I group (Seq 14–17), `projects/pec/AGENTS.md` instruction candidate:** exact text in `AGENTS_MD_CANDIDATE_DIFF.md` (SHA-256 `<<AGENTS_DIFF_SHA>>`); applied at checkpoint 3 as an instruction tranche (INS-a).
+- **K group (Seq 1–13), PRD v2.4 successor candidate:** exact text in `PRD_V2_4_SUCCESSOR_DIFF.md` (SHA-256 `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c`); candidate bytes `CP2_CANDIDATE/docs/PRD.md` (SHA-256 in the byte table above).
+- **I group (Seq 14–17), `projects/pec/AGENTS.md` instruction candidate:** exact text in `AGENTS_MD_CANDIDATE_DIFF.md` (SHA-256 `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b`); applied at checkpoint 3 as an instruction tranche (INS-a).
 
 The decomposition texts above use the same canonical wording as those documents for C3 (PEC-K-03), SOW-003 (the §8 access classes), SOW-060 (§11 metric 4), SOW-080 / OI-006 (§16.6), SOW-097 (PEC-ORI-007), SOW-098 (PEC-API-006), SOW-099 (PEC-API-007) and SOW-100 (the §12 reliance-advertisement gate). The §12 P1 row is not edited (GATE-a).
 
@@ -780,13 +787,17 @@ Not Lane A writes: no byte of these files changes through this amendment; each o
 | 51 | `projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md` | DEL-10-03 SOW CLM-008; agent class in the negative surface | exact disposition in `Propagation_Plan.md` |
 | 52 | `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md` | DEL-00-03 SOW CLM-004/006 ("46 requirements", "PRD.md v2.2") | exact disposition in `Propagation_Plan.md` |
 | 53 | `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md` | DEL-00-03 SPEC K-03 row, counts, API row, release-proof list | exact disposition in `Propagation_Plan.md` |
-| 54 | `projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv`; `projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv`; `projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv` | EvidenceQuote refresh; this preview's scan: DEP-09-06-003 and DEP-10-03-003 break (DEL-08-01 description); DEP-09-06-004 and DEP-10-12-004 stay verbatim | exact disposition in `Propagation_Plan.md` |
+| 54 | `projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv`; `projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv`; (intake also named `…/DEL-10-12_Poll_adoption_measurement/Dependencies.csv`; dropped at checkpoint 2) | EvidenceQuote refresh; this preview's scan: DEP-09-06-003 and DEP-10-03-003 break (DEL-08-01 description); DEP-09-06-004 and DEP-10-12-004 stay verbatim | exact disposition in `Propagation_Plan.md` |
 
 EvidenceQuote scan (Seq 54): `/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/B5/decomp/evidence_quotes.py` (SHA-256 `14141e2d350fe0d203ea5189d615423a3fe1565077f2f21295144035486bcd91`) checks every ACTIVE row of every `PKG-*/1_Working/DEL-*/Dependencies.csv` (263 rows, 243 ACTIVE) against the candidate copy of its EvidenceFile when that is one of the five decomposition files, the `--prd` file for `docs/PRD.md` (default the live PRD), and the live file otherwise. Against the candidate and the live PRD: 109 text quotes stay verbatim, 132 ANCHOR structured loci hold, and exactly two quotes break — DEP-09-06-003 and DEP-10-03-003 (both quote the DEL-08-01 description). DEP-09-06-004 (DEL-08-03 sentence, kept as prefix) and DEP-10-12-004 (PKG-08 charter prefix) stay verbatim, as the canon intended. Rerun against the PRD candidate with `--prd <path>`.
 
 ## 13. Basis currency since checkpoint 1
 
-<<MANAGER_BASIS_NOTE>>
+The accepted Impact Assessment §2.1 states that the audited inputs of the reused pre-change baseline `COV_SCA005_POSTSETUP_2026-09-25_1606` equal the pre-change state byte for byte. **That statement no longer holds exactly.** The `D-PEC-95` act (PR #924, merge `abfd0897b`; run root `execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/`) changed 119 derivative paths after that audit: both `_LATEST.md` pointers, `_Coordination/_COORDINATION.md`, 42 `_CONTEXT.md`, 64 `_REFERENCES.md` and 10 `Dependencies.csv`.
+
+Three of those paths are in SCA-006 `AffectedFiles`: the DEL-04-03 and DEL-08-03 `_CONTEXT.md` (Seq 30, 32) and the DEL-10-12 `Dependencies.csv` (Seq 54 intake). `git diff 13df8b795 4d5f7b911` on them shows one provenance clause ("then by revision 1.5 …") in each context and a change to the DEP-10-12-003 row only. No text SCA-006 amends changed, and DEP-10-12-004, the Seq 54 intake cell, is byte-identical. The decomposition, its four registers, `docs/PRD.md` and `projects/pec/AGENTS.md` are byte-identical to the Impact Assessment's pins. This candidate is computed from the current bytes at `4d5f7b911`, including the `D-PEC-95` provenance lines.
+
+Consequence for checkpoint 3: the reused baseline still carries COV-068 (42 contexts at revision 1.4), COV-069 (64 references at revision 1.4), COV-072 (19 non-verbatim EvidenceQuotes) and COV-073 (stale-conservative SCA-005 handoff surfaces and pointers). The `D-PEC-95` act addressed them without a further audit (its ruling: "no re-audit"). The SCA-006 post-change audit is the first audit to observe the post-`D-PEC-95` state. Its pre/post comparison must attribute the resolution of COV-068/069/072/073 to `D-PEC-95`, not to SCA-006, and must not report them as SCA-006 effects (`Propagation_Plan.md` §C4).
 
 ## 14. Derivative and propagation boundary
 
