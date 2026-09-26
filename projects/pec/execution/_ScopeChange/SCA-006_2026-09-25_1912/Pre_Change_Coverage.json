@@ -1,0 +1,177 @@
+{
+  "run_label": "SCA005_POSTSETUP",
+  "snapshot_folder": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/",
+  "timestamp": "2026-09-25T16:13:14-06:00",
+  "requested_by": "WORKING_ITEMS (node C5 of HELP_HUMAN run HELP-HUMAN-PEC-20260923-SCA005; D-PEC-93 post-setup re-audit)",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "Decomposition revision 1.5 current_basis (projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md SHA-256 dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660), SCA-005 CLOSED_FOR_SCOPE_CHANGE_ONLY (_ScopeChange/SCA-005_2026-09-23_2139/), plus the D-PEC-93 option-A PROJECT_SETUP poststate (commit 995af4f368d0d8cc0b3134eef484b4b9618aa8ac; run root projects/pec/execution/_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/)",
+  "expected_handoff_phase": "D-PEC-93 post-setup re-audit (after the A4 + B3 product writes, before publication; the audit pointer decision belongs to the WORKING_ITEMS manager)",
+  "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.5 current_basis",
+  "decomposition_sha256": "dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660",
+  "audited_commit": "995af4f368d0d8cc0b3134eef484b4b9618aa8ac (D-PEC-93 act on origin/main 04e04da00f620a1a5786ee744b167490cc90531c); audited paths clean against HEAD",
+  "d_pec_93_postimage_check": "31/31 product paths equal the proposal postimage table; option-A aggregate c4525add6b621d16523ad7567410b96f1864683cf93fd0d03c3f43954a79727a reproduced",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 11,
+    "deliverables": 66,
+    "deliverables_active": 62,
+    "deliverables_retired": 4,
+    "objectives": 6,
+    "scope_items": 96,
+    "ledger_rows": 96
+  },
+  "ledger_status": {
+    "IN": 70,
+    "OUT": 18,
+    "TBD": 8
+  },
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 66,
+  "production_units_found": 66,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "context_fidelity_basis": "66/66 matched folders",
+  "artifact_presence_pct": 4.5455,
+  "artifact_presence_basis": "3 anticipated sets found / 66 declared production units (= matched folders)",
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 4,
+  "active_deliverables_without_objective_mapping": 0,
+  "retired_deliverables_without_objective_mapping_by_design": 4,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 3,
+  "issues_info": 70,
+  "issues_by_classification": {
+    "PRE-EXISTING": {
+      "BLOCKER": 0,
+      "WARNING": 3,
+      "INFO": 59
+    },
+    "EXPECTED_CONSEQUENCE": {
+      "BLOCKER": 0,
+      "WARNING": 0,
+      "INFO": 11
+    }
+  },
+  "check_count": 12,
+  "check_verdicts": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "WARNING",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "SKIPPED",
+    "9b": "PASS",
+    "10": "PASS",
+    "11": "PASS"
+  },
+  "lifecycle_distribution": {
+    "CHECKING": 4,
+    "INITIALIZED": 26,
+    "IN_PROGRESS": 2,
+    "OPEN": 30,
+    "RETIRED": 4
+  },
+  "contract_distribution": {
+    "SOW_V1": 32,
+    "NONE": 34,
+    "AMBIGUOUS_DUAL": 0
+  },
+  "context_provenance_revision": {
+    "1.5": 24,
+    "1.4": 42
+  },
+  "references_revision": {
+    "1.4": 64,
+    "1.5": 2
+  },
+  "register_validator": {
+    "registers": 66,
+    "dependency_rows": 263,
+    "anchor_rows": 140,
+    "execution_rows": 123,
+    "deliverables_declared": 66,
+    "errors": 0,
+    "warnings": 0,
+    "warning_codes": [],
+    "exit_strict": 0
+  },
+  "dependency_rows_by_status": {
+    "ANCHOR/ACTIVE": 132,
+    "EXECUTION/ACTIVE": 111,
+    "EXECUTION/RETIRED": 12,
+    "ANCHOR/RETIRED": 8
+  },
+  "dependency_closure": {
+    "execution_edges": 111,
+    "graph_nodes": 66,
+    "scc_count": 0,
+    "bidirectional_pairs": 0,
+    "isolated": [
+      "DEL-00-03",
+      "DEL-01-05",
+      "DEL-06-04",
+      "DEL-07-02",
+      "DEL-07-04",
+      "DEL-07-05"
+    ],
+    "hubs": [
+      "DEL-03-01 (in 13, out 12, total 25)"
+    ],
+    "orphans": 0,
+    "active_rows_targeting_retired": [],
+    "active_rows_in_retired_registers": [],
+    "closure_summary_sha256": "bd73806c98e82455f6abfe66aeeee38623cd24f2e48ed102bb2689934bbc187a",
+    "state": "post-B3 (D-PEC-93)"
+  },
+  "evidence_quote_currency": {
+    "active_execution_rows_not_verbatim": 19,
+    "rows": [
+      "DEP-03-01-005",
+      "DEP-03-01-008",
+      "DEP-03-01-009",
+      "DEP-03-01-010",
+      "DEP-03-01-011",
+      "DEP-03-01-012",
+      "DEP-03-01-013",
+      "DEP-05-01-004",
+      "DEP-05-02-003",
+      "DEP-06-03-003",
+      "DEP-08-04-005",
+      "DEP-08-05-004",
+      "DEP-09-05-006",
+      "DEP-09-05-007",
+      "DEP-09-05-008",
+      "DEP-10-05-004",
+      "DEP-10-05-005",
+      "DEP-10-10-003",
+      "DEP-10-12-003"
+    ],
+    "registers": 10,
+    "active_anchor_rows_semantically_true": "132/132 (structured D-PEC-62 assertion quotes, checked against the registers)",
+    "caused_by_d_pec_93": false
+  },
+  "retired_row_representation": "NO_BLOCKER_NO_WARNING (INFO only: 4 Check-6, 4 Check-7, 1 Check-10 closure-tool isolated-units row)",
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "closure_readiness_note": "Method-literal three-way verdict from the counts: 0 BLOCKERs; 3 WARNINGs, all PRE-EXISTING Check-6 artifact-location findings unrelated to SCA-005 and D-PEC-93. This is not a lifecycle, readiness or reliance judgement.",
+  "prior_run_label": "COV_SCA005_POSTCHANGE_2026-09-25_1344",
+  "prior_coverage_summary_sha256": "912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb",
+  "comparison_mode": "RUN (PrePost_Comparison.md)",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
