@@ -158,10 +158,12 @@ Notes on the returns:
 
 ## Current position
 
-Stage F: draft 1 of the seed set is complete and awaits the owner's review. The owner has answered the
-questions (D-01…D-15). Open for discussion: the working statement (Q-01),
-the build method (Q-11), the further project-management scope (Q-08), and
-two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
+Stage F: draft 1 of the seed set (`docs/`, five documents) is complete and
+awaits the owner's review. Architecture direction is settled (D-16…D-20).
+Still pending with the owner: the working statement (Q-01), two autonomy
+points (Q-04), the meaning of "Domains" and the essential hosts (Q-07), the
+further project-management scope (Q-08), and three operating-method
+questions (Q-11). No PRD requirement is accepted yet.
 
 ## Open work
 
