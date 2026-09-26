@@ -222,3 +222,78 @@ pointer is `../SCA-006_GROUP-2_AUTHORIZED.md`, and the Lane A packet row is
 - **AGENTS.md:** the owner directed that the correction to the Remaining sections ride the checkpoint-3 instruction tranche. The owner must explicitly approve its exact hunk before the application PR merges. The record is `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`.
 - **Next:** WORKING_ITEMS runs checkpoint-3 preparation.
 - **State fields:** `ReadyForNextPhase` stays `NO`, and the other state fields are unchanged.
+
+## Checkpoint-3 preparation (WORKING_ITEMS B6, 2026-09-26; appended)
+
+Lane A is applied and audited. The package awaits the owner's checkpoint-3
+acceptance. Nothing is accepted: revision 1.5, SCA-005 as `_LATEST.md` and
+fences F-PEC-1..4 stay the accepted basis until then.
+
+- **Brief:** `briefs/B6_SCA006_CHECKPOINT3.md` on `origin/main` `94e9255b6`, SHA-256 `8bdc718105f05dd2f72378e50fea246eb99a38a937938da72afa221bb8872df4`.
+- **Method:** the pinned scope-change edition (`WORKFLOW.md` `58f5d1d5…`, `contract.md` `4453a719…`, `method.md` `34187e83…`, read from `4d5f7b911`); the current `audit-decomp` for C4 (`7ba6291c…`, `704929c7…`, `51a0c69b…`).
+- **Branch / PR:** `claude/pec-sca006-cp3-execution`; https://github.com/sgttomas/chirality/pull/943 (not merged).
+- **Candidate snapshot and posture:** this folder; `ACCEPTED_PREDECESSOR` (SCA-005, `_ScopeChange/_LATEST.md` `e92b3b16…7d24`, unchanged). Accepted group-2 decision: `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/` with amendment 1.
+- **Authoritative truth changed (candidate):** decomposition revision 1.6 in pre-acceptance form, its four registers, PRD v2.4 and `projects/pec/AGENTS.md`. Hashes are in `RUN_SUMMARY.md` §3.
+- **Owner hunk approval:** given 2026-09-26 ("approve hunk"), recorded in `Decision_Log.md` row SCA006-G2-A1. Amendment 1's pre-merge gate is satisfied.
+- **Decision log:** SCA006-CP3 is `PREPARED / AWAITING_OWNER`; the question set is `RUN_SUMMARY.md` §9.
+
+### State fields after checkpoint-3 preparation
+
+| Field | Value | Note |
+|---|---|---|
+| `DecompositionTruthState` | `COMPLETE` | revision 1.6 applied; the two accepted front-matter lines return at A6 |
+| `DerivativePackageState` | `INCOMPLETE` | Lane B B1–B8 open, plus the COV-083 follow-up |
+| `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant |
+| `DownstreamRerunState` | `FROZEN` | no Lane B item authorized |
+| `MetadataAlignmentState` | `IN_PROGRESS` | 3 direct mirrors done; the B7 re-pin (63 `_CONTEXT.md`, 66 `_REFERENCES.md`) is open |
+| `AuditState` | `WARNINGS` | `COV_SCA006_POSTCHANGE_2026-09-26_0051`: 0 BLOCKER, 3 pre-existing WARNING, 71 INFO, 12 EXPECTED_CONSEQUENCE |
+| `ReadyForNextPhase` | `NO` | |
+| Closure verdict | `OPEN_PENDING_DERIVATIVE_CLOSURE` | becomes `CLOSED_FOR_SCOPE_CHANGE_ONLY` only on the owner's checkpoint-3 acceptance |
+
+### Derivative-package state
+
+| Package | Owner | Status | Evidence | Next required action |
+|---|---|---|---|---|
+| Decomposition + registers | SCOPE_CHANGE | applied, pending acceptance | `RUN_SUMMARY.md` §3–4 | owner checkpoint 3; A6 |
+| PRD v2.4 | owner-adopted; applied | applied | `RUN_SUMMARY.md` §3 | none |
+| `projects/pec/AGENTS.md` tranche | integration owner (B6) | applied; hunk approved | manifest `PEC-SCA006-OPERATIONAL-RELIANCE-20260926` | merge after review and CI |
+| 3 direct `_CONTEXT.md` | SCOPE_CHANGE | applied | A2 hashes | none |
+| 63 `_CONTEXT.md`, 66 `_REFERENCES.md` | PROJECT_SETUP | `STALE_REPIN_REQUIRED` | audit COV-077, COV-078 | B7 |
+| DEL-08-06 / DEL-10-13 scaffolds | PROJECT_SETUP | `NOT_CREATED` | audit COV-003, COV-004 | B1 packet |
+| New dependency rows; DEP-09-06-003, DEP-10-03-003 | dependency-extract | `STALE_REBUILD_REQUIRED` | audit COV-075, COV-076, COV-080 | B2, B3 |
+| 9 affected SOWs; first SOWs for the new deliverables | WORKING_ITEMS + gates | per plan §B4 | plan §B4 | B4 |
+| DEL-00-03 SPEC | owning workflow | `STALE_REVIEW_REQUIRED` | plan §B5 | B5 |
+| Tier-0 `pec.yaml` | tier-0 owner | `CURRENT` until a tool is declared | plan §B6 | B6 |
+| `v2/**` API schema | later D-PEC packet | `STALE_SOURCE_PACKET_REQUIRED` when built | plan §B8 | B8 |
+| `remaining-loop` design text (SOW-094, DEL-01-06, §9) | a later scope change | stale by owner direction | audit COV-083 | after `D-PEC-96` revision 4 is ruled |
+| Pointers | HELP_HUMAN | unchanged | C1 | A6 on acceptance (and `_Evaluation/DecompCoverage/_LATEST.md` if Q-CP3-2 (a)) |
+
+### Active derivative-surface state
+
+| Surface | Classification | Status | Evidence |
+|---|---|---|---|
+| `SOFTWARE_DECOMP.md` | `DIRECT_EDIT` | applied (pre-acceptance form) | `3ef0412a…9b29` |
+| `ScopeLedger.csv`, `Deliverables.csv` | `DIRECT_EDIT` | applied | candidate hashes |
+| `ContextBudgetQA.csv`, `Companion_Inventory.csv` | `RECOMPUTE` | applied as candidate bytes | candidate hashes |
+| `Supersession_Map.csv` | `RECOMPUTE` (accumulator) | generated | `010ce5c4…ab92` |
+| `Post_Change_Coverage.json` | `RECOMPUTE` | copied from the audit | `b9a068c0…09cf0` |
+
+KTY remediation and metadata-alignment summaries: not applicable (SOFTWARE variant).
+
+### A6 instructions for HELP_HUMAN (after the owner's checkpoint-3 acceptance only)
+
+1. Write `_Decomposition/_LATEST.md` as the revision-1.6 handoff, and `_ScopeChange/_LATEST.md` naming SCA-006.
+2. Restore `status: current_basis` and the accepted `accepted:` line in `SOFTWARE_DECOMP.md`.
+3. If the acceptance date is later than 2026-09-26, substitute it at `date:` (L7), the §7 Revision row (L574) and the DL-21 date cell (L700), under `Amendment_Preview.md`'s slot rule. With 2026-09-26 the accepted file hashes `86de50c3b56812dec9537210c0202ec9efc98aac7b328a8736cac8a6c688ecb3`.
+4. If the owner answers Q-CP3-2 (a), move `_Evaluation/DecompCoverage/_LATEST.md` to `COV_SCA006_POSTCHANGE_2026-09-26_0051`.
+5. Rollback if checkpoint 3 is returned: the plan's §"Failure and rollback". Include the three A2 provenance lines (audit COV-079) and the instruction-tranche revert.
+
+### Remaining blockers and human decisions
+
+- The owner's checkpoint-3 decision (Q-CP3-A, Q-CP3-1, Q-CP3-2).
+- HELP_HUMAN's notice review and its `docs/STATUS.md` correction under `D-PEC-88`, before merge.
+- A known Root consequence outside SCA-006: `origin/main` moved to `6281273fa` after the basis. It merged `D-GOV-48`, whose updated `validate_decomposition_registers.py` reports 26 XRG-013 warnings for PEC's OUT/TBD ledger items without a PackageID. Those items are unchanged by SCA-006 (the same 26 exist at revision 1.5). PEC's `D-GOV-48` notice is for HELP_HUMAN.
+
+### Next owning workflows
+
+The owner (checkpoint 3), then HELP_HUMAN (A6), then the Lane B owners under their own packets.
