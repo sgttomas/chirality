@@ -34,8 +34,8 @@ This graph is saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUM
 
 ## Current state and recovery
 
-- **Checked basis:** `origin/main` `22502e059` (PR #957: the RR3 act).
-- **Local or unmerged work:** this record, in PR #958.
+- **Checked basis:** `origin/main` `aca930622` (after PR #957, the RR3 act at `22502e059`, and PR #958).
+- **Local or unmerged work:** this graph update (PR #961); none after it merges.
 - **Active operations:** none. The RR1 and RR3 managers handed back.
 - **Next work:** C1 / M1 / F1. The `FINAL_ROW_ACCOUNT.csv` keeps `HumanDecision=PENDING` because the grant names only `AppliedResult`; the owner's decision is the `D-PEC-99` ruling.
 - **Graph maintainer:** HELP_HUMAN.
