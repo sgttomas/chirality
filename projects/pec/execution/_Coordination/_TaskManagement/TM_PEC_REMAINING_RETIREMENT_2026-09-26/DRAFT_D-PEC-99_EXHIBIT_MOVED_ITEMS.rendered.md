@@ -716,6 +716,8 @@ Gate: (gated: owner authorizes the exact linked evidence-only read scope and cre
 
 Currency note (2026-09-26 assessment): CURRENT. Linked claims exist in the current SOW (53ba3be30415): REQ-006 (L89), REQ-012 (L95), AC-004 (L100), VER-004 (L124). SOW-052/-053 are unchanged at revision 1.5 (ScopeLedger L53-54). Propagation_Plan B4 L833: STALE_REVIEW_REQUIRED (quotation only), an S1 review.
 
+Provenance (frozen `D-PEC-83` F carrier, never applied; its application gate is superseded by this ruling's closure of F): PacketApplicationGate: NOT_SELECTABLE_UNTIL: owner separately approves and applies the exact status application manifest; this preparation is not authority | PreparationState: CONDITIONAL_FROZEN_PREVIEW
+
 ## Part B — Scope of Work carry-forwards (12 items)
 
 Each of these items belongs in its deliverable's `ScopeOfWork.md`, which a pending currency node of work graph `HELP-HUMAN-PEC-20260925-POST-SCA005` will rewrite. To avoid editing the same Scope of Work twice, the retirement does not write it. The named node's owner-ruled packet absorbs the carry-forward input below as an exact carry-forward, re-verified at that packet's basis, and its ruling discharges the item's gate only for the text it applies. Until then the item stays here.
@@ -832,7 +834,7 @@ Gate: (gated: separate exact owner-ruled DEL-04-01 production packet on origin/m
 
 Carry-forward input for S4:
 
-S4 packet clause (DEL-04-01): "The rebuilt ScopeOfWork.md shall keep as production obligations of OUT-001 the read-only, on-request, in-process orientation builder with its component-derivation record, per-component citation provenance and explicit absence semantics, within the adjacent-scope exclusions, re-expressed against SOW-004 as it stands at the rebuild basis, and shall trace each of the retired REQ-001..REQ-014 and AC-001..AC-014 to its rebuilt successor or record why it was dropped. No production occurs until a separate exact owner-ruled DEL-04-01 production packet on origin/main opens the named source and test paths, acts, verification and rollback under F-PEC-1, after WORKING_ITEMS activation and a current reliance preflight. Upstream sequencing (DEL-10-01, DEL-01-01, DEL-03-01) stays as the register records it."
+S4 packet clause (DEL-04-01): "The rebuilt ScopeOfWork.md shall keep as production obligations of OUT-001 the read-only, on-request, in-process orientation builder with its component-derivation record, per-component citation provenance and explicit absence semantics, within the adjacent-scope exclusions, re-expressed against SOW-004 as it stands at the rebuild basis, and shall trace each of the current REQ-001..REQ-014 and AC-001..AC-014 to its rebuilt successor, or cite the S4 owner ruling that removes it. No production occurs until a separate exact owner-ruled DEL-04-01 production packet on origin/main opens the named source and test paths, acts, verification and rollback under F-PEC-1, after WORKING_ITEMS activation and a current reliance preflight. Upstream sequencing (DEL-10-01, DEL-01-01, DEL-03-01) stays as the register records it."
 
 #### DEL-04-01-REM-002 (DEL-04-01, INITIALIZED)
 
@@ -844,7 +846,7 @@ Gate: (gated: separate exact owner-ruled DEL-04-01 production packet on origin/m
 
 Carry-forward input for S4:
 
-S4 packet clause (DEL-04-01): "The rebuilt ScopeOfWork.md shall keep OUT-002, an automated orientation test suite implementing every declared verification method against its acceptance criterion, and shall trace each of the retired VER-001..VER-015 and AC-015 to its rebuilt successor. Add to the verification method: Tests run over finite fixtures; the test record states each fixture set's bounds and claims no all-input guarantee. Each run captures its write inventory and its per-component provenance resolutions as evidence. The DEL-01-05 zero-dependency and locality enforcement is re-run once that deliverable is available. The same production gate as OUT-001 applies: no test is written or run until the separate exact owner-ruled DEL-04-01 production packet opens the test paths under F-PEC-1."
+S4 packet clause (DEL-04-01): "The rebuilt ScopeOfWork.md shall keep OUT-002, an automated orientation test suite implementing every declared verification method against its acceptance criterion, and shall trace each of the current VER-001..VER-015 and AC-015 to its rebuilt successor, or cite the S4 owner ruling that removes it. Add to the verification method: Tests run over finite fixtures; the test record states each fixture set's bounds and claims no all-input guarantee. Each run captures its write inventory and its per-component provenance resolutions as evidence. The DEL-01-05 zero-dependency and locality enforcement is re-run once that deliverable is available. The same production gate as OUT-001 applies: no test is written or run until the separate exact owner-ruled DEL-04-01 production packet opens the test paths under F-PEC-1."
 
 #### DEL-04-02-REM-002 (DEL-04-02, INITIALIZED)
 

@@ -9,8 +9,9 @@ ticked or transferred. Prepared by the RR1 WORKING_ITEMS manager (undertaking
 - Source state: fetched `origin/main` `6281273fa7bd96b66703009e6325db2fa74815b3`
   (branch `claude/pec-remaining-retirement-account` cut from it). The branch
   was later rebased onto `origin/main` `f90320c1d` (PR #946, the `D-PEC-96`
-  ruling); no `projects/pec/execution/PKG-*` file changed, and a rebuild of
-  the census there produced byte-identical output.
+  ruling) and then onto `db9328789` (PR #943, SCA-006 checkpoint 3); no
+  deliverable `_STATUS.md` changed at either rebase, and a rebuild of the
+  census produced byte-identical output.
 - Census: `REMAINING_CENSUS.csv` in this folder, built by a stdlib Python
   parser that anchors on each file's single `## Remaining` heading, requires
   every byte of the section body to belong to a keyed item block (no stray
