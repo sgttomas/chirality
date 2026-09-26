@@ -468,7 +468,7 @@ See `resources/checks.md` for the full invariant set. Summary:
 
 - `workflows/project-setup/WORKFLOW.md` — dispatches this workflow via TASK during Phase 2.2 (DOMAIN variant)
 - `workflows/domain-decomp/WORKFLOW.md` — DOMAIN decomposition (upstream; produces KnowledgeSubjects)
-- `workflows/preparation/WORKFLOW.md` — creates Knowledge Type folders this workflow populates
+- `.agents/skills/preparation/SKILL.md` — creates Knowledge Type folders this workflow populates
 - `workflows/four-documents/` — PROJECT/SOFTWARE counterpart (fixed 4-doc kit)
 - `tools/EXTERNAL_TOOLS.md` — DOMAIN pipeline overview
 - `.Archive/SEMANTIC_PIPELINE_ARCHITECTURE.md` — pipeline architecture context

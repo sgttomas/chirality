@@ -71,6 +71,22 @@ Existing package names and legacy status survive this migration. In particular,
 compatibility while `scope-of-work` carries the current SOW_V1 method. Historical
 briefs, snapshots, and pinned evidence retain their original identifiers.
 
+### Retired packages
+
+These workflow packages were retired on 2026-09-26 because a canonical skill of
+the same name replaced them under D-GOV-42. The legacy-method ledger resolves an
+unqualified legacy selection of each name to its skill. The last revision
+holds the package's final bytes for historical replay.
+
+| Retired workflow | Canonical successor | Last revision |
+|---|---|---|
+| `deliverable-consistency` | skill `deliverable-consistency` | `d1166698d433da2fefbb6e3caee68b7d7910f27d` |
+| `preparation` | skill `preparation` | `29decb9fee2901f044457296f214163838bebb0f` |
+| `proposal-format` | skill `proposal-format` | `d1166698d433da2fefbb6e3caee68b7d7910f27d` |
+| `researcher` | skill `researcher` | `00e79872ae507b5041ab8c1482b4879629f6a495` |
+| `software-code-review` | skill `software-code-review` | `d1166698d433da2fefbb6e3caee68b7d7910f27d` |
+| `software-defect-diagnosis` | skill `software-defect-diagnosis` | `d1166698d433da2fefbb6e3caee68b7d7910f27d` |
+
 HELPS_HUMANS helps develop or revise workflows; WORKING_ITEMS coordinates their
 implementation. Validate a package with the Root workflow validator and review
 whether its particular method, outputs, and recovery fit its intended use.
