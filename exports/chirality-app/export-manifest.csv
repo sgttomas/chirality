@@ -273,7 +273,7 @@ desktop/src/__tests__/lib/harness-ui-attachments.test.ts,2119,a50ee1c9c715b921c4
 desktop/src/__tests__/lib/harness-ui-bridge.test.ts,2258,720fccfa572f80acc078640a8ea8c1338b28ef5c37b2c5fcf6fdd35eab420284
 desktop/src/__tests__/lib/hosted-bootstrap-client.test.ts,8940,eaf8259201cbe187beeb4170ba06f78ba8c29f9655218df07ccd911e9b2a8bd5
 desktop/src/__tests__/lib/layout-state.test.ts,4557,2a640bfb63943d2facb757535ee4c18ae01196af3ec31257f520ed5212315f9c
-desktop/src/__tests__/lib/lifecycle-status.test.ts,21246,aae44f906f001eeee55d836a669c39d969bede9706df2166e9f7ab4e7e3170be
+desktop/src/__tests__/lib/lifecycle-status.test.ts,23815,3aa992ff0a610ad63b416897fac5598b2a6f8ff05b43f11bb4bfe48ae0296c56
 desktop/src/__tests__/lib/loop-first.test.ts,1458,2f7a4156c8f424e7db611dc6890d87012c40032d244ca10f67830357bd576a78
 desktop/src/__tests__/lib/managed-delegation.test.ts,30146,2488a5b5f9f960dd9a5467fc1e94317541bbce71d232aedda9eb823376230b63
 desktop/src/__tests__/lib/method-selection-client.test.ts,5602,da9d0b1998227519248bc0b7a2b48141ef501361e30324ab83131c936a042bed
@@ -553,8 +553,8 @@ desktop/src/lib/harness/ui-attachments.ts,3152,5b9c53e32bd2afca373d197ac7c1457ba
 desktop/src/lib/harness/workflow-drafts.ts,1378,1827f538c5d6944745331b0f27bed563302456e0f6dd7329bb3f2752209128a7
 desktop/src/lib/harness/workflow-feedback.ts,509,c13febd449380f76ef8e8c68d2e82bcdaf80354538a6a4ee09ca142a3c76e983
 desktop/src/lib/lifecycle/status-parser.ts,6256,a8eb1388a7bbfc4fb152622480a5371d3e7ac2c743b985df4729a471d7a0f18e
-desktop/src/lib/lifecycle/status-writer.ts,6618,e4a9f700db664468f8d5d14ba0627dc39f1a6f5ec7d936144ab020b9e9c0d2b1
-desktop/src/lib/lifecycle/transition.ts,10316,e3ce4a8645aded55ce02d8d9c8197dc2cd11e478b18f2e8dfcacbb61fb8dc8f2
+desktop/src/lib/lifecycle/status-writer.ts,6791,99fad68cb550137c38a4097e2c39cff6ddc3a88e85da1bc6a9ce32c63ccde2c8
+desktop/src/lib/lifecycle/transition.ts,10969,060f1d55d35608b2a7e093fc12531603c5fbbcc5a606fe171cf0000bb51f480c
 desktop/src/lib/pipeline/pipeline-dispatch-contract.ts,7981,866513aab46c8faafd5148830ae102ca3e510ec403ec5df9e9526f908f33ee4f
 desktop/src/lib/portal/agent-matrix-cells.ts,387,30a796dca3bdd721744b74fa192f8fa8b6036a50ac7bbc839b1232601141a638
 desktop/src/lib/portal/agent-matrix-launch.ts,1024,3e71713f27b8ed8a4b65f791f08fdcd75bbb5e8ea5d4c3e5f68519ea537022a2

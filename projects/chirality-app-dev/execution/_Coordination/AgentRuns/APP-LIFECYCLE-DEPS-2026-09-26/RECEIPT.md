@@ -61,6 +61,10 @@ recorded here only as part of the quoted decision.
   on `claude/brave-goodall-wj3hok` (PR #960). The review revision is
   Examined-Through origin/main `6128f8b85251ccb0a5e13ad48d0e4d5e971d11d6`. The
   parent session integrates, reviews and merges.
+- Second PR #960 review hardening: caller metadata can no longer set the
+  approval SHA fields (`INVALID_METADATA`); metadata keys are printable ASCII;
+  C1 controls and Unicode line and paragraph separators are rejected in values,
+  history notes and rulings; the actor is recorded on one line.
 - Tranche manifest:
   `docs/governance_harness/tranche_manifests/APP-LIFECYCLE-DEPS-ADOPTION-20260926.yaml`.
 - Loop ledger pointer: `loop/LOOP_RECEIPTS.md` Receipt-265.

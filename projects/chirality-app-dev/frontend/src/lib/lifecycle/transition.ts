@@ -81,9 +81,10 @@ const RULING_REFERENCE_MAX_LENGTH = 512;
 // The ruling reference is recorded inside a `[...]` history note whose parts are
 // separated by `; `, so it must be one line without brackets, semicolons or
 // control characters.
-const RULING_REFERENCE_FORBIDDEN = /[\u0000-\u001f\u007f[\];]/;
+const RULING_REFERENCE_FORBIDDEN = /[\u0000-\u001f\u007f-\u009f\u2028\u2029[\];]/;
 // The CHECKING entry records its approval SHA in this field; the reversal removes it.
 const CHECKING_APPROVAL_SHA_FIELD = 'Checking Approval SHA';
+const APPROVAL_SHA_FIELD_LABELS = new Set(['approvalsha', 'checkingapprovalsha']);
 
 function normalizeActor(actor: string): string {
   const normalized = actor.trim().toUpperCase().replace(/\s+/g, '_');
@@ -216,6 +217,17 @@ function mergeTransitionMetadata(
   approvalSha: string | undefined
 ): Record<string, string> | undefined {
   const metadata: Record<string, string> = { ...(options.metadata ?? {}) };
+  // Approval SHA fields are gate evidence: only the transition sets them, from a
+  // validated approvalSha on the gate that records it.
+  for (const key of Object.keys(metadata)) {
+    if (APPROVAL_SHA_FIELD_LABELS.has(key.toLowerCase().replace(/[^a-z0-9]/g, ''))) {
+      throw new LifecycleTransitionError(
+        'INVALID_METADATA',
+        `Status field '${key}' is set only by the transition's approvalSha`,
+        { key }
+      );
+    }
+  }
   if (approvalSha) {
     if (to === 'CHECKING') {
       metadata.checkingApprovalSha = approvalSha;
@@ -271,7 +283,8 @@ export function applyLifecycleTransition(
     );
   }
 
-  const actor = actorInput.trim() || normalizedActor;
+  // Record the actor on one line: whitespace runs collapse to a single space.
+  const actor = actorInput.trim().replace(/\s+/g, ' ') || normalizedActor;
   const approvalSha = parseApprovalShaForTransition(rule, options);
   const ruling = parseRulingReference(rule, options);
   const metadata = mergeTransitionMetadata(to, options, approvalSha);

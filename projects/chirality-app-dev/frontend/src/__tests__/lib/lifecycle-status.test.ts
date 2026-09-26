@@ -512,9 +512,7 @@ describe('lifecycle transition table (SPEC §4.3; DEL-07-04 REQ-004/REQ-005/REQ-
     const reversed = applyLifecycleTransition(checking.content, 'IN_PROGRESS', 'HUMAN', {
       date: '2026-02-27',
       approvalSha: 'def5678',
-      ruling: RULING,
-      // metadata cannot restore the removed field
-      metadata: { checkingApprovalSha: 'abc1234' }
+      ruling: RULING
     });
 
     expect(reversed.content).not.toContain('Checking Approval SHA');
@@ -604,5 +602,81 @@ describe('status field writes', () => {
       '**Authorization Basis:** ruling: execution/_Coordination/_DECISIONS/D-001.md'
     );
     expect(updated.content).toContain('**Current State Basis:** owner ruling');
+  });
+});
+
+describe('gate evidence and line-break hardening', () => {
+  it.each([
+    ['checkingApprovalSha', 'IN_PROGRESS'],
+    ['approvalSha', 'IN_PROGRESS'],
+    ['Checking Approval SHA', 'IN_PROGRESS'],
+    ['approval_sha', 'IN_PROGRESS']
+  ])('rejects caller metadata %s, which only the transition sets', (key, to) => {
+    const before = statusAt('INITIALIZED');
+    expect(() =>
+      applyLifecycleTransition(before, to, 'WORKING_ITEMS', {
+        date: '2026-02-26',
+        metadata: { [key]: 'abc1234' }
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('rejects approval SHA metadata on the reversal too', () => {
+    const checking = applyLifecycleTransition(statusAt('IN_PROGRESS'), 'CHECKING', 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234'
+    });
+    expect(() =>
+      applyLifecycleTransition(checking.content, 'IN_PROGRESS', 'HUMAN', {
+        date: '2026-02-27',
+        approvalSha: 'def5678',
+        ruling: 'execution/_Coordination/_DECISIONS/D-001_check_withdrawn.md',
+        metadata: { checkingApprovalSha: 'abc1234' }
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('records a multi-line actor on one parseable history line', () => {
+    const result = applyLifecycleTransition(
+      statusAt('INITIALIZED'),
+      'IN_PROGRESS',
+      'WORKING\n\n  ITEMS',
+      { date: '2026-02-26' }
+    );
+    expect(result.content).toContain('- 2026-02-26 - State set to IN_PROGRESS (WORKING ITEMS)');
+    expect(parseStatusDocument(result.content).history.map((entry) => entry.state)).toEqual([
+      'OPEN',
+      'INITIALIZED',
+      'IN_PROGRESS'
+    ]);
+  });
+
+  it.each([' ', ' ', '\u0085'])(
+    'rejects a Unicode line break (%j) in a metadata value',
+    (separator) => {
+      expect(() =>
+        applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'WORKING_ITEMS', {
+          date: '2026-02-26',
+          metadata: { note: `x${separator}## History` }
+        })
+      ).toThrowError(
+        expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
+      );
+    }
+  );
+
+  it('rejects a non-ASCII look-alike metadata key', () => {
+    expect(() =>
+      applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'WORKING_ITEMS', {
+        date: '2026-02-26',
+        metadata: { 'Сurrent State': 'ISSUED' }
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
+    );
   });
 });

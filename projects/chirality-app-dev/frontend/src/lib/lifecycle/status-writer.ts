@@ -46,10 +46,12 @@ export class StatusWriteError extends Error {
 // Labels the writer emits itself. A field whose normalized label matches one of
 // them could shadow the lifecycle state or open a forged history section.
 const RESERVED_FIELD_LABELS = new Set(['currentstate', 'lastupdated', 'history']);
-// A field is written as one `**Key:** value` line: the key may not carry markdown
-// emphasis, heading or separator characters, and neither part may break the line.
-const FORBIDDEN_FIELD_KEY = /[*#:\u0000-\u001f\u007f]/;
-const FORBIDDEN_FIELD_VALUE = /[\u0000-\u001f\u007f]/;
+// A field is written as one `**Key:** value` line: the key is printable ASCII
+// without markdown emphasis, heading or separator characters (so no look-alike
+// letters), and the value may not contain anything a reader treats as a line
+// break, including C1 controls and the Unicode line and paragraph separators.
+const FORBIDDEN_FIELD_KEY = /[^\u0020-\u007e]|[*#:]/;
+const FORBIDDEN_FIELD_VALUE = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/;
 
 function normalizeFieldLabel(label: string): string {
   return label.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -58,7 +60,7 @@ function normalizeFieldLabel(label: string): string {
 function assertWritableField(key: string, value: string): void {
   if (FORBIDDEN_FIELD_KEY.test(key)) {
     throw new StatusWriteError(
-      'Status field keys must be one line without `*`, `#`, `:` or control characters',
+      'Status field keys must be printable ASCII without `*`, `#` or `:`',
       { key }
     );
   }
@@ -190,7 +192,7 @@ export function updateStatusDocument(
 
   const notes = input.notes?.trim() || undefined;
   // The note is written inside `[...]` on one history line.
-  if (notes && /[\u0000-\u001f\u007f[\]]/.test(notes)) {
+  if (notes && /[\u0000-\u001f\u007f-\u009f\u2028\u2029[\]]/.test(notes)) {
     throw new StatusWriteError(
       'History notes must be one line without brackets or control characters'
     );
