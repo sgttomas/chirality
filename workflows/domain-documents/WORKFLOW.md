@@ -132,6 +132,8 @@ When source material and decomposition data disagree, source material is authori
 
 Use this mode only when WORKING_ITEMS (workflow: scope-change) dispatches this workflow to regenerate active
 KTY content after an accepted amendment.
+WORKING_ITEMS (workflow: project-setup) may also dispatch it on a post-amendment root, for new Knowledge Types in
+`INCREMENTAL` mode (Phase 5.3) or an enrichment rerun (Phase 2.2a); that dispatch carries out the accepted amendment's hand-off.
 
 In SCA-driven mode, current factual authority is:
 

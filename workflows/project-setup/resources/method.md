@@ -12,9 +12,11 @@
 
 No schedule gate may be skipped. Repetitive graph analysis, calculation, and rendering belong in TASK workflows or deterministic tools; WORKING_ITEMS presents and records human decisions and validates fan-in.
 
-### Function 1: Initialize (one-time per workspace)
+### Function 1: Initialize (once per workspace; `INITIAL` mode)
 
 **Goal:** Ingest the decomposition, confirm coordination representation, and record it durably.
+
+An accepted scope-change amendment does not re-run Functions 1 and 2; its amended scope is set up by Function 5.
 
 #### Phase 1.1: Ingest decomposition
 
@@ -69,7 +71,7 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
 
 ---
 
-### Function 2: Scaffold + run setup-time pipelines (one-time, human-gated)
+### Function 2: Scaffold + run setup-time pipelines (once per workspace, human-gated; `INITIAL` mode)
 
 **Goal:** Create the workspace and populate it with the minimum viable fileset, then run initialization pipelines.
 
@@ -155,7 +157,7 @@ skipped.
   - `ScopePath: {DELIVERABLE_PATH}`
   - `MODE: INIT`
   - `DECOMP_VARIANT: {variant}`
-  - `STATUS_POLICY: NO_STATUS_TOUCH` and the exact `ScopeOfWork.md` write target, plus the other required fields in `workflows/scope-of-work/resources/brief.md`. `scope-of-work` accepts only `MODE=INIT|CONVERT|VERIFY` and never edits `_STATUS.md`; recording `INITIALIZED` is a separate authorized status act.
+  - `STATUS_POLICY: NO_STATUS_TOUCH` and the exact `ScopeOfWork.md` write target, plus the other required fields in `workflows/scope-of-work/resources/brief.md`. `scope-of-work` accepts only `MODE=INIT|CONVERT|REVISE|VERIFY` (`REVISE` only under an accepted scope-change amendment, Phase 5.5) and never edits `_STATUS.md`; recording `INITIALIZED` is a separate authorized status act.
   - Existing `LEGACY_FOUR_DOC` maintenance may use `four-documents` only when
     the resolver confirms a complete legacy-only contract; never infer mode
     from a filename or create a new legacy kit.
@@ -315,7 +317,7 @@ See `workflows/lens-register/WORKFLOW.md` for the method contract.
   - `DECOMP_VARIANT: {variant}`
   - The workflow applies warranted enrichments and performs a final consistency sweep.
   - If the project uses `SEMANTIC_READY` as a lifecycle marker, its Pass 3 may set `_STATUS.md` from `INITIALIZED → SEMANTIC_READY` (only if that is the local policy and the brief authorizes the `_STATUS.md` write).
-- **`SOW_V1`:** applying `_SEMANTIC_LENSING.md` to `ScopeOfWork.md` is not currently provided by a bundled workflow. `scope-of-work` accepts only `MODE=INIT|CONVERT|VERIFY`, has no Pass 3, and never touches `_STATUS.md`; `semantic-lensing` can produce reviewable `PROPOSAL:` blocks but does not edit the contract. Report the step as not provided, route any accepted proposal through the project's authorized contract-amendment path, and record `SEMANTIC_READY` only through a separately authorized status act.
+- **`SOW_V1`:** applying `_SEMANTIC_LENSING.md` to `ScopeOfWork.md` is not currently provided by a bundled workflow. `scope-of-work` accepts only `MODE=INIT|CONVERT|REVISE|VERIFY`, has no Pass 3, and never touches `_STATUS.md`; its `REVISE` mode serves accepted scope-change amendments only, not lensing proposals; `semantic-lensing` can produce reviewable `PROPOSAL:` blocks but does not edit the contract. Report the step as not provided, route any accepted proposal through the project's authorized contract-amendment path, and record `SEMANTIC_READY` only through a separately authorized status act.
 - Run the legacy enrichment as a sealed TASK step after `_SEMANTIC_LENSING.md` validates. The WORKING_ITEMS (workflow: project-setup)/parent must not apply Pass 3 document edits inline.
 - Before reporting Phase 2.5 complete, validate each deliverable with:
   - `python3 tools/validation/validate_p3_disposition.py "{DELIVERABLE_PATH}"`
@@ -346,6 +348,12 @@ for the method contracts.
 **Report to human:** “DOMAIN hypergraph built. Initialization pipelines complete. Production units are ready for WORKING_ITEMS sessions.”
 
 **Note:** For WORKING_ITEMS (workflow: project-decomp) and WORKING_ITEMS (workflow: software-decomp) variants, Phase 2.6 is skipped — these variants do not use the DOMAIN hypergraph.
+
+---
+
+#### Phase 2.7: Record the setup baseline (all variants)
+
+**Action:** When the human confirms the last applicable Function 2 gate, create `{COORDINATION_ROOT}/SETUP_LOG.md` from the [contract template](contract.md#setup_logmd-project-level-agent-owned-append-only) if absent and append its one `BASELINE` line, in the log's line format: `- [YYYY-MM-DD] — BASELINE: incremental setup adopted; amendments accepted up to [YYYY-MM-DD] (latest none) are already set up and are not reprocessed; confirmed by [human]`, with both dates the completion date and the human who confirmed that gate. Where the decomposition set up here already included accepted amendments, name the latest of them instead of `none`. A project set up this way never needs the Phase 5.0 adoption step. Skip this phase when `SETUP_LOG.md` already has a `BASELINE` line.
 
 ---
 
@@ -463,5 +471,118 @@ Repeat Phase 4.1 for each subsequent tier until all tiers are complete.
 **Report to human:** "Aggregation complete. Results at [path]."
 
 ---
+
+### Function 5: Incremental setup after an accepted amendment (`INCREMENTAL` mode)
+
+**Goal:** Set up the amended scope of an accepted `scope-change` amendment: scaffold what was added, record what was retired, route what was modified to its production contract, and refresh dependency and coordination records only where the amendment reaches. The inputs and action treatment are in [the contract](contract.md#setup-modes).
+
+**Precondition:** The amendment has passed `scope-change` checkpoint group 3 and its snapshot is accepted (normally the `_LATEST.md` target). An amendment still in progress is finished through `scope-change` first; a candidate or returned snapshot is not an input. This function does not edit decomposition truth or the immutable amendment snapshot. A discrepancy between the accepted poststate and the workspace returns to `scope-change`.
+
+Apply the paired read throughout: whenever this function reads a deliverable `_STATUS.md`, it also reads a sibling `MEMORY.md` or `_MEMORY.md` when present, as non-authoritative context only.
+
+Setup evidence goes to the agent-owned, append-only `{COORDINATION_ROOT}/SETUP_LOG.md` ([contract](contract.md#setup_logmd-project-level-agent-owned-append-only)). This function reads `_COORDINATION.md` but does not write it.
+
+#### Phase 5.0: Adopt incremental setup (once per project)
+
+Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up before incremental setup existed. A project whose `INITIAL` setup completed Phase 2.7 already has its baseline.
+
+**Action:**
+- List the accepted amendments under `{EXECUTION_ROOT}/_ScopeChange/` in amendment order with their acceptance dates, and for each whether its `Handoff_State.md` hands setup to `project-setup` in `INCREMENTAL` mode.
+- Propose one baseline. By default it names the latest accepted amendment whose `Handoff_State.md` does not hand setup to `project-setup` `INCREMENTAL` (one accepted before incremental setup existed), with its acceptance date, or `none` when there is no such amendment. The human confirms it or names another.
+- The baseline covers the amendment it names and the accepted amendments before it. An amendment whose `Handoff_State.md` hands setup to `project-setup` `INCREMENTAL` is never covered, whatever its date or position: it enters the Phase 5.1 queue. This keeps the amendment that prompted adoption from being treated as already set up.
+- Covered amendments are never reprocessed by this mode, whatever their handoff records say; setup work a human still wants for one of them is a separate authorized undertaking.
+
+**Gate question:** "Adopt incremental setup with baseline [ID or none] (accepted [date]): [n] earlier accepted amendments treated as already set up and not reprocessed; [k] amendments that hand setup to `INCREMENTAL` ([IDs]) stay in the queue. Confirm?"
+
+**On confirmation:** create `SETUP_LOG.md` from the contract template if absent and append the one `BASELINE` line, naming the confirmed amendment (or `none`) and, after "accepted up to", its acceptance date (the adoption date when `none`). Do not edit `_COORDINATION.md`, accepted snapshots or earlier run records.
+
+---
+
+#### Phase 5.1: Resolve the accepted amendment and confirm the incremental plan
+
+**Action:**
+- Resolve the accepted snapshot from `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md`. List any earlier accepted `SCA-*` snapshots not covered by the `SETUP_LOG.md` baseline whose setup hand-back has no `COMPLETE` line there, and take them in amendment order in the same plan. Where later amendments act on the same entity, the latest accepted state governs; show such cases in the plan. An amendment covered by the baseline never enters the plan.
+- Resolve the accepted action register through the snapshot's group-2 `ACCEPTED_MANIFEST.csv` (`Amendment_Actions.csv` or its bound distinct name) and verify its hash. Read `Propagation_Plan.md` and `Handoff_State.md` for the hand-back, deferred items and blockers.
+- Read each affected entity's row in the amended decomposition, and the recorded representation, dependency tracking mode and threshold in `_COORDINATION.md`. Do not re-run Phases 1.2–1.3.
+- For each affected deliverable, resolve its production format (`docs/SPEC.md` §2.2) and lifecycle state. Derive the neighbours (contract, *`INCREMENTAL` action treatment*).
+- Prepare the incremental plan: each entity with its action, treatment, stages, write targets and actor; the dependency stages for the recorded mode (Phase 5.6); semantic or DOMAIN stages the project uses; derivatives made stale (estimates, schedules, hypergraph, semantic artifacts) with their owners; where the project has an accepted project DAG, the deliverables for which it becomes stale, to be confirmed by the Phase 5.6 currency audit (`docs/SPEC.md` §5.4); and any decisions the stages reserve for the human.
+
+**Gate question:** "Accepted amendment [ID] (register hash [H]): [a] to scaffold, [r] retired, [m] modified ([h] held at `CHECKING` or `ISSUED`), [n] neighbours for dependency refresh under [mode]. Confirm this incremental plan?"
+
+**Do not write before the human confirms the plan.**
+
+---
+
+#### Phase 5.2: Scaffold added entities
+
+**Action:**
+- For each `ADD` (and each new `MERGE`/`SPLIT` successor), apply Phase 2.1 with the source-qualified `preparation` skill: `scaffold_package.sh` for a new package or category, `scaffold_deliverable.sh` for a new deliverable or knowledge type. Inventory first and populate only files created by this invocation. A path that already exists for an added ID is existing work: report it and do not overwrite it.
+- `_DEPENDENCIES.md` carries the recorded tracking mode. Its declared sections hold only human declarations from the accepted amendment or the plan confirmation.
+- Initialize `OPEN` only in a newly created `_STATUS.md`, and run `tools/validation/check_min_viable_fileset.sh` on each new folder.
+- **DOMAIN:** before drafting a new Knowledge Type, reuse the amendment's recorded `CLUSTER_COHERENT` ratification when the retrieval index has not changed since it; otherwise run Phase 2.1b for the new Knowledge Types only.
+
+---
+
+#### Phase 5.3: Initialize production for added entities
+
+**Action:**
+- **PROJECT/SOFTWARE:** dispatch Phase 2.2's `scope-of-work` brief (`MODE: INIT`, `STATUS_POLICY: NO_STATUS_TOUCH`) for each new deliverable, naming the amended decomposition and the accepted snapshot as its basis. Recording `INITIALIZED` remains a separate authorized status act.
+- **DOMAIN:** dispatch Phase 2.2's `domain-documents` brief for each new Knowledge Type in its `SCA_DRIVEN` mode, with the supersession inputs of Phase 2.2a: `AUTHORITY_MODE: SCA_DRIVEN`, `SCA_SNAPSHOT_PATH` set to the accepted snapshot, and `SUPERSESSION_MAP_PATH` set to its cumulative `Supersession_Map.csv`. This dispatch carries out the accepted amendment's hand-off. A missing cumulative map halts the dispatch as in Phase 2.2a.
+- Run Phases 2.3–2.5 for added deliverables only where the project already uses semantic lensing.
+
+---
+
+#### Phase 5.4: Record retirements
+
+**Action:**
+- For each `REMOVE` (and each retired `MERGE`/`SPLIT` source), delete nothing. Confirm the decomposition row carries `[RETIRED — {AMENDMENT_ID}]`. A missing annotation returns to `scope-change`: the annotation is decomposition truth, which this function does not edit.
+- Confirm `_STATUS.md` holds one history line recording the retirement under the amendment. Where the accepted poststate lacks it, append exactly one, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state remains {CURRENT_STATE} ({ACTOR})`. Leave `**Current State:**` unchanged and do not use `write_status.sh`. This line is appended here rather than returned because `_STATUS.md` history is deliverable-local lifecycle evidence, not decomposition truth, and appending it changes no state.
+- Record retired deliverables as `EXEMPT_UNITS` of class `RETIRED` for the closure audit, citing the action row. Report recorded edges from neighbours that target a retired deliverable to their owners; declared sections are human-owned.
+- **DOMAIN:** KTY content retirement belongs to the amendment's `KTY_Remediation_Manifest.csv` lanes. Report rows that are not `COMPLETE`; do not archive content here.
+
+---
+
+#### Phase 5.5: Route modified deliverables to their update path
+
+**Action:** Do not re-scaffold a modified deliverable or re-run `MODE=INIT` over an existing contract. Route each `MODIFY` or `RECLASSIFY` deliverable by production format and lifecycle state:
+
+| State | Route |
+|---|---|
+| `OPEN`, no production contract | Nothing to update. The amended `_CONTEXT.md` is the basis for a later `MODE=INIT`. |
+| `SOW_V1` at `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` | If the accepted group-2 write boundary named `ScopeOfWork.md`, the amendment already changed it: dispatch `scope-of-work` `MODE=VERIFY`. Otherwise dispatch `scope-of-work` `MODE=REVISE` (`STATUS_POLICY: NO_STATUS_TOUCH`) with the amendment reference, the accepted action rows naming the deliverable, the register hash, the `REVISION_SCOPE` the amendment names and the prior contract hash; it ends with `MODE=VERIFY`. |
+| `LEGACY_FOUR_DOC` | `four-documents` with `RUN_PASSES: P1_P2`, only when the resolver confirms a complete legacy-only kit. Conversion remains a separate `MODE=CONVERT` undertaking. |
+| `CHECKING` | Frozen and held for the human. Report it; the update waits for a human reversal to `IN_PROGRESS` (`docs/SPEC.md` §3.3), after which the `SOW_V1` route above applies. |
+| `ISSUED` | Held for the human; do not edit. This amendment's accepted action register names the deliverable with `MODIFY` (or scope-changing `RECLASSIFY`), so it is the record that authorizes reopening under `docs/SPEC.md` §3.3. Present the reopening as a human decision: the human records `ISSUED → IN_PROGRESS` in `_STATUS.md`, citing the accepted amendment snapshot. After that, the `SOW_V1` route above applies. `tools/scaffolding/write_status.sh` does not yet admit this transition, so the human records it directly; no agent writes it. |
+
+- Report existing `_SEMANTIC.md` or `_SEMANTIC_LENSING.md` of a modified deliverable as stale; rerun them only where the project uses semantic lensing.
+- **DOMAIN:** modified KTY content goes through the amendment's KTY remediation lanes (`REGENERATE_CONTENT`, `VERIFY_ONLY`). Report rows that are not `COMPLETE`.
+
+---
+
+#### Phase 5.6: Refresh dependency stages for the affected scope
+
+Follow the recorded tracking mode (`docs/SPEC.md` §5.3) and Phase 2.2b's briefs, limited to the affected deliverables and their neighbours:
+
+- **`NOT_TRACKED`:** skip extraction and closure audit, and record the skip.
+- **`DECLARED`:** where the Phase 1.3 rules call for extracted registers, dispatch `dependency-extract` (`MODE: UPDATE`, one deliverable per brief) for each affected deliverable that has a production contract and each neighbour; then `audit-dep-closure` with an explicit `SCOPE` list of those deliverables and the retired exemptions. Report the result as a partial view.
+- **`FULL_GRAPH`:** dispatch `dependency-extract` for the same deliverables as above, then run `audit-dep-closure` over the accepted inventory (its `SCOPE: ALL` rules, with retired exemptions): a new cycle through a changed edge can pass through unaffected deliverables. The audit reads existing registers; it does not re-extract them. Route new SCCs to `scc-resolution-case`.
+- **Accepted project DAG (`DECLARED` or `FULL_GRAPH`):** where the project has an accepted project DAG (`_DAG/_LATEST.md`), hand off to `project-dag` after extraction and closure for a currency audit (`project-dag` `resources/currency.md`, `docs/SPEC.md` §5.4) naming the accepted amendment. An accepted inventory change or a changed arc is a departure: the affected deliverables it lists are `DAG pending` until the human accepts the candidate successor or rejects the change, and they get no ready or blocked verdict from dependencies meanwhile. Unaffected deliverables continue on the accepted version. This function does not edit the accepted version, prepare or accept its successor, or clear the flag; `project-dag` owns those steps and their human checkpoint.
+- A new deliverable whose production contract does not yet exist is extracted after Phase 5.3 completes for it; record the wait. Where an accepted project DAG exists, the currency audit follows that extraction or records the deliverable's evidence as not yet comparable.
+
+---
+
+#### Phase 5.7: Refresh coordination and report
+
+**Action:**
+- Run Phase 3.1 and report per Phase 3.2. List retired deliverables separately with their unchanged lifecycle state and exclude them from the advisory blocked/unblocked sections.
+- Write the run record under `{COORDINATION_ROOT}/AgentRuns/<RunID>/`: the confirmed plan, snapshot path and register hash, briefs, returns, created and skipped paths, update routes, dependency evidence and the report.
+- Append one line to `SETUP_LOG.md`: `COMPLETE` when every planned item is done, otherwise `PARTIAL` or `BLOCKED` with the remaining items named in the run record.
+- The accepted amendment snapshot stays immutable. The run record and setup-log line are this function's setup evidence, for the human and for resuming an interrupted run.
+- **Closure check:** propose `audit-scope-closure` against the accepted amendment (normally after a `COMPLETE` line). It is the check that the added scope was scaffolded after acceptance. It audits the workspace itself against the amended basis: its ADD checks confirm each added folder and its minimum viable fileset, its REMOVE checks the retirement records, and its rerun verification checks the reruns the amendment's `RUN_SUMMARY.md` recommends against hash-bearing run receipts, such as `dependency-extract` input manifests. It takes dispositions from the amendment's `scope-change` handoff records; it does not read `SETUP_LOG.md` or this run record. Its findings route repair work back into this function.
+- **DOMAIN:** report an existing hypergraph snapshot as stale and propose Phase 2.6.
+
+**Report to human:** "Incremental setup for [ID]: [a] scaffolded ([paths]), [r] retirements recorded, [m] modified routed ([routes and outcomes]); [h] held for the human (`CHECKING`, `ISSUED` awaiting a recorded reopening); dependency refresh [mode and result]; `DAG pending` [deliverables and the `project-dag` decision awaited, or none, or no accepted DAG]; stale derivatives [list with owners]; decisions pending [list]; closure check `audit-scope-closure` [proposed | dispatched]."
+
+An interrupted run resumes from Phase 5.1 by inspecting what exists: preparation and extraction are per-item and idempotent, and completed items are skipped. A `PARTIAL` or `BLOCKED` line in `SETUP_LOG.md` keeps the amendment in the Function 5 queue.
 
 ---
