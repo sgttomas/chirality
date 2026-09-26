@@ -42,7 +42,7 @@ Closed on record (9): DEL-01-03-REM-001..003, DEL-06-04-REM-001, DEL-07-02-REM-0
 | Every-PR checks | harness self-check exit 0 and receipt validator VALID, each byte-identical before and after (so no new harness finding cites a target path) | `checks/{pre,post}_{harness,receipts}.out` |
 | Task Management | `REGISTER.csv` PASS (9 rows) and `REGISTER_CLOSED.csv` PASS (16 rows), identical before and after; no row written | `checks/{pre,post}_tm_*.out` |
 | `git diff --check` | exit 0, no output | `checks/post_diff_check.out` |
-| Containment | see `checks/containment.out` | `containment.py` |
+| Containment | PASS: 62/62 grant paths, run-root files, `FINAL_ROW_ACCOUNT.csv` and the brief copy; nothing HELP_HUMAN-owned or outside. `checks/containment.out` is a saved run at the commit before it is added (so it never counts itself); the RR3 return records the rerun at the final head | `containment.py`, `checks/containment.out` |
 
 ## Residuals and disclosures (recorded, not repaired here)
 
@@ -67,7 +67,15 @@ Closed on record (9): DEL-01-03-REM-001..003, DEL-06-04-REM-001, DEL-07-02-REM-0
 
 ## Independent verification
 
-Pending: one fresh read-only `pec-reviewer` (Opus 5.5, high) under the proposal's "Independent verifier" section. Verdicts are transcribed as `VERIFIER_VERDICT_NN.md`.
+- **Verdict 01 (reviewed `10feef34c`): PASS WITH NOTES**, no blocking finding (`VERIFIER_VERDICT_01.md`, transcribed verbatim). One fresh read-only `pec-reviewer` (Claude Opus 5.5) reproduced all 62 postimages on a fresh `git archive` export of `3b0231ecc` without `--reproduction` (byte-identical to the head and to the proposal tables), reran both closure-check modes (PASS), the finite verification table, an independent semantic parse (History lines, verbatim exhibit, gates, Part B carry-forwards, closed set, AGENTS.md rebuild) and the protected-path checks, and a trial merge with `origin/main` `6b48b6f26` (clean; no pin or granted path touched).
+- **Dispositions (no product, account or register byte changed):**
+  - N1 (graph sentences and RS1 not yet in the PR): HELP_HUMAN's by the ruling and the brief; routed with the keys above. The verdict covers `10feef34c` only; the final candidate after HELP_HUMAN's additions needs its own review under Root's merge rule.
+  - N2 (`HumanDecision=PENDING` kept in `FINAL_ROW_ACCOUNT.csv`): kept; the grant names only `AppliedResult` (residual 2).
+  - N3 (`verify_d99.py` keeps only the last repeated `--allow-extra`; fails closed): the script's bytes are bound by the ruling; recorded here for any later reuse. Pass all extra paths after one `--allow-extra`.
+  - N4 (SOW count): confirmed accurate; no change.
+  - N5 (`origin/main` advanced by #955): no overlap. Routed to HELP_HUMAN: #955 changed `workflows/scope-of-work/WORKFLOW.md` (`d616865a…` to `84dadde4c573…`) and `docs/SPEC.md` §3.3/§3.4/§13, which the S1, S2 and S4 packets absorbing Part B should use; #955 also sent PEC a record-only notice.
+  - N6 (`containment.out` one commit behind): the Containment row above now says so; the return records the rerun at the final head.
+  - N7 (manifest `rollback` says "commit", singular): the manifest bytes are the proposal-tabled postimage; the proposal's revert-PR rollback governs; no change.
 
 ## Not claimed
 
