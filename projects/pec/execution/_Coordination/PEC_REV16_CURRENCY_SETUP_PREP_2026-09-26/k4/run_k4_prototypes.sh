@@ -105,16 +105,16 @@ cmp -s "$E/G_pre_receipts.out" "$E/G_post_receipts.out"; log G_receipts_same $? 
 cmp -s "$E/G_pre_harness.out" "$E/G_post_harness.out"; log G_harness_same $? "harness output identical pre/post (0 = equal)"
 python3 "$V" "$BASE" "$W/gitmeta" > "$E/verify_G.out" 2>&1; log verify_G $? "verify the git-clone post-state (expect 0)"
 
-# 7. K1 tolerance (synthetic): a K1-shaped folder born at revision 1.6 / PRD v2.4 is tolerated by the
+# 6. K1 tolerance (synthetic): a K1-shaped folder born at revision 1.6 / PRD v2.4 is tolerated by the
 #    generator and by `verify --allow-k1`; a stray unpinned context still at revision 1.5 is refused.
-#    The synthetic folder copies the DEL-04-03 A2-mirror context and its revision-1.6 reference packet;
-#    it is not K1's real content.
+#    The synthetic folder copies the DEL-04-03 A2-mirror context and its revision-1.6 reference packet
+#    (covers list set to DEL-10-13's register cell, SOW-100); it is not K1's real content.
 rm -rf "$W/protoK1" "$W/protoK1bad"; cp -Rc "$BASE" "$W/protoK1"; cp -Rc "$BASE" "$W/protoK1bad"
 SRC=projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping
 NEWD=projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Synthetic_K1_shaped_folder
 mkdir -p "$W/protoK1/$NEWD" "$W/protoK1bad/$NEWD"
 cp "$W/protoK1/$SRC/_CONTEXT.md" "$W/protoK1/$NEWD/_CONTEXT.md"
-cp "$W/protoA/$SRC/_REFERENCES.md" "$W/protoK1/$NEWD/_REFERENCES.md"
+sed -e 's/covers SOW-006;SOW-007)/covers SOW-100)/' "$W/protoA/$SRC/_REFERENCES.md" > "$W/protoK1/$NEWD/_REFERENCES.md"  # DEL-10-13 register cell
 python3 "$G" --repo "$W/protoK1" > "$E/genK1.tsv" 2> "$E/genK1.err"; log genK1 $? "synthetic K1-first tree: generator tolerates the new folder (expect 0)"
 grep -q 'population_folders	67	1 contexts / 1 references already at 1.6 beyond the pins' "$E/genK1.tsv"; log genK1_population $? "report counts the tolerated folder (0 = as expected)"
 diff <(grep '^WRITE' "$E/genK1.tsv") <(grep '^WRITE' "$E/genA.tsv") > /dev/null; log genK1_same_writes $? "same 129 writes and postimages as A (0 = equal)"
@@ -125,7 +125,8 @@ python3 "$G" --repo "$W/protoK1bad" > /dev/null 2> "$E/genK1bad.err"; log genK1b
 diff -rq "$BASE/projects" "$W/protoK1bad/projects" 2>&1 | grep -v "Only in .*PKG-10_Validation_Measurement/1_Working: DEL-10-13_Synthetic_K1_shaped_folder" | wc -l | tr -d ' ' > "$E/genK1bad_other_changes.txt"
 [ "$(cat "$E/genK1bad_other_changes.txt")" = 0 ]; log genK1bad_nothing_written $? "refused run wrote nothing (0 = nothing written)"
 
-# 6. diffs and tables
-(cd "$W" && diff -ru protoA/projects/pec protoAC/projects/pec > "$E/addonC_vs_optionA.diff"); log diff_addonC $? "A+C vs A diff written (1 = differences)"
+# 7. diffs and tables
+(cd "$W" && diff -ru protoA/projects/pec protoAC/projects/pec > "$W/addonC_raw.diff"); log diff_addonC $? "A+C vs A diff written (1 = differences; file timestamps stripped from ---/+++ lines)"
+sed -E 's/^((---|\+\+\+) [^	]*)	.*$/\1/' "$W/addonC_raw.diff" > "$E/addonC_vs_optionA.diff"
 python3 "$K/tables_k4.py" "$BASE" "$W/protoA" "$W/protoAC" "$E/genA.tsv" "$E" > "$E/tables.out" 2>&1; log tables $? "grant_table.md, aggregates.txt, census.md"
 [ "$(manifest "$BASE")" = "$BASE_M0" ]; log base_untouched $? "BASE projects/ manifest unchanged across the run (0 = unchanged)"

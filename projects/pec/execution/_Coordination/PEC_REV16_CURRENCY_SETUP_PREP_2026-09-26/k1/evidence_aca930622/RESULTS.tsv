@@ -33,12 +33,3 @@ post_harness	0	harness self-check, post
 receipts_same	0	receipts output equal (0 = equal)
 harness_same	0	harness output equal (0 = equal)
 entrypoints	0	instruction entrypoints
-o1_k4	0	K4 first
-o1_k1	0	then K1
-o2_k1	0	K1 first
-o2_k4	0	then K4
-order_same	0	K4+K1 == K1+K4 trees (0 = equal)
-both_strict	1	strict on K1+K4
-both_closure	0	closure on K1+K4
-both_closure_same	0	closure equals K1-only (0 = equal)
-verify_both	0	K1 checks on K1+K4 (--allow-k4)

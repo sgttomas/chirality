@@ -1,6 +1,6 @@
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -14,6 +14,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -9,9 +9,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -14,6 +14,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -20,9 +20,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -15,6 +15,7 @@
  
  - DEL-04-05 (Measurement-limitation honesty) — CONSUMES [E-N03]
@@ -31,9 +31,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -14,6 +14,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -42,9 +42,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -15,6 +15,7 @@
  
  - DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P23]
@@ -53,9 +53,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -14,6 +14,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -64,9 +64,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -15,6 +15,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -75,9 +75,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -15,6 +15,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -86,9 +86,9 @@ diff -ruN base2/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-0
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -14,6 +14,7 @@
  ## Downstream (informational; consumers of this deliverable)
  
@@ -97,9 +97,9 @@ diff -ruN base2/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DE
  
  ## Standing obligation (constraint C-08)
  
-diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -22,6 +22,7 @@
  - DEL-08-04 (Orientation latency budget (p95 ≤ 100 ms)) — TESTS [E-P51]
  - DEL-09-01 (Overview dashboard) — CONSUMES [E-P59]
@@ -108,17 +108,17 @@ diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv
---- base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv
+--- base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv	2026-09-26 13:24:33
 @@ -3,3 +3,4 @@
  v3.1,DEP-04-03-002,PKG-04,DEL-04-03,Citation & freshness stamping,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-006,SOW-006,execution/_Decomposition/ScopeLedger.csv,DEL-04-03 covers scope item SOW-006.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-006,DeliverableIDs include DEL-04-03,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62
  v3.1,DEP-04-03-003,PKG-04,DEL-04-03,Citation & freshness stamping,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-007,SOW-007,execution/_Decomposition/ScopeLedger.csv,DEL-04-03 covers scope item SOW-007.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-007,DeliverableIDs include DEL-04-03,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62
  v3.1,DEP-04-03-004,PKG-04,DEL-04-03,Citation & freshness stamping,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-01,DEL-04-01,Loop orientation return,execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return,Citation/freshness stamping applies to orientation responses,docs/PRD.md,PRD.md §9.1 requirement PEC-ORI-003,"Every orientation response shall carry the examined-through SHA, generation time, and per-feed freshness.",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P34
 +v3.1,DEP-04-03-005,PKG-04,DEL-04-03,Citation & freshness stamping,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-097,SOW-097,execution/_Decomposition/ScopeLedger.csv,DEL-04-03 covers scope item SOW-097.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-097,DeliverableIDs include DEL-04-03,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-09-26,2026-09-26,ACTIVE,"Tree anchor seeded under D-PEC-101 (SCA-006 B2; A-24, A-30)"
-diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -18,6 +18,7 @@
  - DEL-04-05 (Measurement-limitation honesty) — CONSUMES [E-N17]
  - DEL-08-03 (Compact citation-bearing response format) — CONSUMES [E-P53]
@@ -127,9 +127,9 @@ diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -13,6 +13,10 @@
  | DEL-04-03 (Citation & freshness stamping) | PROPOSAL | CONSUMES |  | E-N17 |
  | DEL-04-01 (Loop orientation return) | PROPOSAL | CONSUMES |  | E-P36 |
@@ -141,9 +141,9 @@ diff -ruN base2/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL
  ## Non-gating constraints and register-wide rules
  
  - **C-03 (PACKAGE_LEVEL)** — Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -16,6 +16,7 @@
  - DEL-08-04 (Orientation latency budget (p95 ≤ 100 ms)) — TESTS [E-P52]
  - DEL-10-03 (No-ruling-write verification) — TESTS [E-P54]
@@ -152,9 +152,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Uni
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -18,6 +18,7 @@
    counter-evidence (seam is daemon-facing integration); register row
    `DEP-07-05-004` removed on the consumer side
@@ -163,17 +163,17 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Ver
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv	2026-09-26 13:24:33
 @@ -3,3 +3,4 @@
  v3.1,DEP-08-03-002,PKG-08,DEL-08-03,Compact citation-bearing response format,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-043,SOW-043,execution/_Decomposition/ScopeLedger.csv,DEL-08-03 covers scope item SOW-043.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-043,DeliverableIDs include DEL-08-03,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62
  v3.1,DEP-08-03-003,PKG-08,DEL-08-03,Compact citation-bearing response format,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-02,DEL-08-02,Versioned additive API schema,execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema,R3-F4: envelope is schema-governed,execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md,Epistemology section REQ-003,OUT-001 shall define the machine-consumer surface of PKG-08 so that the orientation reads OBJ-001 describes can be issued and interpreted against a named schema version rather than against an undeclared shape.,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-N11
  v3.1,DEP-08-03-004,PKG-08,DEL-08-03,Compact citation-bearing response format,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-03,DEL-04-03,Citation & freshness stamping,execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping,Response format carries citations produced by the citation layer,execution/_Decomposition/SOFTWARE_DECOMP.md,§2.1 SSOW row SOW-007,"Attach a citation (file path, anchor, and/or SHA) to every claim in an orientation response",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P53
 +v3.1,DEP-08-03-005,PKG-08,DEL-08-03,Compact citation-bearing response format,ANCHOR,TRACES_TO_REQUIREMENT,UPSTREAM,OTHER,REQUIREMENT,,,SOW-098,SOW-098,execution/_Decomposition/ScopeLedger.csv,DEL-08-03 covers scope item SOW-098.,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-098,DeliverableIDs include DEL-08-03,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-09-26,2026-09-26,ACTIVE,"Tree anchor seeded under D-PEC-101 (SCA-006 B2; A-25, A-32)"
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -16,6 +16,7 @@
  
  - DEL-09-06 (Universal drill-down to cited source) — CONSUMES [E-N07]
@@ -182,9 +182,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Com
  
  ## Non-gating constraints and register-wide rules
  
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv	2026-09-26 13:24:33
 @@ -0,0 +1,7 @@
 +RegisterSchemaVersion,DependencyID,FromPackageID,FromDeliverableID,FromDeliverableName,DependencyClass,AnchorType,Direction,DependencyType,TargetType,TargetPackageID,TargetDeliverableID,TargetRefID,TargetName,TargetLocation,Statement,EvidenceFile,SourceRef,EvidenceQuote,Explicitness,RequiredMaturity,ProposedMaturity,SatisfactionStatus,Confidence,Origin,FirstSeen,LastSeen,Status,Notes
 +v3.1,DEP-08-06-001,PKG-08,DEL-08-06,Agent tool-call query surface,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-08,,PKG-08,PKG-08_API_Access,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-08-06 is package-local to PKG-08.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-06,PackageID PKG-08,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-09-26,2026-09-26,ACTIVE,Tree anchor seeded under D-PEC-101
@@ -193,9 +193,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Age
 +v3.1,DEP-08-06-004,PKG-08,DEL-08-06,Agent tool-call query surface,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-02,DEL-08-02,Versioned additive API schema,execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema,Tool calls query over the versioned API schema (PEC-API-003),docs/PRD.md,PRD.md §9.6 requirement PEC-API-007,"over the same versioned API and responses (PEC-API-003, PEC-API-004, PEC-API-006, PEC-ORI-007)",EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,DERIVED; Flag=none; EdgeID=E-P85; seeded under D-PEC-101 (SCA-006 B2)
 +v3.1,DEP-08-06-005,PKG-08,DEL-08-06,Agent tool-call query surface,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-03,DEL-08-03,Compact citation-bearing response format,execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format,"Tool calls return the compact citation-bearing, budget-bounded responses (PEC-API-004, PEC-API-006)",docs/PRD.md,PRD.md §9.6 requirement PEC-API-007,"over the same versioned API and responses (PEC-API-003, PEC-API-004, PEC-API-006, PEC-ORI-007)",EXPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,DERIVED; Flag=none; EdgeID=E-P86; seeded under D-PEC-101 (SCA-006 B2)
 +v3.1,DEP-08-06-006,PKG-08,DEL-08-06,Agent tool-call query surface,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-01,DEL-04-01,Loop orientation return,execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return,Tool-call queries serve orientation reads,docs/PRD.md,PRD.md §8 access classes (`agent` class),class is read-only query access for tool calls: orientation,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P87; seeded under D-PEC-101 (SCA-006 B2)
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_CONTEXT.md	2026-09-26 13:24:33
 @@ -0,0 +1,33 @@
 +# _CONTEXT — DEL-08-06
 +
@@ -230,9 +230,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Age
 +SCA-006 successor; deliverable added by A-28). Fields templated
 +deterministically from `Deliverables.csv`; this file restates register truth
 +and is not an independent authority.
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -0,0 +1,44 @@
 +# Dependencies: DEL-08-06 Agent tool-call query surface
 +
@@ -278,9 +278,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Age
 +
 +## Run History
 +- 2026-09-26 — seeded under `D-PEC-101` (WORKING_ITEMS with `project-setup`; `preparation` skill scaffold; rows and this file written by the bound generator `gen_d101_k1.py`).
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_REFERENCES.md	2026-09-26 13:24:33
 @@ -0,0 +1,11 @@
 +# _REFERENCES — DEL-08-06
 +
@@ -293,9 +293,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Age
 +- `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
 +
 +Populated deterministically under `D-PEC-101` (2026-09-26); extend during production.
-diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md
---- base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md
+--- base/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md	2026-09-26 13:24:32
 @@ -0,0 +1,7 @@
 +# Status: DEL-08-06
 +
@@ -304,9 +304,9 @@ diff -ruN base2/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Age
 +
 +## History
 +- 2026-09-26 — State set to OPEN (TASK+preparation)
-diff -ruN base2/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv
---- base2/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv
+--- base/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv	2026-09-26 13:24:33
 @@ -1,6 +1,6 @@
  RegisterSchemaVersion,DependencyID,FromPackageID,FromDeliverableID,FromDeliverableName,DependencyClass,AnchorType,Direction,DependencyType,TargetType,TargetPackageID,TargetDeliverableID,TargetRefID,TargetName,TargetLocation,Statement,EvidenceFile,SourceRef,EvidenceQuote,Explicitness,RequiredMaturity,ProposedMaturity,SatisfactionStatus,Confidence,Origin,FirstSeen,LastSeen,Status,Notes
  v3.1,DEP-09-06-001,PKG-09,DEL-09-06,Universal drill-down to cited source,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-09,,PKG-09,PKG-09_Dashboards,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-09-06 is package-local to PKG-09.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-09-06,PackageID PKG-09,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62
@@ -315,9 +315,9 @@ diff -ruN base2/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Uni
 +v3.1,DEP-09-06-003,PKG-09,DEL-09-06,Universal drill-down to cited source,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-01,DEL-08-01,Unix-socket server + token-scoped access,execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access,R1-F12/R3-F1: dashboards consume the API transport via the shared component,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-01 Description column,"Local-only Unix-socket binding with token-scoped access classes (owner, harness, agent, admin; agent is read-only query for tool calls); auth-reuse choice tracked by OI-006.",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-09-26,ACTIVE,Evidence refreshed under D-PEC-101 (SCA-006 A-31: DEL-08-01 description re-expressed); PROPOSAL; Flag=none; EdgeID=E-N06
  v3.1,DEP-09-06-004,PKG-09,DEL-09-06,Universal drill-down to cited source,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-03,DEL-08-03,Compact citation-bearing response format,execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format,R3-F1: views consume the citation-bearing envelope,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-03,Machine-first response envelope carrying citations.,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-N07
  v3.1,DEP-09-06-005,PKG-09,DEL-09-06,Universal drill-down to cited source,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-04,DEL-04-03,DEL-04-03,Citation & freshness stamping,execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping,Citation shapes resolved by drill-down are DEL-04-03's artifact,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-007,"Attach a citation (file path, anchor, and/or SHA) to every claim in an orientation response",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P70
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -12,6 +12,10 @@
  | DEL-01-03 (Store bootstrap & content-minimal guard) | PROPOSAL | TESTS |  | E-P71 |
  | DEL-03-01 (Full-rebuild reconciler (one command)) | PROPOSAL | TESTS |  | E-P72 |
@@ -329,9 +329,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
  ## Standing obligation (constraint C-08)
  
  This deliverable is a STANDING node: it gates releases, not successors,
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv	2026-09-26 13:20:59
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv	2026-09-26 13:03:06
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv	2026-09-26 13:24:33
 @@ -1,5 +1,5 @@
  RegisterSchemaVersion,DependencyID,FromPackageID,FromDeliverableID,FromDeliverableName,DependencyClass,AnchorType,Direction,DependencyType,TargetType,TargetPackageID,TargetDeliverableID,TargetRefID,TargetName,TargetLocation,Statement,EvidenceFile,SourceRef,EvidenceQuote,Explicitness,RequiredMaturity,ProposedMaturity,SatisfactionStatus,Confidence,Origin,FirstSeen,LastSeen,Status,Notes
  v3.1,DEP-10-03-001,PKG-10,DEL-10-03,No-ruling-write verification,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-10,,PKG-10,PKG-10_Validation_Measurement,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-10-03 is package-local to PKG-10.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-10-03,PackageID PKG-10,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,Tree anchor seeded under D-PEC-62
@@ -339,9 +339,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
 -v3.1,DEP-10-03-003,PKG-10,DEL-10-03,No-ruling-write verification,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-01,DEL-08-01,Unix-socket server + token-scoped access,execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access,The API surface under negative test is DEL-08-01's server,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-01 Description column,"Local-only Unix-socket binding with token-scoped access classes (owner, harness, admin); auth-reuse choice tracked by OI-006.",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P54
 +v3.1,DEP-10-03-003,PKG-10,DEL-10-03,No-ruling-write verification,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-01,DEL-08-01,Unix-socket server + token-scoped access,execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access,The API surface under negative test is DEL-08-01's server,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-01 Description column,"Local-only Unix-socket binding with token-scoped access classes (owner, harness, agent, admin; agent is read-only query for tool calls); auth-reuse choice tracked by OI-006.",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-09-26,ACTIVE,Evidence refreshed under D-PEC-101 (SCA-006 A-31: DEL-08-01 description re-expressed); PROPOSAL; Flag=none; EdgeID=E-P54
  v3.1,DEP-10-03-004,PKG-10,DEL-10-03,No-ruling-write verification,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-02,DEL-08-02,Versioned additive API schema,execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema,The schema defines the surface under negative test,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-08-02 Description column,Versioned API schema with additive-only evolution.,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P55
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv	2026-09-26 13:24:33
 @@ -0,0 +1,15 @@
 +RegisterSchemaVersion,DependencyID,FromPackageID,FromDeliverableID,FromDeliverableName,DependencyClass,AnchorType,Direction,DependencyType,TargetType,TargetPackageID,TargetDeliverableID,TargetRefID,TargetName,TargetLocation,Statement,EvidenceFile,SourceRef,EvidenceQuote,Explicitness,RequiredMaturity,ProposedMaturity,SatisfactionStatus,Confidence,Origin,FirstSeen,LastSeen,Status,Notes
 +v3.1,DEP-10-13-001,PKG-10,DEL-10-13,Reliance-advertisement gate,ANCHOR,IMPLEMENTS_NODE,UPSTREAM,OTHER,PACKAGE,PKG-10,,PKG-10,PKG-10_Validation_Measurement,execution/_Decomposition/SOFTWARE_DECOMP.md,DEL-10-13 is package-local to PKG-10.,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-10-13,PackageID PKG-10,EXPLICIT,NOT_APPLICABLE,TBD,SATISFIED,HIGH,DECLARED,2026-09-26,2026-09-26,ACTIVE,Tree anchor seeded under D-PEC-101
@@ -358,9 +358,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
 +v3.1,DEP-10-13-012,PKG-10,DEL-10-13,Reliance-advertisement gate,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-02,DEL-02-06,DEL-02-06,Workplan/LOOP_INIT parser,execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser,The reliance-advertisement gate composes the DEL-02-06 parser fixture suite,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-10-13 Description,the PKG-02 parser fixture suites,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P97; seeded under D-PEC-101 (SCA-006 B2)
 +v3.1,DEP-10-13-013,PKG-10,DEL-10-13,Reliance-advertisement gate,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-02,DEL-02-08,DEL-02-08,Work-graph parser,execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser,The reliance-advertisement gate composes the DEL-02-08 parser fixture suite,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-10-13 Description,the PKG-02 parser fixture suites,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P98; seeded under D-PEC-101 (SCA-006 B2)
 +v3.1,DEP-10-13-014,PKG-10,DEL-10-13,Reliance-advertisement gate,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-02,DEL-02-09,DEL-02-09,MEMORY run-index parser,execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser,The reliance-advertisement gate composes the DEL-02-09 parser fixture suite,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-10-13 Description,the PKG-02 parser fixture suites,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-26,2026-09-26,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P99; seeded under D-PEC-101 (SCA-006 B2)
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md	2026-09-26 13:24:33
 @@ -0,0 +1,33 @@
 +# _CONTEXT — DEL-10-13
 +
@@ -395,9 +395,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
 +SCA-006 successor; deliverable added by A-29). Fields templated
 +deterministically from `Deliverables.csv`; this file restates register truth
 +and is not an independent authority.
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md	2026-09-26 13:24:33
 @@ -0,0 +1,53 @@
 +# Dependencies: DEL-10-13 Reliance-advertisement gate
 +
@@ -452,9 +452,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
 +
 +## Run History
 +- 2026-09-26 — seeded under `D-PEC-101` (WORKING_ITEMS with `project-setup`; `preparation` skill scaffold; rows and this file written by the bound generator `gen_d101_k1.py`).
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md	2026-09-26 13:24:33
 @@ -0,0 +1,11 @@
 +# _REFERENCES — DEL-10-13
 +
@@ -467,9 +467,9 @@ diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/D
 +- `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
 +
 +Populated deterministically under `D-PEC-101` (2026-09-26); extend during production.
-diff -ruN base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md
---- base2/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md	1969-12-31 17:00:00
-+++ k1run2/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md	2026-09-26 13:46:55
+diff -ruN base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md
+--- base/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md	1969-12-31 17:00:00
++++ k1run/protoK1/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md	2026-09-26 13:24:33
 @@ -0,0 +1,7 @@
 +# Status: DEL-10-13
 +
