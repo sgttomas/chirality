@@ -109,6 +109,7 @@ Brief fields bind as follows:
 | EDGE_FILTER.TargetType | `--target-type DELIVERABLE`; other target classes have no production-unit graph and are rejected |
 | HUB_THRESHOLD | `--hub-threshold <positive integer>` |
 | MAX_CYCLES | `--max-cycles <nonnegative integer>` |
+| INCLUDE_DECLARED | `--include-declared true` (default) or `false` |
 | PRIOR_RUN_LABEL | Owner resolves the accepted label to an explicit `--prior-summary <closure_summary.json>` |
 
 Each unit's graph input is its recorded register (`docs/SPEC.md` §5.3): the
