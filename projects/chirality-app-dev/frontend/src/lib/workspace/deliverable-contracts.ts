@@ -522,8 +522,11 @@ export async function transitionDeliverableStatus(
         date: input.date,
         metadata: input.metadata,
         approvalSha: input.approvalSha,
-        ruling
-      }
+        ruling,
+        amendment: input.amendment
+      },
+      // A reopening checks the amendment record inside the working root.
+      { projectRoot }
     );
 
     return {

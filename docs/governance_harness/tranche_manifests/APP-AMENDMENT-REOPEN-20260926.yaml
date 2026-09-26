@@ -1,0 +1,74 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: APP-AMENDMENT-REOPEN-20260926
+title: App status tools check the accepted amendment before reopening an ISSUED deliverable (follow-up FU1) and reserve gate-evidence metadata to HUMAN actors (D2)
+date: '2026-09-26'
+basis: be76d5b9ef70a7d1f396917e20c2a60f8d93cb5c
+# Full coverage: every path this tranche changes is declared. Only the manifest
+# itself lies on the Root instruction surface; the App SPEC is the App loop's
+# instruction-bearing contract; the rest are the product source, tests,
+# parity fixtures, run records and regenerated public-export records that
+# carry the change and are declared for completeness. The fixture folder is
+# declared as a directory because it holds generated test data.
+instruction_surface_paths:
+  - projects/chirality-app-dev/docs/SPEC.md
+  - docs/governance_harness/tranche_manifests/APP-AMENDMENT-REOPEN-20260926.yaml
+  - projects/chirality-app-dev/frontend/src/lib/lifecycle/amendment-reopen.ts
+  - projects/chirality-app-dev/frontend/src/lib/lifecycle/transition.ts
+  - projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts
+  - projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-api.ts
+  - projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/status/transition/route.ts
+  - projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/amendment-reopen-parity.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/amendment-records-fixture.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/lifecycle-status.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/fixtures/amendment-reopen/
+  - projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/MEMORY.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-AMENDMENT-REOPEN-2026-09-26/RECEIPT.md
+  - projects/chirality-app-dev/execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md
+  - projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
+m2_gate:
+  authorization: >-
+    Ryan Tufts decided "D1 and D2 as recommended, D3 (a), and D4 yes proceed
+    that way. Your work plan is approved." (2026-09-26, Claude Code
+    conversation). This tranche carries two items of the approved plan. FU1 of
+    projects/chirality-app-dev/execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md:
+    the App status tools check the amendment record before admitting
+    ISSUED -> IN_PROGRESS, mirroring the Root checker
+    tools/validation/check_amendment_reopen.py of
+    ROOT-DGOV50-ENFORCEMENT-20260926 (PR #968), as
+    NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md announced to this loop. D2 as
+    recommended: Authorization Basis, Accepted Basis SHA and Accepted
+    ScopeOfWork SHA-256 are gate evidence, which caller metadata may set only
+    on HUMAN-actor transitions; any other key stays settable by any actor.
+    Transcription is recorded in
+    projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-AMENDMENT-REOPEN-2026-09-26/RECEIPT.md.
+  authorized_by: Ryan Tufts
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code parent session integrating the worktree candidate, under the
+    standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The change is inside App-owned surfaces: App SPEC §4.3, App frontend
+    source and tests, and App run records. It adopts the Root D-GOV-50
+    enforcement notice this loop received and does not change any Root
+    instruction, role, skill, workflow or tool; the Root checker is read by
+    the parity generator, not edited. No other loop pins the App SPEC. The
+    Runtime-owned status_transition descriptor is left unchanged and recorded
+    as App follow-up FU2 rather than routed as a notice. The App authority
+    corpus already reported drift for the App SPEC before this change; that
+    drift is retained, not repinned.
+scope_limits:
+  - App SPEC §4.3 states the reopening rule the tools now enforce (HUMAN actor, format-valid approval SHA, an amendment that passes the ported Root check, the refusal and history behaviour), the D2 gate-evidence metadata rule, and the known limits; no other SPEC section changes.
+  - The App amendment check follows tools/validation/check_amendment_reopen.py at the basis commit, with the same admission rules, refusal codes and containment; the parity fixtures, the real-record cases and their generator are the check. A later Root change needs a matching App change and a regenerated expected.json.
+  - Known limit. The App runs no git process, so it does not check that the approval SHA is a reachable commit, that the group-3 DECISION.md exists at that commit, or that the amendment records are committed. It reads the working-tree records, so uncommitted edits to them are not detected; write_status.sh is the anchored check. The actor remains caller-asserted.
+  - The App finds the Git work-tree top level from the nearest .git entry, uses it as the checker's project root, and requires the scope-change root to lie inside the working root.
+  - No lifecycle transition, approval-SHA refresh, authority-corpus repin, Runtime change, UI change, release or issuance. The Runtime status_transition descriptor (FU2) and the workbench and pipeline reopening input (FU3) are not changed here.

@@ -1,7 +1,8 @@
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import type { AmendmentReopenDecision } from '../../lib/lifecycle/amendment-reopen';
 import {
   StatusParseError,
   parseStatusDocument
@@ -16,6 +17,7 @@ import {
   applyLifecycleTransition,
   transitionStatusFile
 } from '../../lib/lifecycle/transition';
+import { writeAmendmentRecords } from './amendment-records-fixture';
 
 const LIST_FORMAT_STATUS = `# Status: DEL-05-03 Lifecycle State Handling
 
@@ -678,5 +680,257 @@ describe('gate evidence and line-break hardening', () => {
     ).toThrowError(
       expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
     );
+  });
+});
+
+describe('reopening ISSUED -> IN_PROGRESS under an accepted amendment (SPEC §4.3; D-GOV-50)', () => {
+  const ADMITTED_DECISION: AmendmentReopenDecision = {
+    admitted: true,
+    code: 'ADMITTED',
+    reason: 'SCA-001 accepted at group 3',
+    deliverableId: 'DEL-05-03',
+    amendmentId: 'SCA-001',
+    scopeChangeRoot: 'execution/_ScopeChange',
+    group3Snapshot: 'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26',
+    group3Decision: 'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md',
+    group2Manifest:
+      'execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv',
+    registerPath: 'execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv',
+    registerSha256: 'a'.repeat(64),
+    actionSeq: '2',
+    actionType: 'MODIFY',
+    scopeChanging: 'NO',
+    notes: []
+  };
+  const REOPEN = { date: '2026-02-27', approvalSha: 'def5678', amendment: 'SCA-001' };
+  const NOTE =
+    'reopened from ISSUED; amendment: SCA-001 (execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
+    'action: execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 2 MODIFY; ' +
+    `register SHA-256: ${'a'.repeat(64)}; approval SHA: def5678`;
+  const MODIFY_ROW = {
+    AmendmentID: 'SCA-001',
+    ActionSeq: '4',
+    ActionType: 'MODIFY',
+    EntityType: 'DELIVERABLE',
+    EntityID: 'DEL-05-03',
+    ScopeChanging: 'NO'
+  };
+
+  function expectCode(run: () => unknown, code: string): void {
+    expect(run).toThrowError(
+      expect.objectContaining({ code }) satisfies Partial<LifecycleTransitionError>
+    );
+  }
+
+  it('admits a HUMAN reopening with an approval SHA and an admitted amendment, and records it', () => {
+    const result = applyLifecycleTransition(statusAt('ISSUED'), 'IN_PROGRESS', 'HUMAN', REOPEN, {
+      amendmentDecision: ADMITTED_DECISION
+    });
+    expect(result).toMatchObject({ from: 'ISSUED', to: 'IN_PROGRESS', actor: 'HUMAN' });
+    expect(result.content).toContain('**Current State:** IN_PROGRESS');
+    expect(result.content).toContain(`- 2026-02-27 - State set to IN_PROGRESS (HUMAN) [${NOTE}]`);
+    expect(parseStatusDocument(result.content).history.at(-1)).toMatchObject({
+      state: 'IN_PROGRESS',
+      notes: NOTE
+    });
+  });
+
+  it('keeps the ISSUED approval field as history, as write_status.sh does', () => {
+    const issued = statusAt('ISSUED').replace(
+      '**Last Updated:** 2026-02-25',
+      '**Last Updated:** 2026-02-25\n**Approval SHA:** abc1234'
+    );
+    const result = applyLifecycleTransition(issued, 'IN_PROGRESS', 'USER', REOPEN, {
+      amendmentDecision: ADMITTED_DECISION
+    });
+    expect(result.content).toContain('**Approval SHA:** abc1234');
+  });
+
+  it('refuses the reopening without an amendment as a backward transition', () => {
+    expectCode(
+      () =>
+        applyLifecycleTransition(
+          statusAt('ISSUED'),
+          'IN_PROGRESS',
+          'HUMAN',
+          { ...REOPEN, amendment: '  ' },
+          { amendmentDecision: ADMITTED_DECISION }
+        ),
+      'BACKWARD_TRANSITION'
+    );
+  });
+
+  it('refuses the reopening when the amendment check did not run', () => {
+    expectCode(
+      () => applyLifecycleTransition(statusAt('ISSUED'), 'IN_PROGRESS', 'HUMAN', REOPEN),
+      'AMENDMENT_NOT_ADMITTED'
+    );
+  });
+
+  it('refuses the reopening with the checker refusal code and reason', () => {
+    let caught: unknown;
+    try {
+      applyLifecycleTransition(statusAt('ISSUED'), 'IN_PROGRESS', 'HUMAN', REOPEN, {
+        amendmentDecision: {
+          ...ADMITTED_DECISION,
+          admitted: false,
+          code: 'RECLASSIFY_LEGACY_REGISTER',
+          reason: 'DEL-05-03 is named only by RECLASSIFY'
+        }
+      });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toMatchObject({
+      code: 'AMENDMENT_NOT_ADMITTED',
+      message: 'RECLASSIFY_LEGACY_REGISTER: DEL-05-03 is named only by RECLASSIFY',
+      details: expect.objectContaining({ refusalCode: 'RECLASSIFY_LEGACY_REGISTER' })
+    });
+  });
+
+  it.each([
+    ['an agent actor', 'WORKING_ITEMS', REOPEN, 'UNAUTHORIZED_ACTOR'],
+    ['a HUMAN look-alike', 'HUMAN AGENT', REOPEN, 'UNAUTHORIZED_ACTOR'],
+    ['no approval SHA', 'HUMAN', { ...REOPEN, approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
+    ['a malformed approval SHA', 'HUMAN', { ...REOPEN, approvalSha: 'not-a-sha' }, 'INVALID_APPROVAL_SHA'],
+    ['a ruling instead of the amendment', 'HUMAN', { ...REOPEN, ruling: 'D-001.md' }, 'RULING_NOT_APPLICABLE'],
+    ['an amendment with a semicolon', 'HUMAN', { ...REOPEN, amendment: 'SCA-001; x' }, 'INVALID_AMENDMENT_REFERENCE'],
+    ['an amendment with a bracket', 'HUMAN', { ...REOPEN, amendment: 'SCA-001]' }, 'INVALID_AMENDMENT_REFERENCE'],
+    ['approval SHA metadata', 'HUMAN', { ...REOPEN, metadata: { approvalSha: 'abc1234' } }, 'INVALID_METADATA']
+  ] as const)('refuses a reopening with %s even when the amendment was admitted', (_label, actor, options, code) => {
+    expectCode(
+      () =>
+        applyLifecycleTransition(statusAt('ISSUED'), 'IN_PROGRESS', actor, options, {
+          amendmentDecision: ADMITTED_DECISION
+        }),
+      code
+    );
+  });
+
+  it.each([
+    ['INITIALIZED', 'IN_PROGRESS', 'WORKING_ITEMS', {}, 'AMENDMENT_NOT_APPLICABLE'],
+    ['IN_PROGRESS', 'CHECKING', 'HUMAN', { approvalSha: 'abc1234' }, 'AMENDMENT_NOT_APPLICABLE'],
+    ['CHECKING', 'IN_PROGRESS', 'HUMAN', { approvalSha: 'abc1234', ruling: 'D-001.md' }, 'AMENDMENT_NOT_APPLICABLE'],
+    ['ISSUED', 'CHECKING', 'HUMAN', { approvalSha: 'abc1234' }, 'BACKWARD_TRANSITION']
+  ] as const)('denies an amendment on %s -> %s', (from, to, actor, options, code) => {
+    expectCode(
+      () =>
+        applyLifecycleTransition(
+          statusAt(from),
+          to,
+          actor,
+          { ...options, amendment: 'SCA-001' },
+          { amendmentDecision: ADMITTED_DECISION }
+        ),
+      code
+    );
+  });
+
+  describe('through transitionStatusFile', () => {
+    async function writeFixture(rows: (typeof MODIFY_ROW)[]) {
+      tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-reopen-'));
+      const deliverable = path.join(tmpDir, 'execution', 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+      await mkdir(deliverable, { recursive: true });
+      const statusPath = path.join(deliverable, '_STATUS.md');
+      await writeFile(statusPath, statusAt('ISSUED'), 'utf8');
+      const records = await writeAmendmentRecords({
+        scopeChangeRoot: path.join(tmpDir, 'execution', '_ScopeChange'),
+        manifestBase: tmpDir,
+        rows
+      });
+      return { statusPath, records };
+    }
+
+    it('runs the amendment check and writes the reopening', async () => {
+      const { statusPath, records } = await writeFixture([MODIFY_ROW]);
+      const result = await transitionStatusFile(statusPath, 'IN_PROGRESS', 'HUMAN', REOPEN, {
+        projectRoot: tmpDir
+      });
+      expect(result.to).toBe('IN_PROGRESS');
+      await expect(readFile(statusPath, 'utf8')).resolves.toContain(
+        '[reopened from ISSUED; amendment: SCA-001 (execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
+          'action: execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 4 MODIFY; ' +
+          `register SHA-256: ${records.registerSha256}; approval SHA: def5678]`
+      );
+    });
+
+    it('refuses without writing when the register changed after acceptance', async () => {
+      const { statusPath, records } = await writeFixture([MODIFY_ROW]);
+      const register = await readFile(records.registerPath, 'utf8');
+      await writeFile(records.registerPath, `${register}SCA-001,5,MODIFY,DELIVERABLE,DEL-09-09,NO\n`);
+      await expect(
+        transitionStatusFile(statusPath, 'IN_PROGRESS', 'HUMAN', REOPEN, { projectRoot: tmpDir })
+      ).rejects.toMatchObject({
+        code: 'AMENDMENT_NOT_ADMITTED',
+        details: expect.objectContaining({ refusalCode: 'REGISTER_HASH_MISMATCH' })
+      });
+      await expect(readFile(statusPath, 'utf8')).resolves.toBe(statusAt('ISSUED'));
+    });
+
+    it('refuses without writing when no project root is supplied for the check', async () => {
+      const { statusPath } = await writeFixture([MODIFY_ROW]);
+      await expect(transitionStatusFile(statusPath, 'IN_PROGRESS', 'HUMAN', REOPEN)).rejects.toMatchObject({
+        code: 'AMENDMENT_CHECK_ERROR'
+      });
+      await expect(readFile(statusPath, 'utf8')).resolves.toBe(statusAt('ISSUED'));
+    });
+
+    it('checks the actor before running the amendment check', async () => {
+      const { statusPath } = await writeFixture([]);
+      await expect(
+        transitionStatusFile(statusPath, 'IN_PROGRESS', 'WORKING_ITEMS', REOPEN, { projectRoot: tmpDir })
+      ).rejects.toMatchObject({ code: 'UNAUTHORIZED_ACTOR' });
+    });
+  });
+});
+
+describe('gate-evidence metadata is HUMAN-only (owner decision D2, 2026-09-26)', () => {
+  const GATE_KEYS = [
+    'Authorization Basis',
+    'authorizationBasis',
+    'authorization_basis',
+    'Accepted Basis SHA',
+    'acceptedBasisSha',
+    'Accepted ScopeOfWork SHA-256',
+    'acceptedScopeOfWorkSha256',
+    'accepted-scope-of-work-sha-256'
+  ];
+
+  it.each(GATE_KEYS)('refuses %s from an agent actor', (key) => {
+    expect(() =>
+      applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'WORKING_ITEMS', {
+        date: '2026-02-26',
+        metadata: { [key]: 'value' }
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_METADATA' }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it.each(GATE_KEYS)('lets a HUMAN actor record %s', (key) => {
+    const result = applyLifecycleTransition(statusAt('IN_PROGRESS'), 'CHECKING', 'HUMAN', {
+      date: '2026-02-26',
+      approvalSha: 'abc1234',
+      metadata: { [key]: 'owner ruling D-001' }
+    });
+    expect(result.content).toMatch(/\*\*[^*]+:\*\* owner ruling D-001/);
+  });
+
+  it('lets a HUMAN alias record gate evidence on an ordinary transition', () => {
+    const result = applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'operator', {
+      date: '2026-02-26',
+      metadata: { authorizationBasis: 'owner ruling D-001', acceptedBasisSha: 'abc1234' }
+    });
+    expect(result.content).toContain('**Authorization Basis:** owner ruling D-001');
+    expect(result.content).toContain('**Accepted Basis SHA:** abc1234');
+  });
+
+  it('keeps other metadata keys settable by any authorized actor', () => {
+    const result = applyLifecycleTransition(statusAt('INITIALIZED'), 'IN_PROGRESS', 'WORKING_ITEMS', {
+      date: '2026-02-26',
+      metadata: { directive: 'owner directive 2026-09-26', authorizationNote: 'not gate evidence' }
+    });
+    expect(result.content).toContain('**Directive:** owner directive 2026-09-26');
+    expect(result.content).toContain('**Authorization Note:** not gate evidence');
   });
 });

@@ -1,0 +1,1641 @@
+{
+  "fixtures": {
+    "action-add-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-01-01 (1 ADD) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "5349f24da67f30632b6e6dfbee60962ed2b932c3b67299ae04277665b64c6b8d",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "action-merge-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-01-01 (1 MERGE) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "4fce11602681a5fd0841bc3d9b3aac6960f01fb2a12f3cc62f7c3b4f4e396fd2",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "action-remove-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-01-01 (1 REMOVE) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "7db2ceb84620a7338a07d180f810ccbf71d630e29c87cf1f2fd173cb62630607",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "action-split-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-01-01 (1 SPLIT) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "0bad79775693cd3cc8495aa4d3a03bb97c735223eff3790e6f31a26c34a50aa5",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "amendment-of-another-execution-root": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "AMENDMENT_OUTSIDE_DELIVERABLE_ROOT",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "projects/other/execution/_ScopeChange does not belong to the execution root of projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/other/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "amendment-path-not-under-given-root": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment path is not under --scope-change-root",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "amendment-path-outside-project": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment path <ROOT>/elsewhere/projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200 resolves outside <ROOT>/project (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "cp2-register-name-bound": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_CP2.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_CP2.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "csv-blank-first-line": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_SCHEMA",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv lacks column(s) ActionType, EntityType, EntityID",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "35f9a950faae370cd68e524b67b76b3d86d301dc93fa89a896c9b0eb82726564",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "csv-duplicate-header": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-01-01 (? ADD, ? ?) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "2f3170909f3565b66595c8b06dab6e0ec3ef94d44495b4e941cbbc75092ffb6e",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "csv-quirks-admitted": [
+      {
+        "actionSeq": "4",
+        "actionType": "RECLASSIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 4 RECLASSIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "315b0461ba220c6d7a7caf9581bda12c5f24c21ca9fec7b42eb3e730fea74295",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "YES"
+      }
+    ],
+    "csv-quirks-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "RECLASSIFY_NOT_SCOPE_CHANGING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "DEL-01-01 RECLASSIFY row(s) record ScopeChanging '', \"Y's\", not YES",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "7164d62713e233519cb1cdefba47b823275e306f06d6c8c864a355f1852f1497",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "csv-unterminated-quote": [
+      {
+        "actionSeq": "5",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 5 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3525e45842e6b44571fca7250d028890287fda48b415ca1e8f4488a1d86ef40f",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "unterminated"
+      }
+    ],
+    "deliverable-id-without-root": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "SCOPE_CHANGE_ROOT_NOT_FOUND",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "an amendment ID with a deliverable ID needs --scope-change-root or a deliverable folder",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "group1-only": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-001_GROUP-3_* decision snapshot (only SCA-001_GROUP-1_2026-09-26; a group-1 or group-2 decision does not authorize reopening)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group2-decision-path": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-2_2026-09-26 is a group-2 decision; only an accepted checkpoint-group-3 decision authorizes reopening",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-1_2026-09-26 is a group-1 decision; only an accepted checkpoint-group-3 decision authorizes reopening",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "group2-manifest-missing": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP2_MANIFEST_MISSING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-001_GROUP-2_*/ACCEPTED_MANIFEST.csv binds the accepted register",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group2-only": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-001_GROUP-3_* decision snapshot (only SCA-001_GROUP-1_2026-09-26, SCA-001_GROUP-2_2026-09-26; a group-1 or group-2 decision does not authorize reopening)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-001_GROUP-3_* decision snapshot (only SCA-001_GROUP-1_2026-09-26, SCA-001_GROUP-2_2026-09-26; a group-1 or group-2 decision does not authorize reopening)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-and-snapshot-paths": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      },
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      },
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment file must be a group-3 DECISION.md: 'projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-0": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 3 — returned to checkpoint 2'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-1": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 3 — not accepted'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-2": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-002 checkpoint group 3 — accepted audited poststate'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-3": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'Checkpoint group 3 notes'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-4": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 3 — withdrawn after review, accepted text retracted'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-5": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 30 — accepted'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-6": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 3 — preaccepted'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "group3-heading-7": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "group3-heading-8": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "group3-heading-after-preamble": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "group3-heading-bom-crlf": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "group3-without-manifest": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26 lacks DECISION.md or ACCEPTED_MANIFEST.csv",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "labelled-entity-id": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "9710d8f10fa05546ee916bd3c77a79cb12c106d45991d2a156f93b989d40489e",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "YES"
+      },
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "9710d8f10fa05546ee916bd3c77a79cb12c106d45991d2a156f93b989d40489e",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "YES"
+      }
+    ],
+    "legacy-modify-admitted": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [
+          "legacy register without ScopeChanging: RECLASSIFY is not admitted by this tool"
+        ],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "8072d8df91b27912595c3a007ea66180835b2a01f68339e32dc8abfcc4dead97",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "lowercase-manifest-header": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "manifest-absolute-register-path": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "register path in projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv is absolute: /etc/Amendment_Actions.csv",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "manifest-path-escape": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "register ../outside/Amendment_Actions.csv bound in projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv resolves outside the scope-change root (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "manifest-path-outside-scope-change-root": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "register projects/other/Amendment_Actions.csv bound in projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv resolves outside the scope-change root (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "manifest-path-relative-to-project-folder": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "manifest-schema": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "MANIFEST_SCHEMA",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv has no Path and SHA256 columns",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "mixed-case-and-padded-cells": [
+      {
+        "actionSeq": "7",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 7 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "d019fea56f38500cdc8152cc323ff8239bc85ca05f7c76e062b0fcad4d985378",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "no"
+      }
+    ],
+    "modify-admitted": [
+      {
+        "actionSeq": "2",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 2 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "871a79046438b9fc632b28d928e1fb1ddb127bdf3d406a75c134baa52b9cf66b",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "no-group-folders": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-001_GROUP-3_* decision snapshot",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "non-deliverable-entity": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "NO_DELIVERABLE_ACTION",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no SCA-001 register row names DELIVERABLE DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "7ec21d4cd74de2bc28d50e6d3a996d73ac4ca4194ecdc09d215b1b3c654fad8e",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "project-qualified-amendment-id": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-APP-003",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-APP-003_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-APP-003_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-APP-003_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-APP-003 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-APP-003_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-APP-003_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-APP-003_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "a8f084f334aaed7736fbe578c16f9bacc844ee1b3a3ceb0afc2c321f14a0c378",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "reclassify-blank-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "RECLASSIFY_NOT_SCOPE_CHANGING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "DEL-01-01 RECLASSIFY row(s) record ScopeChanging '', not YES",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "bad33cdb45251c21fc6863d553042b86c4ae6f4a30612457baf6762525909658",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "reclassify-legacy-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "RECLASSIFY_LEGACY_REGISTER",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "DEL-01-01 is named only by RECLASSIFY in a register without the ScopeChanging column (legacy); the human records a scope-changing reopening directly, citing the accepted snapshot",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "26c5cffdb89ee4f8e13f144760f428896071b8af2c2e8ba2e930dc0d698d1e6b",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "reclassify-no-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "RECLASSIFY_NOT_SCOPE_CHANGING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "DEL-01-01 RECLASSIFY row(s) record ScopeChanging 'NO', not YES",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "8efb9e04af25edd273cde4d987241fc4f8a27cb8f0cc7fd0d02a9872b71dae66",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "reclassify-yes-admitted": [
+      {
+        "actionSeq": "1",
+        "actionType": "RECLASSIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 RECLASSIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "82db25f006e5a2468672b431e2e0fc2b29d2005dca2c0f0ef9231cb985975773",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "YES"
+      }
+    ],
+    "register-ambiguous": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_AMBIGUOUS",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv binds several Amendment_Actions*.csv files and no single row's Role names the action register",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "register-hash-mismatch": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_HASH_MISMATCH",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv SHA-256 643130d4d2d2d294db035a9be3bda6d9cc7eecbb4b84f1290c694391feb25276 differs from 3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf bound in projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "643130d4d2d2d294db035a9be3bda6d9cc7eecbb4b84f1290c694391feb25276",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "register-missing": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_MISSING",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "bound register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv does not exist",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "register-not-bound": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_NOT_BOUND",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no group-2 ACCEPTED_MANIFEST.csv of SCA-001 binds an Amendment_Actions*.csv register",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "register-schema": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "REGISTER_SCHEMA",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv lacks column(s) EntityType",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "1bb952fd5092cf97df4271beaf0ed4924410fe400af0a78e5d00ef72e6e6e2ff",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "role-disambiguates-registers": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_CP2.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_CP2.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "row-of-another-amendment": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "NO_DELIVERABLE_ACTION",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no SCA-001 register row names DELIVERABLE DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "72362671158ee700d6b9691fbd1d890082ecc2706b9214f6f0b4f13e41888b81",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "scope-change-root-not-a-directory": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "SCOPE_CHANGE_ROOT_NOT_FOUND",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--scope-change-root is not a directory: <ROOT>/projects/fixture/execution/missing_ScopeChange",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "similar-deliverable-id-not-matched": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "NO_DELIVERABLE_ACTION",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no SCA-001 register row names DELIVERABLE DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "144c62b5d08d8c5aac2f3c9c4c2292083910642d8863c06f2f1295804064e23a",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "symlinked-checkpoint-snapshots-escape": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "group-3 decision folder <ROOT>/project/projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26 resolves outside <ROOT>/project/projects/fixture/execution/_ScopeChange (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "symlinked-deliverable-folders": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "deliverable folder <ROOT>/outside/DEL-01-01_Out resolves outside <ROOT>/projects (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "deliverable folder <ROOT>/project-link/DEL-01-01_Escape resolves outside <ROOT>/project-link (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "symlinked-register-escape": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "PATH_ESCAPE",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv bound in projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv resolves outside the scope-change root (path or symlink escape)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "symlinked-register-inside": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/registers/actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/registers/actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "two-group3-folders-refused": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-001",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "SCA-001_GROUP-3_2026-09-26/DECISION.md heading does not record group-3 acceptance: 'SCA-001 checkpoint group 3 — returned'; SCA-001_GROUP-3_2026-09-27 lacks DECISION.md or ACCEPTED_MANIFEST.csv",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "two-group3-folders-second-accepted": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "unresolvable-and-unusable-amendments": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment is neither an amendment ID nor an existing path: 'no/such/path'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment file must be a group-3 DECISION.md: '<ROOT>/projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment path is not an amendment snapshot or group-3 decision folder under _ScopeChange/: 'projects/fixture'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "",
+        "code": "AMENDMENT_UNRESOLVED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "--amendment is neither an amendment ID nor an existing path: 'SCA-001x'",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "",
+        "scopeChanging": null
+      }
+    ],
+    "uppercase-bound-sha": [
+      {
+        "actionSeq": "1",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-001",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "SCA-001 accepted at group 3 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); register projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv matches its group-2 hash; ActionSeq 1 MODIFY names DEL-01-01",
+        "registerPath": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
+        "registerSha256": "3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf",
+        "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+        "scopeChanging": "NO"
+      }
+    ],
+    "usage-errors": [
+      {
+        "usageError": true
+      },
+      {
+        "usageError": true
+      }
+    ]
+  },
+  "real": {
+    "app-sca-app-010": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-APP-010",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-02-05",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-APP-010_GROUP-3_* decision snapshot",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/chirality-app-dev/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "pec-sca-005": [
+      {
+        "actionSeq": "12",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-005",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25",
+        "notes": [
+          "legacy register without ScopeChanging: RECLASSIFY is not admitted by this tool"
+        ],
+        "reason": "SCA-005 accepted at group 3 (projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25); register projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Actions_CP2.csv matches its group-2 hash; ActionSeq 12 MODIFY names DEL-01-01",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Actions_CP2.csv",
+        "registerSha256": "7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-005",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-07-04",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25",
+        "notes": [],
+        "reason": "rows naming DEL-07-04 (78 REMOVE) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Actions_CP2.csv",
+        "registerSha256": "7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-005",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-02-08",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25",
+        "notes": [],
+        "reason": "rows naming DEL-02-08 (19 ADD) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Amendment_Actions_CP2.csv",
+        "registerSha256": "7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "pec-sca-006": [
+      {
+        "actionSeq": "31",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-006",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-08-01",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26",
+        "notes": [
+          "legacy register without ScopeChanging: RECLASSIFY is not admitted by this tool"
+        ],
+        "reason": "SCA-006 accepted at group 3 (projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26); register projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv matches its group-2 hash; ActionSeq 31 MODIFY names DEL-08-01",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv",
+        "registerSha256": "d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-006",
+        "code": "ACTION_NOT_AUTHORIZING",
+        "deliverableId": "DEL-08-06",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "rows naming DEL-08-06 (28 ADD) are not MODIFY or scope-changing RECLASSIFY",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv",
+        "registerSha256": "d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "30",
+        "actionType": "MODIFY",
+        "admitted": true,
+        "amendmentId": "SCA-006",
+        "code": "ADMITTED",
+        "deliverableId": "DEL-04-03",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26",
+        "notes": [
+          "legacy register without ScopeChanging: RECLASSIFY is not admitted by this tool"
+        ],
+        "reason": "SCA-006 accepted at group 3 (projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26); register projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv matches its group-2 hash; ActionSeq 30 MODIFY names DEL-04-03",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv",
+        "registerSha256": "d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      },
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-006",
+        "code": "NO_DELIVERABLE_ACTION",
+        "deliverableId": "DEL-09-09",
+        "group2Manifest": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/ACCEPTED_MANIFEST.csv",
+        "group3Decision": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/DECISION.md",
+        "group3Snapshot": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26",
+        "notes": [],
+        "reason": "no SCA-006 register row names DELIVERABLE DEL-09-09",
+        "registerPath": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv",
+        "registerSha256": "d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de",
+        "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "piping-sca-011": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-011",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-04-07",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-011_GROUP-3_* decision snapshot (only SCA-011_GROUP-1_2026-09-22, SCA-011_GROUP-2_2026-09-22; a group-1 or group-2 decision does not authorize reopening)",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/chirality-piping/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ],
+    "runtime-sca-003": [
+      {
+        "actionSeq": "",
+        "actionType": "",
+        "admitted": false,
+        "amendmentId": "SCA-003",
+        "code": "GROUP3_NOT_ACCEPTED",
+        "deliverableId": "DEL-01-01",
+        "group2Manifest": "",
+        "group3Decision": "",
+        "group3Snapshot": "",
+        "notes": [],
+        "reason": "no checkpoint_snapshots/SCA-003_GROUP-3_* decision snapshot",
+        "registerPath": "",
+        "registerSha256": "",
+        "scopeChangeRoot": "projects/chirality-runtime/execution/_ScopeChange",
+        "scopeChanging": null
+      }
+    ]
+  }
+}
