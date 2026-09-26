@@ -155,6 +155,70 @@ describe('tool descriptor registry', () => {
     expect(liveToolNames).toEqual(descriptorToolNames);
   });
 
+  it('keeps status and dependency descriptor inputs in parity with the live MCP schemas', () => {
+    const liveTools = new Map(
+      buildChiralityMcpTools({
+        context: { projectRoot: '/tmp/chirality-project', sessionId: 'sess_descriptor_inputs' },
+        mode: 'workspaceWrite',
+        allowedToolNames: CHIRALITY_MCP_ALLOWED_TOOL_NAMES
+      }).map((definition) => {
+        const live = definition as {
+          name: string;
+          inputSchema: Record<string, { isOptional: () => boolean }>;
+        };
+        return [live.name, live.inputSchema] as const;
+      })
+    );
+
+    for (const descriptorName of ['status_read', 'dependency_read', 'status_transition', 'dependency_write']) {
+      const descriptor = getHarnessToolDescriptor(descriptorName);
+      const liveShape = liveTools.get(
+        toRawChiralityMcpToolName(descriptor?.adapter.claudeAgentSdk?.toolName as ChiralityMcpAllowedToolName)
+      );
+      const inputSchema = descriptor?.inputSchema as {
+        required: string[];
+        properties: Record<string, unknown>;
+      };
+
+      expect(liveShape, descriptorName).toBeDefined();
+      expect(Object.keys(inputSchema.properties).sort(), descriptorName).toEqual(
+        Object.keys(liveShape ?? {}).sort()
+      );
+      expect([...inputSchema.required].sort(), descriptorName).toEqual(
+        Object.entries(liveShape ?? {})
+          .filter(([, field]) => !field.isOptional())
+          .map(([key]) => key)
+          .sort()
+      );
+    }
+  });
+
+  it('names the status_transition gates and the recorded-register dependency read', () => {
+    const transition = getHarnessToolDescriptor('status_transition');
+    const inputSchema = transition?.inputSchema as { properties: Record<string, unknown> };
+
+    expect(inputSchema.properties).toMatchObject({
+      ruling: { type: 'string' },
+      amendment: { type: 'string' }
+    });
+    expect(transition?.humanGate).toMatchObject({ required: true, gate: 'approval-sha' });
+    const gate = transition?.humanGate;
+    const reason = gate?.required ? gate.reason : '';
+    expect(reason).toContain('Transitions into CHECKING and ISSUED require a HUMAN actor with approvalSha');
+    expect(reason).toContain('optional ruling');
+    expect(reason).toContain('CHECKING -> IN_PROGRESS requires a HUMAN actor, approvalSha and a ruling');
+    expect(reason).toContain(
+      'ISSUED -> IN_PROGRESS requires a HUMAN actor, approvalSha and an amendment that passes the amendment-record check (D-GOV-50, D-GOV-51)'
+    );
+
+    const dependencyRead = getHarnessToolDescriptor('dependency_read');
+    expect(dependencyRead?.description).toContain('recorded register');
+    expect(dependencyRead?.description).toContain('_DEPENDENCIES.md declared sections');
+    expect(dependencyRead?.outputSchema).toMatchObject({
+      properties: { recordedRegister: { type: 'object' } }
+    });
+  });
+
   it('exposes read-class tools plus bounded Write/Edit descriptors for the current tranche', () => {
     const descriptors = listHarnessToolDescriptors();
 
