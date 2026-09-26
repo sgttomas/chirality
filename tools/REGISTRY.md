@@ -13,16 +13,16 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | `scaffold_package.sh` | zsh | Create package folder with 9 lifecycle subfolders | EXECUTION_ROOT, PKG_ID, PkgLabel | Idempotent folder tree |
 | `scaffold_deliverable.sh` | zsh | Create deliverable folder with 5 minimum viable stub files | WORKING_DIR, DEL_ID, DelLabel | Stub files: _STATUS, _CONTEXT, _DEPENDENCIES, _REFERENCES, _SEMANTIC |
 | `scaffold_tool_root.sh` | zsh | Create tool root with _Archive/ and _LATEST.md stub | EXECUTION_ROOT, ROOT_NAME | Tool root folder |
-| `create_snapshot_folder.sh` | zsh | Create timestamped immutable snapshot folder | TOOL_ROOT, PREFIX, LABEL | Folder path (stdout) |
+| `create_snapshot_folder.sh` | zsh | Create a new timestamped immutable snapshot folder; never reuses an existing folder (appends `_NN` when the name exists, fails when no unique name is free) | TOOL_ROOT, PREFIX, LABEL | Folder path (stdout); exit 1 rather than reuse |
 | `update_latest_pointer.sh` | zsh | Overwrite _LATEST.md to point to a snapshot | TOOL_ROOT, SNAPSHOT_NAME | Updated _LATEST.md |
-| `write_status.sh` | zsh | Write or update _STATUS.md with lifecycle transition, now guarded: validates transition order and actor class (CHECKING/ISSUED are human-only), and for CHECKING/ISSUED enforces adapter-declared per-root preconditions (flat `guard_*` keys grep-read from the nearest `_harness/adapter.yaml`) — committed ruling path via `--ruling`, git-verifiable approval SHA via `--approval-sha` where the root's schema declares one (absent schema → REVIEW to stderr, proceeds); human-recorded override via `--force-human-override "<reason>"` | DEL_PATH, STATE, ACTOR, `[--ruling <path>]`, `[--approval-sha <sha>]`, `[--force-human-override <reason>]` | Updated _STATUS.md with history (never edits on refusal); exit 0 success / 1 BLOCK / 2 usage-operational |
+| `write_status.sh` | zsh | Write or update _STATUS.md with lifecycle transition, now guarded: validates transition order and actor class (CHECKING/ISSUED are human-only; backward moves blocked except the human-ruled CHECKING→IN_PROGRESS reversal, which always requires `--ruling` (not overridable) and records `[reversal from CHECKING; ruling: …]` in history; ISSUED→IN_PROGRESS stays blocked, not overridable, for the scope-change process), and for CHECKING/ISSUED and the reversal enforces adapter-declared per-root preconditions (flat `guard_*` keys grep-read from the nearest `_harness/adapter.yaml`) — committed ruling path via `--ruling`, git-verifiable approval SHA via `--approval-sha` where the root's schema declares one (absent schema → REVIEW to stderr, proceeds); human-recorded override via `--force-human-override "<reason>"` | DEL_PATH, STATE, ACTOR, `[--ruling <path>]`, `[--approval-sha <sha>]`, `[--force-human-override <reason>]` | Updated _STATUS.md with history (never edits on refusal); exit 0 success / 1 BLOCK / 2 usage-operational |
 
 ## Query
 
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
 | `count_workspace_state.sh` | zsh | Count packages, deliverables, lifecycle states, tool roots | EXECUTION_ROOT | Summary table |
-| `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} ID | SCOPE_CHANGE_ROOT | Next ID string (stdout) |
+| `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} or SCA-{PREFIX}-{NNN} ID | SCOPE_CHANGE_ROOT [PREFIX] | Next ID string (stdout) |
 
 ## Software Workflow
 
@@ -41,7 +41,7 @@ Profile-driven deterministic support for WORKING_ITEMS software activations. The
 
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
-| `validate_enum.py` | Python 3 | Validate a value against 24 named enum sets | enum_name, value | VALID/INVALID (exit code) |
+| `validate_enum.py` | Python 3 | Validate a value against 24 named enum sets; legacy read values (`TRACKING_MODE` `TRACKED` → `FULL_GRAPH`) are accepted and name their write form | enum_name, value | VALID/INVALID (exit code) |
 | `validate_id_format.sh` | zsh | Validate ID against format pattern (PKG, DEL, DEP, SOW, OBJ, CAT, KTY, SUB) | ID_TYPE, ID_VALUE | VALID/INVALID (exit code) |
 | `validate_dependencies_schema.py` | Python 3 | Validate Dependencies.csv against v3.1 schema (29 columns) | csv_path | VALID/INVALID + column counts |
 | `validate_decomposition_registers.py` | Python 3 | Report-only, never-mutating validation of the decomposition companion register family for one execution root: delegated v3.1 schema conformance (`SCH`), evidence-cell quality naming locus/quote confusion and empty-evidence rows as distinct sub-classes (`EVQ`), cross-register consistency across `Deliverables.csv`/`ScopeLedger.csv`/`ContextBudgetQA.csv` (`XRG`), and dependency-register binding to `Deliverables.csv` and the owning folder (`DRB`). Reports evidence-file coverage, evidence-file resolution, evidence-locus quality, and evidence-quote coverage as four separate metrics; absent companion registers are SKIPPED, not failures. Scans `1_Working`/`2_Checking`/`3_Issued`. Supports an optional per-register `Dependencies_EvidenceWaivers.csv` so a genuinely unquotable row can be declared (attributed, rationalized, downgraded to WARNING, never hidden) instead of forcing a fabricated quote to reach exit 0; stale, thin, or malformed waivers are themselves errors | `EXECUTION_ROOT`, `[--families SCH,EVQ,XRG,DRB]`, `[--json]`, `[--evidence-root]`, `[--strict]`, `[--max-per-code]`, `[--list-checks]` | Per-row-class metric table + findings with exact row IDs; optional JSON report; exit 0 clean / 1 findings / 2 operational |

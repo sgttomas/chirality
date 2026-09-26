@@ -1,0 +1,55 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE2A-SETUP-DEPS-20260926
+title: Setup and dependency workflow and tool fixes
+date: '2026-09-26'
+basis: 283835358fe57b8822f517f7de831e8e96458c67
+instruction_surface_paths:
+  - tools/coordination/analyze_dep_closure.py
+  - tools/evaluation/README.md
+  - tools/evaluation/audit_common.py
+  - tools/evaluation/audit_dependencies.py
+  - tools/evaluation/test_audits.py
+  - tools/validation/test_validate_id_format.py
+  - tools/validation/validate_id_format.sh
+  - workflows/audit-decomp/WORKFLOW.md
+  - workflows/audit-decomp/resources/contract.md
+  - workflows/audit-decomp/resources/method.md
+  - workflows/audit-dep-closure/resources/contract.md
+  - workflows/audit-dep-closure/resources/method.md
+  - workflows/dependency-extract/WORKFLOW.md
+  - workflows/dependency-extract/execution.json
+  - workflows/dependency-extract/resources/brief.md
+  - workflows/dependency-extract/resources/checks.md
+  - workflows/dependency-extract/resources/tools.md
+  - workflows/index.json
+  - workflows/project-setup/WORKFLOW.md
+  - workflows/project-setup/resources/contract.md
+  - workflows/project-setup/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-SETUP-DEPS-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed wave 2a of the workflow-library review ("go
+    ahead in the proposed order starting with wave 2a"): correctness fixes to
+    the workflows the loops use, from the independent wave 2 evaluation. This
+    tranche carries the setup and dependency cluster, including the ID
+    validator and audit tool scan-scope fixes.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_SETUP_DEPS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_SETUP_DEPS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_SETUP_DEPS.md
+  rationale: >-
+    App, Piping and PEC use project-setup, dependency-extract and the
+    decomposition and dependency-closure audits.
+scope_limits:
+  - No _DEPENDENCIES.md heading or dependency-mode vocabulary change; that is the wave 2b schema alignment.
+  - No new incremental setup, dependency-extract preview/apply, or DAG-construction workflow; those are deferred.
+  - Historical run records are not rewritten.

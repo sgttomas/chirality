@@ -16,7 +16,7 @@ Missing, malformed, escaping, or missing-target pointers stop entry; never guess
 - Attention: `execution/_Coordination/_TaskManagement/REGISTER.csv` and its cited rulings; `workflows/task-management/WORKFLOW.md` governs disposition, never automatic harvesting on entry.
 - Product: `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md`, companions and `execution/_ScopeChange/_LATEST.md`; `execution/PKG-*/1_Working/DEL-*/` holds scopes, `_STATUS.md` `## Remaining`, dependencies and `_run_records/`.
 - Delegation and evidence: `AGENTS.md`; actual runs at `execution/_Coordination/AgentRuns/`; empirical evidence requirements in the applicable steer (R17 N3 for v3).
-- Containment and checks: `execution/_harness/` and D-GOV-21; Git closeout: `workflows/change/WORKFLOW.md` and PRD_ROOT §5.3.1.
+- Containment and checks: `execution/_harness/` and D-GOV-21; Git closeout: `.agents/skills/chirality-change/SKILL.md` and PRD_ROOT §5.3.1.
 
 Discover in order: owner steer of record → routed notices without a recorded disposition → register rows ruled for action → deliverable `## Remaining` items.
 The first three are control-plane discovery surfaces, not automatic work grants; each action needs its own recorded authority and write scope. Product work remains deliverable-local. Empty or absent `Remaining` records no open product scope.

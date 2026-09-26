@@ -18,7 +18,9 @@ SCH  Per-file v3.1 schema conformance (delegated).
 EVQ  Evidence-cell quality: locus/quote confusion and empty-evidence rows,
      reported as distinct named sub-classes, row-class aware.
 XRG  Cross-register consistency: Deliverables.csv <-> ScopeLedger.csv <->
-     ContextBudgetQA.csv.
+     ContextBudgetQA.csv, and the ledger's Package home (every scope item has
+     one PackageID, per D-GOV-48: missing on an IN item is an error, missing on
+     an OUT or TBD item is a warning).
 DRB  Dependency-register binding: Dependencies.csv <-> Deliverables.csv and
      the owning deliverable folder.
 
@@ -108,6 +110,13 @@ CHECKS: dict[str, tuple[str, str, str]] = {
     "XRG-008": ("XRG", WARNING, "Deliverables.csv row has a blank PhaseHint"),
     "XRG-009": ("XRG", ERROR, "ContextBudgetQA.csv and Deliverables.csv cover different deliverable sets"),
     "XRG-010": ("XRG", ERROR, "ContextEnvelope disagrees between ContextBudgetQA.csv and Deliverables.csv"),
+    "XRG-011": ("XRG", ERROR, "IN-scope ledger item has no PackageID"),
+    # XRG-012 (D-GOV-47: WARNING when an OUT/TBD item carried a PackageID) is
+    # retired by D-GOV-48 and not reused; an OUT/TBD item with a PackageID now
+    # conforms, and XRG-013 reports the opposite case.
+    "XRG-013": ("XRG", WARNING, "OUT or TBD ledger item has no PackageID (D-GOV-48: every scope item has one Package home)"),
+    "XRG-014": ("XRG", ERROR, "Ledger item names more than one PackageID (D-GOV-48: exactly one Package home)"),
+    "XRG-015": ("XRG", WARNING, "Ledger item's PackageID names no Package found in Deliverables.csv"),
     "DRB-001": ("DRB", ERROR, "FromDeliverableID disagrees with the owning deliverable folder"),
     "DRB-002": ("DRB", ERROR, "FromDeliverableID is absent from Deliverables.csv"),
     "DRB-003": ("DRB", ERROR, "FromPackageID disagrees with Deliverables.csv"),
@@ -560,6 +569,11 @@ def check_cross_register(
     findings: list[Finding],
 ) -> None:
     """XRG family — the companion registers against each other."""
+    known_packages = {
+        (record.get("PackageID") or "").strip()
+        for record in deliverables.values()
+        if (record.get("PackageID") or "").strip()
+    }
     for item in ledger:
         item_id = (item.get("ScopeItemID") or "").strip()
         status = (item.get("InOutStatus") or "").strip().upper()
@@ -578,6 +592,38 @@ def check_cross_register(
                         f"{status} item {item_id} names deliverables {', '.join(linked)}",
                         row_id=item_id)
             )
+        # Package home (D-GOV-48): every scope item, IN, OUT or TBD, has exactly
+        # one Package. Only IN items map to Deliverables; an OUT or TBD item's
+        # home is for accountability and traceability. A missing home is an
+        # error on an IN item and a warning on an OUT or TBD item, since
+        # decompositions adopted under D-GOV-47 left those blank. Checked only
+        # when the ledger carries a PackageID column.
+        if "PackageID" in item and not ledger_pkg:
+            if status == "IN":
+                findings.append(
+                    Finding("XRG-011", paths["ledger"],
+                            f"IN-scope item {item_id} has no PackageID", row_id=item_id)
+                )
+            elif status in ("OUT", "TBD"):
+                findings.append(
+                    Finding("XRG-013", paths["ledger"],
+                            f"{status} item {item_id} has no PackageID; give it one "
+                            f"Package home", row_id=item_id)
+                )
+        homes = split_list(ledger_pkg)
+        if len(homes) > 1:
+            findings.append(
+                Finding("XRG-014", paths["ledger"],
+                        f"{item_id} names {len(homes)} Packages ({', '.join(homes)}); "
+                        f"give it exactly one Package home", row_id=item_id)
+            )
+        for home in homes:
+            if known_packages and home not in known_packages:
+                findings.append(
+                    Finding("XRG-015", paths["ledger"],
+                            f"{item_id} names Package {home!r}, which no deliverable in "
+                            f"{paths['deliverables']} belongs to", row_id=item_id)
+                )
 
         for deliverable_id in linked:
             record = deliverables.get(deliverable_id)
@@ -596,10 +642,12 @@ def check_cross_register(
                             f"CoversScopeItems does not name {item_id}", row_id=item_id)
                 )
             record_pkg = (record.get("PackageID") or "").strip()
-            if ledger_pkg and record_pkg and ledger_pkg != record_pkg:
+            # With several homes, XRG-014 already reports the item; compare
+            # only a single home so the same defect is not repeated per link.
+            if len(homes) == 1 and record_pkg and homes[0] != record_pkg:
                 findings.append(
                     Finding("XRG-004", paths["ledger"],
-                            f"{item_id} declares PackageID {ledger_pkg!r} but {deliverable_id} "
+                            f"{item_id} declares PackageID {homes[0]!r} but {deliverable_id} "
                             f"is in {record_pkg!r}", row_id=item_id)
                 )
             supports = split_list(record.get("SupportsObjectives"))

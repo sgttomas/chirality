@@ -19,7 +19,7 @@ Comprehensiveness invariant: the set of `KA-*.md` files in a KTY is expected to 
 - **Knowledge Artifact (`KA-*`)** = the document-layer file materialized from exactly one Knowledge Subject
 - `Scoping.md` = the Knowledge-Type-level entrypoint that records the `SubjectID -> ArtifactID -> Filename` mapping; it is not itself a Knowledge Subject
 
-**DOMAIN pipeline only.** This workflow is NOT called by PROJECT or SOFTWARE variants. The DOMAIN pipeline chain is `TASK (workflow: preparation) → TASK+domain-documents → WORKING_ITEMS` (no `semantic-matrix-build`, no `lens-register`, no `four-documents`). The quality gate is **source fidelity** (does the extraction faithfully represent the authoritative source?), not semantic enrichment.
+**DOMAIN pipeline only.** This workflow is NOT called by PROJECT or SOFTWARE variants. The DOMAIN pipeline chain is `TASK (skill: preparation) → TASK+domain-documents → WORKING_ITEMS` (no `semantic-matrix-build`, no `lens-register`, no `four-documents`). The quality gate is **source fidelity** (does the extraction faithfully represent the authoritative source?), not semantic enrichment.
 
 ### Relationship to the HBA / atomic-ledger layer (runtime-use framing)
 

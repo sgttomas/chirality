@@ -7,6 +7,22 @@
 > the prospective amendment is accepted through its governing closeout, the
 > D-GOV-14 edition at commit `ee35409f5cf3a81ecb29a271527156b991df97b9`
 > remains the ratified decomposition protocol.
+>
+> **Owner-directed amendment D-GOV-47 (2026-09-26).** PROJECT and SOFTWARE
+> Package homes are required for IN atomic units only (OUT and TBD units stay
+> in the ledger with their `SourceRef` and no partition), and a small,
+> reversible PROJECT or SOFTWARE undertaking may present its three checkpoint
+> groups in one sitting under the conditions in PROTOCOL. In-flight
+> decompositions keep the edition they adopted; nothing is retrofitted.
+> The Package-home ruling (D-GOV-47 item 1) is superseded by D-GOV-48; the
+> combined review sitting stands.
+>
+> **Owner-directed amendment D-GOV-48 (2026-09-26).** In PROJECT and SOFTWARE,
+> every atomic unit, whether IN, OUT or TBD, has exactly one Package home, as
+> the management manual states. Only IN units map to Deliverables; OUT and TBD
+> units keep their home for accountability and traceability. DOMAIN is
+> unchanged. In-flight decompositions keep the edition they adopted; nothing
+> is retrofitted.
 
 This normative document defines the invariant protocol, validity requirements,
 entity schemas, and required output sections shared by decomposition workflows
@@ -64,10 +80,11 @@ regardless of domain.
   source-fidelity checkpoint before atomization, followed by three grouped
   checkpoints expressed in domain terms. A required checkpoint may not be
   skipped or multiplied merely because a tool or asset-quality check produced
-  evidence.
+  evidence. A PROJECT or SOFTWARE combined review sitting (PROTOCOL) decides
+  all three groups at once; it does not skip any of them.
 - **I2 — No invention.** Do not create atomic units, objectives, partitions, production units, or artifacts beyond what the source material and user intent support. If unknown, mark `TBD` and surface as an open issue.
 - **I3 — Partitions are flat.** Do not create nested partitions. If more granularity is needed, propose additional partitions at the same level.
-- **I4 — No overlap / no gaps at the partition level.** Every IN-scope atomic unit MUST be assigned to exactly one partition. Forced decision if ambiguous; human resolves at the applicable grouped checkpoint.
+- **I4 — No overlap / no gaps at the partition level.** In PROJECT and SOFTWARE, every atomic unit, whether IN, OUT or TBD, MUST be assigned to exactly one partition, its accountable home. Only IN units map to production units; OUT and TBD units keep their home and `SourceRef` for traceability and need no production mapping. In DOMAIN, every IN-scope atomic unit MUST be assigned to exactly one partition. Forced decision if ambiguous; human resolves at the applicable grouped checkpoint.
 - **I5 — Stable identifiers.** Once assigned, IDs MUST remain stable across revisions unless the human explicitly requests renumbering.
 - **I6 — Deterministic production-unit ID ↔ partition ID coupling.** The production unit ID MUST be mechanically derived from its parent partition ID. The coupling format is domain-specific (defined by the conforming workflow) but the coupling itself is invariant.
 - **I7 — Objective mapping is best-effort.** Objectives are derived from the source material. Unmapped objectives MUST be surfaced as open issues.
@@ -90,7 +107,7 @@ These are the abstract entity names used in this specification. Conforming agent
 | **Production Unit** | An operational unit within a partition that produces tangible outputs; belongs to exactly one partition | Deliverable (PROJECT, SOFTWARE); Knowledge Type (DOMAIN) |
 | **Artifact** | An anticipated tangible output of a production unit | Artifact (PROJECT, SOFTWARE); Knowledge Subject (DOMAIN) |
 | **Objective** | A success condition derived from the source material | Objective (all) |
-| **Decomposition Ledger** | A table proving coverage: every atomic unit mapped to partitions and production units | Scope Ledger (PROJECT, SOFTWARE); Domain Ledger (DOMAIN) |
+| **Decomposition Ledger** | A table proving coverage: every atomic unit recorded with its status, source and partition home (under I4), and every IN unit mapped to its production units | Scope Ledger (PROJECT, SOFTWARE); Domain Ledger (DOMAIN) |
 | **Coverage & Telemetry** | A structured summary of counts and gaps | Coverage & Telemetry (all) |
 
 ---
@@ -172,6 +189,10 @@ consumes that accepted snapshot; it does not rely on the mutable working package
 alone. Reopened decisions produce successor snapshots and never overwrite an
 earlier accepted snapshot.
 
+A combined review sitting (below) is the one exception to preparing a stage
+only after the preceding checkpoint is accepted: its stages are prepared on the
+proposed state, and its snapshots are written in order after the decision.
+
 ### Output Target
 
 The agent maintains the canonical working package and revises its working
@@ -210,7 +231,10 @@ conflicts as the normalized representation of the admitted corpus.
 
 #### Stage B — Propose the structure
 
-Propose flat partitions and assign every IN-scope atomic unit to exactly one.
+Propose flat partitions and assign each atomic unit that I4 requires to have a
+partition to exactly one: every unit, whether IN, OUT or TBD, in PROJECT and
+SOFTWARE (including units recorded as `TBD` at group 1, before partitions
+existed), and every IN-scope unit in DOMAIN.
 If a unit would overlap, split it with human-visible provenance or present the
 forced boundary decision. Define production units within their parent
 partitions with stable coupled IDs, responsibility, type, anticipated artifacts,
@@ -246,6 +270,34 @@ whose warrants, mappings, or consequences are affected. Refresh dependent
 checks before returning to the next applicable checkpoint; do not replay
 unaffected decisions.
 
+#### Combined review sitting (PROJECT and SOFTWARE only)
+
+For a small, reversible PROJECT or SOFTWARE undertaking, the human may choose
+to decide all three checkpoint groups in one sitting: the basis, normalized
+scope, vocabulary, and objectives; the proposed Packages and Deliverables with
+coverage findings and exceptions; and the audited final decomposition. The
+agent may propose this; the human chooses it. DOMAIN does not use this
+allowance. In a combined sitting:
+
+1. Stage A is prepared as usual, and Stages B and C are each prepared on the
+   preceding stage's proposed state. The independent audit of the final package
+   is completed before the human decides. The audit examines the package
+   against the basis and structure presented in the sitting.
+2. The human's decision records which groups it covers, and the audit and
+   decision record the hashes of the presented package.
+3. After the decision, the group-1, group-2, and group-3 snapshots are
+   written in that order, each naming the preceding snapshot as its upstream
+   basis, and each pointer is updated only after its snapshot is complete. The
+   snapshots must match the recorded hashes; any difference reopens the
+   affected groups and every later group.
+4. A material change found during the sitting reopens the groups it affects
+   and every later group. Their dependent preparation and audit are refreshed
+   before those groups are decided; only earlier, unaffected groups may still
+   be decided in the sitting.
+
+A combined sitting changes the number of sittings, not the three subjects,
+their preparation, the independent audit, or the snapshot record.
+
 [[END:PROTOCOL]]
 
 ---
@@ -267,7 +319,7 @@ A decomposition is complete when:
 | Source normalized | Atomic unit list exists; each unit has an ID and `IN\|OUT\|TBD` status |
 | Objectives derived | Objectives list exists and is human-confirmed |
 | Partitions flat and scoped | Partition list exists; each partition has a scope description |
-| Partition coverage | Every IN-scope atomic unit is assigned to exactly one partition |
+| Partition coverage | Every atomic unit I4 requires to have a partition is assigned to exactly one (PROJECT, SOFTWARE: every unit; DOMAIN: every IN-scope unit) |
 | Production units defined | Production units exist within each partition with IDs, types, responsibilities (`TBD` allowed) |
 | Production unit assignment | Every production unit belongs to exactly one partition |
 | Artifacts anticipated | Each production unit lists anticipated artifacts (`TBD` allowed) |
@@ -281,8 +333,8 @@ A decomposition is consistent when:
 
 | Requirement | Validation |
 |---|---|
-| No overlaps | An IN-scope atomic unit is not assigned to multiple partitions |
-| No gaps | No IN-scope atomic unit remains unassigned to a partition |
+| No overlaps | An atomic unit is not assigned to multiple partitions |
+| No gaps | No atomic unit I4 requires to have a partition remains unassigned (PROJECT, SOFTWARE: every unit; DOMAIN: every IN-scope unit) |
 | Stable IDs | IDs do not change across revisions unless explicitly requested |
 | ID coupling | Production unit IDs are mechanically derived from parent partition IDs |
 | Terminology consistent | Canonical terms are used consistently; synonyms are mapped |
@@ -389,19 +441,24 @@ Minimum columns:
 - `InOutStatus`
 - `UnitStatement`
 - `SourceRef`
-- `PartitionID` (required for IN; blank for OUT)
+- `PartitionID` (PROJECT, SOFTWARE: exactly one for every unit, whether IN, OUT or TBD; DOMAIN: required for IN units)
 - `ProductionUnitID(s)` (one or many; or `TBD`)
 - `ObjectiveID(s)` (zero or many; or `TBD`)
 - `DecisionRef` (optional; points to Decision Log entry)
 - `OpenIssue` (`TRUE|FALSE`)
 - `Notes`
 
-**Hard rule:** every IN-scope `UnitID` has exactly one `PartitionID`.
+**Hard rule:** every `UnitID` that I4 requires to have a partition has exactly
+one `PartitionID`: every unit in PROJECT and SOFTWARE, every IN-scope unit in
+DOMAIN.
 
 Conforming workflows use domain-specific column names (for example,
 `ScopeItemID` / `PackageID` / `DeliverableID(s)` in `project-decomp`, or
 `UnitID` / `CategoryID` / `KnowledgeTypeID(s)` in `domain-decomp`). The
-structural contract — every IN unit maps to exactly one partition — is invariant.
+structural contract — every unit I4 requires to have a partition maps to
+exactly one partition (in PROJECT and SOFTWARE every unit, whether IN, OUT or
+TBD; in DOMAIN every IN unit), and only IN units require production-unit
+mappings — is invariant.
 
 #### 3) Coverage & Telemetry (summary block)
 Minimum fields:
@@ -409,7 +466,9 @@ Minimum fields:
 - `PartitionCount`
 - `ProductionUnitCount`
 - `ObjectiveCount`
-- `UnassignedINUnits` (must be 0 for acceptance)
+- `UnassignedINUnits` (must be 0 for acceptance; PROJECT and SOFTWARE report
+  every unit without a partition, whatever its status, as
+  `UnassignedScopeItems`, which must also be 0)
 - `UnitsWithoutProductionUnitMapping` (count)
 - `UnmappedObjectives` (count)
 - `OpenIssuesByType` (counts, with IDs)

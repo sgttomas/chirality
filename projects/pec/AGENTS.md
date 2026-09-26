@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-09-25 (shared development-loop adoption under D-PEC-94)
+amended: 2026-09-26 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)
 ---
 
 # AGENTS - PEC Agent Index
@@ -25,12 +25,17 @@ Prompts and TASK briefs must derive paths from the active checkout:
 
 PEC is the Chirality **coordination plane**: a deterministic, rebuildable
 projection of governed file truth plus an ephemeral presence layer, embodying
-loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.3 is the
+loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.4 is the
 product definition of record (v2.0 adopted by `D-PEC-58`; directed-bootstrap
 clarification adopted by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by
 `D-PEC-67`; surrounding concordance adopted by `D-PEC-68`; the v2.3 successor
-adopted through SCA-005 checkpoint group 2 under `D-PEC-92`). Implementation
-does not exist yet; nothing in the PRD is an implementation mandate.
+adopted through SCA-005 checkpoint group 2 under `D-PEC-92`; the v2.4
+successor, carrying the `D-PEC-90` operational-reliance direction, adopted
+through SCA-006 checkpoint group 2).
+Implementation so far consists of owner-ruled `v2/**` source slices
+(`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`, `D-PEC-87`,
+`D-PEC-89`, `D-PEC-91`); no consumer surface exists yet, and nothing in the
+PRD is an implementation mandate.
 
 Binding on every agent, now and in every future tranche:
 
@@ -39,15 +44,24 @@ Binding on every agent, now and in every future tranche:
   proposes must survive PEC being deleted.
 - **Files govern (PEC-K-02).** PEC output is never citable as authority.
   Rulings and lifecycle state remain file-native (K-AUTH-1). A PEC value,
-  view, or verdict is labeled non-authoritative data, verified against its
-  cited source before reliance.
+  view, or verdict is labeled non-authoritative data in that authority sense.
+  Operational reliance on it (acting on a record-tier claim as true as of its
+  examined-through SHA, within the pin, coverage and tier the response
+  declares, with file fallback; PEC-K-03, `D-PEC-90`) applies only to a PEC
+  release whose PRD §12 reliance-advertisement gate has passed. Until then,
+  read the files directly. Operational reliance is distinct from the
+  reliance-hold control (§Active Reliance Holds) and from professional
+  reliance.
 - **Observation, not participation (PEC-K-06).** PEC dispatches nothing and
   arbitrates nothing; no leases, no merge opinions. Conflicts are surfaced,
   never prevented; gate verdicts are advisory and Explain-shaped.
 - **Consumer-owned use (PEC-K-03/-11).** PEC is pull-oriented, mode-capable,
-  and never forced. An explicitly enabled consumer owns whether and when it
-  consumes and whether it injects labeled PEC data; no external cadence or
-  receiving-loop duty is inferred (`D-PEC-67`, `D-PEC-68`).
+  and never forced. An explicitly enabled consumer, whether a harness or an
+  agent querying through tool calls under the read-only `agent` access class,
+  owns whether and when it consumes and whether it injects labeled PEC data;
+  no external cadence or receiving-loop duty is inferred (`D-PEC-67`,
+  `D-PEC-68`, `D-PEC-90`). Injected or queried PEC data carries its reliance
+  envelope (PEC-ORI-007).
 - PEC is not a system of record, not a ruling surface, not an orchestrator,
   not a lock manager, not a Git actor, not a replacement for the practitioner
   harness, and not a human project-management tool (PRD v2 §4.2, permanent
@@ -101,17 +115,21 @@ development procedure is `loop/LOOP_INIT.md`, entered through
 `init/dev-loop-init-prompt.md`; see "Deliverable records and loop ownership"
 below. Retired plans are history only.
 
-| Agent | Type | Role in this project |
+| Role and method | Type | Role in this project |
 |---|---:|---|
-| `SOFTWARE_DECOMP` | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
-| `PROJECT_SETUP` | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
-| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
+| `WORKING_ITEMS` with `software-decomp` (formerly `SOFTWARE_DECOMP`) | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
+| `WORKING_ITEMS` with `project-setup` (formerly `PROJECT_SETUP`) | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
+| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the `software-repository-reconnaissance` and `software-test-planning` workflows and the `software-code-review` and `software-defect-diagnosis` skills, with implementation commissioned as a bounded TASK assignment under the implementation-node requirements of `construct-local-work-graph` (catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
-| `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
-| `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
-| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
-| `RESEARCH` | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
-| `AUDIT_*` | 2 | Bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
+| `WORKING_ITEMS` with the project `chirality-change` skill (formerly `CHANGE`, whose legacy mapping is the `change` workflow) | 1 | Performs scoped Git/file-state closeout for validated tranches. The agent performing it owns Git state; PEC never will. |
+| `WORKING_ITEMS` with `review` (formerly `REVIEW`) | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
+| `WORKING_ITEMS` with `reconciliation` (formerly `RECONCILIATION`) | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
+| `WORKING_ITEMS` with `research-orchestration` (formerly `RESEARCH`) | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
+| `TASK` with an `audit-*` workflow (formerly `AUDIT_*`) | 2 | Bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
+
+The roles are Root's four (`{REPO_ROOT}/agents/registry.json`). The former
+agent names map to these role and method pairs in
+`{REPO_ROOT}/workflows/index.json` (`legacy.retiredRoles`).
 
 ## Write Scopes And Fences
 
@@ -186,7 +204,9 @@ instance-content lane and creates no invocation by itself.
   concordance, and SCA-003 consumer-interface concordance — revision
   1.3 accepted; `D-PEC-92` SCA-005 checkpoint group 2 — PRD v2.3 adopted,
   with decomposition revision 1.5 accepted at checkpoint 3; `D-PEC-94`
-  shared development-loop adoption)
+  shared development-loop adoption; `D-PEC-90` operational reliance on PEC
+  data (R-A); SCA-006 checkpoint group 2 — PRD v2.4 adopted
+  (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`))
 - `execution/_Decomposition/` — the accepted decomposition working package
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)
@@ -238,16 +258,18 @@ Keep it Git-tracked in the undertaking's PR sequence and return its path for
 continuation. Preserve historical graph files. `_STATUS.md` retains
 lifecycle and history.
 
-PEC's deliverable `_STATUS.md` `## Remaining` sections stay in place as
+PEC adds no new deliverable `_STATUS.md` `## Remaining` sections or entries
+(owner direction of 2026-09-26, recorded as SCA-006 checkpoint group 2
+amendment 1). No PEC feed profile reads them, so the coordination plane does
+not scan them, and they are not a work-selection surface. Steering selects the
+undertaking; record new open scope in its work graph and governing records.
+Until any retirement ruling, the existing sections stay in place as
 deliverable-local records of open scope under their owning decisions (for
-example `D-PEC-83`). They are no longer a work-selection surface: steering
-selects the undertaking and its graph accounts for the Remaining items it
-touches. A Remaining item's own gate markers still bind that item. When an
-undertaking completes or changes an item, update it under the packet that
-opens that `_STATUS.md`; without that grant, record the consequence in the
-graph and bring it to the owner. Record new open scope in the graph and its
-governing records rather than as a new Remaining entry. Retiring the sections,
-as App and Piping did, is a separate owner-directed undertaking.
+example `D-PEC-83`). A Remaining item's own gate markers still bind that item.
+Update an item only under the packet that opens that `_STATUS.md`. If an
+undertaking completes or affects an item without such a grant, record the
+consequence in the graph and bring it to the owner. Retiring the sections, as
+App and Piping did, is a separate owner-directed undertaking.
 
 Each substantive PR includes the documentary, reconciliation and conditional
 Task Management consequences needed for that slice. Perform one final bounded
@@ -406,7 +428,7 @@ tolerance or limit to obtain a pass.
 | Launcher/init/posture changes | `python3 tools/validation/validate_instruction_entrypoints.py .`; `python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` |
 | Tool changes | Focused tests for each changed tool plus practitioner-harness pytest when its code changes; record command, interpreter, and result |
 | PEC v2 source/configuration | Exact packet's registered checks in `projects/pec/software-workflow.json`; run from `projects/pec` with an explicit compatible Python (registry requires 3.10+); record the selected version |
-| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; absent implementations are unmet gates, never fabricated passes |
+| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; a release that advertises operational reliance also passes the PRD §12 reliance-advertisement gate (parity clean or explained, coverage statements under seeded feed failures, the reliance envelope, parser fixture suites, the kill test); absent implementations are unmet gates, never fabricated passes |
 | Governance/control only | Record source-only, kill, and parity checks as not applicable when no corresponding capability changed; legacy source/demo/typecheck/build/drill checks do not authorize running the frozen product |
 | Any dispatch, review, fan-in, promotion, or reliance | PEC hold preflight above for each exact target/act, plus the owning role's checks |
 

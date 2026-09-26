@@ -42,11 +42,11 @@
       },
       {
         "name": "review",
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       {
         "name": "reconciliation",
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       }
     ],
     "specialist": [
@@ -201,9 +201,6 @@
         "key": "build-maintain-software",
         "label": "Build & maintain software",
         "workflows": [
-          {
-            "name": "software-bounded-implementation"
-          },
           {
             "name": "software-test-planning"
           }

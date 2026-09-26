@@ -110,7 +110,7 @@ From the files read, extract:
   in SOW mode, summarize the four practical lens sections and list
   `OUT-*`, `REQ-*`, `AC-*`, and `VER-*` identities without changing the
   seven-section digest schema.
-- **Dependencies** (from `_DEPENDENCIES.md`): Tracking mode (`NOT_TRACKED`/`DECLARED`/`TRACKED`), upstream count, downstream count, key upstream (top 3-5 by name), key downstream (top 3-5 by name)
+- **Dependencies** (from `_DEPENDENCIES.md`): Tracking mode (`NOT_TRACKED`/`DECLARED`/`FULL_GRAPH`, per `docs/SPEC.md` §5.3; report a legacy `TRACKED` as `FULL_GRAPH`), upstream count, downstream count, key upstream (top 3-5 by name), key downstream (top 3-5 by name)
 - **References** (from `_REFERENCES.md`): list of all referenced documents
 - **Semantic** (from first 40 lines of `_SEMANTIC.md`): whether present (`YES`/`NO`), framework type if identifiable
 
@@ -157,7 +157,7 @@ The digest file contains exactly seven sections, in this order:
 - Procedure focus: {1 sentence}
 
 ### Dependencies
-- Tracking mode: {NOT_TRACKED/DECLARED/TRACKED}
+- Tracking mode: {NOT_TRACKED/DECLARED/FULL_GRAPH}
 - Upstream count: {N}
 - Downstream count: {N}
 - Key upstream: {top 3-5 by name}

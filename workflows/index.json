@@ -651,7 +651,7 @@
       "name": "change",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Prepare and close a coherent Git change with inspectable evidence and existing human decision rights.",
+      "description": "Prepare and close a coherent Git change in any repository, isolating the work when warranted, checking and reviewing the diff, and committing, pushing, opening a PR, or merging only as far as the user or the repository actually authorizes.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -1108,7 +1108,7 @@
       "name": "dependency-extract",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Setup-pipeline workflow dispatched by WORKING_ITEMS (workflow: project-setup) during project setup.",
+      "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Dispatched as TASK + dependency-extract by project-setup (Function 2 dependency stage), scope-change reruns, or explicit refresh briefs.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -1143,7 +1143,9 @@
         "tools": {
           "commands": [
             "python3 tools/validation/validate_dependencies_schema.py:*",
-            "python3 tools/validation/validate_enum.py:*"
+            "python3 tools/validation/validate_enum.py:*",
+            "bash tools/validation/validate_id_format.sh:*",
+            "python3 tools/validation/validate_decomposition_registers.py:*"
           ]
         }
       }
@@ -2397,7 +2399,8 @@
         "execution.json",
         "resources/contract.md",
         "resources/method.md",
-        "resources/package-activation.md"
+        "resources/package-activation.md",
+        "resources/software-activation.md"
       ],
       "navigation": {
         "category": "core",
@@ -2427,7 +2430,7 @@
       "name": "reconciliation",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.",
+      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) with accepted project truth.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2437,13 +2440,14 @@
         "WORKFLOW.md",
         "execution.json",
         "resources/contract.md",
-        "resources/method.md"
+        "resources/method.md",
+        "resources/representation-migration.md"
       ],
       "navigation": {
         "category": "core",
         "tier": "primary",
         "order": 9,
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       },
       "execution": {
         "schemaVersion": 1,
@@ -2464,7 +2468,7 @@
       },
       "metadata": {
         "category": "Review and validation",
-        "applicability": "Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus."
+        "applicability": "Reconcile claims, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) across a deliverable corpus."
       }
     },
     {
@@ -2561,7 +2565,7 @@
         "category": "core",
         "tier": "primary",
         "order": 8,
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       "execution": {
         "schemaVersion": 1,
@@ -2824,55 +2828,6 @@
     },
     {
       "kind": "workflow",
-      "name": "software-bounded-implementation",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Implement one sealed software change within explicit write targets and acceptance criteria, then produce normalized verification evidence. Use for bounded features, repairs, refactors, migrations, or documentation changes after the owning manager freezes scope.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/activation.md",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 0,
-        "group": {
-          "key": "build-maintain-software",
-          "label": "Build & maintain software",
-          "order": 4
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/software_workflow/select_affected_checks.py:*",
-            "python3 tools/software_workflow/run_registered_checks.py:*",
-            "python3 tools/software_workflow/validate_change_scope.py:*",
-            "python3 tools/software_workflow/verify_generated_manifest.py:*",
-            "python3 tools/software_workflow/compare_structured.py:*"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
       "name": "software-decomp",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2968,7 +2923,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 0,
         "group": {
           "key": "build-maintain-software",
           "label": "Build & maintain software",
@@ -3063,7 +3018,7 @@
           "name": "chirality-change",
           "scope": "project"
         },
-        "compatibility_note": "Legacy CHANGE runs retain the historical change workflow; new Chirality repository change work may select the project-only chirality-change skill."
+        "compatibility_note": "Legacy CHANGE runs map to the change workflow, now a repository-agnostic Git method; Chirality repository change work uses the project-only chirality-change skill, which specializes it."
       },
       "DBM_PUBLISHER": {
         "role": "WORKING_ITEMS",
@@ -3327,10 +3282,6 @@
         "kind": "workflow",
         "name": "semantic-matrix-build"
       },
-      "software-bounded-implementation": {
-        "kind": "workflow",
-        "name": "software-bounded-implementation"
-      },
       "software-code-review": {
         "kind": "skill",
         "name": "software-code-review"
@@ -3348,7 +3299,9 @@
         "name": "software-test-planning"
       }
     },
-    "historicalOnly": [],
+    "historicalOnly": [
+      "software-bounded-implementation"
+    ],
     "unknownLegacyBehavior": "error"
   },
   "discoveryContract": {

@@ -2,26 +2,61 @@
 
 ## Method
 
-### Operational — \"How to do?\"
+### Operational — "How to do?"
 
 This section defines the grouped-checkpoint conversational procedure for software development decomposition.
 
 ### Output Target
 
-The agent maintains a **canonical working package** (living draft consisting of the main decomposition document and any companion registers) and revises it after human feedback until it passes the grouped checkpoints and validity checks in SPEC.
+The agent maintains a **canonical working package** (living draft consisting of the main decomposition document and any companion registers) and revises it after human feedback until it passes the grouped checkpoints and the [Validity](contract.md#validity) requirements in the contract.
 
 For each accepted group, finalize
-`checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
+`{DECOMP_ROOT}/checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
 and then update `_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, or
 `_LATEST_ACCEPTED.md` as applicable. The manifest binds paths, package roles,
 and hashes. The handoff names the accepted upstream snapshot, derivative
 status, closure verdict, rerun requirements, and blockers. A later preparation
-stage begins by resolving the preceding pointer and reading that immutable
+stage (except in a combined review sitting; see below) begins by resolving
+the preceding pointer and reading that immutable
 snapshot. Reopened decisions create successors; never overwrite a snapshot.
+
+### Combined review for a small, reversible undertaking
+
+For a small, reversible undertaking, the human may choose to decide all three
+checkpoint groups in one sitting (`docs/DECOMPOSITION_STANDARD.md`, PROTOCOL,
+combined review sitting). Propose it where it fits; the human chooses it. Then:
+
+- Prepare group 2 on the proposed group-1 state and group 3 on the proposed
+  group-2 state, and complete the independent audit of the final package
+  before the human decides.
+- Present the three groups together. The human's decision records which
+  groups it covers, and the audit and decision record the hashes of the
+  presented package.
+- After the decision, write the group-1, group-2, and group-3 snapshots in
+  that order, each naming the preceding snapshot as its upstream basis, and
+  update each pointer only after its snapshot is complete. The snapshots must
+  match the recorded hashes; any difference reopens the affected groups and
+  every later group.
+- A material change found during the sitting reopens the groups it affects
+  and every later group. Refresh their dependent preparation and audit
+  before they are decided; only earlier, unaffected groups may still be
+  decided in the sitting.
+
+Otherwise, the groups below are decided in separate sittings.
 
 ### Preparation and checkpoint groups
 
 #### Group 1 preparation — basis, normalized scope, vocabulary, objectives
+
+Record the accepted basis before normalizing it: its path, content hash, the
+separate acceptance decision record, and the accepted portions and shared
+constraints that record names. For a partial or qualified acceptance (for
+example, a `reverse-engineer-software` handoff), normalize only the accepted
+portions as candidate `IN` scope. Record material outside them as `TBD` Scope
+Items with a `SourceRef` to its location in the basis, using `OUT` only where
+the decision record excludes it; do not treat it as accepted scope. Packages
+do not exist yet, so these items receive their Package home at group 2. Carry the basis identity into the group-1 `DECISION.md`
+and `HANDOFF_STATE.md`.
 
 Collect requirements, tickets, notes, architecture, constraints, non-functional
 requirements, target platforms, rollout expectations, prior decompositions, and
@@ -48,9 +83,13 @@ Resolve and consume the accepted group-1 snapshot before developing this
 proposal.
 
 Propose flat Packages as cohesive work domains, supported by the accepted
-domain signals rather than a timeline. Assign each IN Scope Item to exactly one
-Package. Resolve overlap by proposing an evidenced split or presenting the
-boundary as a human decision.
+domain signals rather than a timeline. Assign every Scope Item, whether `IN`,
+`OUT` or `TBD`, to exactly one Package as its accountable home; this includes
+material recorded as `TBD` at group 1, before Packages existed. The home
+allocates responsibility for accounting for the item. Only IN Scope Items map
+to Deliverables; an OUT or TBD item keeps its home and `SourceRef` for
+traceability and needs no production mapping. Resolve overlap by proposing an
+evidenced split or presenting the boundary as a human decision.
 
 Within each Package, propose agent-executable Deliverables with stable coupled
 `DEL-XX-YY` IDs, descriptions, responsible parties, types, anticipated
@@ -59,7 +98,9 @@ Deliverable within one Package and one cohesive verification context. Split `XL`
 items where possible; otherwise identify the precise exception and risk.
 
 Run coverage, ID-coupling, Context Budget, interface, artifact, responsibility,
-and objective-mapping checks. Prepare Coverage & Telemetry and the specific
+and objective-mapping checks, including the register validator in the
+contract's [Inputs and outputs](contract.md#inputs-and-outputs) and its
+identifier-format invariants. Prepare Coverage & Telemetry and the specific
 exception/open-issue list before asking for a decision.
 
 **Checkpoint group 2:** Present the proposed Packages and Deliverables together

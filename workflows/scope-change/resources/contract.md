@@ -20,6 +20,7 @@ Defaults (only when not otherwise specified by the human):
 - `ALLOWED_PROPAGATION_WRITES` = variant-specific default write scope:
   - `PROJECT/SOFTWARE`: decomposition document + affected `_CONTEXT.md` and `_STATUS.md`
   - `DOMAIN`: decomposition document + decomposition annex CSVs under `_Decomposition/` + amendment snapshot and `_LATEST.md` under `_ScopeChange/`
+  - Either variant, only when the accepted checkpoint-group-2 write boundary names it exactly: an additional authoritative carrier of the changed truth, such as a deliverable `ScopeOfWork.md`, the project PRD, or an instruction file. Each carrier keeps its own authority and route: an instruction file also needs its own instruction-tranche manifest; an `ISSUED` deliverable changes only through its lifecycle route (`docs/SPEC.md` §3.3); a carrier the boundary does not name remains a downstream handoff.
 
 ---
 
@@ -36,9 +37,9 @@ Defaults (only when not otherwise specified by the human):
   amendment and propagation plan; and (3) audited poststate acceptance. Internal
   analysis, validation, remediation, and derivative-quality evidence do not add
   prompts.
-- **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, removed deliverables are marked `RETIRED` in `_STATUS.md` and folders are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
+- **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, a removed deliverable's decomposition row is annotated `[RETIRED — {AMENDMENT_ID}]` and its `_STATUS.md` gains an appended history line recording the retirement under the amendment; its lifecycle state is left unchanged (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for it. Folders and files are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
 - **Impact before action.** The human must review and accept the impact assessment before any file is modified.
-- **No direct collateral writes.** WORKING_ITEMS does not directly modify the four-doc set, `Dependencies.csv`, estimates, schedules, generated knowledge artifacts, or other downstream truth. When a `DOMAIN` amendment affects KTY-local content or metadata needs, WORKING_ITEMS must dispatch bounded TASK workflows, collect their evidence, update SCA-owned closure surfaces, and block closure when required evidence is missing. WORKING_ITEMS never edits active `Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` inside KTY folders itself.
+- **No direct collateral writes.** Except for an authoritative carrier the accepted checkpoint-group-2 write boundary names exactly (see `ALLOWED_PROPAGATION_WRITES`), WORKING_ITEMS does not directly modify deliverable scope carriers (`ScopeOfWork.md`, or the legacy four-document set only where a deliverable still pins it), `Dependencies.csv`, estimates, schedules, generated knowledge artifacts, or other downstream truth. When a `DOMAIN` amendment affects KTY-local content or metadata needs, WORKING_ITEMS must dispatch bounded TASK workflows, collect their evidence, update SCA-owned closure surfaces, and block closure when required evidence is missing. WORKING_ITEMS never edits active `Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` inside KTY folders itself.
 - **Derivative packages are downstream only.** `DERIVATIVE_PACKAGES` may consume accepted decomposition truth, but they do not redefine it and they are never updated in place by WORKING_ITEMS except for the amendment snapshot artifacts WORKING_ITEMS itself owns.
 - **KTY content one-writer rule.** `domain-documents` is the only writer of active DOMAIN KTY `Scoping.md` and `KA-*.md` factual content. `kty-content-remediate` may archive active-looking content and leave tombstone stubs, but it never writes regenerated active content.
 - **Status-memory paired read.** Whenever WORKING_ITEMS or a WORKING_ITEMS-dispatched workflow reads a local `_STATUS.md`, it must also read sibling `_MEMORY.md` or `MEMORY.md` when present. Memory is non-authoritative operational context only; it may explain local continuity, caveats, or prior run notes, but it must never override accepted decomposition truth, structured SCA artifacts, supersession bindings, or source authority.
@@ -120,7 +121,13 @@ WORKING_ITEMS classifies every change request into one or more atomic actions:
 
 ### Required before checkpoint group 1
 - A human request or an evidence-backed agent proposal for a decomposition
-  change (natural language or structured)
+  change (natural language or structured). Admissible evidence-backed
+  proposals include a `scope-change-packet` seed packet and an
+  `scc-resolution-case` resolution case. Either is intake evidence, not an
+  accepted action; the checkpoint-group-1 decision still applies.
+  `tools/validation/validate_scope_change_packet.py` validates only the
+  seed-packet form; it does not validate an SCC resolution case or this
+  workflow's own artifacts.
 
 ### Resolved before checkpoint group 1
 - `DECOMP_VARIANT`
@@ -140,7 +147,7 @@ WORKING_ITEMS classifies every change request into one or more atomic actions:
 - `DECOMP_VARIANT`: `PROJECT` | `SOFTWARE` | `DOMAIN`
 
 ### Optional
-- `AMENDMENT_ID`: human-assigned `SCA-{NNN}` (default: next available scanned from `_ScopeChange/` folder names)
+- `AMENDMENT_ID`: human-assigned `SCA-{NNN}` (default: next available scanned from `_ScopeChange/` folder names). A project whose accepted records use a project-qualified form (for example `SCA-APP-{NNN}`) keeps that form; scan with its prefix (see method step 4). Wherever this contract writes `SCA-{NNN}`, read the project's qualified form.
 - `ALLOW_RENUMBERING`: `true|false` (default `false`)
 - `ALLOWED_PROPAGATION_WRITES`: explicit narrower write list if the human wants stricter write quarantine than the defaults
 
@@ -176,9 +183,9 @@ When validating or proposing IDs, use the originating decomposition's grammar:
 
 - `WORKING_ITEMS (workflow: project-decomp)`: `PKG-XX` / `DEL-XX-YY_{desc}`
 - `WORKING_ITEMS (workflow: software-decomp)`: `PKG-XX` / `DEL-XX-YY`
-- `WORKING_ITEMS (workflow: domain-decomp)`:
-  - `HBA-####` (accepted source identifier; read historical HBK aliases only when the accepted basis supplies their mapping)
-  - `OBJ-###`
+- `WORKING_ITEMS (workflow: domain-decomp)` (grammar owned by `workflows/domain-decomp/resources/contract.md`):
+  - `HBA-<SOURCE_PREFIX>-NNNNN` for Handbook Units / atomic units (read historical `HBK-*` or unprefixed `HBA-####` aliases only when the accepted basis supplies their mapping)
+  - no `OBJ-*` layer; `DOMAIN` has no Objectives section
   - `CAT-###`
   - `KTY-CC-TT_{shortDescription}`
   - `SUB-CC-TT-SS_{shortDescription}`
@@ -206,7 +213,7 @@ A decomposition amendment cycle is valid when:
 - The decomposition document's Change Register contains the amendment entry.
 - Stable IDs were preserved unless the human explicitly approved renumbering.
 - Retired / removed source IDs were not reused.
-- `Amendment_Actions.csv` accounts for every atomic change.
+- `Amendment_Actions.csv` (or the distinct name bound in the group-2 manifest for a run whose group-1 snapshot already bound that file), the accepted checkpoint-group-2 action register, accounts for every atomic change; `Handoff_State.md` names it as the authoritative register.
 - `Decision_Log.md` records all human decisions at each checkpoint.
 - `Handoff_State.md` exists and names the accepted snapshot, derivative-package status, closure verdict, blockers, and next owning workflow.
 - Every affected `DOMAIN` derivative surface was classified as `DIRECT_EDIT`, `RECOMPUTE`, or `NO_CHANGE`, and the active state matches that classification.
@@ -243,12 +250,22 @@ A decomposition amendment cycle is valid when:
 
 ```
 {SCOPE_CHANGE_ROOT}/
-  _LATEST.md
+  _LATEST.md                       (active accepted SCA snapshot; moved only after checkpoint-group-3 acceptance)
+  SCA-{NNN}_GROUP-{N}_AUTHORIZED.md  (amendment-qualified pointer to the accepted group-1 or group-2 decision snapshot; written after that snapshot is complete)
+  checkpoint_snapshots/
+    SCA-{NNN}_GROUP-{N}_{YYYY-MM-DD}/  (immutable decision snapshot per accepted checkpoint; a revised acceptance adds a new folder, e.g. `..._AMENDMENT-{K}_...`)
+      DECISION.md                  (the human's actual act, verbatim where available, and its recorded interpretation)
+      ACCEPTED_MANIFEST.csv        (path, SHA-256, role and acceptance boundary of each accepted artifact)
+      Handoff_State.md             (what the next stage consumes and what remains unauthorized)
+  _PostAcceptanceValidation/
+    {AMENDMENT_ID}_{UTC}/          (append-only verification of acceptance-conditional edits and the now-active snapshot)
   SCA-{NNN}_{YYYY-MM-DD}_{HHMM}/
     Brief.md                       (human's original request + parsed actions)
+    Intake_Actions.csv             (checkpoint-group-1 parsed actions; every row `Status = PROPOSED`)
     Impact_Assessment.md           (checkpoint-group-1 output)
+    Amendment_Preview.md           (checkpoint-group-2 diff-style exact amendment, including acceptance-conditional edits)
     Propagation_Plan.md            (checkpoint-group-2 output)
-    Amendment_Actions.csv          (machine-readable action register)
+    Amendment_Actions.csv          (accepted checkpoint-group-2 action register; bound by hash in the group-2 `ACCEPTED_MANIFEST.csv`)
     Pre_Change_Coverage.json       (audit output copy or synthesized baseline)
     Post_Change_Coverage.json      (audit output copy or synthesized baseline)
     Decision_Log.md                (all checkpoint decisions)
@@ -262,19 +279,36 @@ A decomposition amendment cycle is valid when:
     Evidence/                      (TASK evidence for kty-content-remediate, domain-documents, and kty-metadata-align dispatches)
 ```
 
+The role that presents a checkpoint to the human writes that checkpoint's
+decision snapshot from the human's actual act. It records only what the human
+had in front of them and did; it claims no inspection the human did not
+perform. Checkpoint group 3 may also be recorded as a `checkpoint_snapshots/`
+decision folder; the accepted `SCA-*` snapshot remains the `_LATEST.md` target.
+
+Historical runs remain readable as written. A run that predates this layout may
+carry its accepted register under another name (for example
+`Amendment_Actions_CP2.csv`, bound in its group-2 `ACCEPTED_MANIFEST.csv`) or
+gate-numbered handoff files; consumers resolve the register through the
+accepted manifest and do not rewrite those runs. A run whose group-1 snapshot
+already binds `Amendment_Actions.csv` as its intake keeps that file unchanged
+and writes its group-2 register under a distinct name (for example
+`Amendment_Actions_CP2.csv`), bound in the group-2 `ACCEPTED_MANIFEST.csv` and
+named in `Handoff_State.md`.
+
 ### `RUN_SUMMARY.md` / `Handoff_State.md` state fields
 
 The active snapshot must expose these fixed state fields across `RUN_SUMMARY.md` and/or `Handoff_State.md`:
 
 | Field | Allowed values | Meaning |
 |---|---|---|
-| `DecompositionTruthState` | `INCOMPLETE` / `COMPLETE` | Whether the main decomposition document amendments are complete |
+| `DecompositionTruthState` | `NOT_STARTED` / `INCOMPLETE` / `COMPLETE` | Whether the main decomposition document amendments are complete; `NOT_STARTED` before any accepted amendment is applied |
 | `DerivativePackageState` | `INCOMPLETE` / `COMPLETE` | Whether affected decomposition-local derivative surfaces are in parity |
 | `ContentRemediationState` | `NOT_REQUIRED` / `PENDING` / `COMPLETE` / `BLOCKED` / `DEFERRED` | Rollup state for SCA-owned KTY content remediation manifest rows |
 | `DownstreamRerunState` | `NOT_REQUIRED` / `FROZEN` / `IN_PROGRESS` / `COMPLETE` / `BLOCKED` | Whether downstream reruns are pending or complete |
 | `MetadataAlignmentState` | `NOT_REQUIRED` / `NOT_STARTED` / `IN_PROGRESS` / `COMPLETE` / `BLOCKED` | Whether post-regeneration metadata alignment is complete |
-| `AuditState` | `NOT_RUN` / `WARNINGS` / `NON_BLOCKING_PASS` / `BLOCKED` | Current audit / verification state |
-| `ReadyForNextPhase` | `NO` / `REGEN_ONLY` / `PHASE7_REVIEW` / `PUBLICATION_GATED` | Highest phase the current artifact state actually supports |
+| `AuditState` | `NOT_RUN` / `WARNINGS` / `NON_BLOCKING_PASS` / `BLOCKED` | Current audit / verification state over all findings (raw) |
+| `AdjustedAuditState` | same values | Audit state excluding findings classified `EXPECTED_CONSEQUENCE`; recorded with that classification table |
+| `ReadyForNextPhase` | `NO` / `REGEN_ONLY` / `PHASE7_REVIEW` / `PUBLICATION_GATED` / `NOT_APPLICABLE` | Highest phase the current artifact state actually supports; `NOT_APPLICABLE` when the variant has no such phase ladder (for example `PROJECT/SOFTWARE`) |
 
 ### KTY Remediation Closure Rules
 
@@ -305,6 +339,11 @@ These rules apply when `KTY_Remediation_Manifest.csv` exists or when any
   `VERIFIED`, or `NOT_REQUIRED` and all required evidence is present.
 
 ### Amendment Actions Schema
+
+`Amendment_Actions.csv` is the accepted checkpoint-group-2 register.
+`Intake_Actions.csv` uses the same columns plus a trailing `Status` column whose
+value is `PROPOSED`; it is intake evidence and never becomes the accepted
+register by renaming.
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -355,7 +394,7 @@ one of these defaults, the manifest row must cite that ruling in
 | `KTYID` | string | Stable KTY id |
 | `KTYPath` | string | Path to the affected KTY folder |
 | `AffectedSubjects` | string | Semicolon-separated `SUB-*` ids affected by this row, or blank when whole-KTY / not applicable |
-| `AffectedHBK` | string | Semicolon-separated `HBK-*` ids affected by this row, or blank when not applicable |
+| `AffectedHBK` | string | Semicolon-separated Handbook Unit ids (`HBA-<SOURCE_PREFIX>-NNNNN`; historical `HBK-*` aliases only where the accepted basis maps them) affected by this row, or blank when not applicable. The column name is retained for validator and historical compatibility |
 | `CanonicalRootName` | string | Canonical root name when the project spans multiple DOMAIN roots; blank only when unambiguous |
 | `FacilityID` | string | Facility id or facility scope token when relevant; blank only when not applicable |
 | `ContentAction` | enum | `ARCHIVE_AND_STUB` / `REGENERATE_CONTENT` / `VERIFY_ONLY` / `NO_ACTION` |
@@ -406,6 +445,9 @@ Two `OverrideType` values are supported:
 | `Notes` | string | Additional context |
 
 ### Recommended Commit Message Format
+
+The project's own change conventions or change skill govern commit messages
+when present. Otherwise this form may be used:
 
 ```text
 scope: SCA-{NNN} — {brief description}

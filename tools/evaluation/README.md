@@ -13,7 +13,7 @@ python3 "$INSTRUCTION_ROOT/tools/evaluation/audit_dependencies.py" --root "$EXEC
 ```
 
 The inventory contains every live PKG/DEL and CAT/KTY unit plus additional
-`Dependencies.csv` files under `1_Working`, excluding `_Archive`. Missing
+`Dependencies.csv` files under `1_Working`, `2_Checking`, or `3_Issued`, excluding `_Archive`. Missing
 registers on discovered units are explicit findings. Exact required column names,
 versions, all canonical enums and row semantics come from
 `tools/validation/validate_dependencies_schema.py`. Extension columns remain
@@ -42,7 +42,8 @@ python3 "$INSTRUCTION_ROOT/tools/evaluation/audit_structure.py" --root "$EXECUTI
 ```
 
 `--variant` is required: PROJECT and SOFTWARE discover immediate live
-`PKG-*/1_Working/DEL-*` units; DOMAIN discovers `CAT-*/1_Working/KTY-*`. To audit an
+`PKG-*/{1_Working,2_Checking,3_Issued}/DEL-*` units; DOMAIN discovers
+`CAT-*/{1_Working,2_Checking,3_Issued}/KTY-*`. To audit an
 accepted list, including missing units, supply `--inventory inventory.json`:
 
 ```json

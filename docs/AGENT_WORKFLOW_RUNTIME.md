@@ -135,13 +135,22 @@ remain ordinary documents and are not reinterpreted as canonical workflow
 packages. Project workflow discovery recognizes only
 `.chirality/workflows/<name>/WORKFLOW.md` packages.
 
-Workflow authoring is chat-driven. On a user's request, an authorized agent may
-create, save, or revise a canonical project or user workflow package with the
-available file tools, subject to the active permission policy, real-path
-containment, and the package metadata rules above. The agent validates the
-entrypoint and requested resources, then requests or performs catalog refresh so
-the source-qualified package becomes discoverable. The MVP has no separate
-workflow-editor surface or alternate workflow document format.
+Workflow authoring is chat-driven and follows the core `create-workflow`
+workflow. On a user's request, an authorized agent prepares a project or user
+workflow package with the available file tools, subject to the active
+permission policy, real-path containment, and the package metadata rules above.
+In the App it writes a draft at `.chirality/workflow-drafts/<name>/WORKFLOW.md`
+under the project or user root, with its resources inside the draft and no
+symbolic or hard links, and validates the entrypoint and resources. The human
+inspects the draft, gives feedback in chat, and registers the reviewed bytes
+through the Workflows panel; registration does not overwrite an existing name
+or run the workflow. Another host presents the complete package for the
+human's explicit acceptance before it is registered through available file
+tools. The agent does not write straight into `.chirality/workflows` as a
+substitute for review, and reports discovery only after observing the
+refreshed catalog. Revising a registered workflow follows the revision route in
+`create-workflow`. The MVP has no separate workflow-editor surface or alternate
+workflow document format.
 
 ## Context selection and execution
 

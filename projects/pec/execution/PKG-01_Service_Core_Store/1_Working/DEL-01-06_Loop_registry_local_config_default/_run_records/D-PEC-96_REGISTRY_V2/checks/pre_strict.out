@@ -1,0 +1,37 @@
+Register validation — projects/pec/execution
+  Families: SCH, EVQ, XRG, DRB
+  Registers scanned: 66  Dependency rows: 263  Deliverables declared: 66
+
+Evidence-cell metrics by row class
+  class         rows  well-formed  locus=quote  quoted-locus  empty-quote  ph-locus  waived  file-pop  file-res
+  ANCHOR         140          140            0             0            0         0       0       140       140
+  EXECUTION      123          123            0             0            0         0       0       123       123
+
+Findings
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-029] — OUT item SOW-029 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-035] — OUT item SOW-035 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-037] — OUT item SOW-037 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-087] — OUT item SOW-087 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-065] — OUT item SOW-065 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-066] — OUT item SOW-066 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-067] — OUT item SOW-067 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-068] — OUT item SOW-068 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-069] — OUT item SOW-069 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-070] — OUT item SOW-070 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-071] — OUT item SOW-071 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-072] — OUT item SOW-072 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-073] — OUT item SOW-073 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-074] — OUT item SOW-074 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-086] — OUT item SOW-086 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-090] — OUT item SOW-090 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-091] — OUT item SOW-091 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-092] — OUT item SOW-092 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-075] — TBD item SOW-075 has no PackageID; give it one Package home
+  WARNING XRG-013 _Decomposition/ScopeLedger.csv [SOW-076] — TBD item SOW-076 has no PackageID; give it one Package home
+  ... XRG-013: 6 further occurrence(s) suppressed (--max-per-code 20; full list in --json)
+
+Summary by check code
+  WARNING XRG-013     26  OUT or TBD ledger item has no PackageID (D-GOV-48: every scope item has one Package home)
+
+  ERROR findings:   0
+  WARNING findings: 26

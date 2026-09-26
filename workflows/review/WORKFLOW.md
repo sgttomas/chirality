@@ -8,17 +8,21 @@ metadata:
 
 # review
 
-Guide evidence review and human disposition for a deliverable lifecycle transition.
+Guide evidence review and human disposition for one deliverable's lifecycle
+transition under `docs/SPEC.md` §3.3–3.4: a candidacy check for entry to
+`CHECKING`, the check of a frozen `CHECKING` candidate toward `ISSUED`, and
+the human-ruled reversal `CHECKING → IN_PROGRESS` for an unsuccessful or
+withdrawn check.
 
 WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to TASK.
 
 ## Method
 
-1. Confirm the transition, current lifecycle state, accepted criteria, and exact source bindings.
-2. Populate the checklist, capture findings, and obtain human dispositions through the five gates.
-3. Recommend issuance only when every CRITICAL finding is resolved and MAJOR findings are resolved or explicitly deferred.
-4. Record the lifecycle decision, finalize a new immutable review snapshot, and update only the authorized pointer.
+1. Confirm the transition, current lifecycle state, owning-loop fences, accepted criteria, and exact source bindings.
+2. For entry to `CHECKING`, establish a current candidate-bound account showing no unfulfilled production obligation and a declared checking basis; there is no deferral path into `CHECKING`.
+3. Populate the checklist, capture findings, and obtain human dispositions through the five gates.
+4. At Gate 5, run the owning loop's promotion preflight, record the human decision (freeze with the frozen candidate SHA, issuance, reversal, or decline), finalize a new immutable review snapshot, and update only the authorized pointer.
 
 ## Resources
 
-Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Resolve tool commands against the declared tool root.
+Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Resolve tool commands against `{INSTRUCTION_ROOT}`.

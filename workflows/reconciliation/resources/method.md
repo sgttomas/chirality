@@ -4,24 +4,33 @@
 
 ### R0 — Activate and calibrate
 
-1. Verify the activation ruling is committed on the shared baseline.
+1. Verify the activation ruling is committed on the shared baseline before any
+   discovery dispatch. An independent review of the activation diff may run
+   before its merge; record that launch in the run evidence. It performs no
+   discovery work.
 2. Freeze `RUN_BASIS.md`: source state, accepted authorities, corpus census,
    concurrent-work check, method/profile revisions, and fences.
-3. Select a diverse calibration sample spanning claim types, evidence classes,
+3. Ask the human about off-code events (signing, notarization, native checks,
+   manual reviews, releases) and their result artifacts; an event without a
+   located result is unknown evidence, not proof that it did not occur.
+4. Select a diverse calibration sample spanning claim types, evidence classes,
    lifecycle states, and project-specific risks.
-4. Dispatch one bounded TASK or ephemeral generalist per sampled deliverable.
-5. Validate row schema, citation quality, disposition consistency, false
+5. Dispatch one bounded TASK or ephemeral generalist per sampled deliverable.
+6. Validate row schema, citation quality, disposition consistency, false
    positives, and project-specific evidence rules.
-6. Present conventions, addenda, named repairs, and scale-out choice to the
+7. Present conventions, addenda, named repairs, and scale-out choice to the
    human. Do not edit deliverables.
 
 ### R1 — Read-only corpus inventory
 
 Build source-state-bound inventories for deliverables, objectives/scope,
 implementation surfaces, verification, validation/provenance where applicable,
-decisions/authority, lifecycle state, and Remaining work. Resolve live pointers
+decisions/authority, lifecycle state, and unfulfilled obligations (legacy
+Remaining only where pinned). Resolve live pointers
 rather than trusting historical snapshot names. Record unmapped surfaces,
-identity collisions, stale evidence, and reliability exclusions.
+identity collisions, stale evidence, and reliability exclusions. Route the
+reverse ownership pass for each unmapped surface to every proposed owner; an
+owner never asked has not declined.
 
 ### R2 — Package concordance waves
 
@@ -36,37 +45,14 @@ identity collisions, stale evidence, and reliability exclusions.
 7. Derive package summaries from the accepted ledgers and record calibration
    lessons for later waves.
 
-For a deliverable-format migration, the accepted ledger additionally records
-the four source hashes, evidence-candidate hash, clean production hash,
-finalization-report hash, legacy source reference, candidate
-compound ID, and `PRESERVED | MERGED | SPLIT | SUPERSEDED | DEFERRED |
-CONFLICT` disposition. `MERGED` and `SPLIT` must preserve a complete
-many-to-many mapping; format conversion does not authorize a content change.
+Keep a run-wide register of shared readings for recurring forks, inherited by
+later waves, and preserve the original disagreements it normalizes. Hash each
+newly created subclaim body when it is minted; a stable key alone does not
+bind text.
 
-For a representation-migration wave that satisfies the prerequisite above,
-the narrowed third-layer fan-in is:
-
-1. Rehash 100% of package and child manifests and validate 100% of paths for
-   containment, portability, existence, uniqueness, and self-exclusion.
-2. Reproduce the full member census, terminal-result population, aggregate
-   mapping/source totals, evidence and production hashes, replacement rows, inverse rollback
-   rows, status/control preservation assertions, and project-write audit.
-3. Execute or independently verify apply/target/rollback simulation for every
-   member through the registered deterministic harness.
-4. Freshly reproduce every member with a verifier finding, retry,
-   remediation, failed check, hash/path discrepancy, unknown, or waiver.
-5. Freshly reproduce a deterministic clean sample of at least one member per
-   package, selecting the numerically final clean member to retain sensitivity
-   to late-batch context/task drift. Increase the sample when risk, package
-   heterogeneity, or prior escape evidence warrants it.
-6. Treat every author/verifier disagreement as an exception requiring fresh
-   reproduction. Escalate any exception or aggregate/sample failure to full
-   affected-package reproduction, including all numeric sub-batches. Preserve
-   the initial finding and remediation chain.
-
-This profile narrows only redundant third-layer member reproduction. It keeps
-100% independent package verification, 100% aggregate/manifest/simulation
-coverage, and rare-escape detection.
+For a deliverable-format or representation-migration wave, load
+[the representation-migration profile](representation-migration.md) for its
+ledger additions and narrowed third-layer fan-in.
 
 Terminal fan-out/fan-in is the default when deliverables are independent.
 Supervised many-to-many coordination is used when a discovery changes active
@@ -78,7 +64,8 @@ status and evidence.
 Reconcile duplicate/incompatible ownership, shared implementation surfaces,
 cross-package dependencies, inconsistent decisions or terminology, reused
 evidence with incompatible meanings, unmapped implementation, stale
-verification/validation, lifecycle mismatches, and Remaining-state defects.
+verification/validation, lifecycle mismatches, and unfulfilled-obligation
+defects (legacy Remaining only where pinned).
 Do not change dependencies or deliverables during synthesis.
 
 Cluster rows whose disposition rests on mechanism-level wording (the claim
@@ -89,11 +76,23 @@ granularity rule (`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1).
 
 ### R4 — Human and engineering decision gate
 
-Produce decision packets containing options, evidence, provenance/reliability,
-affected claim IDs and packages, risks, recommended routing, and the exact
-on-ruling mechanism. Distinguish owner, engineering, WORKING_ITEMS (workflow: review), WORKING_ITEMS (workflow: scope-change),
-HELPS_HUMANS, and external-authority decisions. Stop affected repair paths
-until the responsible human acts.
+First sort the rows into ruled-but-not-yet-applied rows and genuinely open
+decisions. A row an existing ruling already settles becomes R5 work under that
+ruling, citing it; do not ask the owner to decide it again. Where the owner has
+given an explicit written delegation that names the decision class or rows it
+covers, record its words verbatim; each application stays within those words
+and this run and is recorded as an agent disposition, not a human ruling;
+issuance, professional acceptance, and holds are never delegated this way.
+
+For the open decisions, produce decision packets containing options, evidence,
+provenance/reliability, affected claim IDs and packages, risks, recommended
+routing, and the exact on-ruling mechanism. Distinguish owner, engineering,
+WORKING_ITEMS (workflow: scope-change), HELPS_HUMANS, and external-authority
+decisions. Route to WORKING_ITEMS
+(workflow: review) only a single deliverable's lifecycle transition; route any
+other review act to a bounded independent TASK review with a named output, or
+to the owner or engineering holder whose judgment it needs. Stop affected
+repair paths until the responsible human acts.
 
 Wherever an option changes deliverable text, state both executions and
 which one the packet recommends:
@@ -120,8 +119,9 @@ briefs; update lifecycle only through its owning contract. For graph-led work,
 return unfinished execution to its graph; supply central result pointers for the
 subsequent terse MEMORY run entry.
 Do not generate a mandatory future-work list in deliverables.
-Do not edit agent instructions, workflows, or root governance from a product
-repair tranche. Protect ISSUED or otherwise formally accepted baselines through
+Do not edit agent instructions, workflows, root governance, or a project's
+governing corpus (DIRECTIVE/CONTRACT/SPEC/TYPES/PRD) from a product repair
+tranche. Protect ISSUED or otherwise formally accepted baselines through
 their governing change path. Account for completed, held, and deferred repair
 rows and affected claims exactly; mechanical selectability is never execution
 authority.
@@ -171,6 +171,24 @@ handoff that names the accepted upstream snapshot, current derivative, exact
 repaired source basis, closure verdict, blockers, lifecycle posture, and
 material-change rerun triggers. Closure is evidence coherence, not issuance,
 release readiness, certification, or professional approval.
+
+### Recovery and continuation
+
+Keep phase state append-only in `RUN_STATE.jsonl` (phase openings, frozen
+briefs and bound-input hashes, launches, returns, capacity) with a `RESUME.md`
+that says how to replay it. Freeze briefs so that relaunching one is
+idempotent: it rewrites only its declared outputs. A launch without a matching
+return is unresolved; confirm it is no longer executing, or interrupt it, before
+relaunching it from its stored brief with a fresh agent. An
+interrupted or partial return is recorded as an execution failure and never
+promoted to PASS; hand its partial findings to a fresh agent for independent
+checking.
+
+An authorized continuation after R6 writes a successor derivative under
+`BACKCHECK/<SuccessorID>/`, never into the discovery snapshot or an earlier
+backcheck. It names its predecessor, authorizing instruction, and source
+basis, and carries its own changed-claim multiset proof against its own repair
+manifest together with full-key continuity with the original census.
 
 ## Local-graph adoption and historical accounting
 

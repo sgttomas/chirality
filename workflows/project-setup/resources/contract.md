@@ -27,12 +27,12 @@ The session prompt names the role and `{EXECUTION_ROOT}`. WORKING_ITEMS discover
 | Decomposition | `{EXECUTION_ROOT}/_Decomposition/` registers and the main accepted control-surface doc (e.g., `DOMAIN_DECOMP_..._FINAL_ACCEPTED_v*.md`). Accepted state? Errata flagged? Open issues / coverage gaps? |
 | Sources | `{EXECUTION_ROOT}/_Sources/` (or equivalent). Extracted? `_LATEST.md` current? |
 | Workspace structure | Are `CAT-NNN/` / package / deliverable folders scaffolded? To what depth? Any `_STATUS.md` lifecycle states beyond `OPEN`? |
-| Authoring state | Any `KA-*.md` (DOMAIN) / four-doc kits (PROJECT/SOFTWARE) present? Any `_REFERENCES.md` SCA-mode notes, contradictions registers, ratification verdicts? |
+| Authoring state | Any `KA-*.md` (DOMAIN) / `ScopeOfWork.md` or transitional legacy four-doc kits (PROJECT/SOFTWARE) present? Any `_REFERENCES.md` SCA-mode notes, contradictions registers, ratification verdicts? |
 | Control-plane | Retrieval index `_LATEST.md` present + ledger md5 matches current `Atomic_Domain_Ledger.csv`? Hypergraph snapshot present at `_Aggregation/Hypergraph/`? `_ScopeChange/_LATEST.md` indicating an active SCA? |
 
 Read only what's needed to answer those axes. Do not ceremonially read every coordination file when the workspace state already tells you the answer.
 
-**Step 2 — Infer the active phase.** Match the observed state against the PROTOCOL's phase definitions. Common patterns:
+**Step 2 — Infer the active phase.** Match the observed state against the phase definitions in `resources/method.md`. Common patterns:
 
 - Decomposition absent → Function 1 (Initialize).
 - Decomposition accepted + no scaffolded folders → Phase 2.1 (scaffolding with the effective source-qualified `preparation` skill by an eligible actor).
@@ -73,10 +73,14 @@ Recommended lifecycle ownership (may vary by project):
   `SOW_V1` exists under the human-confirmed lifecycle policy.
 - **`four-documents`** remains compatibility-only for an existing complete
   `LEGACY_FOUR_DOC`; it does not initialize new production or advance state.
-- **Semantic matrix generation** (`TASK + semantic-matrix-build`, Phase 2.3) produces the `_SEMANTIC.md` lens scaffold and may append `_STATUS.md` history, but must not advance the lifecycle state to `SEMANTIC_READY` unless the human-confirmed project policy explicitly makes semantic-matrix validation the readiness gate.
-- **Semantic enrichment completion** (the selected production workflow after
-  `_SEMANTIC_LENSING.md`) may set `SEMANTIC_READY` when the semantic artifacts
-  exist and the human-confirmed policy authorizes it.
+- **Semantic matrix generation** (`TASK + semantic-matrix-build`, Phase 2.3) produces the `_SEMANTIC.md` lens scaffold under `STATUS_POLICY=PRESERVE_CURRENT` and may append `_STATUS.md` history, but must not advance the lifecycle state to `SEMANTIC_READY` unless the human-confirmed project policy explicitly makes semantic-matrix validation the readiness gate (`STATUS_POLICY=ADVANCE_ON_PASS` with `_STATUS.md` write authorization).
+- **Semantic enrichment completion:** for an existing `LEGACY_FOUR_DOC` kit,
+  `four-documents` with `RUN_PASSES: P3_ONLY` applies `_SEMANTIC_LENSING.md`
+  and may set `SEMANTIC_READY` when the semantic artifacts exist and the
+  human-confirmed policy authorizes it. For `SOW_V1`, no bundled workflow
+  currently applies `_SEMANTIC_LENSING.md` to `ScopeOfWork.md`, and
+  `scope-of-work` never edits `_STATUS.md`; `SEMANTIC_READY` then requires a
+  separately authorized status act under the recorded project policy.
 - Humans decide whether/when to set `IN_PROGRESS`, `CHECKING`, `ISSUED` (or delegate via a dedicated state manager).
 
 ---
@@ -86,12 +90,17 @@ Recommended lifecycle ownership (may vary by project):
 - **Package**: A top-level scope grouping in the decomposition (`PKG-…`).
 - **Deliverable / Working item**: A scoped unit of work (`DEL-…`) represented by one deliverable folder.
 - **Lifecycle state**: `OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED` (local to the deliverable folder).
-- **Coordination representation**: The human’s chosen way to coordinate across packages/deliverables.
-- **Dependency tracking mode**:
-  - `NOT_TRACKED` — dependencies are coordinated externally by humans; do not compute blockers.
-  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); compute blockers only from declared edges.
-  - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph.
-- **Dependency register**: deliverable-local dependency artifacts (prefer `Dependencies.csv` when present; `_DEPENDENCIES.md` as human-readable view).
+- **Coordination representation** (`docs/TYPES.md` §6, `docs/SPEC.md` §13): The human’s chosen way to coordinate across packages/deliverables, recorded separately from the dependency tracking mode:
+  - `SCHEDULE_FIRST` — a schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit.
+  - `DEPENDENCY_TRACKED` — the dependency graph drives sequencing.
+  - `HYBRID` — a combination of schedule-first and dependency-tracked.
+  - Earlier records may carry the former option labels (`Schedule-first`; `Declared deps` or `Declared critical dependencies`; `Full graph` or `Full dependency graph (DAG)`); they remain readable as written. `Schedule-first` corresponds to `SCHEDULE_FIRST`; the declared and full-graph labels named a tracking mode (`DECLARED`, `FULL_GRAPH`) rather than a representation, so confirm the representation with the human when the record is next updated.
+- **Dependency tracking mode** (`docs/SPEC.md` §5.3):
+  - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
+  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (the declared sections, or `Dependencies.csv`, whose DECLARED-origin rows carry the declarations, where extraction has run). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
+  - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph, after closure audit and cycle treatment (see Validity).
+  - A legacy `TRACKED` value in an existing record is read as `FULL_GRAPH`; new records write `FULL_GRAPH`.
+- **Dependency register**: deliverable-local dependency artifacts (prefer `Dependencies.csv` when present; `_DEPENDENCIES.md` as human-readable view, with the `docs/SPEC.md` §5.2 headings).
 - **Semantic lens artifacts**:
   - `_SEMANTIC.md` is a lens scaffold (question-shaping), not an authority.
   - `_SEMANTIC_LENSING.md` is an enrichment register, not an authority.
@@ -112,7 +121,7 @@ A workspace is valid when:
 
 - Representation and dependency mode were explicitly confirmed by the human.
 - If mode is `NOT_TRACKED`, reports must not label deliverables as blocked/available based on dependencies.
-- If mode is `FULL_GRAPH`, the declared graph must be acyclic (or blockers cannot be computed).
+- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
 
 ### S-EST — Estimating pipeline validity
 
@@ -160,12 +169,11 @@ If any of these conditions are not met, WORKING_ITEMS must report the specific m
           _REFERENCES.md
           _DEPENDENCIES.md
           Dependencies.csv         # optional; produced by TASK+dependency-extract
-          _SEMANTIC.md             # lens scaffold (optional)
+          _SEMANTIC.md             # required placeholder; lens scaffold content optional
           _SEMANTIC_LENSING.md     # enrichment register (optional)
-          Datasheet.md
-          Specification.md
-          Guidance.md
-          Procedure.md
+          ScopeOfWork.md           # SOW_V1 production contract (scope-of-work, MODE=INIT)
+          # Datasheet.md, Specification.md, Guidance.md, Procedure.md:
+          # transitional LEGACY_FOUR_DOC kit only where it already exists
       2_Checking/
         From/
         To/
@@ -173,7 +181,7 @@ If any of these conditions are not met, WORKING_ITEMS must report the specific m
         _Archive/
 ```
 
-**Filesystem-safe labels:** `{PkgLabel}` and `{DelLabel}` are sanitized derivatives of names. Canonical names remain in `_CONTEXT.md`.
+**Filesystem-safe labels:** `{PkgLabel}` and `{DelLabel}` are sanitized derivatives of names. Canonical names remain in `_CONTEXT.md`. Where the project has a recorded folder-label rule (for example in its decomposition or coordination record, or evidenced by its existing accepted folders), that rule governs; the `preparation` skill's sanitization rule is the default for new workspaces.
 
 ---
 
@@ -186,9 +194,9 @@ Every deliverable folder should be seeded with:
 | `_CONTEXT.md` | Identity and scope | Must contain stable IDs from decomposition |
 | `_STATUS.md` | Lifecycle state | Authoritative lifecycle indicator |
 | `_REFERENCES.md` | Sources index | Pointers to package references and other materials |
-| `_DEPENDENCIES.md` | Human-readable dependency view | May be stub; may be overwritten by TASK+dependency-extract outputs |
+| `_DEPENDENCIES.md` | Human-readable dependency view | Created with the `docs/SPEC.md` §5.2 skeleton; TASK+dependency-extract refreshes only its agent-owned sections |
 | `Dependencies.csv` | Structured dependency edges | Optional; created by TASK+dependency-extract when run |
-| `_SEMANTIC.md` | Semantic lens scaffold | Optional; created/overwritten by TASK+semantic-matrix-build |
+| `_SEMANTIC.md` | Semantic lens scaffold | Required placeholder at scaffold time; lens content optional and created/overwritten by TASK+semantic-matrix-build |
 | `_SEMANTIC_LENSING.md` | Enrichment register | Optional; created by TASK+lens-register |
 
 ---
@@ -198,7 +206,7 @@ Every deliverable folder should be seeded with:
 ```markdown
 # Coordination Record
 
-**Representation:** [Schedule-first | Declared deps | Full graph]
+**Representation:** [SCHEDULE_FIRST | DEPENDENCY_TRACKED | HYBRID]
 **Dependency tracking mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
 **External schedule / coordination artifact:** [path/link or "N/A"]
 **Default maturity threshold (if computing blockers):** [INITIALIZED|SEMANTIC_READY|IN_PROGRESS|CHECKING|ISSUED]

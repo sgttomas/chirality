@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "harness-self-check",
+    "v2-api-contract",
+    "v2-core-posture"
+  ],
+  "paths": [
+    "projects/pec/v2/config/loops.json",
+    "projects/pec/v2/config/loops.schema.json",
+    "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+    "projects/pec/v2/src/pec_v2/core/ports/__init__.py",
+    "projects/pec/v2/src/pec_v2/core/__init__.py",
+    "projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py",
+    "projects/pec/v2/tests/config/test_json_loop_registry.py",
+    "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+    "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json",
+    "projects/pec/v2/tests/config/fixtures/missing_loop_id.json",
+    "projects/pec/v2/tests/config/fixtures/schema_version_1.json"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}

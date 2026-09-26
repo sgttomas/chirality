@@ -8,6 +8,9 @@ Defaults (only when not otherwise specified by the human):
 - `EXECUTION_ROOT = execution/`
 - `REVIEWS_ROOT = {EXECUTION_ROOT}/_Evaluation/Reviews/`
 - `DECOMPOSITION_PATH` = discovered from `{EXECUTION_ROOT}/_Decomposition/`
+- `INSTRUCTION_ROOT` = the Chirality instruction root that supplies this
+  workflow and its tools (the Root checkout or the App's bundled root). Every
+  tool command in this workflow is anchored to it.
 
 ---
 
@@ -17,8 +20,33 @@ Defaults (only when not otherwise specified by the human):
   `Specification.md`, `Guidance.md`, `Procedure.md`, `ScopeOfWork.md`,
   `Dependencies.csv`, or `_CONTEXT.md`. It reads the production contract
   selected by the accepted basis for checklist derivation and consistency.
-- **Writes only review artifacts.** WORKING_ITEMS writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, with human approval). It writes review snapshots to `_Evaluation/Reviews/`.
-- **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`) require explicit human approval at Gate 5. WORKING_ITEMS does not auto-advance.
+- **Writes only review artifacts.** WORKING_ITEMS writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, through the guarded tool with a human decision). It writes review snapshots to `_Evaluation/Reviews/` and updates `_LATEST.md`.
+- **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`, and the reversal `CHECKING → IN_PROGRESS`) require an explicit human decision at Gate 5, recorded through a committed ruling. WORKING_ITEMS does not auto-advance or auto-reverse.
+- **No deferral into CHECKING.** Entry to `CHECKING` follows `docs/SPEC.md`
+  §3.4: a current candidate-bound account showing no unfulfilled production
+  obligation in the proposed checking scope, a declared checking basis, and the
+  human declaration that freezes the candidate at a recorded commit. There are
+  no disclosed-deferral carve-outs: an unfulfilled obligation, including one
+  needing a human decision, keeps the deliverable `IN_PROGRESS` until it is
+  fulfilled or rescoped through the owning decision before freeze. Where the
+  owning loop still pins an earlier Remaining-based entry criterion, that
+  pinned criterion is the candidacy basis until the loop adopts §3.4; it never
+  adds a deferral path.
+- **Frozen candidate.** While `CHECKING`, the deliverable's claim surfaces
+  (every file in the deliverable folder except the review, status, context,
+  dependency, memory and run records: `_REVIEW.md`, `Review_Findings.csv`,
+  `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `Dependencies.csv`,
+  `MEMORY.md` or legacy `_MEMORY.md`, and run-record folders such as
+  `_run_records/`) are frozen at the recorded candidate SHA. Review evidence appends to `_REVIEW.md`,
+  `Review_Findings.csv`, and review snapshots, never to the frozen claim
+  surfaces. Any correction requires the human-ruled reversal to `IN_PROGRESS`;
+  `ISSUED` changes use the governed scope-change process only.
+- **Owning-loop fences.** Before recording a transition, run the owning loop's
+  required promotion preflight (for example, the App's APP-HOLD-1
+  `app_hold.py check --operation checking-promotion`) and honour its issuance
+  fences (for example, App F-APP-4 prohibits `CHECKING → ISSUED` in the App
+  development loop). A failing preflight or an applicable fence holds the
+  write; no override is inferred.
 - **Findings are human-owned.** Substantive engineering findings originate from human reviewers. WORKING_ITEMS may also produce *mechanical check findings* (e.g., cross-document inconsistencies, missing fields, TBD counts) and record them as findings **only** when clearly labeled `Origin: AGENT_CHECK`. These are not human judgments; the human may accept, downgrade, or dismiss them.
 - **Dispositions are human-owned.** WORKING_ITEMS may propose dispositions (labeled `PROPOSAL`) but the `HumanDisposition` field remains `TBD` until the human rules.
 - **Evidence-first.** Every checklist item traces to a selected production
@@ -33,8 +61,9 @@ Defaults (only when not otherwise specified by the human):
   baseline. Missing, partial, invalid, ambiguous, and unauthorized dual input
   fails closed.
 - **SOW criteria are deterministically compiled.** WORKING_ITEMS must run or
-  receive `tools/scope_of_work/derive_review_checklist.py` output bound to the
-  current validated `ScopeOfWork.md` and accepted format basis. It consumes all `AC-*` items in the
+  receive `{INSTRUCTION_ROOT}/tools/scope_of_work/derive_review_checklist.py`
+  output bound to the current validated `ScopeOfWork.md` and accepted format
+  basis. It consumes all `AC-*` items in the
   emitted order with exact IDs and text. It does not re-extract, paraphrase,
   reorder, renumber, or omit them. Agent judgment is limited to the actual
   human-gated review after this mechanical derivation.
@@ -45,7 +74,71 @@ Defaults (only when not otherwise specified by the human):
 
 The selected review undertaking collects evidence, records human findings and dispositions, and performs authorized lifecycle recording. Content repairs use a separately authorized implementation workflow so their authoring and verification remain distinct from review judgment. WORKING_ITEMS may coordinate those phases within the accepted undertaking; when another instance or loop owns the production scope, route the finding to that owner.
 
-Use the change workflow for authorized Git closeout and TASK with the audit-decomp workflow for the bounded decomposition precondition check. Workflow selection preserves the current undertaking’s ownership and does not itself expand its write targets or decision rights.
+Git closeout follows the repository's change conventions: in
+`sgttomas/chirality`, `.agents/skills/chirality-change/SKILL.md`; elsewhere,
+WORKING_ITEMS (workflow: change) or the project's own change conventions. Use
+TASK with the audit-decomp workflow for the bounded decomposition precondition
+check, and a current bounded-reconciliation (or concordance) comparison for the
+candidacy account. Workflow selection preserves the current undertaking’s
+ownership and does not itself expand its write targets or decision rights.
+
+---
+
+## Transitions reviewed
+
+| Transition | Kind | Entry state | Gate 5 outcomes |
+|---|---|---|---|
+| `IN_PROGRESS → CHECKING` | Candidacy check and human freeze | `IN_PROGRESS` | Freeze (advance) or decline (remain `IN_PROGRESS`) |
+| `CHECKING → ISSUED` | Check of the frozen candidate against its declared basis | `CHECKING` | Issue, continue checking, or reversal |
+| `CHECKING → IN_PROGRESS` | Human-ruled reversal, the sole exit from an unsuccessful or withdrawn check | `CHECKING` | Reversal recorded with a committed ruling |
+
+Earlier states (`OPEN`, `INITIALIZED`, `SEMANTIC_READY`) reach `IN_PROGRESS`
+through their own authorized transitions before a candidacy review; this
+workflow has no override that promotes them directly to `CHECKING`. An
+`ISSUED` deliverable is changed only through the governed scope-change process.
+
+---
+
+## Severity and disposition rule
+
+This is the single rule for how findings affect each transition.
+
+| Severity | Meaning |
+|---|---|
+| `CRITICAL` | Safety, regulatory, or fundamental correctness issue; blocks both entry to `CHECKING` and issuance |
+| `MAJOR` | Significant technical issue; must be closed before entry to `CHECKING` and before issuance, as below |
+| `MINOR` | Quality improvement |
+| `OBSERVATION` | Noted for record; no action required |
+
+- **Entry to `CHECKING`.** No finding has `HumanDisposition = TBD` or `DEFER`,
+  and no finding has `Status = OPEN` or `DEFERRED`. Every `REVISE` finding is
+  `RESOLVED` by an authorized correction to the candidate (after which the
+  checklist and candidacy account are re-bound to the corrected candidate) or
+  by a cited owning rescoping decision. Deferral is not an entry path.
+- **Closing a `CRITICAL` or `MAJOR` finding (entry and issuance alike).** A
+  `CRITICAL` finding closes only with `Status = RESOLVED` by correction or
+  appended evidence (never by `ACCEPT_AS_IS`), or with
+  `HumanDisposition = NOT_APPLICABLE`, or with `HumanDisposition = WITHDRAWN`
+  (`Status = WITHDRAWN`). A `MAJOR` finding closes in the same ways or with
+  `HumanDisposition = ACCEPT_AS_IS` (`Status = RESOLVED`) when the human rules
+  that no correction is required. Neither is ever `DEFER` or `DEFERRED`.
+- **`CHECKING → ISSUED`.** The frozen candidate cannot be corrected in place.
+  Every `CRITICAL` and `MAJOR` finding is closed under the rule above, where
+  `RESOLVED` means resolved without changing the frozen claim surfaces (for
+  example, by appended evidence). `MINOR` findings should be dispositioned; a
+  `MINOR` or `OBSERVATION` finding that is a quality item, not unfinished
+  production work, may be `DEFERRED` with documented human
+  rationale as a known limitation of the issued baseline, whose later
+  treatment flows only through governed scope change.
+- **Unsuccessful check.** A `CRITICAL` or `MAJOR` finding that cannot close
+  under the rule above without correcting the frozen candidate makes the check
+  unsuccessful. Its exit is the human-ruled reversal to `IN_PROGRESS`, with the
+  correction carried in authorized work. A `MINOR` finding that needs
+  correction is either `DEFERRED` as above or, if the human chooses, corrected
+  through the same reversal.
+
+The issuance judgment itself remains human (K-GATE-1); this rule states what
+the review evidence must show, not a machine block.
 
 ---
 
@@ -73,6 +166,11 @@ WORKING_ITEMS supports four review types. The human selects the type at Gate 1. 
 - `REVIEWER_IDS`: list of reviewer identifiers (default `TBD`)
 - `PRIOR_REVIEW`: path to a prior `_REVIEW.md` for continuation/re-review
 - `CUSTOM_CHECKLIST_ITEMS`: additional checklist items provided by the human
+- `CANDIDACY_ACCOUNT`: path to a current candidate-bound comparison covering
+  the whole deliverable (for example, a bounded-reconciliation return or a
+  concordance `OBLIGATION_ACCOUNT.csv`)
+- `PROMOTION_PREFLIGHT`: the owning loop's required preflight command, when
+  not discoverable from its instructions
 
 ---
 
@@ -82,25 +180,38 @@ A review cycle is valid when:
 
 - The review targets exactly one deliverable.
 - The review type was explicitly selected by the human.
-- Precondition checks ran at Gate 1 (context validity, lifecycle state).
+- Precondition checks ran at Gate 1 (context validity, lifecycle state,
+  owning-loop fences).
 - A checklist was generated and confirmed at Gate 2.
 - In `SOW_V1` or authorized migration-dual mode, the checklist source is valid
   `chirality-review-checklist/v1` output whose source SHA matches the
   reviewed `ScopeOfWork.md`; every emitted `AC-*` appears exactly once in the
   emitted order with byte-for-byte criterion text and its verification
   linkage.
+- For entry to `CHECKING`: `_REVIEW.md` records a candidacy account bound to
+  the candidate commit that shows no unfulfilled production obligation in the
+  proposed checking scope, the declared checking basis, and, after the human
+  freeze, the frozen candidate SHA.
+- For `CHECKING → ISSUED`: the frozen claim surfaces are unchanged from the
+  recorded frozen candidate SHA.
 - All findings in `Review_Findings.csv` have:
   - `FindingID`, `FindingSeverity`, `Description`, `Document`, `Status` populated
   - `ProposedDisposition` labeled as `PROPOSAL`
   - `HumanDisposition` either `TBD` (pre-Gate 4) or a human-assigned value (post-Gate 4)
-- For lifecycle transitions:
-  - `IN_PROGRESS → CHECKING`: all CRITICAL findings have non-TBD `HumanDisposition`
-  - `CHECKING → ISSUED`: all CRITICAL and MAJOR findings have non-TBD `HumanDisposition`; all CRITICAL findings are RESOLVED
-- `_STATUS.md` was modified only at Gate 5 with explicit human approval.
+- Findings satisfy the severity and disposition rule above for the recorded
+  transition.
+- The owning loop's promotion preflight passed and no issuance fence applied
+  before any lifecycle write.
+- `_STATUS.md` was modified only at Gate 5 through the guarded
+  `write_status.sh` with an explicit human decision and committed ruling
+  (including a reversal).
 - No deliverable content files were modified (`Datasheet.md`,
   `Specification.md`, `Guidance.md`, `Procedure.md`, `ScopeOfWork.md`,
   `Dependencies.csv`, and `_CONTEXT.md` are read-only).
-- An immutable review snapshot exists under `_Evaluation/Reviews/`.
+- A new immutable `REV_*` snapshot was finalized at Gate 5 under
+  `_Evaluation/Reviews/`, recording the Gate 5 outcome (approve, decline, or
+  reversal), and `_LATEST.md` points to it. A review cycle without its
+  finalized snapshot is incomplete.
 - `_REVIEW.md` and `Review_Findings.csv` exist in the deliverable folder.
 
 ---
@@ -111,7 +222,7 @@ A review cycle is valid when:
 
 ```
 {deliverable_folder}/
-  _REVIEW.md              (checklist + summary; created at Gate 2, updated at Gate 4)
+  _REVIEW.md              (candidacy account, checking basis, checklist, summary, freeze record; created at Gate 2, updated through Gate 5)
   Review_Findings.csv     (finding register; created at Gate 3, updated through Gate 4)
 ```
 
@@ -136,12 +247,28 @@ A review cycle is valid when:
 **Review Type:** {SELF_CHECK | PEER_REVIEW | IDC | INDEPENDENT_VERIFICATION}
 **Reviewer(s):** {reviewer IDs or TBD}
 **Date Initiated:** {YYYY-MM-DD}
-**Status:** {IN_PROGRESS | DISPOSITIONS_COMPLETE | ADVANCED | HELD}
+**Status:** {IN_PROGRESS | DISPOSITIONS_COMPLETE | ADVANCED | HELD | REVERSED}
 
 ## Precondition Check
 - Decomposition coverage: {PASS | WARNING | SKIP} {snapshot ref}
 - Lifecycle state: {current state}
 - Context validity: {PASS | WARNING with details}
+- Owning-loop fences: {preflight command and result | NONE}; {issuance fence | NONE}
+
+## Candidacy Account (entry to CHECKING)
+- Candidate commit: {SHA}
+- Comparison source: {bounded-reconciliation return | concordance OBLIGATION_ACCOUNT | pinned Remaining-based criterion} {path}
+- Scope compared: Scope of Work, actual outputs, dependencies, required production verification
+- Result: {NO_UNFULFILLED_OBLIGATION | UNFULFILLED: list with owning graph node or decision}
+
+## Checking Basis
+- Declared by: {human} on {YYYY-MM-DD} ({ruling path})
+- Basis: {review type, criteria, checklist scope, reviewers, evidence expected}
+
+## Freeze
+- Frozen candidate SHA: {commit SHA}
+- ScopeOfWork SHA-256: {hash}
+- Freeze ruling: {ruling path}; approval SHA: {SHA | not declared by root}
 
 ## Checklist
 
@@ -173,7 +300,7 @@ A review cycle is valid when:
 ### TBD Inventory
 | ID | Check | Result | Notes |
 |----|-------|--------|-------|
-| TB-001 | Remaining TBDs assessed | {count} TBDs remaining | |
+| TB-001 | Each remaining TBD is outside the proposed checking scope by a cited owning decision; none is an unfulfilled production obligation | {count} TBDs remaining | {decision refs} |
 
 ### Review-Type-Specific
 | ID | Check | Result | Notes |
@@ -189,8 +316,8 @@ A review cycle is valid when:
 | OBSERVATION | | | | |
 
 ## Transition Readiness
-**Target transition:** {IN_PROGRESS → CHECKING | CHECKING → ISSUED}
-**Recommendation:** {RECOMMEND_ADVANCE | RECOMMEND_HOLD}
+**Target transition:** {IN_PROGRESS → CHECKING | CHECKING → ISSUED | CHECKING → IN_PROGRESS (reversal)}
+**Recommendation:** {RECOMMEND_ADVANCE | RECOMMEND_HOLD | RECOMMEND_REVERSAL}
 **Rationale:** {evidence-based explanation}
 ```
 
@@ -207,7 +334,7 @@ A review cycle is valid when:
 | `FindingSeverity` | enum | `CRITICAL` / `MAJOR` / `MINOR` / `OBSERVATION` |
 | `Description` | string | The finding as stated |
 | `Origin` | enum | `REVIEWER` (human-provided) / `AGENT_CHECK` (mechanical check) |
-| `ProposedDisposition` | enum | `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` — labeled PROPOSAL |
+| `ProposedDisposition` | enum | `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` — labeled PROPOSAL; `DEFER` is never an entry path to `CHECKING` and at issuance applies only to `MINOR` or `OBSERVATION` findings |
 | `HumanDisposition` | enum | `TBD` / `ACCEPT_AS_IS` / `REVISE` / `DEFER` / `NOT_APPLICABLE` / `WITHDRAWN` |
 | `Status` | enum | `OPEN` / `RESOLVED` / `DEFERRED` / `WITHDRAWN` |
 | `ReviewerID` | string | Reviewer identifier or `TBD` |
@@ -216,7 +343,7 @@ A review cycle is valid when:
 ### Recommended Commit Message Format
 
 ```
-review: {DeliverableID} — {CHECKING|ISSUED} ({finding_count} findings, {open_count} open)
+review: {DeliverableID} — {CHECKING|ISSUED|IN_PROGRESS (reversal)|HELD} ({finding_count} findings, {open_count} open)
 ```
 
 ---

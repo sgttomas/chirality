@@ -1,5 +1,73 @@
 # software-decomp — contract
 
+## Precedence (conflict resolution)
+
+This package follows the precedence order required by
+`docs/DECOMPOSITION_STANDARD.md`:
+
+1. **PROTOCOL** — [method](method.md#method) governs sequencing and interaction
+   rules.
+2. **SPEC** — [Validity](#validity) governs pass/fail requirements.
+3. **STRUCTURE** — [Artifacts and schemas](#artifacts-and-schemas) defines the
+   allowed entities, relationships, and required sections.
+4. **RATIONALE** — the standard's RATIONALE governs interpretation when
+   ambiguity remains.
+
+If any instruction appears to conflict, do not silently reconcile. Surface the
+conflict as a contradiction and request the human's resolution.
+
+---
+
+## Inputs and outputs
+
+Inputs:
+
+- The accepted software intent (for example, a successor PRD handed off by
+  `reverse-engineer-software`), identified by path, content hash, and the
+  separate acceptance decision record, together with its accepted portions and
+  shared constraints. Material outside the accepted portions is not accepted
+  scope; see Group 1 preparation in the [method](method.md).
+- Supporting requirements, tickets, notes, architecture, constraints, and prior
+  decompositions named in the brief.
+
+Outputs are written under `DECOMP_ROOT = {EXECUTION_ROOT}/_Decomposition/`
+(`docs/SPEC.md` §0.3 path tokens):
+
+| Output | Package role |
+|---|---|
+| Main decomposition document | working surface |
+| `Deliverables.csv` | authoritative companion register, when registers are kept as files |
+| `ScopeLedger.csv` | authoritative companion register, when registers are kept as files |
+| `ContextBudgetQA.csv` | authoritative companion register, when registers are kept as files |
+| `Companion_Inventory.csv` | optional file backing the main document's required companion-inventory section (filename, package role, description for every companion) |
+| `{DECOMP_ROOT}/checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}` | immutable accepted checkpoint snapshot |
+| `{DECOMP_ROOT}/checkpoint_snapshots/_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, `_LATEST_ACCEPTED.md` | pointers to the accepted snapshots |
+
+When registers are kept as companion files, use these headers, because the
+register validator reads these names (list cells are separated by `;`):
+
+- `Deliverables.csv`: `DeliverableID,PackageID,Name,Description,Type,ResponsibleParty,AnticipatedArtifacts,CoversScopeItems,SupportsObjectives,ContextEnvelope,ContextEnvelopeNotes,PhaseHint`
+- `ScopeLedger.csv`: `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`
+- `ContextBudgetQA.csv`: `DeliverableID,PackageID,ContextEnvelope,Risk,RecommendedAction,Notes`
+
+The entity fields below map to these columns: a Deliverable's `ParentPackageID`
+is the `PackageID` column, and a Scope Item's `DeliverableID(s)` and
+`ObjectiveID(s)` are the `DeliverableIDs` and `ObjectiveIDs` columns.
+
+Before checkpoint groups 2 and 3, check the registers with
+`python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT> --families XRG`
+(report-only; the XRG family cross-checks `Deliverables.csv`,
+`ScopeLedger.csv`, and `ContextBudgetQA.csv`; other families assume
+deliverable folders that exist only after project setup; `--list-checks` lists
+all checks).
+Findings route repair or are presented as exceptions; they do not add a
+checkpoint.
+
+The accepted package is consumed downstream by `project-setup`, then by
+`scope-of-work` with `MODE=INIT` for each deliverable's production contract.
+
+---
+
 ## Non-negotiable invariants
 
 - **Human-validated scope.** The agent prepares proposals and checks before
@@ -7,20 +75,25 @@
   objectives; (2) proposed Packages and Deliverables with coverage findings and
   exceptions; and (3) the audited final decomposition for downstream use.
   Internal analysis and repair evidence does not add prompts.
+  For a small, reversible undertaking the human may choose to decide all three
+  groups in one sitting; the independent audit still precedes the decision
+  and the three snapshots are still written in order (see the method).
 - **Checkpoint snapshots.** Each accepted group finalizes a new immutable
   snapshot under `checkpoint_snapshots/` with `DECISION.md`,
   `ACCEPTED_MANIFEST.csv`, and `HANDOFF_STATE.md`, then updates that group's
   authorized pointer. Each later group consumes the preceding accepted
-  snapshot rather than mutable working files alone.
+  snapshot rather than mutable working files alone (except in a combined
+  review sitting, where snapshots are written in order after the decision).
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages.
-- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2).
+- **No overlap / no gaps at the package level.** Every SSOW scope item, whether `IN`, `OUT` or `TBD`, must be assigned to exactly one Package as its accountable home (forced decision if ambiguous; human resolves at checkpoint group 2). Only IN items map to Deliverables; an OUT or TBD item keeps its Package home and `SourceRef` for traceability and needs no production mapping.
 - **Deliverables are the smallest unit.** There is no task sub-level inside a deliverable. Therefore deliverables MUST be sized to be executable by a Type 2 specialist with bounded context.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the human explicitly requests renumbering.
-- **Identifier format must conform to the repo’s canonical SPEC/TYPES.**
+- **Identifier format must conform to `docs/TYPES.md` §2 (Stable Identifiers) and the conforming-workflows table in `docs/DECOMPOSITION_STANDARD.md`.**
   - Packages: `PKG-XX` (two digits, zero-padded)
   - Deliverables: `DEL-XX-YY` (two digits for package, two digits within package)
   - If other instruction sets or legacy materials require a different width (e.g., `PKG-XXX`), the agent MUST surface the mismatch as a contradiction and request a human ruling before proceeding.
+  - Check ID format and coupling against these patterns (the register validator above reads deliverable folders as `DEL-\d{2}-\d{2}`). `tools/validation/validate_id_format.sh` accepts these forms (and 3-digit widths, so it does not flag `PKG-001` or enforce the 2-digit width; check the width against the patterns above); a rejection of a conforming ID by any checker is a tool defect to report, not a decomposition finding.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
   - The first `XX` in `DEL-XX-YY` MUST equal the package numeric portion.
   - The `YY` is a sequential counter unique within that package (`01`, `02`, …).
@@ -39,7 +112,7 @@
 - **Deliverable**: the smallest unit of production; sized so a specialist agent can complete it within a bounded context window.
 - **Artifact**: a tangible output produced by a deliverable (code, tests, config, docs, scripts, schemas).
 - **Objective**: a success condition derived from SSOW and satisfied through deliverables (best-effort mapping).
-- **Context Envelope**: a size classification used to ensure a deliverable is agent-executable (see STRUCTURE).
+- **Context Envelope**: a size classification used to ensure a deliverable is agent-executable (see the ContextEnvelope rubric under [Artifacts and schemas](#artifacts-and-schemas)).
 
 ---
 
@@ -69,7 +142,7 @@ All major decomposition outputs must declare their package role:
 
 ## Validity
 
-### Normative — \"What must it be?\"
+### Normative — "What must it be?"
 
 This section defines requirements for a valid software development decomposition.
 
@@ -82,7 +155,7 @@ A decomposition is complete when:
 | Scope defined | SSOW exists; each scope item has an ID and `IN|OUT|TBD` status |
 | Objectives derived | Objectives list exists and is human-confirmed |
 | Packages flat and domain-based | Package list exists; each package has a scope description that is a *work domain/category* (not a phase) |
-| Package coverage | Every `ScopeItemID` is assigned to exactly one Package |
+| Package coverage | Every `ScopeItemID`, whether IN, OUT or TBD, is assigned to exactly one Package; only IN items map to Deliverables |
 | Deliverables defined | Deliverables exist within each Package with IDs, types, responsibilities (TBD allowed) |
 | Deliverable assignment | Every deliverable belongs to exactly one Package |
 | Artifacts anticipated | Each deliverable lists anticipated artifacts (TBD allowed) |
@@ -98,7 +171,7 @@ A decomposition is consistent when:
 | Requirement | Validation |
 |---|---|
 | No scope overlaps | A scope item is not assigned to multiple packages |
-| No scope gaps | No scope item remains unassigned to a package |
+| No scope gaps | No scope item, whether IN, OUT or TBD, remains unassigned to a package |
 | Stable IDs | IDs do not change across revisions unless explicitly requested |
 | Terminology consistent | Canonical terms are used consistently; synonyms are mapped |
 | Decisions explicit | Non-trivial choices are recorded and referencable |
@@ -121,7 +194,7 @@ A decomposition is consistent when:
 Size examples and file-count ranges are planning calibration, not model capability limits. Judge semantic coupling, context sufficiency, and verification demands against the actual undertaking; record current run constraints in its brief.
 
 
-### Descriptive — \"What is it?\"
+### Descriptive — "What is it?"
 
 This section defines the entities and required tables in the decomposition output.
 
@@ -148,7 +221,7 @@ This section defines the entities and required tables in the decomposition outpu
 - `Exclusions` (optional)
 
 #### Deliverable (Agent-executable unit)
-Minimum fields (in addition to the project-global deliverable fields):
+Minimum fields (in addition to the deliverable attributes in `docs/TYPES.md` §1.2):
 - `DeliverableID` (stable; `DEL-XX-YY`)
 - `Name`
 - `ParentPackageID`
@@ -205,14 +278,16 @@ Minimum columns:
 - `InOutStatus`
 - `ScopeItemStatement`
 - `SourceRef`
-- `PackageID`
-- `DeliverableID(s)` (one or many; or `TBD`)
+- `PackageID` (exactly one for every item, whether IN, OUT or TBD)
+- `DeliverableID(s)` (IN items: one or many, or `TBD`; blank for OUT and TBD items)
 - `ObjectiveID(s)` (zero or many; or `TBD`)
 - `DecisionRef` (optional)
 - `OpenIssue` (`TRUE|FALSE`)
 - `Notes`
 
-Hard rule: every `ScopeItemID` has exactly one `PackageID`.
+Hard rule: every `ScopeItemID`, whether IN, OUT or TBD, has exactly one
+`PackageID`. Only IN items require Deliverable mappings; an OUT or TBD item's
+home is for accountability and traceability.
 
 #### 6) Coverage & Telemetry (summary block)
 Minimum fields:
@@ -220,8 +295,8 @@ Minimum fields:
 - `PackageCount`
 - `DeliverableCount`
 - `ObjectiveCount`
-- `UnassignedScopeItems` (must be 0 for acceptance)
-- `ScopeItemsWithoutDeliverableMapping`
+- `UnassignedScopeItems` (scope items of any status without a Package; must be 0 for acceptance)
+- `ScopeItemsWithoutDeliverableMapping` (IN items)
 - `UnmappedObjectives`
 - `ContextEnvelopeCounts` (S/M/L/XL)
 - `OpenIssuesByType` (counts + IDs)

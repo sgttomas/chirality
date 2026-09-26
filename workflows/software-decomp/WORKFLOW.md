@@ -9,12 +9,20 @@ Organize software intent into cohesive work domains and implementable bounded co
 
 WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to TASK.
 
+This package implements the grouped-checkpoint Chirality v3 edition of
+`docs/DECOMPOSITION_STANDARD.md` (commit `9b005c23a`, 2026-09-09; a prospective
+amendment, see the standard's status note), as amended by D-GOV-47
+(2026-09-26: optional combined review for a small, reversible undertaking) and
+D-GOV-48 (2026-09-26: every scope item, whether IN, OUT or TBD, has one Package
+home, superseding D-GOV-47's IN-only rule). An in-flight project keeps the
+edition it adopted; nothing is retrofitted.
+
 ## Method
 
-1. Extract atomic scope, objectives, dependencies, and unresolved decisions from the accepted software intent.
+1. Record the accepted basis identity and accepted portions, then extract atomic scope, objectives, dependencies, and unresolved decisions from that accepted software intent.
 2. Define flat Packages and Deliverables, judging semantic coupling and verification demands.
 3. Specify each Context Envelope, artifact, interface, acceptance condition, and source mapping, and prepare checks before each grouped human checkpoint.
-4. Preserve stable IDs through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use.
+4. Preserve stable IDs through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use. For a small, reversible undertaking the human may choose to decide all three in one sitting after the independent audit.
 
 ## Resources
 
