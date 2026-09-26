@@ -133,5 +133,13 @@ group2_amendment_1:
   owner_hunk_approval: >-
     Amendment 1 requires the owner's explicit approval of the exact hunk text
     before the checkpoint-3 application PR merges; display alone is not
-    enough. HELP_HUMAN obtains and records that approval. This manifest does
-    not record it and grants nothing.
+    enough. Approval recorded: Ryan Tufts, 2026-09-26, verbatim: 'approve
+    hunk', after HELP_HUMAN presented the exact replacement paragraph
+    (applied projects/pec/AGENTS.md L261-272), the dropped clause and the
+    audit's remaining-loop observation (COV-083). The approved postimage is
+    projects/pec/AGENTS.md SHA-256
+    4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c.
+    HELP_HUMAN transcribed the act under K-AUTH-1 (SCA-006 Decision_Log.md
+    row SCA006-G2-A1). This manifest records that act and grants nothing.
+  approval_by: Ryan Tufts
+  approval_date: 2026-09-26

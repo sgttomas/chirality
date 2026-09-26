@@ -5,7 +5,7 @@ amendment: SCA-006
 checkpoint_group: 3 (preparation)
 prepared: 2026-09-26
 prepared_by: WORKING_ITEMS manager, brief B6, HELP_HUMAN undertaking HELP-HUMAN-PEC-20260925-POST-SCA005, work-graph node R3; roles instruction-asserted, not mechanically enforced
-status: applied_pending_owner_hunk_approval
+status: applied_owner_hunk_approved (2026-09-26)
 authority: checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/DECISION.md (SHA-256 15720eb1d25ade4e7cb5d62765824634318e0e956129a6e6c3ad30cdaf74777e)
 candidate: CP2_CANDIDATE/AGENTS.candidate.md
 candidate_sha256: 49ce993a7e21c76561bcb781b6fc317f51cdd0b7b76e6cbc8e38859aceeb070d
@@ -21,9 +21,13 @@ This file records the one correction that SCA-006 checkpoint group 2
 amendment 1 adds to the accepted `projects/pec/AGENTS.md` candidate. It was
 drafted during checkpoint-3 preparation within the bounds amendment 1 sets.
 **The owner must explicitly approve the exact hunk text below before the
-checkpoint-3 application PR merges. Display alone is not enough.** This file
-records no such approval, and no approval has been given at the time of
-writing.
+checkpoint-3 application PR merges. Display alone is not enough.** When this
+file was first written, no approval had been given. **Update, 2026-09-26: the
+owner approved the exact hunk below, verbatim "approve hunk"**, after
+HELP_HUMAN presented this paragraph, the dropped clause (§2) and the audit's
+COV-083 observation. HELP_HUMAN transcribed the act under K-AUTH-1; it is
+recorded in `Decision_Log.md` row SCA006-G2-A1. The approved postimage is
+`projects/pec/AGENTS.md` `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c`.
 
 ## 1. Owner's words (verbatim, 2026-09-26)
 
@@ -159,6 +163,6 @@ Every step passed, and the script exited 0.
   sections are unchanged.
 - It writes no `_STATUS.md` and changes no lifecycle.
 - It changes no other line of `projects/pec/AGENTS.md`.
-- It records no owner approval of this hunk. HELP_HUMAN obtains that approval
-  before the application PR merges.
+- It is not itself the owner's approval. That approval is the owner's act of
+  2026-09-26, recorded in `Decision_Log.md` row SCA006-G2-A1.
 - It makes no CHECKING, ISSUED or acceptance claim.

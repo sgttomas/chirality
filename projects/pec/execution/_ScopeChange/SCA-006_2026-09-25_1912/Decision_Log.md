@@ -3,7 +3,7 @@ amendment_id: SCA-006
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
 current_checkpoint_group: 3
-status: checkpoint_2_accepted_checkpoint_3_preparation_authorized
+status: checkpoint_3_prepared_awaiting_owner
 ---
 
 # SCA-006 Decision Log
@@ -26,9 +26,9 @@ hashes are quoted here and in the run return.
 | SCA006-CP1-INS | 1 | `projects/pec/AGENTS.md` route: (a) carried at checkpoint 3 as an instruction tranche with its own manifest and notices; (b) a separate instruction tranche after checkpoint 3 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-RC | 1 | Confirm that R-C (PEC output citable as authority) stays excluded | `CONFIRMED EXCLUDED` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25); Q-CP2-1 `SELECTED (a)`; Q-CP2-2 `SELECTED (a)` | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
-| SCA006-G2-A1 | 2 (amendment) | The `AGENTS.md` Remaining-sections correction rides the checkpoint-3 instruction tranche | `DIRECTED` (2026-09-26); the owner's explicit approval of the exact hunk is required before the application PR merges | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/` |
+| SCA006-G2-A1 | 2 (amendment) | The `AGENTS.md` Remaining-sections correction rides the checkpoint-3 instruction tranche | `DIRECTED` (2026-09-26); `HUNK APPROVED` (2026-09-26) | owner acts verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`; hunk `AGENTS_MD_AMENDMENT1_DIFF.md` §3; approved postimage `projects/pec/AGENTS.md` `4400c4e9…139c` |
 | SCA006-CP3-EDITION | 3 | Scope-change method edition for checkpoint 3: the pinned edition (`contract.md` `4453a719…`, `method.md` `34187e83…`) or the Root wave-2A revision | `SELECTED PINNED` (2026-09-26) | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/` |
-| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARATION AUTHORIZED` | SCA006-CP2 accepted 2026-09-25 |
+| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARED / AWAITING_OWNER` (2026-09-26) | SCA006-CP2 accepted 2026-09-25; package hashes in §"SCA006-CP3 — package prepared (not a decision)"; question set `RUN_SUMMARY.md` §9 |
 
 ## SCA006-G1 — owner directions of record (verbatim)
 
@@ -133,3 +133,21 @@ log's hash was `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e
 
 HELP_HUMAN recorded these under K-AUTH-1. The interpretation and bounds are
 in `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/DECISION.md`.
+
+## SCA006-G2-A1 — hunk approval, owner act (verbatim), 2026-09-26
+
+> approve hunk
+
+HELP_HUMAN presented the owner with the exact 12-line replacement paragraph
+(applied `projects/pec/AGENTS.md` L261–272, verbatim), the dropped clause
+("its graph accounts for the Remaining items it touches") and the reason it
+was dropped, and the audit's COV-083 observation (the decomposition's
+"declares `remaining-loop` now" text, recorded as a known follow-up). The
+owner approved after seeing all of it. The approved postimage is
+`projects/pec/AGENTS.md` SHA-256
+`4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c`; the hunk
+is `AGENTS_MD_AMENDMENT1_DIFF.md` §3. HELP_HUMAN transcription under
+K-AUTH-1: HELP_HUMAN relayed the act to WORKING_ITEMS (brief B6), which wrote
+this section at HELP_HUMAN's direction. This satisfies amendment 1's
+pre-merge approval gate for the hunk. It accepts nothing else: checkpoint 3
+remains the owner's.
