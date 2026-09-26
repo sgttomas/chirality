@@ -10,10 +10,13 @@ coordination plane that doesn't need to exist**: files and Git remain the
 sole authority, every potential consumer has a file-native fallback, and
 deleting PEC degrades throughput, never correctness.
 
-Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.3, adopted
-2026-09-25 by the owner's SCA-005 checkpoint-2 acceptance (`D-PEC-92`) and
-applied in checkpoint-3 preparation, and settled by the owner's checkpoint-3
-acceptance the same day; it carries the `D-PEC-79` §16.3 hunks.
+Product definition of record: [`docs/PRD.md`](docs/PRD.md), v2.4.
+- Adopted 2026-09-25 by the owner's SCA-006 checkpoint-2 acceptance
+  (`D-PEC-97`).
+- Applied in checkpoint-3 preparation on 2026-09-26.
+- The owner's checkpoint-3 acceptance is pending.
+
+v2.3 (SCA-005, `D-PEC-92`) preceded it.
 Earlier versions: v2.0 `D-PEC-58`, v2.1 `D-PEC-61`, exact consumer-interface
 rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 [`docs/STATUS.md`](docs/STATUS.md) first.**
@@ -83,13 +86,13 @@ See `docs/STATUS.md` for current gates.
 response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
-coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
-until scope change SCA-006 amends it. The owner accepted its checkpoint 1 on
+coverage, not now. Scope change SCA-006 carries this into PRD v2.4 and
+`projects/pec/AGENTS.md`. The owner accepted its checkpoint 1 on
 2026-09-25, specifying direct query under a new read-only `agent` access
 class (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`);
 the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
 `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
-checkpoint-3 preparation is authorized.
+checkpoint 3 was applied on 2026-09-26, and its acceptance is pending.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
@@ -112,7 +115,7 @@ on 2026-09-25 under `D-PEC-95`.
 
 | Path | Contents |
 |---|---|
-| `docs/PRD.md` | Adopted product definition (v2.3, coordination plane) |
+| `docs/PRD.md` | Adopted product definition (v2.4, coordination plane) |
 | `docs/STATUS.md` | Status & handoff — read first |
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
