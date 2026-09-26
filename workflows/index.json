@@ -3018,7 +3018,7 @@
           "name": "chirality-change",
           "scope": "project"
         },
-        "compatibility_note": "Legacy CHANGE runs retain the historical change workflow; new Chirality repository change work may select the project-only chirality-change skill."
+        "compatibility_note": "Legacy CHANGE runs map to the change workflow, now a repository-agnostic Git method; Chirality repository change work uses the project-only chirality-change skill, which specializes it."
       },
       "DBM_PUBLISHER": {
         "role": "WORKING_ITEMS",

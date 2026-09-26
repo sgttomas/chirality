@@ -2,13 +2,16 @@ schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-CHANGE-GENERIC-20260926
 title: Narrow the bundled change workflow to a repository-agnostic Git method
 date: '2026-09-26'
-basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
+basis: 5bbc9de22378f8f7056a010e1a05d2c13518f0e7
 instruction_surface_paths:
   - .agents/skills/chirality-change/SKILL.md
   - workflows/change/WORKFLOW.md
   - workflows/change/resources/contract.md
   - workflows/change/resources/method.md
   - workflows/index.json
+  - workflows/legacy-agents.json
+  - workflows/research-orchestration/resources/method.md
+  - workflows/project-setup/resources/package-activation.md
   - docs/governance_harness/tranche_manifests/ROOT-CHANGE-GENERIC-20260926.yaml
 m2_gate:
   authorization: >-
@@ -29,6 +32,7 @@ m6_notice:
   routed_to:
     - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_CHANGE_GENERIC.md
     - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_CHANGE_GENERIC.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_CHANGE_GENERIC.md
   rationale: >-
     The App bundles the Root workflow library, so its users receive the
     generic change workflow; the App packaging excludes chirality-change. App
