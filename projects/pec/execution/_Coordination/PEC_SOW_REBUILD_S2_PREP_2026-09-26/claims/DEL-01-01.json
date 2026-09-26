@@ -23,7 +23,7 @@
    "kind": "sha256",
    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
-   "candidate_text": "the four registers and the PRD are byte-identical to the pin"
+   "candidate_text": "the three registers and the PRD are byte-identical to the pin"
   },
   {
    "id": "S04",
@@ -39,7 +39,7 @@
    "kind": "sha256",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
    "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
-   "candidate_text": "the four registers and the PRD are byte-identical to the pin"
+   "candidate_text": "the three registers and the PRD are byte-identical to the pin"
   },
   {
    "id": "S06",
@@ -55,7 +55,7 @@
    "kind": "sha256",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
    "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
-   "candidate_text": "the four registers and the PRD are byte-identical to the pin"
+   "candidate_text": "the three registers and the PRD are byte-identical to the pin"
   },
   {
    "id": "S08",
@@ -71,7 +71,7 @@
    "kind": "sha256",
    "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
    "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
-   "candidate_text": "the four registers and the PRD are byte-identical to the pin"
+   "candidate_text": "the three registers and the PRD are byte-identical to the pin"
   },
   {
    "id": "S10",
@@ -87,7 +87,7 @@
    "kind": "sha256",
    "path": "projects/pec/docs/PRD.md",
    "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
-   "candidate_text": "the four registers and the PRD are byte-identical to the pin"
+   "candidate_text": "the three registers and the PRD are byte-identical to the pin"
   },
   {
    "id": "S12",
@@ -1477,8 +1477,8 @@
    "commit": "aca930622",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md",
-   "value": "- **CON-005** — **Work-graph dependencies.**",
-   "candidate_text": "`DEL-02-08/CON-005` records that no scope item"
+   "value": "The `SOW-095` extraction list does not name dependencies",
+   "candidate_text": "`DEL-02-08/CON-005` records that the `SOW-095` extraction list does not name them"
   },
   {
    "id": "S130",
@@ -1968,6 +1968,376 @@
    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "value": "| DL-17 | 2026-07-25 | SCA-002",
    "candidate_text": "decision-log entry `DL-17`"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+   "value": "**Current State:** ISSUED",
+   "candidate_text": "`DEL-00-01` is not `ISSUED`",
+   "id": "S179"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-01-01-003",
+    "column": "Notes",
+    "equals": "PROPOSAL; Flag=none; EdgeID=E-P01"
+   },
+   "candidate_text": "the upstream `[E-P01]`",
+   "id": "S180"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-07-05-005",
+    "column": "Notes",
+    "contains": "PROPOSAL; Flag=none; EdgeID=E-P14"
+   },
+   "candidate_text": "the retired `[E-P14]`",
+   "id": "S181"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/v2/config/loops.schema.json",
+   "value": "\"const\": \"agentruns-json\"",
+   "candidate_text": "closes the vocabulary to those three profiles",
+   "id": "S182"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/v2/config/loops.schema.json",
+   "value": "\"const\": \"loop-receipts-ledger\"",
+   "candidate_text": "closes the vocabulary to those three profiles",
+   "id": "S183"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/v2/config/loops.schema.json",
+   "value": "\"const\": \"shared-dev-loop\"",
+   "candidate_text": "closes the vocabulary to those three profiles",
+   "id": "S184"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-01-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S185"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-01-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S186"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-02-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S187"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-02-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S188"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-03-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S189"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-03-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S190"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-04-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S191"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-04-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S192"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-05-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S193"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-05-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S194"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-06-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S195"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-06-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S196"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-03-01-005",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S197"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-03-01-005",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S198"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-04-01-004",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S199"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-04-01-004",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S200"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-05-01-004",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S201"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-05-01-004",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S202"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-05-02-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S203"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-05-02-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S204"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-08-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S205"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-08-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S206"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-09-003",
+    "column": "DependencyType",
+    "equals": "PREREQUISITE"
+   },
+   "candidate_text": "each an `ACTIVE` `PREREQUISITE` row in the consumer's register",
+   "id": "S207"
+  },
+  {
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-02-09-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "at `RequiredMaturity` `INITIALIZED` and `SatisfactionStatus` `PENDING`",
+   "id": "S208"
   }
  ]
 }

@@ -77,11 +77,9 @@ review gate.
 >
 > LOOP_INIT identity only; workplans historical; CON-005 false (PEC has LOOP_INIT)
 >
-> (SCA-005 `Propagation_Plan.md` §B4 and `Impact_Assessment.md`. ID-shaped text
-> inside this quotation is upstream source context: it names the earlier
-> contract's constraint, retired here as recorded in AX-014.)
+> (SCA-005 `Propagation_Plan.md` §B4 and `Impact_Assessment.md`.)
 
-  The earlier contract said the `projects/pec` tree held no `LOOP_INIT.md`; at `aca930622` PEC's loop procedure is `projects/pec/loop/LOOP_INIT.md` and the registry locates it there (CLM-016, CLM-017). SCA-006 Impact Assessment §7.1 classes this deliverable `NOT_AFFECTED`. The undertaking graph schedules this rebuild as node S2.
+  ID-shaped text inside this quotation is upstream source context, not a local definition or reference: it names the earlier contract's constraint `DEL-02-06/CON-005`, retired here (AX-014). The earlier contract said the `projects/pec` tree held no `LOOP_INIT.md`; at `aca930622` PEC's loop procedure is `projects/pec/loop/LOOP_INIT.md` and the registry locates it there (CLM-016, CLM-017). SCA-006 Impact Assessment §7.1 classes this deliverable `NOT_AFFECTED`. The undertaking graph schedules this rebuild as node S2.
 
 ## Deliverable Definition — Ontology
 

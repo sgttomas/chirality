@@ -371,6 +371,12 @@
    "text": "all strata as presented",
    "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
    "where": "AX-004"
+  },
+  {
+   "id": "Q58",
+   "text": "the feed manifest",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+   "where": "CON-003"
   }
  ]
 }

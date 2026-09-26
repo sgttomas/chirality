@@ -1650,6 +1650,77 @@
    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
    "value": "- **REQ-001** — The reader shall consume, per project, that project's `_harness/adapter.yaml` and derive from it the feed manifest for that project",
    "candidate_text": "derive the feed manifest, which feeds are read and where each is located"
+  },
+  {
+   "id": "S157",
+   "commit": "53145aaeb",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-017",
+    "column": "ScopeItemStatement",
+    "equals": "Read per-project `_harness/adapter.yaml` as a parity-peer input only, comparing PEC's declared census population with the harness `status_glob`; report divergence as a DriftFinding"
+   },
+   "candidate_text": "is unchanged between revision 1.5 and revision 1.6"
+  },
+  {
+   "id": "S158",
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-017",
+    "column": "ScopeItemStatement",
+    "equals": "Read per-project `_harness/adapter.yaml` as a parity-peer input only, comparing PEC's declared census population with the harness `status_glob`; report divergence as a DriftFinding"
+   },
+   "candidate_text": "is unchanged between revision 1.5 and revision 1.6"
+  },
+  {
+   "id": "S159",
+   "commit": "53145aaeb",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+   "value": "Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.5**",
+   "candidate_text": "is unchanged between revision 1.5 and revision 1.6"
+  },
+  {
+   "id": "S160",
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+   "value": "DEL-02-07-REM-001, DEL-02-07-REM-002, DEL-02-07-REM-003, DEL-02-07-REM-004 → the D-PEC-99 exhibit",
+   "candidate_text": "Four items moved from this deliverable's `_STATUS.md`"
+  },
+  {
+   "id": "S161",
+   "commit": "aca930622",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+   "value": "The parser shall not itself discover project feeds; supplying the feed manifest is `DEL-02-07`'s scope under `SOW-017` (CLM-004).",
+   "candidate_text": "still expects this deliverable to supply \"the feed manifest\""
+  },
+  {
+   "id": "S162",
+   "commit": "aca930622",
+   "kind": "absent",
+   "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/ScopeOfWork.md",
+   "value": null,
+   "candidate_text": "a `P2` deliverable with no `ScopeOfWork.md` at `aca930622`"
+  },
+  {
+   "id": "S163",
+   "commit": "aca930622",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-09-02",
+    "column": "PhaseHint",
+    "equals": "P2"
+   },
+   "candidate_text": "a `P2` deliverable with no `ScopeOfWork.md` at `aca930622`"
   }
  ]
 }
