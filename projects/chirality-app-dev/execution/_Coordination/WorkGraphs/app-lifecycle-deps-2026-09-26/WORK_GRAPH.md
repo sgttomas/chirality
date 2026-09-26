@@ -109,7 +109,7 @@
   §5 places the undertaking receipt in `AgentRuns/<RunID>/RECEIPT.md`; the ledger
   entry only points there.
 
-## App-loop follow-ups (FU1–FU4 owner decision E4, FU5–FU6 from the R2 review; not implemented here)
+## App-loop follow-ups (FU1–FU4 owner decision E4, FU5–FU6 from the R2 review; not implemented here, FU5 since implemented separately)
 
 | ID | Follow-up | Home |
 |---|---|---|
@@ -117,5 +117,5 @@
 | FU2 | The Runtime `status_transition` descriptor lists `ruling` and names the reversal gate. | DEL-07-04 MCP surface; Runtime-owned descriptor |
 | FU3 | Workbench and pipeline transition forms gain a reversal input, with D-APP-36 render evidence. | DEL-07-04 UI consumers |
 | FU4 | DEL-07-04 SOW verification sentences (CLM-003/CLM-008) updated at the bounded closeout. | Undertaking closeout |
-| FU5 | App dependency reads compute blockers from the recorded register (the union of the declared sections and `Dependencies.csv`); today they are CSV-only register evidence. | App dependency read surfaces |
+| FU5 | App dependency reads compute blockers from the recorded register (the union of the declared sections and `Dependencies.csv`); at this run they were CSV-only register evidence. **Implemented** by the separate run `APP-RECORDED-REGISTER-2026-09-26` (owner work plan of 2026-09-26, item 3c): supplier-judged blockers, the D-GOV-49 accepted-DAG split with `DAG_PENDING`, and parity fixtures against the Root tools; see its [receipt](../../AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md). | App dependency read surfaces |
 | FU6 | Decide when the App's bundled `dependency-extract`, `project-setup` and `review` workflows pick up the dependency follow-up revision. | App loop |

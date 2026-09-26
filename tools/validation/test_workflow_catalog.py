@@ -536,10 +536,20 @@ def test_d_gov_50_issued_reopening_and_incremental_setup_routes():
     assert "**Reopening an `ISSUED` deliverable.**" in spec
     assert "its accepted action register names that deliverable with action `MODIFY`" in spec
     assert "The human records the transition in `_STATUS.md`, citing the accepted amendment snapshot." in spec
-    assert "until they implement a check of the amendment record" in spec
     scope_change = " ".join((ROOT / "workflows/scope-change/resources/contract.md").read_text().split())
     assert "**Reopening an `ISSUED` deliverable.**" in scope_change
-    assert "until they implement a check of the amendment record" in scope_change
+    # D-GOV-51: write_status.sh enforces the rule through check_amendment_reopen.py;
+    # RECLASSIFY authorizes only with ScopeChanging YES, and legacy registers keep MODIFY.
+    for text in (spec, scope_change):
+        assert "until they implement a check of the amendment record" not in text
+        assert "`tools/validation/check_amendment_reopen.py`" in text
+        assert "`ScopeChanging`" in text
+        assert "refuses its `RECLASSIFY` rows" in text or "admits `MODIFY` but refuses `RECLASSIFY`" in text
+    assert "| `ScopeChanging` | enum | `YES` / `NO`." in scope_change
+    assert "`# {AMENDMENT_ID} checkpoint group 3 — accepted …`" in scope_change
+    setup_method = (ROOT / "workflows/project-setup/resources/method.md").read_text()
+    assert "does not yet admit this transition" not in setup_method
+    assert "--amendment {AMENDMENT_ID} --approval-sha" in setup_method
 
     # scope-of-work carries the bounded REVISE mode that project-setup routes MODIFY to.
     brief = (ROOT / "workflows/scope-of-work/resources/brief.md").read_text()

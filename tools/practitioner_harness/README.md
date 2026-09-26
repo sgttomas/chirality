@@ -513,7 +513,8 @@ Recorded divergences from transition.ts:
    existing documents); creation at any other state is refused.
 4. **`--force-human-override <reason>` exists** (HUMAN-only; reason recorded in
    the history line as `[override: ...]`; never overrides usage errors, the
-   reversal's `--ruling` preconditions, or the `ISSUED → IN_PROGRESS` block) —
+   reversal's `--ruling` preconditions, or any `ISSUED → IN_PROGRESS`
+   reopening precondition) —
    BLOCK override is human-only and recorded, per D-GOV-02. `transition.ts`
    has no override path.
 5. **Approval-SHA requirement is adapter-conditional**
@@ -532,8 +533,28 @@ Recorded divergences from transition.ts:
    `[reversal from CHECKING; ruling: <path>]`. Existing approval-SHA and
    Authorization Basis fields are left as history. `transition.ts` still
    rejects the reversal as `BACKWARD_TRANSITION`; adopting it there is the App
-   loop's decision. `ISSUED → IN_PROGRESS` remains blocked here: it belongs to
-   the governed scope-change process, which this tool does not perform.
+   loop's decision.
+8. **Reopening `ISSUED → IN_PROGRESS` under an accepted amendment is admitted**
+   (SPEC §3.3, D-GOV-50, D-GOV-51). It requires a HUMAN actor, a git
+   repository, `--approval-sha` on every root (a reachable commit that is an
+   ancestor of `HEAD`, else `APPROVAL_SHA_NOT_ANCESTOR`), and `--amendment
+   <id-or-path>` that passes `tools/validation/check_amendment_reopen.py
+   --at-commit <approval SHA> --status-file <_STATUS.md>`. The checker reads
+   every amendment record from the approval commit, never the working tree,
+   so uncommitted or untracked edits do not count (group 3 accepted; register
+   bound by hash in the governing group-2 `ACCEPTED_MANIFEST.csv` and
+   unchanged; no `REMOVE` of the deliverable and a `DELIVERABLE` row with
+   `MODIFY`, or `RECLASSIFY` with `ScopeChanging` `YES`; no reopening already
+   recorded in `_STATUS.md` under the same amendment). The guard never uses the
+   checker's unanchored working-tree mode. Every refusal is not overridable;
+   without `--amendment` the transition stays `BACKWARD_TRANSITION`. The
+   history line carries `[reopened from ISSUED; amendment: <ID> (<group-3
+   snapshot>); action: <register> ActionSeq <n> <type>; approval SHA: <sha>]`,
+   and that line is what the once-per-amendment check reads; a human may still
+   record a further reopening directly. The approval SHA fixes which records
+   are read; it does not show that the human's act happened at that commit.
+   `transition.ts` still rejects the transition; the App loop mirrors the
+   checker in its own change.
 
 Stated honestly: tool usage is guided operationally, not enforced — hand edits
 bypass any guard. The guard hardens the sanctioned path; drift detection

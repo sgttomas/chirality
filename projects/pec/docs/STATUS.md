@@ -246,7 +246,9 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency (S1, S2, S4). Done: the first SOWs for DEL-02-08/09
+  - SOW currency (S1, S2, S4). The owner ruled the S2 rebuild `D-PEC-100`
+    (seven contracts: DEL-01-01, DEL-01-06, DEL-02-03..07) on 2026-09-26;
+    the act follows. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
